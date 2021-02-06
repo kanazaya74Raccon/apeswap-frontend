@@ -83,9 +83,9 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'ApeSwap')}
+          {TranslateString(576, 'Welcome all Apes!')}
         </Heading>
-        <Text>{TranslateString(578, 'The #1 AMM and yield farm for apes by apes.')}</Text>
+        <Text>{TranslateString(578, 'Why be a loser, when you can be an ape?')}</Text>
       </Hero>
       <div>
         <Cards>
