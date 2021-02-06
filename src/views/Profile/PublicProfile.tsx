@@ -12,7 +12,7 @@ import {
   Text,
   PrizeIcon,
   OpenNewIcon,
-} from '@pancakeswap-libs/uikit'
+} from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useProfile } from 'state/hooks'
 import Menu from './components/Menu'

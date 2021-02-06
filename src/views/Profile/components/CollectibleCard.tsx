@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from '@apeswapfinance/uikit'
 import { Nft } from 'config/constants/types'
 
 interface CollectibleCardProps {

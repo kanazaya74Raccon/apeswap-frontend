@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-import { CardHeader as UIKitCardHeader } from '@pancakeswap-libs/uikit'
+import { CardHeader as UIKitCardHeader } from '@apeswapfinance/uikit'
 
 const getBackground = (theme: DefaultTheme) => {
   if (theme.isDark) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Heading, Text as UIKitText, ArrowForwardIcon } from '@pancakeswap-libs/uikit'
+import { Button, Heading, Text as UIKitText, ArrowForwardIcon } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 const StyledHowItWorks = styled.div`

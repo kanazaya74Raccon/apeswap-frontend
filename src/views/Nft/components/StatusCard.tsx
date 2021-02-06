@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
-import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { NftProviderContext } from '../contexts/NftProvider'
 import NoNftsToClaimCard from './NoNftsToClaimCard'

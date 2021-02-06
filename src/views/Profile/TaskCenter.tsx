@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardHeader, Flex, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Button, Card, CardBody, CardHeader, Flex, Heading, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import React from 'react'
 import ComingSoon from './components/ComingSoon'

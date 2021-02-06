@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Flex, Heading, useModal, Won } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Heading, useModal, Won } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import ClaimNftAndCakeModal, { useCanClaim } from './ClaimGiftModal'
 import HeaderWrapper from './HeaderWrapper'
