@@ -107,7 +107,7 @@ const Farms: React.FC = () => {
           </Route>
         </FlexLayout>
       </div>
-      <Image src="/images/cakecat.png" alt="ApeSwap illustration" width={949} height={384} responsive />
+      <Image src="/images/banana-leaf.png" alt="ApeSwap illustration" width={1205} height={823} responsive />
     </Page>
   )
 }

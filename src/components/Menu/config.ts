@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://exchange.pancakeswap.finance',
+        href: 'https://apeswap-dex.vercel.app/',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.pancakeswap.finance/#/pool',
+        href: 'https://apeswap-dex.vercel.app/#/pool',
       },
     ],
   },
@@ -54,7 +54,7 @@ const config: MenuEntry[] = [
       },
     ],
   }, */
-  {
+  /* {
     label: 'Info',
     icon: 'InfoIcon',
     items: [
@@ -75,8 +75,7 @@ const config: MenuEntry[] = [
         href: 'https://pancakeswap.info/accounts',
       },
     ],
-  },
-  /* {
+  }, {
     label: 'IFO',
     icon: 'IfoIcon',
     href: '/ifo',
@@ -87,19 +86,19 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Voting',
-        href: 'https://voting.pancakeswap.finance',
+        href: '#',
       },
       {
         label: 'Github',
-        href: 'https://github.com/pancakeswap',
+        href: 'https://github.com/apeswapfinance',
       },
       {
         label: 'Docs',
-        href: 'https://docs.pancakeswap.finance',
+        href: '#',
       },
       {
         label: 'Blog',
-        href: 'https://pancakeswap.medium.com',
+        href: '#',
       },
     ],
   },

@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading } from '@apeswapfinance/uikit'
+import { Heading, Image } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -70,15 +70,15 @@ const Farm: React.FC = () => {
       <Hero>
         <div>
           <Heading as="h1" size="xxl" mb="16px">
-            {TranslateString(282, 'SYRUP Pool')}
+            {TranslateString(282, 'Banana fiesta')}
           </Heading>
           <ul>
-            <li>{TranslateString(580, 'Stake CAKE to earn new tokens.')}</li>
+            <li>{TranslateString(580, 'Stake BANANA to earn new tokens.')}</li>
             <li>{TranslateString(404, 'You can unstake at any time.')}</li>
             <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
           </ul>
         </div>
-        <img src="/images/syrup.png" alt="SYRUP POOL icon" width={410} height={191} />
+        <Image src="/images/banana-leaf.png" alt="ApeSwap illustration" width={1205} height={823} responsive />
       </Hero>
       <PoolTabButtons />
       <Divider />
