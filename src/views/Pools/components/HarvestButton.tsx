@@ -88,7 +88,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   display: flex;
   font-size: ${(props) => props.fontSize}px;
-  font-weight: 700;
+  font-weight: 450;
   height: ${(props) => props.size}px;
   justify-content: center;
   outline: none;

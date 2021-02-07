@@ -9,7 +9,7 @@ interface Props {
 const Title = styled.div`
   color: #ed4b9e;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 300;
   text-transform: uppercase;
 `
 

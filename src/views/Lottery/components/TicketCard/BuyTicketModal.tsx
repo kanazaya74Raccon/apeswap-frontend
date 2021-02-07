@@ -115,7 +115,7 @@ export default BuyTicketModal
 const Tips = styled.div`
   margin-left: 0.4em;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 300;
   color: ${(props) => props.theme.colors.primary};
 `
 
@@ -123,7 +123,7 @@ const Final = styled.div`
   margin-top: 1em;
   text-align: center;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 300;
   color: ${(props) => props.theme.colors.primary};
 `
 const Announce = styled.div`

@@ -37,7 +37,7 @@ const StyledDetailsButton = styled.button`
   cursor: pointer;
   display: inline-flex;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 300;
   height: 32px;
   justify-content: center;
   outline: 0;

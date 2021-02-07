@@ -13,7 +13,7 @@ const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
 const Blurb = styled(Text)`
   color: #ffffff;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 300;
 `
 
 const StyledHero = styled.div`

@@ -24,7 +24,7 @@ const Details = styled.div`
 const Countdown = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 300;
   text-align: center;
 `
 
