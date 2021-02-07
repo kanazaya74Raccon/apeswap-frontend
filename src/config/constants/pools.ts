@@ -3,8 +3,8 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 const pools: PoolConfig[] = [
   {
     sousId: 0,
-    tokenName: 'CAKE',
-    stakingTokenName: QuoteToken.CAKE,
+    tokenName: 'BANANA',
+    stakingTokenName: QuoteToken.BANANA,
     stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     contractAddress: {
       97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -18,7 +18,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-  {
+  /* {
     sousId: 45,
     tokenName: 'LINA',
     stakingTokenName: QuoteToken.CAKE,
@@ -800,7 +800,7 @@ const pools: PoolConfig[] = [
     sortOrder: 999,
     isFinished: true,
     tokenDecimals: 18,
-  },
+  }, */
 ]
 
 export default pools
