@@ -94,7 +94,6 @@ export const usePriceCakeBusd = (): BigNumber => {
 }
 
 export const usePriceEthBusd = (): BigNumber => {
-  // TODO
   const pid = 6 // ETH-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
