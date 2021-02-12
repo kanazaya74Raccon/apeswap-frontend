@@ -47,41 +47,26 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
-  /* {
-    pid: 3,
+  {
+    pid: 4,
     lpSymbol: 'BANANA-BUSD LP',
     lpAddresses: {
-      97: '0xe70b7523f4bffa1f2e88d2ba709afd026030f412',
+      97: '0x16e2264af4cc429e986f60ce9071d9c2273954ee', // BANANA-BUSD BananaPair
       56: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
     tokenSymbol: 'BANANA',
     tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700',
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 14,
-    lpSymbol: 'ETH-BNB LP',
-    lpAddresses: {
-      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
-      56: '0x70D8929d04b60Af4fb9B58713eBcf18765aDE422',
-    },
-    tokenSymbol: 'ETH',
-    tokenAddresses: {
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
-      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-  },
-  {
-    pid: 15,
+    pid: 5,
     lpSymbol: 'BTCB-BNB LP',
     lpAddresses: {
-      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
+      97: '0xbbdb8ae8dd7e0491bff6ad66a53fd1b373409d6b', // BTCB-BNB BananaPair
       56: '0x7561EEe90e24F3b348E1087A005F78B4c8453524',
     },
     tokenSymbol: 'BTC',
@@ -91,7 +76,22 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-  }, */
+  },
+  {
+    pid: 6,
+    lpSymbol: 'ETH-BNB LP',
+    lpAddresses: {
+      97: '0x986b561ded3dcbfdb5212e7be5b6cc0fd4b020ea', // ETH-BNB BananaPair
+      56: '0x70D8929d04b60Af4fb9B58713eBcf18765aDE422',
+    },
+    tokenSymbol: 'ETH',
+    tokenAddresses: {
+      97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
+      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
 ]
 
 export default farms
