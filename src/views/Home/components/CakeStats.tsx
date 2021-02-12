@@ -26,7 +26,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
-  const bananaPerBlock = CAKE_PER_BLOCK.toNumber();
+  const bananaPerBlock = CAKE_PER_BLOCK.toNumber()
 
   return (
     <StyledCakeStats>
