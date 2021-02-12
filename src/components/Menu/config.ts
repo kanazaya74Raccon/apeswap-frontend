@@ -1,4 +1,5 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
+import { BASE_EXCHANGE_URL, BASE_LIQUIDITY_POOL_URL } from 'config'
 
 const config: MenuEntry[] = [
   {
@@ -12,11 +13,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://apeswap-dex.vercel.app/',
+        href: BASE_EXCHANGE_URL,
       },
       {
         label: 'Liquidity',
-        href: 'https://apeswap-dex.vercel.app/#/pool',
+        href: BASE_LIQUIDITY_POOL_URL,
       },
     ],
   },
@@ -85,20 +86,16 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Voting',
-        href: '#',
-      },
-      {
         label: 'Github',
         href: 'https://github.com/apeswapfinance',
       },
       {
         label: 'Docs',
-        href: '#',
+        href: 'https://obiedobo.gitbook.io/apeswap-finance/',
       },
       {
         label: 'Blog',
-        href: '#',
+        href: 'https://medium.com/@ape_swap',
       },
     ],
   },
