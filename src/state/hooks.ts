@@ -93,10 +93,14 @@ export const usePriceCakeBusd = (): BigNumber => {
 }
 
 export const usePriceEthBusd = (): BigNumber => {
+  // TODO
+  return usePriceBnbBusd()
+  /*
   const pid = 14 // ETH-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  */
 }
 
 // Toasts
