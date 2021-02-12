@@ -6,7 +6,7 @@ import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import { useFarms, usePriceBnbBusd } from 'state/hooks'
-import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, CAKE_POOL_PID } from 'config'
+import { BLOCKS_PER_YEAR, CAKE_PER_BLOCK, BANANA_POOL_PID } from 'config'
 
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
@@ -38,7 +38,7 @@ const EarnAPYCard = () => {
 
   const calculateAPY = useCallback(
     (farmsToDisplay) => {
-      const cakePriceVsBNB = new BigNumber(farmsLP.find((farm) => farm.pid === CAKE_POOL_PID)?.tokenPriceVsQuote || 0)
+      const cakePriceVsBNB = new BigNumber(farmsLP.find((farm) => farm.pid === BANANA_POOL_PID)?.tokenPriceVsQuote || 0)
 
       farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {

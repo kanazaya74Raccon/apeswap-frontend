@@ -18,10 +18,10 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 1,
+    pid: 3,
     lpSymbol: 'BANANA-BNB LP',
     lpAddresses: {
-      97: '0x9fC2381A8A679DfB64A9125c12450A8556B7F1a8', // BANANA-BNB BananaPair
+      97: '0xc6b99e2eb3a74bcee1a362d616d18ee7d40e4432', // BANANA-BNB BananaPair
       56: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
     tokenSymbol: 'BANANA',
