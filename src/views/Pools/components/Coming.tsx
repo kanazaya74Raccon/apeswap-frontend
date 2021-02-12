@@ -28,6 +28,7 @@ const Value = styled.div`
 `
 
 const Footer = styled.div`
+  margin-top: 5px;
   border-top: 1px solid ${({ theme }) => (theme.isDark ? '#524B63' : '#E9EAEB')};
   padding: 24px;
 `
