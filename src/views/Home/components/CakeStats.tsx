@@ -5,6 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
+import { CAKE_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
 const StyledCakeStats = styled(Card)`
@@ -25,6 +26,7 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const bananaPerBlock = CAKE_PER_BLOCK.toNumber()
 
   return (
     <StyledCakeStats>
@@ -42,7 +44,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New BANANA/block')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={25} />
+          <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} />
         </Row>
       </CardBody>
     </StyledCakeStats>

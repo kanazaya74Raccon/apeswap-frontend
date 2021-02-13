@@ -5,13 +5,13 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'BANANA',
     stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    stakingTokenAddress: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // BANANA token address
     contractAddress: {
-      97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
+      97: '0xDC4c95af386d4a06e6Ae032b5D79Bf3550cC186D', // MasterApe
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://apeswap.finance/',
     harvest: true,
     tokenPerBlock: '10',
     sortOrder: 1,
@@ -23,7 +23,7 @@ const pools: PoolConfig[] = [
     tokenName: 'LINA',
     stakingTokenName: QuoteToken.CAKE,
     stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-    contractAddress: {
+    contractAddress: { // SupportApe
       97: '',
       56: '0x212bb602418C399c29D52C55100fD6bBa12bea05',
     },

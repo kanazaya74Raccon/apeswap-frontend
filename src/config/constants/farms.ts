@@ -4,29 +4,14 @@ import { FarmConfig, QuoteToken } from './types'
 const farms: FarmConfig[] = [
   {
     pid: 0,
-    lpSymbol: 'CAKE',
+    lpSymbol: 'BANANA',
     lpAddresses: {
-      97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
+      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // Banana token
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
-    tokenSymbol: 'SYRUP',
+    tokenSymbol: 'BANANA-SPLIT',
     tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-  },
-  {
-    pid: 1,
-    lpSymbol: 'BANANA-BNB LP',
-    lpAddresses: {
-      97: '0xe70b7523f4bffa1f2e88d2ba709afd026030f412',
-      56: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // Banana Token
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
     quoteTokenSymbol: QuoteToken.BNB,
@@ -34,14 +19,14 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'BANANA-BUSD LP',
+    lpSymbol: 'BANANA-BNB LP',
     lpAddresses: {
-      97: '0xe70b7523f4bffa1f2e88d2ba709afd026030f412',
+      97: '0xc6b99e2eb3a74bcee1a362d616d18ee7d40e4432', // BANANA-BNB BananaPair
       56: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
     tokenSymbol: 'BANANA',
     tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // Banana Token
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
     quoteTokenSymbol: QuoteToken.BNB,
@@ -51,43 +36,58 @@ const farms: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
-      97: '0x2f7682b64b88149ba3250aee32db712964de5fa9',
+      97: '0x0ff51c683b9eCA60e4c0164Cd4376403fF539D75', // BUSD-BNB BananaPair
       56: '0x1b96b92314c44b159149f7e0303511fb2fc4774f',
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
-      97: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 14,
-    lpSymbol: 'ETH-BNB LP',
+    pid: 4,
+    lpSymbol: 'BANANA-BUSD LP',
     lpAddresses: {
-      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
-      56: '0x70D8929d04b60Af4fb9B58713eBcf18765aDE422',
+      97: '0x16e2264af4cc429e986f60ce9071d9c2273954ee', // BANANA-BUSD BananaPair
+      56: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
-    tokenSymbol: 'ETH',
+    tokenSymbol: 'BANANA',
     tokenAddresses: {
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
-      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 5,
+    lpSymbol: 'BTCB-BNB LP',
+    lpAddresses: {
+      97: '0xbbdb8ae8dd7e0491bff6ad66a53fd1b373409d6b', // BTCB-BNB BananaPair
+      56: '0x7561EEe90e24F3b348E1087A005F78B4c8453524',
+    },
+    tokenSymbol: 'BTC',
+    tokenAddresses: {
+      97: '0x6ce8da28e2f864420840cf74474eff5fd80e65b8', // Binance Peg BTC
+      56: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 15,
-    lpSymbol: 'BTCB-BNB LP',
+    pid: 6,
+    lpSymbol: 'ETH-BNB LP',
     lpAddresses: {
-      97: '0xE66790075ad839978fEBa15D4d8bB2b415556a1D',
-      56: '0x7561EEe90e24F3b348E1087A005F78B4c8453524',
+      97: '0x986b561ded3dcbfdb5212e7be5b6cc0fd4b020ea', // ETH-BNB BananaPair
+      56: '0x70D8929d04b60Af4fb9B58713eBcf18765aDE422',
     },
-    tokenSymbol: 'BTC',
+    tokenSymbol: 'ETH',
     tokenAddresses: {
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
-      56: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c',
+      97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
+      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,

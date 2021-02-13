@@ -6,6 +6,7 @@ import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
+import { BANANA_POOL_PID } from 'config'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -77,6 +78,24 @@ export const usePoolFromPid = (sousId): Pool => {
   return pool
 }
 
+// TVL
+export const useTvl = (): BigNumber => {
+  const farms = useFarms()
+  const bananaPool = usePoolFromPid(0)
+  const bnbPriceUSD = usePriceBnbBusd()
+  const bananaPriceBUSD = usePriceCakeBusd()
+  let valueLocked = new BigNumber(bananaPool.totalStaked)
+    .div(new BigNumber(10).pow(bananaPool.tokenDecimals))
+    .times(bananaPriceBUSD)
+  // eslint-disable-next-line no-restricted-syntax
+  for (const farm of farms) {
+    const totalInQuoteToken = new BigNumber(farm.totalInQuoteToken)
+    if (farm.quoteTokenSymbol === 'BNB') valueLocked = valueLocked.plus(totalInQuoteToken.times(bnbPriceUSD))
+    else if (farm.quoteTokenSymbol === 'BUSD') valueLocked = valueLocked.plus(totalInQuoteToken)
+  }
+  return valueLocked
+}
+
 // Prices
 
 export const usePriceBnbBusd = (): BigNumber => {
@@ -86,14 +105,20 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const pid = 1 // CAKE-BNB LP
+  const pid = 4 // BANANA-BUSD LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+  /*
+  // TODO Revisit this 
+  const pid = BANANA_POOL_PID // BANANA-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+  */
 }
 
 export const usePriceEthBusd = (): BigNumber => {
-  const pid = 14 // ETH-BNB LP
+  const pid = 6 // ETH-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
