@@ -26,3 +26,5 @@ jobs:
 
       - name: Run ESLint
         run: yarn lint
+        env: 
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
