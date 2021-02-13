@@ -5,9 +5,9 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'BANANA',
     stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // BANANA token address
+    stakingTokenAddress: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // BANANA token address
     contractAddress: {
-      97: '0xDC4c95af386d4a06e6Ae032b5D79Bf3550cC186D', // MasterApe
+      97: '0xbbC5e1cD3BA8ED639b00927115e5f0e0040aA613', // MasterApe
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,
