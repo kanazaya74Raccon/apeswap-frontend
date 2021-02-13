@@ -65,6 +65,9 @@ const fetchFarms = async () => {
         .times(new BigNumber(2))
         .times(lpTokenRatio)
 
+      // Total value in pool in quote token value
+      const totalInQuoteToken = new BigNumber(quoteTokenBlanceLP).div(new BigNumber(10).pow(18)).times(new BigNumber(2))
+
       // Amount of token in the LP that are considered staking (i.e amount of token * lp ratio)
       const tokenAmount = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(tokenDecimals)).times(lpTokenRatio)
       const quoteTokenAmount = new BigNumber(quoteTokenBlanceLP)
@@ -90,6 +93,7 @@ const fetchFarms = async () => {
         ...farmConfig,
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
+        totalInQuoteToken: totalInQuoteToken.toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         poolWeight: poolWeight.toJSON(),

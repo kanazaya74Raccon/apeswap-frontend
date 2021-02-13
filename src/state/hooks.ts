@@ -78,6 +78,24 @@ export const usePoolFromPid = (sousId): Pool => {
   return pool
 }
 
+// TVL
+export const useTvl = (): BigNumber => {
+  const farms = useFarms()
+  const bananaPool = usePoolFromPid(0)
+  const bnbPriceUSD = usePriceBnbBusd()
+  const bananaPriceBUSD = usePriceCakeBusd()
+  let valueLocked = new BigNumber(bananaPool.totalStaked)
+    .div(new BigNumber(10).pow(bananaPool.tokenDecimals))
+    .times(bananaPriceBUSD)
+  // eslint-disable-next-line no-restricted-syntax
+  for (const farm of farms) {
+    const totalInQuoteToken = new BigNumber(farm.totalInQuoteToken)
+    if (farm.quoteTokenSymbol === 'BNB') valueLocked = valueLocked.plus(totalInQuoteToken.times(bnbPriceUSD))
+    else if (farm.quoteTokenSymbol === 'BUSD') valueLocked = valueLocked.plus(totalInQuoteToken)
+  }
+  return valueLocked
+}
+
 // Prices
 
 export const usePriceBnbBusd = (): BigNumber => {

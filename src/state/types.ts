@@ -4,6 +4,7 @@ import { FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
+  totalInQuoteToken?: BigNumber
   quoteTokenAmount?: BigNumber
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
