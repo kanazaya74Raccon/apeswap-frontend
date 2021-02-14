@@ -95,7 +95,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Blog',
-        href: 'https://medium.com/@ape_swap',
+        href: 'https://ape-swap.medium.com/',
       },
     ],
   },
