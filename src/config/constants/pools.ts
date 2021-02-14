@@ -5,10 +5,10 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'BANANA',
     stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // BANANA token address
+    stakingTokenAddress: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA token address
     contractAddress: {
       97: '0xbbC5e1cD3BA8ED639b00927115e5f0e0040aA613', // MasterApe
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://apeswap.finance/',
