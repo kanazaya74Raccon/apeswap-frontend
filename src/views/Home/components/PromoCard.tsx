@@ -8,7 +8,7 @@ const StyledPromoCard = styled(Card)`
 `
 const StyledLink = styled.a`
   font-weight: 500;
-  color: #FFB300;
+  color: #ffb300;
 `
 
 const PromoCard = () => {
@@ -17,11 +17,17 @@ const PromoCard = () => {
     <StyledPromoCard>
       <CardBody>
         <Heading size="xl" mb="24px">
-        🍌 {TranslateString(999, '$BANANA meme sharing fiesta!')} 🍌
+          🍌 {TranslateString(999, '$BANANA meme sharing fiesta!')} 🍌
         </Heading>
-          <>
-            <Text color="textSubtle">Tweet <StyledLink target="_blank" href="https://twitter.com/ape_swap/status/1361077873860366341">@ape_swap</StyledLink> and mention $BANANA for a chance to win up to 50 BANANA!</Text>
-          </>
+        <>
+          <Text color="textSubtle">
+            Tweet{' '}
+            <StyledLink target="_blank" href="https://twitter.com/ape_swap/status/1361077873860366341">
+              @ape_swap
+            </StyledLink>{' '}
+            and mention $BANANA for a chance to win up to 50 BANANA!
+          </Text>
+        </>
       </CardBody>
     </StyledPromoCard>
   )
