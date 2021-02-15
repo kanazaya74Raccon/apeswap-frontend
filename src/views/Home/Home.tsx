@@ -10,6 +10,7 @@ import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
+import PromoCard from './components/PromoCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -54,6 +55,9 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
+const Card = styled.div`
+  margin-bottom: 32px;
+`
 
 const CTACards = styled(BaseLayout)`
   align-items: start;
@@ -88,6 +92,9 @@ const Home: React.FC = () => {
         <Text>{TranslateString(578, 'Why be a human, when you can be an ape?')}</Text>
       </Hero>
       <div>
+        <Card>
+          <PromoCard />
+        </Card>
         <Cards>
           <FarmStakingCard />
           <CakeStats />
