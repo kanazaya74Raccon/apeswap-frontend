@@ -29,7 +29,7 @@ const CakeStats = () => {
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const bananaPerBlock = CAKE_PER_BLOCK.toNumber()
-  const marketCap = cakePriceUsd.toNumber() * cakeSupply;
+  const marketCap = cakePriceUsd.toNumber() * cakeSupply
 
   return (
     <StyledCakeStats>
@@ -47,7 +47,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(538, 'Total BANANA Burned')}</Text>
-          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} />
+          <CardValue fontSize="14px" decimals={0} value={getBalanceNumber(burnedBalance)} />
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New BANANA/block')}</Text>
