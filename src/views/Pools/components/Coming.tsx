@@ -47,7 +47,7 @@ const Coming: React.FC = () => {
         <Image src="/images/pan-bg2.svg" width={64} height={64} alt="Your project here" />
         <Balance>???</Balance>
         <Label>{TranslateString(416, 'Create a pool for your token')}</Label>
-        <Button variant="secondary" as="a" href="#" external fullWidth mb="16px">
+        <Button variant="secondary" as="a" href="https://forms.gle/5vN1kgX5wSK6PLJn7" external fullWidth mb="16px">
           {TranslateString(418, 'Apply Now')}
         </Button>
         <DetailPlaceholder>
