@@ -10,6 +10,7 @@ import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
+import HourlyChart from 'views/Home/components/HourlyChart'
 import PromoCard from './components/PromoCard'
 
 const Hero = styled.div`
@@ -106,6 +107,7 @@ const Home: React.FC = () => {
         </Cards>
         {/* <LotteryCard /> */}
       </div>
+      <HourlyChart />
     </Page>
   )
 }

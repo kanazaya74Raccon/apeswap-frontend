@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react'
  */
 export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 
+const priceBaseUrl =
+  'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_NONAME&address=0x7bd46f6da97312ac2dbd1749f82e202764c0b914&token=BANANA&base=BUSD&from=0&to=1613560264'
+
 /* eslint-disable camelcase */
 
 export interface TradePair {
@@ -44,6 +47,34 @@ export const useGetStats = () => {
 
     fetchData()
   }, [setData])
+
+  return data
+}
+
+export const useChartData = (resolution = '60') => {
+  const [data, setData] = useState<any | null>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${priceBaseUrl}&resolution=${resolution}`)
+        const responsedata = await response.json()
+        const chartData = []
+        for (let i = 0; i < responsedata.c.length; i++) {
+          const candle = {
+            x: new Date(responsedata.t[i] * 1000),
+            y: [responsedata.o[i], responsedata.h[i], responsedata.l[i], responsedata.c[i]],
+          }
+          chartData.push(candle)
+        }
+        setData(chartData)
+      } catch (error) {
+        console.error('Unable to fetch data:', error)
+      }
+    }
+
+    fetchData()
+  }, [setData, resolution])
 
   return data
 }
