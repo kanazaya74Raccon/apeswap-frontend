@@ -10,6 +10,7 @@ import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pools from './views/Pools'
 
+
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
@@ -35,6 +36,7 @@ const App: React.FC = () => {
     if (!account && window.localStorage.getItem('accountStatus')) {
       connect('injected')
     }
+    if (account) (dataLayer as any).push({event: 'wallet_connect', user_id: account})
   }, [account, connect])
 
   useFetchPublicData()
