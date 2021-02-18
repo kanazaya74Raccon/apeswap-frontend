@@ -86,6 +86,10 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
+        label: 'Chart',
+        href: '/chart',
+      },
+      {
         label: 'Github',
         href: 'https://github.com/apeswapfinance',
       },
