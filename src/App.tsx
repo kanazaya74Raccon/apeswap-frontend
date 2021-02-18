@@ -21,6 +21,7 @@ const Nft = lazy(() => import('./views/Nft'))
 const Teams = lazy(() => import('./views/Teams'))
 const Team = lazy(() => import('./views/Teams/Team'))
 const Profile = lazy(() => import('./views/Profile'))
+const Chart = lazy(() => import('./views/Chart'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -64,6 +65,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/nft">
               <Nft />
+            </Route>
+            <Route path="/chart">
+              <Chart />
             </Route>
             <Route exact path="/teams">
               <Teams />
