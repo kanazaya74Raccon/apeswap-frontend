@@ -13,7 +13,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://apeswap.finance/',
     harvest: true,
-    tokenPerBlock: '10',
+    tokenPerBlock: `${(CAKE_PER_BLOCK.toNumber() * 0.25)}`,
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
