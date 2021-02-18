@@ -5,11 +5,10 @@ import { TranslateString } from 'utils/translateTextHelpers'
 import Chart from './Chart'
 
 const Teams = () => {
-
   return (
     <Page>
-        <Heading size="xl">{TranslateString(999, 'Chart')}</Heading>
-        <Chart />
+      <Heading size="xl">{TranslateString(999, 'Chart')}</Heading>
+      <Chart />
     </Page>
   )
 }
