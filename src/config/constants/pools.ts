@@ -1,3 +1,4 @@
+import { CAKE_PER_BLOCK } from 'config'
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
