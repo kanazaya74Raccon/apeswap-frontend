@@ -1,2 +1,2 @@
-declare const dataLayer: Array<any>;
+declare const dataLayer: Array<any>
 /// <reference types="react-scripts" />
