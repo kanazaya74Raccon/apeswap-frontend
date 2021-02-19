@@ -6,12 +6,12 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'BANANA',
     lpAddresses: {
-      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // Banana token
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Banana token
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
     tokenSymbol: 'BANANA-SPLIT',
     tokenAddresses: {
-      97: '0xc987bea2149629ff83c11ffabfd07b45ecb94700', // Banana Token
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Banana Token
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
     quoteTokenSymbol: QuoteToken.BNB,
