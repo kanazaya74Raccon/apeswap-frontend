@@ -1,3 +1,4 @@
+import { CAKE_PER_BLOCK } from 'config'
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
@@ -13,7 +14,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://apeswap.finance/',
     harvest: true,
-    tokenPerBlock: '10',
+    tokenPerBlock: `${(CAKE_PER_BLOCK.toNumber() * 0.25)}`,
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
