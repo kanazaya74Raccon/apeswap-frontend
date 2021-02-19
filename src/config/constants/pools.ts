@@ -36,7 +36,7 @@ const pools: PoolConfig[] = [
       56: '0x212bb602418C399c29D52C55100fD6bBa12bea05',
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: '#',
+    projectLink: 'https://research.binance.com/en/projects/bnb',
     harvest: true,
     tokenPerBlock: '0.00694444',
     sortOrder: 999,
