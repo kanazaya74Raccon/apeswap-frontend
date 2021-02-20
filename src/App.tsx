@@ -36,6 +36,7 @@ const App: React.FC = () => {
     if (!account && window.localStorage.getItem('accountStatus')) {
       connect('injected')
     }
+    if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
   }, [account, connect])
 
   useFetchPublicData()
