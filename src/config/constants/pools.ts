@@ -6,7 +6,10 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: 'BANANA',
     stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA token address
+    stakingTokenAddress: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    }, // BANANA token address
     contractAddress: {
       97: '0xbbC5e1cD3BA8ED639b00927115e5f0e0040aA613', // MasterApe
       56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
@@ -19,11 +22,33 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 1,
+    tokenName: 'BNB',
+    stakingTokenName: QuoteToken.BANANA,
+    stakingTokenAddress: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      // BNBRewardsApe
+      97: '0x88777a814946cd8eb80e7029eedf05cc6cf34168',
+      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://research.binance.com/en/projects/bnb',
+    harvest: true,
+    tokenPerBlock: '0.00069444',
+    sortOrder: 999,
+    isFinished: false,
+    tokenDecimals: 18,
+    displayDecimals: 5,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
     stakingTokenName: QuoteToken.CAKE,
-    stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+    stakingTokenAddress: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     contractAddress: { // SupportApe
       97: '',
       56: '0x212bb602418C399c29D52C55100fD6bBa12bea05',

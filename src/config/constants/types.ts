@@ -64,7 +64,7 @@ export interface PoolConfig {
   tokenName: string
   stakingTokenName: QuoteToken
   stakingLimit?: number
-  stakingTokenAddress?: string
+  stakingTokenAddress?: Address
   contractAddress: Address
   poolCategory: PoolCategory
   projectLink: string
@@ -73,6 +73,7 @@ export interface PoolConfig {
   harvest?: boolean
   isFinished?: boolean
   tokenDecimals: number
+  displayDecimals?: number
 }
 
 export type Images = {
