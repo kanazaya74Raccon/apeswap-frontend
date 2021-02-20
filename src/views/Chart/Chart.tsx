@@ -7,7 +7,7 @@ import ReactApexChart from 'react-apexcharts'
 import styled from 'styled-components'
 
 const Charts = styled.div`
-  .apexcharts-tooltip  {
+  .apexcharts-tooltip {
     font-family: Helvetica;
   }
   margin-bottom: 60px;
@@ -53,8 +53,7 @@ const ApexChart = () => {
       yaxis: {
         labels: {
           formatter(value) {
-            if (base === 'BUSD')
-              return `$ ${value}`
+            if (base === 'BUSD') return `$ ${value}`
             return `${value.toFixed(5)} ${base}`
           },
         },
@@ -77,79 +76,79 @@ const ApexChart = () => {
   }
 
   const seriesConfig = {
-    seriesBar: [{
-    name: 'volume',
-    data: data?.volume.data
-  }],
-  optionsBar: {
-    chart: {
-      height: 160,
-      type: 'bar',
-      brush: {
-        enabled: true,
-        target: 'candles'
+    seriesBar: [
+      {
+        name: 'volume',
+        data: data?.volume.data,
       },
-      selection: {
-        enabled: true,
-        xaxis: {
-          min: data?.volume.start,
-          max: data?.volume.end
+    ],
+    optionsBar: {
+      chart: {
+        height: 160,
+        type: 'bar',
+        brush: {
+          enabled: true,
+          target: 'candles',
         },
-        fill: {
-          color: '#ccc',
-          opacity: 1
+        selection: {
+          enabled: true,
+          xaxis: {
+            min: data?.volume.start,
+            max: data?.volume.end,
+          },
+          fill: {
+            color: '#ccc',
+            opacity: 1,
+          },
+          stroke: {
+            color: '#0D47A1',
+          },
         },
-        stroke: {
-          color: '#0D47A1',
-        }
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: '20%',
+          colors: {
+            ranges: [
+              {
+                from: 1000000,
+                to: 50000000000,
+                color: '#FAFAFA',
+              },
+              {
+                from: 50000000000,
+                to: 1000000000000,
+                color: '#FAFAFA',
+              },
+            ],
+          },
+        },
+      },
+      stroke: {
+        width: 0,
+      },
+      xaxis: {
+        type: 'datetime',
+        axisBorder: {
+          offsetX: 13,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: true,
+        },
       },
     },
-    dataLabels: {
-      enabled: false
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '20%',
-        colors: {
-          ranges: [{
-            from: 1000000,
-            to: 50000000000,
-            color: '#FAFAFA'
-          }, {
-            from: 50000000000,
-            to: 1000000000000,
-            color: '#FAFAFA'
-          }],
-    
-        },
-      }
-    },
-    stroke: {
-      width: 0
-    },
-    xaxis: {
-      type: 'datetime',
-      axisBorder: {
-        offsetX: 13
-      }
-    },
-    yaxis: {
-      labels: {
-        show: true
-      }
-    }
-  },
-};
-
-
-
+  }
 
   const onChangeResolution = (newResolution) => {
     setResolution(newResolution)
   }
 
   const togglePair = (newPair) => {
-
     setPair(newPair)
   }
 
@@ -167,13 +166,21 @@ const ApexChart = () => {
       ) */}
       <Buttons>
         {/* <Button onClick={() => onChangeResolution('5')}>5 Minute</Button> */}
-        <Button onClick={() => onChangeResolution('60')} disabled={resolution === '60'}>Hourly</Button>
-        <Button onClick={() => onChangeResolution('1D')} disabled={resolution === '1D'}>Daily</Button>
+        <Button onClick={() => onChangeResolution('60')} disabled={resolution === '60'}>
+          Hourly
+        </Button>
+        <Button onClick={() => onChangeResolution('1D')} disabled={resolution === '1D'}>
+          Daily
+        </Button>
         {/* <Button onClick={() => onChangeResolution('1W')}>Weekly</Button> */}
-      </Buttons> 
+      </Buttons>
       <Buttons>
-        <Button onClick={() => togglePair('BANANA/BUSD')} disabled={pair === 'BANANA/BUSD'}>BANANA/BUSD</Button>
-        <Button onClick={() => togglePair('BANANA/BNB')} disabled={pair === 'BANANA/BNB'}>BANANA/BNB</Button>
+        <Button onClick={() => togglePair('BANANA/BUSD')} disabled={pair === 'BANANA/BUSD'}>
+          BANANA/BUSD
+        </Button>
+        <Button onClick={() => togglePair('BANANA/BNB')} disabled={pair === 'BANANA/BNB'}>
+          BANANA/BNB
+        </Button>
       </Buttons>
     </Charts>
   )

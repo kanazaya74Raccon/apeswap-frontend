@@ -54,24 +54,26 @@ const PAIR_CONFIGS = {
   'BANANA/BUSD': {
     address: '0x7bd46f6da97312ac2dbd1749f82e202764c0b914',
     token: 'BANANA',
-    base: 'BUSD'
+    base: 'BUSD',
   },
   'BANANA/BNB': {
     address: '0xF65C1C0478eFDe3c19b49EcBE7ACc57BB6B1D713',
     token: 'BANANA',
-    base: 'WBNB'
-  }
+    base: 'WBNB',
+  },
 }
 
 export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
   const [data, setData] = useState<any | null>(null)
   const currentPair = PAIR_CONFIGS[pair]
-  const to = Math.floor(Date.now() / 1000);
+  const to = Math.floor(Date.now() / 1000)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${priceBaseUrl}&address=${currentPair.address}&token=${currentPair.token}&base=${currentPair.base}&from=0&to=${to}&resolution=${resolution}`)
+        const response = await fetch(
+          `${priceBaseUrl}&address=${currentPair.address}&token=${currentPair.token}&base=${currentPair.base}&from=0&to=${to}&resolution=${resolution}`,
+        )
         const responsedata = await response.json()
         const chartData = []
         for (let i = 0; i < responsedata.c.length; i++) {
@@ -84,9 +86,9 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
         const volume = {
           data: responsedata.v,
           start: responsedata.t[0] * 1000,
-          end: responsedata.t[responsedata.t.length - 1] * 1000
+          end: responsedata.t[responsedata.t.length - 1] * 1000,
         }
-        setData({chartData, volume })
+        setData({ chartData, volume })
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }
