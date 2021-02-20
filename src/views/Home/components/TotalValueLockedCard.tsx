@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useTvl } from 'state/hooks'
+import CardValue from './CardValue'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
@@ -21,7 +22,7 @@ const TotalValueLockedCard = () => {
         </Heading>
         {newTvl ? (
           <>
-            <Heading size="xl">{`$${newTvl.toFixed(0)}`}</Heading>
+            <CardValue fontSize="40px" decimals={0} value={newTvl.toNumber()} prefix="$" />
             <Text color="textSubtle">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</Text>
           </>
         ) : (
