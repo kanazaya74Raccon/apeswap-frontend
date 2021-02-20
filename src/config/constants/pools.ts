@@ -31,7 +31,7 @@ const pools: PoolConfig[] = [
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
     contractAddress: {
-      // SupportApe
+      // BNBRewardsApe 
       97: '0x88777a814946cd8eb80e7029eedf05cc6cf34168',
       56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
     },
