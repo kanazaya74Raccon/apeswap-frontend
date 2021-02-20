@@ -27,7 +27,8 @@ const useUnstake = (pid: number) => {
   return { onUnstake: handleUnstake }
 }
 
-const SYRUPIDS = [5, 6, 3, 1, 22, 23]
+// TODO remove legacy code we don't need to support
+const SYRUPIDS = []
 
 export const useSousUnstake = (sousId) => {
   const dispatch = useDispatch()

@@ -21,7 +21,7 @@ const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as A
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: p.stakingTokenAddress[CHAIN_ID],
     name: 'allowance',
     params: [account, p.contractAddress[CHAIN_ID]],
   }))
@@ -36,7 +36,7 @@ export const fetchPoolsAllowance = async (account) => {
 export const fetchUserBalances = async (account) => {
   // Non BNB pools
   const calls = nonBnbPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: p.stakingTokenAddress[CHAIN_ID],
     name: 'balanceOf',
     params: [account],
   }))

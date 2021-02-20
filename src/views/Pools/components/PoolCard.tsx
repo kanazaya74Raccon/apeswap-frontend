@@ -25,6 +25,7 @@ import OldSyrupTitle from './OldSyrupTitle'
 import HarvestButton from './HarvestButton'
 import CardFooter from './CardFooter'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 interface PoolWithApy extends Pool {
   apy: BigNumber
 }
@@ -51,11 +52,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     isFinished,
     userData,
     stakingLimit,
+    displayDecimals,
   } = pool
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
-  const stakingTokenContract = useERC20(stakingTokenAddress)
+  const stakingTokenContract = useERC20(stakingTokenAddress[CHAIN_ID])
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
@@ -133,7 +135,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </div>
         {!isOldSyrup ? (
           <BalanceAndCompound>
-            <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+            <Balance
+              value={getBalanceNumber(earnings, tokenDecimals)}
+              decimals={displayDecimals}
+              isDisabled={isFinished}
+            />
             {sousId === 0 && account && harvest && (
               <HarvestButton
                 disabled={!earnings.toNumber() || pendingTx}
