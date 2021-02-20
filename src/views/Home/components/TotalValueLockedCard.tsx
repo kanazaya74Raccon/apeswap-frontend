@@ -14,15 +14,16 @@ const StyledTotalValueLockedCard = styled(Card)`
 const TotalValueLockedCard = () => {
   const TranslateString = useI18n()
   const newTvl = useTvl()
+  const tvl = newTvl.toNumber()
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
         <Heading size="lg" mb="24px">
           {TranslateString(999, 'Total Value Locked (TVL)')}
         </Heading>
-        {newTvl ? (
+        {tvl ? (
           <>
-            <CardValue fontSize="40px" decimals={0} value={newTvl.toNumber()} prefix="$" />
+            <CardValue fontSize="40px" decimals={0} value={tvl} prefix="$" />
             <Text color="textSubtle">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</Text>
           </>
         ) : (
