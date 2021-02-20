@@ -22,15 +22,15 @@ const PromoCard = () => {
       <CardBody>
         <Heading size="xl" mb="24px">
           <StyledImage src="/images/tokens/BNB.svg" width={32} height={32} alt="BNB" />{' '}
-          {TranslateString(999, '100 BNB Rewards coming soon!')}{' '}
+          {TranslateString(999, '100 BNB Rewards are live!')}{' '}
           <StyledImage src="/images/tokens/BNB.svg" width={32} height={32} alt="BNB" />
         </Heading>
         <>
           <Text color="textSubtle">
             Stake <StyledImage src="/images/tokens/BANANA.svg" width={16} height={16} alt="BANANA" /> $BANANA and earn{' '}
             <StyledImage src="/images/tokens/BNB.svg" width={16} height={16} alt="BNB" /> BNB
-            <StyledLink target="_blank" href="https://twitter.com/ape_swap/status/1362889420752494597">
-              @ape_swap
+            <StyledLink target="_blank" href="/pools">
+              Check it out!
             </StyledLink>
           </Text>
         </>
