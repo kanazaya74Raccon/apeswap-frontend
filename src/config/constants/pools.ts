@@ -33,12 +33,12 @@ const pools: PoolConfig[] = [
     contractAddress: {
       // SupportApe
       97: '0x88777a814946cd8eb80e7029eedf05cc6cf34168',
-      56: '0x212bb602418C399c29D52C55100fD6bBa12bea05',
+      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://research.binance.com/en/projects/bnb',
     harvest: true,
-    tokenPerBlock: '0.00694444',
+    tokenPerBlock: '0.00069444',
     sortOrder: 999,
     isFinished: false,
     tokenDecimals: 18,
