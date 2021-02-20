@@ -29,9 +29,7 @@ const PromoCard = () => {
           <Text color="textSubtle">
             Stake <StyledImage src="/images/tokens/BANANA.svg" width={16} height={16} alt="BANANA" /> $BANANA and earn{' '}
             <StyledImage src="/images/tokens/BNB.svg" width={16} height={16} alt="BNB" /> BNB
-            <StyledLink href="/pools">
-              Check it out!
-            </StyledLink>
+            <StyledLink href="/pools">Check it out!</StyledLink>
           </Text>
         </>
       </CardBody>
