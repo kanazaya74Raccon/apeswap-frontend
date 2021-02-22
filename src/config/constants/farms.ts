@@ -48,6 +48,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
+    pid: 6,
+    lpSymbol: 'BANANA-CAKE LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-CAKE BananaPair
+      56: '0x9949e1db416a8a05a0cac0ba6ea152ba8729e893',
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
     pid: 3,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
