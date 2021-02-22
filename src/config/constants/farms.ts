@@ -60,7 +60,7 @@ const farms: FarmConfig[] = [
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
     quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.busd,
+    quoteTokenAdresses: contracts.wbnb,
   },
   {
     pid: 3,
