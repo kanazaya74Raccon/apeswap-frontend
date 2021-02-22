@@ -54,10 +54,10 @@ const farms: FarmConfig[] = [
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-CAKE BananaPair
       56: '0x9949e1db416a8a05a0cac0ba6ea152ba8729e893',
     },
-    tokenSymbol: 'BANANA',
+    tokenSymbol: 'CAKE',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.cake,
