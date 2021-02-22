@@ -39,7 +39,7 @@ const PromoCard = () => {
             <Text color="textSubtle">We are running a design contest to enhance ApeSwaps overall look and feel!</Text>
             <Text color="textSubtle">
               Over 1000 <StyledImage src="/images/tokens/BANANA.svg" width={16} height={16} alt="BANANA" /> $BANANA in
-              prices
+              prizes
               <StyledLink
                 href="https://ape-swap.medium.com/apeswap-design-contest-500-banana-prize-273da4126f5b"
                 target="_blank"
