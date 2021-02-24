@@ -5,6 +5,7 @@ import { Image, Card, CardBody } from '@apeswapfinance/uikit'
 import { useWinningNumbers, useMatchingRewardLength } from 'hooks/useTickets'
 import useI18n from 'hooks/useI18n'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
+import { apiBaseUrl } from 'hooks/api'
 
 const WinningNumbers: React.FC = () => {
   const { account } = useWallet()
@@ -100,7 +101,7 @@ const WinningNumbers: React.FC = () => {
                 </CenteredTextWithPadding>
               </RowNoPadding>
             </Column>
-            <Link href="https://api.pancakeswap.com/api/lottery?page=0&pageSize=25" target="_blank">
+            <Link href={`${apiBaseUrl}/lottery?page=0&pageSize=25`} target="_blank">
               {TranslateString(448, 'Export recent winning numbers')}
             </Link>
           </StyledCardContentInner>
