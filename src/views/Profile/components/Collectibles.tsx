@@ -40,16 +40,10 @@ const Collectibles = () => {
         {TranslateString(999, 'Ape Collectibles')}
       </Heading>
       <Text as="p">
-        {TranslateString(
-          999,
-          'Ape Collectibles are special ERC-721 NFTs that can be used on the ApeSwap platform.',
-        )}
+        {TranslateString(999, 'Ape Collectibles are special ERC-721 NFTs that can be used on the ApeSwap platform.')}
       </Text>
       <Text as="p">
-        {TranslateString(
-          999,
-          "NFTs in this user's wallet that aren't approved Ape Collectibles won't be shown here.",
-        )}
+        {TranslateString(999, "NFTs in this user's wallet that aren't approved Ape Collectibles won't be shown here.")}
       </Text>
       {nftsInWallet.length > 0 && (
         <CollectibleList>
