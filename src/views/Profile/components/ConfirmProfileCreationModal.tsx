@@ -19,7 +19,14 @@ interface Props {
   onDismiss?: () => void
 }
 
-const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumBananaRequired, allowance, onDismiss }) => {
+const ContributeModal: React.FC<Props> = ({
+  account,
+  teamId,
+  tokenId,
+  minimumBananaRequired,
+  allowance,
+  onDismiss,
+}) => {
   const TranslateString = useI18n()
   const profileContract = useProfile()
   const pancakeRabbitsContract = usePancakeRabbits()

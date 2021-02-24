@@ -43,7 +43,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   const bananaEarnedPerThousand1D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 1, farmApy, bananaPrice })
   const bananaEarnedPerThousand7D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 7, farmApy, bananaPrice })
   const bananaEarnedPerThousand30D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 30, farmApy, bananaPrice })
-  const bananaEarnedPerThousand365D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 365, farmApy, bananaPrice })
+  const bananaEarnedPerThousand365D = calculateBananaEarnedPerThousandDollars({
+    numberOfDays: 365,
+    farmApy,
+    bananaPrice,
+  })
 
   return (
     <Modal title="ROI" onDismiss={onDismiss}>
@@ -93,7 +97,8 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: bananaEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfBanana })}%
+            {apyModalRoi({ amountEarned: bananaEarnedPerThousand30D, amountInvested: oneThousandDollarsWorthOfBanana })}
+            %
           </Text>
         </GridItem>
         <GridItem>
@@ -105,7 +110,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text>
-            {apyModalRoi({ amountEarned: bananaEarnedPerThousand365D, amountInvested: oneThousandDollarsWorthOfBanana })}%
+            {apyModalRoi({
+              amountEarned: bananaEarnedPerThousand365D,
+              amountInvested: oneThousandDollarsWorthOfBanana,
+            })}
+            %
           </Text>
         </GridItem>
         <GridItem>
