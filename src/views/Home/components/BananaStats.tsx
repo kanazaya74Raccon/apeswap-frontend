@@ -5,7 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { usePriceBananaBusd } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getBananaAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
@@ -26,7 +26,7 @@ const BananaStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
   const bananaPriceUsd = usePriceBananaBusd()
-  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const burnedBalance = useBurnedBalance(getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const marketCap = bananaPriceUsd.toNumber() * bananaSupply

@@ -5,7 +5,7 @@ import { provider } from 'web3-core'
 import cakeABI from 'config/abi/cake.json'
 import { getContract, httpProvider } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getBananaAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -33,8 +33,8 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getContract(cakeABI, getCakeAddress())
-      const supply = await cakeContract.methods.totalSupply().call()
+      const bananaContract = getContract(cakeABI, getBananaAddress())
+      const supply = await bananaContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 

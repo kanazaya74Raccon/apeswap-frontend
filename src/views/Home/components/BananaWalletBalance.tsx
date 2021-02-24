@@ -3,13 +3,13 @@ import { Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getBananaAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import CardValue from './CardValue'
 
 const BananaWalletBalance = () => {
   const TranslateString = useI18n()
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const bananaBalance = useTokenBalance(getBananaAddress())
   const { account } = useWallet()
 
   if (!account) {
@@ -20,7 +20,7 @@ const BananaWalletBalance = () => {
     )
   }
 
-  return <CardValue value={getBalanceNumber(cakeBalance)} fontSize="24px" />
+  return <CardValue value={getBalanceNumber(bananaBalance)} fontSize="24px" />
 }
 
 export default BananaWalletBalance

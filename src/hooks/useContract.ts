@@ -4,11 +4,11 @@ import { ContractOptions } from 'web3-eth-contract'
 import useWeb3 from 'hooks/useWeb3'
 import {
   getMasterChefAddress,
-  getCakeAddress,
+  getBananaAddress,
   getLotteryAddress,
   getLotteryTicketAddress,
   getRabbitMintingFarmAddress,
-  getPancakeProfileAddress,
+  getBananaProfileAddress,
   getPancakeRabbitsAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
@@ -22,7 +22,7 @@ import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
-import profile from 'config/abi/pancakeProfile.json'
+import profile from 'config/abi/bananaProfile.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -49,8 +49,8 @@ export const useERC20 = (address: string) => {
   return useContract(erc20Abi, address)
 }
 
-export const useCake = () => {
-  return useERC20(getCakeAddress())
+export const useBanana = () => {
+  return useERC20(getBananaAddress())
 }
 
 export const useRabbitMintingFarm = () => {
@@ -65,7 +65,7 @@ export const usePancakeRabbits = () => {
 
 export const useProfile = () => {
   const profileABIAbi = (profile as unknown) as AbiItem
-  return useContract(profileABIAbi, getPancakeProfileAddress())
+  return useContract(profileABIAbi, getBananaProfileAddress())
 }
 
 export const useLottery = () => {

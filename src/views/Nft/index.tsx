@@ -24,7 +24,7 @@ const Nft = () => {
             NFTs
           </Heading>
           <Heading as="h2" size="lg" color="secondary">
-            {TranslateString(999, 'Trade in for CAKE, or keep for your collection!')}
+            {TranslateString(999, 'Trade in for BANANA, or keep for your collection!')}
           </Heading>
         </StyledHero>
         <NftList />
