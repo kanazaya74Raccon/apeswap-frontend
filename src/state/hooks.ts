@@ -83,7 +83,7 @@ export const useTvl = (): BigNumber => {
   const farms = useFarms()
   const bananaPool = usePoolFromPid(0)
   const bnbPriceUSD = usePriceBnbBusd()
-  const bananaPriceBUSD = usePriceCakeBusd()
+  const bananaPriceBUSD = usePriceBananaBusd()
   let valueLocked = new BigNumber(bananaPool.totalStaked)
     .div(new BigNumber(10).pow(bananaPool.tokenDecimals))
     .times(bananaPriceBUSD)
@@ -104,7 +104,7 @@ export const usePriceBnbBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+export const usePriceBananaBusd = (): BigNumber => {
   const pid = 2 // BANANA-BUSD LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO

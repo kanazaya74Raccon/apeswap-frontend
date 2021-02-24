@@ -7,7 +7,7 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import CardValue from './CardValue'
 
-const CakeWalletBalance = () => {
+const BananaWalletBalance = () => {
   const TranslateString = useI18n()
   const cakeBalance = useTokenBalance(getCakeAddress())
   const { account } = useWallet()
@@ -23,4 +23,4 @@ const CakeWalletBalance = () => {
   return <CardValue value={getBalanceNumber(cakeBalance)} fontSize="24px" />
 }
 
-export default CakeWalletBalance
+export default BananaWalletBalance

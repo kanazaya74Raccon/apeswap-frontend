@@ -18,12 +18,12 @@ const minimumCakeBalance = 4
 
 const Mint: React.FC = () => {
   const [bunnyId, setBunnyId] = useState(null)
-  const { actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { actions, minimumBananaRequired, allowance } = useProfileCreation()
   const { account } = useWallet()
   const cakeContract = useCake()
   const mintingFarmContract = useRabbitMintingFarm()
   const TranslateString = useI18n()
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeBalance)
+  const hasMinimumBananaRequired = useHasCakeBalance(minimumCakeBalance)
   const {
     isApproving,
     isApproved,
@@ -37,7 +37,7 @@ const Mint: React.FC = () => {
       try {
         const response = await cakeContract.methods.allowance(account, mintingFarmContract.options.address).call()
         const currentAllowance = new BigNumber(response)
-        return currentAllowance.gte(minimumCakeRequired)
+        return currentAllowance.gte(minimumBananaRequired)
       } catch (error) {
         return false
       }
@@ -88,7 +88,7 @@ const Mint: React.FC = () => {
                 image={`/images/nfts/${nft.images.md}`}
                 isChecked={bunnyId === nft.bunnyId}
                 onChange={handleChange}
-                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumCakeRequired}
+                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumBananaRequired}
               >
                 <Text bold>{nft.name}</Text>
               </SelectionCard>
@@ -102,7 +102,7 @@ const Mint: React.FC = () => {
             onApprove={handleApprove}
             onConfirm={handleConfirm}
           />
-          {!hasMinimumCakeRequired && (
+          {!hasMinimumBananaRequired && (
             <Text color="failure" mt="16px">
               {TranslateString(999, `A minimum of ${minimumCakeBalance} CAKE is required`)}
             </Text>

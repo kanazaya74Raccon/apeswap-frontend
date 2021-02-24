@@ -14,12 +14,12 @@ interface Props {
   tokenId: number
   account: string
   teamId: number
-  minimumCakeRequired: BigNumber
+  minimumBananaRequired: BigNumber
   allowance: BigNumber
   onDismiss?: () => void
 }
 
-const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumCakeRequired, allowance, onDismiss }) => {
+const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumBananaRequired, allowance, onDismiss }) => {
   const TranslateString = useI18n()
   const profileContract = useProfile()
   const pancakeRabbitsContract = usePancakeRabbits()
@@ -39,7 +39,7 @@ const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumCak
       try {
         const response = await cakeContract.methods.allowance(account, profileContract.options.address).call()
         const currentAllowance = new BigNumber(response)
-        return currentAllowance.gte(minimumCakeRequired)
+        return currentAllowance.gte(minimumBananaRequired)
       } catch (error) {
         return false
       }

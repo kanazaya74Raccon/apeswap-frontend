@@ -34,7 +34,7 @@ enum ExistingUserState {
 const MIN_LENGTH = 3
 const MAX_LENGTH = 15
 const profileApiUrl = process.env.REACT_APP_API_PROFILE
-const minimumCakeBalance = 1
+const minimumBananaBalance = 1
 
 const InputWrap = styled.div`
   position: relative;
@@ -58,7 +58,7 @@ const Indicator = styled(Flex)`
 
 const UserName: React.FC = () => {
   const [isAcknowledged, setIsAcknoledged] = useState(false)
-  const { teamId, tokenId, userName, actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { teamId, tokenId, userName, actions, minimumBananaRequired, allowance } = useProfileCreation()
   const TranslateString = useI18n()
   const { account, ethereum } = useWallet()
   const { toastError } = useToast()
@@ -67,14 +67,14 @@ const UserName: React.FC = () => {
   const [isValid, setIsValid] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeBalance)
+  const hasMinimumBananaRequired = useHasCakeBalance(minimumBananaBalance)
   const [onPresentConfirmProfileCreation] = useModal(
     <ConfirmProfileCreationModal
       userName={userName}
       tokenId={tokenId}
       account={account}
       teamId={teamId}
-      minimumCakeRequired={minimumCakeRequired}
+      minimumBananaRequired={minimumBananaRequired}
       allowance={allowance}
     />,
   )
@@ -240,9 +240,9 @@ const UserName: React.FC = () => {
       <Button onClick={onPresentConfirmProfileCreation} disabled={!isValid || !isUserCreated}>
         {TranslateString(999, 'Complete Profile')}
       </Button>
-      {!hasMinimumCakeRequired && (
+      {!hasMinimumBananaRequired && (
         <Text color="failure" mt="16px">
-          {TranslateString(999, `A minimum of ${minimumCakeBalance} CAKE is required`)}
+          {TranslateString(999, `A minimum of ${minimumBananaBalance} BANANA is required`)}
         </Text>
       )}
     </>
