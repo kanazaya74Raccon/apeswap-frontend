@@ -59,7 +59,7 @@ const HowItWorks = () => {
           <Text>
             {TranslateString(
               638,
-              "Winners can trade in their NFTs for a CAKE value until the expiry date written below. If you don't trade in your NFT by then, don’t worry: you’ll still keep it in your wallet!",
+              "Winners can trade in their NFTs for a BANANA value until the expiry date written below. If you don't trade in your NFT by then, don’t worry: you’ll still keep it in your wallet!",
             )}
           </Text>
         </Row>

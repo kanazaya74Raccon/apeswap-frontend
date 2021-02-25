@@ -2,8 +2,8 @@ import addresses from 'config/constants/contracts'
 
 const chainId = process.env.REACT_APP_CHAIN_ID
 
-export const getCakeAddress = () => {
-  return addresses.cake[chainId]
+export const getBananaAddress = () => {
+  return addresses.banana[chainId]
 }
 export const getSyrupAddress = () => {
   return addresses.syrup[chainId]
@@ -23,8 +23,8 @@ export const getLotteryAddress = () => {
 export const getLotteryTicketAddress = () => {
   return addresses.lotteryNFT[chainId]
 }
-export const getPancakeProfileAddress = () => {
-  return addresses.pancakeProfile[chainId]
+export const getBananaProfileAddress = () => {
+  return addresses.bananaProfile[chainId]
 }
 export const getPancakeRabbitsAddress = () => {
   return addresses.pancakeRabbits[chainId]

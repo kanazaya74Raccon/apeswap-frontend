@@ -6,7 +6,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import nftList from 'config/constants/nfts'
 import useI18n from 'hooks/useI18n'
 import { useToast } from 'state/hooks'
-import { getPancakeProfileAddress } from 'utils/addressHelpers'
+import { getBananaProfileAddress } from 'utils/addressHelpers'
 import { usePancakeRabbits } from 'hooks/useContract'
 import useGetWalletNfts from 'hooks/useGetWalletNfts'
 import SelectionCard from '../components/SelectionCard'
@@ -35,7 +35,7 @@ const ProfilePicture: React.FC = () => {
 
   const handleApprove = () => {
     pancakeRabbitsContract.methods
-      .approve(getPancakeProfileAddress(), tokenId)
+      .approve(getBananaProfileAddress(), tokenId)
       .send({ from: account })
       .on('sending', () => {
         setIsApproving(true)
@@ -57,12 +57,12 @@ const ProfilePicture: React.FC = () => {
           {TranslateString(999, 'Oops!')}
         </Heading>
         <Text bold fontSize="20px" mb="24px">
-          {TranslateString(999, 'We couldn’t find any Pancake Collectibles in your wallet.')}
+          {TranslateString(999, 'We couldn’t find any Ape Collectibles in your wallet.')}
         </Text>
         <Text as="p">
           {TranslateString(
             999,
-            'You need a Pancake Collectible to finish setting up your profile. If you sold or transferred your starter collectible to another wallet, you’ll need to get it back or acquire a new one somehow. You can’t make a new starter with this wallet address.',
+            'You need a Ape Collectible to finish setting up your profile. If you sold or transferred your starter collectible to another wallet, you’ll need to get it back or acquire a new one somehow. You can’t make a new starter with this wallet address.',
           )}
         </Text>
       </>
@@ -89,7 +89,7 @@ const ProfilePicture: React.FC = () => {
             )}
           </Text>
           <Text as="p" color="textSubtle" mb="24px">
-            {TranslateString(999, 'Only approved Pancake Collectibles can be used.')}
+            {TranslateString(999, 'Only approved Ape Collectibles can be used.')}
             <Link to="/nft" style={{ marginLeft: '4px' }}>
               {TranslateString(999, 'See the list >')}
             </Link>
