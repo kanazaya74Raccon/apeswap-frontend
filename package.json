@@ -1,6 +1,6 @@
 {
   "name": "apeswap-frontend",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
