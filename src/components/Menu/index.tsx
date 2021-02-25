@@ -3,14 +3,14 @@ import { Menu as UikitMenu } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
-import { usePriceCakeBusd } from 'state/hooks'
+import { usePriceBananaBusd } from 'state/hooks'
 import config from './config'
 
 const Menu = (props) => {
   const { account, connect, reset } = useWallet()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
+  const bananaPriceUsd = usePriceBananaBusd()
 
   return (
     <UikitMenu
@@ -21,7 +21,7 @@ const Menu = (props) => {
       toggleTheme={toggleTheme}
       currentLang={selectedLanguage && selectedLanguage.code}
       setLang={setSelectedLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      cakePriceUsd={bananaPriceUsd.toNumber()}
       links={config}
       {...props}
     />

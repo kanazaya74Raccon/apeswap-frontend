@@ -6,7 +6,6 @@ import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
-import { BANANA_POOL_PID } from 'config'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -78,20 +77,35 @@ export const usePoolFromPid = (sousId): Pool => {
   return pool
 }
 
+export const useAllPools = (): Pool[] => {
+  const pools = useSelector((state: State) => state.pools.data)
+  return pools
+}
+
 // TVL
 export const useTvl = (): BigNumber => {
   const farms = useFarms()
-  const bananaPool = usePoolFromPid(0)
+  const pools = useAllPools()
   const bnbPriceUSD = usePriceBnbBusd()
-  const bananaPriceBUSD = usePriceCakeBusd()
-  let valueLocked = new BigNumber(bananaPool.totalStaked)
-    .div(new BigNumber(10).pow(bananaPool.tokenDecimals))
-    .times(bananaPriceBUSD)
+  const bananaPriceBUSD = usePriceBananaBusd()
+  let valueLocked = new BigNumber(0)
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const pool of pools) {
+    if (pool.stakingTokenName === 'BANANA') {
+      valueLocked = valueLocked.plus(
+        new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(pool.tokenDecimals)).times(bananaPriceBUSD),
+      )
+    }
+  }
+
   // eslint-disable-next-line no-restricted-syntax
   for (const farm of farms) {
     const totalInQuoteToken = new BigNumber(farm.totalInQuoteToken)
     if (farm.quoteTokenSymbol === 'BNB') valueLocked = valueLocked.plus(totalInQuoteToken.times(bnbPriceUSD))
     else if (farm.quoteTokenSymbol === 'BUSD') valueLocked = valueLocked.plus(totalInQuoteToken)
+    else if (farm.quoteTokenSymbol === 'BANANA')
+      valueLocked = valueLocked.plus(totalInQuoteToken.times(bananaPriceBUSD))
   }
   return valueLocked
 }
@@ -104,7 +118,7 @@ export const usePriceBnbBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+export const usePriceBananaBusd = (): BigNumber => {
   const pid = 2 // BANANA-BUSD LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO

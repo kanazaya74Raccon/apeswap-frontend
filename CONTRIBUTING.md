@@ -1,4 +1,4 @@
-# Contributing to the Pancake ecosystem 🥞
+# Contributing to the ApeSwap ecosystem 🥞
 
 Thanks for taking the time to contribute !
 You can start by reading our [Contribution guidelines](https://docs.pancakeswap.finance/code/contributing) first.
@@ -22,7 +22,7 @@ yarn start
 ```
 
 Don't forget to setup your IDE with `eslint` and `prettier`.
-
+ 
 ## Projet structure
 
 - **components** contains generic components used inside the application.

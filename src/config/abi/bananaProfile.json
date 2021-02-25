@@ -1,10 +1,10 @@
 [
   {
     "inputs": [
-      { "internalType": "contract IBEP20", "name": "_cakeToken", "type": "address" },
-      { "internalType": "uint256", "name": "_numberCakeToReactivate", "type": "uint256" },
-      { "internalType": "uint256", "name": "_numberCakeToRegister", "type": "uint256" },
-      { "internalType": "uint256", "name": "_numberCakeToUpdate", "type": "uint256" }
+      { "internalType": "contract IBEP20", "name": "_bananaToken", "type": "address" },
+      { "internalType": "uint256", "name": "_numberBananaToReactivate", "type": "uint256" },
+      { "internalType": "uint256", "name": "_numberBananaToRegister", "type": "uint256" },
+      { "internalType": "uint256", "name": "_numberBananaToUpdate", "type": "uint256" }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -176,7 +176,7 @@
   },
   {
     "inputs": [],
-    "name": "cakeToken",
+    "name": "bananaToken",
     "outputs": [{ "internalType": "contract IBEP20", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
@@ -343,21 +343,21 @@
   },
   {
     "inputs": [],
-    "name": "numberCakeToReactivate",
+    "name": "numberBananaToReactivate",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "numberCakeToRegister",
+    "name": "numberBananaToRegister",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "numberCakeToUpdate",
+    "name": "numberBananaToUpdate",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
@@ -455,11 +455,11 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "_newNumberCakeToReactivate", "type": "uint256" },
-      { "internalType": "uint256", "name": "_newNumberCakeToRegister", "type": "uint256" },
-      { "internalType": "uint256", "name": "_newNumberCakeToUpdate", "type": "uint256" }
+      { "internalType": "uint256", "name": "_newNumberBananaToReactivate", "type": "uint256" },
+      { "internalType": "uint256", "name": "_newNumberBananaToRegister", "type": "uint256" },
+      { "internalType": "uint256", "name": "_newNumberBananaToUpdate", "type": "uint256" }
     ],
-    "name": "updateNumberCake",
+    "name": "updateNumberBanana",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

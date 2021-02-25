@@ -27,21 +27,20 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://ape-swap.medium.com/apeswap-design-contest-500-banana-prize-273da4126f5b"
+        href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
         target="_blank"
         rel="noreferrer"
       >
         <CardBody>
           <Heading size="xl" mb="24px">
-            🍌 {TranslateString(999, 'Calling all ape designers!')} 🍌
+            🍌 {TranslateString(999, 'ApeSwap and Bake join forces!')} 🍩
           </Heading>
           <>
-            <Text color="textSubtle">We are running a design contest to enhance ApeSwaps overall look and feel!</Text>
+            <Text color="textSubtle">We are bringing mutual pools, farming and a meme NFT competition!</Text>
             <Text color="textSubtle">
-              Over 1000 <StyledImage src="/images/tokens/BANANA.svg" width={16} height={16} alt="BANANA" /> $BANANA in
-              prizes
+              Over $10,000 in prizes
               <StyledLink
-                href="https://ape-swap.medium.com/apeswap-design-contest-500-banana-prize-273da4126f5b"
+                href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
                 target="_blank"
               >
                 {' '}

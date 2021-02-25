@@ -1,5 +1,5 @@
-import { getPancakeProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
-import pancakeProfileAbi from 'config/abi/pancakeProfile.json'
+import { getBananaProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
+import bananaProfileAbi from 'config/abi/bananaProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
 import { getContract } from 'utils/web3'
 import { Profile } from 'state/types'
@@ -7,7 +7,7 @@ import { getTeam } from 'state/teams/helpers'
 import nfts from 'config/constants/nfts'
 import { transformProfileResponse } from './helpers'
 
-const profileContract = getContract(pancakeProfileAbi, getPancakeProfileAddress())
+const profileContract = getContract(bananaProfileAbi, getBananaProfileAddress())
 const rabbitContract = getContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
 const profileApi = process.env.REACT_APP_API_PROFILE
 

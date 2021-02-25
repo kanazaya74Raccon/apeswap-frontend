@@ -4,7 +4,7 @@ import { Heading, Text, BaseLayout } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
-import CakeStats from 'views/Home/components/CakeStats'
+import BananaStats from 'views/Home/components/BananaStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import PromoCard from './components/PromoCard'
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
         </Card>
         <Cards>
           <FarmStakingCard />
-          <CakeStats />
+          <BananaStats />
         </Cards>
         <Cards>
           <EarnAPYCard />

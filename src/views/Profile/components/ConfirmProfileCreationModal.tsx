@@ -3,7 +3,7 @@ import { Modal, Flex, Text } from '@apeswapfinance/uikit'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
-import { useCake, usePancakeRabbits, useProfile } from 'hooks/useContract'
+import { useBanana, usePancakeRabbits, useProfile } from 'hooks/useContract'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { fetchProfile } from 'state/profile'
 import { useToast } from 'state/hooks'
@@ -14,18 +14,25 @@ interface Props {
   tokenId: number
   account: string
   teamId: number
-  minimumCakeRequired: BigNumber
+  minimumBananaRequired: BigNumber
   allowance: BigNumber
   onDismiss?: () => void
 }
 
-const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumCakeRequired, allowance, onDismiss }) => {
+const ContributeModal: React.FC<Props> = ({
+  account,
+  teamId,
+  tokenId,
+  minimumBananaRequired,
+  allowance,
+  onDismiss,
+}) => {
   const TranslateString = useI18n()
   const profileContract = useProfile()
   const pancakeRabbitsContract = usePancakeRabbits()
   const dispatch = useDispatch()
   const { toastSuccess } = useToast()
-  const cakeContract = useCake()
+  const bananaContract = useBanana()
 
   const {
     isApproving,
@@ -37,15 +44,15 @@ const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumCak
   } = useApproveConfirmTransaction({
     onRequiresApproval: async () => {
       try {
-        const response = await cakeContract.methods.allowance(account, profileContract.options.address).call()
+        const response = await bananaContract.methods.allowance(account, profileContract.options.address).call()
         const currentAllowance = new BigNumber(response)
-        return currentAllowance.gte(minimumCakeRequired)
+        return currentAllowance.gte(minimumBananaRequired)
       } catch (error) {
         return false
       }
     },
     onApprove: () => {
-      return cakeContract.methods.approve(profileContract.options.address, allowance.toJSON()).send({ from: account })
+      return bananaContract.methods.approve(profileContract.options.address, allowance.toJSON()).send({ from: account })
     },
     onConfirm: () => {
       return profileContract.methods
@@ -66,7 +73,7 @@ const ContributeModal: React.FC<Props> = ({ account, teamId, tokenId, minimumCak
       </Text>
       <Flex justifyContent="space-between" mb="16px">
         <Text>{TranslateString(999, 'Cost')}</Text>
-        <Text>{TranslateString(999, '1 CAKE')}</Text>
+        <Text>{TranslateString(999, '1 BANANA')}</Text>
       </Flex>
       <ApproveConfirmButtons
         isApproveDisabled={isConfirmed || isConfirming || isApproved}
