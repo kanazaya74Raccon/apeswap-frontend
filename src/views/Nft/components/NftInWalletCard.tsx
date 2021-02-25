@@ -11,7 +11,7 @@ const NftInWalletCard = () => {
       <CardBody>
         <CardContent imgSrc="/images/present.svg">
           <Heading mb="8px">{TranslateString(999, 'NFT in wallet')}</Heading>
-          <Text>{TranslateString(999, 'Trade in your NFT for CAKE, or just keep it for your collection.')}</Text>
+          <Text>{TranslateString(999, 'Trade in your NFT for BANANA, or just keep it for your collection.')}</Text>
         </CardContent>
       </CardBody>
     </Card>

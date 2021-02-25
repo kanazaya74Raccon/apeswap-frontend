@@ -4,8 +4,8 @@ import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useRabbitMintingFarm } from 'hooks/useContract'
-import useHasCakeBalance from 'hooks/useHasCakeBalance'
+import { useBanana, useRabbitMintingFarm } from 'hooks/useContract'
+import useHasBananaBalance from 'hooks/useHasBananaBalance'
 import nftList from 'config/constants/nfts'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
@@ -14,16 +14,16 @@ import useProfileCreation from './contexts/hook'
 
 const starterBunnyIds = [5, 6, 7, 8, 9]
 const nfts = nftList.filter((nft) => starterBunnyIds.includes(nft.bunnyId))
-const minimumCakeBalance = 4
+const minimumBananaBalance = 4
 
 const Mint: React.FC = () => {
   const [bunnyId, setBunnyId] = useState(null)
-  const { actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { actions, minimumBananaRequired, allowance } = useProfileCreation()
   const { account } = useWallet()
-  const cakeContract = useCake()
+  const bananaContract = useBanana()
   const mintingFarmContract = useRabbitMintingFarm()
   const TranslateString = useI18n()
-  const hasMinimumCakeRequired = useHasCakeBalance(minimumCakeBalance)
+  const hasMinimumBananaRequired = useHasBananaBalance(minimumBananaBalance)
   const {
     isApproving,
     isApproved,
@@ -35,15 +35,15 @@ const Mint: React.FC = () => {
     onRequiresApproval: async () => {
       // TODO: Move this to a helper, this check will be probably be used many times
       try {
-        const response = await cakeContract.methods.allowance(account, mintingFarmContract.options.address).call()
+        const response = await bananaContract.methods.allowance(account, mintingFarmContract.options.address).call()
         const currentAllowance = new BigNumber(response)
-        return currentAllowance.gte(minimumCakeRequired)
+        return currentAllowance.gte(minimumBananaRequired)
       } catch (error) {
         return false
       }
     },
     onApprove: () => {
-      return cakeContract.methods
+      return bananaContract.methods
         .approve(mintingFarmContract.options.address, allowance.toJSON())
         .send({ from: account })
     },
@@ -64,7 +64,7 @@ const Mint: React.FC = () => {
       <Text as="p">{TranslateString(999, 'Every profile starts by making a “starter” collectible (NFT).')}</Text>
       <Text as="p">{TranslateString(999, 'This starter will also become your first profile picture.')}</Text>
       <Text as="p" mb="24px">
-        {TranslateString(999, 'You can change your profile pic later if you get another approved Pancake Collectible.')}
+        {TranslateString(999, 'You can change your profile pic later if you get another approved Ape Collectible.')}
       </Text>
       <Card mb="24px">
         <CardBody>
@@ -75,7 +75,7 @@ const Mint: React.FC = () => {
             {TranslateString(999, 'Choose wisely: you can only ever make one starter collectible!')}
           </Text>
           <Text as="p" mb="24px" color="textSubtle">
-            {TranslateString(999, 'Cost: 4 CAKE')}
+            {TranslateString(999, 'Cost: 4 BANANA')}
           </Text>
           {nfts.map((nft) => {
             const handleChange = (value: string) => setBunnyId(parseInt(value, 10))
@@ -88,7 +88,7 @@ const Mint: React.FC = () => {
                 image={`/images/nfts/${nft.images.md}`}
                 isChecked={bunnyId === nft.bunnyId}
                 onChange={handleChange}
-                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumCakeRequired}
+                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumBananaRequired}
               >
                 <Text bold>{nft.name}</Text>
               </SelectionCard>
@@ -102,9 +102,9 @@ const Mint: React.FC = () => {
             onApprove={handleApprove}
             onConfirm={handleConfirm}
           />
-          {!hasMinimumCakeRequired && (
+          {!hasMinimumBananaRequired && (
             <Text color="failure" mt="16px">
-              {TranslateString(999, `A minimum of ${minimumCakeBalance} CAKE is required`)}
+              {TranslateString(999, `A minimum of ${minimumBananaBalance} BANANA is required`)}
             </Text>
           )}
         </CardBody>

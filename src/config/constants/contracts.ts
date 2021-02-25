@@ -1,5 +1,5 @@
 export default {
-  cake: {
+  banana: {
     97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
     56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
   },
@@ -39,7 +39,7 @@ export default {
     56: '0x23396cF899Ca06c4472205fC903bDB4de249D6fC',
     97: '',
   },
-  pancakeProfile: {
+  bananaProfile: {
     56: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
     97: '0xfb3310CcA65fe9479a3590206Be3CEEC70DE77FE',
   },
