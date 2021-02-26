@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
+import Reward from "react-rewards";
 import styled from 'styled-components'
 import { Button, IconButton, useModal, AddIcon, Image } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -110,8 +111,28 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
+  const rewardRef = useRef(null);
+  const config = {
+    fakingRequest: false,
+    angle: 90,
+    decay: 0.91,
+    spread: 100,
+    startVelocity: 20,
+    elementCount: 15,
+    elementSize: 20,
+    lifetime: 200,
+    zIndex: 10,
+    springAnimation: true,
+    rewardPunish: "reward",
+    type: "emoji",
+    emoji: ["🍌", "🙈", "🍌", "🙉", "🍌", "🙊"]
+  };
+ 
+
+
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
+      <Reward ref={rewardRef} type="emoji" config={config}>
       {isFinished && sousId !== 0 && <PoolFinishedSash />}
       <div style={{ padding: '24px' }}>
         <CardTitle isFinished={isFinished && sousId !== 0}>
@@ -212,6 +233,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         blocksUntilStart={blocksUntilStart}
         poolCategory={poolCategory}
       />
+      </Reward>
     </Card>
   )
 }
