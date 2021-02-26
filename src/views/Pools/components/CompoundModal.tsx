@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import React, { useMemo, useState, useRef } from 'react'
-import Reward from "react-rewards";
+import Reward from 'react-rewards'
 import { Button, Modal } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import Balance from 'components/Balance'
@@ -12,7 +12,7 @@ interface DepositModalProps {
   earnings: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
-  tokenName?: string,
+  tokenName?: string
 }
 
 const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDismiss, tokenName = '' }) => {
@@ -22,7 +22,7 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
     return getFullDisplayBalance(earnings)
   }, [earnings])
 
-  const rewardRef = useRef(null);
+  const rewardRef = useRef(null)
   const config = {
     fakingRequest: false,
     angle: 90,
@@ -34,11 +34,10 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
     lifetime: 200,
     zIndex: 10,
     springAnimation: true,
-    rewardPunish: "reward",
-    type: "emoji",
-    emoji: ["🍌", "🙈", "🍌", "🙉", "🍌", "🙊"]
-  };
- 
+    rewardPunish: 'reward',
+    type: 'emoji',
+    emoji: ['🍌', '🙈', '🍌', '🙉', '🍌', '🙊'],
+  }
 
   return (
     <Modal
@@ -46,33 +45,34 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
       onDismiss={onDismiss}
     >
       <Reward ref={rewardRef} type="emoji" config={config}>
-      <BalanceRow>
-        <Balance value={Number(fullBalance)} />
-      </BalanceRow>
-      <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
-        </Button>
-        <Button
-          id="compound-banana"
-          fullWidth
-          disabled={pendingTx}
-          onClick={async () => {
-            setPendingTx(true)
-            await onConfirm(fullBalance)
-            // rewardRef.current?.rewardMe();
-            setPendingTx(false)
-            /* eslint-disable no-debugger */
-            // debugger;
-            /* eslint-enable no-debugger */
-            rewardRef.current?.rewardMe();
-            setTimeout(()=>{ onDismiss() }, 1000);
-            
-          }}
-        >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
-        </Button>
-      </ModalActions>
+        <BalanceRow>
+          <Balance value={Number(fullBalance)} />
+        </BalanceRow>
+        <ModalActions>
+          <Button fullWidth variant="secondary" onClick={onDismiss}>
+            {TranslateString(462, 'Cancel')}
+          </Button>
+          <Button
+            id="compound-banana"
+            fullWidth
+            disabled={pendingTx}
+            onClick={async () => {
+              setPendingTx(true)
+              await onConfirm(fullBalance)
+              // rewardRef.current?.rewardMe();
+              setPendingTx(false)
+              /* eslint-disable no-debugger */
+              // debugger;
+              /* eslint-enable no-debugger */
+              rewardRef.current?.rewardMe()
+              setTimeout(() => {
+                onDismiss()
+              }, 1000)
+            }}
+          >
+            {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          </Button>
+        </ModalActions>
       </Reward>
     </Modal>
   )
