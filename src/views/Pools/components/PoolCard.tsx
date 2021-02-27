@@ -1,6 +1,5 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useState, useRef } from 'react'
-import Reward from 'react-rewards'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Button, IconButton, useModal, AddIcon, Image } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -111,127 +110,108 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
-  const rewardRef = useRef(null)
-  const config = {
-    fakingRequest: false,
-    angle: 90,
-    decay: 0.91,
-    spread: 100,
-    startVelocity: 20,
-    elementCount: 15,
-    elementSize: 20,
-    lifetime: 200,
-    zIndex: 10,
-    springAnimation: true,
-    rewardPunish: 'reward',
-    type: 'emoji',
-    emoji: ['🍌', '🙈', '🍌', '🙉', '🍌', '🙊'],
-  }
-
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
-      <Reward ref={rewardRef} type="emoji" config={config}>
-        {isFinished && sousId !== 0 && <PoolFinishedSash />}
-        <div style={{ padding: '24px' }}>
-          <CardTitle isFinished={isFinished && sousId !== 0}>
-            {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
-          </CardTitle>
-          <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
-            <div style={{ flex: 1 }}>
-              <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
-            </div>
-            {account && harvest && !isOldSyrup && (
+      {isFinished && sousId !== 0 && <PoolFinishedSash />}
+      <div style={{ padding: '24px' }}>
+        <CardTitle isFinished={isFinished && sousId !== 0}>
+          {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
+        </CardTitle>
+        <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
+          <div style={{ flex: 1 }}>
+            <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
+          </div>
+          {account && harvest && !isOldSyrup && (
+            <HarvestButton
+              disabled={!earnings.toNumber() || pendingTx}
+              text={pendingTx ? 'Collecting' : 'Wuzz out'}
+              onClick={async () => {
+                setPendingTx(true)
+                await onReward()
+                setPendingTx(false)
+              }}
+            />
+          )}
+        </div>
+        {!isOldSyrup ? (
+          <BalanceAndCompound>
+            <Balance
+              value={getBalanceNumber(earnings, tokenDecimals)}
+              decimals={displayDecimals}
+              isDisabled={isFinished}
+            />
+            {sousId === 0 && account && harvest && (
               <HarvestButton
                 disabled={!earnings.toNumber() || pendingTx}
-                text={pendingTx ? 'Collecting' : 'Wuzz out'}
-                onClick={async () => {
-                  setPendingTx(true)
-                  await onReward()
-                  setPendingTx(false)
-                }}
+                text={pendingTx ? TranslateString(999, 'Aping') : TranslateString(999, 'Ape Harder')}
+                onClick={onPresentCompound}
               />
             )}
-          </div>
-          {!isOldSyrup ? (
-            <BalanceAndCompound>
-              <Balance
-                value={getBalanceNumber(earnings, tokenDecimals)}
-                decimals={displayDecimals}
-                isDisabled={isFinished}
-              />
-              {sousId === 0 && account && harvest && (
-                <HarvestButton
-                  disabled={!earnings.toNumber() || pendingTx}
-                  text={pendingTx ? TranslateString(999, 'Aping') : TranslateString(999, 'Ape Harder')}
-                  onClick={onPresentCompound}
-                />
-              )}
-            </BalanceAndCompound>
-          ) : (
-            <OldSyrupTitle hasBalance={accountHasStakedBalance} />
-          )}
-          <Label isFinished={isFinished && sousId !== 0} text={TranslateString(330, `${tokenName} earned`)} />
-          <StyledCardActions>
-            {!account && <UnlockButton />}
-            {account &&
-              (needsApproval && !isOldSyrup ? (
-                <div style={{ flex: 1 }}>
-                  <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
-                    {`Approve ${stakingTokenName}`}
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <Button
-                    disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
-                    onClick={
-                      isOldSyrup
-                        ? async () => {
-                            setPendingTx(true)
-                            await onUnstake('0')
-                            setPendingTx(false)
-                          }
-                        : onPresentWithdraw
-                    }
-                  >
-                    {`Unstake ${stakingTokenName}`}
-                  </Button>
-                  <StyledActionSpacer />
-                  {!isOldSyrup && (
-                    <IconButton disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
-                      <AddIcon color="background" />
-                    </IconButton>
-                  )}
-                </>
-              ))}
-          </StyledCardActions>
-          <StyledDetails>
-            <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
-            {isFinished || isOldSyrup || !apy || apy?.isNaN() || !apy?.isFinite() ? (
-              '-'
+          </BalanceAndCompound>
+        ) : (
+          <OldSyrupTitle hasBalance={accountHasStakedBalance} />
+        )}
+        <Label isFinished={isFinished && sousId !== 0} text={TranslateString(330, `${tokenName} earned`)} />
+        <StyledCardActions>
+          {!account && <UnlockButton />}
+          {account &&
+            (needsApproval && !isOldSyrup ? (
+              <div style={{ flex: 1 }}>
+                <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
+                  {`Approve ${stakingTokenName}`}
+                </Button>
+              </div>
             ) : (
-              <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
-            )}
-          </StyledDetails>
-          <StyledDetails>
-            <div style={{ flex: 1 }}>
-              <span role="img" aria-label={stakingTokenName}>
-                🍌{' '}
-              </span>
-              {TranslateString(384, 'Your Stake')}:
-            </div>
-            <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
-          </StyledDetails>
-        </div>
-        <CardFooter
-          projectLink={projectLink}
-          totalStaked={totalStaked}
-          blocksRemaining={blocksRemaining}
-          isFinished={isFinished}
-          blocksUntilStart={blocksUntilStart}
-          poolCategory={poolCategory}
-        />
-      </Reward>
+              <>
+                <Button
+                  disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
+                  onClick={
+                    isOldSyrup
+                      ? async () => {
+                          setPendingTx(true)
+                          await onUnstake('0')
+                          setPendingTx(false)
+                        }
+                      : onPresentWithdraw
+                  }
+                >
+                  {`Unstake ${stakingTokenName}`}
+                </Button>
+                <StyledActionSpacer />
+                {!isOldSyrup && (
+                  <IconButton disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
+                    <AddIcon color="background" />
+                  </IconButton>
+                )}
+              </>
+            ))}
+        </StyledCardActions>
+        <StyledDetails>
+          <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
+          {isFinished || isOldSyrup || !apy || apy?.isNaN() || !apy?.isFinite() ? (
+            '-'
+          ) : (
+            <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
+          )}
+        </StyledDetails>
+        <StyledDetails>
+          <div style={{ flex: 1 }}>
+            <span role="img" aria-label={stakingTokenName}>
+              🍌{' '}
+            </span>
+            {TranslateString(384, 'Your Stake')}:
+          </div>
+          <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
+        </StyledDetails>
+      </div>
+      <CardFooter
+        projectLink={projectLink}
+        totalStaked={totalStaked}
+        blocksRemaining={blocksRemaining}
+        isFinished={isFinished}
+        blocksUntilStart={blocksUntilStart}
+        poolCategory={poolCategory}
+      />
     </Card>
   )
 }

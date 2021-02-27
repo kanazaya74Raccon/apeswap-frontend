@@ -59,11 +59,7 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
             onClick={async () => {
               setPendingTx(true)
               await onConfirm(fullBalance)
-              // rewardRef.current?.rewardMe();
               setPendingTx(false)
-              /* eslint-disable no-debugger */
-              // debugger;
-              /* eslint-enable no-debugger */
               rewardRef.current?.rewardMe()
               setTimeout(() => {
                 onDismiss()
