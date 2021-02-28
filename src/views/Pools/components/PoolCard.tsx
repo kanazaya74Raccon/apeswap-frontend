@@ -139,7 +139,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                 onClick={async () => {
                   setPendingTx(true)
                   setTypeOfReward('removed')
-                  await onReward()
+                  await onReward().catch(() => setPendingTx(false))
                   setPendingTx(false)
                 }}
               />
