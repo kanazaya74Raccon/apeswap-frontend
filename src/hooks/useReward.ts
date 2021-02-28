@@ -4,6 +4,8 @@ const useReward = (rewardRef, callback) => {
   const handleReward = useCallback(
     async (...args) => {
       await callback(...args)
+      // TODO error visual effect
+      // .catch(() => rewardRef.current?.punishMe())
       rewardRef.current?.rewardMe()
     },
     [callback, rewardRef],
