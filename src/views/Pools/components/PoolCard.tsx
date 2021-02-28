@@ -110,9 +110,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   )
 
   const [onPresentCompound] = useModal(
-    <CompoundModal earnings={earnings} 
-    onConfirm={onStake} 
-    tokenName={stakingTokenName} />,
+    <CompoundModal earnings={earnings} onConfirm={onStake} tokenName={stakingTokenName} />,
   )
 
   const [onPresentWithdraw] = useModal(

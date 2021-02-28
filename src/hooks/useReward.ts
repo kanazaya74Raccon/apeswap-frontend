@@ -1,13 +1,15 @@
-import { useCallback } from "react"
+import { useCallback } from 'react'
 
 const useReward = (rewardRef, callback) => {
-    const handleReward = useCallback(
-        async (...args) => { 
-            await callback(...args)
-            rewardRef.current?.rewardMe()
-        }, [callback, rewardRef])
+  const handleReward = useCallback(
+    async (...args) => {
+      await callback(...args)
+      rewardRef.current?.rewardMe()
+    },
+    [callback, rewardRef],
+  )
 
-    return handleReward
+  return handleReward
 }
 
 export default useReward

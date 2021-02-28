@@ -26,27 +26,27 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
       title={`${TranslateString(999, 'Compound')} ${TranslateString(330, `${tokenName} Earned`)}`}
       onDismiss={onDismiss}
     >
-        <BalanceRow>
-          <Balance value={Number(fullBalance)} />
-        </BalanceRow>
-        <ModalActions>
-          <Button fullWidth variant="secondary" onClick={onDismiss}>
-            {TranslateString(462, 'Cancel')}
-          </Button>
-          <Button
-            id="compound-banana"
-            fullWidth
-            disabled={pendingTx}
-            onClick={async () => {
-              setPendingTx(true)
-              await onConfirm(fullBalance)
-              setPendingTx(false)
-              onDismiss()
-            }}
-          >
-            {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
-          </Button>
-        </ModalActions>
+      <BalanceRow>
+        <Balance value={Number(fullBalance)} />
+      </BalanceRow>
+      <ModalActions>
+        <Button fullWidth variant="secondary" onClick={onDismiss}>
+          {TranslateString(462, 'Cancel')}
+        </Button>
+        <Button
+          id="compound-banana"
+          fullWidth
+          disabled={pendingTx}
+          onClick={async () => {
+            setPendingTx(true)
+            await onConfirm(fullBalance)
+            setPendingTx(false)
+            onDismiss()
+          }}
+        >
+          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+        </Button>
+      </ModalActions>
     </Modal>
   )
 }
