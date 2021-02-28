@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
  */
 export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 
-const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_NONAME'
+const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_APESWAP'
 
 /* eslint-disable camelcase */
 
