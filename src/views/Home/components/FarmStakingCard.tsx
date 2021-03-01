@@ -47,7 +47,7 @@ const FarmedStakingCard = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
-  const onReward= useReward(rewardRef, useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward)
+  const onReward = useReward(rewardRef, useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward)
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
@@ -55,7 +55,8 @@ const FarmedStakingCard = () => {
       setTypeOfReward('rewardBanana')
       await onReward()
     } catch (error) {
-      // TODO: find a way to handle when the user rejects transaction or it fails
+      setTypeOfReward('error')
+      rewardRef.current?.rewardMe()
     } finally {
       setPendingTx(false)
     }

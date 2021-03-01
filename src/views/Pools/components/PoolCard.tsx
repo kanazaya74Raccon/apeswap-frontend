@@ -92,21 +92,43 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={stakingLimit && stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
-      onConfirm={async (val) => { 
-        await onStake(val).catch((e) => console.error('Something went wrong', e))
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRef.current?.rewardMe()
+        })
       }}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />,
   )
 
   const [onPresentCompound] = useModal(
-    <CompoundModal earnings={earnings} onConfirm={onStake} tokenName={stakingTokenName} />,
+    <CompoundModal
+      earnings={earnings}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRef.current?.rewardMe()
+        })
+      }}
+      tokenName={stakingTokenName}
+    />,
   )
 
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={async (val) => { 
-      await onUnstake(val).catch((e) => console.error('Something went wrong', e))
-    }} tokenName={stakingTokenName} />,
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('remove')
+        await onUnstake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRef.current?.rewardMe()
+        })
+      }}
+      tokenName={stakingTokenName}
+    />,
   )
 
   const handleApprove = useCallback(async () => {
@@ -120,6 +142,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         rewardRef.current?.rewardMe()
       }
     } catch (e) {
+      setTypeOfReward('error')
+      rewardRef.current?.rewardMe()
       console.error(e)
     }
   }, [onApprove, setRequestedApproval])
@@ -143,7 +167,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                 onClick={async () => {
                   setPendingTx(true)
                   setTypeOfReward('removed')
-                  await onReward().catch(() => setPendingTx(false))
+                  await onReward().catch(() => {
+                    setTypeOfReward('error')
+                    rewardRef.current?.rewardMe()
+                    setPendingTx(false)
+                  })
                   setPendingTx(false)
                 }}
               />
