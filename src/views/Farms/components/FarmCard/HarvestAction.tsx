@@ -32,8 +32,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           onClick={async () => {
             setPendingTx(true)
             setTypeOfReward('rewardBanana')
-            await onReward()
-            .catch(() => {
+            await onReward().catch(() => {
               setTypeOfReward('error')
               rewardRef.current?.rewardMe()
             })

@@ -41,13 +41,16 @@ const FarmedStakingCard = () => {
 
   const rewardRef = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-  
+
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
-  const onReward = useReward(rewardRef, useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward)
+  const onReward = useReward(
+    rewardRef,
+    useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward,
+  )
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
@@ -65,36 +68,36 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-      <CardBody>
-        <Heading size="xl" mb="24px">
-          {TranslateString(542, 'Farms & Staking')}
-        </Heading>
-        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
-        <Block>
-          <BananaHarvestBalance />
-          <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
-        </Block>
-        <Block>
-          <BananaWalletBalance />
-          <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
-        </Block>
-        <Actions>
-          {account ? (
-            <Button
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              fullWidth
-            >
-              {pendingTx
-                ? TranslateString(548, 'Collecting BANANA')
-                : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
-            </Button>
-          ) : (
-            <UnlockButton fullWidth />
-          )}
-        </Actions>
-      </CardBody>
+        <CardBody>
+          <Heading size="xl" mb="24px">
+            {TranslateString(542, 'Farms & Staking')}
+          </Heading>
+          <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
+          <Block>
+            <BananaHarvestBalance />
+            <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
+          </Block>
+          <Block>
+            <BananaWalletBalance />
+            <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
+          </Block>
+          <Actions>
+            {account ? (
+              <Button
+                id="harvest-all"
+                disabled={balancesWithValue.length <= 0 || pendingTx}
+                onClick={harvestAllFarms}
+                fullWidth
+              >
+                {pendingTx
+                  ? TranslateString(548, 'Collecting BANANA')
+                  : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
+              </Button>
+            ) : (
+              <UnlockButton fullWidth />
+            )}
+          </Actions>
+        </CardBody>
       </Reward>
     </StyledFarmStakingCard>
   )
