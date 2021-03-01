@@ -154,7 +154,7 @@ const ApexChart = () => {
 
   return (
     <Charts>
-      <Heading as="h2" size="xl" mb="24px" mt="24px" color="black">
+      <Heading as="h2" size="xl" mb="24px" mt="24px" color="secondary">
         The chart is temporarily down for now. Please bear with us as we update our data sources!
       </Heading>
       <div id="chart-candlestick">
