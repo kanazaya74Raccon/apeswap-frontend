@@ -71,7 +71,7 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
+        /* const response = await fetch(
           `${priceBaseUrl}&address=${currentPair.address}&token=${currentPair.token}&base=${currentPair.base}&from=0&to=${to}&resolution=${resolution}`,
         )
         const responsedata = await response.json()
@@ -87,8 +87,8 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
           data: responsedata.v,
           start: responsedata.t[0] * 1000,
           end: responsedata.t[responsedata.t.length - 1] * 1000,
-        }
-        setData({ chartData, volume })
+        } */
+        setData(null)
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }

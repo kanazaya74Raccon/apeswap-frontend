@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from '@apeswapfinance/uikit'
+import { Button, Heading } from '@apeswapfinance/uikit'
 
 import { useChartData } from 'hooks/api'
 
@@ -154,6 +154,9 @@ const ApexChart = () => {
 
   return (
     <Charts>
+      <Heading as="h2" size="xl" mb="24px" mt="24px" color="black">
+        The chart is temporarily down for now. Please bear with us as we update our data sources!
+      </Heading>
       <div id="chart-candlestick">
         {data?.chartData && (
           <ReactApexChart options={chartConfig.options} series={chartConfig.series} type="candlestick" height={560} />
@@ -164,15 +167,13 @@ const ApexChart = () => {
         <ReactApexChart options={seriesConfig.optionsBar} series={seriesConfig.seriesBar} type="bar" height={160} />
       </div>
       ) */}
-      <Buttons>
-        {/* <Button onClick={() => onChangeResolution('5')}>5 Minute</Button> */}
+      {/* <Buttons>
         <Button onClick={() => onChangeResolution('60')} disabled={resolution === '60'}>
           Hourly
         </Button>
         <Button onClick={() => onChangeResolution('1D')} disabled={resolution === '1D'}>
           Daily
         </Button>
-        {/* <Button onClick={() => onChangeResolution('1W')}>Weekly</Button> */}
       </Buttons>
       <Buttons>
         <Button onClick={() => togglePair('BANANA/BUSD')} disabled={pair === 'BANANA/BUSD'}>
@@ -181,7 +182,7 @@ const ApexChart = () => {
         <Button onClick={() => togglePair('BANANA/BNB')} disabled={pair === 'BANANA/BNB'}>
           BANANA/BNB
         </Button>
-      </Buttons>
+      </Buttons> */}
     </Charts>
   )
 }
