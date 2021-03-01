@@ -1,4 +1,7 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
+import Reward from 'react-rewards'
+import rewards from 'config/constants/rewards'
+import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -35,16 +38,21 @@ const Actions = styled.div`
 
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
+
+  const rewardRef = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+  
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
-  const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
+  const onReward= useReward(rewardRef, useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward)
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
     try {
+      setTypeOfReward('rewardBanana')
       await onReward()
     } catch (error) {
       // TODO: find a way to handle when the user rejects transaction or it fails
@@ -55,6 +63,7 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
+      <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
       <CardBody>
         <Heading size="xl" mb="24px">
           {TranslateString(542, 'Farms & Staking')}
@@ -85,6 +94,7 @@ const FarmedStakingCard = () => {
           )}
         </Actions>
       </CardBody>
+      </Reward>
     </StyledFarmStakingCard>
   )
 }
