@@ -64,7 +64,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <WithdrawModal
       max={stakedBalance}
       onConfirm={async (val) => {
-        setTypeOfReward('remove')
+        setTypeOfReward('removed')
         await onUnstake(val).catch(() => {
           setTypeOfReward('error')
           rewardRef.current?.rewardMe()

@@ -121,7 +121,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     <WithdrawModal
       max={stakedBalance}
       onConfirm={async (val) => {
-        setTypeOfReward('remove')
+        setTypeOfReward('removed')
         await onUnstake(val).catch(() => {
           setTypeOfReward('error')
           rewardRef.current?.rewardMe()
