@@ -101,6 +101,10 @@ const config: MenuEntry[] = [
         label: 'Blog',
         href: 'https://ape-swap.medium.com/',
       },
+      {
+        label: 'Team',
+        href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00'
+      },
     ],
   },
 ]
