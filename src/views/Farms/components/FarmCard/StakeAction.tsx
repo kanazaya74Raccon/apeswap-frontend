@@ -37,11 +37,12 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const rewardRef = useRef(null)
+  const rewardRefPos = useRef(null)
+  const rewardRefNeg = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
-  const onStake = useReward(rewardRef, useStake(pid).onStake)
-  const onUnstake = useReward(rewardRef, useUnstake(pid).onUnstake)
+  const onStake = useReward(rewardRefPos, useStake(pid).onStake)
+  const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
@@ -53,7 +54,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         setTypeOfReward('rewardBanana')
         await onStake(val).catch(() => {
           setTypeOfReward('error')
-          rewardRef.current?.rewardMe()
+          rewardRefPos.current?.rewardMe()
         })
       }}
       tokenName={tokenName}
@@ -67,7 +68,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         setTypeOfReward('remove')
         await onUnstake(val).catch(() => {
           setTypeOfReward('error')
-          rewardRef.current?.rewardMe()
+          rewardRefNeg.current?.rewardMe()
         })
       }}
       tokenName={tokenName}
@@ -79,23 +80,25 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
     ) : (
       <IconButtonWrapper>
-        <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon color="primary" />
-        </IconButton>
-        <IconButton variant="tertiary" onClick={onPresentDeposit}>
-          <AddIcon color="primary" />
-        </IconButton>
+        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="primary" />
+          </IconButton>
+        </Reward>
+        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentDeposit}>
+            <AddIcon color="primary" />
+          </IconButton>
+        </Reward>
       </IconButtonWrapper>
     )
   }
 
   return (
-    <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
-        {renderStakingButtons()}
-      </Flex>
-    </Reward>
+    <Flex justifyContent="space-between" alignItems="center">
+      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+      {renderStakingButtons()}
+    </Flex>
   )
 }
 
