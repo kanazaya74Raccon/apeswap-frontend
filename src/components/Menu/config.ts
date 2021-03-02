@@ -103,7 +103,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Team',
-        href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00'
+        href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
       },
     ],
   },
