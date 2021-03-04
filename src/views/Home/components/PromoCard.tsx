@@ -27,20 +27,19 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
+        href="https://ape-swap.medium.com/the-zoo-is-growing-beefy-apeswap-c721a962b19c"
         target="_blank"
         rel="noreferrer"
       >
         <CardBody>
-          <Heading size="xl" mb="24px">
-            🍌 {TranslateString(999, 'ApeSwap and Bake join forces!')} 🍩
+          <Heading size="lg" mb="24px">
+            🍌 {TranslateString(999, 'The Zoo is Growing: ApeSwap + Beefy')} 🐄
           </Heading>
           <>
-            <Text color="textSubtle">We are bringing mutual pools, farming and a meme NFT competition!</Text>
+            <Text color="textSubtle">We are bringing banana vaults to support auto compound in farms</Text>
             <Text color="textSubtle">
-              Over $10,000 in prizes
               <StyledLink
-                href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
+                href="https://ape-swap.medium.com/the-zoo-is-growing-beefy-apeswap-c721a962b19c"
                 target="_blank"
               >
                 {' '}
