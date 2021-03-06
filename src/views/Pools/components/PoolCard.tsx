@@ -167,7 +167,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
           </div>
           {account && harvest && !isOldSyrup && (
-            <Reward ref={rewardRefReward} type="emoji" config={rewards[typeOfReward]}>
+            <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
               <HarvestButton
                 disabled={!earnings.toNumber() || pendingTx}
                 text={pendingTx ? 'Collecting' : 'Wuzz out'}
@@ -176,7 +176,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                   setTypeOfReward('removed')
                   await onReward().catch(() => {
                     setTypeOfReward('error')
-                    rewardRefReward.current?.rewardMe()
+                    rewardRefWuzzOut.current?.rewardMe()
                     setPendingTx(false)
                   })
                   setPendingTx(false)
