@@ -111,8 +111,9 @@ const config: MenuEntry[] = [
       },
       {
         label: 'GEMZ Audit Report',
-        href: 'https://github.com/ApeSwapFinance/apeswap-banana-farm/blob/master/audits/ApeSwap_GEMZ_Audit_Report_21.03.05.pdf'
-      }
+        href:
+          'https://github.com/ApeSwapFinance/apeswap-banana-farm/blob/master/audits/ApeSwap_GEMZ_Audit_Report_21.03.05.pdf',
+      },
     ],
   },
 ]
