@@ -67,22 +67,22 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-        <CardBody>
-          <Heading size="xl" mb="24px">
-            {TranslateString(542, 'Farms & Staking')}
-          </Heading>
-          <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
-          <Block>
-            <BananaHarvestBalance />
-            <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
-          </Block>
-          <Block>
-            <BananaWalletBalance />
-            <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
-          </Block>
-          <Actions>
-            {account ? (
+      <CardBody>
+        <Heading size="xl" mb="24px">
+          {TranslateString(542, 'Farms & Staking')}
+        </Heading>
+        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
+        <Block>
+          <BananaHarvestBalance />
+          <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
+        </Block>
+        <Block>
+          <BananaWalletBalance />
+          <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
+        </Block>
+        <Actions>
+          {account ? (
+            <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
               <Button
                 id="harvest-all"
                 disabled={balancesWithValue.length <= 0 || pendingTx}
@@ -93,12 +93,12 @@ const FarmedStakingCard = () => {
                   ? TranslateString(548, 'Collecting BANANA')
                   : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
               </Button>
-            ) : (
-              <UnlockButton fullWidth />
-            )}
-          </Actions>
-        </CardBody>
-      </Reward>
+            </Reward>
+          ) : (
+            <UnlockButton fullWidth />
+          )}
+        </Actions>
+      </CardBody>
     </StyledFarmStakingCard>
   )
 }
