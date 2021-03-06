@@ -76,7 +76,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const onApeHarder = useReward(rewardRefApeHarder, useSousStake(sousId, isBnbPool).onStake)
   const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
   const onWuzzOut = useReward(rewardRefWuzzOut, useSousUnstake(sousId).onUnstake)
-  const onReward = useReward(rewardRefReward, useSousHarvest(sousId, isBnbPool).onReward)
+  const onReward = useReward(rewardRefWuzzOut, useSousHarvest(sousId, isBnbPool).onReward)
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
