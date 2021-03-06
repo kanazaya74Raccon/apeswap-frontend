@@ -42,6 +42,6 @@ export default {
     springAnimation: true,
     rewardPunish: 'reward',
     type: 'emoji',
-    emoji: ['💔','💔','💔', '😱', '👽', '🙈'],
+    emoji: ['💔', '💔', '💔', '😱', '👽', '🙈'],
   },
 }
