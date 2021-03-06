@@ -1,4 +1,7 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
+import Reward from 'react-rewards'
+import rewards from 'config/constants/rewards'
+import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -35,19 +38,28 @@ const Actions = styled.div`
 
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
+
+  const rewardRef = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
-  const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
+  const onReward = useReward(
+    rewardRef,
+    useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward,
+  )
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
     try {
+      setTypeOfReward('rewardBanana')
       await onReward()
     } catch (error) {
-      // TODO: find a way to handle when the user rejects transaction or it fails
+      setTypeOfReward('error')
+      rewardRef.current?.rewardMe()
     } finally {
       setPendingTx(false)
     }
@@ -70,16 +82,18 @@ const FarmedStakingCard = () => {
         </Block>
         <Actions>
           {account ? (
-            <Button
-              id="harvest-all"
-              disabled={balancesWithValue.length <= 0 || pendingTx}
-              onClick={harvestAllFarms}
-              fullWidth
-            >
-              {pendingTx
-                ? TranslateString(548, 'Collecting BANANA')
-                : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
-            </Button>
+            <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+              <Button
+                id="harvest-all"
+                disabled={balancesWithValue.length <= 0 || pendingTx}
+                onClick={harvestAllFarms}
+                fullWidth
+              >
+                {pendingTx
+                  ? TranslateString(548, 'Collecting BANANA')
+                  : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
+              </Button>
+            </Reward>
           ) : (
             <UnlockButton fullWidth />
           )}
