@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useRef } from 'react'
+import Reward from 'react-rewards'
+import rewards from 'config/constants/rewards'
 import styled from 'styled-components'
 import { Button, IconButton, useModal, AddIcon, Image } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -9,6 +11,7 @@ import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
 import useI18n from 'hooks/useI18n'
 import { useSousStake } from 'hooks/useStake'
+import useReward from 'hooks/useReward'
 import { useSousUnstake } from 'hooks/useUnstake'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -56,17 +59,29 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   } = pool
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
+
+  // const rewardRef = useRef(null)
+  const rewardRefUnstake = useRef(null)
+  const rewardRefStake = useRef(null)
+  const rewardRefApeHarder = useRef(null)
+  const rewardRefWuzzOut = useRef(null)
+  const rewardRefReward = useRef(null)
+
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress[CHAIN_ID])
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
-  const { onStake } = useSousStake(sousId, isBnbPool)
-  const { onUnstake } = useSousUnstake(sousId)
-  const { onReward } = useSousHarvest(sousId, isBnbPool)
+  const onStake = useReward(rewardRefStake, useSousStake(sousId, isBnbPool).onStake)
+  const onApeHarder = useReward(rewardRefApeHarder, useSousStake(sousId, isBnbPool).onStake)
+  const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
+  const onWuzzOut = useReward(rewardRefWuzzOut, useSousUnstake(sousId).onUnstake)
+  const onReward = useReward(rewardRefWuzzOut, useSousHarvest(sousId, isBnbPool).onReward)
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
+
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
@@ -84,17 +99,43 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={stakingLimit && stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
-      onConfirm={onStake}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefStake.current?.rewardMe()
+        })
+      }}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />,
   )
 
   const [onPresentCompound] = useModal(
-    <CompoundModal earnings={earnings} onConfirm={onStake} tokenName={stakingTokenName} />,
+    <CompoundModal
+      earnings={earnings}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onApeHarder(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefApeHarder.current?.rewardMe()
+        })
+      }}
+      tokenName={stakingTokenName}
+    />,
   )
 
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={stakingTokenName} />,
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('removed')
+        await onWuzzOut(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefWuzzOut.current?.rewardMe()
+        })
+      }}
+      tokenName={stakingTokenName}
+    />,
   )
 
   const handleApprove = useCallback(async () => {
@@ -104,8 +145,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       // user rejected tx or didn't go thru
       if (!txHash) {
         setRequestedApproval(false)
+      } else {
+        rewardRefReward.current?.rewardMe()
       }
     } catch (e) {
+      setTypeOfReward('error')
+      rewardRefReward.current?.rewardMe()
       console.error(e)
     }
   }, [onApprove, setRequestedApproval])
@@ -122,15 +167,22 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
           </div>
           {account && harvest && !isOldSyrup && (
-            <HarvestButton
-              disabled={!earnings.toNumber() || pendingTx}
-              text={pendingTx ? 'Collecting' : 'Wuzz out'}
-              onClick={async () => {
-                setPendingTx(true)
-                await onReward()
-                setPendingTx(false)
-              }}
-            />
+            <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
+              <HarvestButton
+                disabled={!earnings.toNumber() || pendingTx}
+                text={pendingTx ? 'Collecting' : 'Wuzz out'}
+                onClick={async () => {
+                  setPendingTx(true)
+                  setTypeOfReward('removed')
+                  await onReward().catch(() => {
+                    setTypeOfReward('error')
+                    rewardRefWuzzOut.current?.rewardMe()
+                    setPendingTx(false)
+                  })
+                  setPendingTx(false)
+                }}
+              />
+            </Reward>
           )}
         </div>
         {!isOldSyrup ? (
@@ -141,11 +193,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
               isDisabled={isFinished}
             />
             {sousId === 0 && account && harvest && (
-              <HarvestButton
-                disabled={!earnings.toNumber() || pendingTx}
-                text={pendingTx ? TranslateString(999, 'Aping') : TranslateString(999, 'Ape Harder')}
-                onClick={onPresentCompound}
-              />
+              <Reward ref={rewardRefApeHarder} type="emoji" config={rewards[typeOfReward]}>
+                <HarvestButton
+                  disabled={!earnings.toNumber() || pendingTx}
+                  text={pendingTx ? TranslateString(999, 'Aping') : TranslateString(999, 'Ape Harder')}
+                  onClick={() => {
+                    setTypeOfReward('rewardBanana')
+                    onPresentCompound()
+                  }}
+                />
+              </Reward>
             )}
           </BalanceAndCompound>
         ) : (
@@ -157,31 +214,47 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           {account &&
             (needsApproval && !isOldSyrup ? (
               <div style={{ flex: 1 }}>
-                <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
-                  {`Approve ${stakingTokenName}`}
-                </Button>
+                <Reward ref={rewardRefReward} type="emoji" config={rewards[typeOfReward]}>
+                  <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
+                    {`Approve ${stakingTokenName}`}
+                  </Button>
+                </Reward>
               </div>
             ) : (
               <>
-                <Button
-                  disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
-                  onClick={
-                    isOldSyrup
-                      ? async () => {
-                          setPendingTx(true)
-                          await onUnstake('0')
-                          setPendingTx(false)
-                        }
-                      : onPresentWithdraw
-                  }
-                >
-                  {`Unstake ${stakingTokenName}`}
-                </Button>
+                <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
+                  <Button
+                    disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
+                    onClick={
+                      isOldSyrup
+                        ? async () => {
+                            setPendingTx(true)
+                            setTypeOfReward('removed')
+                            await onUnstake('0')
+                            setPendingTx(false)
+                          }
+                        : () => {
+                            setTypeOfReward('removed')
+                            onPresentWithdraw()
+                          }
+                    }
+                  >
+                    {`Unstake ${stakingTokenName}`}
+                  </Button>
+                </Reward>
                 <StyledActionSpacer />
                 {!isOldSyrup && (
-                  <IconButton disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
-                    <AddIcon color="background" />
-                  </IconButton>
+                  <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
+                    <IconButton
+                      disabled={isFinished && sousId !== 0}
+                      onClick={() => {
+                        setTypeOfReward('rewardBanana')
+                        onPresentDeposit()
+                      }}
+                    >
+                      <AddIcon color="background" />
+                    </IconButton>
+                  </Reward>
                 )}
               </>
             ))}

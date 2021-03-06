@@ -105,6 +105,15 @@ const config: MenuEntry[] = [
         label: 'Team',
         href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
       },
+      {
+        label: 'Community Feedback',
+        href: 'https://apeswap.nolt.io/',
+      },
+      {
+        label: 'GEMZ Audit Report',
+        href:
+          'https://github.com/ApeSwapFinance/apeswap-banana-farm/blob/master/audits/ApeSwap_GEMZ_Audit_Report_21.03.05.pdf',
+      },
     ],
   },
 ]
