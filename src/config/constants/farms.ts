@@ -93,6 +93,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 8,
+    lpSymbol: 'BUSD-USDC LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BUSD-USDC BananaPair
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
+    },
+    tokenSymbol: 'USDC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC Token address
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
     pid: 4,
     lpSymbol: 'BTCB-BNB LP',
     lpAddresses: {
