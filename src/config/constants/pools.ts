@@ -44,6 +44,28 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     displayDecimals: 5,
   },
+  {
+    sousId: 2,
+    tokenName: 'SOUL',
+    stakingTokenName: QuoteToken.BANANA,
+    image: 'SOUL.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xf7D0542b1284f5E8003bEbA925276d95E04d4035',
+      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://apoyield.com',
+    harvest: true,
+    tokenPerBlock: '0.00069444',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
