@@ -27,6 +27,7 @@ export interface Pool extends PoolConfig {
     stakedBalance: BigNumber
     pendingReward: BigNumber
   }
+  lpData?: any
 }
 
 export interface Profile {

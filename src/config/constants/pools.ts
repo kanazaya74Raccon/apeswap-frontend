@@ -65,6 +65,7 @@ const pools: PoolConfig[] = [
     sortOrder: 2,
     isFinished: false,
     tokenDecimals: 8,
+    lpStaking: true,
   },
   /* {
     sousId: 45,

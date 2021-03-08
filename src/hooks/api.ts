@@ -50,6 +50,48 @@ export const useGetStats = () => {
   return data
 }
 
+const RESERVES_QUERY = (address) => {
+  return `
+  {
+    pair(id: "${address}") {
+      id
+      token0 {
+        id
+        symbol
+        derivedETH
+      }
+      token1 {
+        id
+        symbol
+        derivedETH
+      }
+      token0Price
+      token1Price
+      reserve0
+      reserve1
+      totalSupply
+      reserveETH
+    }
+  }`
+}
+
+// eslint-disable-next-line consistent-return
+export const fetchReserveData = async (pairAddress) => {
+  try {
+    const query = RESERVES_QUERY(pairAddress)
+    const response = await fetch('https://graph.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    })
+    const responsedata: any = await response.json()
+
+    return responsedata?.data?.pair
+  } catch (error) {
+    console.error('Unable to fetch data:', error)
+  }
+}
+
 const PAIR_CONFIGS = {
   'BANANA/BUSD': {
     address: '0x7bd46f6da97312ac2dbd1749f82e202764c0b914',
