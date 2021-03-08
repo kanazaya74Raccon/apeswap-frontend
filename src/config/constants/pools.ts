@@ -51,20 +51,20 @@ const pools: PoolConfig[] = [
     image: 'SOUL.png',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
     },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
+      56: '0xf5Cb9F954D3Ea26Bb503A6996a4b2B0aAdC8c969',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://apoyield.com',
     harvest: true,
-    tokenPerBlock: '0.00069444',
+    tokenPerBlock: '1384',
     sortOrder: 2,
     isFinished: false,
-    tokenDecimals: 18,
+    tokenDecimals: 8,
   },
   /* {
     sousId: 45,
