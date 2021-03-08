@@ -37,6 +37,11 @@ interface HarvestProps {
   pool: PoolWithApy
 }
 
+const StyledButton = styled(Button)`
+  max-width: 190px;
+  width: 100%;
+`
+
 const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const {
     sousId,
@@ -164,7 +169,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </CardTitle>
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
-            <Image src={`/images/tokens/${image || tokenName}.svg`} width={64} height={64} alt={tokenName} />
+            <Image src={`/images/tokens/${image || `${tokenName}.svg`}`} width={64} height={64} alt={tokenName} />
           </div>
           {account && harvest && !isOldSyrup && (
             <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
@@ -215,15 +220,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             (needsApproval && !isOldSyrup ? (
               <div style={{ flex: 1 }}>
                 <Reward ref={rewardRefReward} type="emoji" config={rewards[typeOfReward]}>
-                  <Button disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
+                  <StyledButton disabled={isFinished || requestedApproval} onClick={handleApprove} fullWidth>
                     {`Approve ${stakingTokenName}`}
-                  </Button>
+                  </StyledButton>
                 </Reward>
               </div>
             ) : (
               <>
                 <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-                  <Button
+                  <StyledButton
                     disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
                     onClick={
                       isOldSyrup
@@ -240,7 +245,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                     }
                   >
                     {`Unstake ${stakingTokenName}`}
-                  </Button>
+                  </StyledButton>
                 </Reward>
                 <StyledActionSpacer />
                 {!isOldSyrup && (
