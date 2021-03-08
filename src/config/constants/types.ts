@@ -32,6 +32,7 @@ export enum QuoteToken {
 
 export enum PoolCategory {
   'COMMUNITY' = 'Community',
+  'APEZONE' = 'ApeZone',
   'CORE' = 'Core',
   'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
 }
@@ -62,7 +63,7 @@ export interface PoolConfig {
   sousId: number
   image?: string
   tokenName: string
-  stakingTokenName: QuoteToken
+  stakingTokenName: string
   stakingLimit?: number
   stakingTokenAddress?: Address
   contractAddress: Address
