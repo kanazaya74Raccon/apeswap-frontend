@@ -75,6 +75,7 @@ export interface PoolConfig {
   isFinished?: boolean
   tokenDecimals: number
   displayDecimals?: number
+  lpStaking?: boolean
 }
 
 export type Images = {
