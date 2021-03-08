@@ -78,7 +78,7 @@ const Farm: React.FC = () => {
             <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
           </ul>
         </div>
-        <Image src="/images/banana-leaf.png" alt="ApeSwap illustration" width={1205} height={823} responsive />
+        <Image src="/images/pool-ape.png" alt="ApeSwap illustration" width={470} height={439} responsive />
       </Hero>
       <PoolTabButtons />
       <Divider />
