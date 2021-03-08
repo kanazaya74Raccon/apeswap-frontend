@@ -55,28 +55,29 @@ const config: MenuEntry[] = [
       },
     ],
   }, */
-  /* {
+  {
     label: 'Info',
     icon: 'InfoIcon',
     items: [
       {
         label: 'Overview',
-        href: 'https://pancakeswap.info',
+        href: 'https://info.apeswap.finance',
       },
       {
         label: 'Tokens',
-        href: 'https://pancakeswap.info/tokens',
+        href: 'https://info.apeswap.finance/tokens',
       },
       {
         label: 'Pairs',
-        href: 'https://pancakeswap.info/pairs',
+        href: 'https://info.apeswap.finance/pairs',
       },
       {
         label: 'Accounts',
-        href: 'https://pancakeswap.info/accounts',
+        href: 'https://info.apeswap.finance/accounts',
       },
     ],
-  }, {
+  },
+  /* {
     label: 'IFO',
     icon: 'IfoIcon',
     href: '/ifo',
