@@ -174,7 +174,7 @@ const farms: FarmConfig[] = [
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xddd3f9d5bd347c55d18752c0c2075698ec657750', // BIFI-BNB BananaPair
     },
-    tokenSymbol: 'BANANA',
+    tokenSymbol: 'BIFI',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
