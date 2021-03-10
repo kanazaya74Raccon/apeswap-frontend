@@ -27,23 +27,23 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://ape-swap.medium.com/the-zoo-is-growing-beefy-apeswap-c721a962b19c"
+        href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3"
         target="_blank"
         rel="noreferrer"
       >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🍌 {TranslateString(999, 'The Zoo is Growing: ApeSwap + Beefy')} 🐄
+            🔥  {TranslateString(999, 'Do you love burning bananas?')} 🔥
           </Heading>
           <>
-            <Text color="textSubtle">We are bringing banana vaults to support auto compound in farms</Text>
+            <Text color="textSubtle">DEX fee buy backs, gamified burning, compound vaults, and more!</Text>
             <Text color="textSubtle">
               <StyledLink
-                href="https://ape-swap.medium.com/the-zoo-is-growing-beefy-apeswap-c721a962b19c"
+                href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3"
                 target="_blank"
               >
                 {' '}
-                Check it out!
+                Read all the details on the ApeSwap Medium!
               </StyledLink>
             </Text>
           </>
