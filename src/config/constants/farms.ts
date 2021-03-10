@@ -78,6 +78,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
+    pid: 10,
+    lpSymbol: 'BANANA-BIFI LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2ce820319047c407cb952060df5f7fb3d9a9a688', // BANANA-BIFI BananaPair
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
+    },
+    quoteTokenSymbol: QuoteToken.BANANA,
+    quoteTokenAdresses: contracts.banana,
+  },
+  {
     pid: 9,
     lpSymbol: 'BANANA-BREW LP',
     lpAddresses: {
@@ -148,6 +163,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
       56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'BIFI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xddd3f9d5bd347c55d18752c0c2075698ec657750', // BIFI-BNB BananaPair
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
