@@ -63,21 +63,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
-    pid: 12,
-    lpSymbol: 'BANANA-SUSHI LP',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-SUSHI BananaPair
-      56: '0xdbcdA7B58c2078fcc790dD7C2c7272EdB7EAa2b0',
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
-    },
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
     pid: 6,
     lpSymbol: 'BANANA-CAKE LP',
     lpAddresses: {
@@ -118,6 +103,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x790Be81C3cA0e53974bE2688cDb954732C9862e1', // BREW Token
+    },
+    quoteTokenSymbol: QuoteToken.BANANA,
+    quoteTokenAdresses: contracts.banana,
+  },
+  {
+    pid: 12,
+    lpSymbol: 'BANANA-SUSHI LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-SUSHI BananaPair
+      56: '0xdbcdA7B58c2078fcc790dD7C2c7272EdB7EAa2b0',
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
     },
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
