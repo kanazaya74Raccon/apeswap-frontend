@@ -79,7 +79,7 @@ const pools: PoolConfig[] = [
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: 'yar',
+      56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://apoyield.com',
