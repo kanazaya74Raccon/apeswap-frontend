@@ -26,22 +26,15 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <a
-        href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3" target="_blank" rel="noreferrer">
         <CardBody>
           <Heading size="lg" mb="24px">
-            🔥  {TranslateString(999, 'Do you love burning bananas?')} 🔥
+            🔥 {TranslateString(999, 'Do you love burning bananas?')} 🔥
           </Heading>
           <>
             <Text color="textSubtle">DEX fee buy backs, gamified burning, compound vaults, and more!</Text>
             <Text color="textSubtle">
-              <StyledLink
-                href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3"
-                target="_blank"
-              >
+              <StyledLink href="https://ape-swap.medium.com/apeswap-burn-plan-step-1-97d8095e68c3" target="_blank">
                 {' '}
                 Read all the details on the ApeSwap Medium!
               </StyledLink>
