@@ -108,6 +108,51 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
+    pid: 12,
+    lpSymbol: 'BANANA-SUSHI LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-SUSHI BananaPair
+      56: '0xdbcdA7B58c2078fcc790dD7C2c7272EdB7EAa2b0',
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
+    },
+    quoteTokenSymbol: QuoteToken.BANANA,
+    quoteTokenAdresses: contracts.banana,
+  },
+  {
+    pid: 13,
+    lpSymbol: 'SUSHI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BNB-SUSHI BananaPair
+      56: '0x1D0C3044eBf055986c52D38b19B5369374E6Bc6A',
+    },
+    tokenSymbol: 'SUSHI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 14,
+    lpSymbol: 'SUSHI-ETH LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // ETH-SUSHI BananaPair
+      56: '0x044F2b275A344D4edfc3d98e1cb7c02B30e6484e',
+    },
+    tokenSymbol: 'SUSHI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+  },
+  {
     pid: 3,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
