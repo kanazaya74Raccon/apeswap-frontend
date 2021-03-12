@@ -52,10 +52,10 @@ const Ifo = () => {
             <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li>
           </List>
           <Flex mb="16px">
-            <LinkExternal href="https://exchange.pancakeswap.finance/#/swap" mr="16px">
+            <LinkExternal href="https://dex.apeswap.finance/#/swap" mr="16px">
               {TranslateString(999, 'Buy banana')}
             </LinkExternal>
-            <LinkExternal href="https://exchange.pancakeswap.finance/#/add/ETH/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82">
+            <LinkExternal href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95">
               {TranslateString(999, 'Get LP tokens')}
             </LinkExternal>
           </Flex>
@@ -87,7 +87,7 @@ const Ifo = () => {
             <Text mb={3}>
               {TranslateString(
                 514,
-                'Launch your project with ApeSwap, Binance Smart Chain’s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC.',
+                'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing community ape on BSC.',
               )}
             </Text>
             <Button

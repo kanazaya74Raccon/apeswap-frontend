@@ -5,7 +5,7 @@ import Container from 'components/layout/Container'
 import useI18n from 'hooks/useI18n'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: #ffffff;
   margin-bottom: 24px;
 `
 
@@ -16,7 +16,7 @@ const Blurb = styled(Text)`
 `
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(180deg, #53dee9 0%, #1fc7d4 100%);
+  background-image: linear-gradient(180deg, #009859 0%, #1fc7d4 100%);
   padding-bottom: 40px;
   padding-top: 40px;
   margin-bottom: 32px;
@@ -27,8 +27,8 @@ const Hero = () => {
   return (
     <StyledHero>
       <Container>
-        <Title>{TranslateString(500, 'IFO: Initial Farm Offerings')}</Title>
-        <Blurb>{TranslateString(502, 'Buy new tokens with a brand new token sale model.')}</Blurb>
+        <Title>{TranslateString(500, 'IPO: Initial Ape Offerings')}</Title>
+        <Blurb>{TranslateString(502, 'Buy new tokens by staking APE-LP.')}</Blurb>
       </Container>
     </StyledHero>
   )
