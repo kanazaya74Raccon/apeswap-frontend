@@ -94,7 +94,7 @@ const pools: PoolConfig[] = [
     sousId: 4,
     tokenName: 'NUTS',
     stakingTokenName: 'BANANA-NUTS',
-    image: 'NUTS.png',
+    image: 'NUTS.svg',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
