@@ -11,7 +11,7 @@ const LaunchIfoCallout = styled(BaseLayout)`
   border-top: 2px solid ${({ theme }) => theme.colors.textSubtle};
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 32px;
+  grid-gap: 60px;
   margin: 0 auto;
   padding: 32px 0;
 
@@ -30,6 +30,9 @@ const List = styled.ul`
   }
 `
 
+const IfoHeading = styled(Heading)`
+  margin-top: 32px;
+`
 /**
  * Note: currently there should be only 1 active IFO at a time
  */
@@ -46,7 +49,7 @@ const Ifo = () => {
       <LaunchIfoCallout>
         <div>
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
-          <Heading mb="16px">{TranslateString(594, 'Before Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
             <li>{TranslateString(596, 'Buy BANANA and BNB tokens')}</li>
             <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li>
@@ -59,13 +62,13 @@ const Ifo = () => {
               {TranslateString(999, 'Get LP tokens')}
             </LinkExternal>
           </Flex>
-          <Heading mb="16px">{TranslateString(600, 'During Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
             <li>
               {TranslateString(602, 'While the sale is live, commit your BANANA-LP tokens to buy the IFO tokens')}
             </li>
           </List>
-          <Heading mb="16px">{TranslateString(604, 'After Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
             <li>{TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}</li>
             <li>{TranslateString(608, 'Done!')}</li>
