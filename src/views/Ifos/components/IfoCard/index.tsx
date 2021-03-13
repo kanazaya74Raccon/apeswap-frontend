@@ -163,7 +163,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             tokenDecimals={tokenDecimals}
           />
         )}
-        <IfoCardDescription description={description} />
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
@@ -174,6 +173,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           raisingAmount={state.raisingAmount}
           totalAmount={state.totalAmount}
         />
+        <IfoCardDescription description={description} />
       </CardBody>
     </StyledIfoCard>
   )

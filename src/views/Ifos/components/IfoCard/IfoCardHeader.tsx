@@ -22,7 +22,8 @@ const Name = styled(Heading).attrs({ as: 'h3', size: 'lg' })`
 const Description = styled(Text)`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
-  text-align: right;
+  text-align: left;
+  padding: 36px;
 `
 
 const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({ ifoId, name, subTitle }) => {
@@ -30,7 +31,7 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({ ifoId, name, subTitle }) 
     <StyledIfoCardHeader mb="24px" alignItems="center">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />
       <div>
-        <Name>{name}</Name>
+        {/* <Name>{name}</Name> */}
         <Description>{subTitle}</Description>
       </div>
     </StyledIfoCardHeader>

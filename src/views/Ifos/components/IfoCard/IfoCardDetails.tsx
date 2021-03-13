@@ -16,7 +16,7 @@ export interface IfoCardDetailsProps {
 }
 
 const StyledIfoCardDetails = styled.div`
-  margin-bottom: 24px;
+  margin: 32px 0;
 `
 
 const Item = styled.div`
