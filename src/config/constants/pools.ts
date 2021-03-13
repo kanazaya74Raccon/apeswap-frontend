@@ -113,6 +113,29 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
   },
+  {
+    sousId: 5,
+    tokenName: 'BANANA',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'BANANA.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.1446527778',
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
