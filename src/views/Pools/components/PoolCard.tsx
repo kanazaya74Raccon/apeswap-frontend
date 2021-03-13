@@ -3,7 +3,7 @@ import React, { useCallback, useState, useRef } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import styled from 'styled-components'
-import { Button, IconButton, useModal, AddIcon, Image } from '@apeswapfinance/uikit'
+import { Button, IconButton, useModal, AddIcon, Image, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
 import Label from 'components/Label'
@@ -40,6 +40,10 @@ interface HarvestProps {
 const StyledButton = styled(Button)`
   max-width: 190px;
   width: 100%;
+`
+
+const SubTitle = styled(Text)`
+  margin-bottom: 24px;
 `
 
 const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
@@ -167,6 +171,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <CardTitle isFinished={isFinished && sousId !== 0}>
           {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
         </CardTitle>
+        {blocksUntilStart > 0 && ( 
+            <SubTitle color="green">
+              Coming Soon
+            </SubTitle>
+          )}
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
             <Image src={`/images/tokens/${image || `${tokenName}.svg`}`} width={64} height={64} alt={tokenName} />

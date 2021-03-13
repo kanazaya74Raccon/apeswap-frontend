@@ -70,8 +70,8 @@ const EarnAPYCard = () => {
 
           apy = bananaApy && dualApy && bananaApy.plus(dualApy)
         }
-        if (maxAPY.current < apy.toNumber()){
-           maxAPY.current = apy.toNumber()
+        if (maxAPY.current < apy.toNumber()) {
+          maxAPY.current = apy.toNumber()
         }
 
         return apy

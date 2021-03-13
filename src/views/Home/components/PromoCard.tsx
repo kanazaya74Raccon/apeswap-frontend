@@ -29,10 +29,15 @@ const PromoCard = () => {
       <a href="https://twitter.com/ape_swap/status/1369800957777895433" target="_blank" rel="noreferrer">
         <CardBody>
           <Heading size="lg" mb="24px">
-          🐵 {TranslateString(999, 'Initial Ape Offering')} 🐵
+            🐵 {TranslateString(999, 'Initial Ape Offering')} 🐵
           </Heading>
           <>
-            <Text color="textSubtle">We are taking monkeys to the moon, with our first IAO <a href="https://twitter.com/astronauttoken" target="blank">@astronauttoken</a> </Text>
+            <Text color="textSubtle">
+              We are taking monkeys to the moon, with our first IAO{' '}
+              <a href="https://twitter.com/astronauttoken" target="blank">
+                @astronauttoken
+              </a>{' '}
+            </Text>
             <Text color="textSubtle">🚀 Launch will take place on March 15th 🚀</Text>
             <Text color="textSubtle">
               <StyledLink href="https://twitter.com/ape_swap/status/1369800957777895433" target="_blank">
