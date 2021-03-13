@@ -63,6 +63,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
+    pid: 15,
+    lpSymbol: 'BANANA-GFCE LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-GFCE BananaPair
+      56: '0x9C87cae57f0962997d9bd66C24f3425d20543e3d',
+    },
+    tokenSymbol: 'BANANA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x94BaBBE728D9411612Ee41b20241a6FA251b26Ce',
+    },
+    quoteTokenSymbol: QuoteToken.BANANA,
+    quoteTokenAdresses: contracts.banana,
+  },
+  {
     pid: 6,
     lpSymbol: 'BANANA-CAKE LP',
     lpAddresses: {
@@ -208,6 +223,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
       56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 16,
+    lpSymbol: 'GFCE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-GFCE BananaPair
+      56: '0xD7903933B10504a7C67f191285a6A7E5A233fD3B',
+    },
+    tokenSymbol: 'GFCE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x94BaBBE728D9411612Ee41b20241a6FA251b26Ce',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
