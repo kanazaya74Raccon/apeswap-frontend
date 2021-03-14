@@ -121,7 +121,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
 
       setState({
-        isLoading: false,
+        isLoading: currentBlock === 0,
         secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
         secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
         raisingAmount: new BigNumber(raisingAmount),
