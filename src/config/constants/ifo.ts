@@ -86,7 +86,7 @@ const ifos: Ifo[] = [
     description:
       'Protocol built for token pools and auctions enabling projects to raise capital on a decentralized and interoperable environment. Enabling the way your ideas raise capital.',
     launchDate: 'Mar. 15',
-    launchTime: '10PM EST',
+    launchTime: '11PM EST',
     saleAmount: '2,000,000 NAUT',
     raiseAmount: '$400,000',
     bananaToBurn: '$200,000',
