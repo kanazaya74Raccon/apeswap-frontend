@@ -109,7 +109,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.08680555556',
     sortOrder: 2,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     lpStaking: true,
   },
@@ -132,6 +132,29 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.1446527778',
     sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 6,
+    tokenName: 'CRX',
+    stakingTokenName: 'BANANA-CRX',
+    image: 'CRX.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x084beaa501dB448869001BA49913c9aD009b1694',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptexlock.me/',
+    harvest: true,
+    tokenPerBlock: '0.002604166666667000',
+    sortOrder: 2,
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: true,
