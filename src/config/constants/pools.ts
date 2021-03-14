@@ -63,8 +63,100 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '1384',
     sortOrder: 2,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 3,
+    tokenName: 'SOUL',
+    stakingTokenName: 'BANANA-SOUL',
+    image: 'SOUL.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://apoyield.com',
+    harvest: true,
+    tokenPerBlock: '396',
+    sortOrder: 3,
     isFinished: false,
     tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 4,
+    tokenName: 'NUTS',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'NUTS.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x3523cE00C9f82FfafC850C0Acccb78341239028b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.08680555556',
+    sortOrder: 2,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 5,
+    tokenName: 'BANANA',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'BANANA.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.1446527778',
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 6,
+    tokenName: 'CRX',
+    stakingTokenName: 'BANANA-CRX',
+    image: 'CRX.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x084beaa501dB448869001BA49913c9aD009b1694',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptexlock.me/',
+    harvest: true,
+    tokenPerBlock: '0.002604166666667000',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
     lpStaking: true,
   },
   /* {
