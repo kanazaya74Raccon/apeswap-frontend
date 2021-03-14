@@ -79,7 +79,7 @@ const ifos: Ifo[] = [
   }, */
   {
     id: 'astronaut',
-    address: '0x513d4213E665eFBea700C0f6d2afa1f38A51F8aC',
+    address: '0x653218b255b1c63967728323b74235a2fc0c6c36',
     isActive: true,
     name: 'Astronaut',
     subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
@@ -92,9 +92,9 @@ const ifos: Ifo[] = [
     bananaToBurn: '$200,000',
     projectSiteUrl: 'https://astronaut.to/',
     currency: 'BANANA-BNB LP',
-    currencyAddress: '0x90fc86a7570063a9ea971ec74f01f89569ad6237',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
-    releaseBlockNumber: 7069400,
+    releaseBlockNumber: 5683960,
   },
 ]
 
