@@ -26,7 +26,7 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <a href="https://twitter.com/ape_swap/status/1369800957777895433" target="_blank" rel="noreferrer">
+      <NavLink to="/iao">
         <CardBody>
           <Heading size="lg" mb="24px">
             🐵 {TranslateString(999, 'Initial Ape Offering')} 🐵
@@ -40,14 +40,14 @@ const PromoCard = () => {
             </Text>
             <Text color="textSubtle">🚀 Launch will take place on March 15th 🚀</Text>
             <Text color="textSubtle">
-              <StyledLink href="https://twitter.com/ape_swap/status/1369800957777895433" target="_blank">
+              <StyledNavLink to="/iao">
                 {' '}
                 Read more!
-              </StyledLink>
+              </StyledNavLink>
             </Text>
           </>
         </CardBody>
-      </a>
+      </NavLink>
     </StyledPromoCard>
   )
 }
