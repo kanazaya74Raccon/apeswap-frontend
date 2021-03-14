@@ -27,7 +27,7 @@ const Item = styled.div`
 
 const Display = styled(Text)`
   flex: 1;
-  font-size:14px;
+  font-size: 14px;
 `
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
