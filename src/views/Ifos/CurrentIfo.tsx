@@ -77,7 +77,7 @@ const Ifo = () => {
             <Button
               as="a"
               variant="secondary"
-              href="https://docs.pancakeswap.finance/core-products/ifo-initial-farm-offering"
+              href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
             >
               {TranslateString(610, 'Read more')}
             </Button>
@@ -90,12 +90,12 @@ const Ifo = () => {
             <Text mb={3}>
               {TranslateString(
                 514,
-                'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing community ape on BSC.',
+                'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing ape community on BSC.',
               )}
             </Text>
             <Button
               as="a"
-              href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
+              href="https://forms.gle/5vN1kgX5wSK6PLJn7"
               external
             >
               {TranslateString(516, 'Apply to launch')}
