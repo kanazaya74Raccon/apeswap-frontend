@@ -40,10 +40,7 @@ const PromoCard = () => {
             </Text>
             <Text color="textSubtle">🚀 Launch will take place on March 15th 🚀</Text>
             <Text color="textSubtle">
-              <StyledNavLink to="/iao">
-                {' '}
-                Read more!
-              </StyledNavLink>
+              <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
             </Text>
           </>
         </CardBody>
