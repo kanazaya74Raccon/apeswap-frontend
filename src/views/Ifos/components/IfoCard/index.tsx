@@ -28,6 +28,7 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   margin-left: auto;
   margin-right: auto;
   max-width: 437px;
+  border-radius: 50px;
   width: 100%;
 `
 
@@ -120,7 +121,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
 
       setState({
-        isLoading: false,
+        isLoading: currentBlock === 0,
         secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
         secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
         raisingAmount: new BigNumber(raisingAmount),
@@ -163,7 +164,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             tokenDecimals={tokenDecimals}
           />
         )}
-        <IfoCardDescription description={description} />
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
@@ -174,6 +174,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           raisingAmount={state.raisingAmount}
           totalAmount={state.totalAmount}
         />
+        <IfoCardDescription description={description} />
       </CardBody>
     </StyledIfoCard>
   )

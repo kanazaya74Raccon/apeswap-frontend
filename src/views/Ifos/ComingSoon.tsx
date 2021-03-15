@@ -73,9 +73,9 @@ const ComingSoon = () => {
               <strong>{TranslateString(510, 'You get the tokens.')}</strong>
             </Text>
           </Block>
-          <MobileImage src="/images/ifo-bunny.svg" alt="ifo bunny" />
+          <MobileImage src="/images/banana-leaf.png" alt="ifo banana" />
           <Block>
-            <Title as="h2">{TranslateString(512, 'Want to launch your own IFO?')}</Title>
+            <Title as="h2">{TranslateString(512, 'Want to launch your own IAO?')}</Title>
             <Text mb={3}>
               {TranslateString(
                 514,
@@ -93,7 +93,7 @@ const ComingSoon = () => {
           </Block>
         </div>
         <div>
-          <MainImage src="/images/ifo-bunny.svg" alt="ifo bunny" />
+          <MainImage src="/images/banana-leaf.png" alt="banana-leaf" />
         </div>
       </Content>
     </Page>
