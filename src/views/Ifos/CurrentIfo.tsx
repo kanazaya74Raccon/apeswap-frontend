@@ -93,11 +93,7 @@ const Ifo = () => {
                 'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing ape community on BSC.',
               )}
             </Text>
-            <Button
-              as="a"
-              href="https://forms.gle/5vN1kgX5wSK6PLJn7"
-              external
-            >
+            <Button as="a" href="https://forms.gle/5vN1kgX5wSK6PLJn7" external>
               {TranslateString(516, 'Apply to launch')}
             </Button>
           </div>

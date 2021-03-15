@@ -82,12 +82,7 @@ const ComingSoon = () => {
                 'Launch your project with ApeSwap, Binance Smart Chain’s most-aped AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing ape community on BSC.',
               )}
             </Text>
-            <Button
-              as="a"
-              href="https://forms.gle/5vN1kgX5wSK6PLJn7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Button as="a" href="https://forms.gle/5vN1kgX5wSK6PLJn7" target="_blank" rel="noopener noreferrer">
               {TranslateString(516, 'Apply to launch')}
             </Button>
           </Block>
