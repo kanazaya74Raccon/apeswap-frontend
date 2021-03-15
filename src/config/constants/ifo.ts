@@ -1,7 +1,7 @@
 import { Ifo } from './types'
 
 const ifos: Ifo[] = [
-  {
+  /* {
     id: 'blink',
     address: '0x44a9Cc8463EC00937242b660BF65B10365d99baD',
     isActive: false,
@@ -76,25 +76,25 @@ const ifos: Ifo[] = [
     currencyAddress: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     tokenDecimals: 18,
     releaseBlockNumber: 3771926,
-  },
+  }, */
   {
-    id: 'soteria',
-    address: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
+    id: 'astronaut',
+    address: '0x0697D4Dc02cE24614Ad514473116bEA2A093647f',
     isActive: true,
-    name: 'Soteria',
-    subTitle: 'A blockchain based mutual to share the risk of DeFi on Binance Smart Chain',
+    name: 'Astronaut',
+    subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
     description:
-      'Soteria allows users to buy insurance cover to greatly diminish or reduce the financial risk of hacks. It replaces the idea of a traditional insurance company, because it is wholly owned by the members. The model encourages engagement as members receive economic incentives for participating in Risk Assessment, Claims Assessment and Governance.',
-    launchDate: 'Jan. 21',
-    launchTime: '4PM SGT',
-    saleAmount: '1,500,000 wSOTE',
-    raiseAmount: '$525,000',
-    bananaToBurn: '$262,500',
-    projectSiteUrl: 'https://soteria.finance/#/',
-    currency: 'CAKE-BNB LP',
-    currencyAddress: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
+      'Protocol built for token pools and auctions enabling projects to raise capital on a decentralized and interoperable environment. Enabling the way your ideas raise capital.',
+    launchDate: 'Mar. 15',
+    launchTime: '11PM EST',
+    saleAmount: '2,000,000 NAUT',
+    raiseAmount: '$400,000',
+    bananaToBurn: '$200,000',
+    projectSiteUrl: 'https://astronaut.to/',
+    currency: 'BANANA-BNB LP',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
-    releaseBlockNumber: 4086064,
+    releaseBlockNumber: 5685490,
   },
 ]
 
