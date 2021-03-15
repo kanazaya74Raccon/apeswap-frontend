@@ -106,8 +106,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         contract.methods.raisingAmount().call(),
         contract.methods.totalAmount().call(),
       ])
-
-      const startBlockNum = 5719400 // parseInt(startBlock, 10)
+      const startBlockNum = parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
 
       const status = getStatus(currentBlock, startBlockNum, endBlockNum)

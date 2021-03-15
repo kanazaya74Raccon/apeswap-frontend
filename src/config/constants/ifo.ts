@@ -79,7 +79,7 @@ const ifos: Ifo[] = [
   }, */
   {
     id: 'astronaut',
-    address: '0x0697D4Dc02cE24614Ad514473116bEA2A093647f',
+    address: '0xd7e98ca54e6202fb6237b98c881817ed3e54d2ed',
     isActive: true,
     name: 'Astronaut',
     subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
