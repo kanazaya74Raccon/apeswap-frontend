@@ -93,7 +93,7 @@ const ifos: Ifo[] = [
     projectSiteUrl: 'https://astronaut.to/',
     currency: 'BANANA-BNB LP',
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
-    tokenDecimals: 18,
+    tokenDecimals: 8,
     releaseBlockNumber: 5685490,
   },
 ]
