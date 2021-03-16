@@ -85,7 +85,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://apoyield.com',
     harvest: true,
     tokenPerBlock: '396',
-    sortOrder: 3,
+    sortOrder: 4,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
@@ -154,9 +154,32 @@ const pools: PoolConfig[] = [
     projectLink: 'https://cryptexlock.me/',
     harvest: true,
     tokenPerBlock: '0.002604166666667000',
-    sortOrder: 2,
+    sortOrder: 3,
     isFinished: false,
     tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 7,
+    tokenName: 'NAUT',
+    stakingTokenName: 'BNB-NAUT',
+    image: 'NAUT.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x288EA5437c7aaD045a393cee2F41E548df24d1C8', // BNB-NAUT LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x114d54e18eb4A7Dc9bB8280e283E5799D4188E3f',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.28935185',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 8,
     lpStaking: true,
   },
   /* {
