@@ -26,21 +26,16 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <NavLink to="/iao">
+      <NavLink to="/pools">
         <CardBody>
           <Heading size="lg" mb="24px">
-            🐵 {TranslateString(999, 'Initial Ape Offering')} 🐵
+            🚀 {TranslateString(999, 'NAUT Pool Open')} 🍌
           </Heading>
           <>
+            <Text color="textSubtle">We are proud to open a NAUT rewards pool</Text>
+            <Text color="textSubtle">🚀 After a successful IAO with over 1000% subscription rate 🚀</Text>
             <Text color="textSubtle">
-              We are taking monkeys to the moon, with our first IAO{' '}
-              <a href="https://twitter.com/astronauttoken" target="blank">
-                @astronauttoken
-              </a>{' '}
-            </Text>
-            <Text color="textSubtle">🚀 Exreme success with a 1372.69% IAO subscription rate 🚀</Text>
-            <Text color="textSubtle">
-              <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
+              <StyledNavLink to="/pools"> Check it out!</StyledNavLink>
             </Text>
           </>
         </CardBody>
