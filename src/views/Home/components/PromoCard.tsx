@@ -38,7 +38,7 @@ const PromoCard = () => {
                 @astronauttoken
               </a>{' '}
             </Text>
-            <Text color="textSubtle">🚀 Launch will take place on March 15th 🚀</Text>
+            <Text color="textSubtle">🚀 Exreme success with a 1372.69% IAO subscription rate 🚀</Text>
             <Text color="textSubtle">
               <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
             </Text>
