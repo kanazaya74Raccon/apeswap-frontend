@@ -166,7 +166,7 @@ const pools: PoolConfig[] = [
     image: 'NAUT.png',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x288EA5437c7aaD045a393cee2F41E548df24d1C8', // BNB-NAUT LP
+      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
     },
     contractAddress: {
       // BEP20RewardApe
