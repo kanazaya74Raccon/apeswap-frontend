@@ -55,32 +55,33 @@ const config: MenuEntry[] = [
       },
     ],
   }, */
-  /* {
+  {
     label: 'Info',
     icon: 'InfoIcon',
     items: [
       {
         label: 'Overview',
-        href: 'https://pancakeswap.info',
+        href: 'https://info.apeswap.finance',
       },
       {
         label: 'Tokens',
-        href: 'https://pancakeswap.info/tokens',
+        href: 'https://info.apeswap.finance/tokens',
       },
       {
         label: 'Pairs',
-        href: 'https://pancakeswap.info/pairs',
+        href: 'https://info.apeswap.finance/pairs',
       },
       {
         label: 'Accounts',
-        href: 'https://pancakeswap.info/accounts',
+        href: 'https://info.apeswap.finance/accounts',
       },
     ],
-  }, {
-    label: 'IFO',
+  },
+  {
+    label: 'IAO',
     icon: 'IfoIcon',
-    href: '/ifo',
-  }, */
+    href: '/iao',
+  },
   {
     label: 'More',
     icon: 'MoreIcon',
@@ -100,6 +101,19 @@ const config: MenuEntry[] = [
       {
         label: 'Blog',
         href: 'https://ape-swap.medium.com/',
+      },
+      {
+        label: 'Team',
+        href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
+      },
+      {
+        label: 'Community Feedback',
+        href: 'https://apeswap.nolt.io/',
+      },
+      {
+        label: 'GEMZ Audit Report',
+        href:
+          'https://github.com/ApeSwapFinance/apeswap-banana-farm/blob/master/audits/ApeSwap_GEMZ_Audit_Report_21.03.05.pdf',
       },
     ],
   },

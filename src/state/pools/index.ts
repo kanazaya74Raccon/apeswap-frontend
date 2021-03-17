@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
+import { fetchReserveData } from 'hooks/api'
 import { fetchPoolsBlockLimits, fetchPoolsTotalStatking } from './fetchPools'
 import {
   fetchPoolsAllowance,
@@ -11,6 +12,7 @@ import {
 import { PoolsState, Pool } from '../types'
 
 const initialState: PoolsState = { data: [...poolsConfig] }
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const PoolsSlice = createSlice({
   name: 'Pools',
@@ -46,14 +48,18 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStatking()
 
-  const liveData = poolsConfig.map((pool) => {
-    const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
-    const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-    return {
-      ...blockLimit,
-      ...totalStaking,
-    }
-  })
+  const liveData = await Promise.all(
+    poolsConfig.map(async (pool) => {
+      const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+      const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+      const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
+      return {
+        ...blockLimit,
+        ...totalStaking,
+        lpData,
+      }
+    }),
+  )
 
   dispatch(setPoolsPublicData(liveData))
 }

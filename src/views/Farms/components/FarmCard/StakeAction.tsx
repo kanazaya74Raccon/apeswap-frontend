@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
+import Reward from 'react-rewards'
+import rewards from 'config/constants/rewards'
+import useReward from 'hooks/useReward'
+
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
@@ -32,17 +36,43 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   addLiquidityUrl,
 }) => {
   const TranslateString = useI18n()
-  const { onStake } = useStake(pid)
-  const { onUnstake } = useUnstake(pid)
+
+  const rewardRefPos = useRef(null)
+  const rewardRefNeg = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+
+  const onStake = useReward(rewardRefPos, useStake(pid).onStake)
+  const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal
+      max={tokenBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefPos.current?.rewardMe()
+        })
+      }}
+      tokenName={tokenName}
+      addLiquidityUrl={addLiquidityUrl}
+    />,
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={tokenName} />,
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('removed')
+        await onUnstake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefNeg.current?.rewardMe()
+        })
+      }}
+      tokenName={tokenName}
+    />,
   )
 
   const renderStakingButtons = () => {
@@ -50,12 +80,16 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
     ) : (
       <IconButtonWrapper>
-        <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon color="primary" />
-        </IconButton>
-        <IconButton variant="tertiary" onClick={onPresentDeposit}>
-          <AddIcon color="primary" />
-        </IconButton>
+        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="primary" />
+          </IconButton>
+        </Reward>
+        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentDeposit}>
+            <AddIcon color="primary" />
+          </IconButton>
+        </Reward>
       </IconButtonWrapper>
     )
   }

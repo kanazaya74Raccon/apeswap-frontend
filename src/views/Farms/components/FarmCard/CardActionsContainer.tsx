@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react'
+import React, { useMemo, useState, useCallback, useRef } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { provider } from 'web3-core'
@@ -9,6 +9,8 @@ import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
+import rewards from 'config/constants/rewards'
+import Reward from 'react-rewards'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
@@ -35,6 +37,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
+  const rewardRef = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+
   const lpContract = useMemo(() => {
     return getContract(ethereum as provider, lpAddress)
   }, [ethereum, lpAddress])
@@ -44,8 +49,11 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
-      await onApprove()
+      const sucess = await onApprove()
+      if (!sucess) setTypeOfReward('error')
+      else setTypeOfReward('rewardBanana')
       setRequestedApproval(false)
+      rewardRef.current?.rewardMe()
     } catch (e) {
       console.error(e)
     }
@@ -61,9 +69,11 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
-        {TranslateString(999, 'Approve Contract')}
-      </Button>
+      <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+        <Button mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
+          {TranslateString(999, 'Approve Contract')}
+        </Button>
+      </Reward>
     )
   }
 

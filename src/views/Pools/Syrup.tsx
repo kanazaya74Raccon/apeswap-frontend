@@ -44,13 +44,22 @@ const Farm: React.FC = () => {
     const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
 
-    // /!\ Assume that the farm quote price is BNB
-    const stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
-    const rewardTokenPriceInBNB = priceToBnb(
-      pool.tokenName,
-      rewardTokenFarm?.tokenPriceVsQuote,
-      rewardTokenFarm?.quoteTokenSymbol,
-    )
+    let stakingTokenPriceInBNB
+    let rewardTokenPriceInBNB
+
+    if (pool.lpData) {
+      const rewardToken = pool.lpData.token1.symbol === pool.tokenName ? pool.lpData.token1 : pool.lpData.token0
+      stakingTokenPriceInBNB = new BigNumber(pool.lpData.reserveETH).div(new BigNumber(pool.lpData.totalSupply))
+      rewardTokenPriceInBNB = new BigNumber(rewardToken.derivedETH)
+    } else {
+      // /!\ Assume that the farm quote price is BNB
+      stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
+      rewardTokenPriceInBNB = priceToBnb(
+        pool.tokenName,
+        rewardTokenFarm?.tokenPriceVsQuote,
+        rewardTokenFarm?.quoteTokenSymbol,
+      )
+    }
 
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
@@ -78,7 +87,7 @@ const Farm: React.FC = () => {
             <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
           </ul>
         </div>
-        <Image src="/images/banana-leaf.png" alt="ApeSwap illustration" width={1205} height={823} responsive />
+        <Image src="/images/pool-ape.png" alt="ApeSwap illustration" width={470} height={439} responsive />
       </Hero>
       <PoolTabButtons />
       <Divider />

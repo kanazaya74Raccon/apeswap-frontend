@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
 
-const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_NONAME'
+const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_APESWAP'
 
 /* eslint-disable camelcase */
 
@@ -51,6 +51,48 @@ export const useGetStats = () => {
   return data
 }
 
+const RESERVES_QUERY = (address) => {
+  return `
+  {
+    pair(id: "${address}") {
+      id
+      token0 {
+        id
+        symbol
+        derivedETH
+      }
+      token1 {
+        id
+        symbol
+        derivedETH
+      }
+      token0Price
+      token1Price
+      reserve0
+      reserve1
+      totalSupply
+      reserveETH
+    }
+  }`
+}
+
+// eslint-disable-next-line consistent-return
+export const fetchReserveData = async (pairAddress) => {
+  try {
+    const query = RESERVES_QUERY(pairAddress)
+    const response = await fetch('https://graph.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    })
+    const responsedata: any = await response.json()
+
+    return responsedata?.data?.pair
+  } catch (error) {
+    console.error('Unable to fetch data:', error)
+  }
+}
+
 const PAIR_CONFIGS = {
   'BANANA/BUSD': {
     address: '0x7bd46f6da97312ac2dbd1749f82e202764c0b914',
@@ -72,7 +114,7 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
+        /* const response = await fetch(
           `${priceBaseUrl}&address=${currentPair.address}&token=${currentPair.token}&base=${currentPair.base}&from=0&to=${to}&resolution=${resolution}`,
         )
         const responsedata = await response.json()
@@ -88,8 +130,8 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
           data: responsedata.v,
           start: responsedata.t[0] * 1000,
           end: responsedata.t[responsedata.t.length - 1] * 1000,
-        }
-        setData({ chartData, volume })
+        } */
+        setData(null)
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }

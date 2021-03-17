@@ -7,6 +7,12 @@ const CoreTag = () => (
   </Tag>
 )
 
+const ApeZone = () => (
+  <Tag variant="primary" outline startIcon={<CommunityIcon />}>
+    ApeZone
+  </Tag>
+)
+
 const CommunityTag = () => (
   <Tag variant="textSubtle" outline startIcon={<CommunityIcon />}>
     Community
@@ -19,4 +25,4 @@ const BinanceTag = () => (
   </Tag>
 )
 
-export { CoreTag, CommunityTag, BinanceTag }
+export { CoreTag, CommunityTag, BinanceTag, ApeZone }

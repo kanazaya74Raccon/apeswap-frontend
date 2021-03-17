@@ -26,30 +26,20 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <a
-        href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <NavLink to="/pools">
         <CardBody>
-          <Heading size="xl" mb="24px">
-            🍌 {TranslateString(999, 'ApeSwap and Bake join forces!')} 🍩
+          <Heading size="lg" mb="24px">
+            🚀 {TranslateString(999, 'NAUT Pool Open')} 🍌
           </Heading>
           <>
-            <Text color="textSubtle">We are bringing mutual pools, farming and a meme NFT competition!</Text>
+            <Text color="textSubtle">We are proud to open a NAUT rewards pool</Text>
+            <Text color="textSubtle">🚀 After a successful IAO with over 1000% subscription rate 🚀</Text>
             <Text color="textSubtle">
-              Over $10,000 in prizes
-              <StyledLink
-                href="https://ape-swap.medium.com/bakeryswap-apeswap-farms-nfts-and-more-caac52e58e84"
-                target="_blank"
-              >
-                {' '}
-                Check it out!
-              </StyledLink>
+              <StyledNavLink to="/pools"> Check it out!</StyledNavLink>
             </Text>
           </>
         </CardBody>
-      </a>
+      </NavLink>
     </StyledPromoCard>
   )
 }
