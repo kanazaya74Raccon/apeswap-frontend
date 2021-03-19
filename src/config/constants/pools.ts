@@ -205,29 +205,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
   },
-  {
-    sousId: 9,
-    tokenName: 'TTDX',
-    stakingTokenName: 'BNB-TTDX',
-    image: 'TTDX.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x7aecf50a835a354b95c33b134f75f2e81d8f4465', // BNB-TTDX LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xe8dAB3Ce4AC0ed536742e455E79876483B63C070',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://turtledex.io',
-    harvest: true,
-    tokenPerBlock: '0.6944444444444444',
-    sortOrder: 3,
-    isFinished: false,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
