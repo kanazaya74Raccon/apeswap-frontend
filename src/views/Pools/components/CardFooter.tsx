@@ -104,7 +104,7 @@ const CardFooter: React.FC<Props> = ({
             <FlexFull>
               <Label>
                 <span role="img" aria-label="syrup">
-                  🍌{' '}
+                  {poolCategory === PoolCategory.CORE && <span>🍌</span>}{' '}
                 </span>
                 {TranslateString(408, 'Total')}
               </Label>

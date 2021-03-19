@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
-import { useFarms, usePriceBnbBusd } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceEthBusd } from 'state/hooks'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -25,6 +25,7 @@ const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
   const bnbPrice = usePriceBnbBusd()
+  const ethPriceUsd = usePriceEthBusd()
 
   const maxAPY = useRef(Number.MIN_VALUE)
 
@@ -55,6 +56,8 @@ const EarnAPYCard = () => {
           apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.BANANA) {
           apy = bananaRewardPerYear.div(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+          apy = bananaPriceVsBNB.div(ethPriceUsd).times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
           const bananaApy =
             farm && bananaPriceVsBNB.times(bananaRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
@@ -67,13 +70,14 @@ const EarnAPYCard = () => {
 
           apy = bananaApy && dualApy && bananaApy.plus(dualApy)
         }
-
-        if (maxAPY.current < apy.toNumber()) maxAPY.current = apy.toNumber()
+        if (maxAPY.current < apy.toNumber()) {
+          maxAPY.current = apy.toNumber()
+        }
 
         return apy
       })
     },
-    [bnbPrice, farmsLP],
+    [bnbPrice, farmsLP, ethPriceUsd],
   )
 
   return (

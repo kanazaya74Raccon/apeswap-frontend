@@ -48,8 +48,9 @@ const Farm: React.FC = () => {
     let rewardTokenPriceInBNB
 
     if (pool.lpData) {
+      const rewardToken = pool.lpData.token1.symbol === pool.tokenName ? pool.lpData.token1 : pool.lpData.token0
       stakingTokenPriceInBNB = new BigNumber(pool.lpData.reserveETH).div(new BigNumber(pool.lpData.totalSupply))
-      rewardTokenPriceInBNB = new BigNumber(pool.lpData.token1.derivedETH)
+      rewardTokenPriceInBNB = new BigNumber(rewardToken.derivedETH)
     } else {
       // /!\ Assume that the farm quote price is BNB
       stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
@@ -86,7 +87,9 @@ const Farm: React.FC = () => {
             <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
           </ul>
         </div>
-        <Image src="/images/pool-ape.png" alt="ApeSwap illustration" width={470} height={439} responsive />
+        <div>
+          <Image src="/images/pool-ape.png" alt="ApeSwap illustration" width={470} height={439} responsive />
+        </div>
       </Hero>
       <PoolTabButtons />
       <Divider />

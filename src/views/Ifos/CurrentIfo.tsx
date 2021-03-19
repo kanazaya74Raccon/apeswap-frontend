@@ -11,7 +11,7 @@ const LaunchIfoCallout = styled(BaseLayout)`
   border-top: 2px solid ${({ theme }) => theme.colors.textSubtle};
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 32px;
+  grid-gap: 60px;
   margin: 0 auto;
   padding: 32px 0;
 
@@ -30,6 +30,9 @@ const List = styled.ul`
   }
 `
 
+const IfoHeading = styled(Heading)`
+  margin-top: 32px;
+`
 /**
  * Note: currently there should be only 1 active IFO at a time
  */
@@ -46,26 +49,26 @@ const Ifo = () => {
       <LaunchIfoCallout>
         <div>
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
-          <Heading mb="16px">{TranslateString(594, 'Before Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
             <li>{TranslateString(596, 'Buy BANANA and BNB tokens')}</li>
             <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li>
           </List>
           <Flex mb="16px">
-            <LinkExternal href="https://exchange.pancakeswap.finance/#/swap" mr="16px">
+            <LinkExternal href="https://dex.apeswap.finance/#/swap" mr="16px">
               {TranslateString(999, 'Buy banana')}
             </LinkExternal>
-            <LinkExternal href="https://exchange.pancakeswap.finance/#/add/ETH/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82">
+            <LinkExternal href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95">
               {TranslateString(999, 'Get LP tokens')}
             </LinkExternal>
           </Flex>
-          <Heading mb="16px">{TranslateString(600, 'During Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
             <li>
-              {TranslateString(602, 'While the sale is live, commit your BANANA-LP tokens to buy the IFO tokens')}
+              {TranslateString(602, 'While the sale is live, commit your BANANA-LP tokens to buy the IAO tokens')}
             </li>
           </List>
-          <Heading mb="16px">{TranslateString(604, 'After Sale')}:</Heading>
+          <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
             <li>{TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}</li>
             <li>{TranslateString(608, 'Done!')}</li>
@@ -74,27 +77,23 @@ const Ifo = () => {
             <Button
               as="a"
               variant="secondary"
-              href="https://docs.pancakeswap.finance/core-products/ifo-initial-farm-offering"
+              href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
             >
               {TranslateString(610, 'Read more')}
             </Button>
           </Text>
         </div>
         <div>
-          <Image src="/images/ifo-bunny.svg" alt="ifo bunny" width={436} height={406} responsive />
+          <Image src="/images/ape.png" alt="ifo bunny" width={537} height={370} responsive />
           <div>
-            <Title as="h2">{TranslateString(512, 'Want to launch your own IFO?')}</Title>
+            <Title as="h2">{TranslateString(512, 'Want to launch your own IAO?')}</Title>
             <Text mb={3}>
               {TranslateString(
                 514,
-                'Launch your project with ApeSwap, Binance Smart Chain’s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC.',
+                'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing ape community on BSC.',
               )}
             </Text>
-            <Button
-              as="a"
-              href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
-              external
-            >
+            <Button as="a" href="https://forms.gle/5vN1kgX5wSK6PLJn7" external>
               {TranslateString(516, 'Apply to launch')}
             </Button>
           </div>

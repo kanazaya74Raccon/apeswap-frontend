@@ -3,7 +3,7 @@ import { Heading } from '@apeswapfinance/uikit'
 
 const Title = styled(Heading).attrs({ size: 'lg' })`
   color: ${({ theme }) => theme.colors.secondary};
-  margin-bottom: 16px;
+  margin: 16px 0;
 `
 
 export default Title

@@ -31,6 +31,11 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: 'Ape Stats',
+    icon: 'StatsIcon',
+    href: '/stats',
+  },
   /* {
     label: 'Lottery',
     icon: 'TicketIcon',
@@ -77,19 +82,15 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  /* {
-    label: 'IFO',
+  {
+    label: 'IAO',
     icon: 'IfoIcon',
-    href: '/ifo',
-  }, */
+    href: '/iao',
+  },
   {
     label: 'More',
     icon: 'MoreIcon',
     items: [
-      /* {
-        label: 'Chart',
-        href: '/chart',
-      }, */
       {
         label: 'Github',
         href: 'https://github.com/apeswapfinance',
