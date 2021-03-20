@@ -54,7 +54,7 @@ export const useGetStats = () => {
 const RESERVES_QUERY = (address) => {
   return `
   {
-    pair(id: "${address}") {
+    pair(id: "${address.toLowerCase()}") {
       id
       token0 {
         id
