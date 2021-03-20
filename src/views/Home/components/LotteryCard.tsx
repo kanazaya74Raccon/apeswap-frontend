@@ -12,7 +12,7 @@ import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
 import { useLotteryAllowance } from 'hooks/useAllowance'
 import { useApproval } from 'hooks/useApproval'
 import PurchaseWarningModal from 'views/Lottery/components/TicketCard/PurchaseWarningModal'
-import CakeWinnings from './CakeWinnings'
+import BananaWinnings from './BananaWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
 const StyledLotteryCard = styled(Card)`
@@ -52,7 +52,7 @@ const FarmedStakingCard = () => {
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
   const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
-  const cakeBalance = useTokenBalance(getBananaAddress())
+  const bananaBalance = useTokenBalance(getBananaAddress())
 
   const handleClaim = useCallback(async () => {
     try {
@@ -71,7 +71,7 @@ const FarmedStakingCard = () => {
     if (!allowance.toNumber()) {
       return (
         <Button fullWidth disabled={requestedApproval} onClick={handleApprove}>
-          {TranslateString(494, 'Approve CAKE')}
+          {TranslateString(494, 'Approve BANANA')}
         </Button>
       )
     }
@@ -82,7 +82,7 @@ const FarmedStakingCard = () => {
     )
   }
 
-  const [onPresentBuy] = useModal(<BuyModal max={cakeBalance} tokenName="CAKE" />)
+  const [onPresentBuy] = useModal(<BuyModal max={bananaBalance} tokenName="BANANA" />)
 
   return (
     <StyledLotteryCard>
@@ -92,7 +92,7 @@ const FarmedStakingCard = () => {
         </Heading>
         <CardImage src="/images/pan-bg.svg" alt="cake logo" width={64} height={64} />
         <Block>
-          <CakeWinnings />
+          <BananaWinnings />
           <Label>{TranslateString(552, 'BANANA to Collect')}</Label>
         </Block>
         <Block>
