@@ -228,6 +228,29 @@ const pools: PoolConfig[] = [
     tokenDecimals: 8,
     lpStaking: true,
   },
+  {
+    sousId: 10,
+    tokenName: 'HPS',
+    stakingTokenName: 'BANANA-HPS',
+    image: 'HPS.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://billionhappiness.finance',
+    harvest: true,
+    tokenPerBlock: '0.014880952380952000',
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
