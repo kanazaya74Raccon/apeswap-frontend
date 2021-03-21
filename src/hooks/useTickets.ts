@@ -57,6 +57,7 @@ export const useTotalClaim = () => {
   const { account } = useWallet()
   const ticketsContract = useLotteryTicket()
   const lotteryContract = useLottery()
+  const { slowRefresh } = useRefresh()
 
   const fetchBalance = useCallback(async () => {
     setClaimLoading(true)
@@ -69,7 +70,7 @@ export const useTotalClaim = () => {
     if (account && lotteryContract && ticketsContract) {
       fetchBalance()
     }
-  }, [account, fetchBalance, lotteryContract, ticketsContract])
+  }, [account, fetchBalance, lotteryContract, ticketsContract, slowRefresh])
 
   return { claimLoading, claimAmount }
 }

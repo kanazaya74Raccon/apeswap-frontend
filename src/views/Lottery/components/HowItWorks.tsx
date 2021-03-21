@@ -28,7 +28,7 @@ const HowItWorks = () => {
 
   return (
     <LayoutWrapper>
-      <StyledImage src="/images/pancake-lottery-bunny.png" alt="lottery bunny" width={163} height={140} />
+      <StyledImage src="/images/lottery-intro.svg" alt="lottery intro" width={500} height={300} />
       <StyledHeading size="lg" as="h3" color="secondary">
         {TranslateString(999, 'How it works')}
       </StyledHeading>
