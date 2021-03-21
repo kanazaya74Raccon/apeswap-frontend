@@ -177,7 +177,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://astronaut.to',
     harvest: true,
     tokenPerBlock: '0.28935185',
-    sortOrder: 2,
+    sortOrder: 4,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
@@ -206,26 +206,49 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
-    sousId: 9,
-    tokenName: 'TTDX',
-    stakingTokenName: 'BNB-TTDX',
-    image: 'TTDX.svg',
+    sousId: 10,
+    tokenName: 'HPS',
+    stakingTokenName: 'BANANA-HPS',
+    image: 'HPS.png',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x7aecf50a835a354b95c33b134f75f2e81d8f4465', // BNB-TTDX LP
+      56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
     },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xe8dAB3Ce4AC0ed536742e455E79876483B63C070',
+      56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://turtledex.io',
+    projectLink: 'https://billionhappiness.finance',
     harvest: true,
-    tokenPerBlock: '0.6944444444444444',
+    tokenPerBlock: '0.014880952380952000',
     sortOrder: 3,
     isFinished: false,
-    tokenDecimals: 8,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 11,
+    tokenName: 'BRICK',
+    stakingTokenName: 'BANANA-BRICK',
+    image: 'BRICK.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x51a9771708d0471a0e592e8febb2c6b868e3d99b', // BNB-BRICK LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x6B7254AdfCa2178B7065b4B57fDc452c405DFC8A',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://brickchain.finance',
+    harvest: true,
+    tokenPerBlock: '2.976190476190476',
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
     lpStaking: true,
   },
   /* {
