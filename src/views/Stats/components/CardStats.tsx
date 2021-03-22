@@ -1,8 +1,10 @@
-import React from 'react'
-import { Card, CardBody, Heading, Text, Link, Flex, Image } from '@apeswapfinance/uikit'
+import React, { useState } from 'react'
+import { Card, CardBody, Heading, Text, Flex, Image } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { FarmPool } from 'state/types'
 import useI18n from 'hooks/useI18n'
+import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import DetailsSection from './DetailsSection'
 import CardValue from './CardValue'
 
 export interface PoolStatsProps {
@@ -28,12 +30,17 @@ const Row = styled.div`
   justify-content: space-between;
   margin-bottom: 8px;
 `
+const ExpandingWrapper = styled.div<{ expanded: boolean }>`
+  height: ${(props) => (props.expanded ? '100%' : '0px')};
+  overflow: hidden;
+`
 
 const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   const TranslateString = useI18n()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
-  const farmName = data.lpSymbol.replace(/[\])}[{(]/g, '')
+  const farmName = data.name.replace(/[\])}[{(]/g, '')
   const farmImage = farmName.split(' ')[0].toLocaleLowerCase()
+  const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   return (
     <StyledPoolStats key={farmName} isActive={type === 'pool'} isSuccess={type === 'farm'}>
@@ -61,11 +68,13 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
           <Text fontSize="14px">{TranslateString(536, 'Your Pending Rewards')}</Text>
           <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
         </Row>
-        <Flex justifyContent="center">
-          <Link external href={bscScanAddress} bold={false}>
-            {TranslateString(356, 'View on BscScan')}
-          </Link>
-        </Flex>
+        <ExpandableSectionButton
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+          expanded={showExpandableSection}
+        />
+        <ExpandingWrapper expanded={showExpandableSection}>
+          <DetailsSection farmStats={data} bscScanAddress={bscScanAddress} />
+        </ExpandingWrapper>
       </CardBody>
     </StyledPoolStats>
   )

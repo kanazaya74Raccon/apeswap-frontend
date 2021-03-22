@@ -17,7 +17,7 @@ export type StatsResponse = {
   dollarsEarnedPerYear: number
   farms: []
   incentivizedPools: []
-  pendingReward: number
+  pendingRewardUsd: number
   pools: []
   tvl: number
 }
@@ -41,7 +41,7 @@ export const transformStatsResponse = (statsResponse: StatsResponse): Partial<St
     dollarsEarnedPerYear: data.dollarsEarnedPerYear,
     farms: data.farms,
     incentivizedPools: data.incentivizedPools,
-    pendingReward: data.pendingReward,
+    pendingRewardUsd: data.pendingRewardUsd,
     pools: data.pools,
     tvl: data.tvl,
   }

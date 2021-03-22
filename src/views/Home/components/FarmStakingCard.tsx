@@ -51,7 +51,7 @@ const FarmedStakingCard = () => {
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
   const yourStats = useStats()
-  const amountToHarvest = yourStats?.stats?.pendingReward
+  const amountToHarvest = yourStats?.stats?.pendingRewardUsd
 
   const onReward = useReward(
     rewardRef,
