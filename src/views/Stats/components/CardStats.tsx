@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { FarmPool } from 'state/types'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
+import { useAllPools } from 'state/hooks'
 import DetailsSection from './DetailsSection'
 import CardValue from './CardValue'
 
@@ -37,17 +38,22 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 
 const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   const TranslateString = useI18n()
+  const pools = useAllPools()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
   const farmName = data.name.replace(/[\])}[{(]/g, '').replace('WBNB', 'BNB')
-  const farmImage = farmName.split(' ')[0].toLocaleLowerCase()
+  let farmImage = farmName.split(' ')[0].toLocaleLowerCase()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
+  if (type === 'pool') {
+    const currentPool = pools.find(pool => pool.tokenName === data.rewardTokenSymbol)
+    farmImage = currentPool.image
+  }
 
   return (
     <StyledPoolStats key={farmName} isActive={type === 'pool'} isSuccess={type === 'farm'}>
       <CardBody>
         <Flex justifyContent="flex-start" alignItems="center">
           <Image
-            src={type === 'pool' ? `/images/tokens/${data.rewardTokenSymbol}.png` : `/images/farms/${farmImage}.svg`}
+            src={type === 'pool' ? `/images/tokens/${farmImage}` : `/images/farms/${farmImage}.svg`}
             alt={farmImage}
             width={64}
             height={64}

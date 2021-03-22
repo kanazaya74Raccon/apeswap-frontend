@@ -12,8 +12,8 @@ import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
 import BananaHarvestBalance from './BananaHarvestBalance'
+import BananaHarvestUsdBalance from './BananaHarvestUsdBalance'
 import BananaWalletBalance from './BananaWalletBalance'
-import CardValue from './CardValue'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/cake-bg.svg');
@@ -81,18 +81,10 @@ const FarmedStakingCard = () => {
         <Block>
           <BananaHarvestBalance />
           <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
-          {amountToHarvest ? (
-            <>
-              <CardValue fontSize="24px" decimals={0} value={amountToHarvest} prefix="$" />
-              <Text fontSize="12px" color="textSubtle">
-                {TranslateString(999, 'Harvest $ Value')}
-              </Text>
-            </>
-          ) : (
-            <>
-              <Skeleton height={66} />
-            </>
-          )}
+        </Block>
+        <Block>
+          <BananaHarvestUsdBalance />
+          <Label>{TranslateString(546, 'BANANA Harvest $ Value')}</Label>
         </Block>
         <Block>
           <BananaWalletBalance />

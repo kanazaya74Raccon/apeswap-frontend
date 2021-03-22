@@ -7,6 +7,7 @@ import {
   useStats,
   useStatsOverall,
 } from 'state/hooks'
+import PersonalTvl from './PersonalTvl'
 import CardValue from './CardValue'
 
 const StyledTotalValueLockedCard = styled(Card)`
@@ -25,9 +26,6 @@ const TotalValueLockedCard = () => {
   const overallStats = useStatsOverall()
   const totalTvl = overallStats?.statsOverall?.tvl
 
-  const yourStats = useStats()
-  const personalTvl = yourStats?.stats?.tvl
-
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
@@ -44,16 +42,8 @@ const TotalValueLockedCard = () => {
             <Skeleton height={66} />
           </>
         )}
-        {personalTvl ? (
-          <>
-            <CardValue fontSize="28px" decimals={0} value={personalTvl} prefix="$" />
-            <Text color="textSubtle">{TranslateString(999, 'Your TVL')}</Text>
-          </>
-        ) : (
-          <>
-            <Skeleton height={66} />
-          </>
-        )}
+        <PersonalTvl />
+        <Text color="textSubtle">{TranslateString(999, 'Account TVL')}</Text>
       </CardBody>
     </StyledTotalValueLockedCard>
   )
