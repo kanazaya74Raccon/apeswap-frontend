@@ -50,7 +50,7 @@ const TotalValueLockedCard = () => {
         )}
         <PersonalTvl />
         <Text color="textSubtle">
-          {TranslateString(999, 'Account TVL')} 
+          {TranslateString(999, 'Account TVL')}
           <StyledNavLink to="/stats">{TranslateString(999, 'See Details')}</StyledNavLink>
         </Text>
       </CardBody>
