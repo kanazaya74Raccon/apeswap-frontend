@@ -21,14 +21,13 @@ const BananaHarvestUsdBalance = () => {
 
   return (
     <>
-    {amountToHarvest ? (
-        <CardValue decimals={2} value={amountToHarvest} prefix="$"  />
+      {amountToHarvest ? (
+        <CardValue decimals={2} value={amountToHarvest} prefix="$" />
       ) : (
         <>
           <Skeleton height={33} />
         </>
       )}
-      
     </>
   )
 }

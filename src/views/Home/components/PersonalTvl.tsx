@@ -21,14 +21,13 @@ const PersonalTvl = () => {
 
   return (
     <>
-    {personalTvl ? (
+      {personalTvl ? (
         <CardValue fontSize="28px" decimals={0} value={personalTvl} prefix="$" />
       ) : (
         <>
           <Skeleton height={33} />
         </>
       )}
-      
     </>
   )
 }

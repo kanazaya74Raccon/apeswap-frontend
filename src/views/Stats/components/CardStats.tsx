@@ -44,7 +44,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   let farmImage = farmName.split(' ')[0].toLocaleLowerCase()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   if (type === 'pool') {
-    const currentPool = pools.find(pool => pool.tokenName === data.rewardTokenSymbol)
+    const currentPool = pools.find((pool) => pool.tokenName === data.rewardTokenSymbol)
     farmImage = currentPool.image
   }
 
