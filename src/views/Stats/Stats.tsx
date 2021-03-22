@@ -74,7 +74,7 @@ const Stats: React.FC = () => {
           <Hero>
             <div>
               <Heading as="h1" size="xxl" mb="16px">
-                {TranslateString(282, 'Your Ape Zone')}
+                {TranslateString(282, 'Your Ape Stats')}
               </Heading>
               <ul>
                 <li>{TranslateString(580, 'Keep track of your pools and farms.')}</li>
