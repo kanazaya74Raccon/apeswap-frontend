@@ -38,7 +38,7 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   const TranslateString = useI18n()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
-  const farmName = data.name.replace(/[\])}[{(]/g, '')
+  const farmName = data.name.replace(/[\])}[{(]/g, '').replace('WBNB', 'BNB')
   const farmImage = farmName.split(' ')[0].toLocaleLowerCase()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
