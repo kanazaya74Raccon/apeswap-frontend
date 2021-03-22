@@ -4,9 +4,9 @@ import { Card, CardBody, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import {
   // useTvl,
-  useStats,
   useStatsOverall,
 } from 'state/hooks'
+import { NavLink } from 'react-router-dom'
 import PersonalTvl from './PersonalTvl'
 import CardValue from './CardValue'
 
@@ -14,6 +14,12 @@ const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
   display: flex;
   flex: 1;
+`
+const StyledNavLink = styled(NavLink)`
+  font-weight: 500;
+  color: #ffb300;
+  margin-left: 16px;
+  text-decoration: underline;
 `
 
 const TotalValueLockedCard = () => {
@@ -43,7 +49,10 @@ const TotalValueLockedCard = () => {
           </>
         )}
         <PersonalTvl />
-        <Text color="textSubtle">{TranslateString(999, 'Account TVL')}</Text>
+        <Text color="textSubtle">
+          {TranslateString(999, 'Account TVL')} 
+          <StyledNavLink to="/stats">{TranslateString(999, 'See Details')}</StyledNavLink>
+        </Text>
       </CardBody>
     </StyledTotalValueLockedCard>
   )
