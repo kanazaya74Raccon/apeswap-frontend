@@ -58,7 +58,7 @@ export interface Stats {
   dollarsEarnedPerWeek: number
   dollarsEarnedPerYear: number
   farms: FarmPool[]
-  incentivizedPools: []
+  incentivizedPools: FarmPool[]
   pendingRewardUsd: number
   pendingRewardBanana: number
   pools: FarmPool[]
@@ -67,6 +67,7 @@ export interface Stats {
 
 export interface FarmPool {
   address: string
+  rewardTokenSymbol: string
   apr: number
   name: string
   pendingReward: number

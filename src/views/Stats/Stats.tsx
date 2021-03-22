@@ -4,7 +4,9 @@ import { Heading, Text, BaseLayout, Image, CardBody, Skeleton } from '@apeswapfi
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useTvl, useStats } from 'state/hooks'
+import { useStats } from 'state/hooks'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
+import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
 
@@ -64,42 +66,47 @@ const Cards = styled(BaseLayout)`
 const Stats: React.FC = () => {
   const TranslateString = useI18n()
 
+  const { account } = useWallet()
   const yourStats = useStats()
   const stats = yourStats?.stats
 
   return (
-    <>
-      {stats !== null ? (
-        <Page>
-          <Hero>
-            <div>
-              <Heading as="h1" size="xxl" mb="16px">
-                {TranslateString(282, 'Your Ape Stats')}
-              </Heading>
-              <ul>
-                <li>{TranslateString(580, 'Keep track of your pools and farms.')}</li>
-              </ul>
-            </div>
-            <Image src="/images/monkey-graphics.svg" alt="ApeSwap stats" width={470} height={300} responsive />
-          </Hero>
-          <div>
-            <Cards>
-              <BananaStats stats={stats} />
-            </Cards>
-            <Cards>
-              {stats.pools.map((pool) => {
-                return <CardStats data={pool} type="pool" />
-              })}
-              {stats.farms.map((farm) => {
-                return <CardStats data={farm} type="farm" />
-              })}
-            </Cards>
-          </div>
-        </Page>
+    <Page>
+      <Hero>
+        <div>
+          <Heading as="h1" size="xxl" mb="16px">
+            {TranslateString(282, 'Your Ape Stats')}
+          </Heading>
+          <ul>
+            <li>{TranslateString(580, 'Keep track of your pools and farms.')}</li>
+          </ul>
+        </div>
+        <Image src="/images/monkey-graphics.svg" alt="ApeSwap stats" width={470} height={300} responsive />
+      </Hero>
+      {!account ? (
+        <UnlockButton fullWidth />
       ) : (
-        <PageLoader />
+        <div>
+          {stats !== null ? (
+            <div>
+              <Cards>
+                <BananaStats stats={stats} />
+              </Cards>
+              <Cards>
+                {[...stats.pools, ...stats.incentivizedPools].map((pool) => {
+                  return <CardStats data={pool} type="pool" />
+                })}
+                {stats.farms.map((farm) => {
+                  return <CardStats data={farm} type="farm" />
+                })}
+              </Cards>
+            </div>
+          ) : (
+            <PageLoader />
+          )}
+        </div>
       )}
-    </>
+    </Page>
   )
 }
 

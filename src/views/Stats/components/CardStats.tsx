@@ -47,7 +47,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
       <CardBody>
         <Flex justifyContent="flex-start" alignItems="center">
           <Image
-            src={type === 'pool' ? `/images/tokens/${farmImage}.svg` : `/images/farms/${farmImage}.svg`}
+            src={type === 'pool' ? `/images/tokens/${data.rewardTokenSymbol}.svg` : `/images/farms/${farmImage}.svg`}
             alt={farmImage}
             width={64}
             height={64}

@@ -1,11 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import {
-  Flex,
-  Skeleton,
-  Text,
-} from '@apeswapfinance/uikit'
+import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import { useStats } from 'state/hooks'
 import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'

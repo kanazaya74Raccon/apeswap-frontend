@@ -189,12 +189,13 @@ export const useProfile = () => {
 export const useFetchStats = () => {
   const { account } = useWallet()
   const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
 
   useEffect(() => {
     if (account !== null) {
       dispatch(fetchStats(account))
     }
-  }, [account, dispatch])
+  }, [account, dispatch, slowRefresh])
 }
 
 export const useStats = () => {
@@ -206,10 +207,11 @@ export const useStats = () => {
 
 export const useFetchStatsOverall = () => {
   const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
 
   useEffect(() => {
     dispatch(fetchStatsOverall())
-  }, [dispatch])
+  }, [dispatch, slowRefresh])
 }
 
 export const useStatsOverall = () => {
