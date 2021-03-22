@@ -3,13 +3,6 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import {
   Flex,
-  Button,
-  IconButton,
-  useModal,
-  AddIcon,
-  Image,
-  CardBody,
-  Heading,
   Skeleton,
   Text,
 } from '@apeswapfinance/uikit'
