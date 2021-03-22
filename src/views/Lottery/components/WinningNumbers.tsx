@@ -29,15 +29,18 @@ const WinningNumbers: React.FC = () => {
               </Title>
               <br />
             </StyledCardHeader>
-            <Row>
-              {winNumbers.map((number, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <TicketNumberBox key={index}>
-                  <CenteredText>{number}</CenteredText>
-                </TicketNumberBox>
-              ))}
-            </Row>
-            <RabbitRow>
+            <WinnerImage>
+              <Row>
+                {winNumbers.map((number, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <TicketNumberBox key={index}>
+                    <CenteredText>{number}</CenteredText>
+                  </TicketNumberBox>
+                ))}
+              </Row>
+            </WinnerImage>
+
+            {/* <RabbitRow>
               <RabbitBox>
                 <CardImageFirst>
                   <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
@@ -58,7 +61,7 @@ const WinningNumbers: React.FC = () => {
                   <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
                 </CardImage>
               </RabbitBox>
-            </RabbitRow>
+            </RabbitRow> 
             <RabbitRowSmall>
               <RabbitBoxSmall>
                 <CardImageFirst>
@@ -80,7 +83,7 @@ const WinningNumbers: React.FC = () => {
                   <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
                 </CardImage>
               </RabbitBoxSmall>
-            </RabbitRowSmall>
+            </RabbitRowSmall> */}
             <Column>
               <RowNoPadding>
                 <CenteredTextWithPadding>{TranslateString(442, 'Tickets matching 4 numbers:')}</CenteredTextWithPadding>
@@ -147,6 +150,12 @@ const RabbitRowSmall = styled.div`
 
 const CardImage = styled.div`
   text-align: center;
+`
+const WinnerImage = styled.div`
+  background-image: url(/images/lottery-winner2.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 500px;
 `
 
 const CardImageFirst = styled.div`
