@@ -29,15 +29,17 @@ const WinningNumbers: React.FC = () => {
               </Title>
               <br />
             </StyledCardHeader>
-            <Row>
-              {winNumbers.map((number, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <TicketNumberBox key={index}>
-                  <CenteredText>{number}</CenteredText>
-                </TicketNumberBox>
-              ))}
-            </Row>
-            <Image src="/images/lottery-winner2.svg" alt="Number 1" width={640} height={533} responsive />
+            <div>
+              <Row>
+                {winNumbers.map((number, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <TicketNumberBox key={index}>
+                    <CenteredText>{number}</CenteredText>
+                  </TicketNumberBox>
+                ))}
+              </Row>
+              <Image src="/images/lottery-winner2.svg" alt="Number 1" width={640} height={533} responsive />
+            </div>
 
             {/* <RabbitRow>
               <RabbitBox>
