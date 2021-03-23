@@ -39,7 +39,7 @@ const WinningNumbers: React.FC = () => {
                 ))}
               </WinnerRow>
               <WinnerImageContainer>
-                <WinnerImg  src="/images/lottery-winner2.svg" />
+                <WinnerImg src="/images/lottery-winner2.svg" />
               </WinnerImageContainer>
             </WinnerImage>
             <Column>
@@ -114,10 +114,10 @@ const WinnerImage = styled.div`
   width: 100%;
 `
 const WinnerRow = styled(Row)`
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
 const WinnerImageContainer = styled.div`
