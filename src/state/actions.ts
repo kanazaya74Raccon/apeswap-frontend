@@ -9,6 +9,4 @@ export {
   updateUserStakedBalance,
 } from './pools'
 export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
-export { statsFetchStart, statsFetchSucceeded, statsFetchFailed } from './stats'
-export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
 export { fetchStart, teamFetchSucceeded, fetchFailed, teamsFetchSucceeded } from './teams'

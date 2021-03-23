@@ -3,8 +3,6 @@ import farmsReducer from './farms'
 import toastsReducer from './toasts'
 import poolsReducer from './pools'
 import profileReducer from './profile'
-import statsReducer from './stats'
-import statsOverallReducer from './statsOverall'
 import teamsReducer from './teams'
 
 export default configureStore({
@@ -14,8 +12,6 @@ export default configureStore({
     toasts: toastsReducer,
     pools: poolsReducer,
     profile: profileReducer,
-    stats: statsReducer,
-    statsOverall: statsOverallReducer,
     teams: teamsReducer,
   },
 })
