@@ -6,7 +6,7 @@ import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: #FFFFFF;
   margin-bottom: 24px;
 `
 
@@ -17,11 +17,7 @@ const Blurb = styled(Text)`
 `
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(
-    180deg,
-    ${({ theme }) => theme.colors.primaryBright} 0%,
-    ${({ theme }) => theme.colors.primaryDark} 100%
-  );
+  background-image: linear-gradient(rgb(56 199 140) 0%, rgb(0 152 89) 100%);
   padding-bottom: 40px;
   padding-top: 40px;
 `
