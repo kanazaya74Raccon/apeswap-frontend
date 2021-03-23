@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
-import { useStats } from 'state/hooks'
+import { Flex, Text, Skeleton } from '@apeswapfinance/uikit'
 import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
@@ -93,16 +92,10 @@ interface FarmCardProps {
   ethereum?: provider
   account?: string
 }
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
   const TranslateString = useI18n()
 
-  const yourStats = useStats()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.filter(
-    (item) => item.address.toLowerCase() === farm.lpAddresses[CHAIN_ID].toLowerCase(),
-  )
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
@@ -185,7 +178,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
           totalValueFormated={totalValueFormated}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
-          farmStats={filteredFarmStats}
         />
       </ExpandingWrapper>
     </FCard>
