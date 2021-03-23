@@ -6,7 +6,7 @@ import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 24px;
 `
 
