@@ -93,12 +93,16 @@ const Stats: React.FC = () => {
                 <BananaStats stats={stats} />
               </Cards>
               <Cards>
-                {[...stats.pools, ...stats.incentivizedPools].map((pool) => {
-                  return <CardStats data={pool} type="pool" />
-                })}
-                {stats.farms.map((farm) => {
-                  return <CardStats data={farm} type="farm" />
-                })}
+                {[...stats.pools, ...stats.incentivizedPools]
+                  .sort((poolA, poolB) => poolB.stakedTvl - poolA.stakedTvl)
+                  .map((pool) => {
+                    return <CardStats data={pool} type="pool" />
+                  })}
+                {[...stats.farms]
+                  .sort((poolA, poolB) => poolB.stakedTvl - poolA.stakedTvl)
+                  .map((farm) => {
+                    return <CardStats data={farm} type="farm" />
+                  })}
               </Cards>
             </div>
           ) : (

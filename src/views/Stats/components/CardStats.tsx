@@ -40,7 +40,10 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   const TranslateString = useI18n()
   const pools = useAllPools()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
-  const farmName = data.name.replace(/[\])}[{(]/g, '').replace('WBNB', 'BNB')
+  const farmName = data.name
+    .replace(/[\])}[{(]/g, '')
+    .replace('WBNB', 'BNB')
+    .toUpperCase()
   let farmImage = farmName.split(' ')[0].toLocaleLowerCase()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   if (type === 'pool') {
