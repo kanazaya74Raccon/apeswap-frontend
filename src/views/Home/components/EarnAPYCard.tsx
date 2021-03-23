@@ -18,6 +18,15 @@ const StyledFarmStakingCard = styled(Card)`
     max-width: none;
   }
 `
+const VerticalBody = styled(CardBody)`
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(0, -50%);
+  width: 100%;
+`
+
 const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
@@ -82,7 +91,7 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <CardBody>
+      <VerticalBody>
         <Heading color="contrast" size="lg">
           Earn up to
         </Heading>
@@ -101,7 +110,7 @@ const EarnAPYCard = () => {
             <ArrowForwardIcon mt={30} color="primary" />
           </NavLink>
         </Flex>
-      </CardBody>
+      </VerticalBody>
     </StyledFarmStakingCard>
   )
 }
