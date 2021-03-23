@@ -43,13 +43,16 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
           <Text fontSize="14px">{TranslateString(538, 'Your BANANA earnings ($)')}</Text>
           <Text fontSize="14px" style={{ textAlign: 'end' }}>
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerDay} decimals={2} prefix="Day: " />
+            <CardValue fontSize="14px" value={stats.bananasEarnedPerDay} decimals={2} prefix="Daily: " />
             <CardValue fontSize="12px" value={stats.dollarsEarnedPerDay} decimals={2} prefix="($" suffix=")" />
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerWeek} decimals={2} prefix="Week: " />
+            <CardValue fontSize="14px" value={stats.bananasEarnedPerWeek} decimals={2} prefix="Weekly: " />
             <CardValue fontSize="12px" value={stats.dollarsEarnedPerWeek} decimals={2} prefix="($" suffix=")" />
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerYear} decimals={2} prefix="Year: " />
+            <CardValue fontSize="14px" value={stats.bananasEarnedPerMonth} decimals={2} prefix="Monthly: " />
+            <CardValue fontSize="12px" value={stats.dollarsEarnedPerMonth} decimals={2} prefix="($" suffix=")" />
+            <Divider />
+            <CardValue fontSize="14px" value={stats.bananasEarnedPerYear} decimals={2} prefix="Yearly: " />
             <CardValue fontSize="12px" value={stats.dollarsEarnedPerYear} decimals={2} prefix="($" suffix=")" />
             <Divider />
           </Text>
@@ -57,9 +60,10 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         <Row style={{ alignItems: 'flex-start' }}>
           <Text fontSize="14px">{TranslateString(538, 'Your APR (%)')}</Text>
           <Text fontSize="14px" style={{ textAlign: 'end' }}>
-            <CardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Day" suffix="%" />
-            <CardValue fontSize="14px" value={stats.aggregateAprPerWeek * 100} decimals={2} prefix="Week" suffix="%" />
-            <CardValue fontSize="14px" value={stats.aggregateApr * 100} decimals={2} prefix="Year" suffix="%" />
+            <CardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Daily" suffix="%" />
+            <CardValue fontSize="14px" value={stats.aggregateAprPerWeek * 100} decimals={2} prefix="Weekly" suffix="%" />
+            <CardValue fontSize="14px" value={stats.aggregateAprPerMonth * 100} decimals={2} prefix="Monthly" suffix="%" />
+            <CardValue fontSize="14px" value={stats.aggregateApr * 100} decimals={2} prefix="Yearly" suffix="%" />
           </Text>
         </Row>
       </CardBody>

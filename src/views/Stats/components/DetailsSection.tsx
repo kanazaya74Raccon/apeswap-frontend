@@ -38,20 +38,22 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ farmStats, bscScanAd
 
   return (
     <Wrapper>
+      
+      <Text fontSize='24px'>{TranslateString(23, 'Earnings')}</Text>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Day')}:</Text>
+        <Text>{TranslateString(23, 'Dayly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerDay} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Week')}:</Text>
+        <Text>{TranslateString(23, 'Weekly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerWeek} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Month')}:</Text>
+        <Text>{TranslateString(23, 'Monthly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerMonth} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Year')}:</Text>
+        <Text>{TranslateString(23, 'Yearly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerYear} prefix="$" />
       </Flex>
       <Flex justifyContent="center">
