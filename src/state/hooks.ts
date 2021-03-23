@@ -14,8 +14,10 @@ import {
   remove as removeToast,
   clear as clearToast,
 } from './actions'
-import { State, Farm, Pool, ProfileState, TeamsState } from './types'
+import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState } from './types'
 import { fetchProfile } from './profile'
+import { fetchStats } from './stats'
+import { fetchStatsOverall } from './statsOverall'
 import { fetchTeam, fetchTeams } from './teams'
 
 const ZERO = new BigNumber(0)
@@ -180,6 +182,41 @@ export const useFetchProfile = () => {
 export const useProfile = () => {
   const { isInitialized, isLoading, data }: ProfileState = useSelector((state: State) => state.profile)
   return { profile: data, hasProfile: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+// Stats - individual stats
+
+export const useFetchStats = () => {
+  const { account } = useWallet()
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (account !== null) {
+      dispatch(fetchStats(account))
+    }
+  }, [account, dispatch, slowRefresh])
+}
+
+export const useStats = () => {
+  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
+  return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+// Stats Overall- Total Banana Stats
+
+export const useFetchStatsOverall = () => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    dispatch(fetchStatsOverall())
+  }, [dispatch, slowRefresh])
+}
+
+export const useStatsOverall = () => {
+  const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
+  return { statsOverall: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 // Teams
