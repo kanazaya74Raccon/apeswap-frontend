@@ -29,62 +29,19 @@ const WinningNumbers: React.FC = () => {
               </Title>
               <br />
             </StyledCardHeader>
-            <div>
-              <Row>
+            <WinnerImage>
+              <WinnerRow>
                 {winNumbers.map((number, index) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <TicketNumberBox key={index}>
                     <CenteredText>{number}</CenteredText>
                   </TicketNumberBox>
                 ))}
-              </Row>
-              <Image src="/images/lottery-winner2.svg" alt="Number 1" width={640} height={533} responsive />
-            </div>
-
-            {/* <RabbitRow>
-              <RabbitBox>
-                <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
-                </CardImageFirst>
-              </RabbitBox>
-              <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBox>
-              <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBox>
-              <RabbitBox>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBox>
-            </RabbitRow> 
-            <RabbitRowSmall>
-              <RabbitBoxSmall>
-                <CardImageFirst>
-                  <Image src="/images/sign bunny 1@2x.png" alt="Number 1" width={200} height={150} responsive />
-                </CardImageFirst>
-              </RabbitBoxSmall>
-              <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 2@2x.png" alt="Number 2" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBoxSmall>
-              <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 3@2x.png" alt="Number 3" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBoxSmall>
-              <RabbitBoxSmall>
-                <CardImage style={{ marginLeft: '-1.2em' }}>
-                  <Image src="/images/sign bunny 4@2x.png" alt="Number 4" width={200} height={150} responsive />
-                </CardImage>
-              </RabbitBoxSmall>
-            </RabbitRowSmall> */}
+              </WinnerRow>
+              <WinnerImageContainer>
+                <WinnerImg  src="/images/lottery-winner2.svg" />
+              </WinnerImageContainer>
+            </WinnerImage>
             <Column>
               <RowNoPadding>
                 <CenteredTextWithPadding>{TranslateString(442, 'Tickets matching 4 numbers:')}</CenteredTextWithPadding>
@@ -153,10 +110,28 @@ const CardImage = styled.div`
   text-align: center;
 `
 const WinnerImage = styled.div`
-  background-image: url(/images/lottery-winner2.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 500px;
+  position: relative;
+  width: 100%;
+`
+const WinnerRow = styled(Row)`
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+`
+
+const WinnerImageContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const WinnerImg = styled.img`
+  width: 100%;
+  max-width: 530px;
+  height: auto;
+  position: inherit;
 `
 
 const CardImageFirst = styled.div`
@@ -196,15 +171,15 @@ const CenteredTextWithPadding = styled.div`
 const TicketNumberBox = styled.div`
   padding: 10px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #54dade 0%, #24c7d6 76.22%);
-  color: white;
-  font-size: 20px;
+  background: linear-gradient(rgb(246 240 216) 0%, rgb(254 255 177) 76.22%);
+  color: #a06451;
+  font-size: 30px;
   font-weight: 900;
   margin: 10px;
   margin-bottom: 7px;
-  width: 40px;
+  width: 50px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 600px) {
     font-size: 40px;
     margin: 20px;
     width: 60px;
