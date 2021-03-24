@@ -43,7 +43,7 @@ const App: React.FC = () => {
   useFetchPublicData()
   useFetchProfile()
   // useFetchStats()
-  useFetchStatsOverall()
+  // useFetchStatsOverall()
 
   return (
     <Router>
