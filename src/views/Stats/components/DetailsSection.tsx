@@ -40,7 +40,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ farmStats, bscScanAd
     <Wrapper>
       <Text fontSize="24px">{TranslateString(23, 'Earnings')}</Text>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Dayly')}:</Text>
+        <Text>{TranslateString(23, 'Daily')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerDay} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
