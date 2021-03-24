@@ -48,11 +48,11 @@ const TotalValueLockedCard = () => {
             <Skeleton height={66} />
           </>
         )}
-        <PersonalTvl />
+        {/* <PersonalTvl />
         <Text color="textSubtle">
           {TranslateString(999, 'Account TVL')}
           <StyledNavLink to="/stats">{TranslateString(999, 'See Details')}</StyledNavLink>
-        </Text>
+        </Text> */}
       </CardBody>
     </StyledTotalValueLockedCard>
   )

@@ -53,10 +53,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <Text>{TranslateString(316, 'Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
-      <Flex justifyContent="space-between">
+      {/* <Flex justifyContent="space-between">
         <Text>{TranslateString(23, 'Staked Value')}:</Text>
         <Text>{totalValuePersonalFormated}</Text>
-      </Flex>
+      </Flex> */}
       {!removed && (
         <Flex justifyContent="space-between">
           <Text>{TranslateString(23, 'Total Liquidity')}:</Text>

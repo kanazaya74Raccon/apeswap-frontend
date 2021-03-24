@@ -42,7 +42,7 @@ const App: React.FC = () => {
 
   useFetchPublicData()
   useFetchProfile()
-  useFetchStats()
+  // useFetchStats()
   useFetchStatsOverall()
 
   return (
