@@ -5,6 +5,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 0,
     tokenName: 'BANANA',
+    image: 'BANANA.svg',
     stakingTokenName: QuoteToken.BANANA,
     stakingTokenAddress: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',

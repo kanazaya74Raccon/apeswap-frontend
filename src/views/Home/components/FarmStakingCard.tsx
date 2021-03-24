@@ -3,13 +3,16 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, Skeleton, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
+
+import { useStats } from 'state/hooks'
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
 import BananaHarvestBalance from './BananaHarvestBalance'
+import BananaHarvestUsdBalance from './BananaHarvestUsdBalance'
 import BananaWalletBalance from './BananaWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -47,6 +50,9 @@ const FarmedStakingCard = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
+  const yourStats = useStats()
+  const amountToHarvest = yourStats?.stats?.pendingRewardUsd
+
   const onReward = useReward(
     rewardRef,
     useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward,
@@ -75,6 +81,10 @@ const FarmedStakingCard = () => {
         <Block>
           <BananaHarvestBalance />
           <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
+        </Block>
+        <Block>
+          <BananaHarvestUsdBalance />
+          <Label>{TranslateString(546, 'BANANA Harvest $ Value')}</Label>
         </Block>
         <Block>
           <BananaWalletBalance />
