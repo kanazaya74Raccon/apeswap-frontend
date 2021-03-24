@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { useFetchProfile, useFetchPublicData } from 'state/hooks'
+import { useFetchProfile, useFetchStats, useFetchPublicData, useFetchStatsOverall } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -22,6 +22,7 @@ const Teams = lazy(() => import('./views/Teams'))
 const Team = lazy(() => import('./views/Teams/Team'))
 const Profile = lazy(() => import('./views/Profile'))
 const Chart = lazy(() => import('./views/Chart'))
+const Stats = lazy(() => import('./views/Stats'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -41,6 +42,8 @@ const App: React.FC = () => {
 
   useFetchPublicData()
   useFetchProfile()
+  useFetchStats()
+  useFetchStatsOverall()
 
   return (
     <Router>
@@ -78,6 +81,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/stats">
+              <Stats />
             </Route>
             {/* Redirect */}
             <Route path="/staking">
