@@ -2,6 +2,7 @@ import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
+import { FarmPool } from 'state/types'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -9,6 +10,7 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
+  farmStats?: FarmPool[]
 }
 
 const Wrapper = styled.div`
@@ -36,8 +38,14 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   totalValueFormated,
   lpLabel,
   addLiquidityUrl,
+  farmStats,
 }) => {
   const TranslateString = useI18n()
+
+  const totalValuePersonalFormated =
+    farmStats?.length > 0
+      ? `$${Number(farmStats[0].stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+      : '-'
 
   return (
     <Wrapper>
@@ -45,6 +53,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <Text>{TranslateString(316, 'Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
+      {/* <Flex justifyContent="space-between">
+        <Text>{TranslateString(23, 'Staked Value')}:</Text>
+        <Text>{totalValuePersonalFormated}</Text>
+      </Flex> */}
       {!removed && (
         <Flex justifyContent="space-between">
           <Text>{TranslateString(23, 'Total Liquidity')}:</Text>

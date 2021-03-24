@@ -6,10 +6,12 @@ import styled from 'styled-components'
 import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
+
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from 'components/UnlockButton'
 import BananaHarvestBalance from './BananaHarvestBalance'
+import BananaHarvestUsdBalance from './BananaHarvestUsdBalance'
 import BananaWalletBalance from './BananaWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
@@ -76,6 +78,10 @@ const FarmedStakingCard = () => {
           <BananaHarvestBalance />
           <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
         </Block>
+        {/* <Block>
+          <BananaHarvestUsdBalance />
+          <Label>{TranslateString(546, 'BANANA Harvest $ Value')}</Label>
+        </Block> */}
         <Block>
           <BananaWalletBalance />
           <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>

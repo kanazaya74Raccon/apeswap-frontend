@@ -89,9 +89,9 @@ const Home: React.FC = () => {
         <Text>{TranslateString(578, 'Why be a human, when you can be an ape?')}</Text>
       </Hero>
       <div>
-        <Card>
+        {/* <Card>
           <PromoCard />
-        </Card>
+        </Card> */}
         <Cards>
           <FarmStakingCard />
           <BananaStats />
