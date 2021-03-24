@@ -6,6 +6,7 @@ import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
+import { useLiquidityData } from 'hooks/api'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -90,6 +91,7 @@ export const useTvl = (): BigNumber => {
   const pools = useAllPools()
   const bnbPriceUSD = usePriceBnbBusd()
   const bananaPriceBUSD = usePriceBananaBusd()
+  const liquidity = useLiquidityData()
   let valueLocked = new BigNumber(0)
 
   // eslint-disable-next-line no-restricted-syntax
@@ -100,9 +102,10 @@ export const useTvl = (): BigNumber => {
       )
     }
   }
+  return valueLocked.plus(liquidity)
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const farm of farms) {
+  /* for (const farm of farms) {
     const totalInQuoteToken = new BigNumber(farm.totalInQuoteToken)
     if (farm.quoteTokenSymbol === 'BNB') valueLocked = valueLocked.plus(totalInQuoteToken.times(bnbPriceUSD))
     else if (farm.quoteTokenSymbol === 'BUSD') valueLocked = valueLocked.plus(totalInQuoteToken)
@@ -110,6 +113,7 @@ export const useTvl = (): BigNumber => {
       valueLocked = valueLocked.plus(totalInQuoteToken.times(bananaPriceBUSD))
   }
   return valueLocked
+  */
 }
 
 // Prices

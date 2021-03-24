@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import useRefresh from './useRefresh'
 
 /*
  * Due to Cors the api was forked and a proxy was created
@@ -76,6 +77,15 @@ const RESERVES_QUERY = (address) => {
   }`
 }
 
+const LIQUIDITY_QUERY = `{
+      uniswapFactory(id: "0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6") {
+        id
+        totalVolumeUSD
+        totalLiquidityUSD
+        totalLiquidityETH
+      }
+    }`
+
 // eslint-disable-next-line consistent-return
 export const fetchReserveData = async (pairAddress) => {
   try {
@@ -91,6 +101,43 @@ export const fetchReserveData = async (pairAddress) => {
   } catch (error) {
     console.error('Unable to fetch data:', error)
   }
+}
+
+// eslint-disable-next-line consistent-return
+export const fetchLiquidityData = async () => {
+  try {
+    const query = LIQUIDITY_QUERY
+    const response = await fetch('https://graph.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    })
+    const { data }: any = await response.json()
+
+    return parseFloat(data.uniswapFactory.totalLiquidityUSD)
+  } catch (error) {
+    console.error('Unable to fetch data:', error)
+  }
+}
+
+export const useLiquidityData = () => {
+  const [data, setData] = useState<any | number>(null)
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchLiquidityData()
+        setData(response)
+      } catch (error) {
+        console.error('Unable to fetch data:', error)
+      }
+    }
+
+    fetchData()
+  }, [setData, slowRefresh])
+
+  return data
 }
 
 const PAIR_CONFIGS = {
