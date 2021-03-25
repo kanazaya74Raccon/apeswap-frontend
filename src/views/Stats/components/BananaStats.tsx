@@ -25,7 +25,7 @@ const Row = styled.div`
 `
 
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
-  const TranslateString = useI18n() 
+  const TranslateString = useI18n()
   const price = usePriceBananaBusd()
   return (
     <StyledBananaStats>
