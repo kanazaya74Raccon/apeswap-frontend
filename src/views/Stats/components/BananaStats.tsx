@@ -3,6 +3,7 @@ import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { Stats } from 'state/types'
 import useI18n from 'hooks/useI18n'
+import { usePriceBananaBusd } from 'state/hooks'
 import CardValue from './CardValue'
 import Divider from './Divider'
 
@@ -24,7 +25,8 @@ const Row = styled.div`
 `
 
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
-  const TranslateString = useI18n()
+  const TranslateString = useI18n() 
+  const price = usePriceBananaBusd()
   return (
     <StyledBananaStats>
       <CardBody>
@@ -37,7 +39,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'BANANA Price')}</Text>
-          <CardValue fontSize="14px" value={stats.bananaPrice} decimals={2} prefix="$" />
+          <CardValue fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
           <Text fontSize="14px">{TranslateString(538, 'Your BANANA earnings ($)')}</Text>

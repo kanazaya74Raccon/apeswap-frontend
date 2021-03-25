@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Stats, StatsState } from 'state/types'
-import getStats from './getStats'
+import { computeStats } from './getStats'
 
 const initialState: StatsState = {
   isInitialized: false,
@@ -32,10 +32,10 @@ export const statsSlice = createSlice({
 export const { statsFetchStart, statsFetchSucceeded, statsFetchFailed } = statsSlice.actions
 
 // Thunks
-export const fetchStats = (address: string) => async (dispatch) => {
+export const fetchStats = (pools, farms, statsOverall, bananaBalance) => (dispatch) => {
   try {
     dispatch(statsFetchStart())
-    const stats = await getStats(address)
+    const stats = computeStats(pools, farms, statsOverall, bananaBalance)
 
     dispatch(statsFetchSucceeded(stats))
   } catch (error) {

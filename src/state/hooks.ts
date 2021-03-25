@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getBananaAddress } from 'utils/addressHelpers'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -189,17 +191,22 @@ export const useProfile = () => {
 }
 
 // Stats - individual stats
-
 export const useFetchStats = () => {
   const { account } = useWallet()
   const dispatch = useDispatch()
+  const { statsOverall } = useStatsOverall()
   const { slowRefresh } = useRefresh()
+  const [slow, setSlow] = useState(-1)
+  const farms = useFarms()
+  const pools = usePools(account)
+  const bananaBalance = useTokenBalance(getBananaAddress())
 
   useEffect(() => {
-    if (account !== null) {
-      dispatch(fetchStats(account))
+    if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
+      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance))
+      setSlow(slowRefresh)
     }
-  }, [account, dispatch, slowRefresh])
+  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh])
 }
 
 export const useStats = () => {
