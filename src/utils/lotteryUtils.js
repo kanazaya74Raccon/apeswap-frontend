@@ -61,7 +61,6 @@ export const getTickets = async (lotteryContract, ticketsContract, account, cust
   const ticketIssues = await multiCall(ticketAbi, calls2)
 
   const finalTokenids = []
-  console.log(issueIndex)
   ticketIssues.forEach(async (ticketIssue, i) => {
     if (new BigNumber(ticketIssue).eq(issueIndex)) {
       finalTokenids.push(tokenIds[i])
@@ -123,7 +122,6 @@ export const multiClaim = async (lotteryContract, ticketsContract, account) => {
 
 export const getTotalClaim = async (lotteryContract, ticketsContract, account) => {
   try {
-    console.log('Get total claim')
     const issueIndex = await lotteryContract.methods.issueIndex().call()
     const length = await getTicketsAmount(ticketsContract, account)
     // eslint-disable-next-line prefer-spread
