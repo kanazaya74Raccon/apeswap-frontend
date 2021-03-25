@@ -102,9 +102,10 @@ const Stats: React.FC = () => {
             <div>
               <Cards>
                 <BananaStats stats={stats} />
+                {stats?.pools[0] && <CardStats data={stats.pools[0]} type="pool" forceDetails />}
               </Cards>
               <Cards>
-                {[...stats.pools, ...stats.incentivizedPools]
+                {[...stats.incentivizedPools]
                   .sort((poolA, poolB) => poolB.stakedTvl - poolA.stakedTvl)
                   .map((pool) => {
                     return <CardStats data={pool} type="pool" />
