@@ -23,7 +23,7 @@ const getProfile = async (address: string): Promise<Profile> => {
     const { userId, points, teamId, tokenId, nftAddress, isActive } = transformProfileResponse(profileResponse)
 
     const [bunnyId, team] = await Promise.all([rabbitContract.methods.getBunnyId(tokenId).call(), getTeam(teamId)])
-    const nft = nfts.find((nftItem) => nftItem.bunnyId === Number(bunnyId))
+    const nft = nfts.find((nftItem) => nftItem.index === Number(bunnyId))
     const response = await fetch(`${profileApi}/api/users?address=${address}`)
     const { username = '' } = await response.json()
 
@@ -32,7 +32,7 @@ const getProfile = async (address: string): Promise<Profile> => {
       `profile_${address}`,
       JSON.stringify({
         username,
-        avatar: `https://pancakeswap.finance/images/nfts/${nft.images.sm}`,
+        avatar: `https://pancakeswap.finance/images/nfts/${nft.image}`,
       }),
     )
 

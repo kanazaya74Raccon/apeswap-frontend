@@ -15,7 +15,7 @@ const NftPreview = () => {
         {orderBy(nfts, 'sortOrder').map((nft) => (
           <div key={nft.name}>
             <Card>
-              <Image src={`/images/nfts/${nft.images.blur}`} alt={nft.name} />
+              <Image src={`/images/nfts/${nft.image}`} alt={nft.name} />
               <CardBody>
                 <Heading>{nft.name}</Heading>
               </CardBody>

@@ -31,7 +31,7 @@ const ProfilePicture: React.FC = () => {
   const { account } = useWallet()
   const { toastError } = useToast()
   const bunnyIds = Object.keys(nftsInWallet).map((nftWalletItem) => Number(nftWalletItem))
-  const walletNfts = nftList.filter((nft) => bunnyIds.includes(nft.bunnyId))
+  const walletNfts = nftList.filter((nft) => bunnyIds.includes(nft.index))
 
   const handleApprove = () => {
     pancakeRabbitsContract.methods
@@ -99,14 +99,14 @@ const ProfilePicture: React.FC = () => {
               <Skeleton height="80px" mb="16px" />
             ) : (
               walletNfts.map((walletNft) => {
-                const [firstTokenId] = nftsInWallet[walletNft.bunnyId].tokenIds
+                const [firstTokenId] = nftsInWallet[walletNft.index].tokenIds
 
                 return (
                   <SelectionCard
                     name="profilePicture"
-                    key={walletNft.bunnyId}
+                    key={walletNft.index}
                     value={firstTokenId}
-                    image={`/images/nfts/${walletNft.images.md}`}
+                    image={`/images/nfts/${walletNft.image}`}
                     isChecked={firstTokenId === tokenId}
                     onChange={(value: string) => actions.setTokenId(parseInt(value, 10))}
                   >
