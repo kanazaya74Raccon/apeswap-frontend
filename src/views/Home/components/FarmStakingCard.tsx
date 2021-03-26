@@ -78,10 +78,10 @@ const FarmedStakingCard = () => {
           <BananaHarvestBalance />
           <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
         </Block>
-        {/* <Block>
+        <Block>
           <BananaHarvestUsdBalance />
-          <Label>{TranslateString(546, 'BANANA Harvest $ Value')}</Label>
-        </Block> */}
+          <Label>{TranslateString(546, 'Harvest $ Value')}</Label>
+        </Block>
         <Block>
           <BananaWalletBalance />
           <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
