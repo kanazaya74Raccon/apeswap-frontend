@@ -98,7 +98,7 @@ const Stats: React.FC = () => {
         <UnlockButton fullWidth />
       ) : (
         <div>
-          {stats !== null && stats.tvl > 0 ? (
+          {stats !== null ? (
             <div>
               <Cards>
                 <BananaStats stats={stats} />
