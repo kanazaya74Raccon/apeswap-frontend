@@ -93,16 +93,13 @@ interface FarmCardProps {
   ethereum?: provider
   account?: string
 }
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
   const TranslateString = useI18n()
 
-  /* const yourStats = useStats()
+  const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.filter(
-    (item) => item.address.toLowerCase() === farm.lpAddresses[CHAIN_ID].toLowerCase(),
-  ) */
+  const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
@@ -185,6 +182,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
           totalValueFormated={totalValueFormated}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}
+          farmStats={filteredFarmStats}
         />
       </ExpandingWrapper>
     </FCard>
