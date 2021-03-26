@@ -168,6 +168,36 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.eth,
   },
   {
+    pid: 20,
+    lpSymbol: 'BAT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BAT-ETH BananaPair
+      56: '0x6e425B4fc4Efd070Dc0deF1654a17946C7e6b3C4',
+    },
+    tokenSymbol: 'BAT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x101d82428437127bf1608f699cd651e6abf9766e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 21,
+    lpSymbol: 'BAT-ETH LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // ADA-ETH BananaPair
+      56: '0x85D87C038917eC8949f12B06262bB9d7a1290DB6',
+    },
+    tokenSymbol: 'BAT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x101d82428437127bf1608f699cd651e6abf9766e',
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
+  },
+  {
     pid: 12,
     lpSymbol: 'BANANA-SUSHI LP',
     lpAddresses: {
