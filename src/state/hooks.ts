@@ -214,6 +214,16 @@ export const useStats = () => {
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
+export const usePendingUsd = () => {
+  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
+  return { pending: data?.pendingRewardUsd || 0, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const usePersonalTvl = () => {
+  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
+  return { tvl: data?.tvl || 0, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
 // Stats Overall- Total Banana Stats
 
 export const useFetchStatsOverall = () => {
