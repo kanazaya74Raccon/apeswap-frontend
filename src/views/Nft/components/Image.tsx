@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 interface ImageProps {
   src: string
@@ -7,12 +7,26 @@ interface ImageProps {
   originalLink?: string
 }
 
+const breatheAnimation = keyframes`
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+`
+
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.borderColor};
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
   position: relative;
   width: 100%;
   overflow: hidden;
   padding-bottom: 100%;
+  animation: ${breatheAnimation} 15s ease infinite;
 `
 
 const StyledImage = styled.img`
@@ -27,7 +41,7 @@ const StyledImage = styled.img`
 `
 
 const Image: React.FC<ImageProps> = ({ src, alt, originalLink }) => {
-  const previewImage = <StyledImage src={src} alt={alt} />
+const previewImage = <StyledImage src={src} alt={alt} />
 
   return (
     <Container>

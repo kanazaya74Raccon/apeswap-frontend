@@ -31,6 +31,11 @@ const config: MenuEntry[] = [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: 'NFT',
+    icon: 'NftIcon',
+    href: '/nft',
+  },
   /* {
     label: 'Ape Stats',
     icon: 'StatsIcon',
@@ -40,11 +45,6 @@ const config: MenuEntry[] = [
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
-  },
-  {
-    label: 'NFT',
-    icon: 'NftIcon',
-    href: '/nft',
   },
   {
     label: 'Teams & Profile',
