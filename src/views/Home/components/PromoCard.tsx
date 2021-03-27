@@ -32,8 +32,8 @@ const PromoCard = () => {
             🚀 {TranslateString(999, 'May the IAO be with you')} 🚀
           </Heading>
           <>
-            <Text color="textSubtle">🌑 This time we are taking you to a galaxy far far away with YediYield 🌑</Text>
-            <Text color="textSubtle">Launching Apr. 2,03:00 UTC </Text>
+            <Text color="textSubtle">🌑 This time we are taking you to a galaxy far far away with JediYield 🌑</Text>
+            <Text color="textSubtle">Launching Apr. 2, 03:00 UTC </Text>
             <Text color="textSubtle">
               <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
             </Text>
