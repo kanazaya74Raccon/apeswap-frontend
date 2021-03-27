@@ -72,6 +72,7 @@ export interface FarmPool {
   pid: number
   name: string
   pendingReward: number
+  pendingRewardUsd: number
   stakedTvl: number
   dollarsEarnedPerDay: number
   dollarsEarnedPerWeek: number

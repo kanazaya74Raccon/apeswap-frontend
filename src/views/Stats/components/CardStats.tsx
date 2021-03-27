@@ -76,7 +76,10 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'Your Pending Rewards')}</Text>
-          <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
+          <div>
+            <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
+            <CardValue fontSize="10px" decimals={2} value={data.pendingRewardUsd} prefix="($" suffix=")" />
+          </div>
         </Row>
         {!forceDetails && (
           <ExpandableSectionButton
