@@ -103,7 +103,7 @@ const ifos: Ifo[] = [
     name: 'Jedi Yield',
     subTitle: 'The only app you need for all your yield farming needs',
     description:
-      'Application built for yield farming fans. The place where you can safely stake, unstake, remove liquidity and harvest rewards from multiple DAPPS',
+      'Smart portal built to increase convenience and security for BSC yield farmers. Users can freely stake and/or unstake their funds regardless of the accessibility to their favorite yield farming websites. Moreover, users can monitor their portfolios, look at token graphs, and harvest their farms all in one page',
     launchDate: 'Apr. 1',
     launchTime: '11PM EDT',
     saleAmount: '7,000,000 YDI',
