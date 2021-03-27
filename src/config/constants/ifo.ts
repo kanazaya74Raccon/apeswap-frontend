@@ -104,9 +104,9 @@ const ifos: Ifo[] = [
     subTitle: 'The only app you need for all your yield farming needs',
     description:
       'Smart portal built to increase convenience and security for BSC yield farmers. Users can freely stake and/or unstake their funds regardless of the accessibility to their favorite yield farming websites. Moreover, users can monitor their portfolios, look at token graphs, and harvest their farms all in one page',
-    launchDate: 'Apr. 1',
-    launchTime: '11PM EDT',
-    saleAmount: '7,000,000 YDI',
+    launchDate: 'Apr. 2',
+    launchTime: '03:00 UTC',
+    saleAmount: '7,000,000 JDI',
     raiseAmount: '$700,000',
     bananaToBurn: '$350,000',
     projectSiteUrl: 'https://jediyield.com/',
