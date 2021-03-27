@@ -26,16 +26,16 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <NavLink to="/pools">
+      <NavLink to="/iao">
         <CardBody>
           <Heading size="lg" mb="24px">
-            🚀 {TranslateString(999, 'NAUT Pool Open')} 🍌
+            🚀 {TranslateString(999, 'May the IAO be with you')} 🚀
           </Heading>
           <>
-            <Text color="textSubtle">We are proud to open a NAUT rewards pool</Text>
-            <Text color="textSubtle">🚀 After a successful IAO with over 1000% subscription rate 🚀</Text>
+            <Text color="textSubtle">🌑 This time we are taking you to a galaxy far far away with YediYield 🌑</Text>
+            <Text color="textSubtle">Launching Apr. 2,03:00 UTC </Text>
             <Text color="textSubtle">
-              <StyledNavLink to="/pools"> Check it out!</StyledNavLink>
+              <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
             </Text>
           </>
         </CardBody>

@@ -8,6 +8,11 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
+    label: 'Your Jungle',
+    icon: 'StatsIcon',
+    href: '/stats',
+  },
+  {
     label: 'Trade',
     icon: 'TradeIcon',
     items: [
@@ -35,11 +40,6 @@ const config: MenuEntry[] = [
     label: 'IAO',
     icon: 'IfoIcon',
     href: '/iao',
-  },
-  {
-    label: 'Ape Stats',
-    icon: 'StatsIcon',
-    href: '/stats',
   },
   /* {
     label: 'Lottery',
