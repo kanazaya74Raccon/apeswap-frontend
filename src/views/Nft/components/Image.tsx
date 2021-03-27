@@ -5,6 +5,7 @@ interface ImageProps {
   src: string
   alt: string
   originalLink?: string
+  rarityTier: number
 }
 
 const breatheAnimation = keyframes`
@@ -20,10 +21,10 @@ const breatheAnimation = keyframes`
 `
 
 const Container = styled.div`
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
+  background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 200% 200%;
   position: relative;
-  width: 100%;
+  width: 10;
   overflow: hidden;
   padding-bottom: 100%;
   animation: ${breatheAnimation} 15s ease infinite;
@@ -40,9 +41,9 @@ const StyledImage = styled.img`
   border-radius: 32px 32px 0 0;
 `
 
-const Image: React.FC<ImageProps> = ({ src, alt, originalLink }) => {
-const previewImage = <StyledImage src={src} alt={alt} />
-
+const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier}) => {
+  const previewImage = <StyledImage src={src} alt={alt} />
+  const rare = rarityTier
   return (
     <Container>
       {originalLink ? (

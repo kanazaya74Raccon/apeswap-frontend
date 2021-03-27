@@ -12,6 +12,7 @@ import {
   CardFooter,
   useModal,
 } from '@apeswapfinance/uikit'
+import SecondaryCard from 'views/Profile/components/SecondaryCard'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
@@ -68,11 +69,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   )
 
   return (
-    <Card isActive={walletOwnsNft}>
-      <Image src={image} alt={name} originalLink={walletOwnsNft ? image : null} />
+    <Card>
+      <Image src={image} alt={name} originalLink={walletOwnsNft ? image : null} rarityTier={attributes.rarityTierNumber} />
       <CardBody>
         <Header>
-          <Heading>{name}</Heading>
+          <Heading>{name} - {index < 10 ? `#000${index}` : `#00${index}`} </Heading>
           {isInitialized && tokenIds && (
             <Tag outline variant="secondary">
               {TranslateString(999, 'In Wallet')}
@@ -85,7 +86,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
           )}
         </Header>
         {isInitialized && walletOwnsNft && (
-          <Button fullWidth variant="secondary" mt="24px" onClick={onPresentTransferModal}>
+          <Button fullWidth variant="primary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
           </Button>
         )}
@@ -96,8 +97,26 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
         </DetailsButton>
         {isOpen && (
           <InfoBlock>
-            <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
-              {attributes.rarityOverallRank}
+            <Text  as="p" color="textSubtle" style={{textAlign: 'left' }}>
+              Base Color - {attributes.baseColor}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Eyes - {attributes.eyes}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Face Color - {attributes.faceColor}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Frame - {attributes.frames}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Hat - {attributes.hats}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Mouth - {attributes.mouths}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Overall Rarity Rank - {attributes.rarityOverallRank}
             </Text>
           </InfoBlock>
         )}

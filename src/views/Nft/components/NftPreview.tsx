@@ -15,7 +15,7 @@ const NftPreview = () => {
         {orderBy(nfts, 'index').map((nft) => (
           <div key={nft.name}>
             <Card>
-              <Image src={nft.image} alt={nft.name} />
+              <Image src={nft.image} alt={nft.name} rarityTier={nft.attributes.rarityTierNumber} />
               <CardBody>
                 <Heading>{nft.name}</Heading>
               </CardBody>
