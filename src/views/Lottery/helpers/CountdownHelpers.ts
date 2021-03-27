@@ -1,7 +1,7 @@
 import getTimePeriods from 'utils/getTimePeriods'
 
 // lottery draws UTC: 02:00 (10:00 SGT), 14:00 (22:00 SGT)
-const lotteryDrawHoursUtc = [22]
+const lotteryDrawHoursUtc = [0]
 
 const getClosestLotteryHour = (currentHour) => {
   return lotteryDrawHoursUtc[0]
@@ -22,7 +22,7 @@ const getNextLotteryDrawTime = (currentMillis) => {
   const nextLotteryHour = getClosestLotteryHour(currentHour)
   // next lottery is tomorrow if the next lottery is at 2am UTC...
   // ...and current time is between 02:00am & 23:59pm UTC
-  const nextLotteryIsTomorrow = currentHour === nextLotteryHour && currentMin >= 15
+  const nextLotteryIsTomorrow = (currentHour === nextLotteryHour && currentMin >= 15) || currentHour > nextLotteryHour
   let millisTimeOfNextDraw
 
   if (nextLotteryIsTomorrow) {
