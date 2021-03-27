@@ -10,6 +10,7 @@ import CardValue from './CardValue'
 
 export interface PoolStatsProps {
   data?: FarmPool
+  forceDetails?: boolean
   type: string
 }
 
@@ -36,7 +37,7 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   overflow: hidden;
 `
 
-const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
+const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false }) => {
   const TranslateString = useI18n()
   const pools = useAllPools()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
@@ -54,14 +55,14 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
   return (
     <StyledPoolStats key={farmName} isActive={type === 'pool'} isSuccess={type === 'farm'}>
       <CardBody>
-        <Flex justifyContent="flex-start" alignItems="center">
+        <Flex justifyContent="flex-start" alignItems="center" marginBottom="12px">
           <Image
             src={type === 'pool' ? `/images/tokens/${farmImage}` : `/images/farms/${farmImage}.svg`}
             alt={farmImage}
             width={64}
             height={64}
           />
-          <Heading size="lg" mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
+          <Heading fontSize="16px" mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
             {TranslateString(534, `Your ${farmName} Stats`)}
           </Heading>
         </Flex>
@@ -75,13 +76,18 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type }) => {
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'Your Pending Rewards')}</Text>
-          <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
+          <div>
+            <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
+            <CardValue fontSize="10px" decimals={2} value={data.pendingRewardUsd} prefix="($" suffix=")" />
+          </div>
         </Row>
-        <ExpandableSectionButton
-          onClick={() => setShowExpandableSection(!showExpandableSection)}
-          expanded={showExpandableSection}
-        />
-        <ExpandingWrapper expanded={showExpandableSection}>
+        {!forceDetails && (
+          <ExpandableSectionButton
+            onClick={() => setShowExpandableSection(!showExpandableSection)}
+            expanded={showExpandableSection}
+          />
+        )}
+        <ExpandingWrapper expanded={showExpandableSection || forceDetails}>
           <DetailsSection farmStats={data} bscScanAddress={bscScanAddress} />
         </ExpandingWrapper>
       </CardBody>

@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
@@ -78,10 +78,11 @@ const FarmedStakingCard = () => {
           <BananaHarvestBalance />
           <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
         </Block>
-        {/* <Block>
+        <Block>
           <BananaHarvestUsdBalance />
-          <Label>{TranslateString(546, 'BANANA Harvest $ Value')}</Label>
-        </Block> */}
+          <Label>{TranslateString(546, 'Harvest $ Value')}</Label>
+          <Text fontSize="12px">({TranslateString(546, 'Across all pools and farms')})</Text>
+        </Block>
         <Block>
           <BananaWalletBalance />
           <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
