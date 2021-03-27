@@ -35,7 +35,8 @@ const config: MenuEntry[] = [
     label: 'Ape Stats',
     icon: 'StatsIcon',
     href: '/stats',
-  },{
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
