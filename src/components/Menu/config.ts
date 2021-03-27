@@ -32,6 +32,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
+    label: 'IAO',
+    icon: 'IfoIcon',
+    href: '/iao',
+  },
+  {
     label: 'Ape Stats',
     icon: 'StatsIcon',
     href: '/stats',
@@ -81,11 +86,6 @@ const config: MenuEntry[] = [
         href: 'https://info.apeswap.finance/accounts',
       },
     ],
-  },
-  {
-    label: 'IAO',
-    icon: 'IfoIcon',
-    href: '/iao',
   },
   {
     label: 'More',
