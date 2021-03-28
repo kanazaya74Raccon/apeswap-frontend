@@ -65,7 +65,7 @@ const Ifo = () => {
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
             <li>
-              {TranslateString(602, 'While the sale is live, commit your BANANA-LP tokens to buy the IAO tokens')}
+              {TranslateString(602, 'While the sale is live, commit your BANANA-BNB LP tokens to buy the IAO tokens')}
             </li>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
