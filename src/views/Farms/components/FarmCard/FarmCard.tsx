@@ -14,7 +14,7 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
-import ApyButton from './ApyButton'
+import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -154,7 +154,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
                 <ApyButton
                   lpLabel={lpLabel}
                   addLiquidityUrl={addLiquidityUrl}
-                  bananaPrice={bananaPrice}
+                  rewardTokenPrice={bananaPrice}
                   apy={farm.apy}
                 />
                 {farmAPY}%

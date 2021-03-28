@@ -8,7 +8,7 @@ import { calculateBananaEarnedPerThousandDollars, apyModalRoi } from 'utils/comp
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
   lpLabel?: string
-  bananaPrice?: BigNumber
+  rewardTokenPrice?: BigNumber
   apy?: BigNumber
   addLiquidityUrl?: string
 }
@@ -32,21 +32,34 @@ const Description = styled(Text)`
 const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   lpLabel,
-  bananaPrice,
+  rewardTokenPrice,
   apy,
   addLiquidityUrl,
 }) => {
   const TranslateString = useI18n()
   const farmApy = apy.times(new BigNumber(100)).toNumber()
-  const oneThousandDollarsWorthOfBanana = 1000 / bananaPrice.toNumber()
+  const tokenPrice = typeof rewardTokenPrice === 'number' ? rewardTokenPrice : rewardTokenPrice.toNumber()
+  const oneThousandDollarsWorthOfBanana = 1000 / tokenPrice
 
-  const bananaEarnedPerThousand1D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 1, farmApy, bananaPrice })
-  const bananaEarnedPerThousand7D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 7, farmApy, bananaPrice })
-  const bananaEarnedPerThousand30D = calculateBananaEarnedPerThousandDollars({ numberOfDays: 30, farmApy, bananaPrice })
+  const bananaEarnedPerThousand1D = calculateBananaEarnedPerThousandDollars({
+    numberOfDays: 1,
+    farmApy,
+    rewardTokenPrice,
+  })
+  const bananaEarnedPerThousand7D = calculateBananaEarnedPerThousandDollars({
+    numberOfDays: 7,
+    farmApy,
+    rewardTokenPrice,
+  })
+  const bananaEarnedPerThousand30D = calculateBananaEarnedPerThousandDollars({
+    numberOfDays: 30,
+    farmApy,
+    rewardTokenPrice,
+  })
   const bananaEarnedPerThousand365D = calculateBananaEarnedPerThousandDollars({
     numberOfDays: 365,
     farmApy,
-    bananaPrice,
+    rewardTokenPrice,
   })
 
   return (
@@ -64,7 +77,8 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {TranslateString(999, 'BANANA per $1000')}
+            {lpLabel}
+            {TranslateString(999, ' per $1000')}
           </Text>
         </GridItem>
         {/* 1 day row */}

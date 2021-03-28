@@ -18,6 +18,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
+import { useStatsOverall } from 'state/hooks'
 import { Pool } from 'state/types'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -27,6 +28,7 @@ import Card from './Card'
 import OldSyrupTitle from './OldSyrupTitle'
 import HarvestButton from './HarvestButton'
 import CardFooter from './CardFooter'
+import ApyButton from '../../../components/ApyCalculator/ApyButton'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 interface PoolWithApy extends Pool {
@@ -66,6 +68,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     stakingLimit,
     displayDecimals,
   } = pool
+
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
@@ -164,6 +167,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       console.error(e)
     }
   }, [onApprove, setRequestedApproval])
+
+  const { statsOverall } = useStatsOverall()
+  console.log('statsOverall', statsOverall)
+
+  const rewardTokenPrice =
+    statsOverall && (poolCategory === 'Core'
+      ? ((statsOverall.pools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {}).price
+      : ((statsOverall.incentivizedPools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {})
+          .rewardTokenPrice)
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -271,11 +283,19 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             ))}
         </StyledCardActions>
         <StyledDetails>
-          <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
+          <div style={{ flex: 1}}>{TranslateString(736, 'APR')}:</div>
           {isFinished || isOldSyrup || !apy || apy?.isNaN() || !apy?.isFinite() ? (
             '-'
           ) : (
-            <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
+            <>
+              <ApyButton
+                lpLabel={tokenName}
+                addLiquidityUrl="https://dex.apeswap.finance/#/swap"
+                rewardTokenPrice={rewardTokenPrice}
+                apy={apy}
+              />
+              <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
+            </>
           )}
         </StyledDetails>
         <StyledDetails>
@@ -334,6 +354,7 @@ const StyledActionSpacer = styled.div`
 const StyledDetails = styled.div`
   display: flex;
   font-size: 14px;
+  align-items: center;
 `
 
 export default PoolCard

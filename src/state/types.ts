@@ -103,6 +103,8 @@ export interface PoolOverall {
   staked: number
   apr: number
   decimals: string
+  rewardTokenPrice: number
+  rewardTokenSymbol: string
 }
 
 export interface FarmOverall {
@@ -125,6 +127,8 @@ export interface FarmOverall {
   stakedTvl: number
   apr: number
   decimals: string
+  rewardTokenPrice: number
+  rewardTokenSymbol: string
 }
 
 // Slices states
