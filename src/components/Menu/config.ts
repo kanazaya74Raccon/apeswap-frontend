@@ -8,7 +8,7 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
-    label: 'Your Jungle',
+    label: 'Ape Stats',
     icon: 'StatsIcon',
     href: '/stats',
   },
