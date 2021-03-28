@@ -4,12 +4,8 @@ import { Text, Progress } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
 import { useCurrentTime } from 'hooks/useTimer'
-import {
-  getLotteryDrawTime,
-  getLotteryDrawStep,
-  getTicketSaleTime,
-  getTicketSaleStep,
-} from '../helpers/CountdownHelpers'
+import useGetLotteryNextDraw from '../hooks/useGetLotteryNextDraw'
+import { getTicketSaleTime, getTicketSaleStep } from '../helpers/CountdownHelpers'
 
 const ProgressWrapper = styled.div`
   display: block;
@@ -38,15 +34,15 @@ const LotteryProgress = () => {
   const TranslateString = useI18n()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const currentMillis = useCurrentTime()
+  const { step, time } = useGetLotteryNextDraw()
   const timeUntilTicketSale = getTicketSaleTime(currentMillis)
-  const timeUntilLotteryDraw = getLotteryDrawTime(currentMillis)
 
   return (
     <ProgressWrapper>
-      <Progress primaryStep={getLotteryDrawStep(currentMillis)} secondaryStep={getTicketSaleStep()} showProgressBunny />
+      <Progress primaryStep={step} secondaryStep={getTicketSaleStep()} showProgressBunny />
       <TopTextWrapper>
         <StyledPrimaryText fontSize="20px" bold color="#fcdc49">
-          {lotteryHasDrawn ? timeUntilTicketSale : timeUntilLotteryDraw}
+          {lotteryHasDrawn ? timeUntilTicketSale : time}
         </StyledPrimaryText>
         <Text fontSize="20px" bold color="invertedContrast">
           {lotteryHasDrawn ? TranslateString(0, 'Until ticket sale') : TranslateString(0, 'Until lottery draw')}
@@ -55,7 +51,7 @@ const LotteryProgress = () => {
       {lotteryHasDrawn && (
         <BottomTextWrapper>
           <Text color="invertedContrast">
-            {timeUntilLotteryDraw} {TranslateString(0, 'Until lottery draw')}
+            {time} {TranslateString(0, 'Until lottery draw')}
           </Text>
         </BottomTextWrapper>
       )}

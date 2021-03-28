@@ -1,7 +1,8 @@
+import { apiBaseUrl } from 'hooks/api'
 import getTimePeriods from 'utils/getTimePeriods'
 
 // lottery draws UTC: 02:00 (10:00 SGT), 14:00 (22:00 SGT)
-const lotteryDrawHoursUtc = [19]
+const lotteryDrawHoursUtc = [20]
 
 const getClosestLotteryHour = (currentHour) => {
   return lotteryDrawHoursUtc[0]
@@ -15,8 +16,16 @@ const getClosestLotteryHour = (currentHour) => {
   } */
 }
 
-const getNextLotteryDrawTime = (currentMillis) => {
-  const date = new Date(currentMillis)
+const getNextLotteryDrawTime = async () => {
+  try {
+    const response = await fetch(`${apiBaseUrl}/lottery/next`)
+    const data = await response.json()
+
+    return data.millisTimeOfNextDraw
+  } catch (error) {
+    throw new Error(error)
+  }
+  /* const date = new Date(currentMillis)
   const currentHour = date.getUTCHours()
   const currentMin = date.getUTCMinutes()
   const nextLotteryHour = getClosestLotteryHour(currentHour)
@@ -34,7 +43,7 @@ const getNextLotteryDrawTime = (currentMillis) => {
     millisTimeOfNextDraw = date.setUTCHours(nextLotteryHour, 0, 0, 0)
   }
 
-  return millisTimeOfNextDraw
+  return millisTimeOfNextDraw */
 }
 
 // @ts-ignore
@@ -49,8 +58,8 @@ export const getTicketSaleTime = (currentMillis): string => {
   return hoursAndMinutesString(hours, minutes)
 }
 
-export const getLotteryDrawTime = (currentMillis): string => {
-  const nextLotteryDrawTime = getNextLotteryDrawTime(currentMillis)
+export const getLotteryDrawTime = async (currentMillis): Promise<string> => {
+  const nextLotteryDrawTime = await getNextLotteryDrawTime()
   const msUntilLotteryDraw = nextLotteryDrawTime - currentMillis
   const { minutes } = getTimePeriods(msUntilLotteryDraw / 1000)
   const { hours } = getTimePeriods(msUntilLotteryDraw / 1000)
@@ -59,9 +68,9 @@ export const getLotteryDrawTime = (currentMillis): string => {
 
 export const getTicketSaleStep = () => (1 / 12) * 100
 
-export const getLotteryDrawStep = (currentMillis) => {
+export const getLotteryDrawStep = async (currentMillis) => {
   const msBetweenLotteries = 43200000
-  const endTime = getNextLotteryDrawTime(currentMillis)
+  const endTime = await getNextLotteryDrawTime()
   const msUntilLotteryDraw = endTime - currentMillis
   const percentageRemaining = (msUntilLotteryDraw / msBetweenLotteries) * 100
   return 100 - percentageRemaining
