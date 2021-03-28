@@ -172,7 +172,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   console.log('statsOverall', statsOverall)
 
   const rewardTokenPrice =
-    statsOverall && (poolCategory === 'Core'
+    statsOverall &&
+    (poolCategory === 'Core'
       ? ((statsOverall.pools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {}).price
       : ((statsOverall.incentivizedPools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {})
           .rewardTokenPrice)
@@ -283,7 +284,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             ))}
         </StyledCardActions>
         <StyledDetails>
-          <div style={{ flex: 1}}>{TranslateString(736, 'APR')}:</div>
+          <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
           {isFinished || isOldSyrup || !apy || apy?.isNaN() || !apy?.isFinite() ? (
             '-'
           ) : (
