@@ -1,7 +1,7 @@
 import getTimePeriods from 'utils/getTimePeriods'
 
 // lottery draws UTC: 02:00 (10:00 SGT), 14:00 (22:00 SGT)
-const lotteryDrawHoursUtc = [4]
+const lotteryDrawHoursUtc = [19]
 
 const getClosestLotteryHour = (currentHour) => {
   return lotteryDrawHoursUtc[0]
