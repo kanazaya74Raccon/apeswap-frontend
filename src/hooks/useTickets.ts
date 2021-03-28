@@ -9,6 +9,7 @@ import {
   getMatchingRewardLength,
   getWinningNumbers,
   getTickets,
+  getAllocation,
 } from '../utils/lotteryUtils'
 
 const useTickets = (lotteryNumber = null) => {
@@ -92,6 +93,25 @@ export const useWinningNumbers = () => {
   }, [fastRefresh, lotteryContract, setWinningNumbers])
 
   return winngNumbers
+}
+
+export const useAllocation = () => {
+  const [allocation, setAllocation] = useState([15, 50, 12, 8, 15])
+  const lotteryContract = useLottery()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const result = await getAllocation(lotteryContract)
+      console.log(result)
+      setAllocation(result)
+    }
+
+    if (lotteryContract) {
+      fetchBalance()
+    }
+  }, [lotteryContract, setAllocation])
+
+  return allocation
 }
 
 export const useMatchingRewardLength = (numbers) => {

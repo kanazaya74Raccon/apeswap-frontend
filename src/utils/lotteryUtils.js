@@ -165,6 +165,16 @@ export const getTotalRewards = async (lotteryContract) => {
   return lotteryContract.methods.getTotalRewards(issueIndex).call()
 }
 
+export const getAllocation = async (lotteryContract) => {
+  const calls = []
+  calls.push(lotteryContract.methods.rolloverAllocation().call())
+  for (let i = 0; i < 3; i++) {
+    calls.push(lotteryContract.methods.allocation(i).call())
+  }
+  calls.push(lotteryContract.methods.burnAllocation().call())
+  return Promise.all(calls)
+}
+
 export const getMax = async (lotteryContract) => {
   return lotteryContract.methods.maxNumber().call()
 }

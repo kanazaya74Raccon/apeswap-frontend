@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Heading, Text } from '@apeswapfinance/uikit'
+import { useAllocation } from 'hooks/useTickets'
 
 export interface PrizeGridProps {
   lotteryPrizeAmount?: number
@@ -40,10 +41,12 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
   twoTicketMatches,
   threeTicketMatches,
 }) => {
-  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * 60).toFixed(0)
-  const threeMatchesAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(0)
-  const twoMatchesAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(0)
-  const burnAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(0)
+  const allocation = useAllocation()
+  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * allocation[1]).toFixed(0)
+  const threeMatchesAmount = +((lotteryPrizeAmount / 100) * allocation[2]).toFixed(0)
+  const twoMatchesAmount = +((lotteryPrizeAmount / 100) * allocation[3]).toFixed(0)
+  const burnAmount = +((lotteryPrizeAmount / 100) * allocation[4]).toFixed(0)
+  const rollOverAmount = +((lotteryPrizeAmount / 100) * allocation[0]).toFixed(0)
   const TranslateString = useI18n()
 
   return (
@@ -104,17 +107,20 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
       {/* Burn row */}
       <GridItem marginBottom="0">
         <Text>{TranslateString(999, `${pastDraw ? 'Burned' : 'To burn'}`)}:</Text>
+        <Text>{TranslateString(999, 'Rollover')}:</Text>
       </GridItem>
       {pastDraw ? (
         <>
           <GridItem marginBottom="0" />
           <GridItem marginBottom="0">
             <RightAlignedText>{burnAmount.toLocaleString()}</RightAlignedText>
+            <RightAlignedText>{rollOverAmount.toLocaleString()}</RightAlignedText>
           </GridItem>
         </>
       ) : (
         <GridItem marginBottom="0">
           <RightAlignedText>{burnAmount.toLocaleString()}</RightAlignedText>
+          <RightAlignedText>{rollOverAmount.toLocaleString()}</RightAlignedText>
         </GridItem>
       )}
     </Grid>
