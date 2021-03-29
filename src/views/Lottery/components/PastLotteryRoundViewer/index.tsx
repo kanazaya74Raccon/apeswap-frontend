@@ -38,6 +38,7 @@ const PastLotteryRoundViewer = () => {
   }, [initialLotteryData, setState])
 
   const handleSubmit = async (lotteryNumber: number) => {
+    if (Number.isNaN(lotteryNumber)) return
     setState((prevState) => ({
       ...prevState,
       isLoading: true,

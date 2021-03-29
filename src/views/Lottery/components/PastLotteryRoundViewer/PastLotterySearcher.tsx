@@ -39,7 +39,7 @@ const PastLotterySearcher: React.FC<PastLotterySearcherProps> = ({ initialLotter
 
     // The max value will always be the initialLotterNumber which equals
     // the latest lottery round
-    setIsError(value > initialLotteryNumber)
+    setIsError(value > initialLotteryNumber || Number.isNaN(value))
     setLotteryNumber(value)
   }
 

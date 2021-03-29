@@ -41,12 +41,12 @@ const config: MenuEntry[] = [
     icon: 'IfoIcon',
     href: '/iao',
   },
-  /* {
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
   },
-  {
+  /* {
     label: 'NFT',
     icon: 'NftIcon',
     href: '/nft',
