@@ -8,6 +8,11 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
+    label: 'Ape Stats',
+    icon: 'StatsIcon',
+    href: '/stats',
+  },
+  {
     label: 'Trade',
     icon: 'TradeIcon',
     items: [
@@ -32,9 +37,9 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Ape Stats',
-    icon: 'StatsIcon',
-    href: '/stats',
+    label: 'IAO',
+    icon: 'IfoIcon',
+    href: '/iao',
   },
   {
     label: 'Lottery',
@@ -81,11 +86,6 @@ const config: MenuEntry[] = [
         href: 'https://info.apeswap.finance/accounts',
       },
     ],
-  },
-  {
-    label: 'IAO',
-    icon: 'IfoIcon',
-    href: '/iao',
   },
   {
     label: 'More',
