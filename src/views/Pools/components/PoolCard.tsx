@@ -18,7 +18,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
-import { useStatsOverall } from 'state/hooks'
+import { useGetPoolStats } from 'state/hooks'
 import { Pool } from 'state/types'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -168,15 +168,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
-  const { statsOverall } = useStatsOverall()
-  console.log('statsOverall', statsOverall)
+  const { poolStats } = useGetPoolStats(sousId)
 
-  const rewardTokenPrice =
-    statsOverall &&
-    (poolCategory === 'Core'
-      ? ((statsOverall.pools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {}).price
-      : ((statsOverall.incentivizedPools.filter((token) => token.rewardTokenSymbol === tokenName) || {})[0] || {})
-          .rewardTokenPrice)
+  const rewardTokenPrice = poolStats?.rewardTokenPrice
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -291,9 +285,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             <>
               <ApyButton
                 lpLabel={tokenName}
+                rewardTokenName={tokenName}
                 addLiquidityUrl="https://dex.apeswap.finance/#/swap"
-                rewardTokenPrice={rewardTokenPrice}
-                apy={apy}
+                rewardTokenPrice={new BigNumber(rewardTokenPrice)}
+                apy={new BigNumber(apy).div(100)}
               />
               <Balance fontSize="14px" isDisabled={isFinished} value={apy?.toNumber()} decimals={2} unit="%" />
             </>

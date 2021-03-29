@@ -87,7 +87,7 @@ export interface StatsOverall {
   burntAmount: number
   totalSupply: number
   marketCap: number
-  pools: PoolOverall[]
+  pools: FarmOverall[]
   farms: FarmOverall[]
   incentivizedPools: FarmOverall[]
 }
@@ -120,6 +120,7 @@ export interface FarmOverall {
   t1Symbol: string
   t1Decimals: string
   p1: number
+  id: number
   q1: number
   price: number
   totalSupply: number

@@ -8,6 +8,7 @@ import { calculateBananaEarnedPerThousandDollars, apyModalRoi } from 'utils/comp
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
   lpLabel?: string
+  rewardTokenName?: string
   rewardTokenPrice?: BigNumber
   apy?: BigNumber
   addLiquidityUrl?: string
@@ -32,6 +33,7 @@ const Description = styled(Text)`
 const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   lpLabel,
+  rewardTokenName,
   rewardTokenPrice,
   apy,
   addLiquidityUrl,
@@ -77,7 +79,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-            {lpLabel}
+            {rewardTokenName}
             {TranslateString(999, ' per $1000')}
           </Text>
         </GridItem>

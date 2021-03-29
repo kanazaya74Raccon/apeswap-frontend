@@ -5,15 +5,17 @@ import ApyCalculatorModal from './ApyCalculatorModal'
 
 export interface ApyButtonProps {
   lpLabel?: string
+  rewardTokenName?: string
   rewardTokenPrice?: BigNumber
   apy?: BigNumber
   addLiquidityUrl?: string
 }
 
-const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, addLiquidityUrl }) => {
+const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, addLiquidityUrl, rewardTokenName }) => {
   const [onPresentApyModal] = useModal(
     <ApyCalculatorModal
       lpLabel={lpLabel}
+      rewardTokenName={rewardTokenName}
       rewardTokenPrice={rewardTokenPrice}
       apy={apy}
       addLiquidityUrl={addLiquidityUrl}

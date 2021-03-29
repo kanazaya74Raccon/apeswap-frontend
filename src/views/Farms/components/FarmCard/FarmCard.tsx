@@ -153,6 +153,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
               <>
                 <ApyButton
                   lpLabel={lpLabel}
+                  rewardTokenName="BANANA"
                   addLiquidityUrl={addLiquidityUrl}
                   rewardTokenPrice={bananaPrice}
                   apy={farm.apy}
