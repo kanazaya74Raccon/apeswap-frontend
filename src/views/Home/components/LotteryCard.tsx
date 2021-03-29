@@ -9,7 +9,10 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import { useMultiClaimLottery } from 'hooks/useBuyLottery'
 import { useTotalClaim } from 'hooks/useTickets'
 import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
-import CakeWinnings from './CakeWinnings'
+import { useLotteryAllowance } from 'hooks/useAllowance'
+import { useApproval } from 'hooks/useApproval'
+import PurchaseWarningModal from 'views/Lottery/components/TicketCard/PurchaseWarningModal'
+import BananaWinnings from './BananaWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
 const StyledLotteryCard = styled(Card)`
@@ -44,9 +47,12 @@ const FarmedStakingCard = () => {
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const [requesteClaim, setRequestedClaim] = useState(false)
   const TranslateString = useI18n()
+  const allowance = useLotteryAllowance()
+  const [onPresentApprove] = useModal(<PurchaseWarningModal />)
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getBananaAddress())
+  const { handleApprove, requestedApproval } = useApproval(onPresentApprove)
+  const bananaBalance = useTokenBalance(getBananaAddress())
 
   const handleClaim = useCallback(async () => {
     try {
@@ -61,7 +67,22 @@ const FarmedStakingCard = () => {
     }
   }, [onMultiClaim, setRequestedClaim])
 
-  const [onPresentBuy] = useModal(<BuyModal max={cakeBalance} tokenName="CAKE" />)
+  const renderLotteryTicketButtonBuyOrApprove = () => {
+    if (!allowance.toNumber()) {
+      return (
+        <Button fullWidth disabled={requestedApproval} onClick={handleApprove}>
+          {TranslateString(494, 'Approve BANANA')}
+        </Button>
+      )
+    }
+    return (
+      <Button id="dashboard-buy-tickets" variant="secondary" onClick={onPresentBuy} disabled={lotteryHasDrawn}>
+        {TranslateString(558, 'Buy Tickets')}
+      </Button>
+    )
+  }
+
+  const [onPresentBuy] = useModal(<BuyModal max={bananaBalance} tokenName="BANANA" />)
 
   return (
     <StyledLotteryCard>
@@ -71,7 +92,7 @@ const FarmedStakingCard = () => {
         </Heading>
         <CardImage src="/images/pan-bg.svg" alt="cake logo" width={64} height={64} />
         <Block>
-          <CakeWinnings />
+          <BananaWinnings />
           <Label>{TranslateString(552, 'BANANA to Collect')}</Label>
         </Block>
         <Block>
@@ -87,9 +108,7 @@ const FarmedStakingCard = () => {
           >
             {TranslateString(556, 'Collect Winnings')}
           </Button>
-          <Button id="dashboard-buy-tickets" variant="secondary" onClick={onPresentBuy} disabled={lotteryHasDrawn}>
-            {TranslateString(558, 'Buy Tickets')}
-          </Button>
+          {renderLotteryTicketButtonBuyOrApprove()}
         </Actions>
       </CardBody>
     </StyledLotteryCard>

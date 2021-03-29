@@ -51,7 +51,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
             {launchDate},
             <Link
               fontSize="14px"
-              href="https://www.timeanddate.com/time/zones/edt"
+              href="https://www.timeanddate.com/time/aboututc.html"
               target="blank"
               rel="noopener noreferrer"
               ml="4px"

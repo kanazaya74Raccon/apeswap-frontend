@@ -80,7 +80,7 @@ const ifos: Ifo[] = [
   {
     id: 'astronaut',
     address: '0xd7e98ca54e6202fb6237b98c881817ed3e54d2ed',
-    isActive: true,
+    isActive: false,
     name: 'Astronaut',
     subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
     description:
@@ -95,6 +95,25 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 8,
     releaseBlockNumber: 5685490,
+  },
+  {
+    id: 'jediyield',
+    address: '0x50670b3a14D4ABEDd45C91B9F8a2b01DE6F93F17',
+    isActive: true,
+    name: 'Jedi Yield',
+    subTitle: 'The only app you need for all your yield farming needs',
+    description:
+      'Smart portal built to increase convenience and security for BSC yield farmers. Users can freely stake and/or unstake their funds regardless of the accessibility to their favorite yield farming websites. Moreover, users can monitor their portfolios, look at token graphs, and harvest their farms all in one page',
+    launchDate: 'Apr. 2',
+    launchTime: '03:00 UTC',
+    saleAmount: '7,000,000 JDI',
+    raiseAmount: '$700,000',
+    bananaToBurn: '$350,000',
+    projectSiteUrl: 'https://jediyield.com/',
+    currency: 'BANANA-BNB LP',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    tokenDecimals: 18,
+    releaseBlockNumber: 6044304,
   },
 ]
 

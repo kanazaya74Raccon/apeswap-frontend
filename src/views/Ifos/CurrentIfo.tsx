@@ -65,7 +65,7 @@ const Ifo = () => {
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
             <li>
-              {TranslateString(602, 'While the sale is live, commit your BANANA-LP tokens to buy the IAO tokens')}
+              {TranslateString(602, 'While the sale is live, commit your BANANA-BNB LP tokens to buy the IAO tokens')}
             </li>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
@@ -84,7 +84,7 @@ const Ifo = () => {
           </Text>
         </div>
         <div>
-          <Image src="/images/ape.png" alt="ifo bunny" width={537} height={370} responsive />
+          <Image src="/images/ape.png" alt="iao ape" width={537} height={370} responsive />
           <div>
             <Title as="h2">{TranslateString(512, 'Want to launch your own IAO?')}</Title>
             <Text mb={3}>
