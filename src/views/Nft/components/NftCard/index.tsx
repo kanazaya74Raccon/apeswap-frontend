@@ -70,10 +70,17 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
 
   return (
     <Card>
-      <Image src={image} alt={name} originalLink={walletOwnsNft ? image : null} rarityTier={attributes.rarityTierNumber} />
+      <Image
+        src={image}
+        alt={name}
+        originalLink={walletOwnsNft ? image : null}
+        rarityTier={attributes.rarityTierNumber}
+      />
       <CardBody>
         <Header>
-          <Heading>{name} - {index < 10 ? `#000${index}` : `#00${index}`} </Heading>
+          <Heading>
+            {name} - {index < 10 ? `#000${index}` : `#00${index}`}{' '}
+          </Heading>
           {isInitialized && tokenIds && (
             <Tag outline variant="secondary">
               {TranslateString(999, 'In Wallet')}
@@ -97,14 +104,14 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
         </DetailsButton>
         {isOpen && (
           <InfoBlock>
-            <Text  as="p" color="textSubtle" style={{textAlign: 'left' }}>
-              Base Color - {attributes.baseColor}
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Base - {attributes.baseColor}
             </Text>
             <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
               Eyes - {attributes.eyes}
             </Text>
             <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
-              Face Color - {attributes.faceColor}
+              Face - {attributes.faceColor}
             </Text>
             <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
               Frame - {attributes.frames}
@@ -116,7 +123,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
               Mouth - {attributes.mouths}
             </Text>
             <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
-              Overall Rarity Rank - {attributes.rarityOverallRank}
+              Overall Rarity Rank - {attributes.rarityOverallRank} / 1000
             </Text>
           </InfoBlock>
         )}
