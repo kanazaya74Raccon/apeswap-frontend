@@ -87,7 +87,7 @@ export interface StatsOverall {
   burntAmount: number
   totalSupply: number
   marketCap: number
-  pools: PoolOverall[]
+  pools: FarmOverall[]
   farms: FarmOverall[]
   incentivizedPools: FarmOverall[]
 }
@@ -103,6 +103,8 @@ export interface PoolOverall {
   staked: number
   apr: number
   decimals: string
+  rewardTokenPrice: number
+  rewardTokenSymbol: string
 }
 
 export interface FarmOverall {
@@ -118,6 +120,7 @@ export interface FarmOverall {
   t1Symbol: string
   t1Decimals: string
   p1: number
+  id: number
   q1: number
   price: number
   totalSupply: number
@@ -125,6 +128,8 @@ export interface FarmOverall {
   stakedTvl: number
   apr: number
   decimals: string
+  rewardTokenPrice: number
+  rewardTokenSymbol: string
 }
 
 // Slices states
