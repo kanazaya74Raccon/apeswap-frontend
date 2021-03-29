@@ -9,6 +9,7 @@ import {
   getMatchingRewardLength,
   getWinningNumbers,
   getTickets,
+  getAllocation,
 } from '../utils/lotteryUtils'
 
 const useTickets = (lotteryNumber = null) => {
@@ -57,6 +58,7 @@ export const useTotalClaim = () => {
   const { account } = useWallet()
   const ticketsContract = useLotteryTicket()
   const lotteryContract = useLottery()
+  const { slowRefresh } = useRefresh()
 
   const fetchBalance = useCallback(async () => {
     setClaimLoading(true)
@@ -69,7 +71,7 @@ export const useTotalClaim = () => {
     if (account && lotteryContract && ticketsContract) {
       fetchBalance()
     }
-  }, [account, fetchBalance, lotteryContract, ticketsContract])
+  }, [account, fetchBalance, lotteryContract, ticketsContract, slowRefresh])
 
   return { claimLoading, claimAmount }
 }
@@ -91,6 +93,25 @@ export const useWinningNumbers = () => {
   }, [fastRefresh, lotteryContract, setWinningNumbers])
 
   return winngNumbers
+}
+
+export const useAllocation = () => {
+  const [allocation, setAllocation] = useState([15, 50, 12, 8, 15])
+  const lotteryContract = useLottery()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const result = await getAllocation(lotteryContract)
+      console.log(result)
+      setAllocation(result)
+    }
+
+    if (lotteryContract) {
+      fetchBalance()
+    }
+  }, [lotteryContract, setAllocation])
+
+  return allocation
 }
 
 export const useMatchingRewardLength = (numbers) => {

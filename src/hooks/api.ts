@@ -6,7 +6,8 @@ import useRefresh from './useRefresh'
  * @see https://github.com/pancakeswap/gatsby-pancake-api/commit/e811b67a43ccc41edd4a0fa1ee704b2f510aa0ba
  */
 export const baseUrl = 'https://api.pancakeswap.com/api/v1'
-export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://apeswap-api.herokuapp.com'
+
+export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
 const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_APESWAP'
 
