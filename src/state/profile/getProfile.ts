@@ -1,53 +1,33 @@
-import { getBananaProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
-import bananaProfileAbi from 'config/abi/bananaProfile.json'
+import { getPancakeRabbitsAddress } from 'utils/addressHelpers'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
 import { getContract } from 'utils/web3'
 import { Profile } from 'state/types'
-import { getTeam } from 'state/teams/helpers'
 import nfts from 'config/constants/nfts'
-import { transformProfileResponse } from './helpers'
+import orderBy from 'lodash/orderBy'
 
-const profileContract = getContract(bananaProfileAbi, getBananaProfileAddress())
+
 const rabbitContract = getContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
-const profileApi = process.env.REACT_APP_API_PROFILE
 
 const getProfile = async (address: string): Promise<Profile> => {
   try {
-    const hasRegistered = await profileContract.methods.hasRegistered(address).call()
-
-    if (!hasRegistered) {
-      return null
-    }
-
-    const profileResponse = await profileContract.methods.getUserProfile(address).call()
-    const { userId, points, teamId, tokenId, nftAddress, isActive } = transformProfileResponse(profileResponse)
-
-    const [bunnyId, team] = await Promise.all([rabbitContract.methods.getBunnyId(tokenId).call(), getTeam(teamId)])
-    const nft = nfts.find((nftItem) => nftItem.index === Number(bunnyId))
-    const response = await fetch(`${profileApi}/api/users?address=${address}`)
-    const { username = '' } = await response.json()
-
+    console.log(address)
+    const nfaReturn = await rabbitContract.methods.getPunkIndexesOfOwner(address).call()
+    const nfaList = nfaReturn.map((bool, i) => (bool ? i : -1)).filter((i) => i !== -1)
+    const ownedNfts = nfaList.map((index) => nfts[index])
+    const rarestNft = ownedNfts ? orderBy(ownedNfts, ['attributes.rarityOverallRank'])[0] : null
     // Save the preview image to local storage for the exchange
     localStorage.setItem(
       `profile_${address}`,
       JSON.stringify({
-        username,
-        avatar: `https://pancakeswap.finance/images/nfts/${nft.image}`,
+        avatar: rarestNft.image
       }),
     )
-
     return {
-      userId,
-      points,
-      teamId,
-      tokenId,
-      username,
-      nftAddress,
-      isActive,
-      nft,
-      team,
+      ownedNfts,
+      rarestNft
     } as Profile
   } catch (error) {
+    console.log(error)
     return null
   }
 }

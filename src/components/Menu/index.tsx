@@ -13,6 +13,8 @@ const Menu = (props) => {
   const bananaPriceUsd = usePriceBananaBusd()
   const { profile } = useProfile()
 
+  console.log(profile)
+
   return (
     <UikitMenu
       account={account}
@@ -25,11 +27,8 @@ const Menu = (props) => {
       cakePriceUsd={bananaPriceUsd.toNumber()}
       links={config}
       profile={{
-        username: profile?.username,
-        image: profile?.nft ? `/images/nfts/${profile.nft?.image}` : undefined,
-        profileLink: '/profile',
-        noProfileLink: '/profile',
-        showPip: !profile?.username,
+        image: profile ? profile?.rarestNft.image : undefined,
+        noProfileLink: '/nft',
       }}
       {...props}
     />

@@ -31,15 +31,8 @@ export interface Pool extends PoolConfig {
 }
 
 export interface Profile {
-  userId: number
-  points: number
-  teamId: number
-  nftAddress: string
-  tokenId: number
-  isActive: boolean
-  username: string
-  nft: Nft
-  team: Team
+  ownedNfts: Nft[]
+  rarestNft: Nft
 }
 
 export interface Stats {

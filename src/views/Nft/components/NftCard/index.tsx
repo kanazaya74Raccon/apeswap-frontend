@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   Heading,
-  Tag,
   Button,
   ChevronUpIcon,
   ChevronDownIcon,
@@ -12,7 +11,6 @@ import {
   CardFooter,
   useModal,
 } from '@apeswapfinance/uikit'
-import SecondaryCard from 'views/Profile/components/SecondaryCard'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { Nft } from 'config/constants/types'
@@ -73,7 +71,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
       <Image
         src={image}
         alt={name}
-        originalLink={walletOwnsNft ? image : null}
+        originalLink={image}
         rarityTier={attributes.rarityTierNumber}
       />
       <CardBody>
@@ -81,22 +79,12 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
           <Heading>
             {name} - {index < 10 ? `#000${index}` : `#00${index}`}{' '}
           </Heading>
-          {isInitialized && tokenIds && (
-            <Tag outline variant="secondary">
-              {TranslateString(999, 'In Wallet')}
-            </Tag>
-          )}
-          {profile?.nft?.index === index && (
-            <Tag outline variant="success">
-              {TranslateString(999, 'Profile Pic')}
-            </Tag>
-          )}
         </Header>
-        {isInitialized && walletOwnsNft && (
+        {/* {profile?.nft === index &&  (
           <Button fullWidth variant="primary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
           </Button>
-        )}
+        )} */}
       </CardBody>
       <CardFooter p="0">
         <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>

@@ -44,7 +44,7 @@ export default {
     97: '0xfb3310CcA65fe9479a3590206Be3CEEC70DE77FE',
   },
   pancakeRabbits: {
-    56: '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07',
+    56: '0x0A3eDC4af385eEC12311EC29a95F573Bb4B0ACB4',
     97: '0x60935F36e4631F73f0f407e68642144e07aC7f5E',
   },
   rabbitMintingFarm: {

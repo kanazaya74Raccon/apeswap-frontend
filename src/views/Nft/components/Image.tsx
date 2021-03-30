@@ -10,9 +10,11 @@ interface ImageProps {
 
 interface ContainerProps {
   gradient: string
+  backgroundSize: string
+  animation: string
 }
 
-const breatheAnimation = keyframes`
+const sway = keyframes`
     0% {
       background-position: 0% 50%;
     }
@@ -37,36 +39,49 @@ const StyledImage = styled.img`
 `
 
 const Container = styled.div<ContainerProps>`
-  background-image: ${(props) => props.gradient};
-  background-size: 150% 150%;
+  background: ${(props) => props.gradient};
+  background-size: 150 150;
   position: relative;
   width: 10;
   overflow: hidden;
   padding-bottom: 100%;
-  animation: ${breatheAnimation} 20s ease infinite;
+  animation: ${sway} 40s ease infinite;
 `
 
 const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => {
   let gradientStyle = ''
+  let animation = ''
+  let backgroundSize = ''
   if (rarityTier === 1) {
     gradientStyle =
-      'linear-gradient(-45deg, rgba(0, 255, 0, .65), rgba(0, 255, 202, .65),  rgba(0, 255, 0, .65),  rgba(0, 255, 202, .65))'
+      `linear-gradient(-45deg, rgba(255, 255, 0, 1), rgba(0, 255, 250, 1),rgba(0, 255, 250, 1), rgba(255, 255, 0, 1))`
+    backgroundSize = '800 800'
+    animation = '40s ease infinite'
   } else if (rarityTier === 2) {
     gradientStyle =
       'linear-gradient(90deg, rgba(0, 255, 255, .65), rgba(0, 255, 255, .45), rgba(0, 255, 255, .65), rgba(0, 255, 255, .45))'
+    backgroundSize = '400 400'
+    animation = '15s ease infinite'
   } else if (rarityTier === 3) {
     gradientStyle =
-      'linear-gradient(90deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, .45), rgba(255, 255, 255, .35), rgba(255, 255, 255, .45)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+      'linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1))'
+    backgroundSize = '400 400'
+    animation = '10s ease infinite'
   } else if (rarityTier === 4) {
-    gradientStyle = 'url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+    gradientStyle =
+      'linear-gradient(-45deg, rgba(0, 255, 255, .10), rgba(255, 255, 255, .10)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+    backgroundSize = '700 700'
+    animation = '20s ease infinite'
   } else if (rarityTier === 5) {
     gradientStyle =
       'linear-gradient(-45deg, rgba(255, 255, 0, .1),rgba(255, 0, 0, .1) ,rgba(255, 255, 0, .1),rgba(0, 255, 255, .1), rgba(255, 255, 255, .1),rgba(255, 255, 0, .1), rgba(255, 0, 255, .1) ,rgba(0, 255, 0, .1), rgba(255, 255, 0, .1)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+    backgroundSize = '150 150'
+    animation = '20s ease infinite'
   }
   const previewImage = <StyledImage src={src} alt={alt} />
   const rare = rarityTier
   return (
-    <Container gradient={gradientStyle}>
+    <Container gradient={gradientStyle} animation={animation} backgroundSize={backgroundSize}>
       {originalLink ? (
         <a href={originalLink} target="_blank" rel="noreferrer noopener">
           {previewImage}
