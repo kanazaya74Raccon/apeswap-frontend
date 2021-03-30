@@ -45,13 +45,7 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
     stats.pendingRewardUsd += pool.pendingRewardUsd
     stats.pendingRewardBanana += pool.pendingReward
     stats.dollarsEarnedPerDay += pool.dollarsEarnedPerDay
-    stats.dollarsEarnedPerWeek += pool.dollarsEarnedPerWeek
-    stats.dollarsEarnedPerMonth += pool.dollarsEarnedPerMonth
-    stats.dollarsEarnedPerYear += pool.dollarsEarnedPerYear
     stats.bananasEarnedPerDay += pool.tokensEarnedPerDay
-    stats.bananasEarnedPerWeek += pool.tokensEarnedPerWeek
-    stats.bananasEarnedPerMonth += pool.tokensEarnedPerMonth
-    stats.bananasEarnedPerYear += pool.tokensEarnedPerYear
     stats.tvl += pool.stakedTvl
     totalApr += pool.stakedTvl * pool.apr
   })
@@ -60,13 +54,7 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
     stats.pendingRewardUsd += farm.pendingRewardUsd
     stats.pendingRewardBanana += farm.pendingReward
     stats.dollarsEarnedPerDay += farm.dollarsEarnedPerDay
-    stats.dollarsEarnedPerWeek += farm.dollarsEarnedPerWeek
-    stats.dollarsEarnedPerMonth += farm.dollarsEarnedPerMonth
-    stats.dollarsEarnedPerYear += farm.dollarsEarnedPerYear
     stats.bananasEarnedPerDay += farm.tokensEarnedPerDay
-    stats.bananasEarnedPerWeek += farm.tokensEarnedPerWeek
-    stats.bananasEarnedPerMonth += farm.tokensEarnedPerMonth
-    stats.bananasEarnedPerYear += farm.tokensEarnedPerYear
     stats.tvl += farm.stakedTvl
     totalApr += farm.stakedTvl * farm.apr
   })
@@ -74,9 +62,6 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
   stats.incentivizedPools.forEach((incentivizedPool) => {
     stats.pendingRewardUsd += incentivizedPool.pendingRewardUsd
     stats.dollarsEarnedPerDay += incentivizedPool.dollarsEarnedPerDay
-    stats.dollarsEarnedPerWeek += incentivizedPool.dollarsEarnedPerWeek
-    stats.dollarsEarnedPerMonth += incentivizedPool.dollarsEarnedPerMonth
-    stats.dollarsEarnedPerYear += incentivizedPool.dollarsEarnedPerYear
     stats.tvl += incentivizedPool.stakedTvl
     totalApr += incentivizedPool.stakedTvl * incentivizedPool.apr
   })
@@ -85,6 +70,14 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
   stats.aggregateAprPerDay = stats.aggregateApr / 365
   stats.aggregateAprPerWeek = (stats.aggregateApr * 7) / 365
   stats.aggregateAprPerMonth = (stats.aggregateApr * 30) / 365
+
+  stats.dollarsEarnedPerWeek = stats.dollarsEarnedPerDay * 7;
+  stats.dollarsEarnedPerMonth = stats.dollarsEarnedPerDay * 30;
+  stats.dollarsEarnedPerYear = stats.dollarsEarnedPerDay * 365;
+
+  stats.bananasEarnedPerWeek = stats.bananasEarnedPerDay * 7;
+  stats.bananasEarnedPerMonth = stats.bananasEarnedPerDay * 30;
+  stats.bananasEarnedPerYear = stats.bananasEarnedPerDay * 365;
   return stats
 }
 
