@@ -17,7 +17,7 @@ import {
   remove as removeToast,
   clear as clearToast,
 } from './actions'
-import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState } from './types'
+import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState, FarmOverall } from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
@@ -238,6 +238,16 @@ export const useFetchStatsOverall = () => {
 export const useStatsOverall = () => {
   const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
   return { statsOverall: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useGetPoolStats = (pid) => {
+  let poolStats = {} as FarmOverall
+  const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
+  if (isInitialized) {
+    if (pid === 0) poolStats = data?.pools[0]
+    else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
+  }
+  return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 // Teams
