@@ -25,15 +25,15 @@ const Row = styled.div`
 `
 
 const StyledHeading = styled(Heading)`
-  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const StyledText = styled(Text)`
-  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const StyledCardValue = styled(CardValue)`
-  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
@@ -74,7 +74,13 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         <Row style={{ alignItems: 'flex-start' }}>
           <StyledText fontSize="14px">{TranslateString(538, 'Your APR (%)')}</StyledText>
           <StyledText fontSize="14px" style={{ textAlign: 'end' }}>
-            <StyledCardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Daily" suffix="%" />
+            <StyledCardValue
+              fontSize="14px"
+              value={stats.aggregateAprPerDay * 100}
+              decimals={2}
+              prefix="Daily"
+              suffix="%"
+            />
             <StyledCardValue
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}

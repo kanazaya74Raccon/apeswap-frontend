@@ -9,20 +9,17 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import CardValue from './CardValue'
 
 const BananaHarvestUsdBalance = () => {
-
   const TranslateString = useI18n()
   const bananaBalance = useTokenBalance(getBananaAddress())
   const { account } = useWallet()
 
-// /* eslint-disable no-debugger */
-//   const a = getBalanceNumber(bananaBalance);
-//   debugger;
-//   /* eslint-disable no-debugger */
-//   // const bananaPriceUsd = getBalanceNumber(bananaBalance)
+  // /* eslint-disable no-debugger */
+  //   const a = getBalanceNumber(bananaBalance);
+  //   debugger;
+  //   /* eslint-disable no-debugger */
+  //   // const bananaPriceUsd = getBalanceNumber(bananaBalance)
 
-
-
-  const bananaPriceUsd = usePriceBananaBusd().toNumber()* getBalanceNumber(bananaBalance)
+  const bananaPriceUsd = usePriceBananaBusd().toNumber() * getBalanceNumber(bananaBalance)
 
   if (!account) {
     return (
@@ -32,7 +29,7 @@ const BananaHarvestUsdBalance = () => {
     )
   }
 
-  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611"/>
+  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611" />
 }
 
 export default BananaHarvestUsdBalance

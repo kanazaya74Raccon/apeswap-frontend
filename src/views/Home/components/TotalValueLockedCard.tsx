@@ -33,14 +33,14 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <ApeIcon width="400px" style={{opacity: .1, position: 'absolute', right: '-80px', top: '40px'}}/> 
+      <ApeIcon width="400px" style={{ opacity: 0.1, position: 'absolute', right: '-80px', top: '40px' }} />
       <CardBody>
         <Heading size="lg" mb="24px" color="white">
           {TranslateString(999, 'Total Value Locked (TVL)')}
         </Heading>
         {totalTvl ? (
           <>
-            <CardValue fontSize="40px" decimals={0} value={totalTvl} prefix="$" color="white"/>
+            <CardValue fontSize="40px" decimals={0} value={totalTvl} prefix="$" color="white" />
             <Text color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</Text>
           </>
         ) : (

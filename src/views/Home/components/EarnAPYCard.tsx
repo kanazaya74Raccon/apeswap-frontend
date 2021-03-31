@@ -96,7 +96,7 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <ApeIcon width="400px" style={{opacity: .1, position: 'absolute', right: '-40px', top: '10px'}}/> 
+      <ApeIcon width="400px" style={{ opacity: 0.1, position: 'absolute', right: '-40px', top: '10px' }} />
       <VerticalBody>
         <Heading color="white" size="sm" fontSize="16px">
           Earn up to

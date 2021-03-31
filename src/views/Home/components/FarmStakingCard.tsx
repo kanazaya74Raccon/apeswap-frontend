@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Button, Card, CardBody, Text, BananaIcon, BananaPairIcon} from '@apeswapfinance/uikit'
+import { Heading, Button, Card, CardBody, Text, BananaIcon, BananaPairIcon } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
@@ -40,7 +40,7 @@ const CardImage = styled.img`
 
 const Label = styled.div`
   // color: ${({ theme }) => theme.colors.textSubtle};
-  color: #FFB300;
+  color: #ffb300;
   font-size: 12px;
   margin-left: 2px;
 `
@@ -50,11 +50,11 @@ const Actions = styled.div`
 `
 
 const StyledButton = styled(Button)`
-    width: 220px;
-    height: 50px;
-    background: #FFB300;
-    border-radius: 10px;
-    border: 0px;
+  width: 220px;
+  height: 50px;
+  background: #ffb300;
+  border-radius: 10px;
+  border: 0px;
 `
 
 const StyledBanana = styled(BananaIcon)`
@@ -115,17 +115,21 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardHeader>
-          <StyledBanana />
-          <StyledBanana2 />
-          <StyledBananaPair />
-          <Heading size="xl"  mb="0px" color="white">{TranslateString(542, 'Farms &')}<br/>{TranslateString(542, 'Staking')}</Heading>
+        <StyledBanana />
+        <StyledBanana2 />
+        <StyledBananaPair />
+        <Heading size="xl" mb="0px" color="white">
+          {TranslateString(542, 'Farms &')}
+          <br />
+          {TranslateString(542, 'Staking')}
+        </Heading>
       </CardHeader>
       <CardBody>
         <Block>
           <BananaHarvestBalance />
           <FlexRow>
-          <BananaHarvestUsdBalance />
-          <Label>{TranslateString(544, 'in BANANA to Harvest')}</Label>
+            <BananaHarvestUsdBalance />
+            <Label>{TranslateString(544, 'in BANANA to Harvest')}</Label>
           </FlexRow>
         </Block>
         <Block>

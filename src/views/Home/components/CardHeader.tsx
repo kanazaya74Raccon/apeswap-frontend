@@ -12,7 +12,7 @@ import { CardHeader as UIKitCardHeader } from '@apeswapfinance/uikit'
 // background: ${({ theme }) => getBackground(theme)};
 
 const CardHeader = styled(UIKitCardHeader)`
-  background-color: #A16552 !important;
+  background-color: #a16552 !important;
   background: none;
   position: relative;
   text-align: center;

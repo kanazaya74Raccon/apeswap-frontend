@@ -37,9 +37,13 @@ const WelcomeCard = () => {
   return (
     <StyledFlex flexDirection="column" alignItems="center">
       <StyledPromoCard>
-          <CardBody>
-          <img src="/images/ape-banana-frenzy.svg" alt="banana frenzy" style={{width: 400, height: '100%', marginTop: '-60px'}}/>
-          </CardBody>
+        <CardBody>
+          <img
+            src="/images/ape-banana-frenzy.svg"
+            alt="banana frenzy"
+            style={{ width: 400, height: '100%', marginTop: '-60px' }}
+          />
+        </CardBody>
       </StyledPromoCard>
       <Heading as="h1" size="lg" mb="24px" color="secondary">
         {TranslateString(576, 'Welcome all Apes!')}

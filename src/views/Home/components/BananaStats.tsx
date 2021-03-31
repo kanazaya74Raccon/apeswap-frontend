@@ -30,7 +30,7 @@ const GreyRow = styled.div`
   justify-content: space-between;
   padding-bottom: 4px;
   padding-top: 4px;
-  background: rgb(196, 196, 196, .2);
+  background: rgb(196, 196, 196, 0.2);
 `
 
 const BananaStats = () => {
@@ -45,7 +45,6 @@ const BananaStats = () => {
   const StyledHeading = styled(Heading)`
     text-align: center;
   `
-
 
   return (
     <StyledBananaStats>

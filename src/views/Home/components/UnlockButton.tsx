@@ -12,10 +12,10 @@ const UnlockButton = (props) => {
   const StyledButton = styled(Button)`
     width: 220px;
     height: 50px;
-    background: #FFB300;
+    background: #ffb300;
     border-radius: 10px;
     border: 0px;
-`
+  `
 
   return (
     <StyledButton onClick={onPresentConnectModal} {...props}>
