@@ -12,13 +12,13 @@ const PersonalTvl = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '60px' }}>
+      <Text color="white" style={{ lineHeight: '60px' }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )
   }
 
-  return <CardValue fontSize="28px" decimals={0} value={tvl} prefix="$" />
+  return <CardValue fontSize="28px" decimals={0} value={tvl} prefix="$" color="white"/>
 }
 
 export default PersonalTvl

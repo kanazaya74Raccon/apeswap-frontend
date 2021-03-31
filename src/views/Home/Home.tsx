@@ -8,27 +8,7 @@ import BananaStats from 'views/Home/components/BananaStats'
 import TotalValueLockedCard from 'views/Home/components/TotalValueLockedCard'
 import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import PromoCard from './components/PromoCard'
-
-const Hero = styled.div`
-  align-items: center;
-  background-image: url('/images/pan-bg2.svg');
-  background-repeat: no-repeat;
-  background-position: top center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: auto;
-  margin-bottom: 32px;
-  padding-top: 116px;
-  text-align: center;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
-    background-position: left center, right center;
-    height: 165px;
-    padding-top: 0;
-  }
-`
+import WelcomeCard from './components/WelcomeCard'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -82,16 +62,11 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'Welcome all Apes!')}
-        </Heading>
-        <Text>{TranslateString(578, 'Why be a human, when you can be an ape?')}</Text>
-      </Hero>
       <div>
-        <Card>
+        <Cards>
+          <WelcomeCard />
           <PromoCard />
-        </Card>
+        </Cards>
         <Cards>
           <FarmStakingCard />
           <BananaStats />

@@ -12,6 +12,7 @@ import CardValue from './CardValue'
 const StyledBananaStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
+  max-width: 427px;
 `
 
 const Row = styled.div`
@@ -19,7 +20,17 @@ const Row = styled.div`
   display: flex;
   font-size: 14px;
   justify-content: space-between;
-  margin-bottom: 8px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+`
+const GreyRow = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  background: rgb(196, 196, 196, .2);
 `
 
 const BananaStats = () => {
@@ -31,24 +42,29 @@ const BananaStats = () => {
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const marketCap = bananaPriceUsd.toNumber() * bananaSupply
 
+  const StyledHeading = styled(Heading)`
+    text-align: center;
+  `
+
+
   return (
     <StyledBananaStats>
       <CardBody>
-        <Heading size="xl" mb="24px">
+        <StyledHeading size="xl" mb="24px">
           {TranslateString(534, 'Banana Stats')}
-        </Heading>
-        <Row>
+        </StyledHeading>
+        <GreyRow>
           <Text fontSize="14px">{TranslateString(536, 'Total BANANA Supply')}</Text>
           {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} />}
-        </Row>
+        </GreyRow>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'USD Market Cap')}</Text>
           {marketCap && <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" />}
         </Row>
-        <Row>
+        <GreyRow>
           <Text fontSize="14px">{TranslateString(538, 'Total BANANA Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={getBalanceNumber(burnedBalance)} />
-        </Row>
+        </GreyRow>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New BANANA/block')}</Text>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} />

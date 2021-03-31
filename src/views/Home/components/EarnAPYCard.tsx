@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton, ApeIcon } from '@apeswapfinance/uikit'
 import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
@@ -11,7 +11,9 @@ import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
+  background: ${({ theme }) => (theme.isDark ? 'black' : '#A16552')};
   width: 100%;
+  max-height: 500px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
@@ -28,7 +30,10 @@ const VerticalBody = styled(CardBody)`
 `
 
 const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
-  line-height: 44px;
+  font-size: 30px;
+  line-height: 45px;
+  text-align: center;
+  letter-spacing: 0.05em;
 `
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
@@ -91,11 +96,12 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
+      <ApeIcon width="400px" style={{opacity: .1, position: 'absolute', right: '-40px', top: '10px'}}/> 
       <VerticalBody>
-        <Heading color="contrast" size="lg">
+        <Heading color="white" size="sm" fontSize="16px">
           Earn up to
         </Heading>
-        <CardMidContent color="#af6e5a">
+        <CardMidContent color="white">
           {getHighestAPY() ? (
             `${getHighestAPY()}% ${TranslateString(736, 'APR')}`
           ) : (
@@ -103,11 +109,11 @@ const EarnAPYCard = () => {
           )}
         </CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="contrast" size="lg">
+          <Heading color="white" size="sm">
             in Farms
           </Heading>
           <NavLink exact activeClassName="active" to="/farms" id="farm-apy-cta">
-            <ArrowForwardIcon mt={30} color="primary" />
+            <ArrowForwardIcon mt={30} color="white" />
           </NavLink>
         </Flex>
       </VerticalBody>

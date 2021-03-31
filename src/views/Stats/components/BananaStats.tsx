@@ -24,61 +24,73 @@ const Row = styled.div`
   margin-bottom: 8px;
 `
 
+const StyledHeading = styled(Heading)`
+  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+`
+
+const StyledText = styled(Text)`
+  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+`
+
+const StyledCardValue = styled(CardValue)`
+  color: ${({ theme }) => theme.isDark ? "white" : "#af6e5aff"}
+`
+
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
   const TranslateString = useI18n()
   const price = usePriceBananaBusd()
   return (
     <StyledBananaStats>
       <CardBody>
-        <Heading size="xl" mb="24px">
+        <StyledHeading size="xl" mb="24px">
           {TranslateString(534, 'Your Ape Stats')}
-        </Heading>
+        </StyledHeading>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'TVL All Pools')}</Text>
-          <CardValue fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
+          <StyledText fontSize="14px">{TranslateString(536, 'TVL All Pools')}</StyledText>
+          <StyledCardValue fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'BANANA Price')}</Text>
-          <CardValue fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
+          <StyledText fontSize="14px">{TranslateString(536, 'BANANA Price')}</StyledText>
+          <StyledCardValue fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
-          <Text fontSize="14px">{TranslateString(538, 'Your BANANA earnings ($)')}</Text>
-          <Text fontSize="14px" style={{ textAlign: 'end' }}>
+          <StyledText fontSize="14px">{TranslateString(538, 'Your BANANA earnings ($)')}</StyledText>
+          <StyledText fontSize="14px" style={{ textAlign: 'end' }}>
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerDay} decimals={2} prefix="Daily: " />
-            <CardValue fontSize="12px" value={stats.dollarsEarnedPerDay} decimals={2} prefix="($" suffix=")" />
+            <StyledCardValue fontSize="14px" value={stats.bananasEarnedPerDay} decimals={2} prefix="Daily: " />
+            <StyledCardValue fontSize="12px" value={stats.dollarsEarnedPerDay} decimals={2} prefix="($" suffix=")" />
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerWeek} decimals={2} prefix="Weekly: " />
-            <CardValue fontSize="12px" value={stats.dollarsEarnedPerWeek} decimals={2} prefix="($" suffix=")" />
+            <StyledCardValue fontSize="14px" value={stats.bananasEarnedPerWeek} decimals={2} prefix="Weekly: " />
+            <StyledCardValue fontSize="12px" value={stats.dollarsEarnedPerWeek} decimals={2} prefix="($" suffix=")" />
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerMonth} decimals={2} prefix="Monthly: " />
-            <CardValue fontSize="12px" value={stats.dollarsEarnedPerMonth} decimals={2} prefix="($" suffix=")" />
+            <StyledCardValue fontSize="14px" value={stats.bananasEarnedPerMonth} decimals={2} prefix="Monthly: " />
+            <StyledCardValue fontSize="12px" value={stats.dollarsEarnedPerMonth} decimals={2} prefix="($" suffix=")" />
             <Divider />
-            <CardValue fontSize="14px" value={stats.bananasEarnedPerYear} decimals={2} prefix="Yearly: " />
-            <CardValue fontSize="12px" value={stats.dollarsEarnedPerYear} decimals={2} prefix="($" suffix=")" />
+            <StyledCardValue fontSize="14px" value={stats.bananasEarnedPerYear} decimals={2} prefix="Yearly: " />
+            <StyledCardValue fontSize="12px" value={stats.dollarsEarnedPerYear} decimals={2} prefix="($" suffix=")" />
             <Divider />
-          </Text>
+          </StyledText>
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
-          <Text fontSize="14px">{TranslateString(538, 'Your APR (%)')}</Text>
-          <Text fontSize="14px" style={{ textAlign: 'end' }}>
-            <CardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Daily" suffix="%" />
-            <CardValue
+          <StyledText fontSize="14px">{TranslateString(538, 'Your APR (%)')}</StyledText>
+          <StyledText fontSize="14px" style={{ textAlign: 'end' }}>
+            <StyledCardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Daily" suffix="%" />
+            <StyledCardValue
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}
               decimals={2}
               prefix="Weekly"
               suffix="%"
             />
-            <CardValue
+            <StyledCardValue
               fontSize="14px"
               value={stats.aggregateAprPerMonth * 100}
               decimals={2}
               prefix="Monthly"
               suffix="%"
             />
-            <CardValue fontSize="14px" value={stats.aggregateApr * 100} decimals={2} prefix="Yearly" suffix="%" />
-          </Text>
+            <StyledCardValue fontSize="14px" value={stats.aggregateApr * 100} decimals={2} prefix="Yearly" suffix="%" />
+          </StyledText>
         </Row>
       </CardBody>
     </StyledBananaStats>

@@ -29,9 +29,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   tokenSymbol,
 }) => {
   return (
-    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
+    <Wrapper justifyContent="center" alignItems="center" mb="12px">
       <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
-      <Flex flexDirection="column" alignItems="flex-end">
+      <Flex flexDirection="column" alignItems="flex-end" justifyContent="center">
         <Heading mb="4px">{lpLabel}</Heading>
         <Flex justifyContent="center">
           {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
