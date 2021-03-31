@@ -71,13 +71,13 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
   stats.aggregateAprPerWeek = (stats.aggregateApr * 7) / 365
   stats.aggregateAprPerMonth = (stats.aggregateApr * 30) / 365
 
-  stats.dollarsEarnedPerWeek = stats.dollarsEarnedPerDay * 7;
-  stats.dollarsEarnedPerMonth = stats.dollarsEarnedPerDay * 30;
-  stats.dollarsEarnedPerYear = stats.dollarsEarnedPerDay * 365;
+  stats.dollarsEarnedPerWeek = stats.dollarsEarnedPerDay * 7
+  stats.dollarsEarnedPerMonth = stats.dollarsEarnedPerDay * 30
+  stats.dollarsEarnedPerYear = stats.dollarsEarnedPerDay * 365
 
-  stats.bananasEarnedPerWeek = stats.bananasEarnedPerDay * 7;
-  stats.bananasEarnedPerMonth = stats.bananasEarnedPerDay * 30;
-  stats.bananasEarnedPerYear = stats.bananasEarnedPerDay * 365;
+  stats.bananasEarnedPerWeek = stats.bananasEarnedPerDay * 7
+  stats.bananasEarnedPerMonth = stats.bananasEarnedPerDay * 30
+  stats.bananasEarnedPerYear = stats.bananasEarnedPerDay * 365
   return stats
 }
 
