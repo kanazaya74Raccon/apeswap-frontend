@@ -5,6 +5,12 @@ const chainId = process.env.REACT_APP_CHAIN_ID
 export const getBananaAddress = () => {
   return addresses.banana[chainId]
 }
+export const getGoldenBananaAddress = () => {
+  return addresses.goldenBanana[chainId]
+}
+export const getTreasuryAddress = () => {
+  return addresses.treasury[chainId]
+}
 export const getSyrupAddress = () => {
   return addresses.syrup[chainId]
 }

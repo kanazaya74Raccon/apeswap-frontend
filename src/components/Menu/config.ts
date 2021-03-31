@@ -42,6 +42,11 @@ const config: MenuEntry[] = [
     href: '/iao',
   },
   {
+    label: 'ApeZone',
+    icon: 'IfoIcon',
+    href: '/apezone',
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
