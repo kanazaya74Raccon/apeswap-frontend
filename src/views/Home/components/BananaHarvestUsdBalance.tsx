@@ -29,7 +29,7 @@ const BananaHarvestUsdBalance = () => {
     )
   }
 
-  return <CardValue decimals={2} value={pending} prefix="~$" fontSize="12px" color="#38A611" text="poppins"/>
+  return <CardValue decimals={2} value={pending} prefix="~$" fontSize="12px" color="#38A611" text="poppins" />
 }
 
 export default BananaHarvestUsdBalance

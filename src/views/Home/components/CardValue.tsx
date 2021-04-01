@@ -23,13 +23,13 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px',
       decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
   })
 
-  const StyledTextColor = styled(Text)<{text: string}>`
+  const StyledTextColor = styled(Text)<{ text: string }>`
     color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
-    font-family: ${text === "poppins" ? 'Poppins': 'Titan One'};
+    font-family: ${text === 'poppins' ? 'Poppins' : 'Titan One'};
   `
 
-  const StyledText = styled(Text)<{text: string}>`
-    font-family: ${text === "poppins" ? 'Poppins': 'Titan One'};
+  const StyledText = styled(Text)<{ text: string }>`
+    font-family: ${text === 'poppins' ? 'Poppins' : 'Titan One'};
   `
 
   const updateValue = useRef(update)

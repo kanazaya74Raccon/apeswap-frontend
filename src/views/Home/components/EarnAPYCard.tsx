@@ -101,17 +101,18 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <img width="250px" style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }} src="/images/monkey.svg" alt="monkey" />
+      <img
+        width="250px"
+        style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }}
+        src="/images/monkey.svg"
+        alt="monkey"
+      />
       <VerticalBody>
         <Heading color="white" size="sm" fontSize="16px" mb="12px">
           {TranslateString(736, 'Earn up to APR')}
         </Heading>
-        <CardMidContent color="white"> 
-          {getHighestAPY() ? (
-            `${getHighestAPY()}%`
-          ) : (
-            <Skeleton animation="pulse" variant="rect" height="44px" />
-          )}
+        <CardMidContent color="white">
+          {getHighestAPY() ? `${getHighestAPY()}%` : <Skeleton animation="pulse" variant="rect" height="44px" />}
         </CardMidContent>
         <Flex justifyContent="flex-end">
           <StyledHeading color="white" size="sm" mt="30px">

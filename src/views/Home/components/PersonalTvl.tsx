@@ -12,7 +12,7 @@ const PersonalTvl = () => {
 
   if (!account) {
     return (
-      <Text color="white" style={{ lineHeight: '60px' }}>
+      <Text color="white" style={{ lineHeight: '30px' }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )

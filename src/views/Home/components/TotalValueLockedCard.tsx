@@ -26,14 +26,14 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: underline;
 `
 const StyledText = styled(Text)`
-font-family: Poppins;
-font-size: 12px;
-line-height: 18px;
-letter-spacing: 0.05em;
+  font-family: Poppins;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
 `
 
 const StyledHeading = styled(Heading)`
-text-align: center;
+  text-align: center;
 `
 
 const TotalValueLockedCard = () => {
@@ -48,7 +48,12 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <img width="250px" style={{ opacity: 0.1, position: 'absolute', right: '-80px', top: '0px' }} src="/images/monkey.svg" alt="monkey" />
+      <img
+        width="250px"
+        style={{ opacity: 0.1, position: 'absolute', right: '-80px', top: '0px' }}
+        src="/images/monkey.svg"
+        alt="monkey"
+      />
       <CardBody>
         <Heading size="sm" mb="12px" color="white">
           {TranslateString(999, 'Total Value Locked (TVL)')}
