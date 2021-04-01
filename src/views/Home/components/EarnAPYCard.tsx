@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton, ApeIcon } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@apeswapfinance/uikit'
 import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
 import BigNumber from 'bignumber.js'
@@ -11,21 +11,18 @@ import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  background: ${({ theme }) => (theme.isDark ? 'black' : '#A16552')};
-  width: 100%;
-  max-height: 500px;
+  display: flex;
+  flex: 1;
+  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : '#A16552')};
+  max-width: 427px;
+  max-height: 150px;
+  text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin: 0;
-    max-width: none;
   }
 `
 const VerticalBody = styled(CardBody)`
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(0, -50%);
   width: 100%;
 `
 
@@ -35,6 +32,14 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   text-align: center;
   letter-spacing: 0.05em;
 `
+
+const StyledHeading = styled(Heading)`
+  font-family: Poppins;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+`
+
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
@@ -96,22 +101,22 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <ApeIcon width="400px" style={{ opacity: 0.1, position: 'absolute', right: '-40px', top: '10px' }} />
+      <img width="250px" style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }} src="/images/monkey.svg" alt="monkey" />
       <VerticalBody>
-        <Heading color="white" size="sm" fontSize="16px">
-          Earn up to
+        <Heading color="white" size="sm" fontSize="16px" mb="12px">
+          {TranslateString(736, 'Earn up to APR')}
         </Heading>
-        <CardMidContent color="white">
+        <CardMidContent color="white"> 
           {getHighestAPY() ? (
-            `${getHighestAPY()}% ${TranslateString(736, 'APR')}`
+            `${getHighestAPY()}%`
           ) : (
             <Skeleton animation="pulse" variant="rect" height="44px" />
           )}
         </CardMidContent>
-        <Flex justifyContent="space-between">
-          <Heading color="white" size="sm">
-            in Farms
-          </Heading>
+        <Flex justifyContent="flex-end">
+          <StyledHeading color="white" size="sm" mt="30px">
+            In Farms
+          </StyledHeading>
           <NavLink exact activeClassName="active" to="/farms" id="farm-apy-cta">
             <ArrowForwardIcon mt={30} color="white" />
           </NavLink>

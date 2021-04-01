@@ -19,7 +19,8 @@ import CardHeader from './CardHeader'
 const StyledFarmStakingCard = styled(Card)`
   background-repeat: no-repeat;
   background-position: top right;
-  min-height: 376px;
+  max-width: 427px;
+  min-height: 250px;
   text-align: center;
   overflow: visible;
 `
@@ -83,6 +84,10 @@ const StyledBananaPair = styled(BananaPairIcon)`
   z-index: 100;
 `
 
+const StyledLabel = styled(Label)`
+  font-family: Poppins;
+`
+
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -129,14 +134,14 @@ const FarmedStakingCard = () => {
           <BananaHarvestBalance />
           <FlexRow>
             <BananaHarvestUsdBalance />
-            <Label>{TranslateString(544, 'in BANANA to Harvest')}</Label>
+            <StyledLabel>{TranslateString(544, 'in BANANA to Harvest')}</StyledLabel>
           </FlexRow>
         </Block>
         <Block>
           <BananaWalletBalance />
           <FlexRow>
             <BananaWalletUsdBalance />
-            <Label>{TranslateString(546, 'in BANANA in Wallet')}</Label>
+            <StyledLabel>{TranslateString(546, 'in BANANA in Wallet')}</StyledLabel>
           </FlexRow>
         </Block>
         <Actions>

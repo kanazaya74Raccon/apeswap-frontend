@@ -13,23 +13,17 @@ const StyledPromoCard = styled(Card)`
   margin-top: 30px;
 `
 
-const StyledLink = styled.a`
-  font-weight: 500;
-  color: #ffb300;
-  display: block;
-`
-
-const StyledNavLink = styled(NavLink)`
-  font-weight: 500;
-  color: #ffb300;
-  display: block;
-`
-const StyledImage = styled(Image)`
-  display: inline-block;
+const StyledHeading = styled(Heading)`
+  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const StyledFlex = styled(Flex)`
   text-align: center;
+`
+
+const StyledText = styled(Text)`
+  font-family: Poppins;
+  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const WelcomeCard = () => {
@@ -45,10 +39,10 @@ const WelcomeCard = () => {
           />
         </CardBody>
       </StyledPromoCard>
-      <Heading as="h1" size="lg" mb="24px" color="secondary">
+      <StyledHeading as="h1" size="lg" mb="6px" color="secondary">
         {TranslateString(576, 'Welcome all Apes!')}
-      </Heading>
-      <Text>{TranslateString(578, 'Why be a human, when you can be an ape?')}</Text>
+      </StyledHeading>
+      <StyledText>{TranslateString(578, 'Why be a human, when you')}<br/>{TranslateString(578, 'can be an ape?')}</StyledText>
     </StyledFlex>
   )
 }

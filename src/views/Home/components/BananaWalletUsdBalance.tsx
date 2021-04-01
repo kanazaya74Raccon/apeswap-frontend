@@ -13,12 +13,6 @@ const BananaHarvestUsdBalance = () => {
   const bananaBalance = useTokenBalance(getBananaAddress())
   const { account } = useWallet()
 
-  // /* eslint-disable no-debugger */
-  //   const a = getBalanceNumber(bananaBalance);
-  //   debugger;
-  //   /* eslint-disable no-debugger */
-  //   // const bananaPriceUsd = getBalanceNumber(bananaBalance)
-
   const bananaPriceUsd = usePriceBananaBusd().toNumber() * getBalanceNumber(bananaBalance)
 
   if (!account) {
@@ -29,7 +23,7 @@ const BananaHarvestUsdBalance = () => {
     )
   }
 
-  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611" />
+  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611" text="poppins"/>
 }
 
 export default BananaHarvestUsdBalance
