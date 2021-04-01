@@ -65,6 +65,7 @@ const StyledBanana = styled(BananaIcon)`
   top: -25px;
   z-index: 100;
   transform: rotate(100deg);
+  drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
 const StyledBanana2 = styled(BananaIcon)`
@@ -74,6 +75,7 @@ const StyledBanana2 = styled(BananaIcon)`
   left: 30px;
   z-index: 100;
   transform: rotate(10deg);
+  drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
 const StyledBananaPair = styled(BananaPairIcon)`
@@ -82,6 +84,7 @@ const StyledBananaPair = styled(BananaPairIcon)`
   right: -10px;
   top: 15px;
   z-index: 100;
+  drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
 const StyledLabel = styled(Label)`
