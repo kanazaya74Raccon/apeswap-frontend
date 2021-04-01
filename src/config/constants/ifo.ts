@@ -98,7 +98,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'jediyield',
-    address: '0x50670b3a14D4ABEDd45C91B9F8a2b01DE6F93F17',
+    address: '0xCBe256573185d767EfD4a797CB360880728B8fD8',
     isActive: true,
     name: 'Jedi Yield',
     subTitle: 'The only app you need for all your yield farming needs',
