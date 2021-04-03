@@ -16,8 +16,8 @@ const Container = styled.div`
   }
 `
 const StyledIconButton = styled(IconButton)`
- margin-left: 2px;
- margin-right: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
 `
 
 const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onToggle }) => {

@@ -18,7 +18,9 @@ import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
-  liquidity?: BigNumber
+  liquidity?: BigNumber,
+  addLiquidityUrl?: string
+  
 }
 
 const RainbowLight = keyframes`

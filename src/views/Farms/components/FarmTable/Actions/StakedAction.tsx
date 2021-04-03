@@ -1,6 +1,9 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback , useRef} from 'react'
+import Reward from 'react-rewards'
+import rewards from 'config/constants/rewards'
+import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Button, useModal, IconButton, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
+import { Button, Flex, Heading, useModal, IconButton, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useFarmUser, useStats } from 'state/hooks'
@@ -23,16 +26,29 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, 
-// quoteToken, 
-// token 
+const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
+  pid,
+  lpSymbol,
+  lpAddresses,
+  addLiquidityUrl
+  // quoteToken,
+  // token
 }) => {
   const TranslateString = useI18n()
+
+const rewardRefPos = useRef(null)
+  const rewardRefNeg = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+
+  const onStake = useReward(rewardRefPos, useStake(pid).onStake)
+  const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
+
+
+
+
   const { account }: { account: string } = useWallet()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
-  const { onStake } = useStake(pid)
-  const { onUnstake } = useUnstake(pid)
   const web3 = useWeb3()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -46,36 +62,59 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-
-
-
-
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === pid)
-    const totalValuePersonalFormated = filteredFarmStats
+  const totalValuePersonalFormated = filteredFarmStats
     ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-  // const [onPresentDeposit] = useModal(
-  //   <DepositModal max={tokenBalance} onConfirm={onStake} tokenName={lpSymbol} 
-  //   // addLiquidityUrl={addLiquidityUrl} 
-  //   />,
-  // )
-  // const [onPresentWithdraw] = useModal(<WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={lpSymbol} />)
+  
+  const [onPresentDeposit] = useModal(
+    <DepositModal
+      max={tokenBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefPos.current?.rewardMe()
+        })
+      }}
+      tokenName={lpSymbol}
+      addLiquidityUrl={addLiquidityUrl}
+    />,
+  )
+  const [onPresentWithdraw] = useModal(
+    <WithdrawModal
+      max={stakedBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('removed')
+        await onUnstake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefNeg.current?.rewardMe()
+        })
+      }}
+      tokenName={lpSymbol}
+    />,
+  )
 
-  // const lpContract = getBep20Contract(lpAddress, web3)
-
-  // const { onApprove } = useApprove(lpContract)
-
-  // const handleApprove = useCallback(async () => {
-  //   try {
-  //     setRequestedApproval(true)
-  //     await onApprove()
-  //     setRequestedApproval(false)
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }, [onApprove])
+  const renderStakingButtons = () => {
+    return rawStakedBalance === 0 ? (
+      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+    ) : (
+      <IconButtonWrapper>
+        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="primary" width="14px" height="14px"/>
+          </IconButton>
+        </Reward>
+        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+          <IconButton variant="tertiary" onClick={onPresentDeposit}>
+            <AddIcon color="primary" width="20px" height="20px"/>
+          </IconButton>
+        </Reward>
+      </IconButtonWrapper>
+    )
+  }
 
   if (!account) {
     return (
@@ -111,6 +150,9 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
                 <AddIcon color="primary" width="14px" />
               </IconButton>
             </IconButtonWrapper> */}
+            <Flex justifyContent="space-between" alignItems="center">
+            {renderStakingButtons()}
+            </Flex>
           </ActionContent>
         </ActionContainer>
       )

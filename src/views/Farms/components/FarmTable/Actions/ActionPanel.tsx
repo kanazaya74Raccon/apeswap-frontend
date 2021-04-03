@@ -7,6 +7,8 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { communityFarms } from 'config/constants'
 import { CommunityTag, CoreTag } from 'components/Tags'
 
+import { BASE_ADD_LIQUIDITY_URL } from 'config'
+
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
@@ -112,6 +114,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://bscscan.com/address/${lpAddress}`
   const isCommunityFarm = communityFarms.includes(farm.lpSymbol)
+  
+  const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   return (
     <Container>
@@ -124,9 +130,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
           </StakeContainer>
         )}
         <StyledLinkExternal href={bsc}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>
-        <TagsContainer>
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-        </TagsContainer>
+        <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal>
+        <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
       </InfoContainer>
       <ValueContainer>
         <ValueWrapper>
@@ -139,9 +144,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
         </ValueWrapper>
         <ValueWrapper>
           <Text>{TranslateString(999, 'Liquidity')}</Text>
-          <Liquidity
-          farm={farm} 
-          />
+          <Liquidity farm={farm} />
         </ValueWrapper>
       </ValueContainer>
       <ActionContainer>

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { HelpIcon, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
@@ -8,7 +8,7 @@ import { QuoteToken } from 'config/constants/types'
 import Tooltip from '../Tooltip/Tooltip'
 
 export interface LiquidityProps {
-  farm: any, 
+  farm: any
 }
 
 const LiquidityWrapper = styled.div`
@@ -36,12 +36,10 @@ const Container = styled.div`
   }
 `
 
-const Liquidity: React.FunctionComponent<LiquidityProps> = ({ farm}) => {
-
+const Liquidity: React.FunctionComponent<LiquidityProps> = ({ farm }) => {
   const bananaPrice = usePriceBananaBusd()
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
-
 
   const totalValue = useMemo(() => {
     if (!farm.lpTotalInQuoteToken) {
@@ -62,7 +60,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ farm}) => {
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-  
+
   const TranslateString = useI18n()
 
   return (

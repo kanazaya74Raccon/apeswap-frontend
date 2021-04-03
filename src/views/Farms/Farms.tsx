@@ -10,7 +10,14 @@ import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd, useFarmFromSymbol, useFarmUser } from 'state/hooks'
+import {
+  useFarms,
+  usePriceBnbBusd,
+  usePriceBananaBusd,
+  usePriceEthBusd,
+  useFarmFromSymbol,
+  useFarmUser,
+} from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
@@ -66,6 +73,7 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
+  margin-bottom: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
@@ -79,6 +87,7 @@ const ViewControls = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 30px;
 
   > div {
     padding: 8px 0px;
@@ -141,7 +150,7 @@ const Farms: React.FC = () => {
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
-    const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+  const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
     switch (sortOption) {
       case 'apr':
         return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
@@ -152,7 +161,7 @@ const Farms: React.FC = () => {
           'desc',
         )
       case 'earned':
-        return orderBy(farms, (farm: FarmWithStakedValue) => (farm.userData ? farm.userData.earnings : 0), 'desc')
+        return orderBy(farms, (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0), 'desc')
       case 'liquidity':
         return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
       default:
@@ -160,11 +169,10 @@ const Farms: React.FC = () => {
     }
   }
 
-
   // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
-    const farmsList = useCallback(
+  const farmsList = useCallback(
     (farmsToDisplay, removed: boolean) => {
       const bananaPriceVsBNB = new BigNumber(
         farmsLP.find((farm) => farm.pid === BANANA_POOL_PID)?.tokenPriceVsQuote || 0,
@@ -224,12 +232,11 @@ const Farms: React.FC = () => {
   farmsStaked = sortFarms(farmsStaked)
 
   const rowData = farmsStaked.map((farm) => {
-
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase()
 
     const row: RowProps = {
       apr: {
-        value: farm.apy && Number(farm.apy*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apy && Number(farm.apy * 100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
         multiplier: farm.multiplier,
         lpLabel,
         bananaPrice,
@@ -286,29 +293,29 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStaked.map((farm) => (
-              <FarmCard 
-              key={farm.pid} 
-              farm={farm} 
-              bananaPrice={bananaPrice} 
-              account={account} 
-              removed={false} 
-              bnbPrice={bnbPrice}
-              ethPrice={ethPriceUsd}
-              ethereum={ethereum}
+              <FarmCard
+                key={farm.pid}
+                farm={farm}
+                bananaPrice={bananaPrice}
+                account={account}
+                removed={false}
+                bnbPrice={bnbPrice}
+                ethPrice={ethPriceUsd}
+                ethereum={ethereum}
               />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStaked.map((farm) => (
-              <FarmCard 
-              key={farm.pid} 
-              farm={farm} 
-              bananaPrice={bananaPrice} 
-              account={account} 
-              removed 
-              bnbPrice={bnbPrice}
-              ethPrice={ethPriceUsd}
-              ethereum={ethereum}
+              <FarmCard
+                key={farm.pid}
+                farm={farm}
+                bananaPrice={bananaPrice}
+                account={account}
+                removed
+                bnbPrice={bnbPrice}
+                ethPrice={ethPriceUsd}
+                ethereum={ethereum}
               />
             ))}
           </Route>
@@ -324,9 +331,9 @@ const Farms: React.FC = () => {
   return (
     <>
       <Header>
-      <Heading as="h1" size="lg" color="secondary" mb="12px" style={{ textAlign: 'center' }}>
-        {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-      </Heading>
+        <Heading as="h1" size="lg" color="secondary" mb="12px" style={{ textAlign: 'center' }}>
+          {TranslateString(999, 'Stake LP tokens to earn BANANA')}
+        </Heading>
       </Header>
       <Page>
         <ControlContainer>
