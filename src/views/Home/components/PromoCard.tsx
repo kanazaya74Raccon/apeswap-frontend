@@ -26,20 +26,31 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <NavLink to="/iao">
+      <a
+        href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+        target="_blank"
+        rel="noreferrer"
+      >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🚀 {TranslateString(999, 'May the IAO be with you')} 🚀
+            ⚒️ Introducing the ApeSwap BUIDL Program ⚒️
           </Heading>
           <>
-            <Text color="textSubtle">🌑 This time we are taking you to a galaxy far far away with JediYield 🌑</Text>
-            <Text color="textSubtle">Launching Apr. 2, 03:00 UTC </Text>
             <Text color="textSubtle">
-              <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
+              If you are an up and coming project on BSC you can apply to get into the jungle
+            </Text>
+            <Text color="textSubtle">
+              <StyledLink
+                href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Come grow with us 🚀
+              </StyledLink>
             </Text>
           </>
         </CardBody>
-      </NavLink>
+      </a>
     </StyledPromoCard>
   )
 }
