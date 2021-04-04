@@ -82,12 +82,12 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       <IconButtonWrapper>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
           <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="primary" width="14px" height="14px"/>
+            <MinusIcon color="primary" width="14px" height="14px" />
           </IconButton>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
           <IconButton variant="tertiary" onClick={onPresentDeposit}>
-            <AddIcon color="primary" width="20px" height="20px"/>
+            <AddIcon color="primary" width="20px" height="20px" />
           </IconButton>
         </Reward>
       </IconButtonWrapper>

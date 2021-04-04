@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
-
+import { usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
+import { QuoteToken } from 'config/constants/types'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
+
+
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
@@ -77,6 +80,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
+  const bananaPrice = usePriceBananaBusd()
+  const bnbPrice = usePriceBnbBusd()
+  const ethPrice = usePriceEthBusd()
+
+  const farm = details;
+
   const handleRenderRow = () => {
     if (!isXs) {
       return (
@@ -100,6 +109,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 )
               case 'apr':
                 return (
+                  <>
                   <td key={key}>
                     <CellInner>
                       <CellLayout label={TranslateString(736, 'APR')}>
@@ -107,6 +117,14 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                       </CellLayout>
                     </CellInner>
                   </td>
+                  <td key={key}>
+                    <CellInner>
+                      <CellLayout label={TranslateString(736, 'LIQUIDITY')}>
+                        <Liquidity farm={details} />
+                      </CellLayout>
+                    </CellInner>
+                  </td>
+                  </>
                 )
               default:
                 return (

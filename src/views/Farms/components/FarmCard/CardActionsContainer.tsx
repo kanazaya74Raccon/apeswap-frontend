@@ -19,7 +19,7 @@ const Action = styled.div`
 `
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
-  liquidity?: BigNumber,
+  liquidity?: BigNumber
   addLiquidityUrl?: string
 }
 

@@ -114,7 +114,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://bscscan.com/address/${lpAddress}`
   const isCommunityFarm = communityFarms.includes(farm.lpSymbol)
-  
+
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`

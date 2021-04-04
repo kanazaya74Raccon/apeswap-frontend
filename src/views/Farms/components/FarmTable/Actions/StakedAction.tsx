@@ -1,4 +1,4 @@
-import React, { useState, useCallback , useRef} from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
@@ -30,21 +30,18 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
   pid,
   lpSymbol,
   lpAddresses,
-  addLiquidityUrl
+  addLiquidityUrl,
   // quoteToken,
   // token
 }) => {
   const TranslateString = useI18n()
 
-const rewardRefPos = useRef(null)
+  const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
-
-
-
 
   const { account }: { account: string } = useWallet()
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -68,7 +65,7 @@ const rewardRefPos = useRef(null)
   const totalValuePersonalFormated = filteredFarmStats
     ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
-  
+
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={tokenBalance}
@@ -104,12 +101,12 @@ const rewardRefPos = useRef(null)
       <IconButtonWrapper>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
           <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="primary" width="14px" height="14px"/>
+            <MinusIcon color="primary" width="14px" height="14px" />
           </IconButton>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
           <IconButton variant="tertiary" onClick={onPresentDeposit}>
-            <AddIcon color="primary" width="20px" height="20px"/>
+            <AddIcon color="primary" width="20px" height="20px" />
           </IconButton>
         </Reward>
       </IconButtonWrapper>
@@ -151,7 +148,7 @@ const rewardRefPos = useRef(null)
               </IconButton>
             </IconButtonWrapper> */}
             <Flex justifyContent="space-between" alignItems="center">
-            {renderStakingButtons()}
+              {renderStakingButtons()}
             </Flex>
           </ActionContent>
         </ActionContainer>
