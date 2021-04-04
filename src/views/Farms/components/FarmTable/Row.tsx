@@ -12,7 +12,6 @@ import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 
-
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
@@ -84,7 +83,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
 
-  const farm = details;
+  const farm = details
 
   const handleRenderRow = () => {
     if (!isXs) {
@@ -110,20 +109,20 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               case 'apr':
                 return (
                   <>
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout label={TranslateString(736, 'APR')}>
-                        <Apr {...props.apr} hideButton={isMobile} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout label={TranslateString(736, 'LIQUIDITY')}>
-                        <Liquidity farm={details} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
+                    <td key={key}>
+                      <CellInner>
+                        <CellLayout label={TranslateString(736, 'APR')}>
+                          <Apr {...props.apr} hideButton={isMobile} />
+                        </CellLayout>
+                      </CellInner>
+                    </td>
+                    <td key={key}>
+                      <CellInner>
+                        <CellLayout label={TranslateString(736, 'LIQUIDITY')}>
+                          <Liquidity farm={details} />
+                        </CellLayout>
+                      </CellInner>
+                    </td>
                   </>
                 )
               default:

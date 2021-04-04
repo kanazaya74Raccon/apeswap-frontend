@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useMemo } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
@@ -6,17 +6,16 @@ import styled from 'styled-components'
 import { Button, Flex, Heading, useModal, IconButton, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { provider } from 'web3-core'
+import { getContract } from 'utils/erc20'
 import { useFarmUser, useStats } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useI18n from 'hooks/useI18n'
 import { useApprove } from 'hooks/useApprove'
-// import { getBep20Contract } from 'utils/contractHelpers'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
-// import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
-import useWeb3 from 'hooks/useWeb3'
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -30,27 +29,46 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
   pid,
   lpSymbol,
   lpAddresses,
-  addLiquidityUrl,
-  // quoteToken,
-  // token
+  addLiquidityUrl
 }) => {
   const TranslateString = useI18n()
 
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
+  const rewardRef = useRef(null)
+
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
 
-  const { account }: { account: string } = useWallet()
+  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
-  const web3 = useWeb3()
-
-  const isApproved = account && allowance && allowance.isGreaterThan(0)
 
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+
+  const lpContract = useMemo(() => {
+    return getContract(ethereum as provider, lpAddress)
+  }, [ethereum, lpAddress])
+
+  const { onApprove } = useApprove(lpContract)
+
+  const handleApprove = useCallback(async () => {
+    try {
+      setRequestedApproval(true)
+      const sucess = await onApprove()
+      if (!sucess) setTypeOfReward('error')
+      else setTypeOfReward('rewardBanana')
+      setRequestedApproval(false)
+      rewardRef.current?.rewardMe()
+    } catch (e) {
+      console.error(e)
+    }
+  }, [onApprove])
+  const isApproved = account && allowance && allowance.isGreaterThan(0)
+
+  
   // const liquidityUrlPathParts = getLiquidityUrlPathParts({
   //   quoteTokenAddress: quoteToken.address,
   //   tokenAddress: token.address,
@@ -139,14 +157,6 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
               <Earned>{displayBalance}</Earned>
               <StakedStyle>~{totalValuePersonalFormated}USD</StakedStyle>
             </div>
-            {/* <IconButtonWrapper>
-              <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
-              </IconButton>
-              <IconButton variant="secondary" onClick={onPresentDeposit}>
-                <AddIcon color="primary" width="14px" />
-              </IconButton>
-            </IconButtonWrapper> */}
             <Flex justifyContent="space-between" alignItems="center">
               {renderStakingButtons()}
             </Flex>
@@ -161,11 +171,11 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
           <Subtle>{TranslateString(999, 'STAKE')} </Subtle>
           <Title>{lpSymbol}</Title>
         </ActionTitles>
-        {/* <ActionContent>
-          <Button width="100%" onClick={onPresentDeposit} variant="secondary">
+        <ActionContent>
+          <Button onClick={onPresentDeposit} variant="secondary">
             {TranslateString(999, 'Stake LP')}
           </Button>
-        </ActionContent> */}
+        </ActionContent>
       </ActionContainer>
     )
   }
@@ -176,9 +186,9 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
         <Subtle>{TranslateString(999, 'ENABLE FARM')}</Subtle>
       </ActionTitles>
       <ActionContent>
-        {/* <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+        <Button disabled={requestedApproval} onClick={handleApprove} variant="secondary">
           {TranslateString(999, 'Enable')}
-        </Button> */}
+        </Button>
       </ActionContent>
     </ActionContainer>
   )
