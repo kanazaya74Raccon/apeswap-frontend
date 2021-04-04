@@ -25,12 +25,7 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
-  pid,
-  lpSymbol,
-  lpAddresses,
-  addLiquidityUrl
-}) => {
+const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, addLiquidityUrl }) => {
   const TranslateString = useI18n()
 
   const rewardRefPos = useRef(null)
@@ -68,7 +63,6 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({
   }, [onApprove])
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
-  
   // const liquidityUrlPathParts = getLiquidityUrlPathParts({
   //   quoteTokenAddress: quoteToken.address,
   //   tokenAddress: token.address,
