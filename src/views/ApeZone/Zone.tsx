@@ -2,8 +2,10 @@ import React from 'react'
 import { BaseLayout } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import Divider from 'views/Farms/components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
+import Iao from './components/IAO/CurrentIao'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -32,10 +34,14 @@ const Zone = () => {
   const { account } = useWallet()
 
   return (
-    <Cards>
-      <BuyCard account={account} />
-      <SellCard account={account} />
-    </Cards>
+    <>
+      <Cards>
+        <BuyCard account={account} />
+        <SellCard account={account} />
+      </Cards>
+      <Divider />
+      <Iao />
+    </>
   )
 }
 export default Zone
