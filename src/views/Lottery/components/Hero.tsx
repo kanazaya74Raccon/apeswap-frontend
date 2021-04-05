@@ -72,7 +72,7 @@ const Hero = () => {
         <LeftWrapper>
           <Title>{TranslateString(999, 'The BANANA Lottery')}</Title>
           <Blurb>{TranslateString(999, 'Buy tickets with BANANA')}</Blurb>
-          <Blurb>{TranslateString(999, 'Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
+          <Blurb>{TranslateString(999, 'Win if 2, 3, or 4 of your ticket numbers match in the exact order.')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
           <LotteryProgress />
