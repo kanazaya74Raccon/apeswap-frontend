@@ -168,6 +168,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.eth,
   },
   {
+    pid: 22,
+    lpSymbol: 'IOTA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0D70924695B6Ae496F0A74A36bf79d47307dD519', // IOTA-BNB BananaPair
+    },
+    tokenSymbol: 'BAT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xd944f1d1e9d5f9bb90b62f9d45e447d989580782',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 20,
     lpSymbol: 'BAT-BNB LP',
     lpAddresses: {
