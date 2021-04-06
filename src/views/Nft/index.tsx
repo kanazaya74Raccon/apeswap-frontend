@@ -24,7 +24,7 @@ const Nft = () => {
             Non Fungible Apes
           </Heading>
           <OwnedNfts />
-          <Heading as="h2" size="lg" color="secondary" paddingTop='25px'>
+          <Heading as="h2" size="lg" color="secondary" paddingTop="25px">
             {TranslateString(999, 'The first 130!')}
           </Heading>
         </StyledHero>

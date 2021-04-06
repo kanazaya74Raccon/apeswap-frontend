@@ -52,7 +52,7 @@ const TierSvg = styled.div`
   right: 5%;
   mix-blend-mode: screen;
   font-size: 50px;
-  fill: rgba(255, 255, 255, .1);
+  fill: rgba(255, 255, 255, 0.1);
 `
 
 const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => {

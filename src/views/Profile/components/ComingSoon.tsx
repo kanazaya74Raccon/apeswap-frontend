@@ -1,5 +1,5 @@
 import React from 'react'
-import {MonkeyLightIcon, Flex, Heading } from '@apeswapfinance/uikit'
+import { MonkeyLightIcon, Flex, Heading } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 interface ComingSoonProps {
