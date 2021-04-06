@@ -60,6 +60,10 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
     reInitialize()
   }
 
+  const pad = (n, width) => {
+    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n
+  }
+
   const [onPresentTransferModal] = useModal(
     <TransferNftModal nft={nft} tokenId={nft.index} onSuccess={handleSuccess} />,
   )
@@ -70,7 +74,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
       <CardBody>
         <Header>
           <Heading>
-            {name} - {index < 10 ? `#000${index}` : `#00${index}`}{' '}
+            {name} - #{pad(`${index}`, '4')}
           </Heading>
         </Header>
         {profile?.ownedNfts.indexOf(nft) >= 0 && (
