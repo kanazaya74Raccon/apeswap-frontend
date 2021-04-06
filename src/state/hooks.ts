@@ -100,7 +100,7 @@ export const useTvl = (): BigNumber => {
   for (const pool of pools) {
     if (pool.stakingTokenName === 'BANANA') {
       valueLocked = valueLocked.plus(
-        new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(pool.tokenDecimals)).times(bananaPriceBUSD),
+        new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )
     }
   }
