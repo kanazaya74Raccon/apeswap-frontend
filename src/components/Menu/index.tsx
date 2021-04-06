@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Menu as UikitMenu } from '@apeswapfinance/uikit'
+import { Menu as UikitMenu,  MonkeyDarkIcon} from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
@@ -13,8 +13,6 @@ const Menu = (props) => {
   const bananaPriceUsd = usePriceBananaBusd()
   const { profile } = useProfile()
 
-  console.log(profile)
-
   return (
     <UikitMenu
       account={account}
@@ -27,7 +25,7 @@ const Menu = (props) => {
       cakePriceUsd={bananaPriceUsd.toNumber()}
       links={config}
       profile={{
-        image: profile ? profile?.rarestNft.image : undefined,
+        image: profile ? profile?.rarestNft.image : null,
         noProfileLink: '/nft',
       }}
       {...props}

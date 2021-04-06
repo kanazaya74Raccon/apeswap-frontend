@@ -45,7 +45,7 @@ const AvatarWrapper = styled.div<{ bg: string }>`
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ profile }) => {
   return (
     <AvatarWrapper bg={`/images/nfts/${profile.rarestNft}`}>
-      <TeamAvatar src={`/images/teams/${profile.rarestNft}`}/>
+      <TeamAvatar src={`/images/teams/${profile.rarestNft}`} />
     </AvatarWrapper>
   )
 }

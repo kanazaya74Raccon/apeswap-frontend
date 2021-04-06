@@ -5,12 +5,12 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Button, Input, Modal, Text } from '@apeswapfinance/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
-import { usePancakeRabbits } from 'hooks/useContract'
+import { useNonFungibleApes } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
 interface TransferNftModalProps {
   nft: Nft
-  tokenIds: number[]
+  tokenId: number
   onSuccess: () => any
   onDismiss?: () => void
 }
@@ -36,13 +36,13 @@ const Label = styled.label`
   margin-top: 24px;
 `
 
-const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSuccess, onDismiss }) => {
+const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuccess, onDismiss }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
   const TranslateString = useI18n()
   const { account } = useWallet()
-  const pancakeRabbitsContract = usePancakeRabbits()
+  const nonFungibleApesContract = useNonFungibleApes()
 
   const handleConfirm = async () => {
     try {
@@ -51,13 +51,11 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSu
       if (!isValidAddress) {
         setError(TranslateString(999, 'Please enter a valid wallet address'))
       } else {
-        await pancakeRabbitsContract.methods
-          .transferFrom(account, value, tokenIds[0])
+        setIsLoading(true)
+        const data = await nonFungibleApesContract.methods
+          .safeTransferFrom(account, value, tokenId)
           .send({ from: account })
-          .on('sending', () => {
-            setIsLoading(true)
-          })
-          .on('receipt', () => {
+          .on('success', () => {
             onDismiss()
             onSuccess()
           })
@@ -66,9 +64,11 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSu
             setError('Unable to transfer NFT')
             setIsLoading(false)
           })
+          console.log(data)
       }
     } catch (err) {
       console.error('Unable to transfer NFT:', err)
+      setIsLoading(false)
     }
   }
 

@@ -7,7 +7,7 @@ import nftList from 'config/constants/nfts'
 import useI18n from 'hooks/useI18n'
 import { useToast } from 'state/hooks'
 import { getBananaProfileAddress } from 'utils/addressHelpers'
-import { usePancakeRabbits } from 'hooks/useContract'
+import { useNonFungibleApes } from 'hooks/useContract'
 import useGetWalletNfts from 'hooks/useGetWalletNfts'
 import SelectionCard from '../components/SelectionCard'
 import NextStepButton from '../components/NextStepButton'
@@ -27,14 +27,14 @@ const ProfilePicture: React.FC = () => {
   const { tokenId, actions } = useContext(ProfileCreationContext)
   const TranslateString = useI18n()
   const { isLoading, nfts: nftsInWallet } = useGetWalletNfts()
-  const pancakeRabbitsContract = usePancakeRabbits()
+  const nonFungibleApesContract = useNonFungibleApes()
   const { account } = useWallet()
   const { toastError } = useToast()
   const bunnyIds = Object.keys(nftsInWallet).map((nftWalletItem) => Number(nftWalletItem))
   const walletNfts = nftList.filter((nft) => bunnyIds.includes(nft.index))
 
   const handleApprove = () => {
-    pancakeRabbitsContract.methods
+    nonFungibleApesContract.methods
       .approve(getBananaProfileAddress(), tokenId)
       .send({ from: account })
       .on('sending', () => {
