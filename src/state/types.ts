@@ -67,6 +67,7 @@ export interface Stats {
 
 export interface FarmPool {
   address: string
+  id: number
   rewardTokenSymbol: string
   apr: number
   pid: number
