@@ -59,10 +59,10 @@ const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => 
   let gradientStyle = ''
   let backgroundSize = ''
   if (rarityTier === 1) {
-    gradientStyle = 'radial-gradient(circle, rgba(255,0,0,0.6189426112241772) 10%, rgba(255,162,0,.8) 100%);'
+    gradientStyle = 'linear-gradient(90deg, rgba(0,83,255,1) 0%, rgba(73,252,69,1) 100%);'
     backgroundSize = '200% 200%'
   } else if (rarityTier === 2) {
-    gradientStyle = 'linear-gradient(90deg, rgba(0,83,255,1) 0%, rgba(73,252,69,1) 100%);'
+    gradientStyle = 'radial-gradient(circle, rgba(255,0,0,0.6189426112241772) 10%, rgba(255,162,0,.8) 100%);'
     backgroundSize = '200% 200%'
   } else if (rarityTier === 3) {
     gradientStyle =
@@ -70,12 +70,12 @@ const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => 
     backgroundSize = '300% 300%'
   } else if (rarityTier === 4) {
     gradientStyle =
-      'radial-gradient(circle, rgba(243,255,35,1) 0%, rgba(148,187,233,0) 80%), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
-    backgroundSize = '100% 100%'
-  } else if (rarityTier === 5) {
-    gradientStyle =
       'linear-gradient(-45deg, rgba(255, 255, 0, .1),rgba(255, 0, 0, .1) ,rgba(255, 255, 0, .1),rgba(0, 255, 255, .1), rgba(255, 255, 255, .1),rgba(255, 255, 0, .1), rgba(255, 0, 255, .1) ,rgba(0, 255, 0, .1), rgba(255, 255, 0, .1)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
     backgroundSize = '150% 150%'
+  } else if (rarityTier === 5) {
+    gradientStyle =
+      'radial-gradient(circle, rgba(243,255,35,1) 0%, rgba(148,187,233,0) 80%), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+    backgroundSize = '100% 100%'
   }
   const previewImage = <StyledImage src={src} alt={alt} />
   return (
