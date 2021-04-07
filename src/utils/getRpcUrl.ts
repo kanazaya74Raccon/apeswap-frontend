@@ -5,7 +5,6 @@ const nodes = [process.env.REACT_APP_NODE_1, process.env.REACT_APP_NODE_2, proce
 
 const getNodeUrl = () => {
   const randomIndex = random(0, nodes.length - 1)
-  console.log(nodes[randomIndex])
   return nodes[randomIndex]
 }
 
