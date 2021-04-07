@@ -45,7 +45,7 @@ const Farm: React.FC = () => {
     const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
     const stats = statsOverall?.incentivizedPools?.find((x) => x.id === pool.sousId)
-    const rewardTokenPrice = stats?.rewardTokenPrice
+    let rewardTokenPrice = stats?.rewardTokenPrice
 
     let stakingTokenPriceInBNB
     let rewardTokenPriceInBNB
@@ -65,6 +65,7 @@ const Farm: React.FC = () => {
         rewardTokenFarm?.tokenPriceVsQuote,
         rewardTokenFarm?.quoteTokenSymbol,
       )
+      rewardTokenPrice = bnbPriceUSD.times(rewardTokenPriceInBNB).toNumber()
     }
 
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
