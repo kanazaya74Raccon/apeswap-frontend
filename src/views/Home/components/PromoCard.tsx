@@ -53,17 +53,17 @@ const StyledDivContainer = styled.div`
 `
 
 const StyledClickRight = styled.img`
-position: absolute;
-right: 22px;
-top: 50%;
-transform: translateY(-50%);
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
 `
 
 const StyledClickLeft = styled.img`
-position: absolute;
-left: 22px;
-top: 50%;
-transform: translateY(-50%);
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
 `
 
 const PromoCard = () => {
@@ -101,11 +101,21 @@ const carouselSlidesData = [
 ]
 
 const CarouselLeftArrow = ({ onClick }) => {
-  return <StyledClickLeft width="25px" role="presentation" src="/images/leftArrow.svg" alt="leftArrow" onClick={onClick} />
+  return (
+    <StyledClickLeft width="25px" role="presentation" src="/images/leftArrow.svg" alt="leftArrow" onClick={onClick} />
+  )
 }
 
 const CarouselRightArrow = ({ onClick }) => {
-  return <StyledClickRight width="25px" role="presentation" src="/images/rightArrow.svg" alt="rightArrow" onClick={onClick} />
+  return (
+    <StyledClickRight
+      width="25px"
+      role="presentation"
+      src="/images/rightArrow.svg"
+      alt="rightArrow"
+      onClick={onClick}
+    />
+  )
 }
 
 const CarouselIndicator = ({ index, activeIndex, onClick }) => {
@@ -180,11 +190,7 @@ const Carousel = ({ slides }) => {
       </StyledDiv>
       <StyledDivContainer>
         {slides.map((_, index) => (
-          <CarouselIndicator
-            index={index}
-            activeIndex={activeIndex}
-            onClick={() => goToSlide(index)}
-          />
+          <CarouselIndicator index={index} activeIndex={activeIndex} onClick={() => goToSlide(index)} />
         ))}
       </StyledDivContainer>
       <CarouselRightArrow onClick={() => goToNextSlide()} />
