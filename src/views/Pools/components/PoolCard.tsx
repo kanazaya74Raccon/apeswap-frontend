@@ -180,23 +180,29 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <div style={{ flex: 1 }}>
             <Image src={`/images/tokens/${image || `${tokenName}.svg`}`} width={64} height={64} alt={tokenName} />
           </div>
-          {comingSoon ? (<SubTitle color="green">Coming Soon</SubTitle>) : account && harvest && !isOldSyrup && (
-            <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
-              <HarvestButton
-                disabled={!earnings.toNumber() || pendingTx}
-                text={pendingTx ? 'Collecting' : 'Wuzz out'}
-                onClick={async () => {
-                  setPendingTx(true)
-                  setTypeOfReward('removed')
-                  await onReward().catch(() => {
-                    setTypeOfReward('error')
-                    rewardRefWuzzOut.current?.rewardMe()
+          {comingSoon ? (
+            <SubTitle color="green">Coming Soon</SubTitle>
+          ) : (
+            account &&
+            harvest &&
+            !isOldSyrup && (
+              <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
+                <HarvestButton
+                  disabled={!earnings.toNumber() || pendingTx}
+                  text={pendingTx ? 'Collecting' : 'Wuzz out'}
+                  onClick={async () => {
+                    setPendingTx(true)
+                    setTypeOfReward('removed')
+                    await onReward().catch(() => {
+                      setTypeOfReward('error')
+                      rewardRefWuzzOut.current?.rewardMe()
+                      setPendingTx(false)
+                    })
                     setPendingTx(false)
-                  })
-                  setPendingTx(false)
-                }}
-              />
-            </Reward>
+                  }}
+                />
+              </Reward>
+            )
           )}
         </div>
         {!isOldSyrup ? (
