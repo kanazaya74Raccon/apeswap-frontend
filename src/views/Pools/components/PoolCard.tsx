@@ -176,12 +176,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <CardTitle isFinished={isFinished && sousId !== 0}>
           {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
         </CardTitle>
-        {comingSoon && <SubTitle color="green">Coming Soon</SubTitle>}
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
             <Image src={`/images/tokens/${image || `${tokenName}.svg`}`} width={64} height={64} alt={tokenName} />
           </div>
-          {account && harvest && !isOldSyrup && (
+          {comingSoon ? (<SubTitle color="green">Coming Soon</SubTitle>) : account && harvest && !isOldSyrup && (
             <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
               <HarvestButton
                 disabled={!earnings.toNumber() || pendingTx}
