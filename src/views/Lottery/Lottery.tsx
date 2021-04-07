@@ -7,6 +7,7 @@ import { getLotteryIssueIndex } from 'utils/lotteryUtils'
 import useI18n from 'hooks/useI18n'
 import { useLottery } from 'hooks/useContract'
 import Page from 'components/layout/Page'
+import { apiBaseUrl } from 'hooks/api'
 import Hero from './components/Hero'
 import Divider from './components/Divider'
 import NextDrawPage from './NextDrawPage'
@@ -31,7 +32,7 @@ const Lottery: React.FC = () => {
   const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(1)
 
   useEffect(() => {
-    fetch(`https://api.pancakeswap.com/api/lotteryHistory`)
+    fetch(`${apiBaseUrl}/lottery/history`)
       .then((response) => response.json())
       .then((data) => setHistoryData(data))
       .catch(() => {
@@ -48,10 +49,10 @@ const Lottery: React.FC = () => {
       setMostRecentLotteryNumber(previousLotteryNumber)
     }
 
-    if (account && lotteryContract) {
+    if (lotteryContract) {
       getInitialLotteryIndex()
     }
-  }, [account, lotteryContract])
+  }, [lotteryContract])
 
   const handleClick = (index) => {
     setActiveIndex(index)

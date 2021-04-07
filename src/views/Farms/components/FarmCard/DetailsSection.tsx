@@ -10,7 +10,7 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
-  farmStats?: FarmPool[]
+  farmStats?: FarmPool
 }
 
 const Wrapper = styled.div`
@@ -42,10 +42,9 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const totalValuePersonalFormated =
-    farmStats?.length > 0
-      ? `$${Number(farmStats[0].stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-      : '-'
+  const totalValuePersonalFormated = farmStats
+    ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    : '-'
 
   return (
     <Wrapper>
@@ -53,10 +52,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <Text>{TranslateString(316, 'Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
-      {/* <Flex justifyContent="space-between">
+      <Flex justifyContent="space-between">
         <Text>{TranslateString(23, 'Staked Value')}:</Text>
         <Text>{totalValuePersonalFormated}</Text>
-      </Flex> */}
+      </Flex>
       {!removed && (
         <Flex justifyContent="space-between">
           <Text>{TranslateString(23, 'Total Liquidity')}:</Text>

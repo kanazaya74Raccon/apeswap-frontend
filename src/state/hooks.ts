@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getBananaAddress } from 'utils/addressHelpers'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -15,7 +17,7 @@ import {
   remove as removeToast,
   clear as clearToast,
 } from './actions'
-import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState } from './types'
+import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState, FarmOverall } from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
@@ -98,7 +100,7 @@ export const useTvl = (): BigNumber => {
   for (const pool of pools) {
     if (pool.stakingTokenName === 'BANANA') {
       valueLocked = valueLocked.plus(
-        new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(pool.tokenDecimals)).times(bananaPriceBUSD),
+        new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )
     }
   }
@@ -189,22 +191,37 @@ export const useProfile = () => {
 }
 
 // Stats - individual stats
-
 export const useFetchStats = () => {
   const { account } = useWallet()
   const dispatch = useDispatch()
+  const { statsOverall } = useStatsOverall()
   const { slowRefresh } = useRefresh()
+  const [slow, setSlow] = useState(-1)
+  const farms = useFarms()
+  const pools = usePools(account)
+  const bananaBalance = useTokenBalance(getBananaAddress())
 
   useEffect(() => {
-    if (account !== null) {
-      dispatch(fetchStats(account))
+    if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
+      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance))
+      setSlow(slowRefresh)
     }
-  }, [account, dispatch, slowRefresh])
+  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh])
 }
 
 export const useStats = () => {
   const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const usePendingUsd = () => {
+  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
+  return { pending: data?.pendingRewardUsd || 0, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const usePersonalTvl = () => {
+  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
+  return { tvl: data?.tvl || 0, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 // Stats Overall- Total Banana Stats
@@ -221,6 +238,16 @@ export const useFetchStatsOverall = () => {
 export const useStatsOverall = () => {
   const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
   return { statsOverall: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useGetPoolStats = (pid) => {
+  let poolStats = {} as FarmOverall
+  const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
+  if (isInitialized) {
+    if (pid === 0) poolStats = data?.pools[0]
+    else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
+  }
+  return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 // Teams

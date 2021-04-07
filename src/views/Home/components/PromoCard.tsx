@@ -26,20 +26,31 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <NavLink to="/pools">
+      <a
+        href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+        target="_blank"
+        rel="noreferrer"
+      >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🚀 {TranslateString(999, 'NAUT Pool Open')} 🍌
+            ⚒️ Introducing the ApeSwap BUIDL Program ⚒️
           </Heading>
           <>
-            <Text color="textSubtle">We are proud to open a NAUT rewards pool</Text>
-            <Text color="textSubtle">🚀 After a successful IAO with over 1000% subscription rate 🚀</Text>
             <Text color="textSubtle">
-              <StyledNavLink to="/pools"> Check it out!</StyledNavLink>
+              If you are an up and coming project on BSC you can apply to get into the jungle
+            </Text>
+            <Text color="textSubtle">
+              <StyledLink
+                href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Come grow with us 🚀
+              </StyledLink>
             </Text>
           </>
         </CardBody>
-      </NavLink>
+      </a>
     </StyledPromoCard>
   )
 }

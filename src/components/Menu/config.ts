@@ -8,6 +8,11 @@ const config: MenuEntry[] = [
     href: '/',
   },
   {
+    label: 'Ape Stats',
+    icon: 'StatsIcon',
+    href: '/stats',
+  },
+  {
     label: 'Trade',
     icon: 'TradeIcon',
     items: [
@@ -32,20 +37,21 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
+    label: 'IAO',
+    icon: 'IfoIcon',
+    href: '/iao',
+  },
+  {
     label: 'NFT',
     icon: 'NftIcon',
     href: '/nft',
   },
-  /* {
-    label: 'Ape Stats',
-    icon: 'StatsIcon',
-    href: '/stats',
-  }, */
-  /* {
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
   },
+  /* 
   {
     label: 'Teams & Profile',
     icon: 'GroupsIcon',
@@ -81,11 +87,6 @@ const config: MenuEntry[] = [
         href: 'https://info.apeswap.finance/accounts',
       },
     ],
-  },
-  {
-    label: 'IAO',
-    icon: 'IfoIcon',
-    href: '/iao',
   },
   {
     label: 'More',

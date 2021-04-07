@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout, Image, CardBody, Skeleton } from '@apeswapfinance/uikit'
+import { useDispatch } from 'react-redux'
+import { Heading, BaseLayout, Image } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
 import { useStats } from 'state/hooks'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
+import useRefresh from 'hooks/useRefresh'
+import { fetchFarmUserDataAsync } from 'state/farms'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
 
@@ -67,8 +70,16 @@ const Stats: React.FC = () => {
   const TranslateString = useI18n()
 
   const { account } = useWallet()
+  const { slowRefresh } = useRefresh()
   const yourStats = useStats()
+  const dispatch = useDispatch()
   const stats = yourStats?.stats
+
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchFarmUserDataAsync(account))
+    }
+  }, [account, dispatch, slowRefresh])
 
   return (
     <Page>
@@ -91,9 +102,10 @@ const Stats: React.FC = () => {
             <div>
               <Cards>
                 <BananaStats stats={stats} />
+                {stats?.pools[0] && <CardStats data={stats.pools[0]} type="pool" forceDetails />}
               </Cards>
               <Cards>
-                {[...stats.pools, ...stats.incentivizedPools]
+                {[...stats.incentivizedPools]
                   .sort((poolA, poolB) => poolB.stakedTvl - poolA.stakedTvl)
                   .map((pool) => {
                     return <CardStats data={pool} type="pool" />
