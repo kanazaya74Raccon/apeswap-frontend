@@ -24,8 +24,13 @@ const Nft = () => {
             Non Fungible Apes
           </Heading>
           <OwnedNfts />
-          <Heading as="h2" size="lg" color="secondary" paddingTop="25px">
+          <Heading as="h1" size="lg" color="secondary" paddingTop="25px">
             {TranslateString(999, 'The first 130!')}
+          </Heading>
+          <Heading as="h2" size="md" color="secondary" paddingTop="25px" style={{textDecoration: 'underline'}}>
+            <a href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21">
+              {TranslateString(999, 'Sales open on April 8th at 23:00 UTC on Treasureland')}
+            </a>
           </Heading>
         </StyledHero>
         <NftList />

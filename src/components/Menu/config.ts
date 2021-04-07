@@ -42,7 +42,7 @@ const config: MenuEntry[] = [
     href: '/iao',
   },
   {
-    label: 'NFT',
+    label: 'NFA',
     icon: 'apeNFTIcon',
     href: '/nft',
   },

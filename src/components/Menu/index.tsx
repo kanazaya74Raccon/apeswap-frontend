@@ -26,7 +26,7 @@ const Menu = (props) => {
       links={config}
       profile={{
         image: profile ? profile?.rarestNft.image : null,
-        noProfileLink: '/nft',
+        noProfileLink: '/nft'
       }}
       {...props}
     />
