@@ -18,7 +18,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
-import { useGetPoolStats } from 'state/hooks'
 import { Pool } from 'state/types'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -33,6 +32,7 @@ import ApyButton from '../../../components/ApyCalculator/ApyButton'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 interface PoolWithApy extends Pool {
   apy: BigNumber
+  rewardTokenPrice: number
 }
 
 interface HarvestProps {
@@ -67,6 +67,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     userData,
     stakingLimit,
     displayDecimals,
+    rewardTokenPrice,
   } = pool
 
   // Pools using native BNB behave differently than pools using a token
@@ -167,10 +168,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       console.error(e)
     }
   }, [onApprove, setRequestedApproval])
-
-  const { poolStats } = useGetPoolStats(sousId)
-
-  const rewardTokenPrice = poolStats?.rewardTokenPrice
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
