@@ -86,13 +86,17 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
     <TransferNftModal nft={nft} tokenId={nft.index} onSuccess={handleSuccess} />,
   )
 
+  const pad = (n, width) => {
+    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n
+  }
+
   return (
     <CardFlip>
       <CardFlipInner>
         <CardFlipFront>
           <Image src={nft.image} alt={nft.image} rarityTier={nft.attributes.rarityTierNumber} />
           <Text fontSize="20px" paddingTop="20px" color="secondary">
-            {nft.name}
+          {nft.name} - #{pad(`${nft.index}`, '4')}
           </Text>
         </CardFlipFront>
         <CardFlipBack>
