@@ -55,9 +55,10 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuc
         const data = await nonFungibleApesContract.methods
           .safeTransferFrom(account, value, tokenId)
           .send({ from: account })
-          .on('success', () => {
+          .on('transactionHash', (tx) => {
             onDismiss()
             onSuccess()
+            return tx
           })
           .on('error', () => {
             console.error(error)
