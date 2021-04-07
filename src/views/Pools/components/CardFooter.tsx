@@ -129,7 +129,9 @@ const CardFooter: React.FC<Props> = ({
               <FlexFull>
                 <Label>{TranslateString(410, 'End')}:</Label>
               </FlexFull>
-              <Text>{`${timeUntilEnd.days +  (timeUntilEnd.months * 30)}d, ${timeUntilEnd.hours}h, ${timeUntilEnd.minutes}m`}</Text>
+              <Text>{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+                timeUntilEnd.minutes
+              }m`}</Text>
             </Row>
           )}
           <TokenLink href={projectLink} target="_blank">
