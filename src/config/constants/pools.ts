@@ -178,7 +178,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://astronaut.to',
     harvest: true,
     tokenPerBlock: '0.28935185',
-    sortOrder: 5,
+    sortOrder: 4,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
@@ -270,14 +270,14 @@ const pools: PoolConfig[] = [
     projectLink: 'https://jediyield.com',
     harvest: true,
     tokenPerBlock: '0.07716049382716',
-    sortOrder: 2,
+    sortOrder: 5,
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: true,
   },
   {
-    sousId: 13,
-    tokenName: 'FOXY',
+    sousId: 15,
+    tokenName: 'Inactive - FOXY',
     stakingTokenName: 'BANANA',
     image: 'FOXY.png',
     stakingTokenAddress: {
@@ -294,8 +294,54 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.05787037037037',
     sortOrder: 5,
+    isFinished: true,
+    tokenDecimals: 9,
+    lpStaking: false,
+  },
+  {
+    sousId: 13,
+    tokenName: 'FOXY',
+    stakingTokenName: 'BANANA',
+    image: 'FOXY.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x726d5A4D170425C98BAff117BF3d9aF9f77f80bd',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://foxynft.org',
+    harvest: true,
+    tokenPerBlock: '0.05787037037037',
+    sortOrder: 3,
     isFinished: false,
     tokenDecimals: 9,
+    lpStaking: false,
+  },
+  {
+    sousId: 14,
+    tokenName: 'JDI',
+    stakingTokenName: 'BANANA',
+    image: 'JDI.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x72C8750af0744282E065F0dF3F73460A3764c624',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://jediyield.com',
+    harvest: true,
+    tokenPerBlock: '0.115640358485111',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
     lpStaking: false,
   },
   /* {
