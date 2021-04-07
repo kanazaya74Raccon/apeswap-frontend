@@ -1,5 +1,5 @@
 import React from 'react'
-import { MonkeyLightIcon, Flex, Heading } from '@apeswapfinance/uikit'
+import { Flex, Heading } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 interface ComingSoonProps {
@@ -11,7 +11,6 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ children }) => {
 
   return (
     <Flex flexDirection="column" alignItems="center" justifyContent="center" p="24px">
-      <MonkeyLightIcon width="72px" height="72px" />
       <Heading as="h5" size="md" color="textDisabled">
         {children || TranslateString(999, 'Coming Soon!')}
       </Heading>
