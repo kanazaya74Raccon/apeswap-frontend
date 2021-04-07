@@ -62,13 +62,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         <Row style={{ alignItems: 'flex-start' }}>
           <Text fontSize="14px">{TranslateString(538, 'Your APR (%)')}</Text>
           <Text fontSize="14px" style={{ textAlign: 'end' }}>
-            <CardValue
-              fontSize="14px"
-              value={stats.aggregateAprPerDay * 100}
-              decimals={2}
-              prefix="Daily"
-              suffix="%"
-            />
+            <CardValue fontSize="14px" value={stats.aggregateAprPerDay * 100} decimals={2} prefix="Daily" suffix="%" />
             <CardValue
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}

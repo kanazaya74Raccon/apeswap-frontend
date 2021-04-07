@@ -34,23 +34,22 @@ const Cards = styled(BaseLayout)`
 `
 
 const Home: React.FC = () => {
- 
   return (
     <Page>
-        <Cards>
-          <WelcomeCard />
-          <PromoCard />
-        </Cards>
-        <Cards>
-          <FarmStakingCard />
-          <BananaStats />
-        </Cards>
-        <Cards>
-          <EarnAPYCard />
-          <TotalValueLockedCard />
-        </Cards>
-        {/* <EarnAssetCard /> */}
-        {/* <LotteryCard /> */}
+      <Cards>
+        <WelcomeCard />
+        <PromoCard />
+      </Cards>
+      <Cards>
+        <FarmStakingCard />
+        <BananaStats />
+      </Cards>
+      <Cards>
+        <EarnAPYCard />
+        <TotalValueLockedCard />
+      </Cards>
+      {/* <EarnAssetCard /> */}
+      {/* <LotteryCard /> */}
     </Page>
   )
 }

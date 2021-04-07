@@ -24,7 +24,6 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px',
       decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
   })
 
-
   const StyledText = styled(Text)`
     font-weight: ${fontWeight || 400};
   `
