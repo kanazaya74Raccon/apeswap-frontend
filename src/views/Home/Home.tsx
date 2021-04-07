@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@apeswapfinance/uikit'
+import { BaseLayout } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
@@ -32,37 +32,11 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
-const Card = styled.div`
-  margin-bottom: 32px;
-`
-
-const CTACards = styled(BaseLayout)`
-  align-items: start;
-  margin-bottom: 32px;
-
-  & > div {
-    grid-column: span 6;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
-    }
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 4;
-    }
-  }
-`
 
 const Home: React.FC = () => {
-  const TranslateString = useI18n()
-
+ 
   return (
     <Page>
-      <div>
         <Cards>
           <WelcomeCard />
           <PromoCard />
@@ -77,7 +51,6 @@ const Home: React.FC = () => {
         </Cards>
         {/* <EarnAssetCard /> */}
         {/* <LotteryCard /> */}
-      </div>
     </Page>
   )
 }

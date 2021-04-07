@@ -23,6 +23,8 @@ const StyledFarmStakingCard = styled(Card)`
   min-height: 250px;
   text-align: center;
   overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const Block = styled.div`
@@ -40,7 +42,6 @@ const CardImage = styled.img`
 `
 
 const Label = styled.div`
-  // color: ${({ theme }) => theme.colors.textSubtle};
   color: #ffb300;
   font-size: 12px;
   margin-left: 2px;
@@ -89,6 +90,7 @@ const StyledBananaPair = styled(BananaPairIcon)`
 
 const StyledLabel = styled(Label)`
   font-family: Poppins;
+  font-weight: 700;
 `
 
 const FarmedStakingCard = () => {

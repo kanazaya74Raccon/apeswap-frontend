@@ -17,13 +17,13 @@ const BananaHarvestUsdBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '36px' }}>
+      <Text color="textDisabled" style={{ lineHeight: '36px', fontWeight: 700 }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )
   }
 
-  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611" text="poppins" />
+  return <CardValue decimals={2} value={bananaPriceUsd} prefix="~$" fontSize="12px" color="#38A611" text="poppins" fontWeight={700} />
 }
 
 export default BananaHarvestUsdBalance

@@ -10,9 +10,10 @@ interface CardValueProps {
   prefix?: string
   color?: string
   text?: string
+  fontWeight?: number
 }
 
-const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px', prefix, color, text }) => {
+const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px', prefix, color, text, fontWeight }) => {
   const { countUp, update } = useCountUp({
     start: 0,
     end: value,
@@ -23,13 +24,9 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px',
       decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
   })
 
-  const StyledTextColor = styled(Text)<{ text: string }>`
-    color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
-    font-family: ${text === 'poppins' ? 'Poppins' : 'Titan One'};
-  `
 
-  const StyledText = styled(Text)<{ text: string }>`
-    font-family: ${text === 'poppins' ? 'Poppins' : 'Titan One'};
+  const StyledText = styled(Text)`
+    font-weight: ${fontWeight || 400};
   `
 
   const updateValue = useRef(update)
@@ -38,14 +35,10 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = 'px',
     updateValue.current(value)
   }, [value, updateValue])
 
-  return color ? (
-    <StyledText bold fontSize={fontSize} color={color} text={text}>
+  return (
+    <StyledText bold fontSize={fontSize} color={color} fontFamily={text}>
       {prefix} {countUp}
     </StyledText>
-  ) : (
-    <StyledTextColor bold fontSize={fontSize} color={color} text={text}>
-      {prefix} {countUp}
-    </StyledTextColor>
   )
 }
 

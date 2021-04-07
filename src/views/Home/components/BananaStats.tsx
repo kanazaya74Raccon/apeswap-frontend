@@ -36,12 +36,10 @@ const GreyRow = styled.div`
 `
 const StyledHeading = styled(Heading)`
   text-align: center;
-  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
 `
 
 const StyledText = styled(Text)`
-  color: ${({ theme }) => (theme.isDark ? 'white' : '#af6e5aff')};
-  font-family: Poppins;
+  font-weight: 400;
 `
 
 const StyledNavLink = styled(NavLink)`
@@ -53,6 +51,8 @@ const StyledNavLink = styled(NavLink)`
   bottom: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  box-shadow: inset 0px -1px 0px rgb(14 14 44 / 40%);
 `
 
 const BananaStats = () => {
@@ -71,20 +71,20 @@ const BananaStats = () => {
           {TranslateString(534, 'Banana Stats')}
         </StyledHeading>
         <GreyRow>
-          <StyledText fontSize="14px">{TranslateString(536, 'TOTAL BANANA SUPPLY')}</StyledText>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" />}
+          <StyledText fontSize="14px" fontFamily="poppins">{TranslateString(536, 'TOTAL BANANA SUPPLY')}</StyledText>
+          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700}/>}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px">{TranslateString(536, 'USD MARKET CAP')}</StyledText>
-          {marketCap && <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" />}
+          <StyledText fontSize="14px" fontFamily="poppins">{TranslateString(536, 'USD MARKET CAP')}</StyledText>
+          {marketCap && <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" fontWeight={700}/>}
         </Row>
         <GreyRow>
-          <StyledText fontSize="14px">{TranslateString(538, 'TOTAL BANANA BURNED')}</StyledText>
-          <CardValue fontSize="14px" decimals={0} value={getBalanceNumber(burnedBalance)} text="poppins" />
+          <StyledText fontSize="14px" fontFamily="poppins">{TranslateString(538, 'TOTAL BANANA BURNED')}</StyledText>
+          <CardValue fontSize="14px" decimals={0} value={getBalanceNumber(burnedBalance)} text="poppins" fontWeight={700} />
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px">{TranslateString(540, 'NEW BANANA/BLOCK')}</StyledText>
-          <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" />
+          <StyledText fontSize="14px" fontFamily="poppins">{TranslateString(540, 'NEW BANANA/BLOCK')}</StyledText>
+          <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700}/>
         </Row>
       </CardBody>
       <StyledNavLink to="/stats">LEARN MORE</StyledNavLink>

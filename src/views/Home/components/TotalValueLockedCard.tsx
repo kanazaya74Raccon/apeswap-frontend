@@ -26,7 +26,6 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: underline;
 `
 const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.05em;
@@ -55,9 +54,9 @@ const TotalValueLockedCard = () => {
         alt="monkey"
       />
       <CardBody>
-        <Heading size="sm" mb="12px" color="white">
+        <StyledHeading size="sm" mb="12px" color="white">
           {TranslateString(999, 'Total Value Locked (TVL)')}
-        </Heading>
+        </StyledHeading>
         {totalTvl ? (
           <>
             <CardValue fontSize="21px" decimals={0} value={totalTvl} prefix="$" color="white" />
@@ -69,7 +68,7 @@ const TotalValueLockedCard = () => {
           </>
         )}
         <PersonalTvl />
-        <StyledText color="white">
+        <StyledText color="white" fontFamily="poppins">
           {TranslateString(999, 'Account TVL')}
           <StyledNavLink to="/stats">{TranslateString(999, 'See Details')}</StyledNavLink>
         </StyledText>

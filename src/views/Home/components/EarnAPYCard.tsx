@@ -34,10 +34,14 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
 `
 
 const StyledHeading = styled(Heading)`
-  font-family: Poppins;
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.05em;
+`
+
+const StyledNavLink = styled(NavLink)`
+  width: 100%;
+  height: 100%;
 `
 
 const EarnAPYCard = () => {
@@ -101,28 +105,28 @@ const EarnAPYCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <img
-        width="250px"
-        style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }}
-        src="/images/monkey.svg"
-        alt="monkey"
-      />
-      <VerticalBody>
-        <Heading color="white" size="sm" fontSize="16px" mb="12px">
-          {TranslateString(736, 'Earn up to APR')}
-        </Heading>
-        <CardMidContent color="white">
-          {getHighestAPY() ? `${getHighestAPY()}%` : <Skeleton animation="pulse" variant="rect" height="44px" />}
-        </CardMidContent>
-        <Flex justifyContent="flex-end">
-          <StyledHeading color="white" size="sm" mt="30px">
-            In Farms
-          </StyledHeading>
-          <NavLink exact activeClassName="active" to="/farms" id="farm-apy-cta">
+      <StyledNavLink to="/farms">
+        <img
+          width="250px"
+          style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }}
+          src="/images/monkey.svg"
+          alt="monkey"
+        />
+        <VerticalBody>
+          <Heading color="white" size="sm" fontSize="16px" mb="12px">
+            {TranslateString(736, 'Earn up to APR')}
+          </Heading>
+          <CardMidContent color="white">
+            {getHighestAPY() ? `${getHighestAPY()}%` : <Skeleton animation="pulse" variant="rect" height="44px" />}
+          </CardMidContent>
+          <Flex justifyContent="flex-end">
+            <StyledHeading color="white" size="sm" mt="30px" fontFamily="poppins">
+              In Farms
+            </StyledHeading>
             <ArrowForwardIcon mt={30} color="white" />
-          </NavLink>
-        </Flex>
-      </VerticalBody>
+          </Flex>
+        </VerticalBody>
+      </StyledNavLink>
     </StyledFarmStakingCard>
   )
 }
