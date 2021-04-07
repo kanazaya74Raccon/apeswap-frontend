@@ -96,7 +96,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
         <CardFlipFront>
           <Image src={nft.image} alt={nft.image} rarityTier={nft.attributes.rarityTierNumber} />
           <Text fontSize="20px" paddingTop="20px" color="secondary">
-          {nft.name} - #{pad(`${nft.index}`, '4')}
+            {nft.name} - #{pad(`${nft.index}`, '4')}
           </Text>
         </CardFlipFront>
         <CardFlipBack>

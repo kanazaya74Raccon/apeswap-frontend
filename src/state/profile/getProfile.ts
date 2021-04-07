@@ -9,7 +9,10 @@ const nonFungibleApesContract = getContract(nonFungibleApesAbi, getNonFungibleAp
 
 const getProfile = async (address: string): Promise<Profile> => {
   try {
-    const nfasOwned = await nonFungibleApesContract.methods.balanceOf(address).call()
+    const nfasOwned = address ? await nonFungibleApesContract.methods.balanceOf(address).call() : '0'
+    if (nfasOwned === '0') {
+      return null
+    }
     const promises = []
     for (let i = 0; i < nfasOwned; i++) {
       promises.push(nonFungibleApesContract.methods.tokenOfOwnerByIndex(address, i).call())
