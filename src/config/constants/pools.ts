@@ -310,7 +310,7 @@ const pools: PoolConfig[] = [
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x6C7f290472766ad3e50D6E405B84ef8497C369d9',
+      56: '0x726d5A4D170425C98BAff117BF3d9aF9f77f80bd',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://foxynft.org',
