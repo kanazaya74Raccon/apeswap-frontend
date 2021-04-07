@@ -7,6 +7,9 @@ import { ChevronDown, ChevronUp } from 'react-feather'
 import Balance from 'components/Balance'
 import { CommunityTag, CoreTag, BinanceTag, ApeZone } from 'components/Tags'
 import { PoolCategory } from 'config/constants/types'
+import getTimePeriods from 'utils/getTimePeriods'
+import { BSC_BLOCK_TIME } from 'config'
+import { Text } from '@apeswapfinance/uikit'
 
 const tags = {
   [PoolCategory.BINANCE]: BinanceTag,
@@ -84,6 +87,8 @@ const CardFooter: React.FC<Props> = ({
   const [isOpen, setIsOpen] = useState(false)
   const TranslateString = useI18n()
   const Icon = isOpen ? ChevronUp : ChevronDown
+  const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
+  const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
 
   const handleClick = () => setIsOpen(!isOpen)
   const Tag = tags[poolCategory]
@@ -116,7 +121,7 @@ const CardFooter: React.FC<Props> = ({
               <FlexFull>
                 <Label>{TranslateString(410, 'Start')}:</Label>
               </FlexFull>
-              <Balance fontSize="14px" isDisabled={isFinished} value={blocksUntilStart} decimals={0} />
+              <Text>{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</Text>
             </Row>
           )}
           {blocksUntilStart === 0 && blocksRemaining > 0 && (
@@ -124,7 +129,7 @@ const CardFooter: React.FC<Props> = ({
               <FlexFull>
                 <Label>{TranslateString(410, 'End')}:</Label>
               </FlexFull>
-              <Balance fontSize="14px" isDisabled={isFinished} value={blocksRemaining} decimals={0} />
+              <Text>{`${timeUntilEnd.days +  (timeUntilEnd.months * 30)}d, ${timeUntilEnd.hours}h, ${timeUntilEnd.minutes}m`}</Text>
             </Row>
           )}
           <TokenLink href={projectLink} target="_blank">
