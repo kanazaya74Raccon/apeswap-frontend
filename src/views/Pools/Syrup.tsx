@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools , useStatsOverall } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hooks'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -18,7 +18,6 @@ import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Divider from './components/Divider'
-
 
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
@@ -56,16 +55,8 @@ const Farm: React.FC = () => {
       stakingTokenPriceInBNB = new BigNumber(pool.lpData.reserveETH).div(new BigNumber(pool.lpData.totalSupply))
       rewardTokenPriceInBNB = new BigNumber(rewardToken.derivedETH)
     } else if (rewardTokenPrice) {
-      stakingTokenPriceInBNB = priceToBnb(
-        pool.stakingTokenName,
-        new BigNumber(stats?.price),
-        QuoteToken.BUSD,
-      )
-      rewardTokenPriceInBNB = priceToBnb(
-        pool.tokenName,
-        new BigNumber(rewardTokenPrice),
-        QuoteToken.BUSD,
-      )
+      stakingTokenPriceInBNB = priceToBnb(pool.stakingTokenName, new BigNumber(stats?.price), QuoteToken.BUSD)
+      rewardTokenPriceInBNB = priceToBnb(pool.tokenName, new BigNumber(rewardTokenPrice), QuoteToken.BUSD)
     } else {
       // /!\ Assume that the farm quote price is BNB
       stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
@@ -84,7 +75,7 @@ const Farm: React.FC = () => {
       ...pool,
       isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock,
       apy,
-      rewardTokenPrice
+      rewardTokenPrice,
     }
   })
 
