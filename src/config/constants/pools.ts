@@ -276,6 +276,29 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
+    sousId: 14,
+    tokenName: 'Inactive - FOXY',
+    stakingTokenName: 'BANANA',
+    image: 'FOXY.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x4cb75836d3254f7454d1bf6d95448c496cbc16b1',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://foxynft.org',
+    harvest: true,
+    tokenPerBlock: '0.05787037037037',
+    sortOrder: 5,
+    isFinished: false,
+    tokenDecimals: 9,
+    lpStaking: false,
+  },
+  {
     sousId: 13,
     tokenName: 'FOXY',
     stakingTokenName: 'BANANA',
@@ -287,7 +310,7 @@ const pools: PoolConfig[] = [
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x4cb75836d3254f7454d1bf6d95448c496cbc16b1',
+      56: '0x6C7f290472766ad3e50D6E405B84ef8497C369d9',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://foxynft.org',
