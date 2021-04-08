@@ -62,7 +62,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => 
     gradientStyle = 'linear-gradient(90deg, rgba(0,83,255,1) 0%, rgba(73,252,69,1) 100%);'
     backgroundSize = '200% 200%'
   } else if (rarityTier === 2) {
-    gradientStyle = 'radial-gradient(circle, rgba(255,0,0,0.6189426112241772) 10%, rgba(255,162,0,.8) 100%);'
+    gradientStyle = 'radial-gradient(circle, rgba(255,0,0,0.6189426112241772) 10%, rgba(121, 7, 242, .75) 70%,rgba(255,162,0,.8) 100%);'
     backgroundSize = '200% 200%'
   } else if (rarityTier === 3) {
     gradientStyle =
