@@ -13,7 +13,7 @@ import ApproveConfirmButtons from '../components/ApproveConfirmButtons'
 import useProfileCreation from './contexts/hook'
 
 const starterBunnyIds = [5, 6, 7, 8, 9]
-const nfts = nftList.filter((nft) => starterBunnyIds.includes(nft.bunnyId))
+const nfts = nftList.filter((nft) => starterBunnyIds.includes(nft.index))
 const minimumBananaBalance = 4
 
 const Mint: React.FC = () => {
@@ -82,11 +82,11 @@ const Mint: React.FC = () => {
 
             return (
               <SelectionCard
-                key={nft.bunnyId}
+                key={nft.index}
                 name="mintStarter"
-                value={nft.bunnyId}
-                image={`/images/nfts/${nft.images.md}`}
-                isChecked={bunnyId === nft.bunnyId}
+                value={nft.index}
+                image={`/images/nfts/${nft.image}`}
+                isChecked={bunnyId === nft.index}
                 onChange={handleChange}
                 disabled={isApproving || isConfirming || isConfirmed || !hasMinimumBananaRequired}
               >

@@ -85,17 +85,17 @@ const PublicProfile = () => {
             <Flex alignItems={['start', null, 'center']} flexDirection={['column', null, 'row']}>
               <ProfileAvatar profile={profile} />
               <Content>
-                <Username>{`@${profile.username}`}</Username>
+                <Username>{`@${profile.rarestNft}`}</Username>
                 <Flex alignItems="center">
                   <AddressLink href={`https://bscscan.com/address/${account}`} color="text" external>
                     {account}
                   </AddressLink>
                   <OpenNewIcon ml="4px" />
                 </Flex>
-                <ResponsiveText bold>{profile.team.name}</ResponsiveText>
+                <ResponsiveText bold>{profile.rarestNft}</ResponsiveText>
               </Content>
             </Flex>
-            {profile.isActive && (
+            {profile.rarestNft && (
               <Status>
                 <Tag startIcon={<CheckmarkCircleIcon width="18px" />} outline>
                   {TranslateString(999, 'Active')}
@@ -104,7 +104,7 @@ const PublicProfile = () => {
             )}
           </CardHeader>
           <CardBody>
-            <StatBox icon={PrizeIcon} title={profile.points} subtitle={TranslateString(999, 'Points')} mb="24px" />
+            <StatBox icon={PrizeIcon} title={profile.rarestNft} subtitle={TranslateString(999, 'Points')} mb="24px" />
             <Heading as="h4" size="md">
               {TranslateString(999, 'Achievements')}
             </Heading>

@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   Heading,
-  Tag,
   Button,
   ChevronUpIcon,
   ChevronDownIcon,
@@ -50,9 +49,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const TranslateString = useI18n()
   const { isInitialized, getTokenIds, reInitialize } = useContext(NftProviderContext)
   const { profile } = useProfile()
-  const { bunnyId, name, images, description } = nft
-  const tokenIds = getTokenIds(bunnyId)
-  const walletOwnsNft = tokenIds && tokenIds.length > 0
+  const { index, name, image, attributes } = nft
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
 
   const handleClick = async () => {
@@ -63,29 +60,25 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
     reInitialize()
   }
 
+  const pad = (n, width) => {
+    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n
+  }
+
   const [onPresentTransferModal] = useModal(
-    <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
+    <TransferNftModal nft={nft} tokenId={nft.index} onSuccess={handleSuccess} />,
   )
 
   return (
-    <Card isActive={walletOwnsNft}>
-      <Image src={`/images/nfts/${images.lg}`} alt={name} originalLink={walletOwnsNft ? images.ipfs : null} />
+    <Card>
+      <Image src={image} alt={name} originalLink={image} rarityTier={attributes.rarityTierNumber} />
       <CardBody>
         <Header>
-          <Heading>{name}</Heading>
-          {isInitialized && tokenIds && (
-            <Tag outline variant="secondary">
-              {TranslateString(999, 'In Wallet')}
-            </Tag>
-          )}
-          {profile?.nft?.bunnyId === bunnyId && (
-            <Tag outline variant="success">
-              {TranslateString(999, 'Profile Pic')}
-            </Tag>
-          )}
+          <Heading>
+            {name} - #{pad(`${index}`, '4')}
+          </Heading>
         </Header>
-        {isInitialized && walletOwnsNft && (
-          <Button fullWidth variant="secondary" mt="24px" onClick={onPresentTransferModal}>
+        {profile?.ownedNfts.indexOf(nft) >= 0 && (
+          <Button fullWidth variant="primary" mt="24px" onClick={onPresentTransferModal}>
             {TranslateString(999, 'Transfer')}
           </Button>
         )}
@@ -96,8 +89,26 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
         </DetailsButton>
         {isOpen && (
           <InfoBlock>
-            <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
-              {description}
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Base - {attributes.baseColor}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Eyes - {attributes.eyes}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Face - {attributes.faceColor}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Frame - {attributes.frames}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Hat - {attributes.hats}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Mouth - {attributes.mouths}
+            </Text>
+            <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
+              Overall Rarity Rank - {attributes.rarityOverallRank} / 1000
             </Text>
           </InfoBlock>
         )}
