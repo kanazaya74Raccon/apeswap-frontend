@@ -27,25 +27,25 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+        href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         <CardBody>
           <Heading size="lg" mb="24px">
-            ⚒️ Introducing the ApeSwap BUIDL Program ⚒️
+          🐵 Non Fungible Ape Sales Going Live! 🐵
           </Heading>
           <>
             <Text color="textSubtle">
-              If you are an up and coming project on BSC you can apply to get into the jungle
+              The first batch of 100 NFAs will be sold on Treasureland starting on April 8th 23:00 UTC
             </Text>
             <Text color="textSubtle">
               <StyledLink
-                href="https://ape-swap.medium.com/introducing-the-apeswap-buidl-program-%EF%B8%8F-bf1d6c74e145"
+                href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
-                Come grow with us 🚀
+                Check it out here! 🚀
               </StyledLink>
             </Text>
           </>
