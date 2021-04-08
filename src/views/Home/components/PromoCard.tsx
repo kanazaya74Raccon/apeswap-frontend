@@ -33,7 +33,7 @@ const PromoCard = () => {
       >
         <CardBody>
           <Heading size="lg" mb="24px">
-          🐵 Non Fungible Ape Sales Going Live! 🐵
+            🐵 Non Fungible Ape Sales Going Live! 🐵
           </Heading>
           <>
             <Text color="textSubtle">
