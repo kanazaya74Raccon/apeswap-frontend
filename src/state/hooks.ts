@@ -179,10 +179,11 @@ export const useToast = () => {
 export const useFetchProfile = () => {
   const { account } = useWallet()
   const dispatch = useDispatch()
+  const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     dispatch(fetchProfile(account))
-  }, [account, dispatch])
+  }, [account, dispatch, fastRefresh])
 }
 
 export const useProfile = () => {
