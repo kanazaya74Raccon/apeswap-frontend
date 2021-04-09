@@ -345,7 +345,7 @@ const pools: PoolConfig[] = [
     lpStaking: false,
   },
   {
-    sousId: 15,
+    sousId: 16,
     tokenName: 'LYPTUS',
     stakingTokenName: 'BANANA',
     image: 'LYPTUS.png',
