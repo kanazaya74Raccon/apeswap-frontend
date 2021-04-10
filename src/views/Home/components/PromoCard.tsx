@@ -38,10 +38,10 @@ const StyledPromoCard = styled(Card)`
   border-radius: 0px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-      width: 100% !important;
-      margin-left: 0px;
-      border-radius: 32px;
-    }
+    width: 100% !important;
+    margin-left: 0px;
+    border-radius: 32px;
+  }
 `
 
 const StyledDiv = styled.div`
@@ -51,7 +51,6 @@ const StyledDiv = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 60px;
     margin-right: 60px;
-
   }
 `
 
@@ -67,12 +66,12 @@ const StyledDivContainer = styled.div`
   justify-content: center;
   margin-bottom: 24px;
   ${({ theme }) => theme.mediaQueries.lg} {
-  margin-top: 0px;
-  margin-bottom: 12px;
-  position: absolute;
-  bottom: 34px;
-  left: 50%;
-  transform: translateX(-50%);
+    margin-top: 0px;
+    margin-bottom: 12px;
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `
 
@@ -81,7 +80,7 @@ const StyledClickRight = styled.img<ArrowProps>`
   right: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: ${({ disable }) => (!disable && 'pointer')};
+  cursor: ${({ disable }) => !disable && 'pointer'};
   opacity: ${({ disable }) => (disable ? 0.3 : 1)};
   padding: 80px 15px;
 
@@ -96,7 +95,7 @@ const StyledClickLeft = styled.img<ArrowProps>`
   left: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: ${({ disable }) => (!disable && 'pointer')};
+  cursor: ${({ disable }) => !disable && 'pointer'};
   opacity: ${({ disable }) => (disable ? 0.3 : 1)};
   padding: 80px 15px;
 
@@ -142,13 +141,13 @@ const carouselSlidesData = [
 
 const CarouselLeftArrow = ({ onClick, activeIndex }) => {
   return (
-    <StyledClickLeft 
-    width="45px" 
-    role="presentation" 
-    src="/images/leftArrow.svg" 
-    alt="leftArrow" 
-    onClick={onClick} 
-    disable={activeIndex === 0}
+    <StyledClickLeft
+      width="45px"
+      role="presentation"
+      src="/images/leftArrow.svg"
+      alt="leftArrow"
+      onClick={onClick}
+      disable={activeIndex === 0}
     />
   )
 }
@@ -161,7 +160,7 @@ const CarouselRightArrow = ({ onClick, activeIndex }) => {
       src="/images/rightArrow.svg"
       alt="rightArrow"
       onClick={onClick}
-      disable={activeIndex === carouselSlidesData.length-1}
+      disable={activeIndex === carouselSlidesData.length - 1}
     />
   )
 }
@@ -220,11 +219,7 @@ const Carousel = ({ slides }) => {
       <CarouselLeftArrow onClick={() => goToPrevSlide()} activeIndex={activeIndex} />
       <StyledDiv>
         {slides.map((slide, index) => (
-          <CarouselSlide
-            index={index}
-            activeIndex={activeIndex}
-            slide={slide}
-          />
+          <CarouselSlide index={index} activeIndex={activeIndex} slide={slide} />
         ))}
       </StyledDiv>
       <StyledDivContainer>
@@ -232,7 +227,7 @@ const Carousel = ({ slides }) => {
           <CarouselIndicator index={index} activeIndex={activeIndex} onClick={() => goToSlide(index)} />
         ))}
       </StyledDivContainer>
-      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex}/>
+      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex} />
     </>
   )
 }

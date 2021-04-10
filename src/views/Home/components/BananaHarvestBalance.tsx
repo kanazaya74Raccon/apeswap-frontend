@@ -16,7 +16,7 @@ const BananaHarvestBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '60px' }} >
+      <Text color="textDisabled" style={{ lineHeight: '60px' }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )
