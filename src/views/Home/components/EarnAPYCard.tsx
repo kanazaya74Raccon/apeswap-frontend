@@ -15,7 +15,7 @@ const StyledFarmStakingCard = styled(Card)`
   flex: 1;
   background: ${({ theme }) => (theme.isDark ? '#27262c' : '#A16552')};
   max-width: 427px;
-  max-height: 150px;
+  max-height: 180px;
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {

@@ -53,6 +53,7 @@ const StyledNavLink = styled(NavLink)`
   transform: translate(-50%, -50%);
   color: #ffffff;
   box-shadow: inset 0px -1px 0px rgb(14 14 44 / 40%);
+  text-align: center;
 `
 
 const BananaStats = () => {

@@ -5,8 +5,7 @@ import useI18n from 'hooks/useI18n'
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
-  width: 427px;
-  height: 200px;
+  height: 190px;
   margin-bottom: 64px;
   overflow: visible;
   margin-top: 30px;

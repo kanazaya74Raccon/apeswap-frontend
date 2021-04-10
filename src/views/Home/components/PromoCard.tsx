@@ -11,6 +11,10 @@ interface ButtonProps {
   active: boolean
 }
 
+interface ArrowProps {
+  disable: boolean
+}
+
 const StyledIndexCard = styled.li<ToRenderProps>`
   display: ${({ active }) => (active ? 'block' : 'none')};
 `
@@ -29,11 +33,26 @@ const StyledButton = styled.button<ButtonProps>`
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
+  width: 100vw !important;
+  margin-left: -16px;
+  border-radius: 0px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+      width: 100% !important;
+      margin-left: 0px;
+      border-radius: 32px;
+    }
 `
 
 const StyledDiv = styled.div`
-  margin-left: 60px;
-  margin-right: 60px;
+  margin-left: 25px;
+  margin-right: 25px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 60px;
+    margin-right: 60px;
+
+  }
 `
 
 const StyledNavLink = styled(NavLink)`
@@ -46,24 +65,45 @@ const StyledDivContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 24px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+  margin-top: 0px;
+  margin-bottom: 12px;
   position: absolute;
   bottom: 34px;
   left: 50%;
   transform: translateX(-50%);
+  }
 `
 
-const StyledClickRight = styled.img`
+const StyledClickRight = styled.img<ArrowProps>`
   position: absolute;
-  right: 22px;
+  right: 11px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: ${({ disable }) => (!disable && 'pointer')};
+  opacity: ${({ disable }) => (disable ? 0.3 : 1)};
+  padding: 80px 15px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    right: 22px;
+    padding: 80px 10px;
+  }
 `
 
-const StyledClickLeft = styled.img`
+const StyledClickLeft = styled.img<ArrowProps>`
   position: absolute;
-  left: 22px;
+  left: 11px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: ${({ disable }) => (!disable && 'pointer')};
+  opacity: ${({ disable }) => (disable ? 0.3 : 1)};
+  padding: 80px 15px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    left: 22px;
+    padding: 80px 10px;
+  }
 `
 
 const PromoCard = () => {
@@ -100,20 +140,28 @@ const carouselSlidesData = [
   },
 ]
 
-const CarouselLeftArrow = ({ onClick }) => {
+const CarouselLeftArrow = ({ onClick, activeIndex }) => {
   return (
-    <StyledClickLeft width="25px" role="presentation" src="/images/leftArrow.svg" alt="leftArrow" onClick={onClick} />
+    <StyledClickLeft 
+    width="45px" 
+    role="presentation" 
+    src="/images/leftArrow.svg" 
+    alt="leftArrow" 
+    onClick={onClick} 
+    disable={activeIndex === 0}
+    />
   )
 }
 
-const CarouselRightArrow = ({ onClick }) => {
+const CarouselRightArrow = ({ onClick, activeIndex }) => {
   return (
     <StyledClickRight
-      width="25px"
+      width="45px"
       role="presentation"
       src="/images/rightArrow.svg"
       alt="rightArrow"
       onClick={onClick}
+      disable={activeIndex === carouselSlidesData.length-1}
     />
   )
 }
@@ -151,37 +199,28 @@ const Carousel = ({ slides }) => {
   }
 
   const goToPrevSlide = () => {
-    const slidesLength = slides.length
     let index = activeIndex
-    if (index < 1) {
-      index = slidesLength
+    if (index >= 1) {
+      --index
     }
-
-    --index
-
     setActiveIndex(index)
   }
 
   const goToNextSlide = () => {
     const slidesLength = slides.length - 1
     let index = activeIndex
-
-    if (activeIndex === slidesLength) {
-      index = -1
+    if (activeIndex < slidesLength) {
+      ++index
     }
-
-    ++index
-
     setActiveIndex(index)
   }
 
   return (
     <>
-      <CarouselLeftArrow onClick={() => goToPrevSlide()} />
+      <CarouselLeftArrow onClick={() => goToPrevSlide()} activeIndex={activeIndex} />
       <StyledDiv>
         {slides.map((slide, index) => (
           <CarouselSlide
-            // key={index}
             index={index}
             activeIndex={activeIndex}
             slide={slide}
@@ -193,7 +232,7 @@ const Carousel = ({ slides }) => {
           <CarouselIndicator index={index} activeIndex={activeIndex} onClick={() => goToSlide(index)} />
         ))}
       </StyledDivContainer>
-      <CarouselRightArrow onClick={() => goToNextSlide()} />
+      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex}/>
     </>
   )
 }

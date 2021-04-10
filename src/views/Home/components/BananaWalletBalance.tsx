@@ -14,7 +14,7 @@ const BananaWalletBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '36px' }}>
+      <Text color="textDisabled" style={{ lineHeight: '36px' }} fontFamily="poppins">
         {TranslateString(298, 'Locked')}
       </Text>
     )
