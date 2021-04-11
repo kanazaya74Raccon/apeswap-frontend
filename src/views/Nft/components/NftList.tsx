@@ -7,7 +7,7 @@ import NftGrid from './NftGrid'
 const NftList = () => {
   return (
     <NftGrid>
-      {orderBy(nfts, 'sortOrder').map((nft) => (
+      {nfts.slice(0, 130).map((nft) => (
         <div key={nft.name}>
           <NftCard nft={nft} />
         </div>

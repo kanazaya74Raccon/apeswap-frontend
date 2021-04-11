@@ -41,15 +41,16 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
   const TranslateString = useI18n()
   const pools = useAllPools()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
-  const farmName = data.name
+  let farmName = data.name
     .replace(/[\])}[{(]/g, '')
     .replace('WBNB', 'BNB')
     .toUpperCase()
   let farmImage = farmName.split(' ')[0].toLocaleLowerCase()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   if (type === 'pool') {
-    const currentPool = pools.find((pool) => pool.tokenName === data.rewardTokenSymbol)
-    farmImage = currentPool.image
+    const currentPool = pools.find((pool) => pool.sousId === data.id) || pools[0]
+    farmImage = currentPool?.image
+    farmName = `${currentPool.stakingTokenName} ➩ ${currentPool.tokenName}`
   }
 
   return (
@@ -63,7 +64,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
             height={64}
           />
           <Heading fontSize="16px" mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
-            {TranslateString(534, `Your ${farmName} Stats`)}
+            {TranslateString(534, `${farmName}`)}
           </Heading>
         </Flex>
         <Row>

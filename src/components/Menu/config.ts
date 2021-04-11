@@ -42,15 +42,16 @@ const config: MenuEntry[] = [
     href: '/iao',
   },
   {
+    label: 'NFA',
+    icon: 'apeNFTIcon',
+    href: '/nft',
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
   },
-  /* {
-    label: 'NFT',
-    icon: 'NftIcon',
-    href: '/nft',
-  },
+  /* 
   {
     label: 'Teams & Profile',
     icon: 'GroupsIcon',

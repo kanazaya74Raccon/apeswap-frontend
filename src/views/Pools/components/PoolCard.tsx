@@ -18,7 +18,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
-import { useGetPoolStats } from 'state/hooks'
 import { Pool } from 'state/types'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -33,6 +32,7 @@ import ApyButton from '../../../components/ApyCalculator/ApyButton'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 interface PoolWithApy extends Pool {
   apy: BigNumber
+  rewardTokenPrice: number
 }
 
 interface HarvestProps {
@@ -67,6 +67,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     userData,
     stakingLimit,
     displayDecimals,
+    rewardTokenPrice,
   } = pool
 
   // Pools using native BNB behave differently than pools using a token
@@ -168,10 +169,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
-  const { poolStats } = useGetPoolStats(sousId)
-
-  const rewardTokenPrice = poolStats?.rewardTokenPrice
-
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
       {isFinished && sousId !== 0 && <PoolFinishedSash />}
@@ -179,28 +176,33 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <CardTitle isFinished={isFinished && sousId !== 0}>
           {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
         </CardTitle>
-        {comingSoon && <SubTitle color="green">Coming Soon</SubTitle>}
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
             <Image src={`/images/tokens/${image || `${tokenName}.svg`}`} width={64} height={64} alt={tokenName} />
           </div>
-          {account && harvest && !isOldSyrup && (
-            <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
-              <HarvestButton
-                disabled={!earnings.toNumber() || pendingTx}
-                text={pendingTx ? 'Collecting' : 'Wuzz out'}
-                onClick={async () => {
-                  setPendingTx(true)
-                  setTypeOfReward('removed')
-                  await onReward().catch(() => {
-                    setTypeOfReward('error')
-                    rewardRefWuzzOut.current?.rewardMe()
+          {comingSoon ? (
+            <SubTitle color="green">Coming Soon</SubTitle>
+          ) : (
+            account &&
+            harvest &&
+            !isOldSyrup && (
+              <Reward ref={rewardRefWuzzOut} type="emoji" config={rewards[typeOfReward]}>
+                <HarvestButton
+                  disabled={!earnings.toNumber() || pendingTx}
+                  text={pendingTx ? 'Collecting' : 'Wuzz out'}
+                  onClick={async () => {
+                    setPendingTx(true)
+                    setTypeOfReward('removed')
+                    await onReward().catch(() => {
+                      setTypeOfReward('error')
+                      rewardRefWuzzOut.current?.rewardMe()
+                      setPendingTx(false)
+                    })
                     setPendingTx(false)
-                  })
-                  setPendingTx(false)
-                }}
-              />
-            </Reward>
+                  }}
+                />
+              </Reward>
+            )
           )}
         </div>
         {!isOldSyrup ? (
