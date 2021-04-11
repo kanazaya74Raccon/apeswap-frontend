@@ -228,6 +228,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
+    pid: 3,
+    lpSymbol: 'BUSD-BNB LP',
+    lpAddresses: {
+      97: '0x7a51d580c5d393e281f133e0af0c7156989ca17e', // BUSD-BNB BananaPair
+      56: '0x51e6d27fa57373d8d4c256231241053a70cb1d93',
+    },
+    tokenSymbol: 'BUSD',
+    tokenAddresses: {
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 23,
     lpSymbol: 'ROCKET-BNB LP',
     lpAddresses: {
@@ -241,6 +256,21 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 8,
+    lpSymbol: 'BUSD-USDC LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BUSD-USDC BananaPair
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
+    },
+    tokenSymbol: 'USDC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC Token address
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
   },
   {
     pid: 13,
@@ -271,36 +301,6 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
-  },
-  {
-    pid: 3,
-    lpSymbol: 'BUSD-BNB LP',
-    lpAddresses: {
-      97: '0x7a51d580c5d393e281f133e0af0c7156989ca17e', // BUSD-BNB BananaPair
-      56: '0x51e6d27fa57373d8d4c256231241053a70cb1d93',
-    },
-    tokenSymbol: 'BUSD',
-    tokenAddresses: {
-      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
-      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-  },
-  {
-    pid: 8,
-    lpSymbol: 'BUSD-USDC LP',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BUSD-USDC BananaPair
-      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
-    },
-    tokenSymbol: 'USDC',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC Token address
-    },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
   },
   {
     pid: 4,
