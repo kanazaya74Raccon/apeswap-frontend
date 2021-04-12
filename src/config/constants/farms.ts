@@ -311,6 +311,52 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
   },
+  
+  {
+    pid: 24,
+    lpSymbol: 'NAUT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
+      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // NAUT-BNB ApePair
+    },
+    tokenSymbol: 'NAUT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
+      56: '0x05b339b0a346bf01f851dde47a5d485c34fe220c', // NAUT Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 25,
+    lpSymbol: 'BAKE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
+      56: '0xc1c7a1d33b34019f82808f64ba07e77512a13d1a', // BAKE-BNB ApePair
+    },
+    tokenSymbol: 'BAKE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
+      56: '0xe02df9e3e622debdd69fb838bb799e3f168902c5', // BAKE Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 26,
+    lpSymbol: 'CAKE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
+      56: '0x60593abea55e9ea9d31c1b6473191cd2475a720d', // CAKE-BNB ApePair
+    },
+    tokenSymbol: 'CAKE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
+      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // CAKE Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
   {
     pid: 4,
     lpSymbol: 'BTCB-BNB LP',
