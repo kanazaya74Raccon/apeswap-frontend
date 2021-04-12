@@ -328,7 +328,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 25,
+    pid: 26,
     lpSymbol: 'BAKE-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
@@ -343,7 +343,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 26,
+    pid: 25,
     lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
