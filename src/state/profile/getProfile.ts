@@ -1,53 +1,38 @@
-import { getBananaProfileAddress, getPancakeRabbitsAddress } from 'utils/addressHelpers'
-import bananaProfileAbi from 'config/abi/bananaProfile.json'
-import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
+import { getNonFungibleApesAddress } from 'utils/addressHelpers'
+import nonFungibleApesAbi from 'config/abi/nonFungibleApes.json'
 import { getContract } from 'utils/web3'
 import { Profile } from 'state/types'
-import { getTeam } from 'state/teams/helpers'
 import nfts from 'config/constants/nfts'
-import { transformProfileResponse } from './helpers'
+import orderBy from 'lodash/orderBy'
 
-const profileContract = getContract(bananaProfileAbi, getBananaProfileAddress())
-const rabbitContract = getContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
-const profileApi = process.env.REACT_APP_API_PROFILE
+const nonFungibleApesContract = getContract(nonFungibleApesAbi, getNonFungibleApesAddress())
 
 const getProfile = async (address: string): Promise<Profile> => {
   try {
-    const hasRegistered = await profileContract.methods.hasRegistered(address).call()
-
-    if (!hasRegistered) {
+    const nfasOwned = address ? await nonFungibleApesContract.methods.balanceOf(address).call() : '0'
+    if (nfasOwned === '0') {
       return null
     }
-
-    const profileResponse = await profileContract.methods.getUserProfile(address).call()
-    const { userId, points, teamId, tokenId, nftAddress, isActive } = transformProfileResponse(profileResponse)
-
-    const [bunnyId, team] = await Promise.all([rabbitContract.methods.getBunnyId(tokenId).call(), getTeam(teamId)])
-    const nft = nfts.find((nftItem) => nftItem.bunnyId === Number(bunnyId))
-    const response = await fetch(`${profileApi}/api/users?address=${address}`)
-    const { username = '' } = await response.json()
-
+    const promises = []
+    for (let i = 0; i < nfasOwned; i++) {
+      promises.push(nonFungibleApesContract.methods.tokenOfOwnerByIndex(address, i).call())
+    }
+    const nfaReturn = await (await Promise.all(promises)).map(Number)
+    const ownedNfts = nfaReturn.map((index) => nfts[index])
+    const rarestNft = ownedNfts ? orderBy(ownedNfts, ['attributes.rarityOverallRank'])[0] : null
     // Save the preview image to local storage for the exchange
     localStorage.setItem(
       `profile_${address}`,
       JSON.stringify({
-        username,
-        avatar: `https://pancakeswap.finance/images/nfts/${nft.images.sm}`,
+        avatar: rarestNft.image,
       }),
     )
-
     return {
-      userId,
-      points,
-      teamId,
-      tokenId,
-      username,
-      nftAddress,
-      isActive,
-      nft,
-      team,
+      ownedNfts,
+      rarestNft,
     } as Profile
   } catch (error) {
+    console.log(error)
     return null
   }
 }

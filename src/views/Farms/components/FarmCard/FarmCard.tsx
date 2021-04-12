@@ -61,6 +61,25 @@ const StyledCardAccent = styled.div`
   z-index: -1;
 `
 
+const WarningCardAccent = styled.div`
+  background: #ca3e33;
+  background-size: 300% 300%;
+  animation: ${RainbowLight} 2s linear infinite;
+  border-radius: 16px;
+  filter: blur(6px);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  z-index: -1;
+`
+
+const styles = {
+  warning: WarningCardAccent,
+  featured: StyledCardAccent,
+}
+
 const FCard = styled.div`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
@@ -136,10 +155,11 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+  const FarmStyle = styles[farm.style]
 
   return (
     <FCard>
-      {farm.tokenSymbol === 'BANANA' && <StyledCardAccent />}
+      {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}

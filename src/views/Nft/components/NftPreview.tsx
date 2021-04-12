@@ -12,10 +12,10 @@ const NftPreview = () => {
     <Container>
       <PleaseWaitCard />
       <NftGrid>
-        {orderBy(nfts, 'sortOrder').map((nft) => (
+        {orderBy(nfts, 'index').map((nft) => (
           <div key={nft.name}>
             <Card>
-              <Image src={`/images/nfts/${nft.images.blur}`} alt={nft.name} />
+              <Image src={nft.image} alt={nft.name} rarityTier={nft.attributes.rarityTierNumber} />
               <CardBody>
                 <Heading>{nft.name}</Heading>
               </CardBody>
