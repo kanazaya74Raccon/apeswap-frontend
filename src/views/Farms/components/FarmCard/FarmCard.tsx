@@ -33,14 +33,14 @@ const RainbowLight = keyframes`
 `
 
 const Accent = styled.div`
-border-radius: 16px;
-filter: blur(6px);
-position: absolute;
-top: -2px;
-right: -2px;
-bottom: -2px;
-left: -2px;
-z-index: -1;
+  border-radius: 16px;
+  filter: blur(6px);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  z-index: -1;
 `
 
 const FeaturedCardAccent = styled(Accent)`

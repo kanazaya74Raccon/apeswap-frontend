@@ -311,7 +311,7 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
   },
-  
+
   {
     pid: 24,
     lpSymbol: 'NAUT-BNB LP',
