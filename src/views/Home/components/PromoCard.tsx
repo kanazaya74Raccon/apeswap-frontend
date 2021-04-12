@@ -27,25 +27,24 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
+        href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
         target="_blank"
         rel="noopener noreferrer"
       >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🐵 Non Fungible Ape Sales Going Live! 🐵
+            🍌 Increasing rewards for core $BANANA Farms 🍌
           </Heading>
           <>
-            <Text color="textSubtle">
-              The first batch of 100 NFAs will be sold on Treasureland starting on April 8th 23:00 UTC
-            </Text>
+            <Text color="textSubtle">We are changing multipliers on April 12th 23:00 UTC</Text>
+            <Text color="textSubtle">Farms with red outline will be turned off</Text>
             <Text color="textSubtle">
               <StyledLink
-                href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
+                href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Check it out here! 🚀
+                Check out the details
               </StyledLink>
             </Text>
           </>

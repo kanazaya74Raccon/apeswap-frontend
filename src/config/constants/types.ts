@@ -47,6 +47,7 @@ export interface FarmConfig {
   lpSymbol: string
   lpAddresses: Address
   tokenSymbol: string
+  style?: string
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address

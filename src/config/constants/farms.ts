@@ -29,6 +29,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Banana Token
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
+    style: 'featured',
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
@@ -44,6 +45,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
+    style: 'featured',
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
   },
@@ -59,6 +61,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5', // BAKE Token address
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -74,6 +77,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x94BaBBE728D9411612Ee41b20241a6FA251b26Ce',
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -89,6 +93,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -104,6 +109,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -119,6 +125,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x05b339b0a346bf01f851dde47a5d485c34fe220c', // NAUT Token
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -134,6 +141,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x790Be81C3cA0e53974bE2688cDb954732C9862e1', // BREW Token
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -224,6 +232,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
