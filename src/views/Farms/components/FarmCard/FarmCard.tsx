@@ -59,9 +59,8 @@ const StyledCardAccent = styled.div`
   z-index: -1;
 `
 
-
 const WarningCardAccent = styled.div`
-  background: #CA3E33;
+  background: #ca3e33;
   background-size: 300% 300%;
   animation: ${RainbowLight} 2s linear infinite;
   border-radius: 16px;
@@ -76,7 +75,7 @@ const WarningCardAccent = styled.div`
 
 const styles = {
   warning: WarningCardAccent,
-  featured: StyledCardAccent
+  featured: StyledCardAccent,
 }
 
 const FCard = styled.div`

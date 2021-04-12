@@ -36,12 +36,8 @@ const PromoCard = () => {
             🍌 Increasing rewards for core $BANANA Farms 🍌
           </Heading>
           <>
-            <Text color="textSubtle">
-              We are changing multipliers on April 12th 23:00 UTC
-            </Text>
-            <Text color="textSubtle">
-              Farms with red outline will be turned off
-            </Text>
+            <Text color="textSubtle">We are changing multipliers on April 12th 23:00 UTC</Text>
+            <Text color="textSubtle">Farms with red outline will be turned off</Text>
             <Text color="textSubtle">
               <StyledLink
                 href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
