@@ -129,7 +129,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   <>
                     <td key={key}>
                       <CellInner>
-                        <CellLayout 
+                        <CellLayout
                         // label={TranslateString(736, 'APR')}
                         >
                           <Apr {...props.apr} hideButton={isMobile} />
@@ -139,10 +139,10 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   </>
                 )
               case 'farm':
-                return(
+                return (
                   <td key={key}>
                     <CellInnerFarm>
-                        {React.createElement(cells[key], props[key])}
+                      {React.createElement(cells[key], props[key])}
                       <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
                     </CellInnerFarm>
                   </td>
@@ -150,20 +150,21 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               case 'multiplier':
                 return null
               default:
-                  return(
+                return (
                   <td key={key}>
                     <CellInner>
                       <CellLayout
-                        // label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
+                      // label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
                       >
                         {React.createElement(cells[key], props[key])}
                       </CellLayout>
-                      {key=== 'farm' && 
-                      (<TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>)
-                      }
+                      {key === 'farm' && (
+                        <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
+                      )}
                     </CellInner>
                   </td>
-                )}
+                )
+            }
           })}
         </StyledTr>
       )

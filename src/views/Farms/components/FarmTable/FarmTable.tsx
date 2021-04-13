@@ -74,7 +74,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   const { data, columns } = props
 
   const { rows } = useTable(columns, data, {
-    sortable: true
+    sortable: true,
   })
 
   const scrollToTop = (): void => {
@@ -85,31 +85,31 @@ const FarmTable: React.FC<ITableProps> = (props) => {
 
   return (
     <>
-    <StyledTableLabels>
-            <StyledLabel>FARM</StyledLabel>
-            <StyledLabel>EARNED</StyledLabel>
-            <StyledLabel>APR</StyledLabel>
-            <div> </div>
-    </StyledTableLabels>
-    <Container>
-      <TableContainer>
-        <TableWrapper ref={tableWrapperEl}>
-          <StyledTable>
-            <TableBody>
-              {rows.map((row) => {
-                return <Row {...row.original} key={`table-row-${row.id}`} />
-              })}
-            </TableBody>
-          </StyledTable>
-        </TableWrapper>
-        <ScrollButtonContainer>
-          <Button variant="text" onClick={scrollToTop}>
-            {TranslateString(999, 'To Top')}
-            <ChevronUpIcon color="primary" />
-          </Button>
-        </ScrollButtonContainer>
-      </TableContainer>
-    </Container>
+      <StyledTableLabels>
+        <StyledLabel>FARM</StyledLabel>
+        <StyledLabel>EARNED</StyledLabel>
+        <StyledLabel>APR</StyledLabel>
+        <div> </div>
+      </StyledTableLabels>
+      <Container>
+        <TableContainer>
+          <TableWrapper ref={tableWrapperEl}>
+            <StyledTable>
+              <TableBody>
+                {rows.map((row) => {
+                  return <Row {...row.original} key={`table-row-${row.id}`} />
+                })}
+              </TableBody>
+            </StyledTable>
+          </TableWrapper>
+          <ScrollButtonContainer>
+            <Button variant="text" onClick={scrollToTop}>
+              {TranslateString(999, 'To Top')}
+              <ChevronUpIcon color="primary" />
+            </Button>
+          </ScrollButtonContainer>
+        </TableContainer>
+      </Container>
     </>
   )
 }
