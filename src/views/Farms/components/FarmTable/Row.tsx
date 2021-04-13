@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
-import { usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
-import { QuoteToken } from 'config/constants/types'
+import { communityFarms } from 'config/constants'
+import { CommunityTag, CoreTag } from 'components/Tags'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
@@ -21,7 +21,6 @@ export interface RowProps {
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
-  // liquidity: LiquidityProps
   details: FarmWithStakedValue
 }
 
@@ -38,6 +37,19 @@ const CellInner = styled.div`
   padding: 24px 0px;
   display: flex;
   width: 100%;
+  align-items: center;
+  padding-right: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-right: 32px;
+  }
+`
+
+const CellInnerFarm = styled.div`
+  padding: 24px 0px;
+  display: flex;
+  width: 100%;
+  max-width: 220px;
   align-items: center;
   padding-right: 8px;
 
@@ -64,6 +76,24 @@ const FarmMobileCell = styled.td`
   padding-top: 24px;
 `
 
+const TagsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  > div {
+    height: 24px;
+    padding: 0 6px;
+    font-size: 14px;
+    margin-right: 4px;
+
+    svg {
+      width: 14px;
+    }
+  }
+`
+
 const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
@@ -79,11 +109,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 
-  const bananaPrice = usePriceBananaBusd()
-  const bnbPrice = usePriceBnbBusd()
-  const ethPrice = usePriceEthBusd()
-
-  const farm = details
+  const isCommunityFarm = communityFarms.includes(details.lpSymbol)
 
   const handleRenderRow = () => {
     if (!isXs) {
@@ -95,49 +121,49 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               return null
             }
 
+            console.log(key)
+
             switch (key) {
-              case 'details':
-                return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout>
-                        <Details actionPanelToggled={actionPanelToggled} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
-                )
               case 'apr':
                 return (
                   <>
                     <td key={key}>
                       <CellInner>
-                        <CellLayout label={TranslateString(736, 'APR')}>
+                        <CellLayout 
+                        // label={TranslateString(736, 'APR')}
+                        >
                           <Apr {...props.apr} hideButton={isMobile} />
-                        </CellLayout>
-                      </CellInner>
-                    </td>
-                    <td key={key}>
-                      <CellInner>
-                        <CellLayout label={TranslateString(736, 'LIQUIDITY')}>
-                          <Liquidity farm={details} />
                         </CellLayout>
                       </CellInner>
                     </td>
                   </>
                 )
+              case 'farm':
+                return(
+                  <td key={key}>
+                    <CellInnerFarm>
+                        {React.createElement(cells[key], props[key])}
+                      <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
+                    </CellInnerFarm>
+                  </td>
+                )
+              case 'multiplier':
+                return null
               default:
-                return (
+                  return(
                   <td key={key}>
                     <CellInner>
                       <CellLayout
-                        label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
+                        // label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
                       >
                         {React.createElement(cells[key], props[key])}
                       </CellLayout>
+                      {key=== 'farm' && 
+                      (<TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>)
+                      }
                     </CellInner>
                   </td>
-                )
-            }
+                )}
           })}
         </StyledTr>
       )

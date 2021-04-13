@@ -20,7 +20,7 @@ export interface AprProps {
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: ${({ theme }) => theme.colors.text};
 
   button {
@@ -57,10 +57,10 @@ const Apr: React.FC<AprProps> = ({
     <Container>
       {originalValue ? (
         <>
-          <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
             <ApyButton lpLabel={lpLabel} rewardTokenPrice={bananaPrice} apy={new BigNumber(originalValue)} />
           )}
+          <AprWrapper>{value}%</AprWrapper>
         </>
       ) : (
         <AprWrapper>{TranslateString(656, 'Loading...')}</AprWrapper>

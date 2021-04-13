@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ChevronDownIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
 
 interface DetailsProps {
   actionPanelToggled: boolean
@@ -25,13 +24,10 @@ const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
-  const TranslateString = useI18n()
   const { isXl } = useMatchBreakpoints()
-  const isMobile = !isXl
 
   return (
     <Container>
-      {!isMobile && TranslateString(658, 'Details')}
       <ArrowIcon color="primary" toggled={actionPanelToggled} />
     </Container>
   )

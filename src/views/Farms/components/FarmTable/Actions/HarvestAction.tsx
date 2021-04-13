@@ -54,6 +54,7 @@ const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, user
           <StakedStyle>~{countUp}USD</StakedStyle>
         </div>
         <Button
+          mt="10px"
           disabled={!earnings || pendingTx || !account}
           onClick={async () => {
             setPendingTx(true)

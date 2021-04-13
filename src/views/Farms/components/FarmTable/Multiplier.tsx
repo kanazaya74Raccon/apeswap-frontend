@@ -13,10 +13,7 @@ const MultiplierWrapper = styled.div`
   color: ${({ theme }) => theme.colors.text};
   width: 36px;
   text-align: right;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    text-align: left;
-  }
+  margin-right: 2px;
 `
 
 const Container = styled.div`

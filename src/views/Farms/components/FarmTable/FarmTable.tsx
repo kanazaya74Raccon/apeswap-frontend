@@ -8,7 +8,6 @@ import Row, { RowProps } from './Row'
 export interface ITableProps {
   data: RowProps[]
   columns: ColumnType<RowProps>[]
-  // sortColumn?: string
 }
 
 const Container = styled.div`
@@ -16,6 +15,20 @@ const Container = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
+`
+
+const StyledTableLabels = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0px;
+`
+
+const StyledLabel = styled.div`
+  width: 100%;
+  display: flex;
+  margin-left: 40px;
+  color: ${({ theme }) => theme.colors.textSubtle};
 `
 
 const TableWrapper = styled.div`
@@ -61,8 +74,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   const { data, columns } = props
 
   const { rows } = useTable(columns, data, {
-    sortable: true,
-    // , sortColumn: 'farm'
+    sortable: true
   })
 
   const scrollToTop = (): void => {
@@ -72,6 +84,13 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   }
 
   return (
+    <>
+    <StyledTableLabels>
+            <StyledLabel>FARM</StyledLabel>
+            <StyledLabel>EARNED</StyledLabel>
+            <StyledLabel>APR</StyledLabel>
+            <div> </div>
+    </StyledTableLabels>
     <Container>
       <TableContainer>
         <TableWrapper ref={tableWrapperEl}>
@@ -91,6 +110,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         </ScrollButtonContainer>
       </TableContainer>
     </Container>
+    </>
   )
 }
 

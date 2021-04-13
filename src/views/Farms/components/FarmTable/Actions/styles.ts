@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
-  padding: 16px;
+  padding: 24px;
   border: 2px solid ${({ theme }) => theme.colors.input};
   border-radius: 16px;
-  flex-grow: 1;
-  flex-basis: 0;
+  min-height: 150px;
   margin-bottom: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -39,6 +38,7 @@ export const Subtle = styled.span`
 
 export const ActionContent = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `

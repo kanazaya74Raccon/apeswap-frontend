@@ -23,6 +23,7 @@ import { ActionContainer, ActionTitles, ActionContent, Earned, StakedStyle, Titl
 
 const IconButtonWrapper = styled.div`
   display: flex;
+  margin-top: 10px;
 `
 
 const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, addLiquidityUrl }) => {

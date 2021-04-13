@@ -88,6 +88,10 @@ const InfoContainer = styled.div`
 
 const ValueContainer = styled.div`
   display: block;
+`
+
+const ValueContainerNoneLarge = styled.div`
+  display: block;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     display: none;
@@ -129,24 +133,28 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
             </StyledLinkExternal> */}
           </StakeContainer>
         )}
+        <ValueContainer>
+          <ValueWrapper>
+            <Text>{TranslateString(999, 'Multiplier:')}</Text>
+            <Multiplier {...multiplier} />
+          </ValueWrapper>
+        </ValueContainer>
+        <ValueContainer>
+          <ValueWrapper>
+            <Text>{TranslateString(999, 'Liquidity:')}</Text>
+            <Liquidity farm={farm} />
+          </ValueWrapper>
+        </ValueContainer>
         <StyledLinkExternal href={bsc}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>
         <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal>
-        <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
+        {/* <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer> */}
       </InfoContainer>
-      <ValueContainer>
+      <ValueContainerNoneLarge>
         <ValueWrapper>
-          <Text>{TranslateString(736, 'APR')}</Text>
+          <Text>{TranslateString(736, 'APR:')}</Text>
           <Apr {...apr} />
         </ValueWrapper>
-        <ValueWrapper>
-          <Text>{TranslateString(999, 'Multiplier')}</Text>
-          <Multiplier {...multiplier} />
-        </ValueWrapper>
-        <ValueWrapper>
-          <Text>{TranslateString(999, 'Liquidity')}</Text>
-          <Liquidity farm={farm} />
-        </ValueWrapper>
-      </ValueContainer>
+      </ValueContainerNoneLarge>
       <ActionContainer>
         <HarvestAction {...farm} />
         <StakedAction {...farm} />

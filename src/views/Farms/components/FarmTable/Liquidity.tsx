@@ -15,10 +15,7 @@ const LiquidityWrapper = styled.div`
   min-width: 110px;
   font-weight: 600;
   text-align: right;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    text-align: left;
-  }
+  margin-right: 2px;
 `
 
 const Container = styled.div`
