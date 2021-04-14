@@ -24,7 +24,7 @@ const StyledTotalValueLockedCard = styled(Card)`
 `
 const StyledNavLink = styled(NavLink)`
   width: 100%;
-  height: 100%;
+  max-height: 210px;
 `
 
 const StyledText = styled(Text)`

@@ -49,17 +49,6 @@ const Cards = styled(BaseLayout)<GridWidth>`
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: grid;
-    grid-column: span 4;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
 `
 
 const Home: React.FC = () => {

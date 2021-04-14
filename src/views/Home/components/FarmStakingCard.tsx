@@ -62,8 +62,13 @@ const Actions = styled.div`
 `
 
 const StyledTextLock = styled(Text)`
-  margin-top: 50px;
+  margin-top: 10px;
   font-size: 28px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    flex-direction: row;
+    margin-top: 50px;
+  }
 `
 
 const StyledButton = styled(Button)`

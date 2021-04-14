@@ -6,10 +6,6 @@ import { Carousel } from 'react-responsive-carousel'
 
 import { NavLink } from 'react-router-dom'
 
-interface ArrowProps {
-  disable: boolean
-}
-
 const StyledPromoCard = styled(Card)`
   text-align: center;
   width: 100vw !important;
@@ -19,7 +15,6 @@ const StyledPromoCard = styled(Card)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: center;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 100% !important;
@@ -112,13 +107,12 @@ const StyledDivContainer = styled.div`
   }
 `
 
-const StyledClickRight = styled.img<ArrowProps>`
+const StyledClickRight = styled.img`
   position: absolute;
   right: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: ${({ disable }) => !disable && 'pointer'};
-  opacity: ${({ disable }) => (disable ? 0.3 : 1)};
+  cursor: 'pointer';
   padding: 80px 15px;
   z-index: 100;
 
@@ -128,13 +122,12 @@ const StyledClickRight = styled.img<ArrowProps>`
   }
 `
 
-const StyledClickLeft = styled.img<ArrowProps>`
+const StyledClickLeft = styled.img`
   position: absolute;
   left: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: ${({ disable }) => !disable && 'pointer'};
-  opacity: ${({ disable }) => (disable ? 0.3 : 1)};
+  cursor: 'pointer';
   padding: 80px 15px;
   z-index: 100;
 
@@ -176,6 +169,8 @@ const PromoCard = () => {
     let index = activeIndex
     if (index >= 1) {
       --index
+    } else {
+      index = carouselSlidesData.length -1
     }
     setActiveIndex(index)
   }
@@ -185,13 +180,15 @@ const PromoCard = () => {
     let index = activeIndex
     if (activeIndex < slidesLength) {
       ++index
+    } else {
+      index = 0;
     }
     setActiveIndex(index)
   }
 
   return (
     <StyledPromoCard>
-      <CarouselLeftArrow onClick={() => goToPrevSlide()} activeIndex={activeIndex} />
+      <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
         {carouselSlidesData && (
           <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
@@ -201,14 +198,14 @@ const PromoCard = () => {
           </StyledCarousel>
         )}
       </StyledDivContainer>
-      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex} />
+      <CarouselRightArrow onClick={() => goToNextSlide()} />
     </StyledPromoCard>
   )
 }
 
 export default PromoCard
 
-const CarouselLeftArrow = ({ onClick, activeIndex }) => {
+const CarouselLeftArrow = ({ onClick }) => {
   return (
     <StyledClickLeft
       width="45px"
@@ -216,12 +213,11 @@ const CarouselLeftArrow = ({ onClick, activeIndex }) => {
       src="/images/leftArrow.svg"
       alt="leftArrow"
       onClick={onClick}
-      disable={activeIndex === 0}
     />
   )
 }
 
-const CarouselRightArrow = ({ onClick, activeIndex }) => {
+const CarouselRightArrow = ({ onClick }) => {
   return (
     <StyledClickRight
       width="45px"
@@ -229,7 +225,6 @@ const CarouselRightArrow = ({ onClick, activeIndex }) => {
       src="/images/rightArrow.svg"
       alt="rightArrow"
       onClick={onClick}
-      disable={activeIndex === carouselSlidesData.length - 1}
     />
   )
 }

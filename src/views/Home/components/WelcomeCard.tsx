@@ -45,10 +45,10 @@ const WelcomeCard = () => {
           <StyledImg src="/images/ape-banana-frenzy.svg" alt="banana frenzy" />
         </CardBody>
       </StyledWelcomeCard>
-      <Heading as="h1" size="lg" mb="6px" color="secondary">
+      <Heading as="h1" size="lg" mb="6px" color="contrast">
         {TranslateString(576, 'Welcome all Apes!')}
       </Heading>
-      <StyledText fontFamily="poppins">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
+      <StyledText color="textSubtle" fontFamily="poppins">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
     </StyledFlex>
   )
 }
