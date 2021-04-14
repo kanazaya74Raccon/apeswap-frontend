@@ -56,34 +56,34 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <StyledNavLink to="/stats">
-      <img
-        width="250px"
-        style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '60px' }}
-        src="/images/monkey.svg"
-        alt="monkey"
-      />
-      <CardBody>
-        <StyledHeading size="sm" mb="6px" color="white">
-          {TranslateString(999, 'Total Value Locked (TVL)')}
-        </StyledHeading>
-        {totalTvl ? (
-          <>
-            <CardValue fontSize="21px" decimals={0} value={totalTvl} prefix="$" color="white" />
-            <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
-          </>
-        ) : (
-          <>
-            <Skeleton height={33} />
-          </>
-        )}
-        <PersonalTvl />
-        <Flex justifyContent="flex-end">
+        <img
+          width="250px"
+          style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '60px' }}
+          src="/images/monkey.svg"
+          alt="monkey"
+        />
+        <CardBody>
+          <StyledHeading size="sm" mb="6px" color="white">
+            {TranslateString(999, 'Total Value Locked (TVL)')}
+          </StyledHeading>
+          {totalTvl ? (
+            <>
+              <CardValue fontSize="21px" decimals={0} value={totalTvl} prefix="$" color="white" />
+              <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
+            </>
+          ) : (
+            <>
+              <Skeleton height={33} />
+            </>
+          )}
+          <PersonalTvl />
+          <Flex justifyContent="flex-end">
             <StyledLink color="white" size="sm" mt="10px" fontFamily="poppins">
-            {TranslateString(999, 'Account TVL')}
+              {TranslateString(999, 'Account TVL')}
             </StyledLink>
             <ArrowForwardIcon mt={10} color="white" />
-        </Flex>
-      </CardBody>
+          </Flex>
+        </CardBody>
       </StyledNavLink>
     </StyledTotalValueLockedCard>
   )

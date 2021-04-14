@@ -20,7 +20,7 @@ const Page = styled(Container)<SizeProps>`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-top: 32px;
     padding-bottom: 32px;
-    max-width: ${({ width }) => (width || '992px')};
+    max-width: ${({ width }) => width || '992px'};
   }
 `
 

@@ -3,7 +3,16 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Button, Card, CardBody, BananaIcon, BananaPairIcon, Text, ArrowForwardIcon } from '@apeswapfinance/uikit'
+import {
+  Heading,
+  Button,
+  Card,
+  CardBody,
+  BananaIcon,
+  BananaPairIcon,
+  Text,
+  ArrowForwardIcon,
+} from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
@@ -47,9 +56,9 @@ const Actions = styled.div`
   position: absolute;
   bottom: 0px;
   left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 `
 
 const StyledTextLock = styled(Text)`
@@ -100,7 +109,7 @@ const StyledLabel = styled(Label)`
 `
 
 const HarvestDiv = styled.div`
- padding-bottom: 50px;
+  padding-bottom: 50px;
 `
 
 const FarmedStakingCard = () => {
@@ -145,25 +154,28 @@ const FarmedStakingCard = () => {
         </Heading>
       </CardHeader>
       <CardBody>
-      {account ? (
-        <HarvestDiv>
-        <Block>
-          <BananaHarvestBalance />
+        {account ? (
+          <HarvestDiv>
+            <Block>
+              <BananaHarvestBalance />
+              <FlexRow>
+                <BananaHarvestUsdBalance />
+                <StyledLabel>{TranslateString(544, 'in BANANA to Harvest')}</StyledLabel>
+              </FlexRow>
+            </Block>
+            <Block>
+              <BananaWalletBalance />
+              <FlexRow>
+                <BananaWalletUsdBalance />
+                <StyledLabel>{TranslateString(546, 'in BANANA in Wallet')}</StyledLabel>
+              </FlexRow>
+            </Block>
+          </HarvestDiv>
+        ) : (
           <FlexRow>
-            <BananaHarvestUsdBalance />
-            <StyledLabel>{TranslateString(544, 'in BANANA to Harvest')}</StyledLabel>
+            <StyledTextLock>LOCKED</StyledTextLock>
           </FlexRow>
-        </Block>
-        <Block>
-          <BananaWalletBalance />
-          <FlexRow>
-            <BananaWalletUsdBalance />
-            <StyledLabel>{TranslateString(546, 'in BANANA in Wallet')}</StyledLabel>
-          </FlexRow>
-        </Block>
-        </HarvestDiv>):
-        <FlexRow><StyledTextLock>LOCKED</StyledTextLock></FlexRow>
-        }
+        )}
         <Actions>
           {account ? (
             <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>

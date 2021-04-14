@@ -32,31 +32,29 @@ const Cards = styled(BaseLayout)<GridWidth>`
     }
   }
 
-
-
   ${({ theme }) => theme.mediaQueries.md} {
     & > div {
       grid-column: span 4;
     }
-    
-    & > div:first-child  {
-      grid-column: ${({ spanFirst }) => spanFirst ? `span ${spanFirst}` : 'span 5'}
+
+    & > div:first-child {
+      grid-column: ${({ spanFirst }) => (spanFirst ? `span ${spanFirst}` : 'span 5')};
     }
-  
-    & > div:last-child  {
-      grid-column: ${({ spanLast }) => spanLast ? `span ${spanLast}` : 'span 6'}
+
+    & > div:last-child {
+      grid-column: ${({ spanLast }) => (spanLast ? `span ${spanLast}` : 'span 6')};
     }
   }
 `
 
 const FlexColumn = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-${({ theme }) => theme.mediaQueries.sm} {
-display: grid;
-grid-column: span 4;
-}
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: grid;
+    grid-column: span 4;
+  }
 
   ${({ theme }) => theme.mediaQueries.lg} {
     flex-direction: column;

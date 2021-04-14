@@ -27,7 +27,7 @@ const StyledPromoCard = styled(Card)`
     margin-right: auto;
     border-radius: 32px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.lg} {
     max-width: 100%;
     margin-left: auto;
