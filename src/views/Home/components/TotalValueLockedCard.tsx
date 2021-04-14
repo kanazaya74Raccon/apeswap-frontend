@@ -68,7 +68,7 @@ const TotalValueLockedCard = () => {
           </StyledHeading>
           {totalTvl ? (
             <>
-              <CardValue fontSize="21px" decimals={0} value={totalTvl} prefix="$" color="white" />
+              <CardValue fontSize="28px" decimals={0} value={totalTvl} prefix="$" color="white" />
               <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
             </>
           ) : (
