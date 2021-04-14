@@ -10,7 +10,12 @@ import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import PromoCard from './components/PromoCard'
 import WelcomeCard from './components/WelcomeCard'
 
-const Cards = styled(BaseLayout)`
+export interface GridWidth {
+  spanFirst?: number
+  spanLast?: number
+}
+
+const Cards = styled(BaseLayout)<GridWidth>`
   align-items: stretch;
   justify-content: stretch;
   margin-bottom: 32px;
@@ -23,30 +28,57 @@ const Cards = styled(BaseLayout)`
   ${({ theme }) => theme.mediaQueries.sm} {
     & > div {
       grid-column: span 8;
+      width: 100%;
     }
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+
+
+  ${({ theme }) => theme.mediaQueries.md} {
     & > div {
-      grid-column: span 6;
+      grid-column: span 4;
     }
+    
+    & > div:first-child  {
+      grid-column: ${({ spanFirst }) => spanFirst ? `span ${spanFirst}` : 'span 5'}
+    }
+  
+    & > div:last-child  {
+      grid-column: ${({ spanLast }) => spanLast ? `span ${spanLast}` : 'span 6'}
+    }
+  }
+`
+
+const FlexColumn = styled.div`
+display: flex;
+flex-direction: column;
+
+${({ theme }) => theme.mediaQueries.sm} {
+display: grid;
+grid-column: span 4;
+}
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 `
 
 const Home: React.FC = () => {
   return (
-    <Page>
-      <Cards>
+    <Page width="1200px">
+      <Cards spanLast={7}>
         <WelcomeCard />
         <PromoCard />
       </Cards>
-      <Cards>
+      <Cards spanLast={3}>
         <FarmStakingCard />
         <BananaStats />
-      </Cards>
-      <Cards>
-        <EarnAPYCard />
-        <TotalValueLockedCard />
+        <FlexColumn>
+          <EarnAPYCard />
+          <TotalValueLockedCard />
+        </FlexColumn>
       </Cards>
       {/* <EarnAssetCard /> */}
       {/* <LotteryCard /> */}

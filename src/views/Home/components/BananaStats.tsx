@@ -11,9 +11,7 @@ import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
 const StyledBananaStats = styled(Card)`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 427px;
+  width: 100%;
   min-height: 376px;
 `
 
@@ -43,7 +41,6 @@ const StyledText = styled(Text)`
 `
 
 const StyledNavLink = styled(NavLink)`
-  padding: 15px 40px;
   background: #ffb300;
   border-radius: 10px;
   border: 0px;
@@ -54,6 +51,11 @@ const StyledNavLink = styled(NavLink)`
   color: #ffffff;
   box-shadow: inset 0px -1px 0px rgb(14 14 44 / 40%);
   text-align: center;
+  width: 220px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const BananaStats = () => {

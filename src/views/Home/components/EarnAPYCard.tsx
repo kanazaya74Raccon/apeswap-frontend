@@ -14,11 +14,16 @@ const StyledFarmStakingCard = styled(Card)`
   display: flex;
   flex: 1;
   background: ${({ theme }) => (theme.isDark ? '#27262c' : '#A16552')};
-  max-width: 427px;
-  max-height: 180px;
+  width: 100%;
+  max-height: 160px;
   text-align: center;
+  margin-bottom: 16px;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-bottom: 24px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
     margin: 0;
   }
 `
@@ -108,7 +113,7 @@ const EarnAPYCard = () => {
       <StyledNavLink to="/farms">
         <img
           width="250px"
-          style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '30px' }}
+          style={{ opacity: 0.1, position: 'absolute', right: '-80px', top: '0px' }}
           src="/images/monkey.svg"
           alt="monkey"
         />
@@ -120,10 +125,10 @@ const EarnAPYCard = () => {
             {getHighestAPY() ? `${getHighestAPY()}%` : <Skeleton animation="pulse" variant="rect" height="44px" />}
           </CardMidContent>
           <Flex justifyContent="flex-end">
-            <StyledHeading color="white" size="sm" mt="30px" fontFamily="poppins">
+            <StyledHeading color="white" size="sm" mt="15px" fontFamily="poppins">
               In Farms
             </StyledHeading>
-            <ArrowForwardIcon mt={30} color="white" />
+            <ArrowForwardIcon mt={15} color="white" />
           </Flex>
         </VerticalBody>
       </StyledNavLink>

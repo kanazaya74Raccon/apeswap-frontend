@@ -1,35 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { Carousel } from 'react-responsive-carousel'
+
 import { NavLink } from 'react-router-dom'
-
-interface ToRenderProps {
-  active: boolean
-}
-
-interface ButtonProps {
-  active: boolean
-}
 
 interface ArrowProps {
   disable: boolean
 }
-
-const StyledIndexCard = styled.li<ToRenderProps>`
-  display: ${({ active }) => (active ? 'block' : 'none')};
-`
-
-const StyledButton = styled.button<ButtonProps>`
-  opacity: ${({ active }) => (active ? 1 : 0.3)};
-  width: 14px;
-  height: 14px;
-  background-color: #ffb300;
-  margin-left: 8px;
-  margin-right: 8px;
-  border-radius: 50%;
-  border: 0;
-  outline: none;
-`
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
@@ -37,20 +16,32 @@ const StyledPromoCard = styled(Card)`
   margin-left: -16px;
   border-radius: 0px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 100% !important;
-    margin-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 32px;
+  }
+  
+  ${({ theme }) => theme.mediaQueries.lg} {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 32px;
   }
 `
 
 const StyledDiv = styled.div`
-  margin-left: 25px;
-  margin-right: 25px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 60px;
-    margin-right: 60px;
   }
 `
 
@@ -58,6 +49,51 @@ const StyledNavLink = styled(NavLink)`
   font-weight: 500;
   color: #ffb300;
   display: block;
+  margin-top: 20px;
+`
+
+const StyledCarousel = styled(Carousel)`
+  .control-dots {
+    position: absolute;
+    bottom: 34px;
+  }
+
+  .carousel .control-dots .dot {
+    opacity: 0.3;
+    width: 14px;
+    height: 14px;
+    background-color: #ffb300;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .carousel .slider-wrapper.axis-horizontal .slider .slide {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .carousel.carousel-slider {
+    height: 100%;
+  }
+
+  .carousel-root {
+    width: 100%;
+  }
+
+  .carousel .slider-wrapper {
+    ${({ theme }) => theme.mediaQueries.md} {
+      max-width: 450px;
+    }
+    ${({ theme }) => theme.mediaQueries.lg} {
+      max-width: 500px;
+    }
+    max-width: 380px;
+    max-height: 260px;
+  }
 `
 
 const StyledDivContainer = styled.div`
@@ -65,11 +101,12 @@ const StyledDivContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   margin-bottom: 24px;
+  width: 100%;
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-top: 0px;
     margin-bottom: 12px;
     position: absolute;
-    bottom: 34px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -83,6 +120,7 @@ const StyledClickRight = styled.img<ArrowProps>`
   cursor: ${({ disable }) => !disable && 'pointer'};
   opacity: ${({ disable }) => (disable ? 0.3 : 1)};
   padding: 80px 15px;
+  z-index: 100;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     right: 22px;
@@ -98,22 +136,13 @@ const StyledClickLeft = styled.img<ArrowProps>`
   cursor: ${({ disable }) => !disable && 'pointer'};
   opacity: ${({ disable }) => (disable ? 0.3 : 1)};
   padding: 80px 15px;
+  z-index: 100;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     left: 22px;
     padding: 80px 10px;
   }
 `
-
-const PromoCard = () => {
-  return (
-    <StyledPromoCard>
-      <Carousel slides={carouselSlidesData} />
-    </StyledPromoCard>
-  )
-}
-
-export default PromoCard
 
 const carouselSlidesData = [
   {
@@ -125,7 +154,8 @@ const carouselSlidesData = [
   },
   {
     header: 'NFA',
-    text: 'Who is ready for some NFAs',
+    text:
+      'Who is ready for some NFAs, Who is ready for some NFAs,Who is ready for some NFAs, Who is ready for some NFAs, Who is ready for some NFAs',
     text2: 'Launching April',
     link: 'Check it out!',
     pageLink: 'iao',
@@ -138,6 +168,45 @@ const carouselSlidesData = [
     pageLink: 'iao',
   },
 ]
+
+const PromoCard = () => {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const goToPrevSlide = () => {
+    let index = activeIndex
+    if (index >= 1) {
+      --index
+    }
+    setActiveIndex(index)
+  }
+
+  const goToNextSlide = () => {
+    const slidesLength = carouselSlidesData.length - 1
+    let index = activeIndex
+    if (activeIndex < slidesLength) {
+      ++index
+    }
+    setActiveIndex(index)
+  }
+
+  return (
+    <StyledPromoCard>
+      <CarouselLeftArrow onClick={() => goToPrevSlide()} activeIndex={activeIndex} />
+      <StyledDivContainer>
+        {carouselSlidesData && (
+          <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
+            {carouselSlidesData.map((slide) => (
+              <CarouselSlide slide={slide} />
+            ))}
+          </StyledCarousel>
+        )}
+      </StyledDivContainer>
+      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex} />
+    </StyledPromoCard>
+  )
+}
+
+export default PromoCard
 
 const CarouselLeftArrow = ({ onClick, activeIndex }) => {
   return (
@@ -165,69 +234,21 @@ const CarouselRightArrow = ({ onClick, activeIndex }) => {
   )
 }
 
-const CarouselIndicator = ({ index, activeIndex, onClick }) => {
-  return <StyledButton active={index === activeIndex} onClick={onClick} />
-}
-
-const CarouselSlide = ({ index, activeIndex, slide }) => {
+const CarouselSlide = ({ slide }) => {
   return (
-    <StyledIndexCard active={index === activeIndex}>
-      <NavLink to={`${slide.link}`}>
-        <CardBody>
-          <Heading size="lg" mb="24px">
-            {`${slide.header}`}
-          </Heading>
-          <>
-            <Text color="textSubtle">{`${slide.text}`}</Text>
-            <Text color="textSubtle">{`${slide.text2}`}</Text>
-            <Text color="textSubtle">
-              <StyledNavLink to={`${slide.link}`}>{`${slide.link}`}</StyledNavLink>
-            </Text>
-          </>
-        </CardBody>
-      </NavLink>
-    </StyledIndexCard>
-  )
-}
-
-const Carousel = ({ slides }) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  const goToSlide = (index) => {
-    setActiveIndex(index)
-  }
-
-  const goToPrevSlide = () => {
-    let index = activeIndex
-    if (index >= 1) {
-      --index
-    }
-    setActiveIndex(index)
-  }
-
-  const goToNextSlide = () => {
-    const slidesLength = slides.length - 1
-    let index = activeIndex
-    if (activeIndex < slidesLength) {
-      ++index
-    }
-    setActiveIndex(index)
-  }
-
-  return (
-    <>
-      <CarouselLeftArrow onClick={() => goToPrevSlide()} activeIndex={activeIndex} />
-      <StyledDiv>
-        {slides.map((slide, index) => (
-          <CarouselSlide index={index} activeIndex={activeIndex} slide={slide} />
-        ))}
-      </StyledDiv>
-      <StyledDivContainer>
-        {slides.map((_, index) => (
-          <CarouselIndicator index={index} activeIndex={activeIndex} onClick={() => goToSlide(index)} />
-        ))}
-      </StyledDivContainer>
-      <CarouselRightArrow onClick={() => goToNextSlide()} activeIndex={activeIndex} />
-    </>
+    <NavLink to={`${slide.link}`}>
+      <CardBody>
+        <Heading size="lg" mb="24px">
+          {`${slide.header}`}
+        </Heading>
+        <StyledDiv>
+          <Text color="textSubtle" fontFamily="poppins">{`${slide.text}`}</Text>
+          <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
+          <Text color="textSubtle">
+            <StyledNavLink to={`${slide.link}`}>{`${slide.link}`}</StyledNavLink>
+          </Text>
+        </StyledDiv>
+      </CardBody>
+    </NavLink>
   )
 }
