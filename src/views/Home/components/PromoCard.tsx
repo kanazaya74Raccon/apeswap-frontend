@@ -170,7 +170,7 @@ const PromoCard = () => {
     if (index >= 1) {
       --index
     } else {
-      index = carouselSlidesData.length -1
+      index = carouselSlidesData.length - 1
     }
     setActiveIndex(index)
   }
@@ -181,7 +181,7 @@ const PromoCard = () => {
     if (activeIndex < slidesLength) {
       ++index
     } else {
-      index = 0;
+      index = 0
     }
     setActiveIndex(index)
   }
@@ -207,13 +207,7 @@ export default PromoCard
 
 const CarouselLeftArrow = ({ onClick }) => {
   return (
-    <StyledClickLeft
-      width="45px"
-      role="presentation"
-      src="/images/leftArrow.svg"
-      alt="leftArrow"
-      onClick={onClick}
-    />
+    <StyledClickLeft width="45px" role="presentation" src="/images/leftArrow.svg" alt="leftArrow" onClick={onClick} />
   )
 }
 
