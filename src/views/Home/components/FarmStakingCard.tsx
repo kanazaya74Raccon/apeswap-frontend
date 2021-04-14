@@ -160,7 +160,7 @@ const FarmedStakingCard = () => {
               <BananaHarvestBalance />
               <FlexRow>
                 <BananaHarvestUsdBalance />
-                <StyledLabel>{TranslateString(544, 'in BANANA to Harvest')}</StyledLabel>
+                <StyledLabel>{TranslateString(544, ' total harvest value')}</StyledLabel>
               </FlexRow>
             </Block>
             <Block>
