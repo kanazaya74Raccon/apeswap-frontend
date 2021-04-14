@@ -40,7 +40,7 @@ const StyledText = styled(Text)`
   font-weight: 400;
 `
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled.a`
   background: #ffb300;
   border-radius: 10px;
   border: 0px;
@@ -106,7 +106,9 @@ const BananaStats = () => {
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
         </Row>
       </CardBody>
-      <StyledNavLink to="/stats">LEARN MORE</StyledNavLink>
+      <StyledNavLink href="https://info.apeswap.finance" target="_blank">
+        LEARN MORE
+      </StyledNavLink>
     </StyledBananaStats>
   )
 }
