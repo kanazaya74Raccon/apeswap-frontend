@@ -117,7 +117,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'bitfresh',
-    address: '0x6820753f992DDD014CAE917df605820A04bAC875',
+    address: '0xA010b274824fFC13E45473A6bdA2659C6cD386D0',
     isActive: true,
     name: 'Bitfresh',
     subTitle: 'The first community-driven iGaming platform where everyone wins.',
