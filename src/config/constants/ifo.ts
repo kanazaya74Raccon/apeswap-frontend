@@ -109,7 +109,7 @@ const ifos: Ifo[] = [
     saleAmount: '7,000,000 JDI',
     raiseAmount: '$700,000',
     bananaToBurn: '$350,000',
-    projectSiteUrl: 'https://jediyield.com/',
+    projectSiteUrl: 'https://jdiyield.com/',
     currency: 'BANANA-BNB LP',
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
