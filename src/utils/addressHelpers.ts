@@ -32,8 +32,8 @@ export const getLotteryTicketAddress = () => {
 export const getBananaProfileAddress = () => {
   return addresses.bananaProfile[chainId]
 }
-export const getPancakeRabbitsAddress = () => {
-  return addresses.pancakeRabbits[chainId]
+export const getNonFungibleApesAddress = () => {
+  return addresses.nonFungibleApes[chainId]
 }
 export const getRabbitMintingFarmAddress = () => {
   return addresses.rabbitMintingFarm[chainId]

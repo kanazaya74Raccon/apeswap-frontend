@@ -9,16 +9,16 @@ import {
   getLotteryTicketAddress,
   getRabbitMintingFarmAddress,
   getBananaProfileAddress,
-  getPancakeRabbitsAddress,
   getGoldenBananaAddress,
   getTreasuryAddress,
+  getNonFungibleApesAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
 import erc20 from 'config/abi/erc20.json'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
-import pancakeRabbits from 'config/abi/pancakeRabbits.json'
+import nonFungibleApes from 'config/abi/nonFungibleApes.json'
 import lottery from 'config/abi/lottery.json'
 import treasuryAbi from 'config/abi/treasury.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
@@ -70,9 +70,9 @@ export const useRabbitMintingFarm = () => {
   return useContract(rabbitMintingFarmAbi, getRabbitMintingFarmAddress())
 }
 
-export const usePancakeRabbits = () => {
-  const pancakeRabbitsAbi = (pancakeRabbits as unknown) as AbiItem
-  return useContract(pancakeRabbitsAbi, getPancakeRabbitsAddress())
+export const useNonFungibleApes = () => {
+  const nonFungibleApesAbi = (nonFungibleApes as unknown) as AbiItem
+  return useContract(nonFungibleApesAbi, getNonFungibleApesAddress())
 }
 
 export const useProfile = () => {

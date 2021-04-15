@@ -26,20 +26,30 @@ const PromoCard = () => {
   const TranslateString = useI18n()
   return (
     <StyledPromoCard>
-      <NavLink to="/iao">
+      <a
+        href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🚀 {TranslateString(999, 'May the IAO be with you')} 🚀
+            🍌 Increasing rewards for core $BANANA Farms 🍌
           </Heading>
           <>
-            <Text color="textSubtle">🌑 This time we are taking you to a galaxy far far away with JediYield 🌑</Text>
-            <Text color="textSubtle">Launching Apr. 2, 03:00 UTC </Text>
+            <Text color="textSubtle">We are changing multipliers on April 12th 23:00 UTC</Text>
+            <Text color="textSubtle">Farms with red outline will be turned off</Text>
             <Text color="textSubtle">
-              <StyledNavLink to="/iao"> Check it out!</StyledNavLink>
+              <StyledLink
+                href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Check out the details
+              </StyledLink>
             </Text>
           </>
         </CardBody>
-      </NavLink>
+      </a>
     </StyledPromoCard>
   )
 }

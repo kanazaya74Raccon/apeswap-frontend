@@ -47,6 +47,7 @@ export interface FarmConfig {
   lpSymbol: string
   lpAddresses: Address
   tokenSymbol: string
+  style?: string
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address
@@ -85,16 +86,25 @@ export type Images = {
   ipfs?: string
 }
 
-export type NftImages = {
-  blur: string
-} & Images
+export type Attributes = {
+  faceColor: string
+  baseColor: string
+  frames: string
+  mouths: string
+  eyes: string
+  hats: string
+  rarityScore: string
+  rarityTierNumber: number
+  rarityTierName: string
+  rarityOverallRank: number
+}
 
 export type Nft = {
+  index: number
   name: string
-  description: string
-  images: NftImages
-  sortOrder: number
-  bunnyId: number
+  image: string
+  uri: string
+  attributes: Attributes
 }
 
 export type TeamImages = {

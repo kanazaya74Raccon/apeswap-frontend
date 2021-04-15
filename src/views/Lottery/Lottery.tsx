@@ -49,10 +49,10 @@ const Lottery: React.FC = () => {
       setMostRecentLotteryNumber(previousLotteryNumber)
     }
 
-    if (account && lotteryContract) {
+    if (lotteryContract) {
       getInitialLotteryIndex()
     }
-  }, [account, lotteryContract])
+  }, [lotteryContract])
 
   const handleClick = (index) => {
     setActiveIndex(index)
