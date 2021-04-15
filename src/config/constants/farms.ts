@@ -65,6 +65,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 27,
+    lpSymbol: 'JDI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xfb6063f29AF6dcd1fc03A8E221c6D91DEabbE764', // JDI-BNB BananaPair
+    },
+    tokenSymbol: 'JDI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0491648c910ad2c1afaab733faf71d30313df7fc', // JDI Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 17,
     lpSymbol: 'ADA-BNB LP',
     lpAddresses: {
@@ -74,7 +89,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'ADA',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x3ee2200efb3400fabb9aacf31297cbdd1d435d47', // BREW Token
+      56: '0x3ee2200efb3400fabb9aacf31297cbdd1d435d47', // ADA Token
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
