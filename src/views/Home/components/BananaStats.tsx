@@ -1,6 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { Button, Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'

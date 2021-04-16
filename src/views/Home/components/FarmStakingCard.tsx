@@ -10,8 +10,7 @@ import {
   CardBody,
   BananaIcon,
   BananaPairIcon,
-  Text,
-  ArrowForwardIcon,
+  Text
 } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
