@@ -27,9 +27,9 @@ const Row = styled.div`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 12px;
-    padding-right: 10px;  
+    padding-right: 10px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 6px;
     padding-right: 6px;
@@ -51,7 +51,7 @@ const GreyRow = styled.div`
     padding-left: 12px;
     padding-right: 10px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 6px;
     padding-right: 6px;
@@ -64,7 +64,7 @@ const StyledHeading = styled(Heading)`
 const StyledCardBody = styled(CardBody)`
   padding-left: 20px;
   padding-right: 20px;
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 10px;
     padding-right: 10px;

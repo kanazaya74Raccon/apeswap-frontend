@@ -14,7 +14,6 @@ export interface GridWidth {
   spanLast?: number
 }
 
-
 const Cards = styled(BaseLayout)<GridWidth>`
   align-items: stretch;
   justify-content: stretch;
@@ -31,7 +30,7 @@ const Cards = styled(BaseLayout)<GridWidth>`
       width: 100%;
     }
   }
-  
+
   ${({ theme }) => theme.mediaQueries.md} {
     & > div {
       grid-column: span 12;
@@ -52,7 +51,7 @@ const Cards = styled(BaseLayout)<GridWidth>`
       grid-column: ${({ spanLast }) => (spanLast === 7 ? `span ${spanLast}` : 'span 12')};
     }
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     & > div {
       grid-column: span 4;
@@ -69,23 +68,21 @@ const Cards = styled(BaseLayout)<GridWidth>`
 `
 
 const FlexColumn = styled(Cards)`
-
   ${({ theme }) => theme.mediaQueries.lg} {
-
     display: grid;
 
     & > div:first-child {
-      grid-column: span 5
+      grid-column: span 5;
     }
 
     & > div:last-child {
-      grid-column: span 7 !important
+      grid-column: span 7 !important;
     }
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
     grid-gap: 0px;
     margin-bottom: 0px;
   }

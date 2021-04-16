@@ -56,15 +56,15 @@ const StyledFlex = styled(Flex)`
 `
 
 const StyledImage = styled.img`
-opacity: 0.1;
-position: absolute; 
-right: 20px; 
-top: 30px;
+  opacity: 0.1;
+  position: absolute;
+  right: 20px;
+  top: 30px;
 
-${({ theme }) => theme.mediaQueries.lg} {
-  right: -10px; 
-  top: 80px;
-}
+  ${({ theme }) => theme.mediaQueries.lg} {
+    right: -10px;
+    top: 80px;
+  }
 `
 
 const TotalValueLockedCard = () => {
@@ -80,18 +80,21 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <StyledNavLink to="/stats">
-        <StyledImage
-          width="250px"
-          src="/images/monkey.svg"
-          alt="monkey"
-        />
+        <StyledImage width="250px" src="/images/monkey.svg" alt="monkey" />
         <CardBody>
           <StyledHeading size="sm" mb="6px" color="white">
             {TranslateString(999, 'Total Value Locked (TVL)')}
           </StyledHeading>
           {totalTvl ? (
             <>
-              <CardValue fontSize="28px" differentFontSize="22px" decimals={0} value={totalTvl} prefix="$" color="white" />
+              <CardValue
+                fontSize="28px"
+                differentFontSize="22px"
+                decimals={0}
+                value={totalTvl}
+                prefix="$"
+                color="white"
+              />
               <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
             </>
           ) : (
