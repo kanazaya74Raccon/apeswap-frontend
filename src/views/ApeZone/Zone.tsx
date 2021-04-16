@@ -6,6 +6,7 @@ import Divider from 'views/Farms/components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
 import Iao from './components/IAO/CurrentIao'
+import Pools from './components/Pools/Pools'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -41,6 +42,8 @@ const Zone = () => {
       </Cards>
       <Divider />
       <Iao />
+      <Divider />
+      <Pools />
     </>
   )
 }

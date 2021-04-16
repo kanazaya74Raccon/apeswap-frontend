@@ -82,6 +82,11 @@ export const usePoolFromPid = (sousId): Pool => {
   return pool
 }
 
+export const useGnanaPools = (account): Pool[] => {
+  const pools = usePools(account).filter((pool) => pool.stakingTokenName === 'GNANA')
+  return pools
+}
+
 export const useAllPools = (): Pool[] => {
   const pools = useSelector((state: State) => state.pools.data)
   return pools

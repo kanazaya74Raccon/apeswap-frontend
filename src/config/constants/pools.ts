@@ -350,7 +350,7 @@ const pools: PoolConfig[] = [
     stakingTokenName: 'BANANA',
     image: 'LYPTUS.png',
     stakingTokenAddress: {
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
     },
     contractAddress: {
@@ -366,6 +366,27 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: false,
+  },
+  {
+    sousId: 17,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x842f53cca4bc7da76ea80adfbaac5c6794f99d7d', // GNANA token address
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6960Eb5654c01d8Cc246bAd712BaB4faB86492D6', // ApeRewardPool
+      56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://apeswap.finance/',
+    harvest: true,
+    tokenPerBlock: `0.025`,
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
   },
   /* {
     sousId: 45,

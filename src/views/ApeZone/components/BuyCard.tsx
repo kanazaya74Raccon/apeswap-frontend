@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useBanana, useTreasury } from 'hooks/useContract'
@@ -13,6 +13,7 @@ import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
 
 const BuyCard = ({ account }) => {
+  const MAX_BUY = 50
   const [val, setVal] = useState('1')
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
@@ -28,6 +29,7 @@ const BuyCard = ({ account }) => {
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
+      if (parseInt(e.currentTarget.value) > MAX_BUY) return
       setVal(e.currentTarget.value)
     },
     [setVal],
@@ -45,7 +47,8 @@ const BuyCard = ({ account }) => {
   }, [handleBuy, val])
 
   const handleSelectMax = useCallback(() => {
-    setVal(fullBalance)
+    const max = parseInt(fullBalance) < MAX_BUY ? fullBalance : MAX_BUY
+    setVal(max.toString())
   }, [fullBalance, setVal])
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
@@ -91,6 +94,7 @@ const BuyCard = ({ account }) => {
           </Button>
         )}
         <CardValue fontSize="26px" decimals={4} value={goldenBananaBalance} prefix="GNANA" />
+        <Text fontSize="11px">* Current max buy is {MAX_BUY} at a time</Text>
       </CardBody>
     </Card>
   )
