@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import { Heading, Card } from '@apeswapfinance/uikit'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
@@ -29,8 +29,8 @@ const OwnedNfts = () => {
             marginBottom="10px"
           >
             {profile.ownedNfts.map((nft) => (
-              <div key={nft.name}>
-                <WalletNft nft={nft} />
+              <div>
+                <WalletNft key={nft.name} nft={nft} />
               </div>
             ))}
           </Card>
