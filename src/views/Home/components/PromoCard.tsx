@@ -33,18 +33,19 @@ const PromoCard = () => {
       >
         <CardBody>
           <Heading size="lg" mb="24px">
-            🍌 Increasing rewards for core $BANANA Farms 🍌
+            🐵 Non Fungible Ape Sales Going Live! 🐵
           </Heading>
           <>
-            <Text color="textSubtle">We are changing multipliers on April 12th 23:00 UTC</Text>
-            <Text color="textSubtle">Farms with red outline will be turned off</Text>
+            <Text color="textSubtle">
+              The second batch of 100 NFAs will be sold on Lootex starting on April 17th 16:00 UTC
+            </Text>
             <Text color="textSubtle">
               <StyledLink
-                href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
+                href="https://dex.lootex.io/stores/non-fungible-apes"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Check out the details
+                Check it out here! 🚀
               </StyledLink>
             </Text>
           </>

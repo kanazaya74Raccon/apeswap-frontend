@@ -1,18 +1,23 @@
 import React from 'react'
-import orderBy from 'lodash/orderBy'
-import nfts from 'config/constants/nfts'
+import { Nft } from 'config/constants/types'
 import NftCard from './NftCard'
 import NftGrid from './NftGrid'
 
-const NftList = () => {
+interface NftListProps {
+  nftSet: Nft[]
+}
+
+const NftList: React.FC<NftListProps> = ({ nftSet }) => {
   return (
-    <NftGrid>
-      {nfts.slice(0, 130).map((nft) => (
-        <div key={nft.name}>
-          <NftCard nft={nft} />
-        </div>
-      ))}
-    </NftGrid>
+    <>
+      <NftGrid>
+        {nftSet.map((nft) => (
+          <div key={nft.index}>
+            <NftCard nft={nft} />
+          </div>
+        ))}
+      </NftGrid>
+    </>
   )
 }
 
