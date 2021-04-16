@@ -11,24 +11,37 @@ import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 const StyledFarmStakingCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
   flex: 1;
   background: ${({ theme }) => (theme.isDark ? '#27262c' : '#A16552')};
   width: 100%;
   max-height: 160px;
   text-align: center;
-  margin-bottom: 16px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-bottom: 24px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    max-height: 275px;
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin: 0;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    max-height: 140px;
+    margin-bottom: 32px;
   }
 `
 const VerticalBody = styled(CardBody)`
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+
+const StyledFlex = styled(Flex)`
+  margin-top: auto;
+  align-items: center;
+  margin-left: auto;
 `
 
 const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
@@ -36,6 +49,14 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 45px;
   text-align: center;
   letter-spacing: 0.05em;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 22px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xxl} {
+    font-size: 28px;
+  }
 `
 
 const StyledHeading = styled(Heading)`
@@ -124,12 +145,12 @@ const EarnAPYCard = () => {
           <CardMidContent color="white">
             {getHighestAPY() ? `${getHighestAPY()}%` : <Skeleton animation="pulse" variant="rect" height="44px" />}
           </CardMidContent>
-          <Flex justifyContent="flex-end">
+          <StyledFlex justifyContent="flex-end">
             <StyledHeading color="white" size="sm" mt="15px" fontFamily="poppins">
               In Farms
             </StyledHeading>
             <ArrowForwardIcon mt={15} color="white" />
-          </Flex>
+          </StyledFlex>
         </VerticalBody>
       </StyledNavLink>
     </StyledFarmStakingCard>

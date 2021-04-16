@@ -45,6 +45,7 @@ const StyledNavLink = styled(NavLink)`
   color: #ffb300;
   display: block;
   margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 const StyledCarousel = styled(Carousel)`
@@ -77,6 +78,10 @@ const StyledCarousel = styled(Carousel)`
 
   .carousel-root {
     width: 100%;
+  }
+
+  .slider-wrapper.axis-horizontal {
+    margin-bottom: 20px !important;
   }
 
   .carousel .slider-wrapper {
@@ -191,7 +196,12 @@ const PromoCard = () => {
       <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
         {carouselSlidesData && (
-          <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
+          <StyledCarousel 
+          infiniteLoop 
+          // autoPlay 
+          selectedItem={activeIndex} 
+          showStatus={false} 
+          showArrows={false}>
             {carouselSlidesData.map((slide) => (
               <CarouselSlide slide={slide} />
             ))}

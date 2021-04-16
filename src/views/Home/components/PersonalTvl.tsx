@@ -18,7 +18,7 @@ const PersonalTvl = () => {
     )
   }
 
-  return <CardValue fontSize="28px" decimals={0} value={tvl} prefix="$" color="white" />
+  return <CardValue fontSize="28px"  differentFontSize="22px" decimals={0} value={tvl} prefix="$" color="white" />
 }
 
 export default PersonalTvl

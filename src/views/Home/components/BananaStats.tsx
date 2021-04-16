@@ -22,6 +22,18 @@ const Row = styled.div`
   justify-content: space-between;
   padding-bottom: 4px;
   padding-top: 4px;
+  padding-left: 12px;
+  padding-right: 10px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-left: 12px;
+    padding-right: 10px;  
+  }
+  
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
 `
 const GreyRow = styled.div`
   align-items: center;
@@ -31,13 +43,37 @@ const GreyRow = styled.div`
   padding-bottom: 4px;
   padding-top: 4px;
   background: rgb(196, 196, 196, 0.2);
+  border-radius: 10px;
+  padding-left: 12px;
+  padding-right: 10px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-left: 12px;
+    padding-right: 10px;
+  }
+  
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
 `
 const StyledHeading = styled(Heading)`
   text-align: center;
 `
 
+const StyledCardBody = styled(CardBody)`
+  padding-left: 20px;
+  padding-right: 20px;
+  
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+`
+
 const StyledText = styled(Text)`
   font-weight: 400;
+  margin-right: 10px;
 `
 
 const StyledNavLink = styled.a`
@@ -69,8 +105,8 @@ const BananaStats = () => {
 
   return (
     <StyledBananaStats>
-      <CardBody>
-        <StyledHeading size="xl" mb="24px">
+      <StyledCardBody>
+        <StyledHeading size="lg" mb="24px">
           {TranslateString(534, 'Banana Stats')}
         </StyledHeading>
         <GreyRow>
@@ -105,7 +141,7 @@ const BananaStats = () => {
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
         </Row>
-      </CardBody>
+      </StyledCardBody>
       <StyledNavLink href="https://info.apeswap.finance" target="_blank">
         LEARN MORE
       </StyledNavLink>

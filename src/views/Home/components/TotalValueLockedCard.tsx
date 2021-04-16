@@ -15,16 +15,23 @@ const StyledTotalValueLockedCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#27262c' : '#A16552')};
   max-width: 100%;
   width: 100%;
-  max-height: 210px;
+  max-height: 200px;
   text-align: center;
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-top: 15px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: block;
+    height: 100%;
+    max-height: 260px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    max-height: 260px;
   }
 `
 const StyledNavLink = styled(NavLink)`
   width: 100%;
-  max-height: 210px;
+  height: 100%;
+  max-height: 200px;
 `
 
 const StyledText = styled(Text)`
@@ -43,6 +50,23 @@ const StyledHeading = styled(Heading)`
   text-align: center;
 `
 
+const StyledFlex = styled(Flex)`
+  margin-top: auto;
+  align-items: center;
+`
+
+const StyledImage = styled.img`
+opacity: 0.1;
+position: absolute; 
+right: 20px; 
+top: 30px;
+
+${({ theme }) => theme.mediaQueries.lg} {
+  right: -10px; 
+  top: 80px;
+}
+`
+
 const TotalValueLockedCard = () => {
   const TranslateString = useI18n()
 
@@ -56,9 +80,8 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <StyledNavLink to="/stats">
-        <img
+        <StyledImage
           width="250px"
-          style={{ opacity: 0.1, position: 'absolute', right: '0px', top: '60px' }}
           src="/images/monkey.svg"
           alt="monkey"
         />
@@ -68,7 +91,7 @@ const TotalValueLockedCard = () => {
           </StyledHeading>
           {totalTvl ? (
             <>
-              <CardValue fontSize="28px" decimals={0} value={totalTvl} prefix="$" color="white" />
+              <CardValue fontSize="28px" differentFontSize="22px" decimals={0} value={totalTvl} prefix="$" color="white" />
               <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
             </>
           ) : (
@@ -77,12 +100,12 @@ const TotalValueLockedCard = () => {
             </>
           )}
           <PersonalTvl />
-          <Flex justifyContent="flex-end">
+          <StyledFlex justifyContent="flex-end">
             <StyledLink color="white" size="sm" mt="10px" fontFamily="poppins">
               {TranslateString(999, 'Account TVL')}
             </StyledLink>
             <ArrowForwardIcon mt={10} color="white" />
-          </Flex>
+          </StyledFlex>
         </CardBody>
       </StyledNavLink>
     </StyledTotalValueLockedCard>
