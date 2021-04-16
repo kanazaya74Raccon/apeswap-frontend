@@ -3,15 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import {
-  Heading,
-  Button,
-  Card,
-  CardBody,
-  BananaIcon,
-  BananaPairIcon,
-  Text
-} from '@apeswapfinance/uikit'
+import { Heading, Button, Card, CardBody, BananaIcon, BananaPairIcon, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
