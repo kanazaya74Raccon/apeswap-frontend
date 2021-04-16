@@ -19,6 +19,7 @@ const Wrapper = styled(Flex)`
 
 const MultiplierTag = styled(Tag)`
   margin-left: 4px;
+  color: ${(props) => props.theme.colors.card};
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
