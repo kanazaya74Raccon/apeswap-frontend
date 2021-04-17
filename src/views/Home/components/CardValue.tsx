@@ -40,10 +40,6 @@ const CardValue: React.FC<CardValueProps> = ({
     ${({ theme }) => theme.mediaQueries.xl} {
       font-size: ${differentFontSize || fontSize};
     }
-
-    ${({ theme }) => theme.mediaQueries.xxl} {
-      font-size: ${fontSize};
-    }
   `
 
   const updateValue = useRef(update)

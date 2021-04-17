@@ -53,10 +53,6 @@ const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 22px;
   }
-
-  ${({ theme }) => theme.mediaQueries.xxl} {
-    font-size: 28px;
-  }
 `
 
 const StyledHeading = styled(Heading)`

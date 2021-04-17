@@ -198,7 +198,7 @@ const PromoCard = () => {
         {carouselSlidesData && (
           <StyledCarousel
             infiniteLoop
-            // autoPlay
+            autoPlay
             selectedItem={activeIndex}
             showStatus={false}
             showArrows={false}
