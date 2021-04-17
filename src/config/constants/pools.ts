@@ -179,6 +179,29 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.28935185',
     sortOrder: 5,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 18,
+    tokenName: 'NAUT',
+    stakingTokenName: 'BNB-NAUT',
+    image: 'NAUT.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x330de89a559a75738acB5b87aE93579120d53AfB',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.049603174603175',
+    sortOrder: 5,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
