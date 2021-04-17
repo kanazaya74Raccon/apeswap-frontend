@@ -196,13 +196,7 @@ const PromoCard = () => {
       <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
         {carouselSlidesData && (
-          <StyledCarousel
-            infiniteLoop
-            autoPlay
-            selectedItem={activeIndex}
-            showStatus={false}
-            showArrows={false}
-          >
+          <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
             {carouselSlidesData.map((slide) => (
               <CarouselSlide slide={slide} />
             ))}
