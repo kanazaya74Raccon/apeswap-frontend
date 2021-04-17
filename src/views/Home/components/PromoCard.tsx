@@ -27,7 +27,7 @@ const PromoCard = () => {
   return (
     <StyledPromoCard>
       <a
-        href="https://ape-swap.medium.com/increasing-rewards-for-core-banana-farms-ec2c9a451561"
+        href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -37,11 +37,11 @@ const PromoCard = () => {
           </Heading>
           <>
             <Text color="textSubtle">
-              The second batch of 100 NFAs will be sold on Lootex starting on April 17th 16:00 UTC
+              The second batch of 100 NFAs will be sold on Treasureland starting on April 17th 17:00 UTC
             </Text>
             <Text color="textSubtle">
               <StyledLink
-                href="https://dex.lootex.io/stores/non-fungible-apes"
+                href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
                 target="_blank"
                 rel="noopener noreferrer"
               >
