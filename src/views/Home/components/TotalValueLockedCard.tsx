@@ -95,7 +95,7 @@ const TotalValueLockedCard = () => {
                 prefix="$"
                 color="white"
               />
-              <StyledText color="white">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</StyledText>
+              <StyledText color="white">{TranslateString(999, 'Across all LPs and Pools')}</StyledText>
             </>
           ) : (
             <>

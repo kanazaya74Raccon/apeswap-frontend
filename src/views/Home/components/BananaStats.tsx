@@ -119,15 +119,15 @@ const BananaStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'TOTAL BANANA SUPPLY')}
+            {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
           {bananaSupply && (
-            <CardValue fontSize="14px" value={getBalanceNumber(totalSupply)} text="poppins" fontWeight={700} />
+            <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(538, 'TOTAL BANANA BURNED')}
+            {TranslateString(538, 'BANANA BURNED')}
           </StyledText>
           <CardValue
             fontSize="14px"
@@ -139,15 +139,9 @@ const BananaStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(999, 'CIRCULATING BANANA BANANA')}
+            {TranslateString(536, 'DEX LIQUIDITY')}
           </StyledText>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
-        </Row>
-        <GreyRow>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'USD MARKET CAP')}
-          </StyledText>
-          {statsOverall.totalLiquidity && (
+          {statsOverall?.totalLiquidity && (
             <CardValue
               fontSize="14px"
               value={statsOverall.totalLiquidity}
@@ -157,13 +151,13 @@ const BananaStats = () => {
               fontWeight={700}
             />
           )}
-        </GreyRow>
-        <Row>
+        </Row>
+        <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
-        </Row>
+        </GreyRow>
       </StyledCardBody>
       <StyledNavLink href="https://info.apeswap.finance" target="_blank">
         LEARN MORE
