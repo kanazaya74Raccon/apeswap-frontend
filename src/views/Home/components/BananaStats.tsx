@@ -121,9 +121,7 @@ const BananaStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
-          {bananaSupply && (
-            <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />
-          )}
+          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
