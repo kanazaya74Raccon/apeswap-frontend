@@ -26,8 +26,12 @@ const Nft = () => {
           </Heading>
           <OwnedNfts />
           <Heading as="h1" size="lg" color="secondary" paddingTop="25px" style={{ textDecoration: 'underline' }}>
-            <a href="https://dex.lootex.io/stores/non-fungible-apes" target="_blank" rel="noopener noreferrer">
-              {TranslateString(999, 'Sales open on April 17th at 16:00 UTC on Lootex')}
+            <a
+              href="https://treasureland.market/#/nft-market/apeswap?sellingType=0&priceType=0&title=0&sortValue=1&page=1&project=21"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {TranslateString(999, 'Sales open on April 17th at 17:00 UTC on Treasureland')}
             </a>
           </Heading>
         </StyledHero>
