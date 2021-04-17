@@ -89,7 +89,7 @@ const TotalValueLockedCard = () => {
             <>
               <CardValue
                 fontSize="28px"
-                differentFontSize="22px"
+                differentFontSize="24px"
                 decimals={0}
                 value={totalTvl}
                 prefix="$"

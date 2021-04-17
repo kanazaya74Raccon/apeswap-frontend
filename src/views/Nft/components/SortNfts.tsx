@@ -89,6 +89,7 @@ const SearchBox = styled.input`
   font-size: 20px;
   display: flex;
   border: none;
+  -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.secondary};
   box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.secondary};
   background-color: ${(props) => props.theme.colors};
   color: ${(props) => props.theme.colors.secondary};
@@ -106,11 +107,11 @@ const BackToTop = styled.button`
   position: sticky;
   bottom: 10px;
   left: 100%;
-  max-width: 50px;
+  width: 50px;
   cursor: pointer;
-  width: 100%;
   height: 50px;
   fill: black;
+  align-text: center;
   opacity: 0.8;
   border: none;
   color: white;
@@ -181,7 +182,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
 
   const search = (e) => {
     const tempFilter = nftSet.filter((nft) => {
-      return nft.name.toLowerCase().includes(e.target.value)
+      return nft.name.toLowerCase().includes(e.target.value.toLowerCase())
     })
     setFilterNftSet(tempFilter)
     setEndPagination(50)

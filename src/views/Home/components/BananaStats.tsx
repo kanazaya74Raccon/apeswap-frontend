@@ -3,7 +3,7 @@ import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd } from 'state/hooks'
+import { usePriceBananaBusd, useStatsOverall } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { getBananaAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
@@ -96,6 +96,7 @@ const StyledNavLink = styled.a`
 const BananaStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
+  const { statsOverall } = useStatsOverall()
   const bananaPriceUsd = usePriceBananaBusd()
   const burnedBalance = useBurnedBalance(getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
@@ -110,16 +111,18 @@ const BananaStats = () => {
         </StyledHeading>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'TOTAL BANANA SUPPLY')}
-          </StyledText>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
-        </GreyRow>
-        <Row>
-          <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'USD MARKET CAP')}
           </StyledText>
           {marketCap && (
             <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" fontWeight={700} />
+          )}
+        </GreyRow>
+        <Row>
+          <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'TOTAL BANANA SUPPLY')}
+          </StyledText>
+          {bananaSupply && (
+            <CardValue fontSize="14px" value={getBalanceNumber(totalSupply)} text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
@@ -136,7 +139,28 @@ const BananaStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(540, 'NEW BANANA/BLOCK')}
+            {TranslateString(999, 'CIRCULATING BANANA BANANA')}
+          </StyledText>
+          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
+        </Row>
+        <GreyRow>
+          <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'USD MARKET CAP')}
+          </StyledText>
+          {statsOverall.totalLiquidity && (
+            <CardValue
+              fontSize="14px"
+              value={statsOverall.totalLiquidity}
+              decimals={0}
+              prefix="$"
+              text="poppins"
+              fontWeight={700}
+            />
+          )}
+        </GreyRow>
+        <Row>
+          <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
         </Row>
