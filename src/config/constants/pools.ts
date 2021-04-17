@@ -184,7 +184,7 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
-    sousId: 17,
+    sousId: 18,
     tokenName: 'NAUT',
     stakingTokenName: 'BNB-NAUT',
     image: 'NAUT.png',
