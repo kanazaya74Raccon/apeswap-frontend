@@ -43,16 +43,12 @@ const BananaStats = () => {
           {marketCap && <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total BANANA Supply')}</Text>
-          {bananaSupply && <CardValue fontSize="14px" value={getBalanceNumber(totalSupply)} />}
+          <Text fontSize="14px">{TranslateString(536, 'Circulating  BANANA')}</Text>
+          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(538, 'Total BANANA Burned')}</Text>
           <CardValue fontSize="14px" decimals={0} value={getBalanceNumber(burnedBalance)} />
-        </Row>
-        <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Circulating  Banana')}</Text>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} />}
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'DEX Liquidity')}</Text>
