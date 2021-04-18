@@ -184,6 +184,29 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
+    sousId: 17,
+    tokenName: 'SWAMP',
+    stakingTokenName: 'BANANA',
+    image: 'SWAMP.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xA007a5a8165D70DdFBC230927Cd639163228Fc72',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.000479442180800000',
+    sortOrder: 5,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: false,
+  },
+  {
     sousId: 18,
     tokenName: 'NAUT',
     stakingTokenName: 'BNB-NAUT',
