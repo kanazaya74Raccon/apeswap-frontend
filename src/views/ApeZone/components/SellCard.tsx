@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, BananaIcon, BananaPairIcon, Flex } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useGoldenBanana, useTreasury } from 'hooks/useContract'
@@ -8,9 +8,41 @@ import { useToast } from 'state/hooks'
 import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
+import styled from 'styled-components'
 import { getBananaAddress, getGoldenBananaAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
+
+const StyledCard = styled(Card)`
+  overflow: visible;
+`
+
+const StyledBanana = styled(BananaIcon)`
+  width: 110px;
+  position: absolute;
+  top: -30px;
+  left: -20px;
+  z-index: 100;
+  transform: rotate(110deg);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+`
+
+const StyledBananaPair = styled(BananaPairIcon)`
+  width: 100px;
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+  z-index: 100;
+  transform: rotate(0deg);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+`
+
+const StyledButton = styled(Button)`
+background: #ffb300;
+border-radius: 10px;
+box-shadow: none;
+margin-left: 0px;
+`
 
 const SellCard = ({ account }) => {
   const [val, setVal] = useState('1')
@@ -71,9 +103,12 @@ const SellCard = ({ account }) => {
       toastSuccess('Profile created!')
     },
   })
+
   return (
-    <Card>
+    <StyledCard>
       <CardBody>
+        <StyledBanana />
+        <StyledBananaPair />
         <Heading color="contrast" size="xl">
           Sell
         </Heading>
@@ -85,17 +120,19 @@ const SellCard = ({ account }) => {
           symbol="GNANA"
         />
         {isApproved ? (
-          <Button disabled={processing} variant="danger" fullWidth margin="10px" onClick={sell}>
-            Sell
-          </Button>
+          <StyledButton disabled={processing} variant="danger" fullWidth margin="10px" onClick={sell}>
+            SELL
+          </StyledButton>
         ) : (
-          <Button mt="8px" fullWidth disabled={isApproving} onClick={handleApprove}>
-            Approve Contract
-          </Button>
-        )}
-        <CardValue fontSize="26px" decimals={4} value={bananaBalance} prefix="BANANA" />
+          <StyledButton mt="8px" fullWidth disabled={isApproving} onClick={handleApprove}>
+            APPROVE CONTRACT
+          </StyledButton>
+        )} 
       </CardBody>
-    </Card>
+      <Flex justifyContent="center" >
+          <CardValue fontSize="13px" decimals={4} value={bananaBalance} prefix="BANANA" fontFamily="poppins"/>
+      </Flex>
+    </StyledCard>
   )
 }
 

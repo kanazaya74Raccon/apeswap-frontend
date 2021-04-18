@@ -1,17 +1,49 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout, Button, Flex, Heading, Image, LinkExternal, Text } from '@apeswapfinance/uikit'
+import { BaseLayout, Button, Flex, Heading, Image, Text, Card } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
 import Container from 'components/layout/Container'
 import IfoCard from '../../../Ifos/components/IfoCard'
-import Title from '../../../Ifos/components/Title'
+import Title from '../Description/Title'
+
+const List = styled.ul`
+  color: ${({ theme }) => theme.colors.text};
+
+  & > li {
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+`
+
+const StyledHeroHeading = styled.div`
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 99px;
+  padding-top: 49px;
+  padding-left: 53px;
+  padding-right: 53px;
+`
+
+const StyledHeroSection = styled.div`
+  background-color: #a16552;
+`
+
+const StyledFlex = styled(Flex)`
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 28px;
+  margin-top: -90px;
+  padding-left: 53px;
+  padding-right: 53px;
+`
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
   justify-content: stretch;
-  margin-bottom: 32px;
-
+  margin: 32px 0px;
   & > div {
     grid-column: span 6;
     width: 100%;
@@ -29,20 +61,20 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 39px;
-`
-const List = styled.ul`
-  color: ${({ theme }) => theme.colors.text};
-  margin-bottom: 16px;
 
-  & > li {
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
+const StyledCard = styled(Card)`
+  padding: 24px;
+`
+
+const StyledTextContainer = styled.div`
+  margin-top: 28px;
+  margin-bottom: 28px;
+`
+
+const StyledText = styled(Text)`
+  font-family: 'Poppins';
+  line-height: 18px;
+  margin-left: 18px;
 `
 
 /**
@@ -54,43 +86,65 @@ const Iao = () => {
   const TranslateString = useI18n()
 
   return (
-    <Container>
-      <Heading size="xl">{TranslateString(594, 'Golden Banana IAO')}</Heading>
-      <div>
-        <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
-        <Title mb="16px">{TranslateString(594, 'Before Sale')}:</Title>
-        <List>
-          <li>{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</li>
-          <li>{TranslateString(598, 'Purcharse GNANA using BANANA')}</li>
-        </List>
-        <Text fontSize="11px">
-          * Remember buying GNANA means you lose 30% of your BANANA when making the purcharse (1.3:1 ratio)
-        </Text>
-        <Title mb="16px">{TranslateString(600, 'During Sale')}:</Title>
-        <List>
-          <li>{TranslateString(602, 'While the sale is live, commit your GNANA tokens to buy the IAO tokens')}</li>
-        </List>
-        <Title mb="16px">{TranslateString(604, 'After Sale')}:</Title>
-        <List>
-          <li>{TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}</li>
-          <li>{TranslateString(608, 'Done!')}</li>
-        </List>
-        <Text fontSize="11px">* You can redeem your BANANA back at a 1:1 ratio</Text>
-        <Text as="div" pt="16px" mb="16px">
-          <Button
-            as="a"
-            variant="secondary"
-            href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
-          >
-            {TranslateString(610, 'Read more')}
-          </Button>
-        </Text>
-      </div>
-      <IfoCard ifo={activeIfo} />
-      <Wrapper>
-        <Image src="/images/ape.png" alt="iao ape" width={537} height={361} />
-      </Wrapper>
-    </Container>
+    <>
+      <StyledHeroSection>
+        <StyledHeroHeading>
+          <Heading size="xl" color="white">
+            {TranslateString(594, 'Golden Banana IAO')}
+          </Heading>
+          <Heading size="sm" color="white">
+            {TranslateString(594, 'Buy new token by staking GNANA')}
+          </Heading>
+        </StyledHeroHeading>
+      </StyledHeroSection>
+      <StyledFlex>
+        <Cards>
+          <IfoCard ifo={activeIfo} />
+          <StyledCard>
+            <StyledTextContainer>
+              <Heading size="xxl" color="primary">
+                {TranslateString(594, 'GOLDEN BANANA')}
+              </Heading>
+              <Title as="h2" mt="15px" mb="15px" color="primary" fontFamily="poppins" size="sm">
+                {TranslateString(592, 'How To Take Part')}
+              </Title>
+              <Title color="primary" fontFamily="poppins" fontWeight={700}>
+                {TranslateString(594, 'Before Sale')}:
+              </Title>
+              <List>
+                <StyledText>{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</StyledText>
+                <StyledText>{TranslateString(598, 'Purcharse GNANA using BANANA')}</StyledText>
+              </List>
+              <Text fontSize="10px" color="primary" fontFamily="poppins">
+                * Remember buying GNANA means you lose 30% of your BANANA when making the purcharse (1.3:1 ratio)
+              </Text>
+              <Title color="primary" fontFamily="poppins" fontWeight={700} mt="15px">
+                {TranslateString(600, 'During Sale')}:
+              </Title>
+              <List>
+                <StyledText>
+                  {TranslateString(602, 'While the sale is live, commit your GNANA tokens to buy the IAO tokens')}
+                </StyledText>
+              </List>
+              <Title color="primary" fontFamily="poppins" fontWeight={700} mt="15px">
+                {TranslateString(604, 'After Sale')}:
+              </Title>
+              <List>
+                <StyledText>
+                  {TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}
+                </StyledText>
+                <StyledText>{TranslateString(608, 'Done!')}</StyledText>
+              </List>
+              <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
+                <Button as="a" href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao" color="primary">
+                  {TranslateString(610, 'READ MORE')}
+                </Button>
+              </Text>
+            </StyledTextContainer>
+          </StyledCard>
+        </Cards>
+      </StyledFlex>
+    </>
   )
 }
 

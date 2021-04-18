@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading, Image } from '@apeswapfinance/uikit'
+import { Heading, Image, BaseLayout, Flex } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -21,13 +21,9 @@ import Divider from '../../../Pools/components/Divider'
 const Hero = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.primary};
-  display: grid;
-  grid-gap: 32px;
-  grid-template-columns: 1fr;
   margin-left: auto;
   margin-right: auto;
   max-width: 250px;
-  padding: 48px 0;
   ul {
     margin: 0;
     padding: 0;
@@ -47,6 +43,50 @@ const Hero = styled.div`
     max-width: none;
   }
 `
+
+const StyledUL = styled.ul`
+  margin-bottom: 20px !important;
+`
+
+const StyledLI = styled.li`
+  font-size: 18px;
+  font-family: 'Poppins'
+`
+
+const StyledImage = styled(Image)`
+  padding-top: 250px;
+  margin-left: auto;
+  margin-right: auto;
+`
+
+const Cards = styled(BaseLayout)`
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 53px;
+  padding-right: 53px;
+  margin-bottom: 50px;
+  & > div {
+    grid-column: span 6;
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    & > div {
+      grid-column: span 8;
+    }
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    & > div:first-child {
+      grid-column: span 4;
+    }
+    & > div:last-child {
+      grid-column: span 8;
+    }
+  }
+`
+
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
@@ -112,24 +152,24 @@ const Pools: React.FC = () => {
   const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
 
   return (
-    <>
+    <Cards>
       <Hero>
-        <div>
+        <Flex flexDirection="column">
+          <StyledImage src="/images/pool-ape.png" alt="ApeSwap illustration" width={228} height={220} responsive />
+          <Flex flexDirection="column" >
           <Heading as="h1" size="xl" mb="16px">
             {TranslateString(282, 'Golden Banana fiesta')}
           </Heading>
-          <ul>
-            <li>{TranslateString(580, 'Stake GNANA to earn new tokens.')}</li>
-            <li>{TranslateString(404, 'You can unstake at any time.')}</li>
-            <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
-          </ul>
-        </div>
-        <div>
-          <Image src="/images/pool-ape.png" alt="ApeSwap illustration" width={470} height={439} responsive />
-        </div>
+          <StyledUL>
+            <StyledLI>{TranslateString(580, 'Stake GNANA to earn new tokens.')}</StyledLI>
+            <StyledLI>{TranslateString(404, 'You can unstake at any time.')}</StyledLI>
+            <StyledLI>{TranslateString(406, 'Rewards are calculated per block.')}</StyledLI>
+          </StyledUL>
+          <PoolTabButtons justifyContent="flex-start"/>
+          </Flex>
+          </Flex>
       </Hero>
-      <PoolTabButtons />
-      <Divider />
+      <div>
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>
@@ -145,7 +185,8 @@ const Pools: React.FC = () => {
           ))}
         </Route>
       </FlexLayout>
-    </>
+      </div>
+    </Cards>
   )
 }
 

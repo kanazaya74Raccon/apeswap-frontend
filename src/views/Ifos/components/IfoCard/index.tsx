@@ -23,6 +23,7 @@ export interface IfoCardProps {
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
   background-repeat: no-repeat;
+  background-position: -5px -5px;
   background-size: contain;
   padding-top: 112px;
   margin-left: auto;
@@ -30,6 +31,7 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   max-width: 437px;
   border-radius: 50px;
   width: 100%;
+  background-size: 102.5%;
 `
 
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
