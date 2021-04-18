@@ -198,7 +198,7 @@ const pools: PoolConfig[] = [
       56: '0xA007a5a8165D70DdFBC230927Cd639163228Fc72',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://astronaut.to',
+    projectLink: 'https://swamp.finance',
     harvest: true,
     tokenPerBlock: '0.000479442180800000',
     sortOrder: 5,
