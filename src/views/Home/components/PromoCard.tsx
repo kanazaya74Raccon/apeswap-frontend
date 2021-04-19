@@ -144,26 +144,18 @@ const StyledClickLeft = styled.img`
 
 const carouselSlidesData = [
   {
-    header: '🚀  May the IAO be with you 🚀 ',
-    text: '🌑 This time we are taking you to a galaxy far far away with JediYield 🌑',
-    text2: 'Launching Apr. 2, 03:00 UTC',
+    header: '🚀  Next IAO Incoming 🚀 ',
+    text: '🎲 The next generation retro iGaming platform is launching at ApeSwap 🎲',
+    text2: 'Launching Apr. 24, 03:00 UTC',
     link: 'Check it out!',
     pageLink: 'iao',
   },
   {
-    header: 'NFA',
-    text:
-      'Who is ready for some NFAs, Who is ready for some NFAs,Who is ready for some NFAs, Who is ready for some NFAs, Who is ready for some NFAs',
-    text2: 'Launching April',
-    link: 'Check it out!',
-    pageLink: 'iao',
-  },
-  {
-    header: 'New Partnership',
-    text: 'Check out the new partnership',
-    text2: 'Launching Tomorrow',
-    link: 'Check it out!',
-    pageLink: 'iao',
+    header: 'We love NFAs',
+    text: '🐒 Check our full NFA collection 🐒',
+    text2: 'New batches constantly launching',
+    link: 'Check them out!',
+    pageLink: 'nft',
   },
 ]
 
@@ -230,16 +222,16 @@ const CarouselRightArrow = ({ onClick }) => {
 
 const CarouselSlide = ({ slide }) => {
   return (
-    <NavLink to={`${slide.link}`}>
+    <NavLink to={`${slide.pageLink}`}>
       <CardBody>
         <Heading size="lg" mb="24px">
           {`${slide.header}`}
         </Heading>
         <StyledDiv>
-          <Text color="textSubtle" fontFamily="poppins">{`${slide.text}`}</Text>
+          <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
           <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
           <Text color="textSubtle">
-            <StyledNavLink to={`${slide.link}`}>{`${slide.link}`}</StyledNavLink>
+            <StyledNavLink to={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
           </Text>
         </StyledDiv>
       </CardBody>
