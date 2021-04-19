@@ -201,6 +201,29 @@ const pools: PoolConfig[] = [
     projectLink: 'https://swamp.finance',
     harvest: true,
     tokenPerBlock: '0.000479442180800000',
+    sortOrder: 7,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: false,
+  },
+  {
+    sousId: 19,
+    tokenName: 'ALLOY',
+    stakingTokenName: 'BANANA',
+    image: 'ALLOY.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x834534853bff9C97F8A9b0fb9FFF864E3584Df99',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://hyperjump.fi',
+    harvest: true,
+    tokenPerBlock: '0.01467673032',
     sortOrder: 5,
     isFinished: false,
     tokenDecimals: 18,
@@ -224,7 +247,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://astronaut.to',
     harvest: true,
     tokenPerBlock: '0.049603174603175',
-    sortOrder: 5,
+    sortOrder: 6,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
