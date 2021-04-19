@@ -5,8 +5,6 @@ import { TranslateString } from 'utils/translateTextHelpers'
 import styled from 'styled-components'
 import Zone from './Zone'
 
-
-
 const ApeZone = () => {
   return (
     <>

@@ -8,7 +8,7 @@ export interface PoolTabButtonProps {
   justifyContent?: string
 }
 
-const PoolTabButtons: React.FC<PoolTabButtonProps> = ({justifyContent}) => {
+const PoolTabButtons: React.FC<PoolTabButtonProps> = ({ justifyContent }) => {
   const { url, isExact } = useRouteMatch()
   const TranslateString = useI18n()
 
@@ -31,6 +31,6 @@ export default PoolTabButtons
 const Wrapper = styled.div<PoolTabButtonProps>`
   display: flex;
   justify-content: center;
-  justify-content: ${({justifyContent})=> justifyContent !== undefined ? justifyContent : 'center'};
+  justify-content: ${({ justifyContent }) => (justifyContent !== undefined ? justifyContent : 'center')};
   margin-bottom: 32px;
 `

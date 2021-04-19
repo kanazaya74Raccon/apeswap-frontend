@@ -50,7 +50,7 @@ const StyledUL = styled.ul`
 
 const StyledLI = styled.li`
   font-size: 18px;
-  font-family: 'Poppins'
+  font-family: 'Poppins';
 `
 
 const StyledImage = styled(Image)`
@@ -86,7 +86,6 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
-
 
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
@@ -156,35 +155,35 @@ const Pools: React.FC = () => {
       <Hero>
         <Flex flexDirection="column">
           <StyledImage src="/images/pool-ape.png" alt="ApeSwap illustration" width={228} height={220} responsive />
-          <Flex flexDirection="column" >
-          <Heading as="h1" size="xl" mb="16px">
-            {TranslateString(282, 'Golden Banana fiesta')}
-          </Heading>
-          <StyledUL>
-            <StyledLI>{TranslateString(580, 'Stake GNANA to earn new tokens.')}</StyledLI>
-            <StyledLI>{TranslateString(404, 'You can unstake at any time.')}</StyledLI>
-            <StyledLI>{TranslateString(406, 'Rewards are calculated per block.')}</StyledLI>
-          </StyledUL>
-          <PoolTabButtons justifyContent="flex-start"/>
+          <Flex flexDirection="column">
+            <Heading as="h1" size="xl" mb="16px">
+              {TranslateString(282, 'Golden Banana fiesta')}
+            </Heading>
+            <StyledUL>
+              <StyledLI>{TranslateString(580, 'Stake GNANA to earn new tokens.')}</StyledLI>
+              <StyledLI>{TranslateString(404, 'You can unstake at any time.')}</StyledLI>
+              <StyledLI>{TranslateString(406, 'Rewards are calculated per block.')}</StyledLI>
+            </StyledUL>
+            <PoolTabButtons justifyContent="flex-start" />
           </Flex>
-          </Flex>
+        </Flex>
       </Hero>
       <div>
-      <FlexLayout>
-        <Route exact path={`${path}`}>
-          <>
-            {orderBy(openPools, ['sortOrder']).map((pool) => (
+        <FlexLayout>
+          <Route exact path={`${path}`}>
+            <>
+              {orderBy(openPools, ['sortOrder']).map((pool) => (
+                <PoolCard key={pool.sousId} pool={pool} />
+              ))}
+              <Coming />
+            </>
+          </Route>
+          <Route path={`${path}/history`}>
+            {orderBy(finishedPools, ['sortOrder']).map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} />
             ))}
-            <Coming />
-          </>
-        </Route>
-        <Route path={`${path}/history`}>
-          {orderBy(finishedPools, ['sortOrder']).map((pool) => (
-            <PoolCard key={pool.sousId} pool={pool} />
-          ))}
-        </Route>
-      </FlexLayout>
+          </Route>
+        </FlexLayout>
       </div>
     </Cards>
   )

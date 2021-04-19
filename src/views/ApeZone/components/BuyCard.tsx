@@ -18,23 +18,35 @@ const StyledCard = styled(Card)`
 `
 
 const StyledBanana = styled(BananaIcon)`
-  width: 100px;
+  width: 60px;
   position: absolute;
-  right: -15px;
-  bottom: -25px;
+  right: -5px;
+  bottom: -15px;
   z-index: 100;
   transform: rotate(-50deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100px;
+    right: -15px;
+    bottom: -25px;
+  }
 `
 
 const StyledBananaPair = styled(BananaPairIcon)`
-  width: 80px;
+  width: 60px;
   position: absolute;
-  left: -20px;
-  bottom: -10px;
+  left: -15px;
+  bottom: -5px;
   z-index: 100;
   transform: rotate(80deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 80px;
+    left: -20px;
+    bottom: -10px;
+  }
 `
 
 const StyledButton = styled(Button)`
@@ -128,9 +140,11 @@ const BuyCard = ({ account }) => {
             APPROVE CONTRACT
           </StyledButton>
         )}
-        <Flex flexDirection="column" alignItems="center">
-          <CardValue fontSize="13px" decimals={4} value={goldenBananaBalance} prefix="GNANA" fontFamily="poppins"/>
-          <Text fontSize="11px" fontFamily="poppins">* Current max buy is {MAX_BUY} at a time</Text>
+        <Flex flexDirection="column" alignItems="center" mb="10px">
+          <CardValue fontSize="13px" decimals={4} value={goldenBananaBalance} prefix="GNANA" fontFamily="poppins" />
+          <Text fontSize="11px" fontFamily="poppins">
+            * Current max buy is {MAX_BUY} at a time
+          </Text>
         </Flex>
       </CardBody>
     </StyledCard>

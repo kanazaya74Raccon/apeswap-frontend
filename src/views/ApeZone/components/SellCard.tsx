@@ -18,30 +18,42 @@ const StyledCard = styled(Card)`
 `
 
 const StyledBanana = styled(BananaIcon)`
-  width: 110px;
+  width: 70px;
   position: absolute;
-  top: -30px;
-  left: -20px;
+  top: -20px;
+  left: -10px;
   z-index: 100;
   transform: rotate(110deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 110px;
+    top: -30px;
+    left: -20px;
+  }
 `
 
 const StyledBananaPair = styled(BananaPairIcon)`
-  width: 100px;
+  width: 60px;
   position: absolute;
-  right: -10px;
+  right: -5px;
   bottom: -5px;
   z-index: 100;
   transform: rotate(0deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100px;
+    right: -10px;
+    bottom: -5px;
+  }
 `
 
 const StyledButton = styled(Button)`
-background: #ffb300;
-border-radius: 10px;
-box-shadow: none;
-margin-left: 0px;
+  background: #ffb300;
+  border-radius: 10px;
+  box-shadow: none;
+  margin-left: 0px;
 `
 
 const SellCard = ({ account }) => {
@@ -127,10 +139,10 @@ const SellCard = ({ account }) => {
           <StyledButton mt="8px" fullWidth disabled={isApproving} onClick={handleApprove}>
             APPROVE CONTRACT
           </StyledButton>
-        )} 
+        )}
       </CardBody>
-      <Flex justifyContent="center" >
-          <CardValue fontSize="13px" decimals={4} value={bananaBalance} prefix="BANANA" fontFamily="poppins"/>
+      <Flex justifyContent="center" mb="10px">
+        <CardValue fontSize="13px" decimals={4} value={bananaBalance} prefix="BANANA" fontFamily="poppins" />
       </Flex>
     </StyledCard>
   )
