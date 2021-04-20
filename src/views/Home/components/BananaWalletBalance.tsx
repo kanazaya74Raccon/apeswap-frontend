@@ -14,13 +14,13 @@ const BananaWalletBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '36px' }}>
+      <Text color="textDisabled" style={{ lineHeight: '36px' }} fontFamily="poppins">
         {TranslateString(298, 'Locked')}
       </Text>
     )
   }
 
-  return <CardValue value={getBalanceNumber(bananaBalance)} fontSize="24px" />
+  return <CardValue value={getBalanceNumber(bananaBalance)} fontSize="40px" />
 }
 
 export default BananaWalletBalance
