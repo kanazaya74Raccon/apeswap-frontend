@@ -71,7 +71,7 @@ const BuyCard = ({ account }) => {
   const MAX_BUY = 50
   const [val, setVal] = useState('1')
   const [unlimited, setUnlimited] = useState(false)
-  const gnanaVal = parseInt(val) * 0.7
+  const gnanaVal = parseFloat(val) * 0.7
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleBuy } = useBuyGoldenBanana()
@@ -104,6 +104,11 @@ const BuyCard = ({ account }) => {
       console.error(e)
     }
   }, [handleBuy, val])
+
+  const handleCheckbox = useCallback(() => {
+    setUnlimited(!unlimited)
+    if (unlimited) setVal('1')
+  }, [unlimited, setUnlimited])
 
   const handleSelectMax = useCallback(() => {
     const max = parseInt(fullBalance) < MAX_BUY || unlimited ? fullBalance : MAX_BUY
@@ -162,16 +167,9 @@ const BuyCard = ({ account }) => {
           <Text fontSize="11px" fontFamily="poppins">
             * Current max buy is {displayMax}
           </Text>
-          <Text fontSize="11px" >
-            <Checkbox
-              id="checkbox"
-              scale="sm"
-              checked={unlimited}
-              onChange={() => {
-                setUnlimited(!unlimited)
-              }}
-            />
-            I understand what I am doing and want to enable unlimited buy.
+          <Text fontSize="11px">
+            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand what I am
+            doing and want to enable unlimited buy.
           </Text>
         </Flex>
       </CardBody>

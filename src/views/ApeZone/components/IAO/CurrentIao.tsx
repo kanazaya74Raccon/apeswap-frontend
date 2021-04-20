@@ -118,7 +118,7 @@ const Iao = () => {
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
-              <Heading size="xl">{TranslateString(594, 'GNANA IAO')}</Heading>
+              <Heading size="xl">{TranslateString(594, 'GOLDEN BANANA IAO')}</Heading>
               <Title as="h2" mt="15px" mb="15px" fontFamily="poppins" size="sm">
                 {TranslateString(592, 'How To Take Part')}
               </Title>
@@ -149,7 +149,7 @@ const Iao = () => {
                 </Text>
                 <Text fontFamily="poppins">{TranslateString(608, 'Done!')}</Text>
                 <Text fontSize="10px" fontFamily="poppins">
-                  * Remember selling GNANA means gives you a 1:1 ratio
+                  * Remember selling GNANA returns you BANANA at a 1:1 ratio
                 </Text>
               </List>
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
