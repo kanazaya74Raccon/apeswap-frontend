@@ -114,7 +114,7 @@ const Iao = () => {
       </StyledHeroSection>
       <StyledFlex>
         <Cards>
-          <IfoCard ifo={activeIfo} />
+          <IfoCard ifo={activeIfo} notLp />
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>

@@ -18,6 +18,7 @@ import IfoCardContribute from './IfoCardContribute'
 
 export interface IfoCardProps {
   ifo: Ifo
+  notLp?: boolean
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
@@ -62,7 +63,7 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   const {
     id,
     address,
@@ -164,6 +165,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             raisingAmount={state.raisingAmount}
             tokenDecimals={tokenDecimals}
             totalAmount={state.totalAmount}
+            notLp={notLp}
           />
         )}
         <IfoCardDetails

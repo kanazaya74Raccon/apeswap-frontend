@@ -9,11 +9,12 @@ import { getFullDisplayBalance } from 'utils/formatBalance'
 interface Props {
   currency: string
   contract: any
+  notLp?: boolean
   currencyAddress: string
   onDismiss?: () => void
 }
 
-const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress, onDismiss }) => {
+const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress, onDismiss, notLp }) => {
   const [value, setValue] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
@@ -47,12 +48,14 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           Confirm
         </Button>
       </Flex>
-      <LinkExternal
-        href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95"
-        style={{ margin: 'auto' }}
-      >
-        {`Get ${currency}`}
-      </LinkExternal>
+      {!notLp && (
+        <LinkExternal
+          href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95"
+          style={{ margin: 'auto' }}
+        >
+          {`Get ${currency}`}
+        </LinkExternal>
+      )}
     </Modal>
   )
 }

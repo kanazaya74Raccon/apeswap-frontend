@@ -20,6 +20,7 @@ export interface Props {
   raisingAmount: BigNumber
   totalAmount: BigNumber
   tokenDecimals: number
+  notLp?: boolean
 }
 
 const IfoCardContribute: React.FC<Props> = ({
@@ -31,6 +32,7 @@ const IfoCardContribute: React.FC<Props> = ({
   raisingAmount,
   totalAmount,
   tokenDecimals,
+  notLp,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
@@ -42,7 +44,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)
   const [onPresentContributeModal] = useModal(
-    <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} />,
+    <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp={notLp} />,
   )
 
   useEffect(() => {
