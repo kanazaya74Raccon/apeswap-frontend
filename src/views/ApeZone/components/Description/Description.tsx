@@ -197,7 +197,7 @@ const Description = () => {
             </Text>
           </List>
           <Text as="div" pt="16px" mt="22px" mb="16px" color="white">
-            <StyledButton as="a" href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao">
+            <StyledButton as="a" href="https://obiedobo.gitbook.io/apeswap-finance/golden-banana" target="_blank">
               {TranslateString(610, 'READ MORE')}
             </StyledButton>
           </Text>
