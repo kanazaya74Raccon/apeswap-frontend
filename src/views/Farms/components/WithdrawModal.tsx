@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
@@ -55,6 +55,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
             onDismiss()
           }}
           fullWidth
+          endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
