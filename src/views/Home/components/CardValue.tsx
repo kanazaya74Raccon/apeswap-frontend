@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import styled from 'styled-components'
 import { useCountUp } from 'react-countup'
 import { Text } from '@apeswapfinance/uikit'
 
@@ -7,9 +8,22 @@ interface CardValueProps {
   decimals?: number
   fontSize?: string
   prefix?: string
+  color?: string
+  text?: string
+  fontWeight?: number
+  differentFontSize?: string
 }
 
-const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px', prefix }) => {
+const CardValue: React.FC<CardValueProps> = ({
+  value,
+  decimals,
+  fontSize = 'px',
+  prefix,
+  color,
+  text,
+  fontWeight,
+  differentFontSize,
+}) => {
   const { countUp, update } = useCountUp({
     start: 0,
     end: value,
@@ -20,6 +34,14 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px
       decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
   })
 
+  const StyledText = styled(Text)`
+    font-weight: ${fontWeight || 400};
+
+    ${({ theme }) => theme.mediaQueries.xl} {
+      font-size: ${differentFontSize || fontSize};
+    }
+  `
+
   const updateValue = useRef(update)
 
   useEffect(() => {
@@ -27,9 +49,9 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px
   }, [value, updateValue])
 
   return (
-    <Text bold fontSize={fontSize}>
+    <StyledText bold fontSize={fontSize} color={color} fontFamily={text}>
       {prefix} {countUp}
-    </Text>
+    </StyledText>
   )
 }
 
