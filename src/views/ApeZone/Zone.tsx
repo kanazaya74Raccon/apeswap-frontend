@@ -73,7 +73,7 @@ const Zone = () => {
               Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30% of your BANANA.
             </Text>
             <Text fontFamily="poppins">
-              This means the buy ratio is 1.3 BANANA to 1 GNANA and the sell ratio is 1 GNANNA for 1 BANANA
+              This means the buy ratio is 1.3 BANANA to 1 GNANA and the sell ratio is 1 GNANA for 1 BANANA
             </Text>
           </PaddedCard>
           <Cards>

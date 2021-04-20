@@ -8,6 +8,7 @@ import {
   BananaGoldenIcon,
   BananaGoldenPairIcon,
   Flex,
+  useModal,
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
@@ -18,9 +19,10 @@ import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import styled from 'styled-components'
-import { getBananaAddress, getGoldenBananaAddress } from 'utils/addressHelpers'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { getBananaAddress } from 'utils/addressHelpers'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
+import ConfirmModal from './ConfirmModal'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -65,14 +67,13 @@ const StyledButton = styled(Button)`
 `
 
 const BuyCard = ({ account }) => {
-  const MAX_BUY = 50
+  const MAX_BUY = 100
   const [val, setVal] = useState('1')
+  const [gnanaVal, setGnanaVal] = useState(parseInt(val) * 0.7)
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleBuy } = useBuyGoldenBanana()
   const bananaBalance = useTokenBalance(getBananaAddress())
-  const goldenBananaBalance = getBalanceNumber(useTokenBalance(getGoldenBananaAddress()), 18)
-
   const { toastSuccess } = useToast()
   const bananaContract = useBanana()
   const fullBalance = useMemo(() => {
@@ -82,6 +83,7 @@ const BuyCard = ({ account }) => {
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       if (parseInt(e.currentTarget.value) > MAX_BUY) return
+      setGnanaVal(parseInt(e.currentTarget.value) * 0.7)
       setVal(e.currentTarget.value)
     },
     [setVal],
@@ -99,9 +101,12 @@ const BuyCard = ({ account }) => {
   }, [handleBuy, val])
 
   const handleSelectMax = useCallback(() => {
-    const max = parseInt(fullBalance) < MAX_BUY ? fullBalance : MAX_BUY
+    const max = parseInt(fullBalance) < MAX_BUY ? parseInt(fullBalance) : MAX_BUY
+    setGnanaVal(max * 0.7)
     setVal(max.toString())
   }, [fullBalance, setVal])
+
+  const [onPresentContributeModal] = useModal(<ConfirmModal amount={parseInt(val)} />)
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
@@ -140,7 +145,13 @@ const BuyCard = ({ account }) => {
           symbol="BANANA"
         />
         {isApproved ? (
-          <StyledButton disabled={processing} variant="success" fullWidth margin="10px" onClick={buy}>
+          <StyledButton
+            disabled={processing || parseInt(val) === 0}
+            variant="success"
+            fullWidth
+            margin="10px"
+            onClick={buy}
+          >
             BUY
           </StyledButton>
         ) : (
@@ -149,7 +160,7 @@ const BuyCard = ({ account }) => {
           </StyledButton>
         )}
         <Flex flexDirection="column" alignItems="center" mb="10px">
-          <CardValue fontSize="13px" decimals={4} value={goldenBananaBalance} prefix="GNANA" fontFamily="poppins" />
+          <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="poppins" />
           <Text fontSize="11px" fontFamily="poppins">
             * Current max buy is {MAX_BUY} at a time
           </Text>

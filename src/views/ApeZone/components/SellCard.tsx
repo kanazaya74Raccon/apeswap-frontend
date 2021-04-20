@@ -1,5 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button, BananaGoldenIcon, BananaGoldenPairIcon, Flex } from '@apeswapfinance/uikit'
+import {
+  Heading,
+  Card,
+  CardBody,
+  Button,
+  BananaGoldenIcon,
+  BananaGoldenPairIcon,
+  Flex,
+  Text,
+} from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useGoldenBanana, useTreasury } from 'hooks/useContract'
@@ -9,8 +18,8 @@ import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import styled from 'styled-components'
-import { getBananaAddress, getGoldenBananaAddress } from 'utils/addressHelpers'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { getGoldenBananaAddress } from 'utils/addressHelpers'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
 
 const StyledCard = styled(Card)`
@@ -58,11 +67,11 @@ const StyledButton = styled(Button)`
 
 const SellCard = ({ account }) => {
   const [val, setVal] = useState('1')
+  const valBanana = parseInt(val) * 0.98
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
   const goldenBananaBalance = useTokenBalance(getGoldenBananaAddress())
-  const bananaBalance = getBalanceNumber(useTokenBalance(getBananaAddress()), 18)
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()
@@ -132,7 +141,13 @@ const SellCard = ({ account }) => {
           symbol="GNANA"
         />
         {isApproved ? (
-          <StyledButton disabled={processing} variant="danger" fullWidth margin="10px" onClick={sell}>
+          <StyledButton
+            disabled={processing || parseInt(val) === 0}
+            variant="danger"
+            fullWidth
+            margin="10px"
+            onClick={sell}
+          >
             SELL
           </StyledButton>
         ) : (
@@ -140,10 +155,13 @@ const SellCard = ({ account }) => {
             APPROVE CONTRACT
           </StyledButton>
         )}
+        <Flex flexDirection="column" alignItems="center" mb="10px">
+          <CardValue fontSize="13px" decimals={4} value={valBanana} prefix="OUTPUT BANANA" fontFamily="poppins" />
+          <Text fontSize="11px" fontFamily="poppins">
+            * After 2% reflect fees
+          </Text>
+        </Flex>
       </CardBody>
-      <Flex justifyContent="center" mb="10px">
-        <CardValue fontSize="13px" decimals={4} value={bananaBalance} prefix="BANANA" fontFamily="poppins" />
-      </Flex>
     </StyledCard>
   )
 }
