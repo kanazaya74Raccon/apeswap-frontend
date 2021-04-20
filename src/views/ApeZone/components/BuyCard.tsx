@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button, Text, BananaIcon, BananaPairIcon, Flex } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, Text, BananaGoldenIcon, BananaGoldenPairIcon, Flex } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useBanana, useTreasury } from 'hooks/useContract'
@@ -17,13 +17,12 @@ const StyledCard = styled(Card)`
   overflow: visible;
 `
 
-const StyledBanana = styled(BananaIcon)`
+const StyledBanana = styled(BananaGoldenIcon)`
   width: 60px;
   position: absolute;
   right: -5px;
   bottom: -15px;
   z-index: 100;
-  transform: rotate(-50deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
   
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -33,7 +32,7 @@ const StyledBanana = styled(BananaIcon)`
   }
 `
 
-const StyledBananaPair = styled(BananaPairIcon)`
+const StyledBananaPair = styled(BananaGoldenPairIcon)`
   width: 60px;
   position: absolute;
   left: -15px;
@@ -112,7 +111,7 @@ const BuyCard = ({ account }) => {
         .send({ from: account })
     },
     onSuccess: async () => {
-      toastSuccess('Profile created!')
+      toastSuccess('Approved!')
     },
   })
 

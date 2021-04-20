@@ -61,10 +61,10 @@ export default {
   },
   goldenBanana: {
     56: '',
-    97: '0x842F53CCa4BC7Da76ea80adFBaaC5c6794f99D7D',
+    97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5',
   },
   treasury: {
     56: '',
-    97: '0x4889387f3140C77b9212BCFD2db83f7fBD0966D4',
+    97: '0xbC5ed0829365a0d5bc3A4956A6A0549aE17f41Ab',
   },
 }

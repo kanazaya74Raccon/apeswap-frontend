@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseLayout, Heading } from '@apeswapfinance/uikit'
+import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -50,6 +50,9 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
+const PaddedCard = styled(Card)`
+padding: 26px;
+`
 
 const Zone = () => {
   const { account } = useWallet()
@@ -60,14 +63,19 @@ const Zone = () => {
       <StyledHeroSection>
         <MarginContainer>
           <Heading size="xl" mb="26px" color="primary">
-            {TranslateString(999, 'ApeZone')}
+            {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
-          <Heading size="sm" fontFamily="poppins" color="primary">
-            GOLDEN BANANA
-          </Heading>
-          <Heading size="sm" fontFamily="poppins" color="primary">
-            Pay a 30% burn fee to get your hands into golden BANANA
-          </Heading>
+          <PaddedCard>
+            <Heading size="lg" fontFamily="poppins" color="warning">
+              WARNING
+            </Heading>
+            <Text fontFamily="poppins" color="primary">
+              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30% of your BANANA.
+            </Text>
+            <Text fontFamily="poppins" color="primary">
+              This means the buy ratio is 1.3 BANANA to 1 GNANA and the sell ratio is 1 GNANNA for 1 BANANA
+            </Text>
+          </PaddedCard>
           <Cards>
             <BuyCard account={account} />
             <SellCard account={account} />

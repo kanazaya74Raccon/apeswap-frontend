@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button, Heading, Card, Text, Flex } from '@apeswapfinance/uikit'
-import { zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
 import Title from './Title'
 
@@ -150,12 +149,6 @@ const StyledMonkey = styled.img`
     top: -350px;
   }
 `
-
-/**
- * Note: currently there should be only 1 active IFO at a time
- */
-const activeIfo = zoneIfo.find((ifo) => ifo.isActive)
-
 const Description = () => {
   const TranslateString = useI18n()
 
@@ -167,33 +160,28 @@ const Description = () => {
           <Heading size="xxl" color="white">
             {TranslateString(594, 'GOLDEN BANANA')}
           </Heading>
-          <Title as="h2" mt="15px" mb="15px" color="white" fontFamily="poppins" size="sm">
-            {TranslateString(592, 'How To Take Part')}
+          <Title as="h2" mt="15px" mb="15px" color="white" fontFamily="poppins" size="lg"  fontWeight={700} >
+            {TranslateString(592, 'What is it good for?')}
           </Title>
-          <Title color="white" fontFamily="poppins" fontWeight={700}>
-            {TranslateString(594, 'Before Sale')}:
+          <Title color="white" fontFamily="poppins" size="md" mb="12px" fontWeight={500}>
+            {TranslateString(594, 'Passive Farming')}
           </Title>
           <List>
-            <StyledDiv>{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</StyledDiv>
-            <StyledDiv>{TranslateString(598, 'Purcharse GNANA using BANANA')}</StyledDiv>
+            <Text color="white" fontFamily="poppins">{TranslateString(596, 'GNANA is a reflect token with a 2% transfer fee')}</Text>
+            <Text color="white" fontFamily="poppins">{TranslateString(596, 'GNANA holders get a share of the fee proportional to their holdings just by having it in their wallets')}</Text>
           </List>
-          <Text fontSize="10px" color="white" fontFamily="poppins">
-            * Remember buying GNANA means you lose 30% of your BANANA when making the purcharse (1.3:1 ratio)
-          </Text>
-          <Title color="white" fontFamily="poppins" fontWeight={700} mt="15px">
-            {TranslateString(600, 'During Sale')}:
+          <Title color="white" fontFamily="poppins" size="md" mb="12px" mt="12px" fontWeight={500}>
+            {TranslateString(594, 'Exclusive perks')}
           </Title>
           <List>
-            <StyledDiv>
-              {TranslateString(602, 'While the sale is live, commit your GNANA tokens to buy the IAO tokens')}
-            </StyledDiv>
+            <Text color="white" fontFamily="poppins">{TranslateString(596, 'Gain access to GNANA only IAO allocation')}</Text>
+            <Text color="white" fontFamily="poppins">{TranslateString(596, 'A new array of pools will be made available only to GNANA holders')}</Text>
           </List>
-          <Title color="white" fontFamily="poppins" fontWeight={700} mt="15px">
-            {TranslateString(604, 'After Sale')}:
+          <Title color="white" fontFamily="poppins" size="md" mb="12px" mt="12px" fontWeight={500}> 
+            {TranslateString(594, 'Governance')}
           </Title>
           <List>
-            <StyledDiv>{TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}</StyledDiv>
-            <StyledDiv>{TranslateString(608, 'Done!')}</StyledDiv>
+            <Text color="white" fontFamily="poppins">{TranslateString(596, 'GNANA is being lined up to be the official governance token of ApeSwap')}</Text>
           </List>
           <Text as="div" pt="16px" mt="22px" mb="16px" color="white">
             <StyledButton as="a" href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao">

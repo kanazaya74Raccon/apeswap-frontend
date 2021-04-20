@@ -48,7 +48,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'ApeZone',
-    icon: 'apeNFTIcon',
+    icon: 'ApeZone',
     href: '/apezone',
   },
   {

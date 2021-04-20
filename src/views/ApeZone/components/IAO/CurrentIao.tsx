@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout, Button, Flex, Heading, Image, Text, Card } from '@apeswapfinance/uikit'
+import { BaseLayout, Button, Flex, Heading, Text, Card } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
-import Container from 'components/layout/Container'
 import IfoCard from '../../../Ifos/components/IfoCard'
 import Title from '../Description/Title'
 
@@ -120,40 +119,43 @@ const Iao = () => {
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
-              <Heading size="xl" color="primary">
-                {TranslateString(594, 'GOLDEN BANANA')}
+              <Heading size="xl" >
+                {TranslateString(594, 'GNANA IAO')}
               </Heading>
-              <Title as="h2" mt="15px" mb="15px" color="primary" fontFamily="poppins" size="sm">
+              <Title as="h2" mt="15px" mb="15px" fontFamily="poppins" size="sm">
                 {TranslateString(592, 'How To Take Part')}
               </Title>
-              <Title color="primary" fontFamily="poppins" fontWeight={700}>
-                {TranslateString(594, 'Before Sale')}:
+              <Title fontFamily="poppins" fontWeight={700}>
+                {TranslateString(594, 'Before Sale')}
               </Title>
               <List>
-                <StyledText fontFamily="poppins">
+                <Text fontFamily="poppins">
                   {TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}
-                </StyledText>
-                <StyledText fontFamily="poppins">{TranslateString(598, 'Purcharse GNANA using BANANA')}</StyledText>
+                </Text>
+                <Text fontFamily="poppins">{TranslateString(598, 'Purcharse GNANA using BANANA')}</Text>
               </List>
-              <Text fontSize="10px" color="primary" fontFamily="poppins">
+              <Text fontSize="10px" fontFamily="poppins">
                 * Remember buying GNANA means you lose 30% of your BANANA when making the purcharse (1.3:1 ratio)
               </Text>
-              <Title color="primary" fontFamily="poppins" fontWeight={700} mt="15px">
-                {TranslateString(600, 'During Sale')}:
+              <Title  fontFamily="poppins" fontWeight={700} mt="15px">
+                {TranslateString(600, 'During Sale')}
               </Title>
               <List>
-                <StyledText fontFamily="poppins">
+                <Text fontFamily="poppins">
                   {TranslateString(602, 'While the sale is live, commit your GNANA tokens to buy the IAO tokens')}
-                </StyledText>
+                </Text>
               </List>
-              <Title color="primary" fontFamily="poppins" fontWeight={700} mt="15px">
-                {TranslateString(604, 'After Sale')}:
+              <Title fontFamily="poppins" fontWeight={700} mt="15px">
+                {TranslateString(604, 'After Sale')}
               </Title>
               <List>
-                <StyledText fontFamily="poppins">
+                <Text fontFamily="poppins">
                   {TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}
-                </StyledText>
-                <StyledText fontFamily="poppins">{TranslateString(608, 'Done!')}</StyledText>
+                </Text>
+                <Text fontFamily="poppins">{TranslateString(608, 'Done!')}</Text>
+              <Text fontSize="10px" fontFamily="poppins">
+                * Remember selling GNANA means gives you a 1:1 ratio
+              </Text>
               </List>
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
                 <Button

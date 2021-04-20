@@ -9,7 +9,6 @@ interface HeadingProps {
 const Title = styled(Heading)<HeadingProps>`
   color: ${({ color }) => (color !== undefined ? color : 'white')};
   font-weight: ${({ fontWeight }) => (fontWeight !== undefined ? fontWeight : 400)};
-  font-size: 12px;
   line-height: 18px;
 `
 
