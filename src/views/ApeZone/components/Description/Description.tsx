@@ -34,6 +34,7 @@ const StyledFlex = styled(Flex)`
 const StyledTextContainer = styled.div`
   margin-top: 40px;
   margin-bottom: 40px;
+  z-index: 99;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 89px;
@@ -155,7 +156,6 @@ const Description = () => {
   return (
     <StyledContainer>
       <StyledFlex>
-        <StyledMonkey src="/images/monkey-thin.svg" alt="monkey" />
         <StyledTextContainer>
           <Heading size="xxl" color="white">
             {TranslateString(594, 'GOLDEN BANANA')}
@@ -207,6 +207,7 @@ const Description = () => {
             <StyledImg src="/images/golden-banana.svg" alt="golden banana" />
           </StyledCircle>
         </StyledCard>
+        <StyledMonkey src="/images/monkey-thin.svg" alt="monkey" />
       </StyledFlex>
     </StyledContainer>
   )

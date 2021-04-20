@@ -9,6 +9,7 @@ import {
   BananaGoldenPairIcon,
   Flex,
   useModal,
+  Checkbox,
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
@@ -67,26 +68,30 @@ const StyledButton = styled(Button)`
 `
 
 const BuyCard = ({ account }) => {
-  const MAX_BUY = 100
+  const MAX_BUY = 50
   const [val, setVal] = useState('1')
-  const [gnanaVal, setGnanaVal] = useState(parseInt(val) * 0.7)
+  const [unlimited, setUnlimited] = useState(false)
+  const gnanaVal = parseInt(val) * 0.7
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleBuy } = useBuyGoldenBanana()
   const bananaBalance = useTokenBalance(getBananaAddress())
   const { toastSuccess } = useToast()
   const bananaContract = useBanana()
+
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(bananaBalance)
   }, [bananaBalance])
 
+  const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
+  const displayMax = unlimited ? 'unlimited' : MAX_BUY
+
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
-      if (parseInt(e.currentTarget.value) > MAX_BUY) return
-      setGnanaVal(parseInt(e.currentTarget.value) * 0.7)
+      if (!unlimited && parseInt(e.currentTarget.value) > MAX_BUY) return
       setVal(e.currentTarget.value)
     },
-    [setVal],
+    [setVal, unlimited],
   )
 
   const buy = useCallback(async () => {
@@ -101,10 +106,9 @@ const BuyCard = ({ account }) => {
   }, [handleBuy, val])
 
   const handleSelectMax = useCallback(() => {
-    const max = parseInt(fullBalance) < MAX_BUY ? parseInt(fullBalance) : MAX_BUY
-    setGnanaVal(max * 0.7)
+    const max = parseInt(fullBalance) < MAX_BUY || unlimited ? fullBalance : MAX_BUY
     setVal(max.toString())
-  }, [fullBalance, setVal])
+  }, [fullBalance, unlimited, setVal])
 
   const [onPresentContributeModal] = useModal(<ConfirmModal amount={parseInt(val)} />)
 
@@ -145,13 +149,7 @@ const BuyCard = ({ account }) => {
           symbol="BANANA"
         />
         {isApproved ? (
-          <StyledButton
-            disabled={processing || parseInt(val) === 0}
-            variant="success"
-            fullWidth
-            margin="10px"
-            onClick={buy}
-          >
+          <StyledButton disabled={disabled} variant="success" fullWidth margin="10px" onClick={buy}>
             BUY
           </StyledButton>
         ) : (
@@ -162,7 +160,18 @@ const BuyCard = ({ account }) => {
         <Flex flexDirection="column" alignItems="center" mb="10px">
           <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="poppins" />
           <Text fontSize="11px" fontFamily="poppins">
-            * Current max buy is {MAX_BUY} at a time
+            * Current max buy is {displayMax}
+          </Text>
+          <Text fontSize="11px" fontFamily="poppins">
+            <Checkbox
+              id="checkbox"
+              scale="sm"
+              checked={unlimited}
+              onChange={() => {
+                setUnlimited(!unlimited)
+              }}
+            />
+            I understand what I am doing and want to enable unlimited buy.
           </Text>
         </Flex>
       </CardBody>

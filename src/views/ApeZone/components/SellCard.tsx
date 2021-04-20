@@ -80,6 +80,8 @@ const SellCard = ({ account }) => {
     return getFullDisplayBalance(goldenBananaBalance)
   }, [goldenBananaBalance])
 
+  const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
+
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       setVal(e.currentTarget.value)
@@ -141,13 +143,7 @@ const SellCard = ({ account }) => {
           symbol="GNANA"
         />
         {isApproved ? (
-          <StyledButton
-            disabled={processing || parseInt(val) === 0}
-            variant="danger"
-            fullWidth
-            margin="10px"
-            onClick={sell}
-          >
+          <StyledButton disabled={disabled} variant="danger" fullWidth margin="10px" onClick={sell}>
             SELL
           </StyledButton>
         ) : (
