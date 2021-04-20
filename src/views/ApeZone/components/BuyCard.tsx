@@ -162,7 +162,7 @@ const BuyCard = ({ account }) => {
           <Text fontSize="11px" fontFamily="poppins">
             * Current max buy is {displayMax}
           </Text>
-          <Text fontSize="11px" fontFamily="poppins">
+          <Text fontSize="11px" >
             <Checkbox
               id="checkbox"
               scale="sm"

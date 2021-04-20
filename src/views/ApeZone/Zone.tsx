@@ -66,11 +66,11 @@ const Zone = () => {
             {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
           <PaddedCard>
-            <Heading size="lg" fontFamily="poppins" color="warning">
+            <Heading size="lg" fontFamily="poppins" color="warning" bold>
               WARNING
             </Heading>
-            <Text fontFamily="poppins">
-              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30% of your BANANA.
+            <Text fontFamily="poppins" bold>
+              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
             </Text>
             <Text fontFamily="poppins">
               This means the buy ratio is 1.3 BANANA to 1 GNANA and the sell ratio is 1 GNANA for 1 BANANA
