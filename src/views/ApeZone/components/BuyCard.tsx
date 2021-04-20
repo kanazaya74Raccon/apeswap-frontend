@@ -1,5 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button, Text, BananaGoldenIcon, BananaGoldenPairIcon, Flex } from '@apeswapfinance/uikit'
+import {
+  Heading,
+  Card,
+  CardBody,
+  Button,
+  Text,
+  BananaGoldenIcon,
+  BananaGoldenPairIcon,
+  Flex,
+} from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useBanana, useTreasury } from 'hooks/useContract'
@@ -24,7 +33,7 @@ const StyledBanana = styled(BananaGoldenIcon)`
   bottom: -15px;
   z-index: 100;
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
-  
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 100px;
     right: -15px;
@@ -40,7 +49,7 @@ const StyledBananaPair = styled(BananaGoldenPairIcon)`
   z-index: 100;
   transform: rotate(80deg);
   filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
-  
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 80px;
     left: -20px;

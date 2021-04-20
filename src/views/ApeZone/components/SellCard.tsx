@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, CardBody, Button, BananaGoldenIcon, BananaGoldenPairIcon , Flex } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, Button, BananaGoldenIcon, BananaGoldenPairIcon, Flex } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useApproveTransaction from 'hooks/useApproveTransaction'
 import { useGoldenBanana, useTreasury } from 'hooks/useContract'

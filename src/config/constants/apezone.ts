@@ -2,7 +2,7 @@ const ApeZone = {
   ifos: [
     {
       id: 'bitfresh',
-      address: '0xFB339D6161dA328307E072A2A0BEdc592fC16E47',
+      address: '0xdda160d63a6BCA8aAf14B0Ac6Aa9E845eF534Cbc',
       isActive: true,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
@@ -14,10 +14,10 @@ const ApeZone = {
       raiseAmount: '$100,000',
       bananaToBurn: '$50,000',
       projectSiteUrl: 'https://www.bitfresh.win/public-sale',
-      currency: 'BANANA-BNB LP',
-      currencyAddress: '0x842f53cca4bc7da76ea80adfbaac5c6794f99d7d',
+      currency: 'GNANA',
+      currencyAddress: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5',
       tokenDecimals: 18,
-      releaseBlockNumber: 8016103,
+      releaseBlockNumber: 8130026,
     },
   ],
 }

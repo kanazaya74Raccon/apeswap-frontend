@@ -51,7 +51,7 @@ const Cards = styled(BaseLayout)`
   }
 `
 const PaddedCard = styled(Card)`
-padding: 26px;
+  padding: 26px;
 `
 
 const Zone = () => {

@@ -51,7 +51,7 @@ const StyledTokenAdornmentWrapper = styled.div`
 const StyledButton = styled(Button)`
   align-items: center;
   display: flex;
-  background-color: #FFB300;
+  background-color: #ffb300;
   box-shadow: none;
 `
 

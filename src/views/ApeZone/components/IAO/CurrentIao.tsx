@@ -87,9 +87,8 @@ const StyledGoldenMonkey = styled.img`
   margin-left: auto;
   margin-right: auto;
 
-
   ${({ theme }) => theme.mediaQueries.lg} {
-   height: 300px;
+    height: 300px;
   }
 `
 
@@ -119,9 +118,7 @@ const Iao = () => {
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
-              <Heading size="xl" >
-                {TranslateString(594, 'GNANA IAO')}
-              </Heading>
+              <Heading size="xl">{TranslateString(594, 'GNANA IAO')}</Heading>
               <Title as="h2" mt="15px" mb="15px" fontFamily="poppins" size="sm">
                 {TranslateString(592, 'How To Take Part')}
               </Title>
@@ -129,15 +126,13 @@ const Iao = () => {
                 {TranslateString(594, 'Before Sale')}
               </Title>
               <List>
-                <Text fontFamily="poppins">
-                  {TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}
-                </Text>
+                <Text fontFamily="poppins">{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</Text>
                 <Text fontFamily="poppins">{TranslateString(598, 'Purcharse GNANA using BANANA')}</Text>
               </List>
               <Text fontSize="10px" fontFamily="poppins">
                 * Remember buying GNANA means you lose 30% of your BANANA when making the purcharse (1.3:1 ratio)
               </Text>
-              <Title  fontFamily="poppins" fontWeight={700} mt="15px">
+              <Title fontFamily="poppins" fontWeight={700} mt="15px">
                 {TranslateString(600, 'During Sale')}
               </Title>
               <List>
@@ -153,9 +148,9 @@ const Iao = () => {
                   {TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}
                 </Text>
                 <Text fontFamily="poppins">{TranslateString(608, 'Done!')}</Text>
-              <Text fontSize="10px" fontFamily="poppins">
-                * Remember selling GNANA means gives you a 1:1 ratio
-              </Text>
+                <Text fontSize="10px" fontFamily="poppins">
+                  * Remember selling GNANA means gives you a 1:1 ratio
+                </Text>
               </List>
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
                 <Button
