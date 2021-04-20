@@ -3,39 +3,109 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button, Text } from '@apeswapfinance/uikit'
+import { Heading, Button, Card, CardBody, BananaIcon, BananaPairIcon, Text } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
-import UnlockButton from 'components/UnlockButton'
+import UnlockButton from './UnlockButton'
 import BananaHarvestBalance from './BananaHarvestBalance'
 import BananaHarvestUsdBalance from './BananaHarvestUsdBalance'
+import BananaWalletUsdBalance from './BananaWalletUsdBalance'
 import BananaWalletBalance from './BananaWalletBalance'
+import CardHeader from './CardHeader'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/cake-bg.svg');
   background-repeat: no-repeat;
   background-position: top right;
-  min-height: 376px;
+  width: 100%;
+  min-height: 250px;
+  text-align: center;
+  overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const Block = styled.div`
   margin-bottom: 16px;
 `
 
-const CardImage = styled.img`
-  margin-bottom: 16px;
+const FlexRow = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
+  color: #ffb300;
+  font-size: 12px;
+  margin-left: 2px;
 `
 
 const Actions = styled.div`
-  margin-top: 24px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+`
+
+const StyledTextLock = styled(Text)`
+  margin-top: 10px;
+  font-size: 28px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    flex-direction: row;
+    margin-top: 50px;
+  }
+`
+
+const StyledButton = styled(Button)`
+  background: #ffb300;
+  border-radius: 10px;
+  border: 0px;
+  width: 220px;
+  height: 50px;
+`
+
+const StyledBanana = styled(BananaIcon)`
+  width: 90px;
+  position: absolute;
+  left: 0px;
+  top: -20px;
+  z-index: 100;
+  transform: rotate(100deg);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+`
+
+const StyledBanana2 = styled(BananaIcon)`
+  width: 70px;
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  z-index: 100;
+  transform: rotate(10deg);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+`
+
+const StyledBananaPair = styled(BananaPairIcon)`
+  width: 90px;
+  position: absolute;
+  right: -10px;
+  top: 15px;
+  z-index: 100;
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+`
+
+const StyledLabel = styled(Label)`
+  font-family: Poppins;
+  font-weight: 700;
+`
+
+const HarvestDiv = styled.div`
+  padding-bottom: 50px;
 `
 
 const FarmedStakingCard = () => {
@@ -69,37 +139,52 @@ const FarmedStakingCard = () => {
 
   return (
     <StyledFarmStakingCard>
-      <CardBody>
-        <Heading size="xl" mb="24px">
-          {TranslateString(542, 'Farms & Staking')}
+      <CardHeader>
+        <StyledBanana />
+        <StyledBanana2 />
+        <StyledBananaPair />
+        <Heading size="lg" mb="0px" color="white">
+          {TranslateString(542, 'Farms &')}
+          <br />
+          {TranslateString(542, 'Staking')}
         </Heading>
-        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
-        <Block>
-          <BananaHarvestBalance />
-          <Label>{TranslateString(544, 'BANANA to Harvest')}</Label>
-        </Block>
-        <Block>
-          <BananaHarvestUsdBalance />
-          <Label>{TranslateString(546, 'Harvest $ Value')}</Label>
-          <Text fontSize="12px">({TranslateString(546, 'Across all pools and farms')})</Text>
-        </Block>
-        <Block>
-          <BananaWalletBalance />
-          <Label>{TranslateString(546, 'BANANA in Wallet')}</Label>
-        </Block>
+      </CardHeader>
+      <CardBody>
+        {account ? (
+          <HarvestDiv>
+            <Block>
+              <BananaHarvestBalance />
+              <FlexRow>
+                <BananaHarvestUsdBalance />
+                <StyledLabel>{TranslateString(544, ' total harvest value')}</StyledLabel>
+              </FlexRow>
+            </Block>
+            <Block>
+              <BananaWalletBalance />
+              <FlexRow>
+                <BananaWalletUsdBalance />
+                <StyledLabel>{TranslateString(546, 'in BANANA in Wallet')}</StyledLabel>
+              </FlexRow>
+            </Block>
+          </HarvestDiv>
+        ) : (
+          <FlexRow>
+            <StyledTextLock>LOCKED</StyledTextLock>
+          </FlexRow>
+        )}
         <Actions>
           {account ? (
             <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-              <Button
+              <StyledButton
                 id="harvest-all"
                 disabled={balancesWithValue.length <= 0 || pendingTx}
                 onClick={harvestAllFarms}
                 fullWidth
               >
                 {pendingTx
-                  ? TranslateString(548, 'Collecting BANANA')
-                  : TranslateString(999, `Harvest all (${balancesWithValue.length})`)}
-              </Button>
+                  ? TranslateString(548, 'COLLECTING BANANA')
+                  : TranslateString(999, `HARVEST ALL (${balancesWithValue.length})`)}
+              </StyledButton>
             </Reward>
           ) : (
             <UnlockButton fullWidth />
