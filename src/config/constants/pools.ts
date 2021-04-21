@@ -446,7 +446,7 @@ const pools: PoolConfig[] = [
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     contractAddress: {
-      97: '0xcA303e225f17956d12c46902b25925dF869Eba69', // ApeRewardPool
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
       56: '0x2CE3893a3cbB9E6141ADa977f576F826415C1f65',
     },
     poolCategory: PoolCategory.CORE,
