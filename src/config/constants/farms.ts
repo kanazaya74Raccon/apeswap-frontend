@@ -65,6 +65,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 30,
+    lpSymbol: 'KEYFI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x7A8ACAEAfC4Fa051De4EAbff8D1abdD0388aE08a', // KEYFI-BNB BananaPair
+    },
+    tokenSymbol: 'KEYFI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4b6000f9163de2e3f0a01ec37e06e1469dbbce9d', // KEYFI Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 28,
     lpSymbol: 'NUTS-BNB LP',
     lpAddresses: {
