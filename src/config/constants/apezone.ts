@@ -15,7 +15,7 @@ const ApeZone = {
       bananaToBurn: '$50,000',
       projectSiteUrl: 'https://www.bitfresh.win/public-sale',
       currency: 'GNANA',
-      currencyAddress: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 8152762,
     },
