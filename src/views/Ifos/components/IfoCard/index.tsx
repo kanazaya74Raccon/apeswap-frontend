@@ -18,11 +18,13 @@ import IfoCardContribute from './IfoCardContribute'
 
 export interface IfoCardProps {
   ifo: Ifo
+  notLp?: boolean
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
   background-repeat: no-repeat;
+  background-position: -5px -5px;
   background-size: contain;
   padding-top: 112px;
   margin-left: auto;
@@ -30,6 +32,7 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   max-width: 437px;
   border-radius: 50px;
   width: 100%;
+  background-size: 102.5%;
 `
 
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
@@ -60,7 +63,7 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   const {
     id,
     address,
@@ -161,6 +164,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             status={state.status}
             raisingAmount={state.raisingAmount}
             tokenDecimals={tokenDecimals}
+            totalAmount={state.totalAmount}
+            notLp={notLp}
           />
         )}
         <IfoCardDetails

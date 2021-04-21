@@ -442,7 +442,7 @@ const pools: PoolConfig[] = [
     stakingTokenName: 'BANANA',
     image: 'LYPTUS.png',
     stakingTokenAddress: {
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
     },
     contractAddress: {
@@ -458,6 +458,48 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: false,
+  },
+  {
+    sousId: 21,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5', // GNANA token address
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://apeswap.finance/apezone',
+    harvest: true,
+    tokenPerBlock: `0.0868055555555556`,
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 22,
+    tokenName: 'ONT',
+    image: 'ONT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8e6f61f855a7483E29c8E87BF221C73e10b49738',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://ont.io',
+    harvest: true,
+    tokenPerBlock: `0.009645061728000000`,
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
   },
   /* {
     sousId: 45,

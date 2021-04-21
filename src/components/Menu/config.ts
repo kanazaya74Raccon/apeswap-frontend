@@ -47,6 +47,11 @@ const config: MenuEntry[] = [
     href: '/nft',
   },
   {
+    label: 'ApeZone',
+    icon: 'ApeZone',
+    href: '/apezone',
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',

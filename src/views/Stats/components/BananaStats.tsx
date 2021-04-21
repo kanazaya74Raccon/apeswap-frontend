@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { Stats } from 'state/types'
 import useI18n from 'hooks/useI18n'
 import { usePriceBananaBusd } from 'state/hooks'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getGoldenBananaAddress } from 'utils/addressHelpers'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from './CardValue'
 import Divider from './Divider'
 
@@ -27,6 +30,12 @@ const Row = styled.div`
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
   const TranslateString = useI18n()
   const price = usePriceBananaBusd()
+  const goldenBananaBalance = useTokenBalance(getGoldenBananaAddress())
+
+  const fullBalance = useMemo(() => {
+    return getFullDisplayBalance(goldenBananaBalance)
+  }, [goldenBananaBalance])
+
   return (
     <StyledBananaStats>
       <CardBody>
@@ -36,6 +45,10 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'TVL All Pools')}</Text>
           <CardValue fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
+        </Row>
+        <Row>
+          <Text fontSize="14px">{TranslateString(536, 'GNANA Holdings')}</Text>
+          <CardValue fontSize="14px" value={parseFloat(fullBalance)} decimals={2} />
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(536, 'BANANA Price')}</Text>
