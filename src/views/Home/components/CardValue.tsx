@@ -7,6 +7,7 @@ interface CardValueProps {
   value: number
   decimals?: number
   fontSize?: string
+  fontFamily?: string
   prefix?: string
   color?: string
   text?: string

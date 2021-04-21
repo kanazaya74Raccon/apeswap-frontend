@@ -9,6 +9,8 @@ import {
   getLotteryTicketAddress,
   getRabbitMintingFarmAddress,
   getBananaProfileAddress,
+  getGoldenBananaAddress,
+  getTreasuryAddress,
   getNonFungibleApesAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
@@ -18,6 +20,7 @@ import erc20 from 'config/abi/erc20.json'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import nonFungibleApes from 'config/abi/nonFungibleApes.json'
 import lottery from 'config/abi/lottery.json'
+import treasuryAbi from 'config/abi/treasury.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
@@ -51,6 +54,15 @@ export const useERC20 = (address: string) => {
 
 export const useBanana = () => {
   return useERC20(getBananaAddress())
+}
+
+export const useGoldenBanana = () => {
+  return useERC20(getGoldenBananaAddress())
+}
+
+export const useTreasury = () => {
+  const treasury = (treasuryAbi as unknown) as AbiItem
+  return useContract(treasury, getTreasuryAddress())
 }
 
 export const useRabbitMintingFarm = () => {

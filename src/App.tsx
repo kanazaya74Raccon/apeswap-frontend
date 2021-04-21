@@ -22,6 +22,7 @@ const Teams = lazy(() => import('./views/Teams'))
 const Team = lazy(() => import('./views/Teams/Team'))
 const Profile = lazy(() => import('./views/Profile'))
 const Chart = lazy(() => import('./views/Chart'))
+const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 
 // This config is required for number formating
@@ -72,6 +73,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/chart">
               <Chart />
+            </Route>
+            <Route path="/apezone">
+              <ApeZone />
             </Route>
             <Route exact path="/teams">
               <Teams />
