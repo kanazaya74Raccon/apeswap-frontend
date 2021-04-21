@@ -67,7 +67,7 @@ const StyledButton = styled(Button)`
 
 const SellCard = ({ account }) => {
   const [val, setVal] = useState('1')
-  const valBanana = parseInt(val) * 0.98
+  const valBanana = parseFloat(val) * 0.98
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
