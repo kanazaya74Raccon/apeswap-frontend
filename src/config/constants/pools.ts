@@ -443,11 +443,11 @@ const pools: PoolConfig[] = [
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
       97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5', // GNANA token address
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     contractAddress: {
       97: '0xcA303e225f17956d12c46902b25925dF869Eba69', // ApeRewardPool
-      56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
+      56: '0x2CE3893a3cbB9E6141ADa977f576F826415C1f65',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://apeswap.finance/apezone',
@@ -456,27 +456,6 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
-  },
-  {
-    sousId: 22,
-    tokenName: 'BNB',
-    stakingTokenName: 'GNANA',
-    stakingTokenAddress: {
-      97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
-    },
-    contractAddress: {
-      97: '0xbe3750c0BDd8145335AE96F4f406Ab974AcA62bc',
-      56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
-    },
-    poolCategory: PoolCategory.CORE,
-    projectLink: 'https://research.binance.com/en/projects/bnb',
-    harvest: true,
-    tokenPerBlock: '0.000001000347120450',
-    sortOrder: 999,
-    isFinished: false,
-    tokenDecimals: 18,
-    displayDecimals: 5,
   },
   /* {
     sousId: 45,
