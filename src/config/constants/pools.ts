@@ -447,12 +447,12 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
-      56: '0x2CE3893a3cbB9E6141ADa977f576F826415C1f65',
+      56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://apeswap.finance/apezone',
     harvest: true,
-    tokenPerBlock: `0.086805555555556`,
+    tokenPerBlock: `0.0868055555555556`,
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
