@@ -476,6 +476,27 @@ const pools: PoolConfig[] = [
     projectLink: 'https://apeswap.finance/apezone',
     harvest: true,
     tokenPerBlock: `0.0868055555555556`,
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 22,
+    tokenName: 'ONT',
+    image: 'ONT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8e6f61f855a7483E29c8E87BF221C73e10b49738',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://ont.io',
+    harvest: true,
+    tokenPerBlock: `0.009645061728000000`,
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
