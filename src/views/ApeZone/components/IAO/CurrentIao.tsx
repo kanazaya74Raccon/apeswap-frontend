@@ -130,7 +130,7 @@ const Iao = () => {
                 <Text fontFamily="poppins">{TranslateString(598, 'Purchase GNANA using BANANA')}</Text>
               </List>
               <Text fontSize="10px" fontFamily="poppins">
-                * Remember buying GNANA means you lose 30% of your BANANA when making the purchase (1.3:1 ratio)
+                * Remember buying GNANA means you lose 30% of your BANANA when making the purchase
               </Text>
               <Title fontFamily="poppins" fontWeight={700} mt="15px">
                 {TranslateString(600, 'During Sale')}
