@@ -2,7 +2,7 @@ const ApeZone = {
   ifos: [
     {
       id: 'bitfresh',
-      address: '0x7323F5A078866E41BD2F8F36C46BD2296F0b70F0',
+      address: '0x73a1e65E9098BAD9dd4c58af5a89662ba8157B54',
       isActive: true,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
@@ -17,7 +17,7 @@ const ApeZone = {
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
-      releaseBlockNumber: 8152762,
+      releaseBlockNumber: 6565331,
     },
   ],
 }
