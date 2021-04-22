@@ -483,7 +483,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 22,
     tokenName: 'ONT',
-    image: 'ONT.svg',
+    image: 'ONT.png',
     stakingTokenName: 'BANANA',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
