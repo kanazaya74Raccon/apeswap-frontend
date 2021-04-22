@@ -227,6 +227,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
       56: '0x3bA5aee47Bb7eAE40Eb3D06124a74Eb89Da8ffd2', // ROCKET Token
     },
+    style: 'warning',
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },

@@ -151,6 +151,13 @@ const carouselSlidesData = [
     pageLink: 'iao',
   },
   {
+    header: 'Did you hear about the ApeZone?',
+    text: '🍌 Check our fully fledged ApeZone 🍌',
+    text2: 'Become a GNANA holder and access exclusive perks',
+    link: 'Check it out!',
+    pageLink: 'apezone',
+  },
+  {
     header: 'We love NFAs',
     text: '🐒 Check our full NFA collection 🐒',
     text2: 'New batches constantly launching',

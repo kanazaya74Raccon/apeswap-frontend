@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
-import useTokenBalance from 'hooks/useTokenBalance'
-import { getBananaAddress } from 'utils/addressHelpers'
+import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -99,7 +99,14 @@ export const useTvl = (): BigNumber => {
   const bnbPriceUSD = usePriceBnbBusd()
   const bananaPriceBUSD = usePriceBananaBusd()
   const liquidity = useLiquidityData()
+  const bananaAtTreasoury = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
   let valueLocked = new BigNumber(0)
+
+  console.log(bananaAtTreasoury)
+
+  valueLocked = valueLocked.plus(
+    new BigNumber(bananaAtTreasoury).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
+  )
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
