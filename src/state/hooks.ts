@@ -102,11 +102,7 @@ export const useTvl = (): BigNumber => {
   const bananaAtTreasoury = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
   let valueLocked = new BigNumber(0)
 
-  console.log(bananaAtTreasoury)
-
-  valueLocked = valueLocked.plus(
-    new BigNumber(bananaAtTreasoury).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
-  )
+  valueLocked = valueLocked.plus(new BigNumber(bananaAtTreasoury).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD))
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
