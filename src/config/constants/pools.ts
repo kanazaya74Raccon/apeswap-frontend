@@ -501,6 +501,27 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 23,
+    tokenName: 'NFTL',
+    image: 'NFTL.jpg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x7618c42Fb5DC96F3C238FEC799B440AEd7c56E03',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://cybertime.finance',
+    harvest: true,
+    tokenPerBlock: `2.1428571429`,
+    sortOrder: 4,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
