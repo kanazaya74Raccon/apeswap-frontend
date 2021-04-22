@@ -59,7 +59,9 @@ const StyledBananaPair = styled(BananaGoldenPairIcon)`
     bottom: -10px;
   }
 `
-
+const StyledText = styled(Text)`
+  z-index: 199;
+`
 const StyledButton = styled(Button)`
   background: #ffb300;
   border-radius: 10px;
@@ -167,10 +169,10 @@ const BuyCard = ({ account }) => {
           <Text fontSize="11px" fontFamily="poppins">
             * Current max buy is {displayMax}
           </Text>
-          <Text fontSize="11px">
+          <StyledText fontSize="11px">
             <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand what I am
             doing and want to enable unlimited buy.
-          </Text>
+          </StyledText>
         </Flex>
       </CardBody>
     </StyledCard>
