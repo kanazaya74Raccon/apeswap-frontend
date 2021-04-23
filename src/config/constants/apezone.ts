@@ -2,7 +2,7 @@ const ApeZone = {
   ifos: [
     {
       id: 'bitfresh',
-      address: '0x73a1e65E9098BAD9dd4c58af5a89662ba8157B54',
+      address: '0x0aA255267CBE1cC9366509056A24608385F07617',
       isActive: true,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
