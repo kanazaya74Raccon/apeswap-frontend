@@ -40,7 +40,7 @@ const StyledDiv = styled.div`
   }
 `
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled.a`
   font-weight: 500;
   color: #ffb300;
   display: block;
@@ -151,6 +151,13 @@ const carouselSlidesData = [
     pageLink: 'iao',
   },
   {
+    header: '🤝 Ontology Partnership 🤝 ',
+    text: 'We teamed up with Ontology and ONTO Wallet!',
+    text2: 'See our frenzy with over $250,000 in rewards up for grabs! 😮',
+    link: 'Get the details here!',
+    pageLink: 'https://ape-swap.medium.com/ontology-comes-to-apeswap-61cb37f34811',
+  },
+  {
     header: 'Did you hear about the ApeZone?',
     text: '🍌 Check our fully fledged ApeZone 🍌',
     text2: 'Become a GNANA holder and access exclusive perks',
@@ -229,7 +236,7 @@ const CarouselRightArrow = ({ onClick }) => {
 
 const CarouselSlide = ({ slide }) => {
   return (
-    <NavLink to={`${slide.pageLink}`}>
+    <a href={`${slide.pageLink}`}>
       <CardBody>
         <Heading size="lg" mb="24px">
           {`${slide.header}`}
@@ -238,10 +245,10 @@ const CarouselSlide = ({ slide }) => {
           <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
           <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
           <Text color="textSubtle">
-            <StyledNavLink to={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
+            <StyledNavLink href={`${slide.pageLink}`} >{`${slide.link}`}</StyledNavLink>
           </Text>
         </StyledDiv>
       </CardBody>
-    </NavLink>
+    </a>
   )
 }
