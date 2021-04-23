@@ -125,6 +125,66 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 32,
+    lpSymbol: 'XRP-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x6f0f18f5fcc1466ec41c8106689e10befe68d1c0', // XRP-BNB BananaPair
+    },
+    tokenSymbol: 'XRP',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe', // XRP Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 33,
+    lpSymbol: 'DOT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x21cbb561c5d7d70e9e6cc42136cb22f07552aeef', // DOT-BNB BananaPair
+    },
+    tokenSymbol: 'DOT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7083609fce4d1d8dc0c979aab8c869ea2c873402', // DOT Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 35,
+    lpSymbol: 'SXP-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xf726b3e81fa7166b9c2cfd7eb7fe8ccbcb6b1355', // SXP-BNB BananaPair
+    },
+    tokenSymbol: 'SXP',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x47bead2563dcbf3bf2c9407fea4dc236faba485a', // SXP Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 36,
+    lpSymbol: 'LINK-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x092ada3818db7fbb8e0a2124ff218c5125c1cce6', // LINK-BNB BananaPair
+    },
+    tokenSymbol: 'LINK',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd', // LINK Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 17,
     lpSymbol: 'ADA-BNB LP',
     lpAddresses: {
@@ -242,6 +302,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC Token address
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 34,
+    lpSymbol: 'BUSD-USDT LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2e707261d086687470b515b320478eb1c88d49bb', // BUSD-USDT BananaPair
+    },
+    tokenSymbol: 'USDT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x55d398326f99059ff775485246999027b3197955', // USDT Token
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
