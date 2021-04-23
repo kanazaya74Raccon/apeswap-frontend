@@ -14,7 +14,6 @@ const Charts = styled.div`
 `
 
 const ApexChart = () => {
-
   const resolution = '60'
   const pair = 'BANANA/BUSD'
   const data = useChartData(resolution, pair)
