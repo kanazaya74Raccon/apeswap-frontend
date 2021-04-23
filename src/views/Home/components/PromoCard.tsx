@@ -245,7 +245,7 @@ const CarouselSlide = ({ slide }) => {
           <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
           <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
           <Text color="textSubtle">
-            <StyledNavLink href={`${slide.pageLink}`} >{`${slide.link}`}</StyledNavLink>
+            <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
           </Text>
         </StyledDiv>
       </CardBody>
