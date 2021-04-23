@@ -9,8 +9,6 @@ export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
-const priceBaseUrl = 'https://ape-swap-api.herokuapp.com/pairs?symbol=BSC_APESWAP'
-
 /* eslint-disable camelcase */
 
 export interface TradePair {

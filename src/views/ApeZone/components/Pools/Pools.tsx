@@ -16,7 +16,6 @@ import FlexLayout from 'components/layout/Flex'
 import Coming from '../../../Pools/components/Coming'
 import PoolCard from '../../../Pools/components/PoolCard'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
-import Divider from '../../../Pools/components/Divider'
 
 const Hero = styled.div`
   align-items: center;

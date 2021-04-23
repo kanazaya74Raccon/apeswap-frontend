@@ -10,15 +10,6 @@ import Iao from './components/IAO/CurrentIao'
 import Description from './components/Description/Description'
 import Pools from './components/Pools/Pools'
 
-const StyledHero = styled.div`
-  background-color: #af6e5aff;
-  padding-bottom: 40px;
-  padding-top: 40px;
-  margin-bottom: 32px;
-  padding-left: 53px;
-  padding-right: 53px;
-`
-
 const StyledHeroSection = styled.div`
   max-width: 1200px;
   margin-left: auto;
