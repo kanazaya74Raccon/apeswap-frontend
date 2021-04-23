@@ -46,10 +46,6 @@ const StyledLink = styled(Heading)`
   letter-spacing: 0.05em;
 `
 
-const StyledHeading = styled(Heading)`
-  text-align: center;
-`
-
 const StyledFlex = styled(Flex)`
   margin-top: auto;
   align-items: center;
@@ -82,9 +78,9 @@ const TotalValueLockedCard = () => {
       <StyledNavLink to="/stats">
         <StyledImage width="250px" src="/images/monkey.svg" alt="monkey" />
         <CardBody>
-          <StyledHeading size="sm" mb="6px" color="white">
+          <Heading size="sm" mb="6px" color="white" textAlign="center">
             {TranslateString(999, 'Total Value Locked (TVL)')}
-          </StyledHeading>
+          </Heading>
           {totalTvl ? (
             <>
               <CardValue
