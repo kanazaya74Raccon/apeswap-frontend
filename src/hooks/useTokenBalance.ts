@@ -29,19 +29,18 @@ const useTokenBalance = (tokenAddress: string) => {
 
 export const useAccountTokenBalance = (account: string, tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
-  const { ethereum }: { ethereum: provider } = useWallet()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const res = await getTokenBalance(ethereum, tokenAddress, account)
+      const res = await getTokenBalance(httpProvider, tokenAddress, account)
       setBalance(new BigNumber(res))
     }
 
-    if (account && ethereum) {
+    if (account && httpProvider) {
       fetchBalance()
     }
-  }, [account, ethereum, tokenAddress, fastRefresh])
+  }, [account, tokenAddress, fastRefresh])
 
   return balance
 }
