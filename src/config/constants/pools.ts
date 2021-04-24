@@ -525,7 +525,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 24,
     tokenName: 'BFT',
-    image: 'BFT2.svg',
+    image: 'BFT.svg',
     stakingTokenName: 'BFT',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -546,7 +546,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 25,
     tokenName: 'BFT',
-    image: 'BFT2.svg',
+    image: 'BFT.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
