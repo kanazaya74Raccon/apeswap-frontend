@@ -142,13 +142,6 @@ const StyledClickLeft = styled.img`
 
 const carouselSlidesData = [
   {
-    header: '🚀  Next IAO Incoming 🚀 ',
-    text: '🎲 The next generation retro iGaming platform is launching at ApeSwap 🎲',
-    text2: 'Launching Apr. 24, 03:00 UTC',
-    link: 'Check it out!',
-    pageLink: 'iao',
-  },
-  {
     header: '🤝 Ontology Partnership 🤝 ',
     text: 'We teamed up with Ontology and ONTO Wallet!',
     text2: 'See our frenzy with over $250,000 in rewards up for grabs! 😮',
