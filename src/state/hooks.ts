@@ -94,9 +94,7 @@ export const useAllPools = (): Pool[] => {
 
 // TVL
 export const useTvl = (): BigNumber => {
-  const farms = useFarms()
   const pools = useAllPools()
-  const bnbPriceUSD = usePriceBnbBusd()
   const bananaPriceBUSD = usePriceBananaBusd()
   const liquidity = useLiquidityData()
   const bananaAtTreasoury = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())

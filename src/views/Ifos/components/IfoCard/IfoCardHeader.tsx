@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, Flex } from '@apeswapfinance/uikit'
+import { Text, Flex } from '@apeswapfinance/uikit'
 
 interface IfoCardHeaderProps {
   ifoId: string
@@ -14,11 +14,6 @@ const StyledIfoCardHeader = styled(Flex)`
   }
 `
 
-const Name = styled(Heading).attrs({ as: 'h3', size: 'lg' })`
-  margin-bottom: 4px;
-  text-align: right;
-`
-
 const Description = styled(Text)`
   color: ${({ theme }) => theme.colors.textSubtle};
   font-size: 14px;
@@ -26,7 +21,7 @@ const Description = styled(Text)`
   padding: 36px;
 `
 
-const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({ ifoId, name, subTitle }) => {
+const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({ ifoId, subTitle }) => {
   return (
     <StyledIfoCardHeader mb="24px" alignItems="center">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />

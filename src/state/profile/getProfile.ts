@@ -32,7 +32,6 @@ const getProfile = async (address: string): Promise<Profile> => {
       rarestNft,
     } as Profile
   } catch (error) {
-    console.log(error)
     return null
   }
 }

@@ -87,13 +87,6 @@ const StyledCircle = styled.circle`
   }
 `
 
-const StyledDiv = styled.div`
-  color: white;
-  font-family: 'Poppins';
-  line-height: 18px;
-  margin-left: 18px;
-`
-
 const StyledCard = styled(Card)`
   display: none;
 

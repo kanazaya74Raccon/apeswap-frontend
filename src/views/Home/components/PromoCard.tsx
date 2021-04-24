@@ -4,8 +4,6 @@ import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 
-import { NavLink } from 'react-router-dom'
-
 const StyledPromoCard = styled(Card)`
   text-align: center;
   width: 100vw !important;
