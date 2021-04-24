@@ -43,6 +43,12 @@ export const fetchPoolsTotalStatking = async () => {
   const bnbPool = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.BNB)
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
+    if (poolConfig.reflect) {
+      return {
+        address: poolConfig.contractAddress[CHAIN_ID],
+        name: 'totalStaked',
+      }
+    }
     return {
       address: poolConfig.stakingTokenAddress[CHAIN_ID],
       name: 'balanceOf',
