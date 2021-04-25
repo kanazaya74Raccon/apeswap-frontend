@@ -4,12 +4,16 @@ import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
-const PoolTabButtons = () => {
+export interface PoolTabButtonProps {
+  justifyContent?: string
+}
+
+const PoolTabButtons: React.FC<PoolTabButtonProps> = ({ justifyContent }) => {
   const { url, isExact } = useRouteMatch()
   const TranslateString = useI18n()
 
   return (
-    <Wrapper>
+    <Wrapper justifyContent={justifyContent}>
       <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
           {TranslateString(999, 'Active')}
@@ -24,9 +28,9 @@ const PoolTabButtons = () => {
 
 export default PoolTabButtons
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<PoolTabButtonProps>`
   display: flex;
   justify-content: center;
-  align-items: center;
+  justify-content: ${({ justifyContent }) => (justifyContent !== undefined ? justifyContent : 'center')};
   margin-bottom: 32px;
 `

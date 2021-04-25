@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Card, CardBody, Heading, Skeleton, Text, Flex, ArrowForwardIcon } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useTvl } from 'state/hooks'
 import { NavLink } from 'react-router-dom'
@@ -9,14 +9,58 @@ import CardValue from './CardValue'
 
 const StyledTotalValueLockedCard = styled(Card)`
   align-items: center;
+  justify-content: center;
   display: flex;
   flex: 1;
+  background: ${({ theme }) => (theme.isDark ? '#27262c' : '#A16552')};
+  max-width: 100%;
+  width: 100%;
+  max-height: 200px;
+  text-align: center;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: block;
+    height: 100%;
+    max-height: 260px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    max-height: 260px;
+  }
 `
 const StyledNavLink = styled(NavLink)`
-  font-weight: 500;
-  color: #ffb300;
-  margin-left: 16px;
-  text-decoration: underline;
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+`
+
+const StyledText = styled(Text)`
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+`
+
+const StyledLink = styled(Heading)`
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+`
+
+const StyledFlex = styled(Flex)`
+  margin-top: auto;
+  align-items: center;
+`
+
+const StyledImage = styled.img`
+  opacity: 0.1;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    right: -10px;
+    top: 80px;
+  }
 `
 
 const TotalValueLockedCard = () => {
@@ -31,26 +75,38 @@ const TotalValueLockedCard = () => {
 
   return (
     <StyledTotalValueLockedCard>
-      <CardBody>
-        <Heading size="lg" mb="24px">
-          {TranslateString(999, 'Total Value Locked (TVL)')}
-        </Heading>
-        {totalTvl ? (
-          <>
-            <CardValue fontSize="40px" decimals={0} value={totalTvl} prefix="$" />
-            <Text color="textSubtle">{TranslateString(999, 'Across all LPs and BananaSplit Pools')}</Text>
-          </>
-        ) : (
-          <>
-            <Skeleton height={66} />
-          </>
-        )}
-        <PersonalTvl />
-        <Text color="textSubtle">
-          {TranslateString(999, 'Account TVL')}
-          <StyledNavLink to="/stats">{TranslateString(999, 'See Details')}</StyledNavLink>
-        </Text>
-      </CardBody>
+      <StyledNavLink to="/stats">
+        <StyledImage width="250px" src="/images/monkey.svg" alt="monkey" />
+        <CardBody>
+          <Heading size="sm" mb="6px" color="white" textAlign="center">
+            {TranslateString(999, 'Total Value Locked (TVL)')}
+          </Heading>
+          {totalTvl ? (
+            <>
+              <CardValue
+                fontSize="28px"
+                differentFontSize="24px"
+                decimals={0}
+                value={totalTvl}
+                prefix="$"
+                color="white"
+              />
+              <StyledText color="white">{TranslateString(999, 'Across all LPs and Pools')}</StyledText>
+            </>
+          ) : (
+            <>
+              <Skeleton height={33} />
+            </>
+          )}
+          <PersonalTvl />
+          <StyledFlex justifyContent="flex-end">
+            <StyledLink color="white" size="sm" mt="10px" fontFamily="poppins">
+              {TranslateString(999, 'Account TVL')}
+            </StyledLink>
+            <ArrowForwardIcon mt={10} color="white" />
+          </StyledFlex>
+        </CardBody>
+      </StyledNavLink>
     </StyledTotalValueLockedCard>
   )
 }

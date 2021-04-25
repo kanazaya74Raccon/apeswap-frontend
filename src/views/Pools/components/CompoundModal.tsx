@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import React, { useMemo, useState } from 'react'
-import { Button, Modal } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import Balance from 'components/Balance'
 import useI18n from 'hooks/useI18n'
@@ -43,6 +43,7 @@ const CompoundModal: React.FC<DepositModalProps> = ({ earnings, onConfirm, onDis
             setPendingTx(false)
             onDismiss()
           }}
+          endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>

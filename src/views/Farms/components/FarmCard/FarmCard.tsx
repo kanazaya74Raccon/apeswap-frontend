@@ -34,7 +34,18 @@ const RainbowLight = keyframes`
 	}
 `
 
-const StyledCardAccent = styled.div`
+const Accent = styled.div`
+  border-radius: 16px;
+  filter: blur(6px);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  z-index: -1;
+`
+
+const FeaturedCardAccent = styled(Accent)`
   background: linear-gradient(
     45deg,
     rgba(255, 0, 0, 1) 0%,
@@ -51,33 +62,20 @@ const StyledCardAccent = styled.div`
   );
   background-size: 300% 300%;
   animation: ${RainbowLight} 2s linear infinite;
-  border-radius: 16px;
-  filter: blur(6px);
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  z-index: -1;
 `
 
-const WarningCardAccent = styled.div`
+const WarningCardAccent = styled(Accent)`
   background: #ca3e33;
-  background-size: 300% 300%;
-  animation: ${RainbowLight} 2s linear infinite;
-  border-radius: 16px;
-  filter: blur(6px);
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  z-index: -1;
+`
+
+const InactiveCardAccent = styled(Accent)`
+  background: grey;
 `
 
 const styles = {
   warning: WarningCardAccent,
-  featured: StyledCardAccent,
+  featured: FeaturedCardAccent,
+  inactive: InactiveCardAccent,
 }
 
 const FCard = styled.div`

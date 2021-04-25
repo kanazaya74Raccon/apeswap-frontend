@@ -77,6 +77,7 @@ export interface FarmPool {
 export interface StatsOverall {
   bananaPrice: number
   tvl: number
+  totalLiquidity: number
   totalVolume: number
   burntAmount: number
   totalSupply: number

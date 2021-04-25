@@ -47,6 +47,11 @@ const config: MenuEntry[] = [
     href: '/nft',
   },
   {
+    label: 'ApeZone',
+    icon: 'ApeZone',
+    href: '/apezone',
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
@@ -111,6 +116,10 @@ const config: MenuEntry[] = [
       {
         label: 'Community Feedback',
         href: 'https://apeswap.nolt.io/',
+      },
+      {
+        label: 'ApeTV',
+        href: 'https://anchor.fm/apetv',
       },
       {
         label: 'GEMZ Audit Report',

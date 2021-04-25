@@ -99,7 +99,7 @@ const ifos: Ifo[] = [
   {
     id: 'jediyield',
     address: '0xCBe256573185d767EfD4a797CB360880728B8fD8',
-    isActive: true,
+    isActive: false,
     name: 'Jedi Yield',
     subTitle: 'The only app you need for all your yield farming needs',
     description:
@@ -109,11 +109,30 @@ const ifos: Ifo[] = [
     saleAmount: '7,000,000 JDI',
     raiseAmount: '$700,000',
     bananaToBurn: '$350,000',
-    projectSiteUrl: 'https://jediyield.com/',
+    projectSiteUrl: 'https://jdiyield.com/',
     currency: 'BANANA-BNB LP',
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 6044304,
+  },
+  {
+    id: 'bitfresh',
+    address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
+    isActive: true,
+    name: 'Bitfresh',
+    subTitle: 'The first community-driven iGaming platform where everyone wins.',
+    description:
+      'Bitfresh is a blockchain-based community driven social iGaming experience that pays dividends to players and token holders. The platform is filled with reward systems to give players many ways to win and earn over time.',
+    launchDate: 'Apr. 24',
+    launchTime: '03:00 UTC',
+    saleAmount: '100,000,000 BFT',
+    raiseAmount: '$1,000,000',
+    bananaToBurn: '$500,000',
+    projectSiteUrl: 'https://www.bitfresh.win/public-sale',
+    currency: 'BANANA-BNB LP',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    tokenDecimals: 18,
+    releaseBlockNumber: 6565331,
   },
 ]
 

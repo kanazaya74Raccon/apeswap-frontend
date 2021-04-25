@@ -102,7 +102,6 @@ export const useAllocation = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       const result = await getAllocation(lotteryContract)
-      console.log(result)
       setAllocation(result)
     }
 

@@ -179,6 +179,98 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.28935185',
     sortOrder: 5,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 17,
+    tokenName: 'SWAMP',
+    stakingTokenName: 'BANANA',
+    image: 'SWAMP.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xA007a5a8165D70DdFBC230927Cd639163228Fc72',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://swamp.finance',
+    harvest: true,
+    tokenPerBlock: '0.000479442180800000',
+    sortOrder: 7,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: false,
+  },
+  {
+    sousId: 19,
+    tokenName: 'ALLOY',
+    stakingTokenName: 'BANANA',
+    image: 'ALLOY.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x834534853bff9C97F8A9b0fb9FFF864E3584Df99',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://hyperjump.fi',
+    harvest: true,
+    tokenPerBlock: '0.01467673032',
+    sortOrder: 5,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: false,
+  },
+  {
+    sousId: 20,
+    tokenName: 'NAUT',
+    stakingTokenName: 'BANANA',
+    image: 'NAUT.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xDC0913b2bf505E03794f0A68a0DbBa333D8e0E01',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.03858024691358',
+    sortOrder: 5,
+    isFinished: false,
+    tokenDecimals: 8,
+    lpStaking: false,
+  },
+  {
+    sousId: 18,
+    tokenName: 'NAUT',
+    stakingTokenName: 'BNB-NAUT',
+    image: 'NAUT.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x330de89a559a75738acB5b87aE93579120d53AfB',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.049603174603175',
+    sortOrder: 6,
     isFinished: false,
     tokenDecimals: 8,
     lpStaking: true,
@@ -267,7 +359,7 @@ const pools: PoolConfig[] = [
       56: '0x7336B60aC64a5Bf04Eec760bD135ea105994387C',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://jediyield.com',
+    projectLink: 'https://jdiyield.com',
     harvest: true,
     tokenPerBlock: '0.07716049382716',
     sortOrder: 6,
@@ -336,10 +428,10 @@ const pools: PoolConfig[] = [
       56: '0x72C8750af0744282E065F0dF3F73460A3764c624',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://jediyield.com',
+    projectLink: 'https://jdiyield.com',
     harvest: true,
     tokenPerBlock: '0.115640358485111',
-    sortOrder: 2,
+    sortOrder: 3,
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: false,
@@ -350,7 +442,7 @@ const pools: PoolConfig[] = [
     stakingTokenName: 'BANANA',
     image: 'LYPTUS.png',
     stakingTokenAddress: {
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
     },
     contractAddress: {
@@ -366,6 +458,113 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: false,
+  },
+  {
+    sousId: 21,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5', // GNANA token address
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://apeswap.finance/apezone',
+    harvest: true,
+    tokenPerBlock: `0.0868055555555556`,
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 22,
+    tokenName: 'ONT',
+    image: 'ONT.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8e6f61f855a7483E29c8E87BF221C73e10b49738',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://ont.io',
+    harvest: true,
+    tokenPerBlock: `0.009645061728000000`,
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 23,
+    tokenName: 'NFTL',
+    image: 'NFTL.jpg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x7618c42Fb5DC96F3C238FEC799B440AEd7c56E03',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://cybertime.finance',
+    harvest: true,
+    tokenPerBlock: `2.1428571429`,
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 24,
+    tokenName: 'BFT',
+    image: 'BFT.svg',
+    stakingTokenName: 'BFT',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8', // BFT
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x49bbB345c432b9B66b407f1525A81A84F4509b8b',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.bitfresh.win',
+    harvest: true,
+    tokenPerBlock: `3.858024691358025`,
+    sortOrder: 2,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 25,
+    tokenName: 'BFT',
+    image: 'BFT.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x5798271B134e27c4dE28CB33aa8D18e5753e83fC',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.bitfresh.win',
+    harvest: true,
+    tokenPerBlock: `5.787037037`,
+    sortOrder: 3,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
   },
   /* {
     sousId: 45,

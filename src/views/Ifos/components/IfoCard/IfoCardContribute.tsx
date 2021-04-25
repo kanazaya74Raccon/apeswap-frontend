@@ -18,7 +18,9 @@ export interface Props {
   contract: Contract
   status: IfoStatus
   raisingAmount: BigNumber
+  totalAmount: BigNumber
   tokenDecimals: number
+  notLp?: boolean
 }
 
 const IfoCardContribute: React.FC<Props> = ({
@@ -28,10 +30,13 @@ const IfoCardContribute: React.FC<Props> = ({
   contract,
   status,
   raisingAmount,
+  totalAmount,
   tokenDecimals,
+  notLp,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
+  const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: 0, claimed: false })
 
   const { account } = useWallet()
@@ -39,15 +44,17 @@ const IfoCardContribute: React.FC<Props> = ({
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)
   const [onPresentContributeModal] = useModal(
-    <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} />,
+    <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp={notLp} />,
   )
 
   useEffect(() => {
     const fetch = async () => {
       const balance = new BigNumber(await contract.methods.getOfferingAmount(account).call())
       const userinfo = await contract.methods.userInfo(account).call()
+      const allocation = await contract.methods.getUserAllocation(account).call()
 
       setUserInfo(userinfo)
+      setAllocation(allocation / 10000)
       setOfferingTokenBalance(balance)
     }
 
@@ -65,8 +72,12 @@ const IfoCardContribute: React.FC<Props> = ({
     await contract.methods.harvest().send({ from: account })
     setPendingTx(false)
   }
+
   const isFinished = status === 'finished'
-  const percentOfUserContribution = new BigNumber(userInfo.amount).div(raisingAmount).times(100)
+  const overSubscribed = totalAmount.gte(raisingAmount)
+  const percentOfUserContribution = overSubscribed
+    ? userAllocation
+    : new BigNumber(userInfo.amount).div(raisingAmount).times(100)
 
   if (allowance <= 0) {
     return (
@@ -108,7 +119,7 @@ const IfoCardContribute: React.FC<Props> = ({
       <Text fontSize="14px" color="textSubtle">
         {isFinished
           ? `You'll be refunded any excess tokens when you claim`
-          : `${percentOfUserContribution.toFixed(5)}% of total`}
+          : `${percentOfUserContribution.toFixed(5)}% of total allocation`}
       </Text>
     </>
   )
