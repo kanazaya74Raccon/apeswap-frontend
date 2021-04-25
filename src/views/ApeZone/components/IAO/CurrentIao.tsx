@@ -76,11 +76,6 @@ const StyledTextContainer = styled.div`
   margin-bottom: 28px;
 `
 
-const StyledText = styled(Text)`
-  line-height: 18px;
-  margin-left: 18px;
-`
-
 const StyledGoldenMonkey = styled.img`
   width: 100%;
   height: 200px;

@@ -77,7 +77,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
     'Rarity Tier Name',
     'Rarity Overall Rank',
   ]
-  const attributes = Array(nft.attributes)
+
   const handleSuccess = () => {
     reInitialize()
   }

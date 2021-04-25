@@ -56,9 +56,6 @@ const GreyRow = styled.div`
     padding-right: 6px;
   }
 `
-const StyledHeading = styled(Heading)`
-  text-align: center;
-`
 
 const StyledCardBody = styled(CardBody)`
   padding-left: 20px;
@@ -106,9 +103,9 @@ const BananaStats = () => {
   return (
     <StyledBananaStats>
       <StyledCardBody>
-        <StyledHeading size="lg" mb="24px">
+        <Heading size="lg" mb="24px" textAlign="center">
           {TranslateString(534, 'Banana Stats')}
-        </StyledHeading>
+        </Heading>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'USD MARKET CAP')}

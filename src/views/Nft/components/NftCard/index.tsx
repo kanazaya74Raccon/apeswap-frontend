@@ -47,7 +47,7 @@ const InfoBlock = styled.div`
 const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   const [isOpen, setIsOpen] = useState(false)
   const TranslateString = useI18n()
-  const { isInitialized, getTokenIds, reInitialize } = useContext(NftProviderContext)
+  const { reInitialize } = useContext(NftProviderContext)
   const { profile } = useProfile()
   const { index, name, image, attributes } = nft
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon

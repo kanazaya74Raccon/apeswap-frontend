@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button, Heading } from '@apeswapfinance/uikit'
+import React from 'react'
+import { Heading } from '@apeswapfinance/uikit'
 
 import { useChartData } from 'hooks/api'
 
@@ -12,16 +12,10 @@ const Charts = styled.div`
   }
   margin-bottom: 60px;
 `
-const Buttons = styled.div`
-  text-align: center;
-  button {
-    margin: 10px;
-  }
-`
 
 const ApexChart = () => {
-  const [resolution, setResolution] = useState('60')
-  const [pair, setPair] = useState('BANANA/BUSD')
+  const resolution = '60'
+  const pair = 'BANANA/BUSD'
   const data = useChartData(resolution, pair)
   const base = pair.split('/')[1]
 
@@ -73,83 +67,6 @@ const ApexChart = () => {
         },
       },
     },
-  }
-
-  const seriesConfig = {
-    seriesBar: [
-      {
-        name: 'volume',
-        data: data?.volume.data,
-      },
-    ],
-    optionsBar: {
-      chart: {
-        height: 160,
-        type: 'bar',
-        brush: {
-          enabled: true,
-          target: 'candles',
-        },
-        selection: {
-          enabled: true,
-          xaxis: {
-            min: data?.volume.start,
-            max: data?.volume.end,
-          },
-          fill: {
-            color: '#ccc',
-            opacity: 1,
-          },
-          stroke: {
-            color: '#0D47A1',
-          },
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: '20%',
-          colors: {
-            ranges: [
-              {
-                from: 1000000,
-                to: 50000000000,
-                color: '#FAFAFA',
-              },
-              {
-                from: 50000000000,
-                to: 1000000000000,
-                color: '#FAFAFA',
-              },
-            ],
-          },
-        },
-      },
-      stroke: {
-        width: 0,
-      },
-      xaxis: {
-        type: 'datetime',
-        axisBorder: {
-          offsetX: 13,
-        },
-      },
-      yaxis: {
-        labels: {
-          show: true,
-        },
-      },
-    },
-  }
-
-  const onChangeResolution = (newResolution) => {
-    setResolution(newResolution)
-  }
-
-  const togglePair = (newPair) => {
-    setPair(newPair)
   }
 
   return (

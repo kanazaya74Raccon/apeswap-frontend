@@ -8,7 +8,6 @@ import {
   BananaGoldenIcon,
   BananaGoldenPairIcon,
   Flex,
-  useModal,
   Checkbox,
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
@@ -23,7 +22,6 @@ import styled from 'styled-components'
 import { getBananaAddress } from 'utils/addressHelpers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
-import ConfirmModal from './ConfirmModal'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -116,8 +114,6 @@ const BuyCard = ({ account }) => {
     const max = parseInt(fullBalance) < MAX_BUY || unlimited ? fullBalance : MAX_BUY
     setVal(max.toString())
   }, [fullBalance, unlimited, setVal])
-
-  const [onPresentContributeModal] = useModal(<ConfirmModal amount={parseInt(val)} />)
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
