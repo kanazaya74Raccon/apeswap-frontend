@@ -80,6 +80,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 37,
+    lpSymbol: 'BFT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1696A65eA693593Ba771b5A7aFC54C8eaf4C20dE', // BFT-BNB BananaPair
+    },
+    tokenSymbol: 'BFT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8', // BFT Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
