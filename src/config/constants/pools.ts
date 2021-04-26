@@ -576,7 +576,7 @@ const pools: PoolConfig[] = [
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
     },
     contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', 
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0xEdea59e33A6D0A2d491Aa818f6E08ea18DE13c32', // ApeRewardPool
     },
     poolCategory: PoolCategory.APEZONE,
