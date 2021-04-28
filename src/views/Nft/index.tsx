@@ -26,11 +26,7 @@ const Nft = () => {
           </Heading>
           <OwnedNfts />
           <Heading as="h1" size="lg" color="secondary" paddingTop="25px" style={{ textDecoration: 'underline' }}>
-            <a
-              href="https://nftkey.app/collections/nfas/?nfasTab=forSale"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
               {TranslateString(999, 'Check out the NFA aftermarket at NFTKEY!')}
             </a>
           </Heading>
