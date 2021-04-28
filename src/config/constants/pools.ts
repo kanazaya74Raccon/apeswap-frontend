@@ -380,7 +380,7 @@ const pools: PoolConfig[] = [
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0xa3283C497710cbBE31d35A5cf56C315C621D6e10', // ApeRewardPool
     },
-    poolCategory: PoolCategory.CORE,
+    poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://jdiyield.com',
     harvest: true,
     tokenPerBlock: `0.11574074074`,
