@@ -368,6 +368,28 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
+    sousId: 28,
+    tokenName: 'JDI',
+    image: 'JDI.png',
+    stakingTokenName: 'JDI',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0491648c910ad2c1afaab733faf71d30313df7fc', // JDI
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xa3283C497710cbBE31d35A5cf56C315C621D6e10', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://jdiyield.com',
+    harvest: true,
+    tokenPerBlock: `0.11574074074`,
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    reflect: true,
+  },
+  {
     sousId: 15,
     tokenName: 'Inactive - FOXY',
     stakingTokenName: 'BANANA',
