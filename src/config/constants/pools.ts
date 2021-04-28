@@ -384,9 +384,10 @@ const pools: PoolConfig[] = [
     projectLink: 'https://jdiyield.com',
     harvest: true,
     tokenPerBlock: `0.11574074074`,
-    sortOrder: 1,
+    sortOrder: 4,
     isFinished: false,
     tokenDecimals: 18,
+    reflect: true
   },
   {
     sousId: 15,
