@@ -65,16 +65,16 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 31,
-    lpSymbol: 'ONT-BNB LP',
+    pid: 5,
+    lpSymbol: 'ETH-BNB LP',
     lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
+      97: '0x66dc37a4efe740d20e13ebc6bf6b238d9655cbbc', // ETH-BNB BananaPair
+      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
     },
-    tokenSymbol: 'ONT',
+    tokenSymbol: 'ETH',
     tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
+      97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
+      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -95,6 +95,36 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 28,
+    lpSymbol: 'NUTS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x789fd04BFbC64169104466Ee0d48716E0452Bcf6', // NUTS-BNB BananaPair
+    },
+    tokenSymbol: 'NUTS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8893d5fa71389673c5c4b9b3cb4ee1ba71207556', // NUTS Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 41,
+    lpSymbol: 'AUTO-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x649a5ad5135b4bd287e5aca8d41f4d5e1b52af5c', // AUTO-BNB BananaPair
+    },
+    tokenSymbol: 'AUTO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa184088a740c695e156f91f5cc086a06bb78b827', // AUTO Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
@@ -110,16 +140,16 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
-    pid: 28,
-    lpSymbol: 'NUTS-BNB LP',
+    pid: 31,
+    lpSymbol: 'ONT-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x789fd04BFbC64169104466Ee0d48716E0452Bcf6', // NUTS-BNB BananaPair
+      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
     },
-    tokenSymbol: 'NUTS',
+    tokenSymbol: 'ONT',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x8893d5fa71389673c5c4b9b3cb4ee1ba71207556', // NUTS Token
+      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -468,21 +498,6 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0x6ce8da28e2f864420840cf74474eff5fd80e65b8', // Binance Peg BTC
       56: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-  },
-  {
-    pid: 5,
-    lpSymbol: 'ETH-BNB LP',
-    lpAddresses: {
-      97: '0x66dc37a4efe740d20e13ebc6bf6b238d9655cbbc', // ETH-BNB BananaPair
-      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
-    },
-    tokenSymbol: 'ETH',
-    tokenAddresses: {
-      97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378', // Binance Peg ETH
-      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
