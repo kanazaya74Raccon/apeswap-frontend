@@ -13,4 +13,4 @@ export const BASE_EXCHANGE_URL = process.env.REACT_APP_BASE_EXCHANGE_URL || 'htt
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_EXCHANGE_URL}/#/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_EXCHANGE_URL}/#/pool`
 export const LOTTERY_MAX_NUMBER_OF_TICKETS = 50
-export const LOTTERY_TICKET_PRICE = 10
+export const LOTTERY_TICKET_PRICE = 2
