@@ -43,15 +43,11 @@ const AprWrapper = styled.div`
 const Apr: React.FC<AprProps> = ({
   value,
   lpLabel,
-  // tokenAddress,
-  // quoteTokenAddress,
   bananaPrice,
   originalValue,
   hideButton = false,
 }) => {
   const TranslateString = useI18n()
-  // const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
-  // const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   return originalValue !== 0 ? (
     <Container>

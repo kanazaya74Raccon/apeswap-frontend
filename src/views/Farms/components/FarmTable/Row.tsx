@@ -130,7 +130,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                     <td key={key}>
                       <CellInner>
                         <CellLayout
-                        // label={TranslateString(736, 'APR')}
                         >
                           <Apr {...props.apr} hideButton={isMobile} />
                         </CellLayout>
@@ -154,7 +153,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   <td key={key}>
                     <CellInner>
                       <CellLayout
-                      // label={TranslateString(tableSchema[columnIndex].translationId, tableSchema[columnIndex].label)}
                       >
                         {React.createElement(cells[key], props[key])}
                       </CellLayout>

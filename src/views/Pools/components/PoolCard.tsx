@@ -73,7 +73,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
-  // const rewardRef = useRef(null)
   const rewardRefUnstake = useRef(null)
   const rewardRefStake = useRef(null)
   const rewardRefApeHarder = useRef(null)

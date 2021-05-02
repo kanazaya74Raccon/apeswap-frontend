@@ -111,10 +111,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const TranslateString = useI18n()
   const isActive = farm.multiplier !== '0X'
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  // const liquidityUrlPathParts = getLiquidityUrlPathParts({
-  //   quoteTokenAddress: quoteToken.address,
-  //   tokenAddress: token.address,
-  // })
+
   const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = `https://bscscan.com/address/${lpAddress}`
   const isCommunityFarm = communityFarms.includes(farm.lpSymbol)
@@ -126,13 +123,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   return (
     <Container>
       <InfoContainer>
-        {isActive && (
-          <StakeContainer>
-            {/* <StyledLinkExternal href={`https://exchange.pancakeswap.finance/#/add/${liquidityUrlPathParts}`}>
-              {TranslateString(999, `Get ${lpLabel}`, { name: lpLabel })}
-            </StyledLinkExternal> */}
-          </StakeContainer>
-        )}
         <ValueContainer>
           <ValueWrapper>
             <Text>{TranslateString(999, 'Multiplier:')}</Text>
@@ -147,7 +137,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
         </ValueContainer>
         <StyledLinkExternal href={bsc}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>
         <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal>
-        {/* <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer> */}
       </InfoContainer>
       <ValueContainerNoneLarge>
         <ValueWrapper>

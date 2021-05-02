@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Image, Heading, RowType, Toggle, Text } from '@apeswapfinance/uikit'
+import { Image, Heading, RowType, Toggle, Text, Card } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
@@ -35,7 +35,7 @@ import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Select, { OptionProps } from './components/Select/Select'
 
-const ControlContainer = styled.div`
+const ControlContainer = styled(Card)`
   display: flex;
   width: 100%;
   align-items: center;
@@ -107,6 +107,11 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 16px;
   padding-right: 16px;
+  background-image: url("/images/farm-day.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+  background-position: right top;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 24px;
@@ -335,7 +340,7 @@ const Farms: React.FC = () => {
   return (
     <>
       <Header>
-        <Heading as="h1" size="lg" color="secondary" mb="12px" style={{ textAlign: 'center' }}>
+        <Heading as="h1" size="xl" color="secondary" mb="12px" mt={60} style={{ maxWidth: '500px' }}>
           {TranslateString(999, 'Stake LP tokens to earn BANANA')}
         </Heading>
       </Header>
