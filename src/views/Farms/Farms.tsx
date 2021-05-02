@@ -107,7 +107,7 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 16px;
   padding-right: 16px;
-  background-image: url("/images/farm-day.svg");
+  background-image: url('/images/farm-day.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 800px;

@@ -129,8 +129,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   <>
                     <td key={key}>
                       <CellInner>
-                        <CellLayout
-                        >
+                        <CellLayout>
                           <Apr {...props.apr} hideButton={isMobile} />
                         </CellLayout>
                       </CellInner>
@@ -152,10 +151,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout
-                      >
-                        {React.createElement(cells[key], props[key])}
-                      </CellLayout>
+                      <CellLayout>{React.createElement(cells[key], props[key])}</CellLayout>
                       {key === 'farm' && (
                         <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
                       )}

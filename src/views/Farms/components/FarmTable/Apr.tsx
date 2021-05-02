@@ -40,13 +40,7 @@ const AprWrapper = styled.div`
   text-align: left;
 `
 
-const Apr: React.FC<AprProps> = ({
-  value,
-  lpLabel,
-  bananaPrice,
-  originalValue,
-  hideButton = false,
-}) => {
+const Apr: React.FC<AprProps> = ({ value, lpLabel, bananaPrice, originalValue, hideButton = false }) => {
   const TranslateString = useI18n()
 
   return originalValue !== 0 ? (
