@@ -632,6 +632,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 29,
+    tokenName: 'BINGUS',
+    image: 'Bingus.png',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x1697b103a72299d5db4e39ef28a32991c347be23', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'http://bingus.finance/',
+    harvest: true,
+    tokenPerBlock: `3592.308202022`,
+    sortOrder: 3,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
