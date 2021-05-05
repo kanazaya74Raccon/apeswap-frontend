@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ListViewIcon, CardViewIcon, IconButton } from '@apeswapfinance/uikit'
+import { ListViewIcon, CardViewIcon, Flex } from '@apeswapfinance/uikit'
 import { ViewMode } from '../types'
 
 interface ToggleViewProps {
@@ -8,16 +8,27 @@ interface ToggleViewProps {
   onToggle: (mode: ViewMode) => void
 }
 
-const Container = styled.div`
+const StyledFlex = styled(Flex)`
   margin-left: -8px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 0;
   }
 `
-const StyledIconButton = styled(IconButton)`
+const StyledIconButton = styled.div`
   margin-left: 2px;
   margin-right: 2px;
+`
+
+const StyledListViewIcon = styled(ListViewIcon)`
+ width: 30px;
+ margin-right: 26px;
+ height: '100%';
+`
+
+const StyledCardViewIcon = styled(CardViewIcon)`
+ width: 30px;
+ height: '100%';
 `
 
 const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onToggle }) => {
@@ -28,14 +39,14 @@ const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onTogg
   }
 
   return (
-    <Container>
-      <StyledIconButton variant="text" onClick={() => handleToggle(ViewMode.CARD)}>
-        <CardViewIcon color={viewMode === ViewMode.CARD ? 'primary' : 'textDisabled'} />
+    <StyledFlex>
+      <StyledIconButton onClick={() => handleToggle(ViewMode.TABLE)}>
+        <StyledListViewIcon color={viewMode === ViewMode.TABLE ? 'yellow' : 'textDisabled'} />
       </StyledIconButton>
-      <StyledIconButton variant="text" onClick={() => handleToggle(ViewMode.TABLE)}>
-        <ListViewIcon color={viewMode === ViewMode.TABLE ? 'primary' : 'textDisabled'} />
+      <StyledIconButton onClick={() => handleToggle(ViewMode.CARD)}>
+        <StyledCardViewIcon color={viewMode === ViewMode.CARD ? 'yellow' : 'textDisabled'} />
       </StyledIconButton>
-    </Container>
+    </StyledFlex>
   )
 }
 

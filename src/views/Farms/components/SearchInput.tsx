@@ -1,16 +1,26 @@
 import React, { useState, useRef } from 'react'
-import { Input } from '@apeswapfinance/uikit'
+import { Input, SearchIcon2} from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
-  border-radius: 16px;
+  border-radius: 20px;
+  background: #F0F0F0;
   margin-left: auto;
+  height: 32px;
+`
+
+const StyledSearchIcon = styled(SearchIcon2)`
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  width: 14px;
+  height: 14px;
 `
 
 const InputWrapper = styled.div`
   position: relative;
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 234px;
+    width: 244px;
     display: block;
   }
 `
@@ -33,9 +43,9 @@ const SearchInput: React.FC<Props> = ({ value, onChange }) => {
           ref={inputEl}
           value={value}
           onChange={onChange}
-          placeholder="Search farms"
           onBlur={() => setToggled(false)}
         />
+        <StyledSearchIcon />
       </InputWrapper>
     </Container>
   )

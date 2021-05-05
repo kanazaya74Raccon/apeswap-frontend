@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Image, Heading, RowType, Toggle, Text, Card } from '@apeswapfinance/uikit'
+import { Image, Heading, RowType, Toggle, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
@@ -19,6 +19,7 @@ import {
   useFarmUser,
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
+import useTheme from 'hooks/useTheme'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
@@ -43,11 +44,12 @@ const ControlContainer = styled(Card)`
 
   justify-content: center;
   flex-direction: column;
+  overflow: visible;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 32px 32px;
+    padding: 15px 15px;
   }
 `
 
@@ -63,6 +65,8 @@ const ToggleWrapper = styled.div`
 `
 
 const LabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
   > ${Text} {
     font-size: 12px;
   }
@@ -73,7 +77,6 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
-  margin-bottom: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
@@ -87,7 +90,6 @@ const ViewControls = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 30px;
 
   > div {
     padding: 8px 0px;
@@ -103,20 +105,31 @@ const ViewControls = styled.div`
   }
 `
 
+const HeadingContainer = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+`
+
 const Header = styled.div`
   padding-top: 36px;
   padding-left: 16px;
   padding-right: 16px;
-  background-image: url('/images/farm-day.svg');
+  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
   background-repeat: no-repeat;
   background-size: cover;
-  height: 800px;
-  background-position: right top;
+  height: 400px;
+  background-position: center;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 24px;
     padding-right: 24px;
   }
+`
+
+const StyledText = styled(Text)`
+  font-weight: 700;
+  font-size: 15px;
 `
 
 const Farms: React.FC = () => {
@@ -154,6 +167,25 @@ const Farms: React.FC = () => {
   const stakedInactiveFarms = inactiveFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
+
+  const { isDark } = useTheme()
+
+interface CheckboxProps {
+  checked?: boolean
+}
+
+const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
+  height: 21px;
+  width: 21px;
+`
+
+const StyledImage = styled.img`
+  height: 187px;
+  width: 134px;
+  position: absolute;
+  right: 0px;
+  bottom: 21px;
+`
 
   const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
     switch (sortOption) {
@@ -340,21 +372,29 @@ const Farms: React.FC = () => {
   return (
     <>
       <Header>
-        <Heading as="h1" size="xl" color="secondary" mb="12px" mt={60} style={{ maxWidth: '500px' }}>
+        <HeadingContainer>
+        <Heading as="h1" size="xxl" mb="12px" mt={60} style={{ maxWidth: '600px' }}>
           {TranslateString(999, 'Stake LP tokens to earn BANANA')}
         </Heading>
+        </HeadingContainer>
       </Header>
       <Page>
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            <LabelWrapper style={{ marginLeft: 16 }}>
+              <StyledText fontFamily="poppins" mr="15px">Search</StyledText>
+              <SearchInput onChange={handleChangeQuery} value={query} />
+            </LabelWrapper>
             <FarmTabButtons />
-            <ToggleWrapper>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-              <Text> {TranslateString(1116, 'Staked only')}</Text>
+               <ToggleWrapper>
+              <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+              <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
             </ToggleWrapper>
+              
+              {isDark ? <StyledImage src='/images/farm-night-farmer.svg' alt="night-monkey"/> : <StyledImage src='/images/farm-day-farmer.svg' alt="day-monkey"/>}
           </ViewControls>
-          <FilterContainer>
+          {/* <FilterContainer>
             <LabelWrapper>
               <Text>SORT BY</Text>
               <Select
@@ -376,10 +416,10 @@ const Farms: React.FC = () => {
               />
             </LabelWrapper>
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text>SEARCH</Text>
+              <Text fontFamily="poppins" mr="15px">Search</Text>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
-          </FilterContainer>
+          </FilterContainer> */}
         </ControlContainer>
         {renderContent()}
       </Page>
@@ -388,3 +428,4 @@ const Farms: React.FC = () => {
 }
 
 export default Farms
+
