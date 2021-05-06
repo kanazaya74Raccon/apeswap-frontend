@@ -129,7 +129,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'BXBTC-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xc2feF4BEC915315beF9f6E8a06b2516E64D29D06', // XBTC-BNB BananaPair
+      56: '0xc2feF4BEC915315beF9f6E8a06b2516E64D29D06', // BXBTC-BNB BananaPair
     },
     tokenSymbol: 'BXBTC',
     tokenAddresses: {
