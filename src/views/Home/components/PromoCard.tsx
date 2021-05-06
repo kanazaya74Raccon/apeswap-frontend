@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, CardBody, Heading, Spinner, Text } from '@apeswapfinance/uikit'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
+import useFetchPromoHome from 'state/strapi/useFetchPromoHome'
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
@@ -139,33 +140,20 @@ const StyledClickLeft = styled.img`
     padding: 80px 10px;
   }
 `
-
-const carouselSlidesData = [
-  {
-    header: '🤝 Ontology Partnership 🤝 ',
-    text: 'We teamed up with Ontology and ONTO Wallet!',
-    text2: 'See our frenzy with over $250,000 in rewards up for grabs! 😮',
-    link: 'Get the details here!',
-    pageLink: 'https://ape-swap.medium.com/ontology-comes-to-apeswap-61cb37f34811',
-  },
-  {
-    header: 'Did you hear about the ApeZone?',
-    text: '🍌 Check our fully fledged ApeZone 🍌',
-    text2: 'Become a GNANA holder and access exclusive perks',
-    link: 'Check it out!',
-    pageLink: 'apezone',
-  },
-  {
-    header: 'We love NFAs',
-    text: '🐒 Check our full NFA collection 🐒',
-    text2: 'New batches constantly launching',
-    link: 'Check them out!',
-    pageLink: 'nft',
-  },
-]
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-bottom: 60px;
+  }
+`
 
 const PromoCard = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const { carouselSlidesData, loading } = useFetchPromoHome()
 
   const goToPrevSlide = () => {
     let index = activeIndex
@@ -192,7 +180,11 @@ const PromoCard = () => {
     <StyledPromoCard>
       <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
-        {carouselSlidesData && (
+        {!loading ? (
+          <LoadingContainer className="something">
+            <Spinner />
+          </LoadingContainer>
+        ) : (
           <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
             {carouselSlidesData.map((slide) => (
               <CarouselSlide slide={slide} />
@@ -234,7 +226,9 @@ const CarouselSlide = ({ slide }) => {
         </Heading>
         <StyledDiv>
           <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
-          <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
+          <Text color="textSubtle" fontFamily="poppins">
+            &nbsp;
+          </Text>
           <Text color="textSubtle">
             <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
           </Text>
