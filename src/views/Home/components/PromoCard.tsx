@@ -180,7 +180,7 @@ const PromoCard = () => {
     <StyledPromoCard>
       <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
-        {!loading ? (
+        {loading ? (
           <LoadingContainer className="something">
             <Spinner />
           </LoadingContainer>
