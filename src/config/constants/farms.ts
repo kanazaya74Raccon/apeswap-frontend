@@ -125,6 +125,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 42,
+    lpSymbol: 'XBTC-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xc2feF4BEC915315beF9f6E8a06b2516E64D29D06', // XBTC-BNB BananaPair
+    },
+    tokenSymbol: 'XBTC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xab111d5948470ba73d98d66bbdf2798fbe093546', // AUTO Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
