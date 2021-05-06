@@ -90,18 +90,11 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 5,
-    name: 'multiplier',
-    translationId: 999,
-    sortable: true,
-    label: 'Multiplier',
-  },
-  {
-    id: 6,
     name: 'details',
     translationId: 999,
     sortable: true,
     label: '',
-  }
+  },
 ]
 
 export enum ViewMode {

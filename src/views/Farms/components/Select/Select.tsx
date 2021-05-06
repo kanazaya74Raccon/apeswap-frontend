@@ -129,7 +129,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
           <Text>{selectedOption.label}</Text>
         </DropDownHeader>
       )}
-      <ArrowDropDownIcon color="text" onClick={toggling} />
+      <ArrowDropDownIcon color="text" width="24px" onClick={toggling} />
       <DropDownListContainer>
         <DropDownList ref={dropdownRef}>
           {options.map((option) =>

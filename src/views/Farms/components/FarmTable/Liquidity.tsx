@@ -35,7 +35,7 @@ const Container = styled.div`
 `
 
 const StyledText = styled(Text)`
- font-size: 20px;
+  font-size: 20px;
 `
 
 const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
@@ -44,7 +44,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   ) : (
     <Skeleton width={60} />
   )
-  
+
   const TranslateString = useI18n()
 
   return (

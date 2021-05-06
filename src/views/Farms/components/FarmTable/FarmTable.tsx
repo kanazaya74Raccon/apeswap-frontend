@@ -11,14 +11,12 @@ export interface ITableProps {
 }
 
 const Container = styled.div`
-  width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
 `
 
 const ContainerLabels = styled.div`
-  width: 100%;
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin-top: 34px;
@@ -29,18 +27,31 @@ const ContainerLabels = styled.div`
 `
 
 const StyledTableLabels = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   margin: 10px 0px;
 `
 
 const StyledLabel = styled.div`
   width: 100%;
   display: flex;
-  margin-left: 40px;
   color: ${({ theme }) => theme.colors.textSubtle};
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
 `
+
+const StyledLabel2 =  styled.div`
+  width: 100%;
+  display: flex;
+  color: ${({ theme }) => theme.colors.textSubtle};
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
+`
+
+
 
 const TableWrapper = styled.div`
   overflow: visible;
@@ -57,7 +68,7 @@ const StyledTable = styled.table`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: #FAF9FA;
+  background-color: #faf9fa;
 `
 
 const TableBody = styled.tbody`
@@ -94,31 +105,32 @@ const FarmTable: React.FC<ITableProps> = (props) => {
       behavior: 'smooth',
     })
   }
-  
-//                     /* eslint-disable no-debugger */
-// debugger;
-// /* eslint-enable no-debugger */
-  
+
+  //                     /* eslint-disable no-debugger */
+  // debugger;
+  // /* eslint-enable no-debugger */
+
   return (
     <>
-    <ContainerLabels>
-      <StyledTableLabels>
-        <StyledLabel>LP</StyledLabel>
-        <StyledLabel>APR</StyledLabel>
-        <StyledLabel>Liquidity</StyledLabel>
-        <StyledLabel>Earned</StyledLabel>
-        <StyledLabel>Reset</StyledLabel>
-      </StyledTableLabels>
-      </ContainerLabels>
       <Container>
         <TableContainer>
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
               <TableBody>
-                {rows.map((row) => {
-                  /* eslint-disable no-debugger */
-// debugger;
-/* eslint-enable no-debugger */
+                {rows.map((row, index) => {
+                  
+                   return <div>
+                    <ContainerLabels>
+        <StyledTableLabels>
+          <StyledLabel>LP</StyledLabel>
+          <StyledLabel>APR</StyledLabel>
+          <StyledLabel>Liquidity</StyledLabel>
+          <StyledLabel>Earned</StyledLabel>
+          <StyledLabel>Reset</StyledLabel>
+        </StyledTableLabels>
+      </ContainerLabels>
+                   <Row {...row.original} key={`table-row-${row.id}`} />
+                   </div>
                   return <Row {...row.original} key={`table-row-${row.id}`} />
                 })}
               </TableBody>

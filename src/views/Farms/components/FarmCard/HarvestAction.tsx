@@ -24,24 +24,22 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const displayBalance = rawEarningsBalance.toLocaleString()
 
   return (
-    
-      <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-        <ButtonSquare
-          disabled={rawEarningsBalance === 0 || pendingTx}
-          onClick={async () => {
-            setPendingTx(true)
-            setTypeOfReward('rewardBanana')
-            await onReward().catch(() => {
-              setTypeOfReward('error')
-              rewardRef.current?.rewardMe()
-            })
-            setPendingTx(false)
-          }}
-        >
-          {TranslateString(999, 'Harvest')}
-        </ButtonSquare>
-      </Reward>
-    
+    <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+      <ButtonSquare
+        disabled={rawEarningsBalance === 0 || pendingTx}
+        onClick={async () => {
+          setPendingTx(true)
+          setTypeOfReward('rewardBanana')
+          await onReward().catch(() => {
+            setTypeOfReward('error')
+            rewardRef.current?.rewardMe()
+          })
+          setPendingTx(false)
+        }}
+      >
+        {TranslateString(999, 'Harvest')}
+      </ButtonSquare>
+    </Reward>
   )
 }
 

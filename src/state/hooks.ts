@@ -138,7 +138,7 @@ export const usePriceBananaBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
-  /*
+/*
   // TODO Revisit this 
   const pid = BANANA_POOL_PID // BANANA-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()

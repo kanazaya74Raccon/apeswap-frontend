@@ -58,9 +58,7 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/farms">
-              {statsOverall && <Farms />}
-            </Route>
+            <Route path="/farms">{statsOverall && <Farms />}</Route>
             <Route path="/pools">
               <Pools />
             </Route>

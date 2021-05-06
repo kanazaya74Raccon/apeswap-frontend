@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
 
 interface DetailsProps {
   actionPanelToggled: boolean
@@ -18,9 +18,9 @@ const Container = styled.div`
   }
 `
 
-const ArrowIcon = styled(ChevronDownIcon)<{ toggled: boolean }>`
+const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
-  height: 20px;
+  width: 24px;
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {

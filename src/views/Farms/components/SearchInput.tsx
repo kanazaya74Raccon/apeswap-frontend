@@ -40,7 +40,7 @@ const SearchInput: React.FC<Props> = ({ value, onChange }) => {
     <Container toggled={toggled}>
       <InputWrapper>
         <StyledInput ref={inputEl} value={value} onChange={onChange} onBlur={() => setToggled(false)} />
-        <StyledSearchIcon color="primary"/>
+        <StyledSearchIcon color="primary" />
       </InputWrapper>
     </Container>
   )

@@ -17,7 +17,7 @@ import {
   usePriceEthBusd,
   useFarmFromSymbol,
   useFarmUser,
-  useStatsOverall
+  useStatsOverall,
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
@@ -35,7 +35,10 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import Select, { OptionProps } from './components/Select/Select'
+
+interface LabelProps {
+  active?: boolean
+}
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -134,11 +137,7 @@ const StyledText = styled(Text)`
 `
 
 const Farms: React.FC = () => {
-
   const { statsOverall } = useStatsOverall()
-
-
-
 
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
@@ -149,7 +148,7 @@ const Farms: React.FC = () => {
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(ViewMode.TABLE)
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('')
 
   const ethPriceUsd = usePriceEthBusd()
 
@@ -195,11 +194,10 @@ const Farms: React.FC = () => {
   `
 
   const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
-             /* eslint-disable no-debugger */
-// debugger;
-/* eslint-enable no-debugger */
+    /* eslint-disable no-debugger */
+    // debugger;
+    /* eslint-enable no-debugger */
 
-    
     switch (sortOption) {
       case 'apr':
         return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
@@ -241,20 +239,10 @@ const Farms: React.FC = () => {
         let apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
 
         // const quoteTokenPriceUsd = statsOverall.farms[farm.pid].price
-        
 
-
-
-//                     /* eslint-disable no-debugger */
-// debugger;
-// /* eslint-enable no-debugger */
-  
-
-
-
-
-
-
+        //                     /* eslint-disable no-debugger */
+        // debugger;
+        // /* eslint-enable no-debugger */
 
         // const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
         const totalLiquidity = statsOverall.farms[farm.pid - 1].tvl
@@ -300,15 +288,13 @@ const Farms: React.FC = () => {
   } else {
     farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms, false) : farmsList(inactiveFarms, false)
   }
-         /* eslint-disable no-debugger */
-// debugger;
-/* eslint-enable no-debugger */
-
+  /* eslint-disable no-debugger */
+  // debugger;
+  /* eslint-enable no-debugger */
 
   farmsStaked = sortFarms(farmsStaked)
 
   const rowData = farmsStaked.map((farm) => {
-  
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase()
 
     const row: RowProps = {
@@ -339,9 +325,9 @@ const Farms: React.FC = () => {
     return row
   })
 
-//                    /* eslint-disable no-debugger */
-// debugger;
-// /* eslint-enable no-debugger */
+  //                    /* eslint-disable no-debugger */
+  // debugger;
+  // /* eslint-enable no-debugger */
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
@@ -369,7 +355,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} />
+      return <Table data={rowData} columns={columns}/>
     }
 
     return (
@@ -408,9 +394,45 @@ const Farms: React.FC = () => {
     )
   }
 
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
+  const handleSortOptionChange = (option): void => {
+    setSortOption(option)
   }
+
+
+const ContainerLabels = styled.div`
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+  margin-top: 34px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding-left: 100px;
+`
+
+const StyledTableLabels = styled.div`
+  display: flex;
+  margin: 10px 0px;
+  width: 100%;
+`
+
+const StyledLabelContainer = styled.div`
+  width: 100%;
+  display: flex;
+`
+
+const StyledLabel = styled.div<LabelProps>`
+  display: flex;
+  color: ${({ theme }) => theme.colors.textSubtle};
+  font-family: Poppins;
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: ${({active})=> active && '50px'};
+  background-color: ${({active})=> active && "#FFB300"}
+`
 
   return (
     <>
@@ -421,6 +443,7 @@ const Farms: React.FC = () => {
           </Heading>
         </HeadingContainer>
       </Header>
+
       <Page>
         <ControlContainer>
           <ViewControls>
@@ -470,6 +493,15 @@ const Farms: React.FC = () => {
             </LabelWrapper>
           </FilterContainer> */}
         </ControlContainer>
+        <ContainerLabels>
+        <StyledTableLabels>
+          <StyledLabelContainer><StyledLabel>LP</StyledLabel></StyledLabelContainer>
+          <StyledLabelContainer><StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>APR</StyledLabel></StyledLabelContainer>
+          <StyledLabelContainer><StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>Liquidity</StyledLabel></StyledLabelContainer>
+          <StyledLabelContainer><StyledLabel active={sortOption === 'earned'} onClick={() =>  handleSortOptionChange('earned')}>Earned</StyledLabel></StyledLabelContainer>
+          <StyledLabelContainer><StyledLabel onClick={() =>  handleSortOptionChange('')}>Reset</StyledLabel></StyledLabelContainer>
+        </StyledTableLabels>
+        </ContainerLabels>
         {renderContent()}
       </Page>
     </>

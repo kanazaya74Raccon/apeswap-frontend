@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { communityFarms } from 'config/constants'
 import { CommunityTag, CoreTag } from 'components/Tags'
@@ -12,7 +12,6 @@ import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
-
 
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
@@ -65,12 +64,13 @@ const CellInnerFarm = styled.div`
 
 const StyledTr = styled.div`
   cursor: pointer;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+  flex-direction: column;
 `
 
 const StyledTrBlank = styled.tr`
@@ -108,16 +108,20 @@ const TagsContainer = styled.div`
   }
 `
 
-const StyledTd1 = styled.td `
+const StyledTd1 = styled.td`
   border-radius: 20px 0 0 20px;
   -moz-border-radius: 20px 0 0 20px;
 `
 
-const StyledTd2 = styled.td `
-   border-right:  #FAF9FA;
-    border-right-style: solid;
-    border-bottom-right-radius: 20px; 
-    border-top-right-radius: 20px; 
+const StyledTd2 = styled.td`
+  border-right: #faf9fa;
+  border-right-style: solid;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+`
+
+const StyledFlex = styled(Flex)`
+  width: 100%;
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
@@ -141,6 +145,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     if (!isXs) {
       return (
         <StyledTr onClick={toggleActionPanel}>
+        <StyledFlex alignItems="center">
           {Object.keys(props).map((key) => {
             const columnIndex = columnNames.indexOf(key)
             if (columnIndex === -1) {
@@ -150,6 +155,8 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
             switch (key) {
               case 'details':
                 return (
+                  <StyledFlex alignItems="center">
+                  <HarvestAction {...props.earned} {...props.farm} />
                   <td key={key}>
                     <CellInner>
                       <CellLayout>
@@ -157,6 +164,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                       </CellLayout>
                     </CellInner>
                   </td>
+                  </StyledFlex>
                 )
               case 'apr':
                 return (
@@ -172,15 +180,20 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>
-                        {React.createElement(cells[key], { ...props[key] })}
-                      </CellLayout>
+                      <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
                     </CellInner>
                   </td>
                 )
             }
           })}
-        <HarvestAction {...props.earned} {...props.farm}/>
+          </StyledFlex>
+           {actionPanelToggled && details && (
+        <tr>
+          <td colSpan={6}>
+            <ActionPanel {...props} />
+          </td>
+        </tr>
+      )}
         </StyledTr>
       )
     }
@@ -224,7 +237,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
       {handleRenderRow()}
       {actionPanelToggled && details && (
         <tr>
-          <td colSpan={7}>
+          <td colSpan={6}>
             <ActionPanel {...props} />
           </td>
         </tr>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, ChevronUpIcon, Text } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, ArrowDropUpIcon, Text } from '@apeswapfinance/uikit'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
@@ -24,7 +24,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
       <Text color="primary" bold>
         {expanded ? 'Hide' : 'Details'}
       </Text>
-      {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+      {expanded ? <ArrowDropUpIcon width="24px" /> : <ArrowDropDownIcon width="24px"/>}
     </Wrapper>
   )
 }
