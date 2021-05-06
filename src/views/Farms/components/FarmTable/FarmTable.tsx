@@ -17,11 +17,22 @@ const Container = styled.div`
   margin: 16px 0px;
 `
 
+const ContainerLabels = styled.div`
+  width: 100%;
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+  margin-top: 34px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+`
+
 const StyledTableLabels = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 16px 0px;
+  margin: 10px 0px;
 `
 
 const StyledLabel = styled.div`
@@ -46,6 +57,7 @@ const StyledTable = styled.table`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  background-color: #FAF9FA;
 `
 
 const TableBody = styled.tbody`
@@ -82,21 +94,31 @@ const FarmTable: React.FC<ITableProps> = (props) => {
       behavior: 'smooth',
     })
   }
-
+  
+//                     /* eslint-disable no-debugger */
+// debugger;
+// /* eslint-enable no-debugger */
+  
   return (
     <>
+    <ContainerLabels>
       <StyledTableLabels>
-        <StyledLabel>FARM</StyledLabel>
-        <StyledLabel>EARNED</StyledLabel>
+        <StyledLabel>LP</StyledLabel>
         <StyledLabel>APR</StyledLabel>
-        <div> </div>
+        <StyledLabel>Liquidity</StyledLabel>
+        <StyledLabel>Earned</StyledLabel>
+        <StyledLabel>Reset</StyledLabel>
       </StyledTableLabels>
+      </ContainerLabels>
       <Container>
         <TableContainer>
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
               <TableBody>
                 {rows.map((row) => {
+                  /* eslint-disable no-debugger */
+// debugger;
+/* eslint-enable no-debugger */
                   return <Row {...row.original} key={`table-row-${row.id}`} />
                 })}
               </TableBody>

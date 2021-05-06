@@ -14,6 +14,7 @@ const MultiplierWrapper = styled.div`
   width: 36px;
   text-align: right;
   margin-right: 2px;
+  font-size: 20px
 `
 
 const Container = styled.div`
@@ -38,21 +39,6 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
   return (
     <Container>
       <MultiplierWrapper>{displayMultiplier}</MultiplierWrapper>
-      <Tooltip
-        content={
-          <div>
-            {TranslateString(999, 'The multiplier represents the amount of BANANA rewards each farm gets.')}
-            <br />
-            <br />
-            {TranslateString(
-              999,
-              'For example, if a 1x farm was getting 1 BANANA per block, a 40x farm would be getting 40 BANANA per block.',
-            )}
-          </div>
-        }
-      >
-        <HelpIcon color="textSubtle" />
-      </Tooltip>
     </Container>
   )
 }

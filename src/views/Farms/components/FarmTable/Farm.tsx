@@ -16,19 +16,25 @@ const IconImage = styled(Image)`
   height: 24px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 40px;
-    height: 40px;
+    width: 57px;
+    height: 57px;
   }
 `
 
 const Container = styled.div`
-  padding-left: 16px;
   display: flex;
   align-items: center;
+  margin-right: 20px;
+`
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding-left: 32px;
-  }
+const StyledBackground = styled.div`
+width: 100px;
+height: 60px;
+background: rgb(255, 179, 0, .4);
+border-radius: 20px;
+display: flex;
+justify-content: center;
+margin-right: 20px;
 `
 
 const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
@@ -36,24 +42,13 @@ const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
   const TranslateString = useI18n()
   const rawStakedBalance = getBalanceNumber(stakedBalance)
 
-  const handleRenderFarming = (): JSX.Element => {
-    if (rawStakedBalance) {
-      return (
-        <Text color="secondary" fontSize="12px" bold>
-          {TranslateString(999, 'FARMING')}
-        </Text>
-      )
-    }
-
-    return null
-  }
-
   return (
     <Container>
-      <IconImage src={`/images/farms/${image}.svg`} alt="icon" width={40} height={40} mr="8px" />
+      <StyledBackground>
+      <IconImage src={`/images/farms/${image}.svg`} alt="icon" width={57} height={57} />
+      </StyledBackground>
       <div>
-        {handleRenderFarming()}
-        <Text bold>{label}</Text>
+        <Text fontSize="20px" bold>{label}</Text>
       </div>
     </Container>
   )

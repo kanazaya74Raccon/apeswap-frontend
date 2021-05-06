@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { useFetchProfile, useFetchStats, useFetchPublicData, useFetchStatsOverall } from 'state/hooks'
+import { useFetchProfile, useFetchStats, useFetchPublicData, useFetchStatsOverall, useStatsOverall } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -46,6 +46,8 @@ const App: React.FC = () => {
   useFetchStats()
   useFetchStatsOverall()
 
+  const { statsOverall } = useStatsOverall()
+
   return (
     <Router>
       <ResetCSS />
@@ -57,7 +59,7 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/farms">
-              <Farms />
+              {statsOverall && <Farms />}
             </Route>
             <Route path="/pools">
               <Pools />

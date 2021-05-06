@@ -21,14 +21,14 @@ const StyledIconButton = styled.div`
 `
 
 const StyledListViewIcon = styled(ListViewIcon)`
- width: 30px;
- margin-right: 26px;
- height: '100%';
+  width: 30px;
+  margin-right: 26px;
+  height: '100%';
 `
 
 const StyledCardViewIcon = styled(CardViewIcon)`
- width: 30px;
- height: '100%';
+  width: 30px;
+  height: '100%';
 `
 
 const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onToggle }) => {

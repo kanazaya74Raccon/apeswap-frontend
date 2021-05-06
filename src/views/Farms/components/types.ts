@@ -69,25 +69,25 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
   {
     id: 2,
-    name: 'earned',
-    translationId: 1072,
-    sortable: true,
-    label: 'Earned',
-  },
-  {
-    id: 3,
     name: 'apr',
     translationId: 736,
     sortable: true,
     label: 'APR',
   },
-  // {
-  //   id: 4,
-  //   name: 'liquidity',
-  //   translationId: 999,
-  //   sortable: true,
-  //   label: 'Liquidity',
-  // },
+  {
+    id: 3,
+    name: 'liquidity',
+    translationId: 999,
+    sortable: true,
+    label: 'Liquidity',
+  },
+  {
+    id: 4,
+    name: 'earned',
+    translationId: 1072,
+    sortable: true,
+    label: 'Earned',
+  },
   {
     id: 5,
     name: 'multiplier',
@@ -101,7 +101,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
     translationId: 999,
     sortable: true,
     label: '',
-  },
+  }
 ]
 
 export enum ViewMode {

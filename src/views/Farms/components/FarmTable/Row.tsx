@@ -5,6 +5,7 @@ import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { communityFarms } from 'config/constants'
 import { CommunityTag, CoreTag } from 'components/Tags'
+import BigNumber from 'bignumber.js'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
@@ -12,15 +13,19 @@ import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
 
+
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
+
+import HarvestAction from '../FarmCard/HarvestAction'
 
 export interface RowProps {
   apr: AprProps
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
+  liquidity: LiquidityProps
   details: FarmWithStakedValue
 }
 
@@ -34,7 +39,7 @@ const cells = {
 }
 
 const CellInner = styled.div`
-  padding: 24px 0px;
+  padding: 0px 0px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -58,9 +63,18 @@ const CellInnerFarm = styled.div`
   }
 `
 
-const StyledTr = styled.tr`
+const StyledTr = styled.div`
   cursor: pointer;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.borderColor};
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+`
+
+const StyledTrBlank = styled.tr`
+  height: 10px;
 `
 
 const EarnedMobileCell = styled.td`
@@ -94,6 +108,18 @@ const TagsContainer = styled.div`
   }
 `
 
+const StyledTd1 = styled.td `
+  border-radius: 20px 0 0 20px;
+  -moz-border-radius: 20px 0 0 20px;
+`
+
+const StyledTd2 = styled.td `
+   border-right:  #FAF9FA;
+    border-right-style: solid;
+    border-bottom-right-radius: 20px; 
+    border-top-right-radius: 20px; 
+`
+
 const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
@@ -121,52 +147,47 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               return null
             }
 
-            console.log(key)
-
             switch (key) {
-              case 'apr':
-                return (
-                  <>
-                    <td key={key}>
-                      <CellInner>
-                        <CellLayout>
-                          <Apr {...props.apr} hideButton={isMobile} />
-                        </CellLayout>
-                      </CellInner>
-                    </td>
-                  </>
-                )
-              case 'farm':
+              case 'details':
                 return (
                   <td key={key}>
-                    <CellInnerFarm>
-                      {React.createElement(cells[key], props[key])}
-                      <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
-                    </CellInnerFarm>
+                    <CellInner>
+                      <CellLayout>
+                        <Details actionPanelToggled={actionPanelToggled} />
+                      </CellLayout>
+                    </CellInner>
                   </td>
                 )
-              case 'multiplier':
-                return null
+              case 'apr':
+                return (
+                  <td key={key}>
+                    <CellInner>
+                      <CellLayout>
+                        <Apr {...props.apr} hideButton={isMobile} />
+                      </CellLayout>
+                    </CellInner>
+                  </td>
+                )
               default:
                 return (
                   <td key={key}>
                     <CellInner>
-                      <CellLayout>{React.createElement(cells[key], props[key])}</CellLayout>
-                      {key === 'farm' && (
-                        <TagsContainer>{isCommunityFarm ? <CommunityTag /> : <CoreTag />}</TagsContainer>
-                      )}
+                      <CellLayout>
+                        {React.createElement(cells[key], { ...props[key] })}
+                      </CellLayout>
                     </CellInner>
                   </td>
                 )
             }
           })}
+        <HarvestAction {...props.earned} {...props.farm}/>
         </StyledTr>
       )
     }
 
     return (
       <StyledTr onClick={toggleActionPanel}>
-        <td>
+        <StyledTd1>
           <tr>
             <FarmMobileCell>
               <CellLayout>
@@ -186,14 +207,14 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               </CellLayout>
             </AprMobileCell>
           </tr>
-        </td>
-        <td>
+        </StyledTd1>
+        <StyledTd2>
           <CellInner>
             <CellLayout>
               <Details actionPanelToggled={actionPanelToggled} />
             </CellLayout>
           </CellInner>
-        </td>
+        </StyledTd2>
       </StyledTr>
     )
   }
@@ -203,7 +224,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
       {handleRenderRow()}
       {actionPanelToggled && details && (
         <tr>
-          <td colSpan={6}>
+          <td colSpan={7}>
             <ActionPanel {...props} />
           </td>
         </tr>

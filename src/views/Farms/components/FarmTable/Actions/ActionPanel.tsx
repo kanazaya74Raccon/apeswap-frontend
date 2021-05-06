@@ -132,7 +132,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
         <ValueContainer>
           <ValueWrapper>
             <Text>{TranslateString(999, 'Liquidity:')}</Text>
-            <Liquidity farm={farm} />
+            {/* <Liquidity farm={farm} /> */}
           </ValueWrapper>
         </ValueContainer>
         <StyledLinkExternal href={bsc}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>

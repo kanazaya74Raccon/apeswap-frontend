@@ -17,6 +17,7 @@ import {
   usePriceEthBusd,
   useFarmFromSymbol,
   useFarmUser,
+  useStatsOverall
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
@@ -133,6 +134,12 @@ const StyledText = styled(Text)`
 `
 
 const Farms: React.FC = () => {
+
+  const { statsOverall } = useStatsOverall()
+
+
+
+
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
@@ -170,24 +177,29 @@ const Farms: React.FC = () => {
 
   const { isDark } = useTheme()
 
-interface CheckboxProps {
-  checked?: boolean
-}
+  interface CheckboxProps {
+    checked?: boolean
+  }
 
-const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
-  height: 21px;
-  width: 21px;
-`
+  const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
+    height: 21px;
+    width: 21px;
+  `
 
-const StyledImage = styled.img`
-  height: 187px;
-  width: 134px;
-  position: absolute;
-  right: 0px;
-  bottom: 21px;
-`
+  const StyledImage = styled.img`
+    height: 187px;
+    width: 134px;
+    position: absolute;
+    right: 0px;
+    bottom: 21px;
+  `
 
   const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+             /* eslint-disable no-debugger */
+// debugger;
+/* eslint-enable no-debugger */
+
+    
     switch (sortOption) {
       case 'apr':
         return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
@@ -203,8 +215,8 @@ const StyledImage = styled.img`
           (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
           'desc',
         )
-      // case 'liquidity':
-      //   return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+      case 'liquidity':
+        return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
       default:
         return farms
     }
@@ -228,6 +240,25 @@ const StyledImage = styled.img`
         // bananaPriceInQuote * bananaRewardPerYear / lpTotalInQuoteToken
         let apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
 
+        // const quoteTokenPriceUsd = statsOverall.farms[farm.pid].price
+        
+
+
+
+//                     /* eslint-disable no-debugger */
+// debugger;
+// /* eslint-enable no-debugger */
+  
+
+
+
+
+
+
+
+        // const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
+        const totalLiquidity = statsOverall.farms[farm.pid - 1].tvl
+
         if (farm.quoteTokenSymbol === QuoteToken.BUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
           apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
@@ -246,7 +277,7 @@ const StyledImage = styled.img`
 
           apy = bananaApy && dualApy && bananaApy.plus(dualApy)
         }
-        return { ...farm, apy }
+        return { ...farm, apy, liquidity: totalLiquidity }
       })
       if (query) {
         const lowercaseQuery = query.toLowerCase()
@@ -256,7 +287,7 @@ const StyledImage = styled.img`
       }
       return farmsToDisplayWithAPY
     },
-    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query],
+    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, statsOverall],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -269,10 +300,15 @@ const StyledImage = styled.img`
   } else {
     farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms, false) : farmsList(inactiveFarms, false)
   }
+         /* eslint-disable no-debugger */
+// debugger;
+/* eslint-enable no-debugger */
+
 
   farmsStaked = sortFarms(farmsStaked)
 
   const rowData = farmsStaked.map((farm) => {
+  
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase()
 
     const row: RowProps = {
@@ -292,6 +328,9 @@ const StyledImage = styled.img`
         earnings: farm.userData ? getBalanceNumber(new BigNumber(farm.userData.earnings)) : null,
         pid: farm.pid,
       },
+      liquidity: {
+        liquidity: farm.liquidity,
+      },
       multiplier: {
         multiplier: farm.multiplier,
       },
@@ -299,6 +338,10 @@ const StyledImage = styled.img`
     }
     return row
   })
+
+//                    /* eslint-disable no-debugger */
+// debugger;
+// /* eslint-enable no-debugger */
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
@@ -373,9 +416,9 @@ const StyledImage = styled.img`
     <>
       <Header>
         <HeadingContainer>
-        <Heading as="h1" size="xxl" mb="12px" mt={60} style={{ maxWidth: '600px' }}>
-          {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-        </Heading>
+          <Heading as="h1" size="xxl" mb="12px" mt={60} style={{ maxWidth: '600px' }}>
+            {TranslateString(999, 'Stake LP tokens to earn BANANA')}
+          </Heading>
         </HeadingContainer>
       </Header>
       <Page>
@@ -383,16 +426,22 @@ const StyledImage = styled.img`
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <LabelWrapper style={{ marginLeft: 16 }}>
-              <StyledText fontFamily="poppins" mr="15px">Search</StyledText>
+              <StyledText fontFamily="poppins" mr="15px">
+                Search
+              </StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
             <FarmTabButtons />
-               <ToggleWrapper>
+            <ToggleWrapper>
               <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
               <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
             </ToggleWrapper>
-              
-              {isDark ? <StyledImage src='/images/farm-night-farmer.svg' alt="night-monkey"/> : <StyledImage src='/images/farm-day-farmer.svg' alt="day-monkey"/>}
+
+            {isDark ? (
+              <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
+            ) : (
+              <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
+            )}
           </ViewControls>
           {/* <FilterContainer>
             <LabelWrapper>
@@ -428,4 +477,3 @@ const StyledImage = styled.img`
 }
 
 export default Farms
-

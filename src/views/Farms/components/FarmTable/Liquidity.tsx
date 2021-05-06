@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Text } from '@apeswapfinance/uikit'
+import { HelpIcon, Text, Skeleton } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
+import BigNumber from 'bignumber.js'
 
 import Tooltip from '../Tooltip/Tooltip'
 
 export interface LiquidityProps {
-  farm: any
+  liquidity: BigNumber
 }
 
 const LiquidityWrapper = styled.div`
@@ -33,41 +34,24 @@ const Container = styled.div`
   }
 `
 
-const Liquidity: React.FunctionComponent<LiquidityProps> = ({ farm }) => {
-  const bananaPrice = usePriceBananaBusd()
-  const bnbPrice = usePriceBnbBusd()
-  const ethPrice = usePriceEthBusd()
+const StyledText = styled(Text)`
+ font-size: 20px;
+`
 
-  const totalValue = useMemo(() => {
-    if (!farm.lpTotalInQuoteToken) {
-      return null
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.BNB) {
-      return bnbPrice.times(farm.lpTotalInQuoteToken)
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.BANANA) {
-      return bananaPrice.times(farm.lpTotalInQuoteToken)
-    }
-    if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-      return ethPrice.times(farm.lpTotalInQuoteToken)
-    }
-    return farm.lpTotalInQuoteToken
-  }, [bnbPrice, bananaPrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
-
-  const totalValueFormated = totalValue
-    ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
-
+const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
+  const displayLiquidity = liquidity ? (
+    `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  ) : (
+    <Skeleton width={60} />
+  )
+  
   const TranslateString = useI18n()
 
   return (
     <Container>
       <LiquidityWrapper>
-        <Text>{totalValueFormated}</Text>
+        <StyledText>{displayLiquidity}</StyledText>
       </LiquidityWrapper>
-      <Tooltip content={TranslateString(999, 'The total value of the funds in this farm’s liquidity pool')}>
-        <HelpIcon color="textSubtle" />
-      </Tooltip>
     </Container>
   )
 }

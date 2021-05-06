@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
-import { Input, SearchIcon2} from '@apeswapfinance/uikit'
+import { Input, SearchIcon2 } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
   border-radius: 20px;
-  background: #F0F0F0;
+  background: #f0f0f0;
   margin-left: auto;
   height: 32px;
 `
@@ -39,13 +39,8 @@ const SearchInput: React.FC<Props> = ({ value, onChange }) => {
   return (
     <Container toggled={toggled}>
       <InputWrapper>
-        <StyledInput
-          ref={inputEl}
-          value={value}
-          onChange={onChange}
-          onBlur={() => setToggled(false)}
-        />
-        <StyledSearchIcon />
+        <StyledInput ref={inputEl} value={value} onChange={onChange} onBlur={() => setToggled(false)} />
+        <StyledSearchIcon color="primary"/>
       </InputWrapper>
     </Container>
   )
