@@ -147,11 +147,14 @@ const Nfa = () => {
           <Text fontSize="32px" color="primary">
             {TranslateString(999, `${nfa.name} ${nfa.index}`)}
           </Text>
-          <Text fontFamily="poppins" fontSize="20px" color="textSubtle"> 
+          <Text fontFamily="poppins" fontSize="20px" color="textSubtle">
             {TranslateString(999, nfa.attributes.rarityTierName)}
           </Text>
           <Text fontFamily="poppins" fontSize="20px" color="textSubtle">
-            {TranslateString(999, `Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`)}
+            {TranslateString(
+              999,
+              `Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`,
+            )}
           </Text>
           <br />
           <Text fontFamily="poppins" fontSize="26px" color="textSubtle">

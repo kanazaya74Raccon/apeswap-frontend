@@ -109,9 +109,9 @@ export type Nft = {
 }
 
 export type NfaAttribute = {
-  id: string,
-  occurance: number,
-  category: string,
+  id: string
+  occurance: number
+  category: string
   uri: string
 }
 
