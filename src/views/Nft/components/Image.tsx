@@ -40,7 +40,6 @@ const Container = styled.div<ContainerProps>`
   background: ${(props) => props.gradient};
   background-size: ${(props) => props.backgroundSize};
   position: relative;
-  width: 10;
   overflow: hidden;
   padding-bottom: 100%;
   animation: ${sway} 20s ease infinite;
@@ -71,8 +70,8 @@ const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => 
     backgroundSize = '300% 300%'
   } else if (rarityTier === 4) {
     gradientStyle =
-      'linear-gradient(-45deg, rgba(255, 255, 0, .1),rgba(255, 0, 0, .1) ,rgba(255, 255, 0, .1),rgba(0, 255, 255, .1), rgba(255, 255, 255, .1),rgba(255, 255, 0, .1), rgba(255, 0, 255, .1) ,rgba(0, 255, 0, .1), rgba(255, 255, 0, .1)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
-    backgroundSize = '150% 150%'
+      'radial-gradient(circle, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 70%), linear-gradient(-45deg, rgba(255, 255, 0, .1),rgba(255, 0, 0, .1) ,rgba(255, 255, 0, .1),rgba(0, 255, 255, .1), rgba(255, 255, 255, .1),rgba(255, 255, 0, .1), rgba(255, 0, 255, .1) ,rgba(0, 255, 0, .1), rgba(255, 255, 0, .1)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
+    backgroundSize = '100% 100%'
   } else if (rarityTier === 5) {
     gradientStyle =
       'radial-gradient(circle, rgba(243,255,35,1) 0%, rgba(148,187,233,0) 80%), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'

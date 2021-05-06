@@ -108,6 +108,13 @@ export type Nft = {
   attributes: Attributes
 }
 
+export type NfaAttribute = {
+  id: string,
+  occurance: number,
+  category: string,
+  uri: string
+}
+
 export type TeamImages = {
   alt: string
 } & Images

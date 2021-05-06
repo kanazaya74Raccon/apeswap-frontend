@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   Card,
@@ -69,24 +70,22 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
   )
 
   return (
-    <Card>
-      <Image src={image} alt={name} originalLink={image} rarityTier={attributes.rarityTierNumber} />
-      <CardBody>
-        <Header>
-          <Heading>
-            {name} - #{pad(`${index}`, '4')}
-          </Heading>
-        </Header>
-        {profile?.ownedNfts.indexOf(nft) >= 0 && (
-          <Button fullWidth variant="primary" mt="24px" onClick={onPresentTransferModal}>
-            {TranslateString(999, 'Transfer')}
-          </Button>
-        )}
-      </CardBody>
-      <CardFooter p="0">
-        <DetailsButton endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
-          {TranslateString(999, 'Details')}
-        </DetailsButton>
+    <Link to={`/nft/${index}`}>
+      <Card>
+        <Image src={image} alt={name} originalLink={image} rarityTier={attributes.rarityTierNumber} />
+        <CardBody>
+          <Header>
+            <Heading>
+              {name} - #{pad(`${index}`, '4')}
+            </Heading>
+          </Header>
+          {profile?.ownedNfts.indexOf(nft) >= 0 && (
+            <Button fullWidth variant="primary" mt="24px" onClick={onPresentTransferModal}>
+              {TranslateString(999, 'Transfer')}
+            </Button>
+          )}
+        </CardBody>
+        {/* <CardFooter p="0">
         {isOpen && (
           <InfoBlock>
             <Text as="p" color="textSubtle" style={{ textAlign: 'left' }}>
@@ -112,8 +111,9 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
             </Text>
           </InfoBlock>
         )}
-      </CardFooter>
-    </Card>
+      </CardFooter> */}
+      </Card>
+    </Link>
   )
 }
 
