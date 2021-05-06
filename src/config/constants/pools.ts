@@ -654,6 +654,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 30,
+    tokenName: 'bxBTC',
+    image: 'XBTC.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xd65f1319f6408C03EBA7f27e156391784492A9EF', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://xbtc.fi/',
+    harvest: true,
+    tokenPerBlock: `0.300625`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
