@@ -13,6 +13,7 @@ export interface IfoCardDetailsProps {
   projectSiteUrl: string
   raisingAmount: BigNumber
   totalAmount: BigNumber
+  burnedTxUrl: string
 }
 
 const StyledIfoCardDetails = styled.div`
@@ -39,6 +40,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   projectSiteUrl,
   raisingAmount,
   totalAmount,
+  burnedTxUrl,
 }) => {
   const TranslateString = useI18n()
 
@@ -81,6 +83,11 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
         {TranslateString(412, 'View project site')}
       </LinkExternal>
+      {burnedTxUrl && burnedTxUrl !== '' && (
+        <LinkExternal href={burnedTxUrl} style={{ margin: 'auto' }}>
+          {TranslateString(412, 'View burned transactions')}
+        </LinkExternal>
+      )}
     </>
   )
 }

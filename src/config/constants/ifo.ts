@@ -95,6 +95,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 8,
     releaseBlockNumber: 5685490,
+    burnedTxUrl:'https://bscscan.com/tx/0xbcfe28f2552d53f3cb49f37d6001aa7708070d3d17f75652c5096b7ecb4ce8fa'
   },
   {
     id: 'jediyield',
@@ -114,6 +115,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 6044304,
+    burnedTxUrl:'https://bscscan.com/tx/0x5f65d5ce713e115be0646c473688aa052c98896f49d9c0c09ecd13aa8d459a1e'
   },
   {
     id: 'bitfresh',
@@ -133,6 +135,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 6565331,
+    burnedTxUrl:'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b'
   },
 ]
 

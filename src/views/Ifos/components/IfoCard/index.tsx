@@ -80,6 +80,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     currencyAddress,
     tokenDecimals,
     releaseBlockNumber,
+    burnedTxUrl
   } = ifo
   const [state, setState] = useState({
     isLoading: true,
@@ -177,6 +178,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           projectSiteUrl={projectSiteUrl}
           raisingAmount={state.raisingAmount}
           totalAmount={state.totalAmount}
+          burnedTxUrl={burnedTxUrl}
         />
         <IfoCardDescription description={description} />
       </CardBody>
