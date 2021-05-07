@@ -1,22 +1,26 @@
-import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useEffect, useState } from 'react'
 import { getPromosHome } from '../../hooks/api'
 
 const useFetchPromoHome = () => {
-  const { account, connect } = useWallet()
   const [state, setState] = useState({
     carouselSlidesData: [],
     loading: true,
   })
 
   useEffect(() => {
-    getPromosHome().then((promos) => {
-      setState({
-        carouselSlidesData: promos,
-        loading: false,
-      })
-    })
-  }, [account, connect])
+    const fetchData = async () => {
+      try {
+        const promos = await getPromosHome()
+          setState({
+            carouselSlidesData: promos,
+            loading: false,
+          })
+      } catch (error) {
+        console.error('Unable to fetch data:', error)
+      }
+    }
+    fetchData()
+  }, [])
 
   return state
 }
