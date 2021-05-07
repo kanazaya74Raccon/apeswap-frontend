@@ -153,7 +153,7 @@ const LoadingContainer = styled.div`
 `
 
 const ImageContainer = styled.div<{ image: string }>`
-  background: url(${({ image }) => (image)});
+  background: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-size: contain;
   margin-top: 12px;
@@ -227,14 +227,13 @@ const CarouselRightArrow = ({ onClick }) => {
 }
 
 const getImageUrl = (image) => {
-
   return `${baseUrlStrapi}${image.url}`
 }
 const CarouselSlide = ({ slide }) => {
   return (
     <a href={`${slide.pageLink}`}>
       {slide.image.length !== 0 ? (
-        <ImageContainer image={getImageUrl(slide.image[0])} className="container-image"/>
+        <ImageContainer image={getImageUrl(slide.image[0])} className="container-image" />
       ) : (
         <CardBody>
           <Heading size="lg" mb="24px">
