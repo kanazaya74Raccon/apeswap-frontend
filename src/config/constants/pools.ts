@@ -675,6 +675,28 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 9,
+  },  
+  {
+    sousId: 31,
+    tokenName: 'vBSWAP',
+    image: 'VBSWAP.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x7124d635a4bb82319acfd57ce9da18137a7a6f22', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://valuedefi.io/',
+    harvest: true,
+    tokenPerBlock: `0.00017361111`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
   },
   /* {
     sousId: 45,
