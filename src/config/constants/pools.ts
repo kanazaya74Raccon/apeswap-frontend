@@ -675,7 +675,7 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 9,
-  },  
+  },
   {
     sousId: 31,
     tokenName: 'vBSWAP',
