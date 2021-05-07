@@ -152,6 +152,7 @@ const farms: FarmConfig[] = [
       56: '0x4f0ed527e8a95ecaa132af214dfd41f30b361600', // VBSWAP Token
     },
     style: 'warning',
+    disableApr: true,
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },

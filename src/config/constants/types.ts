@@ -48,6 +48,7 @@ export interface FarmConfig {
   lpAddresses: Address
   tokenSymbol: string
   style?: 'warning' | 'featured' | 'inactive'
+  disableApr?: boolean
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address

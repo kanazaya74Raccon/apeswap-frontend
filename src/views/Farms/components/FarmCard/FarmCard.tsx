@@ -163,7 +163,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
       />
-      {!removed && (
+      {!removed && !farm.disableApr && (
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{TranslateString(352, 'APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
