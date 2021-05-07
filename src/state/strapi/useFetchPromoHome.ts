@@ -11,10 +11,10 @@ const useFetchPromoHome = () => {
     const fetchData = async () => {
       try {
         const promos = await getPromosHome()
-          setState({
-            carouselSlidesData: promos,
-            loading: false,
-          })
+        setState({
+          carouselSlidesData: promos,
+          loading: false,
+        })
       } catch (error) {
         console.error('Unable to fetch data:', error)
       }
