@@ -142,6 +142,11 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const isCommunityFarm = communityFarms.includes(details.lpSymbol)
 
   const handleRenderRow = () => {
+
+                          /* eslint-disable no-debugger */
+  debugger;
+  /* eslint-enable no-debugger */
+
     if (!isXs) {
       return (
         <StyledTr onClick={toggleActionPanel}>
@@ -190,7 +195,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
           {actionPanelToggled && details && (
             <tr>
               <td colSpan={6}>
-                <ActionPanel {...props} />
+                <ActionPanel {...props}/>
               </td>
             </tr>
           )}

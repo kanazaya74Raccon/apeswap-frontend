@@ -192,39 +192,12 @@ const Farms: React.FC = () => {
     right: 0px;
     bottom: 21px;
   `
-
-  // const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
-  //   /* eslint-disable no-debugger */
-  //   // debugger;
-  //   /* eslint-enable no-debugger */
-
-  //   switch (sortOption) {
-  //     case 'apr':
-  //       return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
-  //     case 'multiplier':
-  //       return orderBy(
-  //         farms,
-  //         (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
-  //         'desc',
-  //       )
-  //     case 'earned':
-  //       return orderBy(
-  //         farms,
-  //         (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
-  //         'desc',
-  //       )
-  //     case 'liquidity':
-  //       return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
-  //     default:
-  //       return farms
-  //   }
-  // }
-
- // /!\ This function will be removed soon
+  
+  // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
   const farmsList = useCallback(
-     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
+    (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
       const bananaPriceVsBNB = new BigNumber(
         farmsLP.find((farm) => farm.pid === BANANA_POOL_PID)?.tokenPriceVsQuote || 0,
       )
@@ -269,8 +242,6 @@ const Farms: React.FC = () => {
     [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, statsOverall],
   )
 
-
-
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
 
@@ -299,8 +270,7 @@ const Farms: React.FC = () => {
 
     if (isActive) {
       farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
-    }
-   else {
+    } else {
       farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
     }
 
@@ -331,7 +301,7 @@ const Farms: React.FC = () => {
 
     const row: RowProps = {
       apr: {
-        value: farm.apr && (farm.apr.toNumber()*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (farm.apr.toNumber() * 100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
         multiplier: farm.multiplier,
         lpLabel,
         bananaPrice,
@@ -356,10 +326,6 @@ const Farms: React.FC = () => {
     }
     return row
   })
-
-  //                    /* eslint-disable no-debugger */
-  // debugger;
-  // /* eslint-enable no-debugger */
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
@@ -497,32 +463,6 @@ const Farms: React.FC = () => {
               <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
             )}
           </ViewControls>
-          {/* <FilterContainer>
-            <LabelWrapper>
-              <Text>SORT BY</Text>
-              <Select
-                options={[
-                  {
-                    label: 'APR',
-                    value: 'apr',
-                  },
-                  {
-                    label: 'Multiplier',
-                    value: 'multiplier',
-                  },
-                  {
-                    label: 'Earned',
-                    value: 'earned',
-                  },
-                ]}
-                onChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontFamily="poppins" mr="15px">Search</Text>
-              <SearchInput onChange={handleChangeQuery} value={query} />
-            </LabelWrapper>
-          </FilterContainer> */}
         </ControlContainer>
         <ContainerLabels>
           <StyledTableLabels>

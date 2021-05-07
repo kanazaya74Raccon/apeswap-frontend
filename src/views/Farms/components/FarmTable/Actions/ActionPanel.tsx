@@ -18,6 +18,7 @@ import Liquidity, { LiquidityProps } from '../Liquidity'
 export interface ActionPanelProps {
   apr: AprProps
   multiplier: MultiplierProps
+  liquidity: LiquidityProps
   details: FarmWithStakedValue
 }
 
@@ -105,7 +106,7 @@ const ValueWrapper = styled.div`
   margin: 4px 0px;
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier }) => {
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity}) => {
   const farm = details
 
   const TranslateString = useI18n()
@@ -126,13 +127,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
         <ValueContainer>
           <ValueWrapper>
             <Text>{TranslateString(999, 'Multiplier:')}</Text>
-            <Multiplier {...multiplier} />
+            <Multiplier multiplier={apr.multiplier} />
           </ValueWrapper>
         </ValueContainer>
         <ValueContainer>
           <ValueWrapper>
             <Text>{TranslateString(999, 'Liquidity:')}</Text>
-            {/* <Liquidity farm={farm} /> */}
+            <Liquidity {...liquidity} />
           </ValueWrapper>
         </ValueContainer>
         <StyledLinkExternal href={bsc}>{TranslateString(999, 'View Contract')}</StyledLinkExternal>
