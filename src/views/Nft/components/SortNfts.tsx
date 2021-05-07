@@ -168,7 +168,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
   }
 
   const nextSet = () => {
-    const tempFilter = nftSet.slice(237, 340)
+    const tempFilter = nftSet.slice(340, 442)
     setFilterNftSet(tempFilter)
     setFilterState(true)
   }
