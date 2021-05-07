@@ -15,6 +15,7 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
+import { FarmStyles } from '../../../../config/constants/types'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -62,15 +63,20 @@ const FeaturedCardAccent = styled(Accent)`
   animation: ${RainbowLight} 2s linear infinite;
 `
 
-const WarningCardAccent = styled(Accent)`
+const DeprecatedCardAccent = styled(Accent)`
   background: #ca3e33;
+`
+
+const WarningCardAccent = styled(Accent)`
+  background: #c57415;
 `
 
 const InactiveCardAccent = styled(Accent)`
   background: grey;
 `
 
-const styles = {
+const styles: FarmStyles = {
+  deprecated: DeprecatedCardAccent,
   warning: WarningCardAccent,
   featured: FeaturedCardAccent,
   inactive: InactiveCardAccent,
