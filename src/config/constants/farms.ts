@@ -140,6 +140,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 43,
+    lpSymbol: 'VBSWAP-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xD59b4f88Da3b5cfc70CdF9B61c53Df475d4D4f47', // VBSWAP-BNB BananaPair
+    },
+    tokenSymbol: 'VBSWAP',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4f0ed527e8a95ecaa132af214dfd41f30b361600', // VBSWAP Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
