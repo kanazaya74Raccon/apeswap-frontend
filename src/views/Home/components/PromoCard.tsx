@@ -4,6 +4,7 @@ import { Card, CardBody, Heading, Spinner, Text } from '@apeswapfinance/uikit'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
 import useFetchPromoHome from 'state/strapi/useFetchPromoHome'
+import { baseUrlStrapi } from 'hooks/api'
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
@@ -151,6 +152,14 @@ const LoadingContainer = styled.div`
   }
 `
 
+const ImageContainer = styled.div<{ image: string }>`
+  background: url(${({ image }) => (image)});
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 12px;
+  height: 244px;
+`
+
 const PromoCard = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const { carouselSlidesData, loading } = useFetchPromoHome()
@@ -217,23 +226,31 @@ const CarouselRightArrow = ({ onClick }) => {
   )
 }
 
+const getImageUrl = (image) => {
+
+  return `${baseUrlStrapi}${image.url}`
+}
 const CarouselSlide = ({ slide }) => {
   return (
     <a href={`${slide.pageLink}`}>
-      <CardBody>
-        <Heading size="lg" mb="24px">
-          {`${slide.header}`}
-        </Heading>
-        <StyledDiv>
-          <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
-          <Text color="textSubtle" fontFamily="poppins">
-            &nbsp;
-          </Text>
-          <Text color="textSubtle">
-            <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
-          </Text>
-        </StyledDiv>
-      </CardBody>
+      {slide.image.length !== 0 ? (
+        <ImageContainer image={getImageUrl(slide.image[0])} className="container-image"/>
+      ) : (
+        <CardBody>
+          <Heading size="lg" mb="24px">
+            {`${slide.header}`}
+          </Heading>
+          <StyledDiv>
+            <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
+            <Text color="textSubtle" fontFamily="poppins">
+              &nbsp;
+            </Text>
+            <Text color="textSubtle">
+              <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
+            </Text>
+          </StyledDiv>
+        </CardBody>
+      )}
     </a>
   )
 }
