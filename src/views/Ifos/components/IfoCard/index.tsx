@@ -80,7 +80,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     currencyAddress,
     tokenDecimals,
     releaseBlockNumber,
-    burnedTxUrl
+    burnedTxUrl,
   } = ifo
   const [state, setState] = useState({
     isLoading: true,
