@@ -142,10 +142,9 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const isCommunityFarm = communityFarms.includes(details.lpSymbol)
 
   const handleRenderRow = () => {
-
-                          /* eslint-disable no-debugger */
-  debugger;
-  /* eslint-enable no-debugger */
+    /* eslint-disable no-debugger */
+    debugger
+    /* eslint-enable no-debugger */
 
     if (!isXs) {
       return (
@@ -195,7 +194,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
           {actionPanelToggled && details && (
             <tr>
               <td colSpan={6}>
-                <ActionPanel {...props}/>
+                <ActionPanel {...props} />
               </td>
             </tr>
           )}
@@ -237,11 +236,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     )
   }
 
-  return (
-    <>
-      {handleRenderRow()}
-    </>
-  )
+  return <>{handleRenderRow()}</>
 }
 
 export default Row

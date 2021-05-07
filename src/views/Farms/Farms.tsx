@@ -192,7 +192,7 @@ const Farms: React.FC = () => {
     right: 0px;
     bottom: 21px;
   `
-  
+
   // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
