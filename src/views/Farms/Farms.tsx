@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useCallback, useState, useMemo } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
@@ -193,117 +193,149 @@ const Farms: React.FC = () => {
     bottom: 21px;
   `
 
-  const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
-    /* eslint-disable no-debugger */
-    // debugger;
-    /* eslint-enable no-debugger */
+  // const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+  //   /* eslint-disable no-debugger */
+  //   // debugger;
+  //   /* eslint-enable no-debugger */
 
-    switch (sortOption) {
-      case 'apr':
-        return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
-      case 'multiplier':
-        return orderBy(
-          farms,
-          (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
-          'desc',
-        )
-      case 'earned':
-        return orderBy(
-          farms,
-          (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
-          'desc',
-        )
-      case 'liquidity':
-        return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
-      default:
-        return farms
-    }
-  }
+  //   switch (sortOption) {
+  //     case 'apr':
+  //       return orderBy(farms, (farm: FarmWithStakedValue) => farm.apy, 'desc')
+  //     case 'multiplier':
+  //       return orderBy(
+  //         farms,
+  //         (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
+  //         'desc',
+  //       )
+  //     case 'earned':
+  //       return orderBy(
+  //         farms,
+  //         (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
+  //         'desc',
+  //       )
+  //     case 'liquidity':
+  //       return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+  //     default:
+  //       return farms
+  //   }
+  // }
 
-  // /!\ This function will be removed soon
+ // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
   const farmsList = useCallback(
-    (farmsToDisplay, removed: boolean) => {
+     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
       const bananaPriceVsBNB = new BigNumber(
         farmsLP.find((farm) => farm.pid === BANANA_POOL_PID)?.tokenPriceVsQuote || 0,
       )
-      let farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
           return farm
         }
         const bananaRewardPerBlock = BANANA_PER_BLOCK.times(farm.poolWeight)
         const bananaRewardPerYear = bananaRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        // bananaPriceInQuote * bananaRewardPerYear / lpTotalInQuoteToken
-        let apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
-
-        // const quoteTokenPriceUsd = statsOverall.farms[farm.pid].price
-
-        //                     /* eslint-disable no-debugger */
-        // debugger;
-        // /* eslint-enable no-debugger */
-
-        // const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd)
-        const totalLiquidity = statsOverall.farms[farm.pid - 1].tvl
+        let apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
+        const totalLiquidity = new BigNumber(statsOverall.farms[farm.pid - 1].tvl)
 
         if (farm.quoteTokenSymbol === QuoteToken.BUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
-          apy = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
+          apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-          apy = bananaPrice.div(ethPriceUsd).times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
+          apr = bananaPrice.div(ethPriceUsd).times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
         } else if (farm.quoteTokenSymbol === QuoteToken.BANANA) {
-          apy = bananaRewardPerYear.div(farm.lpTotalInQuoteToken)
+          apr = bananaRewardPerYear.div(farm.lpTotalInQuoteToken)
         } else if (farm.dual) {
-          const bananaApy =
+          const bananaApr =
             farm && bananaPriceVsBNB.times(bananaRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
-          const dualApy =
+          const dualApr =
             farm.tokenPriceVsQuote &&
             new BigNumber(farm.tokenPriceVsQuote)
               .times(farm.dual.rewardPerBlock)
               .times(BLOCKS_PER_YEAR)
               .div(farm.lpTotalInQuoteToken)
 
-          apy = bananaApy && dualApy && bananaApy.plus(dualApy)
+          apr = new BigNumber((bananaApr && dualApr && bananaApr.plus(dualApr)).times(100))
         }
-        return { ...farm, apy, liquidity: totalLiquidity }
+        return { ...farm, apr, liquidity: totalLiquidity }
       })
       if (query) {
         const lowercaseQuery = query.toLowerCase()
-        farmsToDisplayWithAPY = farmsToDisplayWithAPY.filter((farm: FarmWithStakedValue) => {
+        farmsToDisplayWithAPR = farmsToDisplayWithAPR.filter((farm: FarmWithStakedValue) => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      return farmsToDisplayWithAPY
+      return farmsToDisplayWithAPR
     },
     [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, statsOverall],
   )
+
+
+
+  const farmsStakedMemoized = useMemo(() => {
+    let farmsStaked = []
+
+    const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
+      switch (sortOption) {
+        case 'apr':
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
+        case 'multiplier':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
+            'desc',
+          )
+        case 'earned':
+          return orderBy(
+            farms,
+            (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
+            'desc',
+          )
+        case 'liquidity':
+          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+        default:
+          return farms
+      }
+    }
+
+    if (isActive) {
+      farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
+    }
+   else {
+      farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
+    }
+
+    return sortFarms(farmsStaked)
+    // .slice(0, numberOfFarmsVisible)
+  }, [
+    sortOption,
+    activeFarms,
+    farmsList,
+    inactiveFarms,
+    // archivedFarms,
+    isActive,
+    // isInactive,
+    // isArchived,
+    // stakedArchivedFarms,
+    stakedInactiveFarms,
+    stakedOnly,
+    stakedOnlyFarms,
+    // numberOfFarmsVisible,
+  ])
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
   }
 
-  let farmsStaked = []
-  if (isActive) {
-    farmsStaked = stakedOnly ? farmsList(stakedOnlyFarms, true) : farmsList(activeFarms, true)
-  } else {
-    farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms, false) : farmsList(inactiveFarms, false)
-  }
-  /* eslint-disable no-debugger */
-  // debugger;
-  /* eslint-enable no-debugger */
-
-  farmsStaked = sortFarms(farmsStaked)
-
-  const rowData = farmsStaked.map((farm) => {
+  const rowData = farmsStakedMemoized.map((farm) => {
     const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase()
 
     const row: RowProps = {
       apr: {
-        value: farm.apy && Number(farm.apy * 100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
+        value: farm.apr && (farm.apr.toNumber()*100).toLocaleString('en-US', { maximumFractionDigits: 2 }),
         multiplier: farm.multiplier,
         lpLabel,
         bananaPrice,
-        originalValue: farm.apy,
+        originalValue: farm.apr && farm.apr.toNumber(),
       },
       farm: {
         image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
@@ -355,14 +387,14 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns}/>
+      return <Table data={rowData} columns={columns} />
     }
 
     return (
       <div>
         <FlexLayout>
           <Route exact path={`${path}`}>
-            {farmsStaked.map((farm) => (
+            {farmsStakedMemoized.map((farm) => (
               <FarmCard
                 key={farm.pid}
                 farm={farm}
@@ -376,7 +408,7 @@ const Farms: React.FC = () => {
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
-            {farmsStaked.map((farm) => (
+            {farmsStakedMemoized.map((farm) => (
               <FarmCard
                 key={farm.pid}
                 farm={farm}
@@ -398,41 +430,40 @@ const Farms: React.FC = () => {
     setSortOption(option)
   }
 
+  const ContainerLabels = styled.div`
+    background: ${({ theme }) => theme.card.background};
+    border-radius: 16px;
+    margin-top: 34px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding-left: 100px;
+  `
 
-const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin-top: 34px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding-left: 100px;
-`
+  const StyledTableLabels = styled.div`
+    display: flex;
+    margin: 10px 0px;
+    width: 100%;
+  `
 
-const StyledTableLabels = styled.div`
-  display: flex;
-  margin: 10px 0px;
-  width: 100%;
-`
+  const StyledLabelContainer = styled.div`
+    width: 100%;
+    display: flex;
+  `
 
-const StyledLabelContainer = styled.div`
-  width: 100%;
-  display: flex;
-`
-
-const StyledLabel = styled.div<LabelProps>`
-  display: flex;
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-family: Poppins;
-  padding: 4px 12px;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 12px;
-  border-radius: ${({active})=> active && '50px'};
-  background-color: ${({active})=> active && "#FFB300"}
-`
+  const StyledLabel = styled.div<LabelProps>`
+    display: flex;
+    color: ${({ theme }) => theme.colors.textSubtle};
+    font-family: Poppins;
+    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 12px;
+    border-radius: ${({ active }) => active && '50px'};
+    background-color: ${({ active }) => active && '#FFB300'};
+  `
 
   return (
     <>
@@ -494,13 +525,29 @@ const StyledLabel = styled.div<LabelProps>`
           </FilterContainer> */}
         </ControlContainer>
         <ContainerLabels>
-        <StyledTableLabels>
-          <StyledLabelContainer><StyledLabel>LP</StyledLabel></StyledLabelContainer>
-          <StyledLabelContainer><StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>APR</StyledLabel></StyledLabelContainer>
-          <StyledLabelContainer><StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>Liquidity</StyledLabel></StyledLabelContainer>
-          <StyledLabelContainer><StyledLabel active={sortOption === 'earned'} onClick={() =>  handleSortOptionChange('earned')}>Earned</StyledLabel></StyledLabelContainer>
-          <StyledLabelContainer><StyledLabel onClick={() =>  handleSortOptionChange('')}>Reset</StyledLabel></StyledLabelContainer>
-        </StyledTableLabels>
+          <StyledTableLabels>
+            <StyledLabelContainer>
+              <StyledLabel>LP</StyledLabel>
+            </StyledLabelContainer>
+            <StyledLabelContainer>
+              <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
+                APR
+              </StyledLabel>
+            </StyledLabelContainer>
+            <StyledLabelContainer>
+              <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
+                Liquidity
+              </StyledLabel>
+            </StyledLabelContainer>
+            <StyledLabelContainer>
+              <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
+                Earned
+              </StyledLabel>
+            </StyledLabelContainer>
+            <StyledLabelContainer>
+              <StyledLabel onClick={() => handleSortOptionChange('')}>Reset</StyledLabel>
+            </StyledLabelContainer>
+          </StyledTableLabels>
         </ContainerLabels>
         {renderContent()}
       </Page>

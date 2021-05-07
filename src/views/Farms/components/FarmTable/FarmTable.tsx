@@ -16,43 +16,6 @@ const Container = styled.div`
   margin: 16px 0px;
 `
 
-const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin-top: 34px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-`
-
-const StyledTableLabels = styled.div`
-  display: flex;
-  margin: 10px 0px;
-`
-
-const StyledLabel = styled.div`
-  width: 100%;
-  display: flex;
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 12px;
-`
-
-const StyledLabel2 =  styled.div`
-  width: 100%;
-  display: flex;
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-family: Poppins;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 12px;
-`
-
-
-
 const TableWrapper = styled.div`
   overflow: visible;
 
@@ -118,19 +81,11 @@ const FarmTable: React.FC<ITableProps> = (props) => {
             <StyledTable>
               <TableBody>
                 {rows.map((row, index) => {
-                  
-                   return <div>
-                    <ContainerLabels>
-        <StyledTableLabels>
-          <StyledLabel>LP</StyledLabel>
-          <StyledLabel>APR</StyledLabel>
-          <StyledLabel>Liquidity</StyledLabel>
-          <StyledLabel>Earned</StyledLabel>
-          <StyledLabel>Reset</StyledLabel>
-        </StyledTableLabels>
-      </ContainerLabels>
-                   <Row {...row.original} key={`table-row-${row.id}`} />
-                   </div>
+                  return (
+                    <div>
+                      <Row {...row.original} key={`table-row-${row.id}`} />
+                    </div>
+                  )
                   return <Row {...row.original} key={`table-row-${row.id}`} />
                 })}
               </TableBody>

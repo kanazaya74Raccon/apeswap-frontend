@@ -145,55 +145,55 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     if (!isXs) {
       return (
         <StyledTr onClick={toggleActionPanel}>
-        <StyledFlex alignItems="center">
-          {Object.keys(props).map((key) => {
-            const columnIndex = columnNames.indexOf(key)
-            if (columnIndex === -1) {
-              return null
-            }
+          <StyledFlex alignItems="center">
+            {Object.keys(props).map((key) => {
+              const columnIndex = columnNames.indexOf(key)
+              if (columnIndex === -1) {
+                return null
+              }
 
-            switch (key) {
-              case 'details':
-                return (
-                  <StyledFlex alignItems="center">
-                  <HarvestAction {...props.earned} {...props.farm} />
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout>
-                        <Details actionPanelToggled={actionPanelToggled} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
-                  </StyledFlex>
-                )
-              case 'apr':
-                return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout>
-                        <Apr {...props.apr} hideButton={isMobile} />
-                      </CellLayout>
-                    </CellInner>
-                  </td>
-                )
-              default:
-                return (
-                  <td key={key}>
-                    <CellInner>
-                      <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
-                    </CellInner>
-                  </td>
-                )
-            }
-          })}
+              switch (key) {
+                case 'details':
+                  return (
+                    <StyledFlex alignItems="center">
+                      <HarvestAction {...props.earned} {...props.farm} />
+                      <td key={key}>
+                        <CellInner>
+                          <CellLayout>
+                            <Details actionPanelToggled={actionPanelToggled} />
+                          </CellLayout>
+                        </CellInner>
+                      </td>
+                    </StyledFlex>
+                  )
+                case 'apr':
+                  return (
+                    <td key={key}>
+                      <CellInner>
+                        <CellLayout>
+                          <Apr {...props.apr} hideButton={isMobile} />
+                        </CellLayout>
+                      </CellInner>
+                    </td>
+                  )
+                default:
+                  return (
+                    <td key={key}>
+                      <CellInner>
+                        <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
+                      </CellInner>
+                    </td>
+                  )
+              }
+            })}
           </StyledFlex>
-           {actionPanelToggled && details && (
-        <tr>
-          <td colSpan={6}>
-            <ActionPanel {...props} />
-          </td>
-        </tr>
-      )}
+          {actionPanelToggled && details && (
+            <tr>
+              <td colSpan={6}>
+                <ActionPanel {...props} />
+              </td>
+            </tr>
+          )}
         </StyledTr>
       )
     }
@@ -235,13 +235,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   return (
     <>
       {handleRenderRow()}
-      {actionPanelToggled && details && (
-        <tr>
-          <td colSpan={6}>
-            <ActionPanel {...props} />
-          </td>
-        </tr>
-      )}
     </>
   )
 }

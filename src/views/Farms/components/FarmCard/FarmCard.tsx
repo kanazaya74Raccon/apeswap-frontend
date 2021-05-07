@@ -17,7 +17,7 @@ import CardActionsContainer from './CardActionsContainer'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
-  apy?: BigNumber
+  apr?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
 }
@@ -148,7 +148,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : 'BANANA'
-  const farmAPY = farm.apy && farm.apy.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
+  const farmAPR = farm.apr && farm.apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
@@ -169,16 +169,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{TranslateString(352, 'APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apy ? (
+            {farm.apr ? (
               <>
                 <ApyButton
                   lpLabel={lpLabel}
                   rewardTokenName="BANANA"
                   addLiquidityUrl={addLiquidityUrl}
                   rewardTokenPrice={bananaPrice}
-                  apy={farm.apy}
+                  apy={farm.apr}
                 />
-                {farmAPY}%
+                {farmAPR}%
               </>
             ) : (
               <Skeleton height={24} width={80} />

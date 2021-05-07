@@ -24,7 +24,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
       <Text color="primary" bold>
         {expanded ? 'Hide' : 'Details'}
       </Text>
-      {expanded ? <ArrowDropUpIcon width="24px" /> : <ArrowDropDownIcon width="24px"/>}
+      {expanded ? <ArrowDropUpIcon width="24px" /> : <ArrowDropDownIcon width="24px" />}
     </Wrapper>
   )
 }
