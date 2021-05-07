@@ -42,12 +42,20 @@ export interface Address {
   56: string
 }
 
+export interface FarmStyles {
+  deprecated: any
+  warning: any
+  featured: any
+  inactive: any
+}
+
 export interface FarmConfig {
   pid: number
   lpSymbol: string
   lpAddresses: Address
   tokenSymbol: string
-  style?: string
+  style?: keyof FarmStyles
+  disableApr?: boolean
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address
