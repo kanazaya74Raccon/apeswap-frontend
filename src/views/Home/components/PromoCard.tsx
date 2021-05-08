@@ -142,14 +142,14 @@ const StyledClickLeft = styled.img`
 
 const carouselSlidesData = [
   {
-    header: '📈xBTC is now listed on ApeSwap!📈',
+    header: '📈 xBTC listed on ApeSwap 📈',
     text: 'xBTC gives you exposure to the entire altcoin market 🚀 Bridge from Ethereum to BSC 🌉',
     text2: 'Stake Banana to earn over $600,000 xBTC rewards. 💸',
     link: 'Get the details here!',
     pageLink: 'https://ape-swap.medium.com/apeswap-welcomes-xbtc-to-bsc-6102ba275a36',
   },
   {
-    header: '⚒️Have you checked out our BUIDL Program?⚒️',
+    header: '⚒️ Have you checked out our BUIDL Program? ⚒️',
     text: 'Come grow the Jungle with us 🚀',
     text2: 'Build on ApeSwap and get rewards! 💰',
     link: 'See the Newsletter here!',
