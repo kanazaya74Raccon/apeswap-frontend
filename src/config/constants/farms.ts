@@ -157,6 +157,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 44,
+    lpSymbol: 'WATCH-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
+    },
+    tokenSymbol: 'WATCH',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
