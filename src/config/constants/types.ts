@@ -17,6 +17,7 @@ export interface Ifo {
   currencyAddress: string
   tokenDecimals: number
   releaseBlockNumber: number
+  burnedTxUrl?: string
 }
 
 export enum QuoteToken {
