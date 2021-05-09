@@ -108,12 +108,12 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
     ) : (
       <IconButtonWrapper>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
+          <IconButton variant="yellow" onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="primary" width="14px" height="14px" />
           </IconButton>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentDeposit}>
+          <IconButton variant="yellow" onClick={onPresentDeposit}>
             <AddIcon color="primary" width="20px" height="20px" />
           </IconButton>
         </Reward>
@@ -137,21 +137,9 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   if (isApproved) {
     if (rawStakedBalance) {
       return (
-        <ActionContainer>
-          <ActionTitles>
-            <Title>{lpSymbol} </Title>
-            <Subtle>{TranslateString(999, 'STAKED')}</Subtle>
-          </ActionTitles>
-          <ActionContent>
-            <div>
-              <Earned>{displayBalance}</Earned>
-              <StakedStyle>~{totalValuePersonalFormated}USD</StakedStyle>
-            </div>
-            <Flex justifyContent="space-between" alignItems="center">
+            <Flex justifyContent="space-between" alignItems="center" ml="50px">
               {renderStakingButtons()}
             </Flex>
-          </ActionContent>
-        </ActionContainer>
       )
     }
 

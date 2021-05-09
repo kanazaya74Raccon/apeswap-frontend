@@ -3,7 +3,6 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import { useStats } from 'state/hooks'
-import { communityFarms } from 'config/constants'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
@@ -81,14 +80,15 @@ const styles = {
 const FCard = styled.div`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
-  border-radius: 32px;
-  box-shadow: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 24px;
   position: relative;
   text-align: center;
+  max-width: 356px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
 `
 
 const Divider = styled.div`
@@ -96,6 +96,13 @@ const Divider = styled.div`
   height: 1px;
   margin: 28px auto;
   width: 100%;
+`
+
+
+const StyledContainer = styled.div`
+ margin-left: 20px;
+ margin-right: 20px;
+ margin-top: 15px;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -121,7 +128,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const isCommunityFarm = communityFarms.includes(farm.tokenSymbol)
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
@@ -160,32 +166,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
       {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
-        multiplier={farm.multiplier}
-        isCommunityFarm={isCommunityFarm}
+        // multiplier={farm.multiplier}
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
+        apr={farm.apr}
+        addLiquidityUrl={addLiquidityUrl}
+        bananaPrice={bananaPrice}
+        farmAPR={farmAPR}
+        removed={removed}
       />
-      {!removed && (
-        <Flex justifyContent="space-between" alignItems="center">
-          <Text>{TranslateString(352, 'APR')}:</Text>
-          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            {farm.apr ? (
-              <>
-                <ApyButton
-                  lpLabel={lpLabel}
-                  rewardTokenName="BANANA"
-                  addLiquidityUrl={addLiquidityUrl}
-                  rewardTokenPrice={bananaPrice}
-                  apy={farm.apr}
-                />
-                {farmAPR}%
-              </>
-            ) : (
-              <Skeleton height={24} width={80} />
-            )}
-          </Text>
-        </Flex>
-      )}
+      <StyledContainer>
       <Flex justifyContent="space-between">
         <Text>{TranslateString(318, 'Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
@@ -206,6 +196,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
           farmStats={filteredFarmStats}
         />
       </ExpandingWrapper>
+      </StyledContainer>
     </FCard>
   )
 }

@@ -1,20 +1,27 @@
 import React from 'react'
+import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Tag, Flex, Heading, Image } from '@apeswapfinance/uikit'
-import { CommunityTag, CoreTag } from 'components/Tags'
+import { Tag, Flex, Heading, Image, Skeleton, Text } from '@apeswapfinance/uikit'
+import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
-  multiplier?: string
-  isCommunityFarm?: boolean
+  apr?: BigNumber
   farmImage?: string
   tokenSymbol?: string
+  addLiquidityUrl?: string
+  bananaPrice?: BigNumber
+  farmAPR: string
+  removed: boolean
 }
 
-const Wrapper = styled(Flex)`
-  svg {
-    margin-right: 0.25rem;
-  }
+const StyledBackground = styled(Flex)`
+  justify-content: center;
+  align-items: flex-end;
+  width: 121px;
+  height: 121px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
 `
 
 const MultiplierTag = styled(Tag)`
@@ -22,24 +29,51 @@ const MultiplierTag = styled(Tag)`
   color: ${(props) => props.theme.colors.card};
 `
 
+const StyledHeading = styled(Heading)`
+  font-size: 22px;
+`
+
+const StyledText = styled(Text)`
+  font-weight: 700;
+`
+
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpLabel,
-  multiplier,
-  isCommunityFarm,
+  apr,
   farmImage,
   tokenSymbol,
+  addLiquidityUrl,
+  bananaPrice,
+  farmAPR,
+  removed
 }) => {
   return (
-    <Wrapper justifyContent="center" alignItems="center" mb="12px">
-      <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={64} height={64} />
-      <Flex flexDirection="column" alignItems="flex-end" justifyContent="center">
-        <Heading mb="4px">{lpLabel}</Heading>
-        <Flex justifyContent="center">
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
-        </Flex>
+    <Flex>
+    <StyledBackground>
+      <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={109} height={109} />
+      </StyledBackground>
+      <Flex flexDirection="column" alignItems="flex-start" justifyContent="center" ml="18px">
+        <StyledHeading mb="4px">{lpLabel}</StyledHeading>
+        {!removed && (
+         <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+         <StyledText fontFamily="poppins">APR:</StyledText>
+          {apr ? (
+              <>
+                <ApyButton
+                  lpLabel={lpLabel}
+                  rewardTokenName="BANANA"
+                  addLiquidityUrl={addLiquidityUrl}
+                  rewardTokenPrice={bananaPrice}
+                  apy={apr}
+                />
+                {farmAPR}%
+              </>
+            ) : (
+              <Skeleton height={24} width={80} />
+            )}
+        </Text>)}
       </Flex>
-    </Wrapper>
+    </Flex>
   )
 }
 

@@ -55,6 +55,13 @@ const ControlContainer = styled(Card)`
     flex-wrap: wrap;
     padding: 15px 15px;
   }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+      height: 59px;
+      padding: 0px;
+      justify-content: flex-start;
+      padding-left: 50px;
+  }
 `
 
 const ToggleWrapper = styled.div`
@@ -149,6 +156,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(ViewMode.TABLE)
   const [sortOption, setSortOption] = useState('')
+  const [sortDirection, setSortDirection] = useState<boolean | "desc" | "asc">('desc')
 
   const ethPriceUsd = usePriceEthBusd()
 
@@ -248,21 +256,21 @@ const Farms: React.FC = () => {
     const sortFarms = (farms: FarmWithStakedValue[]): FarmWithStakedValue[] => {
       switch (sortOption) {
         case 'apr':
-          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, 'desc')
+          return orderBy(farms, (farm: FarmWithStakedValue) => farm.apr, sortDirection)
         case 'multiplier':
           return orderBy(
             farms,
             (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
-            'desc',
+            sortDirection,
           )
         case 'earned':
           return orderBy(
             farms,
             (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
-            'desc',
+            sortDirection,
           )
         case 'liquidity':
-          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
+          return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), sortDirection)
         default:
           return farms
       }
@@ -290,6 +298,7 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     // numberOfFarmsVisible,
+    sortDirection
   ])
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -393,6 +402,13 @@ const Farms: React.FC = () => {
   }
 
   const handleSortOptionChange = (option): void => {
+    if(option !== sortOption) {
+      setSortDirection("desc")
+    } else if (sortDirection === "desc") {
+      setSortDirection("asc")
+      } else {
+      setSortDirection("desc")
+    }
     setSortOption(option)
   }
 
@@ -421,7 +437,7 @@ const Farms: React.FC = () => {
 
   const StyledLabel = styled.div<LabelProps>`
     display: flex;
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme, active }) => active ? '#FFFFFF' : theme.colors.primary};
     font-family: Poppins;
     padding: 4px 12px;
     font-weight: bold;
@@ -441,7 +457,7 @@ const Farms: React.FC = () => {
         </HeadingContainer>
       </Header>
 
-      <Page>
+      <Page width="1130px">
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { communityFarms } from 'config/constants'
 import { CommunityTag, CoreTag } from 'components/Tags'
-import { useFarmUser, useStats, usePriceBananaBusd} from 'state/hooks'
+import { useFarmUser, useStats, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 
@@ -17,7 +17,6 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
-
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -115,7 +114,6 @@ const StyledText = styled(Text)`
   font-weight: 700;
 `
 
-
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity }) => {
   const farm = details
 
@@ -130,7 +128,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
-  
+
   const { earnings } = useFarmUser(farm.pid)
   const bananaPrice = usePriceBananaBusd()
   let earningsToReport = null
@@ -142,7 +140,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
     earningsBusd = earningsToReport * bananaPrice.toNumber()
     displayHarvestBalance = earningsBusd.toLocaleString()
   }
-  
+
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
@@ -150,44 +148,59 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
     ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-
   return (
     <Container>
       <Flex>
-      <InfoContainer>
-        <ValueContainer>
+        <InfoContainer>
+          <ValueContainer>
+            <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {TranslateString(999, 'Multiplier:')}
+              </StyledText>
+              <Multiplier multiplier={apr.multiplier} />
+            </ValueWrapper>
+          </ValueContainer>
+          <ValueContainer>
+            <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {TranslateString(999, 'Stake:')}
+              </StyledText>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {farm.lpSymbol}
+              </StyledText>
+            </ValueWrapper>
+            <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                Staked Value
+              </StyledText>
+              <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                ~{totalValuePersonalFormated}USD
+              </StyledText>
+            </ValueWrapper>
+            <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                Earned Value
+              </StyledText>
+              <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                ~{displayHarvestBalance}USD
+              </StyledText>
+            </ValueWrapper>
+          </ValueContainer>
+        </InfoContainer>
+        <ValueContainerNoneLarge>
           <ValueWrapper>
-            <StyledText fontFamily="poppins" fontSize="12px">{TranslateString(999, 'Multiplier:')}</StyledText>
-            <Multiplier multiplier={apr.multiplier} />
+            <StyledText fontFamily="poppins" fontSize="12px">
+              {TranslateString(736, 'APR:')}
+            </StyledText>
+            <Apr {...apr} />
           </ValueWrapper>
-        </ValueContainer>
-        <ValueContainer>
-          <ValueWrapper>
-            <StyledText fontFamily="poppins" fontSize="12px">{TranslateString(999, 'Stake:')}</StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">{farm.lpSymbol}</StyledText> 
-          </ValueWrapper>
-          <ValueWrapper>
-            <StyledText fontFamily="poppins" fontSize="12px">Staked Value</StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px" color="green">~{totalValuePersonalFormated}USD</StyledText> 
-          </ValueWrapper>
-          <ValueWrapper>
-            <StyledText fontFamily="poppins" fontSize="12px">Earned Value</StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px" color="green">~{displayHarvestBalance}USD</StyledText> 
-          </ValueWrapper>
-        </ValueContainer>
-      </InfoContainer>
-      <ValueContainerNoneLarge>
-        <ValueWrapper>
-          <StyledText fontFamily="poppins" fontSize="12px">{TranslateString(736, 'APR:')}</StyledText>
-          <Apr {...apr} />
-        </ValueWrapper>
-      </ValueContainerNoneLarge>
-      <ActionContainer>
-        <StakedAction {...farm} />
-      </ActionContainer>
+        </ValueContainerNoneLarge>
+        <ActionContainer>
+          <StakedAction {...farm} />
+        </ActionContainer>
       </Flex>
       <StyledLinkExternal href={bsc}>{TranslateString(999, 'View on BscScan')}</StyledLinkExternal>
-        {/* <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal> */}
+      {/* <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal> */}
     </Container>
   )
 }
