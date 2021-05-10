@@ -192,7 +192,7 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
 }
 
 export const getPromosHome = async () => {
-  const url = `${baseUrlStrapi}/homepages`
+  const url = `${baseUrlStrapi}/homepages?_sort=order:ASC`
   const resp = await fetch(url)
   const data = await resp.json()
 
