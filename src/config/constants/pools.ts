@@ -733,7 +733,7 @@ const pools: PoolConfig[] = [
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0xEedd7475Eb5D05D591bE0927B178AcBBdC5ee1c1', // ApeRewardPool
     },
-    poolCategory: PoolCategory.CORE,
+    poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://keyfi.com/',
     harvest: true,
     tokenPerBlock: `0.025483796296296296`,
