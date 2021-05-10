@@ -737,7 +737,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://keyfi.com/',
     harvest: true,
     tokenPerBlock: `0.025483796296296296`,
-    sortOrder: 3,
+    sortOrder: 2,
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
