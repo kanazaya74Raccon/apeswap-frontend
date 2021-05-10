@@ -68,7 +68,7 @@ const StyledTr = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.isDark ? '#27262c' : '#faf9fa'}
+  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
 `
 
 const StyledTrBlank = styled.div`
@@ -176,49 +176,39 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               if (columnIndex === -1) {
                 return null
               }
-              
+
               switch (key) {
                 case 'details':
                   return (
-                    <ArrowContainer justifyContent="center" alignItems="center">
+                    <ArrowContainer justifyContent="center" alignItems="center" key={key}>
                       <HarvestAction {...props.earned} {...props.farm} />
-                        <CellInner>
-                          <CellLayout>
-                            <Details actionPanelToggled={actionPanelToggled} />
-                          </CellLayout>
-                        </CellInner>
+                      <CellInner>
+                        <CellLayout>
+                          <Details actionPanelToggled={actionPanelToggled} />
+                        </CellLayout>
+                      </CellInner>
                     </ArrowContainer>
                   )
                 case 'apr':
                   return (
-                      <APRContainer>
-                          <Apr {...props.apr} hideButton={isMobile} />
-                      </APRContainer>
+                    <APRContainer key={key}>
+                      <Apr {...props.apr} hideButton={isMobile} />
+                    </APRContainer>
                   )
                 case 'liquidity':
-                  return (
-                      <LiquidtyContainer>
-                         {React.createElement(cells[key], { ...props[key] })}
-                      </LiquidtyContainer>
-                  )
+                  return <LiquidtyContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</LiquidtyContainer>
                 case 'earned':
-                  return (
-                      <EarnedContainer>
-                         {React.createElement(cells[key], { ...props[key] })}
-                      </EarnedContainer>
-                  )
+                  return <EarnedContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
                 default:
                   return (
-                      <CellInner>
-                        <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
-                      </CellInner>
+                    <CellInner key={key}>
+                      <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
+                    </CellInner>
                   )
               }
             })}
           </StyledFlex>
-          {actionPanelToggled && details && (
-                <ActionPanel {...props} />
-          )}
+          {actionPanelToggled && details && <ActionPanel {...props} />}
         </StyledTr>
       )
     }
@@ -226,21 +216,21 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     return (
       <StyledTr onClick={toggleActionPanel}>
         <StyledTd1>
-            <FarmMobileCell>
-              <CellLayout>
-                <Farm {...props.farm} />
-              </CellLayout>
-            </FarmMobileCell>
-            <EarnedMobileCell>
-              <CellLayout label={TranslateString(1072, 'Earned')}>
-                <Earned {...props.earned} />
-              </CellLayout>
-            </EarnedMobileCell>
-            <AprMobileCell>
-              <CellLayout label={TranslateString(736, 'APR')}>
-                <Apr {...props.apr} hideButton />
-              </CellLayout>
-            </AprMobileCell>
+          <FarmMobileCell>
+            <CellLayout>
+              <Farm {...props.farm} />
+            </CellLayout>
+          </FarmMobileCell>
+          <EarnedMobileCell>
+            <CellLayout label={TranslateString(1072, 'Earned')}>
+              <Earned {...props.earned} />
+            </CellLayout>
+          </EarnedMobileCell>
+          <AprMobileCell>
+            <CellLayout label={TranslateString(736, 'APR')}>
+              <Apr {...props.apr} hideButton />
+            </CellLayout>
+          </AprMobileCell>
         </StyledTd1>
         <StyledTd2>
           <CellInner>
@@ -253,7 +243,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     )
   }
 
-  return <>{handleRenderRow()}</>
+  return handleRenderRow()
 }
 
 export default Row

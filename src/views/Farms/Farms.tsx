@@ -143,67 +143,73 @@ const StyledText = styled(Text)`
   font-size: 15px;
 `
 
-  interface CheckboxProps {
-    checked?: boolean
-  }
+interface CheckboxProps {
+  checked?: boolean
+}
 
-  const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
-    height: 21px;
-    width: 21px;
-  `
+const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
+  height: 21px;
+  width: 21px;
+`
 
-  const StyledImage = styled.img`
-    height: 187px;
-    width: 134px;
-    position: absolute;
-    right: 0px;
-    bottom: 21px;
-  `
-  
-  const ContainerLabels = styled.div`
-    background: ${({ theme }) => theme.card.background};
-    border-radius: 16px;
-    margin-top: 34px;
-    height: 32px;
-    width: 100%;
-    position: relative;
-  `
+const StyledImage = styled.img`
+  height: 187px;
+  width: 134px;
+  position: absolute;
+  right: 0px;
+  bottom: 21px;
+`
 
-  const StyledLabelContainerLP = styled.div`
-    position: absolute;
-    top: 6px;
-    left: 169px;
-  `
+const ContainerLabels = styled.div`
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+  margin-top: 34px;
+  height: 32px;
+  width: 100%;
+  position: relative;
+`
 
-  const StyledLabelContainerAPR = styled.div`
-    position: absolute;
-    top: 6px;
-    left: 409px;
-  `
-  
-  const StyledLabelContainerLiquidity = styled.div`
-    position: absolute;
-    top: 6px;
-    left: 621px;
-  `
+const StyledLabelContainerHot = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 38px;
+`
 
-  const StyledLabelContainerEarned = styled.div`
-    position: absolute;
-    top: 6px;
-    left: 801px;
-  `
+const StyledLabelContainerLP = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 169px;
+`
 
-  const StyledLabel = styled.div<LabelProps>`
-    display: flex;
-    color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-    font-family: Poppins;
-    padding: 4px 12px;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 12px;
-    border-radius: ${({ active }) => active && '50px'};
-    background-color: ${({ active }) => active && '#FFB300'};
-  `
+const StyledLabelContainerAPR = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 409px;
+`
+
+const StyledLabelContainerLiquidity = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 621px;
+`
+
+const StyledLabelContainerEarned = styled.div`
+  position: absolute;
+  top: 6px;
+  left: 801px;
+`
+
+const StyledLabel = styled.div<LabelProps>`
+  display: flex;
+  color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
+  font-family: Poppins;
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: ${({ active }) => active && '50px'};
+  background-color: ${({ active }) => active && '#FFB300'};
+`
 
 const Farms: React.FC = () => {
   const { statsOverall } = useStatsOverall()
@@ -490,25 +496,28 @@ const Farms: React.FC = () => {
           </ViewControls>
         </ControlContainer>
         <ContainerLabels>
-            <StyledLabelContainerLP>
-              <StyledLabel>LP</StyledLabel>
-            </StyledLabelContainerLP>
-            <StyledLabelContainerAPR>
-              <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-                APR
-              </StyledLabel>
-            </StyledLabelContainerAPR>
-            <StyledLabelContainerLiquidity>
-              <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-                Liquidity
-              </StyledLabel>
-            </StyledLabelContainerLiquidity>
-            <StyledLabelContainerEarned>
-              <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-                Earned
-              </StyledLabel>
-            </StyledLabelContainerEarned>
-            {/* <StyledLabelContainer>
+          <StyledLabelContainerHot>
+            <StyledLabel onClick={() => handleSortOptionChange('')}>Hot</StyledLabel>
+          </StyledLabelContainerHot>
+          <StyledLabelContainerLP>
+            <StyledLabel>LP</StyledLabel>
+          </StyledLabelContainerLP>
+          <StyledLabelContainerAPR>
+            <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
+              APR
+            </StyledLabel>
+          </StyledLabelContainerAPR>
+          <StyledLabelContainerLiquidity>
+            <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
+              Liquidity
+            </StyledLabel>
+          </StyledLabelContainerLiquidity>
+          <StyledLabelContainerEarned>
+            <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
+              Earned
+            </StyledLabel>
+          </StyledLabelContainerEarned>
+          {/* <StyledLabelContainer>
               <StyledLabel onClick={() => handleSortOptionChange('')}>Reset</StyledLabel>
             </StyledLabelContainer> */}
         </ContainerLabels>

@@ -3,7 +3,16 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Button, ButtonSquare, Flex, Heading, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
+import {
+  Button,
+  ButtonSquare,
+  Flex,
+  Heading,
+  useModal,
+  IconButtonSquare,
+  AddIcon,
+  MinusIcon,
+} from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -22,14 +31,14 @@ import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionTitles, ActionContent, Earned, StakedStyle, Title, Subtle } from './styles'
 
 const IconButtonWrapperStake = styled.div`
- display: flex;
- justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 `
 
 const IconButtonWrapper = styled.div`
- display: flex;
- justify-content: flex-end;
- margin-right: 52px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 52px;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -116,7 +125,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+        <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>
@@ -136,36 +145,30 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
 
   if (!account) {
     return (
-        <IconButtonWrapper>
-          <UnlockButton width="100%" />
-        </IconButtonWrapper>
+      <IconButtonWrapper>
+        <UnlockButton width="100%" />
+      </IconButtonWrapper>
     )
   }
 
   if (isApproved) {
     if (rawStakedBalance) {
-      return (
-        <IconButtonWrapper>
-          {renderStakingButtons()}
-        </IconButtonWrapper>
-      )
+      return <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>
     }
 
     return (
-        <IconButtonWrapper>
-          <ButtonSquare onClick={onPresentDeposit}>
-            {TranslateString(999, 'Stake LP')}
-          </ButtonSquare>
-        </IconButtonWrapper>
+      <IconButtonWrapper>
+        <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
+      </IconButtonWrapper>
     )
   }
 
   return (
-      <IconButtonWrapper>
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
-          {TranslateString(999, 'Enable')}
-        </ButtonSquare>
-      </IconButtonWrapper>
+    <IconButtonWrapper>
+      <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        {TranslateString(999, 'Enable')}
+      </ButtonSquare>
+    </IconButtonWrapper>
   )
 }
 

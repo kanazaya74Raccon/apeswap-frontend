@@ -199,10 +199,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
           </ValueContainer>
         </InfoContainer>
         <Flex flexDirection="column">
-         <StakedText fontFamily="poppins" fontSize="12px">
-              Staked
-        </StakedText>
-        <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">{displayBalance}</StakedValueText>
+          <StakedText fontFamily="poppins" fontSize="12px">
+            Staked
+          </StakedText>
+          <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">
+            {displayBalance}
+          </StakedValueText>
         </Flex>
         <ValueContainerNoneLarge>
           <ValueWrapper>

@@ -24,14 +24,14 @@ const TableWrapper = styled.div`
   }
 `
 
-const StyledTable = styled.table`
+const StyledTable = styled.div`
   border-collapse: collapse;
   font-size: 14px;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: ${({ theme }) => theme.isDark ? 'black' : '#faf9fa'}
+  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
 `
 
 const TableContainer = styled.div`
@@ -60,9 +60,9 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
-  //                     /* eslint-disable no-debugger */
-  // debugger;
-  // /* eslint-enable no-debugger */
+  /* eslint-disable no-debugger */
+  debugger;
+  /* eslint-enable no-debugger */
 
   return (
     <>
@@ -70,14 +70,9 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <TableContainer>
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
-                {rows.map((row, index) => {
-                  return (
-                    <div>
-                      <Row {...row.original} key={`table-row-${row.id}`} />
-                    </div>
-                  )
-                  return <Row {...row.original} key={`table-row-${row.id}`} />
-                })}
+              {rows.map(row => {
+                return <Row {...row.original} key={row.id} />
+              })}
             </StyledTable>
           </TableWrapper>
           <ScrollButtonContainer>
