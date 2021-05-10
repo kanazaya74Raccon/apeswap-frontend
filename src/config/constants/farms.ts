@@ -140,6 +140,38 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 43,
+    lpSymbol: 'VBSWAP-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xD59b4f88Da3b5cfc70CdF9B61c53Df475d4D4f47', // VBSWAP-BNB BananaPair
+    },
+    tokenSymbol: 'VBSWAP',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4f0ed527e8a95ecaa132af214dfd41f30b361600', // VBSWAP Token
+    },
+    style: 'warning',
+    disableApr: true,
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 44,
+    lpSymbol: 'WATCH-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
+    },
+    tokenSymbol: 'WATCH',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 30,
     lpSymbol: 'KEYFI-BNB LP',
     lpAddresses: {
@@ -361,7 +393,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x947950bcc74888a40ffa2593c5798f11fc9124c4',
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -377,7 +409,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
       56: '0x3bA5aee47Bb7eAE40Eb3D06124a74Eb89Da8ffd2', // ROCKET Token
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
   },
@@ -574,7 +606,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5', // BAKE Token address
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -590,7 +622,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x94BaBBE728D9411612Ee41b20241a6FA251b26Ce',
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -606,7 +638,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -622,7 +654,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -638,7 +670,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x05b339b0a346bf01f851dde47a5d485c34fe220c', // NAUT Token
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },
@@ -654,7 +686,7 @@ const farms: FarmConfig[] = [
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x790Be81C3cA0e53974bE2688cDb954732C9862e1', // BREW Token
     },
-    style: 'warning',
+    style: 'deprecated',
     quoteTokenSymbol: QuoteToken.BANANA,
     quoteTokenAdresses: contracts.banana,
   },

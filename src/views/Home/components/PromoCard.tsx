@@ -151,7 +151,6 @@ const LoadingContainer = styled.div`
     margin-bottom: 60px;
   }
 `
-
 const ImageContainer = styled.div<{ image: string }>`
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
