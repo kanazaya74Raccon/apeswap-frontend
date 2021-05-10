@@ -24,7 +24,6 @@ const IconImage = styled(Image)`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 20px;
 `
 
 const StyledBackground = styled.div`

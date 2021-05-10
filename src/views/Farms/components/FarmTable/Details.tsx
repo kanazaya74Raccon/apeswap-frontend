@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  padding-right: 8px;
+  margin-left: 41px;
   color: ${({ theme }) => theme.colors.primary};
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -20,7 +20,8 @@ const Container = styled.div`
 
 const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
-  width: 24px;
+  width: 12px;
+  height: 14px;
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {

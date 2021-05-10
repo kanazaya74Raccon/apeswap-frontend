@@ -57,10 +57,10 @@ const ControlContainer = styled(Card)`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-      height: 59px;
-      padding: 0px;
-      justify-content: flex-start;
-      padding-left: 50px;
+    height: 59px;
+    padding: 0px;
+    justify-content: flex-start;
+    padding-left: 50px;
   }
 `
 
@@ -143,6 +143,68 @@ const StyledText = styled(Text)`
   font-size: 15px;
 `
 
+  interface CheckboxProps {
+    checked?: boolean
+  }
+
+  const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
+    height: 21px;
+    width: 21px;
+  `
+
+  const StyledImage = styled.img`
+    height: 187px;
+    width: 134px;
+    position: absolute;
+    right: 0px;
+    bottom: 21px;
+  `
+  
+  const ContainerLabels = styled.div`
+    background: ${({ theme }) => theme.card.background};
+    border-radius: 16px;
+    margin-top: 34px;
+    height: 32px;
+    width: 100%;
+    position: relative;
+  `
+
+  const StyledLabelContainerLP = styled.div`
+    position: absolute;
+    top: 6px;
+    left: 169px;
+  `
+
+  const StyledLabelContainerAPR = styled.div`
+    position: absolute;
+    top: 6px;
+    left: 409px;
+  `
+  
+  const StyledLabelContainerLiquidity = styled.div`
+    position: absolute;
+    top: 6px;
+    left: 621px;
+  `
+
+  const StyledLabelContainerEarned = styled.div`
+    position: absolute;
+    top: 6px;
+    left: 801px;
+  `
+
+  const StyledLabel = styled.div<LabelProps>`
+    display: flex;
+    color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
+    font-family: Poppins;
+    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 12px;
+    border-radius: ${({ active }) => active && '50px'};
+    background-color: ${({ active }) => active && '#FFB300'};
+  `
+
 const Farms: React.FC = () => {
   const { statsOverall } = useStatsOverall()
 
@@ -156,7 +218,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(ViewMode.TABLE)
   const [sortOption, setSortOption] = useState('')
-  const [sortDirection, setSortDirection] = useState<boolean | "desc" | "asc">('desc')
+  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
   const ethPriceUsd = usePriceEthBusd()
 
@@ -183,24 +245,6 @@ const Farms: React.FC = () => {
   )
 
   const { isDark } = useTheme()
-
-  interface CheckboxProps {
-    checked?: boolean
-  }
-
-  const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
-    height: 21px;
-    width: 21px;
-  `
-
-  const StyledImage = styled.img`
-    height: 187px;
-    width: 134px;
-    position: absolute;
-    right: 0px;
-    bottom: 21px;
-  `
-
   // /!\ This function will be removed soon
   // This function compute the APY for each farm and will be replaced when we have a reliable API
   // to retrieve assets prices against USD
@@ -298,7 +342,7 @@ const Farms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     // numberOfFarmsVisible,
-    sortDirection
+    sortDirection,
   ])
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -402,56 +446,21 @@ const Farms: React.FC = () => {
   }
 
   const handleSortOptionChange = (option): void => {
-    if(option !== sortOption) {
-      setSortDirection("desc")
-    } else if (sortDirection === "desc") {
-      setSortDirection("asc")
-      } else {
-      setSortDirection("desc")
+    if (option !== sortOption) {
+      setSortDirection('desc')
+    } else if (sortDirection === 'desc') {
+      setSortDirection('asc')
+    } else {
+      setSortDirection('desc')
     }
     setSortOption(option)
   }
-
-  const ContainerLabels = styled.div`
-    background: ${({ theme }) => theme.card.background};
-    border-radius: 16px;
-    margin-top: 34px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    padding-left: 100px;
-  `
-
-  const StyledTableLabels = styled.div`
-    display: flex;
-    margin: 10px 0px;
-    width: 100%;
-  `
-
-  const StyledLabelContainer = styled.div`
-    width: 100%;
-    display: flex;
-  `
-
-  const StyledLabel = styled.div<LabelProps>`
-    display: flex;
-    color: ${({ theme, active }) => active ? '#FFFFFF' : theme.colors.primary};
-    font-family: Poppins;
-    padding: 4px 12px;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 12px;
-    border-radius: ${({ active }) => active && '50px'};
-    background-color: ${({ active }) => active && '#FFB300'};
-  `
 
   return (
     <>
       <Header>
         <HeadingContainer>
-          <Heading as="h1" size="xxl" mb="12px" mt={60} style={{ maxWidth: '600px' }}>
+          <Heading as="h1" size="xxl" mb="12px" mt={0} style={{ maxWidth: '600px' }}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
           </Heading>
         </HeadingContainer>
@@ -481,29 +490,27 @@ const Farms: React.FC = () => {
           </ViewControls>
         </ControlContainer>
         <ContainerLabels>
-          <StyledTableLabels>
-            <StyledLabelContainer>
+            <StyledLabelContainerLP>
               <StyledLabel>LP</StyledLabel>
-            </StyledLabelContainer>
-            <StyledLabelContainer>
+            </StyledLabelContainerLP>
+            <StyledLabelContainerAPR>
               <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
                 APR
               </StyledLabel>
-            </StyledLabelContainer>
-            <StyledLabelContainer>
+            </StyledLabelContainerAPR>
+            <StyledLabelContainerLiquidity>
               <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
                 Liquidity
               </StyledLabel>
-            </StyledLabelContainer>
-            <StyledLabelContainer>
+            </StyledLabelContainerLiquidity>
+            <StyledLabelContainerEarned>
               <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
                 Earned
               </StyledLabel>
-            </StyledLabelContainer>
-            <StyledLabelContainer>
+            </StyledLabelContainerEarned>
+            {/* <StyledLabelContainer>
               <StyledLabel onClick={() => handleSortOptionChange('')}>Reset</StyledLabel>
-            </StyledLabelContainer>
-          </StyledTableLabels>
+            </StyledLabelContainer> */}
         </ContainerLabels>
         {renderContent()}
       </Page>

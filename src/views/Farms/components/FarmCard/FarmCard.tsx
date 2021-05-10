@@ -86,7 +86,7 @@ const FCard = styled.div`
   position: relative;
   text-align: center;
   max-width: 356px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 `
@@ -98,11 +98,10 @@ const Divider = styled.div`
   width: 100%;
 `
 
-
 const StyledContainer = styled.div`
- margin-left: 20px;
- margin-right: 20px;
- margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 15px;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -176,26 +175,26 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
         removed={removed}
       />
       <StyledContainer>
-      <Flex justifyContent="space-between">
-        <Text>{TranslateString(318, 'Earn')}:</Text>
-        <Text bold>{earnLabel}</Text>
-      </Flex>
-      <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
-      <Divider />
-      <ExpandableSectionButton
-        onClick={() => setShowExpandableSection(!showExpandableSection)}
-        expanded={showExpandableSection}
-      />
-      <ExpandingWrapper expanded={showExpandableSection}>
-        <DetailsSection
-          removed={removed}
-          bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
-          totalValueFormated={totalValueFormated}
-          lpLabel={lpLabel}
-          addLiquidityUrl={addLiquidityUrl}
-          farmStats={filteredFarmStats}
+        <Flex justifyContent="space-between">
+          <Text>{TranslateString(318, 'Earn')}:</Text>
+          <Text bold>{earnLabel}</Text>
+        </Flex>
+        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
+        <Divider />
+        <ExpandableSectionButton
+          onClick={() => setShowExpandableSection(!showExpandableSection)}
+          expanded={showExpandableSection}
         />
-      </ExpandingWrapper>
+        <ExpandingWrapper expanded={showExpandableSection}>
+          <DetailsSection
+            removed={removed}
+            bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
+            totalValueFormated={totalValueFormated}
+            lpLabel={lpLabel}
+            addLiquidityUrl={addLiquidityUrl}
+            farmStats={filteredFarmStats}
+          />
+        </ExpandingWrapper>
       </StyledContainer>
     </FCard>
   )

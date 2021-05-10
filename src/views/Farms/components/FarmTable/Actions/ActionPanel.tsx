@@ -32,8 +32,10 @@ const Container = styled.div`
   padding: 24px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    flex-direction: column;
-    padding: 16px 32px;
+    display: block;
+    padding-left: 401px;
+    padding-top: 0px;
+    padding-bottom: 15px;
   }
 `
 
@@ -76,9 +78,6 @@ const TagsContainer = styled.div`
 `
 
 const ActionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     align-items: center;
@@ -88,7 +87,7 @@ const ActionContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  min-width: 200px;
+  min-width: 315px;
 `
 
 const ValueContainer = styled.div`
@@ -114,6 +113,15 @@ const StyledText = styled(Text)`
   font-weight: 700;
 `
 
+const StakedText = styled(Text)`
+  font-weight: 700;
+  margin-left 85px;
+`
+
+const StakedValueText = styled(Text)`
+  margin-left 85px;
+`
+
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity }) => {
   const farm = details
 
@@ -129,7 +137,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
-  const { earnings } = useFarmUser(farm.pid)
+  const { earnings, stakedBalance } = useFarmUser(farm.pid)
   const bananaPrice = usePriceBananaBusd()
   let earningsToReport = null
   let earningsBusd = 0
@@ -140,6 +148,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
     earningsBusd = earningsToReport * bananaPrice.toNumber()
     displayHarvestBalance = earningsBusd.toLocaleString()
   }
+
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const displayBalance = rawStakedBalance.toLocaleString()
 
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
@@ -187,6 +198,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
             </ValueWrapper>
           </ValueContainer>
         </InfoContainer>
+        <Flex flexDirection="column">
+         <StakedText fontFamily="poppins" fontSize="12px">
+              Staked
+        </StakedText>
+        <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">{displayBalance}</StakedValueText>
+        </Flex>
         <ValueContainerNoneLarge>
           <ValueWrapper>
             <StyledText fontFamily="poppins" fontSize="12px">

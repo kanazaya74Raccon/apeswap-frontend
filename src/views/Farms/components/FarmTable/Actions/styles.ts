@@ -37,10 +37,7 @@ export const Subtle = styled.span`
 `
 
 export const ActionContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 1px;
 `
 export const Earned = styled.div`
   font-weight: 300;

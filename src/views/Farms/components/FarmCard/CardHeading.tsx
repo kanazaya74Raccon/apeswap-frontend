@@ -45,19 +45,19 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   addLiquidityUrl,
   bananaPrice,
   farmAPR,
-  removed
+  removed,
 }) => {
   return (
     <Flex>
-    <StyledBackground>
-      <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={109} height={109} />
+      <StyledBackground>
+        <Image src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} width={109} height={109} />
       </StyledBackground>
       <Flex flexDirection="column" alignItems="flex-start" justifyContent="center" ml="18px">
         <StyledHeading mb="4px">{lpLabel}</StyledHeading>
         {!removed && (
-         <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-         <StyledText fontFamily="poppins">APR:</StyledText>
-          {apr ? (
+          <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <StyledText fontFamily="poppins">APR:</StyledText>
+            {apr ? (
               <>
                 <ApyButton
                   lpLabel={lpLabel}
@@ -71,7 +71,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             ) : (
               <Skeleton height={24} width={80} />
             )}
-        </Text>)}
+          </Text>
+        )}
       </Flex>
     </Flex>
   )

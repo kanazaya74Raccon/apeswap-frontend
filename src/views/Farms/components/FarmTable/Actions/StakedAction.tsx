@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Button, Flex, Heading, useModal, IconButton, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
+import { Button, ButtonSquare, Flex, Heading, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -21,9 +21,20 @@ import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 import { ActionContainer, ActionTitles, ActionContent, Earned, StakedStyle, Title, Subtle } from './styles'
 
+const IconButtonWrapperStake = styled.div`
+ display: flex;
+ justify-content: flex-start;
+`
+
 const IconButtonWrapper = styled.div`
-  display: flex;
-  margin-top: 10px;
+ display: flex;
+ justify-content: flex-end;
+ margin-right: 52px;
+`
+
+const StyledIconButtonSquare = styled(IconButtonSquare)`
+  width: 34px;
+  height: 34px;
 `
 
 const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, addLiquidityUrl }) => {
@@ -104,71 +115,57 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
-    ) : (
       <IconButtonWrapper>
+      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+      </IconButtonWrapper>
+    ) : (
+      <IconButtonWrapperStake>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="yellow" onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="primary" width="14px" height="14px" />
-          </IconButton>
+          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="white" width="12px" height="12px" />
+          </StyledIconButtonSquare>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="yellow" onClick={onPresentDeposit}>
-            <AddIcon color="primary" width="20px" height="20px" />
-          </IconButton>
+          <StyledIconButtonSquare onClick={onPresentDeposit}>
+            <AddIcon color="white" width="16px" height="16px" />
+          </StyledIconButtonSquare>
         </Reward>
-      </IconButtonWrapper>
+      </IconButtonWrapperStake>
     )
   }
 
   if (!account) {
     return (
-      <ActionContainer>
-        <ActionTitles>
-          <Subtle>{TranslateString(999, 'START FARMING')}</Subtle>
-        </ActionTitles>
-        <ActionContent>
+        <IconButtonWrapper>
           <UnlockButton width="100%" />
-        </ActionContent>
-      </ActionContainer>
+        </IconButtonWrapper>
     )
   }
 
   if (isApproved) {
     if (rawStakedBalance) {
       return (
-            <Flex justifyContent="space-between" alignItems="center" ml="50px">
-              {renderStakingButtons()}
-            </Flex>
+        <IconButtonWrapper>
+          {renderStakingButtons()}
+        </IconButtonWrapper>
       )
     }
 
     return (
-      <ActionContainer>
-        <ActionTitles>
-          <Subtle>{TranslateString(999, 'STAKE')} </Subtle>
-          <Title>{lpSymbol}</Title>
-        </ActionTitles>
-        <ActionContent>
-          <Button onClick={onPresentDeposit} variant="secondary">
+        <IconButtonWrapper>
+          <ButtonSquare onClick={onPresentDeposit}>
             {TranslateString(999, 'Stake LP')}
-          </Button>
-        </ActionContent>
-      </ActionContainer>
+          </ButtonSquare>
+        </IconButtonWrapper>
     )
   }
 
   return (
-    <ActionContainer>
-      <ActionTitles>
-        <Subtle>{TranslateString(999, 'ENABLE FARM')}</Subtle>
-      </ActionTitles>
-      <ActionContent>
-        <Button disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+      <IconButtonWrapper>
+        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
           {TranslateString(999, 'Enable')}
-        </Button>
-      </ActionContent>
-    </ActionContainer>
+        </ButtonSquare>
+      </IconButtonWrapper>
   )
 }
 

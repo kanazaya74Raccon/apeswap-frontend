@@ -42,10 +42,9 @@ const CellInner = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  padding-right: 8px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    padding-right: 32px;
+    padding-right: 0px;
   }
 `
 
@@ -53,7 +52,6 @@ const CellInnerFarm = styled.div`
   padding: 24px 0px;
   display: flex;
   width: 100%;
-  max-width: 220px;
   align-items: center;
   padding-right: 8px;
 
@@ -64,29 +62,29 @@ const CellInnerFarm = styled.div`
 
 const StyledTr = styled.div`
   cursor: pointer;
-  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.isDark ? '#27262c' : '#faf9fa'}
 `
 
-const StyledTrBlank = styled.tr`
+const StyledTrBlank = styled.div`
   height: 10px;
 `
 
-const EarnedMobileCell = styled.td`
+const EarnedMobileCell = styled.div`
   padding: 16px 0 24px 16px;
 `
 
-const AprMobileCell = styled.td`
+const AprMobileCell = styled.div`
   padding-top: 16px;
   padding-bottom: 24px;
 `
 
-const FarmMobileCell = styled.td`
+const FarmMobileCell = styled.div`
   padding-top: 24px;
 `
 
@@ -108,20 +106,43 @@ const TagsContainer = styled.div`
   }
 `
 
-const StyledTd1 = styled.td`
+const StyledTd1 = styled.div`
   border-radius: 20px 0 0 20px;
   -moz-border-radius: 20px 0 0 20px;
 `
 
-const StyledTd2 = styled.td`
+const StyledTd2 = styled.div`
   border-right: #faf9fa;
   border-right-style: solid;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
 `
 
+const APRContainer = styled.div`
+  position: absolute;
+  left: 401px;
+  top: 19px;
+`
+
+const LiquidtyContainer = styled.div`
+  position: absolute;
+  left: 587px;
+`
+
+const EarnedContainer = styled.div`
+  position: absolute;
+  left: 803px;
+  top: 19px;
+`
+
 const StyledFlex = styled(Flex)`
   width: 100%;
+  position: relative;
+`
+
+const ArrowContainer = styled(Flex)`
+  position: absolute;
+  right: 23px;
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
@@ -155,48 +176,48 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               if (columnIndex === -1) {
                 return null
               }
-
+              
               switch (key) {
                 case 'details':
                   return (
-                    <StyledFlex alignItems="center">
+                    <ArrowContainer justifyContent="center" alignItems="center">
                       <HarvestAction {...props.earned} {...props.farm} />
-                      <td key={key}>
                         <CellInner>
                           <CellLayout>
                             <Details actionPanelToggled={actionPanelToggled} />
                           </CellLayout>
                         </CellInner>
-                      </td>
-                    </StyledFlex>
+                    </ArrowContainer>
                   )
                 case 'apr':
                   return (
-                    <td key={key}>
-                      <CellInner>
-                        <CellLayout>
+                      <APRContainer>
                           <Apr {...props.apr} hideButton={isMobile} />
-                        </CellLayout>
-                      </CellInner>
-                    </td>
+                      </APRContainer>
+                  )
+                case 'liquidity':
+                  return (
+                      <LiquidtyContainer>
+                         {React.createElement(cells[key], { ...props[key] })}
+                      </LiquidtyContainer>
+                  )
+                case 'earned':
+                  return (
+                      <EarnedContainer>
+                         {React.createElement(cells[key], { ...props[key] })}
+                      </EarnedContainer>
                   )
                 default:
                   return (
-                    <td key={key}>
                       <CellInner>
                         <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
                       </CellInner>
-                    </td>
                   )
               }
             })}
           </StyledFlex>
           {actionPanelToggled && details && (
-            <tr>
-              <td colSpan={6}>
                 <ActionPanel {...props} />
-              </td>
-            </tr>
           )}
         </StyledTr>
       )
@@ -205,14 +226,11 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     return (
       <StyledTr onClick={toggleActionPanel}>
         <StyledTd1>
-          <tr>
             <FarmMobileCell>
               <CellLayout>
                 <Farm {...props.farm} />
               </CellLayout>
             </FarmMobileCell>
-          </tr>
-          <tr>
             <EarnedMobileCell>
               <CellLayout label={TranslateString(1072, 'Earned')}>
                 <Earned {...props.earned} />
@@ -223,7 +241,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 <Apr {...props.apr} hideButton />
               </CellLayout>
             </AprMobileCell>
-          </tr>
         </StyledTd1>
         <StyledTd2>
           <CellInner>

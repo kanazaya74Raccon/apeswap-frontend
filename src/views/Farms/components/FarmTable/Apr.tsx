@@ -4,6 +4,7 @@ import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
@@ -20,7 +21,8 @@ export interface AprProps {
 
 const Container = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   color: ${({ theme }) => theme.colors.text};
 
   button {
@@ -33,10 +35,11 @@ const Container = styled.div`
       }
     }
   }
+
+  width: 184px;
 `
 
 const AprWrapper = styled.div`
-  min-width: 60px;
   text-align: left;
   font-size: 20px;
 `
@@ -47,12 +50,12 @@ const Apr: React.FC<AprProps> = ({ value, lpLabel, bananaPrice, originalValue, h
   return originalValue !== 0 ? (
     <Container>
       {originalValue ? (
-        <>
+        <Flex justifyContent="center">
+          <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
             <ApyButton lpLabel={lpLabel} rewardTokenPrice={bananaPrice} apy={new BigNumber(originalValue)} />
           )}
-          <AprWrapper>{value}%</AprWrapper>
-        </>
+        </Flex>
       ) : (
         <AprWrapper>{TranslateString(656, 'Loading...')}</AprWrapper>
       )}

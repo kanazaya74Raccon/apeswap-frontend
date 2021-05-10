@@ -31,16 +31,7 @@ const StyledTable = styled.table`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: #faf9fa;
-`
-
-const TableBody = styled.tbody`
-  & tr {
-    td {
-      font-size: 16px;
-      vertical-align: middle;
-    }
-  }
+  background-color: ${({ theme }) => theme.isDark ? 'black' : '#faf9fa'}
 `
 
 const TableContainer = styled.div`
@@ -79,7 +70,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <TableContainer>
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
-              <TableBody>
                 {rows.map((row, index) => {
                   return (
                     <div>
@@ -88,7 +78,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                   )
                   return <Row {...row.original} key={`table-row-${row.id}`} />
                 })}
-              </TableBody>
             </StyledTable>
           </TableWrapper>
           <ScrollButtonContainer>

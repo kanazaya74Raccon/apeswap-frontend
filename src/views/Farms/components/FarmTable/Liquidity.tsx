@@ -13,15 +13,14 @@ export interface LiquidityProps {
 }
 
 const LiquidityWrapper = styled.div`
-  min-width: 110px;
   font-weight: 600;
-  text-align: right;
-  margin-right: 2px;
 `
 
 const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  width: 190px;
 
   svg {
     margin-left: 14px;
