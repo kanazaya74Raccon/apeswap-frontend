@@ -741,7 +741,7 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
-  },  
+  },
   {
     sousId: 34,
     tokenName: 'BFT',
