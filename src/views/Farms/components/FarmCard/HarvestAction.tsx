@@ -21,7 +21,6 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const onReward = useReward(rewardRef, useHarvest(pid).onReward)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
-  const displayBalance = rawEarningsBalance.toLocaleString()
 
   return (
     <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>

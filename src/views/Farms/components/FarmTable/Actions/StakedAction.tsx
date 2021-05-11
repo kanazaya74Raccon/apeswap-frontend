@@ -6,8 +6,6 @@ import styled from 'styled-components'
 import {
   Button,
   ButtonSquare,
-  Flex,
-  Heading,
   useModal,
   IconButtonSquare,
   AddIcon,
@@ -90,9 +88,6 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === pid)
-  const totalValuePersonalFormated = filteredFarmStats
-    ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
 
   const [onPresentDeposit] = useModal(
     <DepositModal

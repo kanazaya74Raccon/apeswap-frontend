@@ -5,7 +5,7 @@ import useReward from 'hooks/useReward'
 
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
+import { Button, Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -23,9 +23,11 @@ interface FarmCardActionsProps {
 
 const IconButtonWrapper = styled.div`
   display: flex;
-  svg {
-    width: 20px;
-  }
+`
+
+const StyledIconButtonSquare = styled(IconButtonSquare)`
+  width: 34px;
+  height: 34px;
 `
 
 const StakeAction: React.FC<FarmCardActionsProps> = ({
@@ -81,14 +83,14 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     ) : (
       <IconButtonWrapper>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="primary" width="14px" height="14px" />
-          </IconButton>
+          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="white" width="12px" height="12px" />
+          </StyledIconButtonSquare>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentDeposit}>
-            <AddIcon color="primary" width="20px" height="20px" />
-          </IconButton>
+          <StyledIconButtonSquare onClick={onPresentDeposit}>
+            <AddIcon color="white" width="16px" height="16px" />
+          </StyledIconButtonSquare>
         </Reward>
       </IconButtonWrapper>
     )

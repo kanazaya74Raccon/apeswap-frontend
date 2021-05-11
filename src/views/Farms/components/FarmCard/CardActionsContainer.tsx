@@ -14,8 +14,14 @@ import Reward from 'react-rewards'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 
-const Action = styled.div`
+const StyledText = styled(Text)`
   padding-top: 16px;
+  font-weight: bold;
+  font-size: 12px;
+`
+
+const StyledFlex = styled(Flex)`
+  margin-left: 136px;
 `
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -34,7 +40,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = useFarmFromSymbol(farm.lpSymbol)
-  const { allowance, tokenBalance, stakedBalance, earnings } = useFarmUser(pid)
+  const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -80,27 +86,12 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
   }
 
   return (
-    <Action>
-      <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
-          {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
-          BANANA
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {TranslateString(999, 'Earned')}
-        </Text>
-      </Flex>
-      <HarvestAction earnings={earnings} pid={pid} />
-      <Flex>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
-          {lpName}
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+      <StyledFlex>
+        <StyledText fontFamily="poppins">
           {TranslateString(999, 'Staked')}
-        </Text>
-      </Flex>
+        </StyledText>
       {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
-    </Action>
+      </StyledFlex>
   )
 }
 

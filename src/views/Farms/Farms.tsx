@@ -8,7 +8,6 @@ import { provider } from 'web3-core'
 import { Image, Heading, RowType, Toggle, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
-import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import {
   useFarms,
@@ -240,6 +239,10 @@ const StyledLabelContainerEarned = styled.div`
   }
 `
 
+const CardContainer = styled.div`
+    margin-top: 17px;
+`
+
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
@@ -272,6 +275,16 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
   margin-left: 7px;
   margin-top: 2px;
   'rotate(180deg)' : 'rotate(0)'
+`
+
+const FlexLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  & > * { 
+    width: 100%;
+    margin-bottom: 32px;
+  }
 `
 
 const Farms: React.FC = () => {
@@ -479,7 +492,7 @@ const Farms: React.FC = () => {
     }
 
     return (
-      <div>
+      <CardContainer>
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
@@ -510,7 +523,7 @@ const Farms: React.FC = () => {
             ))}
           </Route>
         </FlexLayout>
-      </div>
+      </CardContainer>
     )
   }
 

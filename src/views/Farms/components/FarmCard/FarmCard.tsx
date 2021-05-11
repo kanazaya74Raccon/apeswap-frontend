@@ -6,7 +6,6 @@ import { useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
 import useI18n from 'hooks/useI18n'
-import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -85,8 +84,9 @@ const FCard = styled.div`
   justify-content: space-around;
   position: relative;
   text-align: center;
-  max-width: 356px;
-  background: #ffffff;
+  max-width: 530px;
+  width: 100%;
+  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 `
@@ -101,7 +101,6 @@ const Divider = styled.div`
 const StyledContainer = styled.div`
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 15px;
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -160,32 +159,29 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const FarmStyle = styles[farm.style]
 
+  const toggleExpand = () => {
+    setShowExpandableSection(!showExpandableSection)
+  }
+
   return (
     <FCard>
       {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
-        // multiplier={farm.multiplier}
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
+        pid={farm.pid}
         apr={farm.apr}
         addLiquidityUrl={addLiquidityUrl}
         bananaPrice={bananaPrice}
         farmAPR={farmAPR}
         removed={removed}
+        showExpandableSection={showExpandableSection}
+        onClick={toggleExpand}
       />
       <StyledContainer>
-        <Flex justifyContent="space-between">
-          <Text>{TranslateString(318, 'Earn')}:</Text>
-          <Text bold>{earnLabel}</Text>
-        </Flex>
-        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
-        <Divider />
-        <ExpandableSectionButton
-          onClick={() => setShowExpandableSection(!showExpandableSection)}
-          expanded={showExpandableSection}
-        />
         <ExpandingWrapper expanded={showExpandableSection}>
+        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
           <DetailsSection
             removed={removed}
             bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
