@@ -11,10 +11,10 @@ const FarmTabButtons = () => {
   return (
     <Wrapper>
       <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="yellow">
-        <ButtonMenuItem as={Link} to={`${url}`} fontFamily="poppins">
+        <ButtonMenuItem as={Link} to={`${url}`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Active')}
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/history`} fontFamily="poppins">
+        <ButtonMenuItem as={Link} to={`${url}/history`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
@@ -25,9 +25,14 @@ const FarmTabButtons = () => {
 export default FarmTabButtons
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 84px;
-  margin-right: 74px;
+  margin-left: 15px;
+  margin-right: 10px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 84px;
+    margin-right: 74px;
+  }
 `

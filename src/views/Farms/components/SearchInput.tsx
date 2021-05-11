@@ -6,7 +6,11 @@ const StyledInput = styled(Input)`
   border-radius: 20px;
   background: #f0f0f0;
   margin-left: auto;
-  height: 32px;
+  height: 28px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    height: 32px;
+  }
 `
 
 const StyledSearchIcon = styled(SearchIcon2)`
@@ -19,6 +23,8 @@ const StyledSearchIcon = styled(SearchIcon2)`
 
 const InputWrapper = styled.div`
   position: relative;
+  width: 140px;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 244px;
     display: block;

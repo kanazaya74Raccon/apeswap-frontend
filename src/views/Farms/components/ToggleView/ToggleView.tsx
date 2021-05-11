@@ -9,10 +9,14 @@ interface ToggleViewProps {
 }
 
 const StyledFlex = styled(Flex)`
-  margin-left: -8px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 3px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 0;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 30px;
   }
 `
 const StyledIconButton = styled.div`
@@ -22,8 +26,12 @@ const StyledIconButton = styled.div`
 
 const StyledListViewIcon = styled(ListViewIcon)`
   width: 30px;
-  margin-right: 26px;
+  margin-right: 5px;
   height: '100%';
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 26px;
+  }
 `
 
 const StyledCardViewIcon = styled(CardViewIcon)`

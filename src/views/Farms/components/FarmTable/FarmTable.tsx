@@ -61,7 +61,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   }
 
   /* eslint-disable no-debugger */
-  debugger;
+  debugger
   /* eslint-enable no-debugger */
 
   return (
@@ -70,7 +70,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <TableContainer>
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
-              {rows.map(row => {
+              {rows.map((row) => {
                 return <Row {...row.original} key={row.id} />
               })}
             </StyledTable>

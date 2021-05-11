@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Image, Heading, RowType, Toggle, Text, Card, Checkbox } from '@apeswapfinance/uikit'
+import { Image, Heading, RowType, Toggle, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import FlexLayout from 'components/layout/Flex'
@@ -49,6 +49,7 @@ const ControlContainer = styled(Card)`
   justify-content: center;
   flex-direction: column;
   overflow: visible;
+  padding-bottom: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -71,15 +72,22 @@ const ToggleWrapper = styled.div`
   margin-left: 10px;
 
   ${Text} {
-    margin-left: 8px;
+    margin-left: 4px;
+  ${({ theme }) => theme.mediaQueries.sm} { margin-left: 8px;}
   }
 `
 
 const LabelWrapper = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   > ${Text} {
     font-size: 12px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+    align-items: center;
   }
 `
 
@@ -97,9 +105,9 @@ const FilterContainer = styled.div`
 
 const ViewControls = styled.div`
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
 
   > div {
@@ -107,7 +115,8 @@ const ViewControls = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     width: auto;
 
     > div {
@@ -124,8 +133,8 @@ const HeadingContainer = styled.div`
 
 const Header = styled.div`
   padding-top: 36px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
   background-repeat: no-repeat;
   background-size: cover;
@@ -139,8 +148,13 @@ const Header = styled.div`
 `
 
 const StyledText = styled(Text)`
+font-weight: 400;
+font-size: 12px;
+  
+${({ theme }) => theme.mediaQueries.sm} {
   font-weight: 700;
   font-size: 15px;
+}
 `
 
 interface CheckboxProps {
@@ -156,47 +170,85 @@ const StyledImage = styled.img`
   height: 187px;
   width: 134px;
   position: absolute;
-  right: 0px;
-  bottom: 21px;
+  right: -10px;
+  bottom: 81px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    bottom: 51px;
+    right: 0px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    bottom: 0px;
+    right: 0px;
+  }
 `
 
 const ContainerLabels = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
-  margin-top: 34px;
+  margin-top: 24px;
   height: 32px;
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-top: 34px;
+  }
 `
 
 const StyledLabelContainerHot = styled.div`
+
+${({ theme }) => theme.mediaQueries.md} {
   position: absolute;
   top: 6px;
   left: 38px;
+}
 `
 
 const StyledLabelContainerLP = styled.div`
+${({ theme }) => theme.mediaQueries.md} {
   position: absolute;
   top: 6px;
   left: 169px;
+}
 `
 
 const StyledLabelContainerAPR = styled.div`
+${({ theme }) => theme.mediaQueries.md} {
   position: absolute;
   top: 6px;
   left: 409px;
+}
 `
 
 const StyledLabelContainerLiquidity = styled.div`
+${({ theme }) => theme.mediaQueries.md} {
   position: absolute;
   top: 6px;
   left: 621px;
+}
 `
 
 const StyledLabelContainerEarned = styled.div`
+${({ theme }) => theme.mediaQueries.md} {
   position: absolute;
   top: 6px;
   left: 801px;
+}
+`
+
+const StyledHeading = styled(Heading)`
+  font-size: 32px;
+  max-width: 176px !important;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 60px;
+    max-width: 600px !important;
+  }
 `
 
 const StyledLabel = styled.div<LabelProps>`
@@ -209,6 +261,18 @@ const StyledLabel = styled.div<LabelProps>`
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
   background-color: ${({ active }) => active && '#FFB300'};
+`
+
+interface DropdownProps {
+  down?: boolean
+}
+
+const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
+  color: white;
+  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
+  margin-left: 7px;
+  margin-top: 2px;
+  'rotate(180deg)' : 'rotate(0)'
 `
 
 const Farms: React.FC = () => {
@@ -466,9 +530,9 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <Heading as="h1" size="xxl" mb="12px" mt={0} style={{ maxWidth: '600px' }}>
+          <StyledHeading as="h1" mb="12px" mt={0}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-          </Heading>
+          </StyledHeading>
         </HeadingContainer>
       </Header>
 
@@ -476,7 +540,7 @@ const Farms: React.FC = () => {
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search
               </StyledText>
@@ -504,17 +568,17 @@ const Farms: React.FC = () => {
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              APR{sortOption === "apr" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
             </StyledLabel>
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-              Liquidity
+              Liquidity{sortOption === "liquidity" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
             </StyledLabel>
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              Earned{sortOption === "earned" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
             </StyledLabel>
           </StyledLabelContainerEarned>
           {/* <StyledLabelContainer>

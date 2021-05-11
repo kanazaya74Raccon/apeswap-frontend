@@ -196,9 +196,15 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                     </APRContainer>
                   )
                 case 'liquidity':
-                  return <LiquidtyContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</LiquidtyContainer>
+                  return (
+                    <LiquidtyContainer key={key}>
+                      {React.createElement(cells[key], { ...props[key] })}
+                    </LiquidtyContainer>
+                  )
                 case 'earned':
-                  return <EarnedContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
+                  return (
+                    <EarnedContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
+                  )
                 default:
                   return (
                     <CellInner key={key}>
