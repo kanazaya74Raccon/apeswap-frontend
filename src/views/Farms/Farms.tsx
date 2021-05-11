@@ -148,13 +148,13 @@ const Header = styled.div`
 `
 
 const StyledText = styled(Text)`
-font-weight: 400;
-font-size: 12px;
-  
-${({ theme }) => theme.mediaQueries.sm} {
-  font-weight: 700;
-  font-size: 15px;
-}
+  font-weight: 400;
+  font-size: 12px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-weight: 700;
+    font-size: 15px;
+  }
 `
 
 interface CheckboxProps {
@@ -201,44 +201,43 @@ const ContainerLabels = styled.div`
 `
 
 const StyledLabelContainerHot = styled.div`
-
-${({ theme }) => theme.mediaQueries.md} {
-  position: absolute;
-  top: 6px;
-  left: 38px;
-}
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    top: 6px;
+    left: 38px;
+  }
 `
 
 const StyledLabelContainerLP = styled.div`
-${({ theme }) => theme.mediaQueries.md} {
-  position: absolute;
-  top: 6px;
-  left: 169px;
-}
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    top: 6px;
+    left: 169px;
+  }
 `
 
 const StyledLabelContainerAPR = styled.div`
-${({ theme }) => theme.mediaQueries.md} {
-  position: absolute;
-  top: 6px;
-  left: 409px;
-}
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    top: 6px;
+    left: 409px;
+  }
 `
 
 const StyledLabelContainerLiquidity = styled.div`
-${({ theme }) => theme.mediaQueries.md} {
-  position: absolute;
-  top: 6px;
-  left: 621px;
-}
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    top: 6px;
+    left: 621px;
+  }
 `
 
 const StyledLabelContainerEarned = styled.div`
-${({ theme }) => theme.mediaQueries.md} {
-  position: absolute;
-  top: 6px;
-  left: 801px;
-}
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    top: 6px;
+    left: 801px;
+  }
 `
 
 const StyledHeading = styled(Heading)`
@@ -568,17 +567,26 @@ const Farms: React.FC = () => {
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR{sortOption === "apr" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
+              APR
+              {sortOption === 'apr' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
             </StyledLabel>
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-              Liquidity{sortOption === "liquidity" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
+              Liquidity
+              {sortOption === 'liquidity' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
             </StyledLabel>
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned{sortOption === "earned" ? <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === "desc"}/> : null}
+              Earned
+              {sortOption === 'earned' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
             </StyledLabel>
           </StyledLabelContainerEarned>
           {/* <StyledLabelContainer>

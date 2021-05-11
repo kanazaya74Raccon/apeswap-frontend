@@ -137,7 +137,7 @@ const EarnedContainer = styled.div`
 
 const StyledFlex = styled(Flex)`
   width: 100%;
-  position: relative;
+  position: relative; 
 `
 
 const ArrowContainer = styled(Flex)`
