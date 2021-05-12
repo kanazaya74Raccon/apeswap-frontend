@@ -99,7 +99,7 @@ const Nfa = () => {
   return (
     <Page>
       <Link to="/nft">
-        <Button size="sm" style={{ marginTop: '30px' }}>
+        <Button size="sm" style={{ marginTop: '25px' }}>
           {TranslateString(999, 'Back')}
         </Button>
       </Link>
