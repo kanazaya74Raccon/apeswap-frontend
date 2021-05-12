@@ -24,7 +24,7 @@ const DropDownContent = styled.div`
   display: none;
   position: absolute;
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.textSubtle};
   min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -89,16 +89,16 @@ const SearchBox = styled.input`
   font-size: 20px;
   display: flex;
   border: none;
-  -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.secondary};
-  box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.secondary};
+  -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
+  box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props. theme.colors.textSubtle};
   &:focus {
     outline: none !important;
     border-color: ${(props) => props.theme.colors};
   }
   &::placeholder {
-    color: ${(props) => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.textSubtle};
     text-align: center;
   }
 `

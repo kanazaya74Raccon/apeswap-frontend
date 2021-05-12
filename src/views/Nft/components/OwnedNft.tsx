@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Card } from '@apeswapfinance/uikit'
+import { Card, Text } from '@apeswapfinance/uikit'
 import { useProfile } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import WalletNft from './WalletNft'
@@ -11,9 +11,9 @@ const OwnedNfts = () => {
     <>
       {profile?.ownedNfts && (
         <>
-          <Heading as="h1" size="lg" color="secondary" paddingTop="25px">
+          <Text fontSize="25px" style={{ color: 'subtle', paddingTop: '25px' }}>
             {TranslateString(999, 'Your Apes')}
-          </Heading>
+          </Text>
           <Card
             style={{
               display: 'flex',

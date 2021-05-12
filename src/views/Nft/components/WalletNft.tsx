@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Nft } from 'config/constants/types'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { Text, Button, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Image from './Image'
@@ -93,26 +94,37 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
   return (
     <CardFlip>
       <CardFlipInner>
-        <CardFlipFront>
-          <Image src={nft.image} alt={nft.image} rarityTier={nft.attributes.rarityTierNumber} />
-          <Text fontSize="20px" paddingTop="20px" color="secondary">
-            {nft.name} - #{pad(`${nft.index}`, '4')}
-          </Text>
-        </CardFlipFront>
+        <Link to={`/nft/${nft.index}`}>
+          <CardFlipFront>
+            <Image src={nft.image} alt={nft.image} rarityTier={nft.attributes.rarityTierNumber} />
+            <Text fontSize="20px" paddingTop="20px" color="subtle">
+              {nft.name} - #{pad(`${nft.index}`, '4')}
+            </Text>
+          </CardFlipFront>
+        </Link>
         <CardFlipBack>
-          {Object.keys(nft.attributes).map((key, index) => (
-            <Row>
-              <Text as="p" color="secondary" style={{ paddingLeft: '10px', textAlign: 'left' }}>
-                {nfaAttributes[index]}:
-              </Text>
-              <Text as="p" color="secondary" style={{ paddingRight: '10px', textAlign: 'right' }}>
-                {nft.attributes[key]}
-              </Text>
-            </Row>
-          ))}
+          <Link to={`/nft/${nft.index}`}>
+            {Object.keys(nft.attributes).map((key, index) => (
+              <Row>
+                <Text as="p" color="subtle" style={{ paddingLeft: '10px', textAlign: 'left' }}>
+                  {nfaAttributes[index]}:
+                </Text>
+                <Text as="p" color="subtle" style={{ paddingRight: '10px', textAlign: 'right' }}>
+                  {nft.attributes[key]}
+                </Text>
+              </Row>
+            ))}
+          </Link>
           <Button
             variant="primary"
-            style={{ position: 'absolute', borderRadius: '0px', width: '100%', height: '50px', left: '0', bottom: '0' }}
+            style={{
+              position: 'absolute',
+              borderRadius: '0px',
+              width: '100%',
+              height: '50px',
+              left: '0',
+              bottom: '0'
+            }}
             onClick={onPresentTransferModal}
           >
             {TranslateString(999, 'Transfer')}
