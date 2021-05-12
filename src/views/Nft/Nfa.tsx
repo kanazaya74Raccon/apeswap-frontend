@@ -41,10 +41,14 @@ const DetailsHolder = styled.div`
   margin-top: 35px;
   display: flex;
   flex-direction: column;
+  background-color: ${(props) => props.theme.colors.card};
+  box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
   ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 0px;
     width: 350px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 25px;
     width: 450px;
   }
   align-items: center;
@@ -62,6 +66,12 @@ const SalesContainer = styled.div`
 const SalesItem = styled.div`
   align-self: center;
   justify-self: right;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 14px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 16px;
+  }
   color: ${(props) => props.theme.colors.textSubtle};
   font-family: ${(props) => props.theme.fontFamily.poppins};
 `
@@ -88,17 +98,17 @@ const Nfa = () => {
 
   return (
     <Page>
+      <Link to="/nft">
+        <Button size="sm" style={{ marginTop: '30px' }}>
+          {TranslateString(999, 'Back')}
+        </Button>
+      </Link>
       <PageHolder>
         <NfaHolder>
           <NfaImageHolder>
             <Image src={nfa.image} alt="" originalLink="" rarityTier={nfa.attributes.rarityTierNumber} />
           </NfaImageHolder>
           <NfaAttributes nfa={nfa} />
-          <Link to="/nft">
-            <Button size="sm" style={{ marginTop: '30px' }}>
-              {TranslateString(999, 'Back')}
-            </Button>
-          </Link>
         </NfaHolder>
         <DetailsHolder>
           <Text fontSize="32px" color="primary">
