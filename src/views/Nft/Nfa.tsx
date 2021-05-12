@@ -41,6 +41,22 @@ const DetailsHolder = styled.div`
   margin-top: 35px;
   display: flex;
   flex-direction: column;
+  // background-color: ${(props) => props.theme.colors.card};
+  // box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 0px;
+    width: 350px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 25px;
+    width: 450px;
+  }
+  align-items: center;
+`
+
+const BoxShadow = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: ${(props) => props.theme.colors.card};
   box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -111,46 +127,56 @@ const Nfa = () => {
           <NfaAttributes nfa={nfa} />
         </NfaHolder>
         <DetailsHolder>
-          <Text fontSize="32px" color="primary">
-            {TranslateString(999, `${nfa.name} ${nfa.index}`)}
-          </Text>
-          <Text fontFamily="poppins" fontSize="20px" color="textSubtle">
-            {TranslateString(999, nfa.attributes.rarityTierName)}
-          </Text>
-          <Text fontFamily="poppins" fontSize="20px" color="textSubtle">
-            {TranslateString(
-              999,
-              `Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`,
-            )}
-          </Text>
-          <a
-            href={`https://nftkey.app/collections/nfas/ape-details/?tokenId=${id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ textDecoration: 'underline' }}>
-              {TranslateString(999, 'Marketplace')}
+          <BoxShadow>
+            <Text fontSize="32px" color="primary">
+              {TranslateString(999, `${nfa.name} ${nfa.index}`)}
             </Text>
-          </a>
-          {sale?.length > 0 && (
-            <Text fontFamily="poppins" fontSize="23px" color="textSubtle" style={{ margin: '35px 0px 15px 0px' }}>
-              {TranslateString(999, 'Previous Sales')}
+            <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+              {TranslateString(999, nfa.attributes.rarityTierName)}
             </Text>
-          )}
-          {sale?.map((transaction) => (
+            <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+              {TranslateString(
+                999,
+                `Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`,
+              )}
+            </Text>
             <a
-              href={`https://bscscan.com/tx/${transaction.transactionHash}`}
+              href={`https://nftkey.app/collections/nfas/ape-details/?tokenId=${id}`}
               target="_blank"
               rel="noopener noreferrer"
-              key={transaction.transactionHash}
             >
-              <SalesContainer>
-                <SalesItem key={transaction.tokenId}>${getUsd(transaction.value)} USD</SalesItem>
-                <SalesItem key={transaction.value}>{bigNumber(transaction.value)} BNB</SalesItem>
-                <SalesItem key={transaction.blockNumber}>{transaction.blockNumber} Block</SalesItem>
-              </SalesContainer>
+              <Text
+                fontFamily="poppins"
+                fontSize="20px"
+                color="textSubtle"
+                style={{ textDecoration: 'underline', margin: '5px 0px 20px 0px' }}
+              >
+                {TranslateString(999, 'Marketplace')}
+              </Text>
             </a>
-          ))}
+          </BoxShadow>
+          {sale?.length > 0 && (
+            <BoxShadow style={{ marginTop: '25px', padding: '5px 0px 10px 0px' }}>
+              <Text fontFamily="poppins" fontSize="23px" color="textSubtle" style={{ margin: '10px 0px 15px 0px' }}>
+                {TranslateString(999, 'Previous Sales')}
+              </Text>
+
+              {sale?.map((transaction) => (
+                <a
+                  href={`https://bscscan.com/tx/${transaction.transactionHash}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={transaction.transactionHash}
+                >
+                  <SalesContainer>
+                    <SalesItem key={transaction.tokenId}>${getUsd(transaction.value)} USD</SalesItem>
+                    <SalesItem key={transaction.value}>{bigNumber(transaction.value)} BNB</SalesItem>
+                    <SalesItem key={transaction.blockNumber}>{transaction.blockNumber} Block</SalesItem>
+                  </SalesContainer>
+                </a>
+              ))}
+            </BoxShadow>
+          )}
         </DetailsHolder>
       </PageHolder>
     </Page>
