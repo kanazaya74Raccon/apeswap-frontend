@@ -41,7 +41,12 @@ const DetailsHolder = styled.div`
   margin-top: 35px;
   display: flex;
   flex-direction: column;
-  width: 450px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    width: 350px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 450px;
+  }
   align-items: center;
 `
 

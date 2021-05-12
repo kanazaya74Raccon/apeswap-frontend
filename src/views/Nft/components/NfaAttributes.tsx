@@ -37,8 +37,6 @@ const ToolTipText = styled.span`
   text-align: center;
   border-radius: 6px;
   padding: 6.5px;
-
-  /* Position the tooltip */
   position: absolute;
   z-index: 100;
 `
