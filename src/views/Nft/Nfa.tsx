@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Page from 'components/layout/Page'
-import { apiBaseUrl } from 'hooks/api'
+import { apiBaseUrl, useGetNfaSales, SaleHistory } from 'hooks/api'
 import { usePriceBnbBusd } from 'state/hooks'
 import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
@@ -61,22 +61,13 @@ const SalesItem = styled.div`
   font-family: ${(props) => props.theme.fontFamily.poppins};
 `
 
-export interface SaleHistory {
-  from: string
-  to: string
-  tokenId: number
-  value: string
-  transactionHash: string
-  blockNumber: number
-}
-
 const Nfa = () => {
-  const [sale, setSale] = useState<SaleHistory[] | null>(null)
   const { id: idStr }: { id: string } = useParams()
   const id = Number(idStr)
   const TranslateString = useI18n()
   const nfa = nfts.find((nft) => nft.index === id)
   const bnbPrice = usePriceBnbBusd()
+  const sale = useGetNfaSales(id)
 
   const bigNumber = (num) => {
     return num / 1e18
@@ -85,19 +76,6 @@ const Nfa = () => {
   const getUsd = (num) => {
     return (bnbPrice.c[0] * bigNumber(num)).toFixed(2)
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${apiBaseUrl}/nfas/history/${id}`)
-        const responsedata: SaleHistory[] = await response.json()
-        setSale(responsedata)
-      } catch (error) {
-        console.error('Unable to fetch data:', error)
-      }
-    }
-    fetchData()
-  }, [setSale, id])
 
   if (!nfa) {
     return <Redirect to="/404" />
