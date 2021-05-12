@@ -170,7 +170,7 @@ const Nfa = () => {
                 >
                   <SalesContainer>
                     <SalesItem key={transaction.tokenId}>${getUsd(transaction.value)} USD</SalesItem>
-                    <SalesItem key={transaction.value}>{bigNumber(transaction.value)} BNB</SalesItem>
+                    <SalesItem key={transaction.value}>{bigNumber(transaction.value).toFixed(3)} BNB</SalesItem>
                     <SalesItem key={transaction.blockNumber}>{transaction.blockNumber} Block</SalesItem>
                   </SalesContainer>
                 </a>
