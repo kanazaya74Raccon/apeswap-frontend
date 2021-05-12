@@ -3,14 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import {
-  Button,
-  ButtonSquare,
-  useModal,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-} from '@apeswapfinance/uikit'
+import { Button, ButtonSquare, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'

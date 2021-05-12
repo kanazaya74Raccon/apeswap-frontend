@@ -80,16 +80,39 @@ const StyledText3 = styled(Text)`
   }
 `
 
+const StyledText4 = styled(Text)`
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 1px;
+  color: #38a611;
+  display: none;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    display: flex;
+    font-size: 25px;
+    line-height: 29px;
+  }
+`
+
 const StyledFlexContainer = styled(Flex)`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   margin-left: 6px;
   margin-right: 15px;
   flex: 1;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 15px;
+    flex-direction: column;
+    justify-content: center;
+  }
+`
+
+const StyledFlexEarned = styled(Flex)`
+  margin-right: 10px;
+  
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-right: 0px; 
   }
 `
 
@@ -103,6 +126,40 @@ const LabelContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+`
+
+const LabelContainer2 = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    justify-content: space-between;
+    align-items: center;
+  }
+`
+
+const FlexSwitch = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    flex-direction: row-reverse;
+  }
+`
+
+const StyledAPRText = styled.div`
+  font-size: 10px;
+  line-height: 11px;
+  letter-spacing: 1px;
+  margin-left: 5px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 20px;
+    line-height: 23px;
   }
 `
 
@@ -154,7 +211,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
               {apr ? (
-                <>
+                <FlexSwitch>
                   <ApyButton
                     lpLabel={lpLabel}
                     rewardTokenName="BANANA"
@@ -162,26 +219,31 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                     rewardTokenPrice={bananaPrice}
                     apy={apr}
                   />
+                  <StyledAPRText>
                   {farmAPR}%
-                </>
+                  </StyledAPRText>
+                </FlexSwitch>
               ) : (
                 <Skeleton height={24} width={80} />
               )}
             </Text>
           )}
         </LabelContainer>
-        <LabelContainer>
-          <Flex flexDirection="column">
+        <LabelContainer2>
+          <StyledFlexEarned flexDirection="column">
+            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+              {TranslateString(999, 'Banana ')}
+            </StyledText4>
             <StyledText2 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, 'Banana Earned')}
+              {TranslateString(999, 'Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
-          </Flex>
+          </StyledFlexEarned>
           <ButtonContainer>
-          {!account ? <UnlockButton /> : <HarvestAction earnings={earnings} pid={pid} />}
-          <ExpandableSectionButton onClick={onClick} expanded={showExpandableSection} />
+            {!account ? <UnlockButton /> : <HarvestAction earnings={earnings} pid={pid} />}
+            <ExpandableSectionButton onClick={onClick} expanded={showExpandableSection} />
           </ButtonContainer>
-        </LabelContainer>
+        </LabelContainer2>
       </StyledFlexContainer>
     </Flex>
   )

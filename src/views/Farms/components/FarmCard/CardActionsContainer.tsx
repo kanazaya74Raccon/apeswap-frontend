@@ -86,12 +86,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
   }
 
   return (
-      <StyledFlex>
-        <StyledText fontFamily="poppins">
-          {TranslateString(999, 'Staked')}
-        </StyledText>
+    <StyledFlex>
+      <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
       {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
-      </StyledFlex>
+    </StyledFlex>
   )
 }
 

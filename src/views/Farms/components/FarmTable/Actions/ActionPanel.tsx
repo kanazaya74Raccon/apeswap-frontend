@@ -219,7 +219,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
         </ActionContainer>
       </Flex>
       <StyledLinkExternal href={bsc}>{TranslateString(999, 'View on BscScan')}</StyledLinkExternal>
-      {/* <StyledLinkExternal href={addLiquidityUrl}>{TranslateString(999, 'Stake')}</StyledLinkExternal> */}
     </Container>
   )
 }

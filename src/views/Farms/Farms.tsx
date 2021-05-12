@@ -240,7 +240,7 @@ const StyledLabelContainerEarned = styled.div`
 `
 
 const CardContainer = styled.div`
-    margin-top: 17px;
+  margin-top: 17px;
 `
 
 const StyledHeading = styled(Heading)`
@@ -250,6 +250,16 @@ const StyledHeading = styled(Heading)`
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 60px;
     max-width: 600px !important;
+  }
+`
+
+const StyledPage = styled(Page)`
+  padding-left: 5px;
+  padding-right: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `
 
@@ -281,7 +291,7 @@ const FlexLayout = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  & > * { 
+  & > * {
     width: 100%;
     margin-bottom: 32px;
   }
@@ -491,6 +501,10 @@ const Farms: React.FC = () => {
       return <Table data={rowData} columns={columns} />
     }
 
+    //         /* eslint-disable no-debugger */
+    // debugger;
+    // /* eslint-enable no-debugger */
+
     return (
       <CardContainer>
         <FlexLayout>
@@ -548,7 +562,7 @@ const Farms: React.FC = () => {
         </HeadingContainer>
       </Header>
 
-      <Page width="1130px">
+      <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
@@ -607,7 +621,7 @@ const Farms: React.FC = () => {
             </StyledLabelContainer> */}
         </ContainerLabels>
         {renderContent()}
-      </Page>
+      </StyledPage>
     </>
   )
 }

@@ -119,6 +119,13 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
+
+  /* eslint-disable no-debugger */
+  debugger;
+  /* eslint-enable no-debugger */
+
+
+
   const TranslateString = useI18n()
 
   const yourStats = useStats()
@@ -189,6 +196,9 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
             lpLabel={lpLabel}
             addLiquidityUrl={addLiquidityUrl}
             farmStats={filteredFarmStats}
+            // apr={farm.apr}
+            multiplier={farm.multiplier}
+            pid={farm.pid}
           />
         </ExpandingWrapper>
       </StyledContainer>

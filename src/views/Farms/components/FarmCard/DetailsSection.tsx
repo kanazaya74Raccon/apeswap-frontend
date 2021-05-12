@@ -1,8 +1,10 @@
 import React from 'react'
+import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
+import Multiplier, { MultiplierProps } from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -11,6 +13,8 @@ export interface ExpandableSectionProps {
   lpLabel?: string
   addLiquidityUrl?: string
   farmStats?: FarmPool
+  multiplier?: string
+  pid?: number
 }
 
 const Wrapper = styled.div`
@@ -33,6 +37,17 @@ const StyledLinkExternal = styled(LinkExternal)`
   }
 `
 
+const ValueWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0px;
+`
+
+const StyledText = styled(Text)`
+  font-weight: 700;
+`
+
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   removed,
@@ -40,6 +55,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
   farmStats,
+  multiplier
+  // pid
 }) => {
   const TranslateString = useI18n()
 
@@ -47,8 +64,28 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
+    // const yo = multiplier;
+
+      /* eslint-disable no-debugger */
+  // debugger;
+  /* eslint-enable no-debugger */
+
   return (
     <Wrapper>
+      <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {TranslateString(999, 'Multiplier:')}
+              </StyledText>
+              <Multiplier multiplier={multiplier} />
+            </ValueWrapper>
+            {/* <ValueWrapper>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {TranslateString(999, 'Stake:')}
+              </StyledText>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {farm.lpSymbol}
+              </StyledText>
+            </ValueWrapper> */}
       <Flex justifyContent="space-between">
         <Text>{TranslateString(316, 'Stake')}:</Text>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
