@@ -40,7 +40,7 @@ const PageMeta = () => {
       })}`
   const pageMeta = customMeta[pathname] || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  const pageTitle = bananaPriceUsdDisplay ? [title, bananaPriceUsdDisplay].join(' - ') : title
+  const pageTitle = bananaPriceUsdDisplay ? [bananaPriceUsdDisplay, title].join(' - ') : title
 
   return (
     <Helmet>
