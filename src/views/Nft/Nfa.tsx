@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Page from 'components/layout/Page'
-import { apiBaseUrl, useGetNfaSales, SaleHistory } from 'hooks/api'
+import { useGetNfaSales } from 'hooks/api'
 import { usePriceBnbBusd } from 'state/hooks'
 import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
