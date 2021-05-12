@@ -1,0 +1,34 @@
+import { PageMeta } from './types'
+
+export const DEFAULT_META: PageMeta = {
+  title: 'ApeSwap',
+  description: 'Cheaper and faster than UniSwap? Discover ApeSwap, the go to AMM and yield farm for apes by apes.',
+  image: 'https://apeswap.finance/logo.png',
+}
+
+export const customMeta: { [key: string]: PageMeta } = {
+  '/': {
+    title: 'Home | ApeSwap',
+  },
+  '/stats': {
+    title: 'Ape Stats | ApeSwap',
+  },
+  '/nft': {
+    title: 'Collectibles | ApeSwap',
+  },
+  '/farms': {
+    title: 'Farms | ApeSwap',
+  },
+  '/pools': {
+    title: 'Pools | ApeSwap',
+  },
+  '/lottery': {
+    title: 'Lottery | ApeSwap',
+  },
+  '/iao': {
+    title: 'Initial Ape Offering | ApeSwap',
+  },
+  '/apezone': {
+    title: 'ApeZone | ApeSwap',
+  },
+}

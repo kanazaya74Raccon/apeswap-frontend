@@ -132,3 +132,9 @@ export type Team = {
   background: string
   textColor: string
 }
+
+export type PageMeta = {
+  title: string
+  description?: string
+  image?: string
+}
