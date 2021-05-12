@@ -21,9 +21,7 @@ const Nft = () => {
     <NftProvider>
       <Page>
         <StyledHero>
-          <Heading as="h1" size="xxl" color="secondary" mb="24px">
-            Non Fungible Apes
-          </Heading>
+            <img src="/images/ape-banner.png" alt="lottery intro" />
           <OwnedNfts />
           <Heading as="h1" size="lg" color="secondary" paddingTop="25px" style={{ textDecoration: 'underline' }}>
             <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">

@@ -2,7 +2,7 @@ import { NfaAttribute } from './types'
 
 const NfaAttributes: NfaAttribute[] = [
   {
-    id: 'Apeswap Brown',
+    id: 'ApeSwap Brown',
     occurance: 105,
     category: 'Face Color',
     uri:
@@ -200,7 +200,7 @@ const NfaAttributes: NfaAttribute[] = [
     uri: 'https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/attributes/03.%20Mouths/Stale.png',
   },
   {
-    id: 'closed',
+    id: 'Closed',
     occurance: 95,
     category: 'Eyes',
     uri: 'https://raw.githubusercontent.com/ApeSwapFinance/non-fungible-apes/main/attributes/04.%20Eyes/Closed.png',
