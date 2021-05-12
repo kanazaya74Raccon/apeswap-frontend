@@ -145,11 +145,16 @@ const Nfa = () => {
             </Text>
           )}
           {sale?.map((transaction) => (
-            <a href={`https://bscscan.com/tx/${transaction.transactionHash}`} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`https://bscscan.com/tx/${transaction.transactionHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={transaction.transactionHash}
+            >
               <SalesContainer>
-                <SalesItem>${getUsd(transaction.value)} USD</SalesItem>
-                <SalesItem>{bigNumber(transaction.value)} BNB</SalesItem>
-                <SalesItem>{transaction.blockNumber} Block</SalesItem>
+                <SalesItem key={transaction.tokenId}>${getUsd(transaction.value)} USD</SalesItem>
+                <SalesItem key={transaction.value}>{bigNumber(transaction.value)} BNB</SalesItem>
+                <SalesItem key={transaction.blockNumber}>{transaction.blockNumber} Block</SalesItem>
               </SalesContainer>
             </a>
           ))}

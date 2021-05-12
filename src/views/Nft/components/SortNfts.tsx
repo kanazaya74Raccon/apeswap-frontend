@@ -92,7 +92,7 @@ const SearchBox = styled.input`
   -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
   box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props. theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.textSubtle};
   &:focus {
     outline: none !important;
     border-color: ${(props) => props.theme.colors};

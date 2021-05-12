@@ -83,13 +83,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => 
       <TierSvg>
         <p>{rarityTier}</p>
       </TierSvg>
-      {originalLink ? (
-        <a href={originalLink} target="_blank" rel="noreferrer noopener">
-          {previewImage}
-        </a>
-      ) : (
-        previewImage
-      )}
+      {previewImage}
     </Container>
   )
 }

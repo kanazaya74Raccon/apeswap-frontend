@@ -28,7 +28,7 @@ const Nft = () => {
             </a>
           </Text>
           <OwnedNfts />
-          <Text fontSize='25px' style={{ textDecoration: 'underline', marginTop: '25px', color: 'subtle' }}>
+          <Text fontSize="25px" style={{ textDecoration: 'underline', marginTop: '25px', color: 'subtle' }}>
             <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
               {TranslateString(999, 'Check out the NFA aftermarket at NFTKEY!')}
             </a>

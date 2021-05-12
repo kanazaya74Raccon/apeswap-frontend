@@ -29,7 +29,7 @@ const OwnedNfts = () => {
             marginBottom="10px"
           >
             {profile.ownedNfts.map((nft) => (
-              <div>
+              <div key={nft.name}>
                 <WalletNft key={nft.name} nft={nft} />
               </div>
             ))}

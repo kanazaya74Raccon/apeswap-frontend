@@ -105,7 +105,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
         <CardFlipBack>
           <Link to={`/nft/${nft.index}`}>
             {Object.keys(nft.attributes).map((key, index) => (
-              <Row>
+              <Row key={key}>
                 <Text as="p" color="subtle" style={{ paddingLeft: '10px', textAlign: 'left' }}>
                   {nfaAttributes[index]}:
                 </Text>
@@ -123,7 +123,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
               width: '100%',
               height: '50px',
               left: '0',
-              bottom: '0'
+              bottom: '0',
             }}
             onClick={onPresentTransferModal}
           >
