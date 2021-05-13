@@ -41,8 +41,6 @@ const DetailsHolder = styled.div`
   margin-top: 35px;
   display: flex;
   flex-direction: column;
-  // background-color: ${(props) => props.theme.colors.card};
-  // box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 0px;
     width: 350px;
@@ -60,11 +58,9 @@ const BoxShadow = styled.div`
   background-color: ${(props) => props.theme.colors.card};
   box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 0px;
     width: 350px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 25px;
     width: 450px;
   }
   align-items: center;
