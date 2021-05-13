@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import nfts from 'config/constants/nfts'
@@ -21,15 +21,18 @@ const Nft = () => {
     <NftProvider>
       <Page>
         <StyledHero>
-          <Heading as="h1" size="xxl" color="secondary" mb="24px">
-            Non Fungible Apes
-          </Heading>
-          <OwnedNfts />
-          <Heading as="h1" size="lg" color="secondary" paddingTop="25px" style={{ textDecoration: 'underline' }}>
-            <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
-              {TranslateString(999, 'The next sale will begin May 8th 22:00 UTC at NFTKEY')}
+          <img src="/images/ape-banner.png" alt="lottery intro" />
+          <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
+            <a href="https://github.com/ApeSwapFinance/non-fungible-apes" target="_blank" rel="noopener noreferrer">
+              {TranslateString(999, 'More Info')}
             </a>
-          </Heading>
+          </Text>
+          <OwnedNfts />
+          <Text fontSize="25px" style={{ textDecoration: 'underline', marginTop: '25px', color: 'subtle' }}>
+            <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
+              {TranslateString(999, 'Check out the NFA aftermarket at NFTKEY!')}
+            </a>
+          </Text>
         </StyledHero>
         <SortNfts nftSet={nfts} />
       </Page>

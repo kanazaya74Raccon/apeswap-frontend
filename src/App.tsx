@@ -18,6 +18,7 @@ const Lottery = lazy(() => import('./views/Lottery'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Nft = lazy(() => import('./views/Nft'))
+const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const Teams = lazy(() => import('./views/Teams'))
 const Team = lazy(() => import('./views/Teams/Team'))
 const Profile = lazy(() => import('./views/Profile'))
@@ -68,8 +69,11 @@ const App: React.FC = () => {
             <Route path="/iao">
               <Ifos />
             </Route>
-            <Route path="/nft">
+            <Route exact path="/nft">
               <Nft />
+            </Route>
+            <Route path="/nft/:id">
+              <Nfa />
             </Route>
             <Route path="/chart">
               <Chart />
