@@ -150,7 +150,7 @@ const ifos: Ifo[] = [
     saleAmount: ' 71,430 SPACE',
     raiseAmount: '$500,000',
     bananaToBurn: '$250,000',
-    projectSiteUrl: 'https://www.bitfresh.win/public-sale',
+    projectSiteUrl: 'https://aperocket.finance',
     currency: 'BNB',
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
