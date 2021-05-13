@@ -5,6 +5,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="512"
@@ -13,7 +14,7 @@
    id="Capa_1"
    overflow="hidden"
    version="1.1"
-   sodipodi:docname="busd-usdt.svg"
+   sodipodi:docname="auto-bnb.svg"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <metadata
      id="metadata984">
@@ -65,6 +66,146 @@
          height="331"
          id="rect1641" />
     </clipPath>
+    <clipPath
+       id="SVGID_2_">
+      <use
+         xlink:href="#SVGID_1_"
+         style="overflow:visible"
+         id="use879"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <linearGradient
+       id="SVGID_3_"
+       gradientUnits="userSpaceOnUse"
+       x1="20.644199"
+       y1="1011.5057"
+       x2="24.3328"
+       y2="998.83948"
+       gradientTransform="matrix(1,0,0,-1,-12,1012)">
+      <stop
+         offset="0"
+         style="stop-color:#03B8FF"
+         id="stop882" />
+      <stop
+         offset="1"
+         style="stop-color:#FA52A0"
+         id="stop884" />
+    </linearGradient>
+    <linearGradient
+       id="SVGID_4_"
+       gradientUnits="userSpaceOnUse"
+       x1="23.681801"
+       y1="1012.3904"
+       x2="27.370501"
+       y2="999.72412"
+       gradientTransform="matrix(1,0,0,-1,-12,1012)">
+      <stop
+         offset="0"
+         style="stop-color:#03B8FF"
+         id="stop889" />
+      <stop
+         offset="1"
+         style="stop-color:#FA52A0"
+         id="stop891" />
+    </linearGradient>
+    <linearGradient
+       id="SVGID_5_"
+       gradientUnits="userSpaceOnUse"
+       x1="17.615999"
+       y1="1010.6239"
+       x2="21.304701"
+       y2="997.95758"
+       gradientTransform="matrix(1,0,0,-1,-12,1012)">
+      <stop
+         offset="0"
+         style="stop-color:#03B8FF"
+         id="stop896" />
+      <stop
+         offset="1"
+         style="stop-color:#FA52A0"
+         id="stop898" />
+    </linearGradient>
+    <rect
+       id="rect928"
+       width="24"
+       height="24"
+       x="0"
+       y="0" />
+    <clipPath
+       id="SVGID_2_-0">
+      <use
+         xlink:href="#SVGID_1_"
+         style="overflow:visible"
+         id="use879-8"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <rect
+       id="rect928-2"
+       width="24"
+       height="24"
+       x="0"
+       y="0" />
+    <clipPath
+       id="SVGID_2_-1">
+      <use
+         xlink:href="#SVGID_1_"
+         style="overflow:visible"
+         id="use879-7"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <rect
+       id="rect928-8"
+       width="24"
+       height="24"
+       x="0"
+       y="0" />
+    <rect
+       id="SVGID_1_"
+       width="24"
+       height="24" />
+    <linearGradient
+       id="paint0_linear"
+       x1="45"
+       y1="0"
+       x2="45"
+       y2="90"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#54DADE"
+         id="stop1627" />
+      <stop
+         offset="0.762157"
+         stop-color="#24C7D6"
+         id="stop1629" />
+    </linearGradient>
+    <linearGradient
+       id="paint1_linear"
+       x1="38.761799"
+       y1="24.0704"
+       x2="38.761799"
+       y2="51.894798"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#9F4A08"
+         id="stop1632" />
+      <stop
+         offset="0.370494"
+         stop-color="#7D3900"
+         id="stop1634" />
+      <stop
+         offset="1"
+         stop-color="#8D4104"
+         id="stop1636" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
@@ -79,11 +220,11 @@
      inkscape:window-height="1001"
      id="namedview980"
      showgrid="false"
-     inkscape:zoom="1.1462864"
-     inkscape:cx="61.932786"
-     inkscape:cy="268.95667"
+     inkscape:zoom="0.81054689"
+     inkscape:cx="-61.554742"
+     inkscape:cy="242.75111"
      inkscape:window-x="2391"
-     inkscape:window-y="170"
+     inkscape:window-y="489"
      inkscape:window-maximized="1"
      inkscape:current-layer="Capa_1"
      inkscape:document-rotation="0" />
@@ -168,29 +309,59 @@
        id="path975" />
   </g>
   <g
-     id="g1590"
-     transform="matrix(0.10483594,0,0,0.10483594,23.296875,217.4375)">
+     fill="none"
+     id="g1744"
+     transform="matrix(6.5522461,0,0,6.5522461,265.97266,217.4375)">
     <circle
-       cx="1000"
-       cy="1000"
-       r="1000"
-       style="fill:#f0b90b"
-       id="circle1576" />
+       cx="16"
+       cy="16"
+       r="16"
+       fill="#f3ba2f"
+       id="circle1740" />
     <path
-       d="m 574.41,746 426,-426 169.86,169.86 -426,426 z m 0.31,509.06 680.79,-680.79 169.86,169.86 -680.79,680.79 z M 1510.13,829.37 829.34,1510.16 999.19,1680 1680,999.22 Z M 320,1000.36 489.86,830.5 659.72,1000.36 489.86,1170.22 Z"
-       style="fill:#ffffff;fill-rule:evenodd"
-       id="path1578" />
+       fill="#ffffff"
+       d="M 12.116,14.404 16,10.52 l 3.886,3.886 2.26,-2.26 L 16,6 9.856,12.144 Z M 6,16 8.26,13.74 10.52,16 8.26,18.26 Z m 6.116,1.596 3.884,3.884 3.886,-3.886 2.26,2.259 L 16,26 9.856,19.856 9.853,19.853 Z M 21.48,16 23.74,13.74 26,16 23.74,18.26 Z m -3.188,-0.002 h 0.002 V 16 L 16,18.294 13.709,16.004 13.705,16 13.709,15.997 14.11,15.595 14.305,15.4 16,13.706 l 2.293,2.293 z"
+       id="path1742" />
   </g>
+  <style
+     type="text/css"
+     id="style2209">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:url(#SVGID_3_);}
+	.st2{fill:url(#SVGID_4_);}
+	.st3{fill:url(#SVGID_5_);}
+	.st4{fill:#0E0F23;}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st6{fill:#FFFFFF;}
+</style>
+  <style
+     type="text/css"
+     id="style1550">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#FF002F;}
+	.st2{fill:#0AA604;}
+	.st3{fill:#AF051E;}
+	.st4{fill:#FF3B00;}
+	.st5{fill:#106315;}
+</style>
   <g
-     id="g2990"
-     transform="matrix(0.61773782,0,0,0.61773782,257.85561,233.48041)">
+     style="fill:none"
+     id="g1041"
+     transform="matrix(3.5534173,0,0,3.5537606,23.296875,217.4375)">
     <path
-       d="m 62.15,1.45 -61.89,130 a 2.52,2.52 0 0 0 0.54,2.94 l 167.15,160.17 a 2.55,2.55 0 0 0 3.53,0 L 338.63,134.4 a 2.52,2.52 0 0 0 0.54,-2.94 L 277.28,1.46 A 2.5,2.5 0 0 0 275,0 H 64.45 a 2.5,2.5 0 0 0 -2.3,1.45 z"
-       style="fill:#50af95;fill-rule:evenodd"
-       id="path2977" />
+       d="M 59.0057,29.5 C 59.0057,45.7924 45.7968,59 29.5028,59 13.2089,59 0,45.7924 0,29.5 0,13.2076 13.2089,0 29.5028,0 45.7968,0 59.0057,13.2076 59.0057,29.5 Z"
+       fill="#4958c5"
+       id="path1024-5" />
     <path
-       d="m 191.19,144.8 v 0 c -1.2,0.09 -7.4,0.46 -21.23,0.46 -11,0 -18.81,-0.33 -21.55,-0.46 v 0 c -42.51,-1.87 -74.24,-9.27 -74.24,-18.13 0,-8.86 31.73,-16.25 74.24,-18.15 v 28.91 c 2.78,0.2 10.74,0.67 21.74,0.67 13.2,0 19.81,-0.55 21,-0.66 v -28.9 c 42.42,1.89 74.08,9.29 74.08,18.13 0,8.84 -31.65,16.24 -74.08,18.12 v 0 z m 0,-39.25 V 79.68 h 59.2 V 40.23 H 89.21 v 39.45 h 59.19 v 25.86 c -48.11,2.21 -84.29,11.74 -84.29,23.16 0,11.42 36.18,20.94 84.29,23.16 v 82.9 h 42.78 v -82.93 c 48,-2.21 84.12,-11.73 84.12,-23.14 0,-11.41 -36.09,-20.93 -84.12,-23.15 v 0 z m 0,0 z"
-       style="fill:#ffffff;fill-rule:evenodd"
-       id="path2979" />
+       d="m 41.5249,17.273 h -8.0621 v -2.2716 c 0,-2.4925 2.5874,-4.3549 4.3228,-4.5118 1.5146,-0.1369 2.335,-0.3262 5.3326,0.6519 V 7.05057 C 41.0672,6.54398 38.606,6.61538 36.555,6.79817 34.3147,6.92437 29.2345,9.29068 29.2345,14.7805 v 2.4925 h -2.966 v 3.723 h 2.966 v 14.0401 c 0,0 -1.9247,-1.8299 -5.869,-1.8299 -5.4904,0 -10.3496,4.2278 -10.3496,10.2855 0,6.0578 4.5122,10.4056 10.4759,10.4056 5.9636,0 10.1287,-5.105 10.2549,-10.4056 0.1262,-5.3005 0,-11.3267 0,-11.3267 V 20.996 h 7.7782 z"
+       fill="#ffffff"
+       id="path1026-8" />
+    <ellipse
+       cx="23.531"
+       cy="43.330002"
+       rx="6.0583401"
+       ry="6.0577502"
+       fill="#4958c5"
+       id="ellipse1028" />
   </g>
 </svg>

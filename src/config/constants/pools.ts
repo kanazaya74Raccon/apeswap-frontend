@@ -368,6 +368,28 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
+    sousId: 28,
+    tokenName: 'JDI',
+    image: 'JDI.png',
+    stakingTokenName: 'JDI',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0491648c910ad2c1afaab733faf71d30313df7fc', // JDI
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xa3283C497710cbBE31d35A5cf56C315C621D6e10', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://jdiyield.com',
+    harvest: true,
+    tokenPerBlock: `0.11574074074`,
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+    reflect: true,
+  },
+  {
     sousId: 15,
     tokenName: 'Inactive - FOXY',
     stakingTokenName: 'BANANA',
@@ -453,7 +475,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://koaladefi.finance/',
     harvest: true,
-    tokenPerBlock: '0.05787037037037',
+    tokenPerBlock: '0.034722222222222',
     sortOrder: 3,
     isFinished: false,
     tokenDecimals: 18,
@@ -519,7 +541,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: `2.1428571429`,
     sortOrder: 2,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -607,6 +629,138 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.024801587301587`,
     sortOrder: 3,
     reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 29,
+    tokenName: 'BINGUS',
+    image: 'Bingus.png',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x1697b103a72299d5db4e39ef28a32991c347be23', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'http://bingus.finance/',
+    harvest: true,
+    tokenPerBlock: `3592.308202022`,
+    sortOrder: 3,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
+  {
+    sousId: 30,
+    tokenName: 'bxBTC',
+    image: 'XBTC.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xd65f1319f6408C03EBA7f27e156391784492A9EF', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://xbtc.fi/',
+    harvest: true,
+    tokenPerBlock: `0.300625`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
+  {
+    sousId: 31,
+    tokenName: 'vBSWAP',
+    image: 'VBSWAP.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x7124d635a4bb82319acfd57ce9da18137a7a6f22', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://valuedefi.io/',
+    harvest: true,
+    tokenPerBlock: `0.00017361111`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 32,
+    tokenName: 'WATCH',
+    image: 'WATCH.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x465a3782d9014e6eefccc21470c5e41b2cad9d6d', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.yieldwatch.net/',
+    harvest: true,
+    tokenPerBlock: `0.015432098765432098`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 33,
+    tokenName: 'KEYFI',
+    image: 'KEYFI.png',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xEedd7475Eb5D05D591bE0927B178AcBBdC5ee1c1', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://keyfi.com/',
+    harvest: true,
+    tokenPerBlock: `0.025483796296296296`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 34,
+    tokenName: 'BFT',
+    image: 'BFT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x73775564d2cbad604c41d0b3ddf061e80e1d0279', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.bitfresh.win',
+    harvest: true,
+    tokenPerBlock: `1.9290123456790123`,
+    sortOrder: 2,
+    reflect: false,
     isFinished: false,
     tokenDecimals: 18,
   },
