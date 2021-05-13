@@ -17,6 +17,7 @@ export interface Ifo {
   currencyAddress: string
   tokenDecimals: number
   releaseBlockNumber: number
+  burnedTxUrl?: string
 }
 
 export enum QuoteToken {
@@ -42,12 +43,20 @@ export interface Address {
   56: string
 }
 
+export interface FarmStyles {
+  deprecated: any
+  warning: any
+  featured: any
+  inactive: any
+}
+
 export interface FarmConfig {
   pid: number
   lpSymbol: string
   lpAddresses: Address
   tokenSymbol: string
-  style?: string
+  style?: keyof FarmStyles
+  disableApr?: boolean
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address
@@ -129,4 +138,10 @@ export type Team = {
   images: TeamImages
   background: string
   textColor: string
+}
+
+export type PageMeta = {
+  title: string
+  description?: string
+  image?: string
 }

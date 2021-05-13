@@ -103,8 +103,6 @@ const Home: React.FC = () => {
           <TotalValueLockedCard />
         </FlexColumn>
       </Cards>
-      {/* <EarnAssetCard /> */}
-      {/* <LotteryCard /> */}
     </Page>
   )
 }
