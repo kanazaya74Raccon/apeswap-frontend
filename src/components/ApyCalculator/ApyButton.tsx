@@ -24,7 +24,8 @@ const StyledCalculateIcon = styled(CalculateIcon)`
 
 const StyledIconButton = styled(IconButton)`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  width: 15px;
 `
 
 const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, addLiquidityUrl, rewardTokenName }) => {
@@ -39,7 +40,7 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, a
   )
 
   return (
-    <StyledIconButton onClick={onPresentApyModal} variant="text" size="sm" ml="4px" mr="4px">
+    <StyledIconButton onClick={onPresentApyModal} variant="text" size="sm">
       <StyledCalculateIcon color="yellow" />
     </StyledIconButton>
   )

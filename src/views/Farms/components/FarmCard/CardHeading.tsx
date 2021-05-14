@@ -36,13 +36,12 @@ const StyledBackground = styled(Flex)`
 
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 121px;
-    height: 121px;
     align-items: flex-end;
     height: 80px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    height: 60px;
+    height: 121px;
   }
 `
 
@@ -105,6 +104,8 @@ const StyledFlexContainer = styled(Flex)`
     margin-left: 15px;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    width: 100%;
   }
 `
 
@@ -137,6 +138,7 @@ const LabelContainer = styled.div`
   align-items: flex-start;
   margin-top: 10px;
   width: 120px;
+  margin-right: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -149,6 +151,8 @@ const LabelContainer = styled.div`
 const LabelContainer2 = styled.div`
   display: flex;
   align-items: flex-start;
+  width: 100%;
+  justify-content: flex-end;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: space-between;

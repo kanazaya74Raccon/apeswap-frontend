@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import { useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
@@ -12,7 +11,6 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
-import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
@@ -119,7 +117,6 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
-
   const TranslateString = useI18n()
 
   const yourStats = useStats()

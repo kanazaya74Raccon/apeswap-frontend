@@ -163,7 +163,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const isCommunityFarm = communityFarms.includes(details.lpSymbol)
 
   const handleRenderRow = () => {
-
     if (!isXs) {
       return (
         <StyledTr onClick={toggleActionPanel}>

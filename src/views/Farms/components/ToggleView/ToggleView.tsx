@@ -21,7 +21,7 @@ const StyledFlex = styled(Flex)`
     margin-left: 30px;
     margin-right: 30px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.md} {
     margin-bottom: 0px;
     margin-left: 0px;
@@ -49,7 +49,7 @@ const StyledListViewIcon = styled(ListViewIcon)`
   ${({ theme }) => theme.mediaQueries.md} {
     margin-right: 15px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-right: 26px;
   }
