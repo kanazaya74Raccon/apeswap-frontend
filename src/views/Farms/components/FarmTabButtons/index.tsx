@@ -25,12 +25,8 @@ const FarmTabButtons = () => {
 export default FarmTabButtons
 
 const Wrapper = styled.div`
-  margin-left: 15px;
   margin-right: 10px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 30px;
-  }
+  margin-left: 30px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     display: flex;

@@ -87,6 +87,7 @@ const FCard = styled.div`
   background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+  overflow: hidden;
 `
 
 const Divider = styled.div`

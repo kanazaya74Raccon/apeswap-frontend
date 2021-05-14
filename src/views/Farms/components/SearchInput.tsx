@@ -25,10 +25,18 @@ const InputWrapper = styled.div`
   position: relative;
   width: 140px;
 
-  @media screen and (min-width: 420px) {
-    width: 200px;
+  @media screen and (min-width: 340px) {
+    width: 160px;
   }
 
+  @media screen and (min-width: 360px) {
+    width: 180px;
+  }
+  
+  @media screen and (min-width: 390px) {
+    width: 200px;
+  }
+  
   @media screen and (min-width: 460px) {
     width: 220px;
   }

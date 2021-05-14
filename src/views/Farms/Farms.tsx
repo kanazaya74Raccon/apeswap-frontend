@@ -20,6 +20,7 @@ import {
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
+import useWindowSize, {Size} from 'hooks/useDimensions'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
@@ -77,6 +78,12 @@ const LabelWrapper = styled.div`
   align-items: flex-start;
   > ${Text} {
     font-size: 12px;
+  }
+
+  margin-left: 30px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 0px;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -163,12 +170,11 @@ const StyledImage = styled.img`
   height: 187px;
   width: 134px;
   position: absolute;
-  right: -10px;
-  bottom: 81px;
+  right: 0px;
+  bottom: 51px;
 
   @media screen and (min-width: 340px) {
-    bottom: 51px;
-    right: -25px;
+    right: 20px;
   }
 
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -300,7 +306,10 @@ const StyledLabel = styled.div<LabelProps>`
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
   background-color: ${({ active }) => active && '#FFB300'};
-  margin-left: 20px;
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 20px;
+  }
 `
 
 interface DropdownProps {
@@ -327,6 +336,7 @@ const FlexLayout = styled.div`
 
 const Farms: React.FC = () => {
   const { statsOverall } = useStatsOverall()
+  const size: Size = useWindowSize();
 
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
@@ -336,7 +346,7 @@ const Farms: React.FC = () => {
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(ViewMode.TABLE)
+  const [viewMode, setViewMode] = useState(size.width > 576 ? ViewMode.TABLE : ViewMode.CARD)
   const [sortOption, setSortOption] = useState('')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
@@ -344,6 +354,12 @@ const Farms: React.FC = () => {
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
+  useEffect(() => {
+    if (size.width < 576) {
+      setViewMode(ViewMode.CARD)
+    }
+  }, [size])
+
   useEffect(() => {
     if (account) {
       dispatch(fetchFarmUserDataAsync(account))
@@ -589,7 +605,7 @@ const Farms: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+          {size.width > 576 &&<ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search

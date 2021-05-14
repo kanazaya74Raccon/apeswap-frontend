@@ -29,8 +29,8 @@ export interface ExpandableSectionProps {
 const StyledBackground = styled(Flex)`
   justify-content: center;
   align-items: center;
-  width: 46px;
-  height: 80px;
+  width: 56px;
+  height: 90px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
 
@@ -96,12 +96,13 @@ const StyledFlexContainer = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
   margin-left: 6px;
-  margin-right: 15px;
+  margin-right: 8px;
   align-items: center;
   flex: 1;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 15px;
+    margin-right: 15px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
