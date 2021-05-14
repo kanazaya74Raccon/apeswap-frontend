@@ -30,7 +30,7 @@ const StyledBackground = styled(Flex)`
   justify-content: center;
   align-items: center;
   width: 46px;
-  height: 60px;
+  height: 80px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
 
@@ -38,6 +38,11 @@ const StyledBackground = styled(Flex)`
     width: 121px;
     height: 121px;
     align-items: flex-end;
+    height: 80px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    height: 60px;
   }
 `
 
@@ -48,15 +53,15 @@ const MultiplierTag = styled(Tag)`
 
 const StyledHeading = styled(Heading)`
   font-size: 12px;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 22px;
   }
 `
 
 const StyledText1 = styled(Text)`
   font-weight: 700;
-  font-size: 10px;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 15px;
   }
 `
@@ -64,17 +69,13 @@ const StyledText1 = styled(Text)`
 const StyledText2 = styled(Text)`
   font-weight: 700;
   font-size: 12px;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 12px;
-  }
+  margin-top: 1px;
 `
 
 const StyledText3 = styled(Text)`
   font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 1px;
   color: #38a611;
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
   }
@@ -82,26 +83,25 @@ const StyledText3 = styled(Text)`
 
 const StyledText4 = styled(Text)`
   font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 1px;
-  color: #38a611;
+  font-weight: 700;
+  margin-top: 1px;
   display: none;
-  ${({ theme }) => theme.mediaQueries.xs} {
+
+  ${({ theme }) => theme.mediaQueries.sm} {
     display: flex;
-    font-size: 25px;
-    line-height: 29px;
   }
 `
 
 const StyledFlexContainer = styled(Flex)`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-left: 6px;
   margin-right: 15px;
+  align-items: center;
   flex: 1;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 15px;
     flex-direction: column;
     justify-content: center;
@@ -109,10 +109,26 @@ const StyledFlexContainer = styled(Flex)`
 `
 
 const StyledFlexEarned = styled(Flex)`
-  margin-right: 10px;
+  display: none;
   
-  ${({ theme }) => theme.mediaQueries.xs} {
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     margin-right: 0px; 
+    flex-direction: column;
+  }
+`
+
+const StyledFlexEarnedSmall = styled(Flex)`
+  margin-right: 10px;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
+  
+  ${({ theme }) => theme.mediaQueries.sm} {
+   display: none;
   }
 `
 
@@ -121,22 +137,24 @@ const LabelContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
+  width: 120px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 `
 
 const LabelContainer2 = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-top: 10px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
   }
 `
 
@@ -146,18 +164,18 @@ const FlexSwitch = styled.div`
   justify-content: center;
   align-items: center;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row-reverse;
   }
 `
 
 const StyledAPRText = styled.div`
-  font-size: 10px;
+  font-size: 12px;
   line-height: 11px;
   letter-spacing: 1px;
   margin-left: 5px;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
+  margin-bottom: 2px;
+  ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
     line-height: 23px;
   }
@@ -173,6 +191,11 @@ const StyledImage = styled.img`
   height: 57px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
+    width: 75px;
+    height: 75px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
     width: 109px;
     height: 109px;
   }
@@ -206,7 +229,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading mb="4px">{lpLabel}</StyledHeading>
+          <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
@@ -228,15 +251,26 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               )}
             </Text>
           )}
-        </LabelContainer>
-        <LabelContainer2>
-          <StyledFlexEarned flexDirection="column">
+           <StyledFlexEarnedSmall>
             <StyledText4 fontFamily="poppins" color="primary" pr="3px">
               {TranslateString(999, 'Banana ')}
             </StyledText4>
             <StyledText2 fontFamily="poppins" color="primary" pr="3px">
               {TranslateString(999, 'Earned')}
             </StyledText2>
+            <StyledText3>{displayBalance}</StyledText3>
+          </StyledFlexEarnedSmall>
+        </LabelContainer>
+        <LabelContainer2>
+          <StyledFlexEarned>
+            <Flex>
+            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+              {TranslateString(999, 'Banana ')}
+            </StyledText4>
+            <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+              {TranslateString(999, 'Earned')}
+            </StyledText2>
+            </Flex>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
           <ButtonContainer>

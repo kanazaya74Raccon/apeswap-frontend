@@ -4,6 +4,8 @@ import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
+import { useFarmUser, useStats, usePriceBananaBusd } from 'state/hooks'
+import { getBalanceNumber } from 'utils/formatBalance'
 import Multiplier, { MultiplierProps } from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
@@ -24,7 +26,9 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: normal;
+  font-weight: bold;
+  font-family: 'Poppins';
+  font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
   align-items: center;
@@ -45,7 +49,18 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: bold;
+`
+
+const StyledTextGreen = styled(Text)`
+  font-weight: bold;
+  color: #38a611;
+`
+
+const StyledLink = styled(Link)`
+  font-size: 12px;
+  text-decoration-line: underline;
+  margin-bottom: 14px;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
@@ -55,8 +70,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   addLiquidityUrl,
   farmStats,
-  multiplier
-  // pid
+  multiplier,
+  pid,
 }) => {
   const TranslateString = useI18n()
 
@@ -64,21 +79,27 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-    // const yo = multiplier;
+  const { earnings, stakedBalance } = useFarmUser(pid)
+  const bananaPrice = usePriceBananaBusd()
+  let earningsToReport = null
+  let earningsBusd = 0
+  let displayHarvestBalance = '?'
 
-      /* eslint-disable no-debugger */
-  // debugger;
-  /* eslint-enable no-debugger */
+  if (earnings) {
+    earningsToReport = getBalanceNumber(earnings)
+    earningsBusd = earningsToReport * bananaPrice.toNumber()
+    displayHarvestBalance = `$${earningsBusd.toLocaleString()}`
+  }
 
   return (
     <Wrapper>
       <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(999, 'Multiplier:')}
-              </StyledText>
-              <Multiplier multiplier={multiplier} />
-            </ValueWrapper>
-            {/* <ValueWrapper>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(999, 'Multiplier:')}
+        </StyledText>
+        <Multiplier multiplier={multiplier} />
+      </ValueWrapper>
+      {/* <ValueWrapper>
               <StyledText fontFamily="poppins" fontSize="12px">
                 {TranslateString(999, 'Stake:')}
               </StyledText>
@@ -87,23 +108,31 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
               </StyledText>
             </ValueWrapper> */}
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(316, 'Stake')}:</Text>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(316, 'Stake')}:
+        </StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Staked Value')}:</Text>
-        <Text>{totalValuePersonalFormated}</Text>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(23, 'Staked Value')}:
+        </StyledText>
+        <StyledTextGreen fontFamily="poppins" fontSize="12px">
+          {totalValuePersonalFormated}
+        </StyledTextGreen>
       </Flex>
-      {!removed && (
-        <Flex justifyContent="space-between">
-          <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
-          <Text>{totalValueFormated}</Text>
-        </Flex>
-      )}
-      <Flex justifyContent="flex-start">
-        <Link external href={bscScanAddress} bold={false}>
+      <Flex justifyContent="space-between">
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(23, 'Earned Value')}:
+        </StyledText>
+        <StyledTextGreen fontFamily="poppins" fontSize="12px">
+          {displayHarvestBalance}
+        </StyledTextGreen>
+      </Flex>
+      <Flex justifyContent="center">
+        <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
-        </Link>
+        </StyledLink>
       </Flex>
     </Wrapper>
   )

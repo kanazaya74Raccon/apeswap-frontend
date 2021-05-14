@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Image, Heading, RowType, Toggle, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Heading, RowType, Flex, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
@@ -147,7 +147,7 @@ const Header = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 400;
+  font-weight: 700;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -243,6 +243,14 @@ const CardContainer = styled.div`
   margin-top: 17px;
 `
 
+const ButtonCheckWrapper = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  margin-right: 30px;
+`
+
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
@@ -256,6 +264,7 @@ const StyledHeading = styled(Heading)`
 const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
+  width: 100vw;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-left: 16px;
@@ -572,12 +581,13 @@ const Farms: React.FC = () => {
               </StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
-            <FarmTabButtons />
-            <ToggleWrapper>
-              <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-              <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
-            </ToggleWrapper>
-
+            <ButtonCheckWrapper>
+              <FarmTabButtons />
+              <ToggleWrapper>
+                <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+                <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
+              </ToggleWrapper>
+            </ButtonCheckWrapper>
             {isDark ? (
               <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
             ) : (

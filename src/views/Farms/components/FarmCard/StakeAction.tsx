@@ -5,7 +5,7 @@ import useReward from 'hooks/useReward'
 
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
+import { ButtonSquare, Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -19,6 +19,7 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
+  totalValueFormated?: string
 }
 
 const IconButtonWrapper = styled.div`
@@ -30,12 +31,43 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   height: 34px;
 `
 
+const StyledHeading = styled(Heading)`
+font-size: 14px;
+
+${({ theme }) => theme.mediaQueries.sm} {
+  font-size: 20px;
+}
+`
+
+const StyledHeadingGreen = styled(Heading)`
+font-size: 14px;
+color: #38a611;
+
+${({ theme }) => theme.mediaQueries.sm} {
+  font-size: 20px;
+  color: #38a611;
+}
+`
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+  font-size: 12px;
+`
+
+const StyledFlex = styled(Flex)`
+  width: 100%;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 30px;
+  }
+`
+
 const StakeAction: React.FC<FarmCardActionsProps> = ({
   stakedBalance,
   tokenBalance,
   tokenName,
   pid,
   addLiquidityUrl,
+  totalValueFormated
 }) => {
   const TranslateString = useI18n()
 
@@ -79,7 +111,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+      <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
     ) : (
       <IconButtonWrapper>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
@@ -97,10 +129,17 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   }
 
   return (
-    <Flex justifyContent="space-between" alignItems="center">
-      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+    <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
+      <Flex flexDirection="column" alignItems="flex-start">
+        <StyledText fontFamily="poppins">{TranslateString(999, 'Liqudity')}</StyledText>
+        <StyledHeading>{totalValueFormated}</StyledHeading>
+      </Flex>
+      <Flex flexDirection="column" alignItems="flex-start">
+        <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</StyledHeadingGreen>
+      </Flex>
       {renderStakingButtons()}
-    </Flex>
+    </StyledFlex>
   )
 }
 

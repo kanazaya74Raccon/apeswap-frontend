@@ -119,12 +119,9 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
-
   /* eslint-disable no-debugger */
-  debugger;
+  debugger
   /* eslint-enable no-debugger */
-
-
 
   const TranslateString = useI18n()
 
@@ -188,7 +185,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
       />
       <StyledContainer>
         <ExpandingWrapper expanded={showExpandableSection}>
-        <CardActionsContainer farm={farm} ethereum={ethereum} account={account} addLiquidityUrl={addLiquidityUrl} />
+          <CardActionsContainer
+            farm={farm}
+            ethereum={ethereum}
+            account={account}
+            addLiquidityUrl={addLiquidityUrl}
+            totalValueFormated={totalValueFormated}
+          />
           <DetailsSection
             removed={removed}
             bscScanAddress={`https://bscscan.com/address/${farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}`}
