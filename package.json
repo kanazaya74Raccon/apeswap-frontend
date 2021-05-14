@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "@apeswapfinance/uikit": "0.10.31",
+    "@apeswapfinance/uikit": "0.10.32",
     "@binance-chain/bsc-use-wallet": "^0.8.1",
     "@crowdin/crowdin-api-client": "^1.10.1",
     "@ethersproject/abi": "^5.0.7",
@@ -51,6 +51,7 @@
     "react-countup": "^4.3.3",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.8",
+    "react-helmet-async": "^1.0.9",
     "react-redux": "^7.2.2",
     "react-responsive-carousel": "^3.2.18",
     "react-rewards": "^1.1.2",
