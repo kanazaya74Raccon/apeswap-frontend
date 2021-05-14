@@ -32,6 +32,14 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 64px;
+    margin-right: 44px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 84px;
     margin-right: 74px;
   }

@@ -5,7 +5,16 @@ import useReward from 'hooks/useReward'
 
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { ButtonSquare, Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
+import {
+  ButtonSquare,
+  Flex,
+  Heading,
+  IconButtonSquare,
+  AddIcon,
+  MinusIcon,
+  useModal,
+  Text,
+} from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -32,21 +41,21 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
 `
 
 const StyledHeading = styled(Heading)`
-font-size: 14px;
+  font-size: 14px;
 
-${({ theme }) => theme.mediaQueries.sm} {
-  font-size: 20px;
-}
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 20px;
+  }
 `
 
 const StyledHeadingGreen = styled(Heading)`
-font-size: 14px;
-color: #38a611;
-
-${({ theme }) => theme.mediaQueries.sm} {
-  font-size: 20px;
+  font-size: 14px;
   color: #38a611;
-}
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 20px;
+    color: #38a611;
+  }
 `
 
 const StyledText = styled(Text)`
@@ -67,7 +76,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
-  totalValueFormated
+  totalValueFormated,
 }) => {
   const TranslateString = useI18n()
 
@@ -136,7 +145,9 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       </Flex>
       <Flex flexDirection="column" alignItems="flex-start">
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</StyledHeadingGreen>
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
+          {displayBalance}
+        </StyledHeadingGreen>
       </Flex>
       {renderStakingButtons()}
     </StyledFlex>

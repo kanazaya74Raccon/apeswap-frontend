@@ -25,6 +25,10 @@ const InputWrapper = styled.div`
   position: relative;
   width: 140px;
 
+  @media screen and (min-width: 420px) {
+    width: 200px;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 244px;
     display: block;

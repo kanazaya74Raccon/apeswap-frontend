@@ -28,7 +28,13 @@ interface FarmCardActionsProps {
   totalValueFormated?: string
 }
 
-const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, addLiquidityUrl, totalValueFormated }) => {
+const CardActions: React.FC<FarmCardActionsProps> = ({
+  farm,
+  ethereum,
+  account,
+  addLiquidityUrl,
+  totalValueFormated,
+}) => {
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = useFarmFromSymbol(farm.lpSymbol)
@@ -78,11 +84,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
     )
   }
 
-  return (
-    <Flex>
-      {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
-    </Flex>
-  )
+  return <Flex>{!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}</Flex>
 }
 
 export default CardActions

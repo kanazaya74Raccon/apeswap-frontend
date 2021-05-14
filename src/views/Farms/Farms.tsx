@@ -172,6 +172,11 @@ const StyledImage = styled.img`
   right: -10px;
   bottom: 81px;
 
+  @media screen and (min-width: 340px) {
+    bottom: 51px;
+    right: -25px;
+  }
+
   ${({ theme }) => theme.mediaQueries.xs} {
     bottom: 51px;
     right: 0px;
@@ -249,13 +254,28 @@ const ButtonCheckWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-right: 30px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: fit-content;
+  }
 `
 
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
 
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 36px;
+    max-width: 240px !important;
+  }
+ 
   ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 44px;
+    max-width: 400px !important;
+  }
+ 
+
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 60px;
     max-width: 600px !important;
   }

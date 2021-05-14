@@ -110,13 +110,12 @@ const StyledFlexContainer = styled(Flex)`
 
 const StyledFlexEarned = styled(Flex)`
   display: none;
-  
-  
+
   ${({ theme }) => theme.mediaQueries.sm} {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-right: 0px; 
+    margin-right: 0px;
     flex-direction: column;
   }
 `
@@ -126,9 +125,9 @@ const StyledFlexEarnedSmall = styled(Flex)`
   flex-direction: row;
   justify-content: center;
   margin-bottom: 10px;
-  
+
   ${({ theme }) => theme.mediaQueries.sm} {
-   display: none;
+    display: none;
   }
 `
 
@@ -242,16 +241,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                     rewardTokenPrice={bananaPrice}
                     apy={apr}
                   />
-                  <StyledAPRText>
-                  {farmAPR}%
-                  </StyledAPRText>
+                  <StyledAPRText>{farmAPR}%</StyledAPRText>
                 </FlexSwitch>
               ) : (
                 <Skeleton height={24} width={80} />
               )}
             </Text>
           )}
-           <StyledFlexEarnedSmall>
+          <StyledFlexEarnedSmall>
             <StyledText4 fontFamily="poppins" color="primary" pr="3px">
               {TranslateString(999, 'Banana ')}
             </StyledText4>
@@ -264,12 +261,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
-            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, 'Banana ')}
-            </StyledText4>
-            <StyledText2 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
-            </StyledText2>
+              <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+                {TranslateString(999, 'Banana ')}
+              </StyledText4>
+              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+                {TranslateString(999, 'Earned')}
+              </StyledText2>
             </Flex>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
