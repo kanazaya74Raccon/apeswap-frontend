@@ -163,9 +163,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const isCommunityFarm = communityFarms.includes(details.lpSymbol)
 
   const handleRenderRow = () => {
-    // /* eslint-disable no-debugger */
-    // debugger
-    // /* eslint-enable no-debugger */
 
     if (!isXs) {
       return (

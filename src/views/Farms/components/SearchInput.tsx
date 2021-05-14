@@ -29,9 +29,26 @@ const InputWrapper = styled.div`
     width: 200px;
   }
 
+  @media screen and (min-width: 460px) {
+    width: 220px;
+  }
+
+  @media screen and (min-width: 500px) {
+    width: 240px;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 244px;
     display: block;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 220px;
+    display: block;
+  }
+
+  @media screen and (min-width: 900px) {
+    width: 244px;
   }
 `
 

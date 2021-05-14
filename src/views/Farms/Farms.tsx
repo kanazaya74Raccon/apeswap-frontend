@@ -50,13 +50,8 @@ const ControlContainer = styled(Card)`
   overflow: visible;
   padding-bottom: 10px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 15px 15px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
     height: 59px;
     padding: 0px;
     justify-content: flex-start;
@@ -72,7 +67,7 @@ const ToggleWrapper = styled.div`
 
   ${Text} {
     margin-left: 4px;
-  ${({ theme }) => theme.mediaQueries.sm} { margin-left: 8px;}
+  ${({ theme }) => theme.mediaQueries.md} { margin-left: 8px;}
   }
 `
 
@@ -84,7 +79,7 @@ const LabelWrapper = styled.div`
     font-size: 12px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     align-items: center;
   }
@@ -96,7 +91,7 @@ const FilterContainer = styled.div`
   width: 100%;
   padding: 8px 0px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: auto;
     padding: 0;
   }
@@ -113,7 +108,7 @@ const ViewControls = styled.div`
     padding: 8px 0px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     justify-content: center;
     align-items: center;
     width: auto;
@@ -140,7 +135,7 @@ const Header = styled.div`
   height: 400px;
   background-position: center;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -150,8 +145,7 @@ const StyledText = styled(Text)`
   font-weight: 700;
   font-size: 12px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-weight: 700;
+  ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 15px;
   }
 `
@@ -182,7 +176,7 @@ const StyledImage = styled.img`
     right: 0px;
   }
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     bottom: 0px;
     right: 0px;
   }
@@ -222,6 +216,11 @@ const StyledLabelContainerLP = styled.div`
 
 const StyledLabelContainerAPR = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
     position: absolute;
     top: 6px;
     left: 409px;
@@ -255,7 +254,7 @@ const ButtonCheckWrapper = styled.div`
   width: 100%;
   margin-right: 30px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
   }
 `
@@ -268,12 +267,11 @@ const StyledHeading = styled(Heading)`
     font-size: 36px;
     max-width: 240px !important;
   }
- 
-  ${({ theme }) => theme.mediaQueries.sm} {
+
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 44px;
     max-width: 400px !important;
   }
- 
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 60px;
@@ -286,7 +284,7 @@ const StyledPage = styled(Page)`
   padding-right: 5px;
   width: 100vw;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -302,6 +300,7 @@ const StyledLabel = styled.div<LabelProps>`
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
   background-color: ${({ active }) => active && '#FFB300'};
+  margin-left: 20px;
 `
 
 interface DropdownProps {
@@ -529,10 +528,6 @@ const Farms: React.FC = () => {
 
       return <Table data={rowData} columns={columns} />
     }
-
-    //         /* eslint-disable no-debugger */
-    // debugger;
-    // /* eslint-enable no-debugger */
 
     return (
       <CardContainer>

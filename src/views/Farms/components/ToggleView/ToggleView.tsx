@@ -13,9 +13,22 @@ const StyledFlex = styled(Flex)`
   margin-right: 10px;
   margin-bottom: 3px;
 
+  @media screen and (min-width: 450px) {
+    margin-right: 20px;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  ${({ theme }) => theme.mediaQueries.md} {
     margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 20px;
+  }
+
+  @media screen and (min-width: 900px) {
     margin-right: 30px;
   }
 `
@@ -30,6 +43,14 @@ const StyledListViewIcon = styled(ListViewIcon)`
   height: '100%';
 
   ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 10px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-right: 15px;
+  }
+  
+  ${({ theme }) => theme.mediaQueries.lg} {
     margin-right: 26px;
   }
 `

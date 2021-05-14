@@ -119,9 +119,6 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
-  /* eslint-disable no-debugger */
-  debugger
-  /* eslint-enable no-debugger */
 
   const TranslateString = useI18n()
 

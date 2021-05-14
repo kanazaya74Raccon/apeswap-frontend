@@ -60,10 +60,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     })
   }
 
-  /* eslint-disable no-debugger */
-  debugger
-  /* eslint-enable no-debugger */
-
   return (
     <>
       <Container>
