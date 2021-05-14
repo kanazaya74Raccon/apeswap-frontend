@@ -147,7 +147,7 @@ const ifos: Ifo[] = [
       'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
     launchDate: 'May. 20',
     launchTime: '03:00 UTC',
-    saleAmount: ' 71,430 SPACE',
+    saleAmount: ' 55,556 SPACE',
     raiseAmount: '$500,000',
     bananaToBurn: '$250,000',
     projectSiteUrl: 'https://aperocket.finance',

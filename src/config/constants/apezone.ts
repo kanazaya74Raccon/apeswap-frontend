@@ -29,7 +29,7 @@ const ApeZone = {
         'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
       launchDate: 'May. 20',
       launchTime: '03:00 UTC',
-      saleAmount: ' 35,715 SPACE',
+      saleAmount: '27,778 SPACE',
       raiseAmount: '$250,000',
       bananaToBurn: '$125,000',
       projectSiteUrl: 'https://aperocket.finance',
