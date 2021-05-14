@@ -1,13 +1,13 @@
 import React from 'react'
 import Page from 'components/layout/Page'
 import { useGetNfaSales } from 'hooks/api'
-import { usePriceBnbBusd } from 'state/hooks'
 import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
 import { Link, Redirect, useParams } from 'react-router-dom'
 import nfts from 'config/constants/nfts'
 import useI18n from 'hooks/useI18n'
 import NfaAttributes from './components/NfaAttributes'
+import NfaSales from './components/NfaSales'
 import Image from './components/Image'
 
 const NfaImageHolder = styled.div`
@@ -66,43 +66,12 @@ const BoxShadow = styled.div`
   align-items: center;
 `
 
-const SalesContainer = styled.div`
-  display: grid;
-  grid-template-columns: 125px 90px 140px;
-  grid-column-gap: 8px;
-  width: 400px;
-  height: 35px;
-  align-self: center;
-`
-
-const SalesItem = styled.div`
-  align-self: center;
-  justify-self: right;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 14px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 16px;
-  }
-  color: ${(props) => props.theme.colors.textSubtle};
-  font-family: ${(props) => props.theme.fontFamily.poppins};
-`
-
 const Nfa = () => {
   const { id: idStr }: { id: string } = useParams()
   const id = Number(idStr)
   const TranslateString = useI18n()
   const nfa = nfts.find((nft) => nft.index === id)
-  const bnbPrice = usePriceBnbBusd()
-  const sale = useGetNfaSales(id)
-
-  const bigNumber = (num) => {
-    return num / 1e18
-  }
-
-  const getUsd = (num) => {
-    return (bnbPrice.c[0] * bigNumber(num)).toFixed(2)
-  }
+  const sales = useGetNfaSales(id)
 
   if (!nfa) {
     return <Redirect to="/404" />
@@ -151,26 +120,25 @@ const Nfa = () => {
               </Text>
             </a>
           </BoxShadow>
-          {sale?.length > 0 && (
+          {sales && (
             <BoxShadow style={{ marginTop: '25px', padding: '5px 0px 10px 0px' }}>
               <Text fontFamily="poppins" fontSize="23px" color="textSubtle" style={{ margin: '10px 0px 15px 0px' }}>
-                {TranslateString(999, 'Previous Sales')}
+                {TranslateString(999, sales?.length > 0 ? 'Previous Sales' : 'No Sale History')}
               </Text>
-
-              {sale?.map((transaction) => (
-                <a
-                  href={`https://bscscan.com/tx/${transaction.transactionHash}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={transaction.transactionHash}
-                >
-                  <SalesContainer>
-                    <SalesItem key={transaction.tokenId}>${getUsd(transaction.value)} USD</SalesItem>
-                    <SalesItem key={transaction.value}>{bigNumber(transaction.value).toFixed(3)} BNB</SalesItem>
-                    <SalesItem key={transaction.blockNumber}>{transaction.blockNumber} Block</SalesItem>
-                  </SalesContainer>
-                </a>
-              ))}
+              {sales?.length > 0 ? (
+                sales?.map((trx) => (
+                  <NfaSales
+                    tokenId={trx.tokenId}
+                    value={trx.value}
+                    blockNumber={trx.blockNumber}
+                    transactionHash={trx.transactionHash}
+                    from={trx.from}
+                    to={trx.to}
+                  />
+                ))
+              ) : (
+                <img src="/images/no-sales.svg" alt="no sales" width="300px" />
+              )}
             </BoxShadow>
           )}
         </DetailsHolder>
