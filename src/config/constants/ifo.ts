@@ -149,7 +149,6 @@ const ifos: Ifo[] = [
     launchTime: '03:00 UTC',
     saleAmount: ' 55,556 SPACE',
     raiseAmount: '$500,000',
-    bananaToBurn: '$250,000',
     projectSiteUrl: 'https://aperocket.finance',
     currency: 'BNB',
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',

@@ -31,7 +31,7 @@ const ApeZone = {
       launchTime: '03:00 UTC',
       saleAmount: '27,778 SPACE',
       raiseAmount: '$250,000',
-      bananaToBurn: '$125,000',
+      bananaToBurn: '$250,000',
       projectSiteUrl: 'https://aperocket.finance',
       currency: 'BNB',
       currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
