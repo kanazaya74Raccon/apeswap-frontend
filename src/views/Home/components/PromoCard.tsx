@@ -142,6 +142,13 @@ const StyledClickLeft = styled.img`
 
 const carouselSlidesData = [
   {
+    header: "🙊 SCV.Finance Limited NFT's 🙊",
+    text: "We've released a limited edition collection of NFT's in collaboration with SCV.Finance 🎉",
+    text2: "This event will be held from May 14th 00:00 GMT to May 17th 00:00 GMT, so get them while they're hot!",
+    link: 'Get them!',
+    pageLink: 'https://scv.finance/nft/claim',
+  },
+  {
     header: '📈 xBTC listed on ApeSwap 📈',
     text: 'xBTC gives you exposure to the entire altcoin market 🚀 Bridge from Ethereum to BSC 🌉',
     text2: 'Stake Banana to earn over $600,000 xBTC rewards. 💸',
