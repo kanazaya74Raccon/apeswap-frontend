@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Heading, RowType, Flex, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Heading, RowType, Flex, Text, Card, Checkbox, ArrowDropDownIcon, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
@@ -20,7 +20,7 @@ import {
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
-import useWindowSize, {Size} from 'hooks/useDimensions'
+import useWindowSize, { Size } from 'hooks/useDimensions'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
@@ -205,44 +205,124 @@ const ContainerLabels = styled.div`
 `
 
 const StyledLabelContainerHot = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 38px;
+    margin: 0px;
   }
 `
 
 const StyledLabelContainerLP = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 169px;
+    margin: 0px;
   }
 `
 
 const StyledLabelContainerAPR = styled.div`
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
   }
-
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 409px;
+    margin: 0px;
   }
 `
 
 const StyledLabelContainerLiquidity = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 621px;
+    margin: 0px;
   }
 `
 
 const StyledLabelContainerEarned = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin: 0px;
     position: absolute;
     top: 6px;
     left: 801px;
@@ -260,7 +340,7 @@ const ButtonCheckWrapper = styled.div`
   width: 100%;
   margin-right: 30px;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     width: fit-content;
   }
 `
@@ -279,7 +359,7 @@ const StyledHeading = styled(Heading)`
     max-width: 400px !important;
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 60px;
     max-width: 600px !important;
   }
@@ -306,10 +386,6 @@ const StyledLabel = styled.div<LabelProps>`
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
   background-color: ${({ active }) => active && '#FFB300'};
-  
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 20px;
-  }
 `
 
 interface DropdownProps {
@@ -336,7 +412,7 @@ const FlexLayout = styled.div`
 
 const Farms: React.FC = () => {
   const { statsOverall } = useStatsOverall()
-  const size: Size = useWindowSize();
+  const size: Size = useWindowSize()
 
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
@@ -605,7 +681,7 @@ const Farms: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-          {size.width > 576 &&<ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
+            {size.width > 576 && <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search

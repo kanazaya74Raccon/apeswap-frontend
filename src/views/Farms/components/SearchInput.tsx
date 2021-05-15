@@ -32,11 +32,11 @@ const InputWrapper = styled.div`
   @media screen and (min-width: 360px) {
     width: 180px;
   }
-  
+
   @media screen and (min-width: 390px) {
     width: 200px;
   }
-  
+
   @media screen and (min-width: 460px) {
     width: 220px;
   }

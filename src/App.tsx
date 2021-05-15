@@ -1,7 +1,8 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { ResetCSS } from '@apeswapfinance/uikit'
+import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
+import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useFetchProfile, useFetchStats, useFetchPublicData, useFetchStatsOverall, useStatsOverall } from 'state/hooks'
 import GlobalStyle from './style/Global'
@@ -31,6 +32,18 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
+const StyledChevronUpIcon = styled(ChevronUpIcon)`
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(255, 179, 0, 0.7);
+  border: 1px solid #ffb300;
+  border-radius: 50%;
+  z-index: 10;
+`
+
 const App: React.FC = () => {
   const { account, connect } = useWallet()
 
@@ -47,11 +60,19 @@ const App: React.FC = () => {
   useFetchStatsOverall()
 
   const { statsOverall } = useStatsOverall()
+  
+  const scrollToTop = (): void => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 
   return (
     <Router>
       <ResetCSS />
       <GlobalStyle />
+      { window.location.pathname==="/farms" && <StyledChevronUpIcon onClick={scrollToTop}/>}
       <Menu>
         <Suspense fallback={<PageLoader />}>
           <Switch>

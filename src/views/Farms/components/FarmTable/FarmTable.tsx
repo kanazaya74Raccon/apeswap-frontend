@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from '@apeswapfinance/uikit'
+import { useTable, Button, ColumnType } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 import Row, { RowProps } from './Row'
@@ -14,6 +14,7 @@ const Container = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
   margin: 16px 0px;
+  position: relative;
 `
 
 const TableWrapper = styled.div`
@@ -45,6 +46,14 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
+// const StyledIconFixed = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   right: 0;
+//   width: 50px;
+//   height: 50px;
+// `
+
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const TranslateString = useI18n()
@@ -74,7 +83,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <ScrollButtonContainer>
             <Button variant="text" onClick={scrollToTop}>
               {TranslateString(999, 'To Top')}
-              <ChevronUpIcon color="primary" />
             </Button>
           </ScrollButtonContainer>
         </TableContainer>
