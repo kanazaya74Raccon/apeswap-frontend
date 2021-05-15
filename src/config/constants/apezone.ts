@@ -3,7 +3,7 @@ const ApeZone = {
     {
       id: 'bitfresh',
       address: '0x0aA255267CBE1cC9366509056A24608385F07617',
-      isActive: true,
+      isActive: false,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
       description:
@@ -18,6 +18,26 @@ const ApeZone = {
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 6565331,
+    },
+    {
+      id: 'aperocket',
+      address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
+      isActive: true,
+      name: 'ApeRocket',
+      subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
+      description:
+        'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
+      launchDate: 'May. 20',
+      launchTime: '03:00 UTC',
+      saleAmount: '27,778 SPACE',
+      raiseAmount: '$250,000',
+      bananaToBurn: '$250,000',
+      projectSiteUrl: 'https://aperocket.finance',
+      currency: 'BNB',
+      currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+      tokenDecimals: 18,
+      releaseBlockNumber: 7378325,
+      // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
     },
   ],
 }

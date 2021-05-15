@@ -71,10 +71,12 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
           <Display>{TranslateString(999, 'To raise (USD)')}</Display>
           <Text fontSize="14px">{raiseAmount}</Text>
         </Item>
-        <Item>
-          <Display>{TranslateString(586, 'BANANA to burn (USD)')}</Display>
-          <Text fontSize="14px">{bananaToBurn}</Text>
-        </Item>
+        {bananaToBurn && (
+          <Item>
+            <Display>{TranslateString(586, 'BANANA to burn (USD)')}</Display>
+            <Text fontSize="14px">{bananaToBurn}</Text>
+          </Item>
+        )}
         <Item>
           <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
           <Text fontSize="14px">{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>

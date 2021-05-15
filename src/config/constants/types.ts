@@ -11,7 +11,7 @@ export interface Ifo {
   launchTime: string
   saleAmount: string
   raiseAmount: string
-  bananaToBurn: string
+  bananaToBurn?: string
   projectSiteUrl: string
   currency: string
   currencyAddress: string
@@ -117,6 +117,13 @@ export type Nft = {
   attributes: Attributes
 }
 
+export type NfaAttribute = {
+  id: string
+  occurance: number
+  category: string
+  uri: string
+}
+
 export type TeamImages = {
   alt: string
 } & Images
@@ -131,4 +138,10 @@ export type Team = {
   images: TeamImages
   background: string
   textColor: string
+}
+
+export type PageMeta = {
+  title: string
+  description?: string
+  image?: string
 }

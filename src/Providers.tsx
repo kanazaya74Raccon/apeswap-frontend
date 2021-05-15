@@ -1,6 +1,7 @@
 import React from 'react'
 import { ModalProvider } from '@apeswapfinance/uikit'
 import bsc, { UseWalletProvider } from '@binance-chain/bsc-use-wallet'
+import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import getRpcUrl from 'utils/getRpcUrl'
 import { LanguageContextProvider } from 'contexts/Localisation/languageContext'
@@ -14,23 +15,25 @@ const Providers: React.FC = ({ children }) => {
 
   return (
     <Provider store={store}>
-      <ThemeContextProvider>
-        <LanguageContextProvider>
-          <UseWalletProvider
-            chainId={parseInt(process.env.REACT_APP_CHAIN_ID)}
-            connectors={{
-              walletconnect: { rpcUrl },
-              bsc,
-            }}
-          >
-            <BlockContextProvider>
-              <RefreshContextProvider>
-                <ModalProvider>{children}</ModalProvider>
-              </RefreshContextProvider>
-            </BlockContextProvider>
-          </UseWalletProvider>
-        </LanguageContextProvider>
-      </ThemeContextProvider>
+      <HelmetProvider>
+        <ThemeContextProvider>
+          <LanguageContextProvider>
+            <UseWalletProvider
+              chainId={parseInt(process.env.REACT_APP_CHAIN_ID)}
+              connectors={{
+                walletconnect: { rpcUrl },
+                bsc,
+              }}
+            >
+              <BlockContextProvider>
+                <RefreshContextProvider>
+                  <ModalProvider>{children}</ModalProvider>
+                </RefreshContextProvider>
+              </BlockContextProvider>
+            </UseWalletProvider>
+          </LanguageContextProvider>
+        </ThemeContextProvider>
+      </HelmetProvider>
     </Provider>
   )
 }

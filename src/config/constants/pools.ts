@@ -742,6 +742,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 34,
+    tokenName: 'BFT',
+    image: 'BFT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x73775564d2cbad604c41d0b3ddf061e80e1d0279', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.bitfresh.win',
+    harvest: true,
+    tokenPerBlock: `1.9290123456790123`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
