@@ -55,7 +55,7 @@ const StyledHeading = styled(Heading)`
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
   }
- 
+
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 22px;
   }

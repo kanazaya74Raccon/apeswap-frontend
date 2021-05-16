@@ -150,7 +150,7 @@ const StyledText = styled(Text)`
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 15px;
+    font-size: 15px !important;
   }
 `
 

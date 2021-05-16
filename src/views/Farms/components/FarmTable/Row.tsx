@@ -132,7 +132,6 @@ const LiquidtyContainer = styled.div`
   position: absolute;
   left: 480px;
 
-
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 587px;
   }
