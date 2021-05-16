@@ -52,6 +52,10 @@ const MultiplierTag = styled(Tag)`
 
 const StyledHeading = styled(Heading)`
   font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    text-align: start;
+  }
+ 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 22px;
   }
@@ -99,6 +103,10 @@ const StyledFlexContainer = styled(Flex)`
   margin-right: 8px;
   align-items: center;
   flex: 1;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-right: 15px;
+  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 15px;

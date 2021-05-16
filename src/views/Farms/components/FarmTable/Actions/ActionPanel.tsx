@@ -32,10 +32,10 @@ const Container = styled.div`
   padding: 24px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    display: block;
+    padding-left: 340px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 401px;
-    padding-top: 0px;
-    padding-bottom: 15px;
   }
 `
 
@@ -87,7 +87,11 @@ const ActionContainer = styled.div`
 `
 
 const InfoContainer = styled.div`
-  min-width: 315px;
+  min-width: 260px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    min-width: 315px;
+  }
 `
 
 const ValueContainer = styled.div`
@@ -115,11 +119,17 @@ const StyledText = styled(Text)`
 
 const StakedText = styled(Text)`
   font-weight: 700;
-  margin-left 85px;
+  margin-left 60px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-left 85px;
+  }
 `
 
 const StakedValueText = styled(Text)`
-  margin-left 85px;
+  margin-left 60px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-left 85px;
+  }
 `
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, multiplier, liquidity }) => {

@@ -60,19 +60,19 @@ const App: React.FC = () => {
   useFetchStatsOverall()
 
   const { statsOverall } = useStatsOverall()
-  
+
   const scrollToTop = (): void => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
-    });
+      behavior: 'smooth',
+    })
   }
 
   return (
     <Router>
       <ResetCSS />
       <GlobalStyle />
-      { window.location.pathname==="/farms" && <StyledChevronUpIcon onClick={scrollToTop}/>}
+      {window.location.pathname === '/farms' && <StyledChevronUpIcon onClick={scrollToTop} />}
       <Menu>
         <Suspense fallback={<PageLoader />}>
           <Switch>

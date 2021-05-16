@@ -82,12 +82,9 @@ const LabelWrapper = styled.div`
 
   margin-left: 30px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 0px;
-  }
-
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
+    margin-left: 0px;
     align-items: center;
   }
 `
@@ -217,11 +214,8 @@ const StyledLabelContainerHot = styled.div`
     margin-left: 35px;
     margin-right: 35px;
   }
+
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 38px;
@@ -243,10 +237,6 @@ const StyledLabelContainerLP = styled.div`
     margin-right: 35px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
     left: 169px;
@@ -268,14 +258,13 @@ const StyledLabelContainerAPR = styled.div`
     margin-right: 35px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
-    left: 409px;
+    left: 365px;
     margin: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 409px;
   }
 `
 
@@ -293,14 +282,13 @@ const StyledLabelContainerLiquidity = styled.div`
     margin-right: 35px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
     position: absolute;
     top: 6px;
-    left: 621px;
+    left: 500px;
     margin: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 621px;
   }
 `
 
@@ -318,13 +306,12 @@ const StyledLabelContainerEarned = styled.div`
     margin-right: 35px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
     margin: 0px;
     position: absolute;
     top: 6px;
+    left: 651px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     left: 801px;
   }
 `
@@ -340,7 +327,7 @@ const ButtonCheckWrapper = styled.div`
   width: 100%;
   margin-right: 30px;
 
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
   }
 `
@@ -370,6 +357,10 @@ const StyledPage = styled(Page)`
   padding-right: 5px;
   width: 100vw;
 
+  ${({ theme }) => theme.mediaQueries.xs} {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 16px;
     padding-right: 16px;
@@ -422,7 +413,7 @@ const Farms: React.FC = () => {
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(size.width > 576 ? ViewMode.TABLE : ViewMode.CARD)
+  const [viewMode, setViewMode] = useState(size.width > 968 ? ViewMode.TABLE : ViewMode.CARD)
   const [sortOption, setSortOption] = useState('')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
@@ -431,7 +422,7 @@ const Farms: React.FC = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
-    if (size.width < 576) {
+    if (size.width < 968) {
       setViewMode(ViewMode.CARD)
     }
   }, [size])
@@ -681,7 +672,7 @@ const Farms: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-            {size.width > 576 && <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
+            {size.width > 968 && <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search
@@ -733,9 +724,6 @@ const Farms: React.FC = () => {
               ) : null}
             </StyledLabel>
           </StyledLabelContainerEarned>
-          {/* <StyledLabelContainer>
-              <StyledLabel onClick={() => handleSortOptionChange('')}>Reset</StyledLabel>
-            </StyledLabelContainer> */}
         </ContainerLabels>
         {renderContent()}
       </StyledPage>

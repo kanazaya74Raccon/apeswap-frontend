@@ -120,19 +120,32 @@ const StyledTd2 = styled.div`
 
 const APRContainer = styled.div`
   position: absolute;
-  left: 401px;
+  left: 340px;
   top: 19px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 401px;
+  }
 `
 
 const LiquidtyContainer = styled.div`
   position: absolute;
-  left: 587px;
+  left: 480px;
+
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 587px;
+  }
 `
 
 const EarnedContainer = styled.div`
   position: absolute;
-  left: 803px;
+  left: 660px;
   top: 19px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 803px;
+  }
 `
 
 const StyledFlex = styled(Flex)`
