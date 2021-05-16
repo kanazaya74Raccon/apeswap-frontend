@@ -142,11 +142,25 @@ const StyledClickLeft = styled.img`
 
 const carouselSlidesData = [
   {
-    header: '🤝 Ontology Partnership 🤝 ',
-    text: 'We teamed up with Ontology and ONTO Wallet!',
-    text2: 'See our frenzy with over $250,000 in rewards up for grabs! 😮',
+    header: "🙊 SCV.Finance Limited NFT's 🙊",
+    text: "We've released a limited edition collection of NFT's in collaboration with SCV.Finance 🎉",
+    text2: "This event will be held from May 14th 00:00 GMT to May 17th 00:00 GMT, so get them while they're hot!",
+    link: 'Get them!',
+    pageLink: 'https://scv.finance/nft/claim',
+  },
+  {
+    header: '📈 xBTC listed on ApeSwap 📈',
+    text: 'xBTC gives you exposure to the entire altcoin market 🚀 Bridge from Ethereum to BSC 🌉',
+    text2: 'Stake Banana to earn over $600,000 xBTC rewards. 💸',
     link: 'Get the details here!',
-    pageLink: 'https://ape-swap.medium.com/ontology-comes-to-apeswap-61cb37f34811',
+    pageLink: 'https://ape-swap.medium.com/apeswap-welcomes-xbtc-to-bsc-6102ba275a36',
+  },
+  {
+    header: '⚒️ Have you checked out our BUIDL Program? ⚒️',
+    text: 'Come grow the Jungle with us 🚀',
+    text2: 'Build on ApeSwap and get rewards! 💰',
+    link: 'See the Newsletter here!',
+    pageLink: 'https://ape-swap.medium.com/buidl-newsletter-001-b9332ddda48',
   },
   {
     header: 'Did you hear about the ApeZone?',

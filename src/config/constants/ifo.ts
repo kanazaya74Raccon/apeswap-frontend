@@ -95,6 +95,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 8,
     releaseBlockNumber: 5685490,
+    burnedTxUrl: 'https://bscscan.com/tx/0xbcfe28f2552d53f3cb49f37d6001aa7708070d3d17f75652c5096b7ecb4ce8fa',
   },
   {
     id: 'jediyield',
@@ -114,11 +115,12 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 6044304,
+    burnedTxUrl: 'https://bscscan.com/tx/0x5f65d5ce713e115be0646c473688aa052c98896f49d9c0c09ecd13aa8d459a1e',
   },
   {
     id: 'bitfresh',
     address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
-    isActive: true,
+    isActive: false,
     name: 'Bitfresh',
     subTitle: 'The first community-driven iGaming platform where everyone wins.',
     description:
@@ -133,6 +135,26 @@ const ifos: Ifo[] = [
     currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 6565331,
+    burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
+  },
+  {
+    id: 'aperocket',
+    address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
+    isActive: true,
+    name: 'ApeRocket',
+    subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
+    description:
+      'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
+    launchDate: 'May. 20',
+    launchTime: '03:00 UTC',
+    saleAmount: ' 55,556 SPACE',
+    raiseAmount: '$500,000',
+    projectSiteUrl: 'https://aperocket.finance',
+    currency: 'BNB',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    tokenDecimals: 18,
+    releaseBlockNumber: 7378325,
+    // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
   },
 ]
 

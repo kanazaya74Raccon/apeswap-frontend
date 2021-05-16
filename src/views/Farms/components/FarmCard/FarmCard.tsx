@@ -59,15 +59,20 @@ const FeaturedCardAccent = styled(Accent)`
   animation: ${RainbowLight} 2s linear infinite;
 `
 
-const WarningCardAccent = styled(Accent)`
+const DeprecatedCardAccent = styled(Accent)`
   background: #ca3e33;
+`
+
+const WarningCardAccent = styled(Accent)`
+  background: #c57415;
 `
 
 const InactiveCardAccent = styled(Accent)`
   background: grey;
 `
 
-const styles = {
+const styles: FarmStyles = {
+  deprecated: DeprecatedCardAccent,
   warning: WarningCardAccent,
   featured: FeaturedCardAccent,
   inactive: InactiveCardAccent,
