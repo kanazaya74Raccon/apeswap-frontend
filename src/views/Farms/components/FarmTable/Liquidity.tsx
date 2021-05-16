@@ -1,12 +1,7 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { HelpIcon, Text, Skeleton } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
-import { usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
-import { QuoteToken } from 'config/constants/types'
+import { Text, Skeleton } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-
-import Tooltip from '../Tooltip/Tooltip'
 
 export interface LiquidityProps {
   liquidity: BigNumber
@@ -43,8 +38,6 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   ) : (
     <Skeleton width={60} />
   )
-
-  const TranslateString = useI18n()
 
   return (
     <Container>

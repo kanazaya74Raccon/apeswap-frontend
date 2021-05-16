@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { Tag, Flex, Heading, Image, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
@@ -43,11 +43,6 @@ const StyledBackground = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 121px;
   }
-`
-
-const MultiplierTag = styled(Tag)`
-  margin-left: 4px;
-  color: ${(props) => props.theme.colors.card};
 `
 
 const StyledHeading = styled(Heading)`

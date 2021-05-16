@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
-import { Heading, RowType, Flex, Text, Card, Checkbox, ArrowDropDownIcon, ChevronUpIcon } from '@apeswapfinance/uikit'
+import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
@@ -14,8 +14,6 @@ import {
   usePriceBnbBusd,
   usePriceBananaBusd,
   usePriceEthBusd,
-  useFarmFromSymbol,
-  useFarmUser,
   useStatsOverall,
 } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
@@ -28,7 +26,6 @@ import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
-import Divider from './components/Divider'
 
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
@@ -86,18 +83,6 @@ const LabelWrapper = styled.div`
     flex-direction: row;
     margin-left: 0px;
     align-items: center;
-  }
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: auto;
-    padding: 0;
   }
 `
 

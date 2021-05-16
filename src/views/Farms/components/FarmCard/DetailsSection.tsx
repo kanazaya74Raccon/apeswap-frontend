@@ -1,12 +1,11 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
-import { useFarmUser, useStats, usePriceBananaBusd } from 'state/hooks'
+import { useFarmUser, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import Multiplier, { MultiplierProps } from '../FarmTable/Multiplier'
+import Multiplier from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -65,8 +64,6 @@ const StyledLink = styled(Link)`
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
-  removed,
-  totalValueFormated,
   lpLabel,
   addLiquidityUrl,
   farmStats,
@@ -79,7 +76,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const { earnings, stakedBalance } = useFarmUser(pid)
+  const { earnings } = useFarmUser(pid)
   const bananaPrice = usePriceBananaBusd()
   let earningsToReport = null
   let earningsBusd = 0

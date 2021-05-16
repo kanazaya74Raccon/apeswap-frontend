@@ -1,8 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
-
-import Tooltip from '../Tooltip/Tooltip'
 
 export interface MultiplierProps {
   multiplier: string
@@ -35,7 +32,6 @@ const Container = styled.div`
 
 const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) => {
   const displayMultiplier = multiplier ? multiplier.toString().toLowerCase() : '-'
-  const TranslateString = useI18n()
 
   return (
     <Container>

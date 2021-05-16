@@ -8,18 +8,16 @@ import UnlockButton from 'components/UnlockButton'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
 import { getContract } from 'utils/erc20'
-import { useFarmUser, useStats } from 'state/hooks'
+import { useFarmUser } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useI18n from 'hooks/useI18n'
 import { useApprove } from 'hooks/useApprove'
-import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import { ActionContainer, ActionTitles, ActionContent, Earned, StakedStyle, Title, Subtle } from './styles'
 
 const IconButtonWrapperStake = styled.div`
   display: flex;
@@ -76,11 +74,6 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
-
-  const yourStats = useStats()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.find((item) => item.pid === pid)
 
   const [onPresentDeposit] = useModal(
     <DepositModal

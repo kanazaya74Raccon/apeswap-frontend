@@ -1,9 +1,8 @@
 import React, { useMemo, useState, useCallback, useRef } from 'react'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import { provider } from 'web3-core'
 import { getContract } from 'utils/erc20'
-import { ButtonSquare, Flex, Text } from '@apeswapfinance/uikit'
+import { ButtonSquare, Flex } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
 import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
@@ -12,7 +11,6 @@ import { useApprove } from 'hooks/useApprove'
 import rewards from 'config/constants/rewards'
 import Reward from 'react-rewards'
 import StakeAction from './StakeAction'
-import HarvestAction from './HarvestAction'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber

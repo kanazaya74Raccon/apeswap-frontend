@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ArrowDropDownIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon } from '@apeswapfinance/uikit'
 
 interface DetailsProps {
   actionPanelToggled: boolean
@@ -25,7 +25,6 @@ const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
-  const { isXl } = useMatchBreakpoints()
 
   return (
     <Container>

@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useFarmUser } from 'state/hooks'
-import useI18n from 'hooks/useI18n'
 import { Text, Image } from '@apeswapfinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
 
 export interface FarmProps {
   label: string
@@ -36,10 +33,7 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ image, label, pid }) => {
-  const { stakedBalance } = useFarmUser(pid)
-  const TranslateString = useI18n()
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
+const Farm: React.FunctionComponent<FarmProps> = ({ image, label }) => {
 
   return (
     <Container>

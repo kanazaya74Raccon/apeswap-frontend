@@ -4,7 +4,6 @@ import styled, { keyframes } from 'styled-components'
 import { useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
-import useI18n from 'hooks/useI18n'
 import { QuoteToken } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -90,13 +89,6 @@ const FCard = styled.div`
   overflow: hidden;
 `
 
-const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.borderColor};
-  height: 1px;
-  margin: 28px auto;
-  width: 100%;
-`
-
 const StyledContainer = styled.div`
   margin-left: 20px;
   margin-right: 20px;
@@ -118,7 +110,6 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
-  const TranslateString = useI18n()
 
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
@@ -150,7 +141,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
     : '-'
 
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = farm.dual ? farm.dual.earnLabel : 'BANANA'
   const farmAPR = farm.apr && farm.apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm

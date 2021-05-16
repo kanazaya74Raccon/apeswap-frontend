@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ArrowDropDownIcon, ArrowDropUpIcon, Text } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
