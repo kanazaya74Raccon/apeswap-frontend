@@ -33,7 +33,7 @@ const NfaHolder = styled.div`
 const PageHolder = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   justify-content: center;
 `
 
