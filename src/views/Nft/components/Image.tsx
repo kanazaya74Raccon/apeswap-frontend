@@ -54,7 +54,7 @@ const TierSvg = styled.div`
   fill: rgba(255, 255, 255, 0.1);
 `
 
-const Image: React.FC<ImageProps> = ({ src, alt, originalLink, rarityTier }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, rarityTier }) => {
   let gradientStyle = ''
   let backgroundSize = ''
   if (rarityTier === 1) {
