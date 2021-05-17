@@ -51,22 +51,20 @@ const Ifo = () => {
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
           <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(596, 'Buy BANANA and BNB tokens')}</li>
-            <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li>
+            <li>{TranslateString(596, 'Get BNB tokens')}</li>
+            {/* <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li> */}
           </List>
-          <Flex mb="16px">
+          {/* <Flex mb="16px">
             <LinkExternal href="https://dex.apeswap.finance/#/swap" mr="16px">
               {TranslateString(999, 'Buy banana')}
             </LinkExternal>
             <LinkExternal href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95">
               {TranslateString(999, 'Get LP tokens')}
             </LinkExternal>
-          </Flex>
+          </Flex> */}
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
-            <li>
-              {TranslateString(602, 'While the sale is live, commit your BANANA-BNB LP tokens to buy the IAO tokens')}
-            </li>
+            <li>{TranslateString(602, 'While the sale is live, commit your BNB tokens to buy the IAO tokens')}</li>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>

@@ -32,6 +32,34 @@ export interface ApiStatResponse {
   }
 }
 
+export interface SaleHistory {
+  from: string
+  to: string
+  tokenId: number
+  value: string
+  transactionHash: string
+  blockNumber: number
+}
+
+export const useGetNfaSales = (id: number) => {
+  const [sale, setSale] = useState<SaleHistory[] | null>(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}/nfas/history/${id}`)
+        const responsedata: SaleHistory[] = await response.json()
+
+        setSale(responsedata)
+      } catch (error) {
+        console.error('Unable to fetch data:', error)
+      }
+    }
+    fetchData()
+  }, [setSale, id])
+  return sale
+}
+
 export const useGetStats = () => {
   const [data, setData] = useState<ApiStatResponse | null>(null)
 
