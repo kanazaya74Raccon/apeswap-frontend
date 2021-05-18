@@ -115,7 +115,6 @@ interface FarmCardProps {
 }
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
-
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)

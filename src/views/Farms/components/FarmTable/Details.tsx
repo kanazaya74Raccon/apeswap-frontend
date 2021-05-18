@@ -25,7 +25,6 @@ const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
 `
 
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
-
   return (
     <Container>
       <ArrowIcon color="primary" toggled={actionPanelToggled} />

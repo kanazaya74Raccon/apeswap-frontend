@@ -34,7 +34,6 @@ const StyledBackground = styled.div`
 `
 
 const Farm: React.FunctionComponent<FarmProps> = ({ image, label }) => {
-
   return (
     <Container>
       <StyledBackground>
