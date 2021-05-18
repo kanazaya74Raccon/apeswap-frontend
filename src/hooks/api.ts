@@ -9,6 +9,8 @@ export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
+export const baseUrlStrapi = 'https://apeswap-strapi.herokuapp.com'
+
 /* eslint-disable camelcase */
 
 export interface TradePair {
@@ -215,4 +217,23 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
   }, [setData, resolution, currentPair, to])
 
   return data
+}
+
+export const getPromosHome = async () => {
+  const url = `${baseUrlStrapi}/homepages?_sort=order:ASC`
+  const resp = await fetch(url)
+  const data = await resp.json()
+
+  const promos = data.map((promo) => {
+    return {
+      header: promo.title,
+      text: promo.source,
+      text2: promo.source2,
+      link: promo.link_description,
+      pageLink: promo.link,
+      image: promo.image,
+    }
+  })
+
+  return promos
 }

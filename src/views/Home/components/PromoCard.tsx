@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, CardBody, Heading, Spinner, Text } from '@apeswapfinance/uikit'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
+import useFetchPromoHome from 'state/strapi/useFetchPromoHome'
+import { baseUrlStrapi } from 'hooks/api'
 
 const StyledPromoCard = styled(Card)`
   text-align: center;
@@ -139,47 +141,27 @@ const StyledClickLeft = styled.img`
     padding: 80px 10px;
   }
 `
-
-const carouselSlidesData = [
-  {
-    header: "🙊 SCV.Finance Limited NFT's 🙊",
-    text: "We've released a limited edition collection of NFT's in collaboration with SCV.Finance 🎉",
-    text2: "This event will be held from May 14th 00:00 GMT to May 17th 00:00 GMT, so get them while they're hot!",
-    link: 'Get them!',
-    pageLink: 'https://scv.finance/nft/claim',
-  },
-  {
-    header: '📈 xBTC listed on ApeSwap 📈',
-    text: 'xBTC gives you exposure to the entire altcoin market 🚀 Bridge from Ethereum to BSC 🌉',
-    text2: 'Stake Banana to earn over $600,000 xBTC rewards. 💸',
-    link: 'Get the details here!',
-    pageLink: 'https://ape-swap.medium.com/apeswap-welcomes-xbtc-to-bsc-6102ba275a36',
-  },
-  {
-    header: '⚒️ Have you checked out our BUIDL Program? ⚒️',
-    text: 'Come grow the Jungle with us 🚀',
-    text2: 'Build on ApeSwap and get rewards! 💰',
-    link: 'See the Newsletter here!',
-    pageLink: 'https://ape-swap.medium.com/buidl-newsletter-001-b9332ddda48',
-  },
-  {
-    header: 'Did you hear about the ApeZone?',
-    text: '🍌 Check our fully fledged ApeZone 🍌',
-    text2: 'Become a GNANA holder and access exclusive perks',
-    link: 'Check it out!',
-    pageLink: 'apezone',
-  },
-  {
-    header: 'We love NFAs',
-    text: '🐒 Check our full NFA collection 🐒',
-    text2: 'New batches constantly launching',
-    link: 'Check them out!',
-    pageLink: 'nft',
-  },
-]
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-bottom: 60px;
+  }
+`
+const ImageContainer = styled.div<{ image: string }>`
+  background: url(${({ image }) => image});
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 12px;
+  height: 244px;
+`
 
 const PromoCard = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const { carouselSlidesData, loading } = useFetchPromoHome()
 
   const goToPrevSlide = () => {
     let index = activeIndex
@@ -206,7 +188,11 @@ const PromoCard = () => {
     <StyledPromoCard>
       <CarouselLeftArrow onClick={() => goToPrevSlide()} />
       <StyledDivContainer>
-        {carouselSlidesData && (
+        {loading ? (
+          <LoadingContainer className="something">
+            <Spinner />
+          </LoadingContainer>
+        ) : (
           <StyledCarousel infiniteLoop autoPlay selectedItem={activeIndex} showStatus={false} showArrows={false}>
             {carouselSlidesData.map((slide) => (
               <CarouselSlide slide={slide} />
@@ -239,21 +225,28 @@ const CarouselRightArrow = ({ onClick }) => {
   )
 }
 
+const getImageUrl = (image) => {
+  return `${baseUrlStrapi}${image.url}`
+}
 const CarouselSlide = ({ slide }) => {
   return (
     <a href={`${slide.pageLink}`}>
-      <CardBody>
-        <Heading size="lg" mb="24px">
-          {`${slide.header}`}
-        </Heading>
-        <StyledDiv>
-          <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
-          <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
-          <Text color="textSubtle">
-            <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
-          </Text>
-        </StyledDiv>
-      </CardBody>
+      {slide.image.length !== 0 ? (
+        <ImageContainer image={getImageUrl(slide.image[0])} className="container-image" />
+      ) : (
+        <CardBody>
+          <Heading size="lg" mb="24px">
+            {`${slide.header}`}
+          </Heading>
+          <StyledDiv>
+            <Text color="textSubtle" fontFamily="poppins" mb="8px">{`${slide.text}`}</Text>
+            <Text color="textSubtle" fontFamily="poppins">{`${slide.text2}`}</Text>
+            <Text color="textSubtle">
+              <StyledNavLink href={`${slide.pageLink}`}>{`${slide.link}`}</StyledNavLink>
+            </Text>
+          </StyledDiv>
+        </CardBody>
+      )}
     </a>
   )
 }
