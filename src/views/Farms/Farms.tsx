@@ -9,13 +9,7 @@ import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apes
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
-import {
-  useFarms,
-  usePriceBnbBusd,
-  usePriceBananaBusd,
-  usePriceEthBusd,
-  useStatsOverall,
-} from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd, useStatsOverall } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
