@@ -262,6 +262,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 52,
+    lpSymbol: 'ZEC-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2B2C771e44aF4C6f858598308e05FB89b23f11cE', // ZEC-BNB BananaPair
+    },
+    tokenSymbol: 'ZEC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb', // ZEC Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 51,
     lpSymbol: 'AVAX-BNB LP',
     lpAddresses: {
