@@ -12,6 +12,7 @@ const StyledFlex = styled(Flex)`
   margin-left: 20px;
   margin-right: 10px;
   margin-bottom: 3px;
+  cursor: pointer;
 
   @media screen and (min-width: 450px) {
     margin-right: 20px;

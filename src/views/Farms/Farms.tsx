@@ -41,6 +41,7 @@ const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   padding-bottom: 10px;
+  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
@@ -48,6 +49,7 @@ const ControlContainer = styled(Card)`
     padding: 0px;
     justify-content: flex-start;
     padding-left: 50px;
+    transform: translateY(-60px);
   }
 `
 
@@ -56,6 +58,7 @@ const ToggleWrapper = styled.div`
   align-items: center;
   justify-content: center
   margin-left: 10px;
+  cursor: pointer;
 
   ${Text} {
     margin-left: 4px;
@@ -174,13 +177,19 @@ const ContainerLabels = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
   }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    transform: translateY(-60px);
+  }
 `
 
 const StyledLabelContainerHot = styled.div`
+  cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -203,6 +212,7 @@ const StyledLabelContainerHot = styled.div`
 `
 
 const StyledLabelContainerLP = styled.div`
+  cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -224,6 +234,8 @@ const StyledLabelContainerLP = styled.div`
 `
 
 const StyledLabelContainerAPR = styled.div`
+  cursor: pointer;
+
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -248,6 +260,7 @@ const StyledLabelContainerAPR = styled.div`
 `
 
 const StyledLabelContainerLiquidity = styled.div`
+  cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -272,6 +285,7 @@ const StyledLabelContainerLiquidity = styled.div`
 `
 
 const StyledLabelContainerEarned = styled.div`
+  cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -297,6 +311,11 @@ const StyledLabelContainerEarned = styled.div`
 
 const CardContainer = styled.div`
   margin-top: 17px;
+
+  transform: translateY(-85px);
+  ${({ theme }) => theme.mediaQueries.md} {
+    transform: translateY(-60px);
+  }
 `
 
 const ButtonCheckWrapper = styled.div`
@@ -392,7 +411,7 @@ const Farms: React.FC = () => {
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(size.width > 968 ? ViewMode.TABLE : ViewMode.CARD)
-  const [sortOption, setSortOption] = useState('')
+  const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
   const ethPriceUsd = usePriceEthBusd()
@@ -669,7 +688,7 @@ const Farms: React.FC = () => {
             </LabelWrapper>
             <ButtonCheckWrapper>
               <FarmTabButtons />
-              <ToggleWrapper>
+              <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                 <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                 <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
               </ToggleWrapper>
@@ -683,7 +702,9 @@ const Farms: React.FC = () => {
         </ControlContainer>
         <ContainerLabels>
           <StyledLabelContainerHot>
-            <StyledLabel onClick={() => handleSortOptionChange('')}>Hot</StyledLabel>
+            <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
+              Hot
+            </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
             <StyledLabel>LP</StyledLabel>

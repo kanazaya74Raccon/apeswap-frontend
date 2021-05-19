@@ -82,7 +82,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({
     )
   }
 
-  return <Flex>{!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}</Flex>
+  return <Flex>{account && renderApprovalOrStakeButton()}</Flex>
 }
 
 export default CardActions

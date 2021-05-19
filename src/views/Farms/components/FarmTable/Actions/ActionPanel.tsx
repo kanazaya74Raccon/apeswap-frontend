@@ -20,8 +20,8 @@ export interface ActionPanelProps {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column-reverse;
-  padding: 24px;
+  flex-direction: column;
+  padding: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 340px;
@@ -35,6 +35,7 @@ const StyledLinkExternal = styled(LinkExternal)`
   font-weight: 400;
   font-size: 12px;
   text-decoration-line: underline;
+  margin-bottom: 10px;
 `
 
 const ActionContainer = styled.div`
@@ -123,66 +124,68 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr }
     : '-'
 
   return (
-    <Container>
-      <Flex>
-        <InfoContainer>
-          <ValueContainer>
+    <>
+      <Container>
+        <Flex>
+          <InfoContainer>
+            <ValueContainer>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {TranslateString(999, 'Multiplier:')}
+                </StyledText>
+                <Multiplier multiplier={apr.multiplier} />
+              </ValueWrapper>
+            </ValueContainer>
+            <ValueContainer>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {TranslateString(999, 'Stake:')}
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {farm.lpSymbol}
+                </StyledText>
+              </ValueWrapper>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  Staked Value
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                  ~{totalValuePersonalFormated}USD
+                </StyledText>
+              </ValueWrapper>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  Earned Value
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                  ~{displayHarvestBalance}USD
+                </StyledText>
+              </ValueWrapper>
+            </ValueContainer>
+          </InfoContainer>
+          <Flex flexDirection="column">
+            <StakedText fontFamily="poppins" fontSize="12px">
+              Staked
+            </StakedText>
+            <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">
+              {displayBalance}
+            </StakedValueText>
+          </Flex>
+          <ValueContainerNoneLarge>
             <ValueWrapper>
               <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(999, 'Multiplier:')}
+                {TranslateString(736, 'APR:')}
               </StyledText>
-              <Multiplier multiplier={apr.multiplier} />
+              <Apr {...apr} />
             </ValueWrapper>
-          </ValueContainer>
-          <ValueContainer>
-            <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(999, 'Stake:')}
-              </StyledText>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {farm.lpSymbol}
-              </StyledText>
-            </ValueWrapper>
-            <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                Staked Value
-              </StyledText>
-              <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                ~{totalValuePersonalFormated}USD
-              </StyledText>
-            </ValueWrapper>
-            <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                Earned Value
-              </StyledText>
-              <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                ~{displayHarvestBalance}USD
-              </StyledText>
-            </ValueWrapper>
-          </ValueContainer>
-        </InfoContainer>
-        <Flex flexDirection="column">
-          <StakedText fontFamily="poppins" fontSize="12px">
-            Staked
-          </StakedText>
-          <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">
-            {displayBalance}
-          </StakedValueText>
+          </ValueContainerNoneLarge>
+          <ActionContainer>
+            <StakedAction {...farm} />
+          </ActionContainer>
         </Flex>
-        <ValueContainerNoneLarge>
-          <ValueWrapper>
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(736, 'APR:')}
-            </StyledText>
-            <Apr {...apr} />
-          </ValueWrapper>
-        </ValueContainerNoneLarge>
-        <ActionContainer>
-          <StakedAction {...farm} />
-        </ActionContainer>
-      </Flex>
+      </Container>
       <StyledLinkExternal href={bsc}>{TranslateString(999, 'View on BscScan')}</StyledLinkExternal>
-    </Container>
+    </>
   )
 }
 

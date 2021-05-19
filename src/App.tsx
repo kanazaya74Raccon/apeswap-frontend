@@ -43,6 +43,7 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
   border: 1px solid #ffb300;
   border-radius: 50%;
   z-index: 10;
+  cursor: pointer;
 `
 
 const App: React.FC = () => {

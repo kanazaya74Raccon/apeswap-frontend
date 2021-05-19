@@ -125,11 +125,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
   }
 
   if (!account) {
-    return (
-      <IconButtonWrapper>
-        <UnlockButton width="100%" />
-      </IconButtonWrapper>
-    )
+    return null
   }
 
   if (isApproved) {

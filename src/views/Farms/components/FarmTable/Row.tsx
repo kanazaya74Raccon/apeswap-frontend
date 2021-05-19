@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
+import UnlockButton from 'components/UnlockButton'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
@@ -37,7 +39,7 @@ const cells = {
 const CellInner = styled.div`
   padding: 0px 0px;
   display: flex;
-  width: 100%;
+  width: auto;
   align-items: center;
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -131,6 +133,8 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
 
   const { isXl, isXs } = useMatchBreakpoints()
 
+  const { account }: { account: string } = useWallet()
+
   const isMobile = !isXl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
@@ -150,7 +154,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'details':
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
-                      <HarvestAction {...props.earned} {...props.farm} />
+                      {!account ? <UnlockButton /> : <HarvestAction {...props.earned} {...props.farm} />}
                       <CellInner>
                         <CellLayout>
                           <Details actionPanelToggled={actionPanelToggled} />
