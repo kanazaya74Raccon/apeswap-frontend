@@ -9,6 +9,7 @@ import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
 export interface Props {
+  address: string
   currency: string
   currencyAddress: string
   contract: Contract
