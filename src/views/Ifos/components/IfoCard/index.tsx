@@ -157,19 +157,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && (currencyAddress !== ZERO_ADDRESS ?  (
-          <IfoCardContribute
-            address={address}
-            currency={currency}
-            currencyAddress={currencyAddress}
-            contract={contract}
-            status={state.status}
-            raisingAmount={state.raisingAmount}
-            tokenDecimals={tokenDecimals}
-            totalAmount={state.totalAmount}
-            notLp={notLp}
-          />
-        ) : (<IfoCardBNBContribute
+        {(isActive || isFinished) &&
+          (currencyAddress !== ZERO_ADDRESS ? (
+            <IfoCardContribute
+              address={address}
               currency={currency}
               currencyAddress={currencyAddress}
               contract={contract}
@@ -178,7 +169,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
               tokenDecimals={tokenDecimals}
               totalAmount={state.totalAmount}
               notLp={notLp}
-            />))}
+            />
+          ) : (
+            <IfoCardBNBContribute
+              currency={currency}
+              currencyAddress={currencyAddress}
+              contract={contract}
+              status={state.status}
+              raisingAmount={state.raisingAmount}
+              tokenDecimals={tokenDecimals}
+              totalAmount={state.totalAmount}
+              notLp={notLp}
+            />
+          ))}
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
