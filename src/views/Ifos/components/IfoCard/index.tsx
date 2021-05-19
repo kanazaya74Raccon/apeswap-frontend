@@ -158,19 +158,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) &&
-            <ContributeCard
-              address={address}
-              currency={currency}
-              currencyAddress={currencyAddress}
-              contract={contract}
-              status={state.status}
-              raisingAmount={state.raisingAmount}
-              tokenDecimals={tokenDecimals}
-              totalAmount={state.totalAmount}
-              notLp={notLp}
-            />
-        }
+        {(isActive || isFinished) && (
+          <ContributeCard
+            address={address}
+            currency={currency}
+            currencyAddress={currencyAddress}
+            contract={contract}
+            status={state.status}
+            raisingAmount={state.raisingAmount}
+            tokenDecimals={tokenDecimals}
+            totalAmount={state.totalAmount}
+            notLp={notLp}
+          />
+        )}
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
