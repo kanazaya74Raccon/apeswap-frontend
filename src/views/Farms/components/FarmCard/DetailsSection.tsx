@@ -1,4 +1,5 @@
 import React from 'react'
+import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
@@ -15,6 +16,7 @@ export interface ExpandableSectionProps {
   addLiquidityUrl?: string
   farmStats?: FarmPool
   multiplier?: string
+  liquidity?: BigNumber
   pid?: number
 }
 
@@ -69,11 +71,16 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   farmStats,
   multiplier,
   pid,
+  liquidity,
 }) => {
   const TranslateString = useI18n()
 
   const totalValuePersonalFormated = farmStats
     ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    : '-'
+
+  const totalValueFormated = liquidity
+    ? `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   const { earnings } = useFarmUser(pid)
@@ -96,14 +103,14 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </StyledText>
         <Multiplier multiplier={multiplier} />
       </ValueWrapper>
-      {/* <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(999, 'Stake:')}
-              </StyledText>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {farm.lpSymbol}
-              </StyledText>
-            </ValueWrapper> */}
+      <Flex justifyContent="space-between">
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(316, 'Liquidity')}:
+        </StyledText>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {totalValueFormated}
+        </StyledText>
+      </Flex>
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">
           {TranslateString(316, 'Stake')}:

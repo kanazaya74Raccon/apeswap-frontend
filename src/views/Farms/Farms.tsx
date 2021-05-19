@@ -9,7 +9,7 @@ import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apes
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd, useStatsOverall } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
@@ -381,7 +381,6 @@ const FlexLayout = styled.div`
 `
 
 const Farms: React.FC = () => {
-  const { statsOverall } = useStatsOverall()
   const size: Size = useWindowSize()
 
   const { path } = useRouteMatch()
@@ -443,7 +442,17 @@ const Farms: React.FC = () => {
         const bananaRewardPerYear = bananaRewardPerBlock.times(BLOCKS_PER_YEAR)
 
         let apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
-        const totalLiquidity = new BigNumber(statsOverall.farms[farm.pid - 1].tvl)
+
+        let totalLiquidity: BigNumber
+        if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+          totalLiquidity = bnbPrice.times(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.BANANA) {
+          totalLiquidity = bananaPrice.times(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+          totalLiquidity = ethPriceUsd.times(farm.lpTotalInQuoteToken)
+        } else {
+          totalLiquidity = farm.lpTotalInQuoteToken
+        }
 
         if (farm.quoteTokenSymbol === QuoteToken.BUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
           apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
@@ -473,7 +482,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, statsOverall],
+    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query],
   )
 
   const farmsStakedMemoized = useMemo(() => {
