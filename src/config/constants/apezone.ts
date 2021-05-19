@@ -21,7 +21,7 @@ const ApeZone = {
     },
     {
       id: 'aperocket',
-      address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
+      address: '0x784DabD2b43e21394cBbC735Bb26DF5092aFd6Fe',
       isActive: true,
       name: 'ApeRocket',
       subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
