@@ -21,7 +21,7 @@ const ApeZone = {
     },
     {
       id: 'aperocket',
-      address: '0x784DabD2b43e21394cBbC735Bb26DF5092aFd6Fe',
+      address: '0x17797aA628eC2115dE571b2Af904c2876fE27376',
       isActive: true,
       name: 'ApeRocket',
       subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
@@ -34,7 +34,7 @@ const ApeZone = {
       bananaToBurn: '$250,000',
       projectSiteUrl: 'https://aperocket.finance',
       currency: 'GNANA',
-      currencyAddress: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 7378325,
       // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
