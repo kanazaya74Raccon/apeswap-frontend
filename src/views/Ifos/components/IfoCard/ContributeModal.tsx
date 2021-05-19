@@ -5,6 +5,7 @@ import { Modal, Button, Flex, LinkExternal } from '@apeswapfinance/uikit'
 import BalanceInput from 'components/Input/BalanceInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import { ZERO_ADDRESS } from 'config'
 
 interface Props {
   currency: string
@@ -19,6 +20,16 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
   const balance = getFullDisplayBalance(useTokenBalance(currencyAddress))
+
+  const deposit = async () => {
+    const depositValue = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
+    if (currencyAddress === ZERO_ADDRESS) {
+      return contract.methods.depositBNB().send({from: account, value: depositValue })
+    }
+    return contract.methods
+    .deposit(depositValue)
+    .send({ from: account })
+  }
 
   return (
     <Modal title={`Contribute ${currency}`} onDismiss={onDismiss}>
@@ -38,9 +49,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
-            await contract.methods
-              .deposit(new BigNumber(value).times(new BigNumber(10).pow(18)).toString())
-              .send({ from: account })
+            await deposit()
             setPendingTx(false)
             onDismiss()
           }}

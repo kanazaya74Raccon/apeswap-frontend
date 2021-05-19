@@ -139,7 +139,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'aperocket',
-    address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
+    address: '0xE783C84fF7Fa086feA9671657fA33732d750e415',
     isActive: true,
     name: 'ApeRocket',
     subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
@@ -151,7 +151,7 @@ const ifos: Ifo[] = [
     raiseAmount: '$500,000',
     projectSiteUrl: 'https://aperocket.finance',
     currency: 'BNB',
-    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
     releaseBlockNumber: 7378325,
     // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',

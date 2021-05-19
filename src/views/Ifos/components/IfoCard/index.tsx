@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@apeswapfinance/uikit'
-import { BSC_BLOCK_TIME } from 'config'
+import { BSC_BLOCK_TIME, ZERO_ADDRESS } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
@@ -15,6 +15,7 @@ import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardTime from './IfoCardTime'
 import IfoCardContribute from './IfoCardContribute'
+import IfoCardBNBContribute from './IfoCardBNBContribute'
 
 export interface IfoCardProps {
   ifo: Ifo
@@ -156,7 +157,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && (
+        {(isActive || isFinished) && (currencyAddress !== ZERO_ADDRESS ?  (
           <IfoCardContribute
             address={address}
             currency={currency}
@@ -168,7 +169,16 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
             totalAmount={state.totalAmount}
             notLp={notLp}
           />
-        )}
+        ) : (<IfoCardBNBContribute
+              currency={currency}
+              currencyAddress={currencyAddress}
+              contract={contract}
+              status={state.status}
+              raisingAmount={state.raisingAmount}
+              tokenDecimals={tokenDecimals}
+              totalAmount={state.totalAmount}
+              notLp={notLp}
+            />))}
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
