@@ -64,7 +64,10 @@ const TicketCard: React.FC<CardProps> = ({ isSecondCard = false }) => {
           <IconWrapper>
             <Ticket />
           </IconWrapper>
-          {lotteryHasDrawn ? (
+          <Text fontSize="16px">
+              {TranslateString(999, 'Lottery disabled until further notice')}
+          </Text>
+          {/* lotteryHasDrawn ? (
             <TicketCountWrapper>
               <Text fontSize="14px" color="textSubtle">
                 {TranslateString(999, 'Until ticket sale:')}
@@ -78,9 +81,9 @@ const TicketCard: React.FC<CardProps> = ({ isSecondCard = false }) => {
               </Text>
               <Heading size="lg">{ticketsLength}</Heading>
             </TicketCountWrapper>
-          )}
+          ) */}
         </CardHeader>
-        <TicketActions />
+        {/* <TicketActions /> */}
       </CardBody>
     </StyledCard>
   )
