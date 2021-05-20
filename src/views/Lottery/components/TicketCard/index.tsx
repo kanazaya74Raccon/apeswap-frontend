@@ -64,9 +64,7 @@ const TicketCard: React.FC<CardProps> = ({ isSecondCard = false }) => {
           <IconWrapper>
             <Ticket />
           </IconWrapper>
-          <Text fontSize="16px">
-              {TranslateString(999, 'Lottery disabled until further notice')}
-          </Text>
+          <Text fontSize="16px">{TranslateString(999, 'Lottery disabled until further notice')}</Text>
           {/* lotteryHasDrawn ? (
             <TicketCountWrapper>
               <Text fontSize="14px" color="textSubtle">
