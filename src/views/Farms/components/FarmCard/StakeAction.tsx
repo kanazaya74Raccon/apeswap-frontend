@@ -5,16 +5,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import {
-  ButtonSquare,
-  Flex,
-  Heading,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  Text,
-} from '@apeswapfinance/uikit'
+import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -114,21 +105,21 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   )
 
   const renderStakingButtons = () => {
-    return rawStakedBalance === 0 ? (
-      <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
-    ) : (
-      <IconButtonWrapper>
-        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="white" width="12px" height="12px" />
-          </StyledIconButtonSquare>
-        </Reward>
-        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
-            <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
-        </Reward>
-      </IconButtonWrapper>
+    return (
+      rawStakedBalance !== 0 && (
+        <IconButtonWrapper>
+          <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+              <MinusIcon color="white" width="12px" height="12px" />
+            </StyledIconButtonSquare>
+          </Reward>
+          <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+            <StyledIconButtonSquare onClick={onPresentDeposit}>
+              <AddIcon color="white" width="16px" height="16px" />
+            </StyledIconButtonSquare>
+          </Reward>
+        </IconButtonWrapper>
+      )
     )
   }
 
