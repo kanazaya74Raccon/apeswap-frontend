@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { provider } from 'web3-core'
-import { FarmStyles, QuoteToken } from 'config/constants/types'
+import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
@@ -108,13 +108,11 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   bananaPrice?: BigNumber
-  bnbPrice?: BigNumber
-  ethPrice?: BigNumber
   ethereum?: provider
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPrice, ethPrice, ethereum, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, ethereum, account }) => {
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
@@ -173,7 +171,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
             lpLabel={lpLabel}
             addLiquidityUrl={addLiquidityUrl}
             farmStats={filteredFarmStats}
-            // apr={farm.apr}
             multiplier={farm.multiplier}
             liquidity={farm.liquidity}
             pid={farm.pid}

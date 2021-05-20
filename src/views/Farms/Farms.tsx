@@ -630,8 +630,6 @@ const Farms: React.FC = () => {
                 bananaPrice={bananaPrice}
                 account={account}
                 removed={false}
-                bnbPrice={bnbPrice}
-                ethPrice={ethPriceUsd}
                 ethereum={ethereum}
               />
             ))}
@@ -644,8 +642,6 @@ const Farms: React.FC = () => {
                 bananaPrice={bananaPrice}
                 account={account}
                 removed
-                bnbPrice={bnbPrice}
-                ethPrice={ethPriceUsd}
                 ethereum={ethereum}
               />
             ))}
