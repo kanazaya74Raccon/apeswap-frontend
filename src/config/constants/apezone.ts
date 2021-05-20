@@ -19,7 +19,7 @@ const ApeZone = {
       tokenDecimals: 18,
       releaseBlockNumber: 6565331,
     },
-    {
+    /* {
       id: 'aperocket',
       address: '0x17797aA628eC2115dE571b2Af904c2876fE27376',
       isActive: true,
@@ -38,7 +38,7 @@ const ApeZone = {
       tokenDecimals: 18,
       releaseBlockNumber: 7378325,
       // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
-    },
+    }, */
   ],
 }
 
