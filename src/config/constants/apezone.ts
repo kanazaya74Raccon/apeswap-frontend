@@ -3,7 +3,7 @@ const ApeZone = {
     {
       id: 'bitfresh',
       address: '0x0aA255267CBE1cC9366509056A24608385F07617',
-      isActive: false,
+      isActive: true,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
       description:
