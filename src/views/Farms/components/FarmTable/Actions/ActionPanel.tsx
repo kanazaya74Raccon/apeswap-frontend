@@ -15,6 +15,8 @@ export interface ActionPanelProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  account: string
+  addLiquidityUrl: string
 }
 
 const Container = styled.div`
@@ -93,7 +95,7 @@ const StakedValueText = styled(Text)`
   }
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr }) => {
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, account, addLiquidityUrl }) => {
   const farm = details
 
   const TranslateString = useI18n()
@@ -141,9 +143,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr }
                 <StyledText fontFamily="poppins" fontSize="12px">
                   {TranslateString(999, 'Stake:')}
                 </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {farm.lpSymbol}
-                </StyledText>
+                <LinkExternal href={addLiquidityUrl}>
+                  <StyledText fontFamily="poppins" fontSize="12px">
+                    {farm.lpSymbol}
+                  </StyledText>
+                </LinkExternal>
               </ValueWrapper>
               <ValueWrapper>
                 <StyledText fontFamily="poppins" fontSize="12px">
@@ -164,19 +168,23 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr }
             </ValueContainer>
           </InfoContainer>
           <Flex flexDirection="column">
-            <StakedText fontFamily="poppins" fontSize="12px">
-              Staked
-            </StakedText>
-            <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">
-              {displayBalance}
-            </StakedValueText>
+            {account && (
+              <>
+                <StakedText fontFamily="poppins" fontSize="12px">
+                  Staked
+                </StakedText>
+                <StakedValueText color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontSize="20px">
+                  {displayBalance}
+                </StakedValueText>
+              </>
+            )}
           </Flex>
           <ValueContainerNoneLarge>
             <ValueWrapper>
               <StyledText fontFamily="poppins" fontSize="12px">
                 {TranslateString(736, 'APR:')}
               </StyledText>
-              <Apr {...apr} />
+              <Apr {...apr} addLiquidityUrl={addLiquidityUrl} />
             </ValueWrapper>
           </ValueContainerNoneLarge>
           <ActionContainer>

@@ -15,6 +15,7 @@ export interface AprProps {
   bananaPrice: BigNumber
   originalValue: number
   hideButton?: boolean
+  addLiquidityUrl?: string
 }
 
 const Container = styled.div`
@@ -42,8 +43,19 @@ const AprWrapper = styled.div`
   font-size: 20px;
 `
 
-const Apr: React.FC<AprProps> = ({ value, lpLabel, bananaPrice, originalValue, hideButton = false }) => {
+const Apr: React.FC<AprProps> = ({
+  value,
+  lpLabel,
+  bananaPrice,
+  originalValue,
+  hideButton = false,
+  addLiquidityUrl,
+}) => {
   const TranslateString = useI18n()
+
+  /* eslint-disable no-debugger */
+  debugger
+  /* eslint-enable no-debugger */
 
   return originalValue !== 0 ? (
     <Container>
@@ -51,7 +63,12 @@ const Apr: React.FC<AprProps> = ({ value, lpLabel, bananaPrice, originalValue, h
         <Flex justifyContent="center">
           <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
-            <ApyButton lpLabel={lpLabel} rewardTokenPrice={bananaPrice} apy={new BigNumber(originalValue)} />
+            <ApyButton
+              lpLabel={lpLabel}
+              rewardTokenPrice={bananaPrice}
+              apy={new BigNumber(originalValue)}
+              addLiquidityUrl={addLiquidityUrl}
+            />
           )}
         </Flex>
       ) : (

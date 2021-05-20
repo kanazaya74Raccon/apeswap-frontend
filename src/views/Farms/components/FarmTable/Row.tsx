@@ -5,6 +5,9 @@ import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
+import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
@@ -135,6 +138,10 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
 
   const { account }: { account: string } = useWallet()
 
+  const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = details
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
+
   const isMobile = !isXl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
@@ -165,7 +172,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'apr':
                   return (
                     <APRContainer key={key}>
-                      <Apr {...props.apr} hideButton={isMobile} />
+                      <Apr {...props.apr} hideButton={isMobile} addLiquidityUrl={addLiquidityUrl} />
                     </APRContainer>
                   )
                 case 'liquidity':
@@ -187,7 +194,9 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               }
             })}
           </StyledFlex>
-          {actionPanelToggled && details && <ActionPanel {...props} />}
+          {actionPanelToggled && details && (
+            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} />
+          )}
         </StyledTr>
       )
     }
@@ -207,7 +216,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
           </EarnedMobileCell>
           <AprMobileCell>
             <CellLayout label={TranslateString(736, 'APR')}>
-              <Apr {...props.apr} hideButton />
+              <Apr {...props.apr} hideButton addLiquidityUrl={addLiquidityUrl} />
             </CellLayout>
           </AprMobileCell>
         </StyledTd1>

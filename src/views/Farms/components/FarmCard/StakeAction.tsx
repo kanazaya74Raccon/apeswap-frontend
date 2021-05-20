@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback, useMemo } from 'react'
 import Reward from 'react-rewards'
+import { provider } from 'web3-core'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
-
+import { getContract } from 'utils/erc20'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import {
@@ -15,10 +16,12 @@ import {
   useModal,
   Text,
 } from '@apeswapfinance/uikit'
+import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useApprove } from 'hooks/useApprove'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 
@@ -29,6 +32,9 @@ interface FarmCardActionsProps {
   pid?: number
   addLiquidityUrl?: string
   totalValueFormated?: string
+  isApproved?: boolean
+  lpSymbol?: string
+  ethereum?: provider
 }
 
 const IconButtonWrapper = styled.div`
@@ -77,9 +83,13 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   pid,
   addLiquidityUrl,
   totalValueFormated,
+  isApproved,
+  lpSymbol,
+  ethereum,
 }) => {
   const TranslateString = useI18n()
 
+  const rewardRef = useRef(null)
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
@@ -89,6 +99,31 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
+
+  const [requestedApproval, setRequestedApproval] = useState(false)
+
+  const { lpAddresses } = useFarmFromSymbol(lpSymbol)
+
+  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+
+  const lpContract = useMemo(() => {
+    return getContract(ethereum as provider, lpAddress)
+  }, [ethereum, lpAddress])
+
+  const { onApprove } = useApprove(lpContract)
+
+  const handleApprove = useCallback(async () => {
+    try {
+      setRequestedApproval(true)
+      const sucess = await onApprove()
+      if (!sucess) setTypeOfReward('error')
+      else setTypeOfReward('rewardBanana')
+      setRequestedApproval(false)
+      rewardRef.current?.rewardMe()
+    } catch (e) {
+      console.error(e)
+    }
+  }, [onApprove])
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -149,7 +184,15 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>
-      {renderStakingButtons()}
+      {isApproved ? (
+        renderStakingButtons()
+      ) : (
+        <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+          <ButtonSquare mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
+            {TranslateString(999, 'Approve Contract')}
+          </ButtonSquare>
+        </Reward>
+      )}
     </StyledFlex>
   )
 }
