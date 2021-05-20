@@ -135,13 +135,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
     return null
   }
 
-  return (
-    <IconButtonWrapper>
-      <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
-        {TranslateString(999, 'Enable')}
-      </ButtonSquare>
-    </IconButtonWrapper>
-  )
+  return null
 }
 
 export default Staked
