@@ -120,7 +120,7 @@ const ifos: Ifo[] = [
   {
     id: 'bitfresh',
     address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
-    isActive: false,
+    isActive: true,
     name: 'Bitfresh',
     subTitle: 'The first community-driven iGaming platform where everyone wins.',
     description:
@@ -137,9 +137,9 @@ const ifos: Ifo[] = [
     releaseBlockNumber: 6565331,
     burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
   },
-  {
+  /* {
     id: 'aperocket',
-    address: '0x41164C83B309fF2f30fe153B1552D089E4ae7997',
+    address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
     isActive: true,
     name: 'ApeRocket',
     subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
@@ -151,11 +151,11 @@ const ifos: Ifo[] = [
     raiseAmount: '$500,000',
     projectSiteUrl: 'https://aperocket.finance',
     currency: 'BNB',
-    currencyAddress: '0x0000000000000000000000000000000000000000',
+    currencyAddress: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
     tokenDecimals: 18,
     releaseBlockNumber: 7378325,
     // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
-  },
+  }, */
 ]
 
 export default ifos
