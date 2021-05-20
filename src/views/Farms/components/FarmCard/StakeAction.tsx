@@ -16,7 +16,7 @@ import {
   useModal,
   Text,
 } from '@apeswapfinance/uikit'
-import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
+import { useFarmFromSymbol } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -71,6 +71,7 @@ const StyledText = styled(Text)`
 
 const StyledFlex = styled(Flex)`
   width: 100%;
+  margin-left: 117px;
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-right: 30px;
   }
@@ -175,24 +176,12 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   return (
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start">
-        <StyledText fontFamily="poppins">{TranslateString(999, 'Liqudity')}</StyledText>
-        <StyledHeading>{totalValueFormated}</StyledHeading>
-      </Flex>
-      <Flex flexDirection="column" alignItems="flex-start">
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>
-      {isApproved ? (
-        renderStakingButtons()
-      ) : (
-        <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-          <ButtonSquare mt="8px" fullWidth disabled={requestedApproval} onClick={handleApprove}>
-            {TranslateString(999, 'Approve Contract')}
-          </ButtonSquare>
-        </Reward>
-      )}
+      {isApproved && renderStakingButtons()}
     </StyledFlex>
   )
 }

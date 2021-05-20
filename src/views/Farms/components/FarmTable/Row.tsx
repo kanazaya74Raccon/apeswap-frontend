@@ -161,7 +161,16 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'details':
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
-                      {!account ? <UnlockButton /> : <HarvestAction {...props.earned} {...props.farm} />}
+                      {!account ? (
+                        <UnlockButton />
+                      ) : (
+                        <HarvestAction
+                          {...props.earned}
+                          {...props.farm}
+                          lpSymbol={details.lpSymbol}
+                          addLiquidityUrl={addLiquidityUrl}
+                        />
+                      )}
                       <CellInner>
                         <CellLayout>
                           <Details actionPanelToggled={actionPanelToggled} />

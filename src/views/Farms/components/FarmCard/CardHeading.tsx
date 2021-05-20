@@ -22,6 +22,7 @@ export interface ExpandableSectionProps {
   farmAPR: string
   removed: boolean
   pid?: number
+  lpSymbol: string
   showExpandableSection?: boolean
   onClick?: () => void
 }
@@ -218,6 +219,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   farmAPR,
   removed,
   pid,
+  lpSymbol,
   onClick,
   showExpandableSection,
 }) => {
@@ -279,7 +281,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
           <ButtonContainer>
-            {!account ? <UnlockButton /> : <HarvestAction earnings={earnings} pid={pid} />}
+            {!account ? (
+              <UnlockButton />
+            ) : (
+              <HarvestAction earnings={earnings} pid={pid} lpSymbol={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
+            )}
             <ExpandableSectionButton onClick={onClick} expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>

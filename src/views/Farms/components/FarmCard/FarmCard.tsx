@@ -148,6 +148,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, bnbPric
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
         pid={farm.pid}
+        lpSymbol={farm.lpSymbol}
         apr={farm.apr}
         addLiquidityUrl={addLiquidityUrl}
         bananaPrice={bananaPrice}

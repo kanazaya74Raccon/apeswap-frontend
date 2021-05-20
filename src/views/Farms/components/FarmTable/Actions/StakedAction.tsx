@@ -26,7 +26,7 @@ const IconButtonWrapperStake = styled.div`
 const IconButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 52px;
+  margin-right: 67px;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`

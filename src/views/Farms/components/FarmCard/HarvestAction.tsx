@@ -1,28 +1,95 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo, useCallback } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { getContract } from 'utils/erc20'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { provider } from 'web3-core'
+import { useFarmUser, useFarmFromSymbol } from 'state/hooks'
+
+import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useHarvest } from 'hooks/useHarvest'
+import { useApprove } from 'hooks/useApprove'
+import useStake from 'hooks/useStake'
 import { getBalanceNumber } from 'utils/formatBalance'
+
+import DepositModal from '../DepositModal'
 
 interface FarmCardActionsProps {
   earnings?: any
   pid?: number
+  lpSymbol?: string
+  addLiquidityUrl: string
 }
 
-const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol, addLiquidityUrl }) => {
+  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
+  const rewardRefPos = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+  const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const [pendingTx, setPendingTx] = useState(false)
   const onReward = useReward(rewardRef, useHarvest(pid).onReward)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
 
-  return (
-    <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+  const [requestedApproval, setRequestedApproval] = useState(false)
+  const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
+
+  const { lpAddresses } = useFarmFromSymbol(lpSymbol)
+  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpContract = useMemo(() => {
+    return getContract(ethereum as provider, lpAddress)
+  }, [ethereum, lpAddress])
+
+  const lpName = lpSymbol.toUpperCase()
+
+  const { onApprove } = useApprove(lpContract)
+
+  const handleApprove = useCallback(async () => {
+    try {
+      setRequestedApproval(true)
+      const sucess = await onApprove()
+      if (!sucess) setTypeOfReward('error')
+      else setTypeOfReward('rewardBanana')
+      setRequestedApproval(false)
+      rewardRef.current?.rewardMe()
+    } catch (e) {
+      console.error(e)
+    }
+  }, [onApprove])
+  const isApproved = account && allowance && allowance.isGreaterThan(0)
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+
+  const [onPresentDeposit] = useModal(
+    <DepositModal
+      max={tokenBalance}
+      onConfirm={async (val) => {
+        setTypeOfReward('rewardBanana')
+        await onStake(val).catch(() => {
+          setTypeOfReward('error')
+          rewardRefPos.current?.rewardMe()
+        })
+      }}
+      tokenName={lpName}
+      addLiquidityUrl={addLiquidityUrl}
+    />,
+  )
+
+  const renderButton = () => {
+    if (!isApproved) {
+      return (
+        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+          {TranslateString(999, 'Enable')}
+        </ButtonSquare>
+      )
+    }
+    if (rawStakedBalance === 0) {
+      return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
+    }
+    return (
       <ButtonSquare
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
@@ -37,6 +104,12 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
       >
         {TranslateString(999, 'Harvest')}
       </ButtonSquare>
+    )
+  }
+
+  return (
+    <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
+      {renderButton()}
     </Reward>
   )
 }

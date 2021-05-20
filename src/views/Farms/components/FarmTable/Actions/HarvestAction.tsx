@@ -105,7 +105,7 @@ const HarvestAction: React.FunctionComponent<FarmWithStakedValue> = ({ pid, user
           <Earned>{displayBalance}</Earned>
           <StakedStyle>~{countUp}USD</StakedStyle>
         </div>
-        {!account ? (
+        {!isApproved ? (
           // if (isApproved) {
           //   if (rawStakedBalance) {
           //     return <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>
