@@ -132,11 +132,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, l
       return <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>
     }
 
-    return (
-      <IconButtonWrapper>
-        <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
-      </IconButtonWrapper>
-    )
+    return null
   }
 
   return (
