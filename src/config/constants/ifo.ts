@@ -120,7 +120,7 @@ const ifos: Ifo[] = [
   {
     id: 'bitfresh',
     address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
-    isActive: false,
+    isActive: true,
     name: 'Bitfresh',
     subTitle: 'The first community-driven iGaming platform where everyone wins.',
     description:
@@ -137,7 +137,7 @@ const ifos: Ifo[] = [
     releaseBlockNumber: 6565331,
     burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
   },
-  {
+  /* {
     id: 'aperocket',
     address: '0xA907d38Ed8aFEe131E9E3AAf0510386E9195fDB0',
     isActive: true,
@@ -155,7 +155,7 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     releaseBlockNumber: 7378325,
     // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
-  },
+  }, */
 ]
 
 export default ifos
