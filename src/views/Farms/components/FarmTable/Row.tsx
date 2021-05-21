@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
@@ -126,7 +127,7 @@ const ArrowContainer = styled(Flex)`
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
-  const { details } = props
+  const { details, liquidity } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
 
@@ -204,7 +205,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
             })}
           </StyledFlex>
           {actionPanelToggled && details && (
-            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} />
+            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} liquidity={liquidity} />
           )}
         </StyledTr>
       )

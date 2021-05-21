@@ -8,7 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
-import { LiquidityProps } from '../Liquidity'
+import Liquidity, { LiquidityProps } from '../Liquidity'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -17,6 +17,10 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   account: string
   addLiquidityUrl: string
+}
+
+export interface InfoPropsContainer {
+  liquidityDigits: number
 }
 
 const Container = styled.div`
@@ -49,11 +53,13 @@ const ActionContainer = styled.div`
   }
 `
 
-const InfoContainer = styled.div`
-  min-width: 260px;
+const InfoContainer = styled.div<InfoPropsContainer>`
+  width: ${({ liquidityDigits }) =>
+    (liquidityDigits === 8 && '265px') || (liquidityDigits === 7 && '250px') || (liquidityDigits === 6 && '238px')};
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    min-width: 315px;
+    width: ${({ liquidityDigits }) =>
+      (liquidityDigits === 8 && '315px') || (liquidityDigits === 7 && '300px') || (liquidityDigits === 6 && '280px')};
   }
 `
 
@@ -95,7 +101,13 @@ const StakedValueText = styled(Text)`
   }
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, account, addLiquidityUrl }) => {
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
+  details,
+  apr,
+  account,
+  addLiquidityUrl,
+  liquidity,
+}) => {
   const farm = details
 
   const TranslateString = useI18n()
@@ -125,11 +137,22 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ details, apr, 
     ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
+  let liquidityDigits
+  if (typeof liquidity.liquidity === 'string') {
+    const number = parseInt(liquidity.liquidity)
+    liquidityDigits = Math.round(number).toString().length
+  } else {
+    liquidityDigits = liquidity.liquidity.toFixed(0).toString().length
+  }
+  /* eslint-disable no-debugger */
+  debugger
+  /* eslint-enable no-debugger */
+
   return (
     <>
       <Container>
         <Flex>
-          <InfoContainer>
+          <InfoContainer liquidityDigits={liquidityDigits}>
             <ValueContainer>
               <ValueWrapper>
                 <StyledText fontFamily="poppins" fontSize="12px">

@@ -53,10 +53,6 @@ const Apr: React.FC<AprProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  /* eslint-disable no-debugger */
-  debugger
-  /* eslint-enable no-debugger */
-
   return originalValue !== 0 ? (
     <Container>
       {originalValue ? (
