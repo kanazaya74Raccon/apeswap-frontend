@@ -144,9 +144,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   } else {
     liquidityDigits = liquidity.liquidity.toFixed(0).toString().length
   }
-  /* eslint-disable no-debugger */
-  debugger
-  /* eslint-enable no-debugger */
 
   return (
     <>

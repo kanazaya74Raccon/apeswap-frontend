@@ -51,14 +51,6 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
-// const StyledIconFixed = styled.div`
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-//   width: 50px;
-//   height: 50px;
-// `
-
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const TranslateString = useI18n()
