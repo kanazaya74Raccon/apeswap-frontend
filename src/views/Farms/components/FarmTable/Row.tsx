@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'

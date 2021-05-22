@@ -28,17 +28,16 @@ export interface ExpandableSectionProps {
 }
 
 const StyledBackground = styled(Flex)`
-  justify-content: center;
-  align-items: center;
-  width: 56px;
-  height: 90px;
-  background: rgb(255, 179, 0, 0.4);
-  border-radius: 20px;
+  margin-left: 10px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  @media (min-width: 400px) {
+    justify-content: center;
+    background: rgb(255, 179, 0, 0.4);
+    border-radius: 20px;
     width: 121px;
     align-items: flex-end;
     height: 80px;
+    margin-left: 0px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -194,11 +193,10 @@ const ButtonContainer = styled.div`
 `
 
 const StyledImage = styled.img`
-  font-weight: 700;
-  width: 57px;
-  height: 57px;
+  display: none;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  @media (min-width: 400px) {
+    display: flex;
     width: 75px;
     height: 75px;
   }

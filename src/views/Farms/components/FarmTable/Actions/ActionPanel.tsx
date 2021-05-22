@@ -8,7 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
-import Liquidity, { LiquidityProps } from '../Liquidity'
+import { LiquidityProps } from '../Liquidity'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -55,7 +55,7 @@ const ActionContainer = styled.div`
 
 const InfoContainer = styled.div<InfoPropsContainer>`
   width: ${({ liquidityDigits }) =>
-    (liquidityDigits === 8 && '265px') || (liquidityDigits === 7 && '250px') || (liquidityDigits === 6 && '238px')};
+    (liquidityDigits === 8 && '265px') || (liquidityDigits === 7 && '255px') || (liquidityDigits === 6 && '238px')};
 
   ${({ theme }) => theme.mediaQueries.xl} {
     width: ${({ liquidityDigits }) =>

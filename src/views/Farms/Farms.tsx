@@ -212,7 +212,6 @@ const StyledLabelContainerHot = styled.div`
 `
 
 const StyledLabelContainerLP = styled.div`
-  cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;

@@ -1,16 +1,13 @@
-import React, { useState, useCallback, useRef, useMemo } from 'react'
+import React, { useState, useRef } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Button, ButtonSquare, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
+import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
-import { getContract } from 'utils/erc20'
 import { useFarmUser } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useI18n from 'hooks/useI18n'
-import { useApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -34,42 +31,20 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   height: 34px;
 `
 
-const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, lpAddresses, addLiquidityUrl }) => {
+const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, addLiquidityUrl }) => {
   const TranslateString = useI18n()
 
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
-  const rewardRef = useRef(null)
 
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
 
-  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
-  const [requestedApproval, setRequestedApproval] = useState(false)
+  const { account }: { account: string } = useWallet()
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
 
-  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
-
-  const lpContract = useMemo(() => {
-    return getContract(ethereum as provider, lpAddress)
-  }, [ethereum, lpAddress])
-
-  const { onApprove } = useApprove(lpContract)
-
-  const handleApprove = useCallback(async () => {
-    try {
-      setRequestedApproval(true)
-      const sucess = await onApprove()
-      if (!sucess) setTypeOfReward('error')
-      else setTypeOfReward('rewardBanana')
-      setRequestedApproval(false)
-      rewardRef.current?.rewardMe()
-    } catch (e) {
-      console.error(e)
-    }
-  }, [onApprove])
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
