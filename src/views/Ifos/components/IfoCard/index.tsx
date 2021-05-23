@@ -82,6 +82,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     tokenDecimals,
     releaseBlockNumber,
     burnedTxUrl,
+    startBlock: start,
   } = ifo
   const [state, setState] = useState({
     isLoading: true,
@@ -111,7 +112,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         contract.methods.raisingAmount().call(),
         contract.methods.totalAmount().call(),
       ])
-      const startBlockNum = parseInt(startBlock, 10)
+      const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
 
       const status = getStatus(currentBlock, startBlockNum, endBlockNum)
@@ -139,7 +140,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
