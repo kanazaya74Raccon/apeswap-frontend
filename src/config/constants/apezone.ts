@@ -21,7 +21,7 @@ const ApeZone = {
     },
     {
       id: 'aperocket',
-      address: '0x18Bf00A9F7e3dF1ec2f9c4A77658b0797A90Db19',
+      address: '0xF5413C7033ED5dF58b0F6A942BAEA1548a9AD2F4',
       isActive: true,
       name: 'ApeRocket',
       subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
@@ -37,7 +37,6 @@ const ApeZone = {
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 7378325,
-      startBlock: 7705200,
       // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
     },
   ],
