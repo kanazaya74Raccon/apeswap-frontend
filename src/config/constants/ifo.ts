@@ -139,7 +139,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'aperocket',
-    address: '0xE86D2a913B1f49fBFa512FECC3Cb17979608514a',
+    address: '0x8AC93DC2F83cEf4032FbC71070Dc5Af06fd9D105',
     isActive: true,
     name: 'ApeRocket',
     subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
