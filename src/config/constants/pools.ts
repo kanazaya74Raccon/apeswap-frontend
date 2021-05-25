@@ -809,7 +809,7 @@ const pools: PoolConfig[] = [
     tokenDecimals: 9,
   },
   {
-    sousId: 38,
+    sousId: 37,
     tokenName: 'SPACE',
     image: 'SPACE.svg',
     stakingTokenName: 'SPACE-BNB',
