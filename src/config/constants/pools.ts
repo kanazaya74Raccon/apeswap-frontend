@@ -822,7 +822,7 @@ const pools: PoolConfig[] = [
       56: '0xfE615dA45dBC8C763851A34Cf14d65B0056a2D8A', // ApeRewardPool
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://aperocket.com/',
+    projectLink: 'https://aperocket.finance/',
     harvest: true,
     tokenPerBlock: `0.02755704365`,
     sortOrder: 1,
