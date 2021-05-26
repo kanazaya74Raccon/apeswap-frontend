@@ -307,6 +307,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 57,
+    lpSymbol: 'BLZ-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x015f807d0186f7e62810d0c597a23cb19ff57e4d', // BLZ-BNB BananaPair
+    },
+    tokenSymbol: 'BLZ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x935a544bf5816e3a7c13db2efe3009ffda0acda2', // BLZ Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 53,
     lpSymbol: 'COTI-BNB LP',
     lpAddresses: {
