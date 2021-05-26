@@ -409,7 +409,7 @@ const Farms: React.FC = () => {
   const bnbPrice = usePriceBnbBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(size.width > 968 ? ViewMode.TABLE : ViewMode.CARD)
+  const [viewMode, setViewMode] = useState(ViewMode.TABLE)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 

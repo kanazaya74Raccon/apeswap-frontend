@@ -139,7 +139,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, ethereu
   }
 
   return (
-    <FCard>
+    <FCard onClick={toggleExpand}>
       {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
@@ -153,7 +153,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, ethereu
         farmAPR={farmAPR}
         removed={removed}
         showExpandableSection={showExpandableSection}
-        onClick={toggleExpand}
       />
       <StyledContainer>
         <ExpandingWrapper expanded={showExpandableSection}>

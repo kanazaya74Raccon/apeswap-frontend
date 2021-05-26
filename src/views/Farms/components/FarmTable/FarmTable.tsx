@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ColumnType } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTable, ColumnType } from '@apeswapfinance/uikit'
 
 import Row, { RowProps } from './Row'
 
@@ -44,27 +43,13 @@ const TableContainer = styled.div`
   position: relative;
 `
 
-const ScrollButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-`
-
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
-  const TranslateString = useI18n()
   const { data, columns } = props
 
   const { rows } = useTable(columns, data, {
     sortable: true,
   })
-
-  const scrollToTop = (): void => {
-    tableWrapperEl.current.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
 
   return (
     <>
@@ -77,11 +62,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
               })}
             </StyledTable>
           </TableWrapper>
-          <ScrollButtonContainer>
-            <Button variant="text" onClick={scrollToTop}>
-              {TranslateString(999, 'To Top')}
-            </Button>
-          </ScrollButtonContainer>
         </TableContainer>
       </Container>
     </>

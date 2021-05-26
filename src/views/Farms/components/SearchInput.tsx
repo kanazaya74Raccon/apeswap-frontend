@@ -4,12 +4,16 @@ import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
   border-radius: 20px;
-  background: #f0f0f0;
+  background: ${({ theme }) => (theme.isDark ? '#353547' : '#f0f0f0')}
   margin-left: auto;
   height: 28px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 32px;
+  }
+
+  :focus {
+    box-shadow: 0px 0px 0px 1px #ffb300, 0px 0px 0px 4px rgb(255 179 0 / 40%) !important;
   }
 `
 

@@ -24,7 +24,6 @@ export interface ExpandableSectionProps {
   pid?: number
   lpSymbol: string
   showExpandableSection?: boolean
-  onClick?: () => void
 }
 
 const StyledBackground = styled(Flex)`
@@ -218,7 +217,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   removed,
   pid,
   lpSymbol,
-  onClick,
   showExpandableSection,
 }) => {
   const TranslateString = useI18n()
@@ -284,7 +282,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             ) : (
               <HarvestAction earnings={earnings} pid={pid} lpSymbol={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
             )}
-            <ExpandableSectionButton onClick={onClick} expanded={showExpandableSection} />
+            <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>
       </StyledFlexContainer>
