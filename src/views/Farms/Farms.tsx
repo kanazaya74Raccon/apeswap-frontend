@@ -418,17 +418,13 @@ const Farms: React.FC = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
-    /* eslint-disable no-debugger */
-debugger;
-/* eslint-enable no-debugger */
     if (size.width !== undefined) {
-    if (size.width < 968) {
-      setViewMode(ViewMode.CARD)
+      if (size.width < 968) {
+        setViewMode(ViewMode.CARD)
+      } else {
+        setViewMode(ViewMode.TABLE)
+      }
     }
-    else {
-      setViewMode(ViewMode.TABLE)
-    }
-  }
   }, [size])
 
   useEffect(() => {
@@ -598,7 +594,6 @@ debugger;
   })
 
   const renderContent = (): JSX.Element => {
-
     if (viewMode === ViewMode.TABLE && rowData.length) {
       const columnSchema = DesktopColumnSchema
 
@@ -683,7 +678,9 @@ debugger;
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-            {size.width > 968 && viewMode !== null && <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />}
+            {size.width > 968 && viewMode !== null && (
+              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            )}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search
