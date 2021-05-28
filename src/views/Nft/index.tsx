@@ -30,7 +30,7 @@ const Nft = () => {
           <OwnedNfts />
           <Text fontSize="25px" style={{ textDecoration: 'underline', marginTop: '25px', color: 'subtle' }}>
             <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
-              {TranslateString(999, 'The next sale will begin May 16th 22:00 UTC at NFTKEY')}
+              {TranslateString(999, 'The next sale will begin May 30th 03:00 UTC at NFTKEY')}
             </a>
           </Text>
         </StyledHero>
