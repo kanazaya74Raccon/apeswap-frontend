@@ -174,7 +174,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
   }
 
   const nextSet = () => {
-    const tempFilter = nftSet.slice(545, 646)
+    const tempFilter = nftSet.slice(545, 647)
     setFilterNftSet(tempFilter)
     setFilterState(true)
     setCurrentFilterName('Next Sale')
