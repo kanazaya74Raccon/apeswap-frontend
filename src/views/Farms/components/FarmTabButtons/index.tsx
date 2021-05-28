@@ -10,11 +10,11 @@ const FarmTabButtons = () => {
 
   return (
     <Wrapper>
-      <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+      <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="yellow">
+        <ButtonMenuItem as={Link} to={`${url}`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Active')}
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/history`}>
+        <ButtonMenuItem as={Link} to={`${url}/history`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
@@ -25,8 +25,30 @@ const FarmTabButtons = () => {
 export default FarmTabButtons
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 32px;
+  margin-right: 10px;
+  margin-left: 30px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 64px;
+    margin-right: 44px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 54px;
+    margin-right: 34px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 84px;
+    margin-right: 74px;
+  }
 `

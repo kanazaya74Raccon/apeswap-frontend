@@ -225,7 +225,7 @@ const UserName: React.FC = () => {
           <label htmlFor="checkbox" style={{ display: 'block', cursor: 'pointer', marginBottom: '24px' }}>
             <Flex alignItems="center">
               <div style={{ flex: 'none' }}>
-                <Checkbox id="checkbox" scale="sm" checked={isAcknowledged} onChange={handleAcknoledge} />
+                <Checkbox id="checkbox" checked={isAcknowledged} onChange={handleAcknoledge} />
               </div>
               <Text ml="8px">
                 {TranslateString(999, 'I understand that people can view my wallet if they know my username')}

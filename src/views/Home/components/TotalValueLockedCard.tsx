@@ -65,13 +65,8 @@ const StyledImage = styled.img`
 
 const TotalValueLockedCard = () => {
   const TranslateString = useI18n()
-
-  // keeping here in case don't want to use api
   const newTvl = useTvl()
   const totalTvl = newTvl.toNumber()
-
-  // const overallStats = useStatsOverall()
-  // const totalTvl = overallStats?.statsOverall?.tvl
 
   return (
     <StyledTotalValueLockedCard>

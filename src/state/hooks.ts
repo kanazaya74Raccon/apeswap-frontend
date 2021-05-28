@@ -55,10 +55,10 @@ export const useFarmUser = (pid) => {
   const farm = useFarmFromPid(pid)
 
   return {
-    allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
-    tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
-    stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+    allowance: farm?.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
+    tokenBalance: farm?.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
+    earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
   }
 }
 
@@ -136,14 +136,15 @@ export const usePriceBananaBusd = (): BigNumber => {
   const pid = 2 // BANANA-BUSD LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
-  /*
+}
+
+/*
   // TODO Revisit this 
   const pid = BANANA_POOL_PID // BANANA-BNB LP
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
   */
-}
 
 export const usePriceEthBusd = (): BigNumber => {
   const pid = 5 // ETH-BNB LP

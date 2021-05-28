@@ -608,7 +608,7 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     reflect: true,
     isFinished: false,
-    tokenDecimals: 18,
+    tokenDecimals: 8,
   },
   {
     sousId: 27,

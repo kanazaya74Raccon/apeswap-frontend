@@ -25,4 +25,10 @@ const BinanceTag = () => (
   </Tag>
 )
 
-export { CoreTag, CommunityTag, BinanceTag, ApeZone }
+const DualTag = (props) => (
+  <Tag variant="textSubtle" outline {...props}>
+    Dual
+  </Tag>
+)
+
+export { CoreTag, CommunityTag, BinanceTag, ApeZone, DualTag }
