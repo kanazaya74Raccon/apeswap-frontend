@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useWalletModal } from '@apeswapfinance/uikit'
+import { ButtonSquare, useWalletModal } from '@apeswapfinance/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 
@@ -9,9 +9,9 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(connect, reset)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
+    <ButtonSquare onClick={onPresentConnectModal} {...props}>
       {TranslateString(292, 'UNLOCK WALLET')}
-    </Button>
+    </ButtonSquare>
   )
 }
 

@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react'
 import Reward from 'react-rewards'
+import { provider } from 'web3-core'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
-
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
+import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -19,12 +19,40 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
+  isApproved?: boolean
+  lpSymbol?: string
+  ethereum?: provider
 }
 
 const IconButtonWrapper = styled.div`
   display: flex;
-  svg {
-    width: 20px;
+`
+
+const StyledIconButtonSquare = styled(IconButtonSquare)`
+  width: 34px;
+  height: 34px;
+`
+
+const StyledHeadingGreen = styled(Heading)`
+  font-size: 14px;
+  color: #38a611;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 20px;
+    color: #38a611;
+  }
+`
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+  font-size: 12px;
+`
+
+const StyledFlex = styled(Flex)`
+  width: 100%;
+  margin-left: 117px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 30px;
   }
 `
 
@@ -34,6 +62,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
+  isApproved,
 }) => {
   const TranslateString = useI18n()
 
@@ -76,29 +105,34 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   )
 
   const renderStakingButtons = () => {
-    return rawStakedBalance === 0 ? (
-      <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
-    ) : (
-      <IconButtonWrapper>
-        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="primary" />
-          </IconButton>
-        </Reward>
-        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <IconButton variant="tertiary" onClick={onPresentDeposit}>
-            <AddIcon color="primary" />
-          </IconButton>
-        </Reward>
-      </IconButtonWrapper>
+    return (
+      rawStakedBalance !== 0 && (
+        <IconButtonWrapper>
+          <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+              <MinusIcon color="white" width="12px" height="12px" />
+            </StyledIconButtonSquare>
+          </Reward>
+          <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+            <StyledIconButtonSquare onClick={onPresentDeposit}>
+              <AddIcon color="white" width="16px" height="16px" />
+            </StyledIconButtonSquare>
+          </Reward>
+        </IconButtonWrapper>
+      )
     )
   }
 
   return (
-    <Flex justifyContent="space-between" alignItems="center">
-      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
-      {renderStakingButtons()}
-    </Flex>
+    <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
+      <Flex flexDirection="column" alignItems="flex-start">
+        <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
+          {displayBalance}
+        </StyledHeadingGreen>
+      </Flex>
+      {isApproved && renderStakingButtons()}
+    </StyledFlex>
   )
 }
 

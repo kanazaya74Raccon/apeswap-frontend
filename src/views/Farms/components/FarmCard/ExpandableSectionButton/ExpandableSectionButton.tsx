@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ArrowDropDownIcon, ArrowDropUpIcon, Text } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void
@@ -12,19 +12,21 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-left: 12px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 24px;
+  }
 
   svg {
     fill: ${({ theme }) => theme.colors.primary};
   }
 `
 
-const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
+const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ expanded }) => {
   return (
-    <Wrapper aria-label="Hide or show expandable content" role="button" onClick={() => onClick()}>
-      <Text color="primary" bold>
-        {expanded ? 'Hide' : 'Details'}
-      </Text>
-      {expanded ? <ArrowDropUpIcon width="24px" /> : <ArrowDropDownIcon width="24px" />}
+    <Wrapper aria-label="Hide or show expandable content" role="button">
+      {expanded ? <ArrowDropUpIcon width="10px" /> : <ArrowDropDownIcon width="10px" />}
     </Wrapper>
   )
 }
