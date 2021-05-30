@@ -830,6 +830,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 38,
+    tokenName: 'TAPE',
+    image: 'TAPE.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x4b5ee00fcce905cc2861c8255b368cf9f114c667', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://apetools.co/',
+    harvest: true,
+    tokenPerBlock: `2.314814814814815`,
+    sortOrder: 3,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
