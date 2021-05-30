@@ -337,6 +337,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 59,
+    lpSymbol: 'CELR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xb7f42e58cf2364ac994f93f7aff3b158cfa3dc76', // CELER-BNB BananaPair
+    },
+    tokenSymbol: 'CELR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1f9f6a696c6fd109cd3956f45dc709d2b3902163', // CELER Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 53,
     lpSymbol: 'COTI-BNB LP',
     lpAddresses: {
