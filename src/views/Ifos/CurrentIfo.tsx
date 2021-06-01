@@ -75,7 +75,7 @@ const Ifo = () => {
             <Button
               as="a"
               variant="secondary"
-              href="https://obiedobo.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
+              href="https://apeswap.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
             >
               {TranslateString(610, 'Read more')}
             </Button>
