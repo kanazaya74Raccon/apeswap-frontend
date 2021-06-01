@@ -44,7 +44,6 @@ const StyledImg = styled.img`
     margin-top: -85px;
     max-height: 285px;
   }
-
 `
 
 const WelcomeCard = () => {
