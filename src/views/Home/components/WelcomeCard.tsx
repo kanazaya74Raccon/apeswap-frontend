@@ -25,14 +25,24 @@ const StyledText = styled(Text)`
 `
 
 const StyledImg = styled.img`
-  margin-top: -50px;
+  margin-top: -60px;
   width: 300px;
   height: 100%;
   max-height: 220px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: -75px;
-    max-height: 280px;
+    max-height: 240px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-top: -75px;
+    max-height: 250px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: -85px;
+    max-height: 285px;
   }
 `
 
@@ -42,7 +52,7 @@ const WelcomeCard = () => {
     <StyledFlex flexDirection="column" alignItems="center">
       <StyledWelcomeCard>
         <CardBody>
-          <StyledImg src="/images/ape-banana-frenzy.svg" alt="banana frenzy" />
+          <StyledImg src="/images/ape-banana-frenzy-summer.svg" alt="banana frenzy" />
         </CardBody>
       </StyledWelcomeCard>
       <Heading as="h1" size="lg" mb="6px" color="contrast">
