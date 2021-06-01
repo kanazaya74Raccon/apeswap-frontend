@@ -38,7 +38,7 @@ const HowItWorks = () => {
           'Spend BANANA to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!',
         )}
       </Text>
-      <StyledLink href="https://obiedobo.gitbook.io/apeswap-finance/lottery" target="blank">
+      <StyledLink href="https://apeswap.gitbook.io/apeswap-finance/lottery" target="blank">
         Read more
       </StyledLink>
     </LayoutWrapper>
