@@ -117,7 +117,7 @@ const StyledClickRight = styled.img`
   right: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: 'pointer';
+  cursor: pointer;
   padding: 80px 15px;
   z-index: 100;
 
@@ -132,7 +132,7 @@ const StyledClickLeft = styled.img`
   left: 11px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: 'pointer';
+  cursor: pointer;
   padding: 80px 15px;
   z-index: 100;
 

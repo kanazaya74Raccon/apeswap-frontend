@@ -42,13 +42,9 @@ const StyledImg = styled.img`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     margin-top: -85px;
-    max-height: 260px;
+    max-height: 285px;
   }
 
-  ${({ theme }) => theme.mediaQueries.xl} {
-    margin-top: -85px;
-    max-height: 260px;
-  }
 `
 
 const WelcomeCard = () => {
