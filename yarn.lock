@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@apeswapfinance/uikit@0.10.35":
-  version "0.10.35"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.35/7f0fa22486d29de3250d91f34f6a45a719a70f8f87add502d7d12c77ba54236c#2601ec22cd09d6c5445e18530f4ae34f575d27ea"
-  integrity sha512-WmuYfhz9cLZCR4RZooPGlZVbPSr0k7HONg1jXUgyvmXPZ3LrGjdEo8/a+xktPHoqxn4hhjc+ZHOcT/+lHyoa3Q==
+"@apeswapfinance/uikit@0.10.36":
+  version "0.10.36"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.36/1cca7698ef3c1404e71edccc53176de907530368b10d14cdebb91702b7c9fb2a#84d42f5ca6ce30efa650f3828d505c29cfdc8c6d"
+  integrity sha512-MkNpvJGMLvV3qPa43V/6KGhv6fsZHGvEar3poWsTW56qFr6NKogr8hlFHFYaUm7ApDCBEUU5pxdvGYuu+U4vDQ==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -2880,7 +2880,7 @@
     js-sha3 "0.8.0"
     query-string "6.13.5"
 
-"@walletconnect/web3-provider@^1.3.6":
+"@walletconnect/web3-provider@^1.3.6", "@walletconnect/web3-provider@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.4.1.tgz#34f6319ab2473ab9ff0fcf1e8bc280c697fa01ff"
   integrity sha512-gUoBGM5hdtcXSoLXDTG1/WTamnUNpEWfaYMIVkfVnvVFd4whIjb0iOW5ywvDOf/49wq0C2+QThZL2Wc+r+jKLA==
@@ -2908,7 +2908,7 @@
     "@web3-react/types" "^6.0.7"
     authereum "^0.0.4-beta.157"
 
-"@web3-react/core@^6.1.1":
+"@web3-react/core@^6.1.1", "@web3-react/core@^6.1.9":
   version "6.1.9"
   resolved "https://registry.yarnpkg.com/@web3-react/core/-/core-6.1.9.tgz#5f5daa0545a8ea07770a699580ced552583afc97"
   integrity sha512-P877DslsbAkWIlMANpWiK7pCvNwlz0kJC0EGckuVh0wlA23J4UnFxq6xyOaxkxaDCu14rA/tAO0NbwjcXTQgSA==
@@ -2988,6 +2988,16 @@
   integrity sha512-gPtcFFRAnRgqhmBjhH+dtuG3cx23X+JOX+mRO1D7dN+8yxLZhLhjOZlJFECH5hkC20KMM/sk+rq2yy6Vqp76PQ==
   dependencies:
     "@walletconnect/web3-provider" "^1.3.6"
+    "@web3-react/abstract-connector" "^6.0.7"
+    "@web3-react/types" "^6.0.7"
+    tiny-invariant "^1.0.6"
+
+"@web3-react/walletconnect-connector@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/walletconnect-connector/-/walletconnect-connector-6.2.0.tgz#5451f332a25b94cf7e615a20cc7d22a27532629d"
+  integrity sha512-F6xYwI3MKiSdKa0248y2wBW0kTDddc2/IGn4CjMSYe0DJFggtxFsAAGHQTRmvwDcLlgQwtemJJ0cTA82MOVfEg==
+  dependencies:
+    "@walletconnect/web3-provider" "^1.4.1"
     "@web3-react/abstract-connector" "^6.0.7"
     "@web3-react/types" "^6.0.7"
     tiny-invariant "^1.0.6"
