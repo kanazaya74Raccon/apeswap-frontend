@@ -367,6 +367,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 61,
+    lpSymbol: 'CRUSH-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8a10489f1255fb63217be4cc96b8f4cd4d42a469', // CRUSH-BNB BananaPair
+    },
+    tokenSymbol: 'CRUSH',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0ef0626736c2d484a792508e99949736d0af807e', // CRUSH Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 53,
     lpSymbol: 'COTI-BNB LP',
     lpAddresses: {
