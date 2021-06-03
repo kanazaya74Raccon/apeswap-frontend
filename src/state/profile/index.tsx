@@ -25,7 +25,7 @@ export const profileSlice = createSlice({
       state.isLoading = false
       state.isInitialized = true
     },
-     profileClear: () => ({
+    profileClear: () => ({
       ...initialState,
       isLoading: false,
     }),

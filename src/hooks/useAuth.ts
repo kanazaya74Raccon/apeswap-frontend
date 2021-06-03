@@ -24,7 +24,6 @@ const useAuth = () => {
 
   // debugger; // eslint-disable-line no-debugger
 
-
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID]
     if (connector) {
