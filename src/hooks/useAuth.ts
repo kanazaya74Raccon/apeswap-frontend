@@ -13,10 +13,17 @@ import { ConnectorNames, localStorageKey } from '@apeswapfinance/uikit'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import { useToast } from 'state/hooks'
+import { profileClear } from 'state/profile'
+
+import { useDispatch } from 'react-redux'
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
+  const dispatch = useDispatch()
+
+  // debugger; // eslint-disable-line no-debugger
+
 
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID]
@@ -52,8 +59,9 @@ const useAuth = () => {
   }, [])
 
   const logout = useCallback(() => {
+    dispatch(profileClear())
     deactivate()
-  }, [deactivate])
+  }, [deactivate, dispatch])
 
   return { login, logout }
 }
