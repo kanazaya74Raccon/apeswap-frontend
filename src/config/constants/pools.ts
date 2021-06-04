@@ -885,7 +885,7 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0xbcf39f0edda668c58371e519af37ca705f2bfcbd', // pCWS
+      56: '0x1C62ac4D59FFACb35BFfcDb9fcd8b368a528B544', // pCWS
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://game.seascape.network/',
