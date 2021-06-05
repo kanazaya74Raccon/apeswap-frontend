@@ -1,13 +1,13 @@
 import React from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import { usePersonalTvl } from 'state/hooks'
 import CardValue from './CardValue'
 
 const PersonalTvl = () => {
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const { tvl } = usePersonalTvl()
 
   if (!account) {

@@ -108,11 +108,10 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   bananaPrice?: BigNumber
-  ethereum?: provider
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, ethereum, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
   const yourStats = useStats()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
@@ -158,7 +157,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, ethereu
         <ExpandingWrapper expanded={showExpandableSection}>
           <CardActionsContainer
             farm={farm}
-            ethereum={ethereum}
             account={account}
             addLiquidityUrl={addLiquidityUrl}
             totalValueFormated={totalValueFormated}

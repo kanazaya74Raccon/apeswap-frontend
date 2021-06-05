@@ -4,7 +4,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import styled from 'styled-components'
 import { Button, IconButton, useModal, AddIcon, Image, Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import Label from 'components/Label'
 import { useERC20 } from 'hooks/useContract'
@@ -81,7 +81,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress[CHAIN_ID])
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
   const onStake = useReward(rewardRefStake, useSousStake(sousId, isBnbPool).onStake)

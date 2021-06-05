@@ -2,7 +2,7 @@ import React from 'react'
 import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import Divider from './components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
@@ -46,7 +46,7 @@ const PaddedCard = styled(Card)`
 `
 
 const Zone = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
 
   return (
     <>

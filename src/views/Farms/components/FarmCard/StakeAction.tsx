@@ -21,7 +21,6 @@ interface FarmCardActionsProps {
   addLiquidityUrl?: string
   isApproved?: boolean
   lpSymbol?: string
-  ethereum?: provider
 }
 
 const IconButtonWrapper = styled.div`

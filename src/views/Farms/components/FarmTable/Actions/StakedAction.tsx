@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { useFarmUser } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useI18n from 'hooks/useI18n'
@@ -42,7 +42,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, a
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const onUnstake = useReward(rewardRefNeg, useUnstake(pid).onUnstake)
 
-  const { account }: { account: string } = useWallet()
+  const { account } = useWeb3React()
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)

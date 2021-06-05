@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Web3 from 'web3'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { Button, Input, Modal, Text } from '@apeswapfinance/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
@@ -41,7 +41,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuc
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const nonFungibleApesContract = useNonFungibleApes()
 
   const handleConfirm = async () => {

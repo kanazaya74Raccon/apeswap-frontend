@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useModal, Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
@@ -34,7 +34,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: 0, claimed: false })
 
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const [onPresentContributeModal] = useModal(
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp />,
   )
