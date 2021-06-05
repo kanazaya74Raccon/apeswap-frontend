@@ -17,11 +17,10 @@ const _binanceChainListener = async () =>
   )
 
 export enum ConnectorNames {
-    Injected = "injected",
-    WalletConnect = "walletconnect",
-    BSC = "bsc",
+  Injected = 'injected',
+  WalletConnect = 'walletconnect',
+  BSC = 'bsc',
 }
-  
 
 const useEagerConnect = () => {
   const { login } = useAuth()

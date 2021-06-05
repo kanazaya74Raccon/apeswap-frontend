@@ -22,8 +22,6 @@ const useAuth = () => {
   const { toastError } = useToast()
   const dispatch = useDispatch()
 
-  // debugger; // eslint-disable-line no-debugger
-
   const login = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID]
     if (connector) {

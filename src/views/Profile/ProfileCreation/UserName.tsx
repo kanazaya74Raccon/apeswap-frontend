@@ -112,7 +112,6 @@ const UserName: React.FC = () => {
         ? (await library.bnbSign(account, userName))?.signature
         : await web3.eth.personal.sign(userName, account, null) // Last param is the password, and is null to request a signature in the wallet
 
-
       const response = await fetch(`${profileApiUrl}/api/users/register`, {
         method: 'POST',
         headers: {

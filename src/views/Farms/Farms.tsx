@@ -626,24 +626,12 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed={false}
-              />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed
-              />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed />
             ))}
           </Route>
         </FlexLayout>

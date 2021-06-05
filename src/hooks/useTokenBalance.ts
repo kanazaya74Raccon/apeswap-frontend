@@ -8,7 +8,6 @@ import { getBananaAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
 const useTokenBalance = (tokenAddress: string) => {
-  
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, library } = useWeb3React()
   const { fastRefresh } = useRefresh()
