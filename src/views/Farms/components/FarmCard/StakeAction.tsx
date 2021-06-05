@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import Reward from 'react-rewards'
-import { provider } from 'web3-core'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
