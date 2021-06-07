@@ -10,6 +10,7 @@ export const baseUrl = 'https://api.pancakeswap.com/api/v1'
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
 export const baseUrlStrapi = 'https://apeswap-strapi.herokuapp.com'
+const EXCHANGE_SUBGRAPH_URL = 'https://graph2.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph'
 
 /* eslint-disable camelcase */
 
@@ -119,7 +120,7 @@ const LIQUIDITY_QUERY = `{
 export const fetchReserveData = async (pairAddress) => {
   try {
     const query = RESERVES_QUERY(pairAddress)
-    const response = await fetch('https://graph.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph', {
+    const response = await fetch(EXCHANGE_SUBGRAPH_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
@@ -136,7 +137,7 @@ export const fetchReserveData = async (pairAddress) => {
 export const fetchLiquidityData = async () => {
   try {
     const query = LIQUIDITY_QUERY
-    const response = await fetch('https://graph.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph', {
+    const response = await fetch(EXCHANGE_SUBGRAPH_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
