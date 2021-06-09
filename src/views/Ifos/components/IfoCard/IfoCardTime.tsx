@@ -43,8 +43,7 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({
   const suffix = status === 'coming_soon' ? 'start' : 'finish'
 
   if (isComingSoon) {
-    // TODO: Needs a translation id when translations are added
-    return <Details>{TranslateString(123456, 'Coming Soon!')}</Details>
+    return <Details>{TranslateString(999, 'Coming Soon!')}</Details>
   }
 
   if (isLoading) {

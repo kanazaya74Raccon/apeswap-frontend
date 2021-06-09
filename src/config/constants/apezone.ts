@@ -1,4 +1,6 @@
-const ApeZone = {
+import { Ifo } from './types'
+
+const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'bitfresh',
@@ -52,6 +54,7 @@ const ApeZone = {
       launchTime: '03:00 UTC',
       saleAmount: '80,000,000 HIFI',
       raiseAmount: '$400,000',
+      bananaToBurn: '$400,000',
       projectSiteUrl: 'http://hifigamingsociety.org/',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
