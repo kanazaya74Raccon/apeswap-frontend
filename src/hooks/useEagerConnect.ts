@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { localStorageKey } from '@apeswapfinance/uikit'
+import { ConnectorNames, localStorageKey } from '@apeswapfinance/uikit'
 import useAuth from 'hooks/useAuth'
 
 const _binanceChainListener = async () =>
@@ -15,12 +15,6 @@ const _binanceChainListener = async () =>
       },
     }),
   )
-
-export enum ConnectorNames {
-  Injected = 'injected',
-  WalletConnect = 'walletconnect',
-  BSC = 'bsc',
-}
 
 const useEagerConnect = () => {
   const { login } = useAuth()

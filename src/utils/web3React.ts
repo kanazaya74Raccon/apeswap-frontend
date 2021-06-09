@@ -1,14 +1,9 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { ConnectorNames } from '@apeswapfinance/uikit'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import Web3 from 'web3'
 import getNodeUrl from './getRpcUrl'
-
-export enum ConnectorNames {
-  Injected = 'injected',
-  WalletConnect = 'walletconnect',
-  BSC = 'bsc',
-}
 
 const POLLING_INTERVAL = 12000
 const rpcUrl = getNodeUrl()
