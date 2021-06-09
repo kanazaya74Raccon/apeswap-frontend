@@ -7,7 +7,7 @@ import { BSC_BLOCK_TIME, ZERO_ADDRESS } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { useIfoContract } from 'hooks/useContract'
+import { useSafeIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
@@ -97,7 +97,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     endBlockNum: 0,
   })
   const { account } = useWallet()
-  const contract = useIfoContract(address)
+
+  const contract = useSafeIfoContract(address)
 
   const currentBlock = useBlock()
   const TranslateString = useI18n()
@@ -106,6 +107,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
 
   useEffect(() => {
     const fetchProgress = async () => {
+      if (!address) {
+        // Allow IAO details to be shown before contracts are deployed
+        return
+      }
       const [startBlock, endBlock, raisingAmount, totalAmount] = await Promise.all([
         contract.methods.startBlock().call(),
         contract.methods.endBlock().call(),
@@ -140,7 +145,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start, address])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
@@ -152,6 +157,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
         <IfoCardProgress progress={state.progress} />
         <IfoCardTime
+          isComingSoon={!address}
           isLoading={state.isLoading}
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}

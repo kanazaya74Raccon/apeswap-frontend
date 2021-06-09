@@ -6,6 +6,7 @@ import getTimePeriods from 'utils/getTimePeriods'
 import useI18n from 'hooks/useI18n'
 
 export interface IfoCardTimeProps {
+  isComingSoon: boolean
   isLoading: boolean
   status: IfoStatus
   secondsUntilStart: number
@@ -28,11 +29,23 @@ const Countdown = styled.div`
   text-align: center;
 `
 
-const IfoCardTime: React.FC<IfoCardTimeProps> = ({ isLoading, status, secondsUntilStart, secondsUntilEnd, block }) => {
+const IfoCardTime: React.FC<IfoCardTimeProps> = ({
+  isComingSoon,
+  isLoading,
+  status,
+  secondsUntilStart,
+  secondsUntilEnd,
+  block,
+}) => {
   const TranslateString = useI18n()
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
   const suffix = status === 'coming_soon' ? 'start' : 'finish'
+
+  if (isComingSoon) {
+    // TODO: Needs a translation id when translations are added
+    return <Details>{TranslateString(123456, 'Coming Soon!')}</Details>
+  }
 
   if (isLoading) {
     return <Details>{TranslateString(656, 'Loading...')}</Details>
