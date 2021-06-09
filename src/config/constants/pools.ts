@@ -918,6 +918,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 42,
+    tokenName: 'bMXX',
+    image: 'bMXX.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x73dAF9AfEBB271007167f3f0D140a35f5b1a7058',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://multiplier.finance/',
+    harvest: true,
+    tokenPerBlock: `0.014467592592592593 `,
+    sortOrder: 3,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
