@@ -11,18 +11,17 @@ import { RefreshContextProvider } from 'contexts/RefreshContext'
 import store from 'state'
 
 const Providers: React.FC = ({ children }) => {
-
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <Provider store={store}>
         <HelmetProvider>
           <ThemeContextProvider>
             <LanguageContextProvider>
-                <BlockContextProvider>
-                  <RefreshContextProvider>
-                    <ModalProvider>{children}</ModalProvider>
-                  </RefreshContextProvider>
-                </BlockContextProvider>
+              <BlockContextProvider>
+                <RefreshContextProvider>
+                  <ModalProvider>{children}</ModalProvider>
+                </RefreshContextProvider>
+              </BlockContextProvider>
             </LanguageContextProvider>
           </ThemeContextProvider>
         </HelmetProvider>
