@@ -140,7 +140,7 @@ const ifos: Ifo[] = [
   {
     id: 'aperocket',
     address: '0x8AC93DC2F83cEf4032FbC71070Dc5Af06fd9D105',
-    isActive: true,
+    isActive: false,
     name: 'ApeRocket',
     subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
     description:
@@ -155,6 +155,26 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     releaseBlockNumber: 7378325,
     // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
+  },
+  {
+    id: 'hifi',
+    // TODO: Add contract address after deployment
+    address: '', // Leave empty for "Coming Soon!"
+    isActive: true,
+    name: 'Hifi',
+    subTitle: 'Decentralized retro gaming ecosystem.',
+    description:
+      'HiFi is a decentralized retro gaming ecosystem driven by its community. It uses staking and gameplay mining participation rewards to create a completely new DeFi gaming experience.',
+    launchDate: 'June 11',
+    launchTime: '03:00 UTC',
+    saleAmount: '120,000,000 HIFI',
+    raiseAmount: '$600,000',
+    projectSiteUrl: 'http://hifigamingsociety.org/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    tokenDecimals: 18,
+    releaseBlockNumber: 8135430, // block to start showing contract details
+    // burnedTxUrl: '',
   },
 ]
 

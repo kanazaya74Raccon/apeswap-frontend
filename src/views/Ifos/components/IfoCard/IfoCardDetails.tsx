@@ -79,7 +79,9 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
         )}
         <Item>
           <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
-          <Text fontSize="14px">{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
+          <Text fontSize="14px">{`${
+            raisingAmount.eq(new BigNumber(0)) ? 0 : totalAmount.div(raisingAmount).times(100).toFixed(2)
+          }%`}</Text>
         </Item>
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
