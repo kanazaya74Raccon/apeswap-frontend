@@ -934,7 +934,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'ATA',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xa2120b9e674d3fc3875f415a7df52e382f141225', // BREW Token
+      56: '0xa2120b9e674d3fc3875f415a7df52e382f141225', // ATA Token
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
