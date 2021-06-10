@@ -51,11 +51,11 @@ const config: MenuEntry[] = [
     icon: 'ApeZone',
     href: '/apezone',
   },
-  {
-    label: 'Lottery',
-    icon: 'TicketIcon',
-    href: '/lottery',
-  },
+  // {
+  //   label: 'Lottery',
+  //   icon: 'TicketIcon',
+  //   href: '/lottery',
+  // },
   /* 
   {
     label: 'Teams & Profile',
