@@ -47,8 +47,9 @@ const useSafeContract = (abi: AbiItem, address?: string, contractOptions?: Contr
   useEffect(() => {
     if (address) {
       setContract(new web3.eth.Contract(abi, address, contractOptions))
+    } else {
+      setContract(undefined)
     }
-    setContract(undefined)
   }, [abi, address, contractOptions, web3])
 
   return contract
