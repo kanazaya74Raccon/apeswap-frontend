@@ -831,6 +831,28 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
+    sousId: 43,
+    tokenName: 'HIFI',
+    image: 'HIFI.svg',
+    stakingTokenName: 'HIFI-BNB',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xf093ce6778c4d7d99c23f714297fff15a661d354', // HIFI-BNB
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xccF63b838080b5e0F3e2384D884160CD93f2E8fe', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'http://hifigamingsociety.org',
+    harvest: true,
+    tokenPerBlock: `24.8015873015873`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
     sousId: 38,
     tokenName: 'TAPE',
     image: 'TAPE.svg',
