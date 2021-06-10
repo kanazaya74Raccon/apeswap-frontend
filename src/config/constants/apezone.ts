@@ -43,8 +43,7 @@ const ApeZone: { ifos: Ifo[] } = {
     },
     {
       id: 'hifi',
-      // TODO: Add contract address after deployment
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0x0dEFfe964CbCfBDA31251ADaa8DA6dA0961eba3C', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'Hifi',
       subTitle: 'Decentralized retro gaming ecosystem.',
