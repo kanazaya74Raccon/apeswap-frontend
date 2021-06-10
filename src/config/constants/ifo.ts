@@ -158,8 +158,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'hifi',
-    // TODO: Add contract address after deployment
-    address: '', // Leave empty for "Coming Soon!"
+    address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Hifi',
     subTitle: 'Decentralized retro gaming ecosystem.',
