@@ -79,7 +79,7 @@ const IfoCardContribute: React.FC<Props> = ({
     ? userAllocation
     : new BigNumber(userInfo.amount).div(raisingAmount).times(100)
 
-  if (allowance <= 0) {
+ /* if (allowance <= 0) {
     return (
       <Button
         fullWidth
@@ -98,7 +98,7 @@ const IfoCardContribute: React.FC<Props> = ({
         Approve
       </Button>
     )
-  }
+  } */
 
   return (
     <>
