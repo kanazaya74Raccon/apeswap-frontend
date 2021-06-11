@@ -976,7 +976,7 @@ const pools: PoolConfig[] = [
       56: '0xAC4409CC7709783c7CCEb6c6e69Fe42fAD192623',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'bitcrusharcade.io',
+    projectLink: 'http://bitcrusharcade.io',
     harvest: true,
     tokenPerBlock: `0.2314816600938735`,
     sortOrder: 4,
