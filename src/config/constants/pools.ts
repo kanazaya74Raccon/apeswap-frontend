@@ -951,12 +951,12 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0xccF63b838080b5e0F3e2384D884160CD93f2E8fe', // ApeRewardPool
+      56: '0x454155ac563a382458eda66fdaf59237d7230dc9', // ApeRewardPool
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'http://hifigamingsociety.org',
     harvest: true,
-    tokenPerBlock: `24.8015873015873`,
+    tokenPerBlock: `49.6031746031746`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
