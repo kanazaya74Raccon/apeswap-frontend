@@ -188,6 +188,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           raisingAmount={state.raisingAmount}
           totalAmount={state.totalAmount}
           burnedTxUrl={burnedTxUrl}
+          address={address}
         />
         <IfoCardDescription description={description} />
       </CardBody>
