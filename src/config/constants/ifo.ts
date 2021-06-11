@@ -159,7 +159,7 @@ const ifos: Ifo[] = [
   {
     id: 'hifi',
     // address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
-    address: '0x7646bE832e1545A60FEEFab510d334f8c6f6919b', // IAO Aux contract!"
+    address: '0xf9511E34e3C5A43acF8119A1031821990C3F5c53', // IAO Aux contract!"
     isActive: true,
     name: 'Hifi',
     subTitle: 'Decentralized retro gaming ecosystem.',

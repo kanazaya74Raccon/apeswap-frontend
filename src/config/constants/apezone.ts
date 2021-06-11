@@ -44,7 +44,7 @@ const ApeZone: { ifos: Ifo[] } = {
     {
       id: 'hifi',
       // address: '0x0dEFfe964CbCfBDA31251ADaa8DA6dA0961eba3C', // Leave empty for "Coming Soon!"
-      address: '0x13ffb52F219D9eF194f6E380ff3dc2C097fd973C', // IAO Aux contract
+      address: '0xf3C14f96E0Fb262b14b728CAE263B799D5Bd3d2B', // IAO Aux contract
       isActive: true,
       name: 'Hifi',
       subTitle: 'Decentralized retro gaming ecosystem.',
