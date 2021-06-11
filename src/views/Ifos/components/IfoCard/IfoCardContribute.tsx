@@ -102,6 +102,23 @@ const IfoCardContribute: React.FC<Props> = ({
 
   return (
     <>
+      <Text fontSize="14px" color="yellow">
+        HiFi IAO Investors! We had a slight miscalculation on our end for the BNB fund raise. As some of you may have
+        noticed we are off by two decimals on our total percentage raised.
+        <br />
+        <br />
+        🔒 FIRST OF ALL - ALL FUNDS ARE SAFU! 🔒
+        <br />
+        <br />
+        Second - due to this issue, we will have to airdrop your tokens after the raise. We will airdrop everyone&quot;s
+        HIFI first and then we will airdrop everyone&quot;s overflow BNB & GNANA second.
+        <br />
+        <br />
+        We are working on writing a script as we speak and you will get your tokens shortly after the IAO ends. We
+        appreciate your patience as we complete another incredibly successful Initial Ape Offering!
+        <br />
+        <br />
+      </Text>
       <LabelButton
         disabled={pendingTx || userInfo.claimed}
         buttonLabel={isFinished ? 'Claim' : 'Contribute'}
