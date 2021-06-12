@@ -46,16 +46,16 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-
   // HIFI subscribe hotfix
   let subscribeAmount = raisingAmount.eq(new BigNumber(0)) ? 0 : totalAmount.div(raisingAmount).times(100).toFixed(2)
 
-  if (address === '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47') { // IFO
+  if (address === '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47') {
+    // IFO
     subscribeAmount = 4459.42
-  } else if (address === '0xe3528182889afEAEADE455841b6CFE9AC1e53a03') { // APEZONE
+  } else if (address === '0xe3528182889afEAEADE455841b6CFE9AC1e53a03') {
+    // APEZONE
     subscribeAmount = 252.33
   }
-
 
   return (
     <>
