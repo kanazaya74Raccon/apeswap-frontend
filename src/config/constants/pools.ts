@@ -1006,6 +1006,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 46,
+    tokenName: 'GMR',
+    image: 'gmr.png',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xfd9c606d3Ff6AC1b044C4F5C0A9Fa934634bD2e8',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.gmr.finance/',
+    harvest: true,
+    tokenPerBlock: `1257518.026451967`,
+    sortOrder: 6,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
 
   /* {
     sousId: 45,
