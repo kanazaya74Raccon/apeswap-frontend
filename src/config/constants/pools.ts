@@ -1028,6 +1028,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 47,
+    tokenName: 'WINGS',
+    image: 'WINGS.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x15C4200e694e4A0223191Ec717906CBA82F54745',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://jetswap.finance/',
+    harvest: true,
+    tokenPerBlock: `0.009156250000000000`,
+    sortOrder: 6,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   /* {
     sousId: 45,
