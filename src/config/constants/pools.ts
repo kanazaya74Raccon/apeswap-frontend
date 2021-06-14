@@ -968,11 +968,11 @@ const pools: PoolConfig[] = [
     image: 'BCA.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      97: '0x9407026d236deae22cc1f3c419a9e47cbfcfe9e5',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
     },
     contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      97: '0xa439dec59e6ef0ef2c03564fcd72b181054e3e60',
       56: '0xAC4409CC7709783c7CCEb6c6e69Fe42fAD192623',
     },
     poolCategory: PoolCategory.APEZONE,
@@ -1012,11 +1012,11 @@ const pools: PoolConfig[] = [
     image: 'gmr.png',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
     },
     contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      97: '0x0e34e04310e44329f1dafd28c9922ee4517ac397',
       56: '0xfd9c606d3Ff6AC1b044C4F5C0A9Fa934634bD2e8',
     },
     poolCategory: PoolCategory.APEZONE,
@@ -1034,11 +1034,11 @@ const pools: PoolConfig[] = [
     image: 'WINGS.svg',
     stakingTokenName: 'BANANA',
     stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
     },
     contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x15C4200e694e4A0223191Ec717906CBA82F54745',
     },
     poolCategory: PoolCategory.APEZONE,
