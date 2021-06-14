@@ -968,11 +968,11 @@ const pools: PoolConfig[] = [
     image: 'BCA.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      97: '0x9407026d236deae22cc1f3c419a9e47cbfcfe9e5',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
     },
     contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      97: '0xa439dec59e6ef0ef2c03564fcd72b181054e3e60',
       56: '0xAC4409CC7709783c7CCEb6c6e69Fe42fAD192623',
     },
     poolCategory: PoolCategory.APEZONE,
