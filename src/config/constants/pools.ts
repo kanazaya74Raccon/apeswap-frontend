@@ -1050,6 +1050,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 48,
+    tokenName: 'HERO',
+    image: 'HERO.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xc417D9D9b01b5985c1720cA89B963c2417821bdC',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://farmhero.io/',
+    harvest: true,
+    tokenPerBlock: `0.5787037037037037`,
+    sortOrder: 6,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   /* {
     sousId: 45,
