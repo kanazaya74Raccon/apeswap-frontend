@@ -1086,7 +1086,7 @@ const pools: PoolConfig[] = [
       56: '0x6D5A4371B0B658765D5282Ae64eFaf9e6f9A4600',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://farmhero.io/',
+    projectLink: 'https://foxynft.org/',
     harvest: true,
     tokenPerBlock: `0.289351851`,
     sortOrder: 6,

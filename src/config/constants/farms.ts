@@ -1036,7 +1036,7 @@ const farms: FarmConfig[] = [
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xbe3e38918ca1180f0285fa18c3fa154d0dde6853',
     },
-    tokenSymbol: 'MBOX',
+    tokenSymbol: 'FOXY',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x4354a4f710182966e55ea30cfa807fa1b821a67b',
