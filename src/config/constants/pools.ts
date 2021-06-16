@@ -1072,6 +1072,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 49,
+    tokenName: 'FOXY',
+    image: 'FOXY.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x6D5A4371B0B658765D5282Ae64eFaf9e6f9A4600',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://farmhero.io/',
+    harvest: true,
+    tokenPerBlock: `0.289351851`,
+    sortOrder: 6,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
 
   /* {
     sousId: 45,
