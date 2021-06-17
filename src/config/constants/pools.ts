@@ -1119,7 +1119,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 51,
     tokenName: 'WYVERN',
-    image: 'WYVERN.svg',
+    image: 'WYVERN.png',
     stakingTokenName: 'BANANA',
     stakingTokenAddress: {
       97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
