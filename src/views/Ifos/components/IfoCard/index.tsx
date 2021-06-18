@@ -98,7 +98,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   })
   const { account } = useWeb3React()
   const contract = useSafeIfoContract(address)
-
   const currentBlock = useBlock()
   const TranslateString = useI18n()
 
