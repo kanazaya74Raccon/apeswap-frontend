@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
@@ -47,15 +47,13 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 `
 
 const App: React.FC = () => {
-  const { account, connect } = useWallet()
-
+  // Monkey patch warn() because of web3 flood
+  // To be removed when web3 1.3.5 is released
   useEffect(() => {
-    if (!account && window.localStorage.getItem('accountStatus')) {
-      connect('injected')
-    }
-    if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
-  }, [account, connect])
+    console.warn = () => null
+  }, [])
 
+  useEagerConnect()
   useFetchPublicData()
   useFetchProfile()
   useFetchStats()

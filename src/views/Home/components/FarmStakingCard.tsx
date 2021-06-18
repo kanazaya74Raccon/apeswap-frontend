@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { Heading, Button, Card, CardBody, BananaIcon, BananaPairIcon, Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 
 import { useAllHarvest } from 'hooks/useHarvest'
@@ -114,7 +114,7 @@ const FarmedStakingCard = () => {
   const rewardRef = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)

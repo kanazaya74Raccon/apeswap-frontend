@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useBanana, useRabbitMintingFarm } from 'hooks/useContract'
@@ -19,7 +19,7 @@ const minimumBananaBalance = 4
 const Mint: React.FC = () => {
   const [bunnyId, setBunnyId] = useState(null)
   const { actions, minimumBananaRequired, allowance } = useProfileCreation()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const bananaContract = useBanana()
   const mintingFarmContract = useRabbitMintingFarm()
   const TranslateString = useI18n()

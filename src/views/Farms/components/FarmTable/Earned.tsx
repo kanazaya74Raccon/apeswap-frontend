@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 
 export interface EarnedProps {
   earnings: number
@@ -16,7 +16,7 @@ const Amount = styled.span<{ earned: number }>`
 `
 
 const Earned: React.FunctionComponent<EarnedProps> = ({ earnings }) => {
-  const { account }: { account: string } = useWallet()
+  const { account } = useWeb3React()
 
   const amountEarned = account ? earnings : null
 

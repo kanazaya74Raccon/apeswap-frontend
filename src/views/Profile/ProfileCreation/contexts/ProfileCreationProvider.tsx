@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useReducer } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { getRabbitMintingContract } from 'utils/contractHelpers'
 import { Actions, State, ContextType } from './types'
 
@@ -51,7 +51,7 @@ export const ProfileCreationContext = createContext<ContextType>(null)
 
 const ProfileCreationProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { account } = useWallet()
+  const { account } = useWeb3React()
 
   // Initial checks
   useEffect(() => {

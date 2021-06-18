@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { Heading, Image, BaseLayout, Flex } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
@@ -89,7 +89,7 @@ const Cards = styled(BaseLayout)`
 const Pools: React.FC = () => {
   const { path } = useRouteMatch()
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const farms = useFarms()
   const pools = useGnanaPools(account)
   const { statsOverall } = useStatsOverall()

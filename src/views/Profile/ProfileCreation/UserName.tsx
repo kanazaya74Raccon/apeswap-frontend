@@ -16,7 +16,7 @@ import {
   Checkbox,
 } from '@apeswapfinance/uikit'
 import { parseISO, formatDistance } from 'date-fns'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { useToast } from 'state/hooks'
 import useWeb3 from 'hooks/useWeb3'
 import useI18n from 'hooks/useI18n'
@@ -60,7 +60,7 @@ const UserName: React.FC = () => {
   const [isAcknowledged, setIsAcknoledged] = useState(false)
   const { teamId, tokenId, userName, actions, minimumBananaRequired, allowance } = useProfileCreation()
   const TranslateString = useI18n()
-  const { account, ethereum } = useWallet()
+  const { account, library } = useWeb3React()
   const { toastError } = useToast()
   const web3 = useWeb3()
   const [existingUserState, setExistingUserState] = useState<ExistingUserState>(ExistingUserState.IDLE)
@@ -108,9 +108,8 @@ const UserName: React.FC = () => {
     try {
       setIsLoading(true)
 
-      const provider = ethereum as any
-      const signature = provider?.bnbSign
-        ? (await provider.bnbSign(account, userName))?.signature
+      const signature = library?.bnbSign
+        ? (await library.bnbSign(account, userName))?.signature
         : await web3.eth.personal.sign(userName, account, null) // Last param is the password, and is null to request a signature in the wallet
 
       const response = await fetch(`${profileApiUrl}/api/users/register`, {
