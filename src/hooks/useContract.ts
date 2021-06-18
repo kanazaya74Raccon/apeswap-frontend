@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
-import { ContractOptions } from 'web3-eth-contract'
+import { Contract, ContractOptions } from 'web3-eth-contract'
 import useWeb3 from 'hooks/useWeb3'
 import {
   getMasterChefAddress,
@@ -38,6 +38,23 @@ const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOp
   return contract
 }
 
+const useSafeContract = (abi: AbiItem, address?: string, contractOptions?: ContractOptions): Contract | undefined => {
+  const web3 = useWeb3()
+  const [contract, setContract] = useState<Contract | undefined>(
+    address && new web3.eth.Contract(abi, address, contractOptions),
+  )
+
+  useEffect(() => {
+    if (address) {
+      setContract(new web3.eth.Contract(abi, address, contractOptions))
+    } else {
+      setContract(undefined)
+    }
+  }, [abi, address, contractOptions, web3])
+
+  return contract
+}
+
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
@@ -45,6 +62,11 @@ const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOp
 export const useIfoContract = (address: string) => {
   const ifoAbi = (ifo as unknown) as AbiItem
   return useContract(ifoAbi, address)
+}
+
+export const useSafeIfoContract = (address?: string): Contract | undefined => {
+  const ifoAbi = (ifo as unknown) as AbiItem
+  return useSafeContract(ifoAbi, address)
 }
 
 export const useERC20 = (address: string) => {
