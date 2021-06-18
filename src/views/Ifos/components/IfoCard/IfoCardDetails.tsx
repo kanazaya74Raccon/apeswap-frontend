@@ -14,6 +14,7 @@ export interface IfoCardDetailsProps {
   raisingAmount: BigNumber
   totalAmount: BigNumber
   burnedTxUrl: string
+  address: string
 }
 
 const StyledIfoCardDetails = styled.div`
@@ -41,8 +42,20 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   raisingAmount,
   totalAmount,
   burnedTxUrl,
+  address,
 }) => {
   const TranslateString = useI18n()
+
+  // HIFI subscribe hotfix
+  let subscribeAmount = raisingAmount.eq(new BigNumber(0)) ? 0 : totalAmount.div(raisingAmount).times(100).toFixed(2)
+
+  if (address === '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47') {
+    // IFO
+    subscribeAmount = 4459.42
+  } else if (address === '0xe3528182889afEAEADE455841b6CFE9AC1e53a03') {
+    // APEZONE
+    subscribeAmount = 252.33
+  }
 
   return (
     <>
@@ -79,7 +92,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
         )}
         <Item>
           <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
-          <Text fontSize="14px">{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
+          <Text fontSize="14px">{`${subscribeAmount}%`}</Text>
         </Item>
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
