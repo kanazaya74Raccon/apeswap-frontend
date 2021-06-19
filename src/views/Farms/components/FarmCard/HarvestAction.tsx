@@ -3,8 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import { getContract } from 'utils/erc20'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
+import { useWeb3React } from '@web3-react/core'
 import { useFarmUser, useFarmFromSymbol } from 'state/hooks'
 
 import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
@@ -24,7 +23,7 @@ interface FarmCardActionsProps {
 }
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol, addLiquidityUrl }) => {
-  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
+  const { account, library } = useWeb3React()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
   const rewardRefPos = useRef(null)
@@ -41,8 +40,8 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const { lpAddresses } = useFarmFromSymbol(lpSymbol)
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const lpContract = useMemo(() => {
-    return getContract(ethereum as provider, lpAddress)
-  }, [ethereum, lpAddress])
+    return getContract(library, lpAddress)
+  }, [library, lpAddress])
 
   const lpName = lpSymbol.toUpperCase()
 

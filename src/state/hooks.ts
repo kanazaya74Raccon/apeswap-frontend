@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import { Team } from 'config/constants/types'
@@ -184,7 +184,7 @@ export const useToast = () => {
 // Profile
 
 export const useFetchProfile = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
 
@@ -200,7 +200,7 @@ export const useProfile = () => {
 
 // Stats - individual stats
 export const useFetchStats = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const dispatch = useDispatch()
   const { statsOverall } = useStatsOverall()
   const { slowRefresh } = useRefresh()

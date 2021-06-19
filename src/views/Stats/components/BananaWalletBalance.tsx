@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getBananaAddress } from 'utils/addressHelpers'
@@ -10,7 +10,7 @@ import CardValue from './CardValue'
 const BananaWalletBalance = () => {
   const TranslateString = useI18n()
   const bananaBalance = useTokenBalance(getBananaAddress())
-  const { account } = useWallet()
+  const { account } = useWeb3React()
 
   if (!account) {
     return (

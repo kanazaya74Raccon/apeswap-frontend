@@ -3,8 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { provider } from 'web3-core'
+import { useWeb3React } from '@web3-react/core'
 import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
@@ -407,7 +406,7 @@ const Farms: React.FC = () => {
   const farmsLP = useFarms()
   const bananaPrice = usePriceBananaBusd()
   const bnbPrice = usePriceBnbBusd()
-  const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
+  const { account } = useWeb3React()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
@@ -627,26 +626,12 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed={false}
-                ethereum={ethereum}
-              />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed
-                ethereum={ethereum}
-              />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed />
             ))}
           </Route>
         </FlexLayout>

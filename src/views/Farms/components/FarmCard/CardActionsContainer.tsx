@@ -1,6 +1,5 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { provider } from 'web3-core'
 import { Flex } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
 import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
@@ -14,13 +13,12 @@ export interface FarmWithStakedValue extends Farm {
 
 interface FarmCardActionsProps {
   farm: FarmWithStakedValue
-  ethereum?: provider
   account?: string
   addLiquidityUrl?: string
   totalValueFormated?: string
 }
 
-const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, addLiquidityUrl }) => {
+const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
   const { pid } = useFarmFromSymbol(farm.lpSymbol)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const lpName = farm.lpSymbol.toUpperCase()
@@ -36,7 +34,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account, 
         addLiquidityUrl={addLiquidityUrl}
         isApproved={isApproved}
         lpSymbol={farm.lpSymbol}
-        ethereum={ethereum}
       />
     )
   }

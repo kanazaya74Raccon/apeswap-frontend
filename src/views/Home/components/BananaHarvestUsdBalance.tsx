@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import useI18n from 'hooks/useI18n'
 import { usePendingUsd } from 'state/hooks'
@@ -10,7 +10,7 @@ import CardValue from './CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const { pending } = usePendingUsd()
   const { slowRefresh } = useRefresh()
   const dispatch = useDispatch()

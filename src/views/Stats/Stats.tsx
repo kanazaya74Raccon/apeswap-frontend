@@ -6,7 +6,7 @@ import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
 import { useStats } from 'state/hooks'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/farms'
@@ -69,7 +69,7 @@ const Cards = styled(BaseLayout)`
 const Stats: React.FC = () => {
   const TranslateString = useI18n()
 
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const { slowRefresh } = useRefresh()
   const yourStats = useStats()
   const dispatch = useDispatch()

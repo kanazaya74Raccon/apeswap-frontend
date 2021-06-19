@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import { useTreasury } from 'hooks/useContract'
 import BigNumber from 'bignumber.js'
 
@@ -30,7 +30,7 @@ export const sell = async (contract, amount, account) => {
 }
 
 export const useSellGoldenBanana = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const treasuryContract = useTreasury()
 
   const handleSell = useCallback(
@@ -49,7 +49,7 @@ export const useSellGoldenBanana = () => {
 }
 
 export const useBuyGoldenBanana = () => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const treasuryContract = useTreasury()
 
   const handleBuy = useCallback(

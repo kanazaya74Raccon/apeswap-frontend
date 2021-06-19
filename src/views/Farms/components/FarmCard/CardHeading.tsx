@@ -6,7 +6,7 @@ import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 
 import HarvestAction from './HarvestAction'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -225,7 +225,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
 
-  const { account }: { account: string } = useWallet()
+  const { account } = useWeb3React()
 
   return (
     <Flex>

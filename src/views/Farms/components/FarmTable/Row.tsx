@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
@@ -136,7 +136,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
 
   const { isXl, isXs } = useMatchBreakpoints()
 
-  const { account }: { account: string } = useWallet()
+  const { account } = useWeb3React()
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = details
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })

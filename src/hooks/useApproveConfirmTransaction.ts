@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react'
 import { noop } from 'lodash'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { useWeb3React } from '@web3-react/core'
 
 type Web3Payload = Record<string, unknown> | null
 
@@ -94,7 +94,7 @@ const useApproveConfirmTransaction = ({
   onRequiresApproval,
   onSuccess = noop,
 }: ApproveConfirmTransaction) => {
-  const { account } = useWallet()
+  const { account } = useWeb3React()
   const [state, dispatch] = useReducer(reducer, initialState)
   const handlePreApprove = useRef(onRequiresApproval)
 
