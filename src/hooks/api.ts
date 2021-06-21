@@ -11,6 +11,7 @@ export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swa
 
 export const baseUrlStrapi = 'https://apeswap-strapi.herokuapp.com'
 const EXCHANGE_SUBGRAPH_URL = 'https://graph2.apeswap.finance/subgraphs/name/ape-swap/apeswap-subgraph'
+const EXCHANGE_POLYGON_SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/apeswapfinance/dex-polygon'
 
 /* eslint-disable camelcase */
 
@@ -108,7 +109,7 @@ const RESERVES_QUERY = (address) => {
 }
 
 const LIQUIDITY_QUERY = `{
-      uniswapFactory(id: "0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6") {
+      uniswapFactories(first: 1) {
         id
         totalVolumeUSD
         totalLiquidityUSD
@@ -137,14 +138,25 @@ export const fetchReserveData = async (pairAddress) => {
 export const fetchLiquidityData = async () => {
   try {
     const query = LIQUIDITY_QUERY
-    const response = await fetch(EXCHANGE_SUBGRAPH_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query }),
-    })
-    const { data }: any = await response.json()
+    const responses = await Promise.all([
+      fetch(EXCHANGE_SUBGRAPH_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      }),
+      fetch(EXCHANGE_POLYGON_SUBGRAPH_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      }),
+    ])
+    const { data: bscData }: any = await responses[0].json()
+    const { data: polyData }: any = await responses[1].json()
 
-    return parseFloat(data.uniswapFactory.totalLiquidityUSD)
+    const totalLiquidity =
+      parseFloat(bscData.uniswapFactories[0].totalLiquidityUSD) +
+      parseFloat(polyData.uniswapFactories[0].totalLiquidityUSD)
+    return totalLiquidity
   } catch (error) {
     console.error('Unable to fetch data:', error)
   }

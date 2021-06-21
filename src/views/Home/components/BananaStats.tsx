@@ -7,6 +7,7 @@ import { usePriceBananaBusd, useStatsOverall } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { getBananaAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
+import { useLiquidityData } from 'hooks/api'
 import CardValue from './CardValue'
 
 const StyledBananaStats = styled(Card)`
@@ -93,7 +94,7 @@ const StyledNavLink = styled.a`
 const BananaStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
-  const { statsOverall } = useStatsOverall()
+  const liquidity = useLiquidityData()
   const bananaPriceUsd = usePriceBananaBusd()
   const burnedBalance = useBurnedBalance(getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
@@ -136,15 +137,8 @@ const BananaStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'DEX LIQUIDITY')}
           </StyledText>
-          {statsOverall?.totalLiquidity && (
-            <CardValue
-              fontSize="14px"
-              value={statsOverall.totalLiquidity}
-              decimals={0}
-              prefix="$"
-              text="poppins"
-              fontWeight={700}
-            />
+          {liquidity && (
+            <CardValue fontSize="14px" value={liquidity} decimals={0} prefix="$" text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
