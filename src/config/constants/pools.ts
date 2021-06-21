@@ -1129,7 +1129,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x33a8CE49cFBdeF61e5E494f769b5626d395a56f3',
     },
-    poolCategory: PoolCategory.APEZONE,
+    poolCategory: PoolCategory.CORE,
     projectLink: 'https://wyverntoken.com/',
     harvest: true,
     tokenPerBlock: `1352.941671296`,
@@ -1138,7 +1138,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
-
+  {
+    sousId: 52,
+    tokenName: 'BOG',
+    image: 'BOG.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x1851a14b9b6bcd55b57da6bfd11f7fb5ae8c3d01',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://bogged.finance/',
+    harvest: true,
+    tokenPerBlock: `0.05787037037037037`,
+    sortOrder: 4,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
