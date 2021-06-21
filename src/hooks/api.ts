@@ -142,16 +142,20 @@ export const fetchLiquidityData = async () => {
       fetch(EXCHANGE_SUBGRAPH_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })}),
+        body: JSON.stringify({ query }),
+      }),
       fetch(EXCHANGE_POLYGON_SUBGRAPH_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query })})
-      ])
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      }),
+    ])
     const { data: bscData }: any = await responses[0].json()
     const { data: polyData }: any = await responses[1].json()
 
-    const totalLiquidity =  parseFloat(bscData.uniswapFactories[0].totalLiquidityUSD) + parseFloat(polyData.uniswapFactories[0].totalLiquidityUSD)
+    const totalLiquidity =
+      parseFloat(bscData.uniswapFactories[0].totalLiquidityUSD) +
+      parseFloat(polyData.uniswapFactories[0].totalLiquidityUSD)
     return totalLiquidity
   } catch (error) {
     console.error('Unable to fetch data:', error)

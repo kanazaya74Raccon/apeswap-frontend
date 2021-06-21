@@ -138,14 +138,7 @@ const BananaStats = () => {
             {TranslateString(536, 'DEX LIQUIDITY')}
           </StyledText>
           {liquidity && (
-            <CardValue
-              fontSize="14px"
-              value={liquidity}
-              decimals={0}
-              prefix="$"
-              text="poppins"
-              fontWeight={700}
-            />
+            <CardValue fontSize="14px" value={liquidity} decimals={0} prefix="$" text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
