@@ -170,7 +170,6 @@ export const useLiquidityData = () => {
     const fetchData = async () => {
       try {
         const response = await fetchLiquidityData()
-        console.log(response)
         setData(response)
       } catch (error) {
         console.error('Unable to fetch data:', error)
