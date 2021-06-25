@@ -1162,7 +1162,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 53,
-    tokenName: 'HIFI',
+    tokenName: 'Inactive - HIFI',
     image: 'HIFI.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
@@ -1179,7 +1179,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `52.083333333333333333`,
     sortOrder: 4,
     reflect: false,
-    isFinished: true,
+    isFinished: false,
     tokenDecimals: 18,
   },
   {
