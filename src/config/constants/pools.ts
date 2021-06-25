@@ -1162,7 +1162,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 53,
-    tokenName: 'HIFI',
+    tokenName: 'Inactive - HIFI',
     image: 'HIFI.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
@@ -1172,6 +1172,28 @@ const pools: PoolConfig[] = [
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x8e4f6c2e8d9c5ed20c2a9a6db6553655a66d8c1b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'http://hifigamingsociety.org',
+    harvest: true,
+    tokenPerBlock: `52.083333333333333333`,
+    sortOrder: 4,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 54,
+    tokenName: 'HIFI',
+    image: 'HIFI.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x4fa77345de3d991625cbf3317cb449f729378d34',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'http://hifigamingsociety.org',
