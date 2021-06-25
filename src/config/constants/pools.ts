@@ -1173,7 +1173,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x8e4f6c2e8d9c5ed20c2a9a6db6553655a66d8c1b',
     },
-    poolCategory: PoolCategory.CORE,
+    poolCategory: PoolCategory.APEZONE,
     projectLink: 'http://hifigamingsociety.org',
     harvest: true,
     tokenPerBlock: `52.083333333333333333`,
