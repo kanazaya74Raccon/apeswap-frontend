@@ -55,7 +55,7 @@ const ApeZone: { ifos: Ifo[] } = {
       saleAmount: '80,000,000 HIFI',
       raiseAmount: '$400,000',
       bananaToBurn: '$400,000',
-      projectSiteUrl: 'http://hifigamingsociety.org/',
+      projectSiteUrl: 'https://hifigamingsociety.com/',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
       tokenDecimals: 18,

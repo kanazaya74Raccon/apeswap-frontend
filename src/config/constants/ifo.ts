@@ -169,7 +169,7 @@ const ifos: Ifo[] = [
     launchTime: '03:00 UTC',
     saleAmount: '120,000,000 HIFI',
     raiseAmount: '$600,000',
-    projectSiteUrl: 'http://hifigamingsociety.org/',
+    projectSiteUrl: 'https://hifigamingsociety.com/',
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
