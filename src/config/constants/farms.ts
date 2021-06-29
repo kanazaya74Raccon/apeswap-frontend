@@ -1084,7 +1084,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'LORY',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xb09fe1613fe03e7361319d2a43edc17422f36b09',
+      56: '0xcd5d75dbe75449a9021b6c570a41959eb571c751',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
