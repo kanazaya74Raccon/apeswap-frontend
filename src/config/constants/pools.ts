@@ -1204,6 +1204,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 55,
+    tokenName: 'LORY',
+    image: 'LORY.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x14e87345dd641a222a353d1fb0de5f0e66d0668e',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://yieldparrot.finance',
+    harvest: true,
+    tokenPerBlock: `0.031348765432098765`,
+    sortOrder: 4,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
