@@ -1226,6 +1226,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 56,
+    tokenName: 'SCAM',
+    image: 'SCAM.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x49605d4d0bdf049a9c3f20f59e066662a086a9a8',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://scamily.io/',
+    harvest: true,
+    tokenPerBlock: `1666.6666666666`,
+    sortOrder: 4,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 10,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
