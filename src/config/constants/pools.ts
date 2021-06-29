@@ -1239,7 +1239,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x49605d4d0bdf049a9c3f20f59e066662a086a9a8',
     },
-    poolCategory: PoolCategory.APEZONE,
+    poolCategory: PoolCategory.CORE,
     projectLink: 'https://scamily.io/',
     harvest: true,
     tokenPerBlock: `1666.6666666666`,
