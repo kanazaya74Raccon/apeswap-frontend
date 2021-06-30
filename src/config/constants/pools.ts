@@ -692,7 +692,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://valuedefi.io/',
     harvest: true,
-    tokenPerBlock: `0.00017361111`,
+    tokenPerBlock: `0.000017361111`,
     sortOrder: 2,
     reflect: false,
     isFinished: false,
