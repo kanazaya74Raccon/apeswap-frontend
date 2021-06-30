@@ -74,8 +74,8 @@ const fetchFarms = async () => {
         .div(new BigNumber(10).pow(quoteTokenDecimals))
         .times(lpTokenRatio)
 
-      let alloc = null;
-      let multiplier = '1x';
+      let alloc = null
+      let multiplier = '1x'
       try {
         const [info, totalAllocPoint] = await multicall(masterchefABI, [
           {
@@ -90,9 +90,9 @@ const fetchFarms = async () => {
         ])
         const allocPoint = new BigNumber(info.allocPoint._hex)
         const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
-        alloc = poolWeight.toJSON();
-        multiplier = `${allocPoint.div(100).toString()}X`;
-      // eslint-disable-next-line no-empty
+        alloc = poolWeight.toJSON()
+        multiplier = `${allocPoint.div(100).toString()}X`
+        // eslint-disable-next-line no-empty
       } catch (error) {}
 
       return {
