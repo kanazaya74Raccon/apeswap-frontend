@@ -74,20 +74,26 @@ const fetchFarms = async () => {
         .div(new BigNumber(10).pow(quoteTokenDecimals))
         .times(lpTokenRatio)
 
-      const [info, totalAllocPoint] = await multicall(masterchefABI, [
-        {
-          address: getMasterChefAddress(),
-          name: 'poolInfo',
-          params: [farmConfig.pid],
-        },
-        {
-          address: getMasterChefAddress(),
-          name: 'totalAllocPoint',
-        },
-      ])
-
-      const allocPoint = new BigNumber(info.allocPoint._hex)
-      const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+      let alloc = null;
+      let multiplier = '1x';
+      try {
+        const [info, totalAllocPoint] = await multicall(masterchefABI, [
+          {
+            address: getMasterChefAddress(),
+            name: 'poolInfo',
+            params: [farmConfig.pid],
+          },
+          {
+            address: getMasterChefAddress(),
+            name: 'totalAllocPoint',
+          },
+        ])
+        const allocPoint = new BigNumber(info.allocPoint._hex)
+        const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
+        alloc = poolWeight.toJSON();
+        multiplier = `${allocPoint.div(100).toString()}X`;
+      // eslint-disable-next-line no-empty
+      } catch (error) {}
 
       return {
         ...farmConfig,
@@ -96,8 +102,8 @@ const fetchFarms = async () => {
         totalInQuoteToken: totalInQuoteToken.toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
-        poolWeight: poolWeight.toJSON(),
-        multiplier: `${allocPoint.div(100).toString()}X`,
+        poolWeight: alloc,
+        multiplier,
       }
     }),
   )
