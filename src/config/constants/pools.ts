@@ -674,6 +674,7 @@ const pools: PoolConfig[] = [
     sortOrder: 2,
     reflect: false,
     isFinished: false,
+    bonusEndBlock: 8851420,
     tokenDecimals: 9,
   },
   {
