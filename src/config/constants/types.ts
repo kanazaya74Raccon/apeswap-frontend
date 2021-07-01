@@ -76,6 +76,7 @@ export interface PoolConfig {
   tokenName: string
   stakingTokenName: string
   stakingLimit?: number
+  bonusEndBlock?: number
   stakingTokenAddress?: Address
   contractAddress: Address
   poolCategory: PoolCategory

@@ -33,7 +33,7 @@ export const fetchPoolsBlockLimits = async () => {
     return {
       sousId: bananaPoolConfig.sousId,
       startBlock: new BigNumber(startBlock).toJSON(),
-      endBlock: new BigNumber(endBlock).toJSON(),
+      endBlock: bananaPoolConfig.bonusEndBlock || new BigNumber(endBlock).toJSON(),
     }
   })
 }
