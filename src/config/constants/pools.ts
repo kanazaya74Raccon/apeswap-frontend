@@ -1222,7 +1222,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://yieldparrot.finance',
     harvest: true,
     tokenPerBlock: `0.031348765432098765`,
-    sortOrder: 4,
+    sortOrder: 2,
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
