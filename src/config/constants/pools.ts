@@ -1293,6 +1293,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 59,
+    tokenName: 'GNT',
+    image: 'GNT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xfa1e8344e8316b4c7ca4d9f9359154bd3b42b427',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.greentrusttoken.com/',
+    harvest: true,
+    tokenPerBlock: `5260.942760416666`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
