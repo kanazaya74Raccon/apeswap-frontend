@@ -187,7 +187,7 @@ const ifos: Ifo[] = [
     launchDate: 'July 9th',
     launchTime: '03:00 UTC',
     saleAmount: '128571 BISON',
-    raiseAmount: '$600,000',
+    raiseAmount: '$450,000',
     projectSiteUrl: 'https://bishares.finance/',
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
