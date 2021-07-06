@@ -69,8 +69,7 @@ const ApeZone: { ifos: Ifo[] } = {
       isActive: true,
       name: 'BiShares',
       subTitle: 'Decentralized Index Funds',
-      description:
-        `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+      description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
       launchDate: 'July 9th',
       launchTime: '03:00 UTC',
       saleAmount: '71429 BISON',

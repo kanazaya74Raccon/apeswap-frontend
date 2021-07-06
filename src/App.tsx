@@ -51,7 +51,7 @@ const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
   const { account } = useWeb3React()
-  
+
   useEffect(() => {
     console.warn = () => null
   }, [])
