@@ -160,7 +160,7 @@ const ifos: Ifo[] = [
     id: 'hifi',
     // address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
     address: '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47', // IAO Aux contract!"
-    isActive: true,
+    isActive: false,
     name: 'Hifi',
     subTitle: 'Decentralized retro gaming ecosystem.',
     description:
@@ -174,6 +174,26 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
     releaseBlockNumber: 8135430, // block to start showing contract details
+    // burnedTxUrl: '',
+  },
+  {
+    id: 'bishares',
+    // address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
+    address: '', // IAO Aux contract!"
+    isActive: true,
+    name: 'BiShares',
+    subTitle: 'Decentralized Index Funds',
+    description:
+      `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+    launchDate: 'July 9th',
+    launchTime: '03:00 UTC',
+    saleAmount: '128571 BISON',
+    raiseAmount: '$600,000',
+    projectSiteUrl: 'https://bishares.finance/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    tokenDecimals: 18,
+    releaseBlockNumber: 8993971, // block to start showing contract details
     // burnedTxUrl: '',
   },
 ]
