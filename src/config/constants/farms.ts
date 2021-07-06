@@ -1210,6 +1210,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 87,
+    lpSymbol: 'PACOCA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0fee6e1e55fa772fae71e6734a7f9e8622900d75',
+    },
+    tokenSymbol: 'PACOCA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x55671114d774ee99d653d6c12460c780a67f1d18',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
