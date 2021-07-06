@@ -30,7 +30,7 @@ export interface ExpandableSectionProps {
 const Wrapper = styled.div`
   margin-top: 24px;
   margin-left: 24px;
-  margin-right: 24px
+  margin-right: 24px;
 `
 
 const StyledLinkExternal = styled(LinkExternal)`

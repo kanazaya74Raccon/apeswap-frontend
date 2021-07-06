@@ -617,12 +617,12 @@ const Pools: React.FC = () => {
     let chosenPools = []
 
     if (stakedOnly && gnanaOnly) {
-      chosenPools =  isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
+      chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
     } else if (stakedOnly && !gnanaOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
     } else if (!stakedOnly && gnanaOnly) {
       chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
-    } else{
+    } else {
       chosenPools = isActive ? openPools : finishedPools
     }
 

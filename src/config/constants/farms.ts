@@ -1075,6 +1075,156 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 79,
+    lpSymbol: 'BNB-LORY LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x3d0c2ee0156675b90bc41e5559970415a20414f5',
+    },
+    tokenSymbol: 'LORY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xcd5d75dbe75449a9021b6c570a41959eb571c751',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 78,
+    lpSymbol: 'SCAM-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xaab7b3c31c8f76e4bfe0d0cd073b1bca6279072c',
+    },
+    tokenSymbol: 'SCAM',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x00aa85e010204068b7cc2235800b2d8036bdbf2e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 80,
+    lpSymbol: 'FRUIT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0be55fd1fdc7134ff8412e8baac63cbb691b1d64',
+    },
+    tokenSymbol: 'FRUIT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4ecfb95896660aa7f54003e967e7b283441a2b0a',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 81,
+    lpSymbol: 'SKILL-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0deb588c1ec6f1d9f348126d401f05c4c7b7a80c',
+    },
+    tokenSymbol: 'SKILL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x154a9f9cbd3449ad22fdae23044319d6ef2a1fab',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 82,
+    lpSymbol: 'GNT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe19c4b62eab3b1b61c93c5ddb27779c992413b0e',
+    },
+    tokenSymbol: 'GNT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xf750a26eb0acf95556e8529e72ed530f3b60f348',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 83,
+    lpSymbol: 'SFP-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x6411a2240c8cd1dd48718eee1ae4a10e71123fd3',
+    },
+    tokenSymbol: 'SFP',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xd41fdb03ba84762dd66a0af1a6c8540ff1ba5dfb',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 84,
+    lpSymbol: 'TWT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x4c48d692e3de076c7b844b956b28cdd1dd5c0945',
+    },
+    tokenSymbol: 'TWT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4b0f1812e5df2a09796481ff14017e6005508003',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 85,
+    lpSymbol: 'EPS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x97c4c531e739e870d958940e8688017894084003',
+    },
+    tokenSymbol: 'EPS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa7f552078dcc247c2684336020c03648500c6d9f',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 86,
+    lpSymbol: 'XVS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x9e199da6f87e09a290724eba866eedae2e971a0b',
+    },
+    tokenSymbol: 'XVS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 87,
+    lpSymbol: 'PACOCA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0fee6e1e55fa772fae71e6734a7f9e8622900d75',
+    },
+    tokenSymbol: 'PACOCA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x55671114d774ee99d653d6c12460c780a67f1d18',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {

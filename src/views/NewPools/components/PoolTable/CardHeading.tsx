@@ -24,7 +24,7 @@ export interface ExpandableSectionProps {
   removed?: boolean
   pid?: number
   lpSymbol?: string
-  earnTokenImage?: string;
+  earnTokenImage?: string
   showExpandableSection?: boolean
 }
 
@@ -256,7 +256,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     <Flex>
       <StyledBackground>
         <StyledImage src={`/images/tokens/${stakeToken}.svg`} alt={tokenSymbol} />
-        <StyledArrow src='/images/arrow.svg' alt="arrow" />
+        <StyledArrow src="/images/arrow.svg" alt="arrow" />
         <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />
       </StyledBackground>
       <StyledFlexContainer>

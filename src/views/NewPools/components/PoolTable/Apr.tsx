@@ -51,7 +51,7 @@ const Apr: React.FC<AprProps> = ({
   originalValue,
   hideButton = false,
   addLiquidityUrl,
-  poolApr
+  poolApr,
 }) => {
   const TranslateString = useI18n()
 

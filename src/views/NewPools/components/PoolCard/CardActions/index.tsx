@@ -39,27 +39,27 @@ const CardActions: React.FC<CardActionsProps> = ({ pool }) => {
 
   return (
     <>
-        {(harvest && !needsApproval) && (
-          <HarvestActions
-            earnings={earnings}
-            sousId={sousId}
-            isBnbPool={isBnbPool}
-            isLoading={isLoading}
-            tokenDecimals={tokenDecimals}
-          />
-        )}
-        {needsApproval ? (
-          <ApprovalAction stakingContractAddress={stakingTokenAddress[56]} sousId={sousId} isLoading={isLoading} />
-        ) : (
-          <StakeActions
-            isLoading={isLoading}
-            pool={pool}
-            stakingTokenBalance={stakingTokenBalance}
-            stakedBalance={stakedBalance}
-            isBnbPool={isBnbPool}
-            isStaked={isStaked}
-          />
-        )}
+      {harvest && !needsApproval && (
+        <HarvestActions
+          earnings={earnings}
+          sousId={sousId}
+          isBnbPool={isBnbPool}
+          isLoading={isLoading}
+          tokenDecimals={tokenDecimals}
+        />
+      )}
+      {needsApproval ? (
+        <ApprovalAction stakingContractAddress={stakingTokenAddress[56]} sousId={sousId} isLoading={isLoading} />
+      ) : (
+        <StakeActions
+          isLoading={isLoading}
+          pool={pool}
+          stakingTokenBalance={stakingTokenBalance}
+          stakedBalance={stakedBalance}
+          isBnbPool={isBnbPool}
+          isStaked={isStaked}
+        />
+      )}
     </>
   )
 }

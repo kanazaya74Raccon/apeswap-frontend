@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
-import {  ButtonSquare} from '@apeswapfinance/uikit'
+import { ButtonSquare } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useReward from 'hooks/useReward'
 import { useSousHarvest } from 'hooks/useHarvest'
@@ -19,12 +19,7 @@ interface HarvestActionsProps {
   tokenDecimals: number
 }
 
-const HarvestActions: React.FC<HarvestActionsProps> = ({
-  earnings,
-  tokenDecimals,
-  sousId,
-  compound,
-}) => {
+const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals, sousId, compound }) => {
   const TranslateString = useI18n()
   const earningTokenBalance = getBalanceNumber(earnings, tokenDecimals)
   const rewardRef = useRef(null)
@@ -34,10 +29,8 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const onReward = useReward(rewardRef, useSousHarvest(sousId).onReward)
   const onApeHarder = useReward(rewardRefApeHarder, useSousStake(sousId).onStake)
 
-
-
   const renderButton = () => {
-    if (compound){
+    if (compound) {
       return (
         <ButtonSquare
           disabled={earningTokenBalance === 0 || pendingTx}

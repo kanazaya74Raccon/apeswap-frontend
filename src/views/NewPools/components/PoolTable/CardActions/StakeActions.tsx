@@ -4,7 +4,16 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text, ButtonSquare } from '@apeswapfinance/uikit'
+import {
+  Flex,
+  Heading,
+  IconButtonSquare,
+  AddIcon,
+  MinusIcon,
+  useModal,
+  Text,
+  ButtonSquare,
+} from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousStake } from 'hooks/useStake'
@@ -12,7 +21,6 @@ import { useSousUnstake } from 'hooks/useUnstake'
 import { Pool } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-
 
 interface StakeActionsProps {
   pool: Pool
@@ -57,7 +65,6 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakingTokenBalance,
@@ -79,14 +86,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const rewardRefUnstake = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
-
   const onStake = useReward(rewardRefStake, useSousStake(sousId).onStake)
   const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
-  
 
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
-
-
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -138,7 +141,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   if (firstStake) {
     return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `Stake ${stakingTokenName}`)}</ButtonSquare>
   }
-
 
   return (
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">

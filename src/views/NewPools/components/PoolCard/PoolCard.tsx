@@ -44,7 +44,6 @@ interface HarvestProps {
   pool: PoolWithStakeValue
 }
 
-
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
@@ -133,7 +132,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     setShowExpandableSection(!showExpandableSection)
   }
 
-
   return (
     <PCard onClick={toggleExpand}>
       <CardHeading
@@ -169,6 +167,5 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     </PCard>
   )
 }
-
 
 export default PoolCard

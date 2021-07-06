@@ -14,7 +14,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface ExpandableSectionProps {
@@ -253,7 +252,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   stakingTokenAddress,
 }) => {
   const TranslateString = useI18n()
-  const userData  = pool.userData
+  const userData = pool.userData
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
