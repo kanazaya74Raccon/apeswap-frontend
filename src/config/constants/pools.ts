@@ -348,7 +348,7 @@ const pools: PoolConfig[] = [
     sousId: 12,
     tokenName: 'JDI',
     stakingTokenName: 'BNB-JDI',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764', // BNB-JDI LP
@@ -370,7 +370,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 28,
     tokenName: 'JDI',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenName: 'JDI',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -439,7 +439,7 @@ const pools: PoolConfig[] = [
     sousId: 14,
     tokenName: 'JDI',
     stakingTokenName: 'BANANA',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
@@ -692,7 +692,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://valuedefi.io/',
     harvest: true,
-    tokenPerBlock: `0.00017361111`,
+    tokenPerBlock: `0.000017361111`,
     sortOrder: 2,
     reflect: false,
     isFinished: false,
@@ -1179,7 +1179,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `52.083333333333333333`,
     sortOrder: 4,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
