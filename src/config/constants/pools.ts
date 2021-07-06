@@ -1315,6 +1315,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 60,
+    tokenName: 'PACOCA',
+    image: 'PACOCA.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x32d5dae00cf9ec718e6054cbe5f307b9e8ed80e9',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://pacoca.io',
+    harvest: true,
+    tokenPerBlock: `0.980902777777777777`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
