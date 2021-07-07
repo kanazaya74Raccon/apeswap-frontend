@@ -1337,6 +1337,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 61,
+    tokenName: 'NEWB',
+    image: 'NEWB.png',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x2f70e1ab58231e1981915c1b3434144dcf26868f',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.newb.farm/',
+    harvest: true,
+    tokenPerBlock: `0.00021875`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
