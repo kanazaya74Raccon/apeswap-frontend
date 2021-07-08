@@ -13,7 +13,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
@@ -246,7 +245,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   earnTokenImage,
   showExpandableSection,
   stakingTokenAddress,
-  rewardTokenPrice
+  rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
   const userData = pool.userData
@@ -268,9 +267,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       return <UnlockButton />
     }
     if (needsApproval) {
-      return (
-        <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
-      )
+      return <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
     }
     if (!needsApproval && !accountHasStakedBalance) {
       return (

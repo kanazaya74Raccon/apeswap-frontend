@@ -34,14 +34,14 @@ export interface PoolWithStakeValue extends Pool {
 }
 
 const float = keyframes`
-  0% { right: 0;}
-  50%{ right : 50px;}
-  100%{ right: 0;}
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(50px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
 `
 const floatSM = keyframes`
-  0% { right: 0;}
-  50%{ right : 10px;}
-  100%{ right: 0;}
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(10px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
 `
 
 const ControlContainer = styled(Card)`
@@ -149,6 +149,7 @@ const HeadingContainer = styled.div`
 const Header = styled.div`
   position: relative;
   overflow-y: hidden;
+  overflow-x: hidden;
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;

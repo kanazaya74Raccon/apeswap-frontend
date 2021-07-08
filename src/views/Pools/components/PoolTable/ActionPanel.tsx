@@ -9,7 +9,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
 
-
 export interface ExpandableSectionProps {
   bscScanAddress?: string
   removed?: boolean
@@ -76,11 +75,9 @@ const StyledText = styled(Text)`
   font-weight: 700;
 `
 
-
 const InfoContainer = styled.div`
   width: 285px;
 `
-
 
 const ActionPanel: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
@@ -93,8 +90,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   stakedTokenPrice,
   rewardTokenPrice,
   pendingReward,
-  projectLink
-
+  projectLink,
 }) => {
   const TranslateString = useI18n()
 
@@ -102,9 +98,9 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
     ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
     : '-'
 
-    const earnings = new BigNumber(pendingReward || 0)
-    const rawEarningsBalance = getBalanceNumber(earnings)
-    const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
+  const earnings = new BigNumber(pendingReward || 0)
+  const rawEarningsBalance = getBalanceNumber(earnings)
+  const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
 
   const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
   const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
@@ -155,7 +151,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
               {TranslateString(23, 'Staked Value')}:
             </StyledText>
             <StyledTextGreen fontFamily="poppins" fontSize="12px">
-            ${totalUserStaked}
+              ${totalUserStaked}
             </StyledTextGreen>
           </Flex>
           <Flex justifyContent="space-between">
@@ -163,7 +159,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
               {TranslateString(23, 'Earned Value')}:
             </StyledText>
             <StyledTextGreen fontFamily="poppins" fontSize="12px">
-            ${(rawEarningsBalance*rewardTokenPrice).toFixed(2)}
+              ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
             </StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">

@@ -74,7 +74,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   stakedTokenPrice,
   rewardTokenPrice,
   pendingReward,
-  projectSite
+  projectSite,
 }) => {
   const TranslateString = useI18n()
 
@@ -143,7 +143,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(23, 'Earned Value')}:
         </StyledText>
         <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${(rawEarningsBalance*rewardTokenPrice).toFixed(2)}
+          ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">

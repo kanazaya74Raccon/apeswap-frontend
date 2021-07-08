@@ -72,7 +72,9 @@ const App: React.FC = () => {
     <Router>
       <ResetCSS />
       <GlobalStyle />
-      {(window.location.pathname === '/farms' || window.location.pathname === '/pools')  && <StyledChevronUpIcon onClick={scrollToTop} />}
+      {(window.location.pathname === '/farms' || window.location.pathname === '/pools') && (
+        <StyledChevronUpIcon onClick={scrollToTop} />
+      )}
       <Menu>
         <Suspense fallback={<PageLoader />}>
           <Switch>

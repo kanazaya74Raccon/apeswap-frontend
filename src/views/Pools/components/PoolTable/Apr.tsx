@@ -43,13 +43,7 @@ const AprWrapper = styled.div`
   font-size: 20px;
 `
 
-const Apr: React.FC<AprProps> = ({
-  hideButton = false,
-  poolApr,
-  earnToken,
-  rewardTokenPrice,
-  apr
-}) => {
+const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewardTokenPrice, apr }) => {
   const TranslateString = useI18n()
 
   return poolApr !== '0' ? (

@@ -12,7 +12,6 @@ import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
   staked?: BigNumber
@@ -47,7 +46,6 @@ const PCard = styled.div`
   overflow: hidden;
 `
 
-
 const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const {
     sousId,
@@ -64,7 +62,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     rewardTokenPrice,
     stakedTokenPrice,
     projectLink,
-    contractAddress
+    contractAddress,
   } = pool
 
   const { account } = useWeb3React()
@@ -117,6 +115,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           isFinished={isFinished}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardTokenPrice}
+          lpLabel={tokenName}
+          addLiquidityUrl="https://app.apeswap.finance/swap"
           stakedTokenPrice={stakedTokenPrice}
           pendingReward={userData?.pendingReward}
           projectSite={projectLink}

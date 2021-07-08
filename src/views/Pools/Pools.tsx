@@ -35,14 +35,14 @@ export interface PoolWithStakeValue extends Pool {
 }
 
 const float = keyframes`
-  0% { right: 0;}
-  50%{ right : 50px;}
-  100%{ right: 0;}
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(50px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
 `
 const floatSM = keyframes`
-  0% { right: 0;}
-  50%{ right : 10px;}
-  100%{ right: 0;}
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(10px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
 `
 
 const ControlContainer = styled(Card)`
@@ -150,6 +150,7 @@ const HeadingContainer = styled.div`
 const Header = styled.div`
   position: relative;
   overflow-y: hidden;
+  overflow-x: hidden;
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
@@ -222,27 +223,6 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   width: 21px;
 `
 
-const StyledImage = styled.img`
-  height: 187px;
-  width: 134px;
-  position: absolute;
-  right: 0px;
-  bottom: 51px;
-
-  @media screen and (min-width: 340px) {
-    right: 20px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    bottom: 51px;
-    right: 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    bottom: 0px;
-    right: 0px;
-  }
-`
 
 const ContainerLabels = styled.div`
   background: ${({ theme }) => theme.card.background};
@@ -508,7 +488,7 @@ const TableWrapper = styled.div`
 const TableContainer = styled.div`
   position: relative;
 `
-const NUMBER_OF_POOLS_VISIBLE = 20
+const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
@@ -530,6 +510,8 @@ const Pools: React.FC = () => {
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
+  const loadMoreRef = useRef<HTMLDivElement>(null)
+
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
@@ -558,7 +540,7 @@ const Pools: React.FC = () => {
         rootMargin: '0px',
         threshold: 1,
       })
-      loadMoreObserver.observe(tableWrapperEl.current)
+      loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
   }, [observerIsSet])
@@ -804,6 +786,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerEarned>
         </ContainerLabels>
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+        <div ref={loadMoreRef} />
       </StyledPage>
     </>
   )

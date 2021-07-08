@@ -73,8 +73,6 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-
-
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakingTokenBalance,
