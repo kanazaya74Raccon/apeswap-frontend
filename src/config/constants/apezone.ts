@@ -64,8 +64,7 @@ const ApeZone: { ifos: Ifo[] } = {
     },
     {
       id: 'bishares',
-      // address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
-      address: '', // IAO Aux contract!"
+      address: '0xf6718973d21F72845300Ee2ded2e4624CF06b06e', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'BiShares',
       subTitle: 'Decentralized Index Funds',
@@ -76,8 +75,8 @@ const ApeZone: { ifos: Ifo[] } = {
       raiseAmount: '$250,000',
       bananaToBurn: '$250,000',
       projectSiteUrl: 'https://bishares.finance/',
-      currency: 'BNB',
-      currencyAddress: '0x0000000000000000000000000000000000000000',
+      currency: 'GNANA',
+      currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 8993971, // block to start showing contract details
       // burnedTxUrl: '',
