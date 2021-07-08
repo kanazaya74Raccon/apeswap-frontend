@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import  DetailsSection from './DetailsSection'
+import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
 
