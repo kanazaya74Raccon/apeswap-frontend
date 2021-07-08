@@ -35,7 +35,7 @@ export interface ExpandableSectionProps {
 const StyledBackground = styled(Flex)`
   margin-left: 10px;
 
-  @media (min-width: 400px) {
+  @media (min-width: 500px) {
     justify-content: space-between;
     background: rgb(255, 179, 0, 0.4);
     border-radius: 20px;
@@ -205,7 +205,7 @@ const StyledImage = styled.img`
   display: none;
   align-self: center;
 
-  @media (min-width: 400px) {
+  @media (min-width: 500px) {
     display: flex;
     width: 45px;
     height: 45px;
@@ -221,7 +221,7 @@ const StyledArrow = styled.img`
   display: none;
   align-self: center;
 
-  @media (min-width: 400px) {
+  @media (min-width: 500px) {
     display: flex;
     width: 12px;
     height: 12px;

@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
-import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
@@ -15,15 +14,10 @@ import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hook
 import { Pool } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
-import ToggleView from '../../../Pools/components/ToggleView/ToggleView'
 import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
 import PoolCard from '../../../Pools/components/PoolCard/PoolCard'
-import { ViewMode } from '../../../Pools/components/types'
 
-interface LabelProps {
-  active?: boolean
-}
 
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
@@ -222,169 +216,6 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   width: 21px;
 `
 
-const StyledImage = styled.img`
-  height: 187px;
-  width: 134px;
-  position: absolute;
-  right: 0px;
-  bottom: 51px;
-
-  @media screen and (min-width: 340px) {
-    right: 20px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    bottom: 51px;
-    right: 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    bottom: 0px;
-    right: 0px;
-  }
-`
-
-const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin-top: 24px;
-  height: 32px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(-85px);
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-top: 34px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
-`
-
-const StyledLabelContainerHot = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 38px;
-    margin: 0px;
-  }
-`
-
-const StyledLabelContainerLP = styled.div`
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 169px;
-    margin: 0px;
-  }
-`
-
-const StyledLabelContainerAPR = styled.div`
-  cursor: pointer;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 365px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 409px;
-  }
-`
-
-const StyledLabelContainerLiquidity = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 500px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 621px;
-  }
-`
-
-const StyledLabelContainerEarned = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin: 0px;
-    position: absolute;
-    top: 6px;
-    left: 651px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 801px;
-  }
-`
-
 const CardContainer = styled.div`
   margin-top: 17px;
 
@@ -441,30 +272,6 @@ const StyledPage = styled(Page)`
   }
 `
 
-const StyledLabel = styled.div<LabelProps>`
-  display: flex;
-  color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
-  padding: 4px 12px;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 12px;
-  border-radius: ${({ active }) => active && '50px'};
-  background-color: ${({ active }) => active && '#FFB300'};
-`
-
-interface DropdownProps {
-  down?: boolean
-}
-
-const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
-  color: white;
-  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
-  margin-left: 7px;
-  margin-top: 2px;
-  'rotate(180deg)' : 'rotate(0)'
-`
-
 const FlexLayout = styled.div`
   display: flex;
   justify-content: space-between;
@@ -475,47 +282,11 @@ const FlexLayout = styled.div`
   }
 `
 
-const StyledTable = styled.div`
-  border-collapse: collapse;
-  font-size: 14px;
-  border-radius: 4px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
-`
-
-const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin: 16px 0px;
-  position: relative;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
-`
-
-const TableWrapper = styled.div`
-  overflow: visible;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-const TableContainer = styled.div`
-  position: relative;
-`
-const NUMBER_OF_POOLS_VISIBLE = 20
 
 const Pools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly, setGnanaOnly] = useState(true)
-  const [viewMode, setViewMode] = useState(null)
+  const gnanaOnly = true
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
@@ -526,7 +297,6 @@ const Pools: React.FC = () => {
   const TranslateString = useI18n()
   const block = useBlock()
   const isActive = !pathname.includes('history')
-  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
@@ -603,32 +373,6 @@ const Pools: React.FC = () => {
       pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
   )
 
-  const sortPools = (poolsToSort: PoolWithStakeValue[]) => {
-    switch (sortOption) {
-      case 'apr':
-        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
-      case 'earned':
-        return orderBy(
-          poolsToSort,
-          (pool: PoolWithStakeValue) => {
-            if (!pool.userData || !pool.rewardTokenPrice) {
-              return 0
-            }
-            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
-          },
-          sortDirection,
-        )
-      case 'totalStaked':
-        return orderBy(
-          poolsToSort,
-          (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
-          sortDirection,
-        )
-      default:
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
-    }
-  }
 
   const poolsToShow = () => {
     let chosenPools = []
@@ -642,7 +386,7 @@ const Pools: React.FC = () => {
       const lowercaseQuery = searchQuery.toLowerCase()
       chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
     }
-    return sortPools(chosenPools)
+    return chosenPools
   }
 
   const cardLayout = (

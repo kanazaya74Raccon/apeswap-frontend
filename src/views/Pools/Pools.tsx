@@ -223,7 +223,6 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   width: 21px;
 `
 
-
 const ContainerLabels = styled.div`
   background: ${({ theme }) => theme.card.background};
   border-radius: 16px;
@@ -511,7 +510,6 @@ const Pools: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
