@@ -4,21 +4,17 @@ import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
-export interface PoolTabButtonProps {
-  justifyContent?: string
-}
-
-const PoolTabButtons: React.FC<PoolTabButtonProps> = ({ justifyContent }) => {
+const FarmTabButtons = () => {
   const { url, isExact } = useRouteMatch()
   const TranslateString = useI18n()
 
   return (
-    <Wrapper justifyContent={justifyContent}>
-      <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="subtle">
-        <ButtonMenuItem as={Link} to={`${url}`}>
+    <Wrapper>
+      <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="yellow">
+        <ButtonMenuItem as={Link} to={`${url}`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Active')}
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/history`}>
+        <ButtonMenuItem as={Link} to={`${url}/history`} fontFamily="poppins" fontSize="12px">
           {TranslateString(999, 'Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
@@ -26,11 +22,33 @@ const PoolTabButtons: React.FC<PoolTabButtonProps> = ({ justifyContent }) => {
   )
 }
 
-export default PoolTabButtons
+export default FarmTabButtons
 
-const Wrapper = styled.div<PoolTabButtonProps>`
-  display: flex;
-  justify-content: center;
-  justify-content: ${({ justifyContent }) => (justifyContent !== undefined ? justifyContent : 'center')};
-  margin-bottom: 32px;
+const Wrapper = styled.div`
+  margin-right: 10px;
+  margin-left: 30px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 64px;
+    margin-right: 44px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 54px;
+    margin-right: 34px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 84px;
+    margin-right: 74px;
+  }
 `

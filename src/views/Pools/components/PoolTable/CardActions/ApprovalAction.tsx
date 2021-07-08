@@ -1,8 +1,7 @@
 import React, { useCallback, useState, useRef } from 'react'
-import { AutoRenewIcon, Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
+import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
 import { useSousApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
-import { Pool } from 'state/types'
 
 interface ApprovalActionProps {
   stakingContractAddress: string

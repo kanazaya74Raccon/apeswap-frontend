@@ -33,8 +33,14 @@ interface StakeActionsProps {
   firstStake?: boolean
 }
 
+const IconButtonWrapperStake = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
 const IconButtonWrapper = styled.div`
   display: flex;
+  justify-content: flex-end;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -58,12 +64,16 @@ const StyledText = styled(Text)`
 `
 
 const StyledFlex = styled(Flex)`
-  width: 100%;
-  margin-left: 117px;
+  position: absolute;
+  right: 45px;
+  width: 225px;
+  margin-left: 10px;
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-right: 30px;
   }
 `
+
+
 
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
@@ -71,9 +81,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedBalance,
   isApproved,
   firstStake,
-  isBnbPool,
-  isStaked,
-  isLoading = false,
 }) => {
   const TranslateString = useI18n()
 
@@ -122,7 +129,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const renderStakingButtons = () => {
     return (
       rawStakedBalance !== 0 && (
-        <IconButtonWrapper>
+        <IconButtonWrapperStake>
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
             <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
               <MinusIcon color="white" width="12px" height="12px" />
@@ -133,7 +140,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               <AddIcon color="white" width="16px" height="16px" />
             </StyledIconButtonSquare>
           </Reward>
-        </IconButtonWrapper>
+        </IconButtonWrapperStake>
       )
     )
   }
@@ -143,14 +150,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   return (
-    <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
-      <Flex flexDirection="column" alignItems="flex-start">
+    <StyledFlex justifyContent="space-between">
+      <Flex flexDirection="column" justifyContent="space-between">
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>
-      {isApproved && renderStakingButtons()}
+      {isApproved && <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>}
     </StyledFlex>
   )
 }

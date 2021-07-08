@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useRouteMatch, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
@@ -17,10 +17,10 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
-import FarmTabButtons from './components/FarmTabButtons'
+import PoolTabButtons from './components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
 import PoolTable from './components/PoolTable/PoolTable'
-import { DesktopColumnSchema, ViewMode } from './components/types'
+import { ViewMode } from './components/types'
 
 interface LabelProps {
   active?: boolean
@@ -39,13 +39,17 @@ const float = keyframes`
   50%{ right : 50px;}
   100%{ right: 0;}
 `
+const floatSM = keyframes`
+  0% { right: 0;}
+  50%{ right : 10px;}
+  100%{ right: 0;}
+`
 
 const ControlContainer = styled(Card)`
   display: flex;
   width: 100%;
   align-items: center;
   position: relative;
-
   justify-content: center;
   flex-direction: column;
   overflow: visible;
@@ -66,12 +70,35 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center
-  margin-left: 10px;
+  margin-left: 0px;
   cursor: pointer;
-
   ${Text} {
     margin-left: 4px;
   ${({ theme }) => theme.mediaQueries.md} { margin-left: 8px;}
+  }
+`
+
+const ToggleContainer = styled.div`
+  position: absolute;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  height: 75px;
+  margin-left: 15px;
+  justify-content: space-between;
+  transform: translateY(-25px);
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: relative;
+    height: auto;
+    margin-left: 0px;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    transform: translateY(0px);
+    flex-direction: row;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 250px;
   }
 `
 
@@ -121,6 +148,8 @@ const HeadingContainer = styled.div`
 `
 
 const Header = styled.div`
+  position: relative;
+  overflow-y: hidden;
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
@@ -128,31 +157,51 @@ const Header = styled.div`
     theme.isDark ? 'url(/images/pool-background-night.svg)' : 'url(/images/pool-background-day.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 250px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
+    height: 300px;
     padding-left: 24px;
     padding-right: 24px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 400px;
   }
 `
 
 const PoolMonkey = styled.div`
   background-image: ${({ theme }) => (theme.isDark ? 'url(/images/pool-ape-night.svg)' : 'url(/images/pool-ape.svg)')};
-  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 `
 
-const MonkeyContainer = styled.div`
+const MonkeyWrapper = styled.div`
   position: absolute;
-  width: 700px;
+  width: 225px;
+  height: 275px;
   margin-left: auto;
   margin-right: auto;
-  height: ${({ theme }) => (theme.isDark ? '545px' : '490px')};
-  top: ${({ theme }) => (theme.isDark ? '-145px' : '-90px')};
-  right: 0;
-  animation: 5s ${float} linear infinite;
+  bottom: 0px;
+  right: 0px;
+  animation: 5s ${floatSM} linear infinite;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: 24px;
+    padding-right: 24px;
+    animation: 10s ${float} linear infinite;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 700px;
+    height: 1000px;
+    top: ${({ theme }) => (theme.isDark ? '-145px' : '-90px')};
+    right: 0;
+    animation: 10s ${float} linear infinite;
+  }
 `
 
 const StyledText = styled(Text)`
@@ -459,33 +508,31 @@ const TableWrapper = styled.div`
 const TableContainer = styled.div`
   position: relative;
 `
+const NUMBER_OF_POOLS_VISIBLE = 20
 
 const Pools: React.FC = () => {
-  const location = useLocation()
-  const size: Size = useWindowSize()
-  const { path } = useRouteMatch()
-  const TranslateString = useI18n()
-  const { account } = useWeb3React()
-  const { pathname } = useLocation()
-  const farms = useFarms()
-  const [query, setQuery] = useState('')
-  const allPools = usePools(account)
-  const [searchQuery, setSearchQuery] = useState('')
-  const { statsOverall } = useStatsOverall()
-  const bnbPriceUSD = usePriceBnbBusd()
-  const block = useBlock()
-  const [sortOption, setSortOption] = useState('hot')
-  const isActive = !pathname.includes('history')
   const [stakedOnly, setStakedOnly] = useState(false)
   const [gnanaOnly, setGnanaOnly] = useState(false)
+  const [observerIsSet, setObserverIsSet] = useState(false)
   const [viewMode, setViewMode] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortOption, setSortOption] = useState('hot')
+  const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
+  const { account } = useWeb3React()
+  const { pathname } = useLocation()
+  const size: Size = useWindowSize()
+  const farms = useFarms()
+  const allPools = usePools(account)
+  const { statsOverall } = useStatsOverall()
+  const bnbPriceUSD = usePriceBnbBusd()
+  const TranslateString = useI18n()
+  const block = useBlock()
+  const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
 
-  const showFinishedPools = location.pathname.includes('history')
-
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
+    setSearchQuery(event.target.value)
   }
 
   useEffect(() => {
@@ -497,6 +544,24 @@ const Pools: React.FC = () => {
       }
     }
   }, [size])
+
+  useEffect(() => {
+    const showMorePools = (entries) => {
+      const [entry] = entries
+      if (entry.isIntersecting) {
+        setNumberOfPoolsVisible((poolsCurrentlyVisible) => poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE)
+      }
+    }
+
+    if (!observerIsSet) {
+      const loadMoreObserver = new IntersectionObserver(showMorePools, {
+        rootMargin: '0px',
+        threshold: 1,
+      })
+      loadMoreObserver.observe(tableWrapperEl.current)
+      setObserverIsSet(true)
+    }
+  }, [observerIsSet])
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -590,7 +655,7 @@ const Pools: React.FC = () => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), 'desc')
+        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
       case 'earned':
         return orderBy(
           poolsToSort,
@@ -598,15 +663,15 @@ const Pools: React.FC = () => {
             if (!pool.userData || !pool.rewardTokenPrice) {
               return 0
             }
-            return pool.userData.pendingReward.times(pool.rewardTokenPrice)
+            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
           },
-          'desc',
+          sortDirection,
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
           (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
-          'desc',
+          sortDirection,
         )
       default:
         return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
@@ -628,17 +693,16 @@ const Pools: React.FC = () => {
 
     if (searchQuery) {
       const lowercaseQuery = searchQuery.toLowerCase()
-      chosenPools = chosenPools.filter((pool) => pool.earningToken.symbol.toLowerCase().includes(lowercaseQuery))
+      chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
     }
-    console.log(chosenPools)
-    return sortPools(chosenPools).slice(0, 50)
+    return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
 
   const cardLayout = (
     <CardContainer>
       <FlexLayout>
         {poolsToShow().map((pool) => (
-          <PoolCard key={pool.sousId} pool={pool} />
+          <PoolCard key={pool.sousId} pool={pool} removed={!isActive} />
         ))}
       </FlexLayout>
     </CardContainer>
@@ -650,7 +714,7 @@ const Pools: React.FC = () => {
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             {poolsToShow().map((pool) => (
-              <PoolTable key={pool.sousId} pool={pool} />
+              <PoolTable key={pool.sousId} pool={pool} removed={!isActive} />
             ))}
           </StyledTable>
         </TableWrapper>
@@ -662,45 +726,46 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {TranslateString(999, 'Banana Fiesta')}
           </StyledHeading>
-          <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-            {TranslateString(999, 'Stake BANANA to earn new tokens.')}
-          </Text>
-          <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-            {TranslateString(999, 'You can unstake at any time.')}
-          </Text>
-          <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-            {TranslateString(999, 'Rewards are calculated per block.')}
-          </Text>
+          {size.width > 968 && (
+            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
+              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
+              block.
+            </Text>
+          )}
         </HeadingContainer>
-        <MonkeyContainer>
+        <MonkeyWrapper>
           <PoolMonkey />
-        </MonkeyContainer>
+        </MonkeyWrapper>
       </Header>
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
+            {size.width > 968 && viewMode !== null && (
+              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            )}
+            <LabelWrapper>
+              <StyledText fontFamily="poppins" mr="15px">
+                Search
+              </StyledText>
+              <SearchInput onChange={handleChangeQuery} value={searchQuery} />
+            </LabelWrapper>
             <ButtonCheckWrapper>
-              {size.width > 968 && viewMode !== null && (
-                <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-              )}
-              <LabelWrapper>
-                <StyledText fontFamily="poppins" mr="15px">
-                  Search
-                </StyledText>
-                <SearchInput onChange={handleChangeQuery} value="" />
-              </LabelWrapper>
-              <FarmTabButtons />
-              <ToggleWrapper>
-                <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText fontFamily="poppins" style={{ marginRight: '50px' }}>
-                  {TranslateString(1116, 'Staked')}
-                </StyledText>
-                <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
-              </ToggleWrapper>
+              <PoolTabButtons />
+              <ToggleContainer>
+                <ToggleWrapper>
+                  <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+                  <StyledText fontFamily="poppins" style={{ marginRight: '10px' }}>
+                    {TranslateString(1116, 'Staked')}
+                  </StyledText>
+                </ToggleWrapper>
+                <ToggleWrapper>
+                  <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
+                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
+                </ToggleWrapper>
+              </ToggleContainer>
             </ButtonCheckWrapper>
           </ViewControls>
         </ControlContainer>

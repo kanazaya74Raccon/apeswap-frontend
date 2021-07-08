@@ -60,8 +60,9 @@ const StyledText = styled(Text)`
 const StyledFlex = styled(Flex)`
   width: 100%;
   margin-left: 117px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 30px;
+  margin-right: 35px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 217px;
   }
 `
 
@@ -70,10 +71,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakingTokenBalance,
   stakedBalance,
   isApproved,
-  firstStake,
-  isBnbPool,
-  isStaked,
-  isLoading = false,
+  firstStake
 }) => {
   const TranslateString = useI18n()
 

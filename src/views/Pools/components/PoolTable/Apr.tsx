@@ -7,16 +7,15 @@ import useI18n from 'hooks/useI18n'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface AprProps {
-  value?: string
-  multiplier?: string
   poolApr?: string
-  lpLabel?: string
   tokenAddress?: Address
   quoteTokenAddress?: Address
   bananaPrice?: BigNumber
   originalValue?: number
   hideButton?: boolean
-  addLiquidityUrl?: string
+  earnToken?: string
+  apr?: BigNumber
+  rewardTokenPrice?: number
 }
 
 const Container = styled.div`
@@ -45,13 +44,11 @@ const AprWrapper = styled.div`
 `
 
 const Apr: React.FC<AprProps> = ({
-  value,
-  lpLabel,
-  bananaPrice,
-  originalValue,
   hideButton = false,
-  addLiquidityUrl,
   poolApr,
+  earnToken,
+  rewardTokenPrice,
+  apr
 }) => {
   const TranslateString = useI18n()
 
@@ -62,10 +59,11 @@ const Apr: React.FC<AprProps> = ({
           <AprWrapper>{poolApr}%</AprWrapper>
           {!hideButton && (
             <ApyButton
-              lpLabel={lpLabel}
-              rewardTokenPrice={bananaPrice}
-              apy={new BigNumber(originalValue)}
-              addLiquidityUrl={addLiquidityUrl}
+              lpLabel={earnToken}
+              rewardTokenName={earnToken}
+              addLiquidityUrl="https://app.apeswap.finance/swap"
+              rewardTokenPrice={new BigNumber(rewardTokenPrice)}
+              apy={apr.div(100)}
             />
           )}
         </Flex>

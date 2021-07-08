@@ -9,7 +9,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
 
-// import Multiplier from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -25,6 +24,10 @@ export interface ExpandableSectionProps {
   blocksRemaining?: number
   isFinished?: boolean
   blocksUntilStart?: number
+  stakedTokenPrice?: number
+  rewardTokenPrice?: number
+  pendingReward?: BigNumber
+  projectLink?: string
 }
 
 const Wrapper = styled.div`
@@ -63,108 +66,49 @@ const StyledTextGreen = styled(Text)`
   color: #38a611;
 `
 
-const ValueContainer = styled.div`
-  display: block;
-`
-
 const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
 `
 
-const ValueWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 0px;
-`
-
 const StyledText = styled(Text)`
   font-weight: 700;
 `
 
-const StakedText = styled(Text)`
-  font-weight: 700;
-  margin-left 60px;
-  ${({ theme }) => theme.mediaQueries.xl} {
-    margin-left 85px;
-  }
-`
 
 const InfoContainer = styled.div`
   width: 285px;
 `
 
-const StakedValueText = styled(Text)`
-  margin-left 60px;
-  ${({ theme }) => theme.mediaQueries.xl} {
-    margin-left 85px;
-  }
-`
-
-const MultiplierWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.text};
-  width: 36px;
-  text-align: right;
-  margin-right: 2px;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 12px;
-`
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-
-  svg {
-    margin-left: 14px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    svg {
-      margin-left: 0;
-    }
-  }
-`
 
 const ActionPanel: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   lpLabel,
   addLiquidityUrl,
-  farmStats,
-  multiplier,
   personalValueStaked,
-  pid,
   totalStaked,
   blocksRemaining,
-  isFinished,
   blocksUntilStart,
+  stakedTokenPrice,
+  rewardTokenPrice,
+  pendingReward,
+  projectLink
+
 }) => {
   const TranslateString = useI18n()
-
-  const totalPersonalStakedFormated = personalValueStaked
-    ? `${Number(personalValueStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
-    : '-'
 
   const totalStakedFormated = totalStaked
     ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
     : '-'
 
-  const { earnings } = useFarmUser(pid)
-  const bananaPrice = usePriceBananaBusd()
-  let earningsToReport = null
-  let earningsBusd = 0
-  let displayHarvestBalance = '?'
+    const earnings = new BigNumber(pendingReward || 0)
+    const rawEarningsBalance = getBalanceNumber(earnings)
+    const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
 
   const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
   const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
 
-  if (earnings) {
-    earningsToReport = getBalanceNumber(earnings)
-    earningsBusd = earningsToReport * bananaPrice.toNumber()
-    displayHarvestBalance = `$${earningsBusd.toLocaleString()}`
-  }
   return (
     <Wrapper>
       <Flex>
@@ -211,7 +155,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
               {TranslateString(23, 'Staked Value')}:
             </StyledText>
             <StyledTextGreen fontFamily="poppins" fontSize="12px">
-              {totalPersonalStakedFormated}
+            ${totalUserStaked}
             </StyledTextGreen>
           </Flex>
           <Flex justifyContent="space-between">
@@ -219,12 +163,17 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
               {TranslateString(23, 'Earned Value')}:
             </StyledText>
             <StyledTextGreen fontFamily="poppins" fontSize="12px">
-              {displayHarvestBalance}
+            ${(rawEarningsBalance*rewardTokenPrice).toFixed(2)}
             </StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">
             <StyledLink external href={bscScanAddress} bold={false}>
               {TranslateString(356, 'View on BscScan')}
+            </StyledLink>
+          </Flex>
+          <Flex justifyContent="center">
+            <StyledLink external href={projectLink} bold={false}>
+              {TranslateString(356, 'View Project Site')}
             </StyledLink>
           </Flex>
         </InfoContainer>

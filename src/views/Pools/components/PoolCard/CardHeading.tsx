@@ -6,15 +6,18 @@ import { Pool } from 'state/types'
 import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
+import HarvestActions from './CardActions/HarvestActions'
+import ApprovalAction from './CardActions/ApprovalAction'
+import StakeAction from './CardActions/StakeActions'
+
 
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
-  pool: Pool
+  pool?: Pool
   stakeToken?: string
   earnToken?: string
   tokenSymbol?: string
@@ -22,10 +25,12 @@ export interface ExpandableSectionProps {
   bananaPrice?: BigNumber
   poolAPR?: string
   removed?: boolean
-  pid?: number
+  sousId?: number
   lpSymbol?: string
   earnTokenImage?: string
   showExpandableSection?: boolean
+  stakingTokenAddress?: string
+  rewardTokenPrice?: number
 }
 
 const StyledBackground = styled(Flex)`
@@ -194,6 +199,7 @@ const StyledAPRText = styled.div`
 const ButtonContainer = styled.div`
   width: 180px;
   display: flex;
+  justify-content: flex-end;
 `
 
 const StyledImage = styled.img`
@@ -230,27 +236,63 @@ const StyledArrow = styled.img`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   pool,
-  lpLabel,
   apr,
   stakeToken,
   earnToken,
   tokenSymbol,
-  addLiquidityUrl,
-  bananaPrice,
   poolAPR,
   removed,
-  pid,
+  sousId,
   earnTokenImage,
-  lpSymbol,
   showExpandableSection,
+  stakingTokenAddress,
+  rewardTokenPrice
 }) => {
   const TranslateString = useI18n()
-
+  const userData = pool.userData
+  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
+  const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
+  const allowance = new BigNumber(userData?.allowance || 0)
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
+  const isLoading = !pool.userData
+  const needsApproval = !allowance.gt(0)
+  const isCompound = sousId === 0
 
   const { account } = useWeb3React()
+
+  const cardHeaderButton = () => {
+    if (!account) {
+      return <UnlockButton />
+    }
+    if (needsApproval) {
+      return (
+        <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
+      )
+    }
+    if (!needsApproval && !accountHasStakedBalance) {
+      return (
+        <StakeAction
+          pool={pool}
+          stakingTokenBalance={stakingTokenBalance}
+          stakedBalance={stakedBalance}
+          isStaked={accountHasStakedBalance}
+          firstStake={!accountHasStakedBalance}
+        />
+      )
+    }
+    return (
+      <HarvestActions
+        earnings={earnings}
+        sousId={sousId}
+        isLoading={isLoading}
+        tokenDecimals={pool.tokenDecimals}
+        compound={isCompound}
+      />
+    )
+  }
 
   return (
     <Flex>
@@ -268,11 +310,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               {apr ? (
                 <FlexSwitch>
                   <ApyButton
-                    lpLabel={lpLabel}
-                    rewardTokenName="BANANA"
-                    addLiquidityUrl={addLiquidityUrl}
-                    rewardTokenPrice={bananaPrice}
-                    apy={apr}
+                    lpLabel={earnToken}
+                    rewardTokenName={earnToken}
+                    addLiquidityUrl="https://app.apeswap.finance/swap"
+                    rewardTokenPrice={new BigNumber(rewardTokenPrice)}
+                    apy={apr.div(100)}
                   />
                   <StyledAPRText>{poolAPR}%</StyledAPRText>
                 </FlexSwitch>
@@ -301,15 +343,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                 {TranslateString(999, 'Earned')}
               </StyledText2>
             </Flex>
-            <StyledText3>{rawEarningsBalance}</StyledText3>
+            <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
           <ButtonContainer>
-            <UnlockButton />
-            {/* {!account ? (
-              <UnlockButton />
-            ) : (
-              <HarvestAction earnings={earnings} pid={pid} lpSymbol={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
-            )} */}
+            {cardHeaderButton()}
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>

@@ -1,15 +1,11 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
+import BigNumber from 'bignumber.js'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { FarmPool } from 'state/types'
-import { useFarmUser, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
-
-// import Multiplier from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -17,14 +13,16 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
-  farmStats?: FarmPool
   multiplier?: string
   totalStaked?: number
   personalValueStaked?: number
-  pid?: number
   blocksRemaining?: number
   isFinished?: boolean
   blocksUntilStart?: number
+  stakedTokenPrice?: number
+  rewardTokenPrice?: number
+  pendingReward?: BigNumber
+  projectSite?: string
 }
 
 const Wrapper = styled.div`
@@ -50,13 +48,6 @@ const StyledLinkExternal = styled(LinkExternal)`
   }
 `
 
-const ValueWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 0px;
-`
-
 const StyledText = styled(Text)`
   font-weight: bold;
 `
@@ -76,41 +67,27 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   lpLabel,
   addLiquidityUrl,
-  farmStats,
-  multiplier,
   personalValueStaked,
-  pid,
   totalStaked,
   blocksRemaining,
-  isFinished,
   blocksUntilStart,
+  stakedTokenPrice,
+  rewardTokenPrice,
+  pendingReward,
+  projectSite
 }) => {
   const TranslateString = useI18n()
-
-  const totalPersonalStakedFormated = personalValueStaked
-    ? `${Number(personalValueStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
-    : '-'
 
   const totalStakedFormated = totalStaked
     ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
     : '-'
 
-  const { earnings } = useFarmUser(pid)
-  const bananaPrice = usePriceBananaBusd()
-  let earningsToReport = null
-  let earningsBusd = 0
-  let displayHarvestBalance = '?'
+  const earnings = new BigNumber(pendingReward || 0)
+  const rawEarningsBalance = getBalanceNumber(earnings)
+  const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
 
   const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
   const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
-
-  if (earnings) {
-    earningsToReport = getBalanceNumber(earnings)
-    earningsBusd = earningsToReport * bananaPrice.toNumber()
-    displayHarvestBalance = `$${earningsBusd.toLocaleString()}`
-  }
-
-  console.log(timeUntilEnd)
 
   return (
     <Wrapper>
@@ -158,7 +135,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(23, 'Staked Value')}:
         </StyledText>
         <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {totalPersonalStakedFormated}
+          ${totalUserStaked}
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
@@ -166,12 +143,17 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(23, 'Earned Value')}:
         </StyledText>
         <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {displayHarvestBalance}
+          ${(rawEarningsBalance*rewardTokenPrice).toFixed(2)}
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
+        </StyledLink>
+      </Flex>
+      <Flex justifyContent="center">
+        <StyledLink external href={projectSite} bold={false}>
+          {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>
     </Wrapper>
