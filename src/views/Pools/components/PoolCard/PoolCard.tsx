@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import DetailsSection from './DetailsSection'
+import  DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
 
@@ -78,6 +78,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const blocksRemaining = Math.max(endBlock - block, 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
+  const pendingReward = userData?.pendingReward
 
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)
@@ -93,7 +94,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
         stakingTokenAddress={stakingTokenAddress[CHAIN_ID]}
         sousId={sousId}
         apr={apr}
-        poolAPR={apr.toNumber().toFixed(2).toString()}
+        poolAPR={apr.toNumber().toFixed(2)}
         showExpandableSection={showExpandableSection}
         removed={removed}
         rewardTokenPrice={rewardTokenPrice}
@@ -118,7 +119,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           lpLabel={tokenName}
           addLiquidityUrl="https://app.apeswap.finance/swap"
           stakedTokenPrice={stakedTokenPrice}
-          pendingReward={userData?.pendingReward}
+          pendingReward={pendingReward}
           projectSite={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
         />

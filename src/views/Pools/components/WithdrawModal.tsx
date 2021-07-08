@@ -3,7 +3,6 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
-import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 

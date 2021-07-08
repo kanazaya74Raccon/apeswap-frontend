@@ -18,7 +18,6 @@ import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
 import PoolCard from '../../../Pools/components/PoolCard/PoolCard'
 
-
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
   staked?: BigNumber
@@ -282,7 +281,6 @@ const FlexLayout = styled.div`
   }
 `
 
-
 const Pools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
   const gnanaOnly = true
@@ -372,7 +370,6 @@ const Pools: React.FC = () => {
     (pool) =>
       pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
   )
-
 
   const poolsToShow = () => {
     let chosenPools = []

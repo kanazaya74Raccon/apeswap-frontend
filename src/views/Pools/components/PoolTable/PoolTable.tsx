@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Flex, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'

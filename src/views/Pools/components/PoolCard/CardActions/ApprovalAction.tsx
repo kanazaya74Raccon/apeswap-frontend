@@ -13,7 +13,6 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
   const stakingTokenContract = useERC20(stakingContractAddress)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
-  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
 
   const handleApprove = useCallback(async () => {
@@ -27,7 +26,6 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
         rewardRefReward.current?.rewardMe()
       }
     } catch (e) {
-      setTypeOfReward('error')
       rewardRefReward.current?.rewardMe()
       console.error(e)
     }

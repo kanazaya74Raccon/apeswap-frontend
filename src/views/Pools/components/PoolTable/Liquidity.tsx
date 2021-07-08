@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Skeleton } from '@apeswapfinance/uikit'
-import BigNumber from 'bignumber.js'
 
 export interface LiquidityProps {
   staked: number

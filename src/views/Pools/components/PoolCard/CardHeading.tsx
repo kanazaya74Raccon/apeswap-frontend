@@ -2,11 +2,11 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
+import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
 import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useWeb3React } from '@web3-react/core'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
@@ -248,7 +248,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const userData = pool.userData
+  const { userData } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
