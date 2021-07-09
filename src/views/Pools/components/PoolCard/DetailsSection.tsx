@@ -78,8 +78,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const totalStakedFormated = totalStaked
-    ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
+  const totalDollarAmountStaked = totalStaked * stakedTokenPrice
+
+  const totalDollarAmountStakedFormated = totalDollarAmountStaked
+    ? `${Number(totalDollarAmountStaked).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   const earnings = new BigNumber(pendingReward || 0)
@@ -118,11 +120,11 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       )}
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Total Staked')}:
+          {TranslateString(316, 'Total Staked Value')}:
         </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {totalStakedFormated}
-        </StyledText>
+        <StyledTextGreen fontFamily="poppins" fontSize="12px">
+          ${totalDollarAmountStakedFormated}
+        </StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">

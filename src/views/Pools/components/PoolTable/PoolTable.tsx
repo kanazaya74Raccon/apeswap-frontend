@@ -142,6 +142,10 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const isCompound = sousId === 0
   const isLoading = !pool.userData
 
+  
+  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
+
+
   const cardHeaderButton = () => {
     if (!account) {
       return <UnlockButton />
@@ -196,7 +200,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
           />
         </APRContainer>
         <LiquidtyContainer>
-          <Staked staked={getBalanceNumber(totalStaked)} />
+          <Staked staked={totalDollarAmountStaked} />
         </LiquidtyContainer>
         <EarnedContainer>
           <Earned earnings={rawEarningsBalance} />

@@ -426,7 +426,7 @@ const Pools: React.FC = () => {
             <ButtonCheckWrapper>
               <PoolTabButtons />
               <ToggleContainer>
-                <ToggleWrapper>
+                <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText fontFamily="poppins" style={{ marginRight: '10px' }}>
                     {TranslateString(1116, 'Staked')}

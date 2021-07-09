@@ -40,7 +40,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 54px;
+    margin-left: 20px;
     margin-right: 34px;
   }
 
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 84px;
+    margin-left: 64px;
     margin-right: 74px;
   }
 `

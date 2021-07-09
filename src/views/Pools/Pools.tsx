@@ -93,12 +93,16 @@ const ToggleContainer = styled.div`
     margin-left: 0px;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 180px;
     transform: translateY(0px);
     flex-direction: row;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 250px;
+    width: 200px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 225px;
   }
 `
 
@@ -735,13 +739,13 @@ const Pools: React.FC = () => {
             <ButtonCheckWrapper>
               <PoolTabButtons />
               <ToggleContainer>
-                <ToggleWrapper>
+                <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)} >
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins" style={{ marginRight: '10px' }}>
+                  <StyledText fontFamily="poppins" >
                     {TranslateString(1116, 'Staked')}
                   </StyledText>
                 </ToggleWrapper>
-                <ToggleWrapper>
+                <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
                   <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
                 </ToggleWrapper>
