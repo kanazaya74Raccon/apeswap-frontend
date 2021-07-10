@@ -401,7 +401,7 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="gold">
-            {TranslateString(999, 'GNANA Fiesta')}
+            {TranslateString(999, 'GNANA Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="gold">

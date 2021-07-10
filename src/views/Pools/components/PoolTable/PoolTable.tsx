@@ -142,9 +142,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const isCompound = sousId === 0
   const isLoading = !pool.userData
 
-  
   const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
-
 
   const cardHeaderButton = () => {
     if (!account) {

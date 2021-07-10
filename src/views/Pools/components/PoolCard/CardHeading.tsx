@@ -307,7 +307,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               {apr ? (
                 <FlexSwitch>
                   <ApyButton
-                    lpLabel={earnToken}
+                    lpLabel={stakeToken}
                     rewardTokenName={earnToken}
                     addLiquidityUrl="https://app.apeswap.finance/swap"
                     rewardTokenPrice={new BigNumber(rewardTokenPrice)}

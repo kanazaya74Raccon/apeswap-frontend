@@ -711,7 +711,7 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'Banana Fiesta')}
+            {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
@@ -739,11 +739,9 @@ const Pools: React.FC = () => {
             <ButtonCheckWrapper>
               <PoolTabButtons />
               <ToggleContainer>
-                <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)} >
+                <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins" >
-                    {TranslateString(1116, 'Staked')}
-                  </StyledText>
+                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
