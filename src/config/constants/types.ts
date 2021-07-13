@@ -70,12 +70,6 @@ export interface FarmConfig {
   }
 }
 
-export interface PoolStyles {
-  deprecated: string
-  warning: string
-  featured: string
-  inactive: string
-}
 
 export interface PoolConfig {
   sousId: number
