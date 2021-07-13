@@ -627,6 +627,7 @@ const pools: PoolConfig[] = [
     sousId: 44,
     tokenName: 'CRUSH',
     stakingTokenName: 'GNANA',
+    image: 'crush.svg',
     stakingTokenAddress: {
       97: '0x9407026d236deae22cc1f3c419a9e47cbfcfe9e5',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA

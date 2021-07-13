@@ -96,7 +96,6 @@ const StakeContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     align-items: center;
-    border: 1px solid red;
     flex-grow: 1;
     flex-basis: 0;
   }
