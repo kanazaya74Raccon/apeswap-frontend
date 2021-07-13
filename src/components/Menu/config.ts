@@ -47,7 +47,7 @@ const config: MenuEntry[] = [
     href: '/nft',
   },
   {
-    label: 'ApeZone',
+    label: 'GNANA',
     icon: 'ApeZone',
     href: '/apezone',
   },

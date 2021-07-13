@@ -71,10 +71,10 @@ export interface FarmConfig {
 }
 
 export interface PoolStyles {
-  deprecated: any
-  warning: any
-  featured: any
-  inactive: any
+  deprecated: string
+  warning: string
+  featured: string
+  inactive: string
 }
 
 export interface PoolConfig {

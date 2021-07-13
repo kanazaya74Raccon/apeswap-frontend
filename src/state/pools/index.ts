@@ -52,15 +52,14 @@ export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
     poolsConfig.map(async (pool) => {
       const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
       const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-      const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
+      // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
       return {
         ...blockLimit,
         ...totalStaking,
-        lpData,
+        // lpData,
       }
     }),
   )
-
   dispatch(setPoolsPublicData(liveData))
 }
 
