@@ -1019,6 +1019,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 63,
+    tokenName: 'TWIN',
+    image: 'TWIN.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x6e8cd8e267e4a8538b7119c3ca30ce04667070e5',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://twin.finance/',
+    harvest: true,
+    tokenPerBlock: `4.629629629629629629`,
+    sortOrder: 63,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   // IS FINISHED //
   // CHANGE SORT ORDER TO 999 //
@@ -1294,28 +1316,6 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     reflect: false,
     isFinished: false,
-    tokenDecimals: 18,
-  },
-  {
-    sousId: 63,
-    tokenName: 'TWIN',
-    image: 'TWIN.svg',
-    stakingTokenName: 'GNANA',
-    stakingTokenAddress: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
-      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
-    },
-    contractAddress: {
-      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x8e4f6c2e8d9c5ed20c2a9a6db6553655a66d8c1b',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://hifigamingsociety.com',
-    harvest: true,
-    tokenPerBlock: `52.083333333333333333`,
-    sortOrder: 999,
-    reflect: false,
-    isFinished: true,
     tokenDecimals: 18,
   },
   {
