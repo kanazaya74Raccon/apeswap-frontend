@@ -118,6 +118,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     stakedTokenPrice,
     projectLink,
     contractAddress,
+    tokenDecimals,
   } = pool
 
   const { account } = useWeb3React()
@@ -131,7 +132,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const rawEarningsBalance = getBalanceNumber(earnings)
+  const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
 
   const blocksUntilStart = Math.max(startBlock - block, 0)
   const blocksRemaining = Math.max(endBlock - block, 0)
@@ -227,6 +228,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
+            tokenDecimals={tokenDecimals}
           />
         </>
       )}
