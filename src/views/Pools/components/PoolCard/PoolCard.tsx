@@ -116,7 +116,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           isFinished={isFinished}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardTokenPrice}
-          lpLabel={tokenName}
+          lpLabel={stakingTokenName}
           addLiquidityUrl="https://app.apeswap.finance/swap"
           stakedTokenPrice={stakedTokenPrice}
           pendingReward={pendingReward}
