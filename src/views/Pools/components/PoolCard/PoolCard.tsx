@@ -63,6 +63,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     stakedTokenPrice,
     projectLink,
     contractAddress,
+    tokenDecimals
   } = pool
 
   const { account } = useWeb3React()
@@ -122,6 +123,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           pendingReward={pendingReward}
           projectSite={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
+          tokenDecimals={tokenDecimals}
         />
       </ExpandingWrapper>
     </PCard>

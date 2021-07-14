@@ -26,6 +26,7 @@ export interface ExpandableSectionProps {
   rewardTokenPrice?: number
   pendingReward?: BigNumber
   projectLink?: string
+  tokenDecimals?: number
 }
 
 const Wrapper = styled.div`
@@ -90,6 +91,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
   pendingReward,
   projectLink,
+  tokenDecimals
 }) => {
   const TranslateString = useI18n()
 
@@ -98,7 +100,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
     : '-'
 
   const earnings = new BigNumber(pendingReward || 0)
-  const rawEarningsBalance = getBalanceNumber(earnings)
+  const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
   const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
 
   const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)

@@ -118,7 +118,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     stakedTokenPrice,
     projectLink,
     contractAddress,
-    tokenDecimals
+    tokenDecimals,
   } = pool
 
   const { account } = useWeb3React()
@@ -228,6 +228,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
+            tokenDecimals={tokenDecimals}
           />
         </>
       )}
