@@ -248,13 +248,13 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData } = pool
+  const { userData, tokenDecimals } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const allowance = new BigNumber(userData?.allowance || 0)
-  const rawEarningsBalance = getBalanceNumber(earnings)
+  const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
   const needsApproval = !allowance.gt(0)
