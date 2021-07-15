@@ -98,6 +98,10 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
+        label: 'Governance',
+        href: 'https://vote.apeswap.finance',
+      },
+      {
         label: 'Github',
         href: 'https://github.com/apeswapfinance',
       },
