@@ -1430,6 +1430,28 @@ const pools: PoolConfig[] = [
     isFinished: true,
     tokenDecimals: 18,
   },
+  {
+    sousId: 65,
+    tokenName: 'STARS',
+    image: 'STARS.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x2555190c9f515877ac88defc2242a4e91aa49021',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.mogulproductions.com/',
+    harvest: true,
+    tokenPerBlock: `2.893518518518518518`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
