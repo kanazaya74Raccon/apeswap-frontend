@@ -24,166 +24,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
-    sousId: 1,
-    tokenName: 'BNB',
-    stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
-    },
-    contractAddress: {
-      // BNBRewardsApe
-      97: '0x88777a814946cd8eb80e7029eedf05cc6cf34168',
-      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
-    },
-    poolCategory: PoolCategory.CORE,
-    projectLink: 'https://research.binance.com/en/projects/bnb',
-    harvest: true,
-    tokenPerBlock: '0.00069444',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    displayDecimals: 5,
-  },
-  {
-    sousId: 2,
-    tokenName: 'SOUL',
-    stakingTokenName: 'BANANA-SOUL',
-    image: 'SOUL.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xf5Cb9F954D3Ea26Bb503A6996a4b2B0aAdC8c969',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://apoyield.com',
-    harvest: true,
-    tokenPerBlock: '1384',
-    sortOrder: 2,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
-  {
-    sousId: 3,
-    tokenName: 'SOUL',
-    stakingTokenName: 'BANANA-SOUL',
-    image: 'SOUL.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://apoyield.com',
-    harvest: true,
-    tokenPerBlock: '396',
-    sortOrder: 6,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
-  {
-    sousId: 4,
-    tokenName: 'NUTS',
-    stakingTokenName: 'BANANA-NUTS',
-    image: 'NUTS.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x3523cE00C9f82FfafC850C0Acccb78341239028b',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.08680555556',
-    sortOrder: 2,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 5,
-    tokenName: 'BANANA',
-    stakingTokenName: 'BANANA-NUTS',
-    image: 'BANANA.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.1446527778',
-    sortOrder: 3,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 6,
-    tokenName: 'CRX',
-    stakingTokenName: 'BANANA-CRX',
-    image: 'CRX.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x084beaa501dB448869001BA49913c9aD009b1694',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://cryptexlock.me/',
-    harvest: true,
-    tokenPerBlock: '0.002604166666667000',
-    sortOrder: 4,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 7,
-    tokenName: 'NAUT',
-    stakingTokenName: 'BNB-NAUT',
-    image: 'NAUT.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x114d54e18eb4A7Dc9bB8280e283E5799D4188E3f',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://astronaut.to',
-    harvest: true,
-    tokenPerBlock: '0.28935185',
-    sortOrder: 5,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
-  {
     sousId: 17,
     tokenName: 'SWAMP',
     stakingTokenName: 'BANANA',
@@ -276,79 +116,10 @@ const pools: PoolConfig[] = [
     lpStaking: true,
   },
   {
-    sousId: 8,
-    tokenName: 'NUTS',
-    stakingTokenName: 'BANANA-NUTS',
-    image: 'NUTS.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x6Fd37f3F83F11100f9f501e2690E96F6fAC37E94',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.024965277777778',
-    sortOrder: 5,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 10,
-    tokenName: 'HPS',
-    stakingTokenName: 'BANANA-HPS',
-    image: 'HPS.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://billionhappiness.finance',
-    harvest: true,
-    tokenPerBlock: '0.014880952380952000',
-    sortOrder: 4,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 11,
-    tokenName: 'BRICK',
-    stakingTokenName: 'BANANA-BRICK',
-    image: 'BRICK.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x51a9771708d0471a0e592e8febb2c6b868e3d99b', // BNB-BRICK LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x6B7254AdfCa2178B7065b4B57fDc452c405DFC8A',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://brickchain.finance',
-    harvest: true,
-    tokenPerBlock: '2.976190476190476',
-    sortOrder: 3,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
     sousId: 12,
     tokenName: 'JDI',
     stakingTokenName: 'BNB-JDI',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764', // BNB-JDI LP
@@ -370,7 +141,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 28,
     tokenName: 'JDI',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenName: 'JDI',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -388,29 +159,6 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     reflect: true,
-  },
-  {
-    sousId: 15,
-    tokenName: 'Inactive - FOXY',
-    stakingTokenName: 'BANANA',
-    image: 'FOXY.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x4cb75836d3254f7454d1bf6d95448c496cbc16b1',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://foxynft.org',
-    harvest: true,
-    tokenPerBlock: '0.05787037037037',
-    sortOrder: 5,
-    isFinished: true,
-    tokenDecimals: 9,
-    lpStaking: false,
   },
   {
     sousId: 13,
@@ -439,7 +187,7 @@ const pools: PoolConfig[] = [
     sousId: 14,
     tokenName: 'JDI',
     stakingTokenName: 'BANANA',
-    image: 'JDI.png',
+    image: 'JDI.svg',
     stakingTokenAddress: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
@@ -521,27 +269,6 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.009645061728000000`,
     sortOrder: 2,
     isFinished: false,
-    tokenDecimals: 18,
-  },
-  {
-    sousId: 23,
-    tokenName: 'NFTL',
-    image: 'NFTL.jpg',
-    stakingTokenName: 'BANANA',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
-      56: '0x7618c42Fb5DC96F3C238FEC799B440AEd7c56E03',
-    },
-    poolCategory: PoolCategory.CORE,
-    projectLink: 'https://cybertime.finance',
-    harvest: true,
-    tokenPerBlock: `2.1428571429`,
-    sortOrder: 2,
-    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -652,29 +379,6 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     reflect: true,
     isFinished: false,
-    tokenDecimals: 9,
-  },
-  {
-    sousId: 30,
-    tokenName: 'bxBTC',
-    image: 'XBTC.svg',
-    stakingTokenName: 'BANANA',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0xd65f1319f6408C03EBA7f27e156391784492A9EF', // ApeRewardPool
-    },
-    poolCategory: PoolCategory.CORE,
-    projectLink: 'https://xbtc.fi/',
-    harvest: true,
-    tokenPerBlock: `0`,
-    sortOrder: 2,
-    reflect: false,
-    isFinished: true,
-    bonusEndBlock: 8851420,
     tokenDecimals: 9,
   },
   {
@@ -810,28 +514,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 9,
   },
   {
-    sousId: 37,
-    tokenName: 'SPACE',
-    image: 'SPACE.svg',
-    stakingTokenName: 'SPACE-BNB',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xd0F82498051067E154d1dcd3d88fA95063949D7e', // SPACE-BNB
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0xfE615dA45dBC8C763851A34Cf14d65B0056a2D8A', // ApeRewardPool
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://aperocket.finance/',
-    harvest: true,
-    tokenPerBlock: `0.02755704365`,
-    sortOrder: 1,
-    reflect: false,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
-  {
     sousId: 38,
     tokenName: 'TAPE',
     image: 'TAPE.svg',
@@ -850,6 +532,28 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `2.314814814814815`,
     sortOrder: 3,
     reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 64,
+    tokenName: 'NALIS',
+    image: 'NALIS.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x063e98d9f0484c07028eb78661df554a064aeb05',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://koaladefi.finance/',
+    harvest: true,
+    tokenPerBlock: `0.028935185185185185`,
+    sortOrder: 2,
+    reflect: true,
     isFinished: false,
     tokenDecimals: 18,
   },
@@ -942,32 +646,10 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
-    sousId: 43,
-    tokenName: 'HIFI',
-    image: 'HIFI.svg',
-    stakingTokenName: 'HIFI-BNB',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xf093ce6778c4d7d99c23f714297fff15a661d354', // HIFI-BNB
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0x454155ac563a382458eda66fdaf59237d7230dc9', // ApeRewardPool
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://hifigamingsociety.com',
-    harvest: true,
-    tokenPerBlock: `49.6031746031746`,
-    sortOrder: 1,
-    reflect: false,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
-  {
     sousId: 44,
     tokenName: 'CRUSH',
-    image: 'BCA.svg',
     stakingTokenName: 'GNANA',
+    image: 'crush.svg',
     stakingTokenAddress: {
       97: '0x9407026d236deae22cc1f3c419a9e47cbfcfe9e5',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299', // GNANA
@@ -1162,28 +844,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
-    sousId: 53,
-    tokenName: 'Inactive - HIFI',
-    image: 'HIFI.svg',
-    stakingTokenName: 'GNANA',
-    stakingTokenAddress: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
-      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
-    },
-    contractAddress: {
-      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x8e4f6c2e8d9c5ed20c2a9a6db6553655a66d8c1b',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://hifigamingsociety.com',
-    harvest: true,
-    tokenPerBlock: `52.083333333333333333`,
-    sortOrder: 4,
-    reflect: false,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
-  {
     sousId: 54,
     tokenName: 'HIFI',
     image: 'HIFI.svg',
@@ -1360,6 +1020,283 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
+    sousId: 63,
+    tokenName: 'TWIN',
+    image: 'TWIN.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x6e8cd8e267e4a8538b7119c3ca30ce04667070e5',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://twin.finance/',
+    harvest: true,
+    tokenPerBlock: `4.629629629629629629`,
+    sortOrder: 63,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+
+  // IS FINISHED //
+  // CHANGE SORT ORDER TO 999 //
+  {
+    sousId: 37,
+    tokenName: 'SPACE',
+    image: 'SPACE.svg',
+    stakingTokenName: 'SPACE-BNB',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xd0F82498051067E154d1dcd3d88fA95063949D7e', // SPACE-BNB
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xfE615dA45dBC8C763851A34Cf14d65B0056a2D8A', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://aperocket.finance/',
+    harvest: true,
+    tokenPerBlock: `0.02755704365`,
+    sortOrder: 999,
+    reflect: false,
+    isFinished: true,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 30,
+    tokenName: 'bxBTC',
+    image: 'XBTC.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0xd65f1319f6408C03EBA7f27e156391784492A9EF', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://xbtc.fi/',
+    harvest: true,
+    tokenPerBlock: `0`,
+    sortOrder: 999,
+    reflect: false,
+    isFinished: true,
+    bonusEndBlock: 8851420,
+    tokenDecimals: 9,
+  },
+
+  {
+    sousId: 15,
+    tokenName: 'Inactive - FOXY',
+    stakingTokenName: 'BANANA',
+    image: 'FOXY.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x4cb75836d3254f7454d1bf6d95448c496cbc16b1',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://foxynft.org',
+    harvest: true,
+    tokenPerBlock: '0.05787037037037',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 9,
+    lpStaking: false,
+  },
+  {
+    sousId: 43,
+    tokenName: 'HIFI',
+    image: 'HIFI.svg',
+    stakingTokenName: 'HIFI-BNB',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xf093ce6778c4d7d99c23f714297fff15a661d354', // HIFI-BNB
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+      56: '0x454155ac563a382458eda66fdaf59237d7230dc9', // ApeRewardPool
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://hifigamingsociety.com',
+    harvest: true,
+    tokenPerBlock: `49.6031746031746`,
+    sortOrder: 999,
+    reflect: false,
+    isFinished: true,
+    tokenDecimals: 18,
+  },
+
+  {
+    sousId: 1,
+    tokenName: 'BNB',
+    stakingTokenName: QuoteToken.BANANA,
+    stakingTokenAddress: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      // BNBRewardsApe
+      97: '0x88777a814946cd8eb80e7029eedf05cc6cf34168',
+      56: '0x0245c697a96045183048cdf18e9abae5b2237ff6',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://research.binance.com/en/projects/bnb',
+    harvest: true,
+    tokenPerBlock: '0.00069444',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    displayDecimals: 5,
+  },
+  {
+    sousId: 2,
+    tokenName: 'SOUL',
+    stakingTokenName: 'BANANA-SOUL',
+    image: 'SOUL.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xf5Cb9F954D3Ea26Bb503A6996a4b2B0aAdC8c969',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://apoyield.com',
+    harvest: true,
+    tokenPerBlock: '1384',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 3,
+    tokenName: 'SOUL',
+    stakingTokenName: 'BANANA-SOUL',
+    image: 'SOUL.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://apoyield.com',
+    harvest: true,
+    tokenPerBlock: '396',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
+    sousId: 4,
+    tokenName: 'NUTS',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'NUTS.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x3523cE00C9f82FfafC850C0Acccb78341239028b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.08680555556',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 5,
+    tokenName: 'BANANA',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'BANANA.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.1446527778',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 6,
+    tokenName: 'CRX',
+    stakingTokenName: 'BANANA-CRX',
+    image: 'CRX.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x084beaa501dB448869001BA49913c9aD009b1694',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptexlock.me/',
+    harvest: true,
+    tokenPerBlock: '0.002604166666667000',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 7,
+    tokenName: 'NAUT',
+    stakingTokenName: 'BNB-NAUT',
+    image: 'NAUT.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x114d54e18eb4A7Dc9bB8280e283E5799D4188E3f',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to',
+    harvest: true,
+    tokenPerBlock: '0.28935185',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 8,
+    lpStaking: true,
+  },
+  {
     sousId: 62,
     tokenName: 'BISON',
     image: 'BISON.svg',
@@ -1382,9 +1319,99 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
-    sousId: 63,
-    tokenName: 'TWIN',
-    image: 'TWIN.svg',
+    sousId: 23,
+    tokenName: 'NFTL',
+    image: 'NFTL.jpg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
+    },
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x7618c42Fb5DC96F3C238FEC799B440AEd7c56E03',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://cybertime.finance',
+    harvest: true,
+    tokenPerBlock: `2.1428571429`,
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 8,
+    tokenName: 'NUTS',
+    stakingTokenName: 'BANANA-NUTS',
+    image: 'NUTS.svg',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x6Fd37f3F83F11100f9f501e2690E96F6fAC37E94',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://squirrel.finance/',
+    harvest: true,
+    tokenPerBlock: '0.024965277777778',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 10,
+    tokenName: 'HPS',
+    stakingTokenName: 'BANANA-HPS',
+    image: 'HPS.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://billionhappiness.finance',
+    harvest: true,
+    tokenPerBlock: '0.014880952380952000',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 11,
+    tokenName: 'BRICK',
+    stakingTokenName: 'BANANA-BRICK',
+    image: 'BRICK.png',
+    stakingTokenAddress: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x51a9771708d0471a0e592e8febb2c6b868e3d99b', // BNB-BRICK LP
+    },
+    contractAddress: {
+      // BEP20RewardApe
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x6B7254AdfCa2178B7065b4B57fDc452c405DFC8A',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://brickchain.finance',
+    harvest: true,
+    tokenPerBlock: '2.976190476190476',
+    sortOrder: 999,
+    isFinished: true,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 53,
+    tokenName: 'Inactive - HIFI',
+    image: 'HIFI.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
       97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
@@ -1392,15 +1419,15 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x6e8cd8e267e4a8538b7119c3ca30ce04667070e5',
+      56: '0x8e4f6c2e8d9c5ed20c2a9a6db6553655a66d8c1b',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://twin.finance/',
+    projectLink: 'https://hifigamingsociety.com',
     harvest: true,
-    tokenPerBlock: `4.629629629629629629`,
-    sortOrder: 2,
+    tokenPerBlock: `52.083333333333333333`,
+    sortOrder: 999,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   /* {

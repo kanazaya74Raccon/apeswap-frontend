@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
-import TokenInput from '../../../components/TokenInput'
+import ModalInput from 'components/ModalInput'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
@@ -34,7 +34,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   return (
     <Modal title={`${TranslateString(316, 'Deposit')} ${tokenName} Tokens`} onDismiss={onDismiss}>
-      <TokenInput
+      <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
         onChange={handleChange}

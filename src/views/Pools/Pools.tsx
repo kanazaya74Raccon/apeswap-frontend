@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
+import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
+import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
@@ -14,9 +15,16 @@ import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hook
 import { Pool } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
-import SearchInput from '../../../Pools/components/SearchInput'
-import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
-import PoolCard from '../../../Pools/components/PoolCard/PoolCard'
+import ToggleView from './components/ToggleView/ToggleView'
+import SearchInput from './components/SearchInput'
+import PoolTabButtons from './components/PoolTabButtons'
+import PoolCard from './components/PoolCard/PoolCard'
+import PoolTable from './components/PoolTable/PoolTable'
+import { ViewMode } from './components/types'
+
+interface LabelProps {
+  active?: boolean
+}
 
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
@@ -85,12 +93,16 @@ const ToggleContainer = styled.div`
     margin-left: 0px;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 180px;
     transform: translateY(0px);
     flex-direction: row;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 250px;
+    width: 200px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 225px;
   }
 `
 
@@ -215,6 +227,147 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   width: 21px;
 `
 
+const ContainerLabels = styled.div`
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+  margin-top: 24px;
+  height: 32px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-85px);
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-top: 34px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    transform: translateY(-60px);
+  }
+`
+
+const StyledLabelContainerHot = styled.div`
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+    top: 6px;
+    left: 38px;
+    margin: 0px;
+  }
+`
+
+const StyledLabelContainerLP = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+    top: 6px;
+    left: 169px;
+    margin: 0px;
+  }
+`
+
+const StyledLabelContainerAPR = styled.div`
+  cursor: pointer;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+    top: 6px;
+    left: 365px;
+    margin: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 409px;
+  }
+`
+
+const StyledLabelContainerLiquidity = styled.div`
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+    top: 6px;
+    left: 500px;
+    margin: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 621px;
+  }
+`
+
+const StyledLabelContainerEarned = styled.div`
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin: 0px;
+    position: absolute;
+    top: 6px;
+    left: 651px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 801px;
+  }
+`
+
 const CardContainer = styled.div`
   margin-top: 17px;
 
@@ -271,6 +424,30 @@ const StyledPage = styled(Page)`
   }
 `
 
+const StyledLabel = styled.div<LabelProps>`
+  display: flex;
+  color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
+  font-family: Poppins;
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: ${({ active }) => active && '50px'};
+  background-color: ${({ active }) => active && '#FFB300'};
+`
+
+interface DropdownProps {
+  down?: boolean
+}
+
+const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
+  color: white;
+  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
+  margin-left: 7px;
+  margin-top: 2px;
+  'rotate(180deg)' : 'rotate(0)'
+`
+
 const FlexLayout = styled.div`
   display: flex;
   justify-content: space-between;
@@ -281,10 +458,49 @@ const FlexLayout = styled.div`
   }
 `
 
+const StyledTable = styled.div`
+  border-collapse: collapse;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
+`
+
+const Container = styled.div`
+  background: ${({ theme }) => theme.card.background};
+  border-radius: 16px;
+  margin: 16px 0px;
+  position: relative;
+
+  transform: translateY(-85px);
+  ${({ theme }) => theme.mediaQueries.md} {
+    transform: translateY(-60px);
+  }
+`
+
+const TableWrapper = styled.div`
+  overflow: visible;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+const TableContainer = styled.div`
+  position: relative;
+`
+const NUMBER_OF_POOLS_VISIBLE = 12
+
 const Pools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
-  const gnanaOnly = true
+  const [gnanaOnly, setGnanaOnly] = useState(false)
+  const [observerIsSet, setObserverIsSet] = useState(false)
+  const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [sortOption, setSortOption] = useState('hot')
+  const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
@@ -295,10 +511,41 @@ const Pools: React.FC = () => {
   const TranslateString = useI18n()
   const block = useBlock()
   const isActive = !pathname.includes('history')
+  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
+  const tableWrapperEl = useRef<HTMLDivElement>(null)
+  const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
+
+  useEffect(() => {
+    if (size.width !== undefined) {
+      if (size.width < 968) {
+        setViewMode(ViewMode.CARD)
+      } else {
+        setViewMode(ViewMode.TABLE)
+      }
+    }
+  }, [size])
+
+  useEffect(() => {
+    const showMorePools = (entries) => {
+      const [entry] = entries
+      if (entry.isIntersecting) {
+        setNumberOfPoolsVisible((poolsCurrentlyVisible) => poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE)
+      }
+    }
+
+    if (!observerIsSet) {
+      const loadMoreObserver = new IntersectionObserver(showMorePools, {
+        rootMargin: '0px',
+        threshold: 1,
+      })
+      loadMoreObserver.observe(loadMoreRef.current)
+      setObserverIsSet(true)
+    }
+  }, [observerIsSet])
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -358,6 +605,12 @@ const Pools: React.FC = () => {
 
   const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
 
+  const stakedOnlyPools = openPools.filter(
+    (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
+  )
+  const stakedInactivePools = finishedPools.filter(
+    (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
+  )
   const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
 
   const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
@@ -371,19 +624,62 @@ const Pools: React.FC = () => {
       pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
   )
 
+  const handleSortOptionChange = (option): void => {
+    if (option !== sortOption) {
+      setSortDirection('desc')
+    } else if (sortDirection === 'desc') {
+      setSortDirection('asc')
+    } else {
+      setSortDirection('desc')
+    }
+    setSortOption(option)
+  }
+
+  const sortPools = (poolsToSort: PoolWithStakeValue[]) => {
+    switch (sortOption) {
+      case 'apr':
+        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
+        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
+      case 'earned':
+        return orderBy(
+          poolsToSort,
+          (pool: PoolWithStakeValue) => {
+            if (!pool.userData || !pool.rewardTokenPrice) {
+              return 0
+            }
+            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
+          },
+          sortDirection,
+        )
+      case 'totalStaked':
+        return orderBy(
+          poolsToSort,
+          (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
+          sortDirection,
+        )
+      default:
+        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
+    }
+  }
+
   const poolsToShow = () => {
     let chosenPools = []
+
     if (stakedOnly && gnanaOnly) {
       chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-    } else {
+    } else if (stakedOnly && !gnanaOnly) {
+      chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
+    } else if (!stakedOnly && gnanaOnly) {
       chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
+    } else {
+      chosenPools = isActive ? openPools : finishedPools
     }
 
     if (searchQuery) {
       const lowercaseQuery = searchQuery.toLowerCase()
       chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
     }
-    return chosenPools
+    return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
 
   const cardLayout = (
@@ -396,16 +692,30 @@ const Pools: React.FC = () => {
     </CardContainer>
   )
 
+  const tableLayout = (
+    <Container>
+      <TableContainer>
+        <TableWrapper ref={tableWrapperEl}>
+          <StyledTable>
+            {poolsToShow().map((pool) => (
+              <PoolTable key={pool.sousId} pool={pool} removed={!isActive} />
+            ))}
+          </StyledTable>
+        </TableWrapper>
+      </TableContainer>
+    </Container>
+  )
+
   return (
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="gold">
-            {TranslateString(999, 'GNANA Pools')}
+          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+            {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
-            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="gold">
-              Stake GNANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
+            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
+              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
               block.
             </Text>
           )}
@@ -417,6 +727,9 @@ const Pools: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
+            {size.width > 968 && viewMode !== null && (
+              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            )}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search
@@ -428,15 +741,52 @@ const Pools: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins" style={{ marginRight: '10px' }}>
-                    {TranslateString(1116, 'Staked')}
-                  </StyledText>
+                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
+                </ToggleWrapper>
+                <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
+                  <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
+                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
           </ViewControls>
         </ControlContainer>
-        {cardLayout}
+        <ContainerLabels>
+          <StyledLabelContainerHot>
+            <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
+              Hot
+            </StyledLabel>
+          </StyledLabelContainerHot>
+          <StyledLabelContainerLP>
+            <StyledLabel>Token</StyledLabel>
+          </StyledLabelContainerLP>
+          <StyledLabelContainerAPR>
+            <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
+              APR
+              {sortOption === 'apr' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
+            </StyledLabel>
+          </StyledLabelContainerAPR>
+          <StyledLabelContainerLiquidity>
+            <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
+              Total Staked
+              {sortOption === 'totalStaked' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
+            </StyledLabel>
+          </StyledLabelContainerLiquidity>
+          <StyledLabelContainerEarned>
+            <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
+              Earned
+              {sortOption === 'earned' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
+            </StyledLabel>
+          </StyledLabelContainerEarned>
+        </ContainerLabels>
+        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+        <div ref={loadMoreRef} />
       </StyledPage>
     </>
   )
