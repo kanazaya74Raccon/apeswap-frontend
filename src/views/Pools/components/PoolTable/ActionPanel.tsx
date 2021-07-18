@@ -91,7 +91,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
   pendingReward,
   projectLink,
-  tokenDecimals
+  tokenDecimals,
 }) => {
   const TranslateString = useI18n()
 

@@ -63,7 +63,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     stakedTokenPrice,
     projectLink,
     contractAddress,
-    tokenDecimals
+    tokenDecimals,
   } = pool
 
   const { account } = useWeb3React()

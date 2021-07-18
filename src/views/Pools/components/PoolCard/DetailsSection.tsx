@@ -76,7 +76,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
   pendingReward,
   projectSite,
-  tokenDecimals
+  tokenDecimals,
 }) => {
   const TranslateString = useI18n()
 
