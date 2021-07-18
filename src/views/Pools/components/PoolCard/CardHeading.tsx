@@ -32,6 +32,19 @@ export interface ExpandableSectionProps {
   rewardTokenPrice?: number
 }
 
+const PoolFinishedSash = styled.div`
+  @media (max-width: 1000px) {
+    background-image: url('/images/gnanaSash.svg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 135px;
+    position: absolute;
+    right: -3px;
+    top: -1.5px;
+    width: 145px;
+  }
+`
+
 const StyledBackground = styled(Flex)`
   margin-left: 10px;
 
@@ -347,6 +360,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>
+        {stakeToken === "GNANA" && <PoolFinishedSash />}
       </StyledFlexContainer>
     </Flex>
   )
