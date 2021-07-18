@@ -37,11 +37,11 @@ const PoolFinishedSash = styled.div`
     background-image: url('/images/gnanaSash.svg');
     background-position: top right;
     background-repeat: no-repeat;
-    height: 135px;
+    height: 35px;
     position: absolute;
     right: -3px;
     top: -1.5px;
-    width: 145px;
+    width: 45px;
   }
 `
 
@@ -360,7 +360,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>
-        {stakeToken === "GNANA" && <PoolFinishedSash />}
+        {stakeToken === 'GNANA' && <PoolFinishedSash />}
       </StyledFlexContainer>
     </Flex>
   )
