@@ -21,6 +21,7 @@ import { useSousUnstake } from 'hooks/useUnstake'
 import { Pool } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
+import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
   pool: Pool
@@ -35,6 +36,10 @@ interface StakeActionsProps {
 
 const IconButtonWrapper = styled.div`
   display: flex;
+`
+
+const HarvestWrapper = styled.div`
+  margin-right: 6px;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -83,6 +88,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const rewardRefStake = useRef(null)
   const rewardRefUnstake = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
+  const earnings = new BigNumber(pool.userData?.pendingReward || 0)
+  const isLoading = !pool.userData
 
   const onStake = useReward(rewardRefStake, useSousStake(sousId).onStake)
   const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
@@ -121,6 +128,16 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     return (
       rawStakedBalance !== 0 && (
         <IconButtonWrapper>
+          {sousId === 0 && (
+            <HarvestWrapper>
+              <HarvestActions
+                earnings={earnings}
+                sousId={sousId}
+                isLoading={isLoading}
+                tokenDecimals={pool.tokenDecimals}
+              />
+            </HarvestWrapper>
+          )}
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
             <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
               <MinusIcon color="white" width="12px" height="12px" />
@@ -142,7 +159,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   return (
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
-      <Flex flexDirection="column" alignItems="flex-start">
+      <Flex flexDirection="column" alignItems="flex-start" marginRight='6px'>
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}

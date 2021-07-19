@@ -9,6 +9,7 @@ import { Pool } from 'state/types'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
+import HarvestActions from '../PoolTable/CardActions/HarvestActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -80,7 +81,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const pendingReward = userData?.pendingReward
-
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)
   }
