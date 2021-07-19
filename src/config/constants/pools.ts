@@ -1463,7 +1463,7 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x5c9ce6ce78218cd12b29a669fb9a702177104e16',
+      56: '0x0a509adf33e7094f3bd15c0062debd3aef2bce28',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://srnartgallery.com',
