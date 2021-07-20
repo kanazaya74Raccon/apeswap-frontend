@@ -1452,6 +1452,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 66,
+    tokenName: 'SISTA',
+    image: 'SISTA.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x0a509adf33e7094f3bd15c0062debd3aef2bce28',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://srnartgallery.com',
+    harvest: true,
+    tokenPerBlock: `2.893518518518518518`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
