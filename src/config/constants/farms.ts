@@ -1316,12 +1316,12 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 94,
-    lpSymbol: 'BIRD-BNB LP',
+    lpSymbol: 'BIRB-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x8f53e5940d5adfb07e271d2812dccdb5b6380c62',
     },
-    tokenSymbol: 'BIRD',
+    tokenSymbol: 'BIRB',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x82a479264b36104be4fdb91618a59a4fc0f50650',

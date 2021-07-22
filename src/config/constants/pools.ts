@@ -1498,8 +1498,8 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 68,
-    tokenName: 'BIRD',
-    image: 'BIRD.svg',
+    tokenName: 'BIRB',
+    image: 'BIRB.svg',
     stakingTokenName: 'GNANA',
     stakingTokenAddress: {
       97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
