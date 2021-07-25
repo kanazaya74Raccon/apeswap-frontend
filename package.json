@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "@apeswapfinance/uikit": "0.10.37.1",
+    "@apeswapfinance/uikit": "0.10.37.5",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.10.1",
     "@ethersproject/abi": "^5.0.7",
