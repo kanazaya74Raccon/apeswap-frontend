@@ -6,6 +6,7 @@ import profileReducer from './profile'
 import statsReducer from './stats'
 import statsOverallReducer from './statsOverall'
 import teamsReducer from './teams'
+import auctionReducer from './auction'
 
 export default configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -17,5 +18,6 @@ export default configureStore({
     stats: statsReducer,
     statsOverall: statsOverallReducer,
     teams: teamsReducer,
+    auctions: auctionReducer,
   },
 })

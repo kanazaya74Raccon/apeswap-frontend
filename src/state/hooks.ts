@@ -17,11 +17,22 @@ import {
   remove as removeToast,
   clear as clearToast,
 } from './actions'
-import { State, Farm, Pool, ProfileState, StatsState, StatsOverallState, TeamsState, FarmOverall } from './types'
+import {
+  State,
+  Farm,
+  Pool,
+  ProfileState,
+  StatsState,
+  StatsOverallState,
+  TeamsState,
+  FarmOverall,
+  AuctionsState,
+} from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchTeam, fetchTeams } from './teams'
+import { fetchAuctions } from './auction'
 
 const ZERO = new BigNumber(0)
 
@@ -220,6 +231,19 @@ export const useFetchStats = () => {
 export const useStats = () => {
   const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useFetchAuctions = () => {
+  const dispatch = useDispatch()
+  const { fastRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchAuctions())
+  }, [dispatch, fastRefresh])
+}
+
+export const useAuctions = () => {
+  const { isInitialized, isLoading, data }: AuctionsState = useSelector((state: State) => state.auctions)
+  return { auctions: data, isInitialized, isLoading }
 }
 
 export const usePendingUsd = () => {

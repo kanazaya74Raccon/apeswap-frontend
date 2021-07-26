@@ -5,7 +5,14 @@ import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { useFetchProfile, useFetchStats, useFetchPublicData, useFetchStatsOverall, useStatsOverall } from 'state/hooks'
+import {
+  useFetchProfile,
+  useFetchStats,
+  useFetchPublicData,
+  useFetchStatsOverall,
+  useStatsOverall,
+  useFetchAuctions
+} from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -27,6 +34,7 @@ const Profile = lazy(() => import('./views/Profile'))
 const Chart = lazy(() => import('./views/Chart'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
+const Auction = lazy(() => import('./views/Auction'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -65,6 +73,8 @@ const App: React.FC = () => {
   useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
+  useFetchAuctions()
+
 
   const { statsOverall } = useStatsOverall()
 
@@ -97,6 +107,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/iao">
               <Ifos />
+            </Route>
+            <Route path="/auction">
+              <Auction />
             </Route>
             <Route exact path="/nft">
               <Nft />

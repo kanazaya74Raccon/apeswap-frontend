@@ -129,3 +129,22 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const bid = async (auctionContract, amount, id, account) => {
+  return auctionContract.methods
+    .bid(id)
+    .send({ from: account, value: new BigNumber(amount).times(new BigNumber(10).pow(18)).toString() })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+
+export const nextAuction = async (auctionContract, id, account) => {
+  return auctionContract.methods
+    .endAuction(id)
+    .send({ from: account})
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

@@ -6,12 +6,15 @@ interface ImageProps {
   alt: string
   originalLink?: string
   rarityTier: number
+  borderRadius?: string
 }
 
 interface ContainerProps {
   gradient: string
   backgroundSize: string
+  borderRadius?: string
 }
+
 
 const sway = keyframes`
     0% {
@@ -43,6 +46,7 @@ const Container = styled.div<ContainerProps>`
   overflow: hidden;
   padding-bottom: 100%;
   animation: ${sway} 20s ease infinite;
+  border-radius: ${(props) => props.borderRadius};
 `
 
 const TierSvg = styled.div`
@@ -54,7 +58,7 @@ const TierSvg = styled.div`
   fill: rgba(255, 255, 255, 0.1);
 `
 
-const Image: React.FC<ImageProps> = ({ src, alt, rarityTier }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => {
   let gradientStyle = ''
   let backgroundSize = ''
   if (rarityTier === 1) {
@@ -77,9 +81,9 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier }) => {
       'radial-gradient(circle, rgba(243,255,35,1) 0%, rgba(148,187,233,0) 80%), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
     backgroundSize = '100% 100%'
   }
-  const previewImage = <StyledImage src={src} alt={alt} />
+  const previewImage = <StyledImage src={src} alt={alt}/>
   return (
-    <Container gradient={gradientStyle} backgroundSize={backgroundSize}>
+    <Container gradient={gradientStyle} backgroundSize={backgroundSize} borderRadius={borderRadius}>
       <TierSvg>
         <p>{rarityTier}</p>
       </TierSvg>
