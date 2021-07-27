@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
 import { Text } from '@apeswapfinance/uikit'
 
-interface DescriptionProps {
+interface MobileDescriptionProps {
   nfa: Nft
 }
 
@@ -72,7 +72,7 @@ const Attribute = styled(Text)`
   opacity: 0.6;
 `
 
-const Description: React.FC<DescriptionProps> = ({ nfa }) => {
+const MobileDescription: React.FC<MobileDescriptionProps> = ({ nfa }) => {
   return (
     <>
       <DescriptionWrapper>
@@ -97,4 +97,4 @@ const Description: React.FC<DescriptionProps> = ({ nfa }) => {
   )
 }
 
-export default Description
+export default MobileDescription

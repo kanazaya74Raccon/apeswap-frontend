@@ -11,7 +11,7 @@ import {
   useFetchPublicData,
   useFetchStatsOverall,
   useStatsOverall,
-  useFetchAuctions
+  useFetchAuctions,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -74,7 +74,6 @@ const App: React.FC = () => {
   useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
-
 
   const { statsOverall } = useStatsOverall()
 

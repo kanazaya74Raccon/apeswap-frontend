@@ -13,10 +13,10 @@ interface BidProps {
 
 const StyledButton = styled(Button)`
   position: absolute;
-  width: 200px;
-  height: 64px;
-  bottom: 30px;
-  left: 675px;
+  width: 314px;
+  height: 50px;
+  bottom: 70px;
+  left: 22px;
   background: #ffb300;
   border-radius: 10px;
   font-family: Poppins;
@@ -26,6 +26,12 @@ const StyledButton = styled(Button)`
   line-height: 36px;
   letter-spacing: 0.05em;
   text-align: center;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    bottom: 30px;
+    width: 200px;
+    height: 64px;
+    left: 675px;
+  }
 `
 
 const SubmitBid: React.FC<BidProps> = ({ currentBid, nfaId, countdown }) => {

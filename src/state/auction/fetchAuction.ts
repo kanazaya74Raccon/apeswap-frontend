@@ -6,7 +6,6 @@ import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-
 export const fetchAuctionDetails = async () => {
   const auctionContract = getAuctionAddress()
   const call = [

@@ -6,42 +6,56 @@ const StyledTimeWrapper = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  width: 176px;
+  width: 134px;
+  height: 38px;
   right: 0px;
-  top: 0px;
-  height: 49px;
+  top: 20px;
   background: #ffb300;
   border-radius: 50px 0px 0px 50px;
   ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 30px;
-    margin-top: 20px;
+    width: 176px;
+    height: 49px;
   }
 `
 
 const HourGlass = styled.div`
   position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: url(/images/hourglass.svg);
+  width: 31px;
+  height: 31px;
+  background-image: url(/images/hourglass-sm.svg);
   background-position: center;
   background-repeat: no-repeat;
-  margin-left: 8px;
+  margin-left: 4px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 176px;
+    height: 49px;
+    background-image: url(/images/hourglass-lg.svg);
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+  }
 `
 
 const TimerText = styled(Text)`
   position: absolute;
   width: 101px;
   height: 32px;
-  margin-left: 65px;
+  margin-left: 42px;
   font-family: Poppins;
   font-style: normal;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 18px;
   line-height: 31px;
   display: flex;
   align-items: center;
   letter-spacing: 0.05em;
   color: #ffffff;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 101px;
+    height: 32px;
+    margin-left: 65px;
+    font-size: 21px;
+  }
 `
 
 interface TimerProps {
@@ -49,12 +63,11 @@ interface TimerProps {
 }
 
 const Timer: React.FC<TimerProps> = ({ countdown }) => {
+  const formatTimer = `${countdown.hours}:${countdown.minutes}:${countdown.seconds.toFixed(0)}`
   return (
     <StyledTimeWrapper>
       <HourGlass />
-      <TimerText>
-        {countdown.seconds > 0 ? `${countdown.hours}:${countdown.minutes}:${countdown.seconds.toFixed(0)}` : 'Finished'}
-      </TimerText>
+      <TimerText>{countdown.seconds > 0 ? formatTimer : 'Finished'}</TimerText>
     </StyledTimeWrapper>
   )
 }

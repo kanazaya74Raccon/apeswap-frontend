@@ -7,15 +7,25 @@ import { usePriceBnbBusd } from 'state/hooks'
 
 const PriceWrapper = styled.div`
   position: absolute;
-  width: 300px;
-  height: 64px;
-  bottom: 30px;
-  margin-left: 25px;
+  width: 165px;
+  height: 24px;
+  margin-top: 305px;
+  margin-left: 165px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   text-align: center;
-  background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  z-index: 1;
+  background: ${({ theme }) => theme.colors.card};
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 300px;
+    height: 64px;
+    bottom: 30px;
+    margin-left: 25px;
+    border-radius: 10px;
+    margin-top: 0px;
+    background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  }
 `
 
 const PriceText = styled(Text)`
@@ -25,53 +35,75 @@ const PriceText = styled(Text)`
   font-family: Poppins;
   font-style: normal;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.05em;
-  margin-left: 20px;
+  margin-left: 10px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 16px;
+    margin-left: 20px;
+  }
 `
 
 const BnbLogo = styled.div`
   position: absolute;
-  background-image: url(/images/rounded-bnb.svg);
+  background-image: url(/images/rounded-bnb-sm.svg);
   background-position: center;
-  width: 40px;
-  height: 40px;
-  left: 100px;
-  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  left: 67.5px;
+  margin-top: 0px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: 2px;
+    width: 40px;
+    height: 40px;
+    left: 100px;
+    background-image: url(/images/rounded-bnb-lg.svg);
+  }
 `
 
 const CurrentBidWrapper = styled(Text)`
   position: absolute;
   width: 159px;
   height: 41px;
-  left: 150px;
-  margin-bottom: 18px;
+  left: 100px;
+  margin-bottom: 0px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 900;
-  font-size: 27px;
-  line-height: 40px;
+  font-size: 16px;
+  line-height: 50px;
   display: flex;
   align-items: center;
   letter-spacing: 0.05em;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 159px;
+    height: 41px;
+    left: 150px;
+    font-size: 27px;
+    margin-bottom: 18px;
+    line-height: 40px;
+  }
 `
 
 const CurrentBidDollarWrapper = styled(Text)`
-  position: absolute;
-  width: 81px;
-  height: 15px;
-  left: 155px;
-  margin-top: 25px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.05em;
-  color: #38a611;
+  display: none;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    position: absolute;
+    width: 81px;
+    height: 15px;
+    left: 155px;
+    margin-top: 25px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+    color: #38a611;
+  }
 `
 
 interface TimerProps {
@@ -82,11 +114,11 @@ const Price: React.FC<TimerProps> = ({ currentBid }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const bnbPrice = usePriceBnbBusd()
   const dollarValue = (getBalanceNumber(bnbPrice) * rawBidAmount).toFixed(2)
-  
+
   return (
     <PriceWrapper>
       <PriceText>Price:</PriceText>
-      <CurrentBidWrapper> {rawBidAmount.toFixed(4)} </CurrentBidWrapper>
+      <CurrentBidWrapper> {rawBidAmount.toFixed(3)} </CurrentBidWrapper>
       <CurrentBidDollarWrapper> ~${dollarValue} </CurrentBidDollarWrapper>
       <BnbLogo />
     </PriceWrapper>

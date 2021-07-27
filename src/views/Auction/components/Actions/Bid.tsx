@@ -19,14 +19,18 @@ const BidWrapper = styled.div`
   position: absolute;
   width: 300px;
   height: 64px;
-  bottom: 30px;
-  margin-left: 350px;
+  bottom: 130px;
+  margin-left: 27.5px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   text-align: center;
   background: F7F8F9;
   background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  ${({ theme }) => theme.mediaQueries.lg} {
+    bottom: 30px;
+    margin-left: 350px;
+  }
 `
 
 const MinButton = styled.div`
@@ -159,11 +163,10 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, nfaId, countdown }) 
     setBidAmount(rawBidAmount + rawMinBidRaise)
   }, [rawBidAmount, rawMinBidRaise])
 
-
   return (
     <>
       <BidWrapper>
-        <BidInput type="text" value={bidAmount} onChange={updateBid}/>
+        <BidInput type="text" value={bidAmount} onChange={updateBid} />
         <MinButton>
           <ButtonText onClick={minBid}>Min</ButtonText>
         </MinButton>
@@ -175,7 +178,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, nfaId, countdown }) 
         </SubButton>
         <UserBalanceWrapper>Balance: {rawBnbBalance} </UserBalanceWrapper>
       </BidWrapper>
-      <SubmitBid currentBid={bidAmount} nfaId={nfaId} countdown={countdown}/>
+      <SubmitBid currentBid={bidAmount} nfaId={nfaId} countdown={countdown} />
     </>
   )
 }

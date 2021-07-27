@@ -54,7 +54,7 @@ const HomeToggle = () => {
       <SetCol>
         <Flex alignItems="center" justifyContent="flex-end">
           <TimerLabelWrapper>
-              <></>
+            <></>
           </TimerLabelWrapper>
           <HelpButtonWrapper>
             <IconButton variant="subtle" as="a" href="" target="_blank" rel="noreferrer noopener">

@@ -139,11 +139,10 @@ export const bid = async (auctionContract, amount, id, account) => {
     })
 }
 
-
 export const nextAuction = async (auctionContract, id, account) => {
   return auctionContract.methods
     .endAuction(id)
-    .send({ from: account})
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })

@@ -15,7 +15,6 @@ interface ContainerProps {
   borderRadius?: string
 }
 
-
 const sway = keyframes`
     0% {
       background-position: 0% 50%;
@@ -81,7 +80,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => 
       'radial-gradient(circle, rgba(243,255,35,1) 0%, rgba(148,187,233,0) 80%), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif)'
     backgroundSize = '100% 100%'
   }
-  const previewImage = <StyledImage src={src} alt={alt}/>
+  const previewImage = <StyledImage src={src} alt={alt} />
   return (
     <Container gradient={gradientStyle} backgroundSize={backgroundSize} borderRadius={borderRadius}>
       <TierSvg>

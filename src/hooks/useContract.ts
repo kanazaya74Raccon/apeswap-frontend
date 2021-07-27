@@ -12,7 +12,7 @@ import {
   getGoldenBananaAddress,
   getTreasuryAddress,
   getNonFungibleApesAddress,
-  getAuctionAddress
+  getAuctionAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'

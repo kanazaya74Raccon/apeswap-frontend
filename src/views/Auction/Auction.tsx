@@ -34,6 +34,8 @@ const Header = styled.div`
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
+  height: 251px;
+  width: 100%;
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
@@ -41,31 +43,51 @@ const Header = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 300px;
+  }
 `
 
 const StyledMonkey = styled.img`
-  height: 299px;
-  width: 425px;
+  width: 400px;
+  height: 309.95px;
+  right: 27px;
   opacity: 0.07;
   border-radius: 0px;
   background-image: url(/images/auction-monkey.svg);
   background-repeat: no-repeat;
   margin-bottom: 50px;
+  border: 1px solid red;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 250px;
+    width: 425px;
+  }
 `
 
 const HeadingText = styled(Text)`
   position: absolute;
-  width: 585px;
-  height: 80px;
-  font-size: 70px;
-  line-height: 20px;
   text-align: center;
   letter-spacing: 0.05em;
   color: #fafafa;
+  width: 366px;
+  height: 125px;
+  font-family: Titan One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 50px;
+  line-height: 57px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 155px;
+    width: 585px;
+    height: 80px;
+    font-size: 70px;
+    line-height: 20px;
+  }
 `
 
 const Auction: React.FC = () => {
