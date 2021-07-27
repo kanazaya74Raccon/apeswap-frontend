@@ -9,21 +9,32 @@ interface QueuedCardProps {
 }
 
 const Card = styled.div`
-  width: 420px;
-  height: 235px;
+  width: 300px;
+  height: 435px;
   border-radius: 10px;
   opacity: 0.7;
   background-color: ${({ theme }) => theme.colors.card};
   display: flex;
   align-items: center;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 420px;
+    height: 235px;
+  }
 `
 
 const NfaImageHolder = styled.div`
   position: absolute;
-  height: 200px;
-  width: 200px;
-  left: 15px;
+  height: 150px;
+  width: 280px;
+  left: 10px;
+  margin-bottom: 265px;
   border-radius: 45px 0px 0px 0px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 200px;
+    width: 200px;
+    left: 15px;
+    margin-bottom: 0px;
+  }
 `
 
 const TextHolder = styled.div`
@@ -31,16 +42,26 @@ const TextHolder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 20px;
-  left: 225px;
-  width: 180px;
+  top: 300px;
+  left: 0px;
+  width: 300px;
   height: 200px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 20px;
+    left: 225px;
+    width: 180px;
+    height: 200px;
+  }
 `
 
 const ComingSoon = styled(Text)`
   position: absolute;
   top: 30px;
-  font-size: 20px;
+  font-size: 25px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 30px;
+    font-size: 20px;
+  }
 `
 
 const QueuedCard: React.FC<QueuedCardProps> = ({ nfa }) => {

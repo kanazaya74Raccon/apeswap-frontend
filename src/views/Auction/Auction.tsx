@@ -9,7 +9,7 @@ import Container from './components/Container'
 const PageWrapper = styled.div`
   display: none;
   display: flex;
-  height: 100%;
+  padding-bottom: 50px;
 `
 
 const AuctionCardsWrapper = styled.div`
@@ -37,8 +37,6 @@ const Header = styled.div`
   height: 251px;
   width: 100%;
   padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
   background-image: url(/images/auction-banner.svg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,7 +52,6 @@ const Header = styled.div`
 const StyledMonkey = styled.img`
   width: 400px;
   height: 309.95px;
-  right: 27px;
   opacity: 0.07;
   border-radius: 0px;
   background-image: url(/images/auction-monkey.svg);
@@ -62,8 +59,9 @@ const StyledMonkey = styled.img`
   margin-bottom: 50px;
   border: 1px solid red;
   ${({ theme }) => theme.mediaQueries.lg} {
-    height: 250px;
+    height: 300px;
     width: 425px;
+    right: 27px;
   }
 `
 

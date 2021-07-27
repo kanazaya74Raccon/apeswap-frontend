@@ -60,12 +60,13 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount }) => {
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />
       </NfaImageHolder>
       <Timer countdown={countdown} />
-      {isDesktop ? 
-      <Description nfa={nfa} /> :
-      <>
-      <MobileHeader nfa={nfa}/>
-      </>
-      }
+      {isDesktop ? (
+        <Description nfa={nfa} />
+      ) : (
+        <>
+          <MobileHeader nfa={nfa} />
+        </>
+      )}
       <Price currentBid={highestBid} />
       <Bid currentBid={highestBid} minBidRaise={minIncrementAmount} nfaId={nfa.index} countdown={countdown} />
     </Card>
