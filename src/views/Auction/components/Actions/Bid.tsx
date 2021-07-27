@@ -121,6 +121,7 @@ const BidInput = styled.input`
   background: none;
   width: 137px;
   height: 38px;
+  line-height: 38px;
   top: 5px;
   outline: none;
   border: none;
