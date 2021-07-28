@@ -19,7 +19,7 @@ const BidWrapper = styled.div`
   position: absolute;
   width: 300px;
   height: 64px;
-  bottom: 130px;
+  top: 430px;
   margin-left: 27.5px;
   border-radius: 10px;
   display: flex;
@@ -28,7 +28,7 @@ const BidWrapper = styled.div`
   background: F7F8F9;
   background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
   ${({ theme }) => theme.mediaQueries.lg} {
-    bottom: 30px;
+    top: 355px;
     margin-left: 350px;
   }
 `
@@ -122,6 +122,7 @@ const BidInput = styled.input`
   width: 137px;
   height: 38px;
   line-height: 38px;
+  padding: 0;
   top: 5px;
   outline: none;
   border: none;

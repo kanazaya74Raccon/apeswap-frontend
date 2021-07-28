@@ -51,11 +51,12 @@ const Header = styled.div`
 
 const StyledMonkey = styled.img`
   width: 400px;
-  height: 309.95px;
+  height: 250px;
   opacity: 0.07;
   border-radius: 0px;
   background-image: url(/images/auction-monkey.svg);
   background-repeat: no-repeat;
+  background-size: cover;
   margin-bottom: 50px;
   border: 1px solid red;
   ${({ theme }) => theme.mediaQueries.lg} {

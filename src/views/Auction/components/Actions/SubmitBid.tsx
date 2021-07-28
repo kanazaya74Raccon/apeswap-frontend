@@ -15,7 +15,7 @@ const StyledButton = styled(Button)`
   position: absolute;
   width: 314px;
   height: 50px;
-  bottom: 70px;
+  top: 505px;
   left: 22px;
   background: #ffb300;
   border-radius: 10px;
@@ -27,7 +27,7 @@ const StyledButton = styled(Button)`
   letter-spacing: 0.05em;
   text-align: center;
   ${({ theme }) => theme.mediaQueries.lg} {
-    bottom: 30px;
+    top: 355px;
     width: 200px;
     height: 64px;
     left: 675px;

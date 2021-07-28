@@ -11,16 +11,16 @@ const DescriptionWrapper = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 370px;
-  height: 250px;
-  left: 350px;
-  top: 40px;
+  width: 300px;
+  height: 180px;
+  left: 20px;
+  bottom: 20px;
 `
 const StatsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 180px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `
 const Stats = styled.div`
   height: 24px;
@@ -38,27 +38,13 @@ const Stats = styled.div`
   padding-right: 10px;
 `
 
-const NfaName = styled(Text)`
-  font-size: 36px;
-  line-height: 41px;
-`
-const NfaTitle = styled(Text)`
-  font-size: 16px;
-  line-height: 24px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  margin-top: 5px;
-  margin-left: 5px;
-`
 
 const AttributesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 300px;
   height: 200px;
   justify-content: center;
-  margin-top: 10px;
   margin-left: 5px;
 `
 
@@ -80,10 +66,6 @@ const MobileDescription: React.FC<MobileDescriptionProps> = ({ nfa }) => {
           <Stats>Tier {nfa.attributes.rarityTierNumber}</Stats>
           <Stats>Rarity {nfa.attributes.rarityOverallRank} / 1000</Stats>
         </StatsWrapper>
-        <NfaName>
-          {nfa.name} #{nfa.index}
-        </NfaName>
-        <NfaTitle>{nfa.attributes.rarityTierName}</NfaTitle>
         <AttributesWrapper>
           <Attribute>Base Color: {nfa.attributes.baseColor}</Attribute>
           <Attribute>Face Color: {nfa.attributes.faceColor}</Attribute>

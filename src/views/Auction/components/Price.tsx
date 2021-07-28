@@ -20,7 +20,7 @@ const PriceWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     width: 300px;
     height: 64px;
-    bottom: 30px;
+    top: 355px;
     margin-left: 25px;
     border-radius: 10px;
     margin-top: 0px;

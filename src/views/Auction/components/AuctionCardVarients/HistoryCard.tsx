@@ -30,13 +30,13 @@ const NfaImageHolder = styled.div`
   height: 150px;
   width: 280px;
   left: 10px;
-  margin-bottom: 265px;
+  top: 10px;
   border-radius: 45px 0px 0px 0px;
   ${({ theme }) => theme.mediaQueries.lg} {
     height: 200px;
     width: 200px;
     left: 15px;
-    margin-bottom: 0px;
+    top: 17px;
   }
 `
 
