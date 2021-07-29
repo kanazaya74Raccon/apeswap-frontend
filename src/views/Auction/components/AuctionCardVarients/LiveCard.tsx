@@ -92,7 +92,13 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minInc
       <Timer countdown={countdown} />
       {isDesktop ? <Description nfa={nfa} /> : renderMobile()}
       <Price currentBid={highestBid} />
-      <Bid currentBid={highestBid} minBidRaise={minIncrementAmount} minBidPercentage={minIncrementPercentage} nfaId={nfa.index} countdown={countdown} />
+      <Bid
+        currentBid={highestBid}
+        minBidRaise={minIncrementAmount}
+        minBidPercentage={minIncrementPercentage}
+        nfaId={nfa.index}
+        countdown={countdown}
+      />
     </Card>
   )
 }

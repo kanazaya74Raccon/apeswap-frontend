@@ -11,10 +11,21 @@ interface AuctionCardProps {
   minIncrementPercentage: number
 }
 
-const AuctionCard: React.FC<AuctionCardProps> = ({ activeAuctionId, auction, minIncrementAmount, minIncrementPercentage }) => {
+const AuctionCard: React.FC<AuctionCardProps> = ({
+  activeAuctionId,
+  auction,
+  minIncrementAmount,
+  minIncrementPercentage,
+}) => {
   const renderCard = () => {
     if (activeAuctionId === auction.auctionId) {
-      return <LiveCard auction={auction} minIncrementAmount={minIncrementAmount} minIncrementPercentage={minIncrementPercentage}/>
+      return (
+        <LiveCard
+          auction={auction}
+          minIncrementAmount={minIncrementAmount}
+          minIncrementPercentage={minIncrementPercentage}
+        />
+      )
     }
     if (activeAuctionId < auction.auctionId) {
       return <QueuedCard nfa={auction.nfa} />
