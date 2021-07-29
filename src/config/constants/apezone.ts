@@ -65,7 +65,7 @@ const ApeZone: { ifos: Ifo[] } = {
     {
       id: 'bishares',
       address: '0xf6718973d21F72845300Ee2ded2e4624CF06b06e', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       name: 'BiShares',
       subTitle: 'Decentralized Index Funds',
       description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,

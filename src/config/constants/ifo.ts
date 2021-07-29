@@ -103,7 +103,7 @@ const ifos: Ifo[] = [
   {
     id: 'bishares',
     address: '0x5B31A7124A4Abf8CA9B4090532A669783d8E11eE', // Leave empty for "Coming Soon!"
-    isActive: true,
+    isActive: false,
     name: 'BiShares',
     subTitle: 'Decentralized Index Funds',
     description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
@@ -120,7 +120,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'dragonary',
-    address: '', // Leave empty for "Coming Soon!"
+    address: '0x32BA87BC107300a17cbF5B72256aF2558a6034c9', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Dragonary',
     subTitle: 'Decentralized NFT Gaming',
