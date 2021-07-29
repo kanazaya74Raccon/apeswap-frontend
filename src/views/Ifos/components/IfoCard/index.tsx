@@ -99,7 +99,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     harvestOneBlockRelease: 0,
     harvestTwoBlockRelease: 0,
     harvestThreeBlockRelease: 0,
-    harvestFourBlockRelease: 0
+    harvestFourBlockRelease: 0,
   })
   const { account } = useWeb3React()
   const contract = useSafeIfoContract(address)
@@ -114,7 +114,16 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         // Allow IAO details to be shown before contracts are deployed
         return
       }
-      const [startBlock, endBlock, raisingAmount, totalAmount ,harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock ] = await Promise.all([
+      const [
+        startBlock,
+        endBlock,
+        raisingAmount,
+        totalAmount,
+        harvestOneBlock,
+        harvestTwoBlock,
+        harvestThreeBlock,
+        harvestFourBlock,
+      ] = await Promise.all([
         contract.methods.startBlock().call(),
         contract.methods.endBlock().call(),
         contract.methods.raisingAmount().call(),
@@ -122,7 +131,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         contract.methods.harvestReleaseBlocks(0).call(),
         contract.methods.harvestReleaseBlocks(1).call(),
         contract.methods.harvestReleaseBlocks(2).call(),
-        contract.methods.harvestReleaseBlocks(3).call()
+        contract.methods.harvestReleaseBlocks(3).call(),
       ])
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -139,7 +148,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
 
       // Get block release times in seconds
       const harvestOneBlockRelease = (harvestOneBlock - currentBlock) * BSC_BLOCK_TIME
-      const harvestTwoBlockRelease =  (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME
+      const harvestTwoBlockRelease = (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME
       const harvestThreeBlockRelease = (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME
       const harvestFourBlockRelease = (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME
 
@@ -157,7 +166,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         harvestOneBlockRelease,
         harvestTwoBlockRelease,
         harvestThreeBlockRelease,
-        harvestFourBlockRelease
+        harvestFourBlockRelease,
       })
     }
 
