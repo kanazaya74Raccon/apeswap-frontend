@@ -55,7 +55,7 @@ const NfaTitle = styled(Text)`
 const AttributesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 250px;
   height: 200px;
   justify-content: center;
   margin-top: 10px;

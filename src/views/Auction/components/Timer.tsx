@@ -62,8 +62,15 @@ interface TimerProps {
   countdown: any
 }
 
+const formatCountdown = (countdown: any): string => {
+  const formatHours = countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours.toString()
+  const formatMinutes = countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes.toString()
+  const formatSeconds = countdown.seconds < 10 ? `0${countdown.seconds.toFixed(0)}` : countdown.seconds.toFixed(0)
+  return `${formatHours}:${formatMinutes}:${formatSeconds}`
+}
+
 const Timer: React.FC<TimerProps> = ({ countdown }) => {
-  const formatTimer = `${countdown.hours}:${countdown.minutes}:${countdown.seconds.toFixed(0)}`
+  const formatTimer = formatCountdown(countdown)
   return (
     <StyledTimeWrapper>
       <HourGlass />

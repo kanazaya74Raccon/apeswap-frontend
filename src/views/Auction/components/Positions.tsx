@@ -28,7 +28,6 @@ const StyledSwiper = styled.div`
     width: auto;
   }
 `
-
 const Positions: React.FC<PositionProps> = ({ auctions }) => {
   const { setSwiper } = useSwiper()
   const indexLoad = auctions?.activeAuctionId - 1

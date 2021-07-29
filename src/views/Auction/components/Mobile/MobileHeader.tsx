@@ -18,8 +18,8 @@ const HeaderWrapper = styled.div`
 `
 
 const NfaName = styled(Text)`
-  font-size: 26px;
-  line-height: 29.77px;
+  font-size: 22px;
+  line-height: 22.77px;
 `
 const NfaTitle = styled(Text)`
   font-size: 14px;

@@ -24,8 +24,14 @@ const StyledButton = styled(Button)`
   font-style: normal;
   font-weight: 700;
   line-height: 36px;
+  focus: none;
   letter-spacing: 0.05em;
   text-align: center;
+  :focus{
+    outline: none;
+    box-shadow: none;
+    background: #ffb300;
+  }
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 355px;
     width: 200px;

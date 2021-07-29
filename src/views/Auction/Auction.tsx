@@ -58,7 +58,6 @@ const StyledMonkey = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 50px;
-  border: 1px solid red;
   ${({ theme }) => theme.mediaQueries.lg} {
     height: 300px;
     width: 425px;
@@ -89,6 +88,37 @@ const HeadingText = styled(Text)`
   }
 `
 
+const MoreInfoWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const MoreInfo = styled.div`
+  width: 135px;
+  height: 32px;
+  margin-left: 200px;
+  background: #ffb300;
+  border-radius: 10px;
+  font-family: Titan One;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: #fafafa;
+  text-align: center;
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 750px;
+  }
+`
+
 const Auction: React.FC = () => {
   const { auctions } = useAuctions()
 
@@ -100,6 +130,9 @@ const Auction: React.FC = () => {
           <HeadingText>NFA Auction</HeadingText>
         </Header>
         <PageWrapper>
+          <MoreInfoWrapper>
+            <MoreInfo>How It Works</MoreInfo>
+          </MoreInfoWrapper>
           <SplitWrapper>
             <AuctionCardsWrapper>{auctions && <Positions auctions={auctions} />}</AuctionCardsWrapper>
           </SplitWrapper>
