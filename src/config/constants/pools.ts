@@ -1541,28 +1541,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 9,
   },
   {
-    sousId: 69,
-    tokenName: 'DINOP',
-    image: 'DINOP.svg',
-    stakingTokenName: 'GNANA',
-    stakingTokenAddress: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
-      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
-    },
-    contractAddress: {
-      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x82ee644a04573aebbfbf3d7fa98f20922a5c606a',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://www.dinopark.fun/',
-    harvest: true,
-    tokenPerBlock: `1.736111111`,
-    sortOrder: 2,
-    reflect: false,
-    isFinished: false,
-    tokenDecimals: 9,
-  },
-  {
     sousId: 70,
     tokenName: 'MARU',
     image: 'MARU.png',
