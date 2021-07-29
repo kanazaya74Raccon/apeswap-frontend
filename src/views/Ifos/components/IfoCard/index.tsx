@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@apeswapfinance/uikit'
 import { BSC_BLOCK_TIME, ZERO_ADDRESS } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
+import getTimePeriods from 'utils/getTimePeriods'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { useSafeIfoContract } from 'hooks/useContract'
@@ -95,6 +96,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     totalAmount: new BigNumber(0),
     startBlockNum: 0,
     endBlockNum: 0,
+    harvestOneBlockRelease: 0,
+    harvestTwoBlockRelease: 0,
+    harvestThreeBlockRelease: 0,
+    harvestFourBlockRelease: 0
   })
   const { account } = useWeb3React()
   const contract = useSafeIfoContract(address)
@@ -109,11 +114,15 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         // Allow IAO details to be shown before contracts are deployed
         return
       }
-      const [startBlock, endBlock, raisingAmount, totalAmount] = await Promise.all([
+      const [startBlock, endBlock, raisingAmount, totalAmount ,harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock ] = await Promise.all([
         contract.methods.startBlock().call(),
         contract.methods.endBlock().call(),
         contract.methods.raisingAmount().call(),
         contract.methods.totalAmount().call(),
+        contract.methods.harvestReleaseBlocks(0).call(),
+        contract.methods.harvestReleaseBlocks(1).call(),
+        contract.methods.harvestReleaseBlocks(2).call(),
+        contract.methods.harvestReleaseBlocks(3).call()
       ])
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -128,6 +137,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           ? ((currentBlock - startBlockNum) / totalBlocks) * 100
           : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
 
+      // Get block release times in seconds
+      const harvestOneBlockRelease = (harvestOneBlock - currentBlock) * BSC_BLOCK_TIME
+      const harvestTwoBlockRelease =  (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME
+      const harvestThreeBlockRelease = (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME
+      const harvestFourBlockRelease = (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME
+
       setState({
         isLoading: currentBlock === 0,
         secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
@@ -139,6 +154,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         blocksRemaining,
         startBlockNum,
         endBlockNum,
+        harvestOneBlockRelease,
+        harvestTwoBlockRelease,
+        harvestThreeBlockRelease,
+        harvestFourBlockRelease
       })
     }
 
@@ -148,6 +167,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
+  console.log(state)
 
   return (
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
