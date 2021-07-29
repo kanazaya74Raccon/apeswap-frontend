@@ -11,7 +11,7 @@ interface BidProps {
   currentBid: string
   nfaId: number
   minBidRaise: number
-  minBidPercentage?: BigNumber
+  minBidPercentage: number
   countdown: any
 }
 
@@ -138,31 +138,43 @@ const BidInput = styled.input`
   margin-left: 20px;
 `
 
-const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, nfaId, countdown }) => {
+const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmount: number) => {
+  const percentBidRaise = getBalanceNumber(new BigNumber(minBidPercent), 3) * rawBidAmount + rawBidAmount
+  const amountBidRaise = getBalanceNumber(new BigNumber(minBidRaise)) + rawBidAmount
+  console.log(percentBidRaise)
+  console.log(amountBidRaise)
+  if (percentBidRaise > amountBidRaise) {
+    return percentBidRaise
+  }
+  return amountBidRaise
+}
+
+const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nfaId, countdown }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
-  const rawMinBidRaise = getBalanceNumber(new BigNumber(minBidRaise))
+  const rawMinBidRaise = CalculateMinBid(minBidRaise, minBidPercentage, rawBidAmount)
   const [bidAmount, setBidAmount] = useState(rawBidAmount + rawMinBidRaise)
+  console.log(bidAmount)
   const bnbBalance = useTokenBalance(ZERO_ADDRESS)
   const rawBnbBalance = getBalanceNumber(bnbBalance).toFixed(6)
 
   const minBid = () => {
-    setBidAmount(rawBidAmount + rawMinBidRaise)
+    setBidAmount(rawMinBidRaise)
   }
 
   const addBid = () => {
-    setBidAmount(bidAmount + rawMinBidRaise)
+    setBidAmount(CalculateMinBid(minBidRaise, minBidPercentage, bidAmount))
   }
 
   const subBid = () => {
-    setBidAmount(bidAmount - rawMinBidRaise)
+    setBidAmount(CalculateMinBid(minBidRaise, minBidPercentage, bidAmount))
   }
 
   const updateBid = (e) => {
-    setBidAmount(e.target.value)
+    setBidAmount(e.target.value ? parseFloat(e.target.value) : 0)
   }
 
   useEffect(() => {
-    setBidAmount(rawBidAmount + rawMinBidRaise)
+    setBidAmount(rawMinBidRaise)
   }, [rawBidAmount, rawMinBidRaise])
 
   return (

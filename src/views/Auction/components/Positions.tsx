@@ -57,6 +57,7 @@ const Positions: React.FC<PositionProps> = ({ auctions }) => {
               activeAuctionId={auctions.activeAuctionId}
               auction={auction}
               minIncrementAmount={auctions.minIncrementAmount}
+              minIncrementPercentage={auctions.minIncrementPercentage}
             />
           </SwiperSlide>
         ))}

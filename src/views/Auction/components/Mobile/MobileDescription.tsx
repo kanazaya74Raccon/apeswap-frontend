@@ -38,7 +38,6 @@ const Stats = styled.div`
   padding-right: 10px;
 `
 
-
 const AttributesWrapper = styled.div`
   display: flex;
   flex-direction: column;

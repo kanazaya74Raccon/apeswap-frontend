@@ -16,6 +16,7 @@ import MobileDescription from '../Mobile/MobileDescription'
 interface LiveCardProps {
   auction: Auction
   minIncrementAmount: number
+  minIncrementPercentage: number
 }
 
 interface CardProps {
@@ -54,7 +55,7 @@ const NfaImageHolder = styled.div`
   }
 `
 
-const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount }) => {
+const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minIncrementPercentage }) => {
   const { isXl } = useMatchBreakpoints()
   const [expanded, setExpanded] = useState(false)
   const isDesktop = isXl
@@ -89,13 +90,9 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount }) => {
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />
       </NfaImageHolder>
       <Timer countdown={countdown} />
-      {isDesktop ? (
-        <Description nfa={nfa} />
-      ) : (
-        renderMobile()
-      )}
+      {isDesktop ? <Description nfa={nfa} /> : renderMobile()}
       <Price currentBid={highestBid} />
-      <Bid currentBid={highestBid} minBidRaise={minIncrementAmount} nfaId={nfa.index} countdown={countdown} />
+      <Bid currentBid={highestBid} minBidRaise={minIncrementAmount} minBidPercentage={minIncrementPercentage} nfaId={nfa.index} countdown={countdown} />
     </Card>
   )
 }

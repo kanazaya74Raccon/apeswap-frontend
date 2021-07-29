@@ -27,7 +27,7 @@ const StyledButton = styled(Button)`
   focus: none;
   letter-spacing: 0.05em;
   text-align: center;
-  :focus{
+  :focus {
     outline: none;
     box-shadow: none;
     background: #ffb300;
