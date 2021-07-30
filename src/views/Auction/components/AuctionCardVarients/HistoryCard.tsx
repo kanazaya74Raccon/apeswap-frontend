@@ -98,7 +98,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   const { nfa, highestBid } = auction
   const rawBidAmount = getBalanceNumber(new BigNumber(highestBid))
   const bnbPrice = usePriceBnbBusd()
-  const dollarValue = (getBalanceNumber(bnbPrice) * rawBidAmount).toFixed(2)
+  const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
 
   return (
     <Card>
