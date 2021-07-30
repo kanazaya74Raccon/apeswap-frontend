@@ -4,7 +4,6 @@ import { getAuctionAddress } from 'utils/addressHelpers'
 import { AuctionsOverall, Auction } from 'state/types'
 import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
-import { getBalanceNumber } from 'utils/formatBalance'
 
 export const fetchAuctionDetails = async () => {
   const auctionContract = getAuctionAddress()
@@ -42,7 +41,7 @@ export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
     auctionFeePercent,
     pushedAuctions,
   ] = await fetchAuctionDetails()
-  const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber() - 1)].map((e, i) => {
+  const getAuctionCalls = [...Array(pushedAuctions.length)].map((e, i) => {
     return {
       address: getAuctionAddress(),
       name: 'getAuctionWithPosition',
