@@ -133,27 +133,35 @@ const BidInput = styled.input`
   line-height: 10px;
   display: flex;
   align-items: center;
+  margin: 0;
+  -webkit-appearance: none;
   letter-spacing: 0.05em;
   color: ${(props) => props.theme.colors.text};
   margin-left: 20px;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmount: number) => {
   const percentBidRaise = getBalanceNumber(new BigNumber(minBidPercent), 3) * rawBidAmount + rawBidAmount
   const amountBidRaise = getBalanceNumber(new BigNumber(minBidRaise)) + rawBidAmount
-  console.log(percentBidRaise)
-  console.log(amountBidRaise)
   if (percentBidRaise > amountBidRaise) {
     return percentBidRaise
   }
-  return amountBidRaise
+  return parseFloat(amountBidRaise.toFixed(6))
 }
 
 const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nfaId, countdown }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const rawMinBidRaise = CalculateMinBid(minBidRaise, minBidPercentage, rawBidAmount)
+  const rawMinBidRaiseAmount = getBalanceNumber(new BigNumber(minBidRaise)) 
   const [bidAmount, setBidAmount] = useState(rawBidAmount + rawMinBidRaise)
-  console.log(bidAmount)
   const bnbBalance = useTokenBalance(ZERO_ADDRESS)
   const rawBnbBalance = getBalanceNumber(bnbBalance).toFixed(6)
 
@@ -166,11 +174,14 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
   }
 
   const subBid = () => {
-    setBidAmount(CalculateMinBid(minBidRaise, minBidPercentage, bidAmount))
+    if (rawMinBidRaise < bidAmount) {
+      const newBid = parseFloat((bidAmount - rawMinBidRaiseAmount).toFixed(6))
+      setBidAmount(newBid)
+    }
   }
 
   const updateBid = (e) => {
-    setBidAmount(e.target.value ? parseFloat(e.target.value) : 0)
+    setBidAmount(parseFloat(e.target.value))
   }
 
   useEffect(() => {
@@ -180,7 +191,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
   return (
     <>
       <BidWrapper>
-        <BidInput type="text" value={bidAmount} onChange={updateBid} />
+        <BidInput type="number" value={bidAmount} onChange={updateBid} />
         <MinButton>
           <ButtonText onClick={minBid}>Min</ButtonText>
         </MinButton>

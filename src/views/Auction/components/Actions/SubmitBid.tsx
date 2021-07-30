@@ -28,8 +28,8 @@ const StyledButton = styled(Button)`
   letter-spacing: 0.05em;
   text-align: center;
   :focus {
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
     background: #ffb300;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
