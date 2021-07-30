@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Auction } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
+import { useWeb3React } from '@web3-react/core'
 import { useCurrentTime } from 'hooks/useTimer'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import Image from '../../../Nft/components/Image'
@@ -21,6 +22,7 @@ interface LiveCardProps {
 
 interface CardProps {
   expanded: boolean
+  highestBidFlag: boolean
 }
 
 const Card = styled.div<CardProps>`
@@ -30,6 +32,7 @@ const Card = styled.div<CardProps>`
   background: ${({ theme }) => theme.colors.card};
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1), inset 355px 4px 250px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
+  box-shadow: ${(props) => (props.highestBidFlag && '0px 0px 20px #ffb300')};
   ${({ theme }) => theme.mediaQueries.lg} {
     height: 450px;
     width: 900px;
@@ -59,7 +62,9 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minInc
   const { isXl } = useMatchBreakpoints()
   const [expanded, setExpanded] = useState(false)
   const isDesktop = isXl
-  const { nfa, highestBid } = auction
+  const { nfa, highestBid, highestBidder } = auction
+  const { account } = useWeb3React()
+  const highestBidFlag = highestBidder === account
   const countdown = getTimePeriods(auction.endTime - useCurrentTime() / 1000)
 
   const handleClick = () => {
@@ -85,7 +90,7 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minInc
   }
 
   return (
-    <Card expanded={expanded}>
+    <Card expanded={expanded} highestBidFlag={highestBidFlag}>
       <NfaImageHolder>
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />
       </NfaImageHolder>

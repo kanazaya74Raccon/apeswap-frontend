@@ -113,7 +113,7 @@ interface TimerProps {
 const Price: React.FC<TimerProps> = ({ currentBid }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const bnbPrice = usePriceBnbBusd()
-  const dollarValue = (getBalanceNumber(bnbPrice,0) * rawBidAmount).toFixed(2)
+  const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
 
   return (
     <PriceWrapper>
