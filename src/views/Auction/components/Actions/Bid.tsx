@@ -160,7 +160,7 @@ const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmoun
 const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nfaId, countdown }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const rawMinBidRaise = CalculateMinBid(minBidRaise, minBidPercentage, rawBidAmount)
-  const rawMinBidRaiseAmount = getBalanceNumber(new BigNumber(minBidRaise)) 
+  const rawMinBidRaiseAmount = getBalanceNumber(new BigNumber(minBidRaise))
   const [bidAmount, setBidAmount] = useState(rawBidAmount + rawMinBidRaise)
   const bnbBalance = useTokenBalance(ZERO_ADDRESS)
   const rawBnbBalance = getBalanceNumber(bnbBalance).toFixed(6)
