@@ -41,7 +41,7 @@ export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
     auctionFeePercent,
     pushedAuctions,
   ] = await fetchAuctionDetails()
-  const getAuctionCalls = [...Array(pushedAuctions.length)].map((e, i) => {
+  const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {
     return {
       address: getAuctionAddress(),
       name: 'getAuctionWithPosition',
