@@ -1562,6 +1562,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 71,
+    tokenName: 'PERA',
+    image: 'PERA.png',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xE6C5DAfc5BAeb927Bc56B3a4154eDeCFDbB937d6',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://pera.finance',
+    harvest: true,
+    tokenPerBlock: `0.462962962962962962`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
