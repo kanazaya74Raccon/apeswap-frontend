@@ -133,7 +133,7 @@ const Auction: React.FC = () => {
         <PageWrapper>
           <MoreInfoWrapper>
             <a
-              href='https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house'
+              href="https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -17,14 +17,10 @@ const PositinBox = styled.div`
   position: absolute;
   width: 100%;
   height: 600px;
-  top: 980px;
+  top: 870px;
   display: flex;
   align-items: center;
   justify-content: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 600px;
-    top: 870px;
-  }
 `
 
 const HistoryWrapper = styled.div`
@@ -181,11 +177,7 @@ const History: React.FC = () => {
       Array.isArray(historyData) &&
       historyData?.slice(prevSlice, curSlice).map((data, i) =>
         !(i % 2) ? (
-          <a
-            href={`https://bscscan.com/tx/${data.transactionHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={`https://bscscan.com/tx/${data.transactionHash}`} target="_blank" rel="noopener noreferrer">
             <Row background>
               <Column>{data.tokenId}</Column>
               <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
@@ -196,11 +188,7 @@ const History: React.FC = () => {
             </Row>
           </a>
         ) : (
-          <a
-            href={`https://bscscan.com/tx/${data.transactionHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={`https://bscscan.com/tx/${data.transactionHash}`} target="_blank" rel="noopener noreferrer">
             <Row>
               <Column>{data.tokenId}</Column>
               <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
