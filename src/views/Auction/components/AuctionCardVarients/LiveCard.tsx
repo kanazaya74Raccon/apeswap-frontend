@@ -32,6 +32,7 @@ const Card = styled.div<CardProps>`
   background: ${({ theme }) => theme.colors.card};
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1), inset 355px 4px 250px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
+  margin-bottom: 100px;
   box-shadow: ${(props) => props.highestBidFlag && '0px 0px 20px #ffb300'};
   ${({ theme }) => theme.mediaQueries.lg} {
     height: 450px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, ArrowBackIcon, ArrowForwardIcon } from '@apeswapfinance/uikit'
+import { Text, ArrowBackIcon, ArrowForwardIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useGetNfaAuctionHistory } from 'hooks/api'
@@ -17,10 +17,14 @@ const PositinBox = styled.div`
   position: absolute;
   width: 100%;
   height: 600px;
-  top: 870px;
+  top: 980px;
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 600px;
+    top: 870px;
+  }
 `
 
 const HistoryWrapper = styled.div`
@@ -134,6 +138,8 @@ const StyledForwardArrow = styled(ArrowForwardIcon)<ArrowProps>`
 const ROWS_PER_PAGE = 13
 
 const History: React.FC = () => {
+  const { isXl } = useMatchBreakpoints()
+  const isDesktop = isXl
   const historyData = useGetNfaAuctionHistory()
   const [prevSlice, setPrevSlice] = useState(0)
   const [curSlice, setCurSlice] = useState(ROWS_PER_PAGE)
@@ -199,20 +205,22 @@ const History: React.FC = () => {
 
   return (
     <PositinBox>
-      <HistoryWrapper>
-        <HistoryTitle>History</HistoryTitle>
-        <ColumnHeadersWrapper>
-          <HeaderText>NFA Index</HeaderText>
-          <HeaderText>Amount</HeaderText>
-          <HeaderText>Bidder</HeaderText>
-          <HeaderText>Block Number</HeaderText>
-        </ColumnHeadersWrapper>
-        <BodyWrapper>{renderRows()}</BodyWrapper>
-        <ArrowsWrapper>
-          <StyledBackArrow active={backArrowFlag} onClick={handleBackArrow} />
-          <StyledForwardArrow active={forwardArrowFlag} onClick={handleForwardArrow} />
-        </ArrowsWrapper>
-      </HistoryWrapper>
+      {isDesktop && (
+        <HistoryWrapper>
+          <HistoryTitle>History</HistoryTitle>
+          <ColumnHeadersWrapper>
+            <HeaderText>NFA Index</HeaderText>
+            <HeaderText>Amount</HeaderText>
+            <HeaderText>Bidder</HeaderText>
+            <HeaderText>Block Number</HeaderText>
+          </ColumnHeadersWrapper>
+          <BodyWrapper>{renderRows()}</BodyWrapper>
+          <ArrowsWrapper>
+            <StyledBackArrow active={backArrowFlag} onClick={handleBackArrow} />
+            <StyledForwardArrow active={forwardArrowFlag} onClick={handleForwardArrow} />
+          </ArrowsWrapper>
+        </HistoryWrapper>
+      )}
     </PositinBox>
   )
 }

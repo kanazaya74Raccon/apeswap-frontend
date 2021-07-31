@@ -96,8 +96,6 @@ const CurrentBidDollarWrapper = styled(Text)`
   align-items: center;
   letter-spacing: 0.05em;
   color: #38a611;
-  ${({ theme }) => theme.mediaQueries.lg} {
-  }
 `
 
 const HighestBidder = styled.div`
