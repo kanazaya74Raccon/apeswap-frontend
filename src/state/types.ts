@@ -93,6 +93,7 @@ export interface AuctionsOverall {
   minIncrementAmount: number
   minIncrementPercentage: number
   pushedAuctions: number
+  auctionsRemovedCount: number
   auctions: Auction[]
 }
 

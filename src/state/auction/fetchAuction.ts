@@ -56,6 +56,7 @@ export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
     minIncrementAmount: new BigNumber(minIncrementAmount).toNumber(),
     minIncrementPercentage: new BigNumber(minIncrementPercentage).toNumber(),
     pushedAuctions: new BigNumber(pushedAuctions).toNumber(),
+    auctionsRemovedCount: allAuctions.filter((auction) => auction.auction.seller === ZERO_ADDRESS).length,
     auctions: allAuctions
       .map(
         (auction, i): Auction => {
