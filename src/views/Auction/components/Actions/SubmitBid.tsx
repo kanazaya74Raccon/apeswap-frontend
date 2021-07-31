@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import useReward from 'hooks/useReward'
 import useBid from 'hooks/useBid'
 import useNextAuction from 'hooks/useNextAuction'
+import { useToast } from 'state/hooks'
 
 interface BidProps {
   currentBid: number
@@ -43,17 +44,16 @@ const StyledButton = styled(Button)`
 const SubmitBid: React.FC<BidProps> = ({ currentBid, nfaId, countdown }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const rewardRef = useRef(null)
-  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
   const onBid = useReward(rewardRef, useBid().onBid)
+  const { toastError } = useToast()
   const onNextAuction = useReward(rewardRef, useNextAuction().onNextAuction)
   return countdown.seconds > 0 ? (
     <StyledButton
+      disabled={pendingTx}
       onClick={async () => {
         setPendingTx(true)
-        setTypeOfReward('rewardBanana')
         await onBid(currentBid, nfaId).catch(() => {
-          setTypeOfReward('error')
-          rewardRef.current?.rewardMe()
+          toastError('Bidding Error', 'It is likely you were outbid')
         })
         setPendingTx(false)
       }}
@@ -62,12 +62,11 @@ const SubmitBid: React.FC<BidProps> = ({ currentBid, nfaId, countdown }) => {
     </StyledButton>
   ) : (
     <StyledButton
+      disabled={pendingTx}
       onClick={async () => {
         setPendingTx(true)
-        setTypeOfReward('rewardBanana')
         await onNextAuction(nfaId).catch(() => {
-          setTypeOfReward('error')
-          rewardRef.current?.rewardMe()
+          toastError('Transaction Error', 'Something went wrong submitting transaction')
         })
         setPendingTx(false)
       }}
