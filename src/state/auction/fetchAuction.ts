@@ -4,6 +4,7 @@ import { getAuctionAddress } from 'utils/addressHelpers'
 import { AuctionsOverall, Auction } from 'state/types'
 import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
+import { ZERO_ADDRESS } from 'config'
 
 export const fetchAuctionDetails = async () => {
   const auctionContract = getAuctionAddress()
@@ -26,7 +27,7 @@ export const fetchAuctionDetails = async () => {
     },
     {
       address: auctionContract,
-      name: 'pushedAuctions',
+      name: 'lastNodeId',
     },
   ]
   const auctionDetails = await multicall(auctionAbi, call)
@@ -55,20 +56,24 @@ export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
     minIncrementAmount: new BigNumber(minIncrementAmount).toNumber(),
     minIncrementPercentage: new BigNumber(minIncrementPercentage).toNumber(),
     pushedAuctions: new BigNumber(pushedAuctions).toNumber(),
-    auctions: allAuctions.map(
-      (auction, i): Auction => ({
-        auctionId: i + 1,
-        nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
-        seller: auction.auction.seller,
-        highestBidder: auction.auction.highestBidder,
-        highestBid: auction.auction.highestBid.toString(),
-        timeExtension: auction.auction.timeExtension.toNumber(),
-        timeLength: auction.auction.timeLength.toNumber(),
-        minToExtend: auction.auction.minToExtend.toNumber(),
-        startTime: auction.auction.startTime.toNumber(),
-        endTime: auction.auction.endTime.toNumber(),
-      }),
-    ),
+    auctions: allAuctions
+      .map(
+        (auction, i): Auction => {
+          return {
+            auctionId: i + 1,
+            nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
+            seller: auction.auction.seller,
+            highestBidder: auction.auction.highestBidder,
+            highestBid: auction.auction.highestBid.toString(),
+            timeExtension: auction.auction.timeExtension.toNumber(),
+            timeLength: auction.auction.timeLength.toNumber(),
+            minToExtend: auction.auction.minToExtend.toNumber(),
+            startTime: auction.auction.startTime.toNumber(),
+            endTime: auction.auction.endTime.toNumber(),
+          }
+        },
+      )
+      .filter(({ seller }) => seller !== ZERO_ADDRESS),
   }
   return auctionData
 }
