@@ -181,23 +181,35 @@ const History: React.FC = () => {
       Array.isArray(historyData) &&
       historyData?.slice(prevSlice, curSlice).map((data, i) =>
         !(i % 2) ? (
-          <Row background>
-            <Column>{data.tokenId}</Column>
-            <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
-            <Column>
-              {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
-            </Column>
-            <Column>{data.blockNumber}</Column>
-          </Row>
+          <a
+            href={`https://bscscan.com/tx/${data.transactionHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Row background>
+              <Column>{data.tokenId}</Column>
+              <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
+              <Column>
+                {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
+              </Column>
+              <Column>{data.blockNumber}</Column>
+            </Row>
+          </a>
         ) : (
-          <Row>
-            <Column>{data.tokenId}</Column>
-            <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
-            <Column>
-              {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
-            </Column>
-            <Column>{data.blockNumber}</Column>
-          </Row>
+          <a
+            href={`https://bscscan.com/tx/${data.transactionHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Row>
+              <Column>{data.tokenId}</Column>
+              <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
+              <Column>
+                {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
+              </Column>
+              <Column>{data.blockNumber}</Column>
+            </Row>
+          </a>
         ),
       )
     return rows

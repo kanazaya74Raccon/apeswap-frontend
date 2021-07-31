@@ -123,7 +123,6 @@ const MoreInfo = styled.div`
 
 const Auction: React.FC = () => {
   const { auctions } = useAuctions()
-
   return (
     <SwiperProvider>
       <Container>
@@ -133,7 +132,13 @@ const Auction: React.FC = () => {
         </Header>
         <PageWrapper>
           <MoreInfoWrapper>
-            <MoreInfo>How It Works</MoreInfo>
+            <a
+              href='https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house'
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MoreInfo>How It Works</MoreInfo>
+            </a>
           </MoreInfoWrapper>
           <SplitWrapper>
             <AuctionCardsWrapper>{auctions && <Positions auctions={auctions} />}</AuctionCardsWrapper>
