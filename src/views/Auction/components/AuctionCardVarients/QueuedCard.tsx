@@ -56,10 +56,20 @@ const TextHolder = styled.div`
 
 const ComingSoon = styled(Text)`
   position: absolute;
-  top: 30px;
+  top: 50px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
-    top: 30px;
+    top: 50px;
+    font-size: 20px;
+  }
+`
+
+const NameText = styled(Text)`
+  position: absolute;
+  top: 20px;
+  font-size: 25px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 20px;
     font-size: 20px;
   }
 `
@@ -69,6 +79,7 @@ const QueuedCard: React.FC<QueuedCardProps> = ({ nfa }) => {
     <Card>
       <TextHolder>
         <ComingSoon>Coming Soon</ComingSoon>
+        <NameText>#{nfa.index}</NameText>
       </TextHolder>
       <NfaImageHolder>
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />

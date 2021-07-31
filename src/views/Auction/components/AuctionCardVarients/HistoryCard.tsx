@@ -65,10 +65,20 @@ const TextHolder = styled.div`
 
 const BoughtText = styled(Text)`
   position: absolute;
-  top: 25px;
+  top: 36px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 30px;
+    font-size: 20px;
+  }
+`
+
+const NameText = styled(Text)`
+  position: absolute;
+  top: 8px;
+  font-size: 25px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 0px;
     font-size: 20px;
   }
 `
@@ -127,6 +137,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   return (
     <Card highestBidFlag={highestBidFlag}>
       <TextHolder>
+        <NameText>#{nfa.index}</NameText>
         <BoughtText>Bought For</BoughtText>
         <BidAmount> {rawBidAmount.toFixed(3)} BNB</BidAmount>
         <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
