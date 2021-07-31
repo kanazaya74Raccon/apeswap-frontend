@@ -152,7 +152,7 @@ const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmoun
   const percentBidRaise = getBalanceNumber(new BigNumber(minBidPercent), 3) * rawBidAmount + rawBidAmount
   const amountBidRaise = getBalanceNumber(new BigNumber(minBidRaise)) + rawBidAmount
   if (percentBidRaise > amountBidRaise) {
-    return percentBidRaise
+    return parseFloat(percentBidRaise.toFixed(4))
   }
   return parseFloat(amountBidRaise.toFixed(6))
 }

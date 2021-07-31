@@ -171,27 +171,29 @@ const History: React.FC = () => {
   }
 
   const renderRows = () => {
-    const rows = historyData?.slice(prevSlice, curSlice).map((data, i) =>
-      !(i % 2) ? (
-        <Row background>
-          <Column>{data.tokenId}</Column>
-          <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
-          <Column>
-            {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
-          </Column>
-          <Column>{data.blockNumber}</Column>
-        </Row>
-      ) : (
-        <Row>
-          <Column>{data.tokenId}</Column>
-          <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
-          <Column>
-            {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
-          </Column>
-          <Column>{data.blockNumber}</Column>
-        </Row>
-      ),
-    )
+    const rows =
+      Array.isArray(historyData) &&
+      historyData?.slice(prevSlice, curSlice).map((data, i) =>
+        !(i % 2) ? (
+          <Row background>
+            <Column>{data.tokenId}</Column>
+            <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
+            <Column>
+              {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
+            </Column>
+            <Column>{data.blockNumber}</Column>
+          </Row>
+        ) : (
+          <Row>
+            <Column>{data.tokenId}</Column>
+            <Column>{getBalanceNumber(new BigNumber(data.amount)).toFixed(2)} BNB</Column>
+            <Column>
+              {data.bidder.slice(0, 4)}...{data.bidder.slice(data.bidder.length - 4, data.bidder.length)}
+            </Column>
+            <Column>{data.blockNumber}</Column>
+          </Row>
+        ),
+      )
     return rows
   }
 
