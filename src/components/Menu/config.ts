@@ -44,7 +44,16 @@ const config: MenuEntry[] = [
   {
     label: 'NFA',
     icon: 'apeNFTIcon',
-    href: '/nft',
+    items: [
+      {
+        label: 'List',
+        href: '/nft',
+      },
+      {
+        label: 'Auction',
+        href: '/auction',
+      },
+    ],
   },
   {
     label: 'GNANA',

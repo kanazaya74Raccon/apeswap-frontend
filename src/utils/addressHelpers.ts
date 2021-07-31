@@ -41,3 +41,6 @@ export const getRabbitMintingFarmAddress = () => {
 export const getClaimRefundAddress = () => {
   return addresses.claimRefund[chainId]
 }
+export const getAuctionAddress = () => {
+  return addresses.auction[chainId]
+}

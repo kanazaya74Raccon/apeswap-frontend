@@ -58,6 +58,19 @@ export interface Stats {
   tvl: number
 }
 
+export interface Auction {
+  auctionId: number
+  nfa?: Nft
+  seller: string
+  highestBidder: string
+  highestBid: string
+  timeExtension: BigNumber
+  timeLength: BigNumber
+  minToExtend: BigNumber
+  startTime: number
+  endTime: number
+}
+
 export interface FarmPool {
   address: string
   id: number
@@ -72,6 +85,16 @@ export interface FarmPool {
   dollarsEarnedPerWeek: number
   dollarsEarnedPerMonth: number
   dollarsEarnedPerYear: number
+}
+
+export interface AuctionsOverall {
+  activeAuctionId: number
+  auctionFeePercent: number
+  minIncrementAmount: number
+  minIncrementPercentage: number
+  pushedAuctions: number
+  auctionsRemovedCount: number
+  auctions: Auction[]
 }
 
 export interface StatsOverall {
@@ -153,6 +176,12 @@ export interface StatsState {
   data: Stats
 }
 
+export interface AuctionsState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: AuctionsOverall
+}
+
 export interface StatsOverallState {
   isInitialized: boolean
   isLoading: boolean
@@ -187,4 +216,5 @@ export interface State {
   stats: StatsState
   statsOverall: StatsOverallState
   teams: TeamsState
+  auctions: AuctionsState
 }
