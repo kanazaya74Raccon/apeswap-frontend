@@ -1,12 +1,34 @@
 [
   {
     "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "AdminWithdrawDividends",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
     "inputs": [
-      { "indexed": false, "internalType": "address", "name": "winner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "seller", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "startingBid", "type": "uint256" },
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "AuctionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "winner", "type": "address" },
       { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" }
     ],
     "name": "AuctionEnded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "bool", "name": "openToPublic", "type": "bool" }],
+    "name": "AuctionOpened",
     "type": "event"
   },
   {
@@ -20,20 +42,47 @@
   },
   {
     "anonymous": false,
-    "inputs": [
-      { "indexed": false, "internalType": "address", "name": "seller", "type": "address" },
-      { "indexed": false, "internalType": "uint256", "name": "startingBid", "type": "uint256" },
-      { "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }
-    ],
-    "name": "AuctionStarted",
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "ChangeFeePercent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "ChangeMaxAuctionTimeLength",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "ChangeMinAuctionTimeLength",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "ChangeMinIncrementAmount",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "ChangeMinIncrementPercentage",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "FeePercentChanged",
     "type": "event"
   },
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": false, "internalType": "address", "name": "bidder", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "bidder", "type": "address" },
       { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "uint256", "name": "auctionNumber", "type": "uint256" }
     ],
     "name": "HighestBidIncreased",
     "type": "event"
@@ -69,6 +118,12 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }],
+    "name": "TakerWithdrawDividends",
+    "type": "event"
+  },
+  {
     "inputs": [],
     "name": "DEFAULT_ADMIN_ROLE",
     "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
@@ -84,10 +139,18 @@
   },
   {
     "inputs": [],
+    "name": "GOV_ROLE",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "activeAuction",
     "outputs": [
       {
         "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
           { "internalType": "address", "name": "seller", "type": "address" },
           { "internalType": "address", "name": "highestBidder", "type": "address" },
           { "internalType": "uint256", "name": "highestBid", "type": "uint256" },
@@ -152,8 +215,18 @@
   },
   {
     "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "auctionPosition",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "auctions",
+    "outputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "address", "name": "seller", "type": "address" },
+      { "internalType": "address", "name": "highestBidder", "type": "address" },
+      { "internalType": "uint256", "name": "highestBid", "type": "uint256" },
+      { "internalType": "uint256", "name": "timeExtension", "type": "uint256" },
+      { "internalType": "uint256", "name": "timeLength", "type": "uint256" },
+      { "internalType": "uint256", "name": "minToExtend", "type": "uint256" },
+      { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+      { "internalType": "uint256", "name": "endTime", "type": "uint256" }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -167,6 +240,13 @@
   {
     "inputs": [{ "internalType": "uint256", "name": "_auctionFeePercent", "type": "uint256" }],
     "name": "changeFeePercent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_maxAuctionTimeLength", "type": "uint256" }],
+    "name": "changeMaxAuctionTimeLength",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -201,6 +281,20 @@
   },
   {
     "inputs": [{ "internalType": "uint256", "name": "_id", "type": "uint256" }],
+    "name": "emergencyNftWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }],
+    "name": "emergencyWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_id", "type": "uint256" }],
     "name": "endAuction",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -212,6 +306,7 @@
     "outputs": [
       {
         "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
           { "internalType": "address", "name": "seller", "type": "address" },
           { "internalType": "address", "name": "highestBidder", "type": "address" },
           { "internalType": "uint256", "name": "highestBid", "type": "uint256" },
@@ -245,6 +340,7 @@
     "outputs": [
       {
         "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
           { "internalType": "address", "name": "seller", "type": "address" },
           { "internalType": "address", "name": "highestBidder", "type": "address" },
           { "internalType": "uint256", "name": "highestBid", "type": "uint256" },
@@ -255,7 +351,7 @@
           { "internalType": "uint256", "name": "endTime", "type": "uint256" }
         ],
         "internalType": "struct Auction.NftAuction[10]",
-        "name": "auctions",
+        "name": "activeAuctions",
         "type": "tuple[10]"
       },
       {
@@ -318,9 +414,10 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "_nftContractAddress", "type": "address" },
+      { "internalType": "contract IERC721", "name": "_nftContract", "type": "address" },
       { "internalType": "uint256", "name": "_auctionFeePercent", "type": "uint256" },
       { "internalType": "uint256", "name": "_minAuctionTimeLength", "type": "uint256" },
+      { "internalType": "uint256", "name": "_maxAuctionTimeLength", "type": "uint256" },
       { "internalType": "uint256", "name": "_auctionDividendShare", "type": "uint256" }
     ],
     "name": "initialize",
@@ -330,8 +427,25 @@
   },
   {
     "inputs": [],
+    "name": "maxAuctionTimeLength",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "minAuctionTimeLength",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "minBid",
+    "outputs": [
+      { "internalType": "uint256", "name": "minIncrement", "type": "uint256" },
+      { "internalType": "uint256", "name": "minimumBid", "type": "uint256" }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -351,8 +465,15 @@
   },
   {
     "inputs": [],
-    "name": "nftContractAddress",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "nftContract",
+    "outputs": [{ "internalType": "contract IERC721", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "nftIdPosition",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -365,18 +486,6 @@
       { "internalType": "uint256", "name": "next", "type": "uint256" }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "", "type": "address" },
-      { "internalType": "address", "name": "", "type": "address" },
-      { "internalType": "uint256", "name": "", "type": "uint256" },
-      { "internalType": "bytes", "name": "", "type": "bytes" }
-    ],
-    "name": "onERC721Received",
-    "outputs": [{ "internalType": "bytes4", "name": "", "type": "bytes4" }],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -431,22 +540,6 @@
     "name": "revokeRole",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "runningAuction",
-    "outputs": [
-      { "internalType": "address", "name": "seller", "type": "address" },
-      { "internalType": "address", "name": "highestBidder", "type": "address" },
-      { "internalType": "uint256", "name": "highestBid", "type": "uint256" },
-      { "internalType": "uint256", "name": "timeExtension", "type": "uint256" },
-      { "internalType": "uint256", "name": "timeLength", "type": "uint256" },
-      { "internalType": "uint256", "name": "minToExtend", "type": "uint256" },
-      { "internalType": "uint256", "name": "startTime", "type": "uint256" },
-      { "internalType": "uint256", "name": "endTime", "type": "uint256" }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {

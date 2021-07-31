@@ -5,11 +5,13 @@ import SwiperProvider from 'contexts/SwiperProvider'
 import { useAuctions } from 'state/hooks'
 import Positions from './components/Positions'
 import Container from './components/Container'
+import History from './components/History'
 
 const PageWrapper = styled.div`
   display: none;
   display: flex;
-  padding-bottom: 50px;
+  padding-bottom: 200px;
+  margin-bottom: 100px;
 `
 
 const AuctionCardsWrapper = styled.div`
@@ -136,6 +138,7 @@ const Auction: React.FC = () => {
           <SplitWrapper>
             <AuctionCardsWrapper>{auctions && <Positions auctions={auctions} />}</AuctionCardsWrapper>
           </SplitWrapper>
+          <History />
         </PageWrapper>
       </Container>
     </SwiperProvider>

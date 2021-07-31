@@ -118,9 +118,6 @@ const HighestBidder = styled.div`
   }
 `
 
-
-
-
 const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   const { nfa, highestBid, highestBidder } = auction
   const { account } = useWeb3React()

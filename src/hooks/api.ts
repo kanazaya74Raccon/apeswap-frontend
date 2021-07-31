@@ -43,6 +43,14 @@ export interface SaleHistory {
   blockNumber: number
 }
 
+export interface AuctionHistory {
+  bidder: string
+  amount: number
+  tokenId: number
+  transactionHash: string
+  blockNumber: number
+}
+
 export const useGetNfaSales = (id: number) => {
   const [sale, setSale] = useState<SaleHistory[] | null>(null)
 
@@ -61,6 +69,25 @@ export const useGetNfaSales = (id: number) => {
   }, [setSale, id])
   return sale
 }
+
+export const useGetNfaAuctionHistory = () => {
+  const [history, setHistory] = useState<AuctionHistory[] | null>(null)
+  const { fastRefresh } = useRefresh()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}/nfas/latestBids`)
+        const responsedata: AuctionHistory[] = await response.json()
+        setHistory(responsedata)
+      } catch (error) {
+        console.error('Unable to fetch data:', error)
+      }
+    }
+    fetchData()
+  }, [setHistory, fastRefresh])
+  return history
+}
+
 
 export const useGetStats = () => {
   const [data, setData] = useState<ApiStatResponse | null>(null)

@@ -69,6 +69,6 @@ export default {
   },
   auction: {
     56: '0x45a1bDa910b9c1c45b7042Bd1515DBa316910E82',
-    97: '0x436bdDb041c46245D57d0e82B2fb5a81Da7df3df',
+    97: '0xE67c71f7D629974ff5fbcbB4D32c665c8e67261F',
   },
 }
