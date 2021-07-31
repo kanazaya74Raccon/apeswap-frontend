@@ -76,7 +76,7 @@ export const useGetNfaAuctionHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/nfas/latestBids`)
+        const response = await fetch(`https://apeswap-api-testnet.herokuapp.com/nfas/latestBids`)
         const responsedata: AuctionHistory[] = await response.json()
         setHistory(responsedata)
       } catch (error) {
@@ -87,7 +87,6 @@ export const useGetNfaAuctionHistory = () => {
   }, [setHistory, fastRefresh])
   return history
 }
-
 
 export const useGetStats = () => {
   const [data, setData] = useState<ApiStatResponse | null>(null)
