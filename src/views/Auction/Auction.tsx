@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
 import { useAuctions } from 'state/hooks'
 import Positions from './components/Positions'
@@ -123,6 +123,8 @@ const MoreInfo = styled.div`
 
 const Auction: React.FC = () => {
   const { auctions } = useAuctions()
+  const { isXl } = useMatchBreakpoints()
+  const isDesktop = isXl
   return (
     <SwiperProvider>
       <Container>
@@ -143,7 +145,7 @@ const Auction: React.FC = () => {
           <SplitWrapper>
             <AuctionCardsWrapper>{auctions && <Positions auctions={auctions} />}</AuctionCardsWrapper>
           </SplitWrapper>
-          <History />
+          {isDesktop && <History />}
         </PageWrapper>
       </Container>
     </SwiperProvider>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, ArrowBackIcon, ArrowForwardIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, ArrowBackIcon, ArrowForwardIcon } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useGetNfaAuctionHistory } from 'hooks/api'
@@ -134,8 +134,6 @@ const StyledForwardArrow = styled(ArrowForwardIcon)<ArrowProps>`
 const ROWS_PER_PAGE = 13
 
 const History: React.FC = () => {
-  const { isXl } = useMatchBreakpoints()
-  const isDesktop = isXl
   const historyData = useGetNfaAuctionHistory()
   const [prevSlice, setPrevSlice] = useState(0)
   const [curSlice, setCurSlice] = useState(ROWS_PER_PAGE)
@@ -205,22 +203,20 @@ const History: React.FC = () => {
 
   return (
     <PositinBox>
-      {isDesktop && (
-        <HistoryWrapper>
-          <HistoryTitle>History</HistoryTitle>
-          <ColumnHeadersWrapper>
-            <HeaderText>NFA Index</HeaderText>
-            <HeaderText>Amount</HeaderText>
-            <HeaderText>Bidder</HeaderText>
-            <HeaderText>Block Number</HeaderText>
-          </ColumnHeadersWrapper>
-          <BodyWrapper>{renderRows()}</BodyWrapper>
-          <ArrowsWrapper>
-            <StyledBackArrow active={backArrowFlag} onClick={handleBackArrow} />
-            <StyledForwardArrow active={forwardArrowFlag} onClick={handleForwardArrow} />
-          </ArrowsWrapper>
-        </HistoryWrapper>
-      )}
+      <HistoryWrapper>
+        <HistoryTitle>History</HistoryTitle>
+        <ColumnHeadersWrapper>
+          <HeaderText>NFA Index</HeaderText>
+          <HeaderText>Amount</HeaderText>
+          <HeaderText>Bidder</HeaderText>
+          <HeaderText>Block Number</HeaderText>
+        </ColumnHeadersWrapper>
+        <BodyWrapper>{renderRows()}</BodyWrapper>
+        <ArrowsWrapper>
+          <StyledBackArrow active={backArrowFlag} onClick={handleBackArrow} />
+          <StyledForwardArrow active={forwardArrowFlag} onClick={handleForwardArrow} />
+        </ArrowsWrapper>
+      </HistoryWrapper>
     </PositinBox>
   )
 }
