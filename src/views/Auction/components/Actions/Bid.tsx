@@ -203,7 +203,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
         </SubButton>
         <UserBalanceWrapper>Balance: {rawBnbBalance} </UserBalanceWrapper>
       </BidWrapper>
-      <SubmitBid currentBid={bidAmount} nfaId={nfaId} countdown={countdown} />
+      <SubmitBid disabled={bidAmount < rawMinBidRaise} currentBid={bidAmount} nfaId={nfaId} countdown={countdown} />
     </>
   )
 }

@@ -8,6 +8,7 @@ import { useToast } from 'state/hooks'
 
 interface BidProps {
   currentBid: number
+  disabled: boolean
   nfaId: number
   countdown: any
 }
@@ -41,7 +42,7 @@ const StyledButton = styled(Button)`
   }
 `
 
-const SubmitBid: React.FC<BidProps> = ({ currentBid, nfaId, countdown }) => {
+const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const rewardRef = useRef(null)
   const onBid = useReward(rewardRef, useBid().onBid)
@@ -49,7 +50,7 @@ const SubmitBid: React.FC<BidProps> = ({ currentBid, nfaId, countdown }) => {
   const onNextAuction = useReward(rewardRef, useNextAuction().onNextAuction)
   return countdown.seconds > 0 ? (
     <StyledButton
-      disabled={pendingTx}
+      disabled={pendingTx || disabled}
       onClick={async () => {
         setPendingTx(true)
         await onBid(currentBid, nfaId).catch(() => {
