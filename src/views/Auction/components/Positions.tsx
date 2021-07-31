@@ -31,6 +31,7 @@ const StyledSwiper = styled.div`
 const Positions: React.FC<PositionProps> = ({ auctions }) => {
   const { setSwiper } = useSwiper()
   const indexLoad = auctions?.activeAuctionId - (auctions?.auctionsRemovedCount + 1)
+  console.log(auctions?.auctionsRemovedCount)
   const [initialIndex, setInitialIndex] = useState(indexLoad)
   useEffect(() => {
     setInitialIndex(indexLoad)

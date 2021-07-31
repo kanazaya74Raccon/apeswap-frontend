@@ -14,7 +14,7 @@ const DescriptionWrapper = styled.div`
   width: 300px;
   height: 180px;
   left: 20px;
-  bottom: 20px;
+  top: 620px;
 `
 const StatsWrapper = styled.div`
   display: flex;
