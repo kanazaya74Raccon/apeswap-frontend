@@ -6,11 +6,13 @@ interface ImageProps {
   alt: string
   originalLink?: string
   rarityTier: number
+  borderRadius?: string
 }
 
 interface ContainerProps {
   gradient: string
   backgroundSize: string
+  borderRadius?: string
 }
 
 const sway = keyframes`
@@ -43,6 +45,7 @@ const Container = styled.div<ContainerProps>`
   overflow: hidden;
   padding-bottom: 100%;
   animation: ${sway} 20s ease infinite;
+  border-radius: ${(props) => props.borderRadius};
 `
 
 const TierSvg = styled.div`
@@ -54,7 +57,7 @@ const TierSvg = styled.div`
   fill: rgba(255, 255, 255, 0.1);
 `
 
-const Image: React.FC<ImageProps> = ({ src, alt, rarityTier }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => {
   let gradientStyle = ''
   let backgroundSize = ''
   if (rarityTier === 1) {
@@ -79,7 +82,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier }) => {
   }
   const previewImage = <StyledImage src={src} alt={alt} />
   return (
-    <Container gradient={gradientStyle} backgroundSize={backgroundSize}>
+    <Container gradient={gradientStyle} backgroundSize={backgroundSize} borderRadius={borderRadius}>
       <TierSvg>
         <p>{rarityTier}</p>
       </TierSvg>

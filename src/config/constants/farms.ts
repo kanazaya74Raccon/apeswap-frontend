@@ -1360,6 +1360,51 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 97,
+    lpSymbol: 'MARU-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x172a5434366795ccDF755ffBf0cc04D4532A7177',
+    },
+    tokenSymbol: 'MARU',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x215f51990a0ca5aa360a177181f014e2da376e5e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 98,
+    lpSymbol: 'PERA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xb3940bcf6e37dd612b8dee72ada6cf8df57d8a95',
+    },
+    tokenSymbol: 'PERA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xb9D8592E16A9c1a3AE6021CDDb324EaC1Cbc70d6',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 99,
+    lpSymbol: 'GUARD-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xDd2B5E024942F9a83255F41144db5648b71f01c4',
+    },
+    tokenSymbol: 'GUARD',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xf606bd19b1e61574ed625d9ea96c841d4e247a32',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
