@@ -1294,7 +1294,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SISTA',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xbd83010eb60f12112908774998f65761cf9f6f9a',
+      56: '0xca6d25c10dad43ae8be0bc2af4d3cd1114583c08',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
