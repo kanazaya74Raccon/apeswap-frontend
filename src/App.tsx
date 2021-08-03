@@ -119,7 +119,7 @@ const App: React.FC = () => {
             <Route path="/chart">
               <Chart />
             </Route>
-            <Route path="/apezone">
+            <Route path="/gnana">
               <ApeZone />
             </Route>
             <Route exact path="/teams">

@@ -58,7 +58,7 @@ const config: MenuEntry[] = [
   {
     label: 'GNANA',
     icon: 'ApeZone',
-    href: '/apezone',
+    href: '/gnana',
   },
   // {
   //   label: 'Lottery',
