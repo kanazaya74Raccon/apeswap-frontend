@@ -24,7 +24,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
   const deposit = async () => {
     const depositValue = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
     if (currencyAddress === ZERO_ADDRESS) {
-      return contract.methods.depositBNB().send({ from: account, value: depositValue })
+      return contract.methods.depositNative().send({ from: account, value: depositValue })
     }
     return contract.methods.deposit(depositValue).send({ from: account })
   }

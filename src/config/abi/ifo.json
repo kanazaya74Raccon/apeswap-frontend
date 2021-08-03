@@ -56,7 +56,7 @@
     "stateMutability": "nonpayable",
     "type": "function"
   },
-  { "inputs": [], "name": "depositBNB", "outputs": [], "stateMutability": "payable", "type": "function" },
+  { "inputs": [], "name": "depositNative", "outputs": [], "stateMutability": "payable", "type": "function" },
   {
     "inputs": [],
     "name": "endBlock",
@@ -158,7 +158,7 @@
   },
   {
     "inputs": [],
-    "name": "isBNBStaking",
+    "name": "isNativeTokenStaking",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"

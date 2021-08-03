@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import ifoAbi from 'config/abi/ifo.json'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@apeswapfinance/uikit'
 import { BSC_BLOCK_TIME, ZERO_ADDRESS } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
-import getTimePeriods from 'utils/getTimePeriods'
+import multicall from 'utils/multicall'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { useSafeIfoContract } from 'hooks/useContract'
@@ -114,6 +115,44 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         // Allow IAO details to be shown before contracts are deployed
         return
       }
+      const calls = [
+        {
+          address,
+          name: 'startBlock',
+        },
+        {
+          address,
+          name: 'endBlock',
+        },
+        {
+          address,
+          name: 'raisingAmount',
+        },
+        {
+          address,
+          name: 'totalAmount',
+        },
+        {
+          address,
+          name: 'harvestReleaseBlocks',
+          params: [0],
+        },
+        {
+          address,
+          name: 'harvestReleaseBlocks',
+          params: [1],
+        },
+        {
+          address,
+          name: 'harvestReleaseBlocks',
+          params: [2],
+        },
+        {
+          address,
+          name: 'harvestReleaseBlocks',
+          params: [3],
+        },
+      ]
       const [
         startBlock,
         endBlock,
@@ -123,16 +162,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         harvestTwoBlock,
         harvestThreeBlock,
         harvestFourBlock,
-      ] = await Promise.all([
-        contract.methods.startBlock().call(),
-        contract.methods.endBlock().call(),
-        contract.methods.raisingAmount().call(),
-        contract.methods.totalAmount().call(),
-        contract.methods.harvestReleaseBlocks(0).call(),
-        contract.methods.harvestReleaseBlocks(1).call(),
-        contract.methods.harvestReleaseBlocks(2).call(),
-        contract.methods.harvestReleaseBlocks(3).call(),
-      ])
+      ] = await multicall(ifoAbi, calls)
+
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
 
@@ -176,7 +207,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
-  console.log(state)
 
   return (
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
@@ -203,6 +233,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
             tokenDecimals={tokenDecimals}
             totalAmount={state.totalAmount}
             notLp={notLp}
+            harvestTwoBlockRelease={state.harvestTwoBlockRelease}
+            harvestThreeBlockRelease={state.harvestThreeBlockRelease}
+            harvestFourBlockRelease={state.harvestFourBlockRelease}
           />
         )}
         <IfoCardDetails

@@ -83,7 +83,7 @@ const ApeZone: { ifos: Ifo[] } = {
     },
     {
       id: 'dragonary',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0xc6F0713164d6fA9327B8e29fCd60614304dAB4dd', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',
@@ -95,7 +95,7 @@ const ApeZone: { ifos: Ifo[] } = {
       bananaToBurn: '$500,000',
       projectSiteUrl: 'https://dragonary.com/',
       currency: 'GNANA',
-      currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+      currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
       tokenDecimals: 18,
       releaseBlockNumber: 9695131, // block to start showing contract details
       // burnedTxUrl: '',
