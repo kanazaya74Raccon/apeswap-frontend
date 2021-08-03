@@ -1641,7 +1641,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x4632d4ff6312c9a00c6440c9271f0061aaa49a4b',
     },
-    poolCategory: PoolCategory.APEZONE,
+    poolCategory: PoolCategory.CORE,
     projectLink: 'https://moonpot.com/',
     harvest: true,
     tokenPerBlock: `0.115740740740740740`,
