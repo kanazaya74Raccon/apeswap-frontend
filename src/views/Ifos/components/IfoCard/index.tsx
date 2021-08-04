@@ -84,6 +84,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     tokenDecimals,
     releaseBlockNumber,
     burnedTxUrl,
+    vesting,
     startBlock: start,
   } = ifo
   const [state, setState] = useState({
@@ -213,16 +214,18 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
         <IfoCardProgress progress={state.progress} />
-        <IfoCardTime
-          isComingSoon={!address}
-          isLoading={state.isLoading}
-          status={state.status}
-          secondsUntilStart={state.secondsUntilStart}
-          secondsUntilEnd={state.secondsUntilEnd}
-          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
-        />
+        {vesting && (
+          <IfoCardTime
+            isComingSoon={!address}
+            isLoading={state.isLoading}
+            status={state.status}
+            secondsUntilStart={state.secondsUntilStart}
+            secondsUntilEnd={state.secondsUntilEnd}
+            block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
+          />
+        )}
         {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && (
+        {(isActive || isFinished) && vesting && (
           <ContributeCard
             address={address}
             currency={currency}
