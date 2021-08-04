@@ -68,7 +68,12 @@ const Ifo = () => {
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(606, 'Immediately after sale: You may claim your refund and 25% of your offering tokens')}</li>
+            <li>
+              {TranslateString(
+                606,
+                'Immediately after sale: You may claim your refund and 25% of your offering tokens',
+              )}
+            </li>
             <li>{TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}</li>
             <li>{TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}</li>
             <li>{TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}</li>
