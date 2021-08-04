@@ -83,7 +83,7 @@ const ApeZone: { ifos: Ifo[] } = {
     },
     {
       id: 'dragonary',
-      address: '0xc6F0713164d6fA9327B8e29fCd60614304dAB4dd', // Leave empty for "Coming Soon!"
+      address: '0xf492a5e4DF76e12e29fEbb6BF503fCB426767bbd', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',

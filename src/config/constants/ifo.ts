@@ -120,7 +120,7 @@ const ifos: Ifo[] = [
   },
   {
     id: 'dragonary',
-    address: '0x5918d01ab1263A885486fBf73047c94F1a83b69f', // Leave empty for "Coming Soon!"
+    address: '0x21355F0D9c85898f2b0B8Fa4816686a567784A27', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Dragonary',
     subTitle: 'Decentralized NFT Gaming',
