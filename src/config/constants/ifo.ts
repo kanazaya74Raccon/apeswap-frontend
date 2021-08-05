@@ -3,8 +3,27 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'dragonary',
-    address: '0x4d8340d1bdCcFA7A25002e881c416570396f48C6', // Leave empty for "Coming Soon!"
+    address: '0x2F017819C559bbC24351EF01f49f4DF0E9f40bBC', // Leave empty for "Coming Soon!"
     isActive: true,
+    name: 'Dragonary',
+    subTitle: 'Decentralized NFT Gaming',
+    description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+    launchDate: 'August 2nd',
+    launchTime: '16:00 UTC',
+    saleAmount: '60,000,000 CYT',
+    raiseAmount: '$600,000',
+    projectSiteUrl: 'https://dragonary.com/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    tokenDecimals: 18,
+    releaseBlockNumber: 9695131, // block to start showing contract details
+    vesting: true,
+    // burnedTxUrl: '',
+  },
+  {
+    id: 'dragonary',
+    address: '0x4d8340d1bdCcFA7A25002e881c416570396f48C6', // Leave empty for "Coming Soon!"
+    isActive: false,
     name: 'Dragonary',
     subTitle: 'Decentralized NFT Gaming',
     description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
