@@ -249,7 +249,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
           </Text>
         </>
       )}
-      {isFinished && (
+      {isFinished && userAllocation && (
         <>
           <Text fontSize="16px" fontFamily="poppins" fontWeight={700} color="textSubtle" margin="10px 0 10px 0">
             You&apos;ll be refunded any excess tokens on your first claim

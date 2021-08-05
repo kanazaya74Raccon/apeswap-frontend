@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BaseLayout, Button, Flex, Heading, Text, Card } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
@@ -91,9 +91,11 @@ const StyledGoldenMonkey = styled.img`
  * Note: currently there should be only 1 active IFO at a time
  */
 const activeIfo = zoneIfo.find((ifo) => ifo.isActive)
+const prevIfos = zoneIfo.filter((ifo) => !ifo.isActive)
 
 const Iao = () => {
   const TranslateString = useI18n()
+  const [showHistory, setShowHistory] = useState(false)
 
   return (
     <>
@@ -159,7 +161,11 @@ const Iao = () => {
                   * Remember selling GNANA returns you BANANA at a 1:1 ratio
                 </Text>
               </List>
+
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
+                <Button color="primary" marginRight="10px" onClick={() => setShowHistory(!showHistory)}>
+                  {TranslateString(610, showHistory ? 'Hide History' : 'Show History')}
+                </Button>
                 <Button
                   as="a"
                   href="https://apeswap.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
@@ -170,6 +176,7 @@ const Iao = () => {
               </Text>
             </StyledTextContainer>
           </StyledCard>
+          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp />)}
         </Cards>
       </StyledFlex>
     </>
