@@ -28,7 +28,7 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/iao': {
     title: 'Initial Ape Offering | ApeSwap',
   },
-  '/apezone': {
-    title: 'ApeZone | ApeSwap',
+  '/gnana': {
+    title: 'GNANA | ApeSwap',
   },
 }

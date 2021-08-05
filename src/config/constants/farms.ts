@@ -1294,7 +1294,7 @@ const farms: FarmConfig[] = [
     tokenSymbol: 'SISTA',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xbd83010eb60f12112908774998f65761cf9f6f9a',
+      56: '0xca6d25c10dad43ae8be0bc2af4d3cd1114583c08',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
@@ -1430,6 +1430,21 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x3fcca8648651e5b974dd6d3e50f61567779772a8',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 102,
+    lpSymbol: 'SACT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8418e3d34d42ca93faa77a9ff7d0d82b811b4633',
+    },
+    tokenSymbol: 'SACT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1ba8c21c623c843cd4c60438d70e7ad50f363fbb',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,

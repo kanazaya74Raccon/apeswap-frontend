@@ -58,7 +58,7 @@ const config: MenuEntry[] = [
   {
     label: 'GNANA',
     icon: 'ApeZone',
-    href: '/apezone',
+    href: '/gnana',
   },
   // {
   //   label: 'Lottery',
@@ -127,8 +127,9 @@ const config: MenuEntry[] = [
         href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
       },
       {
-        label: 'Community Feedback',
-        href: 'https://apeswap.nolt.io/',
+        label: 'Partnership Application',
+        href:
+          'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
       },
       {
         label: 'ApeTV',
