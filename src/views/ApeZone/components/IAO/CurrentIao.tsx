@@ -169,7 +169,7 @@ const Iao = () => {
                   marginRight="10px"
                   onClick={() => setShowHistory(!showHistory)}
                 >
-                  {TranslateString(610, showHistory ? 'Next IAO' : 'Past IAOs')}
+                  {TranslateString(610, showHistory ? 'Hide Past IAOs' : 'Show Past IAOs')}
                 </Button>
                 <Button
                   as="a"

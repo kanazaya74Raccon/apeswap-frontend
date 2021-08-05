@@ -9,7 +9,7 @@ const YEAR_IN_SECONDS = 31557600
  *
  * @param seconds
  */
-const getTimePeriods = (seconds: number, days? : boolean) => {
+const getTimePeriods = (seconds: number, days?: boolean) => {
   let delta = seconds
   const timeLeft = {
     years: 0,
