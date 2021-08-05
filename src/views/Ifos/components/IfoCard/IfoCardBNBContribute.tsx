@@ -135,7 +135,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     offeringTokenHarvest: new BigNumber(0),
     offeringTokensVested: new BigNumber(0),
   })
-  const { slowRefresh } = useRefresh()
+  const { fastRefresh } = useRefresh()
   const { account } = useWeb3React()
   const [onPresentContributeModal] = useModal(
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp />,
@@ -210,7 +210,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh])
+  }, [account, contract, address, pendingTx, fastRefresh])
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
