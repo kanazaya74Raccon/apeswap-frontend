@@ -163,8 +163,8 @@ const Iao = () => {
               </List>
 
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
-                <Button color="primary" marginRight="10px" onClick={() => setShowHistory(!showHistory)}>
-                  {TranslateString(610, showHistory ? 'Hide History' : 'Show History')}
+                <Button color="primary" marginBottom="10px" marginRight="10px" onClick={() => setShowHistory(!showHistory)}>
+                  {TranslateString(610, showHistory ? 'Next IAO' : 'Past IAOs')}
                 </Button>
                 <Button
                   as="a"
