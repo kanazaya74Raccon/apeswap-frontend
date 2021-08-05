@@ -1628,6 +1628,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 74,
+    tokenName: 'POTS',
+    image: 'POTS.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x4632d4ff6312c9a00c6440c9271f0061aaa49a4b',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://moonpot.com/',
+    harvest: true,
+    tokenPerBlock: `0.115740740740740740`,
+    sortOrder: 2,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
