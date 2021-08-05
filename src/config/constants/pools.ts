@@ -1654,7 +1654,7 @@ const pools: PoolConfig[] = [
     sousId: 75,
     tokenName: 'SACT',
     image: 'SACT.svg',
-    stakingTokenName: 'BANANA',
+    stakingTokenName: 'GNANA',
     stakingTokenAddress: {
       97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
       56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
