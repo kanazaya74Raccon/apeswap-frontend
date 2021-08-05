@@ -148,9 +148,9 @@ const IfoCardContribute: React.FC<Props> = ({
   const [onPresentContributeModal] = useModal(
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp={notLp} />,
   )
-  const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease)
-  const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease)
-  const harvestFourTime = getTimePeriods(harvestFourBlockRelease)
+  const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
+  const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
+  const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
 
   useEffect(() => {
     const fetch = async () => {
