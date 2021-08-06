@@ -9,7 +9,7 @@ const YEAR_IN_SECONDS = 31557600
  *
  * @param seconds
  */
-const getTimePeriods = (seconds: number) => {
+const getTimePeriods = (seconds: number, days?: boolean) => {
   let delta = seconds
   const timeLeft = {
     years: 0,
@@ -20,12 +20,12 @@ const getTimePeriods = (seconds: number) => {
     seconds: 0,
   }
 
-  if (delta >= YEAR_IN_SECONDS) {
+  if (delta >= YEAR_IN_SECONDS && !days) {
     timeLeft.years = Math.floor(delta / YEAR_IN_SECONDS)
     delta -= timeLeft.years * YEAR_IN_SECONDS
   }
 
-  if (delta >= MONTH_IN_SECONDS) {
+  if (delta >= MONTH_IN_SECONDS && !days) {
     timeLeft.months = Math.floor(delta / MONTH_IN_SECONDS)
     delta -= timeLeft.months * MONTH_IN_SECONDS
   }

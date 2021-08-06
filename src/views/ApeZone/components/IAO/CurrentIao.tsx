@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BaseLayout, Button, Flex, Heading, Text, Card } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
@@ -91,9 +91,11 @@ const StyledGoldenMonkey = styled.img`
  * Note: currently there should be only 1 active IFO at a time
  */
 const activeIfo = zoneIfo.find((ifo) => ifo.isActive)
+const prevIfos = zoneIfo.filter((ifo) => !ifo.isActive)
 
 const Iao = () => {
   const TranslateString = useI18n()
+  const [showHistory, setShowHistory] = useState(false)
 
   return (
     <>
@@ -140,14 +142,35 @@ const Iao = () => {
               </Title>
               <List>
                 <Text fontFamily="poppins">
-                  {TranslateString(606, 'Claim the tokens you bought, along with any unspent funds.')}
+                  {TranslateString(
+                    606,
+                    'Immediately after sale: You may claim your refund and 25% of your offering tokens',
+                  )}
+                </Text>
+                <Text fontFamily="poppins">
+                  {TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}
+                </Text>
+                <Text fontFamily="poppins">
+                  {TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}
+                </Text>
+                <Text fontFamily="poppins">
+                  {TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}
                 </Text>
                 <Text fontFamily="poppins">{TranslateString(608, 'Done!')}</Text>
                 <Text fontSize="10px" fontFamily="poppins">
                   * Remember selling GNANA returns you BANANA at a 1:1 ratio
                 </Text>
               </List>
+
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
+                <Button
+                  color="primary"
+                  marginBottom="10px"
+                  marginRight="10px"
+                  onClick={() => setShowHistory(!showHistory)}
+                >
+                  {TranslateString(610, showHistory ? 'Hide Past IAOs' : 'Show Past IAOs')}
+                </Button>
                 <Button
                   as="a"
                   href="https://apeswap.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
@@ -158,6 +181,7 @@ const Iao = () => {
               </Text>
             </StyledTextContainer>
           </StyledCard>
+          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp />)}
         </Cards>
       </StyledFlex>
     </>

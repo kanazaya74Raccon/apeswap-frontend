@@ -14,6 +14,7 @@ export interface IfoCardDetailsProps {
   raisingAmount: BigNumber
   totalAmount: BigNumber
   burnedTxUrl: string
+  vestingTime: string
   address: string
 }
 
@@ -41,6 +42,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   projectSiteUrl,
   raisingAmount,
   totalAmount,
+  vestingTime,
   burnedTxUrl,
   address,
 }) => {
@@ -75,6 +77,10 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
               {launchTime}
             </Link>
           </Text>
+        </Item>
+        <Item>
+          <Display>{TranslateString(584, 'Total Vesting Time')}</Display>
+          <Text fontSize="14px">{vestingTime}</Text>
         </Item>
         <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>

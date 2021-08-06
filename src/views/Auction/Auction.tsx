@@ -94,31 +94,44 @@ const MoreInfoWrapper = styled.div`
   position: absolute;
   width: 100%;
   right: 0;
-  height: 70px;
+  height: 60px;
   display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `
 
+const ButtonHolder = styled.div`
+  width: 340px;
+  height: 60px;
+  margin-left: 220px;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: column;
+  justify-content: center;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 550px;
+    width: 380px;
+  }
+`
+
 const MoreInfo = styled.div`
-  width: 135px;
-  height: 32px;
-  margin-left: 200px;
+  height: 35px;
   background: #ffb300;
   border-radius: 10px;
   font-family: Titan One;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 32.5px;
   letter-spacing: 0.05em;
   text-align: left;
   color: #fafafa;
   text-align: center;
   cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 750px;
-  }
+  margin-right: 10px;
 `
 
 const Auction: React.FC = () => {
@@ -134,13 +147,22 @@ const Auction: React.FC = () => {
         </Header>
         <PageWrapper>
           <MoreInfoWrapper>
-            <a
-              href="https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MoreInfo>How It Works</MoreInfo>
-            </a>
+            <ButtonHolder>
+              <a
+                href="https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MoreInfo>How It Works</MoreInfo>
+              </a>
+              <a
+                href="https://twitter.com/ape_swap/status/1422710092126883842"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MoreInfo>Tier One Challenge</MoreInfo>
+              </a>
+            </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
             <AuctionCardsWrapper>{auctions && <Positions auctions={auctions} />}</AuctionCardsWrapper>
