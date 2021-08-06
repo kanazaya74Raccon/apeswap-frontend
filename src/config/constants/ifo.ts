@@ -2,6 +2,26 @@ import { Ifo } from './types'
 
 const ifos: Ifo[] = [
   {
+    id: 'dragonary',
+    address: '', // Leave empty for "Coming Soon!"
+    isActive: true,
+    name: 'Dragonary',
+    subTitle: 'Decentralized NFT Gaming',
+    description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+    launchDate: 'August 7th',
+    launchTime: '16:00 UTC',
+    saleAmount: '60,000,000 CYT',
+    raiseAmount: '$600,000',
+    vestingTime: '3 Months',
+    projectSiteUrl: 'https://dragonary.com/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    tokenDecimals: 18,
+    releaseBlockNumber: 9695131, // block to start showing contract details
+    vesting: true,
+    // burnedTxUrl: '',
+  },
+  {
     id: 'astronaut',
     address: '0xd7e98ca54e6202fb6237b98c881817ed3e54d2ed',
     isActive: false,
@@ -103,7 +123,7 @@ const ifos: Ifo[] = [
   {
     id: 'bishares',
     address: '0x5B31A7124A4Abf8CA9B4090532A669783d8E11eE', // Leave empty for "Coming Soon!"
-    isActive: true,
+    isActive: false,
     name: 'BiShares',
     subTitle: 'Decentralized Index Funds',
     description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,

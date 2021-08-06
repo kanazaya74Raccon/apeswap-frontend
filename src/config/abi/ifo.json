@@ -1,18 +1,5 @@
 [
   {
-    "inputs": [
-      { "internalType": "contract IBEP20", "name": "_lpToken", "type": "address" },
-      { "internalType": "contract IBEP20", "name": "_offeringToken", "type": "address" },
-      { "internalType": "uint256", "name": "_startBlock", "type": "uint256" },
-      { "internalType": "uint256", "name": "_endBlock", "type": "uint256" },
-      { "internalType": "uint256", "name": "_offeringAmount", "type": "uint256" },
-      { "internalType": "uint256", "name": "_raisingAmount", "type": "uint256" },
-      { "internalType": "address", "name": "_adminAddress", "type": "address" }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
@@ -24,12 +11,29 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": true, "internalType": "address", "name": "receiver", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "token", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "balance", "type": "uint256" }
+    ],
+    "name": "EmergencySweepWithdraw",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
       { "indexed": false, "internalType": "uint256", "name": "offeringAmount", "type": "uint256" },
       { "indexed": false, "internalType": "uint256", "name": "excessAmount", "type": "uint256" }
     ],
     "name": "Harvest",
     "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "HARVEST_PERIODS",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
@@ -52,13 +56,7 @@
     "stateMutability": "nonpayable",
     "type": "function"
   },
-  {
-    "inputs": [],
-    "name": "depositBNB",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
+  { "inputs": [], "name": "depositNative", "outputs": [], "stateMutability": "payable", "type": "function" },
   {
     "inputs": [],
     "name": "endBlock",
@@ -68,7 +66,7 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "_lpAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_stakeTokenAmount", "type": "uint256" },
       { "internalType": "uint256", "name": "_offerAmount", "type": "uint256" }
     ],
     "name": "finalWithdraw",
@@ -77,8 +75,22 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getAddressListLength",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "getOfferingAmount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
+    "name": "getOfferingAmountPerPeriod",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
@@ -91,24 +103,63 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getTotalStakeTokenBalance",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
     "name": "getUserAllocation",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
-  { "inputs": [], "name": "harvest", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
-    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
-    "name": "hasHarvest",
+    "inputs": [{ "internalType": "uint256", "name": "harvestPeriod", "type": "uint256" }],
+    "name": "harvest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "harvestReleaseBlocks",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_user", "type": "address" },
+      { "internalType": "uint256", "name": "harvestPeriod", "type": "uint256" }
+    ],
+    "name": "hasHarvested",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "contract IERC20", "name": "_stakeToken", "type": "address" },
+      { "internalType": "contract IERC20", "name": "_offeringToken", "type": "address" },
+      { "internalType": "uint256", "name": "_startBlock", "type": "uint256" },
+      { "internalType": "uint256", "name": "_endBlockOffset", "type": "uint256" },
+      { "internalType": "uint256", "name": "_vestingBlockOffset", "type": "uint256" },
+      { "internalType": "uint256", "name": "_offeringAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_raisingAmount", "type": "uint256" },
+      { "internalType": "address", "name": "_adminAddress", "type": "address" }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
-    "name": "lpToken",
-    "outputs": [{ "internalType": "contract IBEP20", "name": "", "type": "address" }],
+    "name": "isNativeTokenStaking",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -122,7 +173,7 @@
   {
     "inputs": [],
     "name": "offeringToken",
-    "outputs": [{ "internalType": "contract IBEP20", "name": "", "type": "address" }],
+    "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -134,10 +185,38 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "uint256", "name": "_offerAmount", "type": "uint256" }],
+    "name": "setOfferingAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_raisingAmount", "type": "uint256" }],
+    "name": "setRaisingAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "stakeToken",
+    "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "startBlock",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "contract IERC20", "name": "token", "type": "address" }],
+    "name": "sweepToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -148,11 +227,29 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "totalDebt",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "name": "userInfo",
     "outputs": [
       { "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "internalType": "bool", "name": "claimed", "type": "bool" }
+      { "internalType": "bool", "name": "refunded", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "_user", "type": "address" }],
+    "name": "userTokenStatus",
+    "outputs": [
+      { "internalType": "uint256", "name": "stakeTokenHarvest", "type": "uint256" },
+      { "internalType": "uint256", "name": "offeringTokenHarvest", "type": "uint256" },
+      { "internalType": "uint256", "name": "offeringTokensVested", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"

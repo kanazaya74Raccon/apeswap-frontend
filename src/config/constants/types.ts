@@ -17,6 +17,8 @@ export interface Ifo {
   currencyAddress: string
   tokenDecimals: number
   releaseBlockNumber: number
+  vestingTime?: string
+  vesting?: boolean
   startBlock?: number
   burnedTxUrl?: string
 }
