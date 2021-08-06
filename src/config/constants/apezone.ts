@@ -9,7 +9,7 @@ const ApeZone: { ifos: Ifo[] } = {
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',
       description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
-      launchDate: 'August 7nd',
+      launchDate: 'August 7th',
       launchTime: '16:00 UTC',
       saleAmount: '50,000,000 CYT',
       raiseAmount: '$500,000',
