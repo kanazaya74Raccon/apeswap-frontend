@@ -80,6 +80,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     bananaToBurn,
     projectSiteUrl,
     currency,
+    vestingTime,
     currencyAddress,
     tokenDecimals,
     releaseBlockNumber,
@@ -249,6 +250,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           bananaToBurn={bananaToBurn}
           projectSiteUrl={projectSiteUrl}
           raisingAmount={state.raisingAmount}
+          vestingTime={vestingTime}
           totalAmount={state.totalAmount}
           burnedTxUrl={burnedTxUrl}
           address={address}

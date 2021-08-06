@@ -14,6 +14,7 @@ const ApeZone: { ifos: Ifo[] } = {
       saleAmount: '50,000,000 CYT',
       raiseAmount: '$500,000',
       bananaToBurn: '$500,000',
+      vestingTime: '3 Months',
       projectSiteUrl: 'https://dragonary.com/',
       currency: 'GNANA',
       currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
