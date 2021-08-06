@@ -4,68 +4,8 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'dragonary',
-      address: '0xeA5E10063cd49b01BF1BA243429dFfa55b221413', // Leave empty for "Coming Soon!"
+      address: '', // Leave empty for "Coming Soon!"
       isActive: true,
-      name: 'Dragonary',
-      subTitle: 'Decentralized NFT Gaming',
-      description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
-      launchDate: 'August 2nd',
-      launchTime: '16:00 UTC',
-      saleAmount: '50,000,000 CYT',
-      raiseAmount: '$500,000',
-      bananaToBurn: '$500,000',
-      projectSiteUrl: 'https://dragonary.com/',
-      currency: 'GNANA',
-      currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
-      tokenDecimals: 18,
-      releaseBlockNumber: 9695131, // block to start showing contract details
-      vesting: true,
-      // burnedTxUrl: '',
-    },
-    {
-      id: 'dragonary',
-      address: '0x259546d6309EcbF83e21DE2bc576452a9F770F5b', // Leave empty for "Coming Soon!"
-      isActive: false,
-      name: 'Dragonary',
-      subTitle: 'Decentralized NFT Gaming',
-      description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
-      launchDate: 'August 2nd',
-      launchTime: '16:00 UTC',
-      saleAmount: '50,000,000 CYT',
-      raiseAmount: '$500,000',
-      bananaToBurn: '$500,000',
-      projectSiteUrl: 'https://dragonary.com/',
-      currency: 'GNANA',
-      currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
-      tokenDecimals: 18,
-      releaseBlockNumber: 9695131, // block to start showing contract details
-      vesting: true,
-      // burnedTxUrl: '',
-    },
-    {
-      id: 'dragonary',
-      address: '0xf492a5e4DF76e12e29fEbb6BF503fCB426767bbd', // Leave empty for "Coming Soon!"
-      isActive: false,
-      name: 'Dragonary',
-      subTitle: 'Decentralized NFT Gaming',
-      description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
-      launchDate: 'August 2nd',
-      launchTime: '16:00 UTC',
-      saleAmount: '50,000,000 CYT',
-      raiseAmount: '$500,000',
-      bananaToBurn: '$500,000',
-      projectSiteUrl: 'https://dragonary.com/',
-      currency: 'GNANA',
-      currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
-      tokenDecimals: 18,
-      releaseBlockNumber: 9695131, // block to start showing contract details
-      vesting: true,
-      // burnedTxUrl: '',
-    },
-    {
-      id: 'dragonary',
-      address: '0xc6F0713164d6fA9327B8e29fCd60614304dAB4dd', // Leave empty for "Coming Soon!"
-      isActive: false,
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',
       description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
