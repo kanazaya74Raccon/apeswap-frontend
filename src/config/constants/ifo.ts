@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'dragonary',
-    address: '', // Leave empty for "Coming Soon!"
+    address: '0xE91B1324c1c767Df0cF303b2F9299cd74ee49284', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Dragonary',
     subTitle: 'Decentralized NFT Gaming',
@@ -17,7 +17,7 @@ const ifos: Ifo[] = [
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
-    releaseBlockNumber: 9695131, // block to start showing contract details
+    releaseBlockNumber: 9828936, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
