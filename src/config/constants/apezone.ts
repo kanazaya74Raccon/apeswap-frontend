@@ -17,7 +17,7 @@ const ApeZone: { ifos: Ifo[] } = {
       vestingTime: '3 Months',
       projectSiteUrl: 'https://dragonary.com/',
       currency: 'GNANA',
-      currencyAddress: '0x3fe4c0de72ef1b25e146aaa2c836df365e21dfd6',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 9828936, // block to start showing contract details
       vesting: true,
