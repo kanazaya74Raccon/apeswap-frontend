@@ -125,6 +125,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   harvestFourBlockRelease,
   address,
 }) => {
+
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
   const [userAllocation, setAllocation] = useState(0)
