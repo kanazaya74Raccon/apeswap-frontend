@@ -125,7 +125,6 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   harvestFourBlockRelease,
   address,
 }) => {
-
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
   const [userAllocation, setAllocation] = useState(0)
@@ -250,7 +249,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
           </Text>
         </>
       )}
-      {isFinished && userAllocation ? (
+      {isFinished && (
         <>
           <Text fontSize="16px" fontFamily="poppins" fontWeight={700} color="textSubtle" margin="10px 0 10px 0">
             You&apos;ll be refunded any excess tokens on your first claim
@@ -311,8 +310,6 @@ const IfoCardBNBContribute: React.FC<Props> = ({
             </TextWrapRow>
           </VestingStatsWrapper>
         </>
-      ) : (
-        <></>
       )}
     </>
   )
