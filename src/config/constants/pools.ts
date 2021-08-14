@@ -1716,6 +1716,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 78,
+    tokenName: 'HOTCROSS',
+    image: 'HOTCROSS.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x03f344ceb868841ffa262503fe1cf21b9cd5d7a8',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://hotcross.com/ ',
+    harvest: true,
+    tokenPerBlock: `0.925925925925925925`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
