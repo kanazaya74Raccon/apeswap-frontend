@@ -1760,6 +1760,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 80,
+    tokenName: 'FOOT',
+    image: 'FOOT.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x372c7b2c017aa055b6bd18b2d250b7dfc7593f5a',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://bigfoottoken.finance/',
+    harvest: true,
+    tokenPerBlock: `1087.547951388888888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',
