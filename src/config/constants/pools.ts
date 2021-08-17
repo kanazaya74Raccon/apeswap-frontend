@@ -1782,6 +1782,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 81,
+    tokenName: 'NABOX',
+    image: 'NABOX.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xae6b44c1857d48512f1cebc0f2a55e02a751969c',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://nabox.io/',
+    harvest: true,
+    tokenPerBlock: `3565.642041666666666666`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   /* {
     sousId: 45,
     tokenName: 'LINA',

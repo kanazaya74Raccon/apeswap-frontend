@@ -1525,6 +1525,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 108,
+    lpSymbol: 'NABOX-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x7c35e27c6dc847ea720c435abbe30bdd29168581',
+    },
+    tokenSymbol: 'NABOX',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x755f34709e369d37c6fa52808ae84a32007d1155',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
