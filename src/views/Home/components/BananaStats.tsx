@@ -2,10 +2,10 @@ import React from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd, useStatsOverall } from 'state/hooks'
+import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { usePriceBananaBusd } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress } from 'utils/addressHelpers'
+import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
 import { useLiquidityData } from 'hooks/api'
 import CardValue from './CardValue'
@@ -97,7 +97,9 @@ const BananaStats = () => {
   const liquidity = useLiquidityData()
   const bananaPriceUsd = usePriceBananaBusd()
   const burnedBalance = useBurnedBalance(getBananaAddress())
+  const totalGnana = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const marketCap = bananaPriceUsd.toNumber() * bananaSupply
 
@@ -120,6 +122,12 @@ const BananaStats = () => {
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
           {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
+        </Row>
+        <Row>
+          <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'GNANA IN CIRCULATION')}
+          </StyledText>
+          {gnanaCirculation && <CardValue fontSize="14px" value={gnanaCirculation} text="poppins" fontWeight={700} />}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
