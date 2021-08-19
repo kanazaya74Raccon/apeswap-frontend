@@ -16,7 +16,6 @@ const HotFarmsWrapper = styled.div`
   border-radius: 30px;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 718px;
     height: 203px;
@@ -28,17 +27,18 @@ const HotFarmsWrapper = styled.div`
 const CardHeaderImage = styled.div`
   position: absolute;
   background: ${({ theme }) => !theme.isDark && `linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)`};
-  opacity: 0.6;
+  opacity: 0.3;
   height: 321px;
   width: 100%;
   border-radius: 30px;
-  z-index: -1;
+  z-index: 0;
   ${({ theme }) => theme.mediaQueries.md} {
     height: 203px;
   }
 `
 
 const HotFarmsText = styled(Text)`
+  position: relative;
   margin-top: 10px;
   font-size: 38px;
   text-align: center;

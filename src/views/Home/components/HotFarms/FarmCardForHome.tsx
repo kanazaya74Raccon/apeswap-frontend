@@ -67,6 +67,7 @@ const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
   margin-top: 5px;
+  z-index: 1;
 `
 
 const ApyText = styled(Text)`
@@ -124,7 +125,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
             lpLabel={lpLabel}
             rewardTokenName="BANANA"
             addLiquidityUrl={addLiquidityUrl}
-            rewardTokenPrice={bananaPrice}
+            rewardTokenPrice={new BigNumber(bananaPrice)}
             apy={apr}
           />
           <ApyNumber>{farmAPR?.toFixed(2)}%</ApyNumber>

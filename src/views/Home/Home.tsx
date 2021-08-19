@@ -62,11 +62,27 @@ const RightSideFlexWrapper = styled.div`
   height: 950px;
   margin-top: 40px;
   flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     width: 336px;
     height: 935px;
     margin-left: 32px;
     margin-top: 0px;
+    flex-direction: column;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 720px;
+    height: 935px;
+    margin-left: 0px;
+    margin-top: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 336px;
+    height: 935px;
+    margin-left: 32px;
+    margin-top: 0px;
+    flex-direction: column;
   }
 `
 

@@ -11,9 +11,15 @@ import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
 const StyledBananaStats = styled(Card)`
-  width: 100%;
+  width: 336px;
   height: 203px;
   margin-top: 40px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-top: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-top: 40px;
+  }
 `
 
 const Row = styled.div`

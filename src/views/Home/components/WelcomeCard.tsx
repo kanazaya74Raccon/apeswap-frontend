@@ -6,6 +6,10 @@ import useI18n from 'hooks/useI18n'
 const WalcomeWrapper = styled.div`
   height: 436px;
   width: 336px;
+  margin-bottom: 57px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-bottom: 0px;
+  }
 `
 
 const StyledWelcomeCard = styled(Card)`
@@ -57,7 +61,9 @@ const StyledButton = styled(Button)`
   background: #ffb300;
   height: 44px;
   width: 290px;
-  border: none;
+  border: 0px;
+  outline: none !important;
+  box-shadow: none !important;
   border-radius: 10px;
   font-family: Poppins;
   font-size: 16px;
@@ -67,6 +73,12 @@ const StyledButton = styled(Button)`
   letter-spacing: 0em;
   text-align: center;
   margin-top: 25px;
+  focus: none;
+  :focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background: #ffb300;
+  }
 `
 
 const WelcomeCard = () => {

@@ -82,8 +82,9 @@ const HarvestDiv = styled.div`
 
 const CardHeaderImage = styled.div`
   position: absolute;
-  background: linear-gradient(41.5deg, #a16552 0%, #e1b242 169.83%);
-  opacity: 0.8;
+  background: ${(props) =>
+    props.theme.isDark ? '#333333' : 'linear-gradient(41.5deg, #a16552 0%, #e1b242 169.83%)'};
+  opacity: 0.6;
   top: 0px;
   left: 0px;
   z-index: -1;
