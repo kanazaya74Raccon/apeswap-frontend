@@ -123,13 +123,13 @@ const BananaStats = () => {
           </StyledText>
           {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
         </Row>
-        <Row>
+        <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'GNANA IN CIRCULATION')}
           </StyledText>
           {gnanaCirculation && <CardValue fontSize="14px" value={gnanaCirculation} text="poppins" fontWeight={700} />}
-        </Row>
-        <GreyRow>
+        </GreyRow>
+        <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(538, 'BANANA BURNED')}
           </StyledText>
@@ -140,21 +140,21 @@ const BananaStats = () => {
             text="poppins"
             fontWeight={700}
           />
-        </GreyRow>
-        <Row>
+        </Row>
+        <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'DEX LIQUIDITY')}
           </StyledText>
           {liquidity && (
             <CardValue fontSize="14px" value={liquidity} decimals={0} prefix="$" text="poppins" fontWeight={700} />
           )}
-        </Row>
-        <GreyRow>
+        </GreyRow>
+        <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
-        </GreyRow>
+        </Row>
       </StyledCardBody>
       <StyledNavLink href="https://info.apeswap.finance" target="_blank">
         LEARN MORE
