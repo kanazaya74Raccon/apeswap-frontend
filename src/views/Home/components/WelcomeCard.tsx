@@ -15,11 +15,16 @@ const WalcomeWrapper = styled.div`
 const StyledWelcomeCard = styled(Card)`
   text-align: center;
   height: 207px;
-  width: 336px;
+  width: 360px;
   overflow: visible;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-bottom: 64px;
+    width: 336px;
+  }
+  
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 360px;
   }
 `
 
@@ -37,7 +42,7 @@ const StyledText = styled(Text)`
 const StyledImg = styled.img`
   margin-top: -75px;
   width: 300px;
-  margin-left: 5px;
+  margin-left: 10px;
   height: 100%;
   max-height: 220px;
 
