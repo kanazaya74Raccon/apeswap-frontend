@@ -21,7 +21,7 @@ const HotFarmsWrapper = styled.div`
     width: 718px;
     height: 203px;
     background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/ape-home-hot-farms-dark.svg)' : 'url(/images/ape-home-hot-farms-light.svg)'};
+      theme.isDark ? 'url(/images/ape-home-hot-farms-dark.svg)' : 'url(/images/ape-home-hot-farms-light.svg)'};
   }
 `
 
@@ -47,20 +47,20 @@ const HotFarmsText = styled(Text)`
 `
 
 const FarmWrapper = styled.div`
-margin-top: 5px;
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
-padding-left: 10px;
-${({ theme }) => theme.mediaQueries.md} {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding-left: 25px;
-  padding-right: 25px;
-  flex-direction: row;
-  margin-top: 20px;
-}
+  align-items: center;
+  padding-left: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    flex-direction: row;
+    margin-top: 20px;
+  }
 `
 
 const HotFarms = () => {

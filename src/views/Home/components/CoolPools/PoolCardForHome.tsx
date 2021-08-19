@@ -5,7 +5,6 @@ import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
-
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
   staked?: BigNumber
