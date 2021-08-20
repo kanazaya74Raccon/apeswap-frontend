@@ -2,10 +2,10 @@ import React from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd, useStatsOverall } from 'state/hooks'
+import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { usePriceBananaBusd } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress } from 'utils/addressHelpers'
+import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
 import { useLiquidityData } from 'hooks/api'
 import CardValue from './CardValue'
@@ -97,7 +97,9 @@ const BananaStats = () => {
   const liquidity = useLiquidityData()
   const bananaPriceUsd = usePriceBananaBusd()
   const burnedBalance = useBurnedBalance(getBananaAddress())
+  const totalGnana = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const marketCap = bananaPriceUsd.toNumber() * bananaSupply
 
@@ -123,6 +125,12 @@ const BananaStats = () => {
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'GNANA IN CIRCULATION')}
+          </StyledText>
+          {gnanaCirculation && <CardValue fontSize="14px" value={gnanaCirculation} text="poppins" fontWeight={700} />}
+        </GreyRow>
+        <Row>
+          <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(538, 'BANANA BURNED')}
           </StyledText>
           <CardValue
@@ -132,21 +140,21 @@ const BananaStats = () => {
             text="poppins"
             fontWeight={700}
           />
-        </GreyRow>
-        <Row>
+        </Row>
+        <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'DEX LIQUIDITY')}
           </StyledText>
           {liquidity && (
             <CardValue fontSize="14px" value={liquidity} decimals={0} prefix="$" text="poppins" fontWeight={700} />
           )}
-        </Row>
-        <GreyRow>
+        </GreyRow>
+        <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={700} />
-        </GreyRow>
+        </Row>
       </StyledCardBody>
       <StyledNavLink href="https://info.apeswap.finance" target="_blank">
         LEARN MORE
