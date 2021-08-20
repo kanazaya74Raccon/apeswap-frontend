@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { Heading, Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
-
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from './UnlockButton'
@@ -93,6 +92,17 @@ const CardHeaderImage = styled.div`
   border-top-right-radius: 32px;
 `
 
+const HeaderText = styled(Text)`
+  font-family: Titan One;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: white;
+`
+
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -126,11 +136,11 @@ const FarmedStakingCard = () => {
     <StyledFarmStakingCard>
       <CardHeader>
         <CardHeaderImage />
-        <Heading size="lg" mb="0px" color="white">
+        <HeaderText>
           {TranslateString(542, 'BANANA')}
           <br />
           {TranslateString(542, 'Earnings')}
-        </Heading>
+        </HeaderText>
       </CardHeader>
       <CardBody>
         {account ? (

@@ -102,9 +102,15 @@ const WelcomeCard = () => {
         <StyledText color="textSubtle" fontFamily="poppins">
           {TranslateString(578, 'Why be a human, when you can be an ape?')}
         </StyledText>
-        <StyledButton id="Beginner Ape" fullWidth>
-          BEGINNER APE? START HERE
-        </StyledButton>
+        <a
+          href="https://apeswap.gitbook.io/apeswap-finance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <StyledButton id="Beginner Ape" fullWidth>
+            BEGINNER APE? START HERE
+          </StyledButton>
+        </a>
       </StyledFlex>
     </WalcomeWrapper>
   )

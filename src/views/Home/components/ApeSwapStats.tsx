@@ -2,11 +2,10 @@ import React from 'react'
 import { Card, CardBody, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd, useStatsOverall, useTvl } from 'state/hooks'
-import { useCountUp } from 'react-countup'
+import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { usePriceBananaBusd, useTvl } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress } from 'utils/addressHelpers'
+import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
@@ -28,7 +27,7 @@ const Row = styled.div`
   font-size: 14px;
   justify-content: space-between;
   padding-bottom: 4px;
-  padding-top: 1px;
+  padding-top: 0.5px;
   padding-left: 12px;
   padding-right: 10px;
 
@@ -49,7 +48,7 @@ const GreyRow = styled(Row)`
 const StyledCardBody = styled(CardBody)`
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 12px;
+  padding-top: 8px;
   padding-bottom: 15px;
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 10px;
@@ -68,23 +67,6 @@ const StyledText = styled(Text)`
   margin-top: 3px;
 `
 
-const TotalValueLocked = styled(Text)`
-  font-family: Poppins;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: 0em;
-  text-align: center;
-`
-
-const TotalValueLockedNumber = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 30px;
-`
-
 const ApeSwapStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
@@ -92,7 +74,9 @@ const ApeSwapStats = () => {
   const totalTvl = newTvl.toNumber()
   const bananaPriceUsd = usePriceBananaBusd()
   const burnedBalance = useBurnedBalance(getBananaAddress())
+  const totalGnana = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const marketCap = bananaPriceUsd.toNumber() * bananaSupply
 
@@ -104,9 +88,23 @@ const ApeSwapStats = () => {
         </Heading>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'TOTAL VALUE LOCKED')}
+          </StyledText>
+          {totalTvl && <CardValue fontSize="14px" value={totalTvl} prefix="$" text="poppins" fontWeight={700} />}
+        </GreyRow>
+        <Row>
+          <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
           {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
+        </Row>
+        <GreyRow>
+          <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'GNANA IN CIRCULATION')}
+          </StyledText>
+          {gnanaCirculation && (
+            <CardValue fontSize="14px" value={gnanaCirculation} decimals={0} text="poppins" fontWeight={700} />
+          )}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
@@ -134,16 +132,6 @@ const ApeSwapStats = () => {
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={900} />
         </Row>
-        <TotalValueLocked>TOTAL VALUE LOCKED (TVL)</TotalValueLocked>
-        {totalTvl ? (
-          <TotalValueLockedNumber>
-            <CardValue fontSize="26px" prefix="$" decimals={0} value={totalTvl} text="poppins" fontWeight={700} />
-          </TotalValueLockedNumber>
-        ) : (
-          <>
-            <Skeleton height={33} />
-          </>
-        )}
       </StyledCardBody>
     </StyledBananaStats>
   )

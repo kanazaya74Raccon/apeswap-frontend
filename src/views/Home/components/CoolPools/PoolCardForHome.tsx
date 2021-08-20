@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'

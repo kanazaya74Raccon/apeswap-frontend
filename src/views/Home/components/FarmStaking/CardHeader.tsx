@@ -9,7 +9,7 @@ const CardHeader = styled(UIKitCardHeader)`
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   font-size: 30px;
-  line-height: 34px;
+  line-height: 0px;
   letter-spacing: 0.05em;
   z-index: 0;
 `

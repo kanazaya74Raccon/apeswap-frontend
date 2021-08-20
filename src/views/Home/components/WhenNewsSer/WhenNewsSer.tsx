@@ -29,7 +29,6 @@ const WhenNewsSerText = styled(Text)`
 `
 
 const WhenNewsSer = () => {
-  const TranslateString = useI18n()
 
   return (
     <>
