@@ -6,6 +6,8 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useBlock from 'hooks/useBlock'
+import { useFetchPoolsHome } from 'state/strapi/fetchStrapi'
+
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import { useFarms, usePriceBnbBusd, usePriceEthBusd, usePoolFromPid, useStatsOverall } from 'state/hooks'
 import PoolCardForHome from './PoolCardForHome'
@@ -51,7 +53,14 @@ const PoolWrapper = styled.div`
 `
 
 const CoolPools = () => {
-  const poolsToDisplay = [usePoolFromPid(0), usePoolFromPid(77)]
+  const { poolsData, loading } = useFetchPoolsHome()
+  let poolsToDisplay = []
+  // if (!loading) {
+  //   const sousId1 = poolsData[0]?.sousId1
+  //   const sousId2 = poolsData[0]?.sousId2
+  //   poolsToDisplay = [usePoolFromPid(1), usePoolFromPid(2)]
+  // }
+  poolsToDisplay = [usePoolFromPid(1), usePoolFromPid(2)]
   const farms = useFarms()
   const block = useBlock()
   const { statsOverall } = useStatsOverall()
@@ -116,11 +125,7 @@ const CoolPools = () => {
     <>
       <CoolPoolsWrapper>
         <CoolPoolsText>Cool Pools</CoolPoolsText>
-        <PoolWrapper>
-          {poolsFetched.map((pool) => (
-            <PoolCardForHome pool={pool} />
-          ))}
-        </PoolWrapper>
+        <PoolWrapper>{loading ? <></> : poolsFetched.map((pool) => <PoolCardForHome pool={pool} />)}</PoolWrapper>
       </CoolPoolsWrapper>
     </>
   )

@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
-import { Card, Text } from '@apeswapfinance/uikit'
-import useFetchPromoHome from 'state/strapi/useFetchPromoHome'
-import { baseUrlStrapi } from 'hooks/api'
+import { Text } from '@apeswapfinance/uikit'
+import { useFetchNewsHome } from 'state/strapi/fetchStrapi'
 
 interface NewsContainerProps {
   border: boolean
@@ -18,6 +16,7 @@ const NewsContainer = styled.div<NewsContainerProps>`
   shrink: 0;
   margin-left: 10px;
   border-top: ${(props) => props.border && `5px solid ${props.theme.colors.background}`};
+  padding-top: 5px;
 `
 
 const BreakLine = styled.div`
@@ -60,22 +59,31 @@ const Description = styled(Text)`
   text-align: center;
 `
 
+const ImageContainer = styled.div<{ image: string }>`
+  height: 119px;
+  width: 293px;
+  background: url(${({ image }) => image});
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+`
+
 const NewsFeed = () => {
-  const { carouselSlidesData, loading } = useFetchPromoHome()
-  console.log(carouselSlidesData)
+  const { newsData, loading } = useFetchNewsHome()
   return (
     <>
       {loading ? (
         <></>
       ) : (
-        carouselSlidesData?.map((news, i) => (
+        newsData?.map((news, i) => (
           <>
             <NewsContainer border={i !== 0}>
+              <ImageContainer image={news.image[0].url} />
               <TitleContainer>
-                <Title>{news.header}</Title>
+                <Title>{news.title}</Title>
               </TitleContainer>
               <DescriptionContainer>
-                <Description>{news.text}</Description>
+                <Description>{news.description}</Description>
               </DescriptionContainer>
             </NewsContainer>
             <BreakLine />

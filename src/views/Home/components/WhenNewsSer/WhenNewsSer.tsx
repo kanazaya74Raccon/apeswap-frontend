@@ -34,7 +34,7 @@ const WhenNewsSer = () => {
   return (
     <>
       <WhenNewsSerWrapper>
-        <WhenNewsSerText>When News Ser?</WhenNewsSerText>
+        <WhenNewsSerText>Wen News Ser?</WhenNewsSerText>
         <NewsWrapper>
           <NewsFeed />
         </NewsWrapper>

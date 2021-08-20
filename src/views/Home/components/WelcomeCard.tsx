@@ -22,7 +22,7 @@ const StyledWelcomeCard = styled(Card)`
     margin-bottom: 64px;
     width: 336px;
   }
-  
+
   ${({ theme }) => theme.mediaQueries.xl} {
     width: 360px;
   }
