@@ -296,7 +296,6 @@ export const getFarmsHome = async () => {
   const url = `${baseUrlStrapi}/home-farms`
   const resp = await fetch(url)
   const data = await resp.json()
-
   const farms = data.map((farm) => {
     return {
       pid1: farm.pid1,

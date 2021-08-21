@@ -51,10 +51,10 @@ const PoolWrapper = styled.div`
   }
 `
 
+const DEFAULT_POOL = 0
+
 const CoolPools = () => {
   const { poolsData, loading } = useFetchPoolsHome()
-  let poolsToDisplay = []
-  poolsToDisplay = [usePoolFromPid(0), usePoolFromPid(70)]
   const farms = useFarms()
   const block = useBlock()
   const { statsOverall } = useStatsOverall()
@@ -117,9 +117,10 @@ const CoolPools = () => {
       }
     })
 
+  const sousId1 = parseInt(poolsData[0]?.sousId1) ? parseInt(poolsData[0]?.sousId1) : DEFAULT_POOL
+  const sousId2 = parseInt(poolsData[0]?.sousId2) ? parseInt(poolsData[0]?.sousId2) : DEFAULT_POOL
+  const poolsToDisplay = [usePoolFromPid(sousId1), usePoolFromPid(sousId2)]
   if (!loading) {
-    const sousId1 = poolsData[0]?.sousId1
-    const sousId2 = poolsData[0]?.sousId2
     poolsFetched = fetchPools()
   }
 

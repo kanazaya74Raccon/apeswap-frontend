@@ -82,9 +82,9 @@ export const useFetchFarmsHome = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const news = await getFarmsHome()
+        const farms = await getFarmsHome()
         setState({
-          farmsData: news,
+          farmsData: farms,
           loading: false,
         })
       } catch (error) {

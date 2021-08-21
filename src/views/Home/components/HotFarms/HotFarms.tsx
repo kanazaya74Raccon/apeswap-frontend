@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
+import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
 import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
@@ -63,11 +64,14 @@ const FarmWrapper = styled.div`
   }
 `
 
+const DEFAULT_FARM = 1
+
 const HotFarms = () => {
-  const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(70)]
+  const { farmsData, loading } = useFetchFarmsHome()
   const bnbPrice = usePriceBnbBusd()
   const ethPriceUsd = usePriceEthBusd()
   const bananaPrice = usePriceBananaBusd()
+  let farmsFetched = []
 
   const farmsList = useCallback(
     (farmsToDisplay) => {
@@ -108,15 +112,19 @@ const HotFarms = () => {
     [bnbPrice, ethPriceUsd, bananaPrice],
   )
 
-  const farmsFetched = farmsList(farmsToFetch)
-
+  const pid1 = parseInt(farmsData[0]?.pid1) ? parseInt(farmsData[0]?.pid1) : DEFAULT_FARM
+  const pid2 = parseInt(farmsData[0]?.pid2) ? parseInt(farmsData[0]?.pid2) : DEFAULT_FARM
+  const farmsToFetch = [  useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
+  if (!loading) {
+    farmsFetched = farmsList(farmsToFetch)
+  }
   return (
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
         <HotFarmsText>Hot Farms</HotFarmsText>
         <FarmWrapper>
-          {farmsFetched.map((farm) => (
+          {farmsFetched.slice(1).map((farm) => (
             <a href="https://apeswap.finance/farms" rel="noopener noreferrer">
               <FarmCardForHome farm={farm} />
             </a>
