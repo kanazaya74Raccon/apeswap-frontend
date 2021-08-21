@@ -3,7 +3,6 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
-import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
@@ -66,7 +65,7 @@ const DescriptionContainer = styled.div`
 const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
-  margin-top: 5px;
+  margin-top: 7.5px;
   z-index: 1;
 `
 
@@ -103,12 +102,9 @@ const StyledHeading = styled(Heading)`
 `
 
 const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
-  const { tokenSymbol, lpSymbol, apr, addLiquidityUrl, bananaPrice, quoteTokenSymbol } = farm
-  const lpLabel = lpSymbol && lpSymbol.toUpperCase()
+  const { tokenSymbol, apr, quoteTokenSymbol } = farm
   const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
-  const farmAPR = new BigNumber(
-    farm.apr && farm.apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1),
-  )
+  const farmAPR = new BigNumber(apr && apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1))
 
   return (
     <PCard>
@@ -121,13 +117,6 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         </StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          <ApyButton
-            lpLabel={lpLabel}
-            rewardTokenName="BANANA"
-            addLiquidityUrl={addLiquidityUrl}
-            rewardTokenPrice={new BigNumber(bananaPrice)}
-            apy={apr}
-          />
           <ApyNumber>{farmAPR?.toFixed(2)}%</ApyNumber>
         </ApyWrapper>
       </DescriptionContainer>

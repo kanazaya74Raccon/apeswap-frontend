@@ -78,7 +78,7 @@ const NewsFeed = () => {
         newsData?.map((news, i) => (
           <>
             <NewsContainer border={i !== 0}>
-              <ImageContainer image={news.image[0].url} />
+              <ImageContainer image={news.image[0]?.url} />
               <TitleContainer>
                 <Title>{news.title}</Title>
               </TitleContainer>

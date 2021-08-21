@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
-import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface PoolWithStakeValue extends Pool {
   apr?: BigNumber
@@ -76,7 +75,7 @@ const DescriptionContainer = styled.div`
 const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
-  margin-top: 5px;
+  margin-top: 7.5px;
 `
 
 const ApyText = styled(Text)`
@@ -112,7 +111,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
-  const { image, tokenName, stakingTokenName, apr, rewardTokenPrice } = pool
+  const { image, tokenName, stakingTokenName, apr } = pool
 
   return (
     <PCard>
@@ -125,13 +124,6 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         <StyledHeading>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          <ApyButton
-            lpLabel={stakingTokenName}
-            rewardTokenName={tokenName}
-            addLiquidityUrl="https://app.apeswap.finance/swap"
-            rewardTokenPrice={new BigNumber(rewardTokenPrice)}
-            apy={apr.div(100)}
-          />
           <ApyNumber>{apr.toFixed(2)}%</ApyNumber>
         </ApyWrapper>
       </DescriptionContainer>

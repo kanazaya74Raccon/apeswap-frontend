@@ -29,7 +29,6 @@ const WhenNewsSerText = styled(Text)`
 `
 
 const WhenNewsSer = () => {
-
   return (
     <>
       <WhenNewsSerWrapper>

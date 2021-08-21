@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
-import { useCurrentTime } from 'hooks/useTimer'
-import getTimePeriods from 'utils/getTimePeriods'
 
 const Header = styled.div<{ image: string }>`
   position: relative;
@@ -20,7 +19,11 @@ const Header = styled.div<{ image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 280px;
+    width: 100%;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     height: 320px;
     width: 100%;
   }
@@ -48,7 +51,7 @@ const RightArrow = styled.img`
 
 const CurrentHeaderHolder = styled.div`
   display: flex;
-  margin-top: 235px;
+  margin-top: 165px;
   width: auto;
   height: 22px;
   background: rgba(0, 0, 0, 0.2);
@@ -56,6 +59,12 @@ const CurrentHeaderHolder = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
   align-items: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-top: 205px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    margin-top: 235px;
+  }
 `
 
 const HeaderBubble = styled.div<{ live?: boolean }>`
@@ -68,15 +77,22 @@ const HeaderBubble = styled.div<{ live?: boolean }>`
   background: ${(props) => (props.live ? 'white' : 'rgba(255, 255, 255, 0.38)')};
 `
 
-const SLIDETIME = 20000
+const SLIDETIME = 15000
 
 const Banner = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const { headersData, loading } = useFetchHeadersHome()
+  const { isXl, isLg, isMd } = useMatchBreakpoints()
   const timeoutRef = useRef(null)
 
   const getImageSize = (image: any) => {
-    return image.desktop[0].url
+    if (isXl) {
+      return image.desktop[0]?.url
+    }
+    if (isMd || isLg) {
+      return image.tablet[0]?.url
+    }
+    return image.mobile[0]?.url
   }
 
   const handleRightClick = () => {

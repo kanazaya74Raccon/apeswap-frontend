@@ -117,7 +117,9 @@ const HotFarms = () => {
         <HotFarmsText>Hot Farms</HotFarmsText>
         <FarmWrapper>
           {farmsFetched.map((farm) => (
-            <FarmCardForHome farm={farm} />
+            <a href="https://apeswap.finance/farms" rel="noopener noreferrer">
+              <FarmCardForHome farm={farm} />
+            </a>
           ))}
         </FarmWrapper>
       </HotFarmsWrapper>
