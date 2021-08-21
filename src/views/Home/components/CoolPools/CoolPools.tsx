@@ -41,7 +41,6 @@ const PoolWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;
     padding-left: 25px;
@@ -133,7 +132,7 @@ const CoolPools = () => {
             <></>
           ) : (
             poolsFetched.map((pool) => (
-              <a href="https://apeswap.finance/farms" rel="noopener noreferrer">
+              <a href="https://apeswap.finance/pools" rel="noopener noreferrer">
                 <PoolCardForHome pool={pool} />{' '}
               </a>
             ))

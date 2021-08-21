@@ -54,7 +54,6 @@ const FarmWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;
     padding-left: 25px;
@@ -114,7 +113,7 @@ const HotFarms = () => {
 
   const pid1 = parseInt(farmsData[0]?.pid1) ? parseInt(farmsData[0]?.pid1) : DEFAULT_FARM
   const pid2 = parseInt(farmsData[0]?.pid2) ? parseInt(farmsData[0]?.pid2) : DEFAULT_FARM
-  const farmsToFetch = [  useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
+  const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
   if (!loading) {
     farmsFetched = farmsList(farmsToFetch)
   }
