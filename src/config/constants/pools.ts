@@ -1848,6 +1848,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 84,
+    tokenName: 'WIZARD',
+    image: 'WIZARD.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x8440870a806e73977c5f094376a5ac8e41d9db0b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://wizard.financial',
+    harvest: true,
+    tokenPerBlock: `0.039265046296296296`,
+    sortOrder: 1,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools
