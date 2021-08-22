@@ -75,7 +75,7 @@ const fetchFarms = async () => {
         .times(lpTokenRatio)
 
       let alloc = null
-      let multiplier = '1x'
+      let multiplier = 'unset'
       try {
         const [info, totalAllocPoint] = await multicall(masterchefABI, [
           {
@@ -93,7 +93,9 @@ const fetchFarms = async () => {
         alloc = poolWeight.toJSON()
         multiplier = `${allocPoint.div(100).toString()}X`
         // eslint-disable-next-line no-empty
-      } catch (error) {}
+      } catch (error) {
+        console.log('Error fetching farm', error, farmConfig)
+      }
 
       return {
         ...farmConfig,
