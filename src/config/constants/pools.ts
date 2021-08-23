@@ -1870,6 +1870,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 85,
+    tokenName: 'GNT',
+    image: 'GNT.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x68741f87120e158dd8b4e972c54a6b062d3958b9',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.greentrusttoken.com/',
+    harvest: true,
+    tokenPerBlock: `10946.469907407407407407`,
+    sortOrder: 1,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools
