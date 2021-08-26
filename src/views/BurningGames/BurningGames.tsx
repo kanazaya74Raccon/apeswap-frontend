@@ -263,19 +263,17 @@ const BurningGames: React.FC = () => {
           </ViewControls>
         </ControlContainer>
         <div>
-        <Cards>
-          {
-            data.map((i) => (
+          <Cards>
+            {data.map((i) => (
               <Column>
-              <div>
-                <img src={`${i.image?.url}`} alt={i.id} style={{width: '170px',maxHeight: '100px'}}/>
-              </div>
-              <div>{i.name}</div>
-              <div>{i.published_at}</div>
-          </Column>
-            ))
-          }
-        </Cards>
+                <div>
+                  <img src={`${i.image?.url}`} alt={i.id} style={{ width: '170px', maxHeight: '100px' }} />
+                </div>
+                <div>{i.name}</div>
+                <div>{i.published_at}</div>
+              </Column>
+            ))}
+          </Cards>
         </div>
       </StyledPage>
     </>
