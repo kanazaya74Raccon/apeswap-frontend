@@ -35,6 +35,7 @@ const Chart = lazy(() => import('./views/Chart'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
+const BurningGames = lazy(() => import('./views/BurningGames'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -133,6 +134,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/stats">
               <Stats />
+            </Route>
+            <Route path="/burning">
+              <BurningGames />
             </Route>
             {/* Redirect */}
             <Route path="/staking">
