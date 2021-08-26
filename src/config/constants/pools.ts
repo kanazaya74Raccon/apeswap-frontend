@@ -1927,7 +1927,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x9a3077F34cC30F9BF8E93A0369119bae0113d9cC',
     },
-    poolCategory: PoolCategory.APEZONE,
+    poolCategory: PoolCategory.CORE,
     projectLink: 'https://polyplay.net/',
     harvest: true,
     tokenPerBlock: `0.011574074074074074`,
