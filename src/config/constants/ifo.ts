@@ -12,7 +12,6 @@ const ifos: Ifo[] = [
     launchTime: '16:00 UTC',
     saleAmount: '60,000,000 CYT',
     raiseAmount: '$600,000',
-    totalAmountRaised: '$46,109,919',
     vestingTime: '3 Months',
     projectSiteUrl: 'https://dragonary.com/',
     currency: 'BNB',
