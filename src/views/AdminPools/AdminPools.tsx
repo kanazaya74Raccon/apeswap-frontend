@@ -744,7 +744,7 @@ const AdminPools: React.FC = () => {
             </StyledLabel>
           </StyledLabelContainerEarned>
         </ContainerLabels>
-        {tableLayout}
+        {cardLayout}
         <div ref={loadMoreRef} />
       </StyledPage>
     </>
