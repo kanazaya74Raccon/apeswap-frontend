@@ -86,6 +86,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     releaseBlockNumber,
     burnedTxUrl,
     vesting,
+    totalAmountRaised,
     startBlock: start,
   } = ifo
   const [state, setState] = useState({
@@ -108,7 +109,11 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
   const contract = useSafeIfoContract(address)
   const currentBlock = useBlock()
   const TranslateString = useI18n()
-
+  const raisePercent =
+    totalAmountRaised &&
+    ((parseInt(totalAmountRaised.replace(/[^0-9]/g, '')) / parseInt(raiseAmount.replace(/[^0-9]/g, ''))) * 100).toFixed(
+      2,
+    )
   const Ribbon = getRibbonComponent(state.status, TranslateString)
 
   useEffect(() => {
@@ -254,6 +259,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
           totalAmount={state.totalAmount}
           burnedTxUrl={burnedTxUrl}
           address={address}
+          percentRaised={raisePercent}
         />
         <IfoCardDescription description={description} />
       </CardBody>
