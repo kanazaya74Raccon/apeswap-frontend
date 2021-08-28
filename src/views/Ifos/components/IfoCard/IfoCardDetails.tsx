@@ -16,6 +16,7 @@ export interface IfoCardDetailsProps {
   burnedTxUrl: string
   vestingTime: string
   address: string
+  percentRaised?: string
 }
 
 const StyledIfoCardDetails = styled.div`
@@ -45,6 +46,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   vestingTime,
   burnedTxUrl,
   address,
+  percentRaised,
 }) => {
   const TranslateString = useI18n()
 
@@ -98,7 +100,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
         )}
         <Item>
           <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
-          <Text fontSize="14px">{`${subscribeAmount}%`}</Text>
+          <Text fontSize="14px">{`${percentRaised || subscribeAmount}%`}</Text>
         </Item>
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
