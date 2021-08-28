@@ -1958,6 +1958,37 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+
+
+  // 
+  // PUT ALL ADMIN POOLS UNDER HERE
+  // 
+
+  {
+    sousId: 89,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingTokenName: 'OBIE',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xaed557be7c51498cd22492b11d22174b7450f1e6',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: '',
+    harvest: true,
+    tokenPerBlock: `0.000011574074074074`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+    forAdmins: true
+  },
+
+
 ]
 
 export default pools
