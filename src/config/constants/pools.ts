@@ -1959,10 +1959,9 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
 
-
-  // 
+  //
   // PUT ALL ADMIN POOLS UNDER HERE
-  // 
+  //
 
   {
     sousId: 89,
@@ -1985,10 +1984,8 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
-    forAdmins: true
+    forAdmins: true,
   },
-
-
 ]
 
 export default pools

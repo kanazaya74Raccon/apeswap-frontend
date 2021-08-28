@@ -553,14 +553,12 @@ const AdminPools: React.FC = () => {
     }
   }, [observerIsSet])
 
-
   const adminPools = allPools.filter((pool) => pool.forAdmins)
 
   const poolsWithApy = adminPools.map((pool) => {
-
-    const rewardTokenPrice = 1
+    const rewardTokenPrice = 0
     const stakedTokenPrice = 1
-    const apr = new BigNumber(1)
+    const apr = new BigNumber(0)
 
     return {
       ...pool,
@@ -683,7 +681,8 @@ const AdminPools: React.FC = () => {
           </StyledHeading>
           {size.width > 968 && (
             <AdminText>
-              Stake OBIE to earn new tokens. <br /> Admins will be allocated OBIE tokens from grandpa Obie Dobo. <br /> Your own personal pools page to reward your hard work ❤️
+              Stake OBIE to earn new tokens. <br /> Admins will be allocated OBIE tokens from grandpa Obie Dobo. <br />{' '}
+              Your own personal pools page to reward your hard work ❤️
             </AdminText>
           )}
         </HeadingContainer>
@@ -717,6 +716,22 @@ const AdminPools: React.FC = () => {
               Hot
             </StyledLabel>
           </StyledLabelContainerHot>
+          <StyledLabelContainerAPR>
+            <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
+              Very Nice
+              {sortOption === 'apr' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
+            </StyledLabel>
+          </StyledLabelContainerAPR>
+          <StyledLabelContainerLiquidity>
+            <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
+              Good Project
+              {sortOption === 'totalStaked' ? (
+                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
+              ) : null}
+            </StyledLabel>
+          </StyledLabelContainerLiquidity>
           <StyledLabelContainerLP>
             <StyledLabel>Token</StyledLabel>
           </StyledLabelContainerLP>
