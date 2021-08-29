@@ -24,6 +24,28 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
+    sousId: 89,
+    tokenName: 'NVT',
+    image: 'NVT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xf45d14aa2844c14ee8a06a1bff1daa99656cf65c',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://nerve.network/',
+    harvest: true,
+    tokenPerBlock: `1.44675925`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
+  {
     sousId: 17,
     tokenName: 'SWAMP',
     stakingTokenName: 'BANANA',
