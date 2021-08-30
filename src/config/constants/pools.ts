@@ -1935,6 +1935,7 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
+    emergencyWithdraw: true
   },
   {
     sousId: 88,
