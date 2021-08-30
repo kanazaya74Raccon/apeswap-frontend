@@ -1930,7 +1930,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://polyplay.net/',
     harvest: true,
-    tokenPerBlock: `0.011574074074074074`,
+    tokenPerBlock: `0`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
