@@ -171,6 +171,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
         isLoading={isLoading}
         tokenDecimals={pool.tokenDecimals}
         compound={isCompound}
+        emergencyWithdraw={pool.emergencyWithdraw}
       />
     )
   }
