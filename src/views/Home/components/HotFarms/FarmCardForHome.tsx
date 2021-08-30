@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Flex, Heading, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
 
 export interface FarmWithStakedValue extends Farm {
@@ -117,7 +117,9 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         </StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          <ApyNumber>{farmAPR?.toFixed(2)}%</ApyNumber>
+          <ApyNumber>
+            {farmAPR.toFixed(2) !== 'NaN' ? <ApyNumber>{farmAPR.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
+          </ApyNumber>
         </ApyWrapper>
       </DescriptionContainer>
     </PCard>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
+import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'

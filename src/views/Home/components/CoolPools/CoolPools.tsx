@@ -6,7 +6,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useBlock from 'hooks/useBlock'
 import { useFetchPoolsHome } from 'state/strapi/fetchStrapi'
-
+import pools from 'config/constants/pools'
 import { BLOCKS_PER_YEAR } from 'config'
 import { useFarms, usePriceBnbBusd, usePoolFromPid, useStatsOverall } from 'state/hooks'
 import PoolCardForHome from './PoolCardForHome'
@@ -116,8 +116,15 @@ const CoolPools = () => {
       }
     })
 
-  const sousId1 = parseInt(poolsData[0]?.sousId1) ? parseInt(poolsData[0]?.sousId1) : DEFAULT_POOL
-  const sousId2 = parseInt(poolsData[0]?.sousId2) ? parseInt(poolsData[0]?.sousId2) : DEFAULT_POOL
+  const poolMustBeUnder = pools.length
+  let sousId1 = parseInt(poolsData[0]?.sousId1) || DEFAULT_POOL
+  let sousId2 = parseInt(poolsData[0]?.sousId2) || DEFAULT_POOL
+  if (sousId1 > poolMustBeUnder) {
+    sousId1 = DEFAULT_POOL
+  }
+  if (sousId2 > poolMustBeUnder) {
+    sousId2 = DEFAULT_POOL
+  }
   const poolsToDisplay = [usePoolFromPid(sousId1), usePoolFromPid(sousId2)]
   if (!loading) {
     poolsFetched = fetchPools()

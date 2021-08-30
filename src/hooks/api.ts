@@ -286,6 +286,7 @@ export const getNewsHome = async () => {
       title: curNews.title,
       description: curNews.description,
       image: curNews.image,
+      link: curNews.link
     }
   })
 
@@ -329,6 +330,7 @@ export const getHeadersHome = async () => {
       desktop: header.desktop,
       tablet: header.tablet,
       mobile: header.mobile,
+      link: header.link
     }
   })
 

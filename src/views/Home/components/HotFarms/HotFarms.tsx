@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
+import farms from 'config/constants/farms'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
 import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
@@ -111,8 +112,15 @@ const HotFarms = () => {
     [bnbPrice, ethPriceUsd, bananaPrice],
   )
 
-  const pid1 = parseInt(farmsData[0]?.pid1) ? parseInt(farmsData[0]?.pid1) : DEFAULT_FARM
-  const pid2 = parseInt(farmsData[0]?.pid2) ? parseInt(farmsData[0]?.pid2) : DEFAULT_FARM
+  const farmMustBeUnder = farms.length
+  let pid1 = parseInt(farmsData[0]?.pid1) || DEFAULT_FARM
+  let pid2 = parseInt(farmsData[0]?.pid2) || DEFAULT_FARM
+  if (pid1 > farmMustBeUnder) {
+    pid1 = DEFAULT_FARM
+  }
+  if (pid2 > farmMustBeUnder) {
+    pid2 = DEFAULT_FARM
+  }
   const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
   if (!loading) {
     farmsFetched = farmsList(farmsToFetch)

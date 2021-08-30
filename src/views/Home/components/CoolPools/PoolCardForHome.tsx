@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
 
 export interface PoolWithStakeValue extends Pool {
@@ -124,7 +124,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         <StyledHeading>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          <ApyNumber>{apr.toFixed(2)}%</ApyNumber>
+          {apr.toFixed(2) !== 'NaN' ? <ApyNumber>{apr.toFixed(2)}%</ApyNumber> : <Skeleton width="80px"/>}
         </ApyWrapper>
       </DescriptionContainer>
     </PCard>

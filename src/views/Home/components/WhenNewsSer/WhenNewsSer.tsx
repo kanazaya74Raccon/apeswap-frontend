@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
 import { Card, Text } from '@apeswapfinance/uikit'
 import NewsFeed from './NewsFeed'
 

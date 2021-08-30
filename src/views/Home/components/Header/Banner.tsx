@@ -19,6 +19,7 @@ const Header = styled.div<{ image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: -10;
   ${({ theme }) => theme.mediaQueries.md} {
     height: 280px;
     width: 100%;
@@ -37,6 +38,7 @@ const LeftArrow = styled.img`
   border-radius: 0px;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 1;
 `
 
 const RightArrow = styled.img`
@@ -47,6 +49,7 @@ const RightArrow = styled.img`
   border-radius: 0px;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: -1;
 `
 
 const CurrentHeaderHolder = styled.div`
@@ -74,7 +77,26 @@ const HeaderBubble = styled.div<{ live?: boolean }>`
   margin-left: 7.5px;
   margin-right: 7.5px;
   cursor: pointer;
+  z-index: 1;
   background: ${(props) => (props.live ? 'white' : 'rgba(255, 255, 255, 0.38)')};
+`
+
+const LinkArea = styled.a`
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  width: 85%;
+  top: 0;
+  align-self: center;
+  cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 230px;
+    width: 90%;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    height: 270px;
+    width: 92%;
+  }
 `
 
 const SLIDETIME = 15000
@@ -131,6 +153,7 @@ const Banner = () => {
         <Header image="" />
       ) : (
         <Header image={getImageSize(headersData[activeIndex])}>
+          <LinkArea href={headersData[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />
           <LeftArrow src="images/home-left-arrow.svg" onClick={handleLeftClick} />
           <RightArrow src="images/home-right-arrow.svg" onClick={handleRightClick} />
           <CurrentHeaderHolder>
