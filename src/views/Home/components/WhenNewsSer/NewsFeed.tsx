@@ -64,7 +64,7 @@ const ImageContainer = styled.div<{ image: string }>`
   width: 293px;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   margin-bottom: 10px;
 `
 

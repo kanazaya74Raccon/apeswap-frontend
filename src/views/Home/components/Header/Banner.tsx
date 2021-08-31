@@ -12,8 +12,8 @@ const Header = styled.div<{ image: string }>`
   padding-top: 36px;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
   transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
   display: flex;
