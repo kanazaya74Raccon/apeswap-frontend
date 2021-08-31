@@ -27,6 +27,11 @@ const config: MenuEntry[] = [
     ],
   },
   {
+    label: 'Vaults',
+    icon: 'Vaults',
+    href: `${BASE_EXCHANGE_URL}/vaults`,
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
