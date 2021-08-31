@@ -151,3 +151,30 @@ export type PageMeta = {
   description?: string
   image?: string
 }
+
+// Interfaces used in Vaults
+export interface MasterChef {
+  pid: number
+  address: string
+  rewardsPerBlock: string
+  rewardToken: string
+}
+
+export interface Vault {
+  pid: number
+  strat: string
+  stakeTokenAddress: string
+  platform: string
+  token0: {
+    symbol: string
+    address: string
+  }
+  token1?: {
+    symbol: string
+    address: string
+  }
+  isPair: boolean
+  masterchef: MasterChef
+  totalFees: number
+  burning: boolean
+}
