@@ -124,7 +124,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         <StyledHeading>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          {apr.toFixed(2) !== 'NaN' ? <ApyNumber>{apr.toFixed(2)}%</ApyNumber> : <Skeleton width="80px"/>}
+          {apr.toFixed(2) !== 'NaN' ? <ApyNumber>{apr.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
         </ApyWrapper>
       </DescriptionContainer>
     </PCard>
