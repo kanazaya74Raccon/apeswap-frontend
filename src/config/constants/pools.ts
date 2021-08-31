@@ -1933,7 +1933,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     emergencyWithdraw: true,
   },
