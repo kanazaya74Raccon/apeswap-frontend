@@ -324,7 +324,6 @@ export const getHeadersHome = async () => {
   const url = `${baseUrlStrapi}/home-banners?_sort=created_at:desc`
   const resp = await fetch(url)
   const data = await resp.json()
-  console.log(data)
   const headers = data.map((header) => {
     return {
       desktop: header.desktop,

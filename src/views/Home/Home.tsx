@@ -14,6 +14,13 @@ export interface GridWidth {
   spanLast?: number
 }
 
+const BannerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5px;
+`
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -89,8 +96,10 @@ const RightSideFlexWrapper = styled.div`
 const Home: React.FC = () => {
   return (
     <>
-      <Banner />
       <Page width="1200px">
+        <BannerContainer>
+          <Banner />
+        </BannerContainer>
         <PageContainer>
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
