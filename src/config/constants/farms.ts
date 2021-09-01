@@ -1615,6 +1615,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 115,
+    lpSymbol: 'MOR-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x33526eD690200663EAAbF28e1D8621e58898c5fd',
+    },
+    tokenSymbol: 'MOR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x87BAde473ea0513D4aA7085484aEAA6cB6EBE7e3',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
     pid: 116,
     lpSymbol: 'POLAR-BNB LP',
     lpAddresses: {
