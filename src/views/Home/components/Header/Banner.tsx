@@ -86,7 +86,7 @@ const Banner = () => {
 
   const getImageSize = (image: any) => {
     if (isXl) {
-      return image.tablet[0]?.url
+      return image.desktop[0]?.url
     }
     if (isMd || isLg) {
       return image.tablet[0]?.url
@@ -123,7 +123,6 @@ const Banner = () => {
       resetTimeout()
     }
   }, [activeIndex, headersData])
-
 
   return (
     <>
