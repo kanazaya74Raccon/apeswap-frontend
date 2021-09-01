@@ -2024,7 +2024,7 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
-    }
+  },
 ]
 
 export default pools
