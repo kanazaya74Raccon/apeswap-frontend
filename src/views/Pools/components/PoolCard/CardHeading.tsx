@@ -282,7 +282,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
     }
-    if (!needsApproval && !accountHasStakedBalance) {
+    if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (
         <StakeAction
           pool={pool}
@@ -300,6 +300,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         isLoading={isLoading}
         tokenDecimals={pool.tokenDecimals}
         compound={isCompound}
+        emergencyWithdraw={pool.emergencyWithdraw}
       />
     )
   }

@@ -93,6 +93,7 @@ export interface PoolConfig {
   displayDecimals?: number
   lpStaking?: boolean
   forAdmins?: boolean
+  emergencyWithdraw?: boolean
 }
 
 export type Images = {
