@@ -30,7 +30,6 @@ export interface Pool extends PoolConfig {
   lpData?: any
 }
 
-
 export interface Vault extends VaultConfig {
   totalStaked?: BigNumber
   totalAllocPoint?: number
@@ -163,7 +162,6 @@ export interface FarmOverall {
   rewardTokenPrice: number
   rewardTokenSymbol: string
 }
-
 
 // Slices states
 
