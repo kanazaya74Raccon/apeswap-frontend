@@ -2038,7 +2038,7 @@ const pools: PoolConfig[] = [
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x7740bb8f6be130e62597b2554aab2d69bc33c25b',
     },
-    poolCategory: PoolCategory.APEZONE,
+    poolCategory: PoolCategory.CORE,
     projectLink: 'https://crudeoil.finance/',
     harvest: true,
     tokenPerBlock: `0.000590277777777777`,
