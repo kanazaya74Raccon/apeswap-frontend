@@ -1,6 +1,6 @@
-import { Vault } from './types'
+import { VaultConfig } from './types'
 
-const vaults: Vault[] = [
+const vaults: VaultConfig[] = [
   {
     pid: 0,
     strat: '0xe6b98cb31ce30f1c232900c8090c16213f15d483',

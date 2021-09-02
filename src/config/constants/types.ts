@@ -160,7 +160,7 @@ export interface MasterChef {
   rewardToken: string
 }
 
-export interface Vault {
+export interface VaultConfig {
   pid: number
   strat: string
   stakeTokenAddress: string

@@ -1,6 +1,6 @@
 import { Toast } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import { FarmConfig, Nft, PoolConfig, Team, VaultConfig } from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -28,6 +28,20 @@ export interface Pool extends PoolConfig {
     pendingReward: BigNumber
   }
   lpData?: any
+}
+
+
+export interface Vault extends VaultConfig {
+  totalStaked?: BigNumber
+  totalAllocPoint?: number
+  stakeTokenDecimals?: number
+  pairBalanceMc?: number
+  userData?: {
+    allowance?: BigNumber
+    stakingTokenBalance?: BigNumber
+    stakedBalance?: BigNumber
+    pendingReward?: BigNumber
+  }
 }
 
 export interface Profile {
@@ -150,6 +164,7 @@ export interface FarmOverall {
   rewardTokenSymbol: string
 }
 
+
 // Slices states
 
 export interface ToastsState {
@@ -162,6 +177,12 @@ export interface FarmsState {
 
 export interface PoolsState {
   data: Pool[]
+}
+
+export interface VaultsState {
+  data: Vault[]
+  loadVaultData: boolean
+  userDataLoaded: boolean
 }
 
 export interface ProfileState {
