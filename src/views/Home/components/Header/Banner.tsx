@@ -6,7 +6,7 @@ import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
 const Header = styled.div<{ image: string }>`
   position: relative;
   height: 320px;
-  width: 96.5%;
+  width: 340px;
   padding-top: 36px;
   margin-bottom: 30px;
   background: url(${({ image }) => image});
@@ -19,6 +19,12 @@ const Header = styled.div<{ image: string }>`
   align-items: center;
   justify-content: center;
   border-radius: 30px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 720px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 1110px;
+  }
 `
 
 const LeftArrow = styled.img`
