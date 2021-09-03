@@ -165,7 +165,6 @@ const Cards = styled(BaseLayout)`
   }
 `
 const BurningGames: React.FC = () => {
-  
   const TranslateString = useI18n()
   const { account } = useWeb3React()
   const { data, loading } = useFetchBurningGames()
