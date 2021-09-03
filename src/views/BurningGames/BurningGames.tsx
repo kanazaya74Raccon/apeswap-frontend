@@ -1,25 +1,14 @@
-import React, { useEffect, useCallback, useState, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon, BaseLayout } from '@apeswapfinance/uikit'
+import { Heading, Card, BaseLayout } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
-import useWindowSize, { Size } from 'hooks/useDimensions'
 import { fetchFarmUserDataAsync } from 'state/actions'
-import { Farm } from 'state/types'
-import { QuoteToken } from 'config/constants/types'
-import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
-import FarmCard, { FarmWithStakedValue } from '../Farms/components/FarmCard/FarmCard'
-import FarmTabButtons from '../Farms/components/FarmTabButtons'
-import Table from '../Farms/components/FarmTable/FarmTable'
-import SearchInput from '../Farms/components/SearchInput'
-import { RowProps } from '../Farms/components/FarmTable/Row'
-import ToggleView from '../Farms/components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from '../Farms/components/types'
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -40,23 +29,6 @@ const ControlContainer = styled(Card)`
     justify-content: flex-start;
     padding-left: 50px;
     transform: translateY(-60px);
-  }
-`
-
-const LabelWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  > ${Text} {
-    font-size: 12px;
-  }
-
-  margin-left: 30px;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-    margin-left: 0px;
-    align-items: center;
   }
 `
 
@@ -101,15 +73,6 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 24px;
     padding-right: 24px;
-  }
-`
-
-const StyledText = styled(Text)`
-  font-weight: 700;
-  font-size: 12px;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 15px !important;
   }
 `
 
@@ -202,25 +165,13 @@ const Cards = styled(BaseLayout)`
   }
 `
 const BurningGames: React.FC = () => {
-  const size: Size = useWindowSize()
-
+  
   const TranslateString = useI18n()
   const { account } = useWeb3React()
-  const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(null)
   const { data, loading } = useFetchBurningGames()
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
-  useEffect(() => {
-    if (size.width !== undefined) {
-      if (size.width < 968) {
-        setViewMode(ViewMode.CARD)
-      } else {
-        setViewMode(ViewMode.TABLE)
-      }
-    }
-  }, [size])
 
   useEffect(() => {
     if (account) {
@@ -228,13 +179,7 @@ const BurningGames: React.FC = () => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const [stakedOnly, setStakedOnly] = useState(false)
-
   const { isDark } = useTheme()
-
-  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
 
   return (
     <>
@@ -249,12 +194,6 @@ const BurningGames: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-            <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
-              <SearchInput onChange={handleChangeQuery} value={query} />
-            </LabelWrapper>
             {isDark ? (
               <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
             ) : (
