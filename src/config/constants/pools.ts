@@ -2091,6 +2091,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 95,
+    tokenName: 'PEAR',
+    image: 'PEAR.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x51416a1b4B9D635738F54C3A7aEc6EB27E127491',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://pearzap.com/',
+    harvest: true,
+    tokenPerBlock: `0.009259259259259259`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools
