@@ -13,7 +13,7 @@ import {
   useStatsOverall,
   useFetchAuctions,
   usePollVaultsData,
-  useVaults
+  useVaults,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'

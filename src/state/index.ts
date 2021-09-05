@@ -20,6 +20,6 @@ export default configureStore({
     statsOverall: statsOverallReducer,
     teams: teamsReducer,
     auctions: auctionReducer,
-    vaults: vaultReducer
+    vaults: vaultReducer,
   },
 })

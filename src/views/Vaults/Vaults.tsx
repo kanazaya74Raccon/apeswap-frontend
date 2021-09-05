@@ -716,8 +716,6 @@ const Vaults: React.FC = () => {
     </CardContainer>
   )
 
-
-
   const tableLayout = (
     <Container>
       <TableContainer>
