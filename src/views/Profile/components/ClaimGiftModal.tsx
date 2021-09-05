@@ -40,7 +40,7 @@ export const useCanClaim = () => {
 }
 
 const useClaimRefundContract = () => {
-  const abi = (claimRefundAbi as unknown) as AbiItem
+  const abi = claimRefundAbi as unknown as AbiItem
   return useContract(abi, claimRefundAddress)
 }
 
