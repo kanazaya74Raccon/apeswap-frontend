@@ -4,6 +4,8 @@ import { Heading } from '@apeswapfinance/uikit'
 import { useChartData } from 'hooks/api'
 
 import ReactApexChart from 'react-apexcharts'
+import { ApexOptions } from 'apexcharts'
+
 import styled from 'styled-components'
 
 const Charts = styled.div`
@@ -76,7 +78,12 @@ const ApexChart = () => {
       </Heading>
       <div id="chart-candlestick">
         {data?.chartData && (
-          <ReactApexChart options={chartConfig.options} series={chartConfig.series} type="candlestick" height={560} />
+          <ReactApexChart
+            options={chartConfig.options as unknown as ApexOptions}
+            series={chartConfig.series}
+            type="candlestick"
+            height={560}
+          />
         )}
       </div>
       {/* data?.volume && (
