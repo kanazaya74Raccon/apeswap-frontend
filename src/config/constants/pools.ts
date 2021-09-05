@@ -2072,7 +2072,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 94,
     tokenName: 'KRW',
-    image: 'KRW.png',
+    image: 'KRW.svg',
     stakingTokenName: 'BANANA',
     stakingTokenAddress: {
       97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
