@@ -1974,7 +1974,7 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0xB222340A184db81704db5cf8C35F126c807128bF',
+      56: '0x4410Eea7a059A10967C91E4FB8571D416E8B6787',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: '',
