@@ -12,6 +12,8 @@ import {
   useFetchStatsOverall,
   useStatsOverall,
   useFetchAuctions,
+  usePollVaultsData,
+  useVaults
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -35,6 +37,7 @@ const Chart = lazy(() => import('./views/Chart'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
+const Vaults = lazy(() => import('./views/Vaults'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -74,6 +77,8 @@ const App: React.FC = () => {
   useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
+  usePollVaultsData()
+  useVaults()
 
   const { statsOverall } = useStatsOverall()
 
@@ -100,6 +105,9 @@ const App: React.FC = () => {
             <Route path="/farms">{statsOverall && <Farms />}</Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/vaults">
+              <Vaults />
             </Route>
             <Route path="/lottery">
               <Lottery />

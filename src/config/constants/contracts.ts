@@ -71,4 +71,8 @@ export default {
     56: '0x495881E60EB2E3a95757f3a7b09Ff31e0C00aE7B',
     97: '0x80a01F81B92D21E39ff1276c4a81d25cB4DC4CDB',
   },
+  vaultApe: {
+    56: '0x5711a833C943AD1e8312A9c7E5403d48c717e1aa',
+    97: '',
+  },
 }

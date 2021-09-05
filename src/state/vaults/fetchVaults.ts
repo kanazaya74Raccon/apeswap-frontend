@@ -1,11 +1,11 @@
 import { VaultConfig } from 'config/constants/types'
-import fetchVault from './fetchVault'
+import fetchVaultData from './fetchVaultData'
 
 const fetchVaults = async (vaultsToFetch: VaultConfig[]) => {
   const data = await Promise.all(
     vaultsToFetch.map(async (vaultConfig) => {
-      const vaultPublicData = await fetchVault(vaultConfig)
-      return { ...vaultConfig, ...vaultPublicData }
+      const vault = await fetchVaultData(vaultConfig)
+      return { ...vaultConfig, ...vault }
     }),
   )
   return data

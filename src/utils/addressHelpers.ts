@@ -44,3 +44,6 @@ export const getClaimRefundAddress = () => {
 export const getAuctionAddress = () => {
   return addresses.auction[chainId]
 }
+export const getVaultApeAddress = () => {
+  return addresses.vaultApe[chainId]
+}

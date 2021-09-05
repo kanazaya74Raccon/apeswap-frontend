@@ -176,5 +176,7 @@ export interface VaultConfig {
   isPair: boolean
   masterchef: MasterChef
   totalFees: number
+  withdrawFee: number
   burning: boolean
+  inactive?: boolean
 }

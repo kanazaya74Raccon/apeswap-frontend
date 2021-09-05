@@ -1,37 +1,32 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
-import masterchefABI from 'config/abi/masterchef.json'
+import vaultApeABI from 'config/abi/vaultApe.json'
 import multicall from 'utils/multicall'
-import { farmsConfig } from 'config/constants'
-import { getMasterChefAddress } from 'utils/addressHelpers'
+import { vaultsConfig } from 'config/constants'
+import { getVaultApeAddress } from 'utils/addressHelpers'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+export const fetchVaultUserAllowances = async (account: string) => {
+  const vaultApe = getVaultApeAddress()
 
-export const fetchFarmUserAllowances = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
-
-  const calls = farmsConfig.map((farm) => {
-    const lpContractAddress = farm.lpAddresses[CHAIN_ID]
-    return { address: lpContractAddress, name: 'allowance', params: [account, masterChefAdress] }
+  const calls = vaultsConfig.map((vault) => {
+    return { address: vault.stakeTokenAddress, name: 'allowance', params: [account, vaultApe] }
   })
 
-  const rawLpAllowances = await multicall(erc20ABI, calls)
-  const parsedLpAllowances = rawLpAllowances.map((lpBalance) => {
-    return new BigNumber(lpBalance).toJSON()
+  const rawStakeAllowances = await multicall(erc20ABI, calls)
+  const parsedStakeAllowances = rawStakeAllowances.map((stakeBalance) => {
+    return new BigNumber(stakeBalance).toJSON()
   })
-  return parsedLpAllowances
+  return parsedStakeAllowances
 }
 
-export const fetchFarmUserTokenBalances = async (account: string) => {
-  const calls = farmsConfig.map((farm) => {
-    const lpContractAddress = farm.lpAddresses[CHAIN_ID]
+export const fetchVaultUserTokenBalances = async (account: string) => {
+  const calls = vaultsConfig.map((vault) => {
     return {
-      address: lpContractAddress,
+      address: vault.stakeTokenAddress,
       name: 'balanceOf',
       params: [account],
     }
   })
-
   const rawTokenBalances = await multicall(erc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
@@ -39,36 +34,36 @@ export const fetchFarmUserTokenBalances = async (account: string) => {
   return parsedTokenBalances
 }
 
-export const fetchFarmUserStakedBalances = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
+export const fetchVaultUserStakedBalances = async (account: string) => {
+  const vaultApe = getVaultApeAddress()
 
-  const calls = farmsConfig.map((farm) => {
+  const calls = vaultsConfig.map((vault) => {
     return {
-      address: masterChefAdress,
+      address: vaultApe,
       name: 'userInfo',
-      params: [farm.pid, account],
+      params: [vault.pid, account],
     }
   })
 
-  const rawStakedBalances = await multicall(masterchefABI, calls)
+  const rawStakedBalances = await multicall(vaultApeABI, calls)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
   return parsedStakedBalances
 }
 
-export const fetchFarmUserEarnings = async (account: string) => {
-  const masterChefAdress = getMasterChefAddress()
+export const fetchVaultUserEarnings = async (account: string) => {
+  const vaultApe = getVaultApeAddress()
 
-  const calls = farmsConfig.map((farm) => {
+  const calls = vaultsConfig.map((vault) => {
     return {
-      address: masterChefAdress,
-      name: 'pendingCake',
-      params: [farm.pid, account],
+      address: vaultApe,
+      name: 'stakedWantTokens',
+      params: [vault.pid, account],
     }
   })
 
-  const rawEarnings = await multicall(masterchefABI, calls)
+  const rawEarnings = await multicall(vaultApeABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })

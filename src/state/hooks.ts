@@ -27,12 +27,15 @@ import {
   TeamsState,
   FarmOverall,
   AuctionsState,
+  Vault,
+  VaultsState,
 } from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAuctions } from './auction'
+import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 
 const ZERO = new BigNumber(0)
 
@@ -43,6 +46,18 @@ export const useFetchPublicData = () => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
+}
+
+export const usePollVaultsData = (includeArchive = false) => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
+  useEffect(() => {
+    dispatch(fetchVaultsPublicDataAsync())
+    if (account) {
+      dispatch(fetchVaultUserDataAsync({ account }))
+    }
+  }, [includeArchive, dispatch, slowRefresh, account])
 }
 
 // Farms
@@ -70,6 +85,30 @@ export const useFarmUser = (pid) => {
     tokenBalance: farm?.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+  }
+}
+
+// Vaults
+
+export const useVaults = (): VaultsState => {
+  const vaults = useSelector((state: State) => state.vaults)
+  console.log(vaults)
+  return vaults
+}
+
+export const useVaultFromPid = (pid): Vault => {
+  const vault = useSelector((state: State) => state.vaults.data.find((v) => v.pid === pid))
+  return vault
+}
+
+export const useVaultUser = (pid) => {
+  const vault = useVaultFromPid(pid)
+
+  return {
+    allowance: vault.userData ? new BigNumber(vault.userData.allowance) : new BigNumber(0),
+    tokenBalance: vault.userData ? new BigNumber(vault.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: vault.userData ? new BigNumber(vault.userData.stakedBalance) : new BigNumber(0),
+    stakedWantBalance: vault.userData ? new BigNumber(vault.userData.stakedWantBalance) : new BigNumber(0),
   }
 }
 

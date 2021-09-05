@@ -32,14 +32,20 @@ export interface Pool extends PoolConfig {
 
 export interface Vault extends VaultConfig {
   totalStaked?: BigNumber
-  totalAllocPoint?: number
-  stakeTokenDecimals?: number
-  pairBalanceMc?: number
+  totalAllocPoint?: string
+  allocPoint?: string
+  weight?: number
+  strategyPairBalance?: string
+  strategyPairBalanceFixed?: string
+  totalInQuoteToken?: string
+  totalInQuoteTokenInMasterChef?: string
+  stakeTokenDecimals?: string
+  masterChefPairBalance?: string
   userData?: {
-    allowance?: BigNumber
-    stakingTokenBalance?: BigNumber
-    stakedBalance?: BigNumber
-    pendingReward?: BigNumber
+    allowance: string
+    tokenBalance: string
+    stakedBalance: string
+    stakedWantBalance: string
   }
 }
 
@@ -236,4 +242,5 @@ export interface State {
   statsOverall: StatsOverallState
   teams: TeamsState
   auctions: AuctionsState
+  vaults: VaultsState
 }
