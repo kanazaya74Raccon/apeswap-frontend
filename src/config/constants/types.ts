@@ -95,6 +95,12 @@ export interface PoolConfig {
   emergencyWithdraw?: boolean
 }
 
+export interface Token {
+  symbol: string
+  address?: Address
+  decimals?: number
+}
+
 export type Images = {
   lg: string
   md: string

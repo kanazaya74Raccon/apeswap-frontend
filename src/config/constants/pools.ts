@@ -1,16 +1,14 @@
 import { BANANA_PER_BLOCK } from 'config'
 import { PoolConfig, QuoteToken, PoolCategory } from './types'
+import tokens from './tokens'
 
 const pools: PoolConfig[] = [
   {
     sousId: 0,
-    tokenName: 'BANANA',
+    tokenName: tokens.banana.symbol,
     image: 'BANANA.svg',
-    stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
-    }, // BANANA token address
+    stakingTokenName: tokens.banana.symbol,
+    stakingTokenAddress: tokens.banana.address,
     contractAddress: {
       97: '0xbbC5e1cD3BA8ED639b00927115e5f0e0040aA613', // MasterApe
       56: '0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9',
