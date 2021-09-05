@@ -25,7 +25,9 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "radix": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "react/require-default-props": 0, 
+    "react/no-unused-prop-types": 0
     // End temporary rules
   }
 }
