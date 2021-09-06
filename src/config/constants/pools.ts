@@ -2067,6 +2067,50 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 94,
+    tokenName: 'KRW',
+    image: 'KRW.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x272d18f546CFF72D1a5bBcA9e0E25F97A71FcA1a',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://kingdefi.io/',
+    harvest: true,
+    tokenPerBlock: `14.467592592592592592`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 95,
+    tokenName: 'PEAR',
+    image: 'PEAR.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x9ab78C2209ad2Bd50de93Aa449f1C7898DBf7138',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://pearzap.com/',
+    harvest: true,
+    tokenPerBlock: `0.008714740740740740`,
+    sortOrder: 1,
+    reflect: true,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools
