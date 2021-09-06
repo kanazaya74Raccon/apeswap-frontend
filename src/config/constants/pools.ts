@@ -2113,7 +2113,28 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-
+  {
+    sousId: 97,
+    tokenName: 'YDR',
+    image: 'YDR.svg',
+    stakingTokenName: 'GNANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xb5bb4897cb8024281732c36d8a438aab5b11ef19',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://ydragon.io/',
+    harvest: true,
+    tokenPerBlock: `1.311728395061728395`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
