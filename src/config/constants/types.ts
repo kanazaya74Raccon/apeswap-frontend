@@ -44,7 +44,8 @@ export enum PoolCategory {
 
 export interface Address {
   97?: string
-  56: string
+  56?: string
+  137?: string
 }
 
 export interface FarmStyles {
@@ -99,6 +100,8 @@ export interface Token {
   symbol: string
   address?: Address
   decimals?: number
+  dontFetch?: boolean
+  lpToken?: boolean
 }
 
 export type Images = {
