@@ -58,20 +58,22 @@ export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
     pushedAuctions: new BigNumber(pushedAuctions).toNumber(),
     auctionsRemovedCount: allAuctions.filter((auction) => auction.auction.seller === ZERO_ADDRESS).length,
     auctions: allAuctions
-      .map((auction, i): Auction => {
-        return {
-          auctionId: i + 1,
-          nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
-          seller: auction.auction.seller,
-          highestBidder: auction.auction.highestBidder,
-          highestBid: auction.auction.highestBid.toString(),
-          timeExtension: auction.auction.timeExtension.toNumber(),
-          timeLength: auction.auction.timeLength.toNumber(),
-          minToExtend: auction.auction.minToExtend.toNumber(),
-          startTime: auction.auction.startTime.toNumber(),
-          endTime: auction.auction.endTime.toNumber(),
-        }
-      })
+      .map(
+        (auction, i): Auction => {
+          return {
+            auctionId: i + 1,
+            nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
+            seller: auction.auction.seller,
+            highestBidder: auction.auction.highestBidder,
+            highestBid: auction.auction.highestBid.toString(),
+            timeExtension: auction.auction.timeExtension.toNumber(),
+            timeLength: auction.auction.timeLength.toNumber(),
+            minToExtend: auction.auction.minToExtend.toNumber(),
+            startTime: auction.auction.startTime.toNumber(),
+            endTime: auction.auction.endTime.toNumber(),
+          }
+        },
+      )
       .filter(({ seller }) => seller !== ZERO_ADDRESS),
   }
   return auctionData

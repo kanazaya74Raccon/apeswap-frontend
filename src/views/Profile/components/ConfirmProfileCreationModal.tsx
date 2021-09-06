@@ -34,33 +34,37 @@ const ContributeModal: React.FC<Props> = ({
   const { toastSuccess } = useToast()
   const bananaContract = useBanana()
 
-  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
-    useApproveConfirmTransaction({
-      onRequiresApproval: async () => {
-        try {
-          const response = await bananaContract.methods.allowance(account, profileContract.options.address).call()
-          const currentAllowance = new BigNumber(response)
-          return currentAllowance.gte(minimumBananaRequired)
-        } catch (error) {
-          return false
-        }
-      },
-      onApprove: () => {
-        return bananaContract.methods
-          .approve(profileContract.options.address, allowance.toJSON())
-          .send({ from: account })
-      },
-      onConfirm: () => {
-        return profileContract.methods
-          .createProfile(teamId, nonFungibleApesContract.options.address, tokenId)
-          .send({ from: account })
-      },
-      onSuccess: async () => {
-        await dispatch(fetchProfile(account))
-        onDismiss()
-        toastSuccess('Profile created!')
-      },
-    })
+  const {
+    isApproving,
+    isApproved,
+    isConfirmed,
+    isConfirming,
+    handleApprove,
+    handleConfirm,
+  } = useApproveConfirmTransaction({
+    onRequiresApproval: async () => {
+      try {
+        const response = await bananaContract.methods.allowance(account, profileContract.options.address).call()
+        const currentAllowance = new BigNumber(response)
+        return currentAllowance.gte(minimumBananaRequired)
+      } catch (error) {
+        return false
+      }
+    },
+    onApprove: () => {
+      return bananaContract.methods.approve(profileContract.options.address, allowance.toJSON()).send({ from: account })
+    },
+    onConfirm: () => {
+      return profileContract.methods
+        .createProfile(teamId, nonFungibleApesContract.options.address, tokenId)
+        .send({ from: account })
+    },
+    onSuccess: async () => {
+      await dispatch(fetchProfile(account))
+      onDismiss()
+      toastSuccess('Profile created!')
+    },
+  })
 
   return (
     <Modal title="Complete Profile" onDismiss={onDismiss}>
