@@ -24,28 +24,34 @@ const Mint: React.FC = () => {
   const mintingFarmContract = useRabbitMintingFarm()
   const TranslateString = useI18n()
   const hasMinimumBananaRequired = useHasBananaBalance(minimumBananaBalance)
-  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
-    useApproveConfirmTransaction({
-      onRequiresApproval: async () => {
-        // TODO: Move this to a helper, this check will be probably be used many times
-        try {
-          const response = await bananaContract.methods.allowance(account, mintingFarmContract.options.address).call()
-          const currentAllowance = new BigNumber(response)
-          return currentAllowance.gte(minimumBananaRequired)
-        } catch (error) {
-          return false
-        }
-      },
-      onApprove: () => {
-        return bananaContract.methods
-          .approve(mintingFarmContract.options.address, allowance.toJSON())
-          .send({ from: account })
-      },
-      onConfirm: () => {
-        return mintingFarmContract.methods.mintNFT(bunnyId).send({ from: account })
-      },
-      onSuccess: () => actions.nextStep(),
-    })
+  const {
+    isApproving,
+    isApproved,
+    isConfirmed,
+    isConfirming,
+    handleApprove,
+    handleConfirm,
+  } = useApproveConfirmTransaction({
+    onRequiresApproval: async () => {
+      // TODO: Move this to a helper, this check will be probably be used many times
+      try {
+        const response = await bananaContract.methods.allowance(account, mintingFarmContract.options.address).call()
+        const currentAllowance = new BigNumber(response)
+        return currentAllowance.gte(minimumBananaRequired)
+      } catch (error) {
+        return false
+      }
+    },
+    onApprove: () => {
+      return bananaContract.methods
+        .approve(mintingFarmContract.options.address, allowance.toJSON())
+        .send({ from: account })
+    },
+    onConfirm: () => {
+      return mintingFarmContract.methods.mintNFT(bunnyId).send({ from: account })
+    },
+    onSuccess: () => actions.nextStep(),
+  })
 
   return (
     <>
