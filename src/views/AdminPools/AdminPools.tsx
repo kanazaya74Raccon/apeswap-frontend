@@ -4,7 +4,6 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
@@ -15,12 +14,12 @@ import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hook
 import { Pool } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
-import ToggleView from './components/ToggleView/ToggleView'
-import SearchInput from './components/SearchInput'
-import PoolTabButtons from './components/PoolTabButtons'
-import PoolCard from './components/PoolCard/PoolCard'
-import PoolTable from './components/PoolTable/PoolTable'
-import { ViewMode } from './components/types'
+import ToggleView from '../Pools/components/ToggleView/ToggleView'
+import SearchInput from '../Pools/components/SearchInput'
+import PoolTabButtons from '../Pools/components/PoolTabButtons'
+import PoolCard from '../Pools/components/PoolCard/PoolCard'
+import PoolTable from '../Pools/components/PoolTable/PoolTable'
+import { ViewMode } from '../Pools/components/types'
 
 interface LabelProps {
   active?: boolean
@@ -488,12 +487,19 @@ const TableWrapper = styled.div`
   }
 `
 
+const AdminText = styled(Text)`
+  font-family: poppins;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+`
+
 const TableContainer = styled.div`
   position: relative;
 `
 const NUMBER_OF_POOLS_VISIBLE = 12
 
-const Pools: React.FC = () => {
+const AdminPools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
   const [gnanaOnly, setGnanaOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -547,54 +553,12 @@ const Pools: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
-    const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
-      return new BigNumber(1)
-    }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
-    }
-    return tokenPriceBN
-  }
+  const adminPools = allPools.filter((pool) => pool.forAdmins)
 
-  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
-
-  const poolsWithApy = allNonAdminPools.map((pool) => {
-    const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
-    const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
-    const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
-    const stats = statsOverall?.incentivizedPools?.find((x) => x.id === pool.sousId)
-    let rewardTokenPrice = stats?.rewardTokenPrice
-
-    let stakedTokenPrice
-    let stakingTokenPriceInBNB
-    let rewardTokenPriceInBNB
-
-    if (pool.lpData) {
-      const rewardToken = pool.lpData.token1.symbol === pool.tokenName ? pool.lpData.token1 : pool.lpData.token0
-      stakingTokenPriceInBNB = new BigNumber(pool.lpData.reserveETH).div(new BigNumber(pool.lpData.totalSupply))
-      rewardTokenPriceInBNB = new BigNumber(rewardToken.derivedETH)
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    } else if (rewardTokenPrice) {
-      stakingTokenPriceInBNB = priceToBnb(pool.stakingTokenName, new BigNumber(stats?.price), QuoteToken.BUSD)
-      rewardTokenPriceInBNB = priceToBnb(pool.tokenName, new BigNumber(rewardTokenPrice), QuoteToken.BUSD)
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    } else {
-      // /!\ Assume that the farm quote price is BNB
-      stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
-      rewardTokenPriceInBNB = priceToBnb(
-        pool.tokenName,
-        rewardTokenFarm?.tokenPriceVsQuote,
-        rewardTokenFarm?.quoteTokenSymbol,
-      )
-      rewardTokenPrice = bnbPriceUSD.times(rewardTokenPriceInBNB).toNumber()
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    }
-
-    const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
-    const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
-    const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
+  const poolsWithApy = adminPools.map((pool) => {
+    const rewardTokenPrice = 0
+    const stakedTokenPrice = 1
+    const apr = new BigNumber(0)
 
     return {
       ...pool,
@@ -713,13 +677,13 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'Banana Pools')}
+            {TranslateString(999, 'Admin Pools')}
           </StyledHeading>
           {size.width > 968 && (
-            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
-            </Text>
+            <AdminText>
+              Stake OBIE to earn new tokens. <br /> Admins will be allocated OBIE tokens from grandpa Obie Dobo. <br />{' '}
+              Your own personal pools page to reward your hard work ❤️
+            </AdminText>
           )}
         </HeadingContainer>
         <MonkeyWrapper>
@@ -729,9 +693,6 @@ const Pools: React.FC = () => {
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
-            {size.width > 968 && viewMode !== null && (
-              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            )}
             <LabelWrapper>
               <StyledText fontFamily="poppins" mr="15px">
                 Search
@@ -745,10 +706,6 @@ const Pools: React.FC = () => {
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
-                <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
-                  <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
-                </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
           </ViewControls>
@@ -759,12 +716,9 @@ const Pools: React.FC = () => {
               Hot
             </StyledLabel>
           </StyledLabelContainerHot>
-          <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
-          </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              Very Nice
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -772,12 +726,15 @@ const Pools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Total Staked
+              Good Project
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
           </StyledLabelContainerLiquidity>
+          <StyledLabelContainerLP>
+            <StyledLabel>Token</StyledLabel>
+          </StyledLabelContainerLP>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
               Earned
@@ -787,11 +744,11 @@ const Pools: React.FC = () => {
             </StyledLabel>
           </StyledLabelContainerEarned>
         </ContainerLabels>
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+        {cardLayout}
         <div ref={loadMoreRef} />
       </StyledPage>
     </>
   )
 }
 
-export default Pools
+export default AdminPools

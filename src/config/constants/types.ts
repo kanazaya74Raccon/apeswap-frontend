@@ -93,6 +93,7 @@ export interface PoolConfig {
   tokenDecimals: number
   displayDecimals?: number
   lpStaking?: boolean
+  forAdmins?: boolean
   emergencyWithdraw?: boolean
 }
 

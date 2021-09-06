@@ -17,6 +17,7 @@ import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import AdminPools from './views/AdminPools'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -100,6 +101,9 @@ const App: React.FC = () => {
             <Route path="/farms">{statsOverall && <Farms />}</Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/admin-pools">
+              <AdminPools />
             </Route>
             <Route path="/lottery">
               <Lottery />
