@@ -100,8 +100,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     sousId,
     image,
     tokenName,
-    stakingTokenName,
-    stakingTokenAddress,
+    stakingToken,
     apr,
     totalStaked,
     startBlock,
@@ -109,7 +108,6 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     isFinished,
     userData,
     rewardToken,
-    stakeTokenPrice,
     projectLink,
     contractAddress,
     tokenDecimals,
@@ -136,7 +134,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const isCompound = sousId === 0
   const isLoading = !pool.userData
 
-  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakeTokenPrice
+  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakingToken?.price
 
   const cardHeaderButton = () => {
     if (!account) {
@@ -144,7 +142,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     }
     if (needsApproval) {
       return (
-        <ApprovalAction stakingContractAddress={stakingTokenAddress[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
+        <ApprovalAction stakingContractAddress={stakingToken.address[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
       )
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
@@ -174,7 +172,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <PoolHeading stakeToken={stakingTokenName} earnToken={tokenName} earnTokenImage={image} />
+          <PoolHeading stakeToken={stakingToken.symbol} earnToken={tokenName} earnTokenImage={image} />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}
@@ -216,10 +214,10 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             blocksRemaining={blocksRemaining}
             isFinished={isFinished}
             blocksUntilStart={blocksUntilStart}
-            stakedTokenPrice={stakeTokenPrice}
+            stakedTokenPrice={stakingToken?.price}
             rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
-            lpLabel={stakingTokenName}
+            lpLabel={stakingToken.symbol}
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}

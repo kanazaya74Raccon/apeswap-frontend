@@ -7,8 +7,7 @@ const pools: PoolConfig[] = [
     sousId: 0,
     tokenName: tokens.banana.symbol,
     image: 'BANANA.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0xbbC5e1cD3BA8ED639b00927115e5f0e0040aA613', // MasterApe
@@ -25,13 +24,9 @@ const pools: PoolConfig[] = [
   {
     sousId: 17,
     tokenName: 'SWAMP',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     image: 'SWAMP.svg',
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA LP
-    },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -49,13 +44,9 @@ const pools: PoolConfig[] = [
   {
     sousId: 19,
     tokenName: 'ALLOY',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     image: 'ALLOY.png',
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA LP
-    },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -73,13 +64,9 @@ const pools: PoolConfig[] = [
   {
     sousId: 20,
     tokenName: 'NAUT',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     image: 'NAUT.png',
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANA LP
-    },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -94,40 +81,36 @@ const pools: PoolConfig[] = [
     tokenDecimals: 8,
     lpStaking: false,
   },
-  {
-    sousId: 18,
-    tokenName: 'NAUT',
-    stakingTokenName: 'BNB-NAUT',
-    image: 'NAUT.png',
-    rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x330de89a559a75738acB5b87aE93579120d53AfB',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://astronaut.to',
-    harvest: true,
-    tokenPerBlock: '0.049603174603175',
-    sortOrder: 6,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
+  // {
+  //   sousId: 18,
+  //   tokenName: 'NAUT',
+  //   stakingTokenName: 'BNB-NAUT',
+  //   image: 'NAUT.png',
+  //   rewardToken: null,
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x330de89a559a75738acB5b87aE93579120d53AfB',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://astronaut.to',
+  //   harvest: true,
+  //   tokenPerBlock: '0.049603174603175',
+  //   sortOrder: 6,
+  //   isFinished: true,
+  //   tokenDecimals: 8,
+  //   lpStaking: true,
+  // },
   {
     sousId: 12,
     tokenName: 'JDI',
-    stakingTokenName: 'BNB-JDI',
+    stakingToken: tokens.bnbjdi,
     image: 'JDI.svg',
     rewardToken: tokens.jdi,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764', // BNB-JDI LP
-    },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -146,12 +129,8 @@ const pools: PoolConfig[] = [
     sousId: 28,
     tokenName: 'JDI',
     image: 'JDI.svg',
-    stakingTokenName: 'JDI',
+    stakingToken: tokens.jdi,
     rewardToken: tokens.jdi,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x0491648c910ad2c1afaab733faf71d30313df7fc', // JDI
-    },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0xa3283C497710cbBE31d35A5cf56C315C621D6e10', // ApeRewardPool
@@ -168,9 +147,8 @@ const pools: PoolConfig[] = [
   {
     sousId: 13,
     tokenName: 'FOXY',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     image: 'FOXY.png',
-    stakingTokenAddress: tokens.banana.address,
     rewardToken: null,
     contractAddress: {
       // BEP20RewardApe
@@ -189,10 +167,9 @@ const pools: PoolConfig[] = [
   {
     sousId: 14,
     tokenName: 'JDI',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     image: 'JDI.svg',
     rewardToken: tokens.jdi,
-    stakingTokenAddress: tokens.banana.address,
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -210,9 +187,8 @@ const pools: PoolConfig[] = [
   {
     sousId: 16,
     tokenName: 'LYPTUS',
-    stakingTokenName: tokens.banana.symbol,
     image: 'LYPTUS.png',
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       // BEP20RewardApe
@@ -232,9 +208,8 @@ const pools: PoolConfig[] = [
     sousId: 21,
     tokenName: 'BANANA',
     image: 'BANANA.svg',
-    stakingTokenName: tokens.gnana.symbol,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.banana,
-    stakingTokenAddress: tokens.gnana.address,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
       56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
@@ -251,12 +226,8 @@ const pools: PoolConfig[] = [
     sousId: 22,
     tokenName: 'ONT',
     image: 'ONT.png',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
-    },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
       56: '0x8e6f61f855a7483E29c8E87BF221C73e10b49738',
@@ -269,35 +240,34 @@ const pools: PoolConfig[] = [
     isFinished: true,
     tokenDecimals: 18,
   },
-  {
-    sousId: 24,
-    tokenName: 'BFT',
-    image: 'BFT.svg',
-    stakingTokenName: 'BFT',
-    rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8', // BFT
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
-      56: '0x49bbB345c432b9B66b407f1525A81A84F4509b8b',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://www.bitfresh.win',
-    harvest: true,
-    tokenPerBlock: `3.858024691358025`,
-    sortOrder: 1.01,
-    reflect: true,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
+  // {
+  //   sousId: 24,
+  //   tokenName: 'BFT',
+  //   image: 'BFT.svg',
+  //   stakingTokenName: 'BFT',
+  //   rewardToken: null,
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8', // BFT
+  //   },
+  //   contractAddress: {
+  //     97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+  //     56: '0x49bbB345c432b9B66b407f1525A81A84F4509b8b',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://www.bitfresh.win',
+  //   harvest: true,
+  //   tokenPerBlock: `3.858024691358025`,
+  //   sortOrder: 1.01,
+  //   reflect: true,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  // },
   {
     sousId: 25,
     tokenName: 'BFT',
     image: 'BFT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
@@ -316,8 +286,7 @@ const pools: PoolConfig[] = [
     sousId: 26,
     tokenName: 'SAFEP',
     image: 'SAFEP.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -336,8 +305,7 @@ const pools: PoolConfig[] = [
     sousId: 27,
     tokenName: 'GEN',
     image: 'GEN.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -356,8 +324,7 @@ const pools: PoolConfig[] = [
     sousId: 29,
     tokenName: 'BINGUS',
     image: 'Bingus.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -376,8 +343,7 @@ const pools: PoolConfig[] = [
     sousId: 31,
     tokenName: 'vBSWAP',
     image: 'VBSWAP.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -396,12 +362,8 @@ const pools: PoolConfig[] = [
     sousId: 32,
     tokenName: 'WATCH',
     image: 'WATCH.png',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
-    },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0x465a3782d9014e6eefccc21470c5e41b2cad9d6d', // ApeRewardPool
@@ -419,8 +381,7 @@ const pools: PoolConfig[] = [
     sousId: 33,
     tokenName: 'KEYFI',
     image: 'KEYFI.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -439,9 +400,8 @@ const pools: PoolConfig[] = [
     sousId: 34,
     tokenName: 'BFT',
     image: 'BFT.svg',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     rewardToken: tokens.bft,
-    stakingTokenAddress: tokens.banana.address,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0x73775564d2cbad604c41d0b3ddf061e80e1d0279', // ApeRewardPool
@@ -459,8 +419,7 @@ const pools: PoolConfig[] = [
     sousId: 35,
     tokenName: 'NRV',
     image: 'NRV.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -479,8 +438,7 @@ const pools: PoolConfig[] = [
     sousId: 36,
     tokenName: 'MOONLIGHT',
     image: 'MOONLIGHT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -499,8 +457,7 @@ const pools: PoolConfig[] = [
     sousId: 38,
     tokenName: 'TAPE',
     image: 'TAPE.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -519,12 +476,8 @@ const pools: PoolConfig[] = [
     sousId: 64,
     tokenName: 'NALIS',
     image: 'NALIS.svg',
-    stakingTokenName: tokens.gnana.symbol,
+    stakingToken: tokens.gnana,
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
-      56: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
-    },
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0x063e98d9f0484c07028eb78661df554a064aeb05',
@@ -542,8 +495,7 @@ const pools: PoolConfig[] = [
     sousId: 39,
     tokenName: 'SPACE',
     image: 'SPACE.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -562,8 +514,7 @@ const pools: PoolConfig[] = [
     sousId: 40,
     tokenName: 'pCWS',
     image: 'pCWS.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -582,8 +533,7 @@ const pools: PoolConfig[] = [
     sousId: 41,
     tokenName: 'TYPH',
     image: 'TYPH.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -602,8 +552,7 @@ const pools: PoolConfig[] = [
     sousId: 42,
     tokenName: 'bMXX',
     image: 'bMXX.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -621,9 +570,8 @@ const pools: PoolConfig[] = [
   {
     sousId: 44,
     tokenName: 'CRUSH',
-    stakingTokenName: tokens.gnana.symbol,
     image: 'crush.svg',
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.crush,
     contractAddress: {
       97: '0xa439dec59e6ef0ef2c03564fcd72b181054e3e60',
@@ -642,8 +590,7 @@ const pools: PoolConfig[] = [
     sousId: 45,
     tokenName: 'GRAND',
     image: 'GRAND.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
@@ -662,8 +609,7 @@ const pools: PoolConfig[] = [
     sousId: 46,
     tokenName: 'GMR',
     image: 'gmr.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x0e34e04310e44329f1dafd28c9922ee4517ac397',
@@ -682,8 +628,7 @@ const pools: PoolConfig[] = [
     sousId: 47,
     tokenName: 'WINGS',
     image: 'WINGS.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -702,8 +647,7 @@ const pools: PoolConfig[] = [
     sousId: 48,
     tokenName: 'HERO',
     image: 'HERO.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -722,8 +666,7 @@ const pools: PoolConfig[] = [
     sousId: 49,
     tokenName: 'FOXY',
     image: 'FOXY.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -742,8 +685,7 @@ const pools: PoolConfig[] = [
     sousId: 50,
     tokenName: 'MBOX',
     image: 'MOBOX.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -762,8 +704,7 @@ const pools: PoolConfig[] = [
     sousId: 51,
     tokenName: 'WYVERN',
     image: 'WYVERN.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -782,8 +723,7 @@ const pools: PoolConfig[] = [
     sousId: 52,
     tokenName: 'BOG',
     image: 'BOG.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -802,8 +742,7 @@ const pools: PoolConfig[] = [
     sousId: 54,
     tokenName: 'HIFI',
     image: 'HIFI.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -822,8 +761,7 @@ const pools: PoolConfig[] = [
     sousId: 55,
     tokenName: 'LORY',
     image: 'LORY.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.lory,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -842,8 +780,7 @@ const pools: PoolConfig[] = [
     sousId: 56,
     tokenName: 'SCAM',
     image: 'SCAM.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -862,8 +799,7 @@ const pools: PoolConfig[] = [
     sousId: 57,
     tokenName: 'FRUIT',
     image: 'FRUIT.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -882,8 +818,7 @@ const pools: PoolConfig[] = [
     sousId: 58,
     tokenName: 'SKILL',
     image: 'SKILL.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -902,8 +837,7 @@ const pools: PoolConfig[] = [
     sousId: 59,
     tokenName: 'GNT',
     image: 'GNT.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -922,8 +856,7 @@ const pools: PoolConfig[] = [
     sousId: 60,
     tokenName: 'PACOCA',
     image: 'PACOCA.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -942,8 +875,7 @@ const pools: PoolConfig[] = [
     sousId: 61,
     tokenName: 'NEWB',
     image: 'NEWB.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -962,8 +894,7 @@ const pools: PoolConfig[] = [
     sousId: 63,
     tokenName: 'TWIN',
     image: 'TWIN.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -981,39 +912,35 @@ const pools: PoolConfig[] = [
 
   // IS FINISHED //
   // CHANGE SORT ORDER TO 999 //
-  {
-    sousId: 37,
-    tokenName: 'SPACE',
-    image: 'SPACE.svg',
-    stakingTokenName: 'SPACE-BNB',
-    rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xd0F82498051067E154d1dcd3d88fA95063949D7e', // SPACE-BNB
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0xfE615dA45dBC8C763851A34Cf14d65B0056a2D8A', // ApeRewardPool
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://aperocket.finance/',
-    harvest: true,
-    tokenPerBlock: `0.02755704365`,
-    sortOrder: 999,
-    reflect: false,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
+  // {
+  //   sousId: 37,
+  //   tokenName: 'SPACE',
+  //   image: 'SPACE.svg',
+  //   stakingTokenName: 'SPACE-BNB',
+  //   rewardToken: null,
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xd0F82498051067E154d1dcd3d88fA95063949D7e', // SPACE-BNB
+  //   },
+  //   contractAddress: {
+  //     97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+  //     56: '0xfE615dA45dBC8C763851A34Cf14d65B0056a2D8A', // ApeRewardPool
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://aperocket.finance/',
+  //   harvest: true,
+  //   tokenPerBlock: `0.02755704365`,
+  //   sortOrder: 999,
+  //   reflect: false,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  // },
   {
     sousId: 30,
     tokenName: 'bxBTC',
     image: 'XBTC.svg',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95', // BANANA
-    },
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
       56: '0xd65f1319f6408C03EBA7f27e156391784492A9EF', // ApeRewardPool
@@ -1032,13 +959,9 @@ const pools: PoolConfig[] = [
   {
     sousId: 15,
     tokenName: 'Inactive - FOXY',
-    stakingTokenName: tokens.banana.symbol,
+    stakingToken: tokens.banana,
     rewardToken: null,
     image: 'FOXY.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', // BANANANA
-    },
     contractAddress: {
       // BEP20RewardApe
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -1053,35 +976,34 @@ const pools: PoolConfig[] = [
     tokenDecimals: 9,
     lpStaking: false,
   },
-  {
-    sousId: 43,
-    tokenName: 'HIFI',
-    image: 'HIFI.svg',
-    stakingTokenName: 'HIFI-BNB',
-    rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xf093ce6778c4d7d99c23f714297fff15a661d354', // HIFI-BNB
-    },
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
-      56: '0x454155ac563a382458eda66fdaf59237d7230dc9', // ApeRewardPool
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://hifigamingsociety.com',
-    harvest: true,
-    tokenPerBlock: `49.6031746031746`,
-    sortOrder: 999,
-    reflect: false,
-    isFinished: true,
-    tokenDecimals: 18,
-  },
+  // {
+  //   sousId: 43,
+  //   tokenName: 'HIFI',
+  //   image: 'HIFI.svg',
+  //   stakingTokenName: 'HIFI-BNB',
+  //   rewardToken: null,
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xf093ce6778c4d7d99c23f714297fff15a661d354', // HIFI-BNB
+  //   },
+  //   contractAddress: {
+  //     97: '0x3996F919980778cb0fc1982087cAc01089e33fe7',
+  //     56: '0x454155ac563a382458eda66fdaf59237d7230dc9', // ApeRewardPool
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://hifigamingsociety.com',
+  //   harvest: true,
+  //   tokenPerBlock: `49.6031746031746`,
+  //   sortOrder: 999,
+  //   reflect: false,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  // },
 
   {
     sousId: 1,
     tokenName: 'BNB',
-    stakingTokenName: QuoteToken.BANANA,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       // BNBRewardsApe
@@ -1097,156 +1019,155 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     displayDecimals: 5,
   },
-  {
-    sousId: 2,
-    tokenName: 'SOUL',
-    stakingTokenName: 'BANANA-SOUL',
-    rewardToken: null,
-    image: 'SOUL.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xf5Cb9F954D3Ea26Bb503A6996a4b2B0aAdC8c969',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://apoyield.com',
-    harvest: true,
-    tokenPerBlock: '1384',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
-  {
-    sousId: 3,
-    tokenName: 'SOUL',
-    stakingTokenName: 'BANANA-SOUL',
-    rewardToken: null,
-    image: 'SOUL.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://apoyield.com',
-    harvest: true,
-    tokenPerBlock: '396',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
-  {
-    sousId: 4,
-    tokenName: 'NUTS',
-    stakingTokenName: 'BANANA-NUTS',
-    rewardToken: null,
-    image: 'NUTS.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x3523cE00C9f82FfafC850C0Acccb78341239028b',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.08680555556',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 5,
-    tokenName: 'BANANA',
-    stakingTokenName: 'BANANA-NUTS',
-    rewardToken: null,
-    image: 'BANANA.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.1446527778',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 6,
-    tokenName: 'CRX',
-    stakingTokenName: 'BANANA-CRX',
-    rewardToken: null,
-    image: 'CRX.svg',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x084beaa501dB448869001BA49913c9aD009b1694',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://cryptexlock.me/',
-    harvest: true,
-    tokenPerBlock: '0.002604166666667000',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 7,
-    tokenName: 'NAUT',
-    stakingTokenName: 'BNB-NAUT',
-    rewardToken: null,
-    image: 'NAUT.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x114d54e18eb4A7Dc9bB8280e283E5799D4188E3f',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://astronaut.to',
-    harvest: true,
-    tokenPerBlock: '0.28935185',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 8,
-    lpStaking: true,
-  },
+  // {
+  //   sousId: 2,
+  //   tokenName: 'SOUL',
+  //   stakingTokenName: 'BANANA-SOUL',
+  //   rewardToken: null,
+  //   image: 'SOUL.png',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0xf5Cb9F954D3Ea26Bb503A6996a4b2B0aAdC8c969',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://apoyield.com',
+  //   harvest: true,
+  //   tokenPerBlock: '1384',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 8,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 3,
+  //   tokenName: 'SOUL',
+  //   stakingTokenName: 'BANANA-SOUL',
+  //   rewardToken: null,
+  //   image: 'SOUL.png',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xa48271ff51900007d3b21cecf30fdc8ccb63fee6', // BANANA-SOUL LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x82576dB7685418CBDD5A9f4721D605C125E4569c',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://apoyield.com',
+  //   harvest: true,
+  //   tokenPerBlock: '396',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 8,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 4,
+  //   tokenName: 'NUTS',
+  //   stakingTokenName: 'BANANA-NUTS',
+  //   rewardToken: null,
+  //   image: 'NUTS.svg',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x3523cE00C9f82FfafC850C0Acccb78341239028b',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://squirrel.finance/',
+  //   harvest: true,
+  //   tokenPerBlock: '0.08680555556',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 5,
+  //   tokenName: 'BANANA',
+  //   stakingTokenName: 'BANANA-NUTS',
+  //   rewardToken: null,
+  //   image: 'BANANA.svg',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0xdb28A11Fe950C9979A8050E6cBA76D187D5C3b70',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://squirrel.finance/',
+  //   harvest: true,
+  //   tokenPerBlock: '0.1446527778',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 6,
+  //   tokenName: 'CRX',
+  //   stakingTokenName: 'BANANA-CRX',
+  //   rewardToken: null,
+  //   image: 'CRX.svg',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0xbd896f59baf9a624a7587de5d28b7ad3459342ba', // BANANA-CRX LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x084beaa501dB448869001BA49913c9aD009b1694',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://cryptexlock.me/',
+  //   harvest: true,
+  //   tokenPerBlock: '0.002604166666667000',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 7,
+  //   tokenName: 'NAUT',
+  //   stakingTokenName: 'BNB-NAUT',
+  //   rewardToken: null,
+  //   image: 'NAUT.png',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x288ea5437c7aad045a393cee2f41e548df24d1c8', // BNB-NAUT LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x114d54e18eb4A7Dc9bB8280e283E5799D4188E3f',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://astronaut.to',
+  //   harvest: true,
+  //   tokenPerBlock: '0.28935185',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 8,
+  //   lpStaking: true,
+  // },
   {
     sousId: 62,
     tokenName: 'BISON',
     image: 'BISON.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.bison,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1265,8 +1186,7 @@ const pools: PoolConfig[] = [
     sousId: 23,
     tokenName: 'NFTL',
     image: 'NFTL.jpg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
@@ -1280,84 +1200,83 @@ const pools: PoolConfig[] = [
     isFinished: true,
     tokenDecimals: 18,
   },
-  {
-    sousId: 8,
-    tokenName: 'NUTS',
-    stakingTokenName: 'BANANA-NUTS',
-    image: 'NUTS.svg',
-    rewardToken: null,
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x6Fd37f3F83F11100f9f501e2690E96F6fAC37E94',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://squirrel.finance/',
-    harvest: true,
-    tokenPerBlock: '0.024965277777778',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 10,
-    tokenName: 'HPS',
-    stakingTokenName: 'BANANA-HPS',
-    rewardToken: null,
-    image: 'HPS.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://billionhappiness.finance',
-    harvest: true,
-    tokenPerBlock: '0.014880952380952000',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
-  {
-    sousId: 11,
-    tokenName: 'BRICK',
-    stakingTokenName: 'BANANA-BRICK',
-    rewardToken: null,
-    image: 'BRICK.png',
-    stakingTokenAddress: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x51a9771708d0471a0e592e8febb2c6b868e3d99b', // BNB-BRICK LP
-    },
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x6B7254AdfCa2178B7065b4B57fDc452c405DFC8A',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://brickchain.finance',
-    harvest: true,
-    tokenPerBlock: '2.976190476190476',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 18,
-    lpStaking: true,
-  },
+  // {
+  //   sousId: 8,
+  //   tokenName: 'NUTS',
+  //   stakingTokenName: 'BANANA-NUTS',
+  //   image: 'NUTS.svg',
+  //   rewardToken: null,
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x44baf117d79d5313bea1fbba416e4067436e4bbe', // BANANA-NUTS LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x6Fd37f3F83F11100f9f501e2690E96F6fAC37E94',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://squirrel.finance/',
+  //   harvest: true,
+  //   tokenPerBlock: '0.024965277777778',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 10,
+  //   tokenName: 'HPS',
+  //   stakingTokenName: 'BANANA-HPS',
+  //   rewardToken: null,
+  //   image: 'HPS.png',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x268f002A3B8d2faC2aA2bA6D4B90d519ca0d1d46', // BNB-HPS LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x9c64Cec2Ad86E918929665cF9AADf91cd755fEf1',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://billionhappiness.finance',
+  //   harvest: true,
+  //   tokenPerBlock: '0.014880952380952000',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
+  // {
+  //   sousId: 11,
+  //   tokenName: 'BRICK',
+  //   stakingTokenName: 'BANANA-BRICK',
+  //   rewardToken: null,
+  //   image: 'BRICK.png',
+  //   stakingTokenAddress: {
+  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+  //     56: '0x51a9771708d0471a0e592e8febb2c6b868e3d99b', // BNB-BRICK LP
+  //   },
+  //   contractAddress: {
+  //     // BEP20RewardApe
+  //     97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+  //     56: '0x6B7254AdfCa2178B7065b4B57fDc452c405DFC8A',
+  //   },
+  //   poolCategory: PoolCategory.APEZONE,
+  //   projectLink: 'https://brickchain.finance',
+  //   harvest: true,
+  //   tokenPerBlock: '2.976190476190476',
+  //   sortOrder: 999,
+  //   isFinished: true,
+  //   tokenDecimals: 18,
+  //   lpStaking: true,
+  // },
   {
     sousId: 53,
     tokenName: 'Inactive - HIFI',
     image: 'HIFI.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1376,8 +1295,7 @@ const pools: PoolConfig[] = [
     sousId: 65,
     tokenName: 'STARS',
     image: 'STARS.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1396,8 +1314,7 @@ const pools: PoolConfig[] = [
     sousId: 66,
     tokenName: 'SISTA',
     image: 'SISTA.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.sista,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1416,8 +1333,7 @@ const pools: PoolConfig[] = [
     sousId: 67,
     tokenName: 'CAPS',
     image: 'CAPS.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1436,8 +1352,7 @@ const pools: PoolConfig[] = [
     sousId: 68,
     tokenName: 'BIRB',
     image: 'BIRB.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1456,8 +1371,7 @@ const pools: PoolConfig[] = [
     sousId: 69,
     tokenName: 'DINOP',
     image: 'DINOP.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.dinop,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1476,8 +1390,7 @@ const pools: PoolConfig[] = [
     sousId: 70,
     tokenName: 'MARU',
     image: 'MARU.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1496,8 +1409,7 @@ const pools: PoolConfig[] = [
     sousId: 71,
     tokenName: 'PERA',
     image: 'PERA.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1516,8 +1428,7 @@ const pools: PoolConfig[] = [
     sousId: 72,
     tokenName: 'GUARD',
     image: 'GUARD.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.guard,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1536,8 +1447,7 @@ const pools: PoolConfig[] = [
     sousId: 73,
     tokenName: 'LAND',
     image: 'LAND.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.land,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1556,8 +1466,7 @@ const pools: PoolConfig[] = [
     sousId: 74,
     tokenName: 'POTS',
     image: 'POTS.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1576,8 +1485,7 @@ const pools: PoolConfig[] = [
     sousId: 75,
     tokenName: 'SACT',
     image: 'SACT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1596,8 +1504,7 @@ const pools: PoolConfig[] = [
     sousId: 76,
     tokenName: 'BHC',
     image: 'BHC.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.bhc,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1616,8 +1523,7 @@ const pools: PoolConfig[] = [
     sousId: 77,
     tokenName: 'CYT',
     image: 'CYT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.cyt,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1636,8 +1542,7 @@ const pools: PoolConfig[] = [
     sousId: 78,
     tokenName: 'HOTCROSS',
     image: 'HOTCROSS.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.hotcross,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1656,8 +1561,7 @@ const pools: PoolConfig[] = [
     sousId: 79,
     tokenName: 'LMT',
     image: 'LMT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.lmt,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1676,8 +1580,7 @@ const pools: PoolConfig[] = [
     sousId: 80,
     tokenName: 'FOOT',
     image: 'FOOT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1696,8 +1599,7 @@ const pools: PoolConfig[] = [
     sousId: 81,
     tokenName: 'NABOX',
     image: 'NABOX.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1716,8 +1618,7 @@ const pools: PoolConfig[] = [
     sousId: 82,
     tokenName: 'BABI',
     image: 'BABI.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1736,8 +1637,7 @@ const pools: PoolConfig[] = [
     sousId: 83,
     tokenName: 'REVV',
     image: 'REVV.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.revv,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1756,8 +1656,7 @@ const pools: PoolConfig[] = [
     sousId: 84,
     tokenName: 'WIZARD',
     image: 'WIZARD.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.wizard,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1776,8 +1675,7 @@ const pools: PoolConfig[] = [
     sousId: 85,
     tokenName: 'GNT',
     image: 'GNT.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.gnt,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1796,8 +1694,7 @@ const pools: PoolConfig[] = [
     sousId: 86,
     tokenName: 'CLA',
     image: 'CLA.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.cla,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1816,8 +1713,7 @@ const pools: PoolConfig[] = [
     sousId: 87,
     tokenName: 'PLAY',
     image: 'PLAY.png',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1837,8 +1733,7 @@ const pools: PoolConfig[] = [
     sousId: 88,
     tokenName: 'ZIG',
     image: 'ZIG.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.zig,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1857,8 +1752,7 @@ const pools: PoolConfig[] = [
     sousId: 89,
     tokenName: 'NVT',
     image: 'NVT.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.nvt,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1877,8 +1771,7 @@ const pools: PoolConfig[] = [
     sousId: 90,
     tokenName: 'POLAR',
     image: 'POLAR.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.polar,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1897,8 +1790,7 @@ const pools: PoolConfig[] = [
     sousId: 91,
     tokenName: 'GRO',
     image: 'GRO.svg',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.gro,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1917,8 +1809,7 @@ const pools: PoolConfig[] = [
     sousId: 92,
     tokenName: 'CRUDE',
     image: 'CRUDE.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.crude,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1937,8 +1828,7 @@ const pools: PoolConfig[] = [
     sousId: 93,
     tokenName: 'CEEK',
     image: 'CEEK.png',
-    stakingTokenName: tokens.gnana.symbol,
-    stakingTokenAddress: tokens.gnana.address,
+    stakingToken: tokens.gnana,
     rewardToken: tokens.ceek,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1957,8 +1847,7 @@ const pools: PoolConfig[] = [
     sousId: 94,
     tokenName: 'KRW',
     image: 'KRW.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.krw,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -1977,8 +1866,7 @@ const pools: PoolConfig[] = [
     sousId: 95,
     tokenName: 'PEAR',
     image: 'PEAR.svg',
-    stakingTokenName: tokens.banana.symbol,
-    stakingTokenAddress: tokens.banana.address,
+    stakingToken: tokens.banana,
     rewardToken: tokens.pear,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
@@ -2002,12 +1890,8 @@ const pools: PoolConfig[] = [
     sousId: 96,
     tokenName: 'BANANA',
     image: 'BANANA.svg',
-    stakingTokenName: 'OBIE',
+    stakingToken: tokens.obie,
     rewardToken: tokens.banana,
-    stakingTokenAddress: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
-      56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
-    },
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
       56: '0xf1aFc0bfdf33BC74b9896612eAA38058cADfF8f0',

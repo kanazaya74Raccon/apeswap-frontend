@@ -4,14 +4,10 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR } from 'config'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
-import useBlock from 'hooks/useBlock'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hooks'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
+import { usePools } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
@@ -280,7 +276,6 @@ const Pools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const bnbPriceUSD = usePriceBnbBusd()
   const TranslateString = useI18n()
   const isActive = !pathname.includes('history')
 
@@ -290,17 +285,21 @@ const Pools: React.FC = () => {
 
   const [finishedPools, openPools] = partition(allPools, (pool) => pool.isFinished)
 
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
+  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
 
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
+  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
   const gnanaStakedOnlyPools = openPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const gnanaStakedInactivePools = finishedPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const poolsToShow = () => {

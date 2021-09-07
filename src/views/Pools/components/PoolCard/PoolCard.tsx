@@ -44,8 +44,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     sousId,
     image,
     tokenName,
-    stakingTokenName,
-    stakingTokenAddress,
+    stakingToken,
     apr,
     totalStaked,
     startBlock,
@@ -53,7 +52,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     isFinished,
     userData,
     rewardToken,
-    stakeTokenPrice,
     projectLink,
     contractAddress,
     tokenDecimals,
@@ -81,10 +79,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     <PCard onClick={toggleExpand}>
       <CardHeading
         pool={pool}
-        stakeToken={stakingTokenName}
+        stakeToken={stakingToken.symbol}
         earnToken={tokenName}
         earnTokenImage={image}
-        stakingTokenAddress={stakingTokenAddress[CHAIN_ID]}
+        stakingTokenAddress={stakingToken.address[CHAIN_ID]}
         sousId={sousId}
         apr={new BigNumber(apr)}
         poolAPR={apr?.toFixed(2)}
@@ -109,9 +107,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           isFinished={isFinished}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}
-          lpLabel={stakingTokenName}
+          lpLabel={stakingToken.symbol}
           addLiquidityUrl="https://app.apeswap.finance/swap"
-          stakedTokenPrice={stakeTokenPrice}
+          stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
           projectSite={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}

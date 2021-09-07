@@ -542,17 +542,27 @@ const Pools: React.FC = () => {
   const stakedInactivePools = finishedPools.filter(
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
 
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
+  openPools.map((pool) => {
+    console.log(pool)
+    console.log(pool?.stakingToken?.symbol)
+    return ''
+  })
+  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
+
+  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
   const gnanaStakedOnlyPools = openPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const gnanaStakedInactivePools = finishedPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const handleSortOptionChange = (option): void => {
@@ -585,7 +595,7 @@ const Pools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakeTokenPrice,
+          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakingToken?.price,
           sortDirection,
         )
       default:

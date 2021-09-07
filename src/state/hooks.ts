@@ -97,7 +97,7 @@ export const usePoolFromPid = (sousId): Pool => {
 }
 
 export const useGnanaPools = (account): Pool[] => {
-  const pools = usePools(account).filter((pool) => pool.stakingTokenName === 'GNANA')
+  const pools = usePools(account).filter((pool) => pool.stakingToken.symbol === 'GNANA')
   return pools
 }
 
@@ -118,7 +118,7 @@ export const useTvl = (): BigNumber => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
-    if (pool.stakingTokenName === 'BANANA') {
+    if (pool.stakingToken.symbol === 'BANANA') {
       valueLocked = valueLocked.plus(
         new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )

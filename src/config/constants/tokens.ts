@@ -331,13 +331,20 @@ const tokens = {
     },
     decimals: 18,
   },
-  jdibnb: {
-    symbol: 'JDI-BNB',
+  bnbjdi: {
+    symbol: 'BNB-JDI',
     address: {
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
     },
     decimals: 18,
     lpToken: true,
+  },
+  obie: {
+    symbol: 'OBIE',
+    address: {
+      56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
+    },
+    decimals: 18,
   },
 }
 

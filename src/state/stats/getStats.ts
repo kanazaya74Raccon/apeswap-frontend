@@ -1,5 +1,7 @@
 import { apiBaseUrl } from 'hooks/api'
-import { Stats } from 'state/types'
+import { Stats, Pool } from 'state/types'
+import BigNumber from 'bignumber.js'
+import { getBalanceNumber } from 'utils/formatBalance'
 
 const getStats = async (address: string): Promise<Stats> => {
   try {
@@ -13,11 +15,54 @@ const getStats = async (address: string): Promise<Stats> => {
     return null
   }
 }
+// id: poolInfo.id,
+// address: poolInfo.address,
+// name: poolInfo.name,
+// rewardTokenSymbol: poolInfo.rewardTokenSymbol,
+// stakedTvl,
+// pendingReward,
+// pendingRewardUsd: pendingReward * poolInfo.rewardTokenPrice,
+// apr: poolInfo.apr,
+// dollarsEarnedPerDay,
+// dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
+// dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
+// dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
+// tokensEarnedPerDay,
+// tokensEarnedPerWeek: tokensEarnedPerDay * 7,
+// tokensEarnedPerMonth: tokensEarnedPerDay * 30,
+// tokensEarnedPerYear: tokensEarnedPerDay * 365,
+
+export const fetchPoolStats = (pools: Pool[]) => {
+  const stakedPools = pools.filter((pool) => parseInt(pool?.userData?.stakedBalance?.toString()) > 0)
+  const out = stakedPools.map((pool) => {
+    const stakedTvl = getBalanceNumber(pool.userData?.stakedBalance, pool.stakingToken.decimals)
+    const pendingReward = getBalanceNumber(pool.userData?.pendingReward, pool?.rewardToken?.decimals)
+    const pendingRewardUsd = pendingReward * pool.rewardToken?.price
+    const dollarsEarnedPerDay = (stakedTvl * pool?.apr) / 365
+    const tokensEarnedPerDay = 1
+    console.log(pendingRewardUsd)
+    return {
+      pendingReward,
+      pendingRewardUsd,
+      apr: pool?.apr,
+      dollarsEarnedPerDay,
+      dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
+      dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
+      dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
+      tokensEarnedPerDay,
+      tokensEarnedPerWeek: tokensEarnedPerDay * 7,
+      tokensEarnedPerMonth: tokensEarnedPerDay * 30,
+      tokensEarnedPerYear: tokensEarnedPerDay * 365,
+    }
+  })
+  return ''
+}
 
 export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats {
   const farmStats = getStatsForFarms(farms, statsOverall.farms)
   const incentivizedPoolsStats = getStatsForIncentivizedPools(pools, statsOverall.incentivizedPools)
   const poolStats = getStatsForPools([pools[0]], statsOverall.pools)
+  fetchPoolStats(pools)
   const stats = {
     tvl: 0,
     bananaPrice: 0,

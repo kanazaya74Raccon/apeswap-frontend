@@ -2,7 +2,6 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import bananaABI from 'config/abi/banana.json'
 import wbnbABI from 'config/abi/weth.json'
-import { BLOCKS_PER_YEAR } from 'config'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
@@ -43,18 +42,18 @@ export const fetchPoolsBlockLimits = async () => {
 }
 
 export const fetchPoolsTotalStatking = async () => {
-  const nonBnbPools = poolsConfig.filter((p) => p.stakingTokenName !== QuoteToken.BNB)
-  const bnbPool = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.BNB)
+  const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== QuoteToken.BNB)
+  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === QuoteToken.BNB)
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
-    if (poolConfig.reflect || poolConfig.stakingTokenName === 'GNANA') {
+    if (poolConfig.reflect || poolConfig.stakingToken.symbol === 'GNANA') {
       return {
         address: poolConfig.contractAddress[CHAIN_ID],
         name: 'totalStaked',
       }
     }
     return {
-      address: poolConfig.stakingTokenAddress[CHAIN_ID],
+      address: poolConfig.stakingToken.address[CHAIN_ID],
       name: 'balanceOf',
       params: [poolConfig.contractAddress[CHAIN_ID]],
     }
@@ -84,26 +83,29 @@ export const fetchPoolsTotalStatking = async () => {
 }
 
 export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList) => {
-  const activePools = poolsConfig.filter((pool) => !pool.isFinished)
-  const mappedValues = []
-  for (let i = 0; i < activePools.length; i++) {
+  const mappedValues = poolsConfig.map((pool) => {
     // Get values needed to calculate apr
-    const curPool = activePools[i]
-    const stakeTokenPrice = tokenPrices?.find(
-      (token) => curPool?.stakingTokenAddress && token?.address === curPool?.stakingTokenAddress[CHAIN_ID],
-    )?.price
-    const rewardToken = curPool?.rewardToken
-      ? tokenPrices?.find((token) => curPool?.rewardToken && token?.address === curPool?.rewardToken.address[CHAIN_ID])
-      : null
-    const totalStaked = totalStakingList.find((totalStake) => totalStake.sousId === curPool.sousId)?.totalStaked
+    const curPool = pool
+    const rewardToken = tokenPrices
+      ? tokenPrices.find((token) => pool?.rewardToken && token?.address === pool?.rewardToken.address[CHAIN_ID])
+      : pool.rewardToken
+    const stakingToken = tokenPrices
+      ? tokenPrices.find((token) => token?.address === pool?.stakingToken.address[CHAIN_ID])
+      : pool.stakingToken
+    const totalStaked = totalStakingList.find((totalStake) => totalStake.sousId === pool.sousId)?.totalStaked
     // Calculate apr
-    const apr = getPoolApr(stakeTokenPrice, rewardToken?.price, getBalanceNumber(totalStaked), curPool?.tokenPerBlock)
-    mappedValues.push({
+    const apr = getPoolApr(
+      stakingToken?.price,
+      rewardToken?.price,
+      getBalanceNumber(totalStaked),
+      curPool?.tokenPerBlock,
+    )
+    return {
       sousId: curPool.sousId,
-      stakeTokenPrice,
+      stakingToken,
       rewardToken,
       apr,
-    })
-  }
+    }
+  })
   return mappedValues
 }

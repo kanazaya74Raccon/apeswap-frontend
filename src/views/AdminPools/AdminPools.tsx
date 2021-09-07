@@ -569,18 +569,6 @@ const AdminPools: React.FC = () => {
   const stakedInactivePools = finishedPools.filter(
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
-
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
-  const gnanaStakedOnlyPools = openPools.filter(
-    (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
-  )
-
-  const gnanaStakedInactivePools = finishedPools.filter(
-    (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
-  )
 
   const handleSortOptionChange = (option): void => {
     if (option !== sortOption) {
@@ -612,7 +600,7 @@ const AdminPools: React.FC = () => {
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakeTokenPrice,
+          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakingToken?.price,
           sortDirection,
         )
       default:
@@ -622,17 +610,11 @@ const AdminPools: React.FC = () => {
 
   const poolsToShow = () => {
     let chosenPools = []
-
-    if (stakedOnly && gnanaOnly) {
-      chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-    } else if (stakedOnly && !gnanaOnly) {
+    if (stakedOnly && !gnanaOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
-    } else if (!stakedOnly && gnanaOnly) {
-      chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools
     }
-
     if (searchQuery) {
       const lowercaseQuery = searchQuery.toLowerCase()
       chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
