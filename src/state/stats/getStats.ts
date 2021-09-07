@@ -1,7 +1,8 @@
 import { apiBaseUrl } from 'hooks/api'
 import { Stats, Pool } from 'state/types'
-import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const getStats = async (address: string): Promise<Stats> => {
   try {
@@ -15,36 +16,28 @@ const getStats = async (address: string): Promise<Stats> => {
     return null
   }
 }
-// id: poolInfo.id,
-// address: poolInfo.address,
-// name: poolInfo.name,
-// rewardTokenSymbol: poolInfo.rewardTokenSymbol,
-// stakedTvl,
-// pendingReward,
-// pendingRewardUsd: pendingReward * poolInfo.rewardTokenPrice,
-// apr: poolInfo.apr,
-// dollarsEarnedPerDay,
-// dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
-// dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
-// dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
-// tokensEarnedPerDay,
-// tokensEarnedPerWeek: tokensEarnedPerDay * 7,
-// tokensEarnedPerMonth: tokensEarnedPerDay * 30,
-// tokensEarnedPerYear: tokensEarnedPerDay * 365,
 
-export const fetchPoolStats = (pools: Pool[]) => {
+export const fetchPoolStats = (pools: Pool[], curBlock): any[] => {
   const stakedPools = pools.filter((pool) => parseInt(pool?.userData?.stakedBalance?.toString()) > 0)
-  const out = stakedPools.map((pool) => {
-    const stakedTvl = getBalanceNumber(pool.userData?.stakedBalance, pool.stakingToken.decimals)
-    const pendingReward = getBalanceNumber(pool.userData?.pendingReward, pool?.rewardToken?.decimals)
-    const pendingRewardUsd = pendingReward * pool.rewardToken?.price
-    const dollarsEarnedPerDay = (stakedTvl * pool?.apr) / 365
-    const tokensEarnedPerDay = 1
-    console.log(pendingRewardUsd)
+  const mappedPoolStats = stakedPools.map((pool) => {
+    const stakedTvl =
+      getBalanceNumber(pool.userData?.stakedBalance, pool.stakingToken.decimals) * pool.stakingToken?.price
+    const pendingReward = pool.rewardToken
+      ? getBalanceNumber(pool.userData?.pendingReward, pool?.rewardToken.decimals)
+      : getBalanceNumber(pool.userData?.pendingReward, pool.tokenDecimals)
+    const pendingRewardUsd = pool.rewardToken ? pendingReward * pool?.rewardToken?.price : 0
+    const dollarsEarnedPerDay = (stakedTvl * (pool?.apr / 100)) / 365
+    const tokensEarnedPerDay = pool.rewardToken ? dollarsEarnedPerDay / pool?.rewardToken?.price : 0
+    const finished = curBlock > pool?.endBlock
     return {
+      id: pool.sousId,
+      address: pool.contractAddress[CHAIN_ID],
+      name: pool.stakingToken.symbol,
+      rewardTokenSymbol: pool.rewardToken ? pool?.rewardToken.symbol : pool.tokenName,
+      stakedTvl,
       pendingReward,
       pendingRewardUsd,
-      apr: pool?.apr,
+      apr: finished ? 0 : pool?.apr / 100,
       dollarsEarnedPerDay,
       dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
       dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
@@ -55,14 +48,14 @@ export const fetchPoolStats = (pools: Pool[]) => {
       tokensEarnedPerYear: tokensEarnedPerDay * 365,
     }
   })
-  return ''
+  return mappedPoolStats
 }
 
-export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats {
+export function computeStats(pools, farms, statsOverall, bananasInWallet, curBlock): Stats {
   const farmStats = getStatsForFarms(farms, statsOverall.farms)
-  const incentivizedPoolsStats = getStatsForIncentivizedPools(pools, statsOverall.incentivizedPools)
-  const poolStats = getStatsForPools([pools[0]], statsOverall.pools)
-  fetchPoolStats(pools)
+  const fetchedPoolStats = fetchPoolStats(pools, curBlock)
+  const poolStats = fetchedPoolStats.filter((pool) => pool.id === 0)
+  const incentivizedPools = fetchedPoolStats.filter((pool) => pool.id !== 0)
   const stats = {
     tvl: 0,
     bananaPrice: 0,
@@ -83,7 +76,7 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
     pendingRewardBanana: 0,
     pools: poolStats,
     farms: farmStats,
-    incentivizedPools: incentivizedPoolsStats,
+    incentivizedPools,
   }
   let totalApr = 0
   stats.pools.forEach((pool) => {

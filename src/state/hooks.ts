@@ -9,6 +9,7 @@ import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
+import useBlock from 'hooks/useBlock'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -221,14 +222,15 @@ export const useFetchStats = () => {
   const [slow, setSlow] = useState(-1)
   const farms = useFarms()
   const pools = usePools(account)
+  const curBlock = useBlock()
   const bananaBalance = useTokenBalance(getBananaAddress())
 
   useEffect(() => {
     if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
-      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance))
+      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, curBlock))
       setSlow(slowRefresh)
     }
-  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh])
+  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh, curBlock])
 }
 
 export const useStats = () => {

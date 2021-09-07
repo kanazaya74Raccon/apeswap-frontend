@@ -543,11 +543,6 @@ const Pools: React.FC = () => {
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
 
-  openPools.map((pool) => {
-    console.log(pool)
-    console.log(pool?.stakingToken?.symbol)
-    return ''
-  })
   const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
 
   const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')

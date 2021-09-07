@@ -346,6 +346,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  ong: {
+    symbol: 'ONG',
+    address: {
+      56: '0x308bfaeAaC8BDab6e9Fc5Ead8EdCb5f95b0599d9',
+    },
+    decimals: 18,
+  },
+  ydr: {
+    symbol: 'YDR',
+    address: {
+      56: '0x3757232B55E60da4A8793183aC030CfCE4c3865d',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
