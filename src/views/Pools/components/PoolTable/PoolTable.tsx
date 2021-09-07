@@ -19,15 +19,9 @@ import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
+
 interface HarvestProps {
-  pool: PoolWithStakeValue
+  pool: Pool
   removed: boolean
 }
 
@@ -114,8 +108,8 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     endBlock,
     isFinished,
     userData,
-    rewardTokenPrice,
-    stakedTokenPrice,
+    rewardToken,
+    stakeTokenPrice,
     projectLink,
     contractAddress,
     tokenDecimals,
@@ -142,7 +136,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const isCompound = sousId === 0
   const isLoading = !pool.userData
 
-  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
+  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakeTokenPrice
 
   const cardHeaderButton = () => {
     if (!account) {
@@ -192,9 +186,9 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
         </ArrowContainer>
         <APRContainer>
           <Apr
-            poolApr={removed ? '0' : apr.toNumber().toFixed(2)}
-            apr={apr}
-            rewardTokenPrice={rewardTokenPrice}
+            poolApr={removed ? '0' : apr?.toFixed(2)}
+            apr={new BigNumber(apr)}
+            rewardTokenPrice={rewardToken?.price}
             earnToken={tokenName}
           />
         </APRContainer>
@@ -222,8 +216,8 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             blocksRemaining={blocksRemaining}
             isFinished={isFinished}
             blocksUntilStart={blocksUntilStart}
-            stakedTokenPrice={stakedTokenPrice}
-            rewardTokenPrice={rewardTokenPrice}
+            stakedTokenPrice={stakeTokenPrice}
+            rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
             lpLabel={stakingTokenName}
             addLiquidityUrl="https://app.apeswap.finance/swap"

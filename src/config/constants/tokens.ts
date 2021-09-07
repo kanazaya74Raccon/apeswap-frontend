@@ -1,9 +1,18 @@
 const tokens = {
+  // BANANA should always be first token for GNANA calculation
   banana: {
     symbol: 'BANANA',
     address: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    decimals: 18,
+  },
+  gnana: {
+    symbol: 'GNANA',
+    address: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     decimals: 18,
   },
@@ -198,7 +207,7 @@ const tokens = {
   wizard: {
     symbol: 'WIZARD',
     address: {
-      56: '0x833f307ac507d47309fd8cdd1f835bef8d702a93',
+      56: '0x5066c68cae3b9bdacd6a1a37c90f2d1723559d18',
     },
     decimals: 18,
   },
@@ -313,6 +322,22 @@ const tokens = {
       56: '0x0Ef0626736c2d484A792508e99949736D0AF807e',
     },
     decimals: 18,
+  },
+  pear: {
+    symbol: 'PEAR',
+    address: {
+      56: '0xdf7C18ED59EA738070E665Ac3F5c258dcc2FBad8',
+      137: '0xc8bcb58caEf1bE972C0B638B1dD8B0748Fdc8A44',
+    },
+    decimals: 18,
+  },
+  jdibnb: {
+    symbol: 'JDI-BNB',
+    address: {
+      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
+    },
+    decimals: 18,
+    lpToken: true,
   },
 }
 

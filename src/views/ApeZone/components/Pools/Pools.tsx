@@ -11,20 +11,11 @@ import useBlock from 'hooks/useBlock'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hooks'
-import { Pool } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
 import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
 import PoolCard from '../../../Pools/components/PoolCard/PoolCard'
-
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
 
 const float = keyframes`
   0% {transform: translate3d(0px, 0px, 0px);}

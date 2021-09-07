@@ -21,6 +21,8 @@ export interface Pool extends PoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
   endBlock?: number
+  stakeTokenPrice?: number
+  apr?: number
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
@@ -119,9 +121,9 @@ export interface PoolOverall {
   tvl: number
   stakedTvl: number
   staked: number
-  apr: number
+  apr?: number
   decimals: string
-  rewardTokenPrice: number
+  stakeTokenPrice?: number
   rewardTokenSymbol: string
 }
 
@@ -148,6 +150,13 @@ export interface FarmOverall {
   decimals: string
   rewardTokenPrice: number
   rewardTokenSymbol: string
+}
+
+export interface TokenPrices {
+  symbol: string
+  address: string
+  price: number
+  decimals: number
 }
 
 // Slices states
@@ -180,6 +189,12 @@ export interface AuctionsState {
   isInitialized: boolean
   isLoading: boolean
   data: AuctionsOverall
+}
+
+export interface TokenPricesState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: TokenPrices[]
 }
 
 export interface StatsOverallState {
@@ -217,4 +232,5 @@ export interface State {
   statsOverall: StatsOverallState
   teams: TeamsState
   auctions: AuctionsState
+  tokenPrices: TokenPricesState
 }

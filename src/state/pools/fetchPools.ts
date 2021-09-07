@@ -2,10 +2,14 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import bananaABI from 'config/abi/banana.json'
 import wbnbABI from 'config/abi/weth.json'
+import { BLOCKS_PER_YEAR } from 'config'
+import { getPoolApr } from 'utils/apr'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getWbnbAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
+import { TokenPrices } from 'state/types'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -77,4 +81,29 @@ export const fetchPoolsTotalStatking = async () => {
       totalStaked: new BigNumber(bnbPoolsTotalStaked[index]).toJSON(),
     })),
   ]
+}
+
+export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList) => {
+  const activePools = poolsConfig.filter((pool) => !pool.isFinished)
+  const mappedValues = []
+  for (let i = 0; i < activePools.length; i++) {
+    // Get values needed to calculate apr
+    const curPool = activePools[i]
+    const stakeTokenPrice = tokenPrices?.find(
+      (token) => curPool?.stakingTokenAddress && token?.address === curPool?.stakingTokenAddress[CHAIN_ID],
+    )?.price
+    const rewardToken = curPool?.rewardToken
+      ? tokenPrices?.find((token) => curPool?.rewardToken && token?.address === curPool?.rewardToken.address[CHAIN_ID])
+      : null
+    const totalStaked = totalStakingList.find((totalStake) => totalStake.sousId === curPool.sousId)?.totalStaked
+    // Calculate apr
+    const apr = getPoolApr(stakeTokenPrice, rewardToken?.price, getBalanceNumber(totalStaked), curPool?.tokenPerBlock)
+    mappedValues.push({
+      sousId: curPool.sousId,
+      stakeTokenPrice,
+      rewardToken,
+      apr,
+    })
+  }
+  return mappedValues
 }

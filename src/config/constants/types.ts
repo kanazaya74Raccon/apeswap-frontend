@@ -82,6 +82,7 @@ export interface PoolConfig {
   stakingLimit?: number
   bonusEndBlock?: number
   stakingTokenAddress?: Address
+  rewardToken: Token
   contractAddress: Address
   poolCategory: PoolCategory
   projectLink: string
@@ -103,6 +104,7 @@ export interface Token {
   decimals?: number
   dontFetch?: boolean
   lpToken?: boolean
+  price?: number
 }
 
 export type Images = {

@@ -25,14 +25,6 @@ interface LabelProps {
   active?: boolean
 }
 
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
-
 const float = keyframes`
   0% {transform: translate3d(0px, 0px, 0px);}
   50% {transform: translate3d(50px, 0px, 0px);}
@@ -601,30 +593,30 @@ const AdminPools: React.FC = () => {
     setSortOption(option)
   }
 
-  const sortPools = (poolsToSort: PoolWithStakeValue[]) => {
+  const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
+        return orderBy(poolsToSort, (pool: Pool) => pool.apr, sortDirection)
       case 'earned':
         return orderBy(
           poolsToSort,
-          (pool: PoolWithStakeValue) => {
-            if (!pool.userData || !pool.rewardTokenPrice) {
+          (pool: Pool) => {
+            if (!pool.userData || !pool.rewardToken?.price) {
               return 0
             }
-            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
+            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardToken?.price
           },
           sortDirection,
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
+          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakeTokenPrice,
           sortDirection,
         )
       default:
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
+        return orderBy(poolsToSort, (pool: Pool) => pool.sortOrder, 'asc')
     }
   }
 

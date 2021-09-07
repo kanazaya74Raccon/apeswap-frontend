@@ -12,6 +12,7 @@ import {
   useFetchStatsOverall,
   useStatsOverall,
   useFetchAuctions,
+  useFetchTokenPrices,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -70,6 +71,7 @@ const App: React.FC = () => {
   }, [account])
 
   useEagerConnect()
+  useFetchTokenPrices()
   useFetchPublicData()
   useFetchProfile()
   useFetchStats()
