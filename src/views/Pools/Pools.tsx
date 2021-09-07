@@ -9,7 +9,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceBnbBusd, usePools } from 'state/hooks'
+import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
@@ -499,7 +499,6 @@ const Pools: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  console.log(allPools)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)

@@ -57,7 +57,7 @@ export const fetchPoolsPublicDataAsync = (tokenPrices: TokenPrices[]) => async (
       return {
         ...blockLimit,
         ...totalStaking,
-        ...tokenStatsAndApr
+        ...tokenStatsAndApr,
       }
     }),
   )
