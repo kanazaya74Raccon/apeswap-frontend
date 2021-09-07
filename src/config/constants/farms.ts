@@ -1675,6 +1675,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 119,
+    lpSymbol: 'ONG-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe569fdbe1ea6b7e49c3fb3ad7fe3758ca701e90f',
+    },
+    tokenSymbol: 'ONG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x308bfaeAaC8BDab6e9Fc5Ead8EdCb5f95b0599d9',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
