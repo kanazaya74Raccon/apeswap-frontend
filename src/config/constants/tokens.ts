@@ -360,6 +360,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  copycat: {
+    symbol: 'COPYCAT',
+    address: {
+      56: '0xd635B32688F36ee4a7FE117b4C91DD811277ACB6',
+    },
+    decimals: 18,
+  },
+  bfg: {
+    symbol: 'BFG',
+    address: {
+      56: '0xBb46693eBbEa1aC2070E59B4D043b47e2e095f86',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

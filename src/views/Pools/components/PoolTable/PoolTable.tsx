@@ -20,6 +20,7 @@ import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
+
 interface HarvestProps {
   pool: Pool
   removed: boolean
@@ -141,9 +142,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
       return <UnlockButton />
     }
     if (needsApproval) {
-      return (
-        <ApprovalAction stakingContractAddress={stakingToken.address[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
-      )
+      return <ApprovalAction stakingTokenContractAddress={stakingToken.address} sousId={sousId} isLoading={isLoading} />
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (

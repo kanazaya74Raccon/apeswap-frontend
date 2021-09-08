@@ -13,6 +13,7 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
+
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
@@ -257,11 +258,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   sousId,
   earnTokenImage,
   showExpandableSection,
-  stakingTokenAddress,
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData, tokenDecimals } = pool
+  const { userData, tokenDecimals, stakingToken } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -272,15 +272,17 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const isLoading = !pool.userData
   const needsApproval = !allowance.gt(0)
   const isCompound = sousId === 0
-
   const { account } = useWeb3React()
+
 
   const cardHeaderButton = () => {
     if (!account) {
       return <UnlockButton />
     }
     if (needsApproval) {
-      return <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
+      return (
+        <ApprovalAction stakingTokenContractAddress={stakingToken.address} sousId={sousId} isLoading={isLoading} />
+      )
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (

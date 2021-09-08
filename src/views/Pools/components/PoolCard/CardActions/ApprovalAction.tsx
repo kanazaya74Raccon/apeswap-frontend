@@ -4,13 +4,13 @@ import { useSousApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 
 interface ApprovalActionProps {
-  stakingContractAddress: string
+  stakingTokenContractAddress: any
   sousId: number
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress, sousId, isLoading = false }) => {
-  const stakingTokenContract = useERC20(stakingContractAddress)
+const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
+  const stakingTokenContract = useERC20(stakingTokenContractAddress)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
