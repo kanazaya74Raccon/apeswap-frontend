@@ -2157,6 +2157,50 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 99,
+    tokenName: 'COPYCAT',
+    image: 'COPYCAT.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x891e730df271d2c8da987651b9e7a4b9130f29b6',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.copycat.finance/',
+    harvest: true,
+    tokenPerBlock: `0.578703703703703703`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 100,
+    tokenName: 'BFG',
+    image: 'BFG.svg',
+    stakingTokenName: 'BANANA',
+    stakingTokenAddress: {
+      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x2179526cfc163afb6d6cba686f0540b699028350',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://betfury.io/',
+    harvest: true,
+    tokenPerBlock: `1.399074074074074074`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
