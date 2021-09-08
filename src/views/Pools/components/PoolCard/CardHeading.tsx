@@ -13,7 +13,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
@@ -274,15 +273,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const isCompound = sousId === 0
   const { account } = useWeb3React()
 
-
   const cardHeaderButton = () => {
     if (!account) {
       return <UnlockButton />
     }
     if (needsApproval) {
-      return (
-        <ApprovalAction stakingTokenContractAddress={stakingToken.address} sousId={sousId} isLoading={isLoading} />
-      )
+      return <ApprovalAction stakingTokenContractAddress={stakingToken.address} sousId={sousId} isLoading={isLoading} />
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (

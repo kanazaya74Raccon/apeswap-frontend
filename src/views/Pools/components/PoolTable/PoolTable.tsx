@@ -20,7 +20,6 @@ import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-
 interface HarvestProps {
   pool: Pool
   removed: boolean
