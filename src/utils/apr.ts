@@ -13,9 +13,9 @@ export const getPoolApr = (
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 
-export const getFarmApr = (poolWeight: BigNumber, crystlPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
-  const yearlyCrystlRewardAllocation = BANANA_PER_YEAR.times(poolWeight)
-  const apr = yearlyCrystlRewardAllocation.times(crystlPriceUsd).div(poolLiquidityUsd).times(100)
+export const getFarmApr = (poolWeight: BigNumber, bananaPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
+  const yearlyBananaRewardAllocation = BANANA_PER_YEAR.times(poolWeight)
+  const apr = yearlyBananaRewardAllocation.times(bananaPriceUsd).div(poolLiquidityUsd).times(100)
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 
