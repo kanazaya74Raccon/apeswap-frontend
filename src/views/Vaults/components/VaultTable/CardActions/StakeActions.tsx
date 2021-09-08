@@ -91,7 +91,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-  const {symbol: stakingTokenName} = stakingToken
+  const { symbol: stakingTokenName } = stakingToken
 
   const rewardRefStake = useRef(null)
   const rewardRefUnstake = useRef(null)
