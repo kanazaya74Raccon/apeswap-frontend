@@ -14,6 +14,7 @@ import {
   getNonFungibleApesAddress,
   getAuctionAddress,
   getVaultApeAddress,
+  getApePriceGetterAddress,
 } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
@@ -30,6 +31,7 @@ import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import vaultApe from 'config/abi/vaultApe.json'
+import apePriceGetter from 'config/abi/apePriceGetter.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -136,6 +138,11 @@ export const useAuction = () => {
 export const useVaultApe = () => {
   const abi = (vaultApe as unknown) as AbiItem
   return useContract(abi, getVaultApeAddress())
+}
+
+export const useApePriceGetter = () => {
+  const abi = (apePriceGetter as unknown) as AbiItem
+  return useContract(abi, getApePriceGetterAddress())
 }
 
 export default useContract

@@ -47,3 +47,7 @@ export const getAuctionAddress = () => {
 export const getVaultApeAddress = () => {
   return addresses.vaultApe[chainId]
 }
+
+export const getApePriceGetterAddress = () => {
+  return addresses.apePriceGetter[chainId]
+}
