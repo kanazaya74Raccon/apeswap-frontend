@@ -7,6 +7,9 @@ const WhenNewsSerWrapper = styled(Card)`
   width: 336px;
   height: 689px;
   border-radius: 30px;
+  @media screen and (max-width: 350px) {
+    width: 310px;
+  }
 `
 
 const NewsWrapper = styled.div`
@@ -18,6 +21,9 @@ const NewsWrapper = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   overflow-y: scroll;
+  @media screen and (max-width: 350px) {
+    width: 310px;
+  }
 `
 
 const WhenNewsSerText = styled(Text)`

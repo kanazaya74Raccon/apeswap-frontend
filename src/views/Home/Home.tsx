@@ -19,6 +19,10 @@ const BannerContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-right: 5px;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+    padding-right: 0px;
+  }
 `
 
 const PageContainer = styled.div`
@@ -35,6 +39,9 @@ const FrontRowWrapper = styled.div`
   height: auto;
   flex-direction: column;
   margin-bottom: 40px;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     width: 720px;
     height: 500px;
@@ -47,6 +54,9 @@ const FarmAndPoolsWrapper = styled.div`
   flex-direction: column;
   width: auto;
   height: auto;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     width: 720px;
     height: 495px;
@@ -57,6 +67,9 @@ const LeftSideFlexWrapper = styled.div`
   width: auto;
   height: auto;
   flex-direction: column;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     width: 720px;
     height: 970px;
@@ -69,6 +82,9 @@ const RightSideFlexWrapper = styled.div`
   height: 950px;
   margin-top: 40px;
   flex-direction: column;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 336px;
     height: 935px;

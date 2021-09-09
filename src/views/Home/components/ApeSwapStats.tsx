@@ -13,6 +13,9 @@ const StyledBananaStats = styled(Card)`
   width: 336px;
   height: 203px;
   margin-top: 40px;
+  @media screen and (max-width: 350px) {
+    width: 320px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0px;
   }

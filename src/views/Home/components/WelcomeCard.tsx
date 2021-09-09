@@ -5,10 +5,17 @@ import useI18n from 'hooks/useI18n'
 
 const WalcomeWrapper = styled.div`
   height: 436px;
-  width: 336px;
+  width: 100%;
   margin-bottom: 57px;
+  @media screen and (max-width: 350px){
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     margin-bottom: 0px;
+  }
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-bottom: 64px;
+    width: 336px;
   }
 `
 
@@ -17,7 +24,9 @@ const StyledWelcomeCard = styled(Card)`
   height: 207px;
   width: 360px;
   overflow: visible;
-
+  @media screen and (max-width: 350px){
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-bottom: 64px;
     width: 336px;

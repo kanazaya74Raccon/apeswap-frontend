@@ -31,6 +31,10 @@ const PCard = styled.div`
   border-radius: 20px;
   overflow: hidden;
   margin-top: 15px;
+  @media screen and (max-width: 350px) {
+    width: 295px;
+    margin-right:8px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0px;
   }

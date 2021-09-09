@@ -5,26 +5,20 @@ import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
 
 const Header = styled.div<{ image: string }>`
   position: relative;
-  height: 320px;
-  width: 340px;
+  width: 96%;
   padding-top: 36px;
+  padding-bottom: 15px;
   margin-bottom: 30px;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 100%;
+  background-size: 100%;
   transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 30px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: 720px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    width: 1110px;
-  }
 `
 const CurrentHeaderHolder = styled.div`
   display: flex;

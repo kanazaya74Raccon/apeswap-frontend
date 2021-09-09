@@ -18,6 +18,9 @@ const HotFarmsWrapper = styled.div`
   border-radius: 30px;
   background-repeat: no-repeat;
   background-size: cover;
+  @media screen and (max-width: 350px){
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     width: 718px;
     height: 203px;
@@ -55,6 +58,9 @@ const FarmWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 350px){
+    width: 310px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     justify-content: space-between;
     padding-left: 25px;

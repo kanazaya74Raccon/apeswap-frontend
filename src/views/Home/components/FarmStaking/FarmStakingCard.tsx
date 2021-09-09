@@ -22,6 +22,9 @@ const StyledFarmStakingCard = styled(Card)`
   height: 436px;
   text-align: center;
   overflow: visible;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
   ${({ theme }) => theme.mediaQueries.md} {
     margin-left: 50px;
   }
