@@ -29,6 +29,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  border: 1px solid red;
   width: 100%;
   justify-content: center;
 `
@@ -88,10 +89,17 @@ const RightSideFlexWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 336px;
     height: 935px;
-    margin-left: 32px;
+    margin-left: 10px;
     margin-top: 0px;
     flex-direction: column;
   }
+
+  @media screen and (max-width: 730px) {
+    width: 346px;
+    margin-left: 0px;
+    margin-top: 40px;
+  }
+
   ${({ theme }) => theme.mediaQueries.md} {
     width: 720px;
     height: 935px;
