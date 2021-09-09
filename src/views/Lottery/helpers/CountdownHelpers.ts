@@ -8,7 +8,7 @@ const getNextLotteryDrawTime = async () => {
 
     return data.millisTimeOfNextDraw
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error as any)
   }
 }
 
