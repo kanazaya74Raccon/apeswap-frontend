@@ -68,7 +68,7 @@ const LeftSideFlexWrapper = styled.div`
   height: auto;
   flex-direction: column;
   @media screen and (max-width: 350px) {
-    width: 300px;
+    width: 342px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     width: 720px;
@@ -83,7 +83,7 @@ const RightSideFlexWrapper = styled.div`
   margin-top: 40px;
   flex-direction: column;
   @media screen and (max-width: 350px) {
-    width: 300px;
+    width: 320px;
   }
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 336px;
