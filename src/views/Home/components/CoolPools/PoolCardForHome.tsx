@@ -33,7 +33,7 @@ const PCard = styled.div`
   margin-top: 15px;
   @media screen and (max-width: 350px) {
     width: 295px;
-    margin-right:8px;
+    margin-right: 8px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0px;

@@ -21,7 +21,7 @@ const CoolPoolsWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 40px;
-  @media screen and (max-width: 350px){
+  @media screen and (max-width: 350px) {
     width: 300px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
@@ -44,7 +44,7 @@ const PoolWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  @media screen and (max-width: 350px){
+  @media screen and (max-width: 350px) {
     width: 310px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
