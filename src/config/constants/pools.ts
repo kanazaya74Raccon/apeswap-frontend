@@ -217,7 +217,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://apeswap.finance/apezone',
     harvest: true,
-    tokenPerBlock: `0.0868055555555556`,
+    tokenPerBlock: `0.150000000000000000`,
     sortOrder: 3,
     isFinished: false,
     tokenDecimals: 18,
