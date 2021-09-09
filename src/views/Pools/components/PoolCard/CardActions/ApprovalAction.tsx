@@ -4,7 +4,7 @@ import { useSousApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 
 interface ApprovalActionProps {
-  stakingTokenContractAddress: any
+  stakingTokenContractAddress: string
   sousId: number
   isLoading?: boolean
 }

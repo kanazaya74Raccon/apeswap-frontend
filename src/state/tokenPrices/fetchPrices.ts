@@ -27,7 +27,7 @@ const fetchPrices = async () => {
   const mappedTokenPrices = Object.keys(tokens).map((token, i) => {
     return {
       symbol: tokens[token].symbol,
-      address: tokens[token].address[CHAIN_ID],
+      address: tokens[token].address,
       price:
         tokens[token].symbol === 'GNANA'
           ? getBalanceNumber(tokenPrices[0], tokens[token].decimals) * 1.389

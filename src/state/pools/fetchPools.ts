@@ -87,10 +87,12 @@ export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], tota
     // Get values needed to calculate apr
     const curPool = pool
     const rewardToken = tokenPrices
-      ? tokenPrices.find((token) => pool?.rewardToken && token?.address === pool?.rewardToken.address[CHAIN_ID])
+      ? tokenPrices.find(
+          (token) => pool?.rewardToken && token?.address[CHAIN_ID] === pool?.rewardToken.address[CHAIN_ID],
+        )
       : pool.rewardToken
     const stakingToken = tokenPrices
-      ? tokenPrices.find((token) => token?.address === pool?.stakingToken.address[CHAIN_ID])
+      ? tokenPrices.find((token) => token?.address[CHAIN_ID] === pool?.stakingToken.address[CHAIN_ID])
       : pool.stakingToken
     const totalStaked = totalStakingList.find((totalStake) => totalStake.sousId === pool.sousId)?.totalStaked
     // Calculate apr

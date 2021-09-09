@@ -1,6 +1,6 @@
 import { Toast } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import { Address, FarmConfig, Nft, PoolConfig, Team } from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -153,7 +153,7 @@ export interface FarmOverall {
 
 export interface TokenPrices {
   symbol: string
-  address: string
+  address: Address
   price: number
   decimals: number
 }

@@ -13,6 +13,8 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
@@ -278,7 +280,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       return <UnlockButton />
     }
     if (needsApproval) {
-      return <ApprovalAction stakingTokenContractAddress={stakingToken.address} sousId={sousId} isLoading={isLoading} />
+      return <ApprovalAction stakingTokenContractAddress={stakingToken.address[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (
