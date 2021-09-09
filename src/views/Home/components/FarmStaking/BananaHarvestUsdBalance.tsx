@@ -6,7 +6,7 @@ import useI18n from 'hooks/useI18n'
 import { usePendingUsd } from 'state/hooks'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import useRefresh from 'hooks/useRefresh'
-import CardValue from './CardValue'
+import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()

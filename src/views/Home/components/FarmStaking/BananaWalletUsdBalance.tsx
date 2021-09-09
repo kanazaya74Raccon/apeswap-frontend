@@ -6,7 +6,7 @@ import useI18n from 'hooks/useI18n'
 import { getBananaAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
-import CardValue from './CardValue'
+import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()

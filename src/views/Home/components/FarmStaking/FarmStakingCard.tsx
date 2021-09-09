@@ -3,10 +3,9 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Button, Card, CardBody, BananaIcon, BananaPairIcon, Text } from '@apeswapfinance/uikit'
+import { Heading, Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
-
 import { useAllHarvest } from 'hooks/useHarvest'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from './UnlockButton'
@@ -19,12 +18,16 @@ import CardHeader from './CardHeader'
 const StyledFarmStakingCard = styled(Card)`
   background-repeat: no-repeat;
   background-position: top right;
-  width: 100%;
-  min-height: 250px;
+  width: 332px;
+  height: 436px;
   text-align: center;
   overflow: visible;
-  margin-left: auto;
-  margin-right: auto;
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 50px;
+  }
 `
 
 const Block = styled.div`
@@ -66,37 +69,8 @@ const StyledButton = styled(Button)`
   background: #ffb300;
   border-radius: 10px;
   border: 0px;
-  width: 220px;
-  height: 50px;
-`
-
-const StyledBanana = styled(BananaIcon)`
-  width: 90px;
-  position: absolute;
-  left: 0px;
-  top: -20px;
-  z-index: 100;
-  transform: rotate(100deg);
-  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
-`
-
-const StyledBanana2 = styled(BananaIcon)`
-  width: 70px;
-  position: absolute;
-  bottom: -20px;
-  left: 30px;
-  z-index: 100;
-  transform: rotate(10deg);
-  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
-`
-
-const StyledBananaPair = styled(BananaPairIcon)`
-  width: 90px;
-  position: absolute;
-  right: -10px;
-  top: 15px;
-  z-index: 100;
-  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+  width: 234px;
+  height: 44px;
 `
 
 const StyledLabel = styled(Label)`
@@ -106,6 +80,30 @@ const StyledLabel = styled(Label)`
 
 const HarvestDiv = styled.div`
   padding-bottom: 50px;
+`
+
+const CardHeaderImage = styled.div`
+  position: absolute;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'linear-gradient(41.5deg, #a16552 0%, #e1b242 169.83%)')};
+  opacity: 0.6;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  height: 111px;
+  width: 100%;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+`
+
+const HeaderText = styled(Text)`
+  font-family: Titan One;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: white;
 `
 
 const FarmedStakingCard = () => {
@@ -140,14 +138,12 @@ const FarmedStakingCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardHeader>
-        <StyledBanana />
-        <StyledBanana2 />
-        <StyledBananaPair />
-        <Heading size="lg" mb="0px" color="white">
-          {TranslateString(542, 'Farms &')}
+        <CardHeaderImage />
+        <HeaderText>
+          {TranslateString(542, 'BANANA')}
           <br />
-          {TranslateString(542, 'Staking')}
-        </Heading>
+          {TranslateString(542, 'Earnings')}
+        </HeaderText>
       </CardHeader>
       <CardBody>
         {account ? (
