@@ -446,7 +446,6 @@ const FlexLayout = styled.div`
   }
 `
 
-
 const AdminText = styled(Text)`
   font-family: poppins;
   font-size: 18px;
@@ -511,7 +510,6 @@ const AdminPools: React.FC = () => {
   const curPools = adminPools.map((pool) => {
     return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
   })
-
 
   const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
 
