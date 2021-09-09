@@ -19,7 +19,7 @@ const StyledBananaStats = styled(Card)`
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 0px;
   }
-  ${({ theme }) => theme.mediaQueries.xl} {
+  @media screen and (min-width: 1375px) {
     margin-top: 40px;
   }
 `

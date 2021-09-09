@@ -29,7 +29,6 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 1px solid red;
   width: 100%;
   justify-content: center;
 `
@@ -108,7 +107,17 @@ const RightSideFlexWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-  ${({ theme }) => theme.mediaQueries.xl} {
+
+  @media screen and (min-width: 852px) {
+    width: 720px;
+    height: 935px;
+    margin-left: 0px;
+    margin-top: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1375px) {
     width: 336px;
     height: 935px;
     margin-left: 32px;
