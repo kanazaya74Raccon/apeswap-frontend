@@ -26,28 +26,6 @@ const Header = styled.div<{ image: string }>`
     width: 1110px;
   }
 `
-
-const LeftArrow = styled.img`
-  position: absolute;
-  left: 15px;
-  width: 20px;
-  border-radius: 0px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 1;
-`
-
-const RightArrow = styled.img`
-  position: absolute;
-  right: 15px;
-  height: 24px;
-  width: 20px;
-  border-radius: 0px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 1;
-`
-
 const CurrentHeaderHolder = styled.div`
   display: flex;
   width: auto;
@@ -74,8 +52,7 @@ const HeaderBubble = styled.div<{ live?: boolean }>`
 const LinkArea = styled.a`
   position: absolute;
   height: 270px;
-  width: 92%;
-  width: 85%;
+  width: 98%;
   top: 0;
   align-self: center;
   cursor: pointer;
@@ -100,20 +77,6 @@ const Banner = () => {
     return image.mobile[0]?.url
   }
 
-  const handleRightClick = () => {
-    if (activeIndex + 1 === headersData.length) {
-      setActiveIndex(0)
-    } else {
-      setActiveIndex(activeIndex + 1)
-    }
-  }
-  const handleLeftClick = () => {
-    if (activeIndex - 1 < 0) {
-      setActiveIndex(headersData.length - 1)
-    } else {
-      setActiveIndex(activeIndex - 1)
-    }
-  }
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
@@ -137,8 +100,6 @@ const Banner = () => {
       ) : (
         <Header image={getImageSize(headersData[activeIndex])}>
           <LinkArea href={headersData[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />
-          <RightArrow src="images/home-right-arrow.svg" onClick={handleRightClick} />
-          <LeftArrow src="images/home-left-arrow.svg" onClick={handleLeftClick} />
           <CurrentHeaderHolder>
             {[...Array(headersData.length)].map((e, i) => (
               <HeaderBubble live={i === activeIndex} onClick={() => setActiveIndex(i)} />
