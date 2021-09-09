@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import partition from 'lodash/partition'
+import useBlock from 'hooks/useBlock'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { usePools } from 'state/hooks'
@@ -276,6 +277,7 @@ const Pools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
+  const block = useBlock()
   const TranslateString = useI18n()
   const isActive = !pathname.includes('history')
 
@@ -283,7 +285,11 @@ const Pools: React.FC = () => {
     setSearchQuery(event.target.value)
   }
 
-  const [finishedPools, openPools] = partition(allPools, (pool) => pool.isFinished)
+  const curPools = allPools.map((pool) => {
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+  })
+
+  const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
 
   const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
 

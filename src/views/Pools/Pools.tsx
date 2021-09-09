@@ -11,6 +11,7 @@ import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
+import useBlock from 'hooks/useBlock'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
@@ -495,6 +496,7 @@ const Pools: React.FC = () => {
   const size: Size = useWindowSize()
   const allPools = usePools(account)
   const TranslateString = useI18n()
+  const block = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -533,8 +535,11 @@ const Pools: React.FC = () => {
   }, [observerIsSet])
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
+  const curPools = allNonAdminPools.map((pool) => {
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+  })
 
-  const [finishedPools, openPools] = partition(allNonAdminPools, (pool) => pool.isFinished)
+  const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
 
   const stakedOnlyPools = openPools.filter(
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
