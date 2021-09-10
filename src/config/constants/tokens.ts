@@ -374,6 +374,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  dep: {
+    symbol: 'DEP',
+    address: {
+      56: '0xcaF5191fc480F43e4DF80106c7695ECA56E48B18',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
