@@ -2,14 +2,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
 import { fetchReserveData } from 'hooks/api'
-import { fetchPoolsBlockLimits, fetchPoolsTotalStatking } from './fetchPools'
+import { fetchPoolsBlockLimits, fetchPoolsTotalStatking, fetchPoolTokenStatsAndApr } from './fetchPools'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,
   fetchUserStakeBalances,
   fetchUserPendingRewards,
 } from './fetchPoolsUser'
-import { PoolsState, Pool } from '../types'
+import { PoolsState, Pool, TokenPrices } from '../types'
 
 const initialState: PoolsState = { data: [...poolsConfig] }
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
@@ -44,19 +44,20 @@ export const PoolsSlice = createSlice({
 export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = PoolsSlice.actions
 
 // Thunks
-export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
+export const fetchPoolsPublicDataAsync = (tokenPrices: TokenPrices[]) => async (dispatch) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStatking()
-
+  const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings)
   const liveData = await Promise.all(
     poolsConfig.map(async (pool) => {
       const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
       const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+      const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === pool.sousId)
       // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
       return {
         ...blockLimit,
         ...totalStaking,
-        // lpData,
+        ...tokenStatsAndApr,
       }
     }),
   )

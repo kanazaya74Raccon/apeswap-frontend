@@ -10,27 +10,16 @@ import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hooks'
+import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
-import ToggleView from '../Pools/components/ToggleView/ToggleView'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
-import PoolTable from '../Pools/components/PoolTable/PoolTable'
 import { ViewMode } from '../Pools/components/types'
 
 interface LabelProps {
   active?: boolean
-}
-
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
 }
 
 const float = keyframes`
@@ -457,36 +446,6 @@ const FlexLayout = styled.div`
   }
 `
 
-const StyledTable = styled.div`
-  border-collapse: collapse;
-  font-size: 14px;
-  border-radius: 4px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
-`
-
-const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin: 16px 0px;
-  position: relative;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
-`
-
-const TableWrapper = styled.div`
-  overflow: visible;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
-
 const AdminText = styled(Text)`
   font-family: poppins;
   font-size: 18px;
@@ -494,9 +453,6 @@ const AdminText = styled(Text)`
   color: white;
 `
 
-const TableContainer = styled.div`
-  position: relative;
-`
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const AdminPools: React.FC = () => {
@@ -510,15 +466,11 @@ const AdminPools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
-  const farms = useFarms()
   const allPools = usePools(account)
-  const { statsOverall } = useStatsOverall()
-  const bnbPriceUSD = usePriceBnbBusd()
   const TranslateString = useI18n()
   const block = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
-  const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -555,39 +507,17 @@ const AdminPools: React.FC = () => {
 
   const adminPools = allPools.filter((pool) => pool.forAdmins)
 
-  const poolsWithApy = adminPools.map((pool) => {
-    const rewardTokenPrice = 0
-    const stakedTokenPrice = 1
-    const apr = new BigNumber(0)
-
-    return {
-      ...pool,
-      isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock,
-      apr,
-      rewardTokenPrice,
-      stakedTokenPrice,
-    }
+  const curPools = adminPools.map((pool) => {
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
   })
 
-  const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
+  const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
 
   const stakedOnlyPools = openPools.filter(
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
   const stakedInactivePools = finishedPools.filter(
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
-  )
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
-
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
-  const gnanaStakedOnlyPools = openPools.filter(
-    (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
-  )
-
-  const gnanaStakedInactivePools = finishedPools.filter(
-    (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
   )
 
   const handleSortOptionChange = (option): void => {
@@ -601,46 +531,40 @@ const AdminPools: React.FC = () => {
     setSortOption(option)
   }
 
-  const sortPools = (poolsToSort: PoolWithStakeValue[]) => {
+  const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
+        return orderBy(poolsToSort, (pool: Pool) => pool.apr, sortDirection)
       case 'earned':
         return orderBy(
           poolsToSort,
-          (pool: PoolWithStakeValue) => {
-            if (!pool.userData || !pool.rewardTokenPrice) {
+          (pool: Pool) => {
+            if (!pool.userData || !pool.rewardToken?.price) {
               return 0
             }
-            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
+            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardToken?.price
           },
           sortDirection,
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
+          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakingToken?.price,
           sortDirection,
         )
       default:
-        return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
+        return orderBy(poolsToSort, (pool: Pool) => pool.sortOrder, 'asc')
     }
   }
 
   const poolsToShow = () => {
     let chosenPools = []
-
-    if (stakedOnly && gnanaOnly) {
-      chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-    } else if (stakedOnly && !gnanaOnly) {
+    if (stakedOnly && !gnanaOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
-    } else if (!stakedOnly && gnanaOnly) {
-      chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools
     }
-
     if (searchQuery) {
       const lowercaseQuery = searchQuery.toLowerCase()
       chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
@@ -656,20 +580,6 @@ const AdminPools: React.FC = () => {
         ))}
       </FlexLayout>
     </CardContainer>
-  )
-
-  const tableLayout = (
-    <Container>
-      <TableContainer>
-        <TableWrapper ref={tableWrapperEl}>
-          <StyledTable>
-            {poolsToShow().map((pool) => (
-              <PoolTable key={pool.sousId} pool={pool} removed={!isActive} />
-            ))}
-          </StyledTable>
-        </TableWrapper>
-      </TableContainer>
-    </Container>
   )
 
   return (

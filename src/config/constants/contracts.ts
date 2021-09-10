@@ -71,4 +71,8 @@ export default {
     56: '0x495881E60EB2E3a95757f3a7b09Ff31e0C00aE7B',
     97: '0x80a01F81B92D21E39ff1276c4a81d25cB4DC4CDB',
   },
+  apePriceGetter: {
+    56: '0x5e545322b83626c745FE46144a15C00C94cBD803',
+    97: '',
+  },
 }
