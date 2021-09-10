@@ -94,8 +94,7 @@ const fetchVaultData = async (vault: VaultConfig): Promise<PublicVaultData> => {
       ) * pairTokenRatioInMasterChef
     : parseFloat(new BigNumber(masterChefPairBalance).div(new BigNumber(10).pow(token0.decimals)).toString())
 
-
-    console.log(parseFloat(new BigNumber(strategyPairBalance).toString()))
+  console.log(parseFloat(new BigNumber(strategyPairBalance).toString()))
 
   return {
     totalStaked: null,
