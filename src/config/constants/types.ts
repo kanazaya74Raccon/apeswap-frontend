@@ -176,14 +176,8 @@ export interface VaultConfig {
   strat: string
   stakeTokenAddress: string
   platform: string
-  token0: {
-    symbol: string
-    address: string
-  }
-  token1?: {
-    symbol: string
-    address: string
-  }
+  token0: Token
+  token1?: Token
   isPair: boolean
   masterchef: MasterChef
   totalFees: number

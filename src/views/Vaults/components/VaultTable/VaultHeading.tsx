@@ -3,14 +3,8 @@ import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
 
 export interface PoolProps {
-  token0?: {
-    symbol: string
-    address: string
-  }
-  token1?: {
-    symbol: string
-    address: string
-  }
+  token0?: string
+  token1?: string
   isPair?: boolean
 }
 
@@ -47,10 +41,10 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
       <StyledBackground>
         {isPair ? (
           <>
-            <IconImage src={`/images/tokens/${token0.symbol}.svg`} alt={token0.symbol} width={50} height={50} />
+            <IconImage src={`/images/tokens/${token0}.svg`} alt={token0} width={50} height={50} />
             <IconImage
-              src={`/images/tokens/${token1.symbol}.svg`}
-              alt={token1.symbol}
+              src={`/images/tokens/${token1}.svg`}
+              alt={token1}
               width={50}
               height={50}
               marginLeft="-10px"
@@ -58,8 +52,8 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
           </>
         ) : (
           <IconImage
-            src={`/images/tokens/${token0.symbol}.svg`}
-            alt={token0.symbol}
+            src={`/images/tokens/${token0}.svg`}
+            alt={token0}
             width={50}
             height={50}
             marginLeft="5px"
@@ -68,7 +62,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
       </StyledBackground>
       <div>
         <Text fontSize="20px" bold>
-          {isPair ? `${token0.symbol}-${token1.symbol}` : token0.symbol}
+          {isPair ? `${token0}-${token1}` : token0}
         </Text>
       </div>
     </Container>

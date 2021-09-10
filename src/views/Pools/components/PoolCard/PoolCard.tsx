@@ -9,7 +9,6 @@ import { Pool } from 'state/types'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
-import HarvestActions from '../PoolTable/CardActions/HarvestActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 

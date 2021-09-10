@@ -17,7 +17,7 @@ const tokens = {
     decimals: 18,
   },
   wbnb: {
-    symbol: 'WBNB',
+    symbol: 'BNB',
     address: {
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
@@ -357,6 +357,20 @@ const tokens = {
     symbol: 'YDR',
     address: {
       56: '0x3757232B55E60da4A8793183aC030CfCE4c3865d',
+    },
+    decimals: 18,
+  },
+  copycat: {
+    symbol: 'COPYCAT',
+    address: {
+      56: '0xd635B32688F36ee4a7FE117b4C91DD811277ACB6',
+    },
+    decimals: 18,
+  },
+  bfg: {
+    symbol: 'BFG',
+    address: {
+      56: '0xBb46693eBbEa1aC2070E59B4D043b47e2e095f86',
     },
     decimals: 18,
   },

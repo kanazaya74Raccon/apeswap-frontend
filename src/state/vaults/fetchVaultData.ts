@@ -4,6 +4,8 @@ import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { VaultConfig } from 'config/constants/types'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 type PublicVaultData = {
   totalStaked: BigNumber
   totalAllocPoint: string
@@ -49,7 +51,7 @@ const fetchVaultData = async (vault: VaultConfig): Promise<PublicVaultData> => {
   const erc20Calls = [
     // Quote token balance of
     {
-      address: token0.address,
+      address: token0.address[CHAIN_ID],
       name: 'balanceOf',
       params: [stakeTokenAddress],
     },
@@ -84,13 +86,16 @@ const fetchVaultData = async (vault: VaultConfig): Promise<PublicVaultData> => {
     ? parseFloat(
         new BigNumber(quoteTokenPairBalance).div(new BigNumber(10).pow(18)).times(new BigNumber(2)).toString(),
       ) * pairTokenRatio
-    : parseFloat(new BigNumber(strategyPairBalance).div(new BigNumber(10).pow(18)).toString())
+    : parseFloat(new BigNumber(strategyPairBalance).div(new BigNumber(10).pow(token0.decimals)).toString())
 
   const totalInQuoteTokenInMasterChef = vault.isPair
     ? parseFloat(
         new BigNumber(quoteTokenPairBalance).div(new BigNumber(10).pow(18)).times(new BigNumber(2)).toString(),
       ) * pairTokenRatioInMasterChef
-    : parseFloat(new BigNumber(masterChefPairBalance).div(new BigNumber(10).pow(18)).toString())
+    : parseFloat(new BigNumber(masterChefPairBalance).div(new BigNumber(10).pow(token0.decimals)).toString())
+
+
+    console.log(parseFloat(new BigNumber(strategyPairBalance).toString()))
 
   return {
     totalStaked: null,

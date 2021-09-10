@@ -142,7 +142,11 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     }
     if (needsApproval) {
       return (
-        <ApprovalAction stakingContractAddress={stakingToken.address[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
+        <ApprovalAction
+          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          sousId={sousId}
+          isLoading={isLoading}
+        />
       )
     }
     if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
