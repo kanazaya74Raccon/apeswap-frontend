@@ -44,7 +44,8 @@ export enum PoolCategory {
 
 export interface Address {
   97?: string
-  56: string
+  56?: string
+  137?: string
 }
 
 export interface FarmStyles {
@@ -77,10 +78,10 @@ export interface PoolConfig {
   sousId: number
   image?: string
   tokenName: string
-  stakingTokenName: string
+  stakingToken: Token
   stakingLimit?: number
   bonusEndBlock?: number
-  stakingTokenAddress?: Address
+  rewardToken: Token
   contractAddress: Address
   poolCategory: PoolCategory
   projectLink: string
@@ -94,6 +95,15 @@ export interface PoolConfig {
   lpStaking?: boolean
   forAdmins?: boolean
   emergencyWithdraw?: boolean
+}
+
+export interface Token {
+  symbol: string
+  address?: Address
+  decimals?: number
+  dontFetch?: boolean
+  lpToken?: boolean
+  price?: number
 }
 
 export type Images = {

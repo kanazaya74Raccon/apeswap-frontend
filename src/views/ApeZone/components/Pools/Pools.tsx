@@ -4,27 +4,15 @@ import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR } from 'config'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
+import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, useStatsOverall } from 'state/hooks'
-import { Pool } from 'state/types'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
+import { usePools } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
 import PoolCard from '../../../Pools/components/PoolCard/PoolCard'
-
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
 
 const float = keyframes`
   0% {transform: translate3d(0px, 0px, 0px);}
@@ -288,87 +276,36 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
-  const farms = useFarms()
   const allPools = usePools(account)
-  const { statsOverall } = useStatsOverall()
-  const bnbPriceUSD = usePriceBnbBusd()
-  const TranslateString = useI18n()
   const block = useBlock()
+  const TranslateString = useI18n()
   const isActive = !pathname.includes('history')
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
 
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
-    const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
-      return new BigNumber(1)
-    }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
-    }
-    return tokenPriceBN
-  }
-
-  const poolsWithApy = allPools.map((pool) => {
-    const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
-    const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
-    const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
-    const stats = statsOverall?.incentivizedPools?.find((x) => x.id === pool.sousId)
-    let rewardTokenPrice = stats?.rewardTokenPrice
-
-    let stakedTokenPrice
-    let stakingTokenPriceInBNB
-    let rewardTokenPriceInBNB
-
-    if (pool.lpData) {
-      const rewardToken = pool.lpData.token1.symbol === pool.tokenName ? pool.lpData.token1 : pool.lpData.token0
-      stakingTokenPriceInBNB = new BigNumber(pool.lpData.reserveETH).div(new BigNumber(pool.lpData.totalSupply))
-      rewardTokenPriceInBNB = new BigNumber(rewardToken.derivedETH)
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    } else if (rewardTokenPrice) {
-      stakingTokenPriceInBNB = priceToBnb(pool.stakingTokenName, new BigNumber(stats?.price), QuoteToken.BUSD)
-      rewardTokenPriceInBNB = priceToBnb(pool.tokenName, new BigNumber(rewardTokenPrice), QuoteToken.BUSD)
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    } else {
-      // /!\ Assume that the farm quote price is BNB
-      stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
-      rewardTokenPriceInBNB = priceToBnb(
-        pool.tokenName,
-        rewardTokenFarm?.tokenPriceVsQuote,
-        rewardTokenFarm?.quoteTokenSymbol,
-      )
-      rewardTokenPrice = bnbPriceUSD.times(rewardTokenPriceInBNB).toNumber()
-      stakedTokenPrice = bnbPriceUSD.times(stakingTokenPriceInBNB).toNumber()
-    }
-
-    const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
-    const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
-    const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
-
-    return {
-      ...pool,
-      isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock,
-      apr,
-      rewardTokenPrice,
-      stakedTokenPrice,
-    }
+  const curPools = allPools.map((pool) => {
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
   })
 
-  const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
+  const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
 
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingTokenName === 'GNANA')
+  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
 
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingTokenName === 'GNANA')
+  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken.symbol === 'GNANA')
   const gnanaStakedOnlyPools = openPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const gnanaStakedInactivePools = finishedPools.filter(
     (pool) =>
-      pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken.symbol === 'GNANA',
   )
 
   const poolsToShow = () => {

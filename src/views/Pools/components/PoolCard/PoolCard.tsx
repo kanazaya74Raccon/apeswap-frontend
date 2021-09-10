@@ -9,20 +9,11 @@ import { Pool } from 'state/types'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
-import HarvestActions from '../PoolTable/CardActions/HarvestActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
-
 interface HarvestProps {
-  pool: PoolWithStakeValue
+  pool: Pool
   removed: boolean
 }
 
@@ -52,16 +43,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     sousId,
     image,
     tokenName,
-    stakingTokenName,
-    stakingTokenAddress,
+    stakingToken,
     apr,
     totalStaked,
     startBlock,
     endBlock,
     isFinished,
     userData,
-    rewardTokenPrice,
-    stakedTokenPrice,
+    rewardToken,
     projectLink,
     contractAddress,
     tokenDecimals,
@@ -89,16 +78,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     <PCard onClick={toggleExpand}>
       <CardHeading
         pool={pool}
-        stakeToken={stakingTokenName}
+        stakeToken={stakingToken.symbol}
         earnToken={tokenName}
         earnTokenImage={image}
-        stakingTokenAddress={stakingTokenAddress[CHAIN_ID]}
+        stakingTokenAddress={stakingToken.address[CHAIN_ID]}
         sousId={sousId}
-        apr={apr}
-        poolAPR={apr.toNumber().toFixed(2)}
+        apr={new BigNumber(apr)}
+        poolAPR={apr?.toFixed(2)}
         showExpandableSection={showExpandableSection}
         removed={removed}
-        rewardTokenPrice={rewardTokenPrice}
+        rewardTokenPrice={rewardToken?.price}
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Flex>
@@ -116,10 +105,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           blocksRemaining={blocksRemaining}
           isFinished={isFinished}
           blocksUntilStart={blocksUntilStart}
-          rewardTokenPrice={rewardTokenPrice}
-          lpLabel={stakingTokenName}
+          rewardTokenPrice={rewardToken?.price}
+          lpLabel={stakingToken.symbol}
           addLiquidityUrl="https://app.apeswap.finance/swap"
-          stakedTokenPrice={stakedTokenPrice}
+          stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
           projectSite={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
