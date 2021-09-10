@@ -1,19 +1,10 @@
-import BigNumber from 'bignumber.js'
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
 
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
-
 interface HarvestProps {
-  pool: PoolWithStakeValue
+  pool: Pool
 }
 
 const PCard = styled.div`
@@ -115,12 +106,12 @@ const StyledHeading = styled(Heading)`
 `
 
 const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
-  const { image, tokenName, stakingTokenName, apr } = pool
+  const { image, tokenName, stakingToken, apr } = pool
 
   return (
     <PCard>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakingTokenName}.svg`} alt={stakingTokenName} />
+        <StyledImage src={`/images/tokens/${stakingToken.symbol}.svg`} alt={stakingToken.symbol} />
         <StyledArrow src="/images/arrow.svg" alt="arrow" />
         <StyledImage src={`/images/tokens/${image || `${tokenName}.svg`}`} alt={tokenName} />
       </StyledBackground>
@@ -128,7 +119,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         <StyledHeading>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          {apr.toFixed(2) !== 'NaN' ? <ApyNumber>{apr.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
+          {apr ? <ApyNumber>{apr?.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
         </ApyWrapper>
       </DescriptionContainer>
     </PCard>
