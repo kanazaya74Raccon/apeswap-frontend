@@ -381,6 +381,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  rsun: {
+    symbol: 'RSUN',
+    address: {
+      56: '0x917841c010b3d86ed886f36f2c9807e07a2e3093',
+    },
+    decimals: 9,
+  },
 }
 
 export default tokens
