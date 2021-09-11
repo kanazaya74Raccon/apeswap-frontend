@@ -1976,6 +1976,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 102,
+    tokenName: 'RSUN',
+    image: 'RSUN.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.rsun,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xa782cab148a3d33498e7f85b0491d4f364609c22',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://risingsun.finance/',
+    harvest: true,
+    tokenPerBlock: `97.589157407`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
