@@ -395,6 +395,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  sfund: {
+    symbol: 'SFUND',
+    address: {
+      56: '0x477bc8d23c634c154061869478bce96be6045d12',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

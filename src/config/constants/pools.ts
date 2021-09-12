@@ -2014,6 +2014,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 104,
+    tokenName: 'SFUND',
+    image: 'SFUND.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.sfund,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xce12fb8d5e3f1acb469c8b9f657fd8188ca21e87',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://seedify.fund/',
+    harvest: true,
+    tokenPerBlock: `0.040509259259259259`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
