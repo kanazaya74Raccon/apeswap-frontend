@@ -1995,6 +1995,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 103,
+    tokenName: 'TXL',
+    image: 'TXL.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.txl,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x03643a66e0a121839d230364fab392aa583cb984',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://tixl.org/',
+    harvest: true,
+    tokenPerBlock: `0.330932291666666666`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
