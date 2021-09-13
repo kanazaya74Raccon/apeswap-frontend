@@ -142,7 +142,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     const number = parseInt(liquidity.liquidity)
     liquidityDigits = Math.round(number).toString().length
   } else {
-    liquidityDigits = liquidity.liquidity.toFixed(0).toString().length
+    liquidityDigits = liquidity?.liquidity?.toFixed(0).toString().length
   }
 
   return (
