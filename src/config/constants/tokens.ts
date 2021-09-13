@@ -402,6 +402,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  phx: {
+    symbol: 'PHX',
+    address: {
+      56: '0xac86e5f9bA48d680516df50C72928c2ec50F3025',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
