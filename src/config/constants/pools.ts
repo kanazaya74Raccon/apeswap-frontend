@@ -2033,6 +2033,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 105,
+    tokenName: 'PHX',
+    image: 'PHX.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.phx,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x05db8d4a67d293b43aa1db8cf38850fe790dbf29',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.phx.finance/',
+    harvest: true,
+    tokenPerBlock: `0.636574074074074074`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
