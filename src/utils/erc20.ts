@@ -8,7 +8,7 @@ import { getWeb3 } from './web3'
 
 export const getContract = (provider: ProviderType, address: string) => {
   const web3 = new Web3(provider)
-  const contract = new web3.eth.Contract((erc20 as unknown) as AbiItem, address)
+  const contract = new web3.eth.Contract(erc20 as unknown as AbiItem, address)
   return contract
 }
 
