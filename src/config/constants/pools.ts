@@ -240,29 +240,25 @@ const pools: PoolConfig[] = [
     isFinished: true,
     tokenDecimals: 18,
   },
-  // {
-  //   sousId: 24,
-  //   tokenName: 'BFT',
-  //   image: 'BFT.svg',
-  //   stakingTokenName: 'BFT',
-  //   rewardToken: null,
-  //   stakingTokenAddress: {
-  //     97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-  //     56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8', // BFT
-  //   },
-  //   contractAddress: {
-  //     97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
-  //     56: '0x49bbB345c432b9B66b407f1525A81A84F4509b8b',
-  //   },
-  //   poolCategory: PoolCategory.APEZONE,
-  //   projectLink: 'https://www.bitfresh.win',
-  //   harvest: true,
-  //   tokenPerBlock: `3.858024691358025`,
-  //   sortOrder: 1.01,
-  //   reflect: true,
-  //   isFinished: true,
-  //   tokenDecimals: 18,
-  // },
+  {
+    sousId: 24,
+    tokenName: 'BFT',
+    image: 'BFT.svg',
+    stakingToken: tokens.bft,
+    rewardToken: tokens.bft,
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x49bbB345c432b9B66b407f1525A81A84F4509b8b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.bitfresh.win',
+    harvest: true,
+    tokenPerBlock: `3.858024691358025`,
+    sortOrder: 1.01,
+    reflect: true,
+    isFinished: true,
+    tokenDecimals: 18,
+  },
   {
     sousId: 25,
     tokenName: 'BFT',
