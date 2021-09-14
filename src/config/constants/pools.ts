@@ -2048,6 +2048,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 106,
+    tokenName: 'POTS',
+    image: 'POTS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.pots,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x84cda09920232b5b138180b55759b218bf243645',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://moonpot.com ',
+    harvest: true,
+    tokenPerBlock: `0.013611111111111111`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
