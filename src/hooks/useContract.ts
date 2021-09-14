@@ -70,17 +70,17 @@ const useSafeContract = (abi: AbiItem, address?: string, contractOptions?: Contr
  */
 
 export const useIfoContract = (address: string) => {
-  const ifoAbi = (ifo as unknown) as AbiItem
+  const ifoAbi = ifo as unknown as AbiItem
   return useContract(ifoAbi, address)
 }
 
 export const useSafeIfoContract = (address?: string): Contract | undefined => {
-  const ifoAbi = (ifo as unknown) as AbiItem
+  const ifoAbi = ifo as unknown as AbiItem
   return useSafeContract(ifoAbi, address)
 }
 
 export const useERC20 = (address: string) => {
-  const erc20Abi = (erc20 as unknown) as AbiItem
+  const erc20Abi = erc20 as unknown as AbiItem
   return useContract(erc20Abi, address)
 }
 
@@ -93,66 +93,66 @@ export const useGoldenBanana = () => {
 }
 
 export const useTreasury = () => {
-  const treasury = (treasuryAbi as unknown) as AbiItem
+  const treasury = treasuryAbi as unknown as AbiItem
   return useContract(treasury, getTreasuryAddress())
 }
 
 export const useRabbitMintingFarm = () => {
-  const rabbitMintingFarmAbi = (rabbitmintingfarm as unknown) as AbiItem
+  const rabbitMintingFarmAbi = rabbitmintingfarm as unknown as AbiItem
   return useContract(rabbitMintingFarmAbi, getRabbitMintingFarmAddress())
 }
 
 export const useNonFungibleApes = () => {
-  const nonFungibleApesAbi = (nonFungibleApes as unknown) as AbiItem
+  const nonFungibleApesAbi = nonFungibleApes as unknown as AbiItem
   return useContract(nonFungibleApesAbi, getNonFungibleApesAddress())
 }
 
 export const useProfile = () => {
-  const profileABIAbi = (profile as unknown) as AbiItem
+  const profileABIAbi = profile as unknown as AbiItem
   return useContract(profileABIAbi, getBananaProfileAddress())
 }
 
 export const useLottery = () => {
-  const abi = (lottery as unknown) as AbiItem
+  const abi = lottery as unknown as AbiItem
   return useContract(abi, getLotteryAddress())
 }
 
 export const useLotteryTicket = () => {
-  const abi = (lotteryTicket as unknown) as AbiItem
+  const abi = lotteryTicket as unknown as AbiItem
   return useContract(abi, getLotteryTicketAddress())
 }
 
 export const useMasterchef = () => {
-  const abi = (masterChef as unknown) as AbiItem
+  const abi = masterChef as unknown as AbiItem
   return useContract(abi, getMasterChefAddress())
 }
 
 export const useSousChef = (id) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
-  const abi = (rawAbi as unknown) as AbiItem
+  const abi = rawAbi as unknown as AbiItem
   return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
 }
 
 export const useAuction = () => {
-  const abi = (auction as unknown) as AbiItem
+  const abi = auction as unknown as AbiItem
   return useContract(abi, getAuctionAddress())
 }
 
 export const useApePriceGetter = () => {
-  const abi = (apePriceGetter as unknown) as AbiItem
+  const abi = apePriceGetter as unknown as AbiItem
   return useContract(abi, getApePriceGetterAddress())
 }
 export const useIazo = () => {
-  const abi = (iazoAbi as unknown) as AbiItem
+  const abi = iazoAbi as unknown as AbiItem
   return useContract(abi, getIazoAddress())
 }
 export const useIazoSettings = () => {
-  const abi = (iazoSettingsAbi as unknown) as AbiItem
+  const abi = iazoSettingsAbi as unknown as AbiItem
   return useContract(abi, getIazoSettingsAddress())
 }
 export const useIazoFactory = () => {
-  const abi = (iazoFactoryAbi as unknown) as AbiItem
+  const abi = iazoFactoryAbi as unknown as AbiItem
   return useContract(abi, getIazoFactoryAddress())
 }
 export default useContract
