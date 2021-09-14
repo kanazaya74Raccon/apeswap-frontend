@@ -32,6 +32,8 @@ const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
+const Iazos = lazy(() => import('./views/Iazos'))
+const CreateIazo = lazy(() => import('./views/Iazos/CreateIazo'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -110,6 +112,12 @@ const App: React.FC = () => {
             </Route>
             <Route path="/auction">
               <Auction />
+            </Route>
+            <Route exact path="/iazos">
+              <Iazos />
+            </Route>
+            <Route path="/iazos/create">
+              <CreateIazo />
             </Route>
             <Route exact path="/nft">
               <Nft />
