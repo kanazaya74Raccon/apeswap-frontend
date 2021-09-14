@@ -75,4 +75,16 @@ export default {
     56: '0x5e545322b83626c745FE46144a15C00C94cBD803',
     97: '',
   },
+  iazoFactoryProxy: {
+    56: '',
+    97: '0x1b894Af8BA54954359Baf402c6794E1A921c0097',
+  },
+  iazo: {
+    56: '',
+    97: '0x569b32F424D8383B2E14F22DBA58caaF51297cD7',
+  },
+  iazoSettings: {
+    56: '',
+    97: '0xC595d4F7D6031FEE3E785b3Cea9fb1aB26741eeC',
+  },
 }

@@ -47,3 +47,12 @@ export const getAuctionAddress = () => {
 export const getApePriceGetterAddress = () => {
   return addresses.apePriceGetter[chainId]
 }
+export const getIazoAddress = () => {
+  return addresses.iazo[chainId]
+}
+export const getIazoSettingsAddress = () => {
+  return addresses.iazoSettings[chainId]
+}
+export const getIazoFactoryAddress = () => {
+  return addresses.iazoFactoryProxy[chainId]
+}

@@ -106,8 +106,8 @@ const IazoCard: React.FC = () => {
       <CardMonkey />
       <HeadingWrapper>
         <TokenHeaderInformationWrapper>
-          <TokenImage src="images/apple-touch-icon.png" />
-          <TokenName> Sushi </TokenName>
+          <TokenImage src="images/tokens/BANANA.svg" />
+          <TokenName> Banana </TokenName>
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper>
           <BoldAfterText boldContent="2:12:34:05">Starts in </BoldAfterText>

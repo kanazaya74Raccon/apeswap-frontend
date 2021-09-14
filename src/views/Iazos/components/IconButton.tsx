@@ -32,7 +32,7 @@ const IconText = styled(Text)`
 const IconButton: React.FC<IconButtonProps> = ({ icon, text }) => {
   return (
     <Button>
-      <img src={`/images/${icon}.svg`} alt="Icon"/>
+      <img src={`/images/${icon}.svg`} alt="Icon" />
       <IconText>{text}</IconText>
     </Button>
   )
