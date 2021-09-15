@@ -2067,6 +2067,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 107,
+    tokenName: 'FRMx',
+    image: 'FRMx.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.frmx,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xac19462e8c9207cd1613292b93b5f7c65f1a597a',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://ferrum.network/',
+    harvest: true,
+    tokenPerBlock: `0.000011226851851851`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
