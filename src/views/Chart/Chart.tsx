@@ -79,7 +79,7 @@ const ApexChart = () => {
       <div id="chart-candlestick">
         {data?.chartData && (
           <ReactApexChart
-            options={(chartConfig.options as unknown) as ApexOptions}
+            options={chartConfig.options as unknown as ApexOptions}
             series={chartConfig.series}
             type="candlestick"
             height={560}
