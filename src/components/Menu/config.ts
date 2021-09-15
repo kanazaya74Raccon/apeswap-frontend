@@ -133,7 +133,8 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Partnership Application',
-        href: 'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
+        href:
+          'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
       },
       {
         label: 'ApeTV',
