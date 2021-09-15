@@ -79,9 +79,9 @@ export default {
     56: '',
     97: '0x1b894Af8BA54954359Baf402c6794E1A921c0097',
   },
-  iazo: {
+  iazoExposer: {
     56: '',
-    97: '0x569b32F424D8383B2E14F22DBA58caaF51297cD7',
+    97: '0xd31C6a99Dc27f99e09041139866683a70d050324',
   },
   iazoSettings: {
     56: '',

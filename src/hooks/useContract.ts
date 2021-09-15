@@ -14,7 +14,7 @@ import {
   getNonFungibleApesAddress,
   getAuctionAddress,
   getApePriceGetterAddress,
-  getIazoAddress,
+  getIazoExposerAddress,
   getIazoSettingsAddress,
   getIazoFactoryAddress,
 } from 'utils/addressHelpers'
@@ -33,7 +33,7 @@ import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
-import iazoAbi from 'config/abi/iazo.json'
+import iazoExposerAbi from 'config/abi/iazoExposer.json'
 import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import iazoFactoryAbi from 'config/abi/iazoFactory.json'
 
@@ -144,8 +144,8 @@ export const useApePriceGetter = () => {
   return useContract(abi, getApePriceGetterAddress())
 }
 export const useIazo = () => {
-  const abi = iazoAbi as unknown as AbiItem
-  return useContract(abi, getIazoAddress())
+  const abi = iazoExposerAbi as unknown as AbiItem
+  return useContract(abi, getIazoExposerAddress())
 }
 export const useIazoSettings = () => {
   const abi = iazoSettingsAbi as unknown as AbiItem

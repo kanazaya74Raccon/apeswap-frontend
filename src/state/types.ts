@@ -151,6 +151,35 @@ export interface FarmOverall {
   rewardTokenSymbol: string
 }
 
+export interface IazoDefaultSettings {
+  adminAddress: string
+  feeAddress: string
+  burnAddress: string
+  baseFee: string
+  maxBaseFee: string
+  iazoTokenFee: string
+  maxIazoTokenFee: string
+  nativeCreationFee: string
+  minIazoLength: string
+  maxIazoLength: string
+  minLockPeriod: string
+}
+
+export interface Iazo {
+  iazoOwnerAddress: string
+  iazoTokenAddress: string
+  baseTokenAddress: string
+  iazoSaleInNative: boolean
+  tokenPrice: string
+  amount: string
+  hardcap: string
+  softcap: string
+  maxSpendPerBuyer: string
+  liquidityPercent: string
+  listingPrice: string
+  burnRemain: boolean
+}
+
 export interface TokenPrices {
   symbol: string
   address: Address

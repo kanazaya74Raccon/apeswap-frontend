@@ -47,8 +47,8 @@ export const getAuctionAddress = () => {
 export const getApePriceGetterAddress = () => {
   return addresses.apePriceGetter[chainId]
 }
-export const getIazoAddress = () => {
-  return addresses.iazo[chainId]
+export const getIazoExposerAddress = () => {
+  return addresses.iazoExposer[chainId]
 }
 export const getIazoSettingsAddress = () => {
   return addresses.iazoSettings[chainId]
