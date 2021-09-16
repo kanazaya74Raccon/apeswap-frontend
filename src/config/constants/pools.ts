@@ -2086,6 +2086,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 108,
+    tokenName: 'EXP',
+    image: 'EXP.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.exp,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xde182dad837db2117e2981b1f94dec2cec8191cc',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.gogamexchange.com/',
+    harvest: true,
+    tokenPerBlock: `21.043771043771041666`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
