@@ -423,6 +423,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  exp: {
+    symbol: 'EXP',
+    address: {
+      56: '0x639d4C62F58a4048AD0F69B8CE675dB1A3e8e00e',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
