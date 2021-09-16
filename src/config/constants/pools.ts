@@ -2097,7 +2097,7 @@ const pools: PoolConfig[] = [
       56: '0xde182dad837db2117e2981b1f94dec2cec8191cc',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://www.gogamexchange.com/',
+    projectLink: 'https://gamexchange.app/',
     harvest: true,
     tokenPerBlock: `21.043771043771041666`,
     sortOrder: 1,
