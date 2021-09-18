@@ -430,6 +430,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  cfi: {
+    symbol: 'CFi',
+    address: {
+      56: '0x6a545f9c64d8f7b957d8d2e6410b52095a9e6c29',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
