@@ -2105,6 +2105,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 109,
+    tokenName: 'CFi',
+    image: 'CFi.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.cfi,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x502b015f0c4493e1e6414de471041347c58b0d97',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cyberfi.tech/',
+    harvest: true,
+    tokenPerBlock: `.010416666666666666`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
