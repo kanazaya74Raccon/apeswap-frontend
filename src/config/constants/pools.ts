@@ -2124,6 +2124,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 110,
+    tokenName: 'SX',
+    image: 'SX.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.sx,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xc6215d86a4bb470667d54c316624a3c45504bc31',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.sx.technology/',
+    harvest: true,
+    tokenPerBlock: `0.263310185185185185`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
