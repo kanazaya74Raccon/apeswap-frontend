@@ -437,6 +437,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  sx: {
+    symbol: 'sx',
+    address: {
+      56: '0x6f26e8a40c8daae8c4358ce557c10226527cebce',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
