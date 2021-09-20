@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWeb3React } from '@web3-react/core'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
+import { CHAIN_ID } from 'config/constants/chains'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import {
@@ -55,7 +56,7 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   useEffect(() => {
     console.warn = () => null
@@ -117,9 +118,11 @@ const App: React.FC = () => {
             <Route path="/nft/:id">
               <Nfa />
             </Route>
-            <Route path="/gnana">
-              <ApeZone />
-            </Route>
+            {CHAIN_ID.BSC === chainId && (
+              <Route path="/gnana">
+                <ApeZone />
+              </Route>
+            )}
             <Route path="/stats">
               <Stats />
             </Route>
