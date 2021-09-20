@@ -7,17 +7,15 @@ import useAuth from 'hooks/useAuth'
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
 import { usePriceBananaBusd, useProfile } from 'state/hooks'
-import getMenu from './config'
+import config from './config'
 
 const Menu = (props) => {
-  const { account, chainId } = useWeb3React()
+  const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const bananaPriceUsd = usePriceBananaBusd()
   const { profile } = useProfile()
-  const config = getMenu(chainId)
-  console.log(config)
 
   return (
     <UikitMenu
