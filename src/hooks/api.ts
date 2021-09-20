@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import useRefresh from './useRefresh'
 
-export const baseUrl = 'https://api.pancakeswap.com/api/v1'
+export const baseUrl = 'https://api.apeswap.com/api/v1'
 
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
