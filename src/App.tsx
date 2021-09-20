@@ -12,12 +12,15 @@ import {
   useFetchAuctions,
   useFetchTokenPrices,
   useFetchProfile,
+  useFetchIazos,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import AdminPools from './views/AdminPools'
+import CreateIazo from './views/Iazos/CreateIazo'
+import IazoPage from './views/Iazos/components/IazoPage'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -33,7 +36,6 @@ const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const Iazos = lazy(() => import('./views/Iazos'))
-const CreateIazo = lazy(() => import('./views/Iazos/CreateIazo'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -69,7 +71,8 @@ const App: React.FC = () => {
 
   useEagerConnect()
   useFetchTokenPrices()
-  useFetchPublicData()
+  // useFetchPublicData()
+  useFetchIazos()
   useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
@@ -118,6 +121,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/iazos/create">
               <CreateIazo />
+            </Route>
+            <Route path="/iazos/:id">
+              <IazoPage />
             </Route>
             <Route exact path="/nft">
               <Nft />

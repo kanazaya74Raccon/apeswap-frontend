@@ -1,26 +1,27 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuctionsOverall, AuctionsState } from '../types'
+import { IazosState, IazoOverall } from '../types'
+import fetchAllIazos from './fetchIazos'
 
-const initialState: AuctionsState = {
+const initialState: IazosState = {
   isInitialized: false,
   isLoading: true,
   data: null,
 }
 
-export const auctionsSlice = createSlice({
-  name: 'auction',
+export const iazosSlice = createSlice({
+  name: 'iazos',
   initialState,
   reducers: {
-    auctionsFetchStart: (state) => {
+    iazosFetchStart: (state) => {
       state.isLoading = true
     },
-    auctionsFetchSucceeded: (state, action: PayloadAction<AuctionsOverall>) => {
+    iazosFetchSucceeded: (state, action: PayloadAction<IazoOverall>) => {
       state.isInitialized = true
       state.isLoading = false
       state.data = action.payload
     },
-    auctionsFetchFailed: (state) => {
+    iazosFetchFailed: (state) => {
       state.isLoading = false
       state.isInitialized = true
     },
@@ -28,16 +29,16 @@ export const auctionsSlice = createSlice({
 })
 
 // Actions
-export const { auctionsFetchStart, auctionsFetchSucceeded, auctionsFetchFailed } = auctionsSlice.actions
+export const { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed } = iazosSlice.actions
 
-// export const fetchAuctions = () => async (dispatch) => {
-//   try {
-//     dispatch(auctionsFetchStart())
-//     // const auctions = await fetchAllAuctions()
-//     dispatch(auctionsFetchSucceeded(auctions))
-//   } catch (error) {
-//     dispatch(auctionsFetchFailed())
-//   }
-// }
+export const fetchIazos = () => async (dispatch) => {
+  try {
+    dispatch(iazosFetchStart())
+    const iazos = await fetchAllIazos()
+    dispatch(iazosFetchSucceeded(iazos))
+  } catch (error) {
+    dispatch(iazosFetchFailed())
+  }
+}
 
-export default auctionsSlice.reducer
+export default iazosSlice.reducer

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useIazos } from 'state/hooks'
+import { Text, useMatchBreakpoints, Skeleton, Spinner } from '@apeswapfinance/uikit'
 import IconButton from './components/IconButton'
 import TextInput from './components/TextInput'
 import IazoCard from './components/IazoCard/IazoCard'
@@ -35,8 +36,6 @@ const Header = styled.div`
 
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
   margin-top: -50px;
   background: #222222;
   display: flex;
@@ -46,17 +45,17 @@ const LaunchPadWrapper = styled.div`
 const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
-  height: 60px;
   margin-top: 60px;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `
 
 const SettingsWrapper = styled.div`
   width: 100%;
   display: flex;
   height: 60px;
-  margin-top: 35px;
+  margin-top: 40px;
   align-items: center;
   justify-content: center;
 `
@@ -81,6 +80,18 @@ const FooterWrapper = styled.div`
   justify-content: center;
 `
 
+const TopNavWrapper = styled.div`
+  position: relative;
+  height: 60px;
+  width: 856px;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  background: #333333;
+  z-index: 0;
+`
+
 const StyledHeader = styled(Text)`
   font-family: Titan One;
   font-size: 45px;
@@ -90,14 +101,16 @@ const StyledHeader = styled(Text)`
   color: #ffffff;
 `
 
-const StyledButton = styled.button<{ width?: string }>`
-    width: ${(props) => props.width || '141px'}
-    height: 46px;
-    color: #ffffff;
-    background-color: #ffb300;
-    border-radius: 10px;
-    font-family: Titan One;
-    font-size: 15px;
+const StyledButton = styled.button`
+  width: 195px;
+  height: 46px;
+  color: #ffffff;
+  background-color: #ffb300;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
 `
 const PresaleText = styled(Text)`
   font-family: Poppins;
@@ -105,14 +118,23 @@ const PresaleText = styled(Text)`
   line-height: 30px;
   color: #ffffff;
 `
+
+const SpinnerHolder = styled.div`
+  margin-top: 90px;
+  margin-left: 50px;
+`
+
 const Iazos: React.FC = () => {
+  const { iazos, isInitialized } = useIazos()
+  console.log(iazos)
   return (
     <>
       <Header />
       <PageWrapper>
         <LaunchPadWrapper>
+          <TopNavWrapper />
           <HeaderWrapper>
-            <StyledHeader>Ape Launchpad</StyledHeader>
+            <StyledHeader>Self Serve Launchpad</StyledHeader>
             <Link to="/iazos/create">
               <StyledButton> CREATE IAZO</StyledButton>
             </Link>
@@ -124,13 +146,24 @@ const Iazos: React.FC = () => {
             <TextInput />
           </SettingsWrapper>
           <IlosWrapper>
-            <PresaleText>2 Presales</PresaleText>
-            <IazoCard />
-            <IazoCard />
+            <PresaleText>{iazos ? `${iazos.iazos.length} Presales` : <Skeleton width="100px" />} </PresaleText>
+            {isInitialized ? (
+              iazos.iazos.map((iazo) => {
+                return (
+                  <Link to={`/iazos/${iazo.iazoId}`}>
+                    <IazoCard iazo={iazo} />
+                  </Link>
+                )
+              })
+            ) : (
+              <SpinnerHolder>
+                <Spinner />
+              </SpinnerHolder>
+            )}
           </IlosWrapper>
           <FooterWrapper>
             <Link to="/iazos/create">
-              <StyledButton width="195px">CREATE IAZO</StyledButton>
+              <StyledButton>CREATE IAZO</StyledButton>
             </Link>
           </FooterWrapper>
         </LaunchPadWrapper>

@@ -44,6 +44,8 @@ const StyledText = styled(Text)`
   padding: 20px 40px 0px 40px;
   text-align: center;
   padding-bottom: 15px;
+  font-family: poppins;
+  font-weight: 400;
 `
 const MoreInfo = styled(Text)`
   font-family: Titan One;

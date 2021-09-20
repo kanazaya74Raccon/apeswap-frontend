@@ -37,6 +37,7 @@ const StyledText = styled(Text)`
   color: #ffffff;
   text-align: start;
   padding: 20px 15px 10px 20px;
+  font-family: poppins;
 `
 
 const HeaderWrapper = styled.div<{ opened?: boolean }>`

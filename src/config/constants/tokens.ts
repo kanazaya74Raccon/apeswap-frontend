@@ -8,6 +8,14 @@ const tokens = {
     },
     decimals: 18,
   },
+  MockERC20: {
+    symbol: 'MockERC20',
+    address: {
+      97: '0x68D24FA18c00B5Df32e91C1dDDfa6419083606F9',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    decimals: 18,
+  },
   gnana: {
     symbol: 'GNANA',
     address: {

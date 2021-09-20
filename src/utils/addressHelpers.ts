@@ -1,4 +1,5 @@
 import addresses from 'config/constants/contracts'
+import tokens from 'config/constants/tokens'
 
 const chainId = process.env.REACT_APP_CHAIN_ID
 
@@ -55,4 +56,7 @@ export const getIazoSettingsAddress = () => {
 }
 export const getIazoFactoryAddress = () => {
   return addresses.iazoFactoryProxy[chainId]
+}
+export const getTokenSymbolFromAddress = (address: string) => {
+  return Object.keys(tokens).find((token, i) => {return tokens[token].address[chainId] === address})
 }

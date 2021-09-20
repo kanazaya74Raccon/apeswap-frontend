@@ -1,73 +1,137 @@
-import auctionAbi from 'config/abi/auction.json'
+import iazoAbi from 'config/abi/iazo.json'
+import iazoExposerAbi from 'config/abi/iazoExposer.json'
+import iazoSettingsAbi from 'config/abi/iazoSettings.json'
+import erc20Abi from 'config/abi/erc20.json'
+import { getIazoExposerAddress, getIazoSettingsAddress } from 'utils/addressHelpers'
 import multicall from 'utils/multicall'
-import { getAuctionAddress } from 'utils/addressHelpers'
-import { AuctionsOverall, Auction } from 'state/types'
-import Nfts from 'config/constants/nfts'
+import {
+  IazoFeeInfo,
+  IazoTimeInfo,
+  IazoStatus,
+  Iazo,
+  IazoOverall,
+  IazoDefaultSettings,
+  IazoTokenInfo,
+} from 'state/types'
 import BigNumber from 'bignumber.js'
-import { ZERO_ADDRESS } from 'config'
 
-export const fetchIazos = async () => {
-  const auctionContract = getAuctionAddress()
-  const call = [
-    {
-      address: auctionContract,
-      name: 'activeAuctionNodeId',
-    },
-    {
-      address: auctionContract,
-      name: 'minIncrementAmount',
-    },
-    {
-      address: auctionContract,
-      name: 'minIncrementPercentage',
-    },
-    {
-      address: auctionContract,
-      name: 'auctionFeePercent',
-    },
-    {
-      address: auctionContract,
-      name: 'lastNodeId',
-    },
+const fetchIazoData = async (id: string, address: string): Promise<Iazo> => {
+  const calls = [
+    { address, name: 'FEE_INFO' },
+    { address, name: 'IAZO_INFO' },
+    { address, name: 'IAZO_TIME_INFO' },
+    { address, name: 'STATUS' },
   ]
-  const auctionDetails = await multicall(auctionAbi, call)
-  return auctionDetails
+  const [feeInfo, iazoInfo, iazoTimeInfo, status] = await multicall(iazoAbi, calls)
+
+  const baseTokenAddress = iazoInfo[2].toString()
+  const iazoTokenAddress = iazoInfo[1].toString()
+
+  const erc20Calls = [
+    { address: baseTokenAddress, name: 'name' },
+    { address: baseTokenAddress, name: 'symbol' },
+    { address: baseTokenAddress, name: 'decimals' },
+    { address: iazoTokenAddress, name: 'name' },
+    { address: iazoTokenAddress, name: 'symbol' },
+    { address: iazoTokenAddress, name: 'decimals' },
+  ]
+
+  const [baseTokenName, baseTokenSymbol, baseTokenDecimals, iazoTokenName, iazoTokenSymbol, iazoTokenDecimals] =
+    await multicall(erc20Abi, erc20Calls)
+
+  const feeInfoData: IazoFeeInfo = {
+    feeAddress: feeInfo[0].toString(),
+    baseFee: feeInfo[1].toString(),
+    iazoTokenFee: feeInfo[2].toString(),
+  }
+
+  const iazoTimeInfoData: IazoTimeInfo = {
+    startTime: iazoTimeInfo[0].toString(),
+    activeTime: iazoTimeInfo[1].toString(),
+    lockPeriod: iazoTimeInfo[2].toString(),
+  }
+
+  const iazoStatusData: IazoStatus = {
+    lpGenerationComplete: status[0].toString(),
+    forceFailed: status[1].toString(),
+    totalBaseCollected: status[2].toString(),
+    totalTokensSold: status[3].toString(),
+    totalTokensWithdraw: status[4].toString(),
+    totalBaseWithdraw: status[5].toString(),
+    numBuyers: status[6].toString(),
+  }
+
+  const baseTokenData: IazoTokenInfo = {
+    address: baseTokenAddress.toString(),
+    name: baseTokenName.toString(),
+    symbol: baseTokenSymbol.toString(),
+    decimals: baseTokenDecimals.toString(),
+  }
+
+  const iazoTokenData: IazoTokenInfo = {
+    address: iazoTokenAddress.toString(),
+    name: iazoTokenName.toString(),
+    symbol: iazoTokenSymbol.toString(),
+    decimals: iazoTokenDecimals.toString(),
+  }
+
+  return {
+    iazoContractAddress: address,
+    iazoId: id,
+    iazoOwnerAddress: iazoInfo[0].toString(),
+    iazoSaleInNative: iazoInfo[3].toString(),
+    tokenPrice: iazoInfo[4].toString(),
+    amount: iazoInfo[5].toString(),
+    hardcap: iazoInfo[6].toString(),
+    softcap: iazoInfo[7].toString(),
+    maxSpendPerBuyer: iazoInfo[8].toString(),
+    liquidityPercent: iazoInfo[9].toString(),
+    listingPrice: iazoInfo[10].toString(),
+    burnRemain: iazoInfo[11].toString(),
+    feeInfo: feeInfoData,
+    timeInfo: iazoTimeInfoData,
+    status: iazoStatusData,
+    baseToken: baseTokenData,
+    iazoToken: iazoTokenData,
+  }
 }
 
-export const fetchAllAuctions = async (): Promise<AuctionsOverall> => {
-  const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
-    await fetchIazos()
-  const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {
-    return {
-      address: getAuctionAddress(),
-      name: 'getAuctionWithPosition',
-      params: [i + 1],
-    }
-  })
-  const allAuctions = await multicall(auctionAbi, getAuctionCalls)
-  const auctionData = {
-    activeAuctionId: new BigNumber(activeAuctionId).toNumber(),
-    auctionFeePercent: new BigNumber(auctionFeePercent).toNumber(),
-    minIncrementAmount: new BigNumber(minIncrementAmount).toNumber(),
-    minIncrementPercentage: new BigNumber(minIncrementPercentage).toNumber(),
-    pushedAuctions: new BigNumber(pushedAuctions).toNumber(),
-    auctionsRemovedCount: allAuctions.filter((auction) => auction.auction.seller === ZERO_ADDRESS).length,
-    auctions: allAuctions
-      .map((auction, i): Auction => {
-        return {
-          auctionId: i + 1,
-          nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
-          seller: auction.auction.seller,
-          highestBidder: auction.auction.highestBidder,
-          highestBid: auction.auction.highestBid.toString(),
-          timeExtension: auction.auction.timeExtension.toNumber(),
-          timeLength: auction.auction.timeLength.toNumber(),
-          minToExtend: auction.auction.minToExtend.toNumber(),
-          startTime: auction.auction.startTime.toNumber(),
-          endTime: auction.auction.endTime.toNumber(),
-        }
-      })
-      .filter(({ seller }) => seller !== ZERO_ADDRESS),
+const fetchAllIazos = async (): Promise<IazoOverall> => {
+  const iazoExposerAddress = getIazoExposerAddress()
+  const iazoSettingsAddress = getIazoSettingsAddress()
+  const amountOfIazos = await multicall(iazoExposerAbi, [{ address: iazoExposerAddress, name: 'IAZOsLength' }])
+  const listOfIazoAddresses = await multicall(
+    iazoExposerAbi,
+    [...Array(new BigNumber(amountOfIazos).toNumber())].map((e, i) => {
+      return { address: iazoExposerAddress, name: 'IAZOAtIndex', params: [i] }
+    }),
+  )
+  const fetchIazoDefaultSettings = await multicall(iazoSettingsAbi, [
+    { address: iazoSettingsAddress, name: 'SETTINGS' },
+  ])
+  const iazoDefaultSettings = fetchIazoDefaultSettings[0]
+  const iazoDefaultSettingsData: IazoDefaultSettings = {
+    adminAddress: iazoDefaultSettings[0].toString(),
+    feeAddress: iazoDefaultSettings[1].toString(),
+    burnAddress: iazoDefaultSettings[2].toString(),
+    baseFee: iazoDefaultSettings[3].toString(),
+    maxBaseFee: iazoDefaultSettings[4].toString(),
+    iazoTokenFee: iazoDefaultSettings[5].toString(),
+    maxIazoTokenFee: iazoDefaultSettings[6].toString(),
+    nativeCreationFee: iazoDefaultSettings[7].toString(),
+    minIazoLength: iazoDefaultSettings[8].toString(),
+    maxIazoLength: iazoDefaultSettings[9].toString(),
+    minLockPeriod: iazoDefaultSettings[10].toString(),
   }
-  return auctionData
+
+  return {
+    iazoDefaultSettings: iazoDefaultSettingsData,
+    iazos: await Promise.all(
+      listOfIazoAddresses.map(async (address, i) => {
+        return fetchIazoData(i.toString(), address[0])
+      }),
+    ),
+  }
 }
+
+export default fetchAllIazos

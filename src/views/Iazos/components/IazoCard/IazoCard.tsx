@@ -1,6 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { Iazo } from 'state/types'
+import { getBalanceNumber } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
+import getTimePeriods from 'utils/getTimePeriods'
+import { useCurrentTime } from 'hooks/useTimer'
+
+interface iazoCardProps {
+  iazo: Iazo
+}
 
 const IazoCardWrapper = styled.div`
   position: relative;
@@ -74,15 +83,15 @@ const TokenImage = styled.img`
 
 const TokenName = styled(Text)`
   font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
   padding-left: 15px;
 `
 
 const BoldAfterText = styled(Text)<{ boldContent?: string }>`
+  font-family: poppins;
+  font-weight: 400;
   &:after {
-    color: #ffffff;
     font-weight: 700;
+    font-size: 17px;
     content: '${(props) => props.boldContent}';
   }
 `
@@ -100,38 +109,54 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const IazoCard: React.FC = () => {
+const formatCountdown = (countdown: any): string => {
+  const formatHours = countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours.toString()
+  const formatMinutes = countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes.toString()
+  const formatSeconds = countdown.seconds < 10 ? `0${countdown.seconds.toFixed(0)}` : countdown.seconds.toFixed(0)
+  return `${formatHours}:${formatMinutes}:${formatSeconds}`
+}
+
+const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
+  const { maxSpendPerBuyer, amount, baseToken, iazoToken, timeInfo, status, hardcap, softcap } = iazo
+  const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer)).toString()
+  const startTime = formatCountdown(getTimePeriods((parseInt(timeInfo.startTime) - useCurrentTime()) / 1000))
+  const lockTime = getTimePeriods(parseInt(timeInfo.lockPeriod))
+  const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
+  const hardcapFormated = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
+  const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
+  const percentRaised = (totalRaiseFormated / softcapFormated) * 100
+
   return (
     <IazoCardWrapper>
       <CardMonkey />
       <HeadingWrapper>
         <TokenHeaderInformationWrapper>
           <TokenImage src="images/tokens/BANANA.svg" />
-          <TokenName> Banana </TokenName>
+          <TokenName> {iazoToken.symbol}</TokenName>
         </TokenHeaderInformationWrapper>
-        <TextBoxWrapper>
-          <BoldAfterText boldContent="2:12:34:05">Starts in </BoldAfterText>
+        <TextBoxWrapper align="flex-end">
+          <BoldAfterText boldContent={startTime}>Starts in </BoldAfterText>
           <BoldAfterText>Duration 5d</BoldAfterText>
         </TextBoxWrapper>
       </HeadingWrapper>
       <TopBodyWrapper>
         <TextBoxWrapper align="flex-start">
-          <BoldAfterText boldContent="BNB/BANANA" />
+          <BoldAfterText boldContent={`${baseToken.symbol} / ${iazoToken.symbol}`} />
           <BoldAfterText boldContent="70%">Liquidity Lock: </BoldAfterText>
         </TextBoxWrapper>
         <TextBoxWrapper justify="flex-end" padding="15px">
-          <BoldAfterText boldContent=" 20 BNB">Max Spend</BoldAfterText>
+          <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
         </TextBoxWrapper>
         <TextBoxWrapper align="flex-end">
           <BoldAfterText>11 Months Lock</BoldAfterText>
-          <BoldAfterText boldContent="50 BNB">Soft Cap: </BoldAfterText>
+          <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>Soft Cap: </BoldAfterText>
         </TextBoxWrapper>
       </TopBodyWrapper>
       <BottomBodyWrapper>
         <ProgressBar>
-          <Progress percentComplete={`${(169 / 500) * 100}%`} />
+          <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
-        <BoldAfterText boldContent="169/500 BNB" />
+        <BoldAfterText boldContent={`${totalRaiseFormated} / ${hardcapFormated} ${baseToken.symbol}`} />
       </BottomBodyWrapper>
     </IazoCardWrapper>
   )

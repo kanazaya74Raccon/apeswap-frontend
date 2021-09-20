@@ -14,6 +14,7 @@ const Input = styled.input`
   text-align: left;
   background: url(images/magnifiglass.svg) no-repeat 420px 10px, #333333;
   color: #ffffff;
+  border: none;
 `
 
 const TextInput: React.FC = () => {

@@ -67,6 +67,7 @@ export const fetchPoolsTotalStatking = async () => {
     }
   })
 
+  
   const nonBnbPoolsTotalStaked = await multicall(bananaABI, callsNonBnbPools)
   const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
 

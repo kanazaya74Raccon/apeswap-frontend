@@ -29,6 +29,8 @@ import {
   FarmOverall,
   AuctionsState,
   TokenPricesState,
+  IazosState,
+  Iazo,
 } from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
@@ -36,6 +38,7 @@ import { fetchStatsOverall } from './statsOverall'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAuctions } from './auction'
 import { fetchTokenPrices } from './tokenPrices'
+import { fetchIazos } from './iazos'
 
 const ZERO = new BigNumber(0)
 
@@ -249,6 +252,24 @@ export const useFetchAuctions = () => {
 export const useAuctions = () => {
   const { isInitialized, isLoading, data }: AuctionsState = useSelector((state: State) => state.auctions)
   return { auctions: data, isInitialized, isLoading }
+}
+
+export const useFetchIazos = () => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchIazos())
+  }, [dispatch, slowRefresh])
+}
+
+export const useIazos = () => {
+  const { isInitialized, isLoading, data }: IazosState = useSelector((state: State) => state.iazos)
+  return { iazos: data, isInitialized, isLoading }
+}
+
+export const useIazoFromId = (id): Iazo => {
+  const iazo: Iazo = useSelector((state: State) => state.iazos.data.iazos.find((i) => i.iazoId === id))
+  return iazo
 }
 
 export const useFetchTokenPrices = () => {
