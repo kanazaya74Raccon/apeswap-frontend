@@ -58,5 +58,7 @@ export const getIazoFactoryAddress = () => {
   return addresses.iazoFactoryProxy[chainId]
 }
 export const getTokenSymbolFromAddress = (address: string) => {
-  return Object.keys(tokens).find((token, i) => {return tokens[token].address[chainId] === address})
+  return Object.keys(tokens).find((token, i) => {
+    return tokens[token].address[chainId] === address
+  })
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 
-
 const PresaleWrapper = styled.div`
   display: flex;
   height: 60px;
@@ -13,9 +12,7 @@ const PresaleWrapper = styled.div`
 `
 
 const Presale: React.FC = () => {
-  return <PresaleWrapper>
-      asdasdas
-  </PresaleWrapper>
+  return <PresaleWrapper>asdasdas</PresaleWrapper>
 }
 
 export default Presale

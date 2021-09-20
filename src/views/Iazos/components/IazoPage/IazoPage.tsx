@@ -153,7 +153,7 @@ const IazoPage: React.FC = () => {
             <TokenInfoCard tokenName={iazoToken.name} tokenAddress={iazoToken.address} tokenImage="" tokenWebsite="" />
           )}
           <SaleStatus />
-          <SaleInfo iazo={iazo}/>
+          <SaleInfo iazo={iazo} />
         </LaunchPadWrapper>
       </PageWrapper>
     </>

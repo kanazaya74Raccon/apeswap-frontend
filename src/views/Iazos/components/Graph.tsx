@@ -24,7 +24,7 @@ const GraphWrapper = styled.div<{ size: string; liquidity: number; forSale: numb
     #ffb300 0 calc(${(props) => props.forSale * 3.6}deg),
     #7a7a7a 0
   );
-//   animation: ${rotate} 3s;
+  //   animation: ${rotate} 3s;
 `
 
 const MiddleBorder = styled.div<{ size: string }>`

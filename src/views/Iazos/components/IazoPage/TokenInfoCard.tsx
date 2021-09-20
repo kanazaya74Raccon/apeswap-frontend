@@ -58,7 +58,7 @@ const TokenButtonsWrapper = styled.div`
   width: 330px;
 `
 
-const TokenInfoButton = styled.div<{opacity: string}>`
+const TokenInfoButton = styled.div<{ opacity: string }>`
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -66,7 +66,7 @@ const TokenInfoButton = styled.div<{opacity: string}>`
   height: 27px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgba(255, 179, 0, ${props => props.opacity});
+  background-color: rgba(255, 179, 0, ${(props) => props.opacity});
   color: white;
   font-family: poppins;
   font-weight: 100;
@@ -86,9 +86,9 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
       <TokenHeaderInformationWrapper>
         <TokenName> {tokenName} </TokenName>
         <TokenButtonsWrapper>
-          <TokenInfoButton opacity='1'>BscScan</TokenInfoButton>
-          <TokenInfoButton opacity='.1'>{formatTokenAddress}</TokenInfoButton>
-          <TokenInfoButton opacity='.1'>Website</TokenInfoButton>
+          <TokenInfoButton opacity="1">BscScan</TokenInfoButton>
+          <TokenInfoButton opacity=".1">{formatTokenAddress}</TokenInfoButton>
+          <TokenInfoButton opacity=".1">Website</TokenInfoButton>
         </TokenButtonsWrapper>
       </TokenHeaderInformationWrapper>
     </IazoCardWrapper>

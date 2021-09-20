@@ -34,14 +34,14 @@ const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
 };
 `
 
-const SaleInfo: React.FC<SaleInfoProps> = ({iazo}) => {
+const SaleInfo: React.FC<SaleInfoProps> = ({ iazo }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(1)
   const renderTabComponent = () => {
     if (currentTabIndex === 0) {
       return <Presale />
     }
     if (currentTabIndex === 1) {
-      return <InfoTab iazo={iazo}/>
+      return <InfoTab iazo={iazo} />
     }
     return <About />
   }
