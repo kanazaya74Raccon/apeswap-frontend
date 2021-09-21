@@ -170,3 +170,14 @@ export const listNfa = async (
       return tx.transactionHash
     })
 }
+
+
+
+export const removeAuction = async (auctionContract, id, account) => {
+  return auctionContract.methods
+    .removeAuction(id)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
