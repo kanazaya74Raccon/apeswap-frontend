@@ -28,7 +28,7 @@ const AuctionCard: React.FC<AuctionCardProps> = ({
       )
     }
     if (activeAuctionId < auction.auctionId) {
-      return <QueuedCard nfa={auction.nfa} seller={auction.seller}/>
+      return <QueuedCard nfa={auction.nfa} seller={auction.seller} />
     }
     return <HistoryCard auction={auction} />
   }

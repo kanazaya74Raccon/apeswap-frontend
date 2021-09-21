@@ -59,7 +59,7 @@ const TextHolder = styled.div`
 
 const ComingSoon = styled(Text)`
   position: absolute;
-  top: 50px;
+  top: 30px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 50px;
@@ -69,7 +69,7 @@ const ComingSoon = styled(Text)`
 
 const NameText = styled(Text)`
   position: absolute;
-  top: 20px;
+  top: 0px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 20px;
@@ -79,7 +79,7 @@ const NameText = styled(Text)`
 
 const RemoveButton = styled(Button)`
   position: absolute;
-  top: 100px;
+  top: 75px;
   font-size: 15px;
   background-color: #ff6347;
   color: white;

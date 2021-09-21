@@ -171,8 +171,6 @@ export const listNfa = async (
     })
 }
 
-
-
 export const removeAuction = async (auctionContract, id, account) => {
   return auctionContract.methods
     .removeAuction(id)
