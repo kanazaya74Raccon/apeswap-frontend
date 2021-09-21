@@ -152,7 +152,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
         )}
       </OwnedNfaWrapper>
       <TimeText>Auction Length: {auctionLengthFormat}</TimeText>
-      <Slider value={auctionLength} onChange={(e) => handleTimeVal(e)} max={21600} min={0} size={15} />
+      <Slider value={auctionLength} onChange={(e) => handleTimeVal(e)} max={21600} min={300} size={15} />
       <TimeText>Time To Extend: {timeToExtendValFormat}</TimeText>
       <Slider value={timeToExtendVal} onChange={(e) => setTimeToExtendVal(e)} max={1800} min={0} size={15} />
       <TimeText>Minimum Extend Time: {minTimeToExtendFormat}</TimeText>

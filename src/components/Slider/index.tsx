@@ -62,20 +62,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
   }
 
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.input},
-      ${({ theme }) => theme.colors.input}
-    );
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.input}, ${({ theme }) => theme.colors.input});
     height: 2px;
   }
 
   &::-moz-range-track {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.input},
-      ${({ theme }) => theme.colors.input}
-    );
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.input}, ${({ theme }) => theme.colors.input});
     height: 2px;
   }
 
