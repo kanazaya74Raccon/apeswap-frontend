@@ -66,10 +66,10 @@ const App: React.FC = () => {
   }, [account])
 
   useEagerConnect()
-  useFetchTokenPrices()
-  useFetchPublicData()
+  // useFetchTokenPrices()
+  // useFetchPublicData()
   useFetchProfile()
-  useFetchStats()
+  // useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
 

@@ -1,11 +1,12 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
+import { getAuctionAddress } from 'utils/addressHelpers'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useBanana, useSousChef, useLottery } from './useContract'
+import { useMasterchef, useBanana, useSousChef, useLottery, useNonFungibleApes } from './useContract'
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -78,4 +79,21 @@ export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) =
   }, [account, spenderAddress, tokenContract])
 
   return onApprove
+}
+
+// Approve an Auction
+export const useAuctionApprove = () => {
+  const tokenContract = useNonFungibleApes()
+  const spenderAddress = getAuctionAddress()
+  const { account } = useWeb3React()
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await tokenContract.methods.setApprovalForAll(spenderAddress, true).send({ from: account })
+      return tx
+    } catch {
+      return false
+    }
+  }, [account, spenderAddress, tokenContract])
+
+  return { onApprove: handleApprove }
 }
