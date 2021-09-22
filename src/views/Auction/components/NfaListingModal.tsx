@@ -136,7 +136,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
 
   return (
     <Modal title={`${TranslateString(316, 'List Your NFA!')}`} onDismiss={onDismiss}>
-      <Text> The default settings are the recommend auction settings. </Text>
+      <Text> The default settings are the recommended auction settings. </Text>
       <TimeText marginTop="20px">NFA selected: {nfaIndex}</TimeText>
       <OwnedNfaWrapper>
         {ownedNfas ? (
