@@ -2,7 +2,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["./src"]
+        "paths": ["./src", "../@apeswapfinance/uikit"]
       }
     }
   },
@@ -11,7 +11,7 @@
     "browser": true,
     "jest": true
   },
-  "extends": "@apeswap-libs/eslint-config-apeswap",
+  "extends": "@apeswapfinance/eslint-config-apeswap",
   "rules": {
     "no-console": ["warn", { "allow": ["info", "warn", "error"] }],
     "no-plusplus": 0,

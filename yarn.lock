@@ -2,10 +2,20 @@
 # yarn lockfile v1
 
 
-"@apeswapfinance/uikit@0.10.3-7.7":
+"@apeswapfinance/eslint-config-apeswap@../@apeswapfinance/eslint-config-apeswap":
+  version "1.0.0"
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^4.7.0"
+    "@typescript-eslint/parser" "^4.7.0"
+    eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^6.15.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jsx-a11y "^6.4.1"
+    eslint-plugin-react "^7.21.5"
+    eslint-plugin-react-hooks "^4.0.0"
+
+"@apeswapfinance/uikit@../@apeswapfinance/uikit":
   version "0.10.3-7.7"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.3-7.7/d3593f5d8488ae8f3c4b457de4fa343ef6cb47ad2a2f5ada03e639db9e9188b1#3c6db556afeb30ceab0a807f96de8f7c73db37a9"
-  integrity sha512-/sbQhbEkj+U83/QsascP6Us4WojC8T7YcWDduaK2UkTgikQgOO9iIugJM3lUsYN4XRfjy0A5qHgjdz4s1F+fTQ==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -2092,20 +2102,6 @@
   dependencies:
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
-
-"@pancakeswap-libs/eslint-config-pancake@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/eslint-config-pancake/-/eslint-config-pancake-1.0.0.tgz#da5c17842d1cb0d575bca3de0c9404386c386151"
-  integrity sha512-/rE1jQsgDV+jUvYIJKzIlLGFSYwku8K67nprRMmsbhdG+FHdBJnclIyIbVY1NnVtuwGaP+uBQiS/tn6Zhiyx8w==
-  dependencies:
-    "@typescript-eslint/eslint-plugin" "^4.7.0"
-    "@typescript-eslint/parser" "^4.7.0"
-    eslint-config-airbnb "^18.2.1"
-    eslint-config-prettier "^6.15.0"
-    eslint-plugin-import "^2.22.1"
-    eslint-plugin-jsx-a11y "^6.4.1"
-    eslint-plugin-react "^7.21.5"
-    eslint-plugin-react-hooks "^4.0.0"
 
 "@pancakeswap-libs/uikit@^0.10.1":
   version "0.10.7"
