@@ -68,7 +68,6 @@ const Cards = styled(BaseLayout)`
 
 const Stats: React.FC = () => {
   const TranslateString = useI18n()
-
   const { account } = useWeb3React()
   const { slowRefresh } = useRefresh()
   const yourStats = useStats()

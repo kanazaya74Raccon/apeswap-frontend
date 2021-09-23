@@ -6,17 +6,18 @@ import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import {
-  useFetchProfile,
   useFetchStats,
   useFetchPublicData,
   useFetchStatsOverall,
-  useStatsOverall,
   useFetchAuctions,
+  useFetchTokenPrices,
+  useFetchProfile,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import AdminPools from './views/AdminPools'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -28,10 +29,6 @@ const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Nft = lazy(() => import('./views/Nft'))
 const Nfa = lazy(() => import('./views/Nft/Nfa'))
-const Teams = lazy(() => import('./views/Teams'))
-const Team = lazy(() => import('./views/Teams/Team'))
-const Profile = lazy(() => import('./views/Profile'))
-const Chart = lazy(() => import('./views/Chart'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
@@ -70,13 +67,12 @@ const App: React.FC = () => {
   }, [account])
 
   useEagerConnect()
+  useFetchTokenPrices()
   useFetchPublicData()
   useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
-
-  const { statsOverall } = useStatsOverall()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -98,9 +94,14 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/farms">{statsOverall && <Farms />}</Route>
+            <Route path="/farms">
+              <Farms />
+            </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/admin-pools">
+              <AdminPools />
             </Route>
             <Route path="/lottery">
               <Lottery />
@@ -117,20 +118,8 @@ const App: React.FC = () => {
             <Route path="/nft/:id">
               <Nfa />
             </Route>
-            <Route path="/chart">
-              <Chart />
-            </Route>
             <Route path="/gnana">
               <ApeZone />
-            </Route>
-            <Route exact path="/teams">
-              <Teams />
-            </Route>
-            <Route path="/teams/:id">
-              <Team />
-            </Route>
-            <Route path="/profile">
-              <Profile />
             </Route>
             <Route path="/stats">
               <Stats />

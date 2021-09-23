@@ -9,6 +9,7 @@ import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
+import useBlock from 'hooks/useBlock'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -27,22 +28,25 @@ import {
   TeamsState,
   FarmOverall,
   AuctionsState,
+  TokenPricesState,
 } from './types'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchTeam, fetchTeams } from './teams'
 import { fetchAuctions } from './auction'
+import { fetchTokenPrices } from './tokenPrices'
 
 const ZERO = new BigNumber(0)
 
 export const useFetchPublicData = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
+  const { tokenPrices } = useTokenPrices()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
-    dispatch(fetchPoolsPublicDataAsync())
-  }, [dispatch, slowRefresh])
+    dispatch(fetchPoolsPublicDataAsync(tokenPrices))
+  }, [dispatch, slowRefresh, tokenPrices])
 }
 
 // Farms
@@ -94,7 +98,7 @@ export const usePoolFromPid = (sousId): Pool => {
 }
 
 export const useGnanaPools = (account): Pool[] => {
-  const pools = usePools(account).filter((pool) => pool.stakingTokenName === 'GNANA')
+  const pools = usePools(account).filter((pool) => pool.stakingToken.symbol === 'GNANA')
   return pools
 }
 
@@ -115,7 +119,7 @@ export const useTvl = (): BigNumber => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
-    if (pool.stakingTokenName === 'BANANA') {
+    if (pool.stakingToken.symbol === 'BANANA') {
       valueLocked = valueLocked.plus(
         new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )
@@ -218,14 +222,15 @@ export const useFetchStats = () => {
   const [slow, setSlow] = useState(-1)
   const farms = useFarms()
   const pools = usePools(account)
+  const curBlock = useBlock()
   const bananaBalance = useTokenBalance(getBananaAddress())
 
   useEffect(() => {
     if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
-      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance))
+      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, curBlock))
       setSlow(slowRefresh)
     }
-  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh])
+  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh, curBlock])
 }
 
 export const useStats = () => {
@@ -244,6 +249,19 @@ export const useFetchAuctions = () => {
 export const useAuctions = () => {
   const { isInitialized, isLoading, data }: AuctionsState = useSelector((state: State) => state.auctions)
   return { auctions: data, isInitialized, isLoading }
+}
+
+export const useFetchTokenPrices = () => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchTokenPrices())
+  }, [dispatch, slowRefresh])
+}
+
+export const useTokenPrices = () => {
+  const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
+  return { tokenPrices: data, isInitialized, isLoading }
 }
 
 export const usePendingUsd = () => {

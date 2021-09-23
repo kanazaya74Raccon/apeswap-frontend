@@ -32,10 +32,10 @@ export const statsSlice = createSlice({
 export const { statsFetchStart, statsFetchSucceeded, statsFetchFailed } = statsSlice.actions
 
 // Thunks
-export const fetchStats = (pools, farms, statsOverall, bananaBalance) => (dispatch) => {
+export const fetchStats = (pools, farms, statsOverall, bananaBalance, curBlock) => (dispatch) => {
   try {
     dispatch(statsFetchStart())
-    const stats = computeStats(pools, farms, statsOverall, bananaBalance)
+    const stats = computeStats(pools, farms, statsOverall, bananaBalance, curBlock)
 
     dispatch(statsFetchSucceeded(stats))
   } catch (error) {

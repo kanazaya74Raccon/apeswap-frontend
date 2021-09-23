@@ -11,6 +11,7 @@ export interface Ifo {
   launchTime: string
   saleAmount: string
   raiseAmount: string
+  totalAmountRaised?: string // Used to show the subscription amount post iao
   bananaToBurn?: string
   projectSiteUrl: string
   currency: string
@@ -43,7 +44,8 @@ export enum PoolCategory {
 
 export interface Address {
   97?: string
-  56: string
+  56?: string
+  137?: string
 }
 
 export interface FarmStyles {
@@ -76,10 +78,10 @@ export interface PoolConfig {
   sousId: number
   image?: string
   tokenName: string
-  stakingTokenName: string
+  stakingToken: Token
   stakingLimit?: number
   bonusEndBlock?: number
-  stakingTokenAddress?: Address
+  rewardToken: Token
   contractAddress: Address
   poolCategory: PoolCategory
   projectLink: string
@@ -91,6 +93,17 @@ export interface PoolConfig {
   tokenDecimals: number
   displayDecimals?: number
   lpStaking?: boolean
+  forAdmins?: boolean
+  emergencyWithdraw?: boolean
+}
+
+export interface Token {
+  symbol: string
+  address?: Address
+  decimals?: number
+  dontFetch?: boolean
+  lpToken?: boolean
+  price?: number
 }
 
 export type Images = {

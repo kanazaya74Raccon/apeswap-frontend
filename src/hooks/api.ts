@@ -284,3 +284,62 @@ export const getBurningGames = async () => {
 
   return data
 }
+
+export const getNewsHome = async () => {
+  const url = `${baseUrlStrapi}/home-news?_sort=published_at:desc`
+  const resp = await fetch(url)
+  const data = await resp.json()
+  const news = data.map((curNews) => {
+    return {
+      title: curNews.title,
+      description: curNews.description,
+      image: curNews.image,
+      link: curNews.link,
+    }
+  })
+
+  return news
+}
+
+export const getFarmsHome = async () => {
+  const url = `${baseUrlStrapi}/home-farms`
+  const resp = await fetch(url)
+  const data = await resp.json()
+  const farms = data.map((farm) => {
+    return {
+      pid1: farm.pid1,
+      pid2: farm.pid2,
+    }
+  })
+
+  return farms
+}
+
+export const getPoolsHome = async () => {
+  const url = `${baseUrlStrapi}/home-pools`
+  const resp = await fetch(url)
+  const data = await resp.json()
+  const pools = data.map((pool) => {
+    return {
+      sousId1: pool.sousId1,
+      sousId2: pool.sousId2,
+    }
+  })
+  return pools
+}
+
+export const getHeadersHome = async () => {
+  const url = `${baseUrlStrapi}/home-banners?_sort=published_at:desc`
+  const resp = await fetch(url)
+  const data = await resp.json()
+  const headers = data.map((header) => {
+    return {
+      desktop: header.desktop,
+      tablet: header.tablet,
+      mobile: header.mobile,
+      link: header.link,
+    }
+  })
+
+  return headers
+}

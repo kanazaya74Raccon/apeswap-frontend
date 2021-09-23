@@ -80,7 +80,9 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const { stakingTokenName, tokenDecimals, stakingLimit, sousId } = pool
+  const { stakingToken, tokenDecimals, stakingLimit, sousId } = pool
+
+  const { symbol: stakingTokenName } = stakingToken
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()

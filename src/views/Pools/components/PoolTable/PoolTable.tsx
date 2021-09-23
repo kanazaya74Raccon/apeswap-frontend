@@ -19,15 +19,9 @@ import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-export interface PoolWithStakeValue extends Pool {
-  apr?: BigNumber
-  staked?: BigNumber
-  addStakedUrl?: string
-  stakedTokenPrice?: number
-  rewardTokenPrice?: number
-}
+
 interface HarvestProps {
-  pool: PoolWithStakeValue
+  pool: Pool
   removed: boolean
 }
 
@@ -106,16 +100,14 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     sousId,
     image,
     tokenName,
-    stakingTokenName,
-    stakingTokenAddress,
+    stakingToken,
     apr,
     totalStaked,
     startBlock,
     endBlock,
     isFinished,
     userData,
-    rewardTokenPrice,
-    stakedTokenPrice,
+    rewardToken,
     projectLink,
     contractAddress,
     tokenDecimals,
@@ -142,7 +134,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const isCompound = sousId === 0
   const isLoading = !pool.userData
 
-  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
+  const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakingToken?.price
 
   const cardHeaderButton = () => {
     if (!account) {
@@ -150,10 +142,14 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     }
     if (needsApproval) {
       return (
-        <ApprovalAction stakingContractAddress={stakingTokenAddress[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
+        <ApprovalAction
+          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          sousId={sousId}
+          isLoading={isLoading}
+        />
       )
     }
-    if (!needsApproval && !accountHasStakedBalance) {
+    if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
       return (
         <StakeAction
           pool={pool}
@@ -171,6 +167,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
         isLoading={isLoading}
         tokenDecimals={pool.tokenDecimals}
         compound={isCompound}
+        emergencyWithdraw={pool.emergencyWithdraw}
       />
     )
   }
@@ -179,7 +176,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <PoolHeading stakeToken={stakingTokenName} earnToken={tokenName} earnTokenImage={image} />
+          <PoolHeading stakeToken={stakingToken.symbol} earnToken={tokenName} earnTokenImage={image} />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}
@@ -191,9 +188,9 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
         </ArrowContainer>
         <APRContainer>
           <Apr
-            poolApr={removed ? '0' : apr.toNumber().toFixed(2)}
-            apr={apr}
-            rewardTokenPrice={rewardTokenPrice}
+            poolApr={removed ? '0' : apr?.toFixed(2)}
+            apr={new BigNumber(apr)}
+            rewardTokenPrice={rewardToken?.price}
             earnToken={tokenName}
           />
         </APRContainer>
@@ -221,10 +218,10 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             blocksRemaining={blocksRemaining}
             isFinished={isFinished}
             blocksUntilStart={blocksUntilStart}
-            stakedTokenPrice={stakedTokenPrice}
-            rewardTokenPrice={rewardTokenPrice}
+            stakedTokenPrice={stakingToken?.price}
+            rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
-            lpLabel={stakingTokenName}
+            lpLabel={stakingToken.symbol}
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}

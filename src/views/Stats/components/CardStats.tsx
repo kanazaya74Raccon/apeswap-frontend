@@ -50,7 +50,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
   if (type === 'pool') {
     const currentPool = pools.find((pool) => pool.sousId === data.id) || pools[0]
     farmImage = currentPool?.image
-    farmName = `${currentPool.stakingTokenName} ➩ ${currentPool.tokenName}`
+    farmName = `${currentPool.stakingToken.symbol} ➩ ${currentPool.tokenName}`
   }
 
   return (

@@ -1,5 +1,8 @@
 import { apiBaseUrl } from 'hooks/api'
-import { Stats } from 'state/types'
+import { Stats, Pool } from 'state/types'
+import { getBalanceNumber } from 'utils/formatBalance'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const getStats = async (address: string): Promise<Stats> => {
   try {
@@ -14,10 +17,45 @@ const getStats = async (address: string): Promise<Stats> => {
   }
 }
 
-export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats {
+export const fetchPoolStats = (pools: Pool[], curBlock): any[] => {
+  const stakedPools = pools.filter((pool) => parseInt(pool?.userData?.stakedBalance?.toString()) > 0)
+  const mappedPoolStats = stakedPools.map((pool) => {
+    const stakedTvl =
+      getBalanceNumber(pool.userData?.stakedBalance, pool.stakingToken.decimals) * pool.stakingToken?.price
+    const pendingReward = pool.rewardToken
+      ? getBalanceNumber(pool.userData?.pendingReward, pool?.rewardToken.decimals)
+      : getBalanceNumber(pool.userData?.pendingReward, pool.tokenDecimals)
+    const pendingRewardUsd = pool.rewardToken ? pendingReward * pool?.rewardToken?.price : 0
+    const dollarsEarnedPerDay = (stakedTvl * (pool?.apr / 100)) / 365
+    const tokensEarnedPerDay = pool.rewardToken ? dollarsEarnedPerDay / pool?.rewardToken?.price : 0
+    const finished = curBlock > pool?.endBlock
+    return {
+      id: pool.sousId,
+      address: pool.contractAddress[CHAIN_ID],
+      name: pool.stakingToken.symbol,
+      rewardTokenSymbol: pool.rewardToken ? pool?.rewardToken.symbol : pool.tokenName,
+      stakedTvl,
+      pendingReward,
+      pendingRewardUsd,
+      apr: finished ? 0 : pool?.apr / 100,
+      dollarsEarnedPerDay,
+      dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
+      dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
+      dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
+      tokensEarnedPerDay,
+      tokensEarnedPerWeek: tokensEarnedPerDay * 7,
+      tokensEarnedPerMonth: tokensEarnedPerDay * 30,
+      tokensEarnedPerYear: tokensEarnedPerDay * 365,
+    }
+  })
+  return mappedPoolStats
+}
+
+export function computeStats(pools, farms, statsOverall, bananasInWallet, curBlock): Stats {
   const farmStats = getStatsForFarms(farms, statsOverall.farms)
-  const incentivizedPoolsStats = getStatsForIncentivizedPools(pools, statsOverall.incentivizedPools)
-  const poolStats = getStatsForPools([pools[0]], statsOverall.pools)
+  const fetchedPoolStats = fetchPoolStats(pools, curBlock)
+  const poolStats = fetchedPoolStats.filter((pool) => pool.id === 0)
+  const incentivizedPools = fetchedPoolStats.filter((pool) => pool.id !== 0)
   const stats = {
     tvl: 0,
     bananaPrice: 0,
@@ -38,7 +76,7 @@ export function computeStats(pools, farms, statsOverall, bananasInWallet): Stats
     pendingRewardBanana: 0,
     pools: poolStats,
     farms: farmStats,
-    incentivizedPools: incentivizedPoolsStats,
+    incentivizedPools,
   }
   let totalApr = 0
   stats.pools.forEach((pool) => {
@@ -116,81 +154,6 @@ export function getStatsForFarms(farms, farmsInfo) {
     }
   })
   return allFarms
-}
-
-export function getStatsForIncentivizedPools(pools, poolsInfo) {
-  const allIncentivizedPools = []
-  pools.map(async (incentivizedPool) => {
-    if (!incentivizedPool.userData) return
-    const userInfo = { ...incentivizedPool.userData, amount: parseInt(incentivizedPool.userData.stakedBalance, 10) }
-    const pendingReward = parseInt(userInfo.pendingReward, 10) / 10 ** incentivizedPool.tokenDecimals
-
-    const poolInfo = poolsInfo.find((v) => v.id === incentivizedPool.sousId)
-    if (poolInfo && (userInfo.amount !== 0 || pendingReward !== 0)) {
-      const stakedTvl = (userInfo.amount * poolInfo.price) / 10 ** poolInfo.stakedTokenDecimals
-      const dollarsEarnedPerDay = (stakedTvl * poolInfo.apr) / 365
-      const tokensEarnedPerDay = dollarsEarnedPerDay / poolInfo.rewardTokenPrice
-      const currPool = {
-        id: poolInfo.id,
-        address: poolInfo.address,
-        name: poolInfo.name,
-        rewardTokenSymbol: poolInfo.rewardTokenSymbol,
-        stakedTvl,
-        pendingReward,
-        pendingRewardUsd: pendingReward * poolInfo.rewardTokenPrice,
-        apr: poolInfo.apr,
-        dollarsEarnedPerDay,
-        dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
-        dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
-        dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
-        tokensEarnedPerDay,
-        tokensEarnedPerWeek: tokensEarnedPerDay * 7,
-        tokensEarnedPerMonth: tokensEarnedPerDay * 30,
-        tokensEarnedPerYear: tokensEarnedPerDay * 365,
-      }
-
-      allIncentivizedPools.push(currPool)
-    }
-  })
-  return allIncentivizedPools
-}
-
-// Get TVL info for Pools only given a wallet
-export function getStatsForPools(pools, poolsInfo) {
-  const allPools = []
-  pools.map(async (pool) => {
-    if (!pool.userData) return
-    const userInfo = { ...pool.userData, amount: parseInt(pool.userData.stakedBalance, 10) }
-    const pendingReward = parseInt(userInfo.pendingReward, 10) / 10 ** pool.tokenDecimals
-
-    const poolInfo = poolsInfo.find((v) => v.poolIndex === pool.sousId)
-
-    if (poolInfo && (userInfo.amount !== 0 || pendingReward !== 0)) {
-      const stakedTvl = (userInfo.amount * poolInfo.price) / 10 ** pool.tokenDecimals
-      const dollarsEarnedPerDay = (stakedTvl * poolInfo.apr) / 365
-      const tokensEarnedPerDay = dollarsEarnedPerDay / poolInfo.rewardTokenPrice
-      const currPool = {
-        address: poolInfo.address,
-        name: poolInfo.lpSymbol,
-        rewardTokenSymbol: poolInfo.rewardTokenSymbol,
-        stakedTvl,
-        pendingReward,
-        pendingRewardUsd: pendingReward * poolInfo.rewardTokenPrice,
-        apr: poolInfo.apr,
-        dollarsEarnedPerDay,
-        dollarsEarnedPerWeek: dollarsEarnedPerDay * 7,
-        dollarsEarnedPerMonth: dollarsEarnedPerDay * 30,
-        dollarsEarnedPerYear: dollarsEarnedPerDay * 365,
-        tokensEarnedPerDay,
-        tokensEarnedPerWeek: tokensEarnedPerDay * 7,
-        tokensEarnedPerMonth: tokensEarnedPerDay * 30,
-        tokensEarnedPerYear: tokensEarnedPerDay * 365,
-      }
-
-      allPools.push(currPool)
-    }
-  })
-  return allPools
 }
 
 export default getStats
