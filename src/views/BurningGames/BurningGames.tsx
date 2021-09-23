@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Card, BaseLayout } from '@apeswapfinance/uikit'
+import { Heading, Card, BaseLayout, CardBody, Text, Button } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
@@ -133,14 +133,70 @@ const StyledPage = styled(Page)`
   }
 `
 
-const Column = styled.div`
-  border: 1px solid;
+const Column = styled(Card)`
   border-radius: 5px;
   width: 250px;
-  height: 200px;
-  color: ${(props) => props.theme.colors.text};
-  padding: 16px;
   text-align: center;
+`
+const CardImage = styled.div`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 100%;
+  border-radius: 20px;
+  img {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    transition: opacity 1s linear 0s;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+`
+const Description = styled(Text)`
+  color: ${({ theme }) => theme.colors.textSubtle};
+  font-size: 14px;
+  text-align: left;
+  padding: 36px;
+`
+const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`
+const PlayButton = styled(Button)`
+  width: 120px;
+  height: 60px;
+  background-color: secondary;
+  margin: 10px;
+  flex-shrink: 0;
+  background: #ffb300;
+  padding: 0;
+  :focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background: #ffb300;
+  }
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 140px;
+  }
+`
+const PlayText = styled(Text)`
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 20px;
+  }
 `
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -167,7 +223,7 @@ const Cards = styled(BaseLayout)`
 const BurningGames: React.FC = () => {
   const TranslateString = useI18n()
   const { account } = useWeb3React()
-  const { data, loading } = useFetchBurningGames()
+  const { data } = useFetchBurningGames()
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
@@ -204,11 +260,17 @@ const BurningGames: React.FC = () => {
           <Cards>
             {data.map((i) => (
               <Column>
-                <div>
-                  <img src={`${i.image?.url}`} alt={i.id} style={{ width: '170px', maxHeight: '100px' }} />
-                </div>
-                <div>{i.name}</div>
-                <div>{i.published_at}</div>
+                <CardBody>
+                  <CardImage>
+                    <img src={`${i.image?.url}`} alt={i.id} />
+                  </CardImage>
+                  <Description>{i.name}</Description>
+                  <ButtonWrapper>
+                    <PlayButton>
+                      <PlayText color="white">Play</PlayText>
+                    </PlayButton>
+                  </ButtonWrapper>
+                </CardBody>
               </Column>
             ))}
           </Cards>
