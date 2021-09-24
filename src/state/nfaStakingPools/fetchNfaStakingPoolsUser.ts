@@ -1,68 +1,59 @@
 import { AbiItem } from 'web3-utils'
-import poolsConfig from 'config/constants/pools'
+import nfaStakingPools from 'config/constants/nfaStakingPools'
 import masterChefABI from 'config/abi/masterchef.json'
 import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
+import nfaStakingPoolsAbi from 'config/abi/nfaStaking.json'
+import nfaAbi from 'config/abi/nonFungibleApes.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import { getMasterChefAddress } from 'utils/addressHelpers'
+import { getMasterChefAddress, getNonFungibleApesAddress } from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-// Pool 0, Cake / Cake is a different kind of contract (master chef)
-// BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.address !== QuoteToken.BNB)
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.address === QuoteToken.BNB)
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
+const nfaAddress = getNonFungibleApesAddress()
 const web3 = getWeb3()
-const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
+const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
-  const calls = nonBnbPools.map((p) => ({
-    address: p.stakingToken.address[CHAIN_ID],
-    name: 'allowance',
+  const calls = nfaStakingPools.map((p) => ({
+    address: nfaAddress,
+    name: 'isApprovedForAll',
     params: [account, p.contractAddress[CHAIN_ID]],
   }))
-  const allowances = await multicall(erc20ABI, calls)
-  return nonBnbPools.reduce(
+
+  console.log(calls)
+  const allowances = await multicall(nfaAbi, calls)
+  return nfaStakingPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
   )
 }
 
 export const fetchUserBalances = async (account) => {
-  // Non BNB pools
-  const calls = nonBnbPools.map((p) => ({
-    address: p.stakingToken.address[CHAIN_ID],
+  const calls = nfaStakingPools.map((p) => ({
+    address: nfaAddress,
     name: 'balanceOf',
     params: [account],
   }))
-  const tokenBalancesRaw = await multicall(erc20ABI, calls)
-  const tokenBalances = nonBnbPools.reduce(
+  const tokenBalancesRaw = await multicall(nfaAbi, calls)
+  const tokenBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
   )
-
-  // BNB pools
-  const bnbBalance = await web3.eth.getBalance(account)
-  const bnbBalances = bnbPools.reduce(
-    (acc, pool) => ({ ...acc, [pool.sousId]: new BigNumber(bnbBalance).toJSON() }),
-    {},
-  )
-
-  return { ...tokenBalances, ...bnbBalances }
+  return { ...tokenBalances }
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const calls = nfaStakingPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
   }))
-  const userInfo = await multicall(sousChefABI, calls)
-  const stakedBalances = nonMasterPools.reduce(
+  const userInfo = await multicall(nfaStakingPoolsAbi, calls)
+  const stakedBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(userInfo[index].amount._hex).toJSON(),
@@ -77,13 +68,13 @@ export const fetchUserStakeBalances = async (account) => {
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  const calls = nonMasterPools.map((p) => ({
+  const calls = nfaStakingPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
   }))
-  const res = await multicall(sousChefABI, calls)
-  const pendingRewards = nonMasterPools.reduce(
+  const res = await multicall(nfaStakingPoolsAbi, calls)
+  const pendingRewards = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(res[index]).toJSON(),

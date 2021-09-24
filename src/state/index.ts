@@ -8,6 +8,7 @@ import statsOverallReducer from './statsOverall'
 import teamsReducer from './teams'
 import auctionReducer from './auction'
 import tokenPricesReducer from './tokenPrices'
+import nfaStakingPoolsReducer from './nfaStakingPools'
 
 export default configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -21,5 +22,6 @@ export default configureStore({
     teams: teamsReducer,
     auctions: auctionReducer,
     tokenPrices: tokenPricesReducer,
+    nfaStakingPools: nfaStakingPoolsReducer,
   },
 })

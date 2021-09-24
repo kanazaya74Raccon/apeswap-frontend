@@ -45,7 +45,7 @@ export default {
   },
   nonFungibleApes: {
     56: '0x6eca7754007d22d3F557740d06FeD4A031BeFE1e',
-    97: '0x6eca7754007d22d3F557740d06FeD4A031BeFE1e',
+    97: '0xdcad4503caa97b23b12134d2f4704db5b6438b8e',
   },
   rabbitMintingFarm: {
     56: '0x1C99222F857C1d72234703eC5b9Ed88089Bd7091',
