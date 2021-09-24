@@ -2143,6 +2143,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 111,
+    tokenName: 'ROCKS',
+    image: 'ROCKS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.rocks,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x5d8b37C42c34CA1661dB227B5484726d89040702',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.rocki.app/',
+    harvest: true,
+    tokenPerBlock: `0.083964583333333333`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
