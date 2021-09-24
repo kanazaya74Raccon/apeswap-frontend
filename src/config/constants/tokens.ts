@@ -444,6 +444,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  rocks: {
+    symbol: 'ROCKS',
+    address: {
+      56: '0xA01000C52b234a92563BA61e5649b7C76E1ba0f3',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
