@@ -147,3 +147,35 @@ export const nextAuction = async (auctionContract, id, account) => {
       return tx.transactionHash
     })
 }
+
+export const listNfa = async (
+  auctionContract,
+  id,
+  auctionLength,
+  timeToExtend,
+  minimumExtendTime,
+  minimumBid,
+  account,
+) => {
+  return auctionContract.methods
+    .pushToAuction(
+      id,
+      auctionLength,
+      timeToExtend,
+      minimumExtendTime,
+      new BigNumber(minimumBid).times(new BigNumber(10).pow(18)).toString(),
+    )
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const removeAuction = async (auctionContract, id, account) => {
+  return auctionContract.methods
+    .removeAuction(id)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

@@ -6,6 +6,7 @@ import { useAuctions } from 'state/hooks'
 import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
+import ListYourNfa from './components/Actions/ListYourNfa'
 
 const PageWrapper = styled.div`
   display: none;
@@ -155,13 +156,7 @@ const Auction: React.FC = () => {
               >
                 <MoreInfo>How It Works</MoreInfo>
               </a>
-              <a
-                href="https://twitter.com/ape_swap/status/1422710092126883842"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MoreInfo>Tier One Challenge</MoreInfo>
-              </a>
+              <ListYourNfa />
             </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
