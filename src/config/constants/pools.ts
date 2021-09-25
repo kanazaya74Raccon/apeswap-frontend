@@ -2175,7 +2175,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://gummybull.io/',
     harvest: true,
-    tokenPerBlock: `13.709852430555555555`,
+    tokenPerBlock: `1.374421296296296`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
