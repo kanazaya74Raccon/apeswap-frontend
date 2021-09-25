@@ -29,8 +29,8 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
   )
 }
 
-// ExpandableSectionButton.defaultProps = {
-//   expanded: false,
-// }
+ExpandableSectionButton.defaultProps = {
+  expanded: false,
+}
 
 export default ExpandableSectionButton
