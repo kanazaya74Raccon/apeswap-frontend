@@ -451,6 +451,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  gummy: {
+    symbol: 'GUMMY',
+    address: {
+      56: '0x10d3e0c38c286a04aee44d9b01cac916b56ee05a',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
