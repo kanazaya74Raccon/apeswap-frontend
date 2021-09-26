@@ -2145,7 +2145,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 111,
-    tokenName: 'ROCKS',
+    tokenName: 'ROCKI',
     image: 'ROCKS.svg',
     stakingToken: tokens.gnana,
     rewardToken: tokens.rocks,
