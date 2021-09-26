@@ -14,7 +14,7 @@ const ApeZone: { ifos: Ifo[] } = {
       saleAmount: '57,200,000 NFTY',
       raiseAmount: '$385,000',
       vestingTime: '3 Months',
-      projectSiteUrl: 'nftynetwork.io',
+      projectSiteUrl: 'https://nftynetwork.io/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,

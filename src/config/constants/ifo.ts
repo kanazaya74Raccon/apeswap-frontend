@@ -13,7 +13,7 @@ const ifos: Ifo[] = [
     saleAmount: '57,200,000 NFTY',
     raiseAmount: '$715,000',
     vestingTime: '3 Months',
-    projectSiteUrl: 'nftynetwork.io',
+    projectSiteUrl: 'https://nftynetwork.io/',
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
