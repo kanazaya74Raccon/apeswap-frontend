@@ -53,7 +53,7 @@ const LinkArea = styled.a`
   z-index: 1;
 `
 
-const SLIDETIME = 15000
+const SLIDETIME = 6000
 
 const Banner = () => {
   const [activeIndex, setActiveIndex] = useState(0)
