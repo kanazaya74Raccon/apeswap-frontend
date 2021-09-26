@@ -179,3 +179,12 @@ export const removeAuction = async (auctionContract, id, account) => {
       return tx.transactionHash
     })
 }
+
+export const nfaStake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .deposit(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

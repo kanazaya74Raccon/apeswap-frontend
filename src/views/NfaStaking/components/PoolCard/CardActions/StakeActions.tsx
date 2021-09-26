@@ -1,7 +1,4 @@
 import React, { useState, useRef } from 'react'
-import Reward from 'react-rewards'
-import rewards from 'config/constants/rewards'
-import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'
@@ -17,7 +14,7 @@ import {
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useSousStake } from 'hooks/useStake'
+import { useNfaStake, useSousStake } from 'hooks/useStake'
 import { useSousUnstake } from 'hooks/useUnstake'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -27,6 +24,7 @@ interface StakeActionsProps {
   pool: NfaStakingPool
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
+  tier: number
   isBnbPool?: boolean
   isStaked: ConstrainBoolean
   isLoading?: boolean
@@ -71,42 +69,28 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({
-  pool,
-  stakingTokenBalance,
-  stakedBalance,
-  isApproved,
-  firstStake,
-}) => {
+const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isApproved, firstStake, tier }) => {
   const TranslateString = useI18n()
 
   const { sousId } = pool
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-
-  const rewardRefStake = useRef(null)
-  const rewardRefUnstake = useRef(null)
-  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const isLoading = !pool.userData
 
-  // const onStake = useReward(rewardRefStake, useSousStake(sousId).onStake)
+  const onStake = useNfaStake(sousId).onStake
   // const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
 
   const [onPresentDeposit] = useModal(
-    // <DepositModal
-    //   max={new BigNumber(2)}
-    //   onConfirm={async (val) => {
-    //     setTypeOfReward('rewardBanana')
-    //     await onStake(val).catch(() => {
-    //       setTypeOfReward('error')
-    //       rewardRefStake.current?.rewardMe()
-    //     })
-    //   }}
-    //   tokenName="nfa"
-    // />,
-    <></>,
+    <DepositModal
+      max={new BigNumber(2)}
+      onConfirm={async (val) => {
+        await onStake(val)
+      }}
+      tokenName="nfa"
+      tier={tier}
+    />,
   )
 
   const [onPresentWithdraw] = useModal(
@@ -133,16 +117,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
             </HarvestWrapper>
           )}
-          <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
-              <MinusIcon color="white" width="12px" height="12px" />
-            </StyledIconButtonSquare>
-          </Reward>
-          <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentDeposit}>
-              <AddIcon color="white" width="16px" height="16px" />
-            </StyledIconButtonSquare>
-          </Reward>
+          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="white" width="12px" height="12px" />
+          </StyledIconButtonSquare>
+          <StyledIconButtonSquare onClick={onPresentDeposit}>
+            <AddIcon color="white" width="16px" height="16px" />
+          </StyledIconButtonSquare>
         </IconButtonWrapper>
       )
     )

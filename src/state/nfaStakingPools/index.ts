@@ -79,22 +79,22 @@ export const fetchNfaStakingPoolsUserDataAsync = (account) => async (dispatch) =
   dispatch(setNfaStakingPoolsUserData(userData))
 }
 
-export const updateUserAllowance = (sousId: string, account: string) => async (dispatch) => {
+export const updateNfaStakingUserAllowance = (sousId: string, account: string) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)
   dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
 }
 
-export const updateUserBalance = (sousId: string, account: string) => async (dispatch) => {
+export const updateNfaStakingUserBalance = (sousId: string, account: string) => async (dispatch) => {
   const tokenBalances = await fetchUserBalances(account)
   dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
 }
 
-export const updateUserStakedBalance = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserNfaStakingStakedBalance = (sousId: string, account: string) => async (dispatch) => {
   const stakedBalances = await fetchUserStakeBalances(account)
   dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
 }
 
-export const updateUserPendingReward = (sousId: string, account: string) => async (dispatch) => {
+export const updateUserNfaStakingPendingReward = (sousId: string, account: string) => async (dispatch) => {
   const pendingRewards = await fetchUserPendingRewards(account)
   dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
 }

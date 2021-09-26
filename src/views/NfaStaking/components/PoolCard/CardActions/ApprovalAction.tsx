@@ -1,42 +1,39 @@
 import React, { useCallback, useState, useRef } from 'react'
-import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
-import { useSousApprove } from 'hooks/useApprove'
-import { useERC20 } from 'hooks/useContract'
+import { Skeleton, ButtonSquare, AutoRenewIcon } from '@apeswapfinance/uikit'
+import { useNfaStakingApprove } from 'hooks/useApprove'
 
 interface ApprovalActionProps {
-  stakingTokenContractAddress: string
+  nfaStakingPoolContract: string
   sousId: number
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
-  const stakingTokenContract = useERC20(stakingTokenContractAddress)
-  const [requestedApproval, setRequestedApproval] = useState(false)
-  const rewardRefReward = useRef(null)
-  // const { onApprove } = useSousApprove(stakingTokenContract, sousId)
+const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract, sousId, isLoading = false }) => {
+  const [pendingApprove, setPendingApprove] = useState(false)
+  const onApprove = useNfaStakingApprove(nfaStakingPoolContract, sousId).onApprove
 
   const handleApprove = useCallback(async () => {
-    // try {
-    //   setRequestedApproval(true)
-    //   const txHash = await onApprove()
-    //   // user rejected tx or didn't go thru
-    //   if (!txHash) {
-    //     setRequestedApproval(false)
-    //   } else {
-    //     rewardRefReward.current?.rewardMe()
-    //   }
-    // } catch (e) {
-    //   rewardRefReward.current?.rewardMe()
-    //   console.error(e)
-    // }
-  }, [])
+    try {
+      await onApprove()
+    } catch (e) {
+      console.error(e)
+    }
+  }, [onApprove])
 
   return (
     <>
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare
+          disabled={pendingApprove}
+          onClick={async () => {
+            setPendingApprove(true)
+            await handleApprove()
+            setPendingApprove(false)
+          }}
+          endIcon={pendingApprove && <AutoRenewIcon spin color="currentColor" />}
+        >
           Enable
         </ButtonSquare>
       )}

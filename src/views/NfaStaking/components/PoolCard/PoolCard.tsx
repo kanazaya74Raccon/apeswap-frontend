@@ -45,7 +45,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const allowance = new BigNumber(userData?.allowance || 0)
+  const allowance = userData?.allowance
 
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -53,12 +53,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const blocksUntilStart = Math.max(startBlock - block, 0)
   const blocksRemaining = Math.max(endBlock - block, 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const isApproved = account && allowance && allowance.isGreaterThan(0)
+  const isApproved = account && allowance
   const pendingReward = userData?.pendingReward
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)
   }
-
   return (
     <PCard onClick={toggleExpand}>
       <CardHeading
@@ -80,6 +79,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             stakedBalance={stakedBalance}
             isApproved={isApproved}
             isStaked={accountHasStakedBalance}
+            tier={tier}
           />
         </Flex>
         <DetailsSection

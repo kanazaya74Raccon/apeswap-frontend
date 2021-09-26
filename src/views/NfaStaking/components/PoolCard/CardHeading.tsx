@@ -307,22 +307,24 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const allowance = new BigNumber(userData?.allowance || 0)
+  const allowance = userData?.allowance
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
-  const needsApproval = !allowance.gt(0)
   const isCompound = sousId === 0
   const { account } = useWeb3React()
+
 
   const cardHeaderButton = () => {
     if (!account) {
       return <UnlockButton />
     }
-    if (needsApproval) {
-      return <ApprovalAction stakingTokenContractAddress="" sousId={sousId} isLoading={isLoading} />
+    if (!allowance) {
+      return (
+        <ApprovalAction nfaStakingPoolContract={pool.contractAddress[CHAIN_ID]} sousId={sousId} isLoading={isLoading} />
+      )
     }
-    if (!needsApproval && !accountHasStakedBalance) {
+    if (allowance && !accountHasStakedBalance) {
       return (
         <StakeAction
           pool={pool}
@@ -330,6 +332,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           stakedBalance={stakedBalance}
           isStaked={accountHasStakedBalance}
           firstStake={!accountHasStakedBalance}
+          tier={tier}
         />
       )
     }

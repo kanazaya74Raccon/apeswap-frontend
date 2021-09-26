@@ -4,7 +4,7 @@ import { Contract } from 'web3-eth-contract'
 import { getAuctionAddress } from 'utils/addressHelpers'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
+import { updateUserAllowance, fetchFarmUserDataAsync, updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import { useMasterchef, useBanana, useSousChef, useLottery, useNonFungibleApes } from './useContract'
 
@@ -94,6 +94,24 @@ export const useAuctionApprove = () => {
       return false
     }
   }, [account, spenderAddress, tokenContract])
+
+  return { onApprove: handleApprove }
+}
+
+// Approve an NFA
+export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
+  const dispatch = useDispatch()
+  const tokenContract = useNonFungibleApes()
+  const { account } = useWeb3React()
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
+      dispatch(updateNfaStakingUserAllowance(sousId, account))
+      return tx
+    } catch {
+      return false
+    }
+  }, [account, dispatch, contractToApprove, sousId, tokenContract])
 
   return { onApprove: handleApprove }
 }

@@ -37,7 +37,7 @@ export interface NfaStakingPool extends NfaStakingPoolConfig {
   endBlock?: number
   apr?: number
   userData?: {
-    allowance: BigNumber
+    allowance: boolean
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber

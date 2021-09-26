@@ -17,4 +17,7 @@ export {
   setNfaStakingPoolsPublicData,
   setNfaStakingPoolsUserData,
   updateNfaStakingPoolsUserData,
+  updateNfaStakingUserAllowance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
 } from './nfaStakingPools'

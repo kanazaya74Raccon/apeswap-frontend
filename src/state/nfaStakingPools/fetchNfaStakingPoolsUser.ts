@@ -1,11 +1,8 @@
 import { AbiItem } from 'web3-utils'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import masterChefABI from 'config/abi/masterchef.json'
-import sousChefABI from 'config/abi/sousChef.json'
-import erc20ABI from 'config/abi/erc20.json'
 import nfaStakingPoolsAbi from 'config/abi/nfaStaking.json'
 import nfaAbi from 'config/abi/nonFungibleApes.json'
-import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress, getNonFungibleApesAddress } from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
@@ -24,12 +21,8 @@ export const fetchPoolsAllowance = async (account) => {
     params: [account, p.contractAddress[CHAIN_ID]],
   }))
 
-  console.log(calls)
   const allowances = await multicall(nfaAbi, calls)
-  return nfaStakingPools.reduce(
-    (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
-    {},
-  )
+  return nfaStakingPools.reduce((acc, pool, index) => ({ ...acc, [pool.sousId]: allowances[index][0] }), {})
 }
 
 export const fetchUserBalances = async (account) => {
@@ -61,7 +54,6 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  // Cake / Cake pool
   const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
 
   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
@@ -82,7 +74,6 @@ export const fetchUserPendingRewards = async (account) => {
     {},
   )
 
-  // Cake / Cake pool
   const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
