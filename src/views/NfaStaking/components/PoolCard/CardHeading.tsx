@@ -314,7 +314,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const isCompound = sousId === 0
   const { account } = useWeb3React()
 
-
   const cardHeaderButton = () => {
     if (!account) {
       return <UnlockButton />

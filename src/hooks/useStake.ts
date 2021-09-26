@@ -1,7 +1,13 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance, updateNfaStakingUserBalance, updateUserNfaStakingStakedBalance } from 'state/actions'
+import {
+  fetchFarmUserDataAsync,
+  updateUserStakedBalance,
+  updateUserBalance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
+} from 'state/actions'
 import { stake, sousStake, sousStakeBnb, nfaStake } from 'utils/callHelpers'
 import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
 
