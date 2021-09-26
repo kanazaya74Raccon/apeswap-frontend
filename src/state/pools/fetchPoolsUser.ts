@@ -17,7 +17,7 @@ const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.address !== QuoteTo
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.address === QuoteToken.BNB)
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
-const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
+const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
