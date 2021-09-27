@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'nfty',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0xeA5E10063cd49b01BF1BA243429dFfa55b221413', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'NFTY Network',
       subTitle: 'Decentralized NFT Gating Ecosystem',
