@@ -83,8 +83,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           />
         </Flex>
         <DetailsSection
-          totalStaked={getBalanceNumber(totalStaked)}
-          personalValueStaked={getBalanceNumber(stakedBalance)}
+          totalStaked={getBalanceNumber(totalStaked, 0)}
+          personalValueStaked={getBalanceNumber(stakedBalance, 0)}
           blocksRemaining={blocksRemaining}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}

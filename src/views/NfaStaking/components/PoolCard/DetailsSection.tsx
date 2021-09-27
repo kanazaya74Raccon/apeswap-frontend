@@ -66,13 +66,10 @@ const StyledLink = styled(Link)`
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
-  lpLabel,
-  addLiquidityUrl,
   personalValueStaked,
   totalStaked,
   blocksRemaining,
   blocksUntilStart,
-  stakedTokenPrice,
   rewardTokenPrice,
   pendingReward,
   projectSite,
@@ -80,16 +77,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const totalDollarAmountStaked = totalStaked * stakedTokenPrice
-
-  const totalDollarAmountStakedFormated = totalDollarAmountStaked
-    ? `${Number(totalDollarAmountStaked).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
-    : '-'
-
   const earnings = new BigNumber(pendingReward || 0)
   const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
-  const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
-
   const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
   const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
 
@@ -125,7 +114,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(23, 'Staked Amount')}:
         </StyledText>
         <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {totalUserStaked}
+          {totalStaked}
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
@@ -139,11 +128,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
-        </StyledLink>
-      </Flex>
-      <Flex justifyContent="center">
-        <StyledLink external href={projectSite} bold={false}>
-          {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>
     </Wrapper>

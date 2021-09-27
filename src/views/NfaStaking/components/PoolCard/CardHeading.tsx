@@ -311,7 +311,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
-  const isCompound = sousId === 0
   const { account } = useWeb3React()
 
   const cardHeaderButton = () => {
@@ -341,7 +340,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         sousId={sousId}
         isLoading={isLoading}
         tokenDecimals={18}
-        compound={isCompound}
       />
     )
   }

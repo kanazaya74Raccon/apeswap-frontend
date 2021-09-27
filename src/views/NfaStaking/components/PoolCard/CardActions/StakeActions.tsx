@@ -74,7 +74,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isAppro
 
   const { sousId } = pool
 
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const rawStakedBalance = getBalanceNumber(stakedBalance, 0)
   const displayBalance = rawStakedBalance.toLocaleString()
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const isLoading = !pool.userData
@@ -112,11 +112,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isAppro
     return (
       rawStakedBalance !== 0 && (
         <IconButtonWrapper>
-          {sousId === 0 && (
-            <HarvestWrapper>
-              <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
-            </HarvestWrapper>
-          )}
           <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
           </StyledIconButtonSquare>

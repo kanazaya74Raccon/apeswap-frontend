@@ -46,6 +46,8 @@ export const fetchUserStakeBalances = async (account) => {
     params: [account],
   }))
   const userInfo = await multicall(nfaStakingPoolsAbi, calls)
+  console.log("user info")
+  console.log(userInfo)
   const stakedBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,

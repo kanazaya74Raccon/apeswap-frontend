@@ -3,7 +3,7 @@ import tokens from './tokens'
 
 const nftStakingPools: NfaStakingPoolConfig[] = [
   {
-    sousId: 0,
+    sousId: 1,
     tier: 1,
     rewardToken: tokens.banana,
     contractAddress: {
@@ -13,7 +13,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     tokenPerBlock: '.100000000000000000',
   },
   {
-    sousId: 1,
+    sousId: 2,
     tier: 2,
     rewardToken: tokens.banana,
     contractAddress: {
@@ -23,7 +23,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     tokenPerBlock: '.100000000000000000',
   },
   {
-    sousId: 2,
+    sousId: 3,
     tier: 3,
     rewardToken: tokens.banana,
     contractAddress: {
@@ -33,7 +33,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     tokenPerBlock: '.100000000000000000',
   },
   {
-    sousId: 3,
+    sousId: 4,
     tier: 4,
     rewardToken: tokens.banana,
     contractAddress: {
@@ -43,7 +43,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     tokenPerBlock: '.100000000000000000',
   },
   {
-    sousId: 4,
+    sousId: 5,
     tier: 5,
     rewardToken: tokens.banana,
     contractAddress: {

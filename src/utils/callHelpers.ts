@@ -188,3 +188,12 @@ export const nfaStake = async (nfaStakingChefContract, ids, account) => {
       return tx.transactionHash
     })
 }
+
+export const nfaStakeHarvest = async (nfaStakingChefContract, account) => {
+  return nfaStakingChefContract.methods
+    .deposit([])
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
