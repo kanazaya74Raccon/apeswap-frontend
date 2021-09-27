@@ -22,6 +22,7 @@ import IfoCardBNBContribute from './IfoCardBNBContribute'
 export interface IfoCardProps {
   ifo: Ifo
   notLp?: boolean
+  gnana?: boolean
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
@@ -66,7 +67,7 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const {
     id,
     address,

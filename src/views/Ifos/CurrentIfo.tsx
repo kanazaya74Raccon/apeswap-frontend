@@ -33,9 +33,7 @@ const List = styled.ul`
 const IfoHeading = styled(Heading)`
   margin-top: 32px;
 `
-/**
- * Note: currently there should be only 1 active IFO at a time
- */
+
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 const zoneActiveIfo = zoneIfo.find((ifo) => ifo.isActive)
 
@@ -57,7 +55,7 @@ const Ifo = () => {
           </List>
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(602, 'While the sale is live, commit your BNB tokens to buy the IAO tokens')}</li>
+            <li>{TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}</li>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
