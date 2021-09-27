@@ -334,14 +334,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         />
       )
     }
-    return (
-      <HarvestActions
-        earnings={earnings}
-        sousId={sousId}
-        isLoading={isLoading}
-        tokenDecimals={18}
-      />
-    )
+    return <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
   }
 
   return (
