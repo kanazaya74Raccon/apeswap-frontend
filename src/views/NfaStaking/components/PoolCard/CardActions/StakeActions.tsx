@@ -14,11 +14,10 @@ import {
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useNfaStake, useSousStake } from 'hooks/useStake'
-import { useSousUnstake } from 'hooks/useUnstake'
+import { useNfaStake, } from 'hooks/useStake'
+import { useNfaUnstake } from 'hooks/useUnstake'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
   pool: NfaStakingPool
@@ -34,10 +33,6 @@ interface StakeActionsProps {
 
 const IconButtonWrapper = styled.div`
   display: flex;
-`
-
-const HarvestWrapper = styled.div`
-  margin-right: 6px;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -76,36 +71,27 @@ const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isAppro
 
   const rawStakedBalance = getBalanceNumber(stakedBalance, 0)
   const displayBalance = rawStakedBalance.toLocaleString()
-  const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const isLoading = !pool.userData
 
   const onStake = useNfaStake(sousId).onStake
-  // const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
+  const onUnstake = useNfaUnstake(sousId).onUnstake
 
   const [onPresentDeposit] = useModal(
     <DepositModal
-      max={new BigNumber(2)}
       onConfirm={async (val) => {
         await onStake(val)
       }}
-      tokenName="nfa"
       tier={tier}
     />,
   )
 
   const [onPresentWithdraw] = useModal(
-    // <WithdrawModal
-    //   max={stakedBalance}
-    //   onConfirm={async (val) => {
-    //     setTypeOfReward('removed')
-    //     await onUnstake(val).catch(() => {
-    //       setTypeOfReward('error')
-    //       rewardRefUnstake.current?.rewardMe()
-    //     })
-    //   }}
-    //   tokenName="nfa"
-    // />,
-    <></>,
+    <WithdrawModal
+      onConfirm={async (val) => {
+        await onUnstake(val)
+      }}
+      stakedNfas={[1, 4, 2, 8]}
+    />,
   )
 
   const renderStakingButtons = () => {

@@ -6,9 +6,12 @@ import {
   updateUserStakedBalance,
   updateUserBalance,
   updateUserPendingReward,
+  updateUserNfaStakingStakedBalance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingPendingReward
 } from 'state/actions'
-import { unstake, sousUnstake, sousEmegencyWithdraw } from 'utils/callHelpers'
-import { useMasterchef, useSousChef } from './useContract'
+import { unstake, sousUnstake, sousEmegencyWithdraw, nfaUnstake } from 'utils/callHelpers'
+import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -71,6 +74,24 @@ export const useSousEmergencyWithdraw = (sousId) => {
     dispatch(updateUserPendingReward(sousId, account))
   }, [account, dispatch, sousChefContract, sousId])
   return { onEmergencyWithdraw: handleEmergencyWithdraw }
+}
+
+export const useNfaUnstake = (sousId) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const nfaStakeChefContract = useNfaStakingChef(sousId)
+
+  const handleUnstake = useCallback(
+    async (ids: number[]) => {
+      await nfaUnstake(nfaStakeChefContract, ids, account)
+      dispatch(updateUserNfaStakingStakedBalance(sousId, account))
+      dispatch(updateNfaStakingUserBalance(sousId, account))
+      dispatch(updateUserNfaStakingPendingReward(sousId, account))
+    },
+    [account, dispatch, nfaStakeChefContract, sousId],
+  )
+
+  return { onUnstake: handleUnstake }
 }
 
 export default useUnstake

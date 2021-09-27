@@ -281,11 +281,21 @@ const NumberHolder = styled.div`
 `
 
 const StyledNumber = styled.div`
-  line-height: 0px;
-  font-size: 40px;
-  margin-right: 1px;
-  color: white;
-  z-index: 1;
+  opacity: 0;
+  @media (min-width: 500px) {
+    opacity: 1;
+    line-height: 0px;
+    font-size: 30px;
+    margin-right: 1px;
+    margin-bottom: 20px;
+    color: white;
+    z-index: 1;
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 40px;
+    margin-right: 1px;
+    margin-bottom: 0px;
+  }
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({

@@ -197,3 +197,12 @@ export const nfaStakeHarvest = async (nfaStakingChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .withdraw(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

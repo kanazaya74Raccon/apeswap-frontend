@@ -2,7 +2,7 @@ import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
+import { Text, Flex, Link } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
@@ -32,23 +32,6 @@ const Wrapper = styled.div`
   margin-right: 24px;
 `
 
-const StyledLinkExternal = styled(LinkExternal)`
-  text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
-  font-size: 12px;
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  align-items: center;
-
-  svg {
-    padding-left: 4px;
-    height: 18px;
-    width: auto;
-    fill: ${({ theme }) => theme.colors.primary};
-  }
-`
-
 const StyledText = styled(Text)`
   font-weight: bold;
 `
@@ -66,13 +49,11 @@ const StyledLink = styled(Link)`
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
-  personalValueStaked,
   totalStaked,
   blocksRemaining,
   blocksUntilStart,
   rewardTokenPrice,
   pendingReward,
-  projectSite,
   tokenDecimals,
 }) => {
   const TranslateString = useI18n()

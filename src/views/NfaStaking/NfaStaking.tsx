@@ -1,35 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
-import orderBy from 'lodash/orderBy'
+import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
-import useBlock from 'hooks/useBlock'
+import { partition } from 'lodash'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { getBalanceNumber } from 'utils/formatBalance'
 import { useNfaStakingPools } from 'state/hooks'
-import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
-
-interface LabelProps {
-  active?: boolean
-}
-
-const float = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(50px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
-const floatSM = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(10px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -180,6 +162,7 @@ interface CheckboxProps {
 const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   height: 21px;
   width: 21px;
+  margin-left: 50px;
 `
 
 const CardContainer = styled.div`
@@ -238,10 +221,6 @@ const StyledPage = styled(Page)`
   }
 `
 
-interface DropdownProps {
-  down?: boolean
-}
-
 const FlexLayout = styled.div`
   display: flex;
   justify-content: space-between;
@@ -261,16 +240,13 @@ const AdminText = styled(Text)`
 
 const NfaStaking: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [observerIsSet, setObserverIsSet] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
   const { account } = useWeb3React()
   const { pathname } = useLocation()
+  const isActive = !pathname.includes('history')
   const size: Size = useWindowSize()
   const allNfaStakingPools = useNfaStakingPools(account)
   const TranslateString = useI18n()
-  const block = useBlock()
-  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -281,37 +257,27 @@ const NfaStaking: React.FC = () => {
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
 
-  const sortPools = (poolsToSort: Pool[]) => {
-    switch (sortOption) {
-      case 'apr':
-        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: Pool) => pool.apr, sortDirection)
-      case 'earned':
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => {
-            if (!pool.userData || !pool.rewardToken?.price) {
-              return 0
-            }
-            return getBalanceNumber(pool.userData.pendingReward) * pool.rewardToken?.price
-          },
-          sortDirection,
-        )
-      case 'totalStaked':
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakingToken?.price,
-          sortDirection,
-        )
-      default:
-        return orderBy(poolsToSort, (pool: Pool) => pool.sortOrder, 'asc')
+  const [finishedPools, openPools] = partition(allNfaStakingPools, (pool) => pool.isFinished)
+
+  const poolsToShow = () => {
+    let chosenPools = []
+    if (stakedOnly) {
+      chosenPools = isActive ? stakedOnlyPools : openPools
+    } else {
+      chosenPools = isActive ? openPools : finishedPools
     }
+
+    if (searchQuery) {
+      const lowercaseQuery = searchQuery.toLowerCase()
+      chosenPools = chosenPools.filter((pool) => `tier ${pool.tier}`.includes(lowercaseQuery))
+    }
+    return chosenPools
   }
 
   const cardLayout = (
     <CardContainer>
       <FlexLayout>
-        {allNfaStakingPools.map((pool) => (
+        {poolsToShow().map((pool) => (
           <PoolCard key={pool.sousId} pool={pool} removed={false} />
         ))}
       </FlexLayout>
@@ -323,9 +289,9 @@ const NfaStaking: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'STAKE SER')}
+            {TranslateString(999, 'STAKE NFAS')}
           </StyledHeading>
-          {size.width > 968 && <AdminText>STAKEY WAKEY</AdminText>}
+          {size.width > 968 && <AdminText>STAKEY YOUR NFAS SER</AdminText>}
         </HeadingContainer>
       </Header>
       <StyledPage width="1130px">
@@ -338,7 +304,6 @@ const NfaStaking: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <PoolTabButtons />
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

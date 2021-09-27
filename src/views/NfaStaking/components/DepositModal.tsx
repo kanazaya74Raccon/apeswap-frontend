@@ -1,20 +1,15 @@
-import BigNumber from 'bignumber.js'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal, AutoRenewIcon, Text } from '@apeswapfinance/uikit'
 import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
-import ModalInput from 'components/ModalInput'
 import { useProfile } from 'state/hooks'
 import useI18n from '../../../hooks/useI18n'
-import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
 interface DepositModalProps {
-  max: BigNumber
   tier: number
   onConfirm: (ids: number[]) => void
   onDismiss?: () => void
-  tokenName?: string
 }
 
 const OwnedNfaWrapper = styled.div`
@@ -41,15 +36,12 @@ const Nfa = styled.div<{ active: boolean }>`
   margin-bottom: 15px;
 `
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', tier }) => {
+const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier }) => {
   const { profile } = useProfile()
   const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => nfa.attributes.rarityTierNumber === tier)
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
-  const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
-  }, [max])
 
   const handleNfaChange = (index) => {
     if (selectedNfas.includes(index)) {
@@ -64,7 +56,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
       <Text marginBottom="20px">
         NFAs Selected:
         {selectedNfas.map((index) => {
-          return `${index}, `
+          return ` ${index},`
         })}
       </Text>
       <OwnedNfaWrapper>
@@ -86,7 +78,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         </Button>
         <Button
           fullWidth
-          disabled={pendingTx}
+          disabled={pendingTx || selectedNfas.length === 0}
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(selectedNfas)

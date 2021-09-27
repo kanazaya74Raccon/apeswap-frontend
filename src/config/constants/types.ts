@@ -103,6 +103,7 @@ export interface NfaStakingPoolConfig {
   rewardToken: Token
   contractAddress: Address
   tokenPerBlock: string
+  isFinished: boolean
 }
 
 export interface Token {

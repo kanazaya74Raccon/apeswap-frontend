@@ -20,4 +20,5 @@ export {
   updateNfaStakingUserAllowance,
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
+  updateUserNfaStakingPendingReward,
 } from './nfaStakingPools'

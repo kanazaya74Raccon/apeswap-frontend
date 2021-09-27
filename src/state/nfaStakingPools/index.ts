@@ -52,7 +52,6 @@ export const fetchNfaStakingPoolsPublicDataAsync = (tokenPrices: TokenPrices[]) 
       const blockLimit = blockLimits.find((entry) => entry.sousId === nfaStakingPool.sousId)
       const totalStaking = totalStakings.find((entry) => entry.sousId === nfaStakingPool.sousId)
       const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === nfaStakingPool.sousId)
-      // const lpData = nfaStakingPool.lpStaking ? await fetchReserveData(nfaStakingPool.stakingTokenAddress[CHAIN_ID]) : null
       return {
         ...blockLimit,
         ...totalStaking,
