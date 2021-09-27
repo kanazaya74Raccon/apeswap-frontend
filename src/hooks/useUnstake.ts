@@ -8,7 +8,7 @@ import {
   updateUserPendingReward,
   updateUserNfaStakingStakedBalance,
   updateNfaStakingUserBalance,
-  updateUserNfaStakingPendingReward
+  updateUserNfaStakingPendingReward,
 } from 'state/actions'
 import { unstake, sousUnstake, sousEmegencyWithdraw, nfaUnstake } from 'utils/callHelpers'
 import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'

@@ -11,7 +11,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       56: '',
     },
     tokenPerBlock: '.100000000000000000',
-    isFinished: false
+    isFinished: false,
   },
   {
     sousId: 2,
@@ -22,7 +22,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       56: '',
     },
     tokenPerBlock: '.100000000000000000',
-    isFinished: false
+    isFinished: false,
   },
   {
     sousId: 3,
@@ -33,7 +33,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       56: '',
     },
     tokenPerBlock: '.100000000000000000',
-    isFinished: false
+    isFinished: false,
   },
   {
     sousId: 4,
@@ -44,7 +44,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       56: '',
     },
     tokenPerBlock: '.100000000000000000',
-    isFinished: false
+    isFinished: false,
   },
   {
     sousId: 5,
@@ -55,7 +55,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       56: '',
     },
     tokenPerBlock: '.100000000000000000',
-    isFinished: false
+    isFinished: false,
   },
 ]
 export default nftStakingPools

@@ -14,7 +14,7 @@ import {
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useNfaStake, } from 'hooks/useStake'
+import { useNfaStake } from 'hooks/useStake'
 import { useNfaUnstake } from 'hooks/useUnstake'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
