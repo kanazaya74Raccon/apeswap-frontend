@@ -11,7 +11,7 @@ const ApeZone: { ifos: Ifo[] } = {
       description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect web2 and web3 infrastructures like never before!`,
       launchDate: 'September 29th',
       launchTime: '17:00 UTC',
-      saleAmount: '57,200,000 NFTY',
+      saleAmount: '30,800,000 NFTY',
       raiseAmount: '$385,000',
       vestingTime: '3 Months',
       projectSiteUrl: 'https://nftynetwork.io/',
