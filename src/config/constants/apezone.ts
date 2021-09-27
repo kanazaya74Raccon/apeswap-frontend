@@ -4,7 +4,9 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'nfty',
+      // CHANGE CURRENCY ADDRESS TO GNANA
       address: '0x7Bb6A23D458AFc0683716B82CF7A34a2D6EE6873', // Leave empty for "Coming Soon!"
+      // CHANGE CURRENCY ADDRESS TO GNANA
       isActive: true,
       name: 'NFTY Network',
       subTitle: 'Decentralized NFT Gating Ecosystem',
@@ -16,7 +18,7 @@ const ApeZone: { ifos: Ifo[] } = {
       vestingTime: '3 Months',
       projectSiteUrl: 'https://nftynetwork.io/',
       currency: 'GNANA',
-      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      currencyAddress: '0x9407026d236deae22cc1f3c419a9e47cbfcfe9e5',
       tokenDecimals: 18,
       releaseBlockNumber: 11342539, // block to start showing contract details
       vesting: true,
