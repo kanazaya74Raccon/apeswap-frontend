@@ -201,7 +201,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
         harvestFourFlag,
       ] = await multicall(ifoAbi, calls)
       setUserInfo(userinfo)
-      setAllocation(allocation / 10000)
+      setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
       setUserTokenStatus(userTokens)
       setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
