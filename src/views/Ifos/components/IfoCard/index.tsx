@@ -25,8 +25,9 @@ export interface IfoCardProps {
   gnana?: boolean
 }
 
-const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
+const StyledIfoCard = styled(Card)<{ ifoId: string; gnana?: boolean }>`
+  background-image: ${(props) =>
+    props.gnana ? `url('/images/ifos/${props.ifoId}-gnana-bg.svg')` : `url('/images/ifos/${props.ifoId}-bg.svg')`};
   background-repeat: no-repeat;
   background-position: -5px -5px;
   background-size: contain;
@@ -217,7 +218,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
   return (
-    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
+    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive} gnana={gnana}>
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
         <IfoCardProgress progress={state.progress} />

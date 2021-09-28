@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'nfty',
-    address: '0xC3F8Bfe9c2f397C26F55A8d6b6A6e67712399c21', // Leave empty for "Coming Soon!"
+    address: '0x461f1788fC8A12285F69845C9bd2b6aaED4243e5', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'NFTY Network',
     subTitle: 'Decentralized NFT Gating Ecosystem',

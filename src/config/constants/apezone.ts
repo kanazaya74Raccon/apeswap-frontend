@@ -5,7 +5,7 @@ const ApeZone: { ifos: Ifo[] } = {
     {
       id: 'nfty',
       // CHANGE CURRENCY ADDRESS TO GNANA
-      address: '0x719EC23658C9A8EFED81AB66E124FE04B53E8983', // Leave empty for "Coming Soon!"
+      address: '0xE7925C7Ae40cdC11926A20034d0E050DCd182860', // Leave empty for "Coming Soon!"
       // CHANGE CURRENCY ADDRESS TO GNANA
       isActive: true,
       name: 'NFTY Network',
