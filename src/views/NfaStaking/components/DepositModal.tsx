@@ -55,15 +55,15 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
     <Modal title={`${TranslateString(316, 'Deposit')} Tier ${tier} NFAs`} onDismiss={onDismiss}>
       <Text marginBottom="20px">
         NFAs Selected:
-        {selectedNfas.map((index) => {
+        {selectedNfas?.map((index) => {
           return ` ${index},`
         })}
       </Text>
       <OwnedNfaWrapper>
-        {ownedFilteredNfas.length !== 0 ? (
+        {ownedFilteredNfas?.length !== 0 ? (
           ownedFilteredNfas?.map((nfa) => {
             return (
-              <Nfa onClick={() => handleNfaChange(nfa.index)} active={selectedNfas.includes(nfa.index)}>
+              <Nfa onClick={() => handleNfaChange(nfa.index)} active={selectedNfas?.includes(nfa.index)}>
                 <Image src={nfa.image} alt={nfa.name} rarityTier={nfa.attributes.rarityTierNumber} />
               </Nfa>
             )
@@ -78,7 +78,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
         </Button>
         <Button
           fullWidth
-          disabled={pendingTx || selectedNfas.length === 0}
+          disabled={pendingTx || selectedNfas?.length === 0}
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(selectedNfas)
