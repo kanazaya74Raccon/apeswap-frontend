@@ -7,6 +7,7 @@ import {
   fetchUserBalances,
   fetchUserStakeBalances,
   fetchUserPendingRewards,
+  fetchUserStakedNfas,
 } from './fetchNfaStakingPoolsUser'
 import { NfaStakingPool, TokenPrices, NfaStakingPoolsState } from '../types'
 
@@ -67,6 +68,7 @@ export const fetchNfaStakingPoolsUserDataAsync = (account) => async (dispatch) =
   const stakingTokenBalances = await fetchUserBalances(account)
   const stakedBalances = await fetchUserStakeBalances(account)
   const pendingRewards = await fetchUserPendingRewards(account)
+  const stakedNfas = await fetchUserStakedNfas(account)
 
   const userData = nfaStakingPools.map((nfaStakingPool) => ({
     sousId: nfaStakingPool.sousId,
@@ -74,6 +76,7 @@ export const fetchNfaStakingPoolsUserDataAsync = (account) => async (dispatch) =
     stakingTokenBalance: stakingTokenBalances[nfaStakingPool.sousId],
     stakedBalance: stakedBalances[nfaStakingPool.sousId],
     pendingReward: pendingRewards[nfaStakingPool.sousId],
+    stakedNfas: stakedNfas[nfaStakingPool.sousId],
   }))
   dispatch(setNfaStakingPoolsUserData(userData))
 }

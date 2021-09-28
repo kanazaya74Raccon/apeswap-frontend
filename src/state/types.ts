@@ -41,6 +41,7 @@ export interface NfaStakingPool extends NfaStakingPoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    stakedNfas: number[]
   }
 }
 

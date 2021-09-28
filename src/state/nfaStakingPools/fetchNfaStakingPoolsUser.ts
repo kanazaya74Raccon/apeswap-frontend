@@ -7,12 +7,12 @@ import multicall from 'utils/multicall'
 import { getMasterChefAddress, getNonFungibleApesAddress } from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
+import { getBalanceNumber } from 'utils/formatBalance'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const nfaAddress = getNonFungibleApesAddress()
 const web3 = getWeb3()
-const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nfaStakingPools.map((p) => ({
@@ -56,9 +56,7 @@ export const fetchUserStakeBalances = async (account) => {
     {},
   )
 
-  const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
-
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
+  return { ...stakedBalances }
 }
 
 export const fetchUserPendingRewards = async (account) => {
@@ -76,7 +74,25 @@ export const fetchUserPendingRewards = async (account) => {
     {},
   )
 
-  const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
+  return { ...pendingRewards }
+}
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
+export const fetchUserStakedNfas = async (account) => {
+  const calls = nfaStakingPools.map((p) => ({
+    address: p.contractAddress[CHAIN_ID],
+    name: 'stakedNfts',
+    params: [account],
+  }))
+  const res = await multicall(nfaStakingPoolsAbi, calls)
+  const stakedNfas = nfaStakingPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: res[index][0]?.map((item) => {
+        return item.toNumber()
+      }),
+    }),
+    {},
+  )
+
+  return { ...stakedNfas }
 }

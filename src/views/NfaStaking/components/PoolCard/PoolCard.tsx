@@ -46,6 +46,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const allowance = userData?.allowance
+  const stakedNfas = userData?.stakedNfas
+  console.log(userData)
 
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -80,6 +82,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isApproved={isApproved}
             isStaked={accountHasStakedBalance}
             tier={tier}
+            stakedNfas={stakedNfas}
           />
         </Flex>
         <DetailsSection

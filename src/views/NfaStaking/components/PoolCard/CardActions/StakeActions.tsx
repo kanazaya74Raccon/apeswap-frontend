@@ -29,6 +29,7 @@ interface StakeActionsProps {
   isLoading?: boolean
   isApproved?: boolean
   firstStake?: boolean
+  stakedNfas?: number[]
 }
 
 const IconButtonWrapper = styled.div`
@@ -64,14 +65,20 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isApproved, firstStake, tier }) => {
+const StakeAction: React.FC<StakeActionsProps> = ({
+  pool,
+  stakedBalance,
+  isApproved,
+  firstStake,
+  tier,
+  stakedNfas,
+}) => {
   const TranslateString = useI18n()
 
   const { sousId } = pool
 
   const rawStakedBalance = getBalanceNumber(stakedBalance, 0)
   const displayBalance = rawStakedBalance.toLocaleString()
-  const isLoading = !pool.userData
 
   const onStake = useNfaStake(sousId).onStake
   const onUnstake = useNfaUnstake(sousId).onUnstake
@@ -90,7 +97,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isAppro
       onConfirm={async (val) => {
         await onUnstake(val)
       }}
-      stakedNfas={[1, 4, 2, 8]}
+      stakedNfas={stakedNfas}
     />,
   )
 
