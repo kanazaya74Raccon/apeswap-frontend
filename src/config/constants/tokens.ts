@@ -448,6 +448,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  rocks: {
+    symbol: 'ROCKS',
+    address: {
+      56: '0xA01000C52b234a92563BA61e5649b7C76E1ba0f3',
+    },
+    decimals: 18,
+  },
+  gummy: {
+    symbol: 'GUMMY',
+    address: {
+      56: '0x10d3e0c38c286a04aee44d9b01cac916b56ee05a',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
