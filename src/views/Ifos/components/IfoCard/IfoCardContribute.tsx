@@ -13,6 +13,8 @@ import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { CHAIN_ID } from 'config/constants'
+import track from 'utils/track'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -226,6 +228,16 @@ const IfoCardContribute: React.FC<Props> = ({
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
     await contract.methods.harvest(harvestPeriod).send({ from: account })
+
+    track({
+      event: 'iao',
+      chain: CHAIN_ID,
+      data: {
+        amount: tokensHarvestedAvailable,
+        cat: 'claim',
+        instance: harvestPeriod,
+      },
+    })
     setPendingTx(false)
   }
 
