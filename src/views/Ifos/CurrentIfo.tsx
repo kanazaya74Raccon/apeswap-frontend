@@ -44,7 +44,7 @@ const Ifo = () => {
     <div>
       <IfoCards isSingle={false}>
         <IfoCard ifo={activeIfo} />
-        <IfoCard ifo={zoneActiveIfo} notLp gnana/>
+        <IfoCard ifo={zoneActiveIfo} notLp gnana />
       </IfoCards>
       <LaunchIfoCallout>
         <div>
