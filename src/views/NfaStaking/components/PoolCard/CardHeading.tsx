@@ -2,6 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
+import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
 import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
@@ -312,7 +313,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData } = pool
+  const { userData, tokenPerBlock, totalStaked } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -322,6 +323,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
   const { account } = useWeb3React()
+  const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
 
   const cardHeaderButton = () => {
     if (!account) {
@@ -364,17 +366,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">APR:</StyledText1>
+              <StyledText1 fontFamily="poppins">BPD:</StyledText1>
               {apr ? (
                 <FlexSwitch>
-                  <ApyButton
-                    lpLabel={stakeToken}
-                    rewardTokenName={earnToken}
-                    addLiquidityUrl="https://app.apeswap.finance/swap"
-                    rewardTokenPrice={new BigNumber(rewardTokenPrice)}
-                    apy={apr.div(100)}
-                  />
-                  <StyledAPRText>{poolAPR}%</StyledAPRText>
+                  <StyledAPRText>{bananaPerDay?.toFixed(2)}</StyledAPRText>
                 </FlexSwitch>
               ) : (
                 <Skeleton height={24} width={80} />
