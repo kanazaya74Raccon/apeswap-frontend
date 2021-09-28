@@ -118,7 +118,8 @@ const HotFarms = () => {
     [bnbPrice, ethPriceUsd, bananaPrice],
   )
 
-  const farmMustBeUnder = farms.length
+  const farmMustBeUnder = farms.reduce((prev, curr) => (prev.pid > curr.pid ? prev : curr)).pid
+
   let pid1 = parseInt(farmsData[0]?.pid1) || DEFAULT_FARM
   let pid2 = parseInt(farmsData[0]?.pid2) || DEFAULT_FARM
   if (pid1 > farmMustBeUnder) {
