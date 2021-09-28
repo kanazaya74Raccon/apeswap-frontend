@@ -60,7 +60,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
         })}
       </Text>
       <OwnedNfaWrapper>
-        {ownedFilteredNfas?.length !== 0 ? (
+        {ownedFilteredNfas?.length !== 0 || ownedFilteredNfas === undefined ? (
           ownedFilteredNfas?.map((nfa) => {
             return (
               <Nfa onClick={() => handleNfaChange(nfa.index)} active={selectedNfas?.includes(nfa.index)}>
