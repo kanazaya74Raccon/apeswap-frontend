@@ -119,6 +119,7 @@ const HotFarms = () => {
   )
 
   const farmMustBeUnder = farms.length
+  console.log(farmMustBeUnder)
   let pid1 = parseInt(farmsData[0]?.pid1) || DEFAULT_FARM
   let pid2 = parseInt(farmsData[0]?.pid2) || DEFAULT_FARM
   if (pid1 > farmMustBeUnder) {
