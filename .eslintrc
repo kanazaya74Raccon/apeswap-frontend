@@ -2,7 +2,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["./src", "../@apeswapfinance/uikit", "../@apeswapfinance/eslint-config-apeswap"]
+        "paths": ["./src"]
       }
     }
   },
