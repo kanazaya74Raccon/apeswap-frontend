@@ -114,6 +114,7 @@ const tokens = {
   jdi: {
     symbol: 'JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x0491648c910ad2c1afaab733faf71d30313df7fc',
       137: '0x340fe1d898eccaad394e2ba0fc1f93d27c7b717a',
     },
@@ -143,6 +144,7 @@ const tokens = {
   bft: {
     symbol: 'BFT',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8',
     },
     decimals: 18,
@@ -334,6 +336,7 @@ const tokens = {
   bnbjdi: {
     symbol: 'BNB-JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
     },
     decimals: 18,
@@ -342,6 +345,7 @@ const tokens = {
   obie: {
     symbol: 'OBIE',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
     },
     decimals: 18,
