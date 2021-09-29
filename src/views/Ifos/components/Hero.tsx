@@ -28,7 +28,7 @@ const Hero = () => {
     <StyledHero>
       <Container>
         <Title>{TranslateString(500, 'IAO: Initial Ape Offerings')}</Title>
-        <Blurb>{TranslateString(502, 'Buy new tokens by staking BNB.')}</Blurb>
+        <Blurb>{TranslateString(502, 'Buy new tokens with BNB or GNANA.')}</Blurb>
       </Container>
     </StyledHero>
   )
