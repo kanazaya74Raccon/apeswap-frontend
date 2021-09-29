@@ -462,6 +462,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  dcb: {
+    symbol: 'DCB',
+    address: {
+      56: '0xEAc9873291dDAcA754EA5642114151f3035c67A2',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

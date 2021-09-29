@@ -2181,6 +2181,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 113,
+    tokenName: 'DCB',
+    image: 'DCB.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.dcb,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x7b4459a0ce06f2ebb8b145add6620ae06ff225ed',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://decubate.com/',
+    harvest: true,
+    tokenPerBlock: `1.924189814814814814`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
