@@ -1861,7 +1861,7 @@ const farms: FarmConfig[] = [
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xd094f600964c22ab259c092b0f3a0627c0de4699',
     },
-    tokenSymbol: 'GUMMY',
+    tokenSymbol: 'DCB',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xeac9873291ddaca754ea5642114151f3035c67a2',
