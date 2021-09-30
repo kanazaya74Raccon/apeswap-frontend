@@ -469,6 +469,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  nfty: {
+    symbol: 'NFTY',
+    address: {
+      56: '0x5774b2fc3e91af89f89141eacf76545e74265982',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
