@@ -3,9 +3,29 @@ import { Ifo } from './types'
 const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
+      id: 'nfty',
+      address: '0xF04c0efc1aBF1c98076a8ecEd2a68009ee55A0A9', // Leave empty for "Coming Soon!"
+      isActive: true,
+      name: 'NFTY Network',
+      subTitle: 'Decentralized NFT Gating Ecosystem',
+      description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
+      launchDate: 'September 29th',
+      launchTime: '17:00 UTC',
+      saleAmount: '30,800,000 NFTY',
+      raiseAmount: '$385,000',
+      vestingTime: '3 Months',
+      projectSiteUrl: 'https://nftynetwork.io/',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      tokenDecimals: 18,
+      releaseBlockNumber: 11342539, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
+    {
       id: 'dragonary',
       address: '0x1D51e7e0cB6f181489c9F24E396e54cb02D1EF0e', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',
       description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
