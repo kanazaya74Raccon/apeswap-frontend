@@ -260,7 +260,7 @@ const IfoCardContribute: React.FC<Props> = ({
     return (
       <Button
         fullWidth
-        disabled={pendingTx || isFinished}
+        disabled={pendingTx}
         onClick={async () => {
           try {
             setPendingTx(true)
