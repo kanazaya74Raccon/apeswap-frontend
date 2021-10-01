@@ -2,17 +2,18 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import bananaABI from 'config/abi/banana.json'
 import wbnbABI from 'config/abi/weth.json'
+import multicall from 'utils/multicall'
+import { useMulticallAddress, useNativeWrapCurrencyAddress } from 'hooks/useAddress'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
-import multicall from 'utils/multicall'
-import { getWbnbAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
 import { TokenPrices } from 'state/types'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-export const fetchPoolsBlockLimits = async () => {
+export const useFetchPoolsBlockLimits = async () => {
+  const multicallAddress = useMulticallAddress()
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
@@ -27,8 +28,8 @@ export const fetchPoolsBlockLimits = async () => {
     }
   })
 
-  const starts = await multicall(sousChefABI, callsStartBlock)
-  const ends = await multicall(sousChefABI, callsEndBlock)
+  const starts = await multicall(multicallAddress, sousChefABI, callsStartBlock)
+  const ends = await multicall(multicallAddress, sousChefABI, callsEndBlock)
 
   return poolsWithEnd.map((bananaPoolConfig, index) => {
     const startBlock = starts[index]
@@ -41,7 +42,9 @@ export const fetchPoolsBlockLimits = async () => {
   })
 }
 
-export const fetchPoolsTotalStatking = async () => {
+export const useFetchPoolsTotalStatking = async () => {
+  const multicallAddress = useMulticallAddress()
+  const nativeWrappedAddress = useNativeWrapCurrencyAddress()
   const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== QuoteToken.BNB)
   const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === QuoteToken.BNB)
 
@@ -61,14 +64,14 @@ export const fetchPoolsTotalStatking = async () => {
 
   const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
-      address: getWbnbAddress(),
+      address: nativeWrappedAddress,
       name: 'balanceOf',
       params: [poolConfig.contractAddress[CHAIN_ID]],
     }
   })
 
-  const nonBnbPoolsTotalStaked = await multicall(bananaABI, callsNonBnbPools)
-  const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
+  const nonBnbPoolsTotalStaked = await multicall(multicallAddress, bananaABI, callsNonBnbPools)
+  const bnbPoolsTotalStaked = await multicall(multicallAddress, wbnbABI, callsBnbPools)
 
   return [
     ...nonBnbPools.map((p, index) => ({
@@ -82,7 +85,7 @@ export const fetchPoolsTotalStatking = async () => {
   ]
 }
 
-export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList) => {
+export const useFetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList) => {
   const mappedValues = poolsConfig.map((pool) => {
     // Get values needed to calculate apr
     const curPool = pool

@@ -5,7 +5,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { usePriceBananaBusd, useTvl } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
+import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
@@ -76,8 +76,8 @@ const ApeSwapStats = () => {
   const newTvl = useTvl()
   const totalTvl = newTvl.toNumber()
   const bananaPriceUsd = usePriceBananaBusd()
-  const burnedBalance = useBurnedBalance(getBananaAddress())
-  const totalGnana = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
+  const burnedBalance = useBurnedBalance(useBananaAddress())
+  const totalGnana = useAccountTokenBalance(useTreasuryAddress(), useBananaAddress())
   const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
   const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()

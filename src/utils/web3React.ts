@@ -8,8 +8,6 @@ import getNodeUrl from './getRpcUrl'
 
 const POLLING_INTERVAL = 15000
 const rpcUrl = getNodeUrl()
-// const { chainId } = useWeb3React()
-const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 // When adding a new chain we need to add the CHAIN_ID to the supported chains
 

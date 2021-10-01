@@ -5,7 +5,6 @@ import poolsReducer from './pools'
 import profileReducer from './profile'
 import statsReducer from './stats'
 import statsOverallReducer from './statsOverall'
-import teamsReducer from './teams'
 import auctionReducer from './auction'
 import tokenPricesReducer from './tokenPrices'
 
@@ -18,7 +17,6 @@ export default configureStore({
     profile: profileReducer,
     stats: statsReducer,
     statsOverall: statsOverallReducer,
-    teams: teamsReducer,
     auctions: auctionReducer,
     tokenPrices: tokenPricesReducer,
   },

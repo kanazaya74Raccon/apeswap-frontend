@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Profile, ProfileState } from 'state/types'
-import getProfile from './getProfile'
+import useGetProfile from './hooks'
 
 const initialState: ProfileState = {
   isInitialized: false,
@@ -39,7 +39,7 @@ export const { profileFetchStart, profileFetchSucceeded, profileFetchFailed, pro
 export const fetchProfile = (address: string) => async (dispatch) => {
   try {
     dispatch(profileFetchStart())
-    const profile = await getProfile(address)
+    const profile = await useGetProfile(address)
     dispatch(profileFetchSucceeded(profile))
   } catch (error) {
     dispatch(profileFetchFailed())

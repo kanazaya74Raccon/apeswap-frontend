@@ -4,8 +4,9 @@ import { useWeb3React } from '@web3-react/core'
 import bananaABI from 'config/abi/banana.json'
 import { getContract, httpProvider } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
-import { getBananaAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
+import { useBananaAddress } from './useAddress'
+
 
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
@@ -47,16 +48,18 @@ export const useAccountTokenBalance = (account: string, tokenAddress: string) =>
 export const useTotalSupply = () => {
   const { slowRefresh } = useRefresh()
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
+  const bananaAddress = useBananaAddress()
+  console.log(bananaAddress)
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const bananaContract = getContract(bananaABI, getBananaAddress())
+      const bananaContract = getContract(bananaABI, bananaAddress)
       const supply = await bananaContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
 
     fetchTotalSupply()
-  }, [slowRefresh])
+  }, [slowRefresh, bananaAddress])
 
   return totalSupply
 }

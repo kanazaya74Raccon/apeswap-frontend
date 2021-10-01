@@ -2,27 +2,25 @@ import apePriceGetterABI from 'config/abi/apePriceGetter.json'
 import multicall from 'utils/multicall'
 import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { getApePriceGetterAddress } from 'utils/addressHelpers'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
-const fetchPrices = async () => {
-  const apePriceGetter = getApePriceGetterAddress()
-  const calls = Object.keys(tokens).map((token, i) => {
+const fetchPrices = async (chainId, multicallAddress, apePriceGetterAddress) => {
+  const tokensToCall = Object.keys(tokens).filter((token, i) => tokens[token].address[chainId] !== undefined)
+  const calls = tokensToCall.map((token) => {
     if (tokens[token].lpToken) {
       return {
-        address: apePriceGetter,
+        address: apePriceGetterAddress,
         name: 'getLPPrice',
-        params: [tokens[token].address[CHAIN_ID], tokens[token].decimals],
+        params: [tokens[token].address[chainId], tokens[token].decimals],
       }
     }
     return {
-      address: apePriceGetter,
+      address: apePriceGetterAddress,
       name: 'getPrice',
-      params: [tokens[token].address[CHAIN_ID], tokens[token].decimals],
+      params: [tokens[token].address[chainId], tokens[token].decimals],
     }
   })
-  const tokenPrices = await multicall(apePriceGetterABI, calls)
+  console.log(calls)
+  const tokenPrices = await multicall(multicallAddress, apePriceGetterABI, calls)
   // Banana should always be the first token
   const mappedTokenPrices = Object.keys(tokens).map((token, i) => {
     return {

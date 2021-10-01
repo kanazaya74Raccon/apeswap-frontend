@@ -15,7 +15,7 @@ export default {
     97: '0xAf1B22cBDbB502B2089885bcd230255f8B80243b',
     56: '0x54aff400858Dcac39797a81894D9920f16972D1D',
   },
-  wbnb: {
+  nativeWrapped: {
     97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
   },
@@ -30,10 +30,15 @@ export default {
   mulltiCall: {
     56: '0x38ce767d81de3940CFa5020B55af1A400ED4F657',
     97: '0x67ADCB4dF3931b0C5Da724058ADC2174a9844412',
+    137: '0x95028E5B8a734bb7E2071F96De89BABe75be9C8E',
   },
   busd: {
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
     56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+  },
+  wbnb: {
+    97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+    56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
   },
   ust: {
     56: '0x23396cF899Ca06c4472205fC903bDB4de249D6fC',
@@ -74,5 +79,6 @@ export default {
   apePriceGetter: {
     56: '0x5e545322b83626c745FE46144a15C00C94cBD803',
     97: '',
+    137: '0x8F9A783eD685Eae137A240F83399538A6F7B0859',
   },
 }

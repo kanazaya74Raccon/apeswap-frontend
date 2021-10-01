@@ -18,7 +18,7 @@ import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import styled from 'styled-components'
-import { getGoldenBananaAddress } from 'utils/addressHelpers'
+import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -71,7 +71,7 @@ const SellCard = ({ account }) => {
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
-  const goldenBananaBalance = useTokenBalance(getGoldenBananaAddress())
+  const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()

@@ -1,9 +1,8 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
-import { getNonFungibleApesContract } from 'utils/contractHelpers'
 import makeBatchRequest from 'utils/makeBatchRequest'
+import { useNonFungibleApes } from './useContract'
 
-const nonFungibleApesContract = getNonFungibleApesContract()
 
 export type NftMap = {
   [key: number]: {
@@ -45,6 +44,7 @@ const reducer = (state: State, action: Action) => {
 const useGetWalletNfts = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { account } = useWeb3React()
+  const nonFungibleApesContract = useNonFungibleApes()
 
   useEffect(() => {
     const fetchNfts = async () => {
@@ -103,7 +103,7 @@ const useGetWalletNfts = () => {
     if (account) {
       fetchNfts()
     }
-  }, [account, dispatch])
+  }, [account, dispatch, nonFungibleApesContract])
 
   return state
 }

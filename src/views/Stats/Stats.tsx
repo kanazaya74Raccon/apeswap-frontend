@@ -70,15 +70,16 @@ const Stats: React.FC = () => {
   const TranslateString = useI18n()
   const { account } = useWeb3React()
   const { slowRefresh } = useRefresh()
-  const yourStats = useStats()
+  // const yourStats = useStats()
+  const yourStats = null
   const dispatch = useDispatch()
   const stats = yourStats?.stats
 
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, slowRefresh])
+  // useEffect(() => {
+  //   if (account) {
+  //     dispatch(fetchFarmUserDataAsync(account))
+  //   }
+  // }, [account, dispatch, slowRefresh])
 
   return (
     <Page>

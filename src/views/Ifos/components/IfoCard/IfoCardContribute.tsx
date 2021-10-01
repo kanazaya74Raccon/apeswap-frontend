@@ -15,6 +15,7 @@ import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
+import { useMulticallAddress } from 'hooks/useAddress'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -153,6 +154,8 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
   const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
+  const multicallAddress = useMulticallAddress()
+
 
   useEffect(() => {
     const fetch = async () => {
@@ -208,7 +211,7 @@ const IfoCardContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallAddress, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -219,7 +222,7 @@ const IfoCardContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh])
+  }, [account, contract, address, pendingTx, slowRefresh, multicallAddress])
 
   if (allowance === null) {
     return null

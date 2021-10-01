@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fetchAllAuctions } from './fetchAuction'
+import { useFetchAllAuctions } from './hooks'
 import { AuctionsOverall, AuctionsState } from '../types'
 
 const initialState: AuctionsState = {
@@ -34,7 +34,7 @@ export const { auctionsFetchStart, auctionsFetchSucceeded, auctionsFetchFailed }
 export const fetchAuctions = () => async (dispatch) => {
   try {
     dispatch(auctionsFetchStart())
-    const auctions = await fetchAllAuctions()
+    const auctions = await useFetchAllAuctions()
     dispatch(auctionsFetchSucceeded(auctions))
   } catch (error) {
     dispatch(auctionsFetchFailed())

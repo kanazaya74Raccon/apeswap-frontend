@@ -6,16 +6,27 @@ import useAuth from 'hooks/useAuth'
 
 import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
-import { usePriceBananaBusd, useProfile } from 'state/hooks'
-import config from './config'
+import { useProfile, useTokenPrices } from 'state/hooks'
+import bscConfig from './chains/bscConfig'
+import maticConfig from './chains/maticConfig'
 
 const Menu = (props) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { login, logout } = useAuth()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const bananaPriceUsd = usePriceBananaBusd()
+  const { tokenPrices } = useTokenPrices()
+  const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
+  const currentMenu = () => {
+    if (chainId === 56) {
+      return bscConfig
+    }
+    if (chainId === 137) {
+      return maticConfig
+    }
+    return bscConfig
+  }
 
   return (
     <UikitMenu
@@ -26,8 +37,8 @@ const Menu = (props) => {
       toggleTheme={toggleTheme}
       currentLang={selectedLanguage && selectedLanguage.code}
       setLang={setSelectedLanguage}
-      cakePriceUsd={bananaPriceUsd.toNumber()}
-      links={config}
+      cakePriceUsd={bananaPriceUsd}
+      links={currentMenu()}
       profile={{
         image: profile ? profile?.rarestNft.image : null,
         noProfileLink: '/nft',

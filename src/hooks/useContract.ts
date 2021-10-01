@@ -1,21 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { Contract, ContractOptions } from 'web3-eth-contract'
+import { useWeb3React } from '@web3-react/core'
 import useWeb3 from 'hooks/useWeb3'
-import {
-  getMasterChefAddress,
-  getBananaAddress,
-  getLotteryAddress,
-  getLotteryTicketAddress,
-  getRabbitMintingFarmAddress,
-  getBananaProfileAddress,
-  getGoldenBananaAddress,
-  getTreasuryAddress,
-  getNonFungibleApesAddress,
-  getAuctionAddress,
-  getApePriceGetterAddress,
-} from 'utils/addressHelpers'
-import { poolsConfig } from 'config/constants'
+import { CHAIN_ID, poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
 import erc20 from 'config/abi/erc20.json'
@@ -30,6 +18,19 @@ import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
+import {
+  useApePriceGetterAddress,
+  useAuctionAddress,
+  useBananaAddress,
+  useBananaProfileAddress,
+  useGoldenBananaAddress,
+  useLotteryAddress,
+  useLotteryTicketAddress,
+  useMasterChefAddress,
+  useNonFungibleApesAddress,
+  useRabbitMintingFarmAddress,
+  useTreasuryAddress,
+} from './useAddress'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -79,63 +80,63 @@ export const useERC20 = (address: string) => {
 }
 
 export const useBanana = () => {
-  return useERC20(getBananaAddress())
+  return useERC20(useBananaAddress())
 }
 
 export const useGoldenBanana = () => {
-  return useERC20(getGoldenBananaAddress())
+  return useERC20(useGoldenBananaAddress())
 }
 
 export const useTreasury = () => {
   const treasury = treasuryAbi as unknown as AbiItem
-  return useContract(treasury, getTreasuryAddress())
+  return useContract(treasury, useTreasuryAddress())
 }
 
 export const useRabbitMintingFarm = () => {
   const rabbitMintingFarmAbi = rabbitmintingfarm as unknown as AbiItem
-  return useContract(rabbitMintingFarmAbi, getRabbitMintingFarmAddress())
+  return useContract(rabbitMintingFarmAbi, useRabbitMintingFarmAddress())
 }
 
 export const useNonFungibleApes = () => {
   const nonFungibleApesAbi = nonFungibleApes as unknown as AbiItem
-  return useContract(nonFungibleApesAbi, getNonFungibleApesAddress())
+  return useContract(nonFungibleApesAbi, useNonFungibleApesAddress())
 }
 
 export const useProfile = () => {
   const profileABIAbi = profile as unknown as AbiItem
-  return useContract(profileABIAbi, getBananaProfileAddress())
+  return useContract(profileABIAbi, useBananaProfileAddress())
 }
 
 export const useLottery = () => {
   const abi = lottery as unknown as AbiItem
-  return useContract(abi, getLotteryAddress())
+  return useContract(abi, useLotteryAddress())
 }
 
 export const useLotteryTicket = () => {
   const abi = lotteryTicket as unknown as AbiItem
-  return useContract(abi, getLotteryTicketAddress())
+  return useContract(abi, useLotteryTicketAddress())
 }
 
 export const useMasterchef = () => {
   const abi = masterChef as unknown as AbiItem
-  return useContract(abi, getMasterChefAddress())
+  return useContract(abi, useMasterChefAddress())
 }
 
 export const useSousChef = (id) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
   const abi = rawAbi as unknown as AbiItem
-  return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
+  return useContract(abi, config.contractAddress[parseInt(process.env.REACT_APP_CHAIN_ID)])
 }
 
 export const useAuction = () => {
   const abi = auction as unknown as AbiItem
-  return useContract(abi, getAuctionAddress())
+  return useContract(abi, useAuctionAddress())
 }
 
 export const useApePriceGetter = () => {
   const abi = apePriceGetter as unknown as AbiItem
-  return useContract(abi, getApePriceGetterAddress())
+  return useContract(abi, useApePriceGetterAddress())
 }
 
 export default useContract

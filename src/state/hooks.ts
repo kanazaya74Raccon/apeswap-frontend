@@ -8,7 +8,7 @@ import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
+import { useApePriceGetterAddress, useBananaAddress, useMulticallAddress, useTreasuryAddress } from 'hooks/useAddress'
 import useBlock from 'hooks/useBlock'
 import {
   fetchFarmsPublicDataAsync,
@@ -25,7 +25,6 @@ import {
   ProfileState,
   StatsState,
   StatsOverallState,
-  TeamsState,
   FarmOverall,
   AuctionsState,
   TokenPricesState,
@@ -33,7 +32,6 @@ import {
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
-import { fetchTeam, fetchTeams } from './teams'
 import { fetchAuctions } from './auction'
 import { fetchTokenPrices } from './tokenPrices'
 
@@ -112,7 +110,7 @@ export const useTvl = (): BigNumber => {
   const pools = useAllPools()
   const bananaPriceBUSD = usePriceBananaBusd()
   const liquidity = useLiquidityData()
-  const bananaAtTreasoury = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
+  const bananaAtTreasoury = useAccountTokenBalance(useTreasuryAddress(), useBananaAddress())
   let valueLocked = new BigNumber(0)
 
   valueLocked = valueLocked.plus(new BigNumber(bananaAtTreasoury).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD))
@@ -223,7 +221,7 @@ export const useFetchStats = () => {
   const farms = useFarms()
   const pools = usePools(account)
   const curBlock = useBlock()
-  const bananaBalance = useTokenBalance(getBananaAddress())
+  const bananaBalance = useTokenBalance(useBananaAddress())
 
   useEffect(() => {
     if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
@@ -254,9 +252,15 @@ export const useAuctions = () => {
 export const useFetchTokenPrices = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
+  const { chainId } = useWeb3React()
+  const apePriceGetterAddress = useApePriceGetterAddress()
+  const multicallAddress = useMulticallAddress()
   useEffect(() => {
-    dispatch(fetchTokenPrices())
-  }, [dispatch, slowRefresh])
+    if (chainId) {
+      console.log("here")
+      dispatch(fetchTokenPrices(chainId,multicallAddress ,apePriceGetterAddress))
+    }
+  }, [dispatch, slowRefresh, chainId, multicallAddress, apePriceGetterAddress])
 }
 
 export const useTokenPrices = () => {
@@ -298,28 +302,4 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
-}
-
-// Teams
-
-export const useTeam = (id: number) => {
-  const team: Team = useSelector((state: State) => state.teams.data[id])
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchTeam(id))
-  }, [id, dispatch])
-
-  return team
-}
-
-export const useTeams = () => {
-  const { isInitialized, isLoading, data }: TeamsState = useSelector((state: State) => state.teams)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchTeams())
-  }, [dispatch])
-
-  return { teams: data, isInitialized, isLoading }
 }
