@@ -257,8 +257,8 @@ export const useFetchTokenPrices = () => {
   const multicallAddress = useMulticallAddress()
   useEffect(() => {
     if (chainId) {
-      console.log("here")
-      dispatch(fetchTokenPrices(chainId,multicallAddress ,apePriceGetterAddress))
+      console.log('here')
+      dispatch(fetchTokenPrices(chainId, multicallAddress, apePriceGetterAddress))
     }
   }, [dispatch, slowRefresh, chainId, multicallAddress, apePriceGetterAddress])
 }

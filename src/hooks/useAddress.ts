@@ -9,7 +9,7 @@ const useAddress = (curAddresses: Address) => {
   useEffect(() => {
     setAddress(curAddresses[chainId])
   }, [chainId, curAddresses])
-//   console.log(`About to return dis bitch ${address}`)
+  //   console.log(`About to return dis bitch ${address}`)
   return address
 }
 

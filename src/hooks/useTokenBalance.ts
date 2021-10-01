@@ -7,7 +7,6 @@ import { getTokenBalance } from 'utils/erc20'
 import useRefresh from './useRefresh'
 import { useBananaAddress } from './useAddress'
 
-
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, library } = useWeb3React()

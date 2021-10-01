@@ -3,7 +3,6 @@ import { useEffect, useReducer } from 'react'
 import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNonFungibleApes } from './useContract'
 
-
 export type NftMap = {
   [key: number]: {
     tokenUri: string

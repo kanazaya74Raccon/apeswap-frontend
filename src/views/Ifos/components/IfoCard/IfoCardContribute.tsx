@@ -156,7 +156,6 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
   const multicallAddress = useMulticallAddress()
 
-
   useEffect(() => {
     const fetch = async () => {
       const calls = [
