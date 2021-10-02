@@ -476,6 +476,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  aur: {
+    symbol: 'AUR',
+    address: {
+      56: '0x1dEb45C74E0192D9272ADF54e9a7519C48C2bd81',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
