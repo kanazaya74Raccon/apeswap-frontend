@@ -2,8 +2,10 @@
 # yarn lockfile v1
 
 
-"@apeswapfinance/eslint-config-apeswap@../@apeswapfinance/eslint-config-apeswap":
+"@apeswapfinance/eslint-config-apeswap@1.0.0":
   version "1.0.0"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/eslint-config-apeswap/1.0.0/cf301984e97808b8032e2cd4118a181b03c1559a5c7c14dd9bff955e4f7c2edc#d095386c092f2d98964a05e7b8dd90bb1909e47a"
+  integrity sha512-mW1DhwVSxMi6AOOjyN3c0l+GId0curMAn0ui/3aKnk+kF+ffWlPCJEY4sqwU2hZbznrSvHlB0aBW+aplfDILtw==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.7.0"
     "@typescript-eslint/parser" "^4.7.0"
@@ -15,21 +17,10 @@
     eslint-plugin-react-hooks "^4.0.0"
     typescript "4.4.3"
 
-"@apeswapfinance/eslint-config-apeswap@../@apeswapfinance/eslint-config-apeswap/":
-  version "1.0.0"
-  dependencies:
-    "@typescript-eslint/eslint-plugin" "^4.7.0"
-    "@typescript-eslint/parser" "^4.7.0"
-    eslint-config-airbnb "^18.2.1"
-    eslint-config-prettier "^6.15.0"
-    eslint-plugin-import "^2.22.1"
-    eslint-plugin-jsx-a11y "^6.4.1"
-    eslint-plugin-react "^7.21.5"
-    eslint-plugin-react-hooks "^4.0.0"
-    typescript "4.4.3"
-
-"@apeswapfinance/uikit@../@apeswapfinance/uikit":
-  version "0.10.3-7.7"
+"@apeswapfinance/uikit@0.10.4-1.2":
+  version "0.10.4-1.2"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.4-1.2/1aaff6f3c2ec887abdef63d8487df00f4d950570ad418f19e9a185354273666e#7d253be74f5befc7c2c9eea555af3278b2cfa58c"
+  integrity sha512-xo5In+lgFT9M7b0wDvvTcUzWw+B3FPrZrAbOuVFBsKBcyWhPsS5AWYYOXHf26Jof7dzltbnDrnrciTVVo4nBdg==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
