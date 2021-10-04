@@ -483,6 +483,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  sefi: {
+    symbol: 'SEFI',
+    address: {
+      56: '0xcd95350c69F229E72e57A44e8C05C436E65E4bEb',
+    },
+    decimals: 6,
+  },
 }
 
 export default tokens
