@@ -2251,7 +2251,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://scrt.network/',
     harvest: true,
-    tokenPerBlock: `885127`,
+    tokenPerBlock: `0.885127`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
