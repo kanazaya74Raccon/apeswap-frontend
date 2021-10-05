@@ -3,6 +3,8 @@ import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
+import track from 'utils/track'
+import { CHAIN_ID } from 'config/constants'
 import { useMasterchef, useSousChef } from './useContract'
 
 const useStake = (pid: number) => {
@@ -14,6 +16,16 @@ const useStake = (pid: number) => {
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
       dispatch(fetchFarmUserDataAsync(account))
+      track({
+        event: 'farm',
+        chain: CHAIN_ID,
+        data: {
+          token: txHash.to,
+          cat: 'stake',
+          amount,
+          pid,
+        },
+      })
       console.info(txHash)
     },
     [account, dispatch, masterChefContract, pid],
@@ -37,6 +49,17 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
       } else {
         await sousStake(sousChefContract, amount, account)
       }
+
+      track({
+        event: 'pool',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'stake',
+          amount,
+          pid: sousId,
+        },
+      })
+
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
     },

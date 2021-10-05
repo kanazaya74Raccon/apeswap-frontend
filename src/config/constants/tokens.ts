@@ -114,6 +114,7 @@ const tokens = {
   jdi: {
     symbol: 'JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x0491648c910ad2c1afaab733faf71d30313df7fc',
       137: '0x340fe1d898eccaad394e2ba0fc1f93d27c7b717a',
     },
@@ -143,6 +144,7 @@ const tokens = {
   bft: {
     symbol: 'BFT',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8',
     },
     decimals: 18,
@@ -334,6 +336,7 @@ const tokens = {
   bnbjdi: {
     symbol: 'BNB-JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
     },
     decimals: 18,
@@ -342,6 +345,7 @@ const tokens = {
   obie: {
     symbol: 'OBIE',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
     },
     decimals: 18,
@@ -422,6 +426,69 @@ const tokens = {
       56: '0x8523518001ad5d24b2a04e8729743c0643a316c0',
     },
     decimals: 18,
+  },
+  exp: {
+    symbol: 'EXP',
+    address: {
+      56: '0x639d4C62F58a4048AD0F69B8CE675dB1A3e8e00e',
+    },
+    decimals: 18,
+  },
+  cfi: {
+    symbol: 'CFi',
+    address: {
+      56: '0x6a545f9c64d8f7b957d8d2e6410b52095a9e6c29',
+    },
+    decimals: 18,
+  },
+  sx: {
+    symbol: 'sx',
+    address: {
+      56: '0x6f26e8a40c8daae8c4358ce557c10226527cebce',
+    },
+    decimals: 18,
+  },
+  rocks: {
+    symbol: 'ROCKS',
+    address: {
+      56: '0xA01000C52b234a92563BA61e5649b7C76E1ba0f3',
+    },
+    decimals: 18,
+  },
+  gummy: {
+    symbol: 'GUMMY',
+    address: {
+      56: '0x10d3e0c38c286a04aee44d9b01cac916b56ee05a',
+    },
+    decimals: 18,
+  },
+  dcb: {
+    symbol: 'DCB',
+    address: {
+      56: '0xEAc9873291dDAcA754EA5642114151f3035c67A2',
+    },
+    decimals: 18,
+  },
+  nfty: {
+    symbol: 'NFTY',
+    address: {
+      56: '0x5774b2fc3e91af89f89141eacf76545e74265982',
+    },
+    decimals: 18,
+  },
+  aur: {
+    symbol: 'AUR',
+    address: {
+      56: '0x1dEb45C74E0192D9272ADF54e9a7519C48C2bd81',
+    },
+    decimals: 18,
+  },
+  sefi: {
+    symbol: 'SEFI',
+    address: {
+      56: '0xcd95350c69F229E72e57A44e8C05C436E65E4bEb',
+    },
+    decimals: 6,
   },
 }
 
