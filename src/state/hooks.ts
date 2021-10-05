@@ -4,11 +4,20 @@ import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
-import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { useApePriceGetterAddress, useBananaAddress, useMulticallAddress, useTreasuryAddress } from 'hooks/useAddress'
+import { CHAIN_ID } from 'config/constants/chains'
+import {
+  useApePriceGetterAddress,
+  useAuctionAddress,
+  useBananaAddress,
+  useMasterChefAddress,
+  useMulticallAddress,
+  useNativeWrapCurrencyAddress,
+  useTreasuryAddress,
+} from 'hooks/useAddress'
+import { useMasterchef, useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
 import {
   fetchFarmsPublicDataAsync,
@@ -34,6 +43,7 @@ import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchTokenPrices } from './tokenPrices'
+import { fetchFarmUserDataAsync } from './farms'
 
 const ZERO = new BigNumber(0)
 
@@ -41,15 +51,31 @@ export const useFetchPublicData = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   const { tokenPrices } = useTokenPrices()
+  const { chainId } = useWeb3React()
+  const masterChefAddress = useMasterChefAddress()
+  const nativeWrappedAddress = useNativeWrapCurrencyAddress()
+  const multicallAddress = useMulticallAddress()
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync())
-    dispatch(fetchPoolsPublicDataAsync(tokenPrices))
-  }, [dispatch, slowRefresh, tokenPrices])
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchFarmsPublicDataAsync(multicallAddress, masterChefAddress, chainId))
+      dispatch(fetchPoolsPublicDataAsync(nativeWrappedAddress, masterChefAddress, chainId, tokenPrices))
+    }
+  }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallAddress, nativeWrappedAddress])
 }
 
 // Farms
 
-export const useFarms = (): Farm[] => {
+export const useFarms = (account): Farm[] => {
+  const { slowRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  const { chainId } = useWeb3React()
+  const masterChefAddress = useMasterChefAddress()
+  const multicallAddress = useMulticallAddress()
+  useEffect(() => {
+    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
+      dispatch(fetchFarmUserDataAsync(multicallAddress, masterChefAddress, chainId, account))
+    }
+  }, [account, dispatch, slowRefresh, chainId, masterChefAddress, multicallAddress])
   const farms = useSelector((state: State) => state.farms.data)
   return farms
 }
@@ -80,11 +106,14 @@ export const useFarmUser = (pid) => {
 export const usePools = (account): Pool[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
+  const { chainId } = useWeb3React()
+  const masterChefContract = useMasterchef()
+  const multicallAddress = useMulticallAddress()
   useEffect(() => {
-    if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
+    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
+      dispatch(fetchPoolsUserDataAsync(multicallAddress, masterChefContract, chainId, account))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, dispatch, fastRefresh, chainId, masterChefContract, multicallAddress])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -199,11 +228,15 @@ export const useToast = () => {
 export const useFetchProfile = () => {
   const { account } = useWeb3React()
   const dispatch = useDispatch()
+  const { chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
+  const nfaContract = useNonFungibleApes()
 
   useEffect(() => {
-    dispatch(fetchProfile(account))
-  }, [account, dispatch, fastRefresh])
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchProfile(account, nfaContract))
+    }
+  }, [account, dispatch, fastRefresh, nfaContract, chainId])
 }
 
 export const useProfile = () => {
@@ -218,7 +251,7 @@ export const useFetchStats = () => {
   const { statsOverall } = useStatsOverall()
   const { slowRefresh } = useRefresh()
   const [slow, setSlow] = useState(-1)
-  const farms = useFarms()
+  const farms = useFarms(account)
   const pools = usePools(account)
   const curBlock = useBlock()
   const bananaBalance = useTokenBalance(useBananaAddress())
@@ -239,9 +272,14 @@ export const useStats = () => {
 export const useFetchAuctions = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
+  const { chainId } = useWeb3React()
+  const auctionAddress = useAuctionAddress()
+  const multicallAddress = useMulticallAddress()
   useEffect(() => {
-    dispatch(fetchAuctions())
-  }, [dispatch, fastRefresh])
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchAuctions(auctionAddress, multicallAddress))
+    }
+  }, [dispatch, fastRefresh, auctionAddress, multicallAddress, chainId])
 }
 
 export const useAuctions = () => {
@@ -257,7 +295,6 @@ export const useFetchTokenPrices = () => {
   const multicallAddress = useMulticallAddress()
   useEffect(() => {
     if (chainId) {
-      console.log('here')
       dispatch(fetchTokenPrices(chainId, multicallAddress, apePriceGetterAddress))
     }
   }, [dispatch, slowRefresh, chainId, multicallAddress, apePriceGetterAddress])

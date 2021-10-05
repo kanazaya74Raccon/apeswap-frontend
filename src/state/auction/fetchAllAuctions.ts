@@ -4,30 +4,27 @@ import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import multicall from 'utils/multicall'
-import { useAuctionAddress, useMulticallAddress } from 'hooks/useAddress'
 
-export const useFetchAuctionDetails = async () => {
-  const auctionContract = useAuctionAddress()
-  const multicallAddress = useMulticallAddress()
+export const fetchAuctionDetails = async (auctionContractAddress: string, multicallAddress: string) => {
   const call = [
     {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'activeAuctionNodeId',
     },
     {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'minIncrementAmount',
     },
     {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'minIncrementPercentage',
     },
     {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'auctionFeePercent',
     },
     {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'lastNodeId',
     },
   ]
@@ -35,14 +32,15 @@ export const useFetchAuctionDetails = async () => {
   return auctionDetails
 }
 
-export const useFetchAllAuctions = async (): Promise<AuctionsOverall> => {
-  const multicallAddress = useMulticallAddress()
-  const auctionContract = useAuctionAddress()
+export const fetchAllAuctions = async (
+  auctionContractAddress: string,
+  multicallAddress: string,
+): Promise<AuctionsOverall> => {
   const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
-    await useFetchAuctionDetails()
+    await fetchAuctionDetails(auctionContractAddress, multicallAddress)
   const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {
     return {
-      address: auctionContract,
+      address: auctionContractAddress,
       name: 'getAuctionWithPosition',
       params: [i + 1],
     }

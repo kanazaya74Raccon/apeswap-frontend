@@ -403,10 +403,10 @@ const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
-  const farmsLP = useFarms()
   const bananaPrice = usePriceBananaBusd()
   const bnbPrice = usePriceBnbBusd()
   const { account } = useWeb3React()
+  const farmsLP = useFarms(account)
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
@@ -425,12 +425,6 @@ const Farms: React.FC = () => {
       }
     }
   }, [size])
-
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, fastRefresh])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')

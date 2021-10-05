@@ -1,30 +1,34 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, soushHarvestBnb, harvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
+import { fetchFarmUserEarnings } from 'state/farms/fetchFarmUser'
 import { useMasterchef, useSousChef } from './useContract'
+import { useMasterChefAddress, useMulticallAddress } from './useAddress'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
+  const masterChefAddress = useMasterChefAddress()
+  const multicallAddress = useMulticallAddress()
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChefContract, farmPid, account)
     track({
       event: 'farm',
-      chain: CHAIN_ID,
+      chain: chainId,
       data: {
         cat: 'harvest',
         pid: farmPid,
       },
     })
-    dispatch(fetchFarmUserDataAsync(account))
+    dispatch(fetchFarmUserEarnings(multicallAddress, masterChefAddress, account))
     return txHash
-  }, [account, dispatch, farmPid, masterChefContract])
+  }, [account, dispatch, farmPid, masterChefContract, multicallAddress, masterChefAddress, chainId])
 
   return { onReward: handleHarvest }
 }
@@ -46,9 +50,10 @@ export const useAllHarvest = (farmPids: number[]) => {
 
 export const useSousHarvest = (sousId, isUsingBnb = false) => {
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const masterChefContract = useMasterchef()
+  const multicallAddress = useMulticallAddress()
 
   const handleHarvest = useCallback(async () => {
     if (sousId === 0) {
@@ -68,9 +73,9 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
       },
     })
 
-    dispatch(updateUserPendingReward(sousId, account))
-    dispatch(updateUserBalance(sousId, account))
-  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId])
+    dispatch(updateUserPendingReward(multicallAddress, chainId, masterChefContract, sousId, account))
+    dispatch(updateUserBalance(multicallAddress, chainId, sousId, account))
+  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallAddress, chainId])
 
   return { onReward: handleHarvest }
 }

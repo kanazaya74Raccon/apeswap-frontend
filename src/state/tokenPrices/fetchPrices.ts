@@ -19,7 +19,6 @@ const fetchPrices = async (chainId, multicallAddress, apePriceGetterAddress) => 
       params: [tokens[token].address[chainId], tokens[token].decimals],
     }
   })
-  console.log(calls)
   const tokenPrices = await multicall(multicallAddress, apePriceGetterABI, calls)
   // Banana should always be the first token
   const mappedTokenPrices = Object.keys(tokens).map((token, i) => {

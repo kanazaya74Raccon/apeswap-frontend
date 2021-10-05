@@ -1,24 +1,28 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
+import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
+import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
 import { useMasterchef, useSousChef } from './useContract'
+import { useMasterChefAddress, useMulticallAddress } from './useAddress'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
+  const masterChefAddress = useMasterChefAddress()
+  const multicallAddress = useMulticallAddress()
 
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserStakedBalances(multicallAddress, masterChefAddress, account))
       track({
         event: 'farm',
-        chain: CHAIN_ID,
+        chain: chainId,
         data: {
           token: txHash.to,
           cat: 'stake',
@@ -28,7 +32,7 @@ const useStake = (pid: number) => {
       })
       console.info(txHash)
     },
-    [account, dispatch, masterChefContract, pid],
+    [account, dispatch, masterChefContract, pid, chainId, masterChefAddress, multicallAddress],
   )
 
   return { onStake: handleStake }
@@ -36,9 +40,10 @@ const useStake = (pid: number) => {
 
 export const useSousStake = (sousId, isUsingBnb = false) => {
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
+  const multicallAddress = useMulticallAddress()
 
   const handleStake = useCallback(
     async (amount: string) => {
@@ -60,10 +65,10 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
         },
       })
 
-      dispatch(updateUserStakedBalance(sousId, account))
-      dispatch(updateUserBalance(sousId, account))
+      dispatch(updateUserStakedBalance(multicallAddress, chainId, masterChefContract, sousId, account))
+      dispatch(updateUserBalance(multicallAddress, chainId, sousId, account))
     },
-    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallAddress, chainId],
   )
 
   return { onStake: handleStake }

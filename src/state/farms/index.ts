@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import { farmsConfig } from 'config/constants'
-import fetchFarms from './hooks/fetchFarms'
+import fetchFarms from './fetchFarms'
 import {
-  useFetchFarmUserEarnings,
-  useFetchFarmUserAllowances,
-  useFetchFarmUserTokenBalances,
-  useFetchFarmUserStakedBalances,
-} from './hooks/fetchFarmUser'
+  fetchFarmUserEarnings,
+  fetchFarmUserAllowances,
+  fetchFarmUserTokenBalances,
+  fetchFarmUserStakedBalances,
+} from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
 
 const initialState: FarmsState = { data: [...farmsConfig] }
@@ -37,27 +37,29 @@ export const farmsSlice = createSlice({
 export const { setFarmsPublicData, setFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync = () => async (dispatch) => {
-  const farms = await fetchFarms()
-  dispatch(setFarmsPublicData(farms))
-}
-export const fetchFarmUserDataAsync = (account) => async (dispatch) => {
-  const userFarmAllowances = await useFetchFarmUserAllowances(account)
-  const userFarmTokenBalances = await useFetchFarmUserTokenBalances(account)
-  const userStakedBalances = await useFetchFarmUserStakedBalances(account)
-  const userFarmEarnings = await useFetchFarmUserEarnings(account)
+export const fetchFarmsPublicDataAsync =
+  (multicallAddress: string, masterChefAddress: string, chainId: number) => async (dispatch) => {
+    const farms = await fetchFarms(multicallAddress, masterChefAddress, chainId)
+    dispatch(setFarmsPublicData(farms))
+  }
+export const fetchFarmUserDataAsync =
+  (multicallAddress: string, masterChefAddress: string, chainId: number, account: string) => async (dispatch) => {
+    const userFarmAllowances = await fetchFarmUserAllowances(multicallAddress, masterChefAddress, chainId, account)
+    const userFarmTokenBalances = await fetchFarmUserTokenBalances(multicallAddress, chainId, account)
+    const userStakedBalances = await fetchFarmUserStakedBalances(multicallAddress, masterChefAddress, account)
+    const userFarmEarnings = await fetchFarmUserEarnings(multicallAddress, masterChefAddress, account)
 
-  const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
-    return {
-      index,
-      allowance: userFarmAllowances[index],
-      tokenBalance: userFarmTokenBalances[index],
-      stakedBalance: userStakedBalances[index],
-      earnings: userFarmEarnings[index],
-    }
-  })
+    const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
+      return {
+        index,
+        allowance: userFarmAllowances[index],
+        tokenBalance: userFarmTokenBalances[index],
+        stakedBalance: userStakedBalances[index],
+        earnings: userFarmEarnings[index],
+      }
+    })
 
-  dispatch(setFarmUserData({ arrayOfUserDataObjects }))
-}
+    dispatch(setFarmUserData({ arrayOfUserDataObjects }))
+  }
 
 export default farmsSlice.reducer

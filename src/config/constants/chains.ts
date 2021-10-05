@@ -30,8 +30,8 @@ export const NETWORK_ICON = {
 export const NETWORK_RPC = {
   [CHAIN_ID.BSC]: [
     'https://bsc-dataseed.binance.org/',
-    'https://bsc-dataseed1.defibit.io/',
-    'https://bsc-dataseed1.ninicoin.io/',
+    'https://bsc-dataseed.binance.org/',
+    'https://bsc-dataseed.binance.org/',
   ],
   [CHAIN_ID.BSC_TESTNET]: [
     'https://data-seed-prebsc-1-s1.binance.org:8545/',
@@ -57,4 +57,29 @@ export const BLOCK_EXPLORER = {
   [CHAIN_ID.BSC_TESTNET]: 'https://testnet.bscscan.com/',
   [CHAIN_ID.MATIC]: 'https://polygonscan.com',
   [CHAIN_ID.MATIC_TESTNET]: 'https://mumbai.polygonscan.com/',
+}
+
+export const CHAIN_PARAMS = {
+  BSC: {
+    chainId: '0x38',
+    chainName: 'Binance Smart Chain',
+    nativeCurrency: {
+      name: 'bnb',
+      symbol: 'BNB',
+      decimals: 18,
+    },
+    rpcUrls: NETWORK_RPC[CHAIN_ID.BSC],
+    blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.BSC]],
+  },
+  MATIC: {
+    chainId: '0x89',
+    chainName: 'Matic',
+    nativeCurrency: {
+      name: 'Matic',
+      symbol: 'MATIC',
+      decimals: 18,
+    },
+    rpcUrls: NETWORK_RPC[CHAIN_ID.MATIC],
+    blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.MATIC]],
+  },
 }

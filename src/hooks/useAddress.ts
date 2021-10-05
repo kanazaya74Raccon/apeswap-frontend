@@ -5,11 +5,11 @@ import { Address } from 'config/constants/types'
 
 const useAddress = (curAddresses: Address) => {
   const { chainId } = useWeb3React()
-  const [address, setAddress] = useState(curAddresses[chainId])
+  const chainIdLoad = chainId || 56
+  const [address, setAddress] = useState(curAddresses[chainIdLoad])
   useEffect(() => {
-    setAddress(curAddresses[chainId])
-  }, [chainId, curAddresses])
-  //   console.log(`About to return dis bitch ${address}`)
+    setAddress(curAddresses[chainIdLoad])
+  }, [chainIdLoad, curAddresses])
   return address
 }
 

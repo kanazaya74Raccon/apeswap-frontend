@@ -1,28 +1,23 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import { useMasterChefAddress, useMulticallAddress } from 'hooks/useAddress'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
-const useFetchFarms = async () => {
-  const multicallAddress = useMulticallAddress()
-  const masterChefAddress = useMasterChefAddress()
+const fetchFarms = async (multicallAddress: string, masterChefAddress: string, chainId: number) => {
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
-      const lpAdress = farmConfig.lpAddresses[CHAIN_ID]
+      const lpAdress = farmConfig.lpAddresses[chainId]
       const calls = [
         // Balance of token in the LP contract
         {
-          address: farmConfig.tokenAddresses[CHAIN_ID],
+          address: farmConfig.tokenAddresses[chainId],
           name: 'balanceOf',
           params: [lpAdress],
         },
         // Balance of quote token on LP contract
         {
-          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
+          address: farmConfig.quoteTokenAdresses[chainId],
           name: 'balanceOf',
           params: [lpAdress],
         },
@@ -39,12 +34,12 @@ const useFetchFarms = async () => {
         },
         // Token decimals
         {
-          address: farmConfig.tokenAddresses[CHAIN_ID],
+          address: farmConfig.tokenAddresses[chainId],
           name: 'decimals',
         },
         // Quote token decimals
         {
-          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
+          address: farmConfig.quoteTokenAdresses[chainId],
           name: 'decimals',
         },
       ]
@@ -108,4 +103,4 @@ const useFetchFarms = async () => {
   return data
 }
 
-export default useFetchFarms
+export default fetchFarms

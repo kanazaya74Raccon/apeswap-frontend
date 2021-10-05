@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
-import { useFetchPoolsBlockLimits, useFetchPoolsTotalStatking, useFetchPoolTokenStatsAndApr } from './fetchPools'
+import { fetchPoolsBlockLimits, fetchPoolsTotalStaking, fetchPoolTokenStatsAndApr } from './fetchPools'
 import {
-  useFetchPoolsAllowance,
-  useFetchUserBalances,
-  useFetchUserStakeBalances,
-  useFetchUserPendingRewards,
+  fetchPoolsAllowance,
+  fetchUserBalances,
+  fetchUserStakeBalances,
+  fetchUserPendingRewards,
 } from './fetchPoolsUser'
 import { PoolsState, Pool, TokenPrices } from '../types'
 
@@ -42,60 +42,69 @@ export const PoolsSlice = createSlice({
 export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = PoolsSlice.actions
 
 // Thunks
-export const fetchPoolsPublicDataAsync = (tokenPrices: TokenPrices[]) => async (dispatch) => {
-  const blockLimits = await useFetchPoolsBlockLimits()
-  const totalStakings = await useFetchPoolsTotalStatking()
-  const tokenStatsAndAprs = await useFetchPoolTokenStatsAndApr(tokenPrices, totalStakings)
-  const liveData = await Promise.all(
-    poolsConfig.map(async (pool) => {
-      const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
-      const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-      const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === pool.sousId)
-      // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
-      return {
-        ...blockLimit,
-        ...totalStaking,
-        ...tokenStatsAndApr,
-      }
-    }),
-  )
-  dispatch(setPoolsPublicData(liveData))
-}
+export const fetchPoolsPublicDataAsync =
+  (multicallAddress: string, nativeWrappedAddress: string, chainId: number, tokenPrices: TokenPrices[]) =>
+  async (dispatch) => {
+    const blockLimits = await fetchPoolsBlockLimits(multicallAddress, chainId)
+    const totalStakings = await fetchPoolsTotalStaking(multicallAddress, nativeWrappedAddress, chainId)
+    const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings, chainId)
+    const liveData = await Promise.all(
+      poolsConfig.map(async (pool) => {
+        const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+        const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+        const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === pool.sousId)
+        // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
+        return {
+          ...blockLimit,
+          ...totalStaking,
+          ...tokenStatsAndApr,
+        }
+      }),
+    )
+    dispatch(setPoolsPublicData(liveData))
+  }
 
-export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
-  const allowances = await useFetchPoolsAllowance(account)
-  const stakingTokenBalances = await useFetchUserBalances(account)
-  const stakedBalances = await useFetchUserStakeBalances(account)
-  const pendingRewards = await useFetchUserPendingRewards(account)
+export const fetchPoolsUserDataAsync =
+  (multicallAddress: string, masterChefContract, chainId: number, account) => async (dispatch) => {
+    const allowances = await fetchPoolsAllowance(multicallAddress, chainId, account)
+    const stakingTokenBalances = await fetchUserBalances(multicallAddress, chainId, account)
+    const stakedBalances = await fetchUserStakeBalances(multicallAddress, masterChefContract, chainId, account)
+    const pendingRewards = await fetchUserPendingRewards(multicallAddress, masterChefContract, chainId, account)
 
-  const userData = poolsConfig.map((pool) => ({
-    sousId: pool.sousId,
-    allowance: allowances[pool.sousId],
-    stakingTokenBalance: stakingTokenBalances[pool.sousId],
-    stakedBalance: stakedBalances[pool.sousId],
-    pendingReward: pendingRewards[pool.sousId],
-  }))
-  dispatch(setPoolsUserData(userData))
-}
+    const userData = poolsConfig.map((pool) => ({
+      sousId: pool.sousId,
+      allowance: allowances[pool.sousId],
+      stakingTokenBalance: stakingTokenBalances[pool.sousId],
+      stakedBalance: stakedBalances[pool.sousId],
+      pendingReward: pendingRewards[pool.sousId],
+    }))
+    dispatch(setPoolsUserData(userData))
+  }
 
-export const updateUserAllowance = (sousId: string, account: string) => async (dispatch) => {
-  const allowances = await useFetchPoolsAllowance(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
-}
+export const updateUserAllowance =
+  (multicallAddress: string, chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const allowances = await fetchPoolsAllowance(multicallAddress, chainId, account)
+    dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+  }
 
-export const updateUserBalance = (sousId: string, account: string) => async (dispatch) => {
-  const tokenBalances = await useFetchUserBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
-}
+export const updateUserBalance =
+  (multicallAddress: string, chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const tokenBalances = await fetchUserBalances(multicallAddress, chainId, account)
+    dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+  }
 
-export const updateUserStakedBalance = (sousId: string, account: string) => async (dispatch) => {
-  const stakedBalances = await useFetchUserStakeBalances(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
-}
+export const updateUserStakedBalance =
+  (multicallAddress: string, chainId: number, masterChefContract, sousId: string, account: string) =>
+  async (dispatch) => {
+    const stakedBalances = await fetchUserStakeBalances(multicallAddress, masterChefContract, chainId, account)
+    dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
+  }
 
-export const updateUserPendingReward = (sousId: string, account: string) => async (dispatch) => {
-  const pendingRewards = await useFetchUserPendingRewards(account)
-  dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
-}
+export const updateUserPendingReward =
+  (multicallAddress: string, chainId: number, masterChefContract, sousId: string, account: string) =>
+  async (dispatch) => {
+    const pendingRewards = await fetchUserPendingRewards(multicallAddress, masterChefContract, chainId, account)
+    dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+  }
 
 export default PoolsSlice.reducer

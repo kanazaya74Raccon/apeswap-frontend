@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWeb3React } from '@web3-react/core'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
-import { CHAIN_ID } from 'config/constants/chains'
+import { CHAIN_ID, CHAIN_PARAMS } from 'config/constants/chains'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import {
@@ -22,16 +22,16 @@ import AdminPools from './views/AdminPools'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
-// const Home = lazy(() => import('./views/Home'))
-// const Farms = lazy(() => import('./views/Farms'))
-// const Pools = lazy(() => import('./views/Pools'))
-// const Ifos = lazy(() => import('./views/Ifos'))
-// const NotFound = lazy(() => import('./views/NotFound'))
+const Home = lazy(() => import('./views/Home'))
+const Farms = lazy(() => import('./views/Farms'))
+const Pools = lazy(() => import('./views/Pools'))
+const Ifos = lazy(() => import('./views/Ifos'))
+const NotFound = lazy(() => import('./views/NotFound'))
 const Nft = lazy(() => import('./views/Nft'))
-// const Nfa = lazy(() => import('./views/Nft/Nfa'))
-// const ApeZone = lazy(() => import('./views/ApeZone'))
-// const Stats = lazy(() => import('./views/Stats'))
-// const Auction = lazy(() => import('./views/Auction'))
+const Nfa = lazy(() => import('./views/Nft/Nfa'))
+const ApeZone = lazy(() => import('./views/ApeZone'))
+const Stats = lazy(() => import('./views/Stats'))
+const Auction = lazy(() => import('./views/Auction'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -56,28 +56,11 @@ const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
   const { account, chainId, library } = useWeb3React()
-
-  library?.send('wallet_addEthereumChain', [
-    {
-      chainId: '0x89',
-      chainName: 'Matic',
-      nativeCurrency: {
-        name: 'Matic',
-        symbol: 'MATIC',
-        decimals: 18,
-      },
-      rpcUrls: [
-        'https://rpc-mainnet.matic.quiknode.pro',
-        'https://rpc-mainnet.maticvigil.com',
-        'https://rpc-mainnet.matic.network',
-        'https://matic-mainnet.chainstacklabs.com',
-        'https://matic-mainnet-full-rpc.bwarelabs.com',
-        'https://matic-mainnet-archive-rpc.bwarelabs.com',
-      ],
-      blockExplorerUrls: ['https://polygonscan.com'],
-    },
-    account,
-  ])
+  // console.log(chainId === CHAIN_ID.MATIC ? CHAIN_PARAMS.MATIC : CHAIN_PARAMS.BSC)
+  // library?.send('wallet_addEthereumChain', [
+  //   CHAIN_PARAMS.BSC,
+  //   account,
+  // ])
 
   useEffect(() => {
     console.warn = () => null
@@ -89,11 +72,11 @@ const App: React.FC = () => {
 
   useEagerConnect()
   useFetchTokenPrices()
-  // useFetchPublicData()
-  // useFetchProfile()
-  // useFetchStats()
-  // useFetchStatsOverall()
-  // useFetchAuctions()
+  useFetchPublicData()
+  useFetchProfile()
+  useFetchStats()
+  useFetchStatsOverall()
+  useFetchAuctions()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -115,7 +98,7 @@ const App: React.FC = () => {
             <Route exact path="/nft">
               <Nft />
             </Route>
-            {/* <Route path="/" exact>
+            <Route path="/" exact>
               <Home />
             </Route>
             <Route path="/farms">
@@ -138,23 +121,22 @@ const App: React.FC = () => {
             </Route>
             <Route path="/nft/:id">
               <Nfa />
-            </Route> 
-              <Route path="/gnana">
-                <ApeZone />
-              </Route>
-              */}
-            {/* <Route path="/stats">
+            </Route>
+            <Route path="/gnana">
+              <ApeZone />
+            </Route>
+            <Route path="/stats">
               <Stats />
-            </Route> */}
+            </Route>
             {/* Redirect */}
-            {/* <Route path="/staking">
+            <Route path="/staking">
               <Redirect to="/pools" />
-            </Route> */}
-            {/* <Route path="/syrup">
+            </Route>
+            <Route path="/syrup">
               <Redirect to="/pools" />
-            </Route> */}
+            </Route>
             {/* 404 */}
-            {/* <Route component={NotFound} /> */}
+            <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Menu>
