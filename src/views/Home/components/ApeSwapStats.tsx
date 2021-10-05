@@ -97,24 +97,24 @@ const ApeSwapStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
+            {TranslateString(536, 'USD MARKET CAP')}
+          </StyledText>
+          {marketCap && (
+            <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" fontWeight={700} />
+          )}
+        </Row>
+        <GreyRow>
+          <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
           {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
-        </Row>
-        <GreyRow>
+        </GreyRow>
+        <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'GNANA IN CIRCULATION')}
           </StyledText>
           {gnanaCirculation && (
             <CardValue fontSize="14px" value={gnanaCirculation} decimals={0} text="poppins" fontWeight={700} />
-          )}
-        </GreyRow>
-        <Row>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'USD MARKET CAP')}
-          </StyledText>
-          {marketCap && (
-            <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
