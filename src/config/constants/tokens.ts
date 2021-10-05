@@ -490,6 +490,13 @@ const tokens = {
     },
     decimals: 6,
   },
+  kala: {
+    symbol: 'KALA',
+    address: {
+      56: '0x32299c93960bB583A43c2220Dc89152391A610c5',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

@@ -2257,6 +2257,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 6,
   },
+  {
+    sousId: 117,
+    tokenName: 'KALA',
+    image: 'KALA.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.kala,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x3902e6220c8425dcfb86118413481c6a625b28ba',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.kalata.io/',
+    harvest: true,
+    tokenPerBlock: `0.060892361111111111`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
