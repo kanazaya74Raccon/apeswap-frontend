@@ -2268,7 +2268,7 @@ const pools: PoolConfig[] = [
       56: '0x3902e6220c8425dcfb86118413481c6a625b28ba',
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://www.kalata.io/',
+    projectLink: 'https://app.kalata.io/',
     harvest: true,
     tokenPerBlock: `0.060892361111111111`,
     sortOrder: 1,
