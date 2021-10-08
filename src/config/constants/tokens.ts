@@ -497,6 +497,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ihc: {
+    symbol: 'IHC',
+    address: {
+      56: '0x86a53fcd199212FEa44FA7e16EB1f28812be911D',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
