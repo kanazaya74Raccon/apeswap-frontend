@@ -2249,7 +2249,7 @@ const pools: PoolConfig[] = [
       56: '0x122365722070a9ca5d12040e511bb90f722b915c',
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://scrt.network/',
+    projectLink: 'https://secretswap.io/',
     harvest: true,
     tokenPerBlock: `0.885127`,
     sortOrder: 1,
