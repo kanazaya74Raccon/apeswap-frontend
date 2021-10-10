@@ -504,6 +504,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  airt: {
+    symbol: 'AIRT',
+    address: {
+      56: '0x016CF83732f1468150D87dCC5BdF67730B3934D3',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
