@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
+import { Contract } from 'web3-eth-contract'
 import { fetchPoolsBlockLimits, fetchPoolsTotalStaking, fetchPoolTokenStatsAndApr } from './fetchPools'
 import {
   fetchPoolsAllowance,
@@ -43,42 +44,50 @@ export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = Poo
 
 // Thunks
 export const fetchPoolsPublicDataAsync =
-  (multicallAddress: string, nativeWrappedAddress: string, chainId: number, tokenPrices: TokenPrices[]) =>
+  (multicallContract: Contract, nativeWrappedAddress: string, chainId: number, tokenPrices: TokenPrices[]) =>
   async (dispatch) => {
-    const blockLimits = await fetchPoolsBlockLimits(multicallAddress, chainId)
-    const totalStakings = await fetchPoolsTotalStaking(multicallAddress, nativeWrappedAddress, chainId)
-    const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings, chainId)
-    const liveData = await Promise.all(
-      poolsConfig.map(async (pool) => {
-        const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
-        const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-        const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === pool.sousId)
-        // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
-        return {
-          ...blockLimit,
-          ...totalStaking,
-          ...tokenStatsAndApr,
-        }
-      }),
-    )
-    dispatch(setPoolsPublicData(liveData))
+    try {
+      const blockLimits = await fetchPoolsBlockLimits(multicallContract, chainId)
+      const totalStakings = await fetchPoolsTotalStaking(multicallContract, nativeWrappedAddress, chainId)
+      const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings, chainId)
+      const liveData = await Promise.all(
+        poolsConfig.map(async (pool) => {
+          const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
+          const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
+          const tokenStatsAndApr = tokenStatsAndAprs.find((entry) => entry.sousId === pool.sousId)
+          // const lpData = pool.lpStaking ? await fetchReserveData(pool.stakingTokenAddress[CHAIN_ID]) : null
+          return {
+            ...blockLimit,
+            ...totalStaking,
+            ...tokenStatsAndApr,
+          }
+        }),
+      )
+      dispatch(setPoolsPublicData(liveData))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 export const fetchPoolsUserDataAsync =
-  (multicallAddress: string, masterChefContract, chainId: number, account) => async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(multicallAddress, chainId, account)
-    const stakingTokenBalances = await fetchUserBalances(multicallAddress, chainId, account)
-    const stakedBalances = await fetchUserStakeBalances(multicallAddress, masterChefContract, chainId, account)
-    const pendingRewards = await fetchUserPendingRewards(multicallAddress, masterChefContract, chainId, account)
+  (multicallContract: Contract, masterChefContract, chainId: number, account) => async (dispatch) => {
+    try {
+      const allowances = await fetchPoolsAllowance(multicallContract, chainId, account)
+      const stakingTokenBalances = await fetchUserBalances(multicallContract, chainId, account)
+      const stakedBalances = await fetchUserStakeBalances(multicallContract, masterChefContract, chainId, account)
+      const pendingRewards = await fetchUserPendingRewards(multicallContract, masterChefContract, chainId, account)
 
-    const userData = poolsConfig.map((pool) => ({
-      sousId: pool.sousId,
-      allowance: allowances[pool.sousId],
-      stakingTokenBalance: stakingTokenBalances[pool.sousId],
-      stakedBalance: stakedBalances[pool.sousId],
-      pendingReward: pendingRewards[pool.sousId],
-    }))
-    dispatch(setPoolsUserData(userData))
+      const userData = poolsConfig.map((pool) => ({
+        sousId: pool.sousId,
+        allowance: allowances[pool.sousId],
+        stakingTokenBalance: stakingTokenBalances[pool.sousId],
+        stakedBalance: stakedBalances[pool.sousId],
+        pendingReward: pendingRewards[pool.sousId],
+      }))
+      dispatch(setPoolsUserData(userData))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 export const updateUserAllowance =

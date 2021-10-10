@@ -3,7 +3,7 @@ import multicall from 'utils/multicall'
 import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const fetchPrices = async (chainId, multicallAddress, apePriceGetterAddress) => {
+const fetchPrices = async (chainId, multicallContract, apePriceGetterAddress) => {
   const tokensToCall = Object.keys(tokens).filter((token, i) => tokens[token].address[chainId] !== undefined)
   const calls = tokensToCall.map((token) => {
     if (tokens[token].lpToken) {
@@ -19,7 +19,7 @@ const fetchPrices = async (chainId, multicallAddress, apePriceGetterAddress) => 
       params: [tokens[token].address[chainId], tokens[token].decimals],
     }
   })
-  const tokenPrices = await multicall(multicallAddress, apePriceGetterABI, calls)
+  const tokenPrices = await multicall(multicallContract, apePriceGetterABI, calls)
   // Banana should always be the first token
   const mappedTokenPrices = Object.keys(tokens).map((token, i) => {
     return {

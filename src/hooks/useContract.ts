@@ -18,6 +18,7 @@ import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
+import multi from 'config/abi/Multicall.json'
 import {
   useApePriceGetterAddress,
   useAuctionAddress,
@@ -27,12 +28,13 @@ import {
   useLotteryAddress,
   useLotteryTicketAddress,
   useMasterChefAddress,
+  useMulticallAddress,
   useNonFungibleApesAddress,
   useRabbitMintingFarmAddress,
   useTreasuryAddress,
 } from './useAddress'
 
-const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
+const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions): Contract => {
   const web3 = useWeb3()
   const [contract, setContract] = useState(new web3.eth.Contract(abi, address, contractOptions))
 
@@ -63,6 +65,11 @@ const useSafeContract = (abi: AbiItem, address?: string, contractOptions?: Contr
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
+
+export const useMulticallContract = () => {
+  const multiAbi = multi as unknown as AbiItem
+  return useContract(multiAbi, useMulticallAddress())
+}
 
 export const useIfoContract = (address: string) => {
   const ifoAbi = ifo as unknown as AbiItem

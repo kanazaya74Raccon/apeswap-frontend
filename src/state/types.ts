@@ -36,6 +36,10 @@ export interface Profile {
   rarestNft: Nft
 }
 
+export interface Network {
+  chainId: number
+}
+
 export interface Stats {
   aggregateApr: number
   aggregateAprPerDay: number
@@ -172,6 +176,12 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface NetworkState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: Network
+}
+
 export interface ProfileState {
   isInitialized: boolean
   isLoading: boolean
@@ -232,4 +242,5 @@ export interface State {
   teams: TeamsState
   auctions: AuctionsState
   tokenPrices: TokenPricesState
+  network: NetworkState
 }

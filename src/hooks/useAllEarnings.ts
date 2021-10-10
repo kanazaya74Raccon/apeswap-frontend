@@ -5,13 +5,14 @@ import { farmsConfig } from 'config/constants'
 import multicall from 'utils/multicall'
 import { useMasterChefAddress, useMulticallAddress } from './useAddress'
 import useRefresh from './useRefresh'
+import { useMulticallContract } from './useContract'
 
 const useAllEarnings = () => {
   const [balances, setBalance] = useState([])
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const masterChefAddress = useMasterChefAddress()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
 
   useEffect(() => {
     const fetchAllBalances = async () => {
@@ -21,7 +22,7 @@ const useAllEarnings = () => {
         params: [farm.pid, account],
       }))
 
-      const res = await multicall(multicallAddress, masterChefABI, calls)
+      const res = await multicall(multicallContract, masterChefABI, calls)
 
       setBalance(res)
     }
@@ -29,7 +30,7 @@ const useAllEarnings = () => {
     if (account) {
       fetchAllBalances()
     }
-  }, [account, fastRefresh, masterChefAddress, multicallAddress])
+  }, [account, fastRefresh, masterChefAddress, multicallContract])
 
   return balances
 }

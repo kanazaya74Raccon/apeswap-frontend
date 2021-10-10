@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
+import { CHAIN_ID } from 'config/constants/chains'
+import { useNetworkChainId } from 'state/hooks'
 import FarmStakingCard from 'views/Home/components/FarmStaking/FarmStakingCard'
 import ApeSwapStats from 'views/Home/components/ApeSwapStats'
 import WelcomeCard from './components/WelcomeCard'
@@ -127,6 +129,8 @@ const RightSideFlexWrapper = styled.div`
 `
 
 const Home: React.FC = () => {
+  const chainId = useNetworkChainId()
+  const loadChainId = chainId || CHAIN_ID.BSC
   return (
     <>
       <Page width="1200px">
@@ -137,16 +141,18 @@ const Home: React.FC = () => {
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
-              <FarmStakingCard />
+              {loadChainId === 56 && <FarmStakingCard />}
             </FrontRowWrapper>
-            <FarmAndPoolsWrapper>
-              <HotFarms />
-              <CoolPools />
-            </FarmAndPoolsWrapper>
+            {loadChainId === 56 && (
+              <FarmAndPoolsWrapper>
+                <HotFarms />
+                <CoolPools />
+              </FarmAndPoolsWrapper>
+            )}
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
             <WhenNewsSer />
-            <ApeSwapStats />
+            {loadChainId === 56 && <ApeSwapStats />}
           </RightSideFlexWrapper>
         </PageContainer>
       </Page>

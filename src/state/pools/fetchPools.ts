@@ -8,8 +8,10 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { TokenPrices } from 'state/types'
+import { Contract } from 'web3-eth-contract'
 
-export const fetchPoolsBlockLimits = async (multicallAddress: string, chainId: number) => {
+
+export const fetchPoolsBlockLimits = async (multicallContract: Contract, chainId: number) => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
@@ -23,9 +25,9 @@ export const fetchPoolsBlockLimits = async (multicallAddress: string, chainId: n
       name: 'bonusEndBlock',
     }
   })
-  
-  const starts = await multicall(multicallAddress, sousChefABI, callsStartBlock)
-  const ends = await multicall(multicallAddress, sousChefABI, callsEndBlock)
+
+  const starts = await multicall(multicallContract, sousChefABI, callsStartBlock)
+  const ends = await multicall(multicallContract, sousChefABI, callsEndBlock)
 
   return poolsWithEnd.map((bananaPoolConfig, index) => {
     const startBlock = starts[index]
@@ -39,7 +41,7 @@ export const fetchPoolsBlockLimits = async (multicallAddress: string, chainId: n
 }
 
 export const fetchPoolsTotalStaking = async (
-  multicallAddress: string,
+  multicallContract: Contract,
   nativeWrappedAddress: string,
   chainId: number,
 ) => {
@@ -68,8 +70,8 @@ export const fetchPoolsTotalStaking = async (
     }
   })
 
-  const nonBnbPoolsTotalStaked = await multicall(multicallAddress, bananaABI, callsNonBnbPools)
-  const bnbPoolsTotalStaked = await multicall(multicallAddress, wbnbABI, callsBnbPools)
+  const nonBnbPoolsTotalStaked = await multicall(multicallContract, bananaABI, callsNonBnbPools)
+  const bnbPoolsTotalStaked = await multicall(multicallContract, wbnbABI, callsBnbPools)
 
   return [
     ...nonBnbPools.map((p, index) => ({

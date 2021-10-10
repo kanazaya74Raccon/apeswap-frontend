@@ -13,7 +13,10 @@ import {
   useFetchAuctions,
   useFetchTokenPrices,
   useFetchProfile,
+  useNetworkChainId,
 } from 'state/hooks'
+import { useDispatch } from 'react-redux'
+import { fetchUserNetwork } from 'state/network'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -56,11 +59,6 @@ const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
   const { account, chainId, library } = useWeb3React()
-  // console.log(chainId === CHAIN_ID.MATIC ? CHAIN_PARAMS.MATIC : CHAIN_PARAMS.BSC)
-  // library?.send('wallet_addEthereumChain', [
-  //   CHAIN_PARAMS.BSC,
-  //   account,
-  // ])
 
   useEffect(() => {
     console.warn = () => null
@@ -69,6 +67,12 @@ const App: React.FC = () => {
   useEffect(() => {
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
   }, [account])
+
+  const appChainId = useNetworkChainId()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchUserNetwork(chainId, account, appChainId, library))
+  }, [chainId, account, library, appChainId, dispatch])
 
   useEagerConnect()
   useFetchTokenPrices()

@@ -6,7 +6,8 @@ import useI18n from 'hooks/useI18n'
 import { usePendingUsd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/farms'
-import { useMasterChefAddress, useMulticallAddress } from 'hooks/useAddress'
+import { useMasterChefAddress } from 'hooks/useAddress'
+import { useMulticallContract } from 'hooks/useContract'
 import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
@@ -14,15 +15,15 @@ const BananaHarvestUsdBalance = () => {
   const { account, chainId } = useWeb3React()
   const { pending } = usePendingUsd()
   const { slowRefresh } = useRefresh()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
   const masterChefAddress = useMasterChefAddress()
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (account) {
-      dispatch(fetchFarmUserDataAsync(multicallAddress, masterChefAddress, chainId, account))
+      dispatch(fetchFarmUserDataAsync(multicallContract, masterChefAddress, chainId, account))
     }
-  }, [account, dispatch, slowRefresh, multicallAddress, masterChefAddress, chainId])
+  }, [account, dispatch, slowRefresh, multicallContract, masterChefAddress, chainId])
 
   if (!account) {
     return (

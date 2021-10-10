@@ -3,8 +3,9 @@ import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
+import { Contract } from 'web3-eth-contract'
 
-const fetchFarms = async (multicallAddress: string, masterChefAddress: string, chainId: number) => {
+const fetchFarms = async (multicallContract: Contract, masterChefAddress: string, chainId: number) => {
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
       const lpAdress = farmConfig.lpAddresses[chainId]
@@ -45,7 +46,7 @@ const fetchFarms = async (multicallAddress: string, masterChefAddress: string, c
       ]
 
       const [tokenBalanceLP, quoteTokenBlanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
-        await multicall(multicallAddress, erc20, calls)
+        await multicall(multicallContract, erc20, calls)
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
@@ -68,7 +69,7 @@ const fetchFarms = async (multicallAddress: string, masterChefAddress: string, c
       let alloc = null
       let multiplier = 'unset'
       try {
-        const [info, totalAllocPoint] = await multicall(multicallAddress, masterchefABI, [
+        const [info, totalAllocPoint] = await multicall(multicallContract, masterchefABI, [
           {
             address: masterChefAddress,
             name: 'poolInfo',

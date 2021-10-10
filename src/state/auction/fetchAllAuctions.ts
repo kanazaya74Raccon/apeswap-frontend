@@ -1,11 +1,12 @@
 import auctionAbi from 'config/abi/auction.json'
+import { Contract } from 'web3-eth-contract'
 import { AuctionsOverall, Auction } from 'state/types'
 import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import multicall from 'utils/multicall'
 
-export const fetchAuctionDetails = async (auctionContractAddress: string, multicallAddress: string) => {
+export const fetchAuctionDetails = async (auctionContractAddress: string, multicallContract: Contract) => {
   const call = [
     {
       address: auctionContractAddress,
@@ -28,16 +29,16 @@ export const fetchAuctionDetails = async (auctionContractAddress: string, multic
       name: 'lastNodeId',
     },
   ]
-  const auctionDetails = await multicall(multicallAddress, auctionAbi, call)
+  const auctionDetails = await multicall(multicallContract, auctionAbi, call)
   return auctionDetails
 }
 
 export const fetchAllAuctions = async (
   auctionContractAddress: string,
-  multicallAddress: string,
+  multicallContract: Contract,
 ): Promise<AuctionsOverall> => {
   const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
-    await fetchAuctionDetails(auctionContractAddress, multicallAddress)
+    await fetchAuctionDetails(auctionContractAddress, multicallContract)
   const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {
     return {
       address: auctionContractAddress,
@@ -45,7 +46,7 @@ export const fetchAllAuctions = async (
       params: [i + 1],
     }
   })
-  const allAuctions = await multicall(multicallAddress, auctionAbi, getAuctionCalls)
+  const allAuctions = await multicall(multicallContract, auctionAbi, getAuctionCalls)
   const auctionData = {
     activeAuctionId: new BigNumber(activeAuctionId).toNumber(),
     auctionFeePercent: new BigNumber(auctionFeePercent).toNumber(),

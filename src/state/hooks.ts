@@ -13,11 +13,10 @@ import {
   useAuctionAddress,
   useBananaAddress,
   useMasterChefAddress,
-  useMulticallAddress,
   useNativeWrapCurrencyAddress,
   useTreasuryAddress,
 } from 'hooks/useAddress'
-import { useMasterchef, useNonFungibleApes } from 'hooks/useContract'
+import { useMasterchef, useMulticallContract, useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
 import {
   fetchFarmsPublicDataAsync,
@@ -44,23 +43,39 @@ import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchFarmUserDataAsync } from './farms'
+import { fetchUserNetwork } from './network'
 
 const ZERO = new BigNumber(0)
 
-export const useFetchPublicData = () => {
+// Network
+// Currently just chainId might expand for more needs
+export const useNetworkChainId = (): number => {
+  const chainId = useSelector((state: State) => state.network.data.chainId)
+  return chainId
+}
+
+export const useUpdateNetwork = (userSelectedChainId: number) => {
   const dispatch = useDispatch()
-  const { slowRefresh } = useRefresh()
-  const { tokenPrices } = useTokenPrices()
-  const { chainId } = useWeb3React()
+  const { chainId, account, library } = useWeb3React()
+  dispatch(fetchUserNetwork(chainId, account, userSelectedChainId, library))
+}
+
+// Fetch public pool and farm data
+
+export const useFetchPublicData = () => {
+  const multicallContract = useMulticallContract()
   const masterChefAddress = useMasterChefAddress()
   const nativeWrappedAddress = useNativeWrapCurrencyAddress()
-  const multicallAddress = useMulticallAddress()
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchFarmsPublicDataAsync(multicallAddress, masterChefAddress, chainId))
-      dispatch(fetchPoolsPublicDataAsync(nativeWrappedAddress, masterChefAddress, chainId, tokenPrices))
+      dispatch(fetchFarmsPublicDataAsync(multicallContract, masterChefAddress, chainId))
+      dispatch(fetchPoolsPublicDataAsync(multicallContract, nativeWrappedAddress, chainId, tokenPrices))
     }
-  }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallAddress, nativeWrappedAddress])
+  }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallContract, nativeWrappedAddress])
 }
 
 // Farms
@@ -70,12 +85,12 @@ export const useFarms = (account): Farm[] => {
   const dispatch = useDispatch()
   const { chainId } = useWeb3React()
   const masterChefAddress = useMasterChefAddress()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
-      dispatch(fetchFarmUserDataAsync(multicallAddress, masterChefAddress, chainId, account))
+      dispatch(fetchFarmUserDataAsync(multicallContract, masterChefAddress, chainId, account))
     }
-  }, [account, dispatch, slowRefresh, chainId, masterChefAddress, multicallAddress])
+  }, [account, dispatch, slowRefresh, chainId, masterChefAddress, multicallContract])
   const farms = useSelector((state: State) => state.farms.data)
   return farms
 }
@@ -108,12 +123,12 @@ export const usePools = (account): Pool[] => {
   const dispatch = useDispatch()
   const { chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
-      dispatch(fetchPoolsUserDataAsync(multicallAddress, masterChefContract, chainId, account))
+      dispatch(fetchPoolsUserDataAsync(multicallContract, masterChefContract, chainId, account))
     }
-  }, [account, dispatch, fastRefresh, chainId, masterChefContract, multicallAddress])
+  }, [account, dispatch, fastRefresh, chainId, masterChefContract, multicallContract])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -273,13 +288,14 @@ export const useFetchAuctions = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   const { chainId } = useWeb3React()
+  const loadChainId = chainId || CHAIN_ID.BSC
   const auctionAddress = useAuctionAddress()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
   useEffect(() => {
-    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchAuctions(auctionAddress, multicallAddress))
+    if (loadChainId === CHAIN_ID.BSC || loadChainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchAuctions(auctionAddress, multicallContract))
     }
-  }, [dispatch, fastRefresh, auctionAddress, multicallAddress, chainId])
+  }, [dispatch, fastRefresh, auctionAddress, multicallContract, loadChainId])
 }
 
 export const useAuctions = () => {
@@ -290,14 +306,12 @@ export const useAuctions = () => {
 export const useFetchTokenPrices = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
-  const { chainId } = useWeb3React()
+  const chainId = useNetworkChainId()
   const apePriceGetterAddress = useApePriceGetterAddress()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
   useEffect(() => {
-    if (chainId) {
-      dispatch(fetchTokenPrices(chainId, multicallAddress, apePriceGetterAddress))
-    }
-  }, [dispatch, slowRefresh, chainId, multicallAddress, apePriceGetterAddress])
+    dispatch(fetchTokenPrices(chainId, multicallContract, apePriceGetterAddress))
+  }, [dispatch, slowRefresh, chainId, multicallContract, apePriceGetterAddress])
 }
 
 export const useTokenPrices = () => {

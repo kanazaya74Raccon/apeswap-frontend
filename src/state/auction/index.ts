@@ -31,10 +31,10 @@ export const auctionsSlice = createSlice({
 // Actions
 export const { auctionsFetchStart, auctionsFetchSucceeded, auctionsFetchFailed } = auctionsSlice.actions
 
-export const fetchAuctions = (auctionContractAddress: string, multicallAddress: string) => async (dispatch) => {
+export const fetchAuctions = (auctionContractAddress: string, multicallContract) => async (dispatch) => {
   try {
     dispatch(auctionsFetchStart())
-    const auctions = await fetchAllAuctions(auctionContractAddress, multicallAddress)
+    const auctions = await fetchAllAuctions(auctionContractAddress, multicallContract)
     dispatch(auctionsFetchSucceeded(auctions))
   } catch (error) {
     dispatch(auctionsFetchFailed())

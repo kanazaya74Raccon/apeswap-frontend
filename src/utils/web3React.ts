@@ -4,10 +4,8 @@ import { ConnectorNames } from '@apeswapfinance/uikit'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { CHAIN_ID } from 'config/constants/chains'
 import Web3 from 'web3'
-import getNodeUrl from './getRpcUrl'
 
 const POLLING_INTERVAL = 15000
-const rpcUrl = getNodeUrl()
 
 // When adding a new chain we need to add the CHAIN_ID to the supported chains
 
@@ -16,7 +14,6 @@ const injected = new InjectedConnector({
 })
 
 const walletconnect = new WalletConnectConnector({
-  rpc: { [CHAIN_ID.BSC]: rpcUrl },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
@@ -33,3 +30,9 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 export const getLibrary = (provider): Web3 => {
   return provider
 }
+
+// export default function getLibrary(provider: any): Web3 {
+//   const library = new Web3Provider(provider, 'any')
+//   library.pollingInterval = 15000
+//   return library
+// }
