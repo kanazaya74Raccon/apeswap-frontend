@@ -511,6 +511,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  pros: {
+    symbol: 'PROS',
+    address: {
+      56: '0xed8c8aa8299c10f067496bb66f8cc7fb338a3405',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
