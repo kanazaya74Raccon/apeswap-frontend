@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Card, CardBody, CardFooter, Text, PancakeRoundIcon, Flex, Skeleton } from '@apeswapfinance/uikit'
+import { Heading, Card, CardBody, CardFooter, Text, ApeSwapIcon, Flex, Skeleton } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
 import { useTotalRewards } from 'hooks/useTickets'
@@ -72,7 +72,7 @@ const TotalPrizesCard = () => {
         <CardHeading>
           <Left>
             <IconWrapper>
-              <PancakeRoundIcon />
+              <ApeSwapIcon />
             </IconWrapper>
             <PrizeCountWrapper>
               <Text fontSize="14px" color="textSubtle">
