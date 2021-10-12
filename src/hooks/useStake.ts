@@ -20,13 +20,11 @@ const useStake = (pid: number) => {
         event: 'farm',
         chain: CHAIN_ID,
         data: {
-          token: txHash.to,
           cat: 'stake',
           amount,
           pid,
         },
       })
-      console.info(txHash)
     },
     [account, dispatch, masterChefContract, pid],
   )

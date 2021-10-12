@@ -44,7 +44,7 @@ export const useSellGoldenBanana = () => {
           chain: CHAIN_ID,
           data: {
             amount,
-            cat: 'buy',
+            cat: 'sell',
           },
         })
         return txHash
