@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 
 const useAddress = (curAddresses: Address) => {
-  // Using selector to avoid circlular dependecies
+  // Using selector to avoid circular dependecies
   const chainId = useSelector((state: State) => state.network.data.chainId)
   const [address, setAddress] = useState(curAddresses[chainId])
   useEffect(() => {
