@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
+import track from 'utils/track'
+import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserDataAsync, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, soushHarvestBnb, harvest, nfaStakeHarvest } from 'utils/callHelpers'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
@@ -13,6 +15,14 @@ export const useHarvest = (farmPid: number) => {
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChefContract, farmPid, account)
+    track({
+      event: 'farm',
+      chain: CHAIN_ID,
+      data: {
+        cat: 'harvest',
+        pid: farmPid,
+      },
+    })
     dispatch(fetchFarmUserDataAsync(account))
     return txHash
   }, [account, dispatch, farmPid, masterChefContract])
@@ -49,6 +59,16 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
     } else {
       await soushHarvest(sousChefContract, account)
     }
+
+    track({
+      event: 'pool',
+      chain: CHAIN_ID,
+      data: {
+        cat: 'harvest',
+        pid: sousId,
+      },
+    })
+
     dispatch(updateUserPendingReward(sousId, account))
     dispatch(updateUserBalance(sousId, account))
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId])

@@ -4,11 +4,11 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'nfty',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0xF04c0efc1aBF1c98076a8ecEd2a68009ee55A0A9', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'NFTY Network',
       subTitle: 'Decentralized NFT Gating Ecosystem',
-      description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect web2 and web3 infrastructures like never before!`,
+      description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
       launchDate: 'September 29th',
       launchTime: '17:00 UTC',
       saleAmount: '30,800,000 NFTY',

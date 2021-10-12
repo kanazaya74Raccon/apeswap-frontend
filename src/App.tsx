@@ -32,7 +32,8 @@ const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
-const NfaStaking = lazy(() => import('./views/NfaStaking'))
+// Commented out until release
+// const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -114,9 +115,6 @@ const App: React.FC = () => {
             </Route>
             <Route exact path="/nft">
               <Nft />
-            </Route>
-            <Route exact path="/nfa-staking">
-              <NfaStaking />
             </Route>
             <Route path="/nft/:id">
               <Nfa />

@@ -4,6 +4,8 @@ import { Contract } from 'web3-eth-contract'
 import { getAuctionAddress } from 'utils/addressHelpers'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
+import { CHAIN_ID } from 'config/constants'
+import track from 'utils/track'
 import { updateUserAllowance, fetchFarmUserDataAsync, updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import { useMasterchef, useBanana, useSousChef, useLottery, useNonFungibleApes } from './useContract'
@@ -18,6 +20,14 @@ export const useApprove = (lpContract: Contract) => {
     try {
       const tx = await approve(lpContract, masterChefContract, account)
       dispatch(fetchFarmUserDataAsync(account))
+      track({
+        event: 'farm',
+        chain: CHAIN_ID,
+        data: {
+          token: tx.to,
+          cat: 'enable',
+        },
+      })
       return tx
     } catch (e) {
       return false
@@ -37,6 +47,14 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
     try {
       const tx = await approve(lpContract, sousChefContract, account)
       dispatch(updateUserAllowance(sousId, account))
+      track({
+        event: 'pool',
+        chain: CHAIN_ID,
+        data: {
+          token: tx.to,
+          cat: 'enable',
+        },
+      })
       return tx
     } catch (e) {
       return false

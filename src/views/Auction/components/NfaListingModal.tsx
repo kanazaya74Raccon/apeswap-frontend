@@ -7,9 +7,9 @@ import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
-import Input from 'components/Input'
-import Slider from 'components/Slider'
-import getTimePeriods from 'utils/getTimePeriods'
+// import Input from 'components/Input'
+// import Slider from 'components/Slider'
+// import getTimePeriods from 'utils/getTimePeriods'
 import useI18n from '../../../hooks/useI18n'
 
 interface NfaListingModalProps {
@@ -38,6 +38,15 @@ const OwnedNfaWrapper = styled.div`
   }
 `
 
+const DescriptionWrapper = styled.div`
+  width: 305px;
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 405px;
+  }
+`
+
 const Nfa = styled.div<{ active: boolean }>`
   width: 80px;
   height: 80px;
@@ -48,22 +57,21 @@ const Nfa = styled.div<{ active: boolean }>`
   margin-bottom: 15px;
 `
 
-const MinimumBidWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-`
+// const MinimumBidWrapper = styled.div`
+//   display: flex;
+//   width: 100%;
+//   flex-direction: row;
+// `
 
-const BnbLogo = styled.div`
-  background-image: url(/images/rounded-bnb-sm.svg);
-  background-size: cover;
-  background-position: center;
-  width: 18px;
-  height: 18px;
-  z-index: 1;
-  margin-left: 5px;
-  margin-top: 2px;
-`
+// const BnbLogo = styled.div`
+//   background-image: url(/images/rounded-bnb-sm.svg);
+//   background-size: cover;
+//   background-position: center;
+//   width: 18px;
+//   height: 18px;
+//   z-index: 1;
+//   margin-left: 5px;
+//   margin-top: 2px;
 
 const TimeText = styled(Text)`
   font-family: poppins;
@@ -71,12 +79,12 @@ const TimeText = styled(Text)`
   font-size: 16px;
 `
 
-const formatListingTime = (listingTime: any): string => {
-  const formatHours = listingTime.hours < 10 ? `0${listingTime.hours}` : listingTime.hours.toString()
-  const formatMinutes = listingTime.minutes < 10 ? `0${listingTime.minutes}` : listingTime.minutes.toString()
-  const formatSeconds = listingTime.seconds < 10 ? `0${listingTime.seconds.toFixed(0)}` : listingTime.seconds.toFixed(0)
-  return `${formatHours}:${formatMinutes}:${formatSeconds}`
-}
+// const formatListingTime = (listingTime: any): string => {
+//   const formatHours = listingTime.hours < 10 ? `0${listingTime.hours}` : listingTime.hours.toString()
+//   const formatMinutes = listingTime.minutes < 10 ? `0${listingTime.minutes}` : listingTime.minutes.toString()
+//   const formatSeconds = listingTime.seconds < 10 ? `0${listingTime.seconds.toFixed(0)}` : listingTime.seconds.toFixed(0)
+//   return `${formatHours}:${formatMinutes}:${formatSeconds}`
+// }
 
 const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss, ownedNfas }) => {
   const auctionAddress = getAuctionAddress()
@@ -84,16 +92,16 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
   const onApprove = useAuctionApprove().onApprove
   const [approved, setApproved] = useState(true)
   const [nfaIndex, setNfaIndex] = useState(null)
-  const [auctionLength, setAuctionLength] = useState(21600 / 2)
-  const [timeToExtendVal, setTimeToExtendVal] = useState(1800 / 2)
-  const [minTimeToExtend, setMinTimeToExtend] = useState(21600 / 4)
+  const [auctionLength, setAuctionLength] = useState(86400)
+  const [timeToExtendVal, setTimeToExtendVal] = useState(1800)
+  const [minTimeToExtend, setMinTimeToExtend] = useState(21600)
   const [minimumBid, setMinimumBid] = useState('1')
   const [pendingTx, setPendingTx] = useState(false)
   const [pendingApprove, setPendingApprove] = useState(false)
   const TranslateString = useI18n()
-  const auctionLengthFormat = formatListingTime(getTimePeriods(auctionLength))
-  const timeToExtendValFormat = formatListingTime(getTimePeriods(timeToExtendVal))
-  const minTimeToExtendFormat = formatListingTime(getTimePeriods(minTimeToExtend))
+  // const auctionLengthFormat = formatListingTime(getTimePeriods(auctionLength))
+  // const timeToExtendValFormat = formatListingTime(getTimePeriods(timeToExtendVal))
+  // const minTimeToExtendFormat = formatListingTime(getTimePeriods(minTimeToExtend))
 
   useEffect(() => {
     if (allowance !== null) {
@@ -101,24 +109,24 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
     }
   }, [allowance, setApproved])
 
-  const handleChange = useCallback(
-    (e: React.FormEvent<HTMLInputElement>) => {
-      setMinimumBid(e.currentTarget.value)
-    },
-    [setMinimumBid],
-  )
+  // const handleChange = useCallback(
+  //   (e: React.FormEvent<HTMLInputElement>) => {
+  //     setMinimumBid(e.currentTarget.value)
+  //   },
+  //   [setMinimumBid],
+  // )
 
-  const handleTimeVal = useCallback(
-    (value: number) => {
-      if (value < minTimeToExtend) {
-        setAuctionLength(value)
-        setMinTimeToExtend(value)
-      } else {
-        setAuctionLength(value)
-      }
-    },
-    [minTimeToExtend, setMinTimeToExtend],
-  )
+  // const handleTimeVal = useCallback(
+  //   (value: number) => {
+  //     if (value < minTimeToExtend) {
+  //       setAuctionLength(value)
+  //       setMinTimeToExtend(value)
+  //     } else {
+  //       setAuctionLength(value)
+  //     }
+  //   },
+  //   [minTimeToExtend, setMinTimeToExtend],
+  // )
 
   const handleApprove = useCallback(async () => {
     try {
@@ -135,9 +143,8 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
   }, [onApprove, setApproved])
 
   return (
-    <Modal title={`${TranslateString(316, 'List Your NFA!')}`} onDismiss={onDismiss}>
-      <Text> The default settings are the recommended auction settings. </Text>
-      <TimeText marginTop="20px">NFA selected: {nfaIndex}</TimeText>
+    <Modal title={`${TranslateString(316, 'Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
+      <TimeText marginTop="10px">NFA selected: {nfaIndex}</TimeText>
       <OwnedNfaWrapper>
         {ownedNfas ? (
           ownedNfas?.map((nfa) => {
@@ -151,6 +158,30 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
           <Text marginBottom="20px">You do not have any NFAs in your wallet 😢</Text>
         )}
       </OwnedNfaWrapper>
+      <DescriptionWrapper>
+        <Text> Welcome to the Self-Serve Auction House! </Text>
+        <TimeText> (The Rules are the Same) </TimeText>
+        <Text marginTop="10px"> Auction Start Length </Text>
+        <TimeText> 24 Hours </TimeText>
+        <Text marginTop="10px">How the Clock Works</Text>
+        <TimeText>
+          During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.
+        </TimeText>
+        <Text marginTop="10px">All Sales are Final</Text>
+        <TimeText>When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!</TimeText>
+        <Text marginTop="10px">Proceeds</Text>
+        <TimeText>95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.</TimeText>
+        <Text marginTop="10px">Auction Order</Text>
+        <TimeText>
+          NFAs will be auctioned in the order they are entered, you may cancel your entry at any time before your
+          auction begins.
+        </TimeText>
+      </DescriptionWrapper>
+
+      {/* 
+
+      Commenting this out for now because we might use it in the future
+
       <TimeText>Auction Length: {auctionLengthFormat}</TimeText>
       <Slider value={auctionLength} onChange={(e) => handleTimeVal(e)} max={21600} min={300} size={15} />
       <TimeText>Time To Extend: {timeToExtendValFormat}</TimeText>
@@ -161,7 +192,9 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
         <TimeText marginBottom="10px">Minimum Bid</TimeText>
         <BnbLogo />
       </MinimumBidWrapper>
-      <Input value={minimumBid} onChange={handleChange} />
+      <Input value={minimumBid} onChange={handleChange} /> 
+      
+      */}
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}

@@ -462,6 +462,62 @@ const tokens = {
     },
     decimals: 18,
   },
+  dcb: {
+    symbol: 'DCB',
+    address: {
+      56: '0xEAc9873291dDAcA754EA5642114151f3035c67A2',
+    },
+    decimals: 18,
+  },
+  nfty: {
+    symbol: 'NFTY',
+    address: {
+      56: '0x5774b2fc3e91af89f89141eacf76545e74265982',
+    },
+    decimals: 18,
+  },
+  aur: {
+    symbol: 'AUR',
+    address: {
+      56: '0x1dEb45C74E0192D9272ADF54e9a7519C48C2bd81',
+    },
+    decimals: 18,
+  },
+  sefi: {
+    symbol: 'SEFI',
+    address: {
+      56: '0xcd95350c69F229E72e57A44e8C05C436E65E4bEb',
+    },
+    decimals: 6,
+  },
+  kala: {
+    symbol: 'KALA',
+    address: {
+      56: '0x32299c93960bB583A43c2220Dc89152391A610c5',
+    },
+    decimals: 18,
+  },
+  ihc: {
+    symbol: 'IHC',
+    address: {
+      56: '0x86a53fcd199212FEa44FA7e16EB1f28812be911D',
+    },
+    decimals: 18,
+  },
+  airt: {
+    symbol: 'AIRT',
+    address: {
+      56: '0x016CF83732f1468150D87dCC5BdF67730B3934D3',
+    },
+    decimals: 18,
+  },
+  pros: {
+    symbol: 'PROS',
+    address: {
+      56: '0xed8c8aa8299c10f067496bb66f8cc7fb338a3405',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
