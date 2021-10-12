@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback, useState, useMemo } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
@@ -9,17 +8,14 @@ import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
 import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
-import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
 import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
-
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
@@ -414,8 +410,6 @@ const Farms: React.FC = () => {
 
   const ethPriceUsd = usePriceEthBusd()
 
-  const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
   useEffect(() => {
     if (size.width !== undefined) {
       if (size.width < 968) {

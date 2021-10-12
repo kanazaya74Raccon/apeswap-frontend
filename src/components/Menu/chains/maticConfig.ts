@@ -4,11 +4,11 @@ import { HOME, EXCHANGE, INFO, MORE_INFO } from '../constants'
 
 const maticConfig: MenuEntry[] = [
   HOME,
-  {
-    label: 'Ape Stats',
-    icon: 'StatsIcon',
-    href: '/stats',
-  },
+  // {
+  //   label: 'Ape Stats',
+  //   icon: 'StatsIcon',
+  //   href: '/stats',
+  // },
   EXCHANGE,
   {
     label: 'Vaults',

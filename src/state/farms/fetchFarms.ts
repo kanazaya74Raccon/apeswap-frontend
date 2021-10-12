@@ -86,7 +86,7 @@ const fetchFarms = async (multicallContract: Contract, masterChefAddress: string
         multiplier = `${allocPoint.div(100).toString()}X`
         // eslint-disable-next-line no-empty
       } catch (error) {
-        console.log('Error fetching farm', error, farmConfig)
+        console.error('Error fetching farm', error, farmConfig)
       }
 
       return {

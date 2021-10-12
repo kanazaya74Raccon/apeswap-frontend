@@ -33,6 +33,10 @@ const PageContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
+  margin-bottom: 50px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-bottom: 0px;
+  }
 `
 
 const FrontRowWrapper = styled.div`
@@ -129,8 +133,7 @@ const RightSideFlexWrapper = styled.div`
 `
 
 const Home: React.FC = () => {
-  const chainId = useNetworkChainId()
-  const loadChainId = chainId || CHAIN_ID.BSC
+  const appChainId = useNetworkChainId()
   return (
     <>
       <Page width="1200px">
@@ -141,9 +144,9 @@ const Home: React.FC = () => {
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
-              {loadChainId === 56 && <FarmStakingCard />}
+              {appChainId === CHAIN_ID.BSC && <FarmStakingCard />}
             </FrontRowWrapper>
-            {loadChainId === 56 && (
+            {appChainId === CHAIN_ID.BSC && (
               <FarmAndPoolsWrapper>
                 <HotFarms />
                 <CoolPools />
@@ -152,7 +155,7 @@ const Home: React.FC = () => {
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
             <WhenNewsSer />
-            {loadChainId === 56 && <ApeSwapStats />}
+            {appChainId === CHAIN_ID.BSC && <ApeSwapStats />}
           </RightSideFlexWrapper>
         </PageContainer>
       </Page>

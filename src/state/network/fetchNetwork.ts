@@ -1,4 +1,4 @@
-const fetchAndUpdateNetwork = (web3ChainId: number, account: string, chainId: number, library) => {
+const fetchAndUpdateNetwork = (web3ChainId: number, account: string, chainId: number) => {
   if (account) {
     if (web3ChainId === chainId) {
       return { chainId }

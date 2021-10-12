@@ -9,9 +9,8 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { useSafeIfoContract } from 'hooks/useContract'
+import { useMulticallContract, useSafeIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
-import { useMulticallAddress } from 'hooks/useAddress'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
 import IfoCardDescription from './IfoCardDescription'
@@ -118,7 +117,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       2,
     )
   const Ribbon = getRibbonComponent(state.status, TranslateString)
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -173,7 +172,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         harvestTwoBlock,
         harvestThreeBlock,
         harvestFourBlock,
-      ] = await multicall(multicallAddress, ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
 
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -213,7 +212,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, multicallAddress])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, multicallContract])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'

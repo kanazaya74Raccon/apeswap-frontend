@@ -10,7 +10,6 @@ import BigNumber from 'bignumber.js'
 import { TokenPrices } from 'state/types'
 import { Contract } from 'web3-eth-contract'
 
-
 export const fetchPoolsBlockLimits = async (multicallContract: Contract, chainId: number) => {
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWeb3React } from '@web3-react/core'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
-import { CHAIN_ID, CHAIN_PARAMS } from 'config/constants/chains'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
+import { CHAIN_ID } from 'config/constants/chains'
 import {
   useFetchStats,
   useFetchPublicData,
@@ -21,7 +21,6 @@ import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
-import AdminPools from './views/AdminPools'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -35,6 +34,7 @@ const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
+const AdminPools = lazy(() => import('./views/AdminPools'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -58,7 +58,7 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
-  const { account, chainId, library } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   useEffect(() => {
     console.warn = () => null
@@ -71,8 +71,8 @@ const App: React.FC = () => {
   const appChainId = useNetworkChainId()
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchUserNetwork(chainId, account, appChainId, library))
-  }, [chainId, account, library, appChainId, dispatch])
+    dispatch(fetchUserNetwork(chainId, account, appChainId))
+  }, [chainId, account, appChainId, dispatch])
 
   useEagerConnect()
   useFetchTokenPrices()
@@ -89,13 +89,27 @@ const App: React.FC = () => {
     })
   }
 
-  return (
-    <Router>
-      <ResetCSS />
-      <GlobalStyle />
-      {(window.location.pathname === '/farms' || window.location.pathname === '/pools') && (
-        <StyledChevronUpIcon onClick={scrollToTop} />
-      )}
+  const loadMenu = () => {
+    // MATIC routes
+    if (appChainId === CHAIN_ID.MATIC || appChainId === CHAIN_ID.MATIC_TESTNET) {
+      return (
+        <Menu>
+          <Suspense fallback={<PageLoader />}>
+            <Switch>
+              <Route path="/" exact>
+                <Home />
+              </Route>
+              <Route path="/admin-pools">
+                <AdminPools />
+              </Route>
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+        </Menu>
+      )
+    }
+    // Default BSC routes
+    return (
       <Menu>
         <Suspense fallback={<PageLoader />}>
           <Switch>
@@ -144,6 +158,17 @@ const App: React.FC = () => {
           </Switch>
         </Suspense>
       </Menu>
+    )
+  }
+
+  return (
+    <Router>
+      <ResetCSS />
+      <GlobalStyle />
+      {(window.location.pathname === '/farms' || window.location.pathname === '/pools') && (
+        <StyledChevronUpIcon onClick={scrollToTop} />
+      )}
+      {loadMenu()}
       <ToastListener />
     </Router>
   )

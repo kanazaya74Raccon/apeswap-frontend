@@ -28,7 +28,7 @@ export const getTokenBalance = async (
   web3: any,
   tokenAddress: string,
   userAddress: string,
-  tokenContract?: Contract
+  tokenContract?: Contract,
 ): Promise<string> => {
   if (tokenAddress === ZERO_ADDRESS) {
     try {

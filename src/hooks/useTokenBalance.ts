@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import bananaABI from 'config/abi/banana.json'
-import { getContract, httpProvider } from 'utils/web3'
 import { getTokenBalance } from 'utils/erc20'
 import useRefresh from './useRefresh'
 import { useBananaAddress } from './useAddress'
@@ -58,7 +56,6 @@ export const useTotalSupply = () => {
   useEffect(() => {
     async function fetchTotalSupply() {
       const supply = await bananaContract.methods.totalSupply().call()
-      console.log(supply)
       setTotalSupply(new BigNumber(supply))
     }
 

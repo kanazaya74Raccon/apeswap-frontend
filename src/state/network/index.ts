@@ -33,10 +33,10 @@ export const networkSlice = createSlice({
 export const { networkFetchStart, networkFetchSucceeded, networkFetchFailed } = networkSlice.actions
 
 // thunks
-export const fetchUserNetwork = (web3ChainId: number, account: string, chainId: number, library) => (dispatch) => {
+export const fetchUserNetwork = (web3ChainId: number, account: string, chainId: number) => (dispatch) => {
   try {
     dispatch(networkFetchStart())
-    const network = fetchAndUpdateNetwork(web3ChainId, account, chainId, library)
+    const network = fetchAndUpdateNetwork(web3ChainId, account, chainId)
     dispatch(networkFetchSucceeded(network))
     localStorage.setItem(`chainIdStatus`, JSON.stringify(network.chainId))
   } catch (error) {

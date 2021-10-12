@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import masterChefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 import multicall from 'utils/multicall'
-import { useMasterChefAddress, useMulticallAddress } from './useAddress'
+import { useMasterChefAddress } from './useAddress'
 import useRefresh from './useRefresh'
 import { useMulticallContract } from './useContract'
 

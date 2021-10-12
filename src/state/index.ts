@@ -20,6 +20,6 @@ export default configureStore({
     statsOverall: statsOverallReducer,
     auctions: auctionReducer,
     tokenPrices: tokenPricesReducer,
-    network: networkReducer
+    network: networkReducer,
   },
 })

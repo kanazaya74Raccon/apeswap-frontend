@@ -1,5 +1,5 @@
 import { BANANA_PER_BLOCK } from 'config'
-import { PoolConfig, QuoteToken, PoolCategory } from './types'
+import { PoolConfig, PoolCategory } from './types'
 import tokens from './tokens'
 
 const pools: PoolConfig[] = [

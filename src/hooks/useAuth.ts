@@ -50,7 +50,7 @@ const useAuth = () => {
         }
       })
     } else {
-      console.log('Unable to find connector', 'The connector config is wrong')
+      console.info('Unable to find connector', 'The connector config is wrong')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

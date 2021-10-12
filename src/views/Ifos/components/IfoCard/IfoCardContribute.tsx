@@ -8,14 +8,13 @@ import getTimePeriods from 'utils/getTimePeriods'
 import multicall from 'utils/multicall'
 import useRefresh from 'hooks/useRefresh'
 import { Contract } from 'web3-eth-contract'
-import { useERC20 } from 'hooks/useContract'
+import { useERC20, useMulticallContract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
-import { useMulticallAddress } from 'hooks/useAddress'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -154,7 +153,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
   const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
 
   useEffect(() => {
     const fetch = async () => {
@@ -210,7 +209,7 @@ const IfoCardContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(multicallAddress, ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -221,7 +220,7 @@ const IfoCardContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh, multicallAddress])
+  }, [account, contract, address, pendingTx, slowRefresh, multicallContract])
 
   if (allowance === null) {
     return null

@@ -56,8 +56,8 @@ export const useNetworkChainId = (): number => {
 
 export const useUpdateNetwork = (userSelectedChainId: number) => {
   const dispatch = useDispatch()
-  const { chainId, account, library } = useWeb3React()
-  dispatch(fetchUserNetwork(chainId, account, userSelectedChainId, library))
+  const { chainId, account } = useWeb3React()
+  dispatch(fetchUserNetwork(chainId, account, userSelectedChainId))
 }
 
 // Fetch public pool and farm data

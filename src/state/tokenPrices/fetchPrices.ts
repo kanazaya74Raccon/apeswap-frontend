@@ -4,7 +4,7 @@ import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const fetchPrices = async (chainId, multicallContract, apePriceGetterAddress) => {
-  const tokensToCall = Object.keys(tokens).filter((token, i) => tokens[token].address[chainId] !== undefined)
+  const tokensToCall = Object.keys(tokens).filter((token) => tokens[token].address[chainId] !== undefined)
   const calls = tokensToCall.map((token) => {
     if (tokens[token].lpToken) {
       return {
