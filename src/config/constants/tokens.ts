@@ -518,6 +518,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  thg: {
+    symbol: 'THG',
+    address: {
+      56: '0x9fD87aEfe02441B123c3c32466cD9dB4c578618f',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
