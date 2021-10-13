@@ -14,6 +14,7 @@ import {
   useBananaAddress,
   useMasterChefAddress,
   useNativeWrapCurrencyAddress,
+  useNonFungibleApesAddress,
   useTreasuryAddress,
 } from 'hooks/useAddress'
 import { useMasterchef, useMulticallContract, useNonFungibleApes } from 'hooks/useContract'
@@ -158,11 +159,14 @@ export const useAllPools = (): Pool[] => {
 export const useNfaStakingPools = (account): NfaStakingPool[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const nfaAddress = useNonFungibleApesAddress()
+  const chainId = useNetworkChainId()
   useEffect(() => {
     if (account) {
-      dispatch(fetchNfaStakingPoolsUserDataAsync(account))
+      dispatch(fetchNfaStakingPoolsUserDataAsync(multicallContract, nfaAddress, chainId, account))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, dispatch, multicallContract, nfaAddress, chainId, fastRefresh])
 
   const nfaStakingPools = useSelector((state: State) => state.nfaStakingPools.data)
   return nfaStakingPools

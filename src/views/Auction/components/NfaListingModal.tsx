@@ -1,8 +1,8 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { Button, Modal, AutoRenewIcon, Text, Card } from '@apeswapfinance/uikit'
 import { useNfaAllowance } from 'hooks/useAllowance'
-import { getAuctionAddress } from 'utils/addressHelpers'
 import { useAuctionApprove } from 'hooks/useApprove'
+import { useAuctionAddress } from 'hooks/useAddress'
 import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
 import Image from 'views/Nft/components/Image'
@@ -96,7 +96,7 @@ const TimeText = styled(Text)`
 // }
 
 const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss, ownedNfas }) => {
-  const auctionAddress = getAuctionAddress()
+  const auctionAddress = useAuctionAddress()
   const allowance = useNfaAllowance(auctionAddress)
   const onApprove = useAuctionApprove().onApprove
   const [approved, setApproved] = useState(true)

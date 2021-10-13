@@ -91,28 +91,28 @@ export const fetchPoolsUserDataAsync =
   }
 
 export const updateUserAllowance =
-  (multicallAddress: string, chainId: number, sousId: string, account: string) => async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(multicallAddress, chainId, account)
+  (multicallContract: Contract, chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const allowances = await fetchPoolsAllowance(multicallContract, chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
   }
 
 export const updateUserBalance =
-  (multicallAddress: string, chainId: number, sousId: string, account: string) => async (dispatch) => {
-    const tokenBalances = await fetchUserBalances(multicallAddress, chainId, account)
+  (multicallContract: Contract, chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const tokenBalances = await fetchUserBalances(multicallContract, chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
   }
 
 export const updateUserStakedBalance =
-  (multicallAddress: string, chainId: number, masterChefContract, sousId: string, account: string) =>
+  (multicallContract: Contract, chainId: number, masterChefContract, sousId: string, account: string) =>
   async (dispatch) => {
-    const stakedBalances = await fetchUserStakeBalances(multicallAddress, masterChefContract, chainId, account)
+    const stakedBalances = await fetchUserStakeBalances(multicallContract, masterChefContract, chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
   }
 
 export const updateUserPendingReward =
-  (multicallAddress: string, chainId: number, masterChefContract, sousId: string, account: string) =>
+  (multicallContract: Contract, chainId: number, masterChefContract, sousId: string, account: string) =>
   async (dispatch) => {
-    const pendingRewards = await fetchUserPendingRewards(multicallAddress, masterChefContract, chainId, account)
+    const pendingRewards = await fetchUserPendingRewards(multicallContract, masterChefContract, chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
 

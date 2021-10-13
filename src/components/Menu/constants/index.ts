@@ -21,29 +21,6 @@ export const EXCHANGE = {
   ],
 }
 
-export const INFO = {
-  label: 'Info',
-  icon: 'InfoIcon',
-  items: [
-    {
-      label: 'Overview',
-      href: 'https://info.apeswap.finance',
-    },
-    {
-      label: 'Tokens',
-      href: 'https://info.apeswap.finance/tokens',
-    },
-    {
-      label: 'Pairs',
-      href: 'https://info.apeswap.finance/pairs',
-    },
-    {
-      label: 'Accounts',
-      href: 'https://info.apeswap.finance/accounts',
-    },
-  ],
-}
-
 export const MORE_INFO = {
   label: 'More',
   icon: 'MoreIcon',

@@ -104,6 +104,37 @@ const App: React.FC = () => {
               <Route path="/admin-pools">
                 <AdminPools />
               </Route>
+              {/* Redirects */}
+              <Route exact path="/nft">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/farms">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/pools">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/admin-pools">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/iao">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/auction">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/nft">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/nft/:id">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/gnana">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/stats">
+                <Redirect to="/" />
+              </Route>
               <Route component={NotFound} />
             </Switch>
           </Suspense>

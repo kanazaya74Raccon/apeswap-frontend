@@ -38,7 +38,6 @@ export const fetchPoolsBlockLimits = async (multicallContract) => {
 }
 
 export const fetchPoolsTotalStatking = async (multicallContract, nfaContractAddress) => {
-
   const calls = nfaStakingPoolsConfig.map((poolConfig) => {
     return {
       address: nfaContractAddress,

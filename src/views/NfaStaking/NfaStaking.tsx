@@ -10,7 +10,6 @@ import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useNfaStakingPools } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
-import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
 
 const ControlContainer = styled(Card)`

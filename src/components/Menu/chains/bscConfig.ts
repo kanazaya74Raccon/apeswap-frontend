@@ -1,6 +1,7 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
 import { BASE_EXCHANGE_URL } from 'config'
-import { HOME, EXCHANGE, INFO, MORE_INFO } from '../constants'
+import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
+import { HOME, EXCHANGE, MORE_INFO } from '../constants'
 
 const bscConfig: MenuEntry[] = [
   HOME,
@@ -49,7 +50,28 @@ const bscConfig: MenuEntry[] = [
     icon: 'ApeZone',
     href: '/gnana',
   },
-  INFO,
+  {
+    label: 'Info',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'Overview',
+        href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
+      },
+      {
+        label: 'Tokens',
+        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/tokens`,
+      },
+      {
+        label: 'Pairs',
+        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/pairs`,
+      },
+      {
+        label: 'Accounts',
+        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/accounts`,
+      },
+    ],
+  },
   MORE_INFO,
 ]
 

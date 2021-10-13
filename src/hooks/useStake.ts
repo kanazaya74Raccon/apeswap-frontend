@@ -11,20 +11,21 @@ import { stake, sousStake, sousStakeBnb, nfaStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
-import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
-import { useMasterChefAddress, useMulticallAddress } from './useAddress'
+import { useNetworkChainId } from 'state/hooks'
+import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef } from './useContract'
+import { useMasterChefAddress, useNonFungibleApesAddress } from './useAddress'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const masterChefAddress = useMasterChefAddress()
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
 
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
-      dispatch(fetchFarmUserStakedBalances(multicallAddress, masterChefAddress, account))
+      dispatch(fetchFarmUserStakedBalances(multicallContract, masterChefAddress, account))
       track({
         event: 'farm',
         chain: chainId,
@@ -34,8 +35,9 @@ const useStake = (pid: number) => {
           pid,
         },
       })
+      console.info(txHash)
     },
-    [account, dispatch, masterChefContract, pid, chainId, masterChefAddress, multicallAddress],
+    [account, dispatch, masterChefContract, pid, chainId, masterChefAddress, multicallContract],
   )
 
   return { onStake: handleStake }
@@ -46,7 +48,7 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
-  const multicallAddress = useMulticallAddress()
+  const multicallContract = useMulticallContract()
 
   const handleStake = useCallback(
     async (amount: string) => {
@@ -68,10 +70,10 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
         },
       })
 
-      dispatch(updateUserStakedBalance(multicallAddress, chainId, masterChefContract, sousId, account))
-      dispatch(updateUserBalance(multicallAddress, chainId, sousId, account))
+      dispatch(updateUserStakedBalance(multicallContract, chainId, masterChefContract, sousId, account))
+      dispatch(updateUserBalance(multicallContract, chainId, sousId, account))
     },
-    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallAddress, chainId],
+    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallContract, chainId],
   )
 
   return { onStake: handleStake }
@@ -80,15 +82,18 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
 export const useNfaStake = (sousId) => {
   const dispatch = useDispatch()
   const { account } = useWeb3React()
+  const multicallContract = useMulticallContract()
+  const chainId = useNetworkChainId()
+  const nfaAddress = useNonFungibleApesAddress()
   const nfaStakeChefContract = useNfaStakingChef(sousId)
 
   const handleStake = useCallback(
     async (ids: number[]) => {
       await nfaStake(nfaStakeChefContract, ids, account)
-      dispatch(updateUserNfaStakingStakedBalance(sousId, account))
-      dispatch(updateNfaStakingUserBalance(sousId, account))
+      dispatch(updateUserNfaStakingStakedBalance(multicallContract, chainId, sousId, account))
+      dispatch(updateNfaStakingUserBalance(multicallContract, nfaAddress, sousId, account))
     },
-    [account, dispatch, nfaStakeChefContract, sousId],
+    [account, dispatch, nfaStakeChefContract, sousId, nfaAddress, chainId, multicallContract],
   )
 
   return { onStake: handleStake }

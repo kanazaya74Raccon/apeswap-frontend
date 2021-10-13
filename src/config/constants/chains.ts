@@ -25,6 +25,13 @@ export const NETWORK_ICON = {
   [CHAIN_ID.MATIC_TESTNET]: '',
 }
 
+export const NETWORK_INFO_LINK = {
+  [CHAIN_ID.BSC]: 'https://info.apeswap.finance',
+  [CHAIN_ID.BSC_TESTNET]: 'https://info.apeswap.finance',
+  [CHAIN_ID.MATIC]: 'https://polygon.info.apeswap.finance/',
+  [CHAIN_ID.MATIC_TESTNET]: 'https://polygon.info.apeswap.finance/',
+}
+
 // Network RPC nodes
 
 export const NETWORK_RPC = {
