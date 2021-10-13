@@ -17,7 +17,7 @@ const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.address !== QuoteTo
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.address === QuoteToken.BNB)
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
-const masterChefContract = new web3.eth.Contract((masterChefABI as unknown) as AbiItem, getMasterChefAddress())
+const masterChefContract = new web3.eth.Contract(masterChefABI as unknown as AbiItem, getMasterChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -25,7 +25,6 @@ export const fetchPoolsAllowance = async (account) => {
     name: 'allowance',
     params: [account, p.contractAddress[CHAIN_ID]],
   }))
-
   const allowances = await multicall(erc20ABI, calls)
   return nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),

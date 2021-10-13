@@ -1,9 +1,17 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
-import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
-import { useMasterchef, useSousChef } from './useContract'
+import track from 'utils/track'
+import { CHAIN_ID } from 'config/constants'
+import {
+  fetchFarmUserDataAsync,
+  updateUserStakedBalance,
+  updateUserBalance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
+} from 'state/actions'
+import { stake, sousStake, sousStakeBnb, nfaStake } from 'utils/callHelpers'
+import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
@@ -14,7 +22,15 @@ const useStake = (pid: number) => {
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
       dispatch(fetchFarmUserDataAsync(account))
-      console.info(txHash)
+      track({
+        event: 'farm',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'stake',
+          amount,
+          pid,
+        },
+      })
     },
     [account, dispatch, masterChefContract, pid],
   )
@@ -37,10 +53,38 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
       } else {
         await sousStake(sousChefContract, amount, account)
       }
+
+      track({
+        event: 'pool',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'stake',
+          amount,
+          pid: sousId,
+        },
+      })
+
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
+  )
+
+  return { onStake: handleStake }
+}
+
+export const useNfaStake = (sousId) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const nfaStakeChefContract = useNfaStakingChef(sousId)
+
+  const handleStake = useCallback(
+    async (ids: number[]) => {
+      await nfaStake(nfaStakeChefContract, ids, account)
+      dispatch(updateUserNfaStakingStakedBalance(sousId, account))
+      dispatch(updateNfaStakingUserBalance(sousId, account))
+    },
+    [account, dispatch, nfaStakeChefContract, sousId],
   )
 
   return { onStake: handleStake }

@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import useRefresh from './useRefresh'
 
-/*
- * Due to Cors the api was forked and a proxy was created
- * @see https://github.com/pancakeswap/gatsby-pancake-api/commit/e811b67a43ccc41edd4a0fa1ee704b2f510aa0ba
- */
-export const baseUrl = 'https://api.pancakeswap.com/api/v1'
+export const baseUrl = 'https://api.apeswap.com/api/v1'
 
 export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://ape-swap-api.herokuapp.com'
 
@@ -278,7 +274,7 @@ export const getPromosHome = async () => {
 }
 
 export const getNewsHome = async () => {
-  const url = `${baseUrlStrapi}/home-news?_sort=created_at:desc`
+  const url = `${baseUrlStrapi}/home-news?_sort=published_at:desc`
   const resp = await fetch(url)
   const data = await resp.json()
   const news = data.map((curNews) => {
@@ -321,7 +317,7 @@ export const getPoolsHome = async () => {
 }
 
 export const getHeadersHome = async () => {
-  const url = `${baseUrlStrapi}/home-banners?_sort=created_at:desc`
+  const url = `${baseUrlStrapi}/home-banners?_sort=published_at:desc`
   const resp = await fetch(url)
   const data = await resp.json()
   const headers = data.map((header) => {

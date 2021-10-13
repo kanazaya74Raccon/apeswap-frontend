@@ -6,6 +6,8 @@ import BalanceInput from 'components/Input/BalanceInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
+import track from 'utils/track'
+import { CHAIN_ID } from 'config/constants'
 
 interface Props {
   currency: string
@@ -48,6 +50,16 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           onClick={async () => {
             setPendingTx(true)
             await deposit()
+            const amount = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
+            track({
+              event: 'iao',
+              chain: CHAIN_ID,
+              data: {
+                amount,
+                cat: 'buy',
+                contract: contract.address,
+              },
+            })
             setPendingTx(false)
             onDismiss()
           }}

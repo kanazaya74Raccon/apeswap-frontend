@@ -7,6 +7,7 @@ BigNumber.config({
 
 export const BANANA_PER_BLOCK = new BigNumber(10)
 export const BLOCKS_PER_YEAR = new BigNumber(10512000)
+export const BLOCKS_PER_DAY = new BigNumber(28800)
 export const BANANA_PER_YEAR = BANANA_PER_BLOCK.times(BLOCKS_PER_YEAR)
 export const BSC_BLOCK_TIME = 3
 export const BANANA_POOL_PID = 1

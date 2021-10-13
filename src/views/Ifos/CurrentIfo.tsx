@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Heading, BaseLayout, Button, Image } from '@apeswapfinance/uikit'
-import { ifosConfig } from 'config/constants'
+import { ifosConfig, zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
 import IfoCard from './components/IfoCard'
 import Title from './components/Title'
@@ -33,38 +33,29 @@ const List = styled.ul`
 const IfoHeading = styled(Heading)`
   margin-top: 32px;
 `
-/**
- * Note: currently there should be only 1 active IFO at a time
- */
+
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
+const zoneActiveIfo = zoneIfo.find((ifo) => ifo.isActive)
 
 const Ifo = () => {
   const TranslateString = useI18n()
 
   return (
     <div>
-      <IfoCards isSingle>
+      <IfoCards isSingle={false}>
         <IfoCard ifo={activeIfo} />
+        <IfoCard ifo={zoneActiveIfo} notLp gnana />
       </IfoCards>
       <LaunchIfoCallout>
         <div>
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
           <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(596, 'Get BNB tokens')}</li>
-            {/* <li>{TranslateString(598, 'Get BANANA-BNB LP tokens by adding BANANA and BNB liquidity')}</li> */}
+            <li>{TranslateString(596, 'Get BNB or GNANA tokens')}</li>
           </List>
-          {/* <Flex mb="16px">
-            <LinkExternal href="https://dex.apeswap.finance/#/swap" mr="16px">
-              {TranslateString(999, 'Buy banana')}
-            </LinkExternal>
-            <LinkExternal href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95">
-              {TranslateString(999, 'Get LP tokens')}
-            </LinkExternal>
-          </Flex> */}
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(602, 'While the sale is live, commit your BNB tokens to buy the IAO tokens')}</li>
+            <li>{TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}</li>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>

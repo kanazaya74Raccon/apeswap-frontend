@@ -97,6 +97,15 @@ export interface PoolConfig {
   emergencyWithdraw?: boolean
 }
 
+export interface NfaStakingPoolConfig {
+  sousId: number
+  tier: number
+  rewardToken: Token
+  contractAddress: Address
+  tokenPerBlock: string
+  isFinished: boolean
+}
+
 export interface Token {
   symbol: string
   address?: Address

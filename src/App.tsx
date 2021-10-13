@@ -13,6 +13,7 @@ import {
   usePollVaultsData,
   useVaults,
   useFetchTokenPrices,
+  useFetchProfile,
 } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -34,6 +35,8 @@ const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const Vaults = lazy(() => import('./views/Vaults'))
+// Commented out until release
+// const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -70,6 +73,7 @@ const App: React.FC = () => {
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()
+  useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
