@@ -13,6 +13,7 @@ interface BidProps {
   minBidRaise: number
   minBidPercentage: number
   countdown: any
+  auctionId: number
 }
 
 const BidWrapper = styled.div`
@@ -157,7 +158,7 @@ const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmoun
   return parseFloat(amountBidRaise.toFixed(6))
 }
 
-const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nfaId, countdown }) => {
+const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nfaId, countdown, auctionId }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const rawMinBidRaise = CalculateMinBid(minBidRaise, minBidPercentage, rawBidAmount)
   const rawMinBidRaiseAmount = getBalanceNumber(new BigNumber(minBidRaise))
@@ -203,7 +204,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
         </SubButton>
         <UserBalanceWrapper>Balance: {rawBnbBalance} </UserBalanceWrapper>
       </BidWrapper>
-      <SubmitBid disabled={bidAmount < rawMinBidRaise} currentBid={bidAmount} nfaId={nfaId} countdown={countdown} />
+      <SubmitBid disabled={bidAmount < rawMinBidRaise} currentBid={bidAmount} nfaId={nfaId} countdown={countdown} auctionId={auctionId}/>
     </>
   )
 }

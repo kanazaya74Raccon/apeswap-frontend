@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { Button, Modal, AutoRenewIcon, Text } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon, Text, Card } from '@apeswapfinance/uikit'
 import { useNfaAllowance } from 'hooks/useAllowance'
 import { getAuctionAddress } from 'utils/addressHelpers'
 import { useAuctionApprove } from 'hooks/useApprove'
@@ -55,6 +55,14 @@ const Nfa = styled.div<{ active: boolean }>`
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 15px;
+  border-radius: 20px;
+  
+`
+
+const NfaBackground = styled.div`
+  margin-top: 10px;
+  background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  border-radius: 30px;
 `
 
 // const MinimumBidWrapper = styled.div`
@@ -75,9 +83,10 @@ const Nfa = styled.div<{ active: boolean }>`
 
 const TimeText = styled(Text)`
   font-family: poppins;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 16px;
   align-self: center;
+  text-align: center;
 `
 
 // const formatListingTime = (listingTime: any): string => {
@@ -145,22 +154,6 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
 
   return (
     <Modal title={`${TranslateString(316, 'Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
-      <Text textAlign="center" marginTop="10px">
-        NFA selected: {nfaIndex}
-      </Text>
-      {ownedNfas ? (
-        <OwnedNfaWrapper>
-          {ownedNfas?.map((nfa) => {
-            return (
-              <Nfa onClick={() => setNfaIndex(nfa.index)} active={nfaIndex === nfa.index}>
-                <Image src={nfa.image} alt={nfa.name} rarityTier={nfa.attributes.rarityTierNumber} />
-              </Nfa>
-            )
-          })}
-        </OwnedNfaWrapper>
-      ) : (
-        <TimeText marginBottom="20px">You do not have any NFAs in your wallet 😢</TimeText>
-      )}
       <DescriptionWrapper>
         <Text textAlign="center"> Welcome to the Self-Serve Auction House! </Text>
         <TimeText> (The Rules are the Same) </TimeText>
@@ -189,6 +182,24 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
           NFAs will be auctioned in the order they are entered, you may cancel your entry at any time before your
           auction begins.
         </TimeText>
+        <Text textAlign="center" marginTop="10px">
+          NFA selected: {nfaIndex}
+        </Text>
+        {ownedNfas ? (
+          <NfaBackground>
+            <OwnedNfaWrapper>
+              {ownedNfas?.map((nfa) => {
+                return (
+                  <Nfa onClick={() => setNfaIndex(nfa.index)} active={nfaIndex === nfa.index}>
+                    <Image src={nfa.image} alt={nfa.name} rarityTier={nfa.attributes.rarityTierNumber} borderRadius="20px"/>
+                  </Nfa>
+                )
+              })}
+            </OwnedNfaWrapper>
+          </NfaBackground>
+        ) : (
+          <TimeText marginBottom="20px">You do not have any NFAs in your wallet 😢</TimeText>
+        )}
       </DescriptionWrapper>
 
       {/* 
@@ -224,7 +235,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
             }}
             endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
           >
-            {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+            {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'List NFA')}
           </Button>
         ) : (
           <Button

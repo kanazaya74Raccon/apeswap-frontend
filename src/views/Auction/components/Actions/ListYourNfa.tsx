@@ -34,7 +34,7 @@ const ListYourNfa: React.FC = () => {
     />,
   )
 
-  return <MoreInfo onClick={onPresentNfaListingModal}> List Your Nfa </MoreInfo>
+  return <MoreInfo onClick={onPresentNfaListingModal}> List Your NFA </MoreInfo>
 }
 
 export default ListYourNfa
