@@ -10,7 +10,7 @@ const useBid = () => {
   const auctionContract = useAuction()
 
   const handleBid = useCallback(
-    async (amount, id) => {
+    async (amount, id, auctionId) => {
       try {
         const txHash = await bid(auctionContract, amount, id, account)
         track({
@@ -18,6 +18,7 @@ const useBid = () => {
           chain: CHAIN_ID,
           data: {
             id,
+            auctionId,
             cat: 'bid',
             amount,
           },

@@ -1,11 +1,28 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
 import { useAuctions } from 'state/hooks'
 import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
+import ListYourNfa from './components/Actions/ListYourNfa'
+
+const float = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  25% {transform: translate3d(0px, 10px, 0px);}
+  50% {transform: translate3d(0px, 0px, 0px);}
+  75% {transform: translate3d(0px, -10px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
+
+const floatMobile = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  25% {transform: translate3d(0px, 5px, 0px);}
+  50% {transform: translate3d(0px, 0px, 0px);}
+  75% {transform: translate3d(0px, -5px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
 
 const PageWrapper = styled.div`
   display: none;
@@ -39,31 +56,54 @@ const Header = styled.div`
   height: 251px;
   width: 100%;
   padding-top: 36px;
-  background-image: url(/images/auction-banner.svg);
+  background-image: ${({ theme }) =>
+    theme.isDark
+      ? 'url(/images/mobile-nfa-auction-banner-dark.svg)'
+      : 'url(/images/mobile-nfa-auction-banner-light.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.xl} {
     height: 300px;
+    background-image: ${({ theme }) =>
+      theme.isDark ? 'url(/images/nfa-auction-banner-dark.svg)' : 'url(/images/nfa-auction-banner-light.svg)'};
   }
 `
 
-const StyledMonkey = styled.img`
-  width: 400px;
-  height: 250px;
-  opacity: 0.07;
-  border-radius: 0px;
-  background-image: url(/images/auction-monkey.svg);
+const AuctionFrame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 161px;
+  height: 161px;
+  margin-right: 120px;
+  margin-top: 40px;
+  background-image: url(/images/auction-frame.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: 50px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-    width: 425px;
-    right: 27px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 274px;
+    height: 274px;
+    margin-left: 500px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+  }
+`
+
+const NfaHead = styled.div`
+  width: 150px;
+  height: 150px;
+  background-image: url(/images/nfa-head.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: 10s ${floatMobile} linear infinite;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 225px;
+    height: 225px;
+    animation: 10s ${float} linear infinite;
   }
 `
 
@@ -71,21 +111,47 @@ const HeadingText = styled(Text)`
   position: absolute;
   text-align: center;
   letter-spacing: 0.05em;
-  color: #fafafa;
+  color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
   width: 366px;
   height: 125px;
   font-family: Titan One;
   font-style: normal;
   font-weight: normal;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 57px;
   text-align: center;
   letter-spacing: 0.05em;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    top: 155px;
+  top: 5px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    top: 80px;
+    margin-right: 525px;
     width: 585px;
     height: 80px;
     font-size: 70px;
+    line-height: 20px;
+  }
+`
+const SecondaryText = styled(Text)`
+  position: absolute;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
+  width: 366px;
+  height: 125px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 57px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  top: 40px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    top: 150px;
+    margin-right: 525px;
+    width: 585px;
+    height: 80px;
+    font-size: 20px;
     line-height: 20px;
   }
 `
@@ -142,8 +208,11 @@ const Auction: React.FC = () => {
     <SwiperProvider>
       <Container>
         <Header>
-          <StyledMonkey />
+          <AuctionFrame>
+            <NfaHead />
+          </AuctionFrame>
           <HeadingText>NFA Auction</HeadingText>
+          <SecondaryText>Sell your Non-Fungible Ape to the highest bidder</SecondaryText>
         </Header>
         <PageWrapper>
           <MoreInfoWrapper>
@@ -155,13 +224,7 @@ const Auction: React.FC = () => {
               >
                 <MoreInfo>How It Works</MoreInfo>
               </a>
-              <a
-                href="https://twitter.com/ape_swap/status/1422710092126883842"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MoreInfo>Tier One Challenge</MoreInfo>
-              </a>
+              <ListYourNfa />
             </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
