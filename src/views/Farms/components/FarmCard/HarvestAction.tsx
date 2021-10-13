@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import { getContract } from 'utils/erc20'
 import { useWeb3React } from '@web3-react/core'
-import { useFarmUser, useFarmFromSymbol } from 'state/hooks'
+import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 
 import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
@@ -31,6 +31,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const [pendingTx, setPendingTx] = useState(false)
   const onReward = useReward(rewardRef, useHarvest(pid).onReward)
+  const chainId = useNetworkChainId()
 
   const rawEarningsBalance = getBalanceNumber(earnings)
 
@@ -38,7 +39,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
 
   const { lpAddresses } = useFarmFromSymbol(lpSymbol)
-  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = lpAddresses[chainId]
   const lpContract = useMemo(() => {
     return getContract(library, lpAddress)
   }, [library, lpAddress])

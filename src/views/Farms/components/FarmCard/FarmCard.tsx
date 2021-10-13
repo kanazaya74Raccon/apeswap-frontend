@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { useStats } from 'state/hooks'
+import { useNetworkChainId, useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
@@ -112,6 +112,7 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
   const yourStats = useStats()
+  const chainId = useNetworkChainId()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -128,7 +129,12 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const farmAPR = farm.apr && farm.apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({
+    quoteTokenAdresses,
+    quoteTokenSymbol,
+    tokenAddresses,
+    chainId,
+  })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const FarmStyle = styles[farm.style]
 

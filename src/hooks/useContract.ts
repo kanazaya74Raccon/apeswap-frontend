@@ -18,6 +18,8 @@ import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
 import multi from 'config/abi/Multicall.json'
+import { useSelector } from 'react-redux'
+import { State } from 'state/types'
 import {
   useApePriceGetterAddress,
   useAuctionAddress,
@@ -129,10 +131,12 @@ export const useMasterchef = () => {
 }
 
 export const useSousChef = (id) => {
+  // Using selector to avoid circular dependecies
+  const chainId = useSelector((state: State) => state.network.data.chainId)
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
   const abi = rawAbi as unknown as AbiItem
-  return useContract(abi, config.contractAddress[parseInt(process.env.REACT_APP_CHAIN_ID)])
+  return useContract(abi, config.contractAddress[chainId])
 }
 
 export const useAuction = () => {

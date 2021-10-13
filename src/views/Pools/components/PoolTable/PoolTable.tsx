@@ -7,6 +7,7 @@ import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
+import { useNetworkChainId } from 'state/hooks'
 import PoolHeading from './PoolHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
@@ -17,8 +18,6 @@ import Staked from './Liquidity'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
-
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 interface HarvestProps {
   pool: Pool
@@ -119,6 +118,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const toggleActionPanel = () => {
     setActionPanelToggled(!actionPanelToggled)
   }
+  const chainId = useNetworkChainId()
 
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
@@ -143,7 +143,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     if (needsApproval) {
       return (
         <ApprovalAction
-          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          stakingTokenContractAddress={stakingToken.address[chainId]}
           sousId={sousId}
           isLoading={isLoading}
         />
@@ -224,7 +224,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             lpLabel={stakingToken.symbol}
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
-            bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
+            bscScanAddress={`https://bscscan.com/address/${contractAddress[chainId]}`}
             tokenDecimals={tokenDecimals}
           />
         </>

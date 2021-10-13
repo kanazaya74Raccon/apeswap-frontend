@@ -4,7 +4,7 @@ import farms from './farms'
 export const CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID)
 
 const communityFarms = farms.filter((farm) => farm.isCommunity).map((farm) => farm.tokenSymbol)
-const farmsConfig = CHAIN_ID !== 56 ? farms.filter((farm) => farm.pid <= 5) : farms
+const farmsConfig = farms
 
 const zoneIfo = ApeZone.ifos
 export { zoneIfo }

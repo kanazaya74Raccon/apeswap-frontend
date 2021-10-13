@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
+import { useNetworkChainId } from 'state/hooks'
 import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -13,7 +14,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -263,6 +263,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const { userData, tokenDecimals, stakingToken } = pool
+  const chainId = useNetworkChainId()
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -282,7 +283,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     if (needsApproval) {
       return (
         <ApprovalAction
-          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          stakingTokenContractAddress={stakingToken.address[chainId]}
           sousId={sousId}
           isLoading={isLoading}
         />
