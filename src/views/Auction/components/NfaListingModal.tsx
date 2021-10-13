@@ -56,7 +56,6 @@ const Nfa = styled.div<{ active: boolean }>`
   margin-right: 10px;
   margin-bottom: 15px;
   border-radius: 20px;
-  
 `
 
 const NfaBackground = styled.div`
@@ -191,7 +190,12 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
               {ownedNfas?.map((nfa) => {
                 return (
                   <Nfa onClick={() => setNfaIndex(nfa.index)} active={nfaIndex === nfa.index}>
-                    <Image src={nfa.image} alt={nfa.name} rarityTier={nfa.attributes.rarityTierNumber} borderRadius="20px"/>
+                    <Image
+                      src={nfa.image}
+                      alt={nfa.name}
+                      rarityTier={nfa.attributes.rarityTierNumber}
+                      borderRadius="20px"
+                    />
                   </Nfa>
                 )
               })}
