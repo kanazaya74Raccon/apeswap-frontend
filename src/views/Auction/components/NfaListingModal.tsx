@@ -167,13 +167,9 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
           During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.
         </TimeText>
         <Text textAlign="center" marginTop="10px">
-          Auction Order
+          All Sales are Final
         </Text>
-        <TimeText>NFAs will be auctioned in the order they are submitted.</TimeText>
-        <Text textAlign="center" marginTop="10px">
-          Cancel Your Listing
-        </Text>
-        <TimeText>You may cancel your entry any time before your auction begins.</TimeText>
+        <TimeText>When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!</TimeText>
         <Text textAlign="center" marginTop="10px">
           Proceeds
         </Text>
@@ -181,10 +177,11 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
         <Text textAlign="center" marginTop="10px">
           Auction Order
         </Text>
-        <TimeText>
-          NFAs will be auctioned in the order they are entered, you may cancel your entry at any time before your
-          auction begins.
-        </TimeText>
+        <TimeText>NFAs will be auctioned in the order they are submitted.</TimeText>
+        <Text textAlign="center" marginTop="10px">
+          Cancel Your Listing
+        </Text>
+        <TimeText>You may cancel your entry any time before your auction begins.</TimeText>
         <Text textAlign="center" marginTop="10px">
           NFA selected: {nfaIndex}
         </Text>
