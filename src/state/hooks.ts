@@ -48,7 +48,8 @@ export const useFetchPublicData = () => {
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync(tokenPrices))
-    dispatch(fetchNfaStakingPoolsPublicDataAsync(tokenPrices))
+    // Will un-comment on nfa staking release
+    // dispatch(fetchNfaStakingPoolsPublicDataAsync(tokenPrices))
   }, [dispatch, slowRefresh, tokenPrices])
 }
 

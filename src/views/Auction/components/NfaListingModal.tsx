@@ -77,6 +77,7 @@ const TimeText = styled(Text)`
   font-family: poppins;
   font-weight: 700;
   font-size: 16px;
+  align-self: center;
 `
 
 // const formatListingTime = (listingTime: any): string => {
@@ -144,34 +145,46 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
 
   return (
     <Modal title={`${TranslateString(316, 'Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
-      <TimeText marginTop="10px">NFA selected: {nfaIndex}</TimeText>
-      <OwnedNfaWrapper>
-        {ownedNfas ? (
-          ownedNfas?.map((nfa) => {
+      <Text textAlign="center" marginTop="10px">
+        NFA selected: {nfaIndex}
+      </Text>
+      {ownedNfas ? (
+        <OwnedNfaWrapper>
+          {ownedNfas?.map((nfa) => {
             return (
               <Nfa onClick={() => setNfaIndex(nfa.index)} active={nfaIndex === nfa.index}>
                 <Image src={nfa.image} alt={nfa.name} rarityTier={nfa.attributes.rarityTierNumber} />
               </Nfa>
             )
-          })
-        ) : (
-          <Text marginBottom="20px">You do not have any NFAs in your wallet 😢</Text>
-        )}
-      </OwnedNfaWrapper>
+          })}
+        </OwnedNfaWrapper>
+      ) : (
+        <TimeText marginBottom="20px">You do not have any NFAs in your wallet 😢</TimeText>
+      )}
       <DescriptionWrapper>
-        <Text> Welcome to the Self-Serve Auction House! </Text>
+        <Text textAlign="center"> Welcome to the Self-Serve Auction House! </Text>
         <TimeText> (The Rules are the Same) </TimeText>
-        <Text marginTop="10px"> Auction Start Length </Text>
+        <Text textAlign="center" marginTop="10px">
+          Auction Start Length
+        </Text>
         <TimeText> 24 Hours </TimeText>
-        <Text marginTop="10px">How the Clock Works</Text>
+        <Text textAlign="center" marginTop="10px">
+          How the Clock Works
+        </Text>
         <TimeText>
           During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.
         </TimeText>
-        <Text marginTop="10px">All Sales are Final</Text>
+        <Text textAlign="center" marginTop="10px">
+          All Sales are Final
+        </Text>
         <TimeText>When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!</TimeText>
-        <Text marginTop="10px">Proceeds</Text>
+        <Text textAlign="center" marginTop="10px">
+          Proceeds
+        </Text>
         <TimeText>95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.</TimeText>
-        <Text marginTop="10px">Auction Order</Text>
+        <Text textAlign="center" marginTop="10px">
+          Auction Order
+        </Text>
         <TimeText>
           NFAs will be auctioned in the order they are entered, you may cancel your entry at any time before your
           auction begins.

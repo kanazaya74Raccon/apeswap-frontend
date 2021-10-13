@@ -124,7 +124,7 @@ const HeadingText = styled(Text)`
   top: 5px;
   ${({ theme }) => theme.mediaQueries.xl} {
     top: 80px;
-    left: 125px;
+    margin-right: 525px;
     width: 585px;
     height: 80px;
     font-size: 70px;
@@ -148,7 +148,7 @@ const SecondaryText = styled(Text)`
   top: 40px;
   ${({ theme }) => theme.mediaQueries.xl} {
     top: 150px;
-    left: 125px;
+    margin-right: 525px;
     width: 585px;
     height: 80px;
     font-size: 20px;

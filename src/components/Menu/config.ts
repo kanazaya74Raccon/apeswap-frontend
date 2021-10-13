@@ -58,10 +58,11 @@ const config: MenuEntry[] = [
         label: 'Auction',
         href: '/auction',
       },
-      {
-        label: 'Staking',
-        href: '/nfa-staking',
-      },
+      // Will un-comment for staking release 
+      // {
+      //   label: 'Staking',
+      //   href: '/nfa-staking',
+      // },
     ],
   },
   {
