@@ -1,12 +1,17 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
-import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
+import {
+  updateUserStakedBalance,
+  updateUserBalance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
+} from 'state/actions'
+import { stake, sousStake, sousStakeBnb, nfaStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
-import { useMasterchef, useSousChef } from './useContract'
+import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
 import { useMasterChefAddress, useMulticallAddress } from './useAddress'
 
 const useStake = (pid: number) => {
@@ -24,13 +29,11 @@ const useStake = (pid: number) => {
         event: 'farm',
         chain: chainId,
         data: {
-          token: txHash.to,
           cat: 'stake',
           amount,
           pid,
         },
       })
-      console.info(txHash)
     },
     [account, dispatch, masterChefContract, pid, chainId, masterChefAddress, multicallAddress],
   )
@@ -69,6 +72,23 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
       dispatch(updateUserBalance(multicallAddress, chainId, sousId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallAddress, chainId],
+  )
+
+  return { onStake: handleStake }
+}
+
+export const useNfaStake = (sousId) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const nfaStakeChefContract = useNfaStakingChef(sousId)
+
+  const handleStake = useCallback(
+    async (ids: number[]) => {
+      await nfaStake(nfaStakeChefContract, ids, account)
+      dispatch(updateUserNfaStakingStakedBalance(sousId, account))
+      dispatch(updateNfaStakingUserBalance(sousId, account))
+    },
+    [account, dispatch, nfaStakeChefContract, sousId],
   )
 
   return { onStake: handleStake }

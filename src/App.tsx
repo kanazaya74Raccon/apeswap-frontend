@@ -35,6 +35,8 @@ const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
+// Commented out until release
+// const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
 // This config is required for number formating
 BigNumber.config({

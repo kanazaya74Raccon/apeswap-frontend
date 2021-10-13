@@ -12,3 +12,12 @@ export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './
 export { statsFetchStart, statsFetchSucceeded, statsFetchFailed } from './stats'
 export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
 export { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } from './tokenPrices'
+export {
+  setNfaStakingPoolsPublicData,
+  setNfaStakingPoolsUserData,
+  updateNfaStakingPoolsUserData,
+  updateNfaStakingUserAllowance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
+  updateUserNfaStakingPendingReward,
+} from './nfaStakingPools'

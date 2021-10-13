@@ -3,13 +3,13 @@ import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance } from 'state/actions'
+import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserAllowances } from 'state/farms/fetchFarmUser'
-import { useMasterChefAddress, useMulticallAddress } from './useAddress'
-import { useMasterchef, useBanana, useSousChef, useLottery } from './useContract'
+import { useMasterChefAddress, useMulticallAddress, useAuctionAddress } from './useAddress'
+import { useMasterchef, useBanana, useSousChef, useLottery, useNonFungibleApes } from './useContract'
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -101,4 +101,39 @@ export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) =
   }, [account, spenderAddress, tokenContract])
 
   return onApprove
+}
+
+// Approve an Auction
+export const useAuctionApprove = () => {
+  const tokenContract = useNonFungibleApes()
+  const spenderAddress = useAuctionAddress()
+  const { account } = useWeb3React()
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await tokenContract.methods.setApprovalForAll(spenderAddress, true).send({ from: account })
+      return tx
+    } catch {
+      return false
+    }
+  }, [account, spenderAddress, tokenContract])
+
+  return { onApprove: handleApprove }
+}
+
+// Approve an NFA
+export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
+  const dispatch = useDispatch()
+  const tokenContract = useNonFungibleApes()
+  const { account } = useWeb3React()
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
+      dispatch(updateNfaStakingUserAllowance(sousId, account))
+      return tx
+    } catch {
+      return false
+    }
+  }, [account, dispatch, contractToApprove, sousId, tokenContract])
+
+  return { onApprove: handleApprove }
 }

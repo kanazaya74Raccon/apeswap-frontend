@@ -2,12 +2,13 @@ import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { updateUserBalance, updateUserPendingReward } from 'state/actions'
-import { soushHarvest, soushHarvestBnb, harvest } from 'utils/callHelpers'
+import { soushHarvest, soushHarvestBnb, harvest, nfaStakeHarvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 import { fetchFarmUserEarnings } from 'state/farms/fetchFarmUser'
 import { useMasterchef, useSousChef } from './useContract'
 import { useMasterChefAddress, useMulticallAddress } from './useAddress'
+import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
@@ -76,6 +77,19 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
     dispatch(updateUserPendingReward(multicallAddress, chainId, masterChefContract, sousId, account))
     dispatch(updateUserBalance(multicallAddress, chainId, sousId, account))
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallAddress, chainId])
+
+  return { onReward: handleHarvest }
+}
+
+export const useNfaStakingHarvest = (sousId) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const nfaStakingChef = useNfaStakingHarvest(sousId)
+  const handleHarvest = useCallback(async () => {
+    await nfaStakeHarvest(nfaStakingChef, account)
+    dispatch(updateUserNfaStakingPendingReward(sousId, account))
+    dispatch(updateNfaStakingUserBalance(sousId, account))
+  }, [account, dispatch, nfaStakingChef, sousId])
 
   return { onReward: handleHarvest }
 }

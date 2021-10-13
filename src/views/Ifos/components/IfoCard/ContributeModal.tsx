@@ -50,11 +50,12 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           onClick={async () => {
             setPendingTx(true)
             await deposit()
+            const amount = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
             track({
               event: 'iao',
               chain: CHAIN_ID,
               data: {
-                amount: new BigNumber(value).times(new BigNumber(10).pow(18)).toString(),
+                amount,
                 cat: 'buy',
                 contract: contract.address,
               },

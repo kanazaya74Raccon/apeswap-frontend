@@ -491,6 +491,41 @@ const tokens = {
     },
     decimals: 6,
   },
+  kala: {
+    symbol: 'KALA',
+    address: {
+      56: '0x32299c93960bB583A43c2220Dc89152391A610c5',
+    },
+    decimals: 18,
+  },
+  ihc: {
+    symbol: 'IHC',
+    address: {
+      56: '0x86a53fcd199212FEa44FA7e16EB1f28812be911D',
+    },
+    decimals: 18,
+  },
+  airt: {
+    symbol: 'AIRT',
+    address: {
+      56: '0x016CF83732f1468150D87dCC5BdF67730B3934D3',
+    },
+    decimals: 18,
+  },
+  pros: {
+    symbol: 'PROS',
+    address: {
+      56: '0xed8c8aa8299c10f067496bb66f8cc7fb338a3405',
+    },
+    decimals: 18,
+  },
+  thg: {
+    symbol: 'THG',
+    address: {
+      56: '0x9fD87aEfe02441B123c3c32466cD9dB4c578618f',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

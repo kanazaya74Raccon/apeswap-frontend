@@ -228,8 +228,8 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
-    await contract.methods.harvest(harvestPeriod).send({ from: account })
-
+    const tx = await contract.methods.harvest(harvestPeriod).send({ from: account })
+    setPendingTx(false)
     track({
       event: 'iao',
       chain: CHAIN_ID,
@@ -237,11 +237,10 @@ const IfoCardContribute: React.FC<Props> = ({
         amount: tokensHarvestedAvailable,
         cat: 'claim',
         instance: harvestPeriod,
+        contract: tx.to,
       },
     })
-    setPendingTx(false)
   }
-
   const isFinished = status === 'finished'
   const overSubscribed = totalAmount.gte(raisingAmount)
   const amountContributed = getBalanceNumber(new BigNumber(userInfo.amount.toString()))

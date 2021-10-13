@@ -3,6 +3,7 @@ import { AbiItem } from 'web3-utils'
 import { Contract, ContractOptions } from 'web3-eth-contract'
 import useWeb3 from 'hooks/useWeb3'
 import { poolsConfig } from 'config/constants'
+import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
 import erc20 from 'config/abi/erc20.json'
@@ -13,6 +14,7 @@ import treasuryAbi from 'config/abi/treasury.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
+import nfaStakingAbi from 'config/abi/nfaStaking.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
@@ -137,6 +139,13 @@ export const useSousChef = (id) => {
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
   const abi = rawAbi as unknown as AbiItem
   return useContract(abi, config.contractAddress[chainId])
+}
+
+export const useNfaStakingChef = (id) => {
+  const config = nfaStakingPools.find((pool) => pool.sousId === id)
+  const rawAbi = nfaStakingAbi
+  const abi = rawAbi as unknown as AbiItem
+  return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
 }
 
 export const useAuction = () => {

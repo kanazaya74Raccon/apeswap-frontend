@@ -46,11 +46,11 @@ export default {
   },
   bananaProfile: {
     56: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
-    97: '0xfb3310CcA65fe9479a3590206Be3CEEC70DE77FE',
+    97: '0xb57ab339831cd5154ef2ed721ceba734aa9047bd',
   },
   nonFungibleApes: {
     56: '0x6eca7754007d22d3F557740d06FeD4A031BeFE1e',
-    97: '0x6eca7754007d22d3F557740d06FeD4A031BeFE1e',
+    97: '0xdcad4503caa97b23b12134d2f4704db5b6438b8e',
   },
   rabbitMintingFarm: {
     56: '0x1C99222F857C1d72234703eC5b9Ed88089Bd7091',
@@ -74,7 +74,7 @@ export default {
   },
   auction: {
     56: '0x495881E60EB2E3a95757f3a7b09Ff31e0C00aE7B',
-    97: '0x80a01F81B92D21E39ff1276c4a81d25cB4DC4CDB',
+    97: '0xe2782fb3f1c2506FA32484e728Bc42F578117dEC',
   },
   apePriceGetter: {
     56: '0x5e545322b83626c745FE46144a15C00C94cBD803',

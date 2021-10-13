@@ -11,6 +11,7 @@ interface BidProps {
   disabled: boolean
   nfaId: number
   countdown: any
+  auctionId: number
 }
 
 const StyledButton = styled(Button)`
@@ -42,7 +43,7 @@ const StyledButton = styled(Button)`
   }
 `
 
-const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown }) => {
+const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown, auctionId }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const rewardRef = useRef(null)
   const onBid = useReward(rewardRef, useBid().onBid)
@@ -53,7 +54,7 @@ const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown 
       disabled={pendingTx || disabled}
       onClick={async () => {
         setPendingTx(true)
-        await onBid(currentBid, nfaId).catch(() => {
+        await onBid(currentBid, nfaId, auctionId).catch(() => {
           toastError('Bidding Error', 'It is likely you were outbid')
         })
         setPendingTx(false)
