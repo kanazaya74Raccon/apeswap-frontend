@@ -2352,6 +2352,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 122,
+    tokenName: 'WSG',
+    image: 'WSG.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.wsg,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xde99115c3f8ee876b5520779665088f70f647a6d',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://wsg.gg/',
+    harvest: true,
+    tokenPerBlock: `570041.232638888888888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
