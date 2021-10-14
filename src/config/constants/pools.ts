@@ -2371,10 +2371,32 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  /*
+    NEXT SOUS ID WILL BE 124 CUZ OF ADMIN POOL 123
+  */
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
-
+  {
+    sousId: 123,
+    tokenName: 'CYT',
+    image: 'CYT.svg',
+    stakingToken: tokens.obie,
+    rewardToken: tokens.cyt,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xcd40fbe9eabc34faa59341c36c628e8867a22943',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://twitter.com/obie_Dobo/',
+    harvest: true,
+    tokenPerBlock: `0.11574074074074074`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+    forAdmins: true,
+  },
   {
     sousId: 96,
     tokenName: 'BANANA',
