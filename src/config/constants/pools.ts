@@ -2371,9 +2371,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-  /*
-    NEXT SOUS ID WILL BE 124 CUZ OF ADMIN POOL 123
-  */
+  {
+    sousId: 124,
+    tokenName: 'OTAKU',
+    image: 'OTAKU.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.otaku,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x17b3077f903ceb64cf8c00d3a07e0091914aae1b',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://fomochronicles.com/',
+    harvest: true,
+    tokenPerBlock: `1.316145833333333333`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
