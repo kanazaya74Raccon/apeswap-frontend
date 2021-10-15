@@ -532,6 +532,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  otaku: {
+    symbol: 'OTAKU',
+    address: {
+      56: '0x484215873a674f9af73367a8f94c2c591e997521',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
