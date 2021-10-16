@@ -540,12 +540,12 @@ const tokens = {
     decimals: 18,
   },
   tnns: {
-    symbol: "TNNS",
+    symbol: 'TNNS',
     address: {
-      56: "0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd",
+      56: '0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd',
     },
     decimals: 18,
-  }
+  },
 }
 
 export default tokens

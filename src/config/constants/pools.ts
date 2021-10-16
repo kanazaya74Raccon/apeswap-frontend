@@ -2393,7 +2393,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 125,
     tokenName: 'TNNS',
-    image: 'TNNS.svg',
+    image: 'TNNS.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.tnns,
     contractAddress: {
