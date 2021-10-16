@@ -2390,6 +2390,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 125,
+    tokenName: 'TNNS',
+    image: 'TNNS.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.tnns,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x8b82c8a380a4c7edd68a4df2d4b09a52b5704c3b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.tnns.pro/',
+    harvest: true,
+    tokenPerBlock: `0.076967592592592592`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
