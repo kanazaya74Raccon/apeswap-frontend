@@ -2009,7 +2009,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'KING-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x824b23f47da94055434242c1100dfa71cc691f83',
+      56: '0x396a89f9445321f57345439cd405c09d03c3d092',
     },
     tokenSymbol: 'KING',
     tokenAddresses: {
