@@ -546,6 +546,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  king: {
+    symbol: 'KING',
+    address: {
+      56: '0x0cCD575bf9378c06f6DCa82f8122F570769F00C2',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
