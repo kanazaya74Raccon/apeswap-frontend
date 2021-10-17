@@ -2422,7 +2422,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://cryptobladeskingdoms.io/',
     harvest: true,
-    tokenPerBlock: `0.129902054398148148`,
+    tokenPerBlock: `0.128603009250000000`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
