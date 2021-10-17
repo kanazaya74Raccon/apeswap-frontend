@@ -2409,6 +2409,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 126,
+    tokenName: 'KING',
+    image: 'KING.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.king,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x824b23f47da94055434242c1100dfa71cc691f83',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptobladeskingdoms.io/',
+    harvest: true,
+    tokenPerBlock: `0.129902054398148148`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
