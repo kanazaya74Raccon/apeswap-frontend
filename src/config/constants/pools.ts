@@ -2412,7 +2412,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 126,
     tokenName: 'KING',
-    image: 'KING.svg',
+    image: 'KING.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.king,
     contractAddress: {
