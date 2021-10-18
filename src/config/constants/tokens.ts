@@ -554,11 +554,11 @@ const tokens = {
     decimals: 18,
   },
   mbird: {
-    "symbol": "MBIRD",
-    "address": {
-      56: "0x3b23a0FFbc53198d86fa5927E8ee32F7EF699A14",
+    symbol: 'MBIRD',
+    address: {
+      56: '0x3b23a0FFbc53198d86fa5927E8ee32F7EF699A14',
     },
-    "decimals": 18,
+    decimals: 18,
   },
 }
 
