@@ -171,3 +171,42 @@ export type PageMeta = {
   description?: string
   image?: string
 }
+
+// Interfaces used in Vaults
+export interface MasterChef {
+  pid: number
+  address: string
+  rewardsPerBlock: string
+  rewardToken: string
+}
+
+export interface VaultConfig {
+  pid: number
+  network: number
+  strat: string
+  stakeTokenAddress: string
+  platform: string
+  token0: Token
+  token1?: Token
+  isPair: boolean
+  masterchef: MasterChef
+  totalFees: number
+  withdrawFee: number
+  burning: boolean
+  inactive?: boolean
+}
+
+export interface DualFarmConfig {
+  pid: number
+  network: number
+  stakeTokenAddress: string
+  rewarderAddress: string
+  stakeTokens: {
+    token0: Token
+    token1: Token
+  }
+  rewardTokens: {
+    token0: Token
+    token1?: Token
+  }
+}

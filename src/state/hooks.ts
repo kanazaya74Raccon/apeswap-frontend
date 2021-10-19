@@ -16,6 +16,7 @@ import {
   useNativeWrapCurrencyAddress,
   useNonFungibleApesAddress,
   useTreasuryAddress,
+  useVaultApeAddress,
 } from 'hooks/useAddress'
 import { useMasterchef, useMulticallContract, useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
@@ -36,6 +37,8 @@ import {
   StatsOverallState,
   FarmOverall,
   AuctionsState,
+  Vault,
+  VaultsState,
   TokenPricesState,
   NfaStakingPool,
 } from './types'
@@ -44,6 +47,7 @@ import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
+import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
@@ -83,6 +87,23 @@ export const useFetchPublicData = () => {
   }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallContract, nativeWrappedAddress])
 }
 
+export const usePollVaultsData = (includeArchive = false) => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
+  const multicallContract = useMulticallContract()
+  const vaultApeAddress = useVaultApeAddress()
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+
+  useEffect(() => {
+    dispatch(fetchVaultsPublicDataAsync({ multicallContract, chainId, tokenPrices }))
+    if (account) {
+      dispatch(fetchVaultUserDataAsync({ multicallContract, vaultApeAddress, account, chainId }))
+    }
+  }, [includeArchive, dispatch, slowRefresh, account, multicallContract, chainId, vaultApeAddress, tokenPrices])
+}
+
 // Farms
 
 export const useFarms = (account): Farm[] => {
@@ -118,6 +139,29 @@ export const useFarmUser = (pid) => {
     tokenBalance: farm?.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+  }
+}
+
+// Vaults
+
+export const useVaults = (): VaultsState => {
+  const vaults = useSelector((state: State) => state.vaults)
+  return vaults
+}
+
+export const useVaultFromPid = (pid): Vault => {
+  const vault = useSelector((state: State) => state.vaults.data.find((v) => v.pid === pid))
+  return vault
+}
+
+export const useVaultUser = (pid) => {
+  const vault = useVaultFromPid(pid)
+
+  return {
+    allowance: vault.userData ? new BigNumber(vault.userData.allowance) : new BigNumber(0),
+    tokenBalance: vault.userData ? new BigNumber(vault.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: vault.userData ? new BigNumber(vault.userData.stakedBalance) : new BigNumber(0),
+    stakedWantBalance: vault.userData ? new BigNumber(vault.userData.stakedWantBalance) : new BigNumber(0),
   }
 }
 

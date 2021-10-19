@@ -11,4 +11,5 @@ export { zoneIfo }
 
 export { farmsConfig, communityFarms }
 export { default as poolsConfig } from './pools'
+export { default as vaultsConfig } from './vaults'
 export { default as ifosConfig } from './ifo'

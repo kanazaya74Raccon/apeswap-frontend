@@ -59,3 +59,7 @@ export const useAuctionAddress = () => {
 export const useApePriceGetterAddress = () => {
   return useAddress(addresses.apePriceGetter)
 }
+
+export const useVaultApeAddress = () => {
+  return useAddress(addresses.vaultApe)
+}

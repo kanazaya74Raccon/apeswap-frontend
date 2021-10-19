@@ -11,6 +11,8 @@ import {
   useFetchPublicData,
   useFetchStatsOverall,
   useFetchAuctions,
+  usePollVaultsData,
+  useVaults,
   useFetchTokenPrices,
   useFetchProfile,
   useNetworkChainId,
@@ -35,6 +37,7 @@ const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
+const Vaults = lazy(() => import('./views/Vaults'))
 // Commented out until release
 // const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
@@ -83,6 +86,8 @@ const App: React.FC = () => {
   useFetchStats()
   useFetchStatsOverall()
   useFetchAuctions()
+  usePollVaultsData()
+  useVaults()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -103,6 +108,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/admin-pools">
                 <AdminPools />
+              </Route>
+              <Route path="/vaults">
+                <Vaults />
               </Route>
               {/* Redirects */}
               <Route exact path="/nft">
@@ -157,6 +165,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/vaults">
+              <Vaults />
             </Route>
             <Route path="/admin-pools">
               <AdminPools />

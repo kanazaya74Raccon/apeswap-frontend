@@ -36,8 +36,6 @@ export const fetchUserStakeBalances = async (multicallContract, chainId, account
     params: [account],
   }))
   const userInfo = await multicall(multicallContract, nfaStakingPoolsAbi, calls)
-  console.log('user info')
-  console.log(userInfo)
   const stakedBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,

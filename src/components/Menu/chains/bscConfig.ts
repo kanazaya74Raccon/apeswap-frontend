@@ -14,7 +14,7 @@ const bscConfig: MenuEntry[] = [
   {
     label: 'Vaults',
     icon: 'Vaults',
-    href: `${BASE_EXCHANGE_URL}/vaults`,
+    href: '/vaults',
   },
   {
     label: 'Farms',

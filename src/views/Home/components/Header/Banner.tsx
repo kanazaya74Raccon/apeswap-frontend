@@ -6,6 +6,7 @@ import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
 const Header = styled.div<{ image: string }>`
   position: relative;
   width: 96%;
+  height: 300px;
   padding-top: 36px;
   padding-bottom: 15px;
   margin-bottom: 30px;

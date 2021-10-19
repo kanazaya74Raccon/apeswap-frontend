@@ -7,12 +7,12 @@ import {
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
 } from 'state/actions'
-import { stake, sousStake, sousStakeBnb, nfaStake } from 'utils/callHelpers'
+import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef } from './useContract'
+import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
 import { useMasterChefAddress, useNonFungibleApesAddress } from './useAddress'
 
 const useStake = (pid: number) => {
@@ -94,6 +94,21 @@ export const useNfaStake = (sousId) => {
       dispatch(updateNfaStakingUserBalance(multicallContract, nfaAddress, sousId, account))
     },
     [account, dispatch, nfaStakeChefContract, sousId, nfaAddress, chainId, multicallContract],
+  )
+
+  return { onStake: handleStake }
+}
+
+export const useVaultStake = (pid: number) => {
+  const { account } = useWeb3React()
+  const vaultApeContract = useVaultApe()
+
+  const handleStake = useCallback(
+    async (amount: string) => {
+      const txHash = await stakeVault(vaultApeContract, pid, amount, account)
+      console.info(txHash)
+    },
+    [account, vaultApeContract, pid],
   )
 
   return { onStake: handleStake }

@@ -1,0 +1,107 @@
+import { CHAIN_ID } from './chains'
+import tokens from './tokens'
+import { DualFarmConfig } from './types'
+
+const dualFarms: DualFarmConfig[] = [
+  {
+    pid: 0,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x034293F21F1cCE5908BC605CE5850dF2b1059aC0',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 1,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x6Cf8654e85AB489cA7e70189046D507ebA233613',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.eth,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 2,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0xd32f3139A214034A0f9777c87eE0a064c1FF6AE2',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.dai,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 3,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x65D43B64E3B31965Cd5EA367D4c2b94c03084797',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.usdt,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 4,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: ' 0xe82635a105c520fd58e597181cBf754961d51E3e',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.btc,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 5,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x5b13B583D4317aB15186Ed660A1E4C65C10da659',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.usdc,
+      token1: tokens.dai,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+  {
+    pid: 6,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x0359001070cF696D5993E0697335157a6f7dB289',
+    rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.wbnb,
+    },
+    rewardTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.banana,
+    },
+  },
+]
+
+
+export default dualFarms

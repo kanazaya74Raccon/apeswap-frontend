@@ -9,10 +9,17 @@ import {
   updateNfaStakingUserBalance,
   updateUserNfaStakingPendingReward,
 } from 'state/actions'
-import { unstake, sousUnstake, sousEmegencyWithdraw, nfaUnstake } from 'utils/callHelpers'
+import {
+  unstake,
+  sousUnstake,
+  sousEmegencyWithdraw,
+  nfaUnstake,
+  vaultUnstake,
+  vaultUnstakeAll,
+} from 'utils/callHelpers'
 import { fetchFarmUserEarnings, fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef } from './useContract'
+import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
 import { useMasterChefAddress, useNonFungibleApesAddress } from './useAddress'
 
 const useUnstake = (pid: number) => {
@@ -103,6 +110,33 @@ export const useNfaUnstake = (sousId) => {
   )
 
   return { onUnstake: handleUnstake }
+}
+
+export const useVaultUnstake = (pid: number) => {
+  const { account } = useWeb3React()
+  const vaultApeContrct = useVaultApe()
+
+  const handleUnstake = useCallback(
+    async (amount: string) => {
+      const txHash = await vaultUnstake(vaultApeContrct, pid, amount, account)
+      console.info(txHash)
+    },
+    [account, vaultApeContrct, pid],
+  )
+
+  return { onUnstake: handleUnstake }
+}
+
+export const useVaultUnstakeAll = (pid: number) => {
+  const { account } = useWeb3React()
+  const vaultApeContrct = useVaultApe()
+
+  const handleUnstake = useCallback(async () => {
+    const txHash = await vaultUnstakeAll(vaultApeContrct, pid, account)
+    console.info(txHash)
+  }, [account, vaultApeContrct, pid])
+
+  return { onUnstakeAll: handleUnstake }
 }
 
 export default useUnstake

@@ -206,3 +206,30 @@ export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
       return tx.transactionHash
     })
 }
+
+export const stakeVault = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .deposit(pid, new BigNumber(amount).times(18).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstake = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .withdraw(pid, new BigNumber(amount).times(18).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstakeAll = async (vaultApeContract, pid, account) => {
+  return vaultApeContract.methods
+    .withdrawAll(pid)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

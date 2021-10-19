@@ -6,6 +6,7 @@ import profileReducer from './profile'
 import statsReducer from './stats'
 import statsOverallReducer from './statsOverall'
 import auctionReducer from './auction'
+import vaultReducer from './vaults'
 import tokenPricesReducer from './tokenPrices'
 import networkReducer from './network'
 import nfaStakingPoolsReducer from './nfaStakingPools'
@@ -20,6 +21,7 @@ export default configureStore({
     stats: statsReducer,
     statsOverall: statsOverallReducer,
     auctions: auctionReducer,
+    vaults: vaultReducer,
     tokenPrices: tokenPricesReducer,
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,

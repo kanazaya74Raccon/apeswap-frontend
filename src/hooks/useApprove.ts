@@ -17,6 +17,7 @@ import {
   useLottery,
   useNonFungibleApes,
   useMulticallContract,
+  useVaultApe,
 } from './useContract'
 
 // Approve a Farm
@@ -145,6 +146,21 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
       return false
     }
   }, [account, dispatch, contractToApprove, sousId, tokenContract, multicallContract, nfaAddress, chainId])
+
+  return { onApprove: handleApprove }
+}
+
+export const useVaultApeApprove = (lpContract: Contract) => {
+  const { account } = useWeb3React()
+  const vaultApeContract = useVaultApe()
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(lpContract, vaultApeContract, account)
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, lpContract, vaultApeContract])
 
   return { onApprove: handleApprove }
 }

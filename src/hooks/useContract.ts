@@ -18,6 +18,7 @@ import nfaStakingAbi from 'config/abi/nfaStaking.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
+import vaultApe from 'config/abi/vaultApe.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
 import multi from 'config/abi/Multicall.json'
 import { useSelector } from 'react-redux'
@@ -35,6 +36,7 @@ import {
   useNonFungibleApesAddress,
   useRabbitMintingFarmAddress,
   useTreasuryAddress,
+  useVaultApeAddress,
 } from './useAddress'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions): Contract => {
@@ -151,6 +153,11 @@ export const useNfaStakingChef = (id) => {
 export const useAuction = () => {
   const abi = auction as unknown as AbiItem
   return useContract(abi, useAuctionAddress())
+}
+
+export const useVaultApe = () => {
+  const abi = vaultApe as unknown as AbiItem
+  return useContract(abi, useVaultApeAddress())
 }
 
 export const useApePriceGetter = () => {
