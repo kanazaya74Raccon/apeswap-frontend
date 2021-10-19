@@ -52,6 +52,7 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
         chain: CHAIN_ID,
         data: {
           token: tx.to,
+          id: sousId,
           cat: 'enable',
         },
       })
