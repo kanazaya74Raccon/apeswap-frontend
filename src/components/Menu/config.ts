@@ -60,7 +60,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Staking',
-        href: '/nfa-staking',
+        href: '/staking',
       },
     ],
   },
