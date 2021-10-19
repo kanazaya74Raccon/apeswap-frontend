@@ -152,7 +152,7 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 10px;
     padding-right: 10px;
-    height: 400px;
+    height: 300px;
   }
 `
 
@@ -180,8 +180,8 @@ const MonkeyWrapper = styled.div`
     animation: 10s ${float} linear infinite;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 700px;
-    height: 1000px;
+    width: 600px;
+    height: 900px;
     top: ${({ theme }) => (theme.isDark ? '-90px' : '-90px')};
     right: 0;
     animation: 10s ${float} linear infinite;
