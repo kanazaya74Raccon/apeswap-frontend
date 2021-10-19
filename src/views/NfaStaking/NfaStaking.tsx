@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
@@ -10,8 +10,18 @@ import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useNfaStakingPools } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
-import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
+
+const float = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(50px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
+const floatSM = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(10px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -143,6 +153,38 @@ const Header = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     height: 400px;
+  }
+`
+
+const PoolMonkey = styled.div`
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/nfa-pool-ape-night.svg)' : 'url(/images/nfa-pool-ape-day.svg)'};
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+`
+
+const MonkeyWrapper = styled.div`
+  position: absolute;
+  width: 225px;
+  height: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0px;
+  right: 0px;
+  animation: 5s ${floatSM} linear infinite;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: 24px;
+    padding-right: 24px;
+    animation: 10s ${float} linear infinite;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 700px;
+    height: 1000px;
+    top: ${({ theme }) => (theme.isDark ? '-90px' : '-90px')};
+    right: 0;
+    animation: 10s ${float} linear infinite;
   }
 `
 
@@ -293,6 +335,9 @@ const NfaStaking: React.FC = () => {
           </StyledHeading>
           {size.width > 968 && <AdminText>STAKEY YOUR NFAS SER</AdminText>}
         </HeadingContainer>
+        <MonkeyWrapper>
+          <PoolMonkey />
+        </MonkeyWrapper>
       </Header>
       <StyledPage width="1130px">
         <ControlContainer>
