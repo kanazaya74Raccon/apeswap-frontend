@@ -103,5 +103,4 @@ const dualFarms: DualFarmConfig[] = [
   },
 ]
 
-
 export default dualFarms

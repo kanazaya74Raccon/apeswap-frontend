@@ -2,24 +2,24 @@ import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import masterchefABI from 'config/abi/masterchef.json'
-import { dualFarms } from 'config/constants'
+import { dualFarmsConfig } from 'config/constants'
 import { Contract } from 'web3-eth-contract'
 
 const fetchFarms = async (multicallContract: Contract, miniChefAddress: string, chainId: number) => {
-  const filteredDualFarms = dualFarms.filter(dualFarm => dualFarm.network === chainId)
+  const filteredDualFarms = dualFarmsConfig.filter((dualFarm) => dualFarm.network === chainId)
   const data = await Promise.all(
-    filteredDualFarms.map(async (farmConfig) => {
-      const lpAdress = farmConfig.lpAddresses[chainId]
+    filteredDualFarms.map(async (dualFarmConfig) => {
+      const lpAdress = dualFarmConfig.stakeTokenAddress
       const calls = [
         // Balance of token in the LP contract
         {
-          address: farmConfig.tokenAddresses[chainId],
+          address: dualFarmConfig.stakeTokenAddress,
           name: 'balanceOf',
           params: [lpAdress],
         },
         // Balance of quote token on LP contract
         {
-          address: farmConfig.quoteTokenAdresses[chainId],
+          address: dualFarmConfig.stakeTokenAddress,
           name: 'balanceOf',
           params: [lpAdress],
         },
@@ -36,12 +36,12 @@ const fetchFarms = async (multicallContract: Contract, miniChefAddress: string, 
         },
         // Token decimals
         {
-          address: farmConfig.tokenAddresses[chainId],
+          address: dualFarmConfig.stakeTokenAddress,
           name: 'decimals',
         },
         // Quote token decimals
         {
-          address: farmConfig.quoteTokenAdresses[chainId],
+          address: dualFarmConfig.stakeTokenAddress,
           name: 'decimals',
         },
       ]
@@ -74,7 +74,7 @@ const fetchFarms = async (multicallContract: Contract, miniChefAddress: string, 
           {
             address: miniChefAddress,
             name: 'poolInfo',
-            params: [farmConfig.pid],
+            params: [dualFarmConfig.pid],
           },
           {
             address: miniChefAddress,
@@ -87,11 +87,11 @@ const fetchFarms = async (multicallContract: Contract, miniChefAddress: string, 
         multiplier = `${allocPoint.div(100).toString()}X`
         // eslint-disable-next-line no-empty
       } catch (error) {
-        console.error('Error fetching farm', error, farmConfig)
+        console.error('Error fetching farm', error, dualFarmConfig)
       }
 
       return {
-        ...farmConfig,
+        ...dualFarmConfig,
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
         totalInQuoteToken: totalInQuoteToken.toJSON(),
