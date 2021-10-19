@@ -525,6 +525,41 @@ const tokens = {
     },
     decimals: 18,
   },
+  wsg: {
+    symbol: 'WSG',
+    address: {
+      56: '0xA58950F05FeA2277d2608748412bf9F802eA4901',
+    },
+    decimals: 18,
+  },
+  otaku: {
+    symbol: 'OTAKU',
+    address: {
+      56: '0x484215873a674f9af73367a8f94c2c591e997521',
+    },
+    decimals: 18,
+  },
+  tnns: {
+    symbol: 'TNNS',
+    address: {
+      56: '0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd',
+    },
+    decimals: 18,
+  },
+  king: {
+    symbol: 'KING',
+    address: {
+      56: '0x0cCD575bf9378c06f6DCa82f8122F570769F00C2',
+    },
+    decimals: 18,
+  },
+  mbird: {
+    symbol: 'MBIRD',
+    address: {
+      56: '0x3b23a0FFbc53198d86fa5927E8ee32F7EF699A14',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
