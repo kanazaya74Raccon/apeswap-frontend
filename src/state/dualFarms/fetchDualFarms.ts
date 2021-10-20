@@ -145,7 +145,7 @@ const fetchDualFarms = async (
 
       const rewarderAllocPoint = new BigNumber(rewarderInfo?.allocPoint?._hex)
       const rewarderPoolWeight = rewarderAllocPoint.div(new BigNumber(rewarderTotalAlloc)).toString()
-      // const poolRewardPerSecond = 
+      // const poolRewardPerSecond =
 
       console.log(rewarderPoolWeight)
       console.log('TOTAL STAKED')

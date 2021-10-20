@@ -14,4 +14,3 @@ export { default as poolsConfig } from './pools'
 export { default as vaultsConfig } from './vaults'
 export { default as ifosConfig } from './ifo'
 export { default as dualFarmsConfig } from './dualFarms'
-
