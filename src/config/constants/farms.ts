@@ -2020,6 +2020,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 142,
+    lpSymbol: 'FIL-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xcaec8648dbac41b6504a8e408892931796d67d87',
+    },
+    tokenSymbol: 'FIL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
