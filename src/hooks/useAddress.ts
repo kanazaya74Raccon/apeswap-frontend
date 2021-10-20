@@ -63,3 +63,7 @@ export const useApePriceGetterAddress = () => {
 export const useVaultApeAddress = () => {
   return useAddress(addresses.vaultApe)
 }
+
+export const useMiniChefAddress = () => {
+  return useAddress(addresses.miniApeV2)
+}

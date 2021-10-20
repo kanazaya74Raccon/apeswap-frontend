@@ -20,6 +20,7 @@ import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import vaultApe from 'config/abi/vaultApe.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
+import miniChef from 'config/abi/miniApeV2.json'
 import multi from 'config/abi/Multicall.json'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
@@ -32,6 +33,7 @@ import {
   useLotteryAddress,
   useLotteryTicketAddress,
   useMasterChefAddress,
+  useMiniChefAddress,
   useMulticallAddress,
   useNonFungibleApesAddress,
   useRabbitMintingFarmAddress,
@@ -163,6 +165,11 @@ export const useVaultApe = () => {
 export const useApePriceGetter = () => {
   const abi = apePriceGetter as unknown as AbiItem
   return useContract(abi, useApePriceGetterAddress())
+}
+
+export const useMiniChefContract = () => {
+  const abi = miniChef as unknown as AbiItem
+  return useContract(abi, useMiniChefAddress())
 }
 
 export default useContract

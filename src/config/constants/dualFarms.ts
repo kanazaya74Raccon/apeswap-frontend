@@ -62,7 +62,7 @@ const dualFarms: DualFarmConfig[] = [
   {
     pid: 4,
     network: CHAIN_ID.MATIC,
-    stakeTokenAddress: ' 0xe82635a105c520fd58e597181cBf754961d51E3e',
+    stakeTokenAddress: '0xe82635a105c520fd58e597181cBf754961d51E3e',
     rewarderAddress: '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf',
     stakeTokens: {
       token0: tokens.wmatic,

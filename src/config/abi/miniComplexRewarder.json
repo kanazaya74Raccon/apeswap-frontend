@@ -1,14 +1,14 @@
 [
   {
+    "anonymous": false,
     "inputs": [
-      { "internalType": "contract IERC20", "name": "_rewardToken", "type": "address" },
-      { "internalType": "uint256", "name": "_rewardPerSecond", "type": "uint256" },
-      { "internalType": "address", "name": "_MINIAPE_V2", "type": "address" }
+      { "indexed": false, "internalType": "contract IERC20", "name": "rewardToken", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "rewardPerSecond", "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "MINI_APE_V2", "type": "address" }
     ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
+    "name": "LogInit",
+    "type": "event"
   },
-  { "anonymous": false, "inputs": [], "name": "LogInit", "type": "event" },
   {
     "anonymous": false,
     "inputs": [
@@ -82,6 +82,17 @@
     "type": "function"
   },
   { "inputs": [], "name": "claimOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [
+      { "internalType": "contract IERC20", "name": "_rewardToken", "type": "address" },
+      { "internalType": "uint256", "name": "_rewardPerSecond", "type": "uint256" },
+      { "internalType": "address", "name": "_MINI_APE_V2", "type": "address" }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
   {
     "inputs": [{ "internalType": "uint256[]", "name": "pids", "type": "uint256[]" }],
     "name": "massUpdatePools",
@@ -197,6 +208,13 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "totalAllocPoint",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       { "internalType": "address", "name": "newOwner", "type": "address" },
       { "internalType": "bool", "name": "direct", "type": "bool" },
@@ -217,7 +235,7 @@
           { "internalType": "uint64", "name": "lastRewardTime", "type": "uint64" },
           { "internalType": "uint64", "name": "allocPoint", "type": "uint64" }
         ],
-        "internalType": "struct MiniComplexRewarderTime.PoolInfo",
+        "internalType": "struct MiniRewarderTime.PoolInfo",
         "name": "pool",
         "type": "tuple"
       }

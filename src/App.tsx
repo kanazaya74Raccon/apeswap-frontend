@@ -16,13 +16,17 @@ import {
   useFetchTokenPrices,
   useFetchProfile,
   useNetworkChainId,
+  useTokenPrices,
 } from 'state/hooks'
+import { useMiniChefContract, useMulticallContract } from 'hooks/useContract'
+import { useMiniChefAddress } from 'hooks/useAddress'
 import { useDispatch } from 'react-redux'
 import { fetchUserNetwork } from 'state/network'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import fetchDualFarms from './state/dualFarms/fetchDualFarms'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -79,6 +83,11 @@ const App: React.FC = () => {
     dispatch(fetchUserNetwork(chainId, account, appChainId))
   }, [chainId, account, appChainId, dispatch])
 
+  const multichainContract = useMulticallContract()
+  const miniChefAddress = useMiniChefAddress()
+  const chainIdwo = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+  fetchDualFarms(multichainContract, miniChefAddress, tokenPrices, chainIdwo)
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()

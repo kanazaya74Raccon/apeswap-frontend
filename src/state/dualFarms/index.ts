@@ -9,7 +9,7 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchDualFarmUser'
-import { FarmsState, Farm } from '../types'
+import { FarmsState, Farm, TokenPrices } from '../types'
 
 const initialState: FarmsState = { data: [] }
 
@@ -17,14 +17,14 @@ export const dualFarmsSlice = createSlice({
   name: 'DualFarms',
   initialState,
   reducers: {
-    setFarmsPublicData: (state, action) => {
+    setDualFarmsPublicData: (state, action) => {
       const liveDualFarmsData: Farm[] = action.payload
       state.data = state.data.map((farm) => {
         const liveFarmData = liveDualFarmsData.find((f) => f.pid === farm.pid)
         return { ...farm, ...liveFarmData }
       })
     },
-    setFarmUserData: (state, action) => {
+    setDualFarmUserData: (state, action) => {
       const { arrayOfUserDataObjects } = action.payload
       arrayOfUserDataObjects.forEach((userDataEl) => {
         const { index } = userDataEl
@@ -35,14 +35,15 @@ export const dualFarmsSlice = createSlice({
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData } = dualFarmsSlice.actions
+export const { setDualFarmsPublicData, setDualFarmUserData } = dualFarmsSlice.actions
 
 // Thunks
 export const fetchFarmsPublicDataAsync =
-  (multicallContract: Contract, masterChefAddress: string, chainId: number) => async (dispatch) => {
+  (multicallContract: Contract, masterChefAddress: string, tokenPrices: TokenPrices[], chainId: number) =>
+  async (dispatch) => {
     try {
-      const farms = await fetchFarms(multicallContract, masterChefAddress, chainId)
-      dispatch(setFarmsPublicData(farms))
+      const farms = await fetchFarms(multicallContract, masterChefAddress, tokenPrices, chainId)
+      dispatch(setDualFarmsPublicData(farms))
     } catch (error) {
       console.error(error)
     }
@@ -64,7 +65,7 @@ export const fetchFarmUserDataAsync =
           earnings: userFarmEarnings[index],
         }
       })
-      dispatch(setFarmUserData({ arrayOfUserDataObjects }))
+      dispatch(setDualFarmUserData({ arrayOfUserDataObjects }))
     } catch (error) {
       console.error(error)
     }

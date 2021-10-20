@@ -87,7 +87,7 @@ const tokens = {
       56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
       137: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
     },
-    decimals: 18,
+    decimals: 6,
   },
   brew: {
     symbol: 'BREW',
@@ -556,6 +556,41 @@ const tokens = {
     symbol: 'USDT',
     address: {
       137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
+    },
+    decimals: 18,
+  },
+  wsg: {
+    symbol: 'WSG',
+    address: {
+      56: '0xA58950F05FeA2277d2608748412bf9F802eA4901',
+    },
+    decimals: 18,
+  },
+  otaku: {
+    symbol: 'OTAKU',
+    address: {
+      56: '0x484215873a674f9af73367a8f94c2c591e997521',
+    },
+    decimals: 18,
+  },
+  tnns: {
+    symbol: 'TNNS',
+    address: {
+      56: '0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd',
+    },
+    decimals: 18,
+  },
+  king: {
+    symbol: 'KING',
+    address: {
+      56: '0x0cCD575bf9378c06f6DCa82f8122F570769F00C2',
+    },
+    decimals: 18,
+  },
+  mbird: {
+    symbol: 'MBIRD',
+    address: {
+      56: '0x3b23a0FFbc53198d86fa5927E8ee32F7EF699A14',
     },
     decimals: 18,
   },
