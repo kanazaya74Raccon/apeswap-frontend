@@ -107,6 +107,15 @@ export const useNfaUnstake = (sousId) => {
       dispatch(updateUserNfaStakingStakedBalance(sousId, account))
       dispatch(updateNfaStakingUserBalance(sousId, account))
       dispatch(updateUserNfaStakingPendingReward(sousId, account))
+      track({
+        event: 'nfa',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'unstake',
+          ids,
+          pid: sousId,
+        },
+      })
     },
     [account, dispatch, nfaStakeChefContract, sousId],
   )
