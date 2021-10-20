@@ -167,8 +167,8 @@ const PoolMonkey = styled.div`
 
 const MonkeyWrapper = styled.div`
   position: absolute;
-  width: 225px;
-  height: 275px;
+  width: 200px;
+  height: 245px;
   margin-left: auto;
   margin-right: auto;
   bottom: 0px;
