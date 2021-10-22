@@ -2447,6 +2447,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 128,
+    tokenName: 'BBNANA',
+    image: 'BBNANA.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.bbnana,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x0f1c37bea4984cf57e850929e839782e33790c8d',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://babybanana.finance/',
+    harvest: true,
+    tokenPerBlock: `28.862847222222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

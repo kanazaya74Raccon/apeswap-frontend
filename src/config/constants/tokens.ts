@@ -560,6 +560,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  bbnana: {
+    symbol: 'BBNANA',
+    address: {
+      56: '0xa3be3b30fa5302dad5c9874cdb50e220eaadf092',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
