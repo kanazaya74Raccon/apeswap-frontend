@@ -2466,6 +2466,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 129,
+    tokenName: 'TOWER',
+    image: 'TOWER.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.tower,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x07f874ad2b3546164a33f4b6c27494ac9c1d3323',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.crazydefenseheroes.com/',
+    harvest: true,
+    tokenPerBlock: `1.11158521412037037`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
