@@ -567,6 +567,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  tower: {
+    symbol: 'TOWER',
+    address: {
+      56: '0xe7c9C6bc87B86f9E5b57072F907EE6460B593924',
+    },
+      decimals: 18,
+  },
 }
 
 export default tokens
