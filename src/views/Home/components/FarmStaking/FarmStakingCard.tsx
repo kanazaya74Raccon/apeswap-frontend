@@ -112,14 +112,17 @@ const FarmedStakingCard = () => {
   const rewardRef = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
   const onReward = useReward(
     rewardRef,
-    useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward,
+    useAllHarvest(
+      balancesWithValue.map((farmWithBalance) => farmWithBalance.pid),
+      chainId,
+    ).onReward,
   )
 
   const harvestAllFarms = useCallback(async () => {

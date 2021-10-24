@@ -16,17 +16,14 @@ import {
   useFetchTokenPrices,
   useFetchProfile,
   useNetworkChainId,
-  useTokenPrices,
+  useDualFarms,
 } from 'state/hooks'
-import { useMiniChefContract, useMulticallContract } from 'hooks/useContract'
-import { useMiniChefAddress } from 'hooks/useAddress'
 import { useDispatch } from 'react-redux'
 import { fetchUserNetwork } from 'state/network'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
-import fetchDualFarms from './state/dualFarms/fetchDualFarms'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -42,6 +39,7 @@ const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
+const DualFarms = lazy(() => import('./views/DualFarms'))
 // Commented out until release
 // const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
@@ -83,11 +81,6 @@ const App: React.FC = () => {
     dispatch(fetchUserNetwork(chainId, account, appChainId))
   }, [chainId, account, appChainId, dispatch])
 
-  const multichainContract = useMulticallContract()
-  const miniChefAddress = useMiniChefAddress()
-  const chainIdwo = useNetworkChainId()
-  const { tokenPrices } = useTokenPrices()
-  fetchDualFarms(multichainContract, miniChefAddress, tokenPrices, chainIdwo)
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()
@@ -97,6 +90,7 @@ const App: React.FC = () => {
   useFetchAuctions()
   usePollVaultsData()
   useVaults()
+  useDualFarms()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -117,6 +111,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/admin-pools">
                 <AdminPools />
+              </Route>
+              <Route path="/farms">
+                <DualFarms />
               </Route>
               <Route path="/vaults">
                 <Vaults />

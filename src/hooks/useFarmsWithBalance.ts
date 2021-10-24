@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import masterChefABI from 'config/abi/masterchef.json'
-import { farmsConfig } from 'config/constants'
+import miniChefABI from 'config/abi/miniApeV2.json'
+import { dualFarmsConfig, farmsConfig } from 'config/constants'
+import { CHAIN_ID } from 'config/constants/chains'
 import { FarmConfig } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useRefresh from './useRefresh'
-import { useMasterChefAddress } from './useAddress'
+import { useMasterChefAddress, useMiniChefAddress } from './useAddress'
 import { useMulticallContract } from './useContract'
 
 export interface FarmWithBalance extends FarmConfig {
@@ -15,29 +17,57 @@ export interface FarmWithBalance extends FarmConfig {
 
 const useFarmsWithBalance = () => {
   const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const multicallContract = useMulticallContract()
   const masterChefAddress = useMasterChefAddress()
+  const miniChefAddress = useMiniChefAddress()
 
   useEffect(() => {
-    const fetchBalances = async () => {
-      const calls = farmsConfig.map((farm) => ({
-        address: masterChefAddress,
-        name: 'pendingCake',
-        params: [farm.pid, account],
-      }))
+    const fetchBSCBalances = async () => {
+      try {
+        const calls = farmsConfig.map((farm) => ({
+          address: masterChefAddress,
+          name: 'pendingCake',
+          params: [farm.pid, account],
+        }))
 
-      const rawResults = await multicall(multicallContract, masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+        const rawResults = await multicall(multicallContract, masterChefABI, calls)
+        const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
-      setFarmsWithBalances(results)
+        setFarmsWithBalances(results)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    const fetchMiniChefBalances = async () => {
+      try {
+        const filteredDualFarms = dualFarmsConfig.filter((farm) => farm.network === chainId)
+        const calls = filteredDualFarms.map((farm) => ({
+          address: miniChefAddress,
+          name: 'pendingBanana',
+          params: [farm.pid, account],
+        }))
+
+        const rawResults = await multicall(multicallContract, miniChefABI, calls)
+        const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+
+        setFarmsWithBalances(results)
+      } catch (e) {
+        console.error(e)
+      }
     }
 
     if (account) {
-      fetchBalances()
+      if (chainId === CHAIN_ID.BSC) {
+        fetchBSCBalances()
+      }
+      if (chainId === CHAIN_ID.MATIC) {
+        fetchMiniChefBalances()
+      }
     }
-  }, [account, fastRefresh, multicallContract, masterChefAddress])
+  }, [account, fastRefresh, multicallContract, masterChefAddress, miniChefAddress, chainId])
 
   return farmsWithBalances
 }

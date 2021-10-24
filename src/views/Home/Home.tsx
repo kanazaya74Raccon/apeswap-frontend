@@ -144,7 +144,7 @@ const Home: React.FC = () => {
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
-              {appChainId === CHAIN_ID.BSC && <FarmStakingCard />}
+              <FarmStakingCard />
             </FrontRowWrapper>
             {appChainId === CHAIN_ID.BSC && (
               <FarmAndPoolsWrapper>

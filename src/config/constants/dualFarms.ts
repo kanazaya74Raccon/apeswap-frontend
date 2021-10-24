@@ -13,8 +13,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.banana,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -27,8 +27,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.eth,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -41,8 +41,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.dai,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -55,8 +55,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.usdt,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -69,8 +69,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.btc,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -83,8 +83,8 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.dai,
     },
     rewardTokens: {
-      token0: tokens.wmatic,
-      token1: tokens.banana,
+      token0: tokens.banana,
+      token1: tokens.wmatic,
     },
   },
   {
@@ -97,8 +97,50 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.wbnb,
     },
     rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.wmatic,
+    },
+  },
+  {
+    pid: 7,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a',
+    rewarderAddress: '0x75f73Fec666052149FaE95a3655890b911E160a4',
+    stakeTokens: {
       token0: tokens.wmatic,
-      token1: tokens.banana,
+      token1: tokens.crystl,
+    },
+    rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.crystl,
+    },
+  },
+  {
+    pid: 8,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0xf67DE5Cf1fB01DC4df842a846Df2a7Ec07c41b93',
+    rewarderAddress: '0xb08fc08D16eBE8B80c34d2E20628dD8462768E9b',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.watch,
+    },
+    rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.watch,
+    },
+  },
+  {
+    pid: 9,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0xb01bAf15079eE93590A862Df37234e8f7C9825bF',
+    rewarderAddress: '0xDe0a831D482bBd001aceB5a788e4adc502C5E6BA',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.jdi,
+    },
+    rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.jdi,
     },
   },
 ]

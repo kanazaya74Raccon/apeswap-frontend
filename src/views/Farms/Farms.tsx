@@ -113,7 +113,7 @@ const Header = styled.div`
   background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 300px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {

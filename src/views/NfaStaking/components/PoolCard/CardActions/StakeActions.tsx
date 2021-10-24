@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'

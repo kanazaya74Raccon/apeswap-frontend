@@ -1,6 +1,15 @@
 import { Toast } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { Address, FarmConfig, Nft, PoolConfig, NfaStakingPoolConfig, Team, VaultConfig } from 'config/constants/types'
+import {
+  Address,
+  FarmConfig,
+  Nft,
+  PoolConfig,
+  NfaStakingPoolConfig,
+  Team,
+  VaultConfig,
+  DualFarmConfig,
+} from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -9,6 +18,24 @@ export interface Farm extends FarmConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  userData?: {
+    allowance: BigNumber
+    tokenBalance: BigNumber
+    stakedBalance: BigNumber
+    earnings: BigNumber
+  }
+}
+
+export interface DualFarm extends DualFarmConfig {
+  tokenAmount?: BigNumber
+  totalInQuoteToken?: BigNumber
+  quoteTokenAmount?: BigNumber
+  lpTotalInQuoteToken?: BigNumber
+  tokenPriceVsQuote?: BigNumber
+  poolWeight?: BigNumber
+  multiplier?: string
+  apr?: number
+  totalStaked?: string
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
@@ -213,6 +240,12 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface DualFarmsState {
+  loadVaultData: boolean
+  userDataLoaded: boolean
+  data: DualFarm[]
+}
+
 export interface NetworkState {
   isInitialized: boolean
   isLoading: boolean
@@ -220,9 +253,9 @@ export interface NetworkState {
 }
 
 export interface VaultsState {
-  data: Vault[]
   loadVaultData: boolean
   userDataLoaded: boolean
+  data: Vault[]
 }
 
 export interface NfaStakingPoolsState {
@@ -292,4 +325,5 @@ export interface State {
   tokenPrices: TokenPricesState
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
+  dualFarms: DualFarmsState
 }

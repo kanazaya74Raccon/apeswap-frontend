@@ -16,11 +16,20 @@ import {
   nfaUnstake,
   vaultUnstake,
   vaultUnstakeAll,
+  miniChefUnstake,
 } from 'utils/callHelpers'
 import { fetchFarmUserEarnings, fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
+import { fetchDualFarmUserEarnings, fetchDualFarmUserStakedBalances } from 'state/dualFarms/fetchDualFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
-import { useMasterChefAddress, useNonFungibleApesAddress } from './useAddress'
+import {
+  useMasterchef,
+  useMiniChefContract,
+  useMulticallContract,
+  useNfaStakingChef,
+  useSousChef,
+  useVaultApe,
+} from './useContract'
+import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -137,6 +146,26 @@ export const useVaultUnstakeAll = (pid: number) => {
   }, [account, vaultApeContrct, pid])
 
   return { onUnstakeAll: handleUnstake }
+}
+
+export const useMiniChefUnstake = (pid: number) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const miniChefContract = useMiniChefContract()
+  const miniChefAddress = useMiniChefAddress()
+  const multicallContract = useMulticallContract()
+
+  const handleUnstake = useCallback(
+    async (amount: string) => {
+      const txHash = await miniChefUnstake(miniChefContract, pid, amount, account)
+      dispatch(fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account))
+      dispatch(fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account))
+      console.info(txHash)
+    },
+    [account, dispatch, miniChefContract, pid, miniChefAddress, multicallContract],
+  )
+
+  return { onUnstake: handleUnstake }
 }
 
 export default useUnstake

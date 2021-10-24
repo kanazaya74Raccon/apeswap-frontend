@@ -7,13 +7,21 @@ import {
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
 } from 'state/actions'
-import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault } from 'utils/callHelpers'
+import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
+import { fetchDualFarmUserStakedBalances } from 'state/dualFarms/fetchDualFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMulticallContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
-import { useMasterChefAddress, useNonFungibleApesAddress } from './useAddress'
+import {
+  useMasterchef,
+  useMiniChefContract,
+  useMulticallContract,
+  useNfaStakingChef,
+  useSousChef,
+  useVaultApe,
+} from './useContract'
+import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
@@ -109,6 +117,37 @@ export const useVaultStake = (pid: number) => {
       console.info(txHash)
     },
     [account, vaultApeContract, pid],
+  )
+
+  return { onStake: handleStake }
+}
+
+export const useDualFarmStake = (pid: number) => {
+  const dispatch = useDispatch()
+  const { account, chainId } = useWeb3React()
+  const miniChefContract = useMiniChefContract()
+  const miniChefAddress = useMiniChefAddress()
+  const multicallContract = useMulticallContract()
+
+  const handleStake = useCallback(
+    async (amount: string) => {
+      console.log('(MADEIT HERE')
+      const txHash = await miniChefStake(miniChefContract, pid, amount, account)
+      console.log('(MADEIT HERE')
+      console.log(txHash)
+      dispatch(fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account))
+      track({
+        event: 'dualFarm',
+        chain: chainId,
+        data: {
+          cat: 'stake',
+          amount,
+          pid,
+        },
+      })
+      console.info(txHash)
+    },
+    [account, dispatch, miniChefContract, pid, chainId, miniChefAddress, multicallContract],
   )
 
   return { onStake: handleStake }

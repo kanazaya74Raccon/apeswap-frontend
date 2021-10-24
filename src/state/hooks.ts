@@ -13,6 +13,7 @@ import {
   useAuctionAddress,
   useBananaAddress,
   useMasterChefAddress,
+  useMiniChefAddress,
   useNativeWrapCurrencyAddress,
   useNonFungibleApesAddress,
   useTreasuryAddress,
@@ -51,6 +52,7 @@ import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
+import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 
 const ZERO = new BigNumber(0)
 
@@ -102,6 +104,25 @@ export const usePollVaultsData = (includeArchive = false) => {
       dispatch(fetchVaultUserDataAsync({ multicallContract, vaultApeAddress, account, chainId }))
     }
   }, [includeArchive, dispatch, slowRefresh, account, multicallContract, chainId, vaultApeAddress, tokenPrices])
+}
+
+// Dual Farms
+export const useDualFarms = () => {
+  const { fastRefresh } = useRefresh()
+  const { account } = useWeb3React()
+  const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const miniChefAddress = useMiniChefAddress()
+  const { tokenPrices } = useTokenPrices()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    dispatch(fetchDualFarmsPublicDataAsync(multicallContract, miniChefAddress, tokenPrices, chainId))
+    if (account) {
+      dispatch(fetchDualFarmUserDataAsync(multicallContract, miniChefAddress, account))
+    }
+  }, [account, dispatch, multicallContract, miniChefAddress, chainId, tokenPrices, fastRefresh])
+  const dualFarms = useSelector((state: State) => state.dualFarms.data)
+  return dualFarms
 }
 
 // Farms
@@ -238,7 +259,7 @@ export const useTvl = (): BigNumber => {
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
-    if (pool.stakingToken.symbol === 'BANANA') {
+    if (pool?.stakingToken?.symbol === 'BANANA') {
       valueLocked = valueLocked.plus(
         new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )

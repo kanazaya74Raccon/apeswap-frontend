@@ -10,6 +10,7 @@ import vaultReducer from './vaults'
 import tokenPricesReducer from './tokenPrices'
 import networkReducer from './network'
 import nfaStakingPoolsReducer from './nfaStakingPools'
+import dualFarmsReducer from './dualFarms'
 
 export default configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -25,5 +26,6 @@ export default configureStore({
     tokenPrices: tokenPricesReducer,
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,
+    dualFarms: dualFarmsReducer,
   },
 })

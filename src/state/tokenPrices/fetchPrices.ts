@@ -24,7 +24,7 @@ const fetchPrices = async (chainId, multicallContract, apePriceGetterAddress) =>
     return {
       address: apePriceGetterAddress,
       name: 'getPrice',
-      params: [tokens[token].address[chainId], tokenDecimals[i]],
+      params: [tokens[token].address[chainId], tokenDecimals[i][0]],
     }
   })
   const tokenPrices = await multicall(multicallContract, apePriceGetterABI, calls)
@@ -35,12 +35,11 @@ const fetchPrices = async (chainId, multicallContract, apePriceGetterAddress) =>
       address: tokens[token].address,
       price:
         tokens[token].symbol === 'GNANA'
-          ? getBalanceNumber(tokenPrices[0], tokens[token].decimals) * 1.389
-          : getBalanceNumber(tokenPrices[i], tokens[token].decimals),
+          ? getBalanceNumber(tokenPrices[0], tokenDecimals[i][0]) * 1.389
+          : getBalanceNumber(tokenPrices[i], tokenDecimals[i][0]),
       decimals: tokenDecimals[i][0],
     }
   })
-  console.log(mappedTokenPrices)
   return mappedTokenPrices
 }
 

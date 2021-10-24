@@ -8,8 +8,9 @@ import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserAllowances } from 'state/farms/fetchFarmUser'
+import { fetchDualFarmUserAllowances } from 'state/dualFarms/fetchDualFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterChefAddress, useAuctionAddress, useNonFungibleApesAddress } from './useAddress'
+import { useMasterChefAddress, useAuctionAddress, useNonFungibleApesAddress, useMiniChefAddress } from './useAddress'
 import {
   useMasterchef,
   useBanana,
@@ -18,6 +19,7 @@ import {
   useNonFungibleApes,
   useMulticallContract,
   useVaultApe,
+  useMiniChefContract,
 } from './useContract'
 
 // Approve a Farm
@@ -150,17 +152,56 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   return { onApprove: handleApprove }
 }
 
+// Approve vault
 export const useVaultApeApprove = (lpContract: Contract) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, vaultApeContract, account)
+      track({
+        event: 'vaults',
+        chain: chainId,
+        data: {
+          token: tx.to,
+          cat: 'enable',
+        },
+      })
       return tx
     } catch (e) {
       return false
     }
-  }, [account, lpContract, vaultApeContract])
+  }, [account, lpContract, vaultApeContract, chainId])
+
+  return { onApprove: handleApprove }
+}
+
+// Approve a Farm
+export const useDualFarmApprove = (lpContract: Contract) => {
+  const dispatch = useDispatch()
+  const { account, chainId } = useWeb3React()
+  const miniChefContract = useMiniChefContract()
+  const miniChefAddress = useMiniChefAddress()
+  const multicallContract = useMulticallContract()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(lpContract, miniChefContract, account)
+      dispatch(fetchDualFarmUserAllowances(multicallContract, miniChefAddress, account))
+      track({
+        event: 'dualFarm',
+        chain: chainId,
+        data: {
+          token: tx.to,
+          cat: 'enable',
+        },
+      })
+      return tx
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  }, [account, dispatch, lpContract, miniChefContract, multicallContract, miniChefAddress, chainId])
 
   return { onApprove: handleApprove }
 }

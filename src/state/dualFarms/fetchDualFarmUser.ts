@@ -1,19 +1,18 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
-import masterchefABI from 'config/abi/masterchef.json'
+import miniChefABI from 'config/abi/miniApeV2.json'
 import multicall from 'utils/multicall'
 import { Contract } from 'web3-eth-contract'
-import { farmsConfig } from 'config/constants'
+import { dualFarmsConfig } from 'config/constants'
 
-export const fetchFarmUserAllowances = async (
+export const fetchDualFarmUserAllowances = async (
   multicallContract: Contract,
-  masterChefAddress: string,
-  chainId: number,
+  miniChefAddress: string,
   account: string,
 ) => {
-  const calls = farmsConfig.map((farm) => {
-    const lpContractAddress = farm.lpAddresses[chainId]
-    return { address: lpContractAddress, name: 'allowance', params: [account, masterChefAddress] }
+  const calls = dualFarmsConfig.map((farm) => {
+    const lpContractAddress = farm.stakeTokenAddress
+    return { address: lpContractAddress, name: 'allowance', params: [account, miniChefAddress] }
   })
 
   const rawLpAllowances = await multicall(multicallContract, erc20ABI, calls)
@@ -23,9 +22,9 @@ export const fetchFarmUserAllowances = async (
   return parsedLpAllowances
 }
 
-export const fetchFarmUserTokenBalances = async (multicallContract: Contract, chainId: number, account: string) => {
-  const calls = farmsConfig.map((farm) => {
-    const lpContractAddress = farm.lpAddresses[chainId]
+export const fetchDualFarmUserTokenBalances = async (multicallContract: Contract, account: string) => {
+  const calls = dualFarmsConfig.map((farm) => {
+    const lpContractAddress = farm.stakeTokenAddress
     return {
       address: lpContractAddress,
       name: 'balanceOf',
@@ -40,40 +39,40 @@ export const fetchFarmUserTokenBalances = async (multicallContract: Contract, ch
   return parsedTokenBalances
 }
 
-export const fetchFarmUserStakedBalances = async (
+export const fetchDualFarmUserStakedBalances = async (
   multicallContract: Contract,
-  masterChefAddress: string,
+  miniChefAddress: string,
   account: string,
 ) => {
-  const calls = farmsConfig.map((farm) => {
+  const calls = dualFarmsConfig.map((farm) => {
     return {
-      address: masterChefAddress,
+      address: miniChefAddress,
       name: 'userInfo',
       params: [farm.pid, account],
     }
   })
 
-  const rawStakedBalances = await multicall(multicallContract, masterchefABI, calls)
+  const rawStakedBalances = await multicall(multicallContract, miniChefABI, calls)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
   return parsedStakedBalances
 }
 
-export const fetchFarmUserEarnings = async (
+export const fetchDualFarmUserEarnings = async (
   multicallContract: Contract,
-  masterChefAddress: string,
+  miniChefAddress: string,
   account: string,
 ) => {
-  const calls = farmsConfig.map((farm) => {
+  const calls = dualFarmsConfig.map((farm) => {
     return {
-      address: masterChefAddress,
-      name: 'pendingCake',
+      address: miniChefAddress,
+      name: 'pendingBanana',
       params: [farm.pid, account],
     }
   })
 
-  const rawEarnings = await multicall(multicallContract, masterchefABI, calls)
+  const rawEarnings = await multicall(multicallContract, miniChefABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })
