@@ -1547,7 +1547,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://hotcross.com/ ',
     harvest: true,
-    tokenPerBlock: `0.925925925925925925`,
+    tokenPerBlock: `0.54976851851`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
