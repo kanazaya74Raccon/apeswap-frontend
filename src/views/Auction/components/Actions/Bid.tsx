@@ -149,6 +149,18 @@ const BidInput = styled.input`
   }
 `
 
+const WhyCantIBid = styled.a`
+  position: absolute;
+  color: ${(props) => props.theme.colors.text};
+  right: 107px;
+  bottom: 56px;
+  text-decoration: underline;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    right: 57px;
+    bottom: 10px;
+  }
+`
+
 const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmount: number) => {
   const percentBidRaise = getBalanceNumber(new BigNumber(minBidPercent), 3) * rawBidAmount + rawBidAmount
   const amountBidRaise = getBalanceNumber(new BigNumber(minBidRaise)) + rawBidAmount
@@ -211,6 +223,13 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
         countdown={countdown}
         auctionId={auctionId}
       />
+      <WhyCantIBid
+        href="https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Why Cant I Bid?
+      </WhyCantIBid>
     </>
   )
 }
