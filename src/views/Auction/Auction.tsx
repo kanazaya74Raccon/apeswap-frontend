@@ -224,7 +224,6 @@ const Auction: React.FC = () => {
               >
                 <MoreInfo>How It Works</MoreInfo>
               </a>
-              <ListYourNfa />
             </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
