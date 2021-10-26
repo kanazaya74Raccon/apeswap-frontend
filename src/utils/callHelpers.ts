@@ -208,7 +208,7 @@ export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
 }
 
 export const stakeVault = async (vaultApeContract, pid, amount, account) => {
-  console.log("STAKE")
+  console.log('STAKE')
   console.log(amount)
   console.log(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
   return vaultApeContract.methods

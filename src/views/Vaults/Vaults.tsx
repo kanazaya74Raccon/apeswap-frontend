@@ -284,7 +284,6 @@ const StyledLabelContainerLP = styled.div`
   }
 `
 
-
 const StyledLabelContainerLiquidity = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {

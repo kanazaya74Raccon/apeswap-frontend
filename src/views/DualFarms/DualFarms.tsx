@@ -543,7 +543,6 @@ const DualFarms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-  
       return <Table data={rowData} columns={columns} />
     }
 
