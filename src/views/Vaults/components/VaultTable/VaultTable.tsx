@@ -48,7 +48,7 @@ const APRContainer = styled.div`
   top: 19px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 421px;
+    left: 401px;
   }
 `
 
@@ -57,7 +57,7 @@ const LiquidtyContainer = styled.div`
   left: 480px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 627px;
+    left: 587px;
   }
 `
 
@@ -88,7 +88,7 @@ const EarnedContainer = styled.div`
   top: 19px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 803px;
+    left: 763px;
   }
 `
 
@@ -102,8 +102,20 @@ const StakeContainer = styled.div`
 `
 
 const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
-  const { pid, strat, stakeTokenAddress, token0, token1, totalFees, withdrawFee, burning, userData, isPair, apy } =
-    vault
+  const {
+    pid,
+    strat,
+    stakeTokenAddress,
+    token0,
+    token1,
+    totalFees,
+    withdrawFee,
+    burning,
+    userData,
+    isPair,
+    apy,
+    totalStaked,
+  } = vault
 
   const { account } = useWeb3React()
   const block = useBlock()
@@ -115,7 +127,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const chainId = useNetworkChainId()
 
   const allowance = new BigNumber(userData?.allowance || 0)
-  const stakingTokenBalance = new BigNumber(userData?.stakedBalance || 0)
+  const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const vaultImage = isPair ? `${token0.symbol}-${token1.symbol}` : token0.symbol
   // const earnings = new BigNumber(userData?.pendingReward || 0)
@@ -124,6 +136,8 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const needsApproval = !allowance.gt(0)
   const isLoading = !userData
+  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
+  console.log(vault)
 
   // const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
 
@@ -145,7 +159,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
         />
       )
     }
-    return <ApprovalAction stakingContractAddress={stakeTokenAddress} sousId={pid} isLoading={isLoading} />
+    return <></>
   }
 
   return (
@@ -163,46 +177,36 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
           </CellInner>
         </ArrowContainer>
         <APRContainer>
-          <Apr poolApr={removed ? '0' : apy.daily.toFixed(2)} apr={new BigNumber(apy.daily)} />
+          <Apr poolApr={removed ? '0' : apy?.daily?.toFixed(2)} apr={new BigNumber(apy?.daily)} />
         </APRContainer>
         <LiquidtyContainer>
-          <Apr poolApr={removed ? '0' : apy.yearly.toFixed(2)} apr={new BigNumber(apy.yearly)} />
-        </LiquidtyContainer>
-        {/* <LiquidtyContainer>
-          <Staked staked={totalDollarAmountStaked} />
+          <Apr poolApr={removed ? '0' : apy?.yearly?.toFixed(2)} apr={new BigNumber(apy?.yearly)} />
         </LiquidtyContainer>
         <EarnedContainer>
-          <Earned earnings={rawEarningsBalance} />
-        </EarnedContainer> */}
+          <Staked staked={totalStaked?.toNumber()} />
+        </EarnedContainer>
       </StyledFlex>
-      {/* {actionPanelToggled && (
+      {actionPanelToggled && (
         <>
           <StakeContainer>
             <StakeAction
-              pool={pool}
+              vault={vault}
               stakingTokenBalance={stakingTokenBalance}
               stakedBalance={stakedBalance}
-              isApproved={isApproved}
               isStaked={accountHasStakedBalance}
+              firstStake={!accountHasStakedBalance}
+              isApproved={isApproved}
             />
           </StakeContainer>
           <ActionPanel
             totalStaked={getBalanceNumber(totalStaked)}
             personalValueStaked={getBalanceNumber(stakedBalance)}
-            blocksRemaining={blocksRemaining}
-            isFinished={isFinished}
-            blocksUntilStart={blocksUntilStart}
-            stakedTokenPrice={stakedTokenPrice}
-            rewardTokenPrice={rewardTokenPrice}
-            pendingReward={userData?.pendingReward}
-            lpLabel={stakingTokenName}
+            lpLabel={lpLabel}
             addLiquidityUrl="https://app.apeswap.finance/swap"
-            projectLink={projectLink}
-            bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
-            tokenDecimals={tokenDecimals}
+            bscScanAddress={`https://bscscan.com/address/${vault.strat}`}
           />
         </>
-      )} */}
+      )}
     </StyledTr>
   )
 }

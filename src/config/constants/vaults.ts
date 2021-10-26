@@ -84,7 +84,7 @@ const vaults: VaultConfig[] = [
     pid: 1,
     network: CHAIN_ID.MATIC,
     strat: '0x3a0b5177b7FDC0d306462B19950eeb8b8A2bd8A1',
-    stakeTokenAddress: '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64',
+    stakeTokenAddress: tokens.crystl.address[CHAIN_ID.MATIC],
     platform: 'CrystalFinance',
     token0: tokens.crystl,
     token1: tokens.crystl,

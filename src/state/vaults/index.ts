@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import vaultsConfig from 'config/constants/vaults'
+import { CHAIN_ID } from 'config/constants/chains'
 import fetchVaults from './fetchVaults'
 import {
   fetchVaultUserAllowances,
@@ -10,17 +11,22 @@ import {
 } from './fetchVaultsUser'
 import { VaultsState, Vault, TokenPrices } from '../types'
 
-const noAccountVaultConfig = vaultsConfig.map((vault) => ({
-  ...vault,
-  userData: {
-    allowance: '0',
-    tokenBalance: '0',
-    stakedBalance: '0',
-    stakedWantBalance: '0',
-  },
-}))
+const getInitialVaults = () => {
+  const chainId = parseInt(window.localStorage.getItem('chainIdStatus')) || CHAIN_ID.BSC
+  const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
+  const noAccountVaultConfig = filteredVaults.filter((vault) => ({
+    ...vault,
+    userData: {
+      allowance: '0',
+      tokenBalance: '0',
+      stakedBalance: '0',
+      stakedWantBalance: '0',
+    },
+  }))
+  return noAccountVaultConfig
+}
 
-const initialState: VaultsState = { data: [], loadVaultData: false, userDataLoaded: false }
+const initialState: VaultsState = { data: getInitialVaults(), loadVaultData: false, userDataLoaded: false }
 
 // Async thunks
 export const fetchVaultsPublicDataAsync = createAsyncThunk<
@@ -45,15 +51,15 @@ export const fetchVaultUserDataAsync = createAsyncThunk<
 >('vaults/fetchVaultUserDataAsync', async ({ multicallContract, vaultApeAddress, account, chainId }) => {
   const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
   const userVaultAllowances = await fetchVaultUserAllowances(multicallContract, vaultApeAddress, account, chainId)
-  const userVaultTokenBalances = await fetchVaultUserEarnings(multicallContract, vaultApeAddress, account, chainId)
-  const userVaultdBalances = await fetchVaultUserStakedBalances(multicallContract, vaultApeAddress, account, chainId)
+  const userVaultTokenBalances = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
+  const userVaultBalances = await fetchVaultUserStakedBalances(multicallContract, vaultApeAddress, account, chainId)
   const userVaultEarnings = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
   return userVaultAllowances.map((temp, index) => {
     return {
       pid: filteredVaults[index].pid,
       allowance: userVaultAllowances[index],
       tokenBalance: userVaultTokenBalances[index],
-      stakedBalance: userVaultdBalances[index],
+      stakedBalance: userVaultBalances[index],
       stakedWantBalance: userVaultEarnings[index],
     }
   })

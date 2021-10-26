@@ -39,10 +39,6 @@ const IconButtonWrapperStake = styled.div`
   justify-content: flex-start;
 `
 
-const HarvestWrapper = styled.div`
-  margin-right: 6px;
-`
-
 const IconButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -99,7 +95,9 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const onStake = useReward(rewardRefStake, useVaultStake(pid).onStake)
   const onUnstake = useReward(rewardRefUnstake, useVaultUnstake(pid).onUnstake)
 
-  const convertedLimit = new BigNumber(0)
+  const convertedLimit = new BigNumber(stakingTokenBalance)
+
+  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
 
   const isLoading = !vault.userData
 
@@ -113,7 +111,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           rewardRefStake.current?.rewardMe()
         })
       }}
-      tokenName={`${token0.symbol}-${token1.symbol}`}
+      tokenName={lpLabel}
     />,
   )
 
@@ -127,13 +125,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           rewardRefUnstake.current?.rewardMe()
         })
       }}
-      tokenName={`${token0.symbol}-${token1.symbol}`}
+      tokenName={lpLabel}
     />,
   )
 
   const renderStakingButtons = () => {
     return (
-      rawStakedBalance !== 0 && (
+      stakedBalance.gt(0) && (
         <IconButtonWrapperStake>
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
             <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
@@ -151,11 +149,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return (
-      <ButtonSquare onClick={onPresentDeposit}>
-        {TranslateString(999, `Stake ${token0.symbol}-${token1.symbol}`)}
-      </ButtonSquare>
-    )
+    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</ButtonSquare>
   }
 
   return (

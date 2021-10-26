@@ -11,7 +11,7 @@ import {
 } from './fetchDualFarmUser'
 import { TokenPrices, DualFarm, DualFarmsState } from '../types'
 
-const initialState: DualFarmsState = { data: [...dualFarmsConfig], loadVaultData: false, userDataLoaded: false }
+const initialState: DualFarmsState = { data: [...dualFarmsConfig] }
 
 export const dualFarmsSlice = createSlice({
   name: 'dualFarms',
@@ -25,17 +25,22 @@ export const dualFarmsSlice = createSlice({
       })
     },
     setDualFarmUserData: (state, action) => {
-      const { arrayOfUserDataObjects } = action.payload
-      arrayOfUserDataObjects.forEach((userDataEl) => {
-        const { index } = userDataEl
-        state.data[index] = { ...state.data[index], userData: userDataEl }
+      const userData = action.payload
+      state.data = state.data.map((dualFarm) => {
+        const userDualFarmData = userData.find((entry) => entry.pid === dualFarm.pid)
+        return { ...dualFarm, userData: userDualFarmData }
       })
+    },
+    updateDualFarmUserData: (state, action) => {
+      const { field, value, pid } = action.payload
+      const index = state.data.findIndex((p) => p.pid === pid)
+      state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
   },
 })
 
 // Actions
-export const { setDualFarmsPublicData, setDualFarmUserData } = dualFarmsSlice.actions
+export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserData } = dualFarmsSlice.actions
 
 // Thunks
 export const fetchDualFarmsPublicDataAsync =
@@ -55,19 +60,42 @@ export const fetchDualFarmUserDataAsync =
       const userFarmTokenBalances = await fetchDualFarmUserTokenBalances(multicallContract, account)
       const userStakedBalances = await fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account)
       const userFarmEarnings = await fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account)
-      const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
+      const arrayOfUserDataObjects = dualFarmsConfig.map((dualFarm) => {
         return {
-          index,
-          allowance: userFarmAllowances[index],
-          tokenBalance: userFarmTokenBalances[index],
-          stakedBalance: userStakedBalances[index],
-          earnings: userFarmEarnings[index],
+          pid: dualFarm.pid,
+          allowance: userFarmAllowances[dualFarm.pid],
+          tokenBalance: userFarmTokenBalances[dualFarm.pid],
+          stakedBalance: userStakedBalances[dualFarm.pid],
+          earnings: userFarmEarnings[dualFarm.pid],
         }
       })
-      dispatch(setDualFarmUserData({ arrayOfUserDataObjects }))
+      dispatch(setDualFarmUserData(arrayOfUserDataObjects))
     } catch (error) {
       console.error(error)
     }
+  }
+
+export const updateDualFarmUserAllowances =
+  (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
+    const allowances = await fetchDualFarmUserAllowances(multicallContract, miniChefAddress, account)
+    dispatch(updateDualFarmUserData({ pid, field: 'allowance', value: allowances[pid] }))
+  }
+
+export const updateDualFarmUserTokenBalances = (multicallContract, pid, account: string) => async (dispatch) => {
+  const tokenBalances = await fetchDualFarmUserTokenBalances(multicallContract, account)
+  dispatch(updateDualFarmUserData({ pid, field: 'tokenBalance', value: tokenBalances[pid] }))
+}
+
+export const updateDualFarmUserStakedBalances =
+  (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
+    const stakedBalances = await fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account)
+    dispatch(updateDualFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
+  }
+
+export const updateDualFarmUserEarnings =
+  (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
+    const pendingRewards = await fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account)
+    dispatch(updateDualFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
   }
 
 export default dualFarmsSlice.reducer

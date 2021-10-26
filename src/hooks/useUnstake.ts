@@ -19,7 +19,7 @@ import {
   miniChefUnstake,
 } from 'utils/callHelpers'
 import { fetchFarmUserEarnings, fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
-import { fetchDualFarmUserEarnings, fetchDualFarmUserStakedBalances } from 'state/dualFarms/fetchDualFarmUser'
+import { updateDualFarmUserEarnings, updateDualFarmUserStakedBalances } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
 import {
   useMasterchef,
@@ -158,8 +158,8 @@ export const useMiniChefUnstake = (pid: number) => {
   const handleUnstake = useCallback(
     async (amount: string) => {
       const txHash = await miniChefUnstake(miniChefContract, pid, amount, account)
-      dispatch(fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account))
-      dispatch(fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account))
+      dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserStakedBalances(multicallContract, miniChefAddress, pid, account))
       console.info(txHash)
     },
     [account, dispatch, miniChefContract, pid, miniChefAddress, multicallContract],

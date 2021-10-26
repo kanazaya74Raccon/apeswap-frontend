@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
@@ -11,7 +11,7 @@ import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, useStatsOverall, useVaults } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePools, useStatsOverall, useVaults, useNetworkChainId } from 'state/hooks'
 import { Pool } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
@@ -284,57 +284,6 @@ const StyledLabelContainerLP = styled.div`
   }
 `
 
-const StyledLabelContainerDailyAPY = styled.div`
-  cursor: pointer;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 365px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 370px;
-  }
-`
-
-const StyledLabelContainerYearlyAPY = styled.div`
-  cursor: pointer;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 365px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 490px;
-  }
-`
 
 const StyledLabelContainerLiquidity = styled.div`
   cursor: pointer;
@@ -357,7 +306,7 @@ const StyledLabelContainerLiquidity = styled.div`
     margin: 0px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 621px;
+    left: 581px;
   }
 `
 
@@ -382,7 +331,7 @@ const StyledLabelContainerEarned = styled.div`
     left: 651px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 801px;
+    left: 761px;
   }
 `
 
@@ -498,7 +447,7 @@ const StyledLabelContainerAPR = styled.div`
     margin: 0px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 409px;
+    left: 389px;
   }
 `
 
@@ -547,10 +496,12 @@ const Vaults: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
-  const { data: allVaults } = useVaults()
+  const { vaults: initVaults } = useVaults()
+  const [allVaults, setAllVaults] = useState(initVaults)
   const { statsOverall } = useStatsOverall()
   const bnbPriceUSD = usePriceBnbBusd()
   const TranslateString = useI18n()
+  const chainId = useNetworkChainId()
   const block = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
@@ -560,6 +511,10 @@ const Vaults: React.FC = () => {
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
+
+  useEffect(() => {
+    setAllVaults(initVaults)
+  }, [initVaults])
 
   useEffect(() => {
     if (size.width !== undefined) {

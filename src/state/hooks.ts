@@ -165,9 +165,9 @@ export const useFarmUser = (pid) => {
 
 // Vaults
 
-export const useVaults = (): VaultsState => {
-  const vaults = useSelector((state: State) => state.vaults)
-  return vaults
+export const useVaults = () => {
+  const { loadVaultData, userDataLoaded, data }: VaultsState = useSelector((state: State) => state.vaults)
+  return { vaults: data, loadVaultData, userDataLoaded }
 }
 
 export const useVaultFromPid = (pid): Vault => {

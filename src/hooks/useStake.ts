@@ -11,7 +11,11 @@ import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault, miniChefStake } f
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
-import { fetchDualFarmUserStakedBalances } from 'state/dualFarms/fetchDualFarmUser'
+import {
+  updateDualFarmUserEarnings,
+  updateDualFarmUserStakedBalances,
+  updateDualFarmUserTokenBalances,
+} from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
 import {
   useMasterchef,
@@ -131,11 +135,7 @@ export const useDualFarmStake = (pid: number) => {
 
   const handleStake = useCallback(
     async (amount: string) => {
-      console.log('(MADEIT HERE')
       const txHash = await miniChefStake(miniChefContract, pid, amount, account)
-      console.log('(MADEIT HERE')
-      console.log(txHash)
-      dispatch(fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account))
       track({
         event: 'dualFarm',
         chain: chainId,
@@ -145,6 +145,9 @@ export const useDualFarmStake = (pid: number) => {
           pid,
         },
       })
+      dispatch(updateDualFarmUserStakedBalances(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserTokenBalances(multicallContract, pid, account))
       console.info(txHash)
     },
     [account, dispatch, miniChefContract, pid, chainId, miniChefAddress, multicallContract],

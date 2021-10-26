@@ -76,5 +76,7 @@ export const fetchDualFarmUserEarnings = async (
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })
+  console.log("PARSED EARNINGS")
+  console.log(parsedEarnings)
   return parsedEarnings
 }

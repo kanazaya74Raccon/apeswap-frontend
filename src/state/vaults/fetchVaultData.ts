@@ -98,9 +98,11 @@ const fetchVaultData = async (
   )
 
   const quoteTokenAmountTotal = new BigNumber(quoteTokenPairBalance).div(new BigNumber(10).pow(stakeTokenDecimals))
+  const pairTokenRatio = parseFloat(strategyPairBalance) / parseFloat(pairTotalSupply.toString())
   const lptokenRatio = new BigNumber(pairBalanceMc).div(new BigNumber(pairTotalSupply))
   const quoteTokenAmountMc = quoteTokenAmountTotal.times(lptokenRatio)
   const totalInQuoteToken = isPair ? quoteTokenAmountMc.times(new BigNumber(2)) : new BigNumber(pairBalanceMc)
+  const totalStaked = new BigNumber(totalInQuoteToken).times(quoteTokenPriceUsd).times(pairTokenRatio)
 
   // Calculate APR
   const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : new BigNumber(0)
@@ -133,7 +135,7 @@ const fetchVaultData = async (
   const dailyApy = getRoi({ amountEarned: amountEarnedDaily, amountInvested: oneThousandDollarsWorthOfToken })
 
   return {
-    totalStaked: null,
+    totalStaked,
     totalAllocPoint: totalAllocPoint.toString(),
     allocPoint: allocPoint.toString(),
     weight: parseInt(weight.toString()),

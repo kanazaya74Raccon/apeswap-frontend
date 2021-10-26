@@ -30,10 +30,12 @@ export const fetchVaultUserTokenBalances = async (multicallContract, account: st
       params: [account],
     }
   })
+  console.log(calls)
   const rawTokenBalances = await multicall(multicallContract, erc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })
+  console.log(parsedTokenBalances)
   return parsedTokenBalances
 }
 
@@ -47,7 +49,7 @@ export const fetchVaultUserStakedBalances = async (
   const calls = filteredVaultsToFetch.map((vault) => {
     return {
       address: vaultApeAddress,
-      name: 'userInfo',
+      name: 'stakedWantTokens',
       params: [vault.pid, account],
     }
   })

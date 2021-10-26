@@ -7,7 +7,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
-import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useHarvest, useMiniChefHarvest } from 'hooks/useHarvest'
 import { useApprove, useDualFarmApprove } from 'hooks/useApprove'
@@ -24,12 +24,10 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { pid, stakeTokenAddress, stakeTokens } = dualFarm
   const { account, library } = useWeb3React()
   const TranslateString = useI18n()
-  const rewardRef = useRef(null)
-  const rewardRefPos = useRef(null)
-  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-  const onStake = useReward(rewardRefPos, useDualFarmStake(pid).onStake)
+  const onStake = useDualFarmStake(pid).onStake
   const [pendingTx, setPendingTx] = useState(false)
-  const onReward = useReward(rewardRef, useMiniChefHarvest(pid).onReward)
+  const [stakeTx, setStakeTx] = useState(false)
+  const onReward = useMiniChefHarvest(pid).onReward
   const chainId = useNetworkChainId()
   const lpSymbol = `${stakeTokens?.token0?.symbol}-${stakeTokens?.token1?.symbol}`
 
@@ -47,11 +45,8 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
-      const sucess = await onApprove()
-      if (!sucess) setTypeOfReward('error')
-      else setTypeOfReward('rewardBanana')
+      await onApprove()
       setRequestedApproval(false)
-      rewardRef.current?.rewardMe()
     } catch (e) {
       console.error(e)
     }
@@ -65,12 +60,9 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
     <DepositModal
       max={new BigNumber(dualFarm?.userData?.tokenBalance)}
       onConfirm={async (val) => {
-        setTypeOfReward('rewardBanana')
-        await onStake(val).catch((e) => {
-          console.log(e)
-          setTypeOfReward('error')
-          rewardRefPos.current?.rewardMe()
-        })
+        setStakeTx(true)
+        await onStake(val)
+        setStakeTx(false)
       }}
       tokenName={lpName}
       addLiquidityUrl=""
@@ -80,37 +72,42 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare
+          disabled={requestedApproval}
+          onClick={handleApprove}
+          endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
+        >
           {TranslateString(999, 'Enable')}
         </ButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
-      return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
+      return (
+        <ButtonSquare
+          disabled={stakeTx}
+          onClick={onPresentDeposit}
+          endIcon={stakeTx && <AutoRenewIcon spin color="currentColor" />}
+        >
+          {TranslateString(999, 'Stake LP')}
+        </ButtonSquare>
+      )
     }
     return (
       <ButtonSquare
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
-          setTypeOfReward('rewardBanana')
-          await onReward().catch(() => {
-            setTypeOfReward('error')
-            rewardRef.current?.rewardMe()
-          })
+          await onReward()
           setPendingTx(false)
         }}
+        endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
       >
         {TranslateString(999, 'Harvest')}
       </ButtonSquare>
     )
   }
 
-  return (
-    <Reward ref={rewardRef} type="emoji" config={rewards[typeOfReward]}>
-      {renderButton()}
-    </Reward>
-  )
+  return renderButton()
 }
 
 export default HarvestAction

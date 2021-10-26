@@ -241,8 +241,6 @@ export interface PoolsState {
 }
 
 export interface DualFarmsState {
-  loadVaultData: boolean
-  userDataLoaded: boolean
   data: DualFarm[]
 }
 
