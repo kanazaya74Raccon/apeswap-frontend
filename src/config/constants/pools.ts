@@ -2485,6 +2485,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 130,
+    tokenName: 'OASIS',
+    image: 'OASIS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.oasis,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x9B5919a87d727e17A1fa9116E4547A52A7f159ea',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://projectoasis.io/',
+    harvest: true,
+    tokenPerBlock: `0.016855902777777777`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

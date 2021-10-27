@@ -574,6 +574,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  oasis: {
+    symbol: 'OASIS',
+    address: {
+      56: '0xb19289b436b2F7A92891ac391D8f52580d3087e4',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
