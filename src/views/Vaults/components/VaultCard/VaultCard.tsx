@@ -47,86 +47,71 @@ const PCard = styled.div`
 `
 
 const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
-  // const {
-  //   sousId,
-  //   image,
-  //   tokenName,
-  //   stakingTokenName,
-  //   stakingTokenAddress,
-  //   apr,
-  //   totalStaked,
-  //   startBlock,
-  //   endBlock,
-  //   isFinished,
-  //   userData,
-  //   rewardTokenPrice,
-  //   stakedTokenPrice,
-  //   projectLink,
-  //   contractAddress,
-  //   tokenDecimals,
-  // } = vault
+  const {
+    pid,
+    strat,
+    stakeTokenAddress,
+    token0,
+    token1,
+    totalFees,
+    withdrawFee,
+    burning,
+    userData,
+    isPair,
+    apy,
+    totalStaked,
+  } = vault
 
-  // const { account } = useWeb3React()
-  // const block = useBlock()
-  // const [showExpandableSection, setShowExpandableSection] = useState(false)
+  const { account } = useWeb3React()
+  const block = useBlock()
+  const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  // const allowance = new BigNumber(userData?.allowance || 0)
-
-  // const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
-  // const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-
-  // const blocksUntilStart = Math.max(startBlock - block, 0)
-  // const blocksRemaining = Math.max(endBlock - block, 0)
-  // const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  // const isApproved = account && allowance && allowance.isGreaterThan(0)
-  // const pendingReward = userData?.pendingReward
-  // const toggleExpand = () => {
-  //   setShowExpandableSection(!showExpandableSection)
-  // }
-  //     <PCard onClick={toggleExpand}>
+  const allowance = new BigNumber(userData?.allowance || 0)
+  const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
+  const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
+  const vaultImage = isPair ? `${token0.symbol}-${token1.symbol}` : token0.symbol
+  // const earnings = new BigNumber(userData?.pendingReward || 0)
+  // const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
+  const accountHasStakedBalance = stakedBalance?.toNumber() > 0
+  const isApproved = account && allowance && allowance.isGreaterThan(0)
+  const needsApproval = !allowance.gt(0)
+  const isLoading = !userData
+  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const displayBalance = rawStakedBalance.toLocaleString()
+  const toggleExpand = () => {
+    setShowExpandableSection(!showExpandableSection)
+  }
 
   return (
-    <PCard>
-      <></>
-      {/* <CardHeading
-        pool={pool}
-        stakeToken={stakingTokenName}
-        earnToken={tokenName}
-        earnTokenImage={image}
-        stakingTokenAddress={stakingTokenAddress[CHAIN_ID]}
-        sousId={sousId}
-        apr={apr}
-        poolAPR={apr.toNumber().toFixed(2)}
+    <PCard onClick={toggleExpand}>
+      <CardHeading
+        vault={vault}
+        stakingTokenAddress={vault?.stakeTokenAddress}
+        apyDaily={vault?.apy?.daily?.toFixed(2)}
+        apyYearly={vault?.apy?.yearly?.toFixed(2)}
         showExpandableSection={showExpandableSection}
         removed={removed}
-        rewardTokenPrice={rewardTokenPrice}
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Flex>
           <StakeAction
-            pool={pool}
+            vault={vault}
             stakingTokenBalance={stakingTokenBalance}
             stakedBalance={stakedBalance}
-            isApproved={isApproved}
             isStaked={accountHasStakedBalance}
+            firstStake={!accountHasStakedBalance}
+            isApproved={isApproved}
           />
         </Flex>
         <DetailsSection
           totalStaked={getBalanceNumber(totalStaked)}
           personalValueStaked={getBalanceNumber(stakedBalance)}
-          blocksRemaining={blocksRemaining}
-          isFinished={isFinished}
-          blocksUntilStart={blocksUntilStart}
-          rewardTokenPrice={rewardTokenPrice}
-          lpLabel={stakingTokenName}
+          lpLabel={lpLabel}
           addLiquidityUrl="https://app.apeswap.finance/swap"
-          stakedTokenPrice={stakedTokenPrice}
-          pendingReward={pendingReward}
-          projectSite={projectLink}
-          bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
-          tokenDecimals={tokenDecimals}
+          bscScanAddress={`https://bscscan.com/address/${vault.strat}`}
         />
-      </ExpandingWrapper> */}
+      </ExpandingWrapper>
     </PCard>
   )
 }

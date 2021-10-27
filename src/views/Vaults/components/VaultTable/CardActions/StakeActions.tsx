@@ -16,12 +16,11 @@ import {
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useSousStake, useVaultStake } from 'hooks/useStake'
-import { useSousUnstake, useVaultUnstake } from 'hooks/useUnstake'
-import { Pool, Vault } from 'state/types'
+import { useVaultStake } from 'hooks/useStake'
+import { useVaultUnstake } from 'hooks/useUnstake'
+import { Vault } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
   vault: Vault
@@ -32,6 +31,7 @@ interface StakeActionsProps {
   isLoading?: boolean
   isApproved?: boolean
   firstStake?: boolean
+  isHeader?: boolean
 }
 
 const IconButtonWrapperStake = styled.div`
@@ -67,10 +67,11 @@ const StyledText = styled(Text)`
 const StyledFlex = styled(Flex)`
   position: absolute;
   right: 45px;
-  width: 225px;
+  width: 210px;
   margin-left: 10px;
+  margin-top: 10px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 30px;
+    margin-right: 50px;
   }
 `
 
@@ -80,6 +81,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedBalance,
   isApproved,
   firstStake,
+  isHeader
 }) => {
   const TranslateString = useI18n()
 
@@ -148,18 +150,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     )
   }
 
-  if (firstStake) {
+  if (isApproved && firstStake && isHeader) {
     return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</ButtonSquare>
   }
 
   return (
-    <StyledFlex justifyContent="space-between">
-      <Flex flexDirection="column" justifyContent="space-between" marginRight="6px">
-        <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
-          {displayBalance}
-        </StyledHeadingGreen>
-      </Flex>
+    <StyledFlex justifyContent="flex-end">
       {isApproved && <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>}
     </StyledFlex>
   )

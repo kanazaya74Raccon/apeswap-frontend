@@ -3,26 +3,25 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
-import { Pool } from 'state/types'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Pool, Vault } from 'state/types'
+import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
-import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
-  apr?: BigNumber
-  pool?: Pool
+  apyDaily?: string
+  vault?: Vault
   stakeToken?: string
   earnToken?: string
   tokenSymbol?: string
   addLiquidityUrl?: string
   bananaPrice?: BigNumber
-  poolAPR?: string
+  apyYearly?: string
   removed?: boolean
   sousId?: number
   lpSymbol?: string
@@ -52,7 +51,7 @@ const StyledBackground = styled(Flex)`
     justify-content: space-between;
     background: rgb(255, 179, 0, 0.4);
     border-radius: 20px;
-    width: 200px;
+    width: 150px;
     align-items: flex-end;
     height: 80px;
     margin-left: 0px;
@@ -214,6 +213,17 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
 `
 
+const IconImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+  align: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 57px;
+    height: 57px;
+  }
+`
+
 const StyledImage = styled.img`
   display: none;
   align-self: center;
@@ -247,12 +257,12 @@ const StyledArrow = styled.img`
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
-  pool,
-  apr,
+  vault,
+  apyDaily,
   stakeToken,
   earnToken,
   tokenSymbol,
-  poolAPR,
+  apyYearly,
   removed,
   sousId,
   earnTokenImage,
@@ -261,17 +271,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData, tokenDecimals } = pool
-  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  const { userData, isPair, token0, token1 } = vault
+  const stakingTokenBalance = new BigNumber(userData?.stakedWantBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const earnings = new BigNumber(pool.userData?.pendingReward || 0)
+  const earnings = new BigNumber(vault.userData?.tokenBalance || 0)
   const allowance = new BigNumber(userData?.allowance || 0)
-  const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
-  const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
-  const isLoading = !pool.userData
+  const isLoading = !vault?.userData
   const needsApproval = !allowance.gt(0)
-  const isCompound = sousId === 0
+  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
 
   const { account } = useWeb3React()
 
@@ -282,52 +290,54 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
     }
-    if (!needsApproval && !accountHasStakedBalance && !pool.emergencyWithdraw) {
+    if (!needsApproval && !accountHasStakedBalance) {
       return (
         <StakeAction
-          pool={pool}
+          vault={vault}
           stakingTokenBalance={stakingTokenBalance}
           stakedBalance={stakedBalance}
           isStaked={accountHasStakedBalance}
           firstStake={!accountHasStakedBalance}
+          isHeader
         />
       )
     }
-    return (
-      <HarvestActions
-        earnings={earnings}
-        sousId={sousId}
-        isLoading={isLoading}
-        tokenDecimals={pool.tokenDecimals}
-        compound={isCompound}
-        emergencyWithdraw={pool.emergencyWithdraw}
-      />
-    )
+    return <></>
   }
 
   return (
     <Flex>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakeToken}.svg`} alt={tokenSymbol} />
-        <StyledArrow src="/images/arrow.svg" alt="arrow" />
-        <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />
+        {isPair ? (
+          <>
+            <IconImage src={`/images/tokens/${token0.symbol}.svg`} alt={token0.symbol} width={50} height={50} />
+            <IconImage
+              src={`/images/tokens/${token1.symbol}.svg`}
+              alt={token1.symbol}
+              width={50}
+              height={50}
+              marginLeft="-10px"
+            />
+          </>
+        ) : (
+          <IconImage
+            src={`/images/tokens/${token0.symbol}.svg`}
+            alt={token0.symbol}
+            width={50}
+            height={50}
+            marginLeft="5px"
+          />
+        )}
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading>{earnToken}</StyledHeading>
+          <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">APR:</StyledText1>
-              {apr ? (
+              <StyledText1 fontFamily="poppins">APY:</StyledText1>
+              {apyDaily ? (
                 <FlexSwitch>
-                  <ApyButton
-                    lpLabel={stakeToken}
-                    rewardTokenName={earnToken}
-                    addLiquidityUrl="https://app.apeswap.finance/swap"
-                    rewardTokenPrice={new BigNumber(rewardTokenPrice)}
-                    apy={apr.div(100)}
-                  />
-                  <StyledAPRText>{poolAPR}%</StyledAPRText>
+                  <StyledAPRText>{apyYearly}%</StyledAPRText>
                 </FlexSwitch>
               ) : (
                 <Skeleton height={24} width={80} />
@@ -341,7 +351,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <StyledText2 fontFamily="poppins" color="primary" pr="3px">
               {TranslateString(999, 'Earned')}
             </StyledText2>
-            <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
         </LabelContainer>
         <LabelContainer2>
@@ -354,14 +363,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                 {TranslateString(999, 'Earned')}
               </StyledText2>
             </Flex>
-            <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
           <ButtonContainer>
             {cardHeaderButton()}
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>
-        {stakeToken === 'GNANA' && <PoolFinishedSash />}
       </StyledFlexContainer>
     </Flex>
   )

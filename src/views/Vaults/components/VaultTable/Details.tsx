@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  margin-left: 41px;
+  margin-left: 21px;
   color: ${({ theme }) => theme.colors.primary};
 
   ${({ theme }) => theme.mediaQueries.sm} {

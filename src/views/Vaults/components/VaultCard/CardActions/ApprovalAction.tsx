@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react'
 import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
-import { useSousApprove } from 'hooks/useApprove'
+import { useVaultApeApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 
 interface ApprovalActionProps {
@@ -13,7 +13,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
   const stakingTokenContract = useERC20(stakingContractAddress)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
-  const { onApprove } = useSousApprove(stakingTokenContract, sousId)
+  const { onApprove } = useVaultApeApprove(stakingTokenContract)
 
   const handleApprove = useCallback(async () => {
     try {

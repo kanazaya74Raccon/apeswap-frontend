@@ -155,11 +155,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
-      <Flex justifyContent="center">
-        <StyledLink external href={projectSite} bold={false}>
-          {TranslateString(356, 'View Project Site')}
-        </StyledLink>
-      </Flex>
     </Wrapper>
   )
 }

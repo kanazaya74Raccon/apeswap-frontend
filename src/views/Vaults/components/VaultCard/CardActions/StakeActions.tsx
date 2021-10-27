@@ -16,15 +16,14 @@ import {
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useSousStake } from 'hooks/useStake'
-import { useSousUnstake } from 'hooks/useUnstake'
-import { Pool } from 'state/types'
+import { useSousStake, useVaultStake } from 'hooks/useStake'
+import { useSousUnstake, useVaultUnstake } from 'hooks/useUnstake'
+import { Pool, Vault } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
-import HarvestActions from './HarvestActions'
 
 interface StakeActionsProps {
-  pool: Pool
+  vault: Vault
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
   isBnbPool?: boolean
@@ -32,14 +31,17 @@ interface StakeActionsProps {
   isLoading?: boolean
   isApproved?: boolean
   firstStake?: boolean
+  isHeader?: boolean
 }
+
+const IconButtonWrapperStake = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
 
 const IconButtonWrapper = styled.div`
   display: flex;
-`
-
-const HarvestWrapper = styled.div`
-  margin-right: 6px;
+  justify-content: flex-end;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -63,43 +65,47 @@ const StyledText = styled(Text)`
 `
 
 const StyledFlex = styled(Flex)`
-  width: 100%;
-  margin-left: 117px;
-  margin-right: 35px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 217px;
+  position: absolute;
+  right: 45px;
+  width: 210px;
+  margin-left: 10px;
+  margin-top: 10px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 50px;
   }
 `
 
 const StakeAction: React.FC<StakeActionsProps> = ({
-  pool,
+  vault,
   stakingTokenBalance,
   stakedBalance,
   isApproved,
   firstStake,
+  isHeader,
 }) => {
   const TranslateString = useI18n()
 
-  const { stakingToken, tokenDecimals, stakingLimit, sousId } = pool
+  const { stakeTokenAddress, pid, token0, token1 } = vault
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-  const { symbol: stakingTokenName } = stakingToken
 
   const rewardRefStake = useRef(null)
   const rewardRefUnstake = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-  const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const isLoading = !pool.userData
 
-  const onStake = useReward(rewardRefStake, useSousStake(sousId).onStake)
-  const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
+  const onStake = useReward(rewardRefStake, useVaultStake(pid).onStake)
+  const onUnstake = useReward(rewardRefUnstake, useVaultUnstake(pid).onUnstake)
 
-  const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
+  const convertedLimit = new BigNumber(stakingTokenBalance)
+
+  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
+
+  const isLoading = !vault.userData
 
   const [onPresentDeposit] = useModal(
     <DepositModal
-      max={stakingLimit && stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
+      max={stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
       onConfirm={async (val) => {
         setTypeOfReward('rewardBanana')
         await onStake(val).catch(() => {
@@ -107,7 +113,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           rewardRefStake.current?.rewardMe()
         })
       }}
-      tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
+      tokenName={lpLabel}
     />,
   )
 
@@ -121,24 +127,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           rewardRefUnstake.current?.rewardMe()
         })
       }}
-      tokenName={stakingTokenName}
+      tokenName={lpLabel}
     />,
   )
 
   const renderStakingButtons = () => {
     return (
-      rawStakedBalance !== 0 && (
-        <IconButtonWrapper>
-          {sousId === 0 && (
-            <HarvestWrapper>
-              <HarvestActions
-                earnings={earnings}
-                sousId={sousId}
-                isLoading={isLoading}
-                tokenDecimals={pool.tokenDecimals}
-              />
-            </HarvestWrapper>
-          )}
+      stakedBalance.gt(0) && (
+        <IconButtonWrapperStake>
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
             <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
               <MinusIcon color="white" width="12px" height="12px" />
@@ -149,24 +145,18 @@ const StakeAction: React.FC<StakeActionsProps> = ({
               <AddIcon color="white" width="16px" height="16px" />
             </StyledIconButtonSquare>
           </Reward>
-        </IconButtonWrapper>
+        </IconButtonWrapperStake>
       )
     )
   }
 
-  if (firstStake) {
-    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `Stake ${stakingTokenName}`)}</ButtonSquare>
+  if (firstStake && isApproved && isHeader) {
+    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</ButtonSquare>
   }
 
   return (
-    <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
-      <Flex flexDirection="column" alignItems="flex-start" marginRight="6px">
-        <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
-          {displayBalance}
-        </StyledHeadingGreen>
-      </Flex>
-      {isApproved && renderStakingButtons()}
+    <StyledFlex justifyContent="flex-end">
+      {isApproved && <IconButtonWrapper>{renderStakingButtons()}</IconButtonWrapper>}
     </StyledFlex>
   )
 }

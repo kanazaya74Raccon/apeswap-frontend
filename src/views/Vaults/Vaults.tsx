@@ -284,7 +284,7 @@ const StyledLabelContainerLP = styled.div`
   }
 `
 
-const StyledLabelContainerLiquidity = styled.div`
+const StyledLabelContainerYearlyAPY = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
@@ -305,11 +305,11 @@ const StyledLabelContainerLiquidity = styled.div`
     margin: 0px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 581px;
+    left: 565px;
   }
 `
 
-const StyledLabelContainerEarned = styled.div`
+const StyledLabelContainerTotalStaked = styled.div`
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
@@ -330,7 +330,7 @@ const StyledLabelContainerEarned = styled.div`
     left: 651px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 761px;
+    left: 740px;
   }
 `
 
@@ -424,7 +424,7 @@ const FlexLayout = styled.div`
   }
 `
 
-const StyledLabelContainerAPR = styled.div`
+const StyledLabelContainerDailyAPY = styled.div`
   cursor: pointer;
 
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -711,30 +711,30 @@ const Vaults: React.FC = () => {
           <StyledLabelContainerLP>
             <StyledLabel>Token</StyledLabel>
           </StyledLabelContainerLP>
-          <StyledLabelContainerAPR>
+          <StyledLabelContainerDailyAPY>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
               Daily APY
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
-          </StyledLabelContainerAPR>
-          <StyledLabelContainerLiquidity>
+          </StyledLabelContainerDailyAPY>
+          <StyledLabelContainerYearlyAPY>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
               Yearly APY
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
-          </StyledLabelContainerLiquidity>
-          <StyledLabelContainerEarned>
+          </StyledLabelContainerYearlyAPY>
+          <StyledLabelContainerTotalStaked>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
               Total Staked
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
-          </StyledLabelContainerEarned>
+          </StyledLabelContainerTotalStaked>
         </ContainerLabels>
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />

@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Flex } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'
@@ -15,7 +15,6 @@ import Earned from './Earned'
 import Apr from './Apr'
 import ActionPanel from './ActionPanel'
 import Staked from './Liquidity'
-import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
@@ -42,7 +41,7 @@ const StyledTr = styled.div`
   background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
 `
 
-const APRContainer = styled.div`
+const DailyAPYContainer = styled.div`
   position: absolute;
   left: 340px;
   top: 19px;
@@ -52,12 +51,12 @@ const APRContainer = styled.div`
   }
 `
 
-const LiquidtyContainer = styled.div`
+const YearlyAPYContainer = styled.div`
   position: absolute;
   left: 480px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 587px;
+    left: 575px;
   }
 `
 
@@ -71,6 +70,20 @@ const CellInner = styled.div`
     padding-right: 0px;
   }
 `
+const StyledHeadingGreen = styled(Heading)`
+  font-size: 14px;
+  color: #38a611;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 20px;
+    color: #38a611;
+  }
+`
+
+const StyledText = styled(Text)`
+  font-weight: bold;
+  font-size: 12px;
+`
 
 const ArrowContainer = styled(Flex)`
   position: absolute;
@@ -82,13 +95,23 @@ const StyledFlex = styled(Flex)`
   position: relative;
 `
 
-const EarnedContainer = styled.div`
+const TotalStakedContainer = styled.div`
   position: absolute;
   left: 660px;
   top: 19px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 763px;
+    left: 751px;
+  }
+`
+
+const UserStakedContainer = styled.div`
+  position: absolute;
+  left: 830px;
+  top: 8px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    left: 933px;
   }
 `
 
@@ -137,18 +160,20 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const needsApproval = !allowance.gt(0)
   const isLoading = !userData
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const displayBalance = rawStakedBalance.toLocaleString()
   console.log(vault)
 
   // const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakeTokenAddress} sousId={pid} isLoading={isLoading} />
     }
-    if (!needsApproval && !accountHasStakedBalance) {
+    if (isApproved && !accountHasStakedBalance) {
       return (
         <StakeAction
           vault={vault}
@@ -156,6 +181,8 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
           stakedBalance={stakedBalance}
           isStaked={accountHasStakedBalance}
           firstStake={!accountHasStakedBalance}
+          isApproved={isApproved}
+          isHeader
         />
       )
     }
@@ -176,15 +203,25 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             </CellLayout>
           </CellInner>
         </ArrowContainer>
-        <APRContainer>
+        <DailyAPYContainer>
           <Apr poolApr={removed ? '0' : apy?.daily?.toFixed(2)} apr={new BigNumber(apy?.daily)} />
-        </APRContainer>
-        <LiquidtyContainer>
+        </DailyAPYContainer>
+        <YearlyAPYContainer>
           <Apr poolApr={removed ? '0' : apy?.yearly?.toFixed(2)} apr={new BigNumber(apy?.yearly)} />
-        </LiquidtyContainer>
-        <EarnedContainer>
+        </YearlyAPYContainer>
+        <TotalStakedContainer>
           <Staked staked={totalStaked?.toNumber()} />
-        </EarnedContainer>
+        </TotalStakedContainer>
+        {rawStakedBalance ? (
+          <UserStakedContainer>
+            <StyledText fontFamily="poppins">Staked</StyledText>
+            <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
+              {displayBalance}
+            </StyledHeadingGreen>
+          </UserStakedContainer>
+        ) : (
+          <></>
+        )}
       </StyledFlex>
       {actionPanelToggled && (
         <>
