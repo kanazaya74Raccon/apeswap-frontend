@@ -81,7 +81,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedBalance,
   isApproved,
   firstStake,
-  isHeader
+  isHeader,
 }) => {
   const TranslateString = useI18n()
 
