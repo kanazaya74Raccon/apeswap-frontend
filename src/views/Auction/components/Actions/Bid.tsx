@@ -224,7 +224,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
         auctionId={auctionId}
       />
       <WhyCantIBid
-        href="https://apeswap.gitbook.io/apeswap-finance/product-information/non-fungible-apes-nfas/nfa-auction-house"
+        href="https://ape-swap.medium.com/non-fungible-apes-the-great-primate-migration-3a087c3f4e26"
         target="_blank"
         rel="noopener noreferrer"
       >
