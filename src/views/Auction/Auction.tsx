@@ -198,6 +198,7 @@ const MoreInfo = styled.div`
   text-align: center;
   cursor: pointer;
   margin-right: 10px;
+  width: 50%;
 `
 
 const Auction: React.FC = () => {
@@ -224,7 +225,7 @@ const Auction: React.FC = () => {
               >
                 <MoreInfo>How It Works</MoreInfo>
               </a>
-              <ListYourNfa />
+              {/* <ListYourNfa /> */}
             </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
