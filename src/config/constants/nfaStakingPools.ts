@@ -10,7 +10,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       97: '0x12D87c577738F53b85fEE44738420070C7406e4b',
       56: '0xC84E54e4e09FfD7f971C674f87002A54A2D6B5E3',
     },
-    tokenPerBlock: '0 ',
+    tokenPerBlock: '0',
     isFinished: false,
   },
   {
@@ -21,7 +21,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       97: '0x25e682EdB9641bacecc9271F6de377C69c8B8d0B',
       56: '0xa6824F494D26BFB8bAae9cC95c6e01A3657E44d0',
     },
-    tokenPerBlock: '0 ',
+    tokenPerBlock: '0',
     isFinished: false,
   },
   {
@@ -32,7 +32,7 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
       97: '0xc58044A3aB2ED5BBD8F3e15bBB4571A45ad7C6c2',
       56: '0x00ee52127D42322E8bbfC10BE6E129b47CCdaE0A',
     },
-    tokenPerBlock: '0 ',
+    tokenPerBlock: '0',
     isFinished: false,
   },
   {
