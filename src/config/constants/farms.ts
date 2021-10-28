@@ -1825,6 +1825,291 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 129,
+    lpSymbol: 'ROCKI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x45a3C78A4036E1E4ffF5fa9c0814739B8271A6E1',
+    },
+    tokenSymbol: 'ROCKI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa01000c52b234a92563ba61e5649b7c76e1ba0f3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 130,
+    lpSymbol: 'GUMMY-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xb355e5b120305c9a2c1b641dde19bc84a8bb8281',
+    },
+    tokenSymbol: 'GUMMY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x10d3e0c38c286a04aee44d9b01cac916b56ee05a',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 131,
+    lpSymbol: 'DCB-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xd094f600964c22ab259c092b0f3a0627c0de4699',
+    },
+    tokenSymbol: 'DCB',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xeac9873291ddaca754ea5642114151f3035c67a2',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 132,
+    lpSymbol: 'NFTY-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x884be30e2c95b9cfed614ad2b5edf40af2a144ad',
+    },
+    tokenSymbol: 'NFTY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x5774b2fc3e91af89f89141eacf76545e74265982',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 133,
+    lpSymbol: 'SEFI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xf29baec55254690e71a1beb5cfa5f1098a8df7e3',
+    },
+    tokenSymbol: 'SEFI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xcd95350c69f229e72e57a44e8c05c436e65e4beb',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 134,
+    lpSymbol: 'IHC-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x83ccbe832e5a3b620a435fe0edb89e171c14eccb',
+    },
+    tokenSymbol: 'IHC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x86a53fcd199212FEa44FA7e16EB1f28812be911D',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 135,
+    lpSymbol: 'PROS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8205a8b42ee0bfdab43af3c971d97e150a1e48ae',
+    },
+    tokenSymbol: 'PROS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xed8c8aa8299c10f067496bb66f8cc7fb338a3405',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 136,
+    lpSymbol: 'AIRT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xd515f5153838a197833cb39c3100c72cc8a12204',
+    },
+    tokenSymbol: 'AIRT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x016cf83732f1468150d87dcc5bdf67730b3934d3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 137,
+    lpSymbol: 'THG-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xc2163a4879f4dcbfe28359664d98c7215e9caf2e',
+    },
+    tokenSymbol: 'THG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x9fD87aEfe02441B123c3c32466cD9dB4c578618f',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 138,
+    lpSymbol: 'WSG-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x7c9391ed34bf49e1fca11e1aedd7e63af64c3663',
+    },
+    tokenSymbol: 'WSG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xA58950F05FeA2277d2608748412bf9F802eA4901',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 139,
+    lpSymbol: 'OTAKU-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x958b2ea8ef2798bd7270cd757a8756872a6358a2',
+    },
+    tokenSymbol: 'OTAKU',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x484215873a674f9af73367a8f94c2c591e997521',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 140,
+    lpSymbol: 'TNNS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x114a7ebb03a9a9db0e913ca44cd5f2bb3bdcbfc3',
+    },
+    tokenSymbol: 'TNNS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 141,
+    lpSymbol: 'KING-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x396a89f9445321f57345439cd405c09d03c3d092',
+    },
+    tokenSymbol: 'KING',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0cCD575bf9378c06f6DCa82f8122F570769F00C2',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 142,
+    lpSymbol: 'FIL-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xcaec8648dbac41b6504a8e408892931796d67d87',
+    },
+    tokenSymbol: 'FIL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 143,
+    lpSymbol: 'TUSD-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xedba62a5d133fa340e4ef1d58d72f6e773554318',
+    },
+    tokenSymbol: 'TUSD',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x14016e85a25aeb13065688cafb43044c2ef86784',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 144,
+    lpSymbol: 'IDEX-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe9a41aaca6c07743449200d18cd5bf9627b14903',
+    },
+    tokenSymbol: 'IDEX',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0856978f7ffff0a2471b4520e3521c4b3343e36f',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 145,
+    lpSymbol: 'TOWER-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1b332e08f0957d43ff8c2760bf49af8d3798959d',
+    },
+    tokenSymbol: 'TOWER',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xe7c9c6bc87b86f9e5b57072f907ee6460b593924',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 146,
+    lpSymbol: 'WRX-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xdc45d9d98bdab3ff053a12bf068a88d849a59cf1',
+    },
+    tokenSymbol: 'WRX',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8e17ed70334c87ece574c9d537bc153d8609e2a3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 147,
+    lpSymbol: 'OASIS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xeF2b0B3e0077106249946c42CDf3F6a29942d44A',
+    },
+    tokenSymbol: 'OASIS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xb19289b436b2F7A92891ac391D8f52580d3087e4',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {

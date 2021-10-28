@@ -6,9 +6,14 @@ import {
   updateUserStakedBalance,
   updateUserBalance,
   updateUserPendingReward,
+  updateUserNfaStakingStakedBalance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingPendingReward,
 } from 'state/actions'
-import { unstake, sousUnstake, sousEmegencyWithdraw } from 'utils/callHelpers'
-import { useMasterchef, useSousChef } from './useContract'
+import { unstake, sousUnstake, sousEmegencyWithdraw, nfaUnstake } from 'utils/callHelpers'
+import track from 'utils/track'
+import { CHAIN_ID } from 'config/constants'
+import { useMasterchef, useNfaStakingChef, useSousChef } from './useContract'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -19,6 +24,15 @@ const useUnstake = (pid: number) => {
     async (amount: string) => {
       const txHash = await unstake(masterChefContract, pid, amount, account)
       dispatch(fetchFarmUserDataAsync(account))
+      track({
+        event: 'farm',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'unstake',
+          amount,
+          pid,
+        },
+      })
       console.info(txHash)
     },
     [account, dispatch, masterChefContract, pid],
@@ -52,6 +66,15 @@ export const useSousUnstake = (sousId) => {
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
+      track({
+        event: 'pool',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'unstake',
+          amount,
+          pid: sousId,
+        },
+      })
     },
     [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId],
   )
@@ -71,6 +94,33 @@ export const useSousEmergencyWithdraw = (sousId) => {
     dispatch(updateUserPendingReward(sousId, account))
   }, [account, dispatch, sousChefContract, sousId])
   return { onEmergencyWithdraw: handleEmergencyWithdraw }
+}
+
+export const useNfaUnstake = (sousId) => {
+  const dispatch = useDispatch()
+  const { account } = useWeb3React()
+  const nfaStakeChefContract = useNfaStakingChef(sousId)
+
+  const handleUnstake = useCallback(
+    async (ids: number[]) => {
+      await nfaUnstake(nfaStakeChefContract, ids, account)
+      dispatch(updateUserNfaStakingStakedBalance(sousId, account))
+      dispatch(updateNfaStakingUserBalance(sousId, account))
+      dispatch(updateUserNfaStakingPendingReward(sousId, account))
+      track({
+        event: 'nfa',
+        chain: CHAIN_ID,
+        data: {
+          cat: 'unstake',
+          ids,
+          pid: sousId,
+        },
+      })
+    },
+    [account, dispatch, nfaStakeChefContract, sousId],
+  )
+
+  return { onUnstake: handleUnstake }
 }
 
 export default useUnstake

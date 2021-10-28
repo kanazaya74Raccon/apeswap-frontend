@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, Button, AutoRenewIcon } from '@apeswapfinance/uikit'
+import { useWeb3React } from '@web3-react/core'
+import useRemoveAuction from 'hooks/useRemoveAuction'
 import Image from '../../../Nft/components/Image'
 
 interface QueuedCardProps {
   nfa: Nft
+  seller: string
 }
 
 const Card = styled.div`
@@ -56,7 +59,7 @@ const TextHolder = styled.div`
 
 const ComingSoon = styled(Text)`
   position: absolute;
-  top: 50px;
+  top: 30px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 50px;
@@ -66,7 +69,7 @@ const ComingSoon = styled(Text)`
 
 const NameText = styled(Text)`
   position: absolute;
-  top: 20px;
+  top: 0px;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 20px;
@@ -74,12 +77,54 @@ const NameText = styled(Text)`
   }
 `
 
-const QueuedCard: React.FC<QueuedCardProps> = ({ nfa }) => {
+const RemoveButton = styled(Button)`
+  position: absolute;
+  top: 75px;
+  font-size: 15px;
+  background-color: #ff6347;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  :hover {
+    background-color: red !important;
+  }
+  :focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background: red;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    top: 100px;
+    font-size: 15px;
+  }
+`
+
+const QueuedCard: React.FC<QueuedCardProps> = ({ nfa, seller }) => {
+  const { account } = useWeb3React()
+  const onRemoveAuction = useRemoveAuction().onRemoveAuction
+  const [pendingTx, setPendingTx] = useState(null)
+
+  const handleRemoveAuction = useCallback(async () => {
+    setPendingTx(true)
+    await onRemoveAuction(nfa.index)
+    setPendingTx(false)
+  }, [setPendingTx, onRemoveAuction, nfa])
+
   return (
     <Card>
       <TextHolder>
         <ComingSoon>Coming Soon</ComingSoon>
         <NameText>#{nfa.index}</NameText>
+        {account === seller && (
+          <RemoveButton
+            disabled={pendingTx}
+            onClick={handleRemoveAuction}
+            endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          >
+            Remove
+          </RemoveButton>
+        )}
       </TextHolder>
       <NfaImageHolder>
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />

@@ -29,7 +29,9 @@ import {
   FarmOverall,
   AuctionsState,
   TokenPricesState,
+  NfaStakingPool,
 } from './types'
+import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
@@ -46,6 +48,7 @@ export const useFetchPublicData = () => {
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync(tokenPrices))
+    dispatch(fetchNfaStakingPoolsPublicDataAsync(tokenPrices))
   }, [dispatch, slowRefresh, tokenPrices])
 }
 
@@ -105,6 +108,31 @@ export const useGnanaPools = (account): Pool[] => {
 export const useAllPools = (): Pool[] => {
   const pools = useSelector((state: State) => state.pools.data)
   return pools
+}
+
+// NfaStakingPools
+
+export const useNfaStakingPools = (account): NfaStakingPool[] => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchNfaStakingPoolsUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  const nfaStakingPools = useSelector((state: State) => state.nfaStakingPools.data)
+  return nfaStakingPools
+}
+
+export const useNfaStakingPoolFromPid = (sousId): NfaStakingPool => {
+  const nfaStakingPool = useSelector((state: State) => state.nfaStakingPools.data.find((p) => p.sousId === sousId))
+  return nfaStakingPool
+}
+
+export const useAllNfaStakingPools = (): NfaStakingPool[] => {
+  const nfaStakingPools = useSelector((state: State) => state.nfaStakingPools.data)
+  return nfaStakingPools
 }
 
 // TVL

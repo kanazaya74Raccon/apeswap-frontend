@@ -123,6 +123,7 @@ const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minInc
         minBidPercentage={minIncrementPercentage}
         nfaId={nfa.index}
         countdown={countdown}
+        auctionId={auction.auctionId}
       />
     </Card>
   )

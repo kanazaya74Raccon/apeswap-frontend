@@ -114,6 +114,7 @@ const tokens = {
   jdi: {
     symbol: 'JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x0491648c910ad2c1afaab733faf71d30313df7fc',
       137: '0x340fe1d898eccaad394e2ba0fc1f93d27c7b717a',
     },
@@ -143,6 +144,7 @@ const tokens = {
   bft: {
     symbol: 'BFT',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa4f93159ce0a4b533b443c74b89967c60a5969f8',
     },
     decimals: 18,
@@ -334,6 +336,7 @@ const tokens = {
   bnbjdi: {
     symbol: 'BNB-JDI',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
     },
     decimals: 18,
@@ -342,6 +345,7 @@ const tokens = {
   obie: {
     symbol: 'OBIE',
     address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa18509d20fd01b4990734fd04ba53bad02922787',
     },
     decimals: 18,
@@ -441,6 +445,139 @@ const tokens = {
     symbol: 'sx',
     address: {
       56: '0x6f26e8a40c8daae8c4358ce557c10226527cebce',
+    },
+    decimals: 18,
+  },
+  rocks: {
+    symbol: 'ROCKS',
+    address: {
+      56: '0xA01000C52b234a92563BA61e5649b7C76E1ba0f3',
+    },
+    decimals: 18,
+  },
+  gummy: {
+    symbol: 'GUMMY',
+    address: {
+      56: '0x10d3e0c38c286a04aee44d9b01cac916b56ee05a',
+    },
+    decimals: 18,
+  },
+  dcb: {
+    symbol: 'DCB',
+    address: {
+      56: '0xEAc9873291dDAcA754EA5642114151f3035c67A2',
+    },
+    decimals: 18,
+  },
+  nfty: {
+    symbol: 'NFTY',
+    address: {
+      56: '0x5774b2fc3e91af89f89141eacf76545e74265982',
+    },
+    decimals: 18,
+  },
+  aur: {
+    symbol: 'AUR',
+    address: {
+      56: '0x1dEb45C74E0192D9272ADF54e9a7519C48C2bd81',
+    },
+    decimals: 18,
+  },
+  sefi: {
+    symbol: 'SEFI',
+    address: {
+      56: '0xcd95350c69F229E72e57A44e8C05C436E65E4bEb',
+    },
+    decimals: 6,
+  },
+  kala: {
+    symbol: 'KALA',
+    address: {
+      56: '0x32299c93960bB583A43c2220Dc89152391A610c5',
+    },
+    decimals: 18,
+  },
+  ihc: {
+    symbol: 'IHC',
+    address: {
+      56: '0x86a53fcd199212FEa44FA7e16EB1f28812be911D',
+    },
+    decimals: 18,
+  },
+  airt: {
+    symbol: 'AIRT',
+    address: {
+      56: '0x016CF83732f1468150D87dCC5BdF67730B3934D3',
+    },
+    decimals: 18,
+  },
+  pros: {
+    symbol: 'PROS',
+    address: {
+      56: '0xed8c8aa8299c10f067496bb66f8cc7fb338a3405',
+    },
+    decimals: 18,
+  },
+  thg: {
+    symbol: 'THG',
+    address: {
+      56: '0x9fD87aEfe02441B123c3c32466cD9dB4c578618f',
+    },
+    decimals: 18,
+  },
+  wsg: {
+    symbol: 'WSG',
+    address: {
+      56: '0xA58950F05FeA2277d2608748412bf9F802eA4901',
+    },
+    decimals: 18,
+  },
+  otaku: {
+    symbol: 'OTAKU',
+    address: {
+      56: '0x484215873a674f9af73367a8f94c2c591e997521',
+    },
+    decimals: 18,
+  },
+  tnns: {
+    symbol: 'TNNS',
+    address: {
+      56: '0x6C7C87D9868b1dB5a0F62d867bAa90e0AdFA7Cfd',
+    },
+    decimals: 18,
+  },
+  king: {
+    symbol: 'KING',
+    address: {
+      56: '0x0cCD575bf9378c06f6DCa82f8122F570769F00C2',
+    },
+    decimals: 18,
+  },
+  mbird: {
+    symbol: 'MBIRD',
+    address: {
+      56: '0x3b23a0FFbc53198d86fa5927E8ee32F7EF699A14',
+    },
+    decimals: 18,
+  },
+  bbnana: {
+    symbol: 'BBNANA',
+    address: {
+      56: '0xa3be3b30fa5302dad5c9874cdb50e220eaadf092',
+    },
+    decimals: 18,
+  },
+  tower: {
+    symbol: 'TOWER',
+    address: {
+      56: '0xe7c9C6bc87B86f9E5b57072F907EE6460B593924',
+    },
+    decimals: 18,
+  },
+  oasis: {
+    symbol: 'OASIS',
+    address: {
+      56: '0xb19289b436b2F7A92891ac391D8f52580d3087e4',
     },
     decimals: 18,
   },

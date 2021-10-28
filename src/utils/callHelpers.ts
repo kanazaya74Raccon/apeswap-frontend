@@ -147,3 +147,62 @@ export const nextAuction = async (auctionContract, id, account) => {
       return tx.transactionHash
     })
 }
+
+export const listNfa = async (
+  auctionContract,
+  id,
+  auctionLength,
+  timeToExtend,
+  minimumExtendTime,
+  minimumBid,
+  account,
+) => {
+  return auctionContract.methods
+    .pushToAuction(
+      id,
+      auctionLength,
+      timeToExtend,
+      minimumExtendTime,
+      new BigNumber(minimumBid).times(new BigNumber(10).pow(18)).toString(),
+    )
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const removeAuction = async (auctionContract, id, account) => {
+  return auctionContract.methods
+    .removeAuction(id)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaStake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .deposit(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaStakeHarvest = async (nfaStakingChefContract, account) => {
+  return nfaStakingChefContract.methods
+    .deposit([])
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .withdraw(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
