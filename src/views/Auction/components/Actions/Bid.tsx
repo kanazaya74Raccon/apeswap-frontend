@@ -149,7 +149,6 @@ const BidInput = styled.input`
   }
 `
 
-
 const CalculateMinBid = (minBidRaise: number, minBidPercent: number, rawBidAmount: number) => {
   const percentBidRaise = getBalanceNumber(new BigNumber(minBidPercent), 3) * rawBidAmount + rawBidAmount
   const amountBidRaise = getBalanceNumber(new BigNumber(minBidRaise)) + rawBidAmount
