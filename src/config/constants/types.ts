@@ -194,6 +194,8 @@ export interface VaultConfig {
   withdrawFee: number
   burning: boolean
   inactive?: boolean
+  depositFee?: number
+  rewardsInSeconds?: boolean
 }
 
 export interface DualFarmConfig {

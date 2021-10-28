@@ -1,97 +1,88 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import vaultsConfig from 'config/constants/vaults'
-import { CHAIN_ID } from 'config/constants/chains'
-import fetchVaults from './fetchVaults'
-import {
-  fetchVaultUserAllowances,
-  fetchVaultUserEarnings,
-  fetchVaultUserStakedBalances,
-  fetchVaultUserTokenBalances,
-} from './fetchVaultsUser'
-import { VaultsState, Vault, TokenPrices } from '../types'
+import { CHAIN_ID, NETWORK_LABEL } from 'config/constants/chains'
+import { Contract } from 'web3-eth-contract'
+import fetchVaultData from './fetchVaultData'
+import { fetchVaultUserAllowances, fetchVaultUserStakedBalances, fetchVaultUserTokenBalances } from './fetchVaultsUser'
+import { VaultsState, TokenPrices, Vault } from '../types'
 
-const getInitialVaults = () => {
-  const chainId = parseInt(window.localStorage.getItem('chainIdStatus')) || CHAIN_ID.BSC
-  const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
-  const noAccountVaultConfig = filteredVaults.filter((vault) => ({
-    ...vault,
-    userData: {
-      allowance: '0',
-      tokenBalance: '0',
-      stakedBalance: '0',
-      stakedWantBalance: '0',
-    },
-  }))
-  return noAccountVaultConfig
-}
-
-const initialState: VaultsState = { data: getInitialVaults(), loadVaultData: false, userDataLoaded: false }
-
-// Async thunks
-export const fetchVaultsPublicDataAsync = createAsyncThunk<
-  Vault[],
-  { multicallContract; chainId: number; tokenPrices: TokenPrices[] }
->('vaults/fetchVaultsPublicDataAsync', async ({ multicallContract, chainId, tokenPrices }) => {
-  const vaults = await fetchVaults(multicallContract, chainId, vaultsConfig, tokenPrices)
-  return vaults
-})
-
-interface VaultUserDataResponse {
-  pid: number
-  allowance: string
-  tokenBalance: string
-  stakedBalance: string
-  stakedWantBalance: string
-}
-
-export const fetchVaultUserDataAsync = createAsyncThunk<
-  VaultUserDataResponse[],
-  { multicallContract; vaultApeAddress: string; account: string; chainId: number }
->('vaults/fetchVaultUserDataAsync', async ({ multicallContract, vaultApeAddress, account, chainId }) => {
-  const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
-  const userVaultAllowances = await fetchVaultUserAllowances(multicallContract, vaultApeAddress, account, chainId)
-  const userVaultTokenBalances = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
-  const userVaultBalances = await fetchVaultUserStakedBalances(multicallContract, vaultApeAddress, account, chainId)
-  const userVaultEarnings = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
-  return userVaultAllowances.map((temp, index) => {
-    return {
-      pid: filteredVaults[index].pid,
-      allowance: userVaultAllowances[index],
-      tokenBalance: userVaultTokenBalances[index],
-      stakedBalance: userVaultBalances[index],
-      stakedWantBalance: userVaultEarnings[index],
-    }
-  })
-})
+const initialState: VaultsState = { data: [], loadVaultData: false, userDataLoaded: false }
 
 export const vaultSlice = createSlice({
-  name: 'vaults',
+  name: 'Vaults',
   initialState,
   reducers: {
     setLoadVaultData: (state, action) => {
-      const loadVaults = action.payload
-      state.loadVaultData = loadVaults
-    },
-  },
-  extraReducers: (builder) => {
-    // Update vaults with live data
-    builder.addCase(fetchVaultsPublicDataAsync.fulfilled, (state, action) => {
-      state.data = action.payload
-    })
-    // Update vaults with user data
-    builder.addCase(fetchVaultUserDataAsync.fulfilled, (state, action) => {
-      action.payload.forEach((userDataEl) => {
-        const { pid } = userDataEl
-        const index = state.data.findIndex((vault) => vault.pid === pid)
-        state.data[index] = { ...state.data[index], userData: userDataEl }
+      const liveVaultsData: Vault[] = action.payload
+      state.data = state.data.map((vault) => {
+        const liveVaultData = liveVaultsData.find((entry) => entry.pid === vault.pid)
+        return { ...vault, ...liveVaultData }
       })
-      state.userDataLoaded = true
-    })
+    },
+    setVaultUserData: (state, action) => {
+      const userData = action.payload
+      console.log('HERE')
+      console.log(userData)
+      state.data = state.data.map((vault) => {
+        console.log(vault)
+        const userVaultData = userData.find((entry) => entry.pid === vault.pid)
+        console.log(userVaultData)
+        return { ...vault, userData: userVaultData }
+      })
+    },
+    setVaults: (state, action) => {
+      if (!state.loadVaultData) {
+        state.data = action.payload
+      }
+    },
+    setVaultsLoad: (state, action) => {
+      state.loadVaultData = action.payload
+    },
   },
 })
 
+// thunks
+export const fetchVaultsPublicDataAsync =
+  (multicallContract: Contract, chainId: number, tokenPrices: TokenPrices[]) => async (dispatch) => {
+    try {
+      const vaults = await fetchVaultData(multicallContract, chainId, tokenPrices)
+      dispatch(setLoadVaultData(vaults))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+export const fetchVaultUserDataAsync =
+  (multicallContract: Contract, vaultApeAddress: string, account: string, chainId: number) => async (dispatch) => {
+    try {
+      const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
+      const userVaultAllowances = await fetchVaultUserAllowances(multicallContract, vaultApeAddress, account, chainId)
+      const userVaultTokenBalances = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
+      const userVaultBalances = await fetchVaultUserStakedBalances(multicallContract, vaultApeAddress, account, chainId)
+      const userVaultEarnings = await fetchVaultUserTokenBalances(multicallContract, account, chainId)
+      const userData = filteredVaults.map((vault, index) => {
+        return {
+          pid: vault.pid,
+          allowance: userVaultAllowances[index],
+          tokenBalance: userVaultTokenBalances[index],
+          stakedBalance: userVaultBalances[index],
+          stakedWantBalance: userVaultEarnings[index],
+        }
+      })
+      dispatch(setVaultUserData(userData))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+export const setFilteredVaults = (chainId: number) => async (dispatch) => {
+  const filteredVaults = vaultsConfig.filter((vault) => vault.network === chainId)
+  dispatch(setVaults(filteredVaults))
+  dispatch(setVaultsLoad(true))
+}
+
 // Actions
-export const { setLoadVaultData } = vaultSlice.actions
+export const { setLoadVaultData, setVaultUserData, setVaults, setVaultsLoad } = vaultSlice.actions
 
 export default vaultSlice.reducer

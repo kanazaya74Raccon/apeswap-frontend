@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
+import { useLocation } from 'react-router-dom'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { CHAIN_ID } from 'config/constants/chains'
+import { CHAIN_ID, NETWORK_LABEL } from 'config/constants/chains'
 import {
   useApePriceGetterAddress,
   useAuctionAddress,
@@ -48,7 +49,7 @@ import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
-import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
+import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
@@ -57,16 +58,27 @@ import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dua
 const ZERO = new BigNumber(0)
 
 // Network
-// Currently just chainId might expand for more needs
+
 export const useNetworkChainId = (): number => {
   const chainId = useSelector((state: State) => state.network.data.chainId)
   return chainId
+}
+
+export const useNetworkChainIdFromUrl = (): boolean => {
+  const chainIdFromUrl = useSelector((state: State) => state.network.data.chainIdFromUrl)
+  return chainIdFromUrl
 }
 
 export const useUpdateNetwork = (userSelectedChainId: number) => {
   const dispatch = useDispatch()
   const { chainId, account } = useWeb3React()
   dispatch(fetchUserNetwork(chainId, account, userSelectedChainId))
+}
+
+export const useUpdateNetworkChainIdFromUrl = (chainIdFromUrl: boolean) => {
+  const dispatch = useDispatch()
+  const { chainId, account } = useWeb3React()
+  // dispatch(fetchUserNetwork(chainId, account, userSelectedChainId))
 }
 
 // Fetch public pool and farm data
@@ -97,11 +109,14 @@ export const usePollVaultsData = (includeArchive = false) => {
   const vaultApeAddress = useVaultApeAddress()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
-
   useEffect(() => {
-    dispatch(fetchVaultsPublicDataAsync({ multicallContract, chainId, tokenPrices }))
+    dispatch(setVaultsLoad(false))
+  }, [chainId, dispatch])
+  useEffect(() => {
+    dispatch(setFilteredVaults(chainId))
+    dispatch(fetchVaultsPublicDataAsync(multicallContract, chainId, tokenPrices))
     if (account) {
-      dispatch(fetchVaultUserDataAsync({ multicallContract, vaultApeAddress, account, chainId }))
+      dispatch(fetchVaultUserDataAsync(multicallContract, vaultApeAddress, account, chainId))
     }
   }, [includeArchive, dispatch, slowRefresh, account, multicallContract, chainId, vaultApeAddress, tokenPrices])
 }

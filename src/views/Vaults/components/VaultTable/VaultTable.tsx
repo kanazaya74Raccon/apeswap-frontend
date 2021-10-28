@@ -210,7 +210,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
           <Apr poolApr={removed ? '0' : apy?.yearly?.toFixed(2)} apr={new BigNumber(apy?.yearly)} />
         </YearlyAPYContainer>
         <TotalStakedContainer>
-          <Staked staked={totalStaked?.toNumber()} />
+          <Staked staked={parseInt(totalStaked)} />
         </TotalStakedContainer>
         {rawStakedBalance ? (
           <UserStakedContainer>
@@ -236,7 +236,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             />
           </StakeContainer>
           <ActionPanel
-            totalStaked={getBalanceNumber(totalStaked)}
+            totalStaked={getBalanceNumber(new BigNumber(totalStaked))}
             personalValueStaked={getBalanceNumber(stakedBalance)}
             lpLabel={lpLabel}
             addLiquidityUrl="https://app.apeswap.finance/swap"

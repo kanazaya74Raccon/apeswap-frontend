@@ -105,7 +105,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
           />
         </Flex>
         <DetailsSection
-          totalStaked={getBalanceNumber(totalStaked)}
+          totalStaked={getBalanceNumber(new BigNumber(totalStaked))}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           lpLabel={lpLabel}
           addLiquidityUrl="https://app.apeswap.finance/swap"

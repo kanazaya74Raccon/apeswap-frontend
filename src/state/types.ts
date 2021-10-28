@@ -59,7 +59,7 @@ export interface Pool extends PoolConfig {
 }
 
 export interface Vault extends VaultConfig {
-  totalStaked?: BigNumber
+  totalStaked?: string
   totalAllocPoint?: string
   allocPoint?: string
   weight?: number
@@ -102,6 +102,7 @@ export interface Profile {
 
 export interface Network {
   chainId: number
+  chainIdFromUrl?: boolean
 }
 
 export interface Stats {

@@ -6,6 +6,7 @@ import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { CHAIN_ID } from 'config/constants/chains'
+import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
   useFetchStats,
   useFetchPublicData,
@@ -17,6 +18,7 @@ import {
   useFetchProfile,
   useNetworkChainId,
   useDualFarms,
+  useNetworkChainIdFromUrl,
 } from 'state/hooks'
 import { useDispatch } from 'react-redux'
 import { fetchUserNetwork } from 'state/network'
@@ -76,10 +78,20 @@ const App: React.FC = () => {
   }, [account])
 
   const appChainId = useNetworkChainId()
+  const chainIdFromUrl = useNetworkChainIdFromUrl()
+  console.log(chainIdFromUrl)
   const dispatch = useDispatch()
+  const { switchNetwork } = useSwitchNetwork()
+
   useEffect(() => {
-    dispatch(fetchUserNetwork(chainId, account, appChainId))
-  }, [chainId, account, appChainId, dispatch])
+    if (chainIdFromUrl) {
+      console.log('HERE FOR S SECOND')
+      console.log(chainIdFromUrl)
+      switchNetwork(appChainId)
+    } else {
+      dispatch(fetchUserNetwork(chainId, account, appChainId))
+    }
+  }, [chainId, account, appChainId, chainIdFromUrl, switchNetwork, dispatch])
 
   useEagerConnect()
   useFetchTokenPrices()

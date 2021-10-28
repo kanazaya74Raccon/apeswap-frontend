@@ -12,7 +12,7 @@ import useBlock from 'hooks/useBlock'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarms, usePriceBnbBusd, usePools, useStatsOverall, useVaults, useNetworkChainId } from 'state/hooks'
-import { Pool } from 'state/types'
+import { Pool, Vault, VaultsState } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
@@ -483,16 +483,16 @@ const TableWrapper = styled.div`
 const TableContainer = styled.div`
   position: relative;
 `
-const NUMBER_OF_POOLS_VISIBLE = 12
+const NUMBER_OF_VAULTS_VISIBLE = 12
 
 const Vaults: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly, setGnanaOnly] = useState(false)
+  const [burnOnly, setBurnOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
-  const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
+  const [numberOfVaultsVisible, setNumberOfVaultsVisible] = useState(NUMBER_OF_VAULTS_VISIBLE)
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const { vaults: initVaults } = useVaults()
@@ -529,7 +529,7 @@ const Vaults: React.FC = () => {
     const showMorePools = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
-        setNumberOfPoolsVisible((poolsCurrentlyVisible) => poolsCurrentlyVisible + NUMBER_OF_POOLS_VISIBLE)
+        setNumberOfVaultsVisible((vaultsCurrentlyVisible) => vaultsCurrentlyVisible + NUMBER_OF_VAULTS_VISIBLE)
       }
     }
 
@@ -562,18 +562,16 @@ const Vaults: React.FC = () => {
   const stakedInactiveVaults = inactiveVaults.filter(
     (vault) => vault.userData && new BigNumber(vault.userData.stakedBalance).isGreaterThan(0),
   )
-  // const gnanaOnlyPools = activeVaults.filter((pool) => pool.stakingTokenName === 'GNANA')
+  const burnOnlyVaults = activeVaults.filter((vault) => vault?.burning)
 
-  // const gnanaInactivePools = inactiveVaults.filter((pool) => pool.stakingTokenName === 'GNANA')
-  // const gnanaStakedOnlyPools = activeVaults.filter(
-  //   (pool) =>
-  //     pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
-  // )
+  const burnOnlyVaultsInactiveVaults = inactiveVaults.filter((vault) => vault?.burning)
+  const burnOnlyVaultsStakedVaults = activeVaults.filter(
+    (vault) => vault?.userData && new BigNumber(vault?.userData?.stakedBalance).isGreaterThan(0) && vault?.burning,
+  )
 
-  // const gnanaStakedInactivePools = inactiveVaults.filter(
-  //   (pool) =>
-  //     pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) && pool.stakingTokenName === 'GNANA',
-  // )
+  const burnOnlyVaultsInactiveStakedVaults = inactiveVaults.filter(
+    (vault) => vault?.userData && new BigNumber(vault?.userData?.stakedBalance).isGreaterThan(0) && vault?.burning,
+  )
 
   const handleSortOptionChange = (option): void => {
     if (option !== sortOption) {
@@ -586,57 +584,46 @@ const Vaults: React.FC = () => {
     setSortOption(option)
   }
 
-  // const sortPools = (poolsToSort: PoolWithStakeValue[]) => {
-  //   switch (sortOption) {
-  //     case 'apr':
-  //       // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-  //       return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.apr.toNumber(), sortDirection)
-  //     case 'earned':
-  //       return orderBy(
-  //         poolsToSort,
-  //         (pool: PoolWithStakeValue) => {
-  //           if (!pool.userData || !pool.rewardTokenPrice) {
-  //             return 0
-  //           }
-  //           return getBalanceNumber(pool.userData.pendingReward) * pool.rewardTokenPrice
-  //         },
-  //         sortDirection,
-  //       )
-  //     case 'totalStaked':
-  //       return orderBy(
-  //         poolsToSort,
-  //         (pool: PoolWithStakeValue) => getBalanceNumber(pool.totalStaked) * pool.stakedTokenPrice,
-  //         sortDirection,
-  //       )
-  //     default:
-  //       return orderBy(poolsToSort, (pool: PoolWithStakeValue) => pool.sortOrder, 'asc')
-  //   }
-  // }
+  const sortVaults = (vaultsToSort: Vault[]) => {
+    switch (sortOption) {
+      case 'dailyapy':
+        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
+        return orderBy(vaultsToSort, (vault: Vault) => vault?.apy?.daily, sortDirection)
+      case 'yearlyapy':
+        return orderBy(vaultsToSort, (vault: Vault) => vault?.apy?.daily, sortDirection)
+      case 'totalStaked':
+        return orderBy(vaultsToSort, (vault: Vault) => parseInt(vault?.totalStaked), sortDirection)
+      default:
+        return orderBy(vaultsToSort, (vault: Vault) => vault.platform, 'asc')
+    }
+  }
 
-  // const poolsToShow = () => {
-  //   let chosenPools = []
+  const vaultsToShow = (): Vault[] => {
+    let chosenVaults = []
 
-  //   if (stakedOnly && gnanaOnly) {
-  //     chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-  //   } else if (stakedOnly && !gnanaOnly) {
-  //     chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
-  //   } else if (!stakedOnly && gnanaOnly) {
-  //     chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
-  //   } else {
-  //     chosenPools = isActive ? openPools : finishedPools
-  //   }
+    if (stakedOnly && burnOnly) {
+      chosenVaults = isActive ? burnOnlyVaultsStakedVaults : burnOnlyVaultsInactiveStakedVaults
+    } else if (stakedOnly && !burnOnly) {
+      chosenVaults = isActive ? stakedOnlyVaults : stakedInactiveVaults
+    } else if (!stakedOnly && burnOnly) {
+      chosenVaults = isActive ? burnOnlyVaults : burnOnlyVaultsInactiveVaults
+    } else {
+      chosenVaults = isActive ? activeVaults : inactiveVaults
+    }
 
-  //   if (searchQuery) {
-  //     const lowercaseQuery = searchQuery.toLowerCase()
-  //     chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
-  //   }
-  //   return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
-  // }
+    if (searchQuery) {
+      const lowercaseQuery = searchQuery.toLowerCase()
+      chosenVaults = chosenVaults.filter((vault) =>
+        `${vault?.token0?.symbol.toLowerCase()}-${vault?.token1?.symbol.toLowerCase()}`.includes(lowercaseQuery),
+      )
+    }
+    return sortVaults(chosenVaults).slice(0, numberOfVaultsVisible)
+  }
 
   const cardLayout = (
     <CardContainer>
       <FlexLayout>
-        {activeVaults.map((vault) => (
+        {vaultsToShow().map((vault) => (
           <VaultCard key={vault.pid} vault={vault} removed={!isActive} />
         ))}
       </FlexLayout>
@@ -648,7 +635,7 @@ const Vaults: React.FC = () => {
       <TableContainer>
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
-            {activeVaults.map((vault) => (
+            {vaultsToShow().map((vault) => (
               <VaultTable key={vault.pid} vault={vault} removed={!isActive} />
             ))}
           </StyledTable>
@@ -694,9 +681,9 @@ const Vaults: React.FC = () => {
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
-                <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
-                  <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
+                <ToggleWrapper onClick={() => setBurnOnly(!burnOnly)}>
+                  <StyledCheckbox checked={burnOnly} onChange={() => setBurnOnly(!burnOnly)} />
+                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'BURNING')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -712,7 +699,7 @@ const Vaults: React.FC = () => {
             <StyledLabel>Token</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerDailyAPY>
-            <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
+            <StyledLabel active={sortOption === 'dailyapy'} onClick={() => handleSortOptionChange('dailyapy')}>
               Daily APY
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
@@ -720,7 +707,7 @@ const Vaults: React.FC = () => {
             </StyledLabel>
           </StyledLabelContainerDailyAPY>
           <StyledLabelContainerYearlyAPY>
-            <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
+            <StyledLabel active={sortOption === 'yearlyapy'} onClick={() => handleSortOptionChange('yearlyapy')}>
               Yearly APY
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
@@ -728,7 +715,7 @@ const Vaults: React.FC = () => {
             </StyledLabel>
           </StyledLabelContainerYearlyAPY>
           <StyledLabelContainerTotalStaked>
-            <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
+            <StyledLabel active={sortOption === 'totalstaked'} onClick={() => handleSortOptionChange('totalstaked')}>
               Total Staked
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />

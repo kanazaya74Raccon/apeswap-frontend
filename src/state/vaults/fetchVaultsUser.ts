@@ -61,24 +61,3 @@ export const fetchVaultUserStakedBalances = async (
   return parsedStakedBalances
 }
 
-export const fetchVaultUserEarnings = async (
-  multicallContract,
-  vaultApeAddress: string,
-  account: string,
-  chainId: number,
-) => {
-  const filteredVaultsToFetch = vaultsConfig.filter((vault) => vault.network === chainId)
-  const calls = filteredVaultsToFetch.map((vault) => {
-    return {
-      address: vaultApeAddress,
-      name: 'stakedWantTokens',
-      params: [vault.pid, account],
-    }
-  })
-
-  const rawEarnings = await multicall(multicallContract, vaultApeABI, calls)
-  const parsedEarnings = rawEarnings.map((earnings) => {
-    return new BigNumber(earnings).toJSON()
-  })
-  return parsedEarnings
-}

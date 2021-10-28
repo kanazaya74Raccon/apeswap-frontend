@@ -594,6 +594,49 @@ const tokens = {
     },
     decimals: 18,
   },
+  tako: {
+    symbol: 'TAKO',
+    address: {
+      56: '0x2F3391AeBE27393aBa0a790aa5E1577fEA0361c2',
+    },
+    decimals: 18,
+  },
+  hair: {
+    symbol: 'HAIR',
+    address: {
+      137: '0x100A947f51fA3F1dcdF97f3aE507A72603cAE63C',
+    },
+    decimals: 18,
+  },
+  sing: {
+    symbol: 'SING',
+    address: {
+      137: '0xcb898b0efb084df14dd8e018da37b4d0f06ab26d',
+      56: '0x23894c0ce2d79b79ea33a4d02e67ae843ef6e563',
+    },
+    decimals: 18,
+  },
+  inku: {
+    symbol: 'INKU',
+    address: {
+      56: '0xb37cad62441ef8b866f3e36f12fd42062b6c0f33',
+    },
+    decimals: 18,
+  },
+  bbq: {
+    symbol: 'BBQ',
+    address: {
+      56: '0xd9a88f9b7101046786490baf433f0f6ab3d753e2',
+    },
+    decimals: 18,
+  },
+  nalis: {
+    symbol: 'NALIS',
+    address: {
+      56: '0xb2ebaa0ad65e9c888008bf10646016f7fcdd73c3',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

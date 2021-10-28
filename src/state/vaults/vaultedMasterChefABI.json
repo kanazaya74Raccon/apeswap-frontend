@@ -129,7 +129,7 @@
   },
   {
     "inputs": [],
-    "name": "singPerBlock",
+    "name": "singPerSec",
     "outputs": [
       {
         "internalType": "uint256",
@@ -143,6 +143,19 @@
   {
     "inputs": [],
     "name": "crystalPerBlock",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "hairPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
