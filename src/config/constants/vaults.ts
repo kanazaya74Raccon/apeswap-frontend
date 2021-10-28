@@ -425,7 +425,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    rewardsInSeconds: true
+    rewardsInSeconds: true,
   },
 
   {
@@ -446,7 +446,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    rewardsInSeconds: true
+    rewardsInSeconds: true,
   },
 
   // MATIC VAULTS
@@ -584,7 +584,7 @@ const vaults: VaultConfig[] = [
     withdrawFee: 0.1,
     burning: false,
     inactive: true,
-    rewardsInSeconds: true
+    rewardsInSeconds: true,
   },
   {
     pid: 9,
@@ -604,7 +604,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    rewardsInSeconds: true
+    rewardsInSeconds: true,
   },
 ]
 

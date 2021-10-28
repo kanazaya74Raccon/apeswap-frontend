@@ -60,4 +60,3 @@ export const fetchVaultUserStakedBalances = async (
   })
   return parsedStakedBalances
 }
-
