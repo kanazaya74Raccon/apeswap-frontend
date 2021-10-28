@@ -365,14 +365,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">BPD:</StyledText1>
-              {apr ? (
-                <FlexSwitch>
-                  <StyledAPRText>{bananaPerDay?.toFixed(2)}</StyledAPRText>
-                </FlexSwitch>
-              ) : (
-                <Skeleton height={24} width={80} />
-              )}
+              <StyledText1 fontFamily="poppins">BPD: 0</StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
