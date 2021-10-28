@@ -114,9 +114,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           {/* <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
           </StyledIconButtonSquare> */}
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
+          {/* <StyledIconButtonSquare onClick={onPresentDeposit}>
             <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
+          </StyledIconButtonSquare> */}
+          <></>
         </IconButtonWrapper>
       )
     )

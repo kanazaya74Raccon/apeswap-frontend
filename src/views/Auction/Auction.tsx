@@ -178,7 +178,7 @@ const ButtonHolder = styled.div`
   justify-content: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    margin-left: 550px;
+    margin-left: 520px;
     width: 380px;
   }
 `
@@ -198,7 +198,7 @@ const MoreInfo = styled.div`
   text-align: center;
   cursor: pointer;
   margin-right: 10px;
-  width: 50%;
+  width: 100%;
 `
 
 const Auction: React.FC = () => {
@@ -225,7 +225,7 @@ const Auction: React.FC = () => {
               >
                 <MoreInfo>How It Works</MoreInfo>
               </a>
-              {/* <ListYourNfa /> */}
+              <ListYourNfa />
             </ButtonHolder>
           </MoreInfoWrapper>
           <SplitWrapper>
