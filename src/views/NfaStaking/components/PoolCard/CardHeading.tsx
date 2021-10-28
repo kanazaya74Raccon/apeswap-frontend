@@ -317,7 +317,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const allowance = userData?.allowance
+  const allowance = 1 // userData?.allowance
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
@@ -335,14 +335,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     }
     if (allowance && !accountHasStakedBalance) {
       return (
-        <StakeAction
-          pool={pool}
-          stakingTokenBalance={stakingTokenBalance}
-          stakedBalance={stakedBalance}
-          isStaked={accountHasStakedBalance}
-          firstStake={!accountHasStakedBalance}
-          tier={tier}
-        />
+        // <StakeAction
+        //   pool={pool}
+        //   stakingTokenBalance={stakingTokenBalance}
+        //   stakedBalance={stakedBalance}
+        //   isStaked={accountHasStakedBalance}
+        //   firstStake={!accountHasStakedBalance}
+        //   tier={tier}
+        // />
+        <></>
       )
     }
     return <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
