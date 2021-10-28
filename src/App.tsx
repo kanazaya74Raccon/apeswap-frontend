@@ -118,9 +118,9 @@ const App: React.FC = () => {
             <Route path="/nft/:id">
               <Nfa />
             </Route>
-            {/* <Route path="/staking">
+            <Route path="/staking">
               <NfaStaking />
-            </Route> */}
+            </Route>
             <Route path="/gnana">
               <ApeZone />
             </Route>
