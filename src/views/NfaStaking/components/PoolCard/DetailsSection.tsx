@@ -50,8 +50,6 @@ const StyledLink = styled(Link)`
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   totalStaked,
-  blocksRemaining,
-  blocksUntilStart,
   rewardTokenPrice,
   pendingReward,
   tokenDecimals,
@@ -60,36 +58,9 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const earnings = new BigNumber(pendingReward || 0)
   const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
-  const timeUntilStart = getTimePeriods(blocksUntilStart * BSC_BLOCK_TIME)
-  const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
 
   return (
     <Wrapper>
-      {blocksUntilStart > 0 && (
-        <>
-          <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(410, 'Start')}
-            </StyledText>
-            <StyledText
-              fontFamily="poppins"
-              fontSize="12px"
-            >{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
-          </Flex>
-        </>
-      )}
-      {blocksUntilStart === 0 && blocksRemaining > 0 && (
-        <>
-          <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(410, 'End')}
-            </StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${
-              timeUntilEnd.hours
-            }h, ${timeUntilEnd.minutes}m`}</StyledText>
-          </Flex>
-        </>
-      )}
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">
           {TranslateString(23, 'Staked Amount')}:

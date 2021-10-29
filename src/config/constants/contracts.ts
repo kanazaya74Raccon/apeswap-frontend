@@ -50,8 +50,8 @@ export default {
     97: '0xb57ab339831cd5154ef2ed721ceba734aa9047bd',
   },
   nonFungibleApes: {
-    56: '0x6eca7754007d22d3F557740d06FeD4A031BeFE1e',
-    97: '0xdcad4503caa97b23b12134d2f4704db5b6438b8e',
+    56: '0x6afC012783e3a6eF8C5f05F8EeE2eDeF6a052Ec4',
+    97: '0x34e9f595c4e00bf3b9149224e3109c9311267620',
   },
   rabbitMintingFarm: {
     56: '0x1C99222F857C1d72234703eC5b9Ed88089Bd7091',
@@ -74,7 +74,7 @@ export default {
     97: '0xbC5ed0829365a0d5bc3A4956A6A0549aE17f41Ab',
   },
   auction: {
-    56: '0x495881E60EB2E3a95757f3a7b09Ff31e0C00aE7B',
+    56: '0xaeCB396Be7F19618Db4C44d8e2E8C908228515E9',
     97: '0xe2782fb3f1c2506FA32484e728Bc42F578117dEC',
   },
   vaultApe: {

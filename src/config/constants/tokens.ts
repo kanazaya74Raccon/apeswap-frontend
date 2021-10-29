@@ -637,6 +637,27 @@ const tokens = {
     },
     decimals: 18,
   },
+  bbnana: {
+    symbol: 'BBNANA',
+    address: {
+      56: '0xa3be3b30fa5302dad5c9874cdb50e220eaadf092',
+    },
+    decimals: 18,
+  },
+  tower: {
+    symbol: 'TOWER',
+    address: {
+      56: '0xe7c9C6bc87B86f9E5b57072F907EE6460B593924',
+    },
+    decimals: 18,
+  },
+  oasis: {
+    symbol: 'OASIS',
+    address: {
+      56: '0xb19289b436b2F7A92891ac391D8f52580d3087e4',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

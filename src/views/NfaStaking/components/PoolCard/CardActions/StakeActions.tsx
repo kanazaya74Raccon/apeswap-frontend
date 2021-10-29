@@ -65,6 +65,12 @@ const StyledFlex = styled(Flex)`
   }
 `
 
+const WhyCantIBid = styled.a`
+  color: ${(props) => props.theme.colors.text};
+  bottom: 0px;
+  text-decoration: underline;
+`
+
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakedBalance,
@@ -105,12 +111,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     return (
       rawStakedBalance !== 0 && (
         <IconButtonWrapper>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+          {/* <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
-          </StyledIconButtonSquare>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
+          </StyledIconButtonSquare> */}
+          {/* <StyledIconButtonSquare onClick={onPresentDeposit}>
             <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
+          </StyledIconButtonSquare> */}
+          <></>
         </IconButtonWrapper>
       )
     )
@@ -128,6 +135,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>
+      <WhyCantIBid
+        href="https://ape-swap.medium.com/non-fungible-apes-the-great-primate-migration-3a087c3f4e26"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Why Cant I Unstake?
+      </WhyCantIBid>
       {isApproved && renderStakingButtons()}
     </StyledFlex>
   )

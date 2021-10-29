@@ -99,6 +99,14 @@ export const useNfaStakingHarvest = (sousId) => {
     await nfaStakeHarvest(nfaStakingChef, account)
     dispatch(updateUserNfaStakingPendingReward(multicallContract, chainId, sousId, account))
     dispatch(updateNfaStakingUserBalance(multicallContract, nfaAddress, sousId, account))
+    track({
+      event: 'nfa',
+      chain: chainId,
+      data: {
+        cat: 'harvest',
+        pid: sousId,
+      },
+    })
   }, [account, dispatch, nfaStakingChef, sousId, multicallContract, chainId, nfaAddress])
 
   return { onReward: handleHarvest }

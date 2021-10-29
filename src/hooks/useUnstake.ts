@@ -39,7 +39,7 @@ import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress, us
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const masterChefAddress = useMasterChefAddress()
   const multicallContract = useMulticallContract()
@@ -49,9 +49,18 @@ const useUnstake = (pid: number) => {
       const txHash = await unstake(masterChefContract, pid, amount, account)
       dispatch(fetchFarmUserStakedBalances(multicallContract, masterChefAddress, account))
       dispatch(fetchFarmUserEarnings(multicallContract, masterChefAddress, account))
+      track({
+        event: 'farm',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          amount,
+          pid,
+        },
+      })
       console.info(txHash)
     },
-    [account, dispatch, masterChefContract, pid, masterChefAddress, multicallContract],
+    [account, dispatch, masterChefContract, pid, chainId, masterChefAddress, multicallContract],
   )
 
   return { onUnstake: handleUnstake }
@@ -83,6 +92,15 @@ export const useSousUnstake = (sousId) => {
       dispatch(updateUserStakedBalance(multicallContract, chainId, masterChefContract, sousId, account))
       dispatch(updateUserBalance(multicallContract, chainId, sousId, account))
       dispatch(updateUserPendingReward(multicallContract, chainId, masterChefContract, sousId, account))
+      track({
+        event: 'pool',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          amount,
+          sousId,
+        },
+      })
     },
     [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId, multicallContract, chainId],
   )
@@ -120,6 +138,14 @@ export const useNfaUnstake = (sousId) => {
       dispatch(updateUserNfaStakingStakedBalance(multicallContract, chainId, sousId, account))
       dispatch(updateNfaStakingUserBalance(multicallContract, nfaAddress, sousId, account))
       dispatch(updateUserNfaStakingPendingReward(multicallContract, chainId, sousId, account))
+      track({
+        event: 'nfa',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          ids,
+        },
+      })
     },
     [account, dispatch, nfaStakeChefContract, sousId, nfaAddress, chainId, multicallContract],
   )

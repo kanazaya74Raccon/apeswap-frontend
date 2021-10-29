@@ -249,7 +249,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const { earnings } = useFarmUser(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
   const { isXl } = useMatchBreakpoints()
-  const isDesktop = isXl  
+  const isDesktop = isXl
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
 
   const { account } = useWeb3React()
@@ -269,8 +269,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           alt={stakeTokens?.token0?.symbol}
           width={35}
           height={35}
-          marginLeft={isDesktop ? "-20px" : "-13px"}
-          marginTop={isDesktop ? "45px" : "30px"}
+          marginLeft={isDesktop ? '-20px' : '-13px'}
+          marginTop={isDesktop ? '45px' : '30px'}
         />
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
         <IconQuoteToken
@@ -278,7 +278,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           alt={rewardTokens?.token1?.symbol}
           width={35}
           height={35}
-          marginBottom={isDesktop ? "30px" : "25px"}
+          marginBottom={isDesktop ? '30px' : '25px'}
           marginRight="-5px"
         />
         <IconQuoteToken
@@ -286,7 +286,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           alt={rewardTokens?.token1?.symbol}
           width={35}
           height={35}
-          marginTop={isDesktop ? "30px" : "25px"}
+          marginTop={isDesktop ? '30px' : '25px'}
           marginRight="7.5px"
         />
       </StyledBackground>

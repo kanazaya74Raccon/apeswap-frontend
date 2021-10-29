@@ -317,7 +317,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const allowance = userData?.allowance
+  const allowance = 1 // userData?.allowance
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
@@ -335,14 +335,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     }
     if (allowance && !accountHasStakedBalance) {
       return (
-        <StakeAction
-          pool={pool}
-          stakingTokenBalance={stakingTokenBalance}
-          stakedBalance={stakedBalance}
-          isStaked={accountHasStakedBalance}
-          firstStake={!accountHasStakedBalance}
-          tier={tier}
-        />
+        // <StakeAction
+        //   pool={pool}
+        //   stakingTokenBalance={stakingTokenBalance}
+        //   stakedBalance={stakedBalance}
+        //   isStaked={accountHasStakedBalance}
+        //   firstStake={!accountHasStakedBalance}
+        //   tier={tier}
+        // />
+        <></>
       )
     }
     return <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
@@ -365,14 +366,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">BPD:</StyledText1>
-              {apr ? (
-                <FlexSwitch>
-                  <StyledAPRText>{bananaPerDay?.toFixed(2)}</StyledAPRText>
-                </FlexSwitch>
-              ) : (
-                <Skeleton height={24} width={80} />
-              )}
+              <StyledText1 fontFamily="poppins">BPD: 0</StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
