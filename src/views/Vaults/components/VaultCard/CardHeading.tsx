@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool, Vault } from 'state/types'
-import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -228,8 +228,8 @@ const IconQuoteToken = styled(Image)`
   height: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 `
 
@@ -267,8 +267,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const allowance = new BigNumber(userData?.allowance || 0)
   const isLoading = !vault?.userData
   const needsApproval = !allowance.gt(0)
-  const lpLabel = vault.isPair ? `${vault?.token0?.symbol}-${vault?.token1?.symbol}` : vault?.token0?.symbol
-
+  const lpLabel = vault.isPair ? `${vault?.token1?.symbol}-${vault?.token0?.symbol}` : vault?.token0?.symbol
+  const { isXl } = useMatchBreakpoints()
+  const isDesktop = isXl
   const { account } = useWeb3React()
 
   const cardHeaderButton = () => {
@@ -310,8 +311,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               alt={token0?.symbol}
               width={35}
               height={35}
-              marginLeft="-15px"
-              marginTop="30px"
+              marginLeft={isDesktop ? '-20px' : '-13px'}
+              marginTop={isDesktop ? '45px' : '30px'}
             />
             <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
             <IconImage src={`/images/tokens/${token1?.symbol}.svg`} alt={token1?.symbol} width={70} height={70} />
@@ -320,9 +321,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               alt={token0?.symbol}
               width={35}
               height={35}
-              marginLeft="-15px"
-              marginRight="7.5px"
-              marginTop="30px"
+              marginLeft={isDesktop ? '-20px' : '-13px'}
+              marginTop={isDesktop ? '45px' : '30px'}
+              marginRight={7.5}
             />
           </>
         ) : (

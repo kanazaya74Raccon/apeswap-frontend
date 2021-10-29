@@ -147,7 +147,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
       {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
-        farmImage={farmImage}
+        token0={quoteTokenSymbol}
+        token1={farm.tokenSymbol}
         tokenSymbol={farm.tokenSymbol}
         pid={farm.pid}
         lpSymbol={farm.lpSymbol}

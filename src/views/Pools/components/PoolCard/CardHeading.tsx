@@ -54,7 +54,7 @@ const StyledBackground = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 10px;
+  margin-right: 5px;
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 120px;
     width: 200px;

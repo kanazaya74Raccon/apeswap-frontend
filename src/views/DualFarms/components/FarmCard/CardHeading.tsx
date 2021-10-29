@@ -2,12 +2,13 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import { DualFarm } from 'state/types'
+import { Token } from 'config/constants/types'
 
 import HarvestAction from './HarvestAction'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -18,6 +19,8 @@ export interface ExpandableSectionProps {
   apr?: BigNumber
   farmImage?: string
   tokenSymbol?: string
+  stakeTokens?: { token0: Token; token1?: Token }
+  rewardTokens?: { token0: Token; token1?: Token }
   addLiquidityUrl?: string
   bananaPrice?: BigNumber
   farmAPR: string
@@ -28,24 +31,20 @@ export interface ExpandableSectionProps {
   farm?: DualFarm
 }
 
-const StyledBackground = styled(Flex)`
-  margin-left: 10px;
-
-  @media (min-width: 400px) {
-    justify-content: center;
-    background: rgb(255, 179, 0, 0.4);
-    border-radius: 20px;
-    width: 121px;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 0px;
-  }
-
+const StyledBackground = styled.div`
+  width: 120px;
+  height: 90px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    height: 121px;
+    height: 120px;
+    width: 180px;
   }
 `
-
 const StyledHeading = styled(Heading)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -188,23 +187,45 @@ const StyledAPRText = styled.div`
     line-height: 23px;
   }
 `
-
-const ButtonContainer = styled.div`
-  display: flex;
-`
-
-const StyledImage = styled.img`
-  display: none;
-
-  @media (min-width: 400px) {
-    display: flex;
-    width: 75px;
-    height: 75px;
-  }
+const IconImage = styled(Image)`
+  align: center;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 109px;
-    height: 109px;
+    width: 70px;
+    height: 70px;
+  }
+`
+
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
+  }
+`
+
+const ButtonContainer = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: flex-end;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100%;
   }
 `
 
@@ -214,11 +235,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   farmImage,
   tokenSymbol,
   addLiquidityUrl,
+  stakeTokens,
+  rewardTokens,
   bananaPrice,
   farmAPR,
   removed,
   pid,
-  lpSymbol,
   showExpandableSection,
   farm,
 }) => {
@@ -226,6 +248,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const { earnings } = useFarmUser(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
+  const { isXl } = useMatchBreakpoints()
+  const isDesktop = isXl  
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
 
   const { account } = useWeb3React()
@@ -233,7 +257,38 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   return (
     <Flex>
       <StyledBackground>
-        <StyledImage src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} />
+        <IconImage
+          src={`/images/tokens/${stakeTokens?.token1?.symbol}.svg`}
+          alt={stakeTokens?.token1?.symbol}
+          width={70}
+          height={70}
+          marginLeft="7.5px"
+        />
+        <IconQuoteToken
+          src={`/images/tokens/${stakeTokens?.token0?.symbol}.svg`}
+          alt={stakeTokens?.token0?.symbol}
+          width={35}
+          height={35}
+          marginLeft={isDesktop ? "-20px" : "-13px"}
+          marginTop={isDesktop ? "45px" : "30px"}
+        />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
+        <IconQuoteToken
+          src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+          alt={rewardTokens?.token1?.symbol}
+          width={35}
+          height={35}
+          marginBottom={isDesktop ? "30px" : "25px"}
+          marginRight="-5px"
+        />
+        <IconQuoteToken
+          src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
+          alt={rewardTokens?.token1?.symbol}
+          width={35}
+          height={35}
+          marginTop={isDesktop ? "30px" : "25px"}
+          marginRight="7.5px"
+        />
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
@@ -258,9 +313,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             </Text>
           )}
           <StyledFlexEarnedSmall>
-            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, 'Banana ')}
-            </StyledText4>
             <StyledText2 fontFamily="poppins" color="primary" pr="3px">
               {TranslateString(999, 'Earned')}
             </StyledText2>
@@ -280,7 +332,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarned>
           <ButtonContainer>
-            {!account ? <UnlockButton /> : <HarvestAction dualFarm={farm} />}
+            {!account ? <UnlockButton padding="8px" /> : <HarvestAction dualFarm={farm} />}
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer>

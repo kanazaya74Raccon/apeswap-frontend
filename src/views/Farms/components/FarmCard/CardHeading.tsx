@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
@@ -15,7 +15,8 @@ import ExpandableSectionButton from './ExpandableSectionButton'
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
-  farmImage?: string
+  token0?: string
+  token1?: string
   tokenSymbol?: string
   addLiquidityUrl?: string
   bananaPrice?: BigNumber
@@ -26,21 +27,18 @@ export interface ExpandableSectionProps {
   showExpandableSection?: boolean
 }
 
-const StyledBackground = styled(Flex)`
-  margin-left: 10px;
-
-  @media (min-width: 400px) {
-    justify-content: center;
-    background: rgb(255, 179, 0, 0.4);
-    border-radius: 20px;
-    width: 121px;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 0px;
-  }
-
+const StyledBackground = styled.div`
+  width: 120px;
+  height: 93px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    height: 121px;
+    height: 120px;
+    width: 180px;
   }
 `
 
@@ -140,8 +138,8 @@ const LabelContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
-  width: 120px;
-  margin-right: 10px;
+  width: 110px;
+  margin-right: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -188,7 +186,45 @@ const StyledAPRText = styled.div`
 `
 
 const ButtonContainer = styled.div`
+  width: 100px;
   display: flex;
+  justify-content: flex-end;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100%;
+  }
+`
+
+const IconImage = styled(Image)`
+  align: center;
+  width: 40px;
+  height: 40px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 70px;
+    height: 70px;
+  }
+`
+
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
+  }
 `
 
 const StyledImage = styled.img`
@@ -209,7 +245,8 @@ const StyledImage = styled.img`
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   apr,
-  farmImage,
+  token0,
+  token1,
   tokenSymbol,
   addLiquidityUrl,
   bananaPrice,
@@ -224,13 +261,24 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const { earnings } = useFarmUser(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
-
+  const { isXl } = useMatchBreakpoints()
+  const isDesktop = isXl
   const { account } = useWeb3React()
 
   return (
     <Flex>
       <StyledBackground>
-        <StyledImage src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} />
+        <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={70} height={70} marginLeft="7.5px" />
+        <IconQuoteToken
+          src={`/images/tokens/${token0}.svg`}
+          alt={token0}
+          width={35}
+          height={35}
+          marginLeft={isDesktop ? '-20px' : '-13px'}
+          marginTop={isDesktop ? '45px' : '30px'}
+        />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
+        <IconImage src="/images/tokens/banana.svg" alt="banana" width={70} height={70} marginRight="7.5px" />
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
@@ -278,7 +326,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           </StyledFlexEarned>
           <ButtonContainer>
             {!account ? (
-              <UnlockButton />
+              <UnlockButton padding="8px" />
             ) : (
               <HarvestAction earnings={earnings} pid={pid} lpSymbol={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
             )}
