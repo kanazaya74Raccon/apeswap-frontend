@@ -42,7 +42,6 @@ const StyledBackground = styled(Flex)`
   margin-right: 20px;
 `
 
-
 const IconImage = styled(Image)`
   width: 24px;
   height: 24px;

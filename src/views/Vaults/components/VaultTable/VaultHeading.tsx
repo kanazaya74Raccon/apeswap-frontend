@@ -50,7 +50,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
               marginLeft="-15px"
               marginTop="30px"
             />
-            <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px"/>
+            <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
             <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} />
             <IconImage
               src={`/images/tokens/${token0}.svg`}

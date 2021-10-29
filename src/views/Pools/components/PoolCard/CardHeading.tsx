@@ -47,7 +47,7 @@ const PoolFinishedSash = styled.div`
 `
 
 const StyledBackground = styled.div`
-  width: 250px;
+  width: 120px;
   height: 80px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
@@ -55,6 +55,10 @@ const StyledBackground = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    height: 120px;
+    width: 200px;
+  }
 `
 
 const StyledHeading = styled(Heading)`
@@ -116,8 +120,8 @@ const StyledFlexContainer = styled(Flex)`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -203,28 +207,30 @@ const ButtonContainer = styled.div`
   width: 100px;
   display: flex;
   justify-content: flex-end;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 150px;
+  }
 `
 
 const IconImage = styled(Image)`
   align: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 70px;
+    height: 70px;
   }
 `
 
-const StyledArrow = styled.img`
-  align-self: center;
-  display: flex;
-  width: 12px;
-  height: 12px;
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 24px;
-    height: 24px;
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -303,16 +309,16 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <IconImage
           src={`/images/tokens/${stakeToken}.svg`}
           alt={stakeToken}
-          width={40}
-          height={40}
+          width={70}
+          height={70}
           marginLeft="7.5px"
         />
-        <IconImage src="/images/arrow.svg" alt="arrow" width={5} height={5} />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
         <IconImage
           src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
           alt={earnToken}
-          width={40}
-          height={40}
+          width={70}
+          height={70}
           marginRight="7.5px"
         />
       </StyledBackground>

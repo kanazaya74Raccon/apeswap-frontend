@@ -38,7 +38,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label }) => 
   return (
     <Container>
       <StyledBackground>
-        <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} marginLeft="7.5px"/>
+        <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} marginLeft="7.5px" />
         <IconImage
           src={`/images/tokens/${token0}.svg`}
           alt={token0}
@@ -48,7 +48,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label }) => 
           marginTop="30px"
         />
         <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginLeft="8px" marginRight="8px" />
-        <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px"/>
+        <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />
       </StyledBackground>
       <div>
         <Text fontSize="20px" bold>

@@ -227,9 +227,9 @@ const App: React.FC = () => {
     <Router>
       <ResetCSS />
       <GlobalStyle />
-      {(window.location.pathname === '/farms' || window.location.pathname === '/pools' || window.location.pathname === '/vaults') && (
-        <StyledChevronUpIcon onClick={scrollToTop} />
-      )}
+      {(window.location.pathname === '/farms' ||
+        window.location.pathname === '/pools' ||
+        window.location.pathname === '/vaults') && <StyledChevronUpIcon onClick={scrollToTop} />}
       {loadMenu()}
       <ToastListener />
     </Router>

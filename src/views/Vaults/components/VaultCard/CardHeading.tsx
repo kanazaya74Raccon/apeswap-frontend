@@ -44,23 +44,18 @@ const PoolFinishedSash = styled.div`
   }
 `
 
-const StyledBackground = styled(Flex)`
-  margin-left: 10px;
-
-  @media (min-width: 500px) {
-    justify-content: space-between;
-    background: rgb(255, 179, 0, 0.4);
-    border-radius: 20px;
-    width: 150px;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 0px;
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-
+const StyledBackground = styled.div`
+  width: 110px;
+  height: 80px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    height: 121px;
+    height: 120px;
+    width: 180px;
   }
 `
 
@@ -71,7 +66,7 @@ const StyledHeading = styled(Heading)`
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 22px;
+    font-size: 21px;
   }
 `
 
@@ -160,8 +155,8 @@ const LabelContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
-  width: 120px;
-  margin-right: 10px;
+  width: 110px;
+  margin-right: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -208,51 +203,44 @@ const StyledAPRText = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  width: 180px;
+  width: 100px;
   display: flex;
   justify-content: flex-end;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100%;
+  }
 `
 
 const IconImage = styled(Image)`
-  width: 24px;
-  height: 24px;
   align: center;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 70px;
+    height: 70px;
   }
 `
 
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 45px;
-    height: 45px;
-  }
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 65px;
-    height: 65px;
+    width: 35px;
+    height: 35px;
   }
 `
 
-const StyledArrow = styled.img`
-  display: none;
-  align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 12px;
-    height: 12px;
-  }
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 24px;
-    height: 24px;
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -279,13 +267,13 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const allowance = new BigNumber(userData?.allowance || 0)
   const isLoading = !vault?.userData
   const needsApproval = !allowance.gt(0)
-  const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
+  const lpLabel = vault.isPair ? `${vault?.token0?.symbol}-${vault?.token1?.symbol}` : vault?.token0?.symbol
 
   const { account } = useWeb3React()
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakingTokenAddress} pid={pid} isLoading={isLoading} />
@@ -310,23 +298,51 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <StyledBackground>
         {isPair ? (
           <>
-            <IconImage src={`/images/tokens/${token0.symbol}.svg`} alt={token0.symbol} width={50} height={50} />
             <IconImage
-              src={`/images/tokens/${token1.symbol}.svg`}
-              alt={token1.symbol}
-              width={50}
-              height={50}
-              marginLeft="-10px"
+              src={`/images/tokens/${token1?.symbol}.svg`}
+              alt={token1?.symbol}
+              width={70}
+              height={70}
+              marginLeft="7.5px"
+            />
+            <IconQuoteToken
+              src={`/images/tokens/${token0?.symbol}.svg`}
+              alt={token0?.symbol}
+              width={35}
+              height={35}
+              marginLeft="-15px"
+              marginTop="30px"
+            />
+            <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
+            <IconImage src={`/images/tokens/${token1?.symbol}.svg`} alt={token1?.symbol} width={70} height={70} />
+            <IconQuoteToken
+              src={`/images/tokens/${token0?.symbol}.svg`}
+              alt={token0?.symbol}
+              width={35}
+              height={35}
+              marginLeft="-15px"
+              marginRight="7.5px"
+              marginTop="30px"
             />
           </>
         ) : (
-          <IconImage
-            src={`/images/tokens/${token0.symbol}.svg`}
-            alt={token0.symbol}
-            width={50}
-            height={50}
-            marginLeft="5px"
-          />
+          <>
+            <IconImage
+              src={`/images/tokens/${token0?.symbol}.svg`}
+              alt={token0?.symbol}
+              width={60}
+              height={60}
+              marginLeft="7.5px"
+            />
+            <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginLeft="10px" marginRight="8px" />
+            <IconImage
+              src={`/images/tokens/${token0?.symbol}.svg`}
+              alt={token0?.symbol}
+              width={60}
+              height={60}
+              marginRight="10px"
+            />
+          </>
         )}
       </StyledBackground>
       <StyledFlexContainer>
@@ -344,26 +360,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               )}
             </Text>
           )}
-          <StyledFlexEarnedSmall>
-            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, `${earnToken}`)}
-            </StyledText4>
-            <StyledText2 fontFamily="poppins" color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
-            </StyledText2>
-          </StyledFlexEarnedSmall>
         </LabelContainer>
         <LabelContainer2>
-          <StyledFlexEarned>
-            <Flex>
-              <StyledText4 fontFamily="poppins" color="primary" pr="3px">
-                {TranslateString(999, `${earnToken}`)}
-              </StyledText4>
-              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
-                {TranslateString(999, 'Earned')}
-              </StyledText2>
-            </Flex>
-          </StyledFlexEarned>
           <ButtonContainer>
             {cardHeaderButton()}
             <ExpandableSectionButton expanded={showExpandableSection} />
