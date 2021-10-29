@@ -20,7 +20,7 @@ import {
   vaultUnstakeAll,
   miniChefUnstake,
 } from 'utils/callHelpers'
-import { fetchFarmUserEarnings, fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
+import { updateFarmUserStakedBalances, updateFarmUserTokenBalances, updateFarmUserEarnings } from 'state/farms'
 import {
   updateDualFarmUserEarnings,
   updateDualFarmUserStakedBalances,
@@ -47,8 +47,9 @@ const useUnstake = (pid: number) => {
   const handleUnstake = useCallback(
     async (amount: string) => {
       const txHash = await unstake(masterChefContract, pid, amount, account)
-      dispatch(fetchFarmUserStakedBalances(multicallContract, masterChefAddress, account))
-      dispatch(fetchFarmUserEarnings(multicallContract, masterChefAddress, account))
+      dispatch(updateFarmUserStakedBalances(multicallContract, pid, masterChefAddress, account))
+      dispatch(updateFarmUserTokenBalances(multicallContract, pid, chainId, account))
+      dispatch(updateFarmUserEarnings(multicallContract, masterChefAddress, pid, account))
       track({
         event: 'farm',
         chain: chainId,

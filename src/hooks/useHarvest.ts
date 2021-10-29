@@ -5,7 +5,7 @@ import { updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, soushHarvestBnb, harvest, nfaStakeHarvest, miniChefHarvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants/chains'
 import track from 'utils/track'
-import { fetchFarmUserEarnings } from 'state/farms/fetchFarmUser'
+import { updateFarmUserEarnings } from 'state/farms'
 import { useNetworkChainId } from 'state/hooks'
 import { updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
@@ -29,7 +29,7 @@ export const useHarvest = (farmPid: number) => {
         pid: farmPid,
       },
     })
-    dispatch(fetchFarmUserEarnings(multicallContract, masterChefAddress, account))
+    dispatch(updateFarmUserEarnings(multicallContract, masterChefAddress, farmPid, account))
     return txHash
   }, [account, dispatch, farmPid, masterChefContract, multicallContract, masterChefAddress, chainId])
 

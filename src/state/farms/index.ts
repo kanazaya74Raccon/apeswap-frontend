@@ -31,11 +31,16 @@ export const farmsSlice = createSlice({
         state.data[index] = { ...state.data[index], userData: userDataEl }
       })
     },
+    updateFarmUserData: (state, action) => {
+      const { field, value, pid } = action.payload
+      const index = state.data.findIndex((p) => p.pid === pid)
+      state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
+    },
   },
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData } = farmsSlice.actions
+export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
 export const fetchFarmsPublicDataAsync =
@@ -68,6 +73,30 @@ export const fetchFarmUserDataAsync =
     } catch (error) {
       console.error(error)
     }
+  }
+
+export const updateFarmUserAllowances =
+  (multicallContract, masterChefAddress, pid, chainId: number, account: string) => async (dispatch) => {
+    const allowances = await fetchFarmUserAllowances(multicallContract, masterChefAddress, chainId, account)
+    dispatch(updateFarmUserData({ pid, field: 'allowance', value: allowances[pid] }))
+  }
+
+export const updateFarmUserTokenBalances =
+  (multicallContract, pid, chainId: number, account: string) => async (dispatch) => {
+    const tokenBalances = await fetchFarmUserTokenBalances(multicallContract, chainId, account)
+    dispatch(updateFarmUserData({ pid, field: 'tokenBalance', value: tokenBalances[pid] }))
+  }
+
+export const updateFarmUserStakedBalances =
+  (multicallContract, masterChefAddress, pid, account: string) => async (dispatch) => {
+    const stakedBalances = await fetchFarmUserStakedBalances(multicallContract, masterChefAddress, account)
+    dispatch(updateFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
+  }
+
+export const updateFarmUserEarnings =
+  (multicallContract, masterChefAddress, pid, account: string) => async (dispatch) => {
+    const pendingRewards = await fetchFarmUserEarnings(multicallContract, masterChefAddress, account)
+    dispatch(updateFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
   }
 
 export default farmsSlice.reducer

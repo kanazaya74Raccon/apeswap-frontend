@@ -46,7 +46,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
 
   const lpName = lpSymbol.toUpperCase()
 
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useApprove(lpContract, pid)
 
   const handleApprove = useCallback(async () => {
     try {

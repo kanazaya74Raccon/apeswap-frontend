@@ -209,6 +209,17 @@ const IconQuoteToken = styled(Image)`
   }
 `
 
+const IconRewardToken = styled(Image)`
+  align: center;
+  width: 25px;
+  height: 25px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
+
 const IconArrow = styled(Image)`
   align: center;
   width: 5px;
@@ -273,7 +284,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           marginTop={isDesktop ? '45px' : '30px'}
         />
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-        <IconQuoteToken
+        <IconRewardToken
           src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
           alt={rewardTokens?.token1?.symbol}
           width={35}
@@ -281,7 +292,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           marginBottom={isDesktop ? '30px' : '25px'}
           marginRight="-5px"
         />
-        <IconQuoteToken
+        <IconRewardToken
           src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
           alt={rewardTokens?.token1?.symbol}
           width={35}

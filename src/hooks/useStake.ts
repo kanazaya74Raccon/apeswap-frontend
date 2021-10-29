@@ -10,7 +10,7 @@ import {
 import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
-import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
+import { updateFarmUserStakedBalances, updateFarmUserTokenBalances, updateFarmUserEarnings } from 'state/farms'
 import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
 import {
   updateDualFarmUserEarnings,
@@ -38,7 +38,9 @@ const useStake = (pid: number) => {
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
-      dispatch(fetchFarmUserStakedBalances(multicallContract, masterChefAddress, account))
+      dispatch(updateFarmUserStakedBalances(multicallContract, pid, masterChefAddress, account))
+      dispatch(updateFarmUserTokenBalances(multicallContract, pid, chainId, account))
+      dispatch(updateFarmUserEarnings(multicallContract, masterChefAddress, pid, account))
       track({
         event: 'farm',
         chain: chainId,
