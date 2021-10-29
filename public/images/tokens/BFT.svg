@@ -1,73 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="19" y="17" width="3" height="1" fill="#FF002F"/>
-  <rect x="19" y="18" width="4" height="1" fill="#FF002F"/>
-  <rect x="18" y="19" width="5" height="1" fill="#FF002F"/>
-  <rect x="18" y="20" width="6" height="1" fill="#FF002F"/>
-  <rect x="18" y="21" width="6" height="1" fill="#FF002F"/>
-  <rect x="18" y="22" width="5" height="1" fill="#FF002F"/>
-  <rect x="18" y="23" width="4" height="1" fill="#FF002F"/>
-  <rect x="18" y="24" width="2" height="1" fill="#FF002F"/>
-  <rect x="20" y="24" width="3" height="1" fill="#AF051E"/>
-  <rect x="22" y="23" width="2" height="1" fill="#AF051E"/>
-  <rect x="23" y="22" width="2" height="1" fill="#AF051E"/>
-  <rect x="24" y="18" width="1" height="4" fill="#AF051E"/>
-  <rect x="23" y="17" width="1" height="3" fill="#AF051E"/>
-  <rect x="22" y="17" width="1" height="1" fill="#AF051E"/>
-  <rect x="18" y="16" width="5" height="1" fill="#AF051E"/>
-  <rect x="17" y="17" width="2" height="1" fill="#FF3B00"/>
-  <rect x="20" y="5" width="1" height="11" fill="#0AA604"/>
-  <rect x="19" y="2" width="1" height="4" fill="#0AA604"/>
-  <rect x="14" y="2" width="5" height="1" fill="#0AA604"/>
-  <rect x="15" y="4" width="4" height="1" fill="#0AA604"/>
-  <rect x="14" y="5" width="2" height="1" fill="#0AA604"/>
-  <rect x="6" y="1" width="7" height="1" fill="#0AA604"/>
-  <rect x="4" y="2" width="5" height="1" fill="#0AA604"/>
-  <rect x="3" y="3" width="4" height="1" fill="#0AA604"/>
-  <rect x="2" y="4" width="4" height="1" fill="#0AA604"/>
-  <rect x="1" y="5" width="3" height="1" fill="#0AA604"/>
-  <rect x="8" y="6" width="2" height="1" fill="#0AA604"/>
-  <rect x="11" y="4" width="2" height="1" fill="#0AA604"/>
-  <rect x="10" y="5" width="1" height="1" fill="#0AA604"/>
-  <rect x="1" y="6" width="1" height="1" fill="#0AA604"/>
-  <rect y="7" width="1" height="1" fill="#0AA604"/>
-  <rect y="8" width="2" height="2" fill="#106315"/>
-  <rect x="1" y="7" width="6" height="1" fill="#106315"/>
-  <rect x="2" y="8" width="3" height="1" fill="#106315"/>
-  <rect x="2" y="6" width="6" height="1" fill="#106315"/>
-  <rect x="4" y="5" width="6" height="1" fill="#106315"/>
-  <rect x="6" y="4" width="5" height="1" fill="#106315"/>
-  <rect x="7" y="3" width="6" height="1" fill="#106315"/>
-  <rect x="9" y="2" width="5" height="1" fill="#106315"/>
-  <rect x="13" y="6" width="2" height="1" fill="#0AA604"/>
-  <rect x="12" y="7" width="2" height="1" fill="#0AA604"/>
-  <rect x="12" y="8" width="1" height="2" fill="#0AA604"/>
-  <rect x="11" y="9" width="1" height="4" fill="#0AA604"/>
-  <rect x="10" y="12" width="1" height="4" fill="#0AA604"/>
-  <rect x="20" y="1" width="1" height="2" fill="#0AA604"/>
-  <rect x="21" width="2" height="2" fill="#106315"/>
-  <rect x="16" y="19" width="2" height="4" fill="#FF3B00"/>
-  <rect x="17" y="23" width="1" height="1" fill="#FF3B00"/>
-  <rect x="16" y="18" width="3" height="1" fill="#FF3B00"/>
-  <rect x="9" y="17" width="3" height="1" fill="#FF002F"/>
-  <rect x="9" y="18" width="3" height="1" fill="#FF002F"/>
-  <rect x="8" y="19" width="6" height="1" fill="#FF002F"/>
-  <rect x="8" y="20" width="6" height="1" fill="#FF002F"/>
-  <rect x="8" y="21" width="6" height="1" fill="#FF002F"/>
-  <rect x="8" y="22" width="5" height="1" fill="#FF002F"/>
-  <rect x="7" y="23" width="4" height="1" fill="#FF002F"/>
-  <rect x="8" y="24" width="2" height="1" fill="#FF002F"/>
-  <rect x="10" y="24" width="3" height="1" fill="#AF051E"/>
-  <rect x="11" y="23" width="3" height="1" fill="#AF051E"/>
-  <rect x="13" y="22" width="2" height="1" fill="#AF051E"/>
-  <rect x="14" y="18" width="1" height="4" fill="#AF051E"/>
-  <rect x="13" y="17" width="1" height="2" fill="#AF051E"/>
-  <rect x="12" y="17" width="1" height="1" fill="#AF051E"/>
-  <rect x="12" y="18" width="1" height="1" fill="#AF051E"/>
-  <rect x="11" y="16" width="2" height="1" fill="#AF051E"/>
-  <rect x="8" y="16" width="3" height="1" fill="#FF3B00"/>
-  <rect x="7" y="17" width="2" height="1" fill="#FF3B00"/>
-  <rect x="6" y="19" width="2" height="4" fill="#FF3B00"/>
-  <rect x="7" y="18" width="2" height="1" fill="#FF3B00"/>
-  <rect x="6" y="18" width="1" height="1" fill="#FF002F"/>
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 207" width="207" height="207">
+	<title>BFT-svg</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M136 172L149 172L149 178.5L136 178.5L136 172Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp2">
+			<path d="M148 172L167 172L167 178.5L148 178.5L148 172Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp3">
+			<path d="M166 160L178.5 160L178.5 167L166 167L166 160Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp4">
+			<path d="M172 136L178.5 136L178.5 161L172 161L172 136Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp5">
+			<path d="M28.5 70L35 70L35 77L28.5 77L28.5 70Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp6">
+			<path d="M28.5 76L41 76L41 89L28.5 89L28.5 76Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp7">
+			<path d="M154 28.5L167 28.5L167 41L154 41L154 28.5Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp8">
+			<path d="M76 172L89 172L89 178.5L76 178.5L76 172Z" />
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp9">
+			<path d="M88 172L107 172L107 178.5L88 178.5L88 172Z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #000000 } 
+		.shp1 { fill: #ff002f } 
+		.shp2 { fill: #af051e } 
+		.shp3 { fill: #ff3b00 } 
+		.shp4 { fill: #0aa604 } 
+		.shp5 { fill: #106315 } 
+	</style>
+	<path id="Layer" class="shp0" d="M103.5 0.38C46.55 0.38 0.38 46.55 0.38 103.5C0.38 160.45 46.55 206.63 103.5 206.63C160.45 206.63 206.63 160.45 206.63 103.5C206.63 46.55 160.45 0.38 103.5 0.38Z" />
+	<path id="Layer" class="shp1" d="M142.5 130.5L160.5 130.5L160.5 136.5L142.5 136.5L142.5 130.5Z" />
+	<path id="Layer" class="shp1" d="M142.5 136.5L166.5 136.5L166.5 142.5L142.5 142.5L142.5 136.5Z" />
+	<path id="Layer" class="shp1" d="M136.5 142.5L166.5 142.5L166.5 148.5L136.5 148.5L136.5 142.5Z" />
+	<path id="Layer" class="shp1" d="M136.5 148.5L172.5 148.5L172.5 154.5L136.5 154.5L136.5 148.5Z" />
+	<path id="Layer" class="shp1" d="M136.5 154.5L172.5 154.5L172.5 160.5L136.5 160.5L136.5 154.5Z" />
+	<path id="Layer" class="shp1" d="M136.5 160.5L166.5 160.5L166.5 166.5L136.5 166.5L136.5 160.5Z" />
+	<path id="Layer" class="shp1" d="M136.5 166.5L160.5 166.5L160.5 172.5L136.5 172.5L136.5 166.5Z" />
+	<g id="Clip-Path" clip-path="url(#cp1)">
+		<g id="Layer">
+			<path id="Layer" class="shp1" d="M136.5 172.5L148.5 172.5L148.5 178.5L136.5 178.5L136.5 172.5Z" />
+		</g>
+	</g>
+	<g id="Clip-Path" clip-path="url(#cp2)">
+		<g id="Layer">
+			<path id="Layer" class="shp2" d="M148.5 172.5L166.5 172.5L166.5 178.5L148.5 178.5L148.5 172.5Z" />
+		</g>
+	</g>
+	<path id="Layer" class="shp2" d="M160.5 166.5L172.5 166.5L172.5 172.5L160.5 172.5L160.5 166.5Z" />
+	<g id="Clip-Path" clip-path="url(#cp3)">
+		<g id="Layer">
+			<path id="Layer" class="shp2" d="M166.5 160.5L178.5 160.5L178.5 166.5L166.5 166.5L166.5 160.5Z" />
+		</g>
+	</g>
+	<g id="Clip-Path" clip-path="url(#cp4)">
+		<g id="Layer">
+			<path id="Layer" class="shp2" d="M172.5 136.5L178.5 136.5L178.5 160.5L172.5 160.5L172.5 136.5Z" />
+		</g>
+	</g>
+	<path id="Layer" class="shp2" d="M166.5 130.5L172.5 130.5L172.5 148.5L166.5 148.5L166.5 130.5Z" />
+	<path id="Layer" class="shp2" d="M160.5 130.5L166.5 130.5L166.5 136.5L160.5 136.5L160.5 130.5Z" />
+	<path id="Layer" class="shp2" d="M136.5 124.5L166.5 124.5L166.5 130.5L136.5 130.5L136.5 124.5Z" />
+	<path id="Layer" class="shp3" d="M130.5 130.5L142.5 130.5L142.5 136.5L130.5 136.5L130.5 130.5Z" />
+	<path id="Layer" class="shp4" d="M148.5 58.5L154.5 58.5L154.5 124.5L148.5 124.5L148.5 58.5Z" />
+	<path id="Layer" class="shp4" d="M142.5 40.5L148.5 40.5L148.5 64.5L142.5 64.5L142.5 40.5Z" />
+	<path id="Layer" class="shp4" d="M112.5 40.5L142.5 40.5L142.5 46.5L112.5 46.5L112.5 40.5Z" />
+	<path id="Layer" class="shp4" d="M118.5 52.5L142.5 52.5L142.5 58.5L118.5 58.5L118.5 52.5Z" />
+	<path id="Layer" class="shp4" d="M112.5 58.5L124.5 58.5L124.5 64.5L112.5 64.5L112.5 58.5Z" />
+	<path id="Layer" class="shp4" d="M64.5 34.5L106.5 34.5L106.5 40.5L64.5 40.5L64.5 34.5Z" />
+	<path id="Layer" class="shp4" d="M52.5 40.5L82.5 40.5L82.5 46.5L52.5 46.5L52.5 40.5Z" />
+	<path id="Layer" class="shp4" d="M46.5 46.5L70.5 46.5L70.5 52.5L46.5 52.5L46.5 46.5Z" />
+	<path id="Layer" class="shp4" d="M40.5 52.5L64.5 52.5L64.5 58.5L40.5 58.5L40.5 52.5Z" />
+	<path id="Layer" class="shp4" d="M34.5 58.5L52.5 58.5L52.5 64.5L34.5 64.5L34.5 58.5Z" />
+	<path id="Layer" class="shp4" d="M76.5 64.5L88.5 64.5L88.5 70.5L76.5 70.5L76.5 64.5Z" />
+	<path id="Layer" class="shp4" d="M94.5 52.5L106.5 52.5L106.5 58.5L94.5 58.5L94.5 52.5Z" />
+	<path id="Layer" class="shp4" d="M88.5 58.5L94.5 58.5L94.5 64.5L88.5 64.5L88.5 58.5Z" />
+	<path id="Layer" class="shp4" d="M34.5 64.5L40.5 64.5L40.5 70.5L34.5 70.5L34.5 64.5Z" />
+	<g id="Clip-Path" clip-path="url(#cp5)">
+		<g id="Layer">
+			<path id="Layer" class="shp4" d="M28.5 70.5L34.5 70.5L34.5 76.5L28.5 76.5L28.5 70.5Z" />
+		</g>
+	</g>
+	<g id="Clip-Path" clip-path="url(#cp6)">
+		<g id="Layer">
+			<path id="Layer" class="shp5" d="M28.5 76.5L40.5 76.5L40.5 88.5L28.5 88.5L28.5 76.5Z" />
+		</g>
+	</g>
+	<path id="Layer" class="shp5" d="M34.5 70.5L70.5 70.5L70.5 76.5L34.5 76.5L34.5 70.5Z" />
+	<path id="Layer" class="shp5" d="M40.5 76.5L58.5 76.5L58.5 82.5L40.5 82.5L40.5 76.5Z" />
+	<path id="Layer" class="shp5" d="M40.5 64.5L76.5 64.5L76.5 70.5L40.5 70.5L40.5 64.5Z" />
+	<path id="Layer" class="shp5" d="M52.5 58.5L88.5 58.5L88.5 64.5L52.5 64.5L52.5 58.5Z" />
+	<path id="Layer" class="shp5" d="M64.5 52.5L94.5 52.5L94.5 58.5L64.5 58.5L64.5 52.5Z" />
+	<path id="Layer" class="shp5" d="M70.5 46.5L106.5 46.5L106.5 52.5L70.5 52.5L70.5 46.5Z" />
+	<path id="Layer" class="shp5" d="M82.5 40.5L112.5 40.5L112.5 46.5L82.5 46.5L82.5 40.5Z" />
+	<path id="Layer" class="shp4" d="M106.5 64.5L118.5 64.5L118.5 70.5L106.5 70.5L106.5 64.5Z" />
+	<path id="Layer" class="shp4" d="M100.5 70.5L112.5 70.5L112.5 76.5L100.5 76.5L100.5 70.5Z" />
+	<path id="Layer" class="shp4" d="M100.5 76.5L106.5 76.5L106.5 88.5L100.5 88.5L100.5 76.5Z" />
+	<path id="Layer" class="shp4" d="M94.5 82.5L100.5 82.5L100.5 106.5L94.5 106.5L94.5 82.5Z" />
+	<path id="Layer" class="shp4" d="M88.5 100.5L94.5 100.5L94.5 124.5L88.5 124.5L88.5 100.5Z" />
+	<path id="Layer" class="shp4" d="M148.5 34.5L154.5 34.5L154.5 46.5L148.5 46.5L148.5 34.5Z" />
+	<g id="Clip-Path" clip-path="url(#cp7)">
+		<g id="Layer">
+			<path id="Layer" class="shp5" d="M154.5 28.5L166.5 28.5L166.5 40.5L154.5 40.5L154.5 28.5Z" />
+		</g>
+	</g>
+	<path id="Layer" class="shp3" d="M124.5 142.5L136.5 142.5L136.5 166.5L124.5 166.5L124.5 142.5Z" />
+	<path id="Layer" class="shp3" d="M130.5 166.5L136.5 166.5L136.5 172.5L130.5 172.5L130.5 166.5Z" />
+	<path id="Layer" class="shp3" d="M124.5 136.5L142.5 136.5L142.5 142.5L124.5 142.5L124.5 136.5Z" />
+	<path id="Layer" class="shp1" d="M82.5 130.5L100.5 130.5L100.5 136.5L82.5 136.5L82.5 130.5Z" />
+	<path id="Layer" class="shp1" d="M82.5 136.5L100.5 136.5L100.5 142.5L82.5 142.5L82.5 136.5Z" />
+	<path id="Layer" class="shp1" d="M76.5 142.5L112.5 142.5L112.5 148.5L76.5 148.5L76.5 142.5Z" />
+	<path id="Layer" class="shp1" d="M76.5 148.5L112.5 148.5L112.5 154.5L76.5 154.5L76.5 148.5Z" />
+	<path id="Layer" class="shp1" d="M76.5 154.5L112.5 154.5L112.5 160.5L76.5 160.5L76.5 154.5Z" />
+	<path id="Layer" class="shp1" d="M76.5 160.5L106.5 160.5L106.5 166.5L76.5 166.5L76.5 160.5Z" />
+	<path id="Layer" class="shp1" d="M70.5 166.5L94.5 166.5L94.5 172.5L70.5 172.5L70.5 166.5Z" />
+	<g id="Clip-Path" clip-path="url(#cp8)">
+		<g id="Layer">
+			<path id="Layer" class="shp1" d="M76.5 172.5L88.5 172.5L88.5 178.5L76.5 178.5L76.5 172.5Z" />
+		</g>
+	</g>
+	<g id="Clip-Path" clip-path="url(#cp9)">
+		<g id="Layer">
+			<path id="Layer" class="shp2" d="M88.5 172.5L106.5 172.5L106.5 178.5L88.5 178.5L88.5 172.5Z" />
+		</g>
+	</g>
+	<path id="Layer" class="shp2" d="M94.5 166.5L112.5 166.5L112.5 172.5L94.5 172.5L94.5 166.5Z" />
+	<path id="Layer" class="shp2" d="M106.5 160.5L118.5 160.5L118.5 166.5L106.5 166.5L106.5 160.5Z" />
+	<path id="Layer" class="shp2" d="M112.5 136.5L118.5 136.5L118.5 160.5L112.5 160.5L112.5 136.5Z" />
+	<path id="Layer" class="shp2" d="M106.5 130.5L112.5 130.5L112.5 142.5L106.5 142.5L106.5 130.5Z" />
+	<path id="Layer" class="shp2" d="M100.5 130.5L106.5 130.5L106.5 136.5L100.5 136.5L100.5 130.5Z" />
+	<path id="Layer" class="shp2" d="M100.5 136.5L106.5 136.5L106.5 142.5L100.5 142.5L100.5 136.5Z" />
+	<path id="Layer" class="shp2" d="M94.5 124.5L106.5 124.5L106.5 130.5L94.5 130.5L94.5 124.5Z" />
+	<path id="Layer" class="shp3" d="M76.5 124.5L94.5 124.5L94.5 130.5L76.5 130.5L76.5 124.5Z" />
+	<path id="Layer" class="shp3" d="M70.5 130.5L82.5 130.5L82.5 136.5L70.5 136.5L70.5 130.5Z" />
+	<path id="Layer" class="shp3" d="M64.5 142.5L76.5 142.5L76.5 166.5L64.5 166.5L64.5 142.5Z" />
+	<path id="Layer" class="shp3" d="M70.5 136.5L82.5 136.5L82.5 142.5L70.5 142.5L70.5 136.5Z" />
+	<path id="Layer" class="shp1" d="M64.5 136.5L70.5 136.5L70.5 142.5L64.5 142.5L64.5 136.5Z" />
 </svg>
