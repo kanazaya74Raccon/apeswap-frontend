@@ -43,6 +43,7 @@ import {
   VaultsState,
   TokenPricesState,
   NfaStakingPool,
+  DualFarm,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -138,6 +139,11 @@ export const useDualFarms = () => {
   }, [account, dispatch, multicallContract, miniChefAddress, chainId, tokenPrices, fastRefresh])
   const dualFarms = useSelector((state: State) => state.dualFarms.data)
   return dualFarms
+}
+
+export const useDualFarmsFromPid = (pid): DualFarm => {
+  const farm = useSelector((state: State) => state.dualFarms.data.find((f) => f.pid === pid))
+  return farm
 }
 
 // Farms

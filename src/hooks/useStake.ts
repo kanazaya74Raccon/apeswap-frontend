@@ -11,6 +11,7 @@ import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault, miniChefStake } f
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserStakedBalances } from 'state/farms/fetchFarmUser'
+import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
 import {
   updateDualFarmUserEarnings,
   updateDualFarmUserStakedBalances,
@@ -25,7 +26,7 @@ import {
   useSousChef,
   useVaultApe,
 } from './useContract'
-import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
+import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress, useVaultApeAddress } from './useAddress'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
@@ -114,13 +115,28 @@ export const useNfaStake = (sousId) => {
 export const useVaultStake = (pid: number) => {
   const { account } = useWeb3React()
   const vaultApeContract = useVaultApe()
+  const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const chainId = useNetworkChainId()
+  const vaultApeAddress = useVaultApeAddress()
 
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await stakeVault(vaultApeContract, pid, amount, account)
+      track({
+        event: 'vault',
+        chain: chainId,
+        data: {
+          cat: 'stake',
+          amount,
+          pid,
+        },
+      })
+      dispatch(updateVaultUserBalance(multicallContract, account, chainId, pid))
+      dispatch(updateVaultUserStakedBalance(multicallContract, vaultApeAddress, account, chainId, pid))
       console.info(txHash)
     },
-    [account, vaultApeContract, pid],
+    [account, vaultApeContract, dispatch, pid, chainId, multicallContract, vaultApeAddress],
   )
 
   return { onStake: handleStake }

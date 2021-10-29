@@ -5,15 +5,15 @@ import { useERC20 } from 'hooks/useContract'
 
 interface ApprovalActionProps {
   stakingContractAddress: string
-  sousId: number
+  pid: number
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress, sousId, isLoading = false }) => {
+const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress, pid, isLoading = false }) => {
   const stakingTokenContract = useERC20(stakingContractAddress)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
-  const { onApprove } = useVaultApeApprove(stakingTokenContract)
+  const { onApprove } = useVaultApeApprove(stakingTokenContract, pid)
 
   const handleApprove = useCallback(async () => {
     try {

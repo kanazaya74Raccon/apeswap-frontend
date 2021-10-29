@@ -10,7 +10,14 @@ import { CHAIN_ID } from 'config/constants'
 import { fetchFarmUserAllowances } from 'state/farms/fetchFarmUser'
 import { fetchDualFarmUserAllowances } from 'state/dualFarms/fetchDualFarmUser'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterChefAddress, useAuctionAddress, useNonFungibleApesAddress, useMiniChefAddress } from './useAddress'
+import { updateVaultUserAllowance } from 'state/vaults'
+import {
+  useMasterChefAddress,
+  useAuctionAddress,
+  useNonFungibleApesAddress,
+  useMiniChefAddress,
+  useVaultApeAddress,
+} from './useAddress'
 import {
   useMasterchef,
   useBanana,
@@ -136,9 +143,8 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   const dispatch = useDispatch()
   const tokenContract = useNonFungibleApes()
   const multicallContract = useMulticallContract()
-  const chainId = useNetworkChainId()
   const nfaAddress = useNonFungibleApesAddress()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
@@ -153,9 +159,12 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
 }
 
 // Approve vault
-export const useVaultApeApprove = (lpContract: Contract) => {
+export const useVaultApeApprove = (lpContract: Contract, pid) => {
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
+  const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const vaultApeAddress = useVaultApeAddress()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, vaultApeContract, account)
@@ -167,11 +176,12 @@ export const useVaultApeApprove = (lpContract: Contract) => {
           cat: 'enable',
         },
       })
+      dispatch(updateVaultUserAllowance(multicallContract, vaultApeAddress, account, chainId, pid))
       return tx
     } catch (e) {
       return false
     }
-  }, [account, lpContract, vaultApeContract, chainId])
+  }, [account, lpContract, vaultApeContract, multicallContract, vaultApeAddress, dispatch, chainId, pid])
 
   return { onApprove: handleApprove }
 }

@@ -35,7 +35,6 @@ export const fetchVaultUserTokenBalances = async (multicallContract, account: st
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })
-  console.log(parsedTokenBalances)
   return parsedTokenBalances
 }
 

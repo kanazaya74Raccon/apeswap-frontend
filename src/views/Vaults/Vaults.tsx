@@ -9,6 +9,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
+import { CHAIN_ID } from 'config/constants/chains'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarms, usePriceBnbBusd, usePools, useStatsOverall, useVaults, useNetworkChainId } from 'state/hooks'
@@ -150,15 +151,13 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/pool-background-night.svg)' : 'url(/images/pool-background-day.svg)'};
+  background-image: url(/images/burning-vaults-bsc.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 250px;
+  height: 300px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    height: 300px;
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -166,39 +165,12 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 10px;
     padding-right: 10px;
-    height: 400px;
   }
 `
 
-const PoolMonkey = styled.div`
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/pool-ape-night.svg)' : 'url(/images/pool-ape.svg)')};
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-`
-
-const MonkeyWrapper = styled.div`
-  position: absolute;
-  width: 225px;
-  height: 275px;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 0px;
-  right: 0px;
-  animation: 5s ${floatSM} linear infinite;
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 24px;
-    padding-right: 24px;
-    animation: 10s ${float} linear infinite;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    width: 700px;
-    height: 1000px;
-    top: ${({ theme }) => (theme.isDark ? '-145px' : '-90px')};
-    right: 0;
-    animation: 10s ${float} linear infinite;
-  }
+const HeaderPolygon = styled(Header)`
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/burning-vaults-polygon-dark.svg)' : 'url(/images/burning-vaults-polygon-light.svg)'};
 `
 
 const StyledText = styled(Text)`
@@ -591,7 +563,7 @@ const Vaults: React.FC = () => {
         return orderBy(vaultsToSort, (vault: Vault) => vault?.apy?.daily, sortDirection)
       case 'yearlyapy':
         return orderBy(vaultsToSort, (vault: Vault) => vault?.apy?.daily, sortDirection)
-      case 'totalStaked':
+      case 'totalstaked':
         return orderBy(vaultsToSort, (vault: Vault) => parseInt(vault?.totalStaked), sortDirection)
       default:
         return orderBy(vaultsToSort, (vault: Vault) => vault.platform, 'asc')
@@ -644,24 +616,29 @@ const Vaults: React.FC = () => {
     </Container>
   )
 
+  const renderHeader = () => {
+    const headerContents = (
+      <HeadingContainer>
+        <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          {TranslateString(999, 'Burning Vaults')}
+        </StyledHeading>
+        {size.width > 968 && (
+          // <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
+           
+          // </Text>
+          <></>
+        )}
+      </HeadingContainer>
+    )
+    if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
+      return <HeaderPolygon>{headerContents}</HeaderPolygon>
+    }
+    return <Header>{headerContents}</Header>
+  }
+
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'Burning Vaults')}
-          </StyledHeading>
-          {size.width > 968 && (
-            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
-            </Text>
-          )}
-        </HeadingContainer>
-        <MonkeyWrapper>
-          <PoolMonkey />
-        </MonkeyWrapper>
-      </Header>
+      {renderHeader()}
       <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
@@ -683,7 +660,7 @@ const Vaults: React.FC = () => {
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBurnOnly(!burnOnly)}>
                   <StyledCheckbox checked={burnOnly} onChange={() => setBurnOnly(!burnOnly)} />
-                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'BURNING')}</StyledText>
+                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'Burning')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -701,7 +678,7 @@ const Vaults: React.FC = () => {
           <StyledLabelContainerDailyAPY>
             <StyledLabel active={sortOption === 'dailyapy'} onClick={() => handleSortOptionChange('dailyapy')}>
               Daily APY
-              {sortOption === 'apr' ? (
+              {sortOption === 'dailyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
@@ -709,7 +686,7 @@ const Vaults: React.FC = () => {
           <StyledLabelContainerYearlyAPY>
             <StyledLabel active={sortOption === 'yearlyapy'} onClick={() => handleSortOptionChange('yearlyapy')}>
               Yearly APY
-              {sortOption === 'totalStaked' ? (
+              {sortOption === 'yearlyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
@@ -717,7 +694,7 @@ const Vaults: React.FC = () => {
           <StyledLabelContainerTotalStaked>
             <StyledLabel active={sortOption === 'totalstaked'} onClick={() => handleSortOptionChange('totalstaked')}>
               Total Staked
-              {sortOption === 'earned' ? (
+              {sortOption === 'totalstaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>

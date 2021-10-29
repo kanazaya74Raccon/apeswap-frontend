@@ -110,7 +110,8 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/farm-polygon-night.svg)' : 'url(/images/farm-polygon-day.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
@@ -580,7 +581,7 @@ const DualFarms: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0}>
-            {TranslateString(999, 'Stake LP tokens to earn BANANA')}
+            {TranslateString(999, 'Stake LP tokens to earn Rewards')}
           </StyledHeading>
         </HeadingContainer>
       </Header>

@@ -9,6 +9,8 @@ import {
   updateNfaStakingUserBalance,
   updateUserNfaStakingPendingReward,
 } from 'state/actions'
+import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
+import track from 'utils/track'
 import {
   unstake,
   sousUnstake,
@@ -33,7 +35,7 @@ import {
   useSousChef,
   useVaultApe,
 } from './useContract'
-import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
+import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress, useVaultApeAddress } from './useAddress'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -126,17 +128,30 @@ export const useNfaUnstake = (sousId) => {
 }
 
 export const useVaultUnstake = (pid: number) => {
-  const { account } = useWeb3React()
-  const vaultApeContrct = useVaultApe()
+  const { account, chainId } = useWeb3React()
+  const vaultApeContract = useVaultApe()
+  const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const vaultApeAddress = useVaultApeAddress()
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      const txHash = await vaultUnstake(vaultApeContrct, pid, amount, account)
+      const txHash = await vaultUnstake(vaultApeContract, pid, amount, account)
+      track({
+        event: 'vault',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          amount,
+          pid,
+        },
+      })
+      dispatch(updateVaultUserBalance(multicallContract, account, chainId, pid))
+      dispatch(updateVaultUserStakedBalance(multicallContract, vaultApeAddress, account, chainId, pid))
       console.info(txHash)
     },
-    [account, vaultApeContrct, pid],
+    [account, vaultApeContract, dispatch, pid, chainId, multicallContract, vaultApeAddress],
   )
-
   return { onUnstake: handleUnstake }
 }
 

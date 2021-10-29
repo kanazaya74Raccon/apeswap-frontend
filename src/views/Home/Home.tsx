@@ -10,6 +10,8 @@ import Banner from './components/Header/Banner'
 import HotFarms from './components/HotFarms/HotFarms'
 import CoolPools from './components/CoolPools/CoolPools'
 import WhenNewsSer from './components/WhenNewsSer/WhenNewsSer'
+import DualHotFarms from './components/DualFarms/DualHotFarms'
+import VauluableVaults from './components/ValuableVaults/ValuableVaults'
 
 export interface GridWidth {
   spanFirst?: number
@@ -134,6 +136,24 @@ const RightSideFlexWrapper = styled.div`
 
 const Home: React.FC = () => {
   const appChainId = useNetworkChainId()
+
+  const renderYieldCards = () => {
+    if (appChainId === CHAIN_ID.MATIC || appChainId === CHAIN_ID.MATIC_TESTNET) {
+      return (
+        <>
+          <DualHotFarms />
+          <VauluableVaults />
+        </>
+      )
+    }
+    return (
+      <>
+        <HotFarms />
+        <CoolPools />
+      </>
+    )
+  }
+
   return (
     <>
       <Page width="1200px">
@@ -146,12 +166,7 @@ const Home: React.FC = () => {
               <WelcomeCard />
               <FarmStakingCard />
             </FrontRowWrapper>
-            {appChainId === CHAIN_ID.BSC && (
-              <FarmAndPoolsWrapper>
-                <HotFarms />
-                <CoolPools />
-              </FarmAndPoolsWrapper>
-            )}
+            <FarmAndPoolsWrapper>{renderYieldCards()}</FarmAndPoolsWrapper>
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
             <WhenNewsSer />

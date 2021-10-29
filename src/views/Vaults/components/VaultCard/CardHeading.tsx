@@ -271,7 +271,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData, isPair, token0, token1 } = vault
+  const { userData, isPair, token0, token1, pid } = vault
   const stakingTokenBalance = new BigNumber(userData?.stakedWantBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -288,7 +288,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       return <UnlockButton />
     }
     if (needsApproval) {
-      return <ApprovalAction stakingContractAddress={stakingTokenAddress} sousId={sousId} isLoading={isLoading} />
+      return <ApprovalAction stakingContractAddress={stakingTokenAddress} pid={pid} isLoading={isLoading} />
     }
     if (!needsApproval && !accountHasStakedBalance) {
       return (
