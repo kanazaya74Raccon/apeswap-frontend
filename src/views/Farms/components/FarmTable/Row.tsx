@@ -169,7 +169,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
                       {!account ? (
-                        <UnlockButton />
+                        <UnlockButton  padding="8px" />
                       ) : (
                         <HarvestAction
                           {...props.earned}

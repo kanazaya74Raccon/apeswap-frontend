@@ -31,7 +31,7 @@ const HotFarmsWrapper = styled.div`
 
 const CardHeaderImage = styled.div`
   position: absolute;
-  background: ${({ theme }) => theme.isDark ? 'rgba(184, 152, 237, .35)' : 'rgba(184, 152, 237, .7)'};
+  background: ${({ theme }) => (theme.isDark ? 'rgba(184, 152, 237, .35)' : 'rgba(184, 152, 237, .7)')};
   height: 321px;
   width: 100%;
   border-radius: 30px;
@@ -69,8 +69,8 @@ const FarmWrapper = styled.div`
   }
 `
 
-const DEFAULT_FARM = 1
-const DEFAULT_FARM_TWO = 2
+const DEFAULT_FARM = 0
+const DEFAULT_FARM_TWO = 6
 
 const DualHotFarms = () => {
   const pid1 = DEFAULT_FARM

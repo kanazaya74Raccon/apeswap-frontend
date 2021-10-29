@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
 
 interface HarvestProps {
@@ -32,31 +32,26 @@ const PCard = styled.div`
 `
 
 const StyledBackground = styled(Flex)`
-  justify-content: space-between;
+  width: 135px;
+  height: 90px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
-  width: 137px;
-  height: 90px;
-  align-items: flex-end;
-  margin-left: 0px;
-  padding-left: 7px;
-  padding-right: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
 `
 
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-  display: flex;
-  width: 45px;
-  height: 45px;
-`
 
-const StyledArrow = styled.img`
-  display: none;
-  align-self: center;
-  display: flex;
-  width: 12px;
-  height: 12px;
+const IconImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+  align: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 57px;
+    height: 57px;
+  }
 `
 
 const DescriptionContainer = styled.div`
@@ -111,9 +106,21 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
   return (
     <PCard>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakingToken?.symbol}.svg`} alt={stakingToken?.symbol} />
-        <StyledArrow src="/images/arrow.svg" alt="arrow" />
-        <StyledImage src={`/images/tokens/${image || `${tokenName}.svg`}`} alt={tokenName} />
+        <IconImage
+          src={`/images/tokens/${stakingToken?.symbol}.svg`}
+          alt={stakingToken?.symbol}
+          width={50}
+          height={50}
+          marginLeft="5px"
+        />
+        <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} />
+        <IconImage
+          src={`/images/tokens/${image || `${tokenName}.svg`}`}
+          alt={tokenName}
+          width={50}
+          height={50}
+          marginRight="5px"
+        />
       </StyledBackground>
       <DescriptionContainer>
         <StyledHeading>{tokenName}</StyledHeading>

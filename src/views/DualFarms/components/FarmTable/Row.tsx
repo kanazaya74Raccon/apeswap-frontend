@@ -172,7 +172,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'details':
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
-                      {!account ? <UnlockButton /> : <HarvestAction dualFarm={details} />}
+                      {!account ? <UnlockButton  padding="8px" /> : <HarvestAction dualFarm={details} />}
                       <CellInner>
                         <CellLayout>
                           <Details actionPanelToggled={actionPanelToggled} />

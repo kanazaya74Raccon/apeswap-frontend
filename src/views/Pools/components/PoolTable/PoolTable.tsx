@@ -138,7 +138,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return (

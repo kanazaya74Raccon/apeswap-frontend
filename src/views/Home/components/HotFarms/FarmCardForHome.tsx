@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
 
 export interface FarmWithStakedValue extends Farm {
@@ -39,30 +39,31 @@ const PCard = styled.div`
 `
 
 const StyledBackground = styled(Flex)`
-  justify-content: space-between;
+  width: 135px;
+  height: 90px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
-  width: 104.69px;
-  height: 90px;
-  align-items: flex-end;
-  margin-left: 0px;
-  padding-left: 7px;
-  padding-right: 7px;
-`
-
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
   display: flex;
-  width: 90px;
-  height: 90px;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
 `
 
+const IconImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+  align: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 57px;
+    height: 57px;
+  }
+`
 const DescriptionContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  left: 115px;
+  left: 145px;
   width: 190px;
   height: 60px;
 `
@@ -99,7 +100,7 @@ const ApyNumber = styled(Text)`
 `
 
 const StyledHeading = styled(Heading)`
-  font-size: 22px;
+  font-size: 20px;
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
   }
@@ -107,13 +108,28 @@ const StyledHeading = styled(Heading)`
 
 const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
   const { tokenSymbol, apr, quoteTokenSymbol } = farm
-  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
   const farmAPR = new BigNumber(apr && apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1))
 
   return (
     <PCard>
       <StyledBackground>
-        <StyledImage src={`/images/farms/${farmImage}.svg`} alt={tokenSymbol} />
+        <IconImage
+          src={`/images/tokens/${tokenSymbol}.svg`}
+          alt={tokenSymbol}
+          width={50}
+          height={50}
+          marginLeft="7.5px"
+        />
+        <IconImage
+          src={`/images/tokens/${quoteTokenSymbol}.svg`}
+          alt={tokenSymbol}
+          width={25}
+          height={25}
+          marginLeft="-15px"
+          marginTop="30px"
+        />
+        <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="2px" />
+        <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />
       </StyledBackground>
       <DescriptionContainer>
         <StyledHeading>

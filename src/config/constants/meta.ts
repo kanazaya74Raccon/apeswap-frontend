@@ -31,4 +31,13 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/gnana': {
     title: 'GNANA | ApeSwap',
   },
+  '/vaults': {
+    title: 'Vaults | ApeSwap',
+  },
+  '/auction': {
+    title: 'Auction | ApeSwap',
+  },
+  '/staking': {
+    title: 'Staking | ApeSwap',
+  },
 }

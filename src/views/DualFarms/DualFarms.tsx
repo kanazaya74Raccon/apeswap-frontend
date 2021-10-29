@@ -499,8 +499,9 @@ const DualFarms: React.FC = () => {
         originalValue: farm.apr,
       },
       farm: {
-        image: '',
-        label: `${farm?.stakeTokens?.token0?.symbol}-${farm?.stakeTokens?.token1?.symbol}`,
+        stakeTokens: farm?.stakeTokens,
+        rewardTokens: farm?.rewardTokens,
+        label: `${farm?.stakeTokens?.token1?.symbol}-${farm?.stakeTokens?.token0?.symbol}`,
         pid: farm.pid,
       },
       earned: {

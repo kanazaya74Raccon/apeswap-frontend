@@ -5,7 +5,7 @@ import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -46,24 +46,15 @@ const PoolFinishedSash = styled.div`
   }
 `
 
-const StyledBackground = styled(Flex)`
-  margin-left: 10px;
-
-  @media (min-width: 500px) {
-    justify-content: space-between;
-    background: rgb(255, 179, 0, 0.4);
-    border-radius: 20px;
-    width: 200px;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 0px;
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 121px;
-  }
+const StyledBackground = styled.div`
+  width: 250px;
+  height: 80px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
 `
 
 const StyledHeading = styled(Heading)`
@@ -121,16 +112,15 @@ const StyledFlexContainer = styled(Flex)`
   flex: 1;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
   }
 `
 
@@ -162,7 +152,7 @@ const LabelContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
-  width: 120px;
+  width: 110px;
   margin-right: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -210,41 +200,37 @@ const StyledAPRText = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  width: 180px;
+  width: 100px;
   display: flex;
   justify-content: flex-end;
 `
 
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 45px;
-    height: 45px;
-  }
+const IconImage = styled(Image)`
+  align: center;
+  width: 50px;
+  height: 50px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 65px;
-    height: 65px;
+    width: 57px;
+    height: 57px;
   }
 `
 
 const StyledArrow = styled.img`
-  display: none;
   align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 12px;
-    height: 12px;
-  }
+  display: flex;
+  width: 12px;
+  height: 12px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 24px;
     height: 24px;
   }
+`
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
@@ -277,7 +263,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return (
@@ -312,11 +298,23 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   }
 
   return (
-    <Flex>
+    <Container>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakeToken}.svg`} alt={tokenSymbol} />
-        <StyledArrow src="/images/arrow.svg" alt="arrow" />
-        <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />
+        <IconImage
+          src={`/images/tokens/${stakeToken}.svg`}
+          alt={stakeToken}
+          width={40}
+          height={40}
+          marginLeft="7.5px"
+        />
+        <IconImage src="/images/arrow.svg" alt="arrow" width={5} height={5} />
+        <IconImage
+          src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
+          alt={earnToken}
+          width={40}
+          height={40}
+          marginRight="7.5px"
+        />
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
@@ -369,7 +367,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         </LabelContainer2>
         {stakeToken === 'GNANA' && <PoolFinishedSash />}
       </StyledFlexContainer>
-    </Flex>
+    </Container>
   )
 }
 

@@ -624,7 +624,7 @@ const Vaults: React.FC = () => {
         </StyledHeading>
         {size.width > 968 && (
           // <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-           
+
           // </Text>
           <></>
         )}

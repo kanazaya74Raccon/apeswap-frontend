@@ -62,8 +62,8 @@ const FarmWrapper = styled.div`
   }
 `
 
-const DEFAULT_FARM = 3
-const DEFAULT_FARM_TWO = 6
+const DEFAULT_FARM = 1
+const DEFAULT_FARM_TWO = 2
 
 const VauluableVaults = () => {
   const pid1 = DEFAULT_FARM

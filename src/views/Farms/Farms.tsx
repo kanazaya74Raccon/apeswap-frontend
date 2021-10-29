@@ -561,7 +561,8 @@ const Farms: React.FC = () => {
         originalValue: farm.apr && farm.apr.toNumber(),
       },
       farm: {
-        image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
+        token0: farm.quoteTokenSymbol,
+        token1: farm.tokenSymbol,
         label: lpLabel,
         pid: farm.pid,
       },
