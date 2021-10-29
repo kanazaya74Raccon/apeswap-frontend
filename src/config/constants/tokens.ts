@@ -581,6 +581,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  toon: {
+    symbol: 'TOON',
+    address: {
+      56: '0xaeE433ADeBe0FBB88dAa47eF0C1A513CaA52EF02',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
