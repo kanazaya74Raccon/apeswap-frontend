@@ -24,7 +24,7 @@ const ifos: Ifo[] = [
   {
     id: 'nfty',
     address: '0xc55114204b5fA30b34c360De0E938eB3B3d4c0f6', // Leave empty for "Coming Soon!"
-    isActive: true,
+    isActive: false,
     name: 'NFTY Network',
     subTitle: 'Decentralized NFT Gating Ecosystem',
     description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
