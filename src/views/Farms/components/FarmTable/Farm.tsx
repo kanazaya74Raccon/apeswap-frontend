@@ -7,6 +7,7 @@ export interface FarmProps {
   pid: number
   token0?: string
   token1?: string
+  image?: string
 }
 
 const IconImage = styled(Image)`
@@ -34,11 +35,17 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label }) => {
+const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label, image }) => {
   return (
     <Container>
       <StyledBackground>
-        <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} marginLeft="7.5px" />
+        <IconImage
+          src={`/images/tokens/${image || `${token1}.svg`}`}
+          alt={token1}
+          width={50}
+          height={50}
+          marginLeft="7.5px"
+        />
         <IconImage
           src={`/images/tokens/${token0}.svg`}
           alt={token0}

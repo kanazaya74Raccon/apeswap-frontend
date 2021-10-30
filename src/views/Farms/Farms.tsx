@@ -565,6 +565,7 @@ const Farms: React.FC = () => {
         token1: farm.tokenSymbol,
         label: lpLabel,
         pid: farm.pid,
+        image: farm.image
       },
       earned: {
         earnings: farm.userData ? getBalanceNumber(new BigNumber(farm.userData.earnings)) : null,

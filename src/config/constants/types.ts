@@ -61,6 +61,7 @@ export interface FarmConfig {
   lpAddresses: Address
   tokenSymbol: string
   style?: keyof FarmStyles
+  image?: string
   disableApr?: boolean
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken

@@ -158,6 +158,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
         farmAPR={farmAPR}
         removed={removed}
         showExpandableSection={showExpandableSection}
+        image={farm?.image}
       />
       <StyledContainer>
         <ExpandingWrapper expanded={showExpandableSection}>

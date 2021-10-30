@@ -65,7 +65,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
   value,
   addLiquidityUrl,
   inputTitle,
-  displayDecimals
+  displayDecimals,
 }) => {
   const TranslateString = useI18n()
   const isBalanceZero = max === '0' || !max

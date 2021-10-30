@@ -24,6 +24,7 @@ export interface ExpandableSectionProps {
   removed: boolean
   pid?: number
   lpSymbol: string
+  image?: string
   showExpandableSection?: boolean
 }
 
@@ -236,6 +237,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   apr,
   token0,
   token1,
+  image,
   tokenSymbol,
   addLiquidityUrl,
   bananaPrice,
@@ -257,7 +259,13 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   return (
     <Container>
       <StyledBackground>
-        <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={70} height={70} marginLeft="7.5px" />
+        <IconImage
+          src={`/images/tokens/${image || `${token1}.svg`}`}
+          alt={token1}
+          width={70}
+          height={70}
+          marginLeft="7.5px"
+        />
         <IconQuoteToken
           src={`/images/tokens/${token0}.svg`}
           alt={token0}
