@@ -3,6 +3,26 @@ import { Ifo } from './types'
 const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
+      id: 'gan',
+      address: '', // Leave empty for "Coming Soon!"
+      isActive: true,
+      name: 'Galactic Arena',
+      subTitle: 'Welcome to the Galactic Arena!',
+      description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
+      launchDate: 'November 4th',
+      launchTime: '16:00 UTC',
+      saleAmount: '80,000,000 GAN',
+      raiseAmount: '$400,000',
+      vestingTime: '3 Months',
+      projectSiteUrl: 'http://galacticarena.io/',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      tokenDecimals: 18,
+      releaseBlockNumber: 11342539, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
+    {
       id: 'nfty',
       address: '0xF04c0efc1aBF1c98076a8ecEd2a68009ee55A0A9', // Leave empty for "Coming Soon!"
       isActive: true,
