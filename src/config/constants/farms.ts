@@ -118,7 +118,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 41,
-    image: '',
+    image: 'AUTO.png',
     lpSymbol: 'AUTO-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -134,7 +134,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 42,
-    image: '',
+    image: 'bxBTC.png',
     lpSymbol: 'BXBTC-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -150,7 +150,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 50,
-    image: '',
+    image: 'NRV.png',
     lpSymbol: 'NRV-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -200,7 +200,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 30,
-    image: '',
+    image: 'KEYFI.png',
     lpSymbol: 'KEYFI-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -264,7 +264,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 32,
-    image: '',
+    image: 'XRP.png',
     lpSymbol: 'XRP-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -280,7 +280,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 52,
-    image: '',
+    image: 'ZEC.png',
     lpSymbol: 'ZEC-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -296,7 +296,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 54,
-    image: '',
+    image: 'NEAR.png',
     lpSymbol: 'NEAR-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -360,7 +360,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 59,
-    image: '',
+    image: 'CELR.png',
     lpSymbol: 'CELR-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -376,7 +376,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 60,
-    image: '',
+    image: 'SHIB.png',
     lpSymbol: 'SHIB-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -408,7 +408,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 62,
-    image: '',
+    image: 'pCWS.png',
     lpSymbol: 'pCWS-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -440,7 +440,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 51,
-    image: '',
+    image: 'AVAX.png',
     lpSymbol: 'AVAX-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -696,23 +696,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.banana,
   },
   {
-    pid: 23,
-    image: '',
-    lpSymbol: 'ROCKET-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
-      56: '0x93fa1a6357de25031311f784342c33a26cb1c87a', // ROCKET-BNB ApePair
-    },
-    tokenSymbol: 'ROCKET',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a', // Placeholder
-      56: '0x3bA5aee47Bb7eAE40Eb3D06124a74Eb89Da8ffd2', // ROCKET Token
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-  },
-  {
     pid: 8,
     image: '',
     lpSymbol: 'BUSD-USDC',
@@ -810,7 +793,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 24,
-    image: '',
+    image: 'NAUT.png',
     lpSymbol: 'NAUT-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
@@ -842,7 +825,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 25,
-    image: '',
+    image: 'CAKE.png',
     lpSymbol: 'CAKE-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // Placeholder
@@ -874,7 +857,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 16,
-    image: '',
+    image: 'GFCE.png',
     lpSymbol: 'GFCE-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-GFCE BananaPair
@@ -890,7 +873,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 11,
-    image: '',
+    image: 'BIFI.png',
     lpSymbol: 'BIFI-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -970,7 +953,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 70,
-    image: '',
+    image: 'GMR.png',
     lpSymbol: 'GMR-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1002,7 +985,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 66,
-    image: '',
+    image: 'FEG.png',
     lpSymbol: 'FEG-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1019,7 +1002,7 @@ const farms: FarmConfig[] = [
 
   {
     pid: 67,
-    image: '',
+    image: 'ATA.png',
     lpSymbol: 'ATA-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1035,7 +1018,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 68,
-    image: '',
+    image: 'GRAND.png',
     lpSymbol: 'GRAND-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1099,7 +1082,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 74,
-    image: '',
+    image: 'FOXY.png',
     lpSymbol: 'FOXY-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1115,7 +1098,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 76,
-    image: '',
+    image: 'WYVERN.png',
     lpSymbol: 'WYVERN-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1147,8 +1130,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 79,
-    image: '',
-    lpSymbol: 'BNB-LORY',
+    image: 'LORY.png',
+    lpSymbol: 'LORY-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x3d0c2ee0156675b90bc41e5559970415a20414f5',
@@ -1163,7 +1146,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 78,
-    image: '',
+    image: 'SCAM.png',
     lpSymbol: 'SCAM-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1243,7 +1226,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 84,
-    image: '',
+    image: 'TWT.png',
     lpSymbol: 'TWT-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1259,7 +1242,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 85,
-    image: '',
+    image: 'EPS.png',
     lpSymbol: 'EPS-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1275,7 +1258,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 86,
-    image: '',
+    image: 'XVS.png',
     lpSymbol: 'XVS-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1307,7 +1290,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 88,
-    image: '',
+    image: 'NEWB.png',
     lpSymbol: 'NEWB-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1419,7 +1402,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 95,
-    image: '',
+    image: 'AXS.png',
     lpSymbol: 'AXS-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1451,7 +1434,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 97,
-    image: '',
+    image: 'MARU.png',
     lpSymbol: 'MARU-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1467,7 +1450,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 98,
-    image: '',
+    image: 'PERA.png',
     lpSymbol: 'PERA-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1547,7 +1530,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 103,
-    image: '',
+    image: 'BHC.png',
     lpSymbol: 'BHC-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1691,7 +1674,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 113,
-    image: '',
+    image: 'ZIG.png',
     lpSymbol: 'ZIG-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1739,7 +1722,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 116,
-    image: '',
+    image: 'POLAR.png',
     lpSymbol: 'POLAR-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1755,7 +1738,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 117,
-    image: '',
+    image: 'CEEK.png',
     lpSymbol: 'CEEK-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1803,7 +1786,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 120,
-    image: '',
+    image: 'DEP.png',
     lpSymbol: 'DEP-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1979,7 +1962,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 131,
-    image: '',
+    image: 'DCB.png',
     lpSymbol: 'DCB-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2075,7 +2058,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 137,
-    image: '',
+    image: 'THG.png',
     lpSymbol: 'THG-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2091,7 +2074,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 138,
-    image: '',
+    image: 'WSG.png',
     lpSymbol: 'WSG-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2107,7 +2090,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 139,
-    image: '',
+    image: 'OTAKU.png',
     lpSymbol: 'OTAKU-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2123,7 +2106,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 140,
-    image: '',
+    image: 'TNNS.png',
     lpSymbol: 'TNNS-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2139,7 +2122,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 141,
-    image: '',
+    image: 'KING.png',
     lpSymbol: 'KING-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2171,7 +2154,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 143,
-    image: '',
+    image: 'TUSD.png',
     lpSymbol: 'TUSD-BUSD LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2219,7 +2202,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 146,
-    image: '',
+    image: 'WRX.png',
     lpSymbol: 'WRX-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2251,8 +2234,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 7, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-BAKE',
+    image: 'BAKE.svg',
+    lpSymbol: 'BAKE-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-BAKE BananaPair
       56: '0x51bb531a5253837a23ce8de478a4941a71a4202c',
@@ -2268,8 +2251,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 15, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-GFCE',
+    image: 'GFCE.png',
+    lpSymbol: 'GFCE-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-GFCE BananaPair
       56: '0x9C87cae57f0962997d9bd66C24f3425d20543e3d',
@@ -2285,8 +2268,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 6, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-CAKE',
+    image: 'CAKE.png',
+    lpSymbol: 'CAKE-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-CAKE BananaPair
       56: '0x9949e1db416a8a05a0cac0ba6ea152ba8729e893',
@@ -2302,8 +2285,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 10, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-BIFI',
+    image: 'BIFI.png',
+    lpSymbol: 'BIFI-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x2ce820319047c407cb952060df5f7fb3d9a9a688', // BANANA-BIFI BananaPair
@@ -2319,8 +2302,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 19, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-NAUT',
+    image: 'NAUT.png',
+    lpSymbol: 'NAUT-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xf579A6196d6CC8c2C40952Ece57345AbbD589c91', // BANANA-NAUT BananaPair
@@ -2336,8 +2319,8 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 9, // NOTE: Inactive Farm
-    image: '',
-    lpSymbol: 'BANANA-BREW',
+    image: 'BREW.svg',
+    lpSymbol: 'BREW-BANANA',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x5514E0E1DA40A38E19d58e8B6E16226E16e183fA', // BANANA-BREW BananaPair
