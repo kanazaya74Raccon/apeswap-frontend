@@ -97,7 +97,7 @@ const StyledFlexContainer = styled(Flex)`
   flex: 1;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -106,7 +106,6 @@ const StyledFlexContainer = styled(Flex)`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
   }
 `
 
@@ -190,7 +189,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 100%;
+    width: 150px;
   }
 `
 
@@ -227,19 +226,9 @@ const IconArrow = styled(Image)`
   }
 `
 
-const StyledImage = styled.img`
-  display: none;
-
-  @media (min-width: 400px) {
-    display: flex;
-    width: 75px;
-    height: 75px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: 109px;
-    height: 109px;
-  }
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
@@ -266,7 +255,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const { account } = useWeb3React()
 
   return (
-    <Flex>
+    <Container>
       <StyledBackground>
         <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={70} height={70} marginLeft="7.5px" />
         <IconQuoteToken
@@ -334,7 +323,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           </ButtonContainer>
         </LabelContainer2>
       </StyledFlexContainer>
-    </Flex>
+    </Container>
   )
 }
 

@@ -40,6 +40,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         max={fullBalance}
+        displayDecimals={10}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={TranslateString(999, 'Stake')}

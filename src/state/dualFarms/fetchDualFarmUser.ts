@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
 import miniChefABI from 'config/abi/miniApeV2.json'
+import rewarderABI from 'config/abi/miniComplexRewarder.json'
 import multicall from 'utils/multicall'
 import { Contract } from 'web3-eth-contract'
 import { dualFarmsConfig } from 'config/constants'
@@ -59,7 +60,7 @@ export const fetchDualFarmUserStakedBalances = async (
   return parsedStakedBalances
 }
 
-export const fetchDualFarmUserEarnings = async (
+export const fetchDualMiniChefEarnings = async (
   multicallContract: Contract,
   miniChefAddress: string,
   account: string,
@@ -73,6 +74,22 @@ export const fetchDualFarmUserEarnings = async (
   })
 
   const rawEarnings = await multicall(multicallContract, miniChefABI, calls)
+  const parsedEarnings = rawEarnings.map((earnings) => {
+    return new BigNumber(earnings).toJSON()
+  })
+  return parsedEarnings
+}
+
+export const fetchDualFarmRewarderEarnings = async (multicallContract: Contract, account: string) => {
+  const calls = dualFarmsConfig.map((farm) => {
+    return {
+      address: farm.rewarderAddress,
+      name: 'pendingToken',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawEarnings = await multicall(multicallContract, rewarderABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })

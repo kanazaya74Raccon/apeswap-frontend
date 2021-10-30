@@ -330,7 +330,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
         </LabelContainer>
-        <LabelContainer>
+        <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
               <StyledText4 fontFamily="poppins" color="primary" pr="3px">
@@ -346,7 +346,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             {!account ? <UnlockButton padding="8px" /> : <HarvestAction dualFarm={farm} />}
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
-        </LabelContainer>
+        </LabelContainer2>
       </StyledFlexContainer>
     </Flex>
   )

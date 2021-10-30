@@ -451,7 +451,11 @@ const DualFarms: React.FC = () => {
             sortDirection,
           )
         case 'earned':
-          return orderBy(farms, (farm: DualFarm) => (farm.userData ? Number(farm.userData.earnings) : 0), sortDirection)
+          return orderBy(
+            farms,
+            (farm: DualFarm) => (farm.userData ? Number(farm.userData?.miniChefEarnings) : 0),
+            sortDirection,
+          )
         case 'liquidity':
           return orderBy(farms, (farm: DualFarm) => Number(farm.totalStaked), sortDirection)
         default:
@@ -489,6 +493,12 @@ const DualFarms: React.FC = () => {
 
   const rowData = farmsStakedMemoized.map((farm) => {
     const lpLabel = `${farm?.stakeTokens?.token0?.symbol}-${farm?.stakeTokens?.token1?.symbol}`
+    const miniChefRewardTokens = getBalanceNumber(
+      farm?.userData?.miniChefEarnings,
+      farm?.rewardTokens?.token0?.decimals,
+    )
+    const rewarderTokens = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
+    const dollarsEarned = miniChefRewardTokens * farm?.rewardToken0Price + rewarderTokens * farm?.rewardToken1Price
 
     const row: RowProps = {
       apr: {
@@ -505,7 +515,7 @@ const DualFarms: React.FC = () => {
         pid: farm.pid,
       },
       earned: {
-        earnings: farm.userData ? getBalanceNumber(new BigNumber(farm.userData.earnings)) : null,
+        earnings: farm.userData ? dollarsEarned : null,
         pid: farm.pid,
       },
       liquidity: {

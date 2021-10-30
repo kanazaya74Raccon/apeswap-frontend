@@ -20,7 +20,7 @@ const Earned: React.FunctionComponent<EarnedProps> = ({ earnings }) => {
 
   const amountEarned = account ? earnings : null
 
-  const displayBalance = amountEarned ? amountEarned.toLocaleString() : '?'
+  const displayBalance = amountEarned ? `$${amountEarned?.toFixed(2)}` : '?'
   return <Amount earned={amountEarned}>{displayBalance}</Amount>
 }
 

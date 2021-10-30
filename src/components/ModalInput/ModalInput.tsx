@@ -12,6 +12,7 @@ interface ModalInputProps {
   value: string
   addLiquidityUrl?: string
   inputTitle?: string
+  displayDecimals?: number
 }
 
 const getBoxShadow = ({ isWarning = false, theme }) => {
@@ -64,11 +65,12 @@ const ModalInput: React.FC<ModalInputProps> = ({
   value,
   addLiquidityUrl,
   inputTitle,
+  displayDecimals
 }) => {
   const TranslateString = useI18n()
   const isBalanceZero = max === '0' || !max
 
-  const displayBalance = isBalanceZero ? '0' : parseFloat(max).toFixed(4)
+  const displayBalance = isBalanceZero ? '0' : parseFloat(max).toFixed(displayDecimals || 4)
 
   return (
     <div style={{ position: 'relative' }}>

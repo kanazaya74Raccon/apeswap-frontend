@@ -12,10 +12,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 12px;
+  margin-left: 5px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 24px;
+    margin-left: 10px;
   }
 
   svg {

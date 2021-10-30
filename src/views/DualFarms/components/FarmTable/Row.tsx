@@ -154,7 +154,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const isMobile = !isXl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
-  const earnings = props.details.userData?.earnings
+  const earnings = props.details.userData?.miniChefEarnings
   const pid = props.details.pid
 
   const handleRenderRow = () => {
@@ -205,9 +205,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
               }
             })}
           </StyledFlex>
-          {actionPanelToggled && details && (
-            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} liquidity={liquidity} />
-          )}
+          {actionPanelToggled && details && <ActionPanel farm={details} />}
         </StyledTr>
       )
     }

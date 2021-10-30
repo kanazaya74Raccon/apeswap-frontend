@@ -31,7 +31,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const chainId = useNetworkChainId()
   const lpSymbol = `${stakeTokens?.token0?.symbol}-${stakeTokens?.token1?.symbol}`
 
-  const rawEarningsBalance = getBalanceNumber(dualFarm?.userData?.earnings)
+  const rawEarningsBalance = getBalanceNumber(dualFarm?.userData?.miniChefEarnings)
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const lpContract = useMemo(() => {
@@ -40,7 +40,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
 
   const lpName = lpSymbol.toUpperCase()
 
-  const { onApprove } = useDualFarmApprove(lpContract)
+  const { onApprove } = useDualFarmApprove(lpContract, pid)
 
   const handleApprove = useCallback(async () => {
     try {

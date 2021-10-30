@@ -32,6 +32,10 @@ export interface DualFarm extends DualFarmConfig {
   quoteTokenAmount?: BigNumber
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
+  stakeToken0Price?: number
+  stakeToken1Price?: number
+  rewardToken0Price?: number
+  rewardToken1Price?: number
   poolWeight?: BigNumber
   multiplier?: string
   apr?: number
@@ -40,7 +44,8 @@ export interface DualFarm extends DualFarmConfig {
     allowance: BigNumber
     tokenBalance: BigNumber
     stakedBalance: BigNumber
-    earnings: BigNumber
+    miniChefEarnings: BigNumber
+    rewarderEarnings: BigNumber
   }
 }
 

@@ -144,7 +144,7 @@ const LabelContainer = styled.div`
   align-items: flex-start;
   margin-top: 10px;
   width: 110px;
-  margin-right: 10px;
+  margin-right: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;

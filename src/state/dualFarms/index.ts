@@ -4,10 +4,11 @@ import { Contract } from 'web3-eth-contract'
 import { dualFarmsConfig } from 'config/constants'
 import fetchDualFarms from './fetchDualFarms'
 import {
-  fetchDualFarmUserEarnings,
+  fetchDualMiniChefEarnings,
   fetchDualFarmUserAllowances,
   fetchDualFarmUserTokenBalances,
   fetchDualFarmUserStakedBalances,
+  fetchDualFarmRewarderEarnings,
 } from './fetchDualFarmUser'
 import { TokenPrices, DualFarm, DualFarmsState } from '../types'
 
@@ -34,6 +35,11 @@ export const dualFarmsSlice = createSlice({
     updateDualFarmUserData: (state, action) => {
       const { field, value, pid } = action.payload
       const index = state.data.findIndex((p) => p.pid === pid)
+      console.log('dual farms update')
+      console.log(index)
+      console.log(state.data[index])
+      console.log(...state.data)
+      console.log(action.payload)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
   },
@@ -59,14 +65,16 @@ export const fetchDualFarmUserDataAsync =
       const userFarmAllowances = await fetchDualFarmUserAllowances(multicallContract, miniChefAddress, account)
       const userFarmTokenBalances = await fetchDualFarmUserTokenBalances(multicallContract, account)
       const userStakedBalances = await fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account)
-      const userFarmEarnings = await fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account)
+      const miniChefEarnings = await fetchDualMiniChefEarnings(multicallContract, miniChefAddress, account)
+      const rewarderEarnings = await fetchDualFarmRewarderEarnings(multicallContract, account)
       const arrayOfUserDataObjects = dualFarmsConfig.map((dualFarm) => {
         return {
           pid: dualFarm.pid,
           allowance: userFarmAllowances[dualFarm.pid],
           tokenBalance: userFarmTokenBalances[dualFarm.pid],
           stakedBalance: userStakedBalances[dualFarm.pid],
-          earnings: userFarmEarnings[dualFarm.pid],
+          miniChefEarnings: miniChefEarnings[dualFarm.pid],
+          rewarderEarnings: rewarderEarnings[dualFarm.pid],
         }
       })
       dispatch(setDualFarmUserData(arrayOfUserDataObjects))
@@ -78,24 +86,34 @@ export const fetchDualFarmUserDataAsync =
 export const updateDualFarmUserAllowances =
   (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
     const allowances = await fetchDualFarmUserAllowances(multicallContract, miniChefAddress, account)
-    dispatch(updateDualFarmUserData({ pid, field: 'allowance', value: allowances[pid] }))
+    const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
+    dispatch(updateDualFarmUserData({ pid, field: 'allowance', value: allowances[pidIndex] }))
   }
 
 export const updateDualFarmUserTokenBalances = (multicallContract, pid, account: string) => async (dispatch) => {
   const tokenBalances = await fetchDualFarmUserTokenBalances(multicallContract, account)
-  dispatch(updateDualFarmUserData({ pid, field: 'tokenBalance', value: tokenBalances[pid] }))
+  const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
+  dispatch(updateDualFarmUserData({ pid, field: 'tokenBalance', value: tokenBalances[pidIndex] }))
 }
 
 export const updateDualFarmUserStakedBalances =
   (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
     const stakedBalances = await fetchDualFarmUserStakedBalances(multicallContract, miniChefAddress, account)
-    dispatch(updateDualFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
+    const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
+    dispatch(updateDualFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pidIndex] }))
   }
 
 export const updateDualFarmUserEarnings =
   (multicallContract, miniChefAddress, pid, account: string) => async (dispatch) => {
-    const pendingRewards = await fetchDualFarmUserEarnings(multicallContract, miniChefAddress, account)
-    dispatch(updateDualFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
+    const pendingRewards = await fetchDualMiniChefEarnings(multicallContract, miniChefAddress, account)
+    const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
+    dispatch(updateDualFarmUserData({ pid, field: 'miniChefEarnings', value: pendingRewards[pidIndex] }))
   }
+
+export const updateDualFarmRewarderEarnings = (multicallContract, pid, account: string) => async (dispatch) => {
+  const rewarderEarnings = await fetchDualFarmRewarderEarnings(multicallContract, account)
+  const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
+  dispatch(updateDualFarmUserData({ pid, field: 'rewarderEarnings', value: rewarderEarnings[pidIndex] }))
+}
 
 export default dualFarmsSlice.reducer

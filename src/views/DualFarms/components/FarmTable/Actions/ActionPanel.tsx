@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
+import { useWeb3React } from '@web3-react/core'
 import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
@@ -12,12 +13,7 @@ import Multiplier, { MultiplierProps } from '../Multiplier'
 import { LiquidityProps } from '../Liquidity'
 
 export interface ActionPanelProps {
-  apr: AprProps
-  multiplier: MultiplierProps
-  liquidity: LiquidityProps
-  details: DualFarm
-  account: string
-  addLiquidityUrl: string
+  farm: DualFarm
 }
 
 export interface InfoPropsContainer {
@@ -102,50 +98,22 @@ const StakedValueText = styled(Text)`
   }
 `
 
-const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
-  details,
-  apr,
-  account,
-  addLiquidityUrl,
-  liquidity,
-}) => {
-  const farm = details
-
+const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
+  const { account } = useWeb3React()
 
   const lpAddress = farm.stakeTokenAddress
   const bsc = `https://bscscan.com/address/${lpAddress}`
 
-  const { earnings, stakedBalance } = useFarmUser(farm.pid)
-  const bananaPrice = usePriceBananaBusd()
-  let earningsToReport = null
-  let earningsBusd = 0
-  let displayHarvestBalance = '?'
+  const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
+  const rewarderEarnings = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
 
-  if (earnings) {
-    earningsToReport = getBalanceNumber(earnings)
-    earningsBusd = earningsToReport * bananaPrice.toNumber()
-    displayHarvestBalance = earningsBusd.toLocaleString()
-  }
-
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const yourStats = useStats()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
-  const totalValuePersonalFormated = filteredFarmStats
-    ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
-
-  let liquidityDigits
-  if (typeof liquidity.liquidity === 'string') {
-    const number = parseInt(liquidity.liquidity)
-    liquidityDigits = Math.round(number).toString().length
-  } else {
-    liquidityDigits = liquidity?.liquidity?.toFixed(0).toString().length
-  }
+  const number = parseInt(farm?.totalStaked)
+  const liquidityDigits = Math.round(number).toString().length
 
   return (
     <>
@@ -155,9 +123,33 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             <ValueContainer>
               <ValueWrapper>
                 <StyledText fontFamily="poppins" fontSize="12px">
+                  Reward Tokens
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                  {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
+                </StyledText>
+              </ValueWrapper>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {farm?.rewardTokens?.token0?.symbol} Earned:
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                  {miniChefEarnings?.toFixed(4)}
+                </StyledText>
+              </ValueWrapper>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {farm?.rewardTokens?.token1?.symbol} Earned:
+                </StyledText>
+                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                  {rewarderEarnings?.toFixed(4)}
+                </StyledText>
+              </ValueWrapper>
+              <ValueWrapper>
+                <StyledText fontFamily="poppins" fontSize="12px">
                   {TranslateString(999, 'Multiplier:')}
                 </StyledText>
-                <Multiplier multiplier={apr.multiplier} />
+                <Multiplier multiplier={farm?.multiplier} />
               </ValueWrapper>
             </ValueContainer>
             <ValueContainer>
@@ -165,7 +157,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 <StyledText fontFamily="poppins" fontSize="12px">
                   {TranslateString(999, 'Stake:')}
                 </StyledText>
-                <LinkExternal href={addLiquidityUrl}>
+                <LinkExternal href="">
                   <StyledText fontFamily="poppins" fontSize="12px">
                     {farm.stakeTokens.token0.symbol}
                   </StyledText>
@@ -176,15 +168,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                   Staked Value
                 </StyledText>
                 <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                  ~{totalValuePersonalFormated}USD
-                </StyledText>
-              </ValueWrapper>
-              <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  Earned Value
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                  ~{displayHarvestBalance}USD
+                  ~USD
                 </StyledText>
               </ValueWrapper>
             </ValueContainer>
@@ -206,7 +190,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <StyledText fontFamily="poppins" fontSize="12px">
                 {TranslateString(736, 'APR:')}
               </StyledText>
-              <Apr {...apr} addLiquidityUrl={addLiquidityUrl} />
+              {/* <Apr {...farm?.apr} addLiquidityUrl="" /> */}
             </ValueWrapper>
           </ValueContainerNoneLarge>
           <ActionContainer>

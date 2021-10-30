@@ -8,8 +8,7 @@ import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { updateFarmUserAllowances } from 'state/farms'
-import { fetchDualFarmUserAllowances } from 'state/dualFarms/fetchDualFarmUser'
-import { useNetworkChainId } from 'state/hooks'
+import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
 import {
   useMasterChefAddress,
@@ -188,7 +187,7 @@ export const useVaultApeApprove = (lpContract: Contract, pid) => {
 }
 
 // Approve a Farm
-export const useDualFarmApprove = (lpContract: Contract) => {
+export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
@@ -198,7 +197,6 @@ export const useDualFarmApprove = (lpContract: Contract) => {
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, miniChefContract, account)
-      dispatch(fetchDualFarmUserAllowances(multicallContract, miniChefAddress, account))
       track({
         event: 'dualFarm',
         chain: chainId,
@@ -207,12 +205,13 @@ export const useDualFarmApprove = (lpContract: Contract) => {
           cat: 'enable',
         },
       })
+      dispatch(updateDualFarmUserAllowances(multicallContract, miniChefAddress, pid, account))
       return tx
     } catch (e) {
       console.error(e)
       return false
     }
-  }, [account, dispatch, lpContract, miniChefContract, multicallContract, miniChefAddress, chainId])
+  }, [account, dispatch, lpContract, miniChefContract, multicallContract, miniChefAddress, pid, chainId])
 
   return { onApprove: handleApprove }
 }
