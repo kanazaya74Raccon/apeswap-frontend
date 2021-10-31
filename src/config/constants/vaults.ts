@@ -247,7 +247,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 27,
-    image: '',
+    image: 'BBQ.png',
     network: CHAIN_ID.BSC,
     strat: '0xa141151a455c551df2b3f8a4cf062f80e323dc1f',
     stakeTokenAddress: '0xd9a88f9b7101046786490baf433f0f6ab3d753e2',
@@ -267,7 +267,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 28,
-    image: '',
+    image: 'BBQ.png',
     network: CHAIN_ID.BSC,
     strat: '0x2Fc69f48964160Db0c16bEFf4aDEC417D8994842',
     stakeTokenAddress: '0x3d6a067dc8a5b6657749905eeaaa39b43af4f294',
@@ -287,7 +287,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 29,
-    image: '',
+    image: 'BBQ.png',
     network: CHAIN_ID.BSC,
     strat: '0x77233cda97df6e9ddc1bd1bbaa938b50b937b391',
     stakeTokenAddress: '0x376d38a381919f9d1c61715d34f8163c28bb23e5',
@@ -307,7 +307,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 30,
-    image: '',
+    image: 'LYPTUS.png',
     network: CHAIN_ID.BSC,
     strat: '0xb47db1c6f571943dbfb372ab9838d97dcc2e98b4',
     stakeTokenAddress: '0xba26397cdff25f0d26e815d218ef3c77609ae7f1',
@@ -327,7 +327,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 31,
-    image: '',
+    image: 'LYPTUS.png',
     network: CHAIN_ID.BSC,
     strat: '0xc650865d3ead97f5a8e2c94479fade95fe7862a1',
     stakeTokenAddress: '0x1ea398a30f0f2a6ce00bebfe08fe11cd9df5afb6',
@@ -347,7 +347,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 32,
-    image: '',
+    image: 'LYPTUS.png',
     network: CHAIN_ID.BSC,
     strat: '0xcdd86cc08c98f8a5a0a89ce74dc678015d7d8fb6',
     stakeTokenAddress: '0x744527700ceB261689dF9862FcD0036f5771324C',
