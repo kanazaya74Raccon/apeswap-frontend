@@ -243,8 +243,6 @@ const ButtonContainer = styled.div`
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   apr,
-  farmImage,
-  tokenSymbol,
   addLiquidityUrl,
   stakeTokens,
   rewardTokens,
@@ -257,11 +255,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const { earnings } = useFarmUser(pid)
-  const rawEarningsBalance = getBalanceNumber(earnings)
+  const miniChefRewardTokens = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
+  const rewarderTokens = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
+  const dollarsEarned = miniChefRewardTokens * farm?.rewardToken0Price + rewarderTokens * farm?.rewardToken1Price
+
+  const displayBalance = dollarsEarned ? `$${dollarsEarned.toFixed(2)}` : '?'
+
   const { isXl } = useMatchBreakpoints()
   const isDesktop = isXl
-  const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
 
   const { account } = useWeb3React()
 
@@ -333,9 +334,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
-              <StyledText4 fontFamily="poppins" color="primary" pr="3px">
-                {TranslateString(999, 'Banana ')}
-              </StyledText4>
               <StyledText2 fontFamily="poppins" color="primary" pr="3px">
                 {TranslateString(999, 'Earned')}
               </StyledText2>

@@ -17,8 +17,6 @@ const useTokenBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const res = await getTokenBalance(web3, tokenAddress, account, tokenContract)
-      console.log(tokenAddress, account, tokenContract)
-      console.log(res)
       setBalance(new BigNumber(res))
     }
 

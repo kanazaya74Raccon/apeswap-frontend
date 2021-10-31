@@ -1,29 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { useDispatch } from 'react-redux'
 import useI18n from 'hooks/useI18n'
-import { usePendingUsd } from 'state/hooks'
-import useRefresh from 'hooks/useRefresh'
-import { fetchFarmUserDataAsync } from 'state/farms'
-import { useMasterChefAddress } from 'hooks/useAddress'
-import { useMulticallContract } from 'hooks/useContract'
+import { usePriceBananaBusd } from 'state/hooks'
+import useAllEarnings from 'hooks/useAllEarnings'
+import BigNumber from 'bignumber.js'
 import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()
-  const { account, chainId } = useWeb3React()
-  const { pending } = usePendingUsd()
-  const { slowRefresh } = useRefresh()
-  const multicallContract = useMulticallContract()
-  const masterChefAddress = useMasterChefAddress()
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(multicallContract, masterChefAddress, chainId, account))
-    }
-  }, [account, dispatch, slowRefresh, multicallContract, masterChefAddress, chainId])
+  const { account } = useWeb3React()
+  const allEarnings = useAllEarnings()
+  const earningsSum = allEarnings.reduce((accum, earning) => {
+    return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()
+  }, 0)
+  const pending = usePriceBananaBusd().toNumber() * earningsSum
 
   if (!account) {
     return (

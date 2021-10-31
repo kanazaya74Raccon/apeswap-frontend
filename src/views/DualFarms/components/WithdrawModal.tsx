@@ -39,6 +39,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         onChange={handleChange}
         value={val}
         max={fullBalance}
+        displayDecimals={10}
         symbol={tokenName}
         inputTitle={TranslateString(999, 'Unstake')}
       />

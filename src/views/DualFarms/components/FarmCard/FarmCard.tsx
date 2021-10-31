@@ -177,6 +177,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             multiplier={farm.multiplier}
             liquidity={new BigNumber(farm?.totalStaked)}
             pid={farm.pid}
+            farm={farm}
           />
         </ExpandingWrapper>
       </StyledContainer>

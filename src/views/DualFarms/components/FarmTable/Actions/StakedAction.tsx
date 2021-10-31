@@ -49,6 +49,7 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, rewardTok
   const stakedBalance = userData?.stakedBalance
   const tokenBalance = userData?.tokenBalance
   const isApproved = account && userData?.allowance && new BigNumber(userData?.allowance).isGreaterThan(0)
+  const lpLabel = `${stakeTokens?.token0?.symbol}-${stakeTokens?.token1?.symbol}`
 
   const rawStakedBalance = getBalanceNumber(stakedBalance)
 
@@ -62,7 +63,7 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, rewardTok
           rewardRefPos.current?.rewardMe()
         })
       }}
-      tokenName=""
+      tokenName={lpLabel}
       addLiquidityUrl=""
     />,
   )
@@ -76,7 +77,7 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, rewardTok
           rewardRefNeg.current?.rewardMe()
         })
       }}
-      tokenName=""
+      tokenName={lpLabel}
     />,
   )
 

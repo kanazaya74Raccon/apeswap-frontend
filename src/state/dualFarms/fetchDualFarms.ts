@@ -69,12 +69,14 @@ const fetchDualFarms = async (
 
       // Total value in staking in quote token value
       const lpTotalInQuoteToken = new BigNumber(quoteTokenBlanceLP)
-        .div(new BigNumber(10).pow(18))
+        .div(new BigNumber(10).pow(quoteToken?.decimals))
         .times(new BigNumber(2))
         .times(lpTokenRatio)
 
       // Total value in pool in quote token value
-      const totalInQuoteToken = new BigNumber(quoteTokenBlanceLP).div(new BigNumber(10).pow(18)).times(new BigNumber(2))
+      const totalInQuoteToken = new BigNumber(quoteTokenBlanceLP)
+        .div(new BigNumber(10).pow(quoteToken?.decimals))
+        .times(new BigNumber(2))
 
       // Amount of token in the LP that are considered staking (i.e amount of token * lp ratio)
       const tokenAmount = new BigNumber(tokenBalanceLP).div(new BigNumber(10).pow(token1?.decimals)).times(lpTokenRatio)
@@ -156,6 +158,11 @@ const fetchDualFarms = async (
       }
 
       const totalStaked = quoteTokenAmount.times(new BigNumber(2)).times(quoteToken?.price)
+      const totalValueInLp = new BigNumber(quoteTokenBlanceLP)
+        .div(new BigNumber(10).pow(quoteToken?.decimals))
+        .times(new BigNumber(2))
+        .times(quoteToken?.price)
+      const stakeTokenPrice = totalValueInLp.div(new BigNumber(getBalanceNumber(lpTotalSupply)))
 
       const rewarderAllocPoint = new BigNumber(rewarderInfo?.allocPoint?._hex)
       const rewarderPoolWeight = rewarderAllocPoint.div(new BigNumber(rewarderTotalAlloc))
@@ -179,6 +186,7 @@ const fetchDualFarms = async (
         totalInQuoteToken: totalInQuoteToken.toJSON(),
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
+        stakeTokenPrice,
         stakeToken0Price: quoteToken?.price,
         stakeToken1Price: token1?.price,
         rewardToken0Price: miniChefRewarderToken?.price,

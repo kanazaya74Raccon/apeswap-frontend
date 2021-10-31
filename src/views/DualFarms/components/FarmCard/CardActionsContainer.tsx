@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
 import { DualFarm, Farm } from 'state/types'
-import { useFarmFromSymbol, useFarmUser } from 'state/hooks'
+import { getBalanceNumber } from 'utils/formatBalance'
 import StakeAction from './StakeAction'
 
 export interface FarmWithStakedValue extends Farm {
@@ -25,11 +25,14 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const stakedBalance = userData?.stakedBalance
   const tokenBalance = userData?.tokenBalance
   const isApproved = account && userData?.allowance && new BigNumber(userData?.allowance).isGreaterThan(0)
+  const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
+  const totalStakedValue = farm?.stakeTokenPrice * rawStakedBalance
 
   const renderApprovalOrStakeButton = () => {
     return (
       <StakeAction
         stakedBalance={stakedBalance}
+        stakedBalanceUsd={totalStakedValue}
         tokenBalance={tokenBalance}
         tokenName={lpName}
         pid={farm?.pid}

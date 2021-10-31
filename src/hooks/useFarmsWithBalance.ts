@@ -5,18 +5,14 @@ import masterChefABI from 'config/abi/masterchef.json'
 import miniChefABI from 'config/abi/miniApeV2.json'
 import { dualFarmsConfig, farmsConfig } from 'config/constants'
 import { CHAIN_ID } from 'config/constants/chains'
-import { FarmConfig } from 'config/constants/types'
+import { DualFarmConfig, FarmConfig } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useRefresh from './useRefresh'
 import { useMasterChefAddress, useMiniChefAddress } from './useAddress'
 import { useMulticallContract } from './useContract'
 
-export interface FarmWithBalance extends FarmConfig {
-  balance: BigNumber
-}
-
 const useFarmsWithBalance = () => {
-  const [farmsWithBalances, setFarmsWithBalances] = useState<FarmWithBalance[]>([])
+  const [farmsWithBalances, setFarmsWithBalances] = useState([])
   const { account, chainId } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const multicallContract = useMulticallContract()
@@ -51,7 +47,7 @@ const useFarmsWithBalance = () => {
         }))
 
         const rawResults = await multicall(multicallContract, miniChefABI, calls)
-        const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+        const results = filteredDualFarms.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
 
         setFarmsWithBalances(results)
       } catch (e) {

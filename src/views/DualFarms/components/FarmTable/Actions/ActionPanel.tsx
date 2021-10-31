@@ -110,7 +110,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
   const rewarderEarnings = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
 
   const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+  const totalStakedValue = farm?.stakeTokenPrice * rawStakedBalance
 
   const number = parseInt(farm?.totalStaked)
   const liquidityDigits = Math.round(number).toString().length
@@ -125,7 +125,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                 <StyledText fontFamily="poppins" fontSize="12px">
                   Reward Tokens
                 </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                <StyledText fontFamily="poppins" fontSize="12px">
                   {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
                 </StyledText>
               </ValueWrapper>
@@ -134,7 +134,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                   {farm?.rewardTokens?.token0?.symbol} Earned:
                 </StyledText>
                 <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                  {miniChefEarnings?.toFixed(4)}
+                  {miniChefEarnings ? miniChefEarnings.toFixed(4) : '0'}
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
@@ -142,14 +142,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                   {farm?.rewardTokens?.token1?.symbol} Earned:
                 </StyledText>
                 <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                  {rewarderEarnings?.toFixed(4)}
+                  {rewarderEarnings ? rewarderEarnings.toFixed(4) : '0'}
                 </StyledText>
-              </ValueWrapper>
-              <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {TranslateString(999, 'Multiplier:')}
-                </StyledText>
-                <Multiplier multiplier={farm?.multiplier} />
               </ValueWrapper>
             </ValueContainer>
             <ValueContainer>
@@ -165,10 +159,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
               </ValueWrapper>
               <ValueWrapper>
                 <StyledText fontFamily="poppins" fontSize="12px">
-                  Staked Value
+                  Staked Amount
                 </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
-                  ~USD
+                <StyledText fontFamily="poppins" fontSize="12px">
+                  {rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}
                 </StyledText>
               </ValueWrapper>
             </ValueContainer>
@@ -179,8 +173,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                 <StakedText fontFamily="poppins" fontSize="12px">
                   Staked
                 </StakedText>
-                <StakedValueText color="text" fontSize="20px">
-                  {displayBalance}
+                <StakedValueText color="green" fontSize="20px">
+                  ${totalStakedValue.toFixed(2)}
                 </StakedValueText>
               </>
             )}

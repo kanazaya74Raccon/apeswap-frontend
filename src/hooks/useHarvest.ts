@@ -7,7 +7,7 @@ import { CHAIN_ID } from 'config/constants/chains'
 import track from 'utils/track'
 import { updateFarmUserEarnings } from 'state/farms'
 import { useNetworkChainId } from 'state/hooks'
-import { updateDualFarmUserEarnings } from 'state/dualFarms'
+import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
 import { useMasterchef, useMiniChefContract, useMulticallContract, useSousChef } from './useContract'
 import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
@@ -130,6 +130,7 @@ export const useMiniChefHarvest = (farmPid: number) => {
       },
     })
     dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, farmPid, account))
+    dispatch(updateDualFarmRewarderEarnings(multicallContract, farmPid, account))
     return txHash
   }, [account, dispatch, farmPid, miniChefContract, multicallContract, miniChefAddress, chainId])
 

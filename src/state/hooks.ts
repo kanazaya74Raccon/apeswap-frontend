@@ -309,9 +309,9 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceBananaBusd = (): BigNumber => {
-  const pid = 2 // BANANA-BUSD LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+  const tokenPrices = useTokenPrices()
+  const price = new BigNumber(tokenPrices?.tokenPrices?.find((token) => token.symbol === 'BANANA')?.price)
+  return price || ZERO
 }
 
 /*

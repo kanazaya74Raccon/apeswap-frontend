@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { FarmPool } from 'state/types'
+import { DualFarm, FarmPool } from 'state/types'
 import { useFarmUser, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Multiplier from '../FarmTable/Multiplier'
@@ -18,6 +18,7 @@ export interface ExpandableSectionProps {
   multiplier?: string
   liquidity?: BigNumber
   pid?: number
+  farm?: DualFarm
 }
 
 const Wrapper = styled.div`
@@ -64,74 +65,67 @@ const StyledLink = styled(Link)`
   margin-bottom: 14px;
 `
 
-const DetailsSection: React.FC<ExpandableSectionProps> = ({
-  bscScanAddress,
-  lpLabel,
-  addLiquidityUrl,
-  farmStats,
-  multiplier,
-  pid,
-  liquidity,
-}) => {
+const DetailsSection: React.FC<ExpandableSectionProps> = ({ bscScanAddress, lpLabel, addLiquidityUrl, farm }) => {
   const TranslateString = useI18n()
 
-  const totalValuePersonalFormated = farmStats
-    ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+  const lpAddress = farm.stakeTokenAddress
+  const bsc = `https://bscscan.com/address/${lpAddress}`
 
-  const totalValueFormated = liquidity
-    ? `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+  const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
+  const rewarderEarnings = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
 
-  const { earnings } = useFarmUser(pid)
-  const bananaPrice = usePriceBananaBusd()
-  let earningsToReport = null
-  let earningsBusd = 0
-  let displayHarvestBalance = '?'
+  const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
+  const displayLiquidity = `$${Number(farm?.totalStaked).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
 
-  if (earnings) {
-    earningsToReport = getBalanceNumber(earnings)
-    earningsBusd = earningsToReport * bananaPrice.toNumber()
-    displayHarvestBalance = `$${earningsBusd.toLocaleString()}`
-  }
+  const number = parseInt(farm?.totalStaked)
 
   return (
     <Wrapper>
       <ValueWrapper>
         <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(999, 'Multiplier:')}
+          Total Staked
         </StyledText>
-        <Multiplier multiplier={multiplier} />
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {displayLiquidity}
+        </StyledText>
       </ValueWrapper>
-      <Flex justifyContent="space-between">
+      <ValueWrapper>
         <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Liquidity')}:
+          Reward Tokens
         </StyledText>
         <StyledText fontFamily="poppins" fontSize="12px">
-          {totalValueFormated}
+          {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
         </StyledText>
-      </Flex>
+      </ValueWrapper>
+      <ValueWrapper>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {farm?.rewardTokens?.token0?.symbol} Earned:
+        </StyledText>
+        <StyledText fontFamily="poppins" fontSize="12px" color="green">
+          {miniChefEarnings ? miniChefEarnings.toFixed(4) : '0'}
+        </StyledText>
+      </ValueWrapper>
+      <ValueWrapper>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {farm?.rewardTokens?.token1?.symbol} Earned:
+        </StyledText>
+        <StyledText fontFamily="poppins" fontSize="12px" color="green">
+          {rewarderEarnings ? rewarderEarnings.toFixed(4) : '0'}
+        </StyledText>
+      </ValueWrapper>
+      <ValueWrapper>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          Staked Amount
+        </StyledText>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}
+        </StyledText>
+      </ValueWrapper>
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">
           {TranslateString(316, 'Stake')}:
         </StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
-      </Flex>
-      <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {totalValuePersonalFormated}
-        </StyledTextGreen>
-      </Flex>
-      <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {displayHarvestBalance}
-        </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>

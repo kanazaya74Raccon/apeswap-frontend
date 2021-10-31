@@ -14,6 +14,7 @@ import WithdrawModal from '../WithdrawModal'
 
 interface FarmCardActionsProps {
   stakedBalance?: BigNumber
+  stakedBalanceUsd?: number
   tokenBalance?: BigNumber
   tokenName?: string
   pid?: number
@@ -48,15 +49,17 @@ const StyledText = styled(Text)`
 
 const StyledFlex = styled(Flex)`
   width: 100%;
-  margin-left: 117px;
+  margin-left: 110px;
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-right: 30px;
+    margin-left: 180px;
   }
 `
 
 const StakeAction: React.FC<FarmCardActionsProps> = ({
   stakedBalance,
   tokenBalance,
+  stakedBalanceUsd,
   tokenName,
   pid,
   addLiquidityUrl,
@@ -71,8 +74,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const onStake = useReward(rewardRefPos, useDualFarmStake(pid).onStake)
   const onUnstake = useReward(rewardRefNeg, useMiniChefUnstake(pid).onUnstake)
 
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+  const displayBalance = stakedBalanceUsd.toFixed(2)
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -104,7 +106,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const renderStakingButtons = () => {
     return (
-      rawStakedBalance !== 0 && (
+      stakedBalanceUsd !== 0 && (
         <IconButtonWrapper>
           <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
             <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
@@ -125,8 +127,8 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start">
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
-          {displayBalance}
+        <StyledHeadingGreen color={stakedBalanceUsd === 0 ? 'textDisabled' : 'text'}>
+          ${displayBalance}
         </StyledHeadingGreen>
       </Flex>
       {isApproved && renderStakingButtons()}
