@@ -33,8 +33,6 @@ export interface DualFarm extends DualFarmConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   stakeTokenPrice?: number
-  stakeToken0Price?: number
-  stakeToken1Price?: number
   rewardToken0Price?: number
   rewardToken1Price?: number
   poolWeight?: BigNumber

@@ -58,7 +58,6 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
     burning,
     userData,
     isPair,
-    apy,
     totalStaked,
   } = vault
 
@@ -69,7 +68,6 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-  const vaultImage = isPair ? `${token0.symbol}-${token1.symbol}` : token0.symbol
   // const earnings = new BigNumber(userData?.pendingReward || 0)
   // const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0

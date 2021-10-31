@@ -188,6 +188,7 @@ export interface VaultConfig {
   stakeTokenAddress: string
   platform: string
   token0: Token
+  image?: string
   token1?: Token
   isPair: boolean
   masterchef: MasterChef

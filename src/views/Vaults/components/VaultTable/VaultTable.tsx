@@ -193,7 +193,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <VaultHeading token0={token0.symbol} token1={token1.symbol} isPair={isPair} />
+          <VaultHeading token0={token0.symbol} token1={token1.symbol} isPair={isPair} image={vault?.image} />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}

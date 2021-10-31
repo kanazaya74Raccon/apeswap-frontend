@@ -5,6 +5,7 @@ import { VaultConfig } from './types'
 const vaults: VaultConfig[] = [
   {
     pid: 0,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xe6b98cb31ce30f1c232900c8090c16213f15d483',
     stakeTokenAddress: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
@@ -25,6 +26,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 22,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x9a668d5482828a444d7322fe5420ab5b44ce3de7',
     stakeTokenAddress: '0x603c7f932ed1fc6575303d8fb018fdcbb0f39a95',
@@ -44,6 +46,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 1,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x4e4efe113214c1371b264c09f59f64c5f12589f8',
     stakeTokenAddress: '0xF65C1C0478eFDe3c19b49EcBE7ACc57BB6B1D713',
@@ -63,6 +66,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 2,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x234101c6612115cac7bdb74ee20f388bb95db8cc',
     stakeTokenAddress: '0x7Bd46f6Da97312AC2DBD1749f82E202764C0B914',
@@ -82,6 +86,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 3,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xe1b3485994ecc6c1e0e31ccf61535ae6cdda403b',
     stakeTokenAddress: '0x2F3391AeBE27393aBa0a790aa5E1577fEA0361c2',
@@ -102,6 +107,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 4,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x1a28148fcdb86a7f290bf8d787dbc02131e75cb4',
     stakeTokenAddress: '0xDB77fa37766DbF0D74bC9f0ad497F7cC887EA322',
@@ -121,6 +127,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 5,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x1d2485cb0a027d182a38d841670d38b13b373439',
     stakeTokenAddress: '0xe4fba63b748175d2775bfe49c106a10800200bb6',
@@ -140,6 +147,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 19,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xd137d43e2919d0bf7f26afacc191b5ba5a7702d9',
     stakeTokenAddress: '0xDB77fa37766DbF0D74bC9f0ad497F7cC887EA322',
@@ -159,6 +167,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 23,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x402af21344ef92880a8e2b066bafd38f4e3de815',
     stakeTokenAddress: '0x2F3391AeBE27393aBa0a790aa5E1577fEA0361c2',
@@ -178,6 +187,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 24,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x05b4582c52963ed192cc6b419913505c964e702c',
     stakeTokenAddress: '0xb37cad62441ef8b866f3e36f12fd42062b6c0f33',
@@ -197,6 +207,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 25,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x7a874a889098d96ccb0ab0a5c05a21615cd857bf',
     stakeTokenAddress: '0xbd229081e5ce7b4ca5a63b65f3b2fea804fce819',
@@ -216,6 +227,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 26,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xee2c7be3e7862fbe280826e3c140d6572a77081d',
     stakeTokenAddress: '0x5cd6a02caddf484d758d39f2f4005074c771cca9',
@@ -235,6 +247,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 27,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xa141151a455c551df2b3f8a4cf062f80e323dc1f',
     stakeTokenAddress: '0xd9a88f9b7101046786490baf433f0f6ab3d753e2',
@@ -254,6 +267,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 28,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x2Fc69f48964160Db0c16bEFf4aDEC417D8994842',
     stakeTokenAddress: '0x3d6a067dc8a5b6657749905eeaaa39b43af4f294',
@@ -273,6 +287,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 29,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x77233cda97df6e9ddc1bd1bbaa938b50b937b391',
     stakeTokenAddress: '0x376d38a381919f9d1c61715d34f8163c28bb23e5',
@@ -292,6 +307,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 30,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xb47db1c6f571943dbfb372ab9838d97dcc2e98b4',
     stakeTokenAddress: '0xba26397cdff25f0d26e815d218ef3c77609ae7f1',
@@ -311,6 +327,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 31,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xc650865d3ead97f5a8e2c94479fade95fe7862a1',
     stakeTokenAddress: '0x1ea398a30f0f2a6ce00bebfe08fe11cd9df5afb6',
@@ -330,6 +347,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 32,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xcdd86cc08c98f8a5a0a89ce74dc678015d7d8fb6',
     stakeTokenAddress: '0x744527700ceB261689dF9862FcD0036f5771324C',
@@ -349,6 +367,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 36,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x4523c6e7e17b859fd6b17731649c5eda78ce4c26',
     stakeTokenAddress: '0xb2ebaa0ad65e9c888008bf10646016f7fcdd73c3',
@@ -369,6 +388,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 34,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x48970adde57d573185ba35e2d353f8e289ab2ac8',
     stakeTokenAddress: '0x8c7ef42d68889ef820cae512f43d8c256fdaa1a0',
@@ -389,6 +409,7 @@ const vaults: VaultConfig[] = [
 
   {
     pid: 35,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0xec051753ee697ffff2eaf4f146d70e26dd0ff03b',
     stakeTokenAddress: '0x138ACb44F9f2e4E7F3bbcB7BBb1a268068dC202C',
@@ -409,6 +430,7 @@ const vaults: VaultConfig[] = [
 
   {
     pid: 39,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x64e079980a701779c71beab3372cab88236dc536',
     stakeTokenAddress: '0xdd5f9a9f05a9680867936c878ae6db4c9dab5c37',
@@ -430,6 +452,7 @@ const vaults: VaultConfig[] = [
 
   {
     pid: 40,
+    image: '',
     network: CHAIN_ID.BSC,
     strat: '0x27b4e72ca589b629e96077e11dfab94fc57b2e29',
     stakeTokenAddress: '0xdddc245c62a0aa875893ab53b52455acdcd7f526',
@@ -453,6 +476,7 @@ const vaults: VaultConfig[] = [
 
   {
     pid: 1,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0x3a0b5177b7FDC0d306462B19950eeb8b8A2bd8A1',
     stakeTokenAddress: tokens.crystl.address[CHAIN_ID.MATIC],
@@ -472,6 +496,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 2,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0x12c7a5189F482f826e3D1f379078e4802Dd64d61',
     stakeTokenAddress: '0xB8e54c9Ea1616beEBe11505a419DD8dF1000E02a',
@@ -491,6 +516,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 3,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0xc0c56f3B12366564837902BAEB49912fEadB551A',
     stakeTokenAddress: '0x44b82c02F404Ed004201FB23602cC0667B1D011e',
@@ -510,6 +536,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 6,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0xb41e9e0b562f1ac790d1d570dfe790b855a46c3f',
     stakeTokenAddress: '0xb394009787c2d0cb5b45d06e401a39648e21d681',
@@ -529,6 +556,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 4,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0x555dcdc52a6be9df8aad954381f0b6a40aba794f',
     stakeTokenAddress: '0x100a947f51fa3f1dcdf97f3ae507a72603cae63c',
@@ -548,6 +576,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 5,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0x6A31e0f9d8aBAB81C3eb36a3630C258202e568E5',
     stakeTokenAddress: '0x491c17b1b9aa867f3a7a480baffc0721d59a7393',
@@ -567,6 +596,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 8,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0x838786076dbe610b6f8247f11f4d47e23f10046b',
     stakeTokenAddress: '0x6046eb198abc5ea4f17027bc00a2aee0420e84ee',
@@ -588,6 +618,7 @@ const vaults: VaultConfig[] = [
   },
   {
     pid: 9,
+    image: '',
     network: CHAIN_ID.MATIC,
     strat: '0xf661c61b6a49e16baad0755d511124146a1d8acb',
     stakeTokenAddress: '0x854d3639f38f65c091664062230091858955ddc2',

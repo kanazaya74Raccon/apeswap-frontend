@@ -6,6 +6,7 @@ export interface PoolProps {
   token0?: string
   token1?: string
   isPair?: boolean
+  image?: string
 }
 
 const IconImage = styled(Image)`
@@ -35,13 +36,19 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPair }) => {
+const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPair, image }) => {
   return (
     <Container>
       <StyledBackground>
         {isPair ? (
           <>
-            <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} marginLeft="7.5px" />
+            <IconImage
+              src={`/images/tokens/${image || `${token1}.svg`}`}
+              alt={token1}
+              width={50}
+              height={50}
+              marginLeft="7.5px"
+            />
             <IconImage
               src={`/images/tokens/${token0}.svg`}
               alt={token0}
@@ -51,7 +58,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
               marginTop="30px"
             />
             <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-            <IconImage src={`/images/tokens/${token1}.svg`} alt={token1} width={50} height={50} />
+            <IconImage src={`/images/tokens/${image || `${token1}.svg`}`} alt={token1} width={50} height={50} />
             <IconImage
               src={`/images/tokens/${token0}.svg`}
               alt={token0}

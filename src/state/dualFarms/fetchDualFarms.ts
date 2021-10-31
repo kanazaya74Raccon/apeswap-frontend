@@ -187,8 +187,6 @@ const fetchDualFarms = async (
         lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
         tokenPriceVsQuote: quoteTokenAmount.div(tokenAmount).toJSON(),
         stakeTokenPrice,
-        stakeToken0Price: quoteToken?.price,
-        stakeToken1Price: token1?.price,
         rewardToken0Price: miniChefRewarderToken?.price,
         rewardToken1Price: rewarderToken?.price,
         poolWeight: alloc,

@@ -247,16 +247,10 @@ const IconArrow = styled(Image)`
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   vault,
   apyDaily,
-  stakeToken,
-  earnToken,
-  tokenSymbol,
   apyYearly,
   removed,
-  sousId,
-  earnTokenImage,
   showExpandableSection,
   stakingTokenAddress,
-  rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
   const { userData, isPair, token0, token1, pid } = vault
@@ -300,7 +294,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         {isPair ? (
           <>
             <IconImage
-              src={`/images/tokens/${token1?.symbol}.svg`}
+              src={`/images/tokens/${vault?.image || `${token1}.svg`}`}
               alt={token1?.symbol}
               width={70}
               height={70}
@@ -315,7 +309,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               marginTop={isDesktop ? '45px' : '30px'}
             />
             <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-            <IconImage src={`/images/tokens/${token1?.symbol}.svg`} alt={token1?.symbol} width={70} height={70} />
+            <IconImage
+              src={`/images/tokens/${vault?.image || `${token1}.svg`}`}
+              alt={token1?.symbol}
+              width={70}
+              height={70}
+            />
             <IconQuoteToken
               src={`/images/tokens/${token0?.symbol}.svg`}
               alt={token0?.symbol}
