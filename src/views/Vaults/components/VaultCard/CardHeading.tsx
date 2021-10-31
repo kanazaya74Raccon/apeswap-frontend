@@ -29,6 +29,7 @@ export interface ExpandableSectionProps {
   showExpandableSection?: boolean
   stakingTokenAddress?: string
   rewardTokenPrice?: number
+  image?: string
 }
 
 const PoolFinishedSash = styled.div`
@@ -251,6 +252,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   removed,
   showExpandableSection,
   stakingTokenAddress,
+  image,
 }) => {
   const TranslateString = useI18n()
   const { userData, isPair, token0, token1, pid } = vault
@@ -294,7 +296,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         {isPair ? (
           <>
             <IconImage
-              src={`/images/tokens/${vault?.image || `${token1}.svg`}`}
+              src={`/images/tokens/${image || `${token1?.symbol}.svg`}`}
               alt={token1?.symbol}
               width={70}
               height={70}
@@ -310,7 +312,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             />
             <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
             <IconImage
-              src={`/images/tokens/${vault?.image || `${token1}.svg`}`}
+              src={`/images/tokens/${image || `${token1?.symbol}.svg`}`}
               alt={token1?.symbol}
               width={70}
               height={70}
@@ -328,7 +330,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         ) : (
           <>
             <IconImage
-              src={`/images/tokens/${token0?.symbol}.svg`}
+              src={`/images/tokens/${image || `${token0?.symbol}.svg`}`}
               alt={token0?.symbol}
               width={60}
               height={60}
@@ -336,7 +338,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             />
             <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginLeft="10px" marginRight="8px" />
             <IconImage
-              src={`/images/tokens/${token0?.symbol}.svg`}
+              src={`/images/tokens/${image || `${token0?.symbol}.svg`}`}
               alt={token0?.symbol}
               width={60}
               height={60}

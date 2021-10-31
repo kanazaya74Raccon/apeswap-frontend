@@ -58,6 +58,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
     burning,
     userData,
     isPair,
+    image,
     totalStaked,
   } = vault
 
@@ -81,6 +82,8 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
     setShowExpandableSection(!showExpandableSection)
   }
 
+  console.log("THIS IS THE IMA?GE")
+  console.log(image)
   return (
     <PCard onClick={toggleExpand}>
       <CardHeading
@@ -90,6 +93,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
         apyYearly={vault?.apy?.yearly?.toFixed(2)}
         showExpandableSection={showExpandableSection}
         removed={removed}
+        image={image}
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Flex>
