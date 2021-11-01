@@ -83,7 +83,9 @@ const ApeSwapStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'TOTAL VALUE LOCKED')}
           </StyledText>
-          {totalLiquidity && <CardValue fontSize="14px" value={totalLiquidity} prefix="$" text="poppins" fontWeight={700} />}
+          {totalLiquidity && (
+            <CardValue fontSize="14px" value={totalLiquidity} prefix="$" text="poppins" fontWeight={700} />
+          )}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
@@ -103,21 +105,13 @@ const ApeSwapStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'GNANA IN CIRCULATION')}
           </StyledText>
-          {circulatingSupply && (
-            <CardValue fontSize="14px" value={0} decimals={0} text="poppins" fontWeight={700} />
-          )}
+          {circulatingSupply && <CardValue fontSize="14px" value={0} decimals={0} text="poppins" fontWeight={700} />}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(538, 'TOTAL BANANA BURNED')}
           </StyledText>
-          <CardValue
-            fontSize="14px"
-            decimals={0}
-            value={burntAmount}
-            text="poppins"
-            fontWeight={700}
-          />
+          <CardValue fontSize="14px" decimals={0} value={burntAmount} text="poppins" fontWeight={700} />
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">

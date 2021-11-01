@@ -176,7 +176,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <PoolHeading stakeToken={stakingToken.symbol} earnToken={tokenName} earnTokenImage={image} />
+          <PoolHeading stakeToken={stakingToken?.symbol} earnToken={tokenName} earnTokenImage={image} />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}
@@ -221,7 +221,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             stakedTokenPrice={stakingToken?.price}
             rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
-            lpLabel={stakingToken.symbol}
+            lpLabel={stakingToken?.symbol}
             addLiquidityUrl="https://app.apeswap.finance/swap"
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[chainId]}`}
