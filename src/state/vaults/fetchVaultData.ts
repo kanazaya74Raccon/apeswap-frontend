@@ -112,6 +112,15 @@ const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: T
       }
       const poolWeight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : new BigNumber(0)
       const rewardTokensPerBlock = rewardsPerBlock ? getBalanceNumber(new BigNumber(rewardsPerBlock)) : new BigNumber(0)
+      const totalValueInLp =
+        isPair &&
+        new BigNumber(quoteTokenPairBalance)
+          .div(new BigNumber(10).pow(18))
+          .times(new BigNumber(2))
+          .times(quoteTokenPriceUsd)
+      const stakeTokenPrice = isPair
+        ? totalValueInLp.div(new BigNumber(getBalanceNumber(pairTotalSupply)))
+        : quoteTokenPriceUsd
       const yearlyRewardTokens = rewardsInSeconds
         ? SECONDS_PER_YEAR.times(rewardTokensPerBlock).times(poolWeight)
         : blockPerYear().times(rewardTokensPerBlock).times(poolWeight)
@@ -147,6 +156,7 @@ const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: T
         strategyPairBalance: strategyPairBalance.toString(),
         strategyPairBalanceFixed: null,
         stakeTokenDecimals: stakeTokenDecimals.toString(),
+        stakeTokenPrice,
         masterChefPairBalance: pairBalanceMc.toString(),
         totalInQuoteToken: totalInQuoteToken.toString(),
         totalInQuoteTokenInMasterChef: quoteTokenAmountTotal.toString(),

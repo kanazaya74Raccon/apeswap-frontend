@@ -86,7 +86,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     : '-'
   const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
 
-
   return (
     <Wrapper>
       <Flex justifyContent="space-between">

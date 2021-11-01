@@ -101,6 +101,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
           lpLabel={lpLabel}
           addLiquidityUrl="https://app.apeswap.finance/swap"
           bscScanAddress={`https://bscscan.com/address/${vault.strat}`}
+          stakedTokenPrice={vault?.stakeTokenPrice}
         />
       </ExpandingWrapper>
     </PCard>
