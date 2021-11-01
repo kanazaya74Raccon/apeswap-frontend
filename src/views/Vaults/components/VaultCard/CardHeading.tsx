@@ -283,6 +283,20 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           stakedBalance={stakedBalance}
           isStaked={accountHasStakedBalance}
           firstStake={!accountHasStakedBalance}
+          isApproved={!needsApproval}
+          isHeader
+        />
+      )
+    }
+    if (!needsApproval && accountHasStakedBalance) {
+      return (
+        <StakeAction
+          vault={vault}
+          stakingTokenBalance={stakingTokenBalance}
+          stakedBalance={stakedBalance}
+          isStaked={accountHasStakedBalance}
+          firstStake={!accountHasStakedBalance}
+          isApproved={!needsApproval}
           isHeader
         />
       )
@@ -364,6 +378,18 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           )}
         </LabelContainer>
         <LabelContainer2>
+          <StyledFlexEarned>
+            <Flex>
+              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+                {TranslateString(999, 'Staked')}
+              </StyledText2>
+            </Flex>
+            <StyledText3>
+              {new BigNumber(vault?.userData?.stakedBalance).gt(0)
+                ? getBalanceNumber(new BigNumber(vault?.userData?.stakedBalance)).toFixed(4)
+                : '?'}
+            </StyledText3>
+          </StyledFlexEarned>
           <ButtonContainer>
             {cardHeaderButton()}
             <ExpandableSectionButton expanded={showExpandableSection} />

@@ -163,6 +163,9 @@ export const useDualFarmStake = (pid: number) => {
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await miniChefStake(miniChefContract, pid, amount, account)
+      dispatch(updateDualFarmUserStakedBalances(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserTokenBalances(multicallContract, pid, account))
       track({
         event: 'dualFarm',
         chain: chainId,
@@ -172,9 +175,6 @@ export const useDualFarmStake = (pid: number) => {
           pid,
         },
       })
-      dispatch(updateDualFarmUserStakedBalances(multicallContract, miniChefAddress, pid, account))
-      dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, pid, account))
-      dispatch(updateDualFarmUserTokenBalances(multicallContract, pid, account))
       console.info(txHash)
     },
     [account, dispatch, miniChefContract, pid, chainId, miniChefAddress, multicallContract],

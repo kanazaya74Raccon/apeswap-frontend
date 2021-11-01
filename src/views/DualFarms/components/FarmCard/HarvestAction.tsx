@@ -24,6 +24,9 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { pid, stakeTokenAddress, stakeTokens } = dualFarm
   const { account, library } = useWeb3React()
   const TranslateString = useI18n()
+  const rewardRef = useRef(null)
+  const rewardRefPos = useRef(null)
+  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
   const onStake = useDualFarmStake(pid).onStake
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeTx, setStakeTx] = useState(false)
@@ -45,8 +48,11 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
-      await onApprove()
+      const sucess = await onApprove()
+      if (!sucess) setTypeOfReward('error')
+      else setTypeOfReward('rewardBanana')
       setRequestedApproval(false)
+      rewardRef.current?.rewardMe()
     } catch (e) {
       console.error(e)
     }

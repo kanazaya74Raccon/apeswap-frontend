@@ -14,7 +14,8 @@ export interface ExpandableSectionProps {
   lpLabel?: string
   addLiquidityUrl?: string
   multiplier?: string
-  totalStaked?: number
+  totalStaked?: string
+  totalStakedRaw?: string
   personalValueStaked?: number
   blocksRemaining?: number
   isFinished?: boolean
@@ -70,6 +71,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   addLiquidityUrl,
   personalValueStaked,
   totalStaked,
+  totalStakedRaw,
   blocksRemaining,
   blocksUntilStart,
   stakedTokenPrice,
@@ -80,12 +82,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
 
-  const totalDollarAmountStaked = totalStaked * stakedTokenPrice
-
-  const totalDollarAmountStakedFormated = totalDollarAmountStaked
-    ? `${Number(totalDollarAmountStaked).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  const totalDollarAmountStakedFormated = totalStaked
+    ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
+  const totalStakedFormated = totalStakedRaw
+    ? `${Number(totalStakedRaw).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
+    : '-'
   const earnings = new BigNumber(pendingReward || 0)
   const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
   const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
@@ -130,6 +133,14 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       </Flex>
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">
+          {TranslateString(316, 'Total Staked Value')}:
+        </StyledText>
+        <StyledText fontFamily="poppins" fontSize="12px">
+          {totalStakedFormated}
+        </StyledText>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <StyledText fontFamily="poppins" fontSize="12px">
           {TranslateString(316, 'Stake')}:
         </StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
@@ -140,14 +151,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </StyledText>
         <StyledTextGreen fontFamily="poppins" fontSize="12px">
           ${totalUserStaked}
-        </StyledTextGreen>
-      </Flex>
-      <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">

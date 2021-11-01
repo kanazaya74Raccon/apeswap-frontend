@@ -162,7 +162,6 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-  console.log(vault)
 
   // const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
 
@@ -236,7 +235,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             />
           </StakeContainer>
           <ActionPanel
-            totalStaked={getBalanceNumber(new BigNumber(totalStaked))}
+            totalStaked={getBalanceNumber(new BigNumber(vault?.strategyPairBalance))}
             personalValueStaked={getBalanceNumber(stakedBalance)}
             lpLabel={lpLabel}
             addLiquidityUrl="https://app.apeswap.finance/swap"

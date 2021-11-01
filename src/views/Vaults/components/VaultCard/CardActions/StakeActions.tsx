@@ -66,12 +66,12 @@ const StyledText = styled(Text)`
 
 const StyledFlex = styled(Flex)`
   position: absolute;
-  right: 45px;
+  right: 40px;
   width: 210px;
-  margin-left: 10px;
-  margin-top: 10px;
+  top: 25px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 50px;
+    margin-right: 5px;
+    top: 75px;
   }
 `
 
@@ -133,25 +133,19 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const renderStakingButtons = () => {
     return (
-      stakedBalance.gt(0) && (
-        <IconButtonWrapperStake>
-          <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
-              <MinusIcon color="white" width="12px" height="12px" />
-            </StyledIconButtonSquare>
-          </Reward>
-          <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentDeposit}>
-              <AddIcon color="white" width="16px" height="16px" />
-            </StyledIconButtonSquare>
-          </Reward>
-        </IconButtonWrapperStake>
-      )
+      <IconButtonWrapperStake>
+        <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
+          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+            <MinusIcon color="white" width="12px" height="12px" />
+          </StyledIconButtonSquare>
+        </Reward>
+        <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
+          <StyledIconButtonSquare onClick={onPresentDeposit}>
+            <AddIcon color="white" width="16px" height="16px" />
+          </StyledIconButtonSquare>
+        </Reward>
+      </IconButtonWrapperStake>
     )
-  }
-
-  if (firstStake && isApproved && isHeader) {
-    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</ButtonSquare>
   }
 
   return (

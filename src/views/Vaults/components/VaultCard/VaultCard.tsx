@@ -82,8 +82,6 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
     setShowExpandableSection(!showExpandableSection)
   }
 
-  console.log("THIS IS THE IMA?GE")
-  console.log(image)
   return (
     <PCard onClick={toggleExpand}>
       <CardHeading
@@ -96,18 +94,9 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
         image={image}
       />
       <ExpandingWrapper expanded={showExpandableSection}>
-        <Flex>
-          <StakeAction
-            vault={vault}
-            stakingTokenBalance={stakingTokenBalance}
-            stakedBalance={stakedBalance}
-            isStaked={accountHasStakedBalance}
-            firstStake={!accountHasStakedBalance}
-            isApproved={isApproved}
-          />
-        </Flex>
         <DetailsSection
-          totalStaked={getBalanceNumber(new BigNumber(totalStaked))}
+          totalStaked={totalStaked}
+          totalStakedRaw={getBalanceNumber(new BigNumber(vault?.strategyPairBalance)).toString()}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           lpLabel={lpLabel}
           addLiquidityUrl="https://app.apeswap.finance/swap"
