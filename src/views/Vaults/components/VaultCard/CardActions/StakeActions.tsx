@@ -15,9 +15,9 @@ import {
   ButtonSquare,
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useSousStake, useVaultStake } from 'hooks/useStake'
-import { useSousUnstake, useVaultUnstake } from 'hooks/useUnstake'
+import { useSousUnstake, useVaultUnstake, useVaultUnstakeAll } from 'hooks/useUnstake'
 import { Pool, Vault } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
@@ -92,10 +92,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const rewardRefStake = useRef(null)
   const rewardRefUnstake = useRef(null)
+  const rewardRefUnstakeAll = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
 
   const onStake = useReward(rewardRefStake, useVaultStake(pid).onStake)
   const onUnstake = useReward(rewardRefUnstake, useVaultUnstake(pid).onUnstake)
+  const onUnstakeAll = useReward(rewardRefUnstakeAll, useVaultUnstakeAll(pid).onUnstakeAll)
 
   const convertedLimit = new BigNumber(stakingTokenBalance)
 
@@ -121,11 +123,19 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     <WithdrawModal
       max={stakedBalance}
       onConfirm={async (val) => {
+        const maxWithdraw = val === getFullDisplayBalance(stakedBalance)
         setTypeOfReward('removed')
-        await onUnstake(val).catch(() => {
-          setTypeOfReward('error')
-          rewardRefUnstake.current?.rewardMe()
-        })
+        if (maxWithdraw) {
+          await onUnstakeAll().catch(() => {
+            setTypeOfReward('error')
+            rewardRefUnstakeAll.current?.rewardMe()
+          })
+        } else {
+          await onUnstake(val).catch(() => {
+            setTypeOfReward('error')
+            rewardRefUnstake.current?.rewardMe()
+          })
+        }
       }}
       tokenName={lpLabel}
     />,

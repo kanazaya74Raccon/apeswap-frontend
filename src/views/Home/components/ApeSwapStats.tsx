@@ -1,11 +1,8 @@
 import React from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd, useTvl } from 'state/hooks'
+import { useStatsOverall } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
@@ -72,16 +69,9 @@ const StyledText = styled(Text)`
 
 const ApeSwapStats = () => {
   const TranslateString = useI18n()
-  const totalSupply = useTotalSupply()
-  const newTvl = useTvl()
-  const totalTvl = newTvl.toNumber()
-  const bananaPriceUsd = usePriceBananaBusd()
-  const burnedBalance = useBurnedBalance(useBananaAddress())
-  const totalGnana = useAccountTokenBalance(useTreasuryAddress(), useBananaAddress())
-  const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
-  const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
-  const marketCap = bananaPriceUsd.toNumber() * bananaSupply
+  const stats = useStatsOverall()
+  const { burntAmount, circulatingSupply, marketCap, totalLiquidity } = stats?.isInitialized && stats?.statsOverall
 
   return (
     <StyledBananaStats>
@@ -93,7 +83,7 @@ const ApeSwapStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'TOTAL VALUE LOCKED')}
           </StyledText>
-          {totalTvl && <CardValue fontSize="14px" value={totalTvl} prefix="$" text="poppins" fontWeight={700} />}
+          {totalLiquidity && <CardValue fontSize="14px" value={totalLiquidity} prefix="$" text="poppins" fontWeight={700} />}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
@@ -107,14 +97,14 @@ const ApeSwapStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
+          {circulatingSupply && <CardValue fontSize="14px" value={circulatingSupply} text="poppins" fontWeight={700} />}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'GNANA IN CIRCULATION')}
           </StyledText>
-          {gnanaCirculation && (
-            <CardValue fontSize="14px" value={gnanaCirculation} decimals={0} text="poppins" fontWeight={700} />
+          {circulatingSupply && (
+            <CardValue fontSize="14px" value={0} decimals={0} text="poppins" fontWeight={700} />
           )}
         </Row>
         <GreyRow>
@@ -124,7 +114,7 @@ const ApeSwapStats = () => {
           <CardValue
             fontSize="14px"
             decimals={0}
-            value={getBalanceNumber(burnedBalance)}
+            value={burntAmount}
             text="poppins"
             fontWeight={700}
           />

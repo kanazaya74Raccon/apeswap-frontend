@@ -170,7 +170,7 @@ const Home: React.FC = () => {
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
             <WhenNewsSer />
-            {appChainId === CHAIN_ID.BSC && <ApeSwapStats />}
+            <ApeSwapStats />
           </RightSideFlexWrapper>
         </PageContainer>
       </Page>

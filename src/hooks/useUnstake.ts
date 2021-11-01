@@ -183,13 +183,26 @@ export const useVaultUnstake = (pid: number) => {
 }
 
 export const useVaultUnstakeAll = (pid: number) => {
-  const { account } = useWeb3React()
-  const vaultApeContrct = useVaultApe()
+  const { account, chainId } = useWeb3React()
+  const vaultApeContract = useVaultApe()
+  const dispatch = useDispatch()
+  const multicallContract = useMulticallContract()
+  const vaultApeAddress = useVaultApeAddress()
 
   const handleUnstake = useCallback(async () => {
-    const txHash = await vaultUnstakeAll(vaultApeContrct, pid, account)
+    const txHash = await vaultUnstakeAll(vaultApeContract, pid, account)
+    track({
+      event: 'vault',
+      chain: chainId,
+      data: {
+        cat: 'unstakeAll',
+        pid,
+      },
+    })
+    dispatch(updateVaultUserBalance(multicallContract, account, chainId, pid))
+    dispatch(updateVaultUserStakedBalance(multicallContract, vaultApeAddress, account, chainId, pid))
     console.info(txHash)
-  }, [account, vaultApeContrct, pid])
+  }, [account, vaultApeContract, chainId, multicallContract, vaultApeAddress, dispatch, pid])
 
   return { onUnstakeAll: handleUnstake }
 }

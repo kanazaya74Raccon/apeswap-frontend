@@ -175,6 +175,7 @@ export interface StatsOverall {
   bananaPrice: number
   tvl: number
   totalLiquidity: number
+  circulatingSupply: number
   totalVolume: number
   burntAmount: number
   totalSupply: number
