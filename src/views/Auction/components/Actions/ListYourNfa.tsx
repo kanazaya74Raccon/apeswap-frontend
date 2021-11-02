@@ -24,7 +24,7 @@ const MoreInfo = styled.div`
 
 const ListYourNfa: React.FC = () => {
   const { profile } = useProfile()
-  const onListNfa = useListNfa().onListNfa
+  const { onListNfa } = useListNfa()
   const [onPresentNfaListingModal] = useModal(
     <NfaListingModal
       ownedNfas={profile?.ownedNfts}

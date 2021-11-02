@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
-import { useVaultFromPid } from 'state/hooks'
+import { usePollVaultsData, useVaultFromPid } from 'state/hooks'
 import VaultCardForHome from './VaultsCardForHome'
 
 const ValuableVaultsWrapper = styled.div`
@@ -66,6 +66,7 @@ const DEFAULT_FARM = 1
 const DEFAULT_FARM_TWO = 2
 
 const VauluableVaults = () => {
+  usePollVaultsData()
   const pid1 = DEFAULT_FARM
   const pid2 = DEFAULT_FARM_TWO
 

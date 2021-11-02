@@ -2,13 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
-import { useLocation } from 'react-router-dom'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { CHAIN_ID, NETWORK_LABEL } from 'config/constants/chains'
+import { CHAIN_ID } from 'config/constants/chains'
 import {
   useApePriceGetterAddress,
   useAuctionAddress,
@@ -22,6 +21,7 @@ import {
 } from 'hooks/useAddress'
 import { useMasterchef, useMulticallContract, useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
+import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -45,7 +45,7 @@ import {
   NfaStakingPool,
   DualFarm,
 } from './types'
-import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
+import { fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
 import { fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
@@ -70,16 +70,21 @@ export const useNetworkChainIdFromUrl = (): boolean => {
   return chainIdFromUrl
 }
 
-export const useUpdateNetwork = (userSelectedChainId: number) => {
+export const useUpdateNetwork = () => {
   const dispatch = useDispatch()
   const { chainId, account } = useWeb3React()
-  dispatch(fetchUserNetwork(chainId, account, userSelectedChainId))
-}
-
-export const useUpdateNetworkChainIdFromUrl = (chainIdFromUrl: boolean) => {
-  const dispatch = useDispatch()
-  const { chainId, account } = useWeb3React()
-  // dispatch(fetchUserNetwork(chainId, account, userSelectedChainId))
+  const appChainId = useNetworkChainId()
+  const chainIdFromUrl = useNetworkChainIdFromUrl()
+  const { switchNetwork } = useSwitchNetwork()
+  useEffect(() => {
+    if (chainIdFromUrl) {
+      switchNetwork(appChainId)
+    } else {
+      dispatch(fetchUserNetwork(chainId, account, appChainId))
+    }
+    // Load initial vault state in update netowrk to stop mount re-render
+    dispatch(setVaultsLoad(false))
+  }, [chainId, account, appChainId, chainIdFromUrl, switchNetwork, dispatch])
 }
 
 // Fetch public pool and farm data
@@ -111,9 +116,6 @@ export const usePollVaultsData = (includeArchive = false) => {
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
-    dispatch(setVaultsLoad(false))
-  }, [chainId, dispatch])
-  useEffect(() => {
     dispatch(setFilteredVaults(chainId))
     dispatch(fetchVaultsPublicDataAsync(multicallContract, chainId, tokenPrices))
     if (account) {
@@ -123,8 +125,9 @@ export const usePollVaultsData = (includeArchive = false) => {
 }
 
 // Dual Farms
-export const useDualFarms = () => {
-  const { fastRefresh } = useRefresh()
+
+export const usePollDualFarms = () => {
+  const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const multicallContract = useMulticallContract()
@@ -136,7 +139,10 @@ export const useDualFarms = () => {
     if (account) {
       dispatch(fetchDualFarmUserDataAsync(multicallContract, miniChefAddress, account))
     }
-  }, [account, dispatch, multicallContract, miniChefAddress, chainId, tokenPrices, fastRefresh])
+  }, [account, dispatch, multicallContract, miniChefAddress, chainId, tokenPrices, slowRefresh])
+}
+
+export const useDualFarms = (): DualFarm[] => {
   const dualFarms = useSelector((state: State) => state.dualFarms.data)
   return dualFarms
 }

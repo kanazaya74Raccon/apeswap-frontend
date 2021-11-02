@@ -30,7 +30,6 @@ export const fetchVaultUserTokenBalances = async (multicallContract, account: st
       params: [account],
     }
   })
-  console.log(calls)
   const rawTokenBalances = await multicall(multicallContract, erc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()

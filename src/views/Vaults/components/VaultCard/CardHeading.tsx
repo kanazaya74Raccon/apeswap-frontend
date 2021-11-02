@@ -32,7 +32,6 @@ export interface ExpandableSectionProps {
   image?: string
 }
 
-
 const StyledBackground = styled.div`
   width: 110px;
   height: 80px;

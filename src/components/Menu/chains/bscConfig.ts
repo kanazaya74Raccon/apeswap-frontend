@@ -1,5 +1,4 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
-import { BASE_EXCHANGE_URL } from 'config'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { HOME, EXCHANGE, MORE_INFO } from '../constants'
 

@@ -16,7 +16,7 @@ export const fetchPoolsAllowance = async (multicallContract, nfaAddress, chainId
 }
 
 export const fetchUserBalances = async (multicallContract, nfaAddress, account) => {
-  const calls = nfaStakingPools.map((p) => ({
+  const calls = nfaStakingPools.map(() => ({
     address: nfaAddress,
     name: 'balanceOf',
     params: [account],

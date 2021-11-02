@@ -35,11 +35,6 @@ export const dualFarmsSlice = createSlice({
     updateDualFarmUserData: (state, action) => {
       const { field, value, pid } = action.payload
       const index = state.data.findIndex((p) => p.pid === pid)
-      console.log('dual farms update')
-      console.log(index)
-      console.log(state.data[index])
-      console.log(...state.data)
-      console.log(action.payload)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
   },

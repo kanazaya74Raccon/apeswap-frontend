@@ -6,21 +6,15 @@ import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { CHAIN_ID } from 'config/constants/chains'
-import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
   useFetchStats,
   useFetchPublicData,
   useFetchStatsOverall,
-  usePollVaultsData,
-  useVaults,
   useFetchTokenPrices,
   useFetchProfile,
   useNetworkChainId,
-  useDualFarms,
-  useNetworkChainIdFromUrl,
+  useUpdateNetwork,
 } from 'state/hooks'
-import { useDispatch } from 'react-redux'
-import { fetchUserNetwork } from 'state/network'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -33,6 +27,7 @@ const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
+const DualFarms = lazy(() => import('./views/DualFarms'))
 const Nft = lazy(() => import('./views/Nft'))
 const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
@@ -40,7 +35,6 @@ const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
-const DualFarms = lazy(() => import('./views/DualFarms'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
 
 // This config is required for number formating
@@ -65,7 +59,7 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
-  const { account, chainId } = useWeb3React()
+  const { account } = useWeb3React()
 
   useEffect(() => {
     console.warn = () => null
@@ -76,30 +70,14 @@ const App: React.FC = () => {
   }, [account])
 
   const appChainId = useNetworkChainId()
-  const chainIdFromUrl = useNetworkChainIdFromUrl()
-  console.log(chainIdFromUrl)
-  const dispatch = useDispatch()
-  const { switchNetwork } = useSwitchNetwork()
 
-  useEffect(() => {
-    if (chainIdFromUrl) {
-      console.log('HERE FOR S SECOND')
-      console.log(chainIdFromUrl)
-      switchNetwork(appChainId)
-    } else {
-      dispatch(fetchUserNetwork(chainId, account, appChainId))
-    }
-  }, [chainId, account, appChainId, chainIdFromUrl, switchNetwork, dispatch])
-
+  useUpdateNetwork()
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()
   useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
-  usePollVaultsData()
-  useVaults()
-  useDualFarms()
 
   const scrollToTop = (): void => {
     window.scrollTo({

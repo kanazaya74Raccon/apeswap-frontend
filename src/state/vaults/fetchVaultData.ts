@@ -14,7 +14,7 @@ const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: T
   const filteredVaultsToFetch = vaultsConfig.filter((vault) => vault.network === chainId)
   const data = await Promise.all(
     filteredVaultsToFetch.map(async (vault: VaultConfig) => {
-      const { pid, strat, stakeTokenAddress, token0, token1, masterchef, isPair, totalFees, rewardsInSeconds } = vault
+      const { strat, stakeTokenAddress, token0, masterchef, isPair, totalFees, rewardsInSeconds } = vault
 
       const masterchefCalls = [
         // Masterchef total alloc points

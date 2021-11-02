@@ -132,16 +132,16 @@ const config: MenuEntry[] = [
         href: 'https://ape-swap.medium.com/',
       },
       {
-        label: 'Team',
-        href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
-      },
-      {
         label: 'Partnership Application',
         href: 'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
       },
       {
         label: 'ApeTV',
         href: 'https://anchor.fm/apetv',
+      },
+      {
+        label: 'ApeLabs',
+        href: 'https://www.apelabs.education',
       },
       {
         label: 'Bug Bounty Program',

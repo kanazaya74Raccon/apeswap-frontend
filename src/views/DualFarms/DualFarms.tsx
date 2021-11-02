@@ -7,7 +7,14 @@ import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apes
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd, useDualFarms } from 'state/hooks'
+import {
+  useFarms,
+  usePriceBnbBusd,
+  usePriceBananaBusd,
+  usePriceEthBusd,
+  useDualFarms,
+  usePollDualFarms,
+} from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { DualFarm, Farm } from 'state/types'
@@ -395,6 +402,7 @@ const FlexLayout = styled.div`
 `
 
 const DualFarms: React.FC = () => {
+  usePollDualFarms()
   const size: Size = useWindowSize()
 
   const { path } = useRouteMatch()
