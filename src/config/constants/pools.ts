@@ -604,7 +604,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 46,
     tokenName: 'GMR',
-    image: 'gmr.png',
+    image: '',
     stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {

@@ -953,7 +953,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 70,
-    image: 'GMR.png',
+    image: '',
     lpSymbol: 'GMR-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
