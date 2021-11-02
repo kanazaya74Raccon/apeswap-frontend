@@ -11,7 +11,6 @@ import {
   useFetchStats,
   useFetchPublicData,
   useFetchStatsOverall,
-  useFetchAuctions,
   usePollVaultsData,
   useVaults,
   useFetchTokenPrices,
@@ -98,7 +97,6 @@ const App: React.FC = () => {
   useFetchProfile()
   useFetchStats()
   useFetchStatsOverall()
-  useFetchAuctions()
   usePollVaultsData()
   useVaults()
   useDualFarms()

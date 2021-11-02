@@ -32,18 +32,6 @@ export interface ExpandableSectionProps {
   image?: string
 }
 
-const PoolFinishedSash = styled.div`
-  @media (max-width: 1000px) {
-    background-image: url('/images/gnanaSash.svg');
-    background-position: top right;
-    background-repeat: no-repeat;
-    height: 35px;
-    position: absolute;
-    right: -3px;
-    top: -1.5px;
-    width: 45px;
-  }
-`
 
 const StyledBackground = styled.div`
   width: 110px;
@@ -312,8 +300,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <IconImage
               src={`/images/tokens/${image || `${token1?.symbol}.svg`}`}
               alt={token1?.symbol}
-              width={70}
-              height={70}
+              width={60}
+              height={60}
               marginLeft="7.5px"
             />
             <IconQuoteToken
@@ -328,8 +316,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <IconImage
               src={`/images/tokens/${image || `${token1?.symbol}.svg`}`}
               alt={token1?.symbol}
-              width={70}
-              height={70}
+              width={60}
+              height={60}
             />
             <IconQuoteToken
               src={`/images/tokens/${token0?.symbol}.svg`}

@@ -262,8 +262,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <IconImage
           src={`/images/tokens/${image || `${token1}.svg`}`}
           alt={token1}
-          width={70}
-          height={70}
+          width={60}
+          height={60}
           marginLeft="7.5px"
         />
         <IconQuoteToken
@@ -275,7 +275,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           marginTop={isDesktop ? '45px' : '30px'}
         />
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-        <IconImage src="/images/tokens/banana.svg" alt="banana" width={70} height={70} marginRight="7.5px" />
+        <IconImage src="/images/tokens/banana.svg" alt="banana" width={60} height={60} marginRight="7.5px" />
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>

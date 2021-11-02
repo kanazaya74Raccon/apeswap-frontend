@@ -272,8 +272,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <IconImage
           src={`/images/tokens/${stakeTokens?.token1?.symbol}.svg`}
           alt={stakeTokens?.token1?.symbol}
-          width={70}
-          height={70}
+          width={60}
+          height={60}
           marginLeft="7.5px"
         />
         <IconQuoteToken

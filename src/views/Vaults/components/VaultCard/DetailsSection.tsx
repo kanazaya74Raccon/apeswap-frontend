@@ -87,7 +87,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const chainId = useNetworkChainId()
 
-
   return (
     <Wrapper>
       <Flex justifyContent="space-between">
