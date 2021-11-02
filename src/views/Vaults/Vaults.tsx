@@ -12,7 +12,15 @@ import useBlock from 'hooks/useBlock'
 import { CHAIN_ID } from 'config/constants/chains'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, useStatsOverall, useVaults, useNetworkChainId, usePollVaultsData } from 'state/hooks'
+import {
+  useFarms,
+  usePriceBnbBusd,
+  usePools,
+  useStatsOverall,
+  useVaults,
+  useNetworkChainId,
+  usePollVaultsData,
+} from 'state/hooks'
 import { Pool, Vault, VaultsState } from 'state/types'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import Page from 'components/layout/Page'

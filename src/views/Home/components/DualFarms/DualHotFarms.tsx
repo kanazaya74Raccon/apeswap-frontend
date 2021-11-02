@@ -6,7 +6,14 @@ import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import farms from 'config/constants/farms'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
-import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd, useDualFarmsFromPid, usePollDualFarms } from 'state/hooks'
+import {
+  useFarmFromPid,
+  usePriceBnbBusd,
+  usePriceEthBusd,
+  usePriceBananaBusd,
+  useDualFarmsFromPid,
+  usePollDualFarms,
+} from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
 const HotFarmsWrapper = styled.div`
