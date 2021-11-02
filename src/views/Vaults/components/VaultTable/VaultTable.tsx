@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
+import { BLOCK_EXPLORER } from 'config/constants/chains'
 import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'
 import { useNetworkChainId } from 'state/hooks'
@@ -239,7 +240,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             personalValueStaked={getBalanceNumber(stakedBalance)}
             lpLabel={lpLabel}
             addLiquidityUrl="https://app.apeswap.finance/swap"
-            bscScanAddress={`https://bscscan.com/address/${vault.strat}`}
+            blockExplorer={`${BLOCK_EXPLORER[chainId]}/address/${vault?.strat}`}
           />
         </>
       )}

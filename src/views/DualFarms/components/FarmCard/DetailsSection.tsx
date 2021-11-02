@@ -2,9 +2,10 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
+import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { DualFarm, FarmPool } from 'state/types'
-import { useFarmUser, usePriceBananaBusd } from 'state/hooks'
+import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Multiplier from '../FarmTable/Multiplier'
 
@@ -67,9 +68,10 @@ const StyledLink = styled(Link)`
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({ bscScanAddress, lpLabel, addLiquidityUrl, farm }) => {
   const TranslateString = useI18n()
+  const chainId = useNetworkChainId()
 
   const lpAddress = farm.stakeTokenAddress
-  const bsc = `https://bscscan.com/address/${lpAddress}`
+  const blockExplorer = `${BLOCK_EXPLORER[chainId]}/address/${farm?.stakeTokenAddress}`
 
   const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
   const rewarderEarnings = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
@@ -128,8 +130,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ bscScanAddress, lpLa
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on BscScan')}
+        <StyledLink external href={blockExplorer} bold={false}>
+          {TranslateString(356, `View on ${NETWORK_LABEL[chainId]}Scan`)}
         </StyledLink>
       </Flex>
     </Wrapper>

@@ -1,16 +1,16 @@
 import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { BLOCK_EXPLORER } from 'config/constants/chains'
 import { Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Vault } from 'state/types'
+import { useNetworkChainId } from 'state/hooks'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
-
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface VaultWithStakedValue extends Vault {
   apr?: BigNumber
@@ -65,6 +65,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
   const { account } = useWeb3React()
   const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
+  const chainId = useNetworkChainId()
 
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
@@ -100,7 +101,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
           personalValueStaked={getBalanceNumber(stakedBalance)}
           lpLabel={lpLabel}
           addLiquidityUrl="https://app.apeswap.finance/swap"
-          bscScanAddress={`https://bscscan.com/address/${vault.strat}`}
+          blockExplorer={`${BLOCK_EXPLORER[chainId]}/address/${vault?.strat}`}
           stakedTokenPrice={vault?.stakeTokenPrice}
         />
       </ExpandingWrapper>

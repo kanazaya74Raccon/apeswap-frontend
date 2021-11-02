@@ -7,9 +7,11 @@ import { FarmPool } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
+import { NETWORK_LABEL } from 'config/constants/chains'
+import { useNetworkChainId } from 'state/hooks'
 
 export interface ExpandableSectionProps {
-  bscScanAddress?: string
+  blockExplorer?: string
   removed?: boolean
   totalValueFormated?: string
   lpLabel?: string
@@ -80,7 +82,7 @@ const InfoContainer = styled.div`
 `
 
 const ActionPanel: React.FC<ExpandableSectionProps> = ({
-  bscScanAddress,
+  blockExplorer,
   lpLabel,
   addLiquidityUrl,
   personalValueStaked,
@@ -88,6 +90,8 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   stakedTokenPrice,
 }) => {
   const TranslateString = useI18n()
+
+  const chainId = useNetworkChainId()
 
   const totalStakedFormated = totalStaked
     ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
@@ -122,8 +126,8 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
             </StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">
-            <StyledLink external href={bscScanAddress} bold={false}>
-              {TranslateString(356, 'View on BscScan')}
+            <StyledLink external href={blockExplorer} bold={false}>
+              {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
             </StyledLink>
           </Flex>
         </InfoContainer>

@@ -2,13 +2,12 @@ import React from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
+import { useNetworkChainId } from 'state/hooks'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
-import getTimePeriods from 'utils/getTimePeriods'
-import { BSC_BLOCK_TIME } from 'config'
+import { NETWORK_LABEL } from 'config/constants/chains'
 
 export interface ExpandableSectionProps {
-  bscScanAddress?: string
+  blockExplorer?: string
   removed?: boolean
   totalValueFormated?: string
   lpLabel?: string
@@ -66,7 +65,7 @@ const StyledLink = styled(Link)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
-  bscScanAddress,
+  blockExplorer,
   lpLabel,
   addLiquidityUrl,
   personalValueStaked,
@@ -85,6 +84,9 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     ? `${Number(totalStakedRaw).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
     : '-'
   const totalUserStaked = personalValueStaked > 0 ? (personalValueStaked * stakedTokenPrice).toFixed(2) : 0
+
+  const chainId = useNetworkChainId()
+
 
   return (
     <Wrapper>
@@ -127,8 +129,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on BscScan')}
+        <StyledLink external href={blockExplorer} bold={false}>
+          {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
         </StyledLink>
       </Flex>
     </Wrapper>

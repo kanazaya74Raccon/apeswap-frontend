@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
+import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { useWeb3React } from '@web3-react/core'
 import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
@@ -104,7 +105,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
   const { account } = useWeb3React()
 
   const lpAddress = farm.stakeTokenAddress
-  const bsc = `https://bscscan.com/address/${lpAddress}`
+  const blockExplorer = `${BLOCK_EXPLORER[chainId]}/address/${farm?.stakeTokenAddress}`
 
   const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
   const rewarderEarnings = getBalanceNumber(farm?.userData?.rewarderEarnings, farm?.rewardTokens?.token1?.decimals)
@@ -184,7 +185,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
               <StyledText fontFamily="poppins" fontSize="12px">
                 {TranslateString(736, 'APR:')}
               </StyledText>
-              {/* <Apr {...farm?.apr} addLiquidityUrl="" /> */}
             </ValueWrapper>
           </ValueContainerNoneLarge>
           <ActionContainer>
@@ -192,7 +192,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={bsc}>{TranslateString(999, 'View on BscScan')}</StyledLinkExternal>
+      <StyledLinkExternal href={blockExplorer}>
+        {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
+      </StyledLinkExternal>
     </>
   )
 }
