@@ -1880,7 +1880,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 97,
     tokenName: 'YDR',
-    image: 'YDR.svg',
+    image: 'YDR.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.ydr,
     contractAddress: {
