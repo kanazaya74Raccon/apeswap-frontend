@@ -72,7 +72,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   totalStaked,
   totalStakedRaw,
   stakedTokenPrice,
-  pendingReward,
 }) => {
   const TranslateString = useI18n()
 

@@ -3,22 +3,18 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
 import {
   Flex,
-  Heading,
   IconButtonSquare,
   AddIcon,
   MinusIcon,
   useModal,
-  Text,
-  ButtonSquare,
 } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { useSousStake, useVaultStake } from 'hooks/useStake'
-import { useSousUnstake, useVaultUnstake, useVaultUnstakeAll } from 'hooks/useUnstake'
-import { Pool, Vault } from 'state/types'
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import { useVaultStake } from 'hooks/useStake'
+import { useVaultUnstake, useVaultUnstakeAll } from 'hooks/useUnstake'
+import { Vault } from 'state/types'
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 
@@ -49,20 +45,6 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   height: 34px;
 `
 
-const StyledHeadingGreen = styled(Heading)`
-  font-size: 14px;
-  color: #38a611;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 20px;
-    color: #38a611;
-  }
-`
-
-const StyledText = styled(Text)`
-  font-weight: bold;
-  font-size: 12px;
-`
 
 const StyledFlex = styled(Flex)`
   position: absolute;
@@ -80,15 +62,9 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakingTokenBalance,
   stakedBalance,
   isApproved,
-  firstStake,
-  isHeader,
 }) => {
-  const TranslateString = useI18n()
 
-  const { stakeTokenAddress, pid, token0, token1 } = vault
-
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+  const { pid } = vault
 
   const rewardRefStake = useRef(null)
   const rewardRefUnstake = useRef(null)
@@ -103,7 +79,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
 
-  const isLoading = !vault.userData
 
   const [onPresentDeposit] = useModal(
     <DepositModal

@@ -5,9 +5,8 @@ import styled from 'styled-components'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { DualFarm, FarmPool } from 'state/types'
-import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
+import { useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import Multiplier from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -55,22 +54,16 @@ const StyledText = styled(Text)`
   font-weight: bold;
 `
 
-const StyledTextGreen = styled(Text)`
-  font-weight: bold;
-  color: #38a611;
-`
-
 const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
 `
 
-const DetailsSection: React.FC<ExpandableSectionProps> = ({ bscScanAddress, lpLabel, addLiquidityUrl, farm }) => {
+const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidityUrl, farm }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
 
-  const lpAddress = farm.stakeTokenAddress
   const blockExplorer = `${BLOCK_EXPLORER[chainId]}/address/${farm?.stakeTokenAddress}`
 
   const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)
@@ -78,8 +71,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ bscScanAddress, lpLa
 
   const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
   const displayLiquidity = `$${Number(farm?.totalStaked).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-
-  const number = parseInt(farm?.totalStaked)
 
   return (
     <Wrapper>

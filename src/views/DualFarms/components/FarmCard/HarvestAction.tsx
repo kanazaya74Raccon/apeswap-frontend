@@ -1,17 +1,13 @@
 import React, { useState, useRef, useMemo, useCallback } from 'react'
-import Reward from 'react-rewards'
-import rewards from 'config/constants/rewards'
-import useReward from 'hooks/useReward'
 import { getContract } from 'utils/erc20'
 import { useWeb3React } from '@web3-react/core'
-import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
 import { AutoRenewIcon, ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
-import { useHarvest, useMiniChefHarvest } from 'hooks/useHarvest'
-import { useApprove, useDualFarmApprove } from 'hooks/useApprove'
-import useStake, { useDualFarmStake } from 'hooks/useStake'
+import { useMiniChefHarvest } from 'hooks/useHarvest'
+import { useDualFarmApprove } from 'hooks/useApprove'
+import { useDualFarmStake } from 'hooks/useStake'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 import DepositModal from '../DepositModal'
@@ -25,13 +21,10 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { account, library } = useWeb3React()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
-  const rewardRefPos = useRef(null)
-  const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-  const onStake = useDualFarmStake(pid).onStake
+  const {onStake} = useDualFarmStake(pid)
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeTx, setStakeTx] = useState(false)
-  const onReward = useMiniChefHarvest(pid).onReward
-  const chainId = useNetworkChainId()
+  const {onReward} = useMiniChefHarvest(pid)
   const lpSymbol = `${stakeTokens?.token0?.symbol}-${stakeTokens?.token1?.symbol}`
 
   const rawEarningsBalance = getBalanceNumber(dualFarm?.userData?.miniChefEarnings)
@@ -48,9 +41,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
-      const sucess = await onApprove()
-      if (!sucess) setTypeOfReward('error')
-      else setTypeOfReward('rewardBanana')
+      await onApprove()
       setRequestedApproval(false)
       rewardRef.current?.rewardMe()
     } catch (e) {

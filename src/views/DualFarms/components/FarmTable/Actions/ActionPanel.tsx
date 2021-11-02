@@ -4,14 +4,11 @@ import useI18n from 'hooks/useI18n'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { useWeb3React } from '@web3-react/core'
 import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
+import {useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import StakedAction from './StakedAction'
-import Apr, { AprProps } from '../Apr'
-import Multiplier, { MultiplierProps } from '../Multiplier'
-import { LiquidityProps } from '../Liquidity'
+
 
 export interface ActionPanelProps {
   farm: DualFarm
@@ -104,7 +101,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
   const chainId = useNetworkChainId()
   const { account } = useWeb3React()
 
-  const lpAddress = farm.stakeTokenAddress
   const blockExplorer = `${BLOCK_EXPLORER[chainId]}/address/${farm?.stakeTokenAddress}`
 
   const miniChefEarnings = getBalanceNumber(farm?.userData?.miniChefEarnings, farm?.rewardTokens?.token0?.decimals)

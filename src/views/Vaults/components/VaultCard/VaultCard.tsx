@@ -2,15 +2,11 @@ import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
-import { Flex } from '@apeswapfinance/uikit'
-import { useWeb3React } from '@web3-react/core'
-import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Vault } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
-import StakeAction from './CardActions/StakeActions'
 
 export interface VaultWithStakedValue extends Vault {
   apr?: BigNumber
@@ -48,37 +44,18 @@ const PCard = styled.div`
 
 const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
   const {
-    pid,
-    strat,
-    stakeTokenAddress,
-    token0,
-    token1,
-    totalFees,
-    withdrawFee,
-    burning,
     userData,
-    isPair,
     image,
     totalStaked,
   } = vault
 
-  const { account } = useWeb3React()
-  const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   const chainId = useNetworkChainId()
 
-  const allowance = new BigNumber(userData?.allowance || 0)
-  const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-  // const earnings = new BigNumber(userData?.pendingReward || 0)
-  // const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
-  const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const isApproved = account && allowance && allowance.isGreaterThan(0)
-  const needsApproval = !allowance.gt(0)
-  const isLoading = !userData
+
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
-  const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const displayBalance = rawStakedBalance.toLocaleString()
+
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)
   }

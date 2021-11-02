@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
-import styled, { keyframes } from 'styled-components'
-import { useNetworkChainId, useStats } from 'state/hooks'
+import styled from 'styled-components'
+import { useStats } from 'state/hooks'
 import { DualFarm, Farm } from 'state/types'
-import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
-import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -14,67 +12,6 @@ export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
-}
-
-const RainbowLight = keyframes`
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-`
-
-const Accent = styled.div`
-  border-radius: 16px;
-  filter: blur(6px);
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  z-index: -1;
-`
-
-const FeaturedCardAccent = styled(Accent)`
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 154, 0, 1) 10%,
-    rgba(208, 222, 33, 1) 20%,
-    rgba(79, 220, 74, 1) 30%,
-    rgba(63, 218, 216, 1) 40%,
-    rgba(47, 201, 226, 1) 50%,
-    rgba(28, 127, 238, 1) 60%,
-    rgba(95, 21, 242, 1) 70%,
-    rgba(186, 12, 248, 1) 80%,
-    rgba(251, 7, 217, 1) 90%,
-    rgba(255, 0, 0, 1) 100%
-  );
-  background-size: 300% 300%;
-  animation: ${RainbowLight} 2s linear infinite;
-`
-
-const DeprecatedCardAccent = styled(Accent)`
-  background: #ca3e33;
-`
-
-const WarningCardAccent = styled(Accent)`
-  background: #c57415;
-`
-
-const InactiveCardAccent = styled(Accent)`
-  background: grey;
-`
-
-const styles: FarmStyles = {
-  deprecated: DeprecatedCardAccent,
-  warning: WarningCardAccent,
-  featured: FeaturedCardAccent,
-  inactive: InactiveCardAccent,
 }
 
 const FCard = styled.div`
@@ -112,13 +49,10 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
   const yourStats = useStats()
-  const chainId = useNetworkChainId()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
-  // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
   const farmImage = `${farm?.stakeTokens?.token0?.symbol} ${farm?.stakeTokens?.token1?.symbol}`
 
   const totalValueFormated = farm?.totalStaked
@@ -128,13 +62,6 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const lpLabel = `${farm?.stakeTokens?.token0?.symbol}-${farm?.stakeTokens?.token1?.symbol}`
   const farmAPR = farm?.apr
 
-  // const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
-  // const liquidityUrlPathParts = getLiquidityUrlPathParts({
-  //   quoteTokenAdresses,
-  //   quoteTokenSymbol,
-  //   tokenAddresses,
-  //   chainId,
-  // })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/`
 
   const toggleExpand = () => {

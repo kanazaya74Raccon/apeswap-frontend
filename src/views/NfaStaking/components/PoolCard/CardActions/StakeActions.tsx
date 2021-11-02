@@ -2,22 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'
-import {
-  Flex,
-  Heading,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  Text,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Flex, Heading, useModal, Text, ButtonSquare } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useNfaStake } from 'hooks/useStake'
-import { useNfaUnstake } from 'hooks/useUnstake'
+// import { useNfaUnstake } from 'hooks/useUnstake'
 import DepositModal from '../../DepositModal'
-import WithdrawModal from '../../WithdrawModal'
+// import WithdrawModal from '../../WithdrawModal'
 
 interface StakeActionsProps {
   pool: NfaStakingPool
@@ -36,10 +27,10 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
-  width: 34px;
-  height: 34px;
-`
+// const StyledIconButtonSquare = styled(IconButtonSquare)`
+//   width: 34px;
+//   height: 34px;
+// `
 
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
@@ -76,8 +67,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedBalance,
   isApproved,
   firstStake,
-  tier,
-  stakedNfas,
+  tier
 }) => {
   const TranslateString = useI18n()
 
@@ -86,8 +76,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const rawStakedBalance = getBalanceNumber(stakedBalance, 0)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const onStake = useNfaStake(sousId).onStake
-  const onUnstake = useNfaUnstake(sousId).onUnstake
+  const { onStake } = useNfaStake(sousId)
+  // const onUnstake = useNfaUnstake(sousId).onUnstake
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -98,14 +88,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     />,
   )
 
-  const [onPresentWithdraw] = useModal(
-    <WithdrawModal
-      onConfirm={async (val) => {
-        await onUnstake(val)
-      }}
-      stakedNfas={stakedNfas}
-    />,
-  )
+  // const [onPresentWithdraw] = useModal(
+  //   <WithdrawModal
+  //     onConfirm={async (val) => {
+  //       await onUnstake(val)
+  //     }}
+  //     stakedNfas={stakedNfas}
+  //   />,
+  // )
 
   const renderStakingButtons = () => {
     return (

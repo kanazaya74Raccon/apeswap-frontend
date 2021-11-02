@@ -4,7 +4,6 @@ import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
-import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 
 export interface AprProps {
   poolApr?: string
@@ -43,7 +42,7 @@ const AprWrapper = styled.div`
   font-size: 20px;
 `
 
-const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewardTokenPrice, apr }) => {
+const Apr: React.FC<AprProps> = ({ poolApr }) => {
   const TranslateString = useI18n()
 
   return poolApr !== '0' ? (

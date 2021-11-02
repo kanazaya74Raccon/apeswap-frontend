@@ -5,10 +5,8 @@ import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { useFarmUser } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useDualFarmStake } from 'hooks/useStake'
@@ -33,7 +31,7 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   height: 34px;
 `
 
-const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, rewardTokens, userData }) => {
+const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData }) => {
   const TranslateString = useI18n()
 
   const rewardRefPos = useRef(null)

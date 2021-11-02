@@ -8,7 +8,6 @@ import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } f
 import useI18n from 'hooks/useI18n'
 import { useDualFarmStake } from 'hooks/useStake'
 import { useMiniChefUnstake } from 'hooks/useUnstake'
-import { getBalanceNumber } from 'utils/formatBalance'
 import DepositModal from '../DepositModal'
 import WithdrawModal from '../WithdrawModal'
 

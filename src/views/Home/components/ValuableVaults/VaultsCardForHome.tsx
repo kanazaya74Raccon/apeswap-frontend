@@ -1,8 +1,7 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
-import { DualFarm, Vault } from 'state/types'
+import { Vault } from 'state/types'
 
 interface VaultProps {
   vault: Vault

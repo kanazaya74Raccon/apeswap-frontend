@@ -5,14 +5,12 @@ import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
 import UnlockButton from 'components/UnlockButton'
-import useBlock from 'hooks/useBlock'
 import { useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Vault } from 'state/types'
 import VaultHeading from './VaultHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
-import Earned from './Earned'
 import Apr from './Apr'
 import ActionPanel from './ActionPanel'
 import Staked from './Liquidity'
@@ -128,13 +126,9 @@ const StakeContainer = styled.div`
 const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const {
     pid,
-    strat,
     stakeTokenAddress,
     token0,
     token1,
-    totalFees,
-    withdrawFee,
-    burning,
     userData,
     isPair,
     apy,
@@ -142,7 +136,6 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   } = vault
 
   const { account } = useWeb3React()
-  const block = useBlock()
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const toggleActionPanel = () => {
     setActionPanelToggled(!actionPanelToggled)
@@ -153,9 +146,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-  const vaultImage = isPair ? `${token0.symbol}-${token1.symbol}` : token0.symbol
-  // const earnings = new BigNumber(userData?.pendingReward || 0)
-  // const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
+
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const needsApproval = !allowance.gt(0)
@@ -164,7 +155,6 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  // const totalDollarAmountStaked = getBalanceNumber(totalStaked) * stakedTokenPrice
 
   const cardHeaderButton = () => {
     if (!account) {

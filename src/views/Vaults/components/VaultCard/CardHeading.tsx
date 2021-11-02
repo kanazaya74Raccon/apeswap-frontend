@@ -3,11 +3,10 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
-import { Pool, Vault } from 'state/types'
+import { Vault } from 'state/types'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
-import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
@@ -81,17 +80,6 @@ const StyledText3 = styled(Text)`
   }
 `
 
-const StyledText4 = styled(Text)`
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 1px;
-  display: none;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: flex;
-  }
-`
-
 const StyledFlexContainer = styled(Flex)`
   display: flex;
   flex-direction: row;
@@ -124,17 +112,6 @@ const StyledFlexEarned = styled(Flex)`
     align-items: flex-start;
     margin-right: 0px;
     flex-direction: column;
-  }
-`
-
-const StyledFlexEarnedSmall = styled(Flex)`
-  margin-right: 10px;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: none;
   }
 `
 
@@ -246,7 +223,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const earnings = new BigNumber(vault.userData?.tokenBalance || 0)
   const allowance = new BigNumber(userData?.allowance || 0)
   const isLoading = !vault?.userData
   const needsApproval = !allowance.gt(0)

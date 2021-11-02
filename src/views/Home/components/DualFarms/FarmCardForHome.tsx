@@ -1,5 +1,4 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { DualFarm } from 'state/types'
@@ -41,13 +40,6 @@ const StyledBackground = styled(Flex)`
   justify-content: space-between;
   align-items: center;
   margin-right: 20px;
-`
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-  display: flex;
-  width: 90px;
-  height: 90px;
 `
 
 const IconImage = styled(Image)`

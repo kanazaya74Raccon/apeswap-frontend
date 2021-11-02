@@ -1,27 +1,18 @@
-import React, { useEffect, useCallback, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
-import {
-  useFarms,
-  usePriceBnbBusd,
-  usePriceBananaBusd,
-  usePriceEthBusd,
-  useDualFarms,
-  usePollDualFarms,
-} from 'state/hooks'
+import { usePriceBananaBusd, useDualFarms, usePollDualFarms } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { DualFarm, Farm } from 'state/types'
-import { QuoteToken } from 'config/constants/types'
+import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
-import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
+import FarmCard from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
@@ -404,20 +395,16 @@ const FlexLayout = styled.div`
 const DualFarms: React.FC = () => {
   usePollDualFarms()
   const size: Size = useWindowSize()
-
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const bananaPrice = usePriceBananaBusd()
-  const bnbPrice = usePriceBnbBusd()
   const { account } = useWeb3React()
   const farmsLP = useDualFarms()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
-
-  const ethPriceUsd = usePriceEthBusd()
 
   useEffect(() => {
     if (size.width !== undefined) {
@@ -478,20 +465,14 @@ const DualFarms: React.FC = () => {
     }
 
     return sortFarms(farmsStaked)
-    // .slice(0, numberOfFarmsVisible)
   }, [
     sortOption,
     activeFarms,
     inactiveFarms,
-    // archivedFarms,
     isActive,
-    // isInactive,
-    // isArchived,
-    // stakedArchivedFarms,
     stakedInactiveFarms,
     stakedOnly,
     stakedOnlyFarms,
-    // numberOfFarmsVisible,
     sortDirection,
   ])
 

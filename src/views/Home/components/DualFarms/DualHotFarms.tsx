@@ -1,19 +1,7 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
-import BigNumber from 'bignumber.js'
-import { QuoteToken } from 'config/constants/types'
-import farms from 'config/constants/farms'
-import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
-import {
-  useFarmFromPid,
-  usePriceBnbBusd,
-  usePriceEthBusd,
-  usePriceBananaBusd,
-  useDualFarmsFromPid,
-  usePollDualFarms,
-} from 'state/hooks'
+import { useDualFarmsFromPid, usePollDualFarms } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
 const HotFarmsWrapper = styled.div`

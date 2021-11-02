@@ -122,7 +122,6 @@ const FarmedStakingCard = () => {
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
-  console.log(farmsWithBalance)
 
   const onReward = useReward(
     rewardRef,

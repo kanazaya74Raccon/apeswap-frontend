@@ -231,7 +231,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   apr,
   stakeToken,
   earnToken,
-  tokenSymbol,
   poolAPR,
   removed,
   sousId,

@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
-import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
-import BigNumber from 'bignumber.js'
-
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
-
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
-
 import HarvestAction from '../FarmCard/HarvestAction'
 
 export interface RowProps {
@@ -129,10 +122,9 @@ const ArrowContainer = styled(Flex)`
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
-  const { details, liquidity, farm } = props
+  const { details } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
-  const chainId = useNetworkChainId()
 
   const toggleActionPanel = () => {
     setActionPanelToggled(!actionPanelToggled)
@@ -142,20 +134,11 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
 
   const { account } = useWeb3React()
 
-  const { stakeTokens, rewardTokens } = details
-  // const liquidityUrlPathParts = getLiquidityUrlPathParts({
-  //   quoteTokenAdresses,
-  //   quoteTokenSymbol,
-  //   tokenAddresses,
-  //   chainId,
-  // })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}`
 
   const isMobile = !isXl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
-  const earnings = props.details.userData?.miniChefEarnings
-  const pid = props.details.pid
 
   const handleRenderRow = () => {
     if (!isXs) {

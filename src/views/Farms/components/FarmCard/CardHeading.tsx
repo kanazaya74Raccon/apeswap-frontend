@@ -7,7 +7,6 @@ import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
-
 import HarvestAction from './HarvestAction'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
@@ -238,7 +237,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   token0,
   token1,
   image,
-  tokenSymbol,
   addLiquidityUrl,
   bananaPrice,
   farmAPR,

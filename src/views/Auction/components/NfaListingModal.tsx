@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { Button, Modal, AutoRenewIcon, Text, Card } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon, Text } from '@apeswapfinance/uikit'
 import { useNfaAllowance } from 'hooks/useAllowance'
 import { useAuctionApprove } from 'hooks/useApprove'
 import { useAuctionAddress } from 'hooks/useAddress'
@@ -7,9 +7,6 @@ import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
-// import Input from 'components/Input'
-// import Slider from 'components/Slider'
-// import getTimePeriods from 'utils/getTimePeriods'
 import useI18n from '../../../hooks/useI18n'
 
 interface NfaListingModalProps {
@@ -64,22 +61,6 @@ const NfaBackground = styled.div`
   border-radius: 30px;
 `
 
-// const MinimumBidWrapper = styled.div`
-//   display: flex;
-//   width: 100%;
-//   flex-direction: row;
-// `
-
-// const BnbLogo = styled.div`
-//   background-image: url(/images/rounded-bnb-sm.svg);
-//   background-size: cover;
-//   background-position: center;
-//   width: 18px;
-//   height: 18px;
-//   z-index: 1;
-//   margin-left: 5px;
-//   margin-top: 2px;
-
 const TimeText = styled(Text)`
   font-family: poppins;
   font-weight: 400;
@@ -88,54 +69,25 @@ const TimeText = styled(Text)`
   text-align: center;
 `
 
-// const formatListingTime = (listingTime: any): string => {
-//   const formatHours = listingTime.hours < 10 ? `0${listingTime.hours}` : listingTime.hours.toString()
-//   const formatMinutes = listingTime.minutes < 10 ? `0${listingTime.minutes}` : listingTime.minutes.toString()
-//   const formatSeconds = listingTime.seconds < 10 ? `0${listingTime.seconds.toFixed(0)}` : listingTime.seconds.toFixed(0)
-//   return `${formatHours}:${formatMinutes}:${formatSeconds}`
-// }
-
 const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss, ownedNfas }) => {
   const auctionAddress = useAuctionAddress()
   const allowance = useNfaAllowance(auctionAddress)
-  const onApprove = useAuctionApprove().onApprove
+  const { onApprove } = useAuctionApprove()
   const [approved, setApproved] = useState(true)
   const [nfaIndex, setNfaIndex] = useState(null)
-  const [auctionLength, setAuctionLength] = useState(86400)
-  const [timeToExtendVal, setTimeToExtendVal] = useState(1800)
-  const [minTimeToExtend, setMinTimeToExtend] = useState(21600)
-  const [minimumBid, setMinimumBid] = useState('.9')
+  const auctionLength = 86400
+  const timeToExtendVal = 1800
+  const minTimeToExtend = 21600
+  const minimumBid = '.9'
   const [pendingTx, setPendingTx] = useState(false)
   const [pendingApprove, setPendingApprove] = useState(false)
   const TranslateString = useI18n()
-  // const auctionLengthFormat = formatListingTime(getTimePeriods(auctionLength))
-  // const timeToExtendValFormat = formatListingTime(getTimePeriods(timeToExtendVal))
-  // const minTimeToExtendFormat = formatListingTime(getTimePeriods(minTimeToExtend))
 
   useEffect(() => {
     if (allowance !== null) {
       setApproved(allowance)
     }
   }, [allowance, setApproved])
-
-  // const handleChange = useCallback(
-  //   (e: React.FormEvent<HTMLInputElement>) => {
-  //     setMinimumBid(e.currentTarget.value)
-  //   },
-  //   [setMinimumBid],
-  // )
-
-  // const handleTimeVal = useCallback(
-  //   (value: number) => {
-  //     if (value < minTimeToExtend) {
-  //       setAuctionLength(value)
-  //       setMinTimeToExtend(value)
-  //     } else {
-  //       setAuctionLength(value)
-  //     }
-  //   },
-  //   [minTimeToExtend, setMinTimeToExtend],
-  // )
 
   const handleApprove = useCallback(async () => {
     try {

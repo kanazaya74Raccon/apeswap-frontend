@@ -2,16 +2,16 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { BLOCKS_PER_DAY } from 'config'
+// import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
-import StakeAction from './CardActions/StakeActions'
+// import StakeAction from './CardActions/StakeActions'
 import Image from '../../../Nft/components/Image'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
@@ -189,28 +189,27 @@ const LabelContainer2 = styled.div`
   }
 `
 
-const FlexSwitch = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
+// const FlexSwitch = styled.div`
+//   display: flex;
+//   flex-direction: row-reverse;
+//   justify-content: center;
+//   align-items: center;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row-reverse;
-  }
-`
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     flex-direction: row-reverse;
+//   }
+// `
 
-const StyledAPRText = styled.div`
-  font-size: 12px;
-  line-height: 11px;
-  letter-spacing: 1px;
-  margin-left: 5px;
-  margin-bottom: 2px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 20px;
-    line-height: 23px;
-  }
-`
+// const StyledAPRText = styled.div`
+//   font-size: 12px;
+//   line-height: 11px;
+//   letter-spacing: 1px;
+//   margin-left: 5px;
+//   margin-bottom: 2px;
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     font-size: 20px;
+//     line-height: 23px;
+//   }
 
 const ButtonContainer = styled.div`
   width: 180px;
@@ -300,20 +299,17 @@ const StyledNumber = styled.div`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   pool,
-  apr,
   stakeToken,
   earnToken,
   tier,
-  poolAPR,
   removed,
   sousId,
   earnTokenImage,
   showExpandableSection,
-  rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
-  const { userData, tokenPerBlock, totalStaked } = pool
-  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  const { userData } = pool
+  // const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
@@ -322,7 +318,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
   const isLoading = !pool.userData
   const { account } = useWeb3React()
-  const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
+  // const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
 
   const cardHeaderButton = () => {
     if (!account) {

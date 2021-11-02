@@ -5,7 +5,6 @@ import useI18n from 'hooks/useI18n'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import { DualFarm } from 'state/types'
 import { Token } from 'config/constants/types'
@@ -76,17 +75,6 @@ const StyledText3 = styled(Text)`
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
-  }
-`
-
-const StyledText4 = styled(Text)`
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 1px;
-  display: none;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: flex;
   }
 `
 
@@ -249,7 +237,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   bananaPrice,
   farmAPR,
   removed,
-  pid,
   showExpandableSection,
   farm,
 }) => {

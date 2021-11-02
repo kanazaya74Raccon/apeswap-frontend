@@ -4,8 +4,9 @@ import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
-import CardValue from './CardValue'
 import { useBananaAddress } from 'hooks/useAddress'
+import CardValue from './CardValue'
+
 
 const BananaWalletBalance = () => {
   const TranslateString = useI18n()

@@ -1,28 +1,19 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled, { keyframes } from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
+import styled from 'styled-components'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
-import useBlock from 'hooks/useBlock'
 import { CHAIN_ID } from 'config/constants/chains'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { getBalanceNumber } from 'utils/formatBalance'
 import {
-  useFarms,
-  usePriceBnbBusd,
-  usePools,
-  useStatsOverall,
   useVaults,
   useNetworkChainId,
   usePollVaultsData,
 } from 'state/hooks'
-import { Pool, Vault, VaultsState } from 'state/types'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
+import {  Vault } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
@@ -34,17 +25,6 @@ import { ViewMode } from './components/types'
 interface LabelProps {
   active?: boolean
 }
-
-const float = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(50px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
-const floatSM = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(10px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -478,11 +458,8 @@ const Vaults: React.FC = () => {
   const size: Size = useWindowSize()
   const { vaults: initVaults } = useVaults()
   const [allVaults, setAllVaults] = useState(initVaults)
-  const { statsOverall } = useStatsOverall()
-  const bnbPriceUSD = usePriceBnbBusd()
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
-  const block = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -524,16 +501,6 @@ const Vaults: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
-    const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
-      return new BigNumber(1)
-    }
-    if (tokenPrice && quoteToken === QuoteToken.BUSD) {
-      return tokenPriceBN.div(bnbPriceUSD)
-    }
-    return tokenPriceBN
-  }
 
   const [inactiveVaults, activeVaults] = partition(allVaults, (vault) => vault.inactive)
 
@@ -631,12 +598,6 @@ const Vaults: React.FC = () => {
         <StyledHeading as="h1" mb="8px" mt={0} color="white">
           {TranslateString(999, 'Burning Vaults')}
         </StyledHeading>
-        {size.width > 968 && (
-          // <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
-
-          // </Text>
-          <></>
-        )}
       </HeadingContainer>
     )
     if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
