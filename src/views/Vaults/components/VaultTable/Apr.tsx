@@ -40,6 +40,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   text-align: left;
   font-size: 20px;
+  font-weight: 200;
 `
 
 const Apr: React.FC<AprProps> = ({ poolApr }) => {

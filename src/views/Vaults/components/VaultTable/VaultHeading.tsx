@@ -90,7 +90,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
         )}
       </StyledBackground>
       <div>
-        <Text fontSize="20px" bold>
+        <Text fontSize="20px">
           {isPair ? `${token0}-${token1}` : token0}
         </Text>
       </div>
