@@ -588,6 +588,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  wing: {
+    symbol: 'WING',
+    address: {
+      56: '0x3cb7378565718c64ab86970802140cc48ef1f969',
+    },
+    decimals: 9,
+  },
 }
 
 export default tokens
