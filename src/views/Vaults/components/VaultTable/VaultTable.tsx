@@ -221,6 +221,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             lpLabel={lpLabel}
             addLiquidityUrl="https://app.apeswap.finance/swap"
             blockExplorer={`${BLOCK_EXPLORER[chainId]}/address/${vault?.strat}`}
+            stakedTokenPrice={vault?.stakeTokenPrice}
           />
         </>
       )}

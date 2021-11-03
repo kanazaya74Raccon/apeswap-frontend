@@ -62,7 +62,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const lpLabel = `${farm?.stakeTokens?.token0?.symbol}-${farm?.stakeTokens?.token1?.symbol}`
   const farmAPR = farm?.apr
 
-  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/`
+  const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}`
 
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)

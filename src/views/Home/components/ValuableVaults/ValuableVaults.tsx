@@ -9,7 +9,7 @@ const ValuableVaultsWrapper = styled.div`
   position: relative;
   height: 321px;
   width: 336px;
-  background-image: url(/images/valuable-vaults.svg);
+  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/burning-vaults-polygon-dark.svg)' : 'url(/images/burning-vaults-polygon-dark.svg)')};
   border-radius: 30px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,7 +25,7 @@ const ValuableVaultsWrapper = styled.div`
 
 const CardHeaderImage = styled.div`
   position: absolute;
-  background: ${({ theme }) => (theme.isDark ? 'rgba(184, 152, 237, .35)' : 'rgba(184, 152, 237, .7)')};
+  background: ${({ theme }) => (theme.isDark ? 'rgba(184, 152, 237, .6)' : 'rgba(184, 152, 237, .7)')};
   height: 321px;
   width: 100%;
   border-radius: 30px;

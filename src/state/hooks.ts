@@ -46,7 +46,7 @@ import {
   DualFarm,
   HomepageData,
 } from './types'
-import { fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
+import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
 import { fetchHomepageData, fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
@@ -102,12 +102,11 @@ export const useFetchPublicData = () => {
     if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
       dispatch(fetchFarmsPublicDataAsync(multicallContract, masterChefAddress, chainId))
       dispatch(fetchPoolsPublicDataAsync(multicallContract, nativeWrappedAddress, chainId, tokenPrices))
-      // Will un-comment on nfa staking release
-      // dispatch(fetchNfaStakingPoolsPublicDataAsync(tokenPrices))
     }
   }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallContract, nativeWrappedAddress])
 }
 
+// Vault data
 export const usePollVaultsData = (includeArchive = false) => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
@@ -249,18 +248,23 @@ export const useAllPools = (): Pool[] => {
 
 // NfaStakingPools
 
-export const useNfaStakingPools = (account): NfaStakingPool[] => {
-  const { fastRefresh } = useRefresh()
+export const usePollNfaStakingData = () => {
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
   const dispatch = useDispatch()
   const multicallContract = useMulticallContract()
   const nfaAddress = useNonFungibleApesAddress()
   const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
   useEffect(() => {
+    fetchNfaStakingPoolsPublicDataAsync(multicallContract, nfaAddress, tokenPrices)
     if (account) {
       dispatch(fetchNfaStakingPoolsUserDataAsync(multicallContract, nfaAddress, chainId, account))
     }
-  }, [account, dispatch, multicallContract, nfaAddress, chainId, fastRefresh])
+  }, [account, dispatch, multicallContract, nfaAddress, chainId, tokenPrices, slowRefresh])
+}
 
+export const useNfaStakingPools = (): NfaStakingPool[] => {
   const nfaStakingPools = useSelector((state: State) => state.nfaStakingPools.data)
   return nfaStakingPools
 }

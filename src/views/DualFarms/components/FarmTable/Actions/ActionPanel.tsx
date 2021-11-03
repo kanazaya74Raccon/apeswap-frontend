@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
+import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { useWeb3React } from '@web3-react/core'
 import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
@@ -147,7 +148,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                 <StyledText fontFamily="poppins" fontSize="12px">
                   {TranslateString(999, 'Stake:')}
                 </StyledText>
-                <LinkExternal href="">
+                <LinkExternal href={BASE_ADD_LIQUIDITY_URL}>
                   <StyledText fontFamily="poppins" fontSize="12px">
                     {farm.stakeTokens.token0.symbol}
                   </StyledText>

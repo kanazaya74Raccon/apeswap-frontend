@@ -60,7 +60,9 @@ const Ifo = () => {
           </List>
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
-            <ListItem>{TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}</ListItem>
+            <ListItem>
+              {TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}
+            </ListItem>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
@@ -70,9 +72,15 @@ const Ifo = () => {
                 'Immediately after sale: You may claim your refund and 25% of your offering tokens',
               )}
             </ListItem>
-            <ListItem>{TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}</ListItem>
-            <ListItem>{TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}</ListItem>
-            <ListItem>{TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}</ListItem>
+            <ListItem>
+              {TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}
+            </ListItem>
+            <ListItem>
+              {TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}
+            </ListItem>
+            <ListItem>
+              {TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}
+            </ListItem>
           </List>
           <Text as="div" pt="16px">
             <Button

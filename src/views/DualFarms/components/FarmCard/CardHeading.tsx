@@ -72,9 +72,11 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
+  font-weight: 200;
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
+    font-weight: 200;
   }
 `
 
