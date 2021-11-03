@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Card, BaseLayout, CardBody, Text, Button } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import useRefresh from 'hooks/useRefresh'
@@ -9,50 +9,7 @@ import useTheme from 'hooks/useTheme'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import useI18n from 'hooks/useI18n'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
-
-const ControlContainer = styled(Card)`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  position: relative;
-
-  justify-content: center;
-  flex-direction: column;
-  overflow: visible;
-  padding-bottom: 10px;
-  transform: translateY(-85px);
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-    height: 59px;
-    padding: 0px;
-    justify-content: flex-start;
-    padding-left: 50px;
-    transform: translateY(-60px);
-  }
-`
-
-const ViewControls = styled.div`
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-
-  > div {
-    padding: 8px 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    justify-content: center;
-    align-items: center;
-    width: auto;
-
-    > div {
-      padding: 0;
-    }
-  }
-`
+import CardBurningGame from './CardBurningGame'
 
 const HeadingContainer = styled.div`
   max-width: 1024px;
@@ -60,11 +17,11 @@ const HeadingContainer = styled.div`
   margin-right: auto;
 `
 
-const Header = styled.div`
+const Header = styled.div<{ banner: string }>`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
+  background-image: ${(props) => (props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)')};
   background-repeat: no-repeat;
   background-size: cover;
   height: 400px;
@@ -75,29 +32,6 @@ const Header = styled.div`
     padding-right: 24px;
   }
 `
-
-const StyledImage = styled.img`
-  height: 187px;
-  width: 134px;
-  position: absolute;
-  right: 0px;
-  bottom: 51px;
-
-  @media screen and (min-width: 340px) {
-    right: 20px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    bottom: 51px;
-    right: 0px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    bottom: 0px;
-    right: 0px;
-  }
-`
-
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
@@ -133,90 +67,38 @@ const StyledPage = styled(Page)`
   }
 `
 
-const Column = styled(Card)`
-  border-radius: 5px;
-  width: 250px;
-  text-align: center;
-`
-const CardImage = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding-bottom: 100%;
-  border-radius: 20px;
-  img {
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    left: 0px;
-    transition: opacity 1s linear 0s;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-`
-const Description = styled(Text)`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
-  text-align: left;
-  padding: 36px;
-`
-const ButtonWrapper = styled.div`
-  width: 100%;
+const CardFull = styled(BaseLayout)`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`
-const PlayButton = styled(Button)`
-  width: 120px;
-  height: 60px;
-  background-color: secondary;
-  margin: 10px;
-  flex-shrink: 0;
-  background: #ffb300;
-  padding: 0;
-  :focus {
-    outline: none !important;
-    box-shadow: none !important;
-    background: #ffb300;
-  }
-  display: flex;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    width: 140px;
-  }
-`
-const PlayText = styled(Text)`
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 36px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 20px;
-  }
+  justify-content: space-between;
+  margin: 0 auto;
 `
 const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
-  margin-bottom: 32px;
-
+  height: 225px;
   & > div {
-    grid-column: span 6;
-    width: 100%;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
+    ${({ theme }) => theme.mediaQueries.md} {
+      grid-column: span 6;
     }
+
+    grid-column: span 12;
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 4;
+  .column-full {
+    height: 225px;
+    margin-bottom: 0px;
+    .container-general {
+      height: 193px;
+    }
+    .container-resumen-info {
+      width: 75%;
+      padding-top: 20px;
+      .container-title {
+        .partner-name {
+          font-size: 20px;
+        }
+        .sub-name {
+          font-size: 26px;
+        }
+      }
     }
   }
 `
@@ -227,6 +109,15 @@ const BurningGames: React.FC = () => {
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
+  const { isXl: isDesktop } = useMatchBreakpoints()
+  const { isDark } = useTheme()
+
+  let banner = '';
+
+  if(!isDark && isDesktop) banner = 'burning.png';
+  if(isDark && isDesktop) banner = 'burning-night.png';
+  if(!isDark && !isDesktop) banner = 'burning-mobile.png';
+  if(isDark && !isDesktop) banner = 'burning-night-mobile.png';
 
   useEffect(() => {
     if (account) {
@@ -234,44 +125,29 @@ const BurningGames: React.FC = () => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const { isDark } = useTheme()
-
   return (
     <>
-      <Header>
+      <Header banner={banner}>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0}>
+          <StyledHeading as="h1" mb="12px" mt={0} color="white">
             {TranslateString(999, 'Burning Games Partners')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
 
       <StyledPage width="1130px">
-        <ControlContainer>
-          <ViewControls>
-            {isDark ? (
-              <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
-            ) : (
-              <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
-            )}
-          </ViewControls>
-        </ControlContainer>
         <div>
+          {data.length !== 0 && (
+            <CardFull>
+              <CardBurningGame game={data[0]} />
+            </CardFull>
+          )}
+
           <Cards>
-            {data.map((i) => (
-              <Column>
-                <CardBody>
-                  <CardImage>
-                    <img src={`${i.image?.url}`} alt={i.id} />
-                  </CardImage>
-                  <Description>{i.name}</Description>
-                  <ButtonWrapper>
-                    <PlayButton>
-                      <PlayText color="white">Play</PlayText>
-                    </PlayButton>
-                  </ButtonWrapper>
-                </CardBody>
-              </Column>
+            {data.map((i, index) => (
+                index > 0 && (
+                  <CardBurningGame game={i} />
+                )
             ))}
           </Cards>
         </div>
