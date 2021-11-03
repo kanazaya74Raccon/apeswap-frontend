@@ -74,7 +74,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
       />
       <ExpandingWrapper expanded={showExpandableSection}>
         <Flex>
-          {/* <StakeAction
+          <StakeAction
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
             stakedBalance={stakedBalance}
@@ -82,7 +82,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isStaked={accountHasStakedBalance}
             tier={tier}
             stakedNfas={stakedNfas}
-          /> */}
+          />
           <></>
         </Flex>
         <DetailsSection

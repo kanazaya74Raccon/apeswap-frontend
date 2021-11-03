@@ -335,15 +335,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     }
     if (allowance && !accountHasStakedBalance) {
       return (
-        // <StakeAction
-        //   pool={pool}
-        //   stakingTokenBalance={stakingTokenBalance}
-        //   stakedBalance={stakedBalance}
-        //   isStaked={accountHasStakedBalance}
-        //   firstStake={!accountHasStakedBalance}
-        //   tier={tier}
-        // />
-        <></>
+        <StakeAction
+          pool={pool}
+          stakingTokenBalance={stakingTokenBalance}
+          stakedBalance={stakedBalance}
+          isStaked={accountHasStakedBalance}
+          firstStake={!accountHasStakedBalance}
+          tier={tier}
+        />
       )
     }
     return <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
@@ -366,7 +365,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">BPD: 0</StyledText1>
+              <StyledText1 fontFamily="poppins">BPD: {bananaPerDay}</StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
