@@ -26,6 +26,8 @@ export interface ExpandableSectionProps {
   pendingReward?: BigNumber
   projectLink?: string
   tokenDecimals?: number
+  withdrawFee?: number
+  depositFee?: number
 }
 
 const Wrapper = styled.div`
@@ -85,6 +87,8 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   personalValueStaked,
   totalStaked,
   stakedTokenPrice,
+  withdrawFee,
+  depositFee,
 }) => {
   const TranslateString = useI18n()
 
@@ -100,6 +104,24 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
     <Wrapper>
       <Flex>
         <InfoContainer>
+          {depositFee && (
+            <Flex justifyContent="space-between">
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {TranslateString(316, 'Deposit Fee')}:
+              </StyledText>
+              <StyledText fontFamily="poppins" fontSize="12px">
+                {depositFee}%
+              </StyledText>
+            </Flex>
+          )}
+          <Flex justifyContent="space-between">
+            <StyledText fontFamily="poppins" fontSize="12px">
+              {TranslateString(316, 'Withdraw Fee')}:
+            </StyledText>
+            <StyledText fontFamily="poppins" fontSize="12px">
+              {withdrawFee}%
+            </StyledText>
+          </Flex>
           <Flex justifyContent="space-between">
             <StyledText fontFamily="poppins" fontSize="12px">
               {TranslateString(316, 'Total Staked')}:

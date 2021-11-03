@@ -532,6 +532,7 @@ const vaults: VaultConfig[] = [
     },
     totalFees: 4,
     withdrawFee: 0.1,
+    depositFee: 1,
     burning: false,
   },
   {
