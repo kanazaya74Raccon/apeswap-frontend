@@ -2531,7 +2531,7 @@ const pools: PoolConfig[] = [
     rewardToken: tokens.wing,
     contractAddress: {
       97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x19407aa76041A0996bfBE813218467D84a160e4E',
+      56: '0x656e0f20509b3eb04dbccae5a0e6c2a08e615e20',
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://wing.finance/',
