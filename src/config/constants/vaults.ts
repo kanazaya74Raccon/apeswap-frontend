@@ -161,7 +161,7 @@ const vaults: VaultConfig[] = [
       rewardsPerBlock: 'takoPerBlock',
       rewardToken: tokens.tako.address[CHAIN_ID.BSC],
     },
-    totalFees: 4,
+    totalFees: 50,
     withdrawFee: 0.1,
     burning: true,
   },

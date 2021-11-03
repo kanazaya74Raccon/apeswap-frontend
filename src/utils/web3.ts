@@ -3,8 +3,9 @@ import { HttpProviderOptions } from 'web3-core-helpers'
 import { AbiItem } from 'web3-utils'
 import { ContractOptions } from 'web3-eth-contract'
 import getRpcUrl from 'utils/getRpcUrl'
+import { CHAIN_ID } from 'config/constants/chains'
 
-const RPC_URL = getRpcUrl()
+const RPC_URL = getRpcUrl(CHAIN_ID.BSC)
 const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)
 
 /**
