@@ -9,7 +9,8 @@ const ValuableVaultsWrapper = styled.div`
   position: relative;
   height: 321px;
   width: 336px;
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/burning-vaults-polygon-dark.svg)' : 'url(/images/burning-vaults-polygon-dark.svg)')};
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/burning-vaults-polygon-dark.svg)' : 'url(/images/burning-vaults-polygon-dark.svg)'};
   border-radius: 30px;
   background-repeat: no-repeat;
   background-size: cover;

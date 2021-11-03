@@ -24,6 +24,7 @@ export interface ExpandableSectionProps {
   bananaPrice?: BigNumber
   farmAPR: string
   removed: boolean
+  hideButton?: boolean
   pid?: number
   lpSymbol: string
   showExpandableSection?: boolean
@@ -240,6 +241,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   farmAPR,
   removed,
   showExpandableSection,
+  hideButton = true,
   farm,
 }) => {
   const TranslateString = useI18n()
@@ -299,13 +301,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
               {apr ? (
                 <FlexSwitch>
-                  <ApyButton
-                    lpLabel={lpLabel}
-                    rewardTokenName="BANANA"
-                    addLiquidityUrl={addLiquidityUrl}
-                    rewardTokenPrice={bananaPrice}
-                    apy={apr}
-                  />
+                  {!hideButton && (
+                    <ApyButton
+                      lpLabel={lpLabel}
+                      rewardTokenName="BANANA"
+                      addLiquidityUrl={addLiquidityUrl}
+                      rewardTokenPrice={bananaPrice}
+                      apy={apr}
+                    />
+                  )}
                   <StyledAPRText>{farmAPR}%</StyledAPRText>
                 </FlexSwitch>
               ) : (

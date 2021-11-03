@@ -49,7 +49,7 @@ const Apr: React.FC<AprProps> = ({
   lpLabel,
   bananaPrice,
   originalValue,
-  hideButton = false,
+  hideButton = true,
   addLiquidityUrl,
 }) => {
   const TranslateString = useI18n()
@@ -59,7 +59,7 @@ const Apr: React.FC<AprProps> = ({
       {originalValue ? (
         <Flex justifyContent="center">
           <AprWrapper>{value}%</AprWrapper>
-          {!hideButton && (
+          {hideButton && (
             <ApyButton
               lpLabel={lpLabel}
               rewardTokenPrice={bananaPrice}
