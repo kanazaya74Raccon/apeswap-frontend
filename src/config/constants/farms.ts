@@ -2110,6 +2110,51 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 148,
+    lpSymbol: 'HOTCROSS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1c4a479ce71f41a68d4c2de26854fc99f310918d',
+    },
+    tokenSymbol: 'HOTCROSS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4FA7163E153419E0E1064e418dd7A99314Ed27b6',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 149,
+    lpSymbol: 'TOON-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xc184fdb2d1107195ae393691c853855798fd626f',
+    },
+    tokenSymbol: 'TOON',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xaeE433ADeBe0FBB88dAa47eF0C1A513CaA52EF02',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 150,
+    lpSymbol: 'WING-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE0A15A31a78129A3d28138B71724cB2D3A688dD7',
+    },
+    tokenSymbol: 'WING',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x3cb7378565718c64ab86970802140cc48ef1f969',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     lpSymbol: 'BANANA-BAKE LP',
     lpAddresses: {
