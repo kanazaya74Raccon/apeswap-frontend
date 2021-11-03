@@ -28,7 +28,7 @@ const LabelButton: React.FC<Props> = ({ value, label, buttonLabel, onClick, disa
         </Text>
       )}
       <ButtonWrapper>
-        <Text bold fontSize="20px">
+        <Text fontSize="20px">
           {value}
         </Text>
         <Button onClick={onClick} disabled={disabled}>

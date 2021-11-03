@@ -3,13 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import {
-  Flex,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-} from '@apeswapfinance/uikit'
+import { Flex, IconButtonSquare, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useVaultStake } from 'hooks/useStake'
@@ -45,7 +39,6 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   height: 34px;
 `
 
-
 const StyledFlex = styled(Flex)`
   position: absolute;
   right: 40px;
@@ -57,13 +50,7 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({
-  vault,
-  stakingTokenBalance,
-  stakedBalance,
-  isApproved,
-}) => {
-
+const StakeAction: React.FC<StakeActionsProps> = ({ vault, stakingTokenBalance, stakedBalance, isApproved }) => {
   const { pid } = vault
 
   const rewardRefStake = useRef(null)
@@ -78,7 +65,6 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const convertedLimit = new BigNumber(stakingTokenBalance)
 
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
-
 
   const [onPresentDeposit] = useModal(
     <DepositModal

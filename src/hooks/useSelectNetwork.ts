@@ -14,7 +14,7 @@ const useSwitchNetwork = () => {
           library?.send('wallet_addEthereumChain', [CHAIN_PARAMS[userChainId], account])
           dispatch(fetchChainIdFromUrl(false))
         } catch (error) {
-          console.error(error)
+          console.warn(error)
         }
       } else {
         dispatch(fetchUserNetwork(chainId, account, userChainId))

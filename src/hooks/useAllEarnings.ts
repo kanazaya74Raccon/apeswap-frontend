@@ -30,7 +30,7 @@ const useAllEarnings = () => {
 
         setBalance(res)
       } catch (e) {
-        console.error(e)
+        console.warn(e)
       }
     }
 
@@ -47,7 +47,7 @@ const useAllEarnings = () => {
 
         setBalance(res)
       } catch (e) {
-        console.error(e)
+        console.warn(e)
       }
     }
 

@@ -57,7 +57,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
       setRequestedApproval(false)
       rewardRef.current?.rewardMe()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove])
   const isApproved = account && allowance && allowance.isGreaterThan(0)

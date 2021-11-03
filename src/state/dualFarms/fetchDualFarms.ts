@@ -113,7 +113,7 @@ const fetchDualFarms = async (
         multiplier = `${allocPoint.div(100).toString()}X`
         // eslint-disable-next-line no-empty
       } catch (error) {
-        console.error('Error fetching farm', error, dualFarmConfig)
+        console.warn('Error fetching farm', error, dualFarmConfig)
       }
 
       let rewarderTotalAlloc = null
@@ -162,7 +162,7 @@ const fetchDualFarms = async (
         .div(new BigNumber(10).pow(quoteToken?.decimals))
         .times(new BigNumber(2))
         .times(quoteToken?.price)
-      const stakeTokenPrice = totalValueInLp.div(new BigNumber(getBalanceNumber(lpTotalSupply)))
+      const stakeTokenPrice = totalValueInLp.div(new BigNumber(getBalanceNumber(lpTotalSupply))).toNumber()
 
       const rewarderAllocPoint = new BigNumber(rewarderInfo?.allocPoint?._hex)
       const rewarderPoolWeight = rewarderAllocPoint.div(new BigNumber(rewarderTotalAlloc))

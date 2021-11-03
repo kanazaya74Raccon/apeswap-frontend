@@ -279,7 +279,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer>
           <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
-            <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
               {apr ? (
                 <FlexSwitch>

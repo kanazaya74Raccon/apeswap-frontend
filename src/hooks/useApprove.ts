@@ -208,7 +208,7 @@ export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
       dispatch(updateDualFarmUserAllowances(multicallContract, miniChefAddress, pid, account))
       return tx
     } catch (e) {
-      console.error(e)
+      console.warn(e)
       return false
     }
   }, [account, dispatch, lpContract, miniChefContract, multicallContract, miniChefAddress, pid, chainId])

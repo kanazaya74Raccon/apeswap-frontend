@@ -28,11 +28,11 @@ export const setupNetwork = async () => {
       })
       return true
     } catch (error) {
-      console.error(error)
+      console.warn(error)
       return false
     }
   } else {
-    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
+    console.warn("Can't setup the BSC network on metamask because window.ethereum is undefined")
     return false
   }
 }

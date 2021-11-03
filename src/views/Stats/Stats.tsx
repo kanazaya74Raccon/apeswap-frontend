@@ -4,7 +4,7 @@ import { Heading, BaseLayout, Image } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useStats } from 'state/hooks'
+import { useFetchStats, useStats } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
@@ -64,6 +64,7 @@ const Cards = styled(BaseLayout)`
 `
 
 const Stats: React.FC = () => {
+  useFetchStats()
   const TranslateString = useI18n()
   const { account } = useWeb3React()
   const yourStats = useStats()

@@ -71,6 +71,7 @@ const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
   margin-top: 7.5px;
+  font-weight: 200;
   z-index: 1;
 `
 

@@ -43,11 +43,7 @@ const PCard = styled.div`
 `
 
 const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
-  const {
-    userData,
-    image,
-    totalStaked,
-  } = vault
+  const { userData, image, totalStaked } = vault
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   const chainId = useNetworkChainId()

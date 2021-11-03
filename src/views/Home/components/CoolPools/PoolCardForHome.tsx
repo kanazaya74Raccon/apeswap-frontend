@@ -65,6 +65,7 @@ const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
   margin-top: 7.5px;
+  font-weight: 200;
 `
 
 const ApyText = styled(Text)`

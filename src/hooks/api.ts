@@ -58,7 +58,7 @@ export const useGetNfaSales = (id: number) => {
 
         setSale(responsedata)
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -76,7 +76,7 @@ export const useGetNfaAuctionHistory = () => {
         const responsedata: AuctionHistory[] = await response.json()
         setHistory(responsedata)
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -95,7 +95,7 @@ export const useGetStats = () => {
 
         setData(responsedata)
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
 
@@ -152,7 +152,7 @@ export const fetchReserveData = async (pairAddress) => {
 
     return responsedata?.data?.pair
   } catch (error) {
-    console.error('Unable to fetch data:', error)
+    console.warn('Unable to fetch data:', error)
   }
 }
 
@@ -180,7 +180,7 @@ export const fetchLiquidityData = async () => {
       parseFloat(polyData.uniswapFactories[0].totalLiquidityUSD)
     return totalLiquidity
   } catch (error) {
-    console.error('Unable to fetch data:', error)
+    console.warn('Unable to fetch data:', error)
   }
 }
 
@@ -194,7 +194,7 @@ export const useLiquidityData = () => {
         const response = await fetchLiquidityData()
         setData(response)
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
 
@@ -244,7 +244,7 @@ export const useChartData = (resolution = '60', pair = 'BANANA/BUSD') => {
         } */
         setData(null)
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
 

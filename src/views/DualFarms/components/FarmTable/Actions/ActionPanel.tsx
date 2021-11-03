@@ -4,11 +4,10 @@ import useI18n from 'hooks/useI18n'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { useWeb3React } from '@web3-react/core'
 import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
-import {useNetworkChainId } from 'state/hooks'
+import { useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import StakedAction from './StakedAction'
-
 
 export interface ActionPanelProps {
   farm: DualFarm

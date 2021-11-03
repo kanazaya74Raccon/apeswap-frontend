@@ -16,7 +16,7 @@ const useFetchPromoHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()

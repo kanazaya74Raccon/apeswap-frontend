@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu as UikitMenu } from '@apeswapfinance/uikit'
 
 import { useWeb3React } from '@web3-react/core'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
-
-import { LanguageContext } from 'contexts/Localisation/languageContext'
 import useTheme from 'hooks/useTheme'
 import { useNetworkChainId, useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
@@ -17,7 +15,6 @@ const Menu = (props) => {
   const chainId = useNetworkChainId()
   const { login, logout } = useAuth()
   const { switchNetwork } = useSelectNetwork()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
   const { tokenPrices } = useTokenPrices()
   const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
@@ -39,8 +36,6 @@ const Menu = (props) => {
       logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={selectedLanguage && selectedLanguage.code}
-      setLang={setSelectedLanguage}
       bananaPriceUsd={bananaPriceUsd}
       links={currentMenu()}
       chainId={chainId}

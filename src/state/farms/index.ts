@@ -49,7 +49,7 @@ export const fetchFarmsPublicDataAsync =
       const farms = await fetchFarms(multicallContract, masterChefAddress, chainId)
       dispatch(setFarmsPublicData(farms))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 export const fetchFarmUserDataAsync =
@@ -71,7 +71,7 @@ export const fetchFarmUserDataAsync =
       })
       dispatch(setFarmUserData({ arrayOfUserDataObjects }))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 

@@ -51,7 +51,7 @@ export const fetchDualFarmsPublicDataAsync =
       const dualFarms = await fetchDualFarms(multicallContract, miniChefAddress, tokenPrices, chainId)
       dispatch(setDualFarmsPublicData(dualFarms))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 export const fetchDualFarmUserDataAsync =
@@ -74,7 +74,7 @@ export const fetchDualFarmUserDataAsync =
       })
       dispatch(setDualFarmUserData(arrayOfUserDataObjects))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 

@@ -65,7 +65,7 @@ export const fetchPoolsPublicDataAsync =
       )
       dispatch(setPoolsPublicData(liveData))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 
@@ -86,7 +86,7 @@ export const fetchPoolsUserDataAsync =
       }))
       dispatch(setPoolsUserData(userData))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 

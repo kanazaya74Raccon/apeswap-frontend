@@ -32,7 +32,7 @@ const useFarmsWithBalance = () => {
 
         setFarmsWithBalances(results)
       } catch (e) {
-        console.error(e)
+        console.warn(e)
       }
     }
 
@@ -50,7 +50,7 @@ const useFarmsWithBalance = () => {
 
         setFarmsWithBalances(results)
       } catch (e) {
-        console.error(e)
+        console.warn(e)
       }
     }
 

@@ -61,7 +61,7 @@ const NftProvider: React.FC = ({ children }) => {
           endBlockNumber: endBlockNumber.toNumber(),
         }))
       } catch (error) {
-        console.error('an error occured', error)
+        console.warn('an error occured', error)
       }
     }
 
@@ -85,7 +85,7 @@ const NftProvider: React.FC = ({ children }) => {
           balanceOf,
         }))
       } catch (error) {
-        console.error('an error occured', error)
+        console.warn('an error occured', error)
       }
     }
 

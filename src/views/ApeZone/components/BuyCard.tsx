@@ -101,7 +101,7 @@ const BuyCard = ({ account }) => {
       setProcessing(false)
     } catch (e) {
       setProcessing(false)
-      console.error(e)
+      console.warn(e)
     }
   }, [handleBuy, val])
 
@@ -122,7 +122,7 @@ const BuyCard = ({ account }) => {
         const currentAllowance = new BigNumber(response)
         return currentAllowance.gt(0)
       } catch (error) {
-        console.error(error)
+        console.warn(error)
         return false
       }
     },

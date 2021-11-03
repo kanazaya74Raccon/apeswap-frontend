@@ -124,16 +124,7 @@ const StakeContainer = styled.div`
 `
 
 const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
-  const {
-    pid,
-    stakeTokenAddress,
-    token0,
-    token1,
-    userData,
-    isPair,
-    apy,
-    totalStaked,
-  } = vault
+  const { pid, stakeTokenAddress, token0, token1, userData, isPair, apy, totalStaked } = vault
 
   const { account } = useWeb3React()
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
@@ -154,7 +145,6 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const lpLabel = vault.isPair ? `${vault.token0.symbol}-${vault.token1.symbol}` : vault.token0.symbol
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-
 
   const cardHeaderButton = () => {
     if (!account) {

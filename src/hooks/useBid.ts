@@ -25,7 +25,7 @@ const useBid = () => {
         })
         console.info(txHash)
       } catch (e) {
-        console.error(e)
+        console.warn(e)
       }
     },
     [account, auctionContract],

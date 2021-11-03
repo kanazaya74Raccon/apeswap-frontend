@@ -99,7 +99,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
         setApproved(true)
       }
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove, setApproved])
 

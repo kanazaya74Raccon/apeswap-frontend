@@ -16,7 +16,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract,
     try {
       await onApprove()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove])
 

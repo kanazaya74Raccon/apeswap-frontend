@@ -49,7 +49,7 @@ export const fetchVaultsPublicDataAsync =
       const vaults = await fetchVaultData(multicallContract, chainId, tokenPrices)
       dispatch(setLoadVaultData(vaults))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 
@@ -70,7 +70,7 @@ export const fetchVaultUserDataAsync =
       })
       dispatch(setVaultUserData(userData))
     } catch (error) {
-      console.error(error)
+      console.warn(error)
     }
   }
 

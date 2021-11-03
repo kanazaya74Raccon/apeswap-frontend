@@ -1,6 +1,7 @@
-import React  from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { Vault } from 'state/types'
 import { usePollVaultsData, useVaultFromPid } from 'state/hooks'
 import VaultCardForHome from './VaultsCardForHome'
 
@@ -78,9 +79,9 @@ const VauluableVaults = () => {
         <CardHeaderImage />
         <HotFarmsText>Valuable Vaults</HotFarmsText>
         <FarmWrapper>
-          {vaultsToDisplay.map((vault) => (
-            <a href="https://apeswap.finance/vaults" rel="noopener noreferrer">
-              <VaultCardForHome vault={vault} />
+          {vaultsToDisplay.map((vault: Vault) => (
+            <a href="https://apeswap.finance/vaults" rel="noopener noreferrer" key={vault?.pid}>
+              <VaultCardForHome vault={vault} key={vault?.pid} />
             </a>
           ))}
         </FarmWrapper>

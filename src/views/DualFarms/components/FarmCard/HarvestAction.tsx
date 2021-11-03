@@ -21,10 +21,10 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { account, library } = useWeb3React()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
-  const {onStake} = useDualFarmStake(pid)
+  const { onStake } = useDualFarmStake(pid)
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeTx, setStakeTx] = useState(false)
-  const {onReward} = useMiniChefHarvest(pid)
+  const { onReward } = useMiniChefHarvest(pid)
   const lpSymbol = `${stakeTokens?.token0?.symbol}-${stakeTokens?.token1?.symbol}`
 
   const rawEarningsBalance = getBalanceNumber(dualFarm?.userData?.miniChefEarnings)
@@ -45,7 +45,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
       setRequestedApproval(false)
       rewardRef.current?.rewardMe()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove])
 

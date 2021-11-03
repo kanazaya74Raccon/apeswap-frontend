@@ -4,14 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import {
-  Flex,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Flex, IconButtonSquare, AddIcon, MinusIcon, useModal, ButtonSquare } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useVaultStake } from 'hooks/useStake'

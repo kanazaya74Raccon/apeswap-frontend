@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { DualFarm } from 'state/types'
 import { useDualFarmsFromPid, usePollDualFarms } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
@@ -80,9 +81,9 @@ const DualHotFarms = () => {
         <CardHeaderImage />
         <HotFarmsText>Hot Farms</HotFarmsText>
         <FarmWrapper>
-          {farmsToDisplay.map((farm) => (
-            <a href="https://apeswap.finance/farms" rel="noopener noreferrer">
-              <FarmCardForHome farm={farm} />
+          {farmsToDisplay.map((farm: DualFarm) => (
+            <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>
+              <FarmCardForHome farm={farm} key={farm?.pid} />
             </a>
           ))}
         </FarmWrapper>

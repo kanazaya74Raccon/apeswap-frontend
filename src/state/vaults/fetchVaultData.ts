@@ -51,10 +51,10 @@ const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: T
       const weight = totalAllocPoint ? allocPoint.div(new BigNumber(totalAllocPoint)) : new BigNumber(0)
 
       const earnTokenPriceUsd = tokenPrices?.find(
-        (token) => token.address[chainId].toLowerCase() === masterchef.rewardToken.toLowerCase(),
+        (token) => token.address[chainId]?.toLowerCase() === masterchef.rewardToken?.toLowerCase(),
       )?.price
       const quoteTokenPriceUsd = tokenPrices?.find(
-        (token) => token.address[chainId].toLowerCase() === token0.address[chainId].toLowerCase(),
+        (token) => token.address[chainId]?.toLowerCase() === token0.address[chainId]?.toLowerCase(),
       )?.price
 
       const erc20Calls = [
@@ -119,7 +119,7 @@ const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: T
           .times(new BigNumber(2))
           .times(quoteTokenPriceUsd)
       const stakeTokenPrice = isPair
-        ? totalValueInLp.div(new BigNumber(getBalanceNumber(pairTotalSupply)))
+        ? totalValueInLp.div(new BigNumber(getBalanceNumber(pairTotalSupply))).toNumber()
         : quoteTokenPriceUsd
       const yearlyRewardTokens = rewardsInSeconds
         ? SECONDS_PER_YEAR.times(rewardTokensPerBlock).times(poolWeight)

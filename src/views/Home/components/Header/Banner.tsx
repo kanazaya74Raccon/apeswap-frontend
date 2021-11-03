@@ -97,7 +97,7 @@ const Banner = () => {
           <LinkArea href={headersData[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />
           <CurrentHeaderHolder>
             {[...Array(headersData.length)].map((e, i) => (
-              <HeaderBubble live={i === activeIndex} onClick={() => setActiveIndex(i)} />
+              <HeaderBubble live={i === activeIndex} onClick={() => setActiveIndex(i)} key={headersData[i]?.link} />
             ))}
           </CurrentHeaderHolder>
         </Header>

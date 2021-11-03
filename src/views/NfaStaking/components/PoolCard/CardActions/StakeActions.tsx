@@ -62,13 +62,7 @@ const WhyCantIBid = styled.a`
   text-decoration: underline;
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({
-  pool,
-  stakedBalance,
-  isApproved,
-  firstStake,
-  tier
-}) => {
+const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isApproved, firstStake, tier }) => {
   const TranslateString = useI18n()
 
   const { sousId } = pool

@@ -7,7 +7,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useBananaAddress } from 'hooks/useAddress'
 import CardValue from './CardValue'
 
-
 const BananaWalletBalance = () => {
   const TranslateString = useI18n()
   const bananaBalance = useTokenBalance(useBananaAddress())
