@@ -43,13 +43,46 @@ const StyledBackground = styled(Flex)`
 `
 
 const IconImage = styled(Image)`
-  width: 24px;
-  height: 24px;
   align: center;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 60px;
+    height: 60px;
+  }
+`
+
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
+
+const IconRewardToken = styled(Image)`
+  align: center;
+  width: 25px;
+  height: 25px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -111,7 +144,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
           height={50}
           marginLeft="7.5px"
         />
-        <IconImage
+        <IconQuoteToken
           src={`/images/tokens/${farm?.stakeTokens?.token0?.symbol}.svg`}
           alt={farm?.stakeTokens?.token0?.symbol}
           width={25}
@@ -119,8 +152,8 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
           marginLeft="-15px"
           marginTop="30px"
         />
-        <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="4px" marginLeft="2px" />
-        <IconImage
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="4px" marginLeft="2px" />
+        <IconRewardToken
           src={`/images/tokens/${farm?.rewardTokens?.token0?.symbol}.svg`}
           alt={farm?.rewardTokens?.token0?.symbol}
           width={27}
@@ -128,7 +161,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
           marginRight="-5px"
           marginBottom="30px"
         />
-        <IconImage
+        <IconRewardToken
           src={`/images/tokens/${farm?.rewardTokens?.token1?.symbol}.svg`}
           alt={farm?.rewardTokens?.token1?.symbol}
           width={27}

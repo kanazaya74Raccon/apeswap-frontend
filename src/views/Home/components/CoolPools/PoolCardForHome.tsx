@@ -43,13 +43,24 @@ const StyledBackground = styled(Flex)`
 `
 
 const IconImage = styled(Image)`
-  width: 24px;
-  height: 24px;
   align: center;
+  width: 50px;
+  height: 50px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 50px;
+    height: 50px;
+  }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -109,16 +120,16 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         <IconImage
           src={`/images/tokens/${stakingToken?.symbol}.svg`}
           alt={stakingToken?.symbol}
-          width={50}
-          height={50}
+          width={60}
+          height={60}
           marginLeft="5px"
         />
-        <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
         <IconImage
           src={`/images/tokens/${image || `${tokenName}.svg`}`}
           alt={tokenName}
-          width={50}
-          height={50}
+          width={60}
+          height={60}
           marginRight="5px"
         />
       </StyledBackground>

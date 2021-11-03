@@ -43,13 +43,35 @@ const StyledBackground = styled(Flex)`
 `
 
 const IconImage = styled(Image)`
-  width: 24px;
-  height: 24px;
   align: center;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 70px;
+    height: 70px;
+  }
+`
+
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 40px;
+    height: 40px;
+  }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
   }
 `
 
@@ -114,7 +136,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
               height={50}
               marginLeft="7.5px"
             />
-            <IconImage
+            <IconQuoteToken
               src={`/images/tokens/${vault?.token0?.symbol}.svg`}
               alt={vault?.token0?.symbol}
               width={25}
@@ -122,7 +144,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
               marginLeft="-15px"
               marginTop="30px"
             />
-            <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="2px" marginLeft="2px" />
+            <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="2px" marginLeft="2px" />
             <IconImage
               src={`/images/tokens/${vault?.token1?.symbol}.svg`}
               alt={vault?.token1?.symbol}
@@ -130,7 +152,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
               height={50}
               marginLeft="7.5px"
             />
-            <IconImage
+            <IconQuoteToken
               src={`/images/tokens/${vault?.token0?.symbol}.svg`}
               alt={vault?.token0?.symbol}
               width={25}
@@ -149,7 +171,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
               height={50}
               marginLeft="7.5px"
             />
-            <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
+            <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
             <IconImage
               src={`/images/tokens/${vault?.token1?.symbol}.svg`}
               alt={vault?.token1?.symbol}
