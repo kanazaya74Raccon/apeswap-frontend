@@ -11,11 +11,6 @@ const bscConfig: MenuEntry[] = [
   },
   EXCHANGE,
   {
-    label: 'Vaults',
-    icon: 'Vaults',
-    href: '/vaults',
-  },
-  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
@@ -24,6 +19,11 @@ const bscConfig: MenuEntry[] = [
     label: 'Pools',
     icon: 'PoolIcon',
     href: '/pools',
+  },
+  {
+    label: 'Vaults',
+    icon: 'Vaults',
+    href: '/vaults',
   },
   {
     label: 'IAO',

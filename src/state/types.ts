@@ -186,6 +186,14 @@ export interface StatsOverall {
   incentivizedPools: FarmOverall[]
 }
 
+export interface HomepageData {
+  tvl: number
+  marketCap: number
+  circulatingSupply: number
+  gnanaCirculatingSupply: number
+  burntAmount: number
+}
+
 export interface PoolOverall {
   address: string
   lpSymbol: string
@@ -276,6 +284,7 @@ export interface ProfileState {
 export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
+  HomepageData: HomepageData
   data: Stats
 }
 

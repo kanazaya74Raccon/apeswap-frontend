@@ -34,6 +34,11 @@ const IfoHeading = styled(Heading)`
   margin-top: 32px;
 `
 
+const ListItem = styled.li`
+  font-family: Poppins;
+  font-weight: 700;
+`
+
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 const zoneActiveIfo = zoneIfo.find((ifo) => ifo.isActive)
 
@@ -51,23 +56,23 @@ const Ifo = () => {
           <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
           <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(596, 'Get BNB or GNANA tokens')}</li>
+            <ListItem>{TranslateString(596, 'Get BNB or GNANA tokens')}</ListItem>
           </List>
           <IfoHeading mb="16px">{TranslateString(600, 'During Sale')}:</IfoHeading>
           <List>
-            <li>{TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}</li>
+            <ListItem>{TranslateString(602, 'While the sale is live, commit your tokens to buy the IAO tokens')}</ListItem>
           </List>
           <IfoHeading mb="16px">{TranslateString(604, 'After Sale')}:</IfoHeading>
           <List>
-            <li>
+            <ListItem>
               {TranslateString(
                 606,
                 'Immediately after sale: You may claim your refund and 25% of your offering tokens',
               )}
-            </li>
-            <li>{TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}</li>
-            <li>{TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}</li>
-            <li>{TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}</li>
+            </ListItem>
+            <ListItem>{TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}</ListItem>
+            <ListItem>{TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}</ListItem>
+            <ListItem>{TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}</ListItem>
           </List>
           <Text as="div" pt="16px">
             <Button

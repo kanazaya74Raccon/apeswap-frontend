@@ -56,9 +56,7 @@ const PoolHeading: React.FunctionComponent<PoolProps> = ({ stakeToken, earnToken
         />
       </StyledBackground>
       <div>
-        <Text fontSize="20px">
-          {earnToken}
-        </Text>
+        <Text fontSize="20px">{earnToken}</Text>
       </div>
     </Container>
   )

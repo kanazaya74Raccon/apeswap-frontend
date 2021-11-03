@@ -44,10 +44,11 @@ import {
   TokenPricesState,
   NfaStakingPool,
   DualFarm,
+  HomepageData,
 } from './types'
 import { fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
-import { fetchStats } from './stats'
+import { fetchHomepageData, fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -407,6 +408,20 @@ export const useFetchStats = () => {
 export const useStats = () => {
   const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useFetchHomepageStats = () => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    dispatch(fetchHomepageData())
+  }, [slowRefresh, dispatch])
+}
+
+export const useHomepageStats = (): HomepageData => {
+  const homepageStats = useSelector((state: State) => state.stats.HomepageData)
+  return homepageStats
 }
 
 export const useFetchAuctions = () => {

@@ -8,7 +8,6 @@ import BigNumber from 'bignumber.js'
 import { CHAIN_ID } from 'config/constants/chains'
 import {
   useFetchPublicData,
-  useFetchStatsOverall,
   useFetchTokenPrices,
   useFetchProfile,
   useNetworkChainId,
@@ -75,7 +74,6 @@ const App: React.FC = () => {
   useFetchTokenPrices()
   useFetchPublicData()
   useFetchProfile()
-  useFetchStatsOverall()
 
   const scrollToTop = (): void => {
     window.scrollTo({

@@ -11,14 +11,14 @@ const maticConfig: MenuEntry[] = [
   // },
   EXCHANGE,
   {
-    label: 'Vaults',
-    icon: 'Vaults',
-    href: '/vaults',
-  },
-  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: '/farms',
+  },
+  {
+    label: 'Vaults',
+    icon: 'Vaults',
+    href: '/vaults',
   },
   //   {
   //     label: 'Pools',

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, BaseLayout, Image } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, Image, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useFetchStats, useStats } from 'state/hooks'
+import { useFetchStats, useFetchStatsOverall, useStats } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
@@ -64,6 +64,7 @@ const Cards = styled(BaseLayout)`
 `
 
 const Stats: React.FC = () => {
+  useFetchStatsOverall()
   useFetchStats()
   const TranslateString = useI18n()
   const { account } = useWeb3React()
@@ -78,7 +79,7 @@ const Stats: React.FC = () => {
             {TranslateString(282, 'Your Ape Stats')}
           </Heading>
           <ul>
-            <li>{TranslateString(580, 'Keep track of your pools and farms.')}</li>
+            <Text>{TranslateString(580, 'Keep track of your pools and farms.')}</Text>
           </ul>
         </div>
         <Image src="/images/monkey-graphics.svg" alt="ApeSwap stats" width={470} height={300} responsive />
