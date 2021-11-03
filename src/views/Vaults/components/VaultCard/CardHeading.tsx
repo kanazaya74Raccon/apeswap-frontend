@@ -5,6 +5,7 @@ import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import Tooltip from 'components/Tooltip/Tooltip'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
@@ -208,6 +209,9 @@ const IconArrow = styled(Image)`
     height: 10px;
   }
 `
+const TitleContainer = styled.div`
+  display: flex;
+`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   vault,
@@ -219,7 +223,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   image,
 }) => {
   const TranslateString = useI18n()
-  const { userData, isPair, token0, token1, pid } = vault
+  const { userData, isPair, token0, token1, pid, burning } = vault
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -326,7 +330,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading>{lpLabel}</StyledHeading>
+          <TitleContainer>
+            <StyledHeading fontSize="20px">{lpLabel}</StyledHeading>
+            {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
+          </TitleContainer>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APY:</StyledText1>

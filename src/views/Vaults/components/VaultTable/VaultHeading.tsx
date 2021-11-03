@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 export interface PoolProps {
   token0?: string
   token1?: string
   isPair?: boolean
   image?: string
+  isBurning?: boolean
 }
 
 const IconImage = styled(Image)`
@@ -25,6 +27,10 @@ const Container = styled.div`
   align-items: center;
 `
 
+const TitleContainer = styled.div`
+  display: flex;
+`
+
 const StyledBackground = styled.div`
   width: 150px;
   height: 60px;
@@ -36,7 +42,7 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPair, image }) => {
+const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPair, image, isBurning }) => {
   return (
     <Container>
       <StyledBackground>
@@ -89,9 +95,10 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
           </>
         )}
       </StyledBackground>
-      <div>
-        <Text fontSize="20px">{isPair ? `${token0}-${token1}` : token0}</Text>
-      </div>
+      <TitleContainer>
+        <Text fontSize="20px">{isPair ? `${token0}-${token1}` : token0} </Text>
+        {isBurning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
+      </TitleContainer>
     </Container>
   )
 }

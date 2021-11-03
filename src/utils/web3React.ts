@@ -32,4 +32,3 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 export const getLibrary = (provider): Web3 => {
   return provider
 }
-
