@@ -21,7 +21,8 @@ const Header = styled.div<{ banner: string }>`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${(props) => (props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)')};
+  background-image: ${(props) =>
+    props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)'};
   background-repeat: no-repeat;
   background-size: cover;
   height: 400px;
@@ -112,12 +113,12 @@ const BurningGames: React.FC = () => {
   const { isXl: isDesktop } = useMatchBreakpoints()
   const { isDark } = useTheme()
 
-  let banner = '';
+  let banner = ''
 
-  if(!isDark && isDesktop) banner = 'burning.png';
-  if(isDark && isDesktop) banner = 'burning-night.png';
-  if(!isDark && !isDesktop) banner = 'burning-mobile.png';
-  if(isDark && !isDesktop) banner = 'burning-night-mobile.png';
+  if (!isDark && isDesktop) banner = 'burning.png'
+  if (isDark && isDesktop) banner = 'burning-night.png'
+  if (!isDark && !isDesktop) banner = 'burning-mobile.png'
+  if (isDark && !isDesktop) banner = 'burning-night-mobile.png'
 
   useEffect(() => {
     if (account) {
@@ -143,13 +144,7 @@ const BurningGames: React.FC = () => {
             </CardFull>
           )}
 
-          <Cards>
-            {data.map((i, index) => (
-                index > 0 && (
-                  <CardBurningGame game={i} />
-                )
-            ))}
-          </Cards>
+          <Cards>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
         </div>
       </StyledPage>
     </>
