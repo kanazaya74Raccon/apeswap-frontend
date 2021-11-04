@@ -50,7 +50,7 @@ const LiquidtyContainer = styled.div`
   left: 480px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 587px;
+    left: 607px;
   }
 `
 

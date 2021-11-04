@@ -33,15 +33,15 @@ const StyledText = styled(Text)`
 
 const Staked: React.FunctionComponent<LiquidityProps> = ({ staked }) => {
   const displayStaked = staked ? (
-    `${Number(staked).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+    `$${Number(staked).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (
-    <Skeleton width={60} />
+    <Skeleton width={110} />
   )
 
   return (
     <Container>
       <LiquidityWrapper>
-        <StyledText>${displayStaked}</StyledText>
+        <StyledText>{displayStaked}</StyledText>
       </LiquidityWrapper>
     </Container>
   )
