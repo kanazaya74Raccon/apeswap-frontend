@@ -164,7 +164,7 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 10px;
     padding-right: 10px;
-    height: 400px;
+    height: 300px;
   }
 `
 
@@ -191,9 +191,9 @@ const MonkeyWrapper = styled.div`
     animation: 10s ${float} linear infinite;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 700px;
-    height: 1000px;
-    top: ${({ theme }) => (theme.isDark ? '-145px' : '-90px')};
+    width: 575px;
+    height: 800px;
+    top: ${({ theme }) => (theme.isDark ? '-120px' : '-80px')};
     right: 0;
     animation: 10s ${float} linear infinite;
   }
@@ -329,7 +329,7 @@ const StyledLabelContainerLiquidity = styled.div`
     margin: 0px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 608px;
+    left: 610px;
   }
 `
 
