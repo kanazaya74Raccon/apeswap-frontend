@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'gan',
-    address: '0x019deED58E003cf147798355c3711687E0bbd931', // Leave empty for "Coming Soon!"
+    address: '0xCbc0d7546801490552521B8438Dd029b022Ed51c', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Galactic Arena',
     subTitle: 'Welcome to the Galactic Arena!',
@@ -17,7 +17,7 @@ const ifos: Ifo[] = [
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
     tokenDecimals: 18,
-    releaseBlockNumber: 11342539, // block to start showing contract details
+    releaseBlockNumber: 12364007, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
