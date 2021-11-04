@@ -112,7 +112,7 @@ const Header = styled.div`
     theme.isDark ? 'url(/images/farm-polygon-night.svg)' : 'url(/images/farm-polygon-day.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
+  height: 250px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -324,11 +324,12 @@ const ButtonCheckWrapper = styled.div`
 `
 
 const StyledHeading = styled(Heading)`
-  font-size: 32px;
+  font-size: 30px;
   max-width: 176px !important;
+  color: white;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
+    font-size: 30px;
     max-width: 240px !important;
   }
 

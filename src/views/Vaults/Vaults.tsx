@@ -138,7 +138,7 @@ const Header = styled.div`
   background-image: url(/images/burning-vaults-bsc.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
+  height: 250px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {

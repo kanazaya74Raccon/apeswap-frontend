@@ -221,7 +221,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             stakedTokenPrice={stakingToken?.price}
             rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
-            lpLabel={stakingToken.symbol}
+            lpLabel={stakingToken?.symbol}
             addLiquidityUrl={
               stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
             }

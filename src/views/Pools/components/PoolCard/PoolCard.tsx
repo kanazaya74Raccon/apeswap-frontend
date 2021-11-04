@@ -81,7 +81,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
         stakeToken={stakingToken?.symbol}
         earnToken={tokenName}
         earnTokenImage={image}
-        stakingTokenAddress={stakingToken.address[CHAIN_ID]}
+        stakingTokenAddress={stakingToken?.address[CHAIN_ID]}
         sousId={sousId}
         apr={new BigNumber(apr)}
         poolAPR={apr?.toFixed(2)}
