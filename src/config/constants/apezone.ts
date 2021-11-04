@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'gan',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0xe64F6A92FedEE40988E58504D11195f0302EEb38', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'Galactic Arena',
       subTitle: 'Welcome to the Galactic Arena!',
