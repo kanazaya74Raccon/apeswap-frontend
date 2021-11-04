@@ -2523,6 +2523,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 132,
+    tokenName: 'WING',
+    image: 'WING.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.wing,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x656e0f20509b3eb04dbccae5a0e6c2a08e615e20',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://wing.finance/',
+    harvest: true,
+    tokenPerBlock: `0.002113985`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
