@@ -160,9 +160,7 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
         </ContainerGeneral>
         <ContainerDescription>
           <div className="title-description">{game.subtitle}</div>
-          <div className="content-description">
-              {game.description}
-          </div>
+          <div className="content-description">{game.description}</div>
           <div className="social-description">
             {game.twitter && (
               <ButtonSocial>
