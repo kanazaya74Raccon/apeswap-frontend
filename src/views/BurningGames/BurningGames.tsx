@@ -72,6 +72,16 @@ const CardFull = styled(BaseLayout)`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
+  .column-full {
+    height: 225px;
+    .container-general {
+      height: 193px;
+    }
+    .container-resumen-info {
+      width: 75%;
+      padding-top: 20px;
+    }
+  }
 `
 const Cards = styled(BaseLayout)`
   height: 225px;
@@ -92,14 +102,6 @@ const Cards = styled(BaseLayout)`
     .container-resumen-info {
       width: 75%;
       padding-top: 20px;
-      .container-title {
-        .partner-name {
-          font-size: 20px;
-        }
-        .sub-name {
-          font-size: 26px;
-        }
-      }
     }
   }
 `

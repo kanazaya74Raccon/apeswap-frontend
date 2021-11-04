@@ -35,6 +35,16 @@ const ContainerDescription = styled.div`
 
   .content-description {
     padding-top: 8px;
+    color: #af6e5aff;
+    font-size: 14px;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    .content-description {
+      font-size: 18px;
+    }
   }
 `
 const ButtonSocial = styled.div`
@@ -68,10 +78,18 @@ const ContainerTitle = styled.div`
   line-height: 1.5;
   .partner-name {
     color: #939393;
-    font-size: 24px;
+    font-size: 16px;
   }
   .sub-name {
-    font-size: 32px;
+    font-size: 20px;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    .partner-name {
+      font-size: 24px;
+    }
+    .sub-name {
+      font-size: 32px;
+    }
   }
 `
 
@@ -143,9 +161,7 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
         <ContainerDescription>
           <div className="title-description">{game.subtitle}</div>
           <div className="content-description">
-            <Text fontFamily="poppins" bold>
               {game.description}
-            </Text>
           </div>
           <div className="social-description">
             {game.twitter && (
