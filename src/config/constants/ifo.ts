@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'gan',
-    address: '0xCbc0d7546801490552521B8438Dd029b022Ed51c', // Leave empty for "Coming Soon!"
+    address: '0xdDb35EE8d3B54216B114190a1Bc14eB11408BE23', // Leave empty for "Coming Soon!"
     isActive: true,
     name: 'Galactic Arena',
     subTitle: 'Welcome to the Galactic Arena!',
