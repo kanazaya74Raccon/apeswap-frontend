@@ -326,6 +326,7 @@ export const getHeadersHome = async () => {
       tablet: header.tablet,
       mobile: header.mobile,
       link: header.link,
+      chain: header.chain,
     }
   })
 
