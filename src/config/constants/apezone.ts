@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'gan',
-      address: '0xe64F6A92FedEE40988E58504D11195f0302EEb38', // Leave empty for "Coming Soon!"
+      address: '0x6fD5e77200a3B8090C8cD527424e63211962355A', // Leave empty for "Coming Soon!"
       isActive: true,
       name: 'Galactic Arena',
       subTitle: 'Welcome to the Galactic Arena!',
@@ -18,7 +18,7 @@ const ApeZone: { ifos: Ifo[] } = {
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
-      releaseBlockNumber: 11342539, // block to start showing contract details
+      releaseBlockNumber: 12364007, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },
