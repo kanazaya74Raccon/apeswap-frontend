@@ -37,7 +37,6 @@ const Staked: React.FunctionComponent<LiquidityProps> = ({ staked }) => {
   ) : (
     <Skeleton width={110} />
   )
-  
 
   return (
     <Container>

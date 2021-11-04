@@ -33,11 +33,12 @@ const StyledText = styled(Text)`
 `
 
 const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
-  const displayLiquidity = liquidity.toString() !== "NaN" ? (
-    `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-  ) : (
-    <Skeleton marginLeft="20px" width={110} />
-  )
+  const displayLiquidity =
+    liquidity.toString() !== 'NaN' ? (
+      `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ) : (
+      <Skeleton marginLeft="20px" width={110} />
+    )
 
   return (
     <Container>

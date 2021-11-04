@@ -329,7 +329,7 @@ const StyledLabelContainerLiquidity = styled.div`
     margin: 0px;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 608px
+    left: 608px;
   }
 `
 
