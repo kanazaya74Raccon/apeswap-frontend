@@ -665,6 +665,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  abr: {
+    symbol: 'ABR',
+    address: {
+      137: '0x04429fbb948bbd09327763214b45e505a5293346',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

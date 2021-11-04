@@ -435,6 +435,7 @@ const DualFarms: React.FC = () => {
 
   const farmsStakedMemoized = useMemo(() => {
     let farmsStaked = []
+    let tempFarmsStaked = []
 
     const sortFarms = (farms: DualFarm[]): DualFarm[] => {
       switch (sortOption) {
@@ -460,9 +461,19 @@ const DualFarms: React.FC = () => {
     }
 
     if (isActive) {
-      farmsStaked = stakedOnly ? stakedOnlyFarms : activeFarms
+      tempFarmsStaked = stakedOnly ? stakedOnlyFarms : activeFarms
     } else {
-      farmsStaked = stakedOnly ? stakedInactiveFarms : inactiveFarms
+      tempFarmsStaked = stakedOnly ? stakedInactiveFarms : inactiveFarms
+    }
+
+    if (query) {
+      farmsStaked = tempFarmsStaked.filter((farm) =>
+        `${farm?.stakeTokens?.token0?.symbol}-${farm?.stakeTokens?.token1?.symbol}`
+          .toLowerCase()
+          .includes(query.toLowerCase()),
+      )
+    } else {
+      farmsStaked = tempFarmsStaked
     }
 
     return sortFarms(farmsStaked)
@@ -475,6 +486,7 @@ const DualFarms: React.FC = () => {
     stakedOnly,
     stakedOnlyFarms,
     sortDirection,
+    query,
   ])
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
