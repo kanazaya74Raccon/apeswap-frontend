@@ -2278,6 +2278,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
   },
   {
+    pid: 151,
+    lpSymbol: 'GAN-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8ac70bd286dd7752386cd7d619208426c66c237a',
+    },
+    tokenSymbol: 'GAN',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8f1408171eae06aec4549fd0a5808a42cee6dd84',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
