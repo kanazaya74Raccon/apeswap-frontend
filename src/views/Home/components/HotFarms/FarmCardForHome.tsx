@@ -130,14 +130,14 @@ const StyledHeading = styled(Heading)`
 `
 
 const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
-  const { tokenSymbol, apr, quoteTokenSymbol } = farm
+  const { tokenSymbol, apr, quoteTokenSymbol, image } = farm
   const farmAPR = new BigNumber(apr && apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1))
 
   return (
     <PCard>
       <StyledBackground>
         <IconImage
-          src={`/images/tokens/${tokenSymbol}.svg`}
+          src={`/images/tokens/${image || `${tokenSymbol}.svg`}`}
           alt={tokenSymbol}
           width={50}
           height={50}
