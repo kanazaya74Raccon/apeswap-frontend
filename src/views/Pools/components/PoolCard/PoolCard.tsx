@@ -107,7 +107,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}
           lpLabel={stakingToken.symbol}
-          addLiquidityUrl={ stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap` }
+          addLiquidityUrl={
+            stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
+          }
           stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
           projectSite={projectLink}

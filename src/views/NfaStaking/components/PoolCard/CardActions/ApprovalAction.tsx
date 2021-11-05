@@ -10,7 +10,7 @@ interface ApprovalActionProps {
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract, sousId, isLoading = false }) => {
   const [pendingApprove, setPendingApprove] = useState(false)
-  const onApprove = useNfaStakingApprove(nfaStakingPoolContract, sousId).onApprove
+  const { onApprove } = useNfaStakingApprove(nfaStakingPoolContract, sousId)
 
   const handleApprove = useCallback(async () => {
     try {
