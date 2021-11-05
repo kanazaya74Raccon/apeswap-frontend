@@ -9,15 +9,12 @@ import { updateFarmUserEarnings } from 'state/farms'
 import { useNetworkChainId } from 'state/hooks'
 import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
-import { useMasterchef, useMiniChefContract, useMulticallContract, useSousChef } from './useContract'
-import { useMasterChefAddress, useMiniChefAddress, useNonFungibleApesAddress } from './useAddress'
+import { useMasterchef, useMiniChefContract, useSousChef } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
-  const masterChefAddress = useMasterChefAddress()
-  const multicallContract = useMulticallContract()
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChefContract, farmPid, account)
@@ -29,9 +26,9 @@ export const useHarvest = (farmPid: number) => {
         pid: farmPid,
       },
     })
-    dispatch(updateFarmUserEarnings(multicallContract, masterChefAddress, farmPid, account))
+    dispatch(updateFarmUserEarnings(chainId, farmPid, account))
     return txHash
-  }, [account, dispatch, farmPid, masterChefContract, multicallContract, masterChefAddress, chainId])
+  }, [account, dispatch, farmPid, masterChefContract, chainId])
 
   return { onReward: handleHarvest }
 }
@@ -61,7 +58,6 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const masterChefContract = useMasterchef()
-  const multicallContract = useMulticallContract()
 
   const handleHarvest = useCallback(async () => {
     if (sousId === 0) {
@@ -81,9 +77,9 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
       },
     })
 
-    dispatch(updateUserPendingReward(multicallContract, chainId, masterChefContract, sousId, account))
-    dispatch(updateUserBalance(multicallContract, chainId, sousId, account))
-  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, multicallContract, chainId])
+    dispatch(updateUserPendingReward(chainId, sousId, account))
+    dispatch(updateUserBalance(chainId, sousId, account))
+  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, chainId])
 
   return { onReward: handleHarvest }
 }
@@ -91,14 +87,12 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
 export const useNfaStakingHarvest = (sousId) => {
   const dispatch = useDispatch()
   const { account } = useWeb3React()
-  const multicallContract = useMulticallContract()
   const chainId = useNetworkChainId()
-  const nfaAddress = useNonFungibleApesAddress()
   const nfaStakingChef = useNfaStakingHarvest(sousId)
   const handleHarvest = useCallback(async () => {
     await nfaStakeHarvest(nfaStakingChef, account)
-    dispatch(updateUserNfaStakingPendingReward(multicallContract, chainId, sousId, account))
-    dispatch(updateNfaStakingUserBalance(multicallContract, nfaAddress, sousId, account))
+    dispatch(updateUserNfaStakingPendingReward(chainId, sousId, account))
+    dispatch(updateNfaStakingUserBalance(chainId, sousId, account))
     track({
       event: 'nfa',
       chain: chainId,
@@ -107,7 +101,7 @@ export const useNfaStakingHarvest = (sousId) => {
         pid: sousId,
       },
     })
-  }, [account, dispatch, nfaStakingChef, sousId, multicallContract, chainId, nfaAddress])
+  }, [account, dispatch, nfaStakingChef, sousId, chainId])
 
   return { onReward: handleHarvest }
 }
@@ -116,8 +110,6 @@ export const useMiniChefHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
-  const miniChefAddress = useMiniChefAddress()
-  const multicallContract = useMulticallContract()
 
   const handleHarvest = useCallback(async () => {
     const txHash = await miniChefHarvest(miniChefContract, farmPid, account)
@@ -129,10 +121,10 @@ export const useMiniChefHarvest = (farmPid: number) => {
         pid: farmPid,
       },
     })
-    dispatch(updateDualFarmUserEarnings(multicallContract, miniChefAddress, farmPid, account))
-    dispatch(updateDualFarmRewarderEarnings(multicallContract, farmPid, account))
+    dispatch(updateDualFarmUserEarnings(chainId, farmPid, account))
+    dispatch(updateDualFarmRewarderEarnings(chainId, farmPid, account))
     return txHash
-  }, [account, dispatch, farmPid, miniChefContract, multicallContract, miniChefAddress, chainId])
+  }, [account, dispatch, farmPid, miniChefContract, chainId])
 
   return { onReward: handleHarvest }
 }

@@ -1,10 +1,16 @@
 import apePriceGetterABI from 'config/abi/apePriceGetter.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getApePriceGetterAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const fetchPrices = async (chainId, multicallContract, apePriceGetterAddress) => {
+const fetchPrices = async (chainId) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const tokensToCall = Object.keys(tokens).filter((token) => tokens[token].address[chainId] !== undefined)
   const erc20Calls = tokensToCall.map((token) => {
     return {

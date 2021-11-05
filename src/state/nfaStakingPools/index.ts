@@ -45,9 +45,9 @@ export const { setNfaStakingPoolsPublicData, setNfaStakingPoolsUserData, updateN
 
 // Thunks
 export const fetchNfaStakingPoolsPublicDataAsync =
-  (multicallContract, nfaContractAddress, tokenPrices: TokenPrices[]) => async (dispatch) => {
-    const blockLimits = await fetchPoolsBlockLimits(multicallContract)
-    const totalStakings = await fetchPoolsTotalStatking(multicallContract, nfaContractAddress)
+  (chainId: number, tokenPrices: TokenPrices[]) => async (dispatch) => {
+    const blockLimits = await fetchPoolsBlockLimits(chainId)
+    const totalStakings = await fetchPoolsTotalStatking(chainId)
     const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings)
     const liveData = await Promise.all(
       nfaStakingPools.map(async (nfaStakingPool) => {
@@ -64,46 +64,43 @@ export const fetchNfaStakingPoolsPublicDataAsync =
     dispatch(setNfaStakingPoolsPublicData(liveData))
   }
 
-export const fetchNfaStakingPoolsUserDataAsync =
-  (multicallContract, nfaAddress, chainId, account) => async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(multicallContract, nfaAddress, chainId, account)
-    const stakingTokenBalances = await fetchUserBalances(multicallContract, nfaAddress, account)
-    const stakedBalances = await fetchUserStakeBalances(multicallContract, chainId, account)
-    const pendingRewards = await fetchUserPendingRewards(multicallContract, chainId, account)
-    const stakedNfas = await fetchUserStakedNfas(multicallContract, chainId, account)
+export const fetchNfaStakingPoolsUserDataAsync = (chainId, account) => async (dispatch) => {
+  const allowances = await fetchPoolsAllowance(chainId, account)
+  const stakingTokenBalances = await fetchUserBalances(chainId, account)
+  const stakedBalances = await fetchUserStakeBalances(chainId, account)
+  const pendingRewards = await fetchUserPendingRewards(chainId, account)
+  const stakedNfas = await fetchUserStakedNfas(chainId, account)
 
-    const userData = nfaStakingPools.map((nfaStakingPool) => ({
-      sousId: nfaStakingPool.sousId,
-      allowance: allowances[nfaStakingPool.sousId],
-      stakingTokenBalance: stakingTokenBalances[nfaStakingPool.sousId],
-      stakedBalance: stakedBalances[nfaStakingPool.sousId],
-      pendingReward: pendingRewards[nfaStakingPool.sousId],
-      stakedNfas: stakedNfas[nfaStakingPool.sousId],
-    }))
-    dispatch(setNfaStakingPoolsUserData(userData))
-  }
+  const userData = nfaStakingPools.map((nfaStakingPool) => ({
+    sousId: nfaStakingPool.sousId,
+    allowance: allowances[nfaStakingPool.sousId],
+    stakingTokenBalance: stakingTokenBalances[nfaStakingPool.sousId],
+    stakedBalance: stakedBalances[nfaStakingPool.sousId],
+    pendingReward: pendingRewards[nfaStakingPool.sousId],
+    stakedNfas: stakedNfas[nfaStakingPool.sousId],
+  }))
+  dispatch(setNfaStakingPoolsUserData(userData))
+}
 
-export const updateNfaStakingUserAllowance =
-  (multicallContract, nfaAddress, chainId, sousId: string, account: string) => async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(multicallContract, nfaAddress, chainId, account)
-    dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
-  }
+export const updateNfaStakingUserAllowance = (chainId: number, sousId: string, account: string) => async (dispatch) => {
+  const allowances = await fetchPoolsAllowance(chainId, account)
+  dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+}
 
-export const updateNfaStakingUserBalance =
-  (multicallContract, nfaAddress, sousId: string, account: string) => async (dispatch) => {
-    const tokenBalances = await fetchUserBalances(multicallContract, nfaAddress, account)
-    dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
-  }
+export const updateNfaStakingUserBalance = (chainId: number, sousId: string, account: string) => async (dispatch) => {
+  const tokenBalances = await fetchUserBalances(chainId, account)
+  dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+}
 
 export const updateUserNfaStakingStakedBalance =
-  (multicallContract, chainId, sousId: string, account: string) => async (dispatch) => {
-    const stakedBalances = await fetchUserStakeBalances(multicallContract, chainId, account)
+  (chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const stakedBalances = await fetchUserStakeBalances(chainId, account)
     dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
   }
 
 export const updateUserNfaStakingPendingReward =
-  (multicallContract, chainId, sousId: string, account: string) => async (dispatch) => {
-    const pendingRewards = await await fetchUserStakedNfas(multicallContract, chainId, account)
+  (chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const pendingRewards = await await fetchUserStakedNfas(chainId, account)
     dispatch(updateNfaStakingPoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
 

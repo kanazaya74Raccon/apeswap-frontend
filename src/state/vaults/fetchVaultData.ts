@@ -1,7 +1,10 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
+import multicallABI from 'config/abi/Multicall.json'
 import multicall from 'utils/multicall'
+import { getMulticallAddress } from 'utils/addressHelper'
 import { CHAIN_ID } from 'config/constants/chains'
+import { getContract } from 'utils/web3'
 import { VaultConfig } from 'config/constants/types'
 import { vaultsConfig } from 'config/constants'
 import { BLOCKS_PER_YEAR, MATIC_BLOCKS_PER_YEAR, SECONDS_PER_YEAR, VAULT_COMPOUNDS_PER_DAY } from 'config'
@@ -10,7 +13,9 @@ import { TokenPrices } from 'state/types'
 import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 import masterchefABI from './vaultedMasterChefABI.json'
 
-const fetchVaultData = async (multicallContract, chainId: number, tokenPrices: TokenPrices[]) => {
+const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const filteredVaultsToFetch = vaultsConfig.filter((vault) => vault.network === chainId)
   const data = await Promise.all(
     filteredVaultsToFetch.map(async (vault: VaultConfig) => {

@@ -1,6 +1,9 @@
 import auctionAbi from 'config/abi/auction.json'
 import { Contract } from 'web3-eth-contract'
 import { AuctionsOverall, Auction } from 'state/types'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getAuctionAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
@@ -33,10 +36,10 @@ export const fetchAuctionDetails = async (auctionContractAddress: string, multic
   return auctionDetails
 }
 
-export const fetchAllAuctions = async (
-  auctionContractAddress: string,
-  multicallContract: Contract,
-): Promise<AuctionsOverall> => {
+export const fetchAllAuctions = async (chainId: number): Promise<AuctionsOverall> => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const auctionContractAddress = getAuctionAddress(chainId)
   const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
     await fetchAuctionDetails(auctionContractAddress, multicallContract)
   const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {

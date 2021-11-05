@@ -57,7 +57,7 @@ const useGetWalletNfts = () => {
             try {
               const { tokenOfOwnerByIndex, getBunnyId, tokenURI } = nonFungibleApesContract.methods
               const tokenId = await tokenOfOwnerByIndex(account, index).call()
-              const [bunnyId, tokenUri] = await makeBatchRequest([getBunnyId(tokenId).call, tokenURI(tokenId).call])
+              const [bunnyId, tokenUri] = await makeBatchRequest([getBunnyId(tokenId).call, tokenURI(tokenId).call], 56)
 
               return [Number(bunnyId), Number(tokenId), tokenUri]
             } catch (error) {

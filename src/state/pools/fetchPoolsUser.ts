@@ -1,9 +1,12 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import masterChefABI from 'config/abi/masterchef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import { QuoteToken } from 'config/constants/types'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMasterChefAddress, getMulticallAddress } from 'utils/addressHelper'
+import { getContract, getWeb3 } from 'utils/web3'
 import multicall from 'utils/multicall'
-import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
@@ -11,9 +14,11 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.address !== QuoteToken.BNB)
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.address === QuoteToken.BNB)
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const web3 = getWeb3()
+const web3 = getWeb3(56)
 
-export const fetchPoolsAllowance = async (multicallContract, chainId: number, account) => {
+export const fetchPoolsAllowance = async (chainId: number, account) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = nonBnbPools.map((p) => ({
     address: p.stakingToken.address[chainId],
     name: 'allowance',
@@ -27,8 +32,10 @@ export const fetchPoolsAllowance = async (multicallContract, chainId: number, ac
   )
 }
 
-export const fetchUserBalances = async (multicallContract, chainId: number, account) => {
+export const fetchUserBalances = async (chainId: number, account) => {
   // Non BNB pools
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = nonBnbPools.map((p) => ({
     address: p.stakingToken.address[chainId],
     name: 'balanceOf',
@@ -50,7 +57,11 @@ export const fetchUserBalances = async (multicallContract, chainId: number, acco
   return { ...tokenBalances, ...bnbBalances }
 }
 
-export const fetchUserStakeBalances = async (multicallContract, masterChefContract, chainId: number, account) => {
+export const fetchUserStakeBalances = async (chainId: number, account) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const masterChefAddress = getMasterChefAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const masterChefContract = getContract(masterChefABI, masterChefAddress, chainId)
   const calls = nonMasterPools.map((p) => ({
     address: p.contractAddress[chainId],
     name: 'userInfo',
@@ -70,7 +81,11 @@ export const fetchUserStakeBalances = async (multicallContract, masterChefContra
   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
 }
 
-export const fetchUserPendingRewards = async (multicallContract, masterChefContract, chainId: number, account) => {
+export const fetchUserPendingRewards = async (chainId: number, account) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const masterChefAddress = getMasterChefAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const masterChefContract = getContract(masterChefABI, masterChefAddress, chainId)
   const calls = nonMasterPools.map((p) => ({
     address: p.contractAddress[chainId],
     name: 'pendingReward',

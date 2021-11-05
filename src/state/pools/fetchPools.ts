@@ -3,14 +3,18 @@ import sousChefABI from 'config/abi/sousChef.json'
 import bananaABI from 'config/abi/banana.json'
 import wbnbABI from 'config/abi/weth.json'
 import multicall from 'utils/multicall'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getNativeWrappedAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { TokenPrices } from 'state/types'
-import { Contract } from 'web3-eth-contract'
 
-export const fetchPoolsBlockLimits = async (multicallContract: Contract, chainId: number) => {
+export const fetchPoolsBlockLimits = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
@@ -39,11 +43,10 @@ export const fetchPoolsBlockLimits = async (multicallContract: Contract, chainId
   })
 }
 
-export const fetchPoolsTotalStaking = async (
-  multicallContract: Contract,
-  nativeWrappedAddress: string,
-  chainId: number,
-) => {
+export const fetchPoolsTotalStaking = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const nativeWrappedAddress = getNativeWrappedAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== QuoteToken.BNB)
   const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === QuoteToken.BNB)
 

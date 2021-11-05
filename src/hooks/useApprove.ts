@@ -10,20 +10,13 @@ import { CHAIN_ID } from 'config/constants'
 import { updateFarmUserAllowances } from 'state/farms'
 import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
-import {
-  useMasterChefAddress,
-  useAuctionAddress,
-  useNonFungibleApesAddress,
-  useMiniChefAddress,
-  useVaultApeAddress,
-} from './useAddress'
+import { useAuctionAddress } from './useAddress'
 import {
   useMasterchef,
   useBanana,
   useSousChef,
   useLottery,
   useNonFungibleApes,
-  useMulticallContract,
   useVaultApe,
   useMiniChefContract,
 } from './useContract'
@@ -33,13 +26,11 @@ export const useApprove = (lpContract: Contract, pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
-  const masterChefAddress = useMasterChefAddress()
-  const multicallContract = useMulticallContract()
 
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, masterChefContract, account)
-      dispatch(updateFarmUserAllowances(multicallContract, masterChefAddress, pid, chainId, account))
+      dispatch(updateFarmUserAllowances(chainId, pid, account))
       track({
         event: 'farm',
         chain: CHAIN_ID,
@@ -52,7 +43,7 @@ export const useApprove = (lpContract: Contract, pid: number) => {
     } catch (e) {
       return false
     }
-  }, [account, dispatch, lpContract, masterChefContract, multicallContract, masterChefAddress, pid, chainId])
+  }, [account, dispatch, lpContract, masterChefContract, pid, chainId])
 
   return { onApprove: handleApprove }
 }
@@ -62,12 +53,11 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
-  const multicallContract = useMulticallContract()
 
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, sousChefContract, account)
-      dispatch(updateUserAllowance(multicallContract, chainId, sousId, account))
+      dispatch(updateUserAllowance(chainId, sousId, account))
       track({
         event: 'pool',
         chain: CHAIN_ID,
@@ -81,7 +71,7 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
     } catch (e) {
       return false
     }
-  }, [account, dispatch, lpContract, sousChefContract, sousId, multicallContract, chainId])
+  }, [account, dispatch, lpContract, sousChefContract, sousId, chainId])
 
   return { onApprove: handleApprove }
 }
@@ -142,18 +132,16 @@ export const useAuctionApprove = () => {
 export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   const dispatch = useDispatch()
   const tokenContract = useNonFungibleApes()
-  const multicallContract = useMulticallContract()
-  const nfaAddress = useNonFungibleApesAddress()
   const { account, chainId } = useWeb3React()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
-      dispatch(updateNfaStakingUserAllowance(multicallContract, nfaAddress, chainId, sousId, account))
+      dispatch(updateNfaStakingUserAllowance(chainId, sousId, account))
       return tx
     } catch {
       return false
     }
-  }, [account, dispatch, contractToApprove, sousId, tokenContract, multicallContract, nfaAddress, chainId])
+  }, [account, dispatch, contractToApprove, sousId, tokenContract, chainId])
 
   return { onApprove: handleApprove }
 }
@@ -163,8 +151,6 @@ export const useVaultApeApprove = (lpContract: Contract, pid) => {
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
-  const multicallContract = useMulticallContract()
-  const vaultApeAddress = useVaultApeAddress()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, vaultApeContract, account)
@@ -176,12 +162,12 @@ export const useVaultApeApprove = (lpContract: Contract, pid) => {
           cat: 'enable',
         },
       })
-      dispatch(updateVaultUserAllowance(multicallContract, vaultApeAddress, account, chainId, pid))
+      dispatch(updateVaultUserAllowance(account, chainId, pid))
       return tx
     } catch (e) {
       return false
     }
-  }, [account, lpContract, vaultApeContract, multicallContract, vaultApeAddress, dispatch, chainId, pid])
+  }, [account, lpContract, vaultApeContract, dispatch, chainId, pid])
 
   return { onApprove: handleApprove }
 }
@@ -191,8 +177,6 @@ export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
-  const miniChefAddress = useMiniChefAddress()
-  const multicallContract = useMulticallContract()
 
   const handleApprove = useCallback(async () => {
     try {
@@ -205,13 +189,13 @@ export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
           cat: 'enable',
         },
       })
-      dispatch(updateDualFarmUserAllowances(multicallContract, miniChefAddress, pid, account))
+      dispatch(updateDualFarmUserAllowances(chainId, pid, account))
       return tx
     } catch (e) {
       console.warn(e)
       return false
     }
-  }, [account, dispatch, lpContract, miniChefContract, multicallContract, miniChefAddress, pid, chainId])
+  }, [account, dispatch, lpContract, miniChefContract, pid, chainId])
 
   return { onApprove: handleApprove }
 }

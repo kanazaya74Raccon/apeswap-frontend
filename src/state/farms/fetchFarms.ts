@@ -1,11 +1,16 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getMasterChefAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
-import { Contract } from 'web3-eth-contract'
 
-const fetchFarms = async (multicallContract: Contract, masterChefAddress: string, chainId: number) => {
+const fetchFarms = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const masterChefAddress = getMasterChefAddress(chainId)
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
       const lpAdress = farmConfig.lpAddresses[chainId]

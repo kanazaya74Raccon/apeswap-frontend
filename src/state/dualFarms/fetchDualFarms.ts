@@ -3,18 +3,21 @@ import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import miniChefABI from 'config/abi/miniApeV2.json'
 import miniComplexRewarderABI from 'config/abi/miniComplexRewarder.json'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getMiniChefAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import { dualFarmsConfig } from 'config/constants'
-import { Contract } from 'web3-eth-contract'
 import { TokenPrices } from 'state/types'
 import { getDualFarmApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const fetchDualFarms = async (
-  multicallContract: Contract,
-  miniChefAddress: string,
   tokenPrices: TokenPrices[],
   chainId: number,
 ) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const miniChefAddress = getMiniChefAddress(chainId)
   const filteredDualFarms = dualFarmsConfig.filter((dualFarm) => dualFarm.network === chainId)
   const data = await Promise.all(
     filteredDualFarms.map(async (dualFarmConfig) => {

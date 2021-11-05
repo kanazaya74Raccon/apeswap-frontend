@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import poolsConfig from 'config/constants/pools'
-import { Contract } from 'web3-eth-contract'
 import { fetchPoolsBlockLimits, fetchPoolsTotalStaking, fetchPoolTokenStatsAndApr } from './fetchPools'
 import {
   fetchPoolsAllowance,
@@ -44,11 +43,11 @@ export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = Poo
 
 // Thunks
 export const fetchPoolsPublicDataAsync =
-  (multicallContract: Contract, nativeWrappedAddress: string, chainId: number, tokenPrices: TokenPrices[]) =>
+  (chainId: number, tokenPrices: TokenPrices[]) =>
   async (dispatch) => {
     try {
-      const blockLimits = await fetchPoolsBlockLimits(multicallContract, chainId)
-      const totalStakings = await fetchPoolsTotalStaking(multicallContract, nativeWrappedAddress, chainId)
+      const blockLimits = await fetchPoolsBlockLimits(chainId)
+      const totalStakings = await fetchPoolsTotalStaking(chainId)
       const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings, chainId)
       const liveData = await Promise.all(
         poolsConfig.map(async (pool) => {
@@ -70,12 +69,12 @@ export const fetchPoolsPublicDataAsync =
   }
 
 export const fetchPoolsUserDataAsync =
-  (multicallContract: Contract, masterChefContract, chainId: number, account) => async (dispatch) => {
+  (chainId: number, account) => async (dispatch) => {
     try {
-      const allowances = await fetchPoolsAllowance(multicallContract, chainId, account)
-      const stakingTokenBalances = await fetchUserBalances(multicallContract, chainId, account)
-      const stakedBalances = await fetchUserStakeBalances(multicallContract, masterChefContract, chainId, account)
-      const pendingRewards = await fetchUserPendingRewards(multicallContract, masterChefContract, chainId, account)
+      const allowances = await fetchPoolsAllowance(chainId, account)
+      const stakingTokenBalances = await fetchUserBalances(chainId, account)
+      const stakedBalances = await fetchUserStakeBalances(chainId, account)
+      const pendingRewards = await fetchUserPendingRewards(chainId, account)
 
       const userData = poolsConfig.map((pool) => ({
         sousId: pool.sousId,
@@ -91,28 +90,28 @@ export const fetchPoolsUserDataAsync =
   }
 
 export const updateUserAllowance =
-  (multicallContract: Contract, chainId: number, sousId: string, account: string) => async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(multicallContract, chainId, account)
+  (chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const allowances = await fetchPoolsAllowance(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
   }
 
 export const updateUserBalance =
-  (multicallContract: Contract, chainId: number, sousId: string, account: string) => async (dispatch) => {
-    const tokenBalances = await fetchUserBalances(multicallContract, chainId, account)
+  (chainId: number, sousId: string, account: string) => async (dispatch) => {
+    const tokenBalances = await fetchUserBalances(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
   }
 
 export const updateUserStakedBalance =
-  (multicallContract: Contract, chainId: number, masterChefContract, sousId: string, account: string) =>
+  (chainId: number, sousId: string, account: string) =>
   async (dispatch) => {
-    const stakedBalances = await fetchUserStakeBalances(multicallContract, masterChefContract, chainId, account)
+    const stakedBalances = await fetchUserStakeBalances(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
   }
 
 export const updateUserPendingReward =
-  (multicallContract: Contract, chainId: number, masterChefContract, sousId: string, account: string) =>
+  (chainId: number, sousId: string, account: string) =>
   async (dispatch) => {
-    const pendingRewards = await fetchUserPendingRewards(multicallContract, masterChefContract, chainId, account)
+    const pendingRewards = await fetchUserPendingRewards(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
 

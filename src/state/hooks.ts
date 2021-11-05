@@ -8,18 +8,8 @@ import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { CHAIN_ID } from 'config/constants/chains'
-import {
-  useApePriceGetterAddress,
-  useAuctionAddress,
-  useBananaAddress,
-  useMasterChefAddress,
-  useMiniChefAddress,
-  useNativeWrapCurrencyAddress,
-  useNonFungibleApesAddress,
-  useTreasuryAddress,
-  useVaultApeAddress,
-} from 'hooks/useAddress'
-import { useMasterchef, useMulticallContract, useNonFungibleApes } from 'hooks/useContract'
+import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
+import { useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
 import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
@@ -91,19 +81,16 @@ export const useUpdateNetwork = () => {
 // Fetch public pool and farm data
 
 export const useFetchPublicData = () => {
-  const multicallContract = useMulticallContract()
-  const masterChefAddress = useMasterChefAddress()
-  const nativeWrappedAddress = useNativeWrapCurrencyAddress()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchFarmsPublicDataAsync(multicallContract, masterChefAddress, chainId))
-      dispatch(fetchPoolsPublicDataAsync(multicallContract, nativeWrappedAddress, chainId, tokenPrices))
+      dispatch(fetchFarmsPublicDataAsync(chainId))
+      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
     }
-  }, [dispatch, slowRefresh, tokenPrices, chainId, masterChefAddress, multicallContract, nativeWrappedAddress])
+  }, [dispatch, slowRefresh, tokenPrices, chainId])
 }
 
 // Vault data
@@ -111,17 +98,15 @@ export const usePollVaultsData = (includeArchive = false) => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
-  const multicallContract = useMulticallContract()
-  const vaultApeAddress = useVaultApeAddress()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
     dispatch(setFilteredVaults(chainId))
-    dispatch(fetchVaultsPublicDataAsync(multicallContract, chainId, tokenPrices))
+    dispatch(fetchVaultsPublicDataAsync(chainId, tokenPrices))
     if (account) {
-      dispatch(fetchVaultUserDataAsync(multicallContract, vaultApeAddress, account, chainId))
+      dispatch(fetchVaultUserDataAsync(account, chainId))
     }
-  }, [includeArchive, dispatch, slowRefresh, account, multicallContract, chainId, vaultApeAddress, tokenPrices])
+  }, [includeArchive, dispatch, slowRefresh, account, chainId, tokenPrices])
 }
 
 // Dual Farms
@@ -130,16 +115,14 @@ export const usePollDualFarms = () => {
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-  const multicallContract = useMulticallContract()
-  const miniChefAddress = useMiniChefAddress()
   const { tokenPrices } = useTokenPrices()
   const chainId = useNetworkChainId()
   useEffect(() => {
-    dispatch(fetchDualFarmsPublicDataAsync(multicallContract, miniChefAddress, tokenPrices, chainId))
+    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId))
     if (account) {
-      dispatch(fetchDualFarmUserDataAsync(multicallContract, miniChefAddress, account))
+      dispatch(fetchDualFarmUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, multicallContract, miniChefAddress, chainId, tokenPrices, slowRefresh])
+  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
 }
 
 export const useDualFarms = (): DualFarm[] => {
@@ -158,13 +141,11 @@ export const useFarms = (account): Farm[] => {
   const { slowRefresh } = useRefresh()
   const dispatch = useDispatch()
   const { chainId } = useWeb3React()
-  const masterChefAddress = useMasterChefAddress()
-  const multicallContract = useMulticallContract()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
-      dispatch(fetchFarmUserDataAsync(multicallContract, masterChefAddress, chainId, account))
+      dispatch(fetchFarmUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, slowRefresh, chainId, masterChefAddress, multicallContract])
+  }, [account, dispatch, slowRefresh, chainId])
   const farms = useSelector((state: State) => state.farms.data)
   return farms
 }
@@ -219,13 +200,11 @@ export const usePools = (account): Pool[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
   const { chainId } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const multicallContract = useMulticallContract()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
-      dispatch(fetchPoolsUserDataAsync(multicallContract, masterChefContract, chainId, account))
+      dispatch(fetchPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, fastRefresh, chainId, masterChefContract, multicallContract])
+  }, [account, dispatch, fastRefresh, chainId])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -252,16 +231,14 @@ export const usePollNfaStakingData = () => {
   const { slowRefresh } = useRefresh()
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-  const multicallContract = useMulticallContract()
-  const nfaAddress = useNonFungibleApesAddress()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
-    fetchNfaStakingPoolsPublicDataAsync(multicallContract, nfaAddress, tokenPrices)
+    fetchNfaStakingPoolsPublicDataAsync(chainId, tokenPrices)
     if (account) {
-      dispatch(fetchNfaStakingPoolsUserDataAsync(multicallContract, nfaAddress, chainId, account))
+      dispatch(fetchNfaStakingPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, multicallContract, nfaAddress, chainId, tokenPrices, slowRefresh])
+  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
 }
 
 export const useNfaStakingPools = (): NfaStakingPool[] => {
@@ -431,15 +408,13 @@ export const useHomepageStats = (): HomepageData => {
 export const useFetchAuctions = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
-  const { chainId } = useWeb3React()
-  const loadChainId = chainId || CHAIN_ID.BSC
-  const auctionAddress = useAuctionAddress()
-  const multicallContract = useMulticallContract()
+  const chainId = useNetworkChainId()
+
   useEffect(() => {
-    if (loadChainId === CHAIN_ID.BSC || loadChainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchAuctions(auctionAddress, multicallContract))
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchAuctions(chainId))
     }
-  }, [dispatch, fastRefresh, auctionAddress, multicallContract, loadChainId])
+  }, [dispatch, fastRefresh, chainId])
 }
 
 export const useAuctions = () => {
@@ -451,11 +426,9 @@ export const useFetchTokenPrices = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   const chainId = useNetworkChainId()
-  const apePriceGetterAddress = useApePriceGetterAddress()
-  const multicallContract = useMulticallContract()
   useEffect(() => {
-    dispatch(fetchTokenPrices(chainId, multicallContract, apePriceGetterAddress))
-  }, [dispatch, slowRefresh, chainId, multicallContract, apePriceGetterAddress])
+    dispatch(fetchTokenPrices(chainId))
+  }, [dispatch, slowRefresh, chainId])
 }
 
 export const useTokenPrices = () => {
