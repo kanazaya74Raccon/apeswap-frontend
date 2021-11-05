@@ -595,6 +595,13 @@ const tokens = {
     },
     decimals: 9,
   },
+  gan: {
+    symbol: 'GAN',
+    address: {
+      56: '0x8F1408171EAe06AEC4549fD0a5808A42cee6DD84',
+    },
+    decimals: 18,
+  }
 }
 
 export default tokens
