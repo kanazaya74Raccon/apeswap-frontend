@@ -9,7 +9,6 @@ import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
-import { useNonFungibleApes } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
 import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
@@ -350,15 +349,12 @@ export const useToast = () => {
 export const useFetchProfile = () => {
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-  const { chainId } = useWeb3React()
-  const { fastRefresh } = useRefresh()
-  const nfaContract = useNonFungibleApes()
+  const chainId = CHAIN_ID.BSC
+  const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchProfile(account, nfaContract))
-    }
-  }, [account, dispatch, fastRefresh, nfaContract, chainId])
+    dispatch(fetchProfile(chainId, account))
+  }, [account, dispatch, slowRefresh, chainId])
 }
 
 export const useProfile = () => {

@@ -25,7 +25,7 @@ export const getAllowance = async (
 }
 
 export const getTokenBalance = async (
-  web3: any,
+  web3: Web3,
   tokenAddress: string,
   userAddress: string,
   tokenContract?: Contract,

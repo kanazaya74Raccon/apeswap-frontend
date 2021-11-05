@@ -64,7 +64,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         </Button>
       </ModalActions>
       <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {TranslateString(999, 'Get')} {tokenName}
+        {TranslateString(999, `Get ${tokenName}`)}
       </LinkExternal>
     </Modal>
   )

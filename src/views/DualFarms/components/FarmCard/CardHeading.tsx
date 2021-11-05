@@ -252,8 +252,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const displayBalance = dollarsEarned ? `$${dollarsEarned.toFixed(2)}` : '?'
 
-  const { isXl } = useMatchBreakpoints()
-  const isDesktop = isXl
+  const { isXl: isDesktop } = useMatchBreakpoints()
 
   const { account } = useWeb3React()
 

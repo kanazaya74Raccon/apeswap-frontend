@@ -129,7 +129,7 @@ const HotFarms = () => {
   if (pid2 > farmMustBeUnder) {
     pid2 = DEFAULT_FARM
   }
-  const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(1), useFarmFromPid(2)]
+  const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
   if (!loading) {
     farmsFetched = farmsList(farmsToFetch)
   }

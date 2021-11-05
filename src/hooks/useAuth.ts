@@ -12,13 +12,14 @@ import {
 import { ConnectorNames, localStorageKey } from '@apeswapfinance/uikit'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
-import { useToast } from 'state/hooks'
+import { useNetworkChainId, useToast } from 'state/hooks'
 import { profileClear } from 'state/profile'
 
 import { useDispatch } from 'react-redux'
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
+  const chainId = useNetworkChainId()
   const { toastError } = useToast()
   const dispatch = useDispatch()
 
@@ -27,7 +28,7 @@ const useAuth = () => {
     if (connector) {
       activate(connector, async (error: Error) => {
         if (error instanceof UnsupportedChainIdError) {
-          const hasSetup = await setupNetwork()
+          const hasSetup = await setupNetwork(chainId)
           if (hasSetup) {
             activate(connector)
           }

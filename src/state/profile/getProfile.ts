@@ -1,8 +1,13 @@
 import { Profile } from 'state/types'
 import nfts from 'config/constants/nfts'
+import nfaABI from 'config/abi/nonFungibleApes.json'
+import { getNonFungibleApesAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import orderBy from 'lodash/orderBy'
 
-const getProfile = async (address: string, nfaContract): Promise<Profile> => {
+const getProfile = async (chainId: number, address: string): Promise<Profile> => {
+  const nfaAddress = getNonFungibleApesAddress(chainId)
+  const nfaContract = getContract(nfaABI, nfaAddress, chainId)
   try {
     const nfasOwned = address ? await nfaContract.methods.balanceOf(address).call() : '0'
     if (nfasOwned === '0') {
