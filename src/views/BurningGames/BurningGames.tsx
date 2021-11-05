@@ -69,10 +69,6 @@ const StyledPage = styled(Page)`
   }
 `
 
-const BottomPage = styled.div`
-  margin-bottom: 20px;
-`
-
 const CardFull = styled(BaseLayout)`
   display: flex;
   justify-content: space-between;
@@ -147,12 +143,12 @@ const BurningGames: React.FC = () => {
       </Header>
 
       <StyledPage width="1130px">
-          {data.length !== 0 && (
-            <CardFull>
-              <CardBurningGame game={data[0]} />
-            </CardFull>
-          )}
-          <Cards>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
+        {data.length !== 0 && (
+          <CardFull>
+            <CardBurningGame game={data[0]} />
+          </CardFull>
+        )}
+        <Cards>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
       </StyledPage>
     </>
   )
