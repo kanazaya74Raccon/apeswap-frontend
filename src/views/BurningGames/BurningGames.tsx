@@ -57,6 +57,7 @@ const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
   width: 100vw;
+  margin-bottom: 20px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     padding-left: 10px;
@@ -66,6 +67,10 @@ const StyledPage = styled(Page)`
     padding-left: 16px;
     padding-right: 16px;
   }
+`
+
+const BottomPage = styled.div`
+  margin-bottom: 20px;
 `
 
 const CardFull = styled(BaseLayout)`
@@ -84,7 +89,6 @@ const CardFull = styled(BaseLayout)`
   }
 `
 const Cards = styled(BaseLayout)`
-  height: 225px;
   & > div {
     ${({ theme }) => theme.mediaQueries.md} {
       grid-column: span 6;
@@ -103,6 +107,10 @@ const Cards = styled(BaseLayout)`
       width: 75%;
       padding-top: 20px;
     }
+  }
+  & > * {
+    width: 100%;
+    margin-bottom: 32px;
   }
 `
 const BurningGames: React.FC = () => {
@@ -139,15 +147,12 @@ const BurningGames: React.FC = () => {
       </Header>
 
       <StyledPage width="1130px">
-        <div>
           {data.length !== 0 && (
             <CardFull>
               <CardBurningGame game={data[0]} />
             </CardFull>
           )}
-
           <Cards>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
-        </div>
       </StyledPage>
     </>
   )

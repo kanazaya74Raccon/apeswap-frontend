@@ -274,7 +274,7 @@ export const getPromosHome = async () => {
 }
 
 export const getBurningGames = async () => {
-  const url = `${baseUrlStrapi}/burning-games`
+  const url = `${baseUrlStrapi}/burning-games?_sort=order:asc`
   const resp = await fetch(url)
   const data = await resp.json()
 
