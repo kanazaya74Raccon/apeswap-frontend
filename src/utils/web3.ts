@@ -11,10 +11,10 @@ import getRpcUrl from 'utils/getRpcUrl'
 const activeWeb3Instance = {}
 
 const getWeb3 = (chainId: number) => {
-  const RPC_URL = getRpcUrl(chainId)
   if (!activeWeb3Instance[chainId]) {
+    const RPC_URL = getRpcUrl(chainId)
     const httpProvider = new Web3.providers.HttpProvider(RPC_URL, { timeout: 10000 } as HttpProviderOptions)
-    activeWeb3Instance[RPC_URL] = new Web3(httpProvider)
+    activeWeb3Instance[chainId] = new Web3(httpProvider)
   }
   return activeWeb3Instance[chainId]
 }

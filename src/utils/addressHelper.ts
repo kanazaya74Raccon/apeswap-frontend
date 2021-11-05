@@ -52,6 +52,5 @@ export const getMiniChefAddress = (chainId: number) => {
   return addresses.miniApeV2[chainId]
 }
 export const getNativeWrappedAddress = (chainId: number) => {
-    return addresses.nativeWrapped[chainId]
-  }
-  
+  return addresses.nativeWrapped[chainId]
+}

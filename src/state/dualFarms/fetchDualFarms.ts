@@ -11,10 +11,7 @@ import { TokenPrices } from 'state/types'
 import { getDualFarmApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const fetchDualFarms = async (
-  tokenPrices: TokenPrices[],
-  chainId: number,
-) => {
+const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const miniChefAddress = getMiniChefAddress(chainId)

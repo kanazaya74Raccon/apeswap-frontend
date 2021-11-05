@@ -42,15 +42,14 @@ export const farmsSlice = createSlice({
 export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync =
-  (chainId: number) => async (dispatch) => {
-    try {
-      const farms = await fetchFarms(chainId)
-      dispatch(setFarmsPublicData(farms))
-    } catch (error) {
-      console.warn(error)
-    }
+export const fetchFarmsPublicDataAsync = (chainId: number) => async (dispatch) => {
+  try {
+    const farms = await fetchFarms(chainId)
+    dispatch(setFarmsPublicData(farms))
+  } catch (error) {
+    console.warn(error)
   }
+}
 export const fetchFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
   try {
     const userFarmAllowances = await fetchFarmUserAllowances(chainId, account)

@@ -7,10 +7,7 @@ import { vaultsConfig } from 'config/constants'
 import { getMulticallAddress, getVaultApeAddress } from 'utils/addressHelper'
 import { getContract } from 'utils/web3'
 
-export const fetchVaultUserAllowances = async (
-  account: string,
-  chainId: number,
-) => {
+export const fetchVaultUserAllowances = async (account: string, chainId: number) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const vaultApeAddress = getVaultApeAddress(chainId)
@@ -43,10 +40,7 @@ export const fetchVaultUserTokenBalances = async (account: string, chainId: numb
   return parsedTokenBalances
 }
 
-export const fetchVaultUserStakedBalances = async (
-  account: string,
-  chainId: number,
-) => {
+export const fetchVaultUserStakedBalances = async (account: string, chainId: number) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const vaultApeAddress = getVaultApeAddress(chainId)

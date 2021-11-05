@@ -27,13 +27,7 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
-import {
-  useMasterchef,
-  useMiniChefContract,
-  useNfaStakingChef,
-  useSousChef,
-  useVaultApe,
-} from './useContract'
+import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()

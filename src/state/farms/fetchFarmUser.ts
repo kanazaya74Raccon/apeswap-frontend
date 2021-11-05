@@ -7,11 +7,8 @@ import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
 import { farmsConfig } from 'config/constants'
 
-export const fetchFarmUserAllowances = async (
-  chainId: number,
-  account: string,
-) => {
-    const multicallContractAddress = getMulticallAddress(chainId)
+export const fetchFarmUserAllowances = async (chainId: number, account: string) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const masterChefAddress = getMasterChefAddress(chainId)
   const calls = farmsConfig.map((farm) => {
@@ -45,10 +42,7 @@ export const fetchFarmUserTokenBalances = async (chainId: number, account: strin
   return parsedTokenBalances
 }
 
-export const fetchFarmUserStakedBalances = async (
-  chainId: number,
-  account: string,
-) => {
+export const fetchFarmUserStakedBalances = async (chainId: number, account: string) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const masterChefAddress = getMasterChefAddress(chainId)
@@ -67,10 +61,7 @@ export const fetchFarmUserStakedBalances = async (
   return parsedStakedBalances
 }
 
-export const fetchFarmUserEarnings = async (
-  chainId: number,
-  account: string,
-) => {
+export const fetchFarmUserEarnings = async (chainId: number, account: string) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const masterChefAddress = getMasterChefAddress(chainId)
