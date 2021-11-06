@@ -601,7 +601,14 @@ const tokens = {
       56: '0x8F1408171EAe06AEC4549fD0a5808A42cee6DD84',
     },
     decimals: 18,
-  }
+  },
+  bcpay: {
+    "symbol": "BCPAY",
+    "address": {
+      56: "0x21f1ce0FCf1E9E39F8e79B7762801E8096d9f6CD",
+    },
+    "decimals": 8,
+},
 }
 
 export default tokens
