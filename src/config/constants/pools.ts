@@ -2561,6 +2561,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 134,
+    tokenName: 'BCPAY',
+    image: 'BCPAY.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.bcpay,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xb83D0cE7335CaF7c59e7B9727916C0e98b74cb49',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://bitcashpay.net/',
+    harvest: true,
+    tokenPerBlock: `0.48104745`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
