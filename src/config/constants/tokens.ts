@@ -609,6 +609,13 @@ const tokens = {
     },
     "decimals": 8,
 },
+ibfr: {
+  "symbol": "iBFR",
+  "address": {
+    56: "0xa296aD1C47FE6bDC133f39555C1D1177BD51fBc5",
+  },
+  "decimals": 18,
+},
 }
 
 export default tokens
