@@ -9,6 +9,7 @@ import { Pool } from 'state/types'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
+import GeneralDetail from '../GeneralDetail'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -70,7 +71,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const pendingReward = userData?.pendingReward
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setShowExpandableSection(!showExpandableSection)
   }
 
@@ -99,7 +101,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isStaked={accountHasStakedBalance}
           />
         </Flex>
-        <DetailsSection
+        <GeneralDetail
           totalStaked={getBalanceNumber(totalStaked)}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           blocksRemaining={blocksRemaining}
@@ -110,9 +112,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           addLiquidityUrl={ stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap` }
           stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
-          projectSite={projectLink}
+          projectLink={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
           tokenDecimals={tokenDecimals}
+          type='card'
         />
       </ExpandingWrapper>
     </PCard>
