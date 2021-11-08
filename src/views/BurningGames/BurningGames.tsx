@@ -69,9 +69,9 @@ const CardFull = styled(BaseLayout)<{ isMobile: boolean }>`
   justify-content: space-between;
   margin: 0 auto;
   .column-full {
-    height: ${(props) => props.isMobile ? '160px' : '225px'};
+    height: ${(props) => (props.isMobile ? '160px' : '225px')};
     .container-general {
-      height: ${(props) => props.isMobile ? '130px' : '193px'};
+      height: ${(props) => (props.isMobile ? '130px' : '193px')};
     }
     .container-resumen-info {
       width: 65%;
@@ -90,10 +90,10 @@ const Cards = styled(BaseLayout)<{ isMobile: boolean }>`
   }
 
   .column-full {
-    height: ${(props) => props.isMobile ? '160px' : '225px'};
+    height: ${(props) => (props.isMobile ? '160px' : '225px')};
     margin-bottom: 0px;
     .container-general {
-      height: ${(props) => props.isMobile ? '130px' : '193px'};
+      height: ${(props) => (props.isMobile ? '130px' : '193px')};
     }
     .container-resumen-info {
       width: 65%;
@@ -132,7 +132,7 @@ const BurningGames: React.FC = () => {
         </HeadingContainer>
       </Header>
 
-      <StyledPage width="1130px" >
+      <StyledPage width="1130px">
         {data.length !== 0 && (
           <CardFull isMobile={!isDesktop}>
             <CardBurningGame game={data[0]} />
