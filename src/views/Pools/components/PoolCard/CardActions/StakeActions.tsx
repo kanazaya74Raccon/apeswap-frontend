@@ -129,7 +129,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const renderStakingButtons = () => {
     return (
       rawStakedBalance !== 0 && (
-        <IconButtonWrapper >
+        <IconButtonWrapper>
           {sousId === 0 && (
             <HarvestWrapper className="noClick">
               <HarvestActions
@@ -156,7 +156,11 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return <ButtonSquare className="noClick" onClick={onPresentDeposit}>{TranslateString(999, `Stake ${stakingTokenName}`)}</ButtonSquare>
+    return (
+      <ButtonSquare className="noClick" onClick={onPresentDeposit}>
+        {TranslateString(999, `Stake ${stakingTokenName}`)}
+      </ButtonSquare>
+    )
   }
 
   return (

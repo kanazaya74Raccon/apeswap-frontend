@@ -9,10 +9,10 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
 
 interface Time {
-    days?: number
-    months?: number
-    hours?: number
-    minutes?: number
+  days?: number
+  months?: number
+  hours?: number
+  minutes?: number
 }
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -81,19 +81,19 @@ const InfoContainer = styled.div`
 `
 
 const Detail: React.FC<ExpandableSectionProps> = ({
-    blocksUntilStart,
-    timeUntilStart,
-    blocksRemaining,
-    timeUntilEnd,
-    totalStakedFormated,
-    addLiquidityUrl,
-    lpLabel,
-    totalUserStaked,
-    rawEarningsBalance,
-    rewardTokenPrice,
-    bscScanAddress,
-    projectLink,
-    type,
+  blocksUntilStart,
+  timeUntilStart,
+  blocksRemaining,
+  timeUntilEnd,
+  totalStakedFormated,
+  addLiquidityUrl,
+  lpLabel,
+  totalUserStaked,
+  rawEarningsBalance,
+  rewardTokenPrice,
+  bscScanAddress,
+  projectLink,
+  type,
 }) => {
   const TranslateString = useI18n()
   const totalStakedTitle = type === 'card' ? 'Total Staked Value' : 'Total Staked'
@@ -134,7 +134,9 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         <StyledText fontFamily="poppins" fontSize="12px">
           {TranslateString(316, 'Stake')}:
         </StyledText>
-        <StyledLinkExternal href={addLiquidityUrl} className="noClick">{lpLabel}</StyledLinkExternal>
+        <StyledLinkExternal href={addLiquidityUrl} className="noClick">
+          {lpLabel}
+        </StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
         <StyledText fontFamily="poppins" fontSize="12px">

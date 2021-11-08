@@ -109,13 +109,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}
           lpLabel={stakingToken.symbol}
-          addLiquidityUrl={ stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap` }
+          addLiquidityUrl={
+            stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
+          }
           stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
           projectLink={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
           tokenDecimals={tokenDecimals}
-          type='card'
+          type="card"
         />
       </ExpandingWrapper>
     </PCard>
