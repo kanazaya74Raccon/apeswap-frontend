@@ -181,7 +181,7 @@ const Iao = () => {
               </Text>
             </StyledTextContainer>
           </StyledCard>
-          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp />)}
+          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp gnana />)}
         </Cards>
       </StyledFlex>
     </>
