@@ -78,10 +78,10 @@ const ContainerTitle = styled.div`
   line-height: 1.5;
   .partner-name {
     color: #939393;
-    font-size: 16px;
+    font-size: 15px;
   }
   .sub-name {
-    font-size: 20px;
+    font-size: 18px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     .partner-name {

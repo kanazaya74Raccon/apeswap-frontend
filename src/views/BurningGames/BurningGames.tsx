@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useWeb3React } from '@web3-react/core'
+import React from 'react'
 import { Heading, BaseLayout, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
-import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
-import { fetchFarmUserDataAsync } from 'state/actions'
 import useI18n from 'hooks/useI18n'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
 import CardBurningGame from './CardBurningGame'
@@ -16,7 +12,6 @@ const HeadingContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 `
-
 const Header = styled.div<{ banner: string }>`
   padding-top: 36px;
   padding-left: 10px;
@@ -24,8 +19,8 @@ const Header = styled.div<{ banner: string }>`
   background-image: ${(props) =>
     props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)'};
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 400px;
+  background-size: auto;
+  height: 300px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -69,22 +64,23 @@ const StyledPage = styled(Page)`
   }
 `
 
-const CardFull = styled(BaseLayout)`
+const CardFull = styled(BaseLayout)<{ isMobile: boolean }>`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
   .column-full {
-    height: 225px;
+    height: ${(props) => props.isMobile ? '160px' : '225px'};
     .container-general {
-      height: 193px;
+      height: ${(props) => props.isMobile ? '130px' : '193px'};
     }
     .container-resumen-info {
-      width: 75%;
+      width: 65%;
       padding-top: 20px;
     }
+    border: ${(props) => props.isMobile && '2px solid #ffb300'};
   }
 `
-const Cards = styled(BaseLayout)`
+const Cards = styled(BaseLayout)<{ isMobile: boolean }>`
   & > div {
     ${({ theme }) => theme.mediaQueries.md} {
       grid-column: span 6;
@@ -94,13 +90,13 @@ const Cards = styled(BaseLayout)`
   }
 
   .column-full {
-    height: 225px;
+    height: ${(props) => props.isMobile ? '160px' : '225px'};
     margin-bottom: 0px;
     .container-general {
-      height: 193px;
+      height: ${(props) => props.isMobile ? '130px' : '193px'};
     }
     .container-resumen-info {
-      width: 75%;
+      width: 65%;
       padding-top: 20px;
     }
   }
@@ -109,13 +105,13 @@ const Cards = styled(BaseLayout)`
     margin-bottom: 32px;
   }
 `
+const ContainerPrincipal = styled.div<{ isDark: boolean }>`
+  background-color: ${(props) => props.isDark && 'rgb(238,238,238)'};
+`
 const BurningGames: React.FC = () => {
   const TranslateString = useI18n()
-  const { account } = useWeb3React()
   const { data } = useFetchBurningGames()
 
-  const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
   const { isXl: isDesktop } = useMatchBreakpoints()
   const { isDark } = useTheme()
 
@@ -126,14 +122,8 @@ const BurningGames: React.FC = () => {
   if (!isDark && !isDesktop) banner = 'burning-mobile.png'
   if (isDark && !isDesktop) banner = 'burning-night-mobile.png'
 
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, fastRefresh])
-
   return (
-    <>
+    <ContainerPrincipal isDark={!isDark}>
       <Header banner={banner}>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} color="white">
@@ -142,15 +132,15 @@ const BurningGames: React.FC = () => {
         </HeadingContainer>
       </Header>
 
-      <StyledPage width="1130px">
+      <StyledPage width="1130px" >
         {data.length !== 0 && (
-          <CardFull>
+          <CardFull isMobile={!isDesktop}>
             <CardBurningGame game={data[0]} />
           </CardFull>
         )}
-        <Cards>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
+        <Cards isMobile={!isDesktop}>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>
       </StyledPage>
-    </>
+    </ContainerPrincipal>
   )
 }
 
