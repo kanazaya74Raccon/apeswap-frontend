@@ -2580,6 +2580,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 8,
   },
+  {
+    sousId: 135,
+    tokenName: 'iBFR',
+    image: 'iBFR.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.ibfr,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x004D7f0661fF6e1420fE311Bca57C1D89C9751BA',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.buffer.finance/',
+    harvest: true,
+    tokenPerBlock: `0.342086298263888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
