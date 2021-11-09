@@ -3,10 +3,12 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Heading, Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
+import { CHAIN_ID } from 'config/constants/chains'
+import { Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
+import { useNetworkChainId } from 'state/hooks'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
 import UnlockButton from './UnlockButton'
 import BananaHarvestBalance from './BananaHarvestBalance'
@@ -95,6 +97,10 @@ const CardHeaderImage = styled.div`
   border-top-right-radius: 32px;
 `
 
+const CardHeaderImagePoly = styled(CardHeaderImage)`
+  background: rgba(175, 142, 228, 1);
+`
+
 const HeaderText = styled(Text)`
   font-family: Titan One;
   font-size: 30px;
@@ -111,15 +117,18 @@ const FarmedStakingCard = () => {
 
   const rewardRef = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-
-  const { account } = useWeb3React()
+  const networkChainId = useNetworkChainId()
+  const { account, chainId } = useWeb3React()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
   const onReward = useReward(
     rewardRef,
-    useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid)).onReward,
+    useAllHarvest(
+      balancesWithValue.map((farmWithBalance) => farmWithBalance.pid),
+      chainId,
+    ).onReward,
   )
 
   const harvestAllFarms = useCallback(async () => {
@@ -135,10 +144,17 @@ const FarmedStakingCard = () => {
     }
   }, [onReward])
 
+  const renderHarvestHeader = () => {
+    if (networkChainId === CHAIN_ID.MATIC || networkChainId === CHAIN_ID.MATIC_TESTNET) {
+      return <CardHeaderImagePoly />
+    }
+    return <CardHeaderImage />
+  }
+
   return (
     <StyledFarmStakingCard>
       <CardHeader>
-        <CardHeaderImage />
+        {renderHarvestHeader()}
         <HeaderText>
           {TranslateString(542, 'BANANA')}
           <br />

@@ -2,12 +2,11 @@ import React, { useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { partition } from 'lodash'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { useNfaStakingPools } from 'state/hooks'
+import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
@@ -281,13 +280,13 @@ const AdminText = styled(Text)`
 `
 
 const NfaStaking: React.FC = () => {
+  usePollNfaStakingData()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const { account } = useWeb3React()
   const { pathname } = useLocation()
   const isActive = !pathname.includes('history')
   const size: Size = useWindowSize()
-  const allNfaStakingPools = useNfaStakingPools(account)
+  const allNfaStakingPools = useNfaStakingPools()
   const TranslateString = useI18n()
   const loadMoreRef = useRef<HTMLDivElement>(null)
 

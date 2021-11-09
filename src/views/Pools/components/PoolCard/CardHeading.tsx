@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { useNetworkChainId } from 'state/hooks'
+import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -12,8 +13,6 @@ import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
-
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -34,36 +33,18 @@ export interface ExpandableSectionProps {
   rewardTokenPrice?: number
 }
 
-const PoolFinishedSash = styled.div`
-  @media (max-width: 1000px) {
-    background-image: url('/images/gnanaSash.svg');
-    background-position: top right;
-    background-repeat: no-repeat;
-    height: 35px;
-    position: absolute;
-    right: -3px;
-    top: -1.5px;
-    width: 45px;
-  }
-`
-
-const StyledBackground = styled(Flex)`
-  margin-left: 10px;
-
-  @media (min-width: 500px) {
-    justify-content: space-between;
-    background: rgb(255, 179, 0, 0.4);
-    border-radius: 20px;
-    width: 200px;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 0px;
-    padding-left: 7px;
-    padding-right: 7px;
-  }
-
+const StyledBackground = styled.div`
+  width: 120px;
+  height: 80px;
+  background: rgb(255, 179, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    height: 121px;
+    height: 120px;
+    width: 200px;
   }
 `
 
@@ -122,7 +103,7 @@ const StyledFlexContainer = styled(Flex)`
   flex: 1;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -131,7 +112,6 @@ const StyledFlexContainer = styled(Flex)`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
   }
 `
 
@@ -163,8 +143,8 @@ const LabelContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
-  width: 120px;
-  margin-right: 10px;
+  width: 110px;
+  margin-right: 5px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -211,41 +191,39 @@ const StyledAPRText = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  width: 180px;
+  width: 100px;
   display: flex;
   justify-content: flex-end;
-`
-
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 45px;
-    height: 45px;
-  }
-
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 65px;
-    height: 65px;
+    width: 150px;
   }
 `
 
-const StyledArrow = styled.img`
-  display: none;
-  align-self: center;
-
-  @media (min-width: 500px) {
-    display: flex;
-    width: 12px;
-    height: 12px;
-  }
+const IconImage = styled(Image)`
+  align: center;
+  width: 40px;
+  height: 40px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 24px;
-    height: 24px;
+    width: 70px;
+    height: 70px;
   }
+`
+
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
@@ -253,7 +231,6 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   apr,
   stakeToken,
   earnToken,
-  tokenSymbol,
   poolAPR,
   removed,
   sousId,
@@ -263,6 +240,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const { userData, tokenDecimals, stakingToken } = pool
+  const chainId = useNetworkChainId()
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -277,12 +255,12 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return (
         <ApprovalAction
-          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          stakingTokenContractAddress={stakingToken.address[chainId]}
           sousId={sousId}
           isLoading={isLoading}
         />
@@ -312,17 +290,29 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   }
 
   return (
-    <Flex>
+    <Container>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakeToken}.svg`} alt={tokenSymbol} />
-        <StyledArrow src="/images/arrow.svg" alt="arrow" />
-        <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />
+        <IconImage
+          src={`/images/tokens/${stakeToken}.svg`}
+          alt={stakeToken}
+          width={70}
+          height={70}
+          marginLeft="7.5px"
+        />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
+        <IconImage
+          src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
+          alt={earnToken}
+          width={70}
+          height={70}
+          marginRight="7.5px"
+        />
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
           <StyledHeading>{earnToken}</StyledHeading>
           {!removed && !pool?.forAdmins && (
-            <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
               {apr ? (
                 <FlexSwitch className="noClick">
@@ -367,9 +357,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <ExpandableSectionButton expanded={showExpandableSection} />
           </ButtonContainer>
         </LabelContainer2>
-        {stakeToken === 'GNANA' && <PoolFinishedSash />}
       </StyledFlexContainer>
-    </Flex>
+    </Container>
   )
 }
 

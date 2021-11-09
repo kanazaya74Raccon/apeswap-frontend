@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { useFetchPoolsHome } from 'state/strapi/fetchStrapi'
+import { Pool } from 'state/types'
 import pools from 'config/constants/pools'
 import { usePoolFromPid } from 'state/hooks'
 import PoolCardForHome from './PoolCardForHome'
@@ -77,9 +78,9 @@ const CoolPools = () => {
           {loading ? (
             <></>
           ) : (
-            poolsToDisplay.map((pool) => (
-              <a href="https://apeswap.finance/pools" rel="noopener noreferrer">
-                <PoolCardForHome pool={pool} />
+            poolsToDisplay.map((pool: Pool) => (
+              <a href="https://apeswap.finance/pools" rel="noopener noreferrer" key={pool?.sousId}>
+                <PoolCardForHome pool={pool} key={pool?.sousId} />
               </a>
             ))
           )}

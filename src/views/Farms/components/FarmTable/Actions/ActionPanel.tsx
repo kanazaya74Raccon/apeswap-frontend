@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { LinkExternal, Text, Flex, Link } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useFarmUser, useStats, usePriceBananaBusd } from 'state/hooks'
+import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import StakedAction from './StakedAction'
@@ -113,12 +113,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   addLiquidityUrl,
   liquidity,
 }) => {
-  const chainId = process.env.REACT_APP_CHAIN_ID
   const farm = details
 
   const TranslateString = useI18n()
+  const chainId = useNetworkChainId()
 
-  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = farm.lpAddresses[chainId]
   const bsc = `https://bscscan.com/address/${lpAddress}`
 
   const { earnings, stakedBalance } = useFarmUser(farm.pid)
@@ -153,7 +153,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
   const addTokenWallet = async (address) => {
     if (!address) return
-    const tokenInfo = await getTokenInfo(address)
+    const tokenInfo = await getTokenInfo(address, chainId)
     registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
   }
   return (

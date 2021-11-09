@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text, Skeleton } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
 
 interface HarvestProps {
@@ -32,31 +32,36 @@ const PCard = styled.div`
 `
 
 const StyledBackground = styled(Flex)`
-  justify-content: space-between;
+  width: 135px;
+  height: 90px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
-  width: 137px;
-  height: 90px;
-  align-items: flex-end;
-  margin-left: 0px;
-  padding-left: 7px;
-  padding-right: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
 `
 
-const StyledImage = styled.img`
-  display: none;
-  align-self: center;
-  display: flex;
-  width: 45px;
-  height: 45px;
+const IconImage = styled(Image)`
+  align: center;
+  width: 50px;
+  height: 50px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 50px;
+    height: 50px;
+  }
 `
 
-const StyledArrow = styled.img`
-  display: none;
-  align-self: center;
-  display: flex;
-  width: 12px;
-  height: 12px;
+const IconArrow = styled(Image)`
+  align: center;
+  width: 5px;
+  height: 5px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 10px;
+    height: 10px;
+  }
 `
 
 const DescriptionContainer = styled.div`
@@ -71,6 +76,7 @@ const ApyWrapper = styled.div`
   width: 160px;
   display: flex;
   margin-top: 7.5px;
+  font-weight: 200;
 `
 
 const ApyText = styled(Text)`
@@ -111,9 +117,21 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
   return (
     <PCard>
       <StyledBackground>
-        <StyledImage src={`/images/tokens/${stakingToken.symbol}.svg`} alt={stakingToken.symbol} />
-        <StyledArrow src="/images/arrow.svg" alt="arrow" />
-        <StyledImage src={`/images/tokens/${image || `${tokenName}.svg`}`} alt={tokenName} />
+        <IconImage
+          src={`/images/tokens/${stakingToken?.symbol}.svg`}
+          alt={stakingToken?.symbol}
+          width={60}
+          height={60}
+          marginLeft="5px"
+        />
+        <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
+        <IconImage
+          src={`/images/tokens/${image || `${tokenName}.svg`}`}
+          alt={tokenName}
+          width={60}
+          height={60}
+          marginRight="5px"
+        />
       </StyledBackground>
       <DescriptionContainer>
         <StyledHeading>{tokenName}</StyledHeading>

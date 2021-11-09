@@ -1,5 +1,5 @@
 import { BANANA_PER_BLOCK } from 'config'
-import { PoolConfig, QuoteToken, PoolCategory } from './types'
+import { PoolConfig, PoolCategory } from './types'
 import tokens from './tokens'
 
 const pools: PoolConfig[] = [
@@ -604,7 +604,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 46,
     tokenName: 'GMR',
-    image: 'gmr.png',
+    image: '',
     stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
@@ -1880,7 +1880,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 97,
     tokenName: 'YDR',
-    image: 'YDR.svg',
+    image: 'YDR.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.ydr,
     contractAddress: {

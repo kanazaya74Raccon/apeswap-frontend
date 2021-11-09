@@ -25,7 +25,7 @@ const SalesItem = styled.div`
   font-family: ${(props) => props.theme.fontFamily.poppins};
 `
 
-const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber, transactionHash }) => {
+const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber }) => {
   const bnbPrice = usePriceBnbBusd()
 
   const bigNumber = (num) => {

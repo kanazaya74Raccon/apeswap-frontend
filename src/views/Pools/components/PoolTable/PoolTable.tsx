@@ -7,6 +7,7 @@ import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
+import { useNetworkChainId } from 'state/hooks'
 import PoolHeading from './PoolHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
@@ -18,8 +19,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 import ContainerDetail from '../ContainerDetail'
-
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 interface HarvestProps {
   pool: Pool
@@ -52,7 +51,7 @@ const LiquidtyContainer = styled.div`
   left: 480px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    left: 587px;
+    left: 607px;
   }
 `
 
@@ -121,6 +120,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     if (e.target?.classList.contains('noClick')) return
     setActionPanelToggled(!actionPanelToggled)
   }
+  const chainId = useNetworkChainId()
 
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
@@ -140,12 +140,12 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton />
+      return <UnlockButton padding="8px" />
     }
     if (needsApproval) {
       return (
         <ApprovalAction
-          stakingTokenContractAddress={stakingToken.address[CHAIN_ID]}
+          stakingTokenContractAddress={stakingToken.address[chainId]}
           sousId={sousId}
           isLoading={isLoading}
         />
@@ -178,7 +178,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <PoolHeading stakeToken={stakingToken.symbol} earnToken={tokenName} earnTokenImage={image} />
+          <PoolHeading stakeToken={stakingToken?.symbol} earnToken={tokenName} earnTokenImage={image} />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}
@@ -223,12 +223,12 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             stakedTokenPrice={stakingToken?.price}
             rewardTokenPrice={rewardToken?.price}
             pendingReward={userData?.pendingReward}
-            lpLabel={stakingToken.symbol}
+            lpLabel={stakingToken?.symbol}
             addLiquidityUrl={
               stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
             }
             projectLink={projectLink}
-            bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
+            bscScanAddress={`https://bscscan.com/address/${contractAddress[chainId]}`}
             tokenDecimals={tokenDecimals}
             type="table"
             rewardToken={rewardToken}
