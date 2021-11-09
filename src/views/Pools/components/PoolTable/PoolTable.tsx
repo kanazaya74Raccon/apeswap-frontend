@@ -17,7 +17,7 @@ import Staked from './Liquidity'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
-import GeneralDetail from '../GeneralDetail'
+import ContainerDetail from '../ContainerDetail'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -118,7 +118,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const block = useBlock()
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const toggleActionPanel = (e) => {
-    if (e?.target?.className?.includes('noClick')) return
+    if (e.target?.classList.contains('noClick')) return
     setActionPanelToggled(!actionPanelToggled)
   }
 
@@ -214,7 +214,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
               isStaked={accountHasStakedBalance}
             />
           </StakeContainer>
-          <GeneralDetail
+          <ContainerDetail
             totalStaked={getBalanceNumber(totalStaked)}
             personalValueStaked={getBalanceNumber(stakedBalance)}
             blocksRemaining={blocksRemaining}
@@ -231,6 +231,8 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
             tokenDecimals={tokenDecimals}
             type="table"
+            rewardToken={rewardToken}
+            imageToken={image}
           />
         </>
       )}

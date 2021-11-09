@@ -132,7 +132,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const FarmStyle = styles[farm.style]
 
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setShowExpandableSection(!showExpandableSection)
   }
 

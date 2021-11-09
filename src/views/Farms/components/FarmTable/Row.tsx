@@ -130,7 +130,8 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
 
-  const toggleActionPanel = () => {
+  const toggleActionPanel = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setActionPanelToggled(!actionPanelToggled)
   }
 

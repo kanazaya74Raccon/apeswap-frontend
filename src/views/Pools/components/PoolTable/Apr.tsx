@@ -49,7 +49,7 @@ const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewar
   return poolApr !== '0' ? (
     <Container>
       {poolApr ? (
-        <Flex justifyContent="center">
+        <Flex justifyContent="center" className="noClick">
           <AprWrapper>{poolApr}%</AprWrapper>
           {!hideButton && (
             <ApyButton

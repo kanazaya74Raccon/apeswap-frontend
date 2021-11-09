@@ -6,10 +6,9 @@ import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
-import GeneralDetail from '../GeneralDetail'
+import ContainerDetail from '../ContainerDetail'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -56,7 +55,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     contractAddress,
     tokenDecimals,
   } = pool
-
   const { account } = useWeb3React()
   const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -101,7 +99,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isStaked={accountHasStakedBalance}
           />
         </Flex>
-        <GeneralDetail
+        <ContainerDetail
           totalStaked={getBalanceNumber(totalStaked)}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           blocksRemaining={blocksRemaining}
@@ -118,6 +116,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
           tokenDecimals={tokenDecimals}
           type="card"
+          rewardToken={rewardToken}
+          imageToken={image}
         />
       </ExpandingWrapper>
     </PCard>

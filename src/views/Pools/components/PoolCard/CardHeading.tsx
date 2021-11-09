@@ -325,7 +325,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1 fontFamily="poppins">APR:</StyledText1>
               {apr ? (
-                <FlexSwitch>
+                <FlexSwitch className="noClick">
                   <ApyButton
                     lpLabel={stakeToken}
                     rewardTokenName={earnToken}

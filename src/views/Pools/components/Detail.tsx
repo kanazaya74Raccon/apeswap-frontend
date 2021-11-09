@@ -7,7 +7,13 @@ import { FarmPool } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
+import { registerToken } from 'utils/wallet'
 
+interface RewardToken {
+  address?: any
+  decimals?: number
+  symbol?: string
+}
 interface Time {
   days?: number
   months?: number
@@ -28,6 +34,8 @@ export interface ExpandableSectionProps {
   rewardTokenPrice?: number
   projectLink?: string
   type?: string
+  rewardToken?: RewardToken
+  imageToken?: string
 }
 
 const Wrapper = styled.div`
@@ -94,9 +102,14 @@ const Detail: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   projectLink,
   type,
+  rewardToken,
+  imageToken,
 }) => {
   const TranslateString = useI18n()
   const totalStakedTitle = type === 'card' ? 'Total Staked Value' : 'Total Staked'
+  const chainId = process.env.REACT_APP_CHAIN_ID
+  const URLactual = window.location
+
   return (
     <>
       {blocksUntilStart > 0 && (
@@ -165,8 +178,19 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink bold={false} className="noClick">
-          {TranslateString(356, 'Add to Metamask')}
+        <StyledLink
+          bold={false}
+          className="noClick"
+          onClick={() =>
+            registerToken(
+              rewardToken?.address[chainId],
+              rewardToken?.symbol,
+              rewardToken?.decimals,
+              `${URLactual.origin}/images/tokens/${imageToken || `${rewardToken?.symbol}.svg`}`,
+            )
+          }
+        >
+          Add to Metamask
         </StyledLink>
       </Flex>
     </>

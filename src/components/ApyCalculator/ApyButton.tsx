@@ -40,8 +40,8 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, a
   )
 
   return (
-    <StyledIconButton onClick={onPresentApyModal} variant="text" size="sm">
-      <StyledCalculateIcon color="yellow" />
+    <StyledIconButton className="noClick" onClick={onPresentApyModal} variant="text" size="sm">
+      <StyledCalculateIcon className="noClick" color="yellow" />
     </StyledIconButton>
   )
 }

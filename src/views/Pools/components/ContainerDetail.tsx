@@ -1,14 +1,18 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
-import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
 import Detail from './Detail'
 
+interface RewardToken {
+  address?: any
+  decimals?: number
+  symbol?: string
+}
 export interface ExpandableSectionProps {
   bscScanAddress?: string
   removed?: boolean
@@ -29,6 +33,8 @@ export interface ExpandableSectionProps {
   projectLink?: string
   tokenDecimals?: number
   type?: string
+  rewardToken?: RewardToken
+  imageToken?: string
 }
 
 const WrapperCard = styled.div`
@@ -54,7 +60,7 @@ const InfoContainer = styled.div`
   width: 285px;
 `
 
-const GeneralDetail: React.FC<ExpandableSectionProps> = ({
+const ContainerDetail: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   lpLabel,
   addLiquidityUrl,
@@ -68,6 +74,8 @@ const GeneralDetail: React.FC<ExpandableSectionProps> = ({
   projectLink,
   tokenDecimals,
   type,
+  rewardToken,
+  imageToken,
 }) => {
   const totalStakedFormated = totalStaked
     ? `${Number(totalStaked).toLocaleString(undefined, { maximumFractionDigits: 3 })}`
@@ -98,6 +106,8 @@ const GeneralDetail: React.FC<ExpandableSectionProps> = ({
             bscScanAddress={bscScanAddress}
             projectLink={projectLink}
             type={type}
+            rewardToken={rewardToken}
+            imageToken={imageToken}
           />
         </WrapperCard>
       )}
@@ -119,6 +129,8 @@ const GeneralDetail: React.FC<ExpandableSectionProps> = ({
                 bscScanAddress={bscScanAddress}
                 projectLink={projectLink}
                 type={type}
+                rewardToken={rewardToken}
+                imageToken={imageToken}
               />
             </InfoContainer>
           </Flex>
@@ -128,4 +140,4 @@ const GeneralDetail: React.FC<ExpandableSectionProps> = ({
   )
 }
 
-export default GeneralDetail
+export default ContainerDetail
