@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback, useState, useMemo } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
@@ -9,17 +8,14 @@ import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
 import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
-import useRefresh from 'hooks/useRefresh'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { fetchFarmUserDataAsync } from 'state/actions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
 import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
-
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
@@ -117,7 +113,7 @@ const Header = styled.div`
   background-image: ${({ theme }) => (theme.isDark ? 'url(/images/farm-night.svg)' : 'url(/images/farm-day.svg)')};
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 250px;
   background-position: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -329,11 +325,11 @@ const ButtonCheckWrapper = styled.div`
 `
 
 const StyledHeading = styled(Heading)`
-  font-size: 32px;
+  font-size: 30px;
   max-width: 176px !important;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
+    font-size: 30px;
     max-width: 240px !important;
   }
 
@@ -403,10 +399,10 @@ const Farms: React.FC = () => {
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
-  const farmsLP = useFarms()
   const bananaPrice = usePriceBananaBusd()
   const bnbPrice = usePriceBnbBusd()
   const { account } = useWeb3React()
+  const farmsLP = useFarms(account)
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
@@ -414,8 +410,6 @@ const Farms: React.FC = () => {
 
   const ethPriceUsd = usePriceEthBusd()
 
-  const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
   useEffect(() => {
     if (size.width !== undefined) {
       if (size.width < 968) {
@@ -425,12 +419,6 @@ const Farms: React.FC = () => {
       }
     }
   }, [size])
-
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, fastRefresh])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
@@ -573,9 +561,11 @@ const Farms: React.FC = () => {
         originalValue: farm.apr && farm.apr.toNumber(),
       },
       farm: {
-        image: farm.lpSymbol.split(' ')[0].toLocaleLowerCase(),
+        token0: farm.quoteTokenSymbol,
+        token1: farm.tokenSymbol,
         label: lpLabel,
         pid: farm.pid,
+        image: farm.image,
       },
       earned: {
         earnings: farm.userData ? getBalanceNumber(new BigNumber(farm.userData.earnings)) : null,

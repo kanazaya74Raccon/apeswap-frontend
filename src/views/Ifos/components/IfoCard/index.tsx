@@ -9,7 +9,7 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { useSafeIfoContract } from 'hooks/useContract'
+import { useMulticallContract, useSafeIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
@@ -22,10 +22,12 @@ import IfoCardBNBContribute from './IfoCardBNBContribute'
 export interface IfoCardProps {
   ifo: Ifo
   notLp?: boolean
+  gnana?: boolean
 }
 
-const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
+const StyledIfoCard = styled(Card)<{ ifoId: string; gnana?: boolean }>`
+  background-image: ${(props) =>
+    props.gnana ? `url('/images/ifos/${props.ifoId}-gnana-bg.svg')` : `url('/images/ifos/${props.ifoId}-bg.svg')`};
   background-repeat: no-repeat;
   background-position: -5px -5px;
   background-size: contain;
@@ -66,7 +68,7 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const {
     id,
     address,
@@ -115,6 +117,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
       2,
     )
   const Ribbon = getRibbonComponent(state.status, TranslateString)
+  const multicallContract = useMulticallContract()
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -169,7 +172,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
         harvestTwoBlock,
         harvestThreeBlock,
         harvestFourBlock,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
 
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -209,14 +212,14 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, address])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, multicallContract])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
   return (
-    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
+    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive} gnana={gnana}>
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
         <IfoCardProgress progress={state.progress} />

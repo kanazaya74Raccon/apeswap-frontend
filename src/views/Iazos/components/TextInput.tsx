@@ -1,24 +1,56 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Input = styled.input`
+interface TextInputProps {
+  placeholderText?: string
+  icon?: string
+  backgroundColor?: string
+}
+
+const InputContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
   height: 44px;
   width: 457px;
-  left: 661px;
-  top: 343px;
+`
+
+const Input = styled.input<{ backgroundColor: string; imgSrc: string }>`
+  height: 100%;
+  width: 100%;
   border-radius: 10px;
   padding-left: 15px;
   font-family: Poppins;
   font-size: 18px;
   line-height: 23px;
   text-align: left;
-  background: url(images/magnifiglass.svg) no-repeat 420px 10px, #333333;
+  background: ${(props) => props.backgroundColor || '#333333'};
   color: #ffffff;
   border: none;
+  z-index: 0;
 `
 
-const TextInput: React.FC = () => {
-  return <Input placeholder="Search token name or address...." src="image/magniflass.svg" />
+const InputIcon = styled.div<{ imgSrc: string }>`
+  position: absolute;
+  display: inline-block;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  background-image: ${(props) => `url(${props.imgSrc})`};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  cursor: pointer;
+`
+
+const TextInput: React.FC<TextInputProps> = ({ backgroundColor, placeholderText, icon }) => {
+  return (
+    <InputContainer>
+      <Input backgroundColor={backgroundColor} placeholder={placeholderText} imgSrc={`images/${icon}`} />
+      <InputIcon imgSrc={`images/${icon}`} />
+    </InputContainer>
+  )
 }
 
 export default TextInput

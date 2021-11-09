@@ -5,10 +5,13 @@ import poolsReducer from './pools'
 import profileReducer from './profile'
 import statsReducer from './stats'
 import statsOverallReducer from './statsOverall'
-import teamsReducer from './teams'
 import auctionReducer from './auction'
+import vaultReducer from './vaults'
 import tokenPricesReducer from './tokenPrices'
 import iazosReducer from './iazos'
+import networkReducer from './network'
+import nfaStakingPoolsReducer from './nfaStakingPools'
+import dualFarmsReducer from './dualFarms'
 
 export default configureStore({
   devTools: process.env.NODE_ENV !== 'production',
@@ -19,9 +22,12 @@ export default configureStore({
     profile: profileReducer,
     stats: statsReducer,
     statsOverall: statsOverallReducer,
-    teams: teamsReducer,
     auctions: auctionReducer,
+    vaults: vaultReducer,
     tokenPrices: tokenPricesReducer,
     iazos: iazosReducer,
+    network: networkReducer,
+    nfaStakingPools: nfaStakingPoolsReducer,
+    dualFarms: dualFarmsReducer,
   },
 })

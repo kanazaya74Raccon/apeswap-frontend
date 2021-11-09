@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
+import { useNetworkChainId } from 'state/hooks'
+import { NETWORK_LABEL } from 'config/constants/chains'
 
 const Header = styled.div<{ image: string }>`
   position: relative;
   width: 96%;
+  height: 300px;
   padding-top: 36px;
   padding-bottom: 15px;
   margin-bottom: 30px;
@@ -53,22 +56,24 @@ const LinkArea = styled.a`
   z-index: 1;
 `
 
-const SLIDETIME = 15000
+const SLIDETIME = 6000
 
 const Banner = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const chainId = useNetworkChainId()
   const { headersData, loading } = useFetchHeadersHome()
+  const filteredBanners = headersData.filter((banner) => !banner?.chain || banner?.chain === NETWORK_LABEL[chainId])
   const { isXl, isLg, isMd } = useMatchBreakpoints()
   const timeoutRef = useRef(null)
 
   const getImageSize = (image: any) => {
     if (isXl) {
-      return image.desktop[0]?.url
+      return image?.desktop[0]?.url
     }
     if (isMd || isLg) {
-      return image.tablet[0]?.url
+      return image?.tablet[0]?.url
     }
-    return image.mobile[0]?.url
+    return image?.mobile[0]?.url
   }
 
   const resetTimeout = () => {
@@ -79,24 +84,24 @@ const Banner = () => {
   useEffect(() => {
     resetTimeout()
     timeoutRef.current = setTimeout(
-      () => setActiveIndex((prevIndex) => (prevIndex === headersData.length - 1 ? 0 : prevIndex + 1)),
+      () => setActiveIndex((prevIndex) => (prevIndex === filteredBanners.length - 1 ? 0 : prevIndex + 1)),
       SLIDETIME,
     )
     return () => {
       resetTimeout()
     }
-  }, [activeIndex, headersData])
+  }, [activeIndex, filteredBanners])
 
   return (
     <>
       {loading ? (
         <Header image="" />
       ) : (
-        <Header image={getImageSize(headersData[activeIndex])}>
-          <LinkArea href={headersData[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />
+        <Header image={getImageSize(filteredBanners[activeIndex])}>
+          <LinkArea href={filteredBanners[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />
           <CurrentHeaderHolder>
-            {[...Array(headersData.length)].map((e, i) => (
-              <HeaderBubble live={i === activeIndex} onClick={() => setActiveIndex(i)} />
+            {[...Array(filteredBanners?.length)].map((e, i) => (
+              <HeaderBubble live={i === activeIndex} onClick={() => setActiveIndex(i)} key={filteredBanners[i]?.link} />
             ))}
           </CurrentHeaderHolder>
         </Header>

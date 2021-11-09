@@ -68,17 +68,17 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title="ROI" onDismiss={onDismiss}>
       <Grid>
         <GridItem>
-          <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
             {TranslateString(999, 'Timeframe')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
             {TranslateString(999, 'ROI')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
             {rewardTokenName}
             {TranslateString(999, ' per $1000')}
           </Text>

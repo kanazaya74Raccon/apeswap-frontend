@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
 import { useModal, Text, Button } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
 import getTimePeriods from 'utils/getTimePeriods'
+import { useMulticallContract } from 'hooks/useContract'
+import multicall from 'utils/multicall'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -130,6 +131,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: new BigNumber(0), refunded: false })
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
+  const multicallContract = useMulticallContract()
   const [userTokenStatus, setUserTokenStatus] = useState({
     stakeTokenHarvest: new BigNumber(0),
     offeringTokenHarvest: new BigNumber(0),
@@ -199,9 +201,9 @@ const IfoCardBNBContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
-      setAllocation(allocation / 10000)
+      setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
       setUserTokenStatus(userTokens)
       setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
@@ -210,7 +212,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, fastRefresh])
+  }, [account, contract, address, pendingTx, fastRefresh, multicallContract])
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
@@ -235,7 +237,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
 
   return (
     <>
-      {!isFinished && (
+      {!isFinished && account && (
         <>
           <LabelButton
             disabled={pendingTx || userInfo.refunded}
@@ -255,67 +257,73 @@ const IfoCardBNBContribute: React.FC<Props> = ({
             You&apos;ll be refunded any excess tokens on your first claim
           </Text>
           <VestingButtonWrapper>
-            <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
-              {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
-            </VestingClaimButton>
-            {tokensVested > 0 && (
+            {amountContributed > 0 && (
               <>
-                <VestingClaimButton
-                  disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
-                  onClick={() => claim(1)}
-                >
-                  {userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestTwoBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
-                    </>
-                  )}
+                <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
+                  {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
                 </VestingClaimButton>
-                <VestingClaimButton
-                  disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
-                  onClick={() => claim(2)}
-                >
-                  {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestThreeBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
-                    </>
-                  )}
-                </VestingClaimButton>
-                <VestingClaimButton
-                  disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
-                  onClick={() => claim(3)}
-                >
-                  {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestFourBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
-                    </>
-                  )}
-                </VestingClaimButton>
+                {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
+                  <>
+                    <VestingClaimButton
+                      disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
+                      onClick={() => claim(1)}
+                    >
+                      {userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestTwoBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                    <VestingClaimButton
+                      disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
+                      onClick={() => claim(2)}
+                    >
+                      {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestThreeBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                    <VestingClaimButton
+                      disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
+                      onClick={() => claim(3)}
+                    >
+                      {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestFourBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                  </>
+                )}
               </>
             )}
           </VestingButtonWrapper>
-          <VestingStatsWrapper>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens available to harvest:</TokenAmountRemaining>
-              <TokenAmountRemaining>{tokensHarvestedAvailable.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens vested:</TokenAmountRemaining>
-              <TokenAmountRemaining>{tokensVested.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens harvested:</TokenAmountRemaining>
-              <TokenAmountRemaining>{totalTokensHarvested.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-          </VestingStatsWrapper>
+          {amountContributed > 0 && (
+            <VestingStatsWrapper>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens available to harvest:</TokenAmountRemaining>
+                <TokenAmountRemaining>{tokensHarvestedAvailable.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens vested:</TokenAmountRemaining>
+                <TokenAmountRemaining>{tokensVested.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens harvested:</TokenAmountRemaining>
+                <TokenAmountRemaining>{totalTokensHarvested.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+            </VestingStatsWrapper>
+          )}
         </>
       )}
     </>

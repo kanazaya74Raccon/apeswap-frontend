@@ -106,7 +106,7 @@ const Nfa = () => {
               )}
             </Text>
             <a
-              href={`https://nftkey.app/collections/nfas/ape-details/?tokenId=${id}`}
+              href={`https://nftkey.app/collections/nfas/token-details/?tokenId=${id}`}
               target="_blank"
               rel="noopener noreferrer"
             >

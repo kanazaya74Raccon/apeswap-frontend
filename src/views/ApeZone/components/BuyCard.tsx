@@ -18,8 +18,8 @@ import { useToast } from 'state/hooks'
 import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
+import { useBananaAddress } from 'hooks/useAddress'
 import styled from 'styled-components'
-import { getBananaAddress } from 'utils/addressHelpers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
 
@@ -75,7 +75,7 @@ const BuyCard = ({ account }) => {
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleBuy } = useBuyGoldenBanana()
-  const bananaBalance = useTokenBalance(getBananaAddress())
+  const bananaBalance = useTokenBalance(useBananaAddress())
   const { toastSuccess } = useToast()
   const bananaContract = useBanana()
 
@@ -101,7 +101,7 @@ const BuyCard = ({ account }) => {
       setProcessing(false)
     } catch (e) {
       setProcessing(false)
-      console.error(e)
+      console.warn(e)
     }
   }, [handleBuy, val])
 
@@ -122,7 +122,7 @@ const BuyCard = ({ account }) => {
         const currentAllowance = new BigNumber(response)
         return currentAllowance.gt(0)
       } catch (error) {
-        console.error(error)
+        console.warn(error)
         return false
       }
     },

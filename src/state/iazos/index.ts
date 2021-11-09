@@ -31,10 +31,10 @@ export const iazosSlice = createSlice({
 // Actions
 export const { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed } = iazosSlice.actions
 
-export const fetchIazos = () => async (dispatch) => {
+export const fetchIazos = (chainId: number) => async (dispatch) => {
   try {
     dispatch(iazosFetchStart())
-    const iazos = await fetchAllIazos()
+    const iazos = await fetchAllIazos(chainId)
     dispatch(iazosFetchSucceeded(iazos))
   } catch (error) {
     dispatch(iazosFetchFailed())

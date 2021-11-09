@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useIazos } from 'state/hooks'
-import { Text, useMatchBreakpoints, Skeleton, Spinner } from '@apeswapfinance/uikit'
+import { Text, Skeleton, Spinner } from '@apeswapfinance/uikit'
 import IconButton from './components/IconButton'
 import TextInput from './components/TextInput'
 import IazoCard from './components/IazoCard/IazoCard'
@@ -66,16 +66,7 @@ const IlosWrapper = styled.div`
   flex-direction: column;
   min-height: 360px;
   margin-top: 35px;
-  align-items: center;
-  justify-content: center;
-`
-
-const FooterWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  height: 60px;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin-bottom: 35px;
   align-items: center;
   justify-content: center;
 `
@@ -126,7 +117,6 @@ const SpinnerHolder = styled.div`
 
 const Iazos: React.FC = () => {
   const { iazos, isInitialized } = useIazos()
-  console.log(iazos)
   return (
     <>
       <Header />
@@ -143,12 +133,14 @@ const Iazos: React.FC = () => {
             <IconButton icon="calander" text="Upcoming" />
             <IconButton icon="graph" text="Live" />
             <IconButton icon="graph" text="Done" />
-            <TextInput />
+            <TextInput placeholderText="Search token name or address...." icon="magnifiglass.svg" />
           </SettingsWrapper>
           <IlosWrapper>
-            <PresaleText>{iazos ? `${iazos.iazos.length} Presales` : <Skeleton width="100px" />} </PresaleText>
+            <PresaleText>
+              {isInitialized ? `${iazos?.iazos?.length} Presales` : <Skeleton width="100px" />}{' '}
+            </PresaleText>
             {isInitialized ? (
-              iazos.iazos.map((iazo) => {
+              iazos?.iazos?.map((iazo) => {
                 return (
                   <Link to={`/iazos/${iazo.iazoId}`}>
                     <IazoCard iazo={iazo} />
@@ -161,11 +153,6 @@ const Iazos: React.FC = () => {
               </SpinnerHolder>
             )}
           </IlosWrapper>
-          <FooterWrapper>
-            <Link to="/iazos/create">
-              <StyledButton>CREATE IAZO</StyledButton>
-            </Link>
-          </FooterWrapper>
         </LaunchPadWrapper>
       </PageWrapper>
     </>

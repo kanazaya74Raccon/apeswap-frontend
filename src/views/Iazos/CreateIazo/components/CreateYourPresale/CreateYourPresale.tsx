@@ -1,6 +1,22 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import TextInput from 'components/TextInput'
+import PairCreation, { ExtendedERC20Details } from './PairCreation/PairCreation'
+import DateSelection from './DateSelection/DateSelection'
+import PresaleDetails from './PresaleDetails/PresaleDetails'
+import PostSaleDetails from './PostSaleDetails/PostSaleDetails'
+
+interface Stepper {
+  pairCreated: boolean
+  datesSelected: boolean
+  presaleDetailsSet: boolean
+}
+
+interface PresaleData {
+  pairCreation: ExtendedERC20Details
+  datesSelected: Date[]
+}
 
 const LaunchPadInfoWrapper = styled.div`
   width: 796px;
@@ -39,9 +55,29 @@ const HeaderWrapper = styled.div<{ opened?: boolean }>`
 `
 
 export default function CreateYourPresale(): JSX.Element {
+  const [presaleData, setPresaleData] = useState<PresaleData>()
+  const [stepper, setStepper] = useState<Stepper>({
+    pairCreated: false,
+    datesSelected: true,
+    presaleDetailsSet: true,
+  })
+
+  const onPairCreation = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, pairCreation: val }))
+    setStepper((prevState) => ({ ...prevState, pairCreated: val && true }))
+  }, [])
+  const onPresaleDetails = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, pairCreation: val }))
+    setStepper((prevState) => ({ ...prevState, pairCreated: val && true }))
+  }, [])
+
   return (
     <LaunchPadInfoWrapper>
       <StyledHeader>Create Your Presale</StyledHeader>
+      <PairCreation onChange={onPairCreation} />
+      {stepper.datesSelected && <DateSelection />}
+      {stepper.pairCreated && <PresaleDetails pairTokenDetails={presaleData.pairCreation} />}
+      <PostSaleDetails />
     </LaunchPadInfoWrapper>
   )
 }

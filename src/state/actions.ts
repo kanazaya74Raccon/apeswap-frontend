@@ -1,4 +1,5 @@
 export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
+export { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 export { clear, remove, push } from './toasts'
 export {
   fetchPoolsPublicDataAsync,
@@ -11,6 +12,14 @@ export {
 export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
 export { statsFetchStart, statsFetchSucceeded, statsFetchFailed } from './stats'
 export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
-export { fetchStart, teamFetchSucceeded, fetchFailed, teamsFetchSucceeded } from './teams'
 export { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } from './tokenPrices'
 export { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed } from './iazos'
+export {
+  setNfaStakingPoolsPublicData,
+  setNfaStakingPoolsUserData,
+  updateNfaStakingPoolsUserData,
+  updateNfaStakingUserAllowance,
+  updateNfaStakingUserBalance,
+  updateUserNfaStakingStakedBalance,
+  updateUserNfaStakingPendingReward,
+} from './nfaStakingPools'

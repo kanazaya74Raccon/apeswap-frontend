@@ -57,10 +57,10 @@ const Zone = () => {
             {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
           <PaddedCard>
-            <Heading size="lg" fontFamily="poppins" color="warning" bold>
+            <Heading size="lg" fontFamily="poppins" color="warning">
               WARNING
             </Heading>
-            <Text fontFamily="poppins" bold>
+            <Text fontFamily="poppins">
               Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
             </Text>
             <Text fontFamily="poppins">

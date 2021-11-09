@@ -147,3 +147,116 @@ export const nextAuction = async (auctionContract, id, account) => {
       return tx.transactionHash
     })
 }
+
+export const listNfa = async (
+  auctionContract,
+  id,
+  auctionLength,
+  timeToExtend,
+  minimumExtendTime,
+  minimumBid,
+  account,
+) => {
+  return auctionContract.methods
+    .pushToAuction(
+      id,
+      auctionLength,
+      timeToExtend,
+      minimumExtendTime,
+      new BigNumber(minimumBid).times(new BigNumber(10).pow(18)).toString(),
+    )
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const removeAuction = async (auctionContract, id, account) => {
+  return auctionContract.methods
+    .removeAuction(id)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaStake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .deposit(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaStakeHarvest = async (nfaStakingChefContract, account) => {
+  return nfaStakingChefContract.methods
+    .deposit([])
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
+  return nfaStakingChefContract.methods
+    .withdraw(ids)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const stakeVault = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstake = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstakeAll = async (vaultApeContract, pid, account) => {
+  return vaultApeContract.methods
+    .withdrawAll(pid)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefStake = async (miniChefContract, pid, amount, account) => {
+  return miniChefContract.methods
+    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefHarvest = async (miniChefContract, pid, account) => {
+  return miniChefContract.methods
+    .harvest(pid, account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefUnstake = async (miniChefContract, pid, amount, account) => {
+  return miniChefContract.methods
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

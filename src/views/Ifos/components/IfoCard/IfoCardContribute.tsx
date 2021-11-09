@@ -8,11 +8,13 @@ import getTimePeriods from 'utils/getTimePeriods'
 import multicall from 'utils/multicall'
 import useRefresh from 'hooks/useRefresh'
 import { Contract } from 'web3-eth-contract'
-import { useERC20 } from 'hooks/useContract'
+import { useERC20, useMulticallContract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { CHAIN_ID } from 'config/constants'
+import track from 'utils/track'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -151,6 +153,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
   const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
+  const multicallContract = useMulticallContract()
 
   useEffect(() => {
     const fetch = async () => {
@@ -206,9 +209,9 @@ const IfoCardContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
-      setAllocation(allocation / 10000)
+      setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
       setUserTokenStatus(userTokens)
       setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
@@ -217,7 +220,7 @@ const IfoCardContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh])
+  }, [account, contract, address, pendingTx, slowRefresh, multicallContract])
 
   if (allowance === null) {
     return null
@@ -225,10 +228,19 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
-    await contract.methods.harvest(harvestPeriod).send({ from: account })
+    const tx = await contract.methods.harvest(harvestPeriod).send({ from: account })
     setPendingTx(false)
+    track({
+      event: 'iao',
+      chain: CHAIN_ID,
+      data: {
+        amount: tokensHarvestedAvailable,
+        cat: 'claim',
+        instance: harvestPeriod,
+        contract: tx.to,
+      },
+    })
   }
-
   const isFinished = status === 'finished'
   const overSubscribed = totalAmount.gte(raisingAmount)
   const amountContributed = getBalanceNumber(new BigNumber(userInfo.amount.toString()))
@@ -248,7 +260,7 @@ const IfoCardContribute: React.FC<Props> = ({
     return (
       <Button
         fullWidth
-        disabled={pendingTx || isFinished}
+        disabled={pendingTx}
         onClick={async () => {
           try {
             setPendingTx(true)
@@ -256,7 +268,7 @@ const IfoCardContribute: React.FC<Props> = ({
             setPendingTx(false)
           } catch (e) {
             setPendingTx(false)
-            console.error(e)
+            console.warn(e)
           }
         }}
       >
@@ -287,67 +299,73 @@ const IfoCardContribute: React.FC<Props> = ({
             You&apos;ll be refunded any excess tokens on your first claim
           </Text>
           <VestingButtonWrapper>
-            <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
-              {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
-            </VestingClaimButton>
-            {tokensVested > 0 && (
+            {amountContributed > 0 && (
               <>
-                <VestingClaimButton
-                  disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
-                  onClick={() => claim(1)}
-                >
-                  {userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestTwoBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
-                    </>
-                  )}
+                <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
+                  {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
                 </VestingClaimButton>
-                <VestingClaimButton
-                  disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
-                  onClick={() => claim(2)}
-                >
-                  {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestThreeBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
-                    </>
-                  )}
-                </VestingClaimButton>
-                <VestingClaimButton
-                  disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
-                  onClick={() => claim(3)}
-                >
-                  {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
-                  {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                  {harvestFourBlockRelease > 0 && (
-                    <>
-                      <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                      <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
-                    </>
-                  )}
-                </VestingClaimButton>
+                {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
+                  <>
+                    <VestingClaimButton
+                      disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
+                      onClick={() => claim(1)}
+                    >
+                      {userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestTwoBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                    <VestingClaimButton
+                      disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
+                      onClick={() => claim(2)}
+                    >
+                      {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestThreeBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                    <VestingClaimButton
+                      disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
+                      onClick={() => claim(3)}
+                    >
+                      {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
+                      {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
+                      {harvestFourBlockRelease > 0 && (
+                        <>
+                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
+                        </>
+                      )}
+                    </VestingClaimButton>
+                  </>
+                )}
               </>
             )}
           </VestingButtonWrapper>
-          <VestingStatsWrapper>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens available to harvest:</TokenAmountRemaining>
-              <TokenAmountRemaining>{tokensHarvestedAvailable.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens vested:</TokenAmountRemaining>
-              <TokenAmountRemaining>{tokensVested.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-            <TextWrapRow>
-              <TokenAmountRemaining>Tokens harvested:</TokenAmountRemaining>
-              <TokenAmountRemaining>{totalTokensHarvested.toFixed(4)}</TokenAmountRemaining>
-            </TextWrapRow>
-          </VestingStatsWrapper>
+          {amountContributed > 0 && (
+            <VestingStatsWrapper>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens available to harvest:</TokenAmountRemaining>
+                <TokenAmountRemaining>{tokensHarvestedAvailable.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens vested:</TokenAmountRemaining>
+                <TokenAmountRemaining>{tokensVested.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+              <TextWrapRow>
+                <TokenAmountRemaining>Tokens harvested:</TokenAmountRemaining>
+                <TokenAmountRemaining>{totalTokensHarvested.toFixed(4)}</TokenAmountRemaining>
+              </TextWrapRow>
+            </VestingStatsWrapper>
+          )}
         </>
       )}
     </>

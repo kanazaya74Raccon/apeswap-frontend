@@ -25,7 +25,7 @@ const SalesItem = styled.div`
   font-family: ${(props) => props.theme.fontFamily.poppins};
 `
 
-const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber, transactionHash }) => {
+const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber }) => {
   const bnbPrice = usePriceBnbBusd()
 
   const bigNumber = (num) => {
@@ -37,18 +37,11 @@ const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber, transact
   }
 
   return (
-    <a
-      href={`https://bscscan.com/tx/${transactionHash}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      key={transactionHash}
-    >
-      <SalesContainer>
-        <SalesItem key={tokenId}>${getUsd(value)} USD</SalesItem>
-        <SalesItem key={value}>{bigNumber(value).toFixed(3)} BNB</SalesItem>
-        <SalesItem key={blockNumber}>{blockNumber} Block</SalesItem>
-      </SalesContainer>
-    </a>
+    <SalesContainer>
+      <SalesItem key={tokenId}>${getUsd(value)} USD</SalesItem>
+      <SalesItem key={value}>{bigNumber(value).toFixed(3)} BNB</SalesItem>
+      <SalesItem key={blockNumber}>{blockNumber} Block</SalesItem>
+    </SalesContainer>
   )
 }
 

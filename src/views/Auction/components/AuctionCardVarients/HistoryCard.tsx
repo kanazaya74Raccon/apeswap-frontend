@@ -4,6 +4,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import { Auction } from 'state/types'
 import { usePriceBnbBusd } from 'state/hooks'
+import { ZERO_ADDRESS } from 'config'
 import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import Image from '../../../Nft/components/Image'
@@ -130,6 +131,7 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   const { nfa, highestBid, highestBidder } = auction
   const { account } = useWeb3React()
   const highestBidFlag = highestBidder === account
+  const notSold = highestBidder === ZERO_ADDRESS
   const rawBidAmount = getBalanceNumber(new BigNumber(highestBid))
   const bnbPrice = usePriceBnbBusd()
   const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
@@ -138,9 +140,19 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
     <Card highestBidFlag={highestBidFlag}>
       <TextHolder>
         <NameText>#{nfa.index}</NameText>
-        <BoughtText>Bought For</BoughtText>
-        <BidAmount> {rawBidAmount.toFixed(3)} BNB</BidAmount>
-        <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
+        {notSold ? (
+          <>
+            <BoughtText>Did Not Sell</BoughtText>
+            <BidAmount>Ask {rawBidAmount.toFixed(3)} BNB</BidAmount>
+            <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
+          </>
+        ) : (
+          <>
+            <BoughtText>Bought For</BoughtText>
+            <BidAmount> {rawBidAmount.toFixed(3)} BNB</BidAmount>
+            <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
+          </>
+        )}
       </TextHolder>
       <NfaImageHolder>
         <Image src={nfa.image} rarityTier={nfa.attributes.rarityTierNumber} alt={nfa.name} borderRadius="10px" />

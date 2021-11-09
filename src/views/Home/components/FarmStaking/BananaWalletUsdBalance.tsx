@@ -3,14 +3,14 @@ import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { usePriceBananaBusd } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress } from 'utils/addressHelpers'
+import { useBananaAddress } from 'hooks/useAddress'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
 import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()
-  const bananaBalance = useTokenBalance(getBananaAddress())
+  const bananaBalance = useTokenBalance(useBananaAddress())
   const { account } = useWeb3React()
 
   const bananaPriceUsd = usePriceBananaBusd().toNumber() * getBalanceNumber(bananaBalance)
