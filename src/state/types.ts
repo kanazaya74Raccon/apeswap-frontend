@@ -1,6 +1,15 @@
 import { Toast } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
-import { Address, FarmConfig, NfaStakingPoolConfig, Nft, PoolConfig, Team } from 'config/constants/types'
+import {
+  Address,
+  FarmConfig,
+  Nft,
+  PoolConfig,
+  NfaStakingPoolConfig,
+  Team,
+  VaultConfig,
+  DualFarmConfig,
+} from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -17,6 +26,28 @@ export interface Farm extends FarmConfig {
   }
 }
 
+export interface DualFarm extends DualFarmConfig {
+  tokenAmount?: BigNumber
+  totalInQuoteToken?: BigNumber
+  quoteTokenAmount?: BigNumber
+  lpTotalInQuoteToken?: BigNumber
+  tokenPriceVsQuote?: BigNumber
+  stakeTokenPrice?: number
+  rewardToken0Price?: number
+  rewardToken1Price?: number
+  poolWeight?: BigNumber
+  multiplier?: string
+  apr?: number
+  totalStaked?: string
+  userData?: {
+    allowance: BigNumber
+    tokenBalance: BigNumber
+    stakedBalance: BigNumber
+    miniChefEarnings: BigNumber
+    rewarderEarnings: BigNumber
+  }
+}
+
 export interface Pool extends PoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
@@ -29,6 +60,30 @@ export interface Pool extends PoolConfig {
     pendingReward: BigNumber
   }
   lpData?: any
+}
+
+export interface Vault extends VaultConfig {
+  totalStaked?: string
+  totalAllocPoint?: string
+  allocPoint?: string
+  weight?: number
+  stakeTokenPrice?: number
+  strategyPairBalance?: string
+  strategyPairBalanceFixed?: string
+  totalInQuoteToken?: string
+  totalInQuoteTokenInMasterChef?: string
+  stakeTokenDecimals?: string
+  masterChefPairBalance?: string
+  apy?: {
+    daily?: number
+    yearly?: number
+  }
+  userData?: {
+    allowance: string
+    tokenBalance: string
+    stakedBalance: string
+    stakedWantBalance: string
+  }
 }
 
 export interface NfaStakingPool extends NfaStakingPoolConfig {
@@ -48,6 +103,11 @@ export interface NfaStakingPool extends NfaStakingPoolConfig {
 export interface Profile {
   ownedNfts: Nft[]
   rarestNft: Nft
+}
+
+export interface Network {
+  chainId: number
+  chainIdFromUrl?: boolean
 }
 
 export interface Stats {
@@ -116,6 +176,7 @@ export interface StatsOverall {
   bananaPrice: number
   tvl: number
   totalLiquidity: number
+  circulatingSupply: number
   totalVolume: number
   burntAmount: number
   totalSupply: number
@@ -123,6 +184,14 @@ export interface StatsOverall {
   pools: FarmOverall[]
   farms: FarmOverall[]
   incentivizedPools: FarmOverall[]
+}
+
+export interface HomepageData {
+  tvl: number
+  marketCap: number
+  circulatingSupply: number
+  gnanaCirculatingSupply: number
+  burntAmount: number
 }
 
 export interface PoolOverall {
@@ -186,6 +255,22 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface DualFarmsState {
+  data: DualFarm[]
+}
+
+export interface NetworkState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: Network
+}
+
+export interface VaultsState {
+  loadVaultData: boolean
+  userDataLoaded: boolean
+  data: Vault[]
+}
+
 export interface NfaStakingPoolsState {
   data: NfaStakingPool[]
 }
@@ -199,6 +284,7 @@ export interface ProfileState {
 export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
+  HomepageData: HomepageData
   data: Stats
 }
 
@@ -249,6 +335,9 @@ export interface State {
   statsOverall: StatsOverallState
   teams: TeamsState
   auctions: AuctionsState
+  vaults: VaultsState
   tokenPrices: TokenPricesState
+  network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
+  dualFarms: DualFarmsState
 }

@@ -32,12 +32,12 @@ const StyledPage = styled(Container)<SizeProps>`
 const PageMeta = () => {
   const { pathname } = useLocation()
   const bananaPriceUsd = usePriceBananaBusd()
-  const bananaPriceUsdDisplay = bananaPriceUsd.eq(0)
-    ? ''
-    : `$${bananaPriceUsd.toNumber().toLocaleString(undefined, {
+  const bananaPriceUsdDisplay = bananaPriceUsd.toNumber()
+    ? `$${bananaPriceUsd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3,
       })}`
+    : ''
   const pageMeta = customMeta[pathname] || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
   const pageTitle = bananaPriceUsdDisplay ? [bananaPriceUsdDisplay, title].join(' - ') : title

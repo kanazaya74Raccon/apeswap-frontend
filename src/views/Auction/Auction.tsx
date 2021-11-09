@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
-import { useAuctions } from 'state/hooks'
+import { useAuctions, useFetchAuctions } from 'state/hooks'
 import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
@@ -202,6 +202,7 @@ const MoreInfo = styled.div`
 `
 
 const Auction: React.FC = () => {
+  useFetchAuctions()
   const { auctions } = useAuctions()
   const { isXl } = useMatchBreakpoints()
   const isDesktop = isXl

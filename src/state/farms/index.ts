@@ -30,34 +30,66 @@ export const farmsSlice = createSlice({
         state.data[index] = { ...state.data[index], userData: userDataEl }
       })
     },
+    updateFarmUserData: (state, action) => {
+      const { field, value, pid } = action.payload
+      const index = state.data.findIndex((p) => p.pid === pid)
+      state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
+    },
   },
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData } = farmsSlice.actions
+export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync = () => async (dispatch) => {
-  const farms = await fetchFarms()
-  dispatch(setFarmsPublicData(farms))
+export const fetchFarmsPublicDataAsync = (chainId: number) => async (dispatch) => {
+  try {
+    const farms = await fetchFarms(chainId)
+    dispatch(setFarmsPublicData(farms))
+  } catch (error) {
+    console.warn(error)
+  }
 }
-export const fetchFarmUserDataAsync = (account) => async (dispatch) => {
-  const userFarmAllowances = await fetchFarmUserAllowances(account)
-  const userFarmTokenBalances = await fetchFarmUserTokenBalances(account)
-  const userStakedBalances = await fetchFarmUserStakedBalances(account)
-  const userFarmEarnings = await fetchFarmUserEarnings(account)
+export const fetchFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
+  try {
+    const userFarmAllowances = await fetchFarmUserAllowances(chainId, account)
+    const userFarmTokenBalances = await fetchFarmUserTokenBalances(chainId, account)
+    const userStakedBalances = await fetchFarmUserStakedBalances(chainId, account)
+    const userFarmEarnings = await fetchFarmUserEarnings(chainId, account)
 
-  const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
-    return {
-      index,
-      allowance: userFarmAllowances[index],
-      tokenBalance: userFarmTokenBalances[index],
-      stakedBalance: userStakedBalances[index],
-      earnings: userFarmEarnings[index],
-    }
-  })
+    const arrayOfUserDataObjects = userFarmAllowances.map((farmAllowance, index) => {
+      return {
+        index,
+        allowance: userFarmAllowances[index],
+        tokenBalance: userFarmTokenBalances[index],
+        stakedBalance: userStakedBalances[index],
+        earnings: userFarmEarnings[index],
+      }
+    })
+    dispatch(setFarmUserData({ arrayOfUserDataObjects }))
+  } catch (error) {
+    console.warn(error)
+  }
+}
 
-  dispatch(setFarmUserData({ arrayOfUserDataObjects }))
+export const updateFarmUserAllowances = (chainId: number, pid, account: string) => async (dispatch) => {
+  const allowances = await fetchFarmUserAllowances(chainId, account)
+  dispatch(updateFarmUserData({ pid, field: 'allowance', value: allowances[pid] }))
+}
+
+export const updateFarmUserTokenBalances = (chainId: number, pid, account: string) => async (dispatch) => {
+  const tokenBalances = await fetchFarmUserTokenBalances(chainId, account)
+  dispatch(updateFarmUserData({ pid, field: 'tokenBalance', value: tokenBalances[pid] }))
+}
+
+export const updateFarmUserStakedBalances = (chainId: number, pid, account: string) => async (dispatch) => {
+  const stakedBalances = await fetchFarmUserStakedBalances(chainId, account)
+  dispatch(updateFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
+}
+
+export const updateFarmUserEarnings = (chainId: number, pid, account: string) => async (dispatch) => {
+  const pendingRewards = await fetchFarmUserEarnings(chainId, account)
+  dispatch(updateFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
 }
 
 export default farmsSlice.reducer

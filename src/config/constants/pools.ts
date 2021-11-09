@@ -1,5 +1,5 @@
 import { BANANA_PER_BLOCK } from 'config'
-import { PoolConfig, QuoteToken, PoolCategory } from './types'
+import { PoolConfig, PoolCategory } from './types'
 import tokens from './tokens'
 
 const pools: PoolConfig[] = [
@@ -17,6 +17,24 @@ const pools: PoolConfig[] = [
     projectLink: 'https://apeswap.finance/',
     harvest: true,
     tokenPerBlock: `${BANANA_PER_BLOCK.toNumber() * 0.25}`,
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 21,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.banana,
+    contractAddress: {
+      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
+      56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://apeswap.finance/apezone',
+    harvest: true,
+    tokenPerBlock: `0.150000000000000000`,
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
@@ -203,24 +221,6 @@ const pools: PoolConfig[] = [
     isFinished: true,
     tokenDecimals: 18,
     lpStaking: false,
-  },
-  {
-    sousId: 21,
-    tokenName: 'BANANA',
-    image: 'BANANA.svg',
-    stakingToken: tokens.gnana,
-    rewardToken: tokens.banana,
-    contractAddress: {
-      97: '0x3996F919980778cb0fc1982087cAc01089e33fe7', // ApeRewardPool
-      56: '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://apeswap.finance/apezone',
-    harvest: true,
-    tokenPerBlock: `0.150000000000000000`,
-    sortOrder: 3,
-    isFinished: false,
-    tokenDecimals: 18,
   },
   {
     sousId: 22,
@@ -604,7 +604,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 46,
     tokenName: 'GMR',
-    image: 'gmr.png',
+    image: '',
     stakingToken: tokens.gnana,
     rewardToken: null,
     contractAddress: {
@@ -1880,7 +1880,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 97,
     tokenName: 'YDR',
-    image: 'YDR.svg',
+    image: 'YDR.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.ydr,
     contractAddress: {
@@ -2541,6 +2541,82 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 9,
+  },
+  {
+    sousId: 133,
+    tokenName: 'GAN',
+    image: 'GAN.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.gan,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xea5b77b22bd939b8196587d2bb9d8b5e0e497b74',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://galacticarena.io/',
+    harvest: true,
+    tokenPerBlock: `9.645061728395061728`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 134,
+    tokenName: 'BCPAY',
+    image: 'BCPAY.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.bcpay,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xb83D0cE7335CaF7c59e7B9727916C0e98b74cb49',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://bitcashpay.net/',
+    harvest: true,
+    tokenPerBlock: `0.48104745`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
+  {
+    sousId: 135,
+    tokenName: 'iBFR',
+    image: 'iBFR.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.ibfr,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x004D7f0661fF6e1420fE311Bca57C1D89C9751BA',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.buffer.finance/',
+    harvest: true,
+    tokenPerBlock: `0.342086298263888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
+    sousId: 136,
+    tokenName: 'SATA',
+    image: 'SATA.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.sata,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x4AC61236F70bC24eDf6be97746672ab564641258',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://sata.technology/',
+    harvest: true,
+    tokenPerBlock: `0.115451388888888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
   },
   //
   // PUT ALL ADMIN POOLS UNDER HERE

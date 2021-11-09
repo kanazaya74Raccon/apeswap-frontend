@@ -127,7 +127,7 @@ const BurningGames: React.FC = () => {
       <Header banner={banner}>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} color="white">
-            {TranslateString(999, 'Burning Games Partners')}
+            BANANA Burns
           </StyledHeading>
         </HeadingContainer>
       </Header>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Skeleton, ButtonSquare, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { useNfaStakingApprove } from 'hooks/useApprove'
 
@@ -10,13 +10,13 @@ interface ApprovalActionProps {
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract, sousId, isLoading = false }) => {
   const [pendingApprove, setPendingApprove] = useState(false)
-  const onApprove = useNfaStakingApprove(nfaStakingPoolContract, sousId).onApprove
+  const { onApprove } = useNfaStakingApprove(nfaStakingPoolContract, sousId)
 
   const handleApprove = useCallback(async () => {
     try {
       await onApprove()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove])
 

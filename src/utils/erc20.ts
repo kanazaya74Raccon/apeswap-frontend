@@ -4,7 +4,6 @@ import { Contract } from 'web3-eth-contract'
 import { AbiItem } from 'web3-utils'
 import erc20 from 'config/abi/erc20.json'
 import { ZERO_ADDRESS } from 'config'
-import { getWeb3 } from './web3'
 
 export const getContract = (provider: ProviderType, address: string) => {
   const web3 = new Web3(provider)
@@ -26,21 +25,21 @@ export const getAllowance = async (
 }
 
 export const getTokenBalance = async (
-  provider: ProviderType,
+  web3: Web3,
   tokenAddress: string,
   userAddress: string,
+  tokenContract?: Contract,
 ): Promise<string> => {
   if (tokenAddress === ZERO_ADDRESS) {
     try {
-      const balance: string = await getWeb3().eth.getBalance(userAddress)
+      const balance: string = await web3.eth.getBalance(userAddress)
       return balance
     } catch (e) {
       return '0'
     }
   }
-  const contract = getContract(provider, tokenAddress)
   try {
-    const balance: string = await contract.methods.balanceOf(userAddress).call()
+    const balance: string = await tokenContract.methods.balanceOf(userAddress).call()
     return balance
   } catch (e) {
     return '0'

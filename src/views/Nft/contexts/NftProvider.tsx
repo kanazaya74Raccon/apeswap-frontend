@@ -2,13 +2,10 @@ import React, { createContext, useEffect, useRef, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
-import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
-import { getRabbitMintingFarmAddress } from 'utils/addressHelpers'
-import { getNonFungibleApesContract } from 'utils/contractHelpers'
 import multicall from 'utils/multicall'
+import { useMulticallAddress, useNonFungibleApesAddress, useRabbitMintingFarmAddress } from 'hooks/useAddress'
+import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
-
-const rabbitMintingFarmAddress = getRabbitMintingFarmAddress()
 
 type State = {
   isInitialized: boolean
@@ -40,12 +37,15 @@ const NftProvider: React.FC = ({ children }) => {
   const currentBlock = useBlock()
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state
+  const multicallAddress = useMulticallAddress()
+  const rabbitMintingFarmAddress = useRabbitMintingFarmAddress()
+  const nonFungibleApesContract = useNonFungibleApesAddress()
 
   // Static data
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const [startBlockNumberArr, endBlockNumberArr] = await multicall(rabbitmintingfarm, [
+        const [startBlockNumberArr, endBlockNumberArr] = await multicall(multicallAddress, rabbitmintingfarm, [
           { address: rabbitMintingFarmAddress, name: 'startBlockNumber' },
           { address: rabbitMintingFarmAddress, name: 'endBlockNumber' },
         ])
@@ -61,19 +61,18 @@ const NftProvider: React.FC = ({ children }) => {
           endBlockNumber: endBlockNumber.toNumber(),
         }))
       } catch (error) {
-        console.error('an error occured', error)
+        console.warn('an error occured', error)
       }
     }
 
     fetchContractData()
-  }, [isInitialized, setState])
+  }, [isInitialized, setState, multicallAddress, rabbitMintingFarmAddress])
 
   // Data from the contract that needs an account
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const nonFungibleApesContract = getNonFungibleApesContract()
-        const [hasClaimedArr] = await multicall(rabbitmintingfarm, [
+        const [hasClaimedArr] = await multicall(multicallAddress, rabbitmintingfarm, [
           { address: rabbitMintingFarmAddress, name: 'hasClaimed', params: [account] },
         ])
         const balanceOf = await nonFungibleApesContract.methods.balanceOf(account).call()
@@ -86,14 +85,14 @@ const NftProvider: React.FC = ({ children }) => {
           balanceOf,
         }))
       } catch (error) {
-        console.error('an error occured', error)
+        console.warn('an error occured', error)
       }
     }
 
     if (account) {
       fetchContractData()
     }
-  }, [isInitialized, account, setState])
+  }, [isInitialized, account, setState, multicallAddress, rabbitMintingFarmAddress, nonFungibleApesContract])
 
   useEffect(() => {
     return () => {

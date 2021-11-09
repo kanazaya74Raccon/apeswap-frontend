@@ -2,13 +2,13 @@ import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@apeswapfinance/uikit'
-import { useWeb3React } from '@web3-react/core'
+// import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { NfaStakingPool } from 'state/types'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
-import StakeAction from './CardActions/StakeActions'
+// import StakeAction from './CardActions/StakeActions'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -41,20 +41,20 @@ const PCard = styled.div`
 const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const { sousId, tier, apr, totalStaked, startBlock, endBlock, userData, rewardToken, contractAddress } = pool
 
-  const { account } = useWeb3React()
+  // const { account } = useWeb3React()
   const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
-  const allowance = userData?.allowance
-  const stakedNfas = userData?.stakedNfas
+  // const allowance = userData?.allowance
+  // const stakedNfas = userData?.stakedNfas
 
-  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  // const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
 
   const blocksUntilStart = Math.max(startBlock - block, 0)
   const blocksRemaining = Math.max(endBlock - block, 0)
-  const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const isApproved = account && allowance
+  // const accountHasStakedBalance = stakedBalance?.toNumber() > 0
+  // const isApproved = account && allowance
   const pendingReward = userData?.pendingReward
   const toggleExpand = () => {
     setShowExpandableSection(!showExpandableSection)

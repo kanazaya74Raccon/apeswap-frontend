@@ -10,9 +10,9 @@ import { getWeb3 } from './web3'
  *  contract.method.startBlockNumber().call
  * ]
  */
-const makeBatchRequest = (calls: any[]) => {
+const makeBatchRequest = (calls: any[], chainId: number) => {
   try {
-    const web3 = getWeb3()
+    const web3 = getWeb3(chainId)
     const batch = new web3.BatchRequest()
 
     const promises = calls.map((call) => {

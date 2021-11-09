@@ -1,11 +1,8 @@
 import React from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { useTotalSupply, useBurnedBalance, useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { usePriceBananaBusd, useTvl } from 'state/hooks'
+import { useFetchHomepageStats, useHomepageStats } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
-import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
 
@@ -71,17 +68,10 @@ const StyledText = styled(Text)`
 `
 
 const ApeSwapStats = () => {
+  useFetchHomepageStats()
   const TranslateString = useI18n()
-  const totalSupply = useTotalSupply()
-  const newTvl = useTvl()
-  const totalTvl = newTvl.toNumber()
-  const bananaPriceUsd = usePriceBananaBusd()
-  const burnedBalance = useBurnedBalance(getBananaAddress())
-  const totalGnana = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
-  const bananaSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
-  const gnanaCirculation = totalGnana ? getBalanceNumber(totalGnana) : 0
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
-  const marketCap = bananaPriceUsd.toNumber() * bananaSupply
+  const stats = useHomepageStats()
 
   return (
     <StyledBananaStats>
@@ -93,41 +83,52 @@ const ApeSwapStats = () => {
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'TOTAL VALUE LOCKED')}
           </StyledText>
-          {totalTvl && <CardValue fontSize="14px" value={totalTvl} prefix="$" text="poppins" fontWeight={700} />}
+          {stats?.tvl && <CardValue fontSize="14px" value={stats?.tvl} prefix="$" text="poppins" fontWeight={700} />}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'USD MARKET CAP')}
           </StyledText>
-          {marketCap && (
-            <CardValue fontSize="14px" value={marketCap} decimals={0} prefix="$" text="poppins" fontWeight={700} />
+          {stats?.marketCap && (
+            <CardValue
+              fontSize="14px"
+              value={stats?.marketCap}
+              decimals={0}
+              prefix="$"
+              text="poppins"
+              fontWeight={700}
+            />
           )}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'BANANA IN CIRCULATION')}
           </StyledText>
-          {bananaSupply && <CardValue fontSize="14px" value={bananaSupply} text="poppins" fontWeight={700} />}
+          {stats?.circulatingSupply && (
+            <CardValue fontSize="14px" value={stats?.circulatingSupply} text="poppins" fontWeight={700} />
+          )}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(536, 'GNANA IN CIRCULATION')}
           </StyledText>
-          {gnanaCirculation && (
-            <CardValue fontSize="14px" value={gnanaCirculation} decimals={0} text="poppins" fontWeight={700} />
+          {stats?.gnanaCirculatingSupply && (
+            <CardValue
+              fontSize="14px"
+              value={stats?.gnanaCirculatingSupply}
+              decimals={0}
+              text="poppins"
+              fontWeight={700}
+            />
           )}
         </Row>
         <GreyRow>
           <StyledText fontSize="14px" fontFamily="poppins">
             {TranslateString(538, 'TOTAL BANANA BURNED')}
           </StyledText>
-          <CardValue
-            fontSize="14px"
-            decimals={0}
-            value={getBalanceNumber(burnedBalance)}
-            text="poppins"
-            fontWeight={700}
-          />
+          {stats?.burntAmount && (
+            <CardValue fontSize="14px" decimals={0} value={stats?.burntAmount} text="poppins" fontWeight={700} />
+          )}
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">

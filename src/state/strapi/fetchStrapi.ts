@@ -16,7 +16,7 @@ export const useFetchPromoHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -40,7 +40,7 @@ export const useFetchNewsHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -64,7 +64,7 @@ export const useFetchPoolsHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -88,7 +88,7 @@ export const useFetchFarmsHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
@@ -112,7 +112,7 @@ export const useFetchHeadersHome = () => {
           loading: false,
         })
       } catch (error) {
-        console.error('Unable to fetch data:', error)
+        console.warn('Unable to fetch data:', error)
       }
     }
     fetchData()
