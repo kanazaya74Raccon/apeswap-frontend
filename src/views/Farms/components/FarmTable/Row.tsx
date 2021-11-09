@@ -7,6 +7,7 @@ import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import { useNetworkChainId } from 'state/hooks'
 
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
@@ -129,6 +130,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details, liquidity } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
+  const chainId = useNetworkChainId()
 
   const toggleActionPanel = () => {
     setActionPanelToggled(!actionPanelToggled)
@@ -139,7 +141,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const { account } = useWeb3React()
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = details
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({
+    quoteTokenAdresses,
+    quoteTokenSymbol,
+    tokenAddresses,
+    chainId,
+  })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   const isMobile = !isXl
@@ -162,7 +169,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
                       {!account ? (
-                        <UnlockButton />
+                        <UnlockButton padding="8px" />
                       ) : (
                         <HarvestAction
                           {...props.earned}

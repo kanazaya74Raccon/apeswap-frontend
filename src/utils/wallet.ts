@@ -1,38 +1,24 @@
-// Set of helper functions to facilitate wallet setup
-import { nodes } from './getRpcUrl'
+import { CHAIN_PARAMS } from 'config/constants/chains'
 
 /**
  * Prompt the user to add BSC as a network on Metamask, or switch to BSC if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
-export const setupNetwork = async () => {
+export const setupNetwork = async (chainId: number) => {
   const provider = (window as WindowChain).ethereum
   if (provider) {
-    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
       await provider.request({
         method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Binance Smart Chain Mainnet',
-            nativeCurrency: {
-              name: 'BNB',
-              symbol: 'bnb',
-              decimals: 18,
-            },
-            rpcUrls: nodes,
-            blockExplorerUrls: ['https://bscscan.com/'],
-          },
-        ],
+        params: [CHAIN_PARAMS[chainId]],
       })
       return true
     } catch (error) {
-      console.error(error)
+      console.warn(error)
       return false
     }
   } else {
-    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
+    console.warn("Can't setup the BSC network on metamask because window.ethereum is undefined")
     return false
   }
 }

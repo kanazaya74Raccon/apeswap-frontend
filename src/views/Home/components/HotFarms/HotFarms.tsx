@@ -5,6 +5,7 @@ import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import BigNumber from 'bignumber.js'
 import { QuoteToken } from 'config/constants/types'
 import farms from 'config/constants/farms'
+import { Farm } from 'state/types'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
 import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
@@ -138,9 +139,9 @@ const HotFarms = () => {
         <CardHeaderImage />
         <HotFarmsText>Hot Farms</HotFarmsText>
         <FarmWrapper>
-          {farmsFetched.slice(1).map((farm) => (
-            <a href="https://apeswap.finance/farms" rel="noopener noreferrer">
-              <FarmCardForHome farm={farm} />
+          {farmsFetched.slice(1).map((farm: Farm) => (
+            <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>
+              <FarmCardForHome farm={farm} key={farm?.pid} />
             </a>
           ))}
         </FarmWrapper>

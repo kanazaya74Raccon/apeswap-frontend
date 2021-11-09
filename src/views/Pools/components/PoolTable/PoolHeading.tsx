@@ -25,7 +25,7 @@ const Container = styled.div`
 `
 
 const StyledBackground = styled.div`
-  width: 160px;
+  width: 150px;
   height: 60px;
   background: rgb(255, 179, 0, 0.4);
   border-radius: 20px;
@@ -39,20 +39,24 @@ const PoolHeading: React.FunctionComponent<PoolProps> = ({ stakeToken, earnToken
   return (
     <Container>
       <StyledBackground>
-        <IconImage src={`/images/tokens/${stakeToken}.svg`} alt={stakeToken} width={50} height={50} marginLeft="5px" />
-        <IconImage src="/images/arrow.svg" alt="arrow" width={20} height={20} />
+        <IconImage
+          src={`/images/tokens/${stakeToken}.svg`}
+          alt={stakeToken}
+          width={50}
+          height={50}
+          marginLeft="7.5px"
+        />
+        <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} />
         <IconImage
           src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
           alt={earnToken}
           width={50}
           height={50}
-          marginRight="5px"
+          marginRight="7.5px"
         />
       </StyledBackground>
       <div>
-        <Text fontSize="20px" bold>
-          {earnToken}
-        </Text>
+        <Text fontSize="20px">{earnToken}</Text>
       </div>
     </Container>
   )

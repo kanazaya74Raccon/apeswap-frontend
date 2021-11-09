@@ -27,7 +27,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       }
     } catch (e) {
       rewardRefReward.current?.rewardMe()
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove, setRequestedApproval])
 

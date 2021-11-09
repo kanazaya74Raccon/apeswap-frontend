@@ -31,10 +31,10 @@ export const tokenPricesSlice = createSlice({
 // Actions
 export const { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } = tokenPricesSlice.actions
 
-export const fetchTokenPrices = () => async (dispatch) => {
+export const fetchTokenPrices = (chainId) => async (dispatch) => {
   try {
     dispatch(tokenPricesFetchStart())
-    const tokenPrices = await fetchPrices()
+    const tokenPrices = await fetchPrices(chainId)
     dispatch(tokenPricesFetchSucceeded(tokenPrices))
   } catch (error) {
     dispatch(tokenPricesFetchFailed())

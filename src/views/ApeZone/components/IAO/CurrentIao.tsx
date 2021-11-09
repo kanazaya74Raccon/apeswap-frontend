@@ -163,19 +163,10 @@ const Iao = () => {
               </List>
 
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">
-                <Button
-                  color="primary"
-                  marginBottom="10px"
-                  marginRight="10px"
-                  onClick={() => setShowHistory(!showHistory)}
-                >
+                <Button marginBottom="10px" marginRight="10px" onClick={() => setShowHistory(!showHistory)}>
                   {TranslateString(610, showHistory ? 'Hide Past IAOs' : 'Show Past IAOs')}
                 </Button>
-                <Button
-                  as="a"
-                  href="https://apeswap.gitbook.io/apeswap-finance/initial-ape-offerings-iao"
-                  color="primary"
-                >
+                <Button as="a" href="https://apeswap.gitbook.io/apeswap-finance/initial-ape-offerings-iao">
                   {TranslateString(610, 'READ MORE')}
                 </Button>
               </Text>
