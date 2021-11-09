@@ -700,6 +700,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  sata: {
+    symbol: 'SATA',
+    address: {
+      56: '0x6b1C8765C7EFf0b60706b0ae489EB9bb9667465A',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
