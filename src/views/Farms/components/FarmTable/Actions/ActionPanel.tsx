@@ -226,7 +226,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <StyledLinkExternal className="noClick" href={bsc}>
         {TranslateString(999, 'View on BscScan')}
       </StyledLinkExternal>
-      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farm?.tokenAddresses[chainId])}>
+      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
         Add to Metamask
       </StyledLink>
     </>
