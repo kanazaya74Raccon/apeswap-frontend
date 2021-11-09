@@ -2,7 +2,7 @@
 
 export const CHAIN_ID = {
   BSC: 56,
-  BSC_TESTNET: 96,
+  BSC_TESTNET: 97,
   MATIC: 137,
   MATIC_TESTNET: 80001,
 }
