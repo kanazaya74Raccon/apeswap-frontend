@@ -144,6 +144,7 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 24px;
     padding-right: 24px;
+    height: 300px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
