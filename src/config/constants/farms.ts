@@ -2234,6 +2234,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 148,
+    image: '',
     lpSymbol: 'HOTCROSS-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2249,6 +2250,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 149,
+    image: '',
     lpSymbol: 'TOON-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2264,6 +2266,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 150,
+    image: '',
     lpSymbol: 'WING-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2279,6 +2282,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 151,
+    image: '',
     lpSymbol: 'GAN-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2294,6 +2298,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 152,
+    image: '',
     lpSymbol: 'BCPAY-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2309,6 +2314,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 153,
+    image: '',
     lpSymbol: 'iBFR-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2318,6 +2324,22 @@ const farms: FarmConfig[] = [
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xa296ad1c47fe6bdc133f39555c1d1177bd51fbc5',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+  },
+  {
+    pid: 154,
+    image: '',
+    lpSymbol: 'SATA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xBA593C9619301409D506332417236CAEb0453D09',
+    },
+    tokenSymbol: 'SATA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6b1c8765c7eff0b60706b0ae489eb9bb9667465a',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
