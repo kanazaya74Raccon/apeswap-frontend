@@ -102,7 +102,7 @@ const RemoveButton = styled(Button)`
 
 const QueuedCard: React.FC<QueuedCardProps> = ({ nfa, seller }) => {
   const { account } = useWeb3React()
-  const onRemoveAuction = useRemoveAuction().onRemoveAuction
+  const { onRemoveAuction } = useRemoveAuction()
   const [pendingTx, setPendingTx] = useState(null)
 
   const handleRemoveAuction = useCallback(async () => {

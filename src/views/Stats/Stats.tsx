@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { Heading, BaseLayout, Image } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, Image, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useStats } from 'state/hooks'
+import { useFetchStats, useFetchStatsOverall, useStats } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
-import useRefresh from 'hooks/useRefresh'
-import { fetchFarmUserDataAsync } from 'state/farms'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
 
@@ -67,18 +64,12 @@ const Cards = styled(BaseLayout)`
 `
 
 const Stats: React.FC = () => {
+  useFetchStatsOverall()
+  useFetchStats()
   const TranslateString = useI18n()
   const { account } = useWeb3React()
-  const { slowRefresh } = useRefresh()
   const yourStats = useStats()
-  const dispatch = useDispatch()
   const stats = yourStats?.stats
-
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, slowRefresh])
 
   return (
     <Page>
@@ -88,7 +79,7 @@ const Stats: React.FC = () => {
             {TranslateString(282, 'Your Ape Stats')}
           </Heading>
           <ul>
-            <li>{TranslateString(580, 'Keep track of your pools and farms.')}</li>
+            <Text>{TranslateString(580, 'Keep track of your pools and farms.')}</Text>
           </ul>
         </div>
         <Image src="/images/monkey-graphics.svg" alt="ApeSwap stats" width={470} height={300} responsive />

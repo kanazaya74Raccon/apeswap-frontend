@@ -206,3 +206,57 @@ export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
       return tx.transactionHash
     })
 }
+
+export const stakeVault = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstake = async (vaultApeContract, pid, amount, account) => {
+  return vaultApeContract.methods
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const vaultUnstakeAll = async (vaultApeContract, pid, account) => {
+  return vaultApeContract.methods
+    .withdrawAll(pid)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefStake = async (miniChefContract, pid, amount, account) => {
+  return miniChefContract.methods
+    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefHarvest = async (miniChefContract, pid, account) => {
+  return miniChefContract.methods
+    .harvest(pid, account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const miniChefUnstake = async (miniChefContract, pid, amount, account) => {
+  return miniChefContract.methods
+    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

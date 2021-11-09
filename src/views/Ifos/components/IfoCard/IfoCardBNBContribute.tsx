@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
 import { useModal, Text, Button } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
 import getTimePeriods from 'utils/getTimePeriods'
+import { useMulticallContract } from 'hooks/useContract'
+import multicall from 'utils/multicall'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -130,6 +131,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: new BigNumber(0), refunded: false })
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
+  const multicallContract = useMulticallContract()
   const [userTokenStatus, setUserTokenStatus] = useState({
     stakeTokenHarvest: new BigNumber(0),
     offeringTokenHarvest: new BigNumber(0),
@@ -199,7 +201,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -210,7 +212,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, fastRefresh])
+  }, [account, contract, address, pendingTx, fastRefresh, multicallContract])
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)

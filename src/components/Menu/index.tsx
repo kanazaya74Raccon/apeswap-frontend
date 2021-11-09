@@ -1,21 +1,33 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Menu as UikitMenu } from '@apeswapfinance/uikit'
 
 import { useWeb3React } from '@web3-react/core'
 import useAuth from 'hooks/useAuth'
-
-import { LanguageContext } from 'contexts/Localisation/languageContext'
+import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
-import { usePriceBananaBusd, useProfile } from 'state/hooks'
-import config from './config'
+import { useNetworkChainId, useProfile, useTokenPrices } from 'state/hooks'
+import useSelectNetwork from 'hooks/useSelectNetwork'
+import bscConfig from './chains/bscConfig'
+import maticConfig from './chains/maticConfig'
 
 const Menu = (props) => {
   const { account } = useWeb3React()
+  const chainId = useNetworkChainId()
   const { login, logout } = useAuth()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+  const { switchNetwork } = useSelectNetwork()
   const { isDark, toggleTheme } = useTheme()
-  const bananaPriceUsd = usePriceBananaBusd()
+  const { tokenPrices } = useTokenPrices()
+  const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
+  const currentMenu = () => {
+    if (chainId === CHAIN_ID.BSC) {
+      return bscConfig
+    }
+    if (chainId === CHAIN_ID.MATIC) {
+      return maticConfig
+    }
+    return bscConfig
+  }
 
   return (
     <UikitMenu
@@ -24,10 +36,10 @@ const Menu = (props) => {
       logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={selectedLanguage && selectedLanguage.code}
-      setLang={setSelectedLanguage}
-      cakePriceUsd={bananaPriceUsd.toNumber()}
-      links={config}
+      bananaPriceUsd={bananaPriceUsd}
+      links={currentMenu()}
+      chainId={chainId}
+      switchNetwork={switchNetwork}
       profile={{
         image: profile ? profile?.rarestNft.image : null,
         noProfileLink: '/nft',

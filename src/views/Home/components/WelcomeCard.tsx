@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading, Text, Flex, Button } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
+import { useNetworkChainId } from 'state/hooks'
+import { CHAIN_ID } from 'config/constants/chains'
 
 const WalcomeWrapper = styled.div`
   height: 436px;
@@ -97,12 +99,18 @@ const StyledButton = styled(Button)`
 
 const WelcomeCard = () => {
   const TranslateString = useI18n()
+  const chainId = useNetworkChainId()
   return (
     <WalcomeWrapper>
       <StyledFlex flexDirection="column" alignItems="center">
         <StyledWelcomeCard>
           <CardBody>
-            <StyledImg src="/images/ape-home.svg" alt="banana frenzy" />
+            {(chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) && (
+              <StyledImg src="/images/ape-home.svg" alt="banana frenzy" />
+            )}
+            {(chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) && (
+              <StyledImg src="/images/ape-home-polygon.svg" alt="banana frenzy" />
+            )}
           </CardBody>
         </StyledWelcomeCard>
         <Heading as="h1" size="lg" mb="6px" color="contrast">

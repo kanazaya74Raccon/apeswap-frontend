@@ -4,12 +4,13 @@ import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector, useDispatch } from 'react-redux'
-import { Team } from 'config/constants/types'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { getBananaAddress, getTreasuryAddress } from 'utils/addressHelpers'
+import { CHAIN_ID } from 'config/constants/chains'
+import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
 import useBlock from 'hooks/useBlock'
+import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
   fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
@@ -25,36 +26,125 @@ import {
   ProfileState,
   StatsState,
   StatsOverallState,
-  TeamsState,
   FarmOverall,
   AuctionsState,
+  Vault,
+  VaultsState,
   TokenPricesState,
   NfaStakingPool,
+  DualFarm,
+  HomepageData,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
-import { fetchStats } from './stats'
+import { fetchHomepageData, fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
-import { fetchTeam, fetchTeams } from './teams'
 import { fetchAuctions } from './auction'
+import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
+import { fetchFarmUserDataAsync } from './farms'
+import { fetchUserNetwork } from './network'
+import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 
 const ZERO = new BigNumber(0)
 
+// Network
+
+export const useNetworkChainId = (): number => {
+  const chainId = useSelector((state: State) => state.network.data.chainId)
+  return chainId
+}
+
+export const useNetworkChainIdFromUrl = (): boolean => {
+  const chainIdFromUrl = useSelector((state: State) => state.network.data.chainIdFromUrl)
+  return chainIdFromUrl
+}
+
+export const useUpdateNetwork = () => {
+  const dispatch = useDispatch()
+  const { chainId, account } = useWeb3React()
+  const appChainId = useNetworkChainId()
+  const chainIdFromUrl = useNetworkChainIdFromUrl()
+  const { switchNetwork } = useSwitchNetwork()
+  useEffect(() => {
+    if (chainIdFromUrl) {
+      switchNetwork(appChainId)
+    } else {
+      dispatch(fetchUserNetwork(chainId, account, appChainId))
+    }
+    // Load initial vault state in update netowrk to stop mount re-render
+    dispatch(setVaultsLoad(false))
+  }, [chainId, account, appChainId, chainIdFromUrl, switchNetwork, dispatch])
+}
+
+// Fetch public pool and farm data
+
 export const useFetchPublicData = () => {
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchFarmsPublicDataAsync(chainId))
+      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
+    }
+  }, [dispatch, slowRefresh, tokenPrices, chainId])
+}
+
+// Vault data
+export const usePollVaultsData = (includeArchive = false) => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
+  const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync())
-    dispatch(fetchPoolsPublicDataAsync(tokenPrices))
-    dispatch(fetchNfaStakingPoolsPublicDataAsync(tokenPrices))
-  }, [dispatch, slowRefresh, tokenPrices])
+    dispatch(setFilteredVaults(chainId))
+    dispatch(fetchVaultsPublicDataAsync(chainId, tokenPrices))
+    if (account) {
+      dispatch(fetchVaultUserDataAsync(account, chainId))
+    }
+  }, [includeArchive, dispatch, slowRefresh, account, chainId, tokenPrices])
+}
+
+// Dual Farms
+
+export const usePollDualFarms = () => {
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
+  const dispatch = useDispatch()
+  const { tokenPrices } = useTokenPrices()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId))
+    if (account) {
+      dispatch(fetchDualFarmUserDataAsync(chainId, account))
+    }
+  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
+}
+
+export const useDualFarms = (): DualFarm[] => {
+  const dualFarms = useSelector((state: State) => state.dualFarms.data)
+  return dualFarms
+}
+
+export const useDualFarmsFromPid = (pid): DualFarm => {
+  const farm = useSelector((state: State) => state.dualFarms.data.find((f) => f.pid === pid))
+  return farm
 }
 
 // Farms
 
-export const useFarms = (): Farm[] => {
+export const useFarms = (account): Farm[] => {
+  const { slowRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  const { chainId } = useWeb3React()
+  useEffect(() => {
+    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
+      dispatch(fetchFarmUserDataAsync(chainId, account))
+    }
+  }, [account, dispatch, slowRefresh, chainId])
   const farms = useSelector((state: State) => state.farms.data)
   return farms
 }
@@ -80,16 +170,40 @@ export const useFarmUser = (pid) => {
   }
 }
 
+// Vaults
+
+export const useVaults = () => {
+  const { loadVaultData, userDataLoaded, data }: VaultsState = useSelector((state: State) => state.vaults)
+  return { vaults: data, loadVaultData, userDataLoaded }
+}
+
+export const useVaultFromPid = (pid): Vault => {
+  const vault = useSelector((state: State) => state.vaults.data.find((v) => v.pid === pid))
+  return vault
+}
+
+export const useVaultUser = (pid) => {
+  const vault = useVaultFromPid(pid)
+
+  return {
+    allowance: vault.userData ? new BigNumber(vault.userData.allowance) : new BigNumber(0),
+    tokenBalance: vault.userData ? new BigNumber(vault.userData.tokenBalance) : new BigNumber(0),
+    stakedBalance: vault.userData ? new BigNumber(vault.userData.stakedBalance) : new BigNumber(0),
+    stakedWantBalance: vault.userData ? new BigNumber(vault.userData.stakedWantBalance) : new BigNumber(0),
+  }
+}
+
 // Pools
 
 export const usePools = (account): Pool[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
+  const { chainId } = useWeb3React()
   useEffect(() => {
-    if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
+    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
+      dispatch(fetchPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, dispatch, fastRefresh, chainId])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -112,15 +226,21 @@ export const useAllPools = (): Pool[] => {
 
 // NfaStakingPools
 
-export const useNfaStakingPools = (account): NfaStakingPool[] => {
-  const { fastRefresh } = useRefresh()
+export const usePollNfaStakingData = () => {
+  const { slowRefresh } = useRefresh()
+  const { account } = useWeb3React()
   const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
   useEffect(() => {
+    fetchNfaStakingPoolsPublicDataAsync(chainId, tokenPrices)
     if (account) {
-      dispatch(fetchNfaStakingPoolsUserDataAsync(account))
+      dispatch(fetchNfaStakingPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
+}
 
+export const useNfaStakingPools = (): NfaStakingPool[] => {
   const nfaStakingPools = useSelector((state: State) => state.nfaStakingPools.data)
   return nfaStakingPools
 }
@@ -140,14 +260,14 @@ export const useTvl = (): BigNumber => {
   const pools = useAllPools()
   const bananaPriceBUSD = usePriceBananaBusd()
   const liquidity = useLiquidityData()
-  const bananaAtTreasoury = useAccountTokenBalance(getTreasuryAddress(), getBananaAddress())
+  const bananaAtTreasoury = useAccountTokenBalance(useTreasuryAddress(), useBananaAddress())
   let valueLocked = new BigNumber(0)
 
   valueLocked = valueLocked.plus(new BigNumber(bananaAtTreasoury).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD))
 
   // eslint-disable-next-line no-restricted-syntax
   for (const pool of pools) {
-    if (pool.stakingToken.symbol === 'BANANA') {
+    if (pool?.stakingToken?.symbol === 'BANANA') {
       valueLocked = valueLocked.plus(
         new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18)).times(bananaPriceBUSD),
       )
@@ -176,9 +296,9 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceBananaBusd = (): BigNumber => {
-  const pid = 2 // BANANA-BUSD LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+  const tokenPrices = useTokenPrices()
+  const price = new BigNumber(tokenPrices?.tokenPrices?.find((token) => token.symbol === 'BANANA')?.price)
+  return price || ZERO
 }
 
 /*
@@ -229,11 +349,12 @@ export const useToast = () => {
 export const useFetchProfile = () => {
   const { account } = useWeb3React()
   const dispatch = useDispatch()
-  const { fastRefresh } = useRefresh()
+  const chainId = CHAIN_ID.BSC
+  const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchProfile(account))
-  }, [account, dispatch, fastRefresh])
+    dispatch(fetchProfile(chainId, account))
+  }, [account, dispatch, slowRefresh, chainId])
 }
 
 export const useProfile = () => {
@@ -248,10 +369,10 @@ export const useFetchStats = () => {
   const { statsOverall } = useStatsOverall()
   const { slowRefresh } = useRefresh()
   const [slow, setSlow] = useState(-1)
-  const farms = useFarms()
+  const farms = useFarms(account)
   const pools = usePools(account)
   const curBlock = useBlock()
-  const bananaBalance = useTokenBalance(getBananaAddress())
+  const bananaBalance = useTokenBalance(useBananaAddress())
 
   useEffect(() => {
     if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
@@ -266,12 +387,30 @@ export const useStats = () => {
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
+export const useFetchHomepageStats = () => {
+  const dispatch = useDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    dispatch(fetchHomepageData())
+  }, [slowRefresh, dispatch])
+}
+
+export const useHomepageStats = (): HomepageData => {
+  const homepageStats = useSelector((state: State) => state.stats.HomepageData)
+  return homepageStats
+}
+
 export const useFetchAuctions = () => {
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
+  const chainId = useNetworkChainId()
+
   useEffect(() => {
-    dispatch(fetchAuctions())
-  }, [dispatch, fastRefresh])
+    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+      dispatch(fetchAuctions(chainId))
+    }
+  }, [dispatch, fastRefresh, chainId])
 }
 
 export const useAuctions = () => {
@@ -282,9 +421,10 @@ export const useAuctions = () => {
 export const useFetchTokenPrices = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
+  const chainId = useNetworkChainId()
   useEffect(() => {
-    dispatch(fetchTokenPrices())
-  }, [dispatch, slowRefresh])
+    dispatch(fetchTokenPrices(chainId))
+  }, [dispatch, slowRefresh, chainId])
 }
 
 export const useTokenPrices = () => {
@@ -326,28 +466,4 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
-}
-
-// Teams
-
-export const useTeam = (id: number) => {
-  const team: Team = useSelector((state: State) => state.teams.data[id])
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchTeam(id))
-  }, [id, dispatch])
-
-  return team
-}
-
-export const useTeams = () => {
-  const { isInitialized, isLoading, data }: TeamsState = useSelector((state: State) => state.teams)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchTeams())
-  }, [dispatch])
-
-  return { teams: data, isInitialized, isLoading }
 }

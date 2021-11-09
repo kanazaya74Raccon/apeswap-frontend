@@ -76,8 +76,8 @@ const NewsFeed = () => {
         <></>
       ) : (
         newsData?.map((news, i) => (
-          <a href={news.link} target="_blank" rel="noopener noreferrer">
-            <NewsContainer border={i !== 0}>
+          <a href={news.link} target="_blank" rel="noopener noreferrer" key={news.title}>
+            <NewsContainer border={i !== 0} key={news.link}>
               <ImageContainer image={news.image[0]?.url} />
               <TitleContainer>
                 <Title>{news.title}</Title>
