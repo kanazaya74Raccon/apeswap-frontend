@@ -61,12 +61,12 @@ const ButtonSocial = styled.div`
     display: block;
   }
 `
-const FullImage = styled.div<{ pathImage: string, isFull: boolean }>`
+const FullImage = styled.div<{ pathImage: string; isFull: boolean }>`
   margin-right: 15px;
   width: 50%;
   height: 100%;
   background-image: url(${(props) => props.pathImage || ''});
-  background-size: ${(props) => props.isFull ? 'cover' : '100% 100%'};
+  background-size: ${(props) => (props.isFull ? 'cover' : '100% 100%')};
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 7px;
