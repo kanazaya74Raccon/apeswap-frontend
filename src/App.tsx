@@ -183,7 +183,7 @@ const App: React.FC = () => {
             <Route path="/stats">
               <Stats />
             </Route>
-            <Route path="/burning">
+            <Route path="/burn">
               <BurningGames />
             </Route>
             {/* Redirect */}

@@ -50,6 +50,11 @@ const bscConfig: MenuEntry[] = [
     href: '/gnana',
   },
   {
+    label: 'Burn',
+    icon: 'SunIcon',
+    href: '/burn',
+  },
+  {
     label: 'Info',
     icon: 'InfoIcon',
     items: [

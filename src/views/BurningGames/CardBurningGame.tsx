@@ -43,7 +43,7 @@ const ContainerDescription = styled.div`
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     .content-description {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 `
@@ -142,8 +142,12 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           <FullImage pathImage={game.image?.url} />
           <ContainerResumeInfo className="container-resumen-info">
             <ContainerTitle className="container-title">
-              <span className="partner-name">{game.name}</span>
-              <span className="sub-name">{game.subtitle}</span>
+              <Text className="partner-name" fontFamily="poppins" bold>
+                {game.name}
+              </Text>
+              <Text className="sub-name" fontFamily="poppins" bold>
+                {game.subtitle}
+              </Text>
             </ContainerTitle>
             <div className="buttons">
               <PlayButton as="a" href={game.link} target="_blank">
@@ -159,7 +163,7 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           </ContainerResumeInfo>
         </ContainerGeneral>
         <ContainerDescription>
-          <div className="title-description">{game.subtitle}</div>
+          <Text fontFamily="poppins" bold fontSize="17">{game.subtitle}</Text>
           <div className="content-description">{game.description}</div>
           <div className="social-description">
             {game.twitter && (

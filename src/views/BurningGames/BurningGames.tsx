@@ -1,9 +1,8 @@
 import React from 'react'
-import { Heading, BaseLayout, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import useTheme from 'hooks/useTheme'
-import useI18n from 'hooks/useI18n'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
 import CardBurningGame from './CardBurningGame'
 
@@ -105,11 +104,14 @@ const Cards = styled(BaseLayout)<{ isMobile: boolean }>`
     margin-bottom: 32px;
   }
 `
+const SubtitleHeading = styled(Text)<{ isMobile: boolean }>`
+  font-size: ${(props) => (props.isMobile ? '16px' : '22px')};
+  width: ${(props) => (props.isMobile ? '50%' : '100%')};
+`
 const ContainerPrincipal = styled.div<{ isDark: boolean }>`
   background-color: ${(props) => props.isDark && 'rgb(238,238,238)'};
 `
 const BurningGames: React.FC = () => {
-  const TranslateString = useI18n()
   const { data } = useFetchBurningGames()
 
   const { isXl: isDesktop } = useMatchBreakpoints()
@@ -129,6 +131,9 @@ const BurningGames: React.FC = () => {
           <StyledHeading as="h1" mb="12px" mt={0} color="white">
             BANANA Burns
           </StyledHeading>
+          <SubtitleHeading isMobile={!isDesktop} fontFamily="poppins" fontWeight={400} color="white">
+            Partners Supporting The Jungle
+          </SubtitleHeading>
         </HeadingContainer>
       </Header>
 
