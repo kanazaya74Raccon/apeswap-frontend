@@ -66,7 +66,7 @@ const FullImage = styled.div<{ pathImage: string }>`
   width: 50%;
   height: 100%;
   background-image: url(${(props) => props.pathImage || ''});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 7px;
