@@ -163,7 +163,9 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           </ContainerResumeInfo>
         </ContainerGeneral>
         <ContainerDescription>
-          <Text fontFamily="poppins" bold fontSize="17">{game.subtitle}</Text>
+          <Text fontFamily="poppins" bold fontSize="17">
+            {game.subtitle}
+          </Text>
           <div className="content-description">{game.description}</div>
           <div className="social-description">
             {game.twitter && (
