@@ -12,13 +12,16 @@ const HeadingContainer = styled.div`
   margin-right: auto;
 `
 const Header = styled.div<{ banner: string }>`
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: hidden;
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
   background-image: ${(props) =>
     props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)'};
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   height: 300px;
   background-position: center;
 
@@ -119,8 +122,8 @@ const BurningGames: React.FC = () => {
 
   let banner = ''
 
-  if (!isDark && isDesktop) banner = 'burning.png'
-  if (isDark && isDesktop) banner = 'burning-night.png'
+  if (!isDark && isDesktop) banner = 'burning.svg'
+  if (isDark && isDesktop) banner = 'burning-night.svg'
   if (!isDark && !isDesktop) banner = 'burning-mobile.png'
   if (isDark && !isDesktop) banner = 'burning-night-mobile.png'
 
