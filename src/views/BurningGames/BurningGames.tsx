@@ -18,7 +18,7 @@ const Header = styled.div<{ banner: string }>`
   background-image: ${(props) =>
     props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)'};
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 100% 100%;
   height: 300px;
   background-position: center;
 
