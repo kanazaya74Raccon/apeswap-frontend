@@ -205,7 +205,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 16,
     tokenName: 'LYPTUS',
-    image: 'LYPTUS.png',
+    image: 'LYPTUS.svg',
     stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
@@ -934,7 +934,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 30,
     tokenName: 'bxBTC',
-    image: 'XBTC.svg',
+    image: 'bxBTC.png',
     stakingToken: tokens.banana,
     rewardToken: null,
     contractAddress: {
