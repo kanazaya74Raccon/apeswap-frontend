@@ -1162,7 +1162,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 62,
     tokenName: 'BISON',
-    image: 'BISON.svg',
+    image: 'BISON.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.bison,
     contractAddress: {
