@@ -8,6 +8,7 @@ import { ThemeContextProvider } from 'contexts/ThemeContext'
 import { BlockContextProvider } from 'contexts/BlockContext'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
 import store from 'state'
+import NftProvider from 'views/Nft/contexts/NftProvider'
 
 const Providers: React.FC = ({ children }) => {
   return (
@@ -15,11 +16,13 @@ const Providers: React.FC = ({ children }) => {
       <Provider store={store}>
         <HelmetProvider>
           <ThemeContextProvider>
-            <BlockContextProvider>
-              <RefreshContextProvider>
-                <ModalProvider>{children}</ModalProvider>
-              </RefreshContextProvider>
-            </BlockContextProvider>
+            <NftProvider>
+              <BlockContextProvider>
+                <RefreshContextProvider>
+                  <ModalProvider>{children}</ModalProvider>
+                </RefreshContextProvider>
+              </BlockContextProvider>
+            </NftProvider>
           </ThemeContextProvider>
         </HelmetProvider>
       </Provider>
