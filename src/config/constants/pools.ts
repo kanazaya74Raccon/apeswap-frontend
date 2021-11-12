@@ -566,7 +566,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 44,
     tokenName: 'CRUSH',
-    image: 'crush.svg',
+    image: 'CRUSH.svg',
     stakingToken: tokens.gnana,
     rewardToken: tokens.crush,
     contractAddress: {
