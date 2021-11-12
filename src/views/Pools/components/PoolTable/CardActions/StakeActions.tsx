@@ -139,7 +139,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       rawStakedBalance !== 0 && (
         <IconButtonWrapperStake>
           {sousId === 0 && (
-            <HarvestWrapper>
+            <HarvestWrapper className="noClick">
               <HarvestActions
                 earnings={earnings}
                 sousId={sousId}
@@ -149,13 +149,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             </HarvestWrapper>
           )}
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
-              <MinusIcon color="white" width="12px" height="12px" />
+            <StyledIconButtonSquare className="noClick" onClick={onPresentWithdraw} mr="6px">
+              <MinusIcon className="noClick" color="white" width="12px" height="12px" />
             </StyledIconButtonSquare>
           </Reward>
           <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentDeposit}>
-              <AddIcon color="white" width="16px" height="16px" />
+            <StyledIconButtonSquare className="noClick" onClick={onPresentDeposit}>
+              <AddIcon className="noClick" color="white" width="16px" height="16px" />
             </StyledIconButtonSquare>
           </Reward>
         </IconButtonWrapperStake>
