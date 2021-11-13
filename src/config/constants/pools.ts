@@ -2618,6 +2618,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 137,
+    tokenName: 'LICO',
+    image: 'LICO.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.lico,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x7077d94ca36cdcce214a9073fe9e4a865332bfc2',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://liquidcollectibles.io/',
+    harvest: true,
+    tokenPerBlock: `0.034722222222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

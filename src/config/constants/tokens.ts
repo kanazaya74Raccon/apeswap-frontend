@@ -707,6 +707,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  lico: {
+    symbol: 'LICO',
+    address: {
+      56: "0x4F3266a56589357B4f8082918b14B923693e57f0",
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
