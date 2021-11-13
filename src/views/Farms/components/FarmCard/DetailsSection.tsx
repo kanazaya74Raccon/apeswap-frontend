@@ -2,6 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
+import { FarmWithStakedValue } from 'views/Home/components/HotFarms/FarmCardForHome'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
 import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
@@ -20,6 +21,7 @@ export interface ExpandableSectionProps {
   liquidity?: BigNumber
   pid?: number
   farmLp?: string
+  farm?: FarmWithStakedValue
 }
 
 const Wrapper = styled.div`
@@ -75,6 +77,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   pid,
   liquidity,
   farmLp,
+  farm
 }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
@@ -146,6 +149,15 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
+      {
+        farm.projectLink && (
+          <Flex justifyContent="center">
+            <StyledLink external href={farm.projectLink} bold={false}>
+              {TranslateString(356, 'View Project Site')}
+            </StyledLink>
+          </Flex>
+        )
+      }
       <Flex justifyContent="center">
         <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
           Add to Metamask
