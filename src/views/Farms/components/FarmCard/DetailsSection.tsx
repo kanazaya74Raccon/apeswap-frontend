@@ -77,7 +77,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   pid,
   liquidity,
   farmLp,
-  farm
+  farm,
 }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
@@ -149,15 +149,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
-      {
-        farm.projectLink && (
-          <Flex justifyContent="center">
-            <StyledLink external href={farm.projectLink} bold={false}>
-              {TranslateString(356, 'View Project Site')}
-            </StyledLink>
-          </Flex>
-        )
-      }
+      {farm.projectLink && (
+        <Flex justifyContent="center">
+          <StyledLink external href={farm.projectLink} bold={false}>
+            {TranslateString(356, 'View Project Site')}
+          </StyledLink>
+        </Flex>
+      )}
       <Flex justifyContent="center">
         <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
           Add to Metamask

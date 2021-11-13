@@ -64,7 +64,7 @@ const InfoContainer = styled.div<InfoPropsContainer>`
 
   ${({ theme }) => theme.mediaQueries.xl} {
     width: ${({ liquidityDigits }) =>
-    (liquidityDigits === 8 && '315px') || (liquidityDigits === 7 && '300px') || (liquidityDigits === 6 && '280px')};
+      (liquidityDigits === 8 && '315px') || (liquidityDigits === 7 && '300px') || (liquidityDigits === 6 && '280px')};
   }
 `
 
@@ -226,13 +226,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <StyledLinkExternal className="noClick" href={bsc}>
         {TranslateString(999, 'View on BscScan')}
       </StyledLinkExternal>
-      {
-        farm.projectLink && (
-          <StyledLinkExternal className="noClick" href={farm.projectLink}>
-            {TranslateString(356, 'View Project Site')}
-          </StyledLinkExternal>
-        )
-      }
+      {farm.projectLink && (
+        <StyledLinkExternal className="noClick" href={farm.projectLink}>
+          {TranslateString(356, 'View Project Site')}
+        </StyledLinkExternal>
+      )}
       <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
         Add to Metamask
       </StyledLink>

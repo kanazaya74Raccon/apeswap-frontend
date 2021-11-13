@@ -566,7 +566,7 @@ const Pools: React.FC = () => {
       new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
       pool.stakingToken?.symbol === 'BANANA',
   )
-  
+
   const allStakedOnlyPools = openPools.filter(
     (pool) =>
       pool.userData &&
@@ -580,14 +580,14 @@ const Pools: React.FC = () => {
       new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
       pool.stakingToken?.symbol === 'GNANA',
   )
-  
+
   const bananaStakedInactivePools = finishedPools.filter(
     (pool) =>
       pool.userData &&
       new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
       pool.stakingToken?.symbol === 'BANANA',
   )
-  
+
   const allStakedInactivePools = finishedPools.filter(
     (pool) =>
       pool.userData &&
@@ -644,9 +644,9 @@ const Pools: React.FC = () => {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
     } else if (!stakedOnly && gnanaOnly && !bananaOnly) {
       chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
-    } else if (!stakedOnly && bananaOnly || !gnanaOnly) {
+    } else if ((!stakedOnly && bananaOnly) || !gnanaOnly) {
       chosenPools = isActive ? bananaOnlyPools : bananaInactivePools
-    } else if (stakedOnly && bananaOnly || gnanaOnly) {
+    } else if ((stakedOnly && bananaOnly) || gnanaOnly) {
       chosenPools = isActive ? allStakedOnlyPools : allStakedInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools
