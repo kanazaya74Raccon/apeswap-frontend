@@ -68,7 +68,7 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const ToggleContainer = styled.div`
+const ToggleContainer = styled.div<{ size: number }>`
   position: absolute;
   right: 5%;
   display: flex;
@@ -88,11 +88,11 @@ const ToggleContainer = styled.div`
     flex-direction: row;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 315px;
+    width: 250px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    width: 365px;
+    width: 340px;
   }
 `
 
@@ -203,7 +203,7 @@ const StyledText = styled(Text)`
   font-weight: 700;
   font-size: 12px;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 15px !important;
   }
 `
@@ -501,7 +501,6 @@ const Pools: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
@@ -714,7 +713,7 @@ const Pools: React.FC = () => {
             </LabelWrapper>
             <ButtonCheckWrapper>
               <PoolTabButtons />
-              <ToggleContainer>
+              <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
