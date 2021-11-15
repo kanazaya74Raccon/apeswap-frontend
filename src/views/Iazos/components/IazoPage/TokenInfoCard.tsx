@@ -19,7 +19,7 @@ const IazoCardWrapper = styled.div`
   border-radius: 10px;
   margin-bottom: 12.5px;
   background: rgba(65, 65, 65, 1);
-  `
+`
 const CardMonkey = styled.div`
   position: absolute;
   height: 110px;

@@ -1,5 +1,3 @@
-const fetchUserIazos = async () => {
-    
-}
+const fetchUserIazos = async () => {}
 
 export default fetchUserIazos
