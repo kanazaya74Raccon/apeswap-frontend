@@ -714,6 +714,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  lime: {
+    "symbol": "LIME",
+    "address": {
+      56: "0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd",
+    },
+    "decimals": 18,
+},
 }
 
 export default tokens
