@@ -436,6 +436,7 @@ export const useIazos = () => {
 }
 
 export const useIazoFromId = (id): Iazo => {
+  useSelector((state: State) => console.log(state))
   const iazo: Iazo = useSelector((state: State) => state.iazos.data.iazos.find((i) => i.iazoId === id))
   return iazo
 }
@@ -452,6 +453,13 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useTokenPriceFromSymbol = (symbol: string) => {
+  const tokenPrice = useSelector((state: State) =>
+    state.tokenPrices.data.find((token) => token.symbol === symbol),
+  ).price
+  return tokenPrice
 }
 
 export const usePendingUsd = () => {

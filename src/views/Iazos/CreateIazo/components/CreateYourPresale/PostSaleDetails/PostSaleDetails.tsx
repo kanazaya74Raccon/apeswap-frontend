@@ -1,20 +1,19 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints, Checkbox } from '@apeswapfinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
-import BigNumber from 'bignumber.js'
+import { Text } from '@apeswapfinance/uikit'
+import { SECONDS_PER_YEAR } from 'config'
 import TokenInput from '../PresaleDetails/TokenInput'
-import { ExtendedERC20Details } from '../PairCreation/PairCreation'
+import DropdownList from './DropdownList'
 
-interface LiquidityLockDetails {
-  liquidity: number
+export interface LiquidityLockDetails {
+  liquidityPercent: number
   listingPrice: string
   lockLiquidity: number
 }
 
-interface PresaleDataProps {
-  pairTokenDetails: ExtendedERC20Details
-  onChange?: void
+interface PostSaleDetailsProp {
+  quoteTokenSymbol: string
+  onChange?: (postSaleDetails: LiquidityLockDetails) => void
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -28,72 +27,13 @@ const LaunchPadInfoWrapper = styled.div`
   margin-bottom: 30px;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px 20px 20px;
 `
 const StyledHeader = styled(Text)`
   font-family: Titan One;
   font-size: 22px;
   line-height: 27px;
   margin-top: 15px;
-`
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-`
-
-const FooterContainer = styled.div`
-  display: flex;
-  width: 450px;
-  height: 60px;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const StyledText = styled(Text)`
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 400;
-  margin-left: 15px;
-`
-
-const StyledSubText = styled(Text)`
-  font-family: Poppins;
-  font-size: 16px;
-  line-height: 24px;
-`
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  aling-items: flex-start;
-  height 80px;
-  width: 300px;
-  margin-left: 35px;
-`
-
-const DateButtonContainer = styled.div`
-  position: absolute;
-  right: 50px;
-  display: flex;
-  justify-content: flex-end;
-  z-index: 1;
-`
-
-const DateSelectionContainer = styled.div`
-  position: relative;
-  display: flex;
-  height: 135px;
-  background: #414141;
-  width: 686px;
-  border-radius: 10px;
-  margin-top: 15px;
-  align-items: center;
-  margin-bottom: 20px;
-  z-index: 0;
 `
 
 const InputTitle = styled(Text)`
@@ -140,12 +80,21 @@ const InputsWrapper = styled.div`
   align-items: center;
 `
 
-const PostSaleDetails: React.FC = () => {
+const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onChange }) => {
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>()
 
-  const onLiquidityClick = (amount: number) => {
-    setLiquidityDetails((prevState) => ({ ...prevState, liquidity: amount }))
+  const lockedLiquidityValues = {
+    '2 Years': SECONDS_PER_YEAR.times(2).toNumber(),
+    '1 Year': SECONDS_PER_YEAR.toNumber(),
+    '6 Months': SECONDS_PER_YEAR.div(2).toNumber(),
   }
+  const onLiquidityClick = (amount: number) => {
+    setLiquidityDetails((prevState) => ({ ...prevState, liquidityPercent: amount }))
+  }
+
+  useEffect(() => {
+    onChange(liquidityDetails)
+  }, [liquidityDetails, onChange])
 
   return (
     <>
@@ -153,16 +102,16 @@ const PostSaleDetails: React.FC = () => {
         <StyledHeader>Post sale liquidity</StyledHeader>
         <PercentageToRaiseWrapper>
           <InputTitle>Percentage of raise to lock in liquidity</InputTitle>
-          <LiquidityButton active={liquidityDetails?.liquidity === 30} onClick={() => onLiquidityClick(30)}>
+          <LiquidityButton active={liquidityDetails?.liquidityPercent === 0.3} onClick={() => onLiquidityClick(0.3)}>
             30%
           </LiquidityButton>
-          <LiquidityButton active={liquidityDetails?.liquidity === 50} onClick={() => onLiquidityClick(50)}>
+          <LiquidityButton active={liquidityDetails?.liquidityPercent === 0.5} onClick={() => onLiquidityClick(0.5)}>
             50%
           </LiquidityButton>
-          <LiquidityButton active={liquidityDetails?.liquidity === 75} onClick={() => onLiquidityClick(75)}>
+          <LiquidityButton active={liquidityDetails?.liquidityPercent === 0.75} onClick={() => onLiquidityClick(0.75)}>
             75%
           </LiquidityButton>
-          <LiquidityButton active={liquidityDetails?.liquidity === 100} onClick={() => onLiquidityClick(100)}>
+          <LiquidityButton active={liquidityDetails?.liquidityPercent === 1} onClick={() => onLiquidityClick(1)}>
             100%
           </LiquidityButton>
         </PercentageToRaiseWrapper>
@@ -170,16 +119,17 @@ const PostSaleDetails: React.FC = () => {
           <TokenInput
             onChange={(e) => setLiquidityDetails({ ...liquidityDetails, listingPrice: e.currentTarget.value })}
             title="Listing Price"
-            quoteTokenSymbol="BNB"
+            quoteTokenSymbol={quoteTokenSymbol}
             size="md"
             backgroundColor="rgba(51, 51, 51, 1)"
           />
-          <TokenInput
-            onChange={(e) => setLiquidityDetails({ ...liquidityDetails, listingPrice: e.currentTarget.value })}
-            title="Listing Price"
-            quoteTokenSymbol="BNB"
-            size="md"
-            backgroundColor="rgba(51, 51, 51, 1)"
+          <DropdownList
+            onChange={(item) =>
+              setLiquidityDetails({ ...liquidityDetails, lockLiquidity: lockedLiquidityValues[item] })
+            }
+            dropdownList={['2 Years', '1 Year', '6 Months']}
+            title="Lock Liquidity for"
+            defaultIndex={2}
           />
         </InputsWrapper>
       </LaunchPadInfoWrapper>
@@ -187,4 +137,4 @@ const PostSaleDetails: React.FC = () => {
   )
 }
 
-export default PostSaleDetails
+export default React.memo(PostSaleDetails)

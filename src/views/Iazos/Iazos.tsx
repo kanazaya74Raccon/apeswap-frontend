@@ -37,7 +37,7 @@ const Header = styled.div`
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: -50px;
-  background: #222222;
+  background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -73,13 +73,12 @@ const IlosWrapper = styled.div`
 
 const TopNavWrapper = styled.div`
   position: relative;
-  height: 60px;
+  height: 0px;
   width: 856px;
   border-radius: 20px 20px 0px 0px;
   display: flex;
   align-items: center;
   padding-left: 30px;
-  background: #333333;
   z-index: 0;
 `
 
@@ -89,7 +88,6 @@ const StyledHeader = styled(Text)`
   font-style: normal;
   line-height: 52px;
   padding-right: 35px;
-  color: #ffffff;
 `
 
 const StyledButton = styled.button`

@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import TextInput from 'components/TextInput'
+import { Text } from '@apeswapfinance/uikit'
 import DateSelectionButton from './DateSelectionButton'
 
-const LaunchPadInfoWrapper = styled.div`
+interface DateObject {
+  start: Date
+  end: Date
+}
+
+interface DateSelectorProps {
+  onChange: (dates: DateObject) => void
+}
+
+const DateContainer = styled.div`
   width: 796px;
   border-radius: 10px;
   background: #333333;
@@ -78,36 +86,37 @@ const formatCountdown = (startDate, endDate) => {
   return `in ${timeUntil?.getMonth()} months ${timeUntil?.getDay()} days ${timeUntil?.getHours()} hours`
 }
 
-const TokenDropdown: React.FC = () => {
-  const [startDate, setStartDate] = useState<Date>(new Date())
-  const [endDate, setEndDate] = useState<Date>(new Date())
+const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
+  const [dateState, setDateState] = useState<DateObject>({ start: new Date(), end: new Date() })
+
+  useEffect(() => {
+    onChange(dateState)
+  }, [dateState, onChange])
 
   return (
-    <>
-      <LaunchPadInfoWrapper>
-        <StyledHeader>Start Date</StyledHeader>
-        <DateSelectionContainer>
-          <TextContainer>
-            <StyledText>{formatDate(startDate)}</StyledText>
-            <StyledSubText>{formatCountdown(new Date(), startDate)}</StyledSubText>
-          </TextContainer>
-          <DateButtonContainer>
-            <DateSelectionButton onChange={(date) => setStartDate(date)} />
-          </DateButtonContainer>
-        </DateSelectionContainer>
-        <StyledHeader>End Date</StyledHeader>
-        <DateSelectionContainer>
-          <TextContainer>
-            <StyledText>{formatDate(endDate)}</StyledText>
-            <StyledSubText>{formatCountdown(startDate, endDate)}</StyledSubText>
-          </TextContainer>
-          <DateButtonContainer>
-            <DateSelectionButton onChange={(date) => setEndDate(date)} />
-          </DateButtonContainer>
-        </DateSelectionContainer>
-      </LaunchPadInfoWrapper>
-    </>
+    <DateContainer>
+      <StyledHeader>Start Date</StyledHeader>
+      <DateSelectionContainer>
+        <TextContainer>
+          <StyledText>{formatDate(dateState.start)}</StyledText>
+          <StyledSubText>{formatCountdown(new Date(), dateState.start)}</StyledSubText>
+        </TextContainer>
+        <DateButtonContainer>
+          <DateSelectionButton onChange={(date) => setDateState({ ...dateState, start: date })} />
+        </DateButtonContainer>
+      </DateSelectionContainer>
+      <StyledHeader>End Date</StyledHeader>
+      <DateSelectionContainer>
+        <TextContainer>
+          <StyledText>{formatDate(dateState.end)}</StyledText>
+          <StyledSubText>{formatCountdown(dateState.start, dateState.end)}</StyledSubText>
+        </TextContainer>
+        <DateButtonContainer>
+          <DateSelectionButton onChange={(date) => setDateState({ ...dateState, end: date })} />
+        </DateButtonContainer>
+      </DateSelectionContainer>
+    </DateContainer>
   )
 }
 
-export default TokenDropdown
+export default React.memo(DateSelection)

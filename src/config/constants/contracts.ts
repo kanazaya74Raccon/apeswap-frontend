@@ -93,14 +93,14 @@ export default {
   },
   iazoFactoryProxy: {
     56: '',
-    97: '0xed344dFafe5999B0F4e1880DbF794EbE4720C859',
+    97: '0x043551756D050deDC09DbdAb7080FbDCfE412AFB',
   },
   iazoExposer: {
     56: '',
-    97: '0x73de0c5dB134120fC4E89555D74d073b9c9F3245',
+    97: '0xCb5c27619b51561D83D335e5c3B0347fC546AFf6',
   },
   iazoSettings: {
     56: '',
-    97: '0xaE3192b9ac6DF170188D85DB44eAF45f926EdB4b',
+    97: '0x060bF7A90585D4873C799B9E5B97C6622f574b2C',
   },
 }

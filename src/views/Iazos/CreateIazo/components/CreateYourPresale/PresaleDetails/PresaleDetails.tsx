@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints, Checkbox } from '@apeswapfinance/uikit'
+import { Text, Checkbox } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import TokenInput from './TokenInput'
 import { ExtendedERC20Details } from '../PairCreation/PairCreation'
 
-interface TokenSaleDetails {
+export interface TokenSaleDetails {
   tokensForSale: string
   pricePerToken: string
   busdLimitPerUser: string
@@ -17,7 +17,7 @@ interface TokenSaleDetails {
 
 interface PresaleDataProps {
   pairTokenDetails: ExtendedERC20Details
-  onChange?: void
+  onChange?: (presaleDetails: TokenSaleDetails) => void
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -63,46 +63,14 @@ const StyledText = styled(Text)`
   margin-left: 15px;
 `
 
-const StyledSubText = styled(Text)`
-  font-family: Poppins;
-  font-size: 16px;
-  line-height: 24px;
-`
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  aling-items: flex-start;
-  height 80px;
-  width: 300px;
-  margin-left: 35px;
-`
-
-const DateButtonContainer = styled.div`
-  position: absolute;
-  right: 50px;
-  display: flex;
-  justify-content: flex-end;
-  z-index: 1;
-`
-
-const DateSelectionContainer = styled.div`
-  position: relative;
-  display: flex;
-  height: 135px;
-  background: #414141;
-  width: 686px;
-  border-radius: 10px;
-  margin-top: 15px;
-  align-items: center;
-  margin-bottom: 20px;
-  z-index: 0;
-`
-
-const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails }) => {
+const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange }) => {
   const { tokenSymbol, quoteToken, userBalance, tokenDecimals } = pairTokenDetails
   const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>()
   const balance = getBalanceNumber(new BigNumber(userBalance), tokenDecimals)
+
+  useEffect(() => {
+    onChange(tokenDetails)
+  }, [tokenDetails, onChange])
 
   return (
     <>
@@ -164,4 +132,4 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails }) => {
   )
 }
 
-export default PresaleDetails
+export default React.memo(PresaleDetails)

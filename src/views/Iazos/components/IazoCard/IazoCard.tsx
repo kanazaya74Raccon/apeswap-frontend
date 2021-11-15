@@ -6,6 +6,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
 import { useCurrentTime } from 'hooks/useTimer'
+import Timer from './Timer'
 
 interface iazoCardProps {
   iazo: Iazo
@@ -109,22 +110,13 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const formatCountdown = (countdown: any): string => {
-  const formatHours = countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours.toString()
-  const formatMinutes = countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes.toString()
-  const formatSeconds = countdown.seconds < 10 ? `0${countdown.seconds.toFixed(0)}` : countdown.seconds.toFixed(0)
-  return `${formatHours}:${formatMinutes}:${formatSeconds}`
-}
-
 const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const { maxSpendPerBuyer, amount, baseToken, iazoToken, timeInfo, status, hardcap, softcap } = iazo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer)).toString()
-  const startTime = formatCountdown(getTimePeriods((parseInt(timeInfo.startTime) - useCurrentTime()) / 1000))
-  const lockTime = getTimePeriods(parseInt(timeInfo.lockPeriod))
   const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
   const hardcapFormated = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
   const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
-  const percentRaised = (totalRaiseFormated / softcapFormated) * 100
+  const percentRaised = (totalRaiseFormated / hardcapFormated) * 100
 
   return (
     <IazoCardWrapper>
@@ -135,7 +127,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
           <TokenName> {iazoToken.symbol}</TokenName>
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
-          <BoldAfterText boldContent={startTime}>Starts in </BoldAfterText>
+          <Timer timeInfo={timeInfo} />
           <BoldAfterText>Duration 5d</BoldAfterText>
         </TextBoxWrapper>
       </HeadingWrapper>

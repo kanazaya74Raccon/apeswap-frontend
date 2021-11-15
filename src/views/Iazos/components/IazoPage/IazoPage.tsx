@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import { Text } from '@apeswapfinance/uikit'
 import { useIazos } from 'state/hooks'
+import Timer from '../IazoCard/Timer'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
+import BeforeSale from './SaleStatus/BeforeSale'
+import DuringSale from './SaleStatus/DuringSale'
 
 const PageWrapper = styled.div`
   display: none;
@@ -114,18 +117,20 @@ const WarningWrapper = styled.div`
   padding: 50px;
 `
 
-const formatCountdown = (countdown: any): string => {
-  const formatHours = countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours.toString()
-  const formatMinutes = countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes.toString()
-  const formatSeconds = countdown.seconds < 10 ? `0${countdown.seconds.toFixed(0)}` : countdown.seconds.toFixed(0)
-  return `${formatHours}:${formatMinutes}:${formatSeconds}`
-}
+const BeforeSaleWrapper = styled.div`
+  border: 1px solid red;
+  background: rgba(51, 51, 51, 1);
+  border-radius: 10px;
+  height: 735px;
+  width: 796px;
+  margin-top: 40px;
+`
 
 const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
   const { iazos, isInitialized } = useIazos()
   const iazo = isInitialized && iazos.iazos.find((i) => i.iazoId === id)
-  const { iazoToken } = iazo
+  const { iazoToken, timeInfo, hardcap, baseToken, status } = iazo
   return (
     <>
       <Header />
@@ -149,10 +154,19 @@ const IazoPage: React.FC = () => {
               tokens and dump them on locked liquidity. Please do your own research before using this platform.
             </StyledText>
           </WarningWrapper>
-          {isInitialized && (
-            <TokenInfoCard tokenName={iazoToken.name} tokenAddress={iazoToken.address} tokenImage="" tokenWebsite="" />
-          )}
-          <SaleStatus />
+          <BeforeSaleWrapper>
+            {isInitialized && (
+              <>
+                <TokenInfoCard
+                  tokenName={iazoToken.name}
+                  tokenAddress={iazoToken.address}
+                  tokenImage=""
+                  tokenWebsite=""
+                />
+                <SaleStatus timeInfo={timeInfo} hardcap={hardcap} baseToken={baseToken} status={status} />
+              </>
+            )}
+          </BeforeSaleWrapper>
           <SaleInfo iazo={iazo} />
         </LaunchPadWrapper>
       </PageWrapper>

@@ -1,0 +1,96 @@
+import React, { useRef, useState } from 'react'
+import styled from 'styled-components'
+import { Text } from '@apeswapfinance/uikit'
+
+interface FileProps {
+  imageFile: File
+  displayUrl: string
+}
+
+interface ImageUploadProps {
+  title: string
+  onChange: (file: FileProps) => void
+}
+
+const Container = styled.div`
+  height: 80px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+`
+
+const HiddenInput = styled.input`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+`
+
+const DragImageWrapper = styled.div`
+  position: relative;
+  width: 440px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222222;
+  border: 2px dashed #ffb300;
+  box-sizing: border-box;
+  border-radius: 10px;
+  cursor: pointer;
+`
+
+const DragAndDropText = styled(Text)`
+  font-family: Poppins;
+  font-weight: 700;
+  color: rgba(255, 179, 0, 1);
+  cursor: pointer;
+`
+
+const ImageCircle = styled.div<{ image?: string }>`
+  width: 74px;
+  height: 74px;
+  background: #222222;
+  border-radius: 50px;
+  margin-right: 20px;
+  background-image: ${(props) => `url(${props?.image})`};
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+`
+const StyledText = styled(Text)`
+  font-family: Poppins;
+  font-weight: 500;
+  width: 120px;
+`
+
+const ImageUpload: React.FC<ImageUploadProps> = ({ title, onChange }) => {
+  const fileDrop = useRef(null)
+  const [file, setFile] = useState<FileProps>(null)
+
+  const onSetFile = (e) => {
+    const imageFile = e.target.files[0]
+    if (imageFile) {
+      const displayUrl = URL.createObjectURL(imageFile)
+      setFile({ imageFile, displayUrl })
+      onChange({ imageFile, displayUrl })
+    }
+  }
+
+  return (
+    <Container>
+      <StyledText> {title} </StyledText>
+      <ImageCircle image={file?.displayUrl} />
+      <DragImageWrapper>
+        <HiddenInput type="file" ref={fileDrop} onChange={onSetFile} />
+        <DragAndDropText>{file?.imageFile?.name || 'Click here or Drop your PNG/SVG file here!'}</DragAndDropText>
+      </DragImageWrapper>
+    </Container>
+  )
+}
+
+export default React.memo(ImageUpload)

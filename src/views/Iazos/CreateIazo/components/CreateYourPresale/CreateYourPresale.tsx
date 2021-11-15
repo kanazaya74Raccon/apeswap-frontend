@@ -1,21 +1,26 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import TextInput from 'components/TextInput'
+import { Text } from '@apeswapfinance/uikit'
 import PairCreation, { ExtendedERC20Details } from './PairCreation/PairCreation'
 import DateSelection from './DateSelection/DateSelection'
-import PresaleDetails from './PresaleDetails/PresaleDetails'
-import PostSaleDetails from './PostSaleDetails/PostSaleDetails'
+import PresaleDetails, { TokenSaleDetails } from './PresaleDetails/PresaleDetails'
+import PostSaleDetails, { LiquidityLockDetails } from './PostSaleDetails/PostSaleDetails'
+import SaleReview from './SaleReview/SaleReview'
+import Information, { SaleInformation } from './Information/Information'
 
 interface Stepper {
   pairCreated: boolean
   datesSelected: boolean
   presaleDetailsSet: boolean
+  postsaleDetailsSet: boolean
 }
 
 interface PresaleData {
   pairCreation: ExtendedERC20Details
   datesSelected: Date[]
+  presaleTokenDetails: TokenSaleDetails
+  postsaleDetails: LiquidityLockDetails
+  information: SaleInformation
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -37,47 +42,66 @@ const StyledHeader = styled(Text)`
   padding-top: 25px;
 `
 
-const StyledText = styled(Text)`
-  color: #ffffff;
-  text-align: start;
-  padding: 20px 15px 10px 20px;
-`
-
-const HeaderWrapper = styled.div<{ opened?: boolean }>`
-  height: 35px;
-  width: 100%;
-  left: 356px;
-  top: 458px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: ${(props) => props.opened && '0px 3px 7px #333333'};
-`
-
 export default function CreateYourPresale(): JSX.Element {
   const [presaleData, setPresaleData] = useState<PresaleData>()
   const [stepper, setStepper] = useState<Stepper>({
     pairCreated: false,
-    datesSelected: true,
-    presaleDetailsSet: true,
+    datesSelected: false,
+    presaleDetailsSet: false,
+    postsaleDetailsSet: false,
   })
+
+  const presaleStepsCompleted =
+    stepper.pairCreated && stepper.datesSelected && stepper.presaleDetailsSet && stepper.postsaleDetailsSet
 
   const onPairCreation = useCallback((val) => {
     setPresaleData((prevState) => ({ ...prevState, pairCreation: val }))
     setStepper((prevState) => ({ ...prevState, pairCreated: val && true }))
   }, [])
-  const onPresaleDetails = useCallback((val) => {
-    setPresaleData((prevState) => ({ ...prevState, pairCreation: val }))
-    setStepper((prevState) => ({ ...prevState, pairCreated: val && true }))
+
+  const onDateSelection = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, datesSelected: val }))
+    setStepper((prevState) => ({ ...prevState, datesSelected: val && true }))
   }, [])
+
+  const onPresaleDetails = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, presaleTokenDetails: val }))
+    setStepper((prevState) => ({ ...prevState, presaleDetailsSet: val && true }))
+  }, [])
+
+  const onPostsaleDetails = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, postsaleDetails: val }))
+    setStepper((prevState) => ({ ...prevState, postsaleDetailsSet: val && true }))
+  }, [])
+
+  const onInformation = useCallback((val) => {
+    setPresaleData((prevState) => ({ ...prevState, information: val }))
+  }, [])
+
+  console.log(presaleData)
+  console.log(presaleData?.presaleTokenDetails)
 
   return (
     <LaunchPadInfoWrapper>
       <StyledHeader>Create Your Presale</StyledHeader>
       <PairCreation onChange={onPairCreation} />
-      {stepper.datesSelected && <DateSelection />}
-      {stepper.pairCreated && <PresaleDetails pairTokenDetails={presaleData.pairCreation} />}
-      <PostSaleDetails />
+      {stepper.pairCreated && (
+        <>
+          <PresaleDetails onChange={onPresaleDetails} pairTokenDetails={presaleData.pairCreation} />
+          <DateSelection onChange={onDateSelection} />
+          <PostSaleDetails onChange={onPostsaleDetails} quoteTokenSymbol={presaleData.pairCreation.quoteToken} />
+        </>
+      )}
+      {presaleStepsCompleted && (
+        <>
+          <SaleReview
+            presaleDetails={presaleData.presaleTokenDetails}
+            postsaleDetails={presaleData.postsaleDetails}
+            pairDetails={presaleData.pairCreation}
+          />
+          <Information onChange={onInformation} />
+        </>
+      )}
     </LaunchPadInfoWrapper>
   )
 }
