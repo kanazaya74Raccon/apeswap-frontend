@@ -2637,6 +2637,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 138,
+    tokenName: 'LIME',
+    image: 'LIME.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.lime,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x2dC448eF0Af4cDc299D2085CBC439459243E14aE',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://imem.app/',
+    harvest: true,
+    tokenPerBlock: `0.507986111111111111`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
