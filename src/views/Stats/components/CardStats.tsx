@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FarmPool } from 'state/types'
 import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
-import { useAllPools, useFarmFromPid, useFarmFromSymbol } from 'state/hooks'
+import { useAllPools, useFarmFromPid } from 'state/hooks'
 import DetailsSection from './DetailsSection'
 import CardValue from './CardValue'
 

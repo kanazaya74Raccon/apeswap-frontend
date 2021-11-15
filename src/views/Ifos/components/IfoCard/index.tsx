@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
+import multicallABI from 'config/abi/Multicall.json'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@apeswapfinance/uikit'
@@ -9,7 +10,10 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { useMulticallContract, useSafeIfoContract } from 'hooks/useContract'
+import { getMulticallAddress } from 'utils/addressHelper'
+import { useNetworkChainId } from 'state/hooks'
+import { useSafeIfoContract } from 'hooks/useContract'
+import { getContract } from 'utils/web3'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
@@ -117,7 +121,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       2,
     )
   const Ribbon = getRibbonComponent(state.status, TranslateString)
-  const multicallContract = useMulticallContract()
+  const chainId = useNetworkChainId()
+  const multicallAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallAddress, chainId)
 
   useEffect(() => {
     const fetchProgress = async () => {
