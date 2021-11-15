@@ -88,11 +88,11 @@ const ToggleContainer = styled.div`
     flex-direction: row;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 200px;
+    width: 315px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    width: 225px;
+    width: 365px;
   }
 `
 
@@ -372,7 +372,6 @@ const ButtonCheckWrapper = styled.div`
   align-items: center;
   display: flex;
   width: 100%;
-  margin-right: 30px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
@@ -644,9 +643,9 @@ const Pools: React.FC = () => {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
     } else if (!stakedOnly && gnanaOnly && !bananaOnly) {
       chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
-    } else if ((!stakedOnly && bananaOnly) || !gnanaOnly) {
+    } else if (!stakedOnly && bananaOnly && !gnanaOnly) {
       chosenPools = isActive ? bananaOnlyPools : bananaInactivePools
-    } else if ((stakedOnly && bananaOnly) || gnanaOnly) {
+    } else if (stakedOnly && (bananaOnly || gnanaOnly)) {
       chosenPools = isActive ? allStakedOnlyPools : allStakedInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools
