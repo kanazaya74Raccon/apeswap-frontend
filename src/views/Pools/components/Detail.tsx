@@ -1,12 +1,7 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { FarmPool } from 'state/types'
-import { getBalanceNumber } from 'utils/formatBalance'
-import getTimePeriods from 'utils/getTimePeriods'
-import { BSC_BLOCK_TIME } from 'config'
 import { registerToken } from 'utils/wallet'
 
 interface RewardToken {
@@ -38,20 +33,6 @@ export interface ExpandableSectionProps {
   imageToken?: string
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  padding: 12px;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding-left: 340px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    padding-left: 401px;
-  }
-`
-
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
   font-weight: bold;
@@ -82,10 +63,6 @@ const StyledLink = styled(Link)`
 
 const StyledText = styled(Text)`
   font-weight: 700;
-`
-
-const InfoContainer = styled.div`
-  width: 285px;
 `
 
 const Detail: React.FC<ExpandableSectionProps> = ({

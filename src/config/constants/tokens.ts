@@ -715,12 +715,19 @@ const tokens = {
     decimals: 18,
   },
   lime: {
-    "symbol": "LIME",
-    "address": {
-      56: "0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd",
+    symbol: 'LIME',
+    address: {
+      56: '0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd',
     },
-    "decimals": 18,
-},
+    decimals: 18,
+  },
+  fxs: {
+    symbol: 'FXS',
+    address: {
+      56: '0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
