@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
@@ -9,12 +9,17 @@ import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()
+  const [pending, setPending] = useState(0)
   const { account } = useWeb3React()
   const allEarnings = useAllEarnings()
+  const bananaPrice = usePriceBananaBusd().toNumber()
   const earningsSum = allEarnings.reduce((accum, earning) => {
     return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()
   }, 0)
-  const pending = usePriceBananaBusd().toNumber() * earningsSum
+
+  useEffect(() => {
+    setPending(earningsSum * bananaPrice)
+  }, [earningsSum, bananaPrice])
 
   if (!account) {
     return (

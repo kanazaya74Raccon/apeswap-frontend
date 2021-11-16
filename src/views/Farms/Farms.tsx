@@ -396,7 +396,6 @@ const FlexLayout = styled.div`
 
 const Farms: React.FC = () => {
   const size: Size = useWindowSize()
-
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
