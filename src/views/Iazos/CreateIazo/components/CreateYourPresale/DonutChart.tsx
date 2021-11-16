@@ -47,8 +47,8 @@ const GraphCardWrapper = styled.div`
 
 const GraphCard = styled.div<{ color: string }>`
   background-color: ${(props) => props.color};
-  height: 3.2vh;
-  width: 3vh;
+  height: 35px;
+  width: 30px;
   border-radius: 5px;
   color: white;
   display: flex;

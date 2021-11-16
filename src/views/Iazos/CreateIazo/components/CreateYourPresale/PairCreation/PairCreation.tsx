@@ -1,16 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints, Dropdown, Flex } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import TextInput from 'components/TextInput'
-import useERC20Details, { ERC20DetailsReturned } from 'hooks/useERC20Details'
+import useERC20Details from 'hooks/useERC20Details'
 import { useToast } from 'state/hooks'
+import tokens from 'config/constants/tokens'
 import { useWeb3React } from '@web3-react/core'
 import TokenDropdown from './TokenDropdown'
-
-export interface ExtendedERC20Details extends ERC20DetailsReturned {
-  tokenAddress: string
-  quoteToken: string
-}
+import { ExtendedERC20Details } from '../types'
 
 interface PairCreationProps {
   onChange: (pairCreation: ExtendedERC20Details) => void

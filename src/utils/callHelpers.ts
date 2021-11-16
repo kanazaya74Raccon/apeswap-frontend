@@ -260,3 +260,38 @@ export const miniChefUnstake = async (miniChefContract, pid, amount, account) =>
       return tx.transactionHash
     })
 }
+
+/* 
+unitParams[9]
+0: tokenPrice - string
+1: amount - string (hardcap)
+2: softCap - string
+3: startTime - string (unix timstamp)
+4: activeTime - number (seconds)
+5: lockPeriod - number (seconds)
+6: maxSpendPerBuyer - string
+7: liquidityPercent - number
+8: listingPrice - number (if 0 same as tokenPrice)
+*/
+export const createNewIazo = async (
+  iazoFactoryContract, // Contract
+  iazoOwner, // Address
+  iazoToken, // Address
+  baseToken, // Address
+  burnRemains, // Bool
+  unitParams, // uint256[9]
+) => {
+  console.log({
+    iazoOwner, // Address
+    iazoToken, // Address
+    baseToken, // Address
+    burnRemains, // Bool
+    unitParams,
+  })
+  return iazoFactoryContract.methods
+    .createIAZO(iazoOwner, iazoToken, baseToken, burnRemains, unitParams)
+    .send({ from: iazoOwner, value: new BigNumber('1').times(new BigNumber(10).pow(18)).toString() })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

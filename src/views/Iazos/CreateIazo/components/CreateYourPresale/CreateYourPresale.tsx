@@ -1,26 +1,20 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
-import PairCreation, { ExtendedERC20Details } from './PairCreation/PairCreation'
+import { PresaleData } from './types'
+import PairCreation from './PairCreation/PairCreation'
 import DateSelection from './DateSelection/DateSelection'
-import PresaleDetails, { TokenSaleDetails } from './PresaleDetails/PresaleDetails'
-import PostSaleDetails, { LiquidityLockDetails } from './PostSaleDetails/PostSaleDetails'
+import PresaleDetails from './PresaleDetails/PresaleDetails'
+import PostSaleDetails from './PostSaleDetails/PostSaleDetails'
 import SaleReview from './SaleReview/SaleReview'
-import Information, { SaleInformation } from './Information/Information'
+import Information from './Information/Information'
+import Actions from './Actions'
 
 interface Stepper {
   pairCreated: boolean
   datesSelected: boolean
   presaleDetailsSet: boolean
   postsaleDetailsSet: boolean
-}
-
-interface PresaleData {
-  pairCreation: ExtendedERC20Details
-  datesSelected: Date[]
-  presaleTokenDetails: TokenSaleDetails
-  postsaleDetails: LiquidityLockDetails
-  information: SaleInformation
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -100,6 +94,7 @@ export default function CreateYourPresale(): JSX.Element {
             pairDetails={presaleData.pairCreation}
           />
           <Information onChange={onInformation} />
+          <Actions presaleData={presaleData} />
         </>
       )}
     </LaunchPadInfoWrapper>

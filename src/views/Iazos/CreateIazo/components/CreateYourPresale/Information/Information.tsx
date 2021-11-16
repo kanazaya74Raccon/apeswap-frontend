@@ -3,16 +3,7 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import TextInput from 'components/TextInput'
 import ImageUpload from './ImageUpload'
-
-export interface SaleInformation {
-  website: string
-  whitepaper: string
-  twitter: string
-  telegram: string
-  medium: string
-  description: string
-  tokenLogo: File
-}
+import { SaleInformation } from '../types'
 
 interface InformationProps {
   onChange: (saleInformatiom: SaleInformation) => void

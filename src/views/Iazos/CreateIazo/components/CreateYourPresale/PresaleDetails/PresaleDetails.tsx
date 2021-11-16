@@ -4,16 +4,7 @@ import { Text, Checkbox } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import TokenInput from './TokenInput'
-import { ExtendedERC20Details } from '../PairCreation/PairCreation'
-
-export interface TokenSaleDetails {
-  tokensForSale: string
-  pricePerToken: string
-  busdLimitPerUser: string
-  softcap: string
-  hardcap: string
-  burnRemains: boolean
-}
+import { TokenSaleDetails, ExtendedERC20Details } from '../types'
 
 interface PresaleDataProps {
   pairTokenDetails: ExtendedERC20Details

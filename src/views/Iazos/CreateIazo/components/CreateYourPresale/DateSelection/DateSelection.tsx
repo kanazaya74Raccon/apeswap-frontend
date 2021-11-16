@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import getTimePeriods from 'utils/getTimePeriods'
 import DateSelectionButton from './DateSelectionButton'
-
-interface DateObject {
-  start: Date
-  end: Date
-}
+import { DateObject } from '../types'
 
 interface DateSelectorProps {
   onChange: (dates: DateObject) => void
@@ -78,12 +75,14 @@ const DateSelectionContainer = styled.div`
 `
 
 const formatDate = (date: Date) => {
-  return `${date?.getDay()} ${date?.getMonth()} ${date?.getFullYear()}`
+  return `${date?.getUTCMonth() + 1} ${date?.getUTCDate()} ${date?.getUTCFullYear()}`
 }
 
 const formatCountdown = (startDate, endDate) => {
-  const timeUntil = new Date(Math.abs(endDate - startDate))
-  return `in ${timeUntil?.getMonth()} months ${timeUntil?.getDay()} days ${timeUntil?.getHours()} hours`
+  console.log('MATHS')
+  console.log(Math.abs(endDate - startDate))
+  const timeUntil = getTimePeriods(Math.abs(endDate - startDate) / 1000)
+  return `in ${timeUntil?.months} months ${timeUntil?.days} days ${timeUntil?.hours} hours`
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {

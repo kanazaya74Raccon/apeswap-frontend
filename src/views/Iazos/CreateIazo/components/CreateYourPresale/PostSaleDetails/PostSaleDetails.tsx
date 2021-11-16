@@ -4,12 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { SECONDS_PER_YEAR } from 'config'
 import TokenInput from '../PresaleDetails/TokenInput'
 import DropdownList from './DropdownList'
-
-export interface LiquidityLockDetails {
-  liquidityPercent: number
-  listingPrice: string
-  lockLiquidity: number
-}
+import { LiquidityLockDetails } from '../types'
 
 interface PostSaleDetailsProp {
   quoteTokenSymbol: string
