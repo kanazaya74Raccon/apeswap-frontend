@@ -179,6 +179,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             liquidity={farm.liquidity}
             pid={farm.pid}
             farmLp={farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}
+            farm={farm}
           />
         </ExpandingWrapper>
       </StyledContainer>
