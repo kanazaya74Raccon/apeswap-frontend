@@ -2496,6 +2496,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://imem.app/',
   },
   {
     pid: 156,
@@ -2512,6 +2513,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://frax.finance/',
   },
   {
     pid: 7, // NOTE: Inactive Farm
