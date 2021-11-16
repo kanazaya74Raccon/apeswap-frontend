@@ -24,7 +24,7 @@ const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
   return (
     <ActionWrapper>
       <ApproveCreateIazo />
-      <CreatePresale presaleData={presaleData}/>
+      <CreatePresale presaleData={presaleData} />
     </ActionWrapper>
   )
 }
