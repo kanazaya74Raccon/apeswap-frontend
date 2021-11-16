@@ -68,7 +68,7 @@ const ToggleWrapper = styled.div`
   }
 `
 
-const ToggleContainer = styled.div`
+const ToggleContainer = styled.div<{ size: number }>`
   position: absolute;
   right: 5%;
   display: flex;
@@ -88,11 +88,11 @@ const ToggleContainer = styled.div`
     flex-direction: row;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 200px;
+    width: 250px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    width: 225px;
+    width: 340px;
   }
 `
 
@@ -203,7 +203,7 @@ const StyledText = styled(Text)`
   font-weight: 700;
   font-size: 12px;
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 15px !important;
   }
 `
@@ -372,7 +372,6 @@ const ButtonCheckWrapper = styled.div`
   align-items: center;
   display: flex;
   width: 100%;
-  margin-right: 30px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
@@ -486,6 +485,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
   const [gnanaOnly, setGnanaOnly] = useState(false)
+  const [bananaOnly, setBananaOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -501,7 +501,6 @@ const Pools: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
@@ -549,13 +548,28 @@ const Pools: React.FC = () => {
   )
 
   const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken?.symbol === 'GNANA')
+  const bananaOnlyPools = openPools.filter((pool) => pool.stakingToken?.symbol === 'BANANA')
 
   const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken?.symbol === 'GNANA')
+  const bananaInactivePools = finishedPools.filter((pool) => pool.stakingToken?.symbol === 'BANANA')
   const gnanaStakedOnlyPools = openPools.filter(
     (pool) =>
       pool.userData &&
       new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
       pool.stakingToken?.symbol === 'GNANA',
+  )
+  const bananaStakedOnlyPools = openPools.filter(
+    (pool) =>
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken?.symbol === 'BANANA',
+  )
+
+  const allStakedOnlyPools = openPools.filter(
+    (pool) =>
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      (pool.stakingToken?.symbol === 'BANANA' || pool.stakingToken?.symbol === 'GNANA'),
   )
 
   const gnanaStakedInactivePools = finishedPools.filter(
@@ -563,6 +577,20 @@ const Pools: React.FC = () => {
       pool.userData &&
       new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
       pool.stakingToken?.symbol === 'GNANA',
+  )
+
+  const bananaStakedInactivePools = finishedPools.filter(
+    (pool) =>
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      pool.stakingToken?.symbol === 'BANANA',
+  )
+
+  const allStakedInactivePools = finishedPools.filter(
+    (pool) =>
+      pool.userData &&
+      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
+      (pool.stakingToken?.symbol === 'BANANA' || pool.stakingToken?.symbol === 'GNANA'),
   )
 
   const handleSortOptionChange = (option): void => {
@@ -606,12 +634,18 @@ const Pools: React.FC = () => {
   const poolsToShow = () => {
     let chosenPools = []
 
-    if (stakedOnly && gnanaOnly) {
+    if (stakedOnly && gnanaOnly && !bananaOnly) {
       chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-    } else if (stakedOnly && !gnanaOnly) {
+    } else if (stakedOnly && bananaOnly && !gnanaOnly) {
+      chosenPools = isActive ? bananaStakedOnlyPools : bananaStakedInactivePools
+    } else if (stakedOnly && !gnanaOnly && !bananaOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
-    } else if (!stakedOnly && gnanaOnly) {
+    } else if (!stakedOnly && gnanaOnly && !bananaOnly) {
       chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
+    } else if (!stakedOnly && bananaOnly && !gnanaOnly) {
+      chosenPools = isActive ? bananaOnlyPools : bananaInactivePools
+    } else if (stakedOnly && (bananaOnly || gnanaOnly)) {
+      chosenPools = isActive ? allStakedOnlyPools : allStakedInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools
     }
@@ -679,7 +713,7 @@ const Pools: React.FC = () => {
             </LabelWrapper>
             <ButtonCheckWrapper>
               <PoolTabButtons />
-              <ToggleContainer>
+              <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
@@ -687,6 +721,10 @@ const Pools: React.FC = () => {
                 <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
                   <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
+                </ToggleWrapper>
+                <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
+                  <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />
+                  <StyledText fontFamily="poppins"> BANANA</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
