@@ -79,6 +79,7 @@ const StyledBackground = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 5px;
+  background: rgb(255, 179, 0, 0.4);
 `
 
 const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false }) => {
