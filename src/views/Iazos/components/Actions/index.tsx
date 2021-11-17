@@ -22,10 +22,16 @@ const ActionWrapper = styled.div`
 `
 const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   const { address } = baseToken
+  const initApprove = useIazoAllowance(address, iazoAddress)?.gt(0)
+  const [approved, setApproved] = useState(initApprove)
   const chainId = useNetworkChainId()
-  const approved = useIazoAllowance(address, iazoAddress)?.gt(0)
   const isNative = address.toLowerCase() === getNativeWrappedAddress(chainId).toLowerCase()
-  console.log(approved)
+  console.log('This is rendering')
+  console.log(initApprove)
+  useEffect(() => {
+    console.log('IN THISS')
+    setApproved(initApprove)
+  }, [initApprove])
   return (
     <ActionWrapper>
       {approved || isNative ? (
@@ -37,4 +43,4 @@ const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   )
 }
 
-export default Actions
+export default React.memo(Actions)
