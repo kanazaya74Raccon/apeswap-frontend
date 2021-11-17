@@ -76,7 +76,7 @@ const ComponentWrapper = styled.div`
 `
 
 const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
-  const tokenList = ['WBNB', 'BUSD']
+  const tokenList = ['WBNB', 'BUSD', 'GNANA']
   const [selectedToken, setSelectedToken] = useState<ExtendedERC20Details>({
     userBalance: null,
     tokenSymbol: null,
