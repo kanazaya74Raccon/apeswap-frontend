@@ -103,7 +103,9 @@ export default function CreateIazo(): JSX.Element {
             <Link to="/iazos">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <Text color="white" fontFamily="poppins">Back to Ape Launchpad</Text>
+                <Text color="white" fontFamily="poppins">
+                  Back to Ape Launchpad
+                </Text>
               </BackWrapper>
             </Link>
           </TopNavWrapper>

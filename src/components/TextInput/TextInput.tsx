@@ -46,9 +46,9 @@ const Input = styled.input<{ backgroundColor: string; imgSrc: string; textColor:
   font-size: 18px;
   line-height: 23px;
   word-break: break-word;
-  text-align: left; 
+  text-align: left;
   background: ${(props) => props.backgroundColor || '#333333'};
-  color: ${(props) => (props.textColor || props.theme.isDark ? 'rgba(240, 240, 240, 1)' : 'rgba(161, 101, 82, 1)')};
+  color: ${(props) => props.textColor || '#ffffff'};
   border: none;
   z-index: 0;
   :focus {
