@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import DatePicker from 'react-datepicker'
-import { Text, ButtonSquare } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
 import useIazoAllowance from 'views/Iazos/hooks/useIazoAllowance'
 import { IazoTokenInfo } from 'state/types'
+import { useNetworkChainId } from 'state/hooks'
+import { getNativeWrappedAddress } from 'utils/addressHelper'
 import ApproveIazo from './ApproveIazo'
 import CommitToIazo from './CommitToIazo'
 
@@ -22,12 +22,14 @@ const ActionWrapper = styled.div`
 `
 const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   const { address } = baseToken
+  const chainId = useNetworkChainId()
   const approved = useIazoAllowance(address, iazoAddress)?.gt(0)
+  const isNative = address === getNativeWrappedAddress(chainId)
   console.log(approved)
   return (
     <ActionWrapper>
-      {approved ? (
-        <CommitToIazo baseToken={baseToken} iazoAddress={iazoAddress} />
+      {approved || isNative ? (
+        <CommitToIazo baseToken={baseToken} iazoAddress={iazoAddress} isNative={isNative} />
       ) : (
         <ApproveIazo tokenAddress={address} iazoAddress={iazoAddress} />
       )}

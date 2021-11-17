@@ -12,6 +12,7 @@ import TokenInput from '../../CreateIazo/components/CreateYourPresale/PresaleDet
 interface ApproveCreateIazoProps {
   iazoAddress: string
   baseToken: IazoTokenInfo
+  isNative: boolean
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 
-const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken }) => {
+const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken, isNative }) => {
   const { address, symbol, decimals } = baseToken
   const [amountToCommit, setAmountToCommit] = useState(null)
   const userBalance = useTokenBalance(address)
@@ -38,6 +39,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken
   const onCommit = useCommitToIazo(
     iazoAddress,
     new BigNumber(amountToCommit).times(new BigNumber(10).pow(parseInt(decimals))).toString(),
+    isNative,
   ).onCommit
   return (
     <Wrapper>
