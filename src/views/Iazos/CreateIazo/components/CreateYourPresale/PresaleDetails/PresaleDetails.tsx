@@ -76,7 +76,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, pricePerToken: e.currentTarget.value })}
-          title="Price of the token"
+          title={`Price of 1 ${tokenSymbol}`}
           mr="12.5px"
           quoteTokenSymbol={quoteToken}
           size="md"
