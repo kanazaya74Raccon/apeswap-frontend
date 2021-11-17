@@ -46,6 +46,8 @@ const TokenImage = styled.img`
 `
 
 const TokenName = styled(Text)`
+  font-family: Poppins;
+  font-weight: 700;
   font-size: 24px;
   padding-left: 2px;
   align-self: flex-start;
@@ -74,9 +76,9 @@ const TokenInfoButton = styled.div<{ opacity: string }>`
 `
 
 const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, tokenWebsite, tokenImage }) => {
-  const formatTokenAddress = `${tokenAddress.slice(0, 5)}...${tokenAddress.slice(
-    tokenAddress.length - 3,
-    tokenAddress.length,
+  const formatTokenAddress = `${tokenAddress?.slice(0, 5)}...${tokenAddress?.slice(
+    tokenAddress?.length - 3,
+    tokenAddress?.length,
   )}`
   return (
     <IazoCardWrapper>

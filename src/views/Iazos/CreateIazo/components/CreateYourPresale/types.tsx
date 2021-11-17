@@ -29,9 +29,8 @@ export interface LiquidityLockDetails {
 export interface TokenSaleDetails {
   tokensForSale: string
   pricePerToken: string
-  busdLimitPerUser: string
+  limitPerUser: string
   softcap: string
-  hardcap: string
   burnRemains: boolean
 }
 

@@ -5,18 +5,20 @@ import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import Timer from '../../IazoCard/Timer'
+import Actions from '../../Actions'
+import IazoSymbols from '../../IazoSymbols'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
   hardcap: string
   baseToken: IazoTokenInfo
   status: IazoStatus
+  iazoAddress: string
 }
 
 const BeforeSaleWrapper = styled.div`
   width: 796px;
   display: flex;
-  border: 1px solid red;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -43,12 +45,21 @@ const ProgressBar = styled.div`
   background: #c4c4c4;
 `
 
+const IazoSymbolsContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100px;
+`
+
 const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   width: ${(props) => props.percentComplete};
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, status }) => {
+const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, status, iazoAddress }) => {
   const { symbol, decimals } = baseToken
   const { totalBaseCollected } = status
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
@@ -66,6 +77,11 @@ const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, s
         </ProgressBar>
       </ProgressBarWrapper>
       <Timer timeInfo={timeInfo} />
+      <Actions iazoAddress={iazoAddress} baseToken={baseToken} />
+      <IazoSymbolsContainer>
+        <IazoSymbols iconImage="dollar" />
+        <IazoSymbols iconImage="lock" />
+      </IazoSymbolsContainer>
     </BeforeSaleWrapper>
   )
 }

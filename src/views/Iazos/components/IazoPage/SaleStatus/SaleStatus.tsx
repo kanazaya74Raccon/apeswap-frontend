@@ -15,6 +15,7 @@ interface SaleStatus {
   hardcap: string
   baseToken: IazoTokenInfo
   status: IazoStatus
+  iazoAddress: string
 }
 
 const IazoSymbolWrapper = styled.div`
@@ -35,14 +36,14 @@ const SaleStatusContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 796px;
-  height: 300px;
   flex-direction: row;
   align-items: space-between;
   margin-top: 50px;
+  margin-bottom: 50px;
   justify-content: center;
 `
 
-const SaleStatus: React.FC<SaleStatus> = ({ timeInfo, hardcap, baseToken, status }) => {
+const SaleStatus: React.FC<SaleStatus> = ({ timeInfo, hardcap, baseToken, status, iazoAddress }) => {
   const { activeTime, startTime } = timeInfo
   const currentTime = useCurrentTime() / 1000
   const endTime = parseInt(activeTime) + parseInt(startTime)
@@ -54,23 +55,19 @@ const SaleStatus: React.FC<SaleStatus> = ({ timeInfo, hardcap, baseToken, status
       return <BeforeSale timeInfo={timeInfo} status={status} />
     }
     if (timeUntilEnd > 0) {
-      return <DuringSale timeInfo={timeInfo} hardcap={hardcap} baseToken={baseToken} status={status} />
+      return (
+        <DuringSale
+          timeInfo={timeInfo}
+          hardcap={hardcap}
+          baseToken={baseToken}
+          status={status}
+          iazoAddress={iazoAddress}
+        />
+      )
     }
     return <></>
   }
-  return (
-    <SaleStatusContainer>
-      {renderSaleStatus()}
-      <IazoSymbolsContainer>
-        <IazoSymbolWrapper>
-          <IazoSymbols iconImage="dollar" />
-        </IazoSymbolWrapper>
-        <IazoSymbolWrapper>
-          <IazoSymbols iconImage="lock" />
-        </IazoSymbolWrapper>
-      </IazoSymbolsContainer>
-    </SaleStatusContainer>
-  )
+  return <SaleStatusContainer>{renderSaleStatus()}</SaleStatusContainer>
 }
 
 export default SaleStatus

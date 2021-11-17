@@ -73,7 +73,8 @@ const StyledText = styled(Text)`
 const StyledHeader = styled(Text)`
   position: absolute;
   top: 20px;
-  font-family: Titan One;
+  font-family: Poppins;
+  font-weight: 700;
   font-size: 22px;
   line-height: 27px;
   margin-top: 15px;
@@ -105,7 +106,6 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
     return temp
   })
 
-  console.log(offsetChart)
   return (
     <ChartWrapper>
       <StyledHeader>{title}</StyledHeader>
@@ -141,4 +141,4 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
   )
 }
 
-export default DonutChart
+export default React.memo(DonutChart)

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
-import { Text } from '@apeswapfinance/uikit'
-import { useIazos } from 'state/hooks'
+import { Text, Spinner } from '@apeswapfinance/uikit'
+import { useFetchIazos, useIazos } from 'state/hooks'
 import Timer from '../IazoCard/Timer'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
@@ -80,7 +80,8 @@ const HeaderWrapper = styled.div`
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
+  font-weight: 700;
   font-size: 45px;
   font-style: normal;
   line-height: 52px;
@@ -94,6 +95,7 @@ const BackWrapper = styled.div`
 
 const StyledText = styled(Text)`
   color: #ffffff;
+  font-family: Poppins;
 `
 
 const BackArrow = styled.img`
@@ -118,19 +120,30 @@ const WarningWrapper = styled.div`
 `
 
 const BeforeSaleWrapper = styled.div`
-  border: 1px solid red;
   background: rgba(51, 51, 51, 1);
   border-radius: 10px;
-  height: 735px;
   width: 796px;
   margin-top: 40px;
+  margin-bottom: 40px;
+`
+
+const SpinnerHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-left: 20px;
 `
 
 const IazoPage: React.FC = () => {
+  useFetchIazos()
   const { id }: { id: string } = useParams()
   const { iazos, isInitialized } = useIazos()
   const iazo = isInitialized && iazos.iazos.find((i) => i.iazoId === id)
-  const { iazoToken, timeInfo, hardcap, baseToken, status } = iazo
+  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress } = isInitialized && iazo
   return (
     <>
       <Header />
@@ -155,19 +168,29 @@ const IazoPage: React.FC = () => {
             </StyledText>
           </WarningWrapper>
           <BeforeSaleWrapper>
-            {isInitialized && (
+            {isInitialized || iazo ? (
               <>
                 <TokenInfoCard
-                  tokenName={iazoToken.name}
-                  tokenAddress={iazoToken.address}
+                  tokenName={iazoToken?.name}
+                  tokenAddress={iazoToken?.address}
                   tokenImage=""
                   tokenWebsite=""
                 />
-                <SaleStatus timeInfo={timeInfo} hardcap={hardcap} baseToken={baseToken} status={status} />
+                <SaleStatus
+                  timeInfo={timeInfo}
+                  hardcap={hardcap}
+                  baseToken={baseToken}
+                  status={status}
+                  iazoAddress={iazoContractAddress}
+                />
               </>
+            ) : (
+              <SpinnerHolder>
+                <Spinner />
+              </SpinnerHolder>
             )}
           </BeforeSaleWrapper>
-          <SaleInfo iazo={iazo} />
+          {(isInitialized || iazo) && <SaleInfo iazo={iazo} />}
         </LaunchPadWrapper>
       </PageWrapper>
     </>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Text, Checkbox } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -83,7 +83,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           backgroundColor="rgba(51, 51, 51, 1)"
         />
         <TokenInput
-          onChange={(e) => setTokenDetails({ ...tokenDetails, busdLimitPerUser: e.currentTarget.value })}
+          onChange={(e) => setTokenDetails({ ...tokenDetails, limitPerUser: e.currentTarget.value })}
           title={`${quoteToken} limit per user`}
           quoteTokenSymbol={quoteToken}
           ml="12.5px"
@@ -99,7 +99,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           backgroundColor="rgba(51, 51, 51, 1)"
         />
         <TokenInput
-          defaultVal="10"
+          defaultVal={(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)).toString()}
           title="Hardcap"
           ml="12.5px"
           size="md"

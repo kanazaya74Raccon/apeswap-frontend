@@ -10,7 +10,6 @@ import {
   useFetchPublicData,
   useFetchTokenPrices,
   useFetchProfile,
-  useFetchIazos,
   useNetworkChainId,
   useUpdateNetwork,
 } from 'state/hooks'
@@ -77,7 +76,6 @@ const App: React.FC = () => {
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()
-  useFetchIazos()
   useFetchProfile()
 
   const scrollToTop = (): void => {
@@ -217,7 +215,8 @@ const App: React.FC = () => {
       <GlobalStyle />
       {(window.location.pathname === '/farms' ||
         window.location.pathname === '/pools' ||
-        window.location.pathname === '/vaults') && <StyledChevronUpIcon onClick={scrollToTop} />}
+        window.location.pathname === '/vaults' || 
+        window.location.pathname === '/iazos') && <StyledChevronUpIcon onClick={scrollToTop} />}
       {loadMenu()}
       <ToastListener />
     </Router>

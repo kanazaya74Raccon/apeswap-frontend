@@ -23,7 +23,7 @@ export const iazosSlice = createSlice({
     },
     iazosFetchFailed: (state) => {
       state.isLoading = false
-      state.isInitialized = true
+      state.isInitialized = false
     },
   },
 })
@@ -37,6 +37,7 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
     const iazos = await fetchAllIazos(chainId)
     dispatch(iazosFetchSucceeded(iazos))
   } catch (error) {
+    console.error(error)
     dispatch(iazosFetchFailed())
   }
 }

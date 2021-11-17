@@ -424,10 +424,11 @@ export const useAuctions = () => {
 export const useFetchIazos = () => {
   const dispatch = useDispatch()
   const chainId = useNetworkChainId()
-  const { slowRefresh } = useRefresh()
+  const { fastRefresh } = useRefresh()
   useEffect(() => {
+    console.log("pulling a lot")
     dispatch(fetchIazos(chainId))
-  }, [dispatch, slowRefresh, chainId])
+  }, [dispatch, fastRefresh, chainId])
 }
 
 export const useIazos = () => {

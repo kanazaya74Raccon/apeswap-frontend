@@ -21,9 +21,11 @@ const ActionWrapper = styled.div`
   margin-bottom: 100px;
 `
 const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
+  const { pairCreation } = presaleData
+  const { tokenAddress } = pairCreation
   return (
     <ActionWrapper>
-      <ApproveCreateIazo />
+      <ApproveCreateIazo tokenAddress={tokenAddress} />
       <CreatePresale presaleData={presaleData} />
     </ActionWrapper>
   )

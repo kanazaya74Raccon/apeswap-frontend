@@ -45,7 +45,8 @@ const tokens = {
   busd: {
     symbol: 'BUSD',
     address: {
-      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
+      // Swapped to base token for now
+      97: '0x68d24fa18c00b5df32e91c1dddfa6419083606f9',
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     },
     decimals: 18,

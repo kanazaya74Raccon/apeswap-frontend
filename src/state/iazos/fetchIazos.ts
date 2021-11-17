@@ -38,10 +38,18 @@ const fetchIazoData = async (chainId: number, id: string, address: string): Prom
     { address: iazoTokenAddress, name: 'name' },
     { address: iazoTokenAddress, name: 'symbol' },
     { address: iazoTokenAddress, name: 'decimals' },
+    { address: iazoTokenAddress, name: 'totalSupply' },
   ]
 
-  const [baseTokenName, baseTokenSymbol, baseTokenDecimals, iazoTokenName, iazoTokenSymbol, iazoTokenDecimals] =
-    await multicall(multicallContract, erc20Abi, erc20Calls)
+  const [
+    baseTokenName,
+    baseTokenSymbol,
+    baseTokenDecimals,
+    iazoTokenName,
+    iazoTokenSymbol,
+    iazoTokenDecimals,
+    iazoTokenTotalSupply,
+  ] = await multicall(multicallContract, erc20Abi, erc20Calls)
 
   const feeInfoData: IazoFeeInfo = {
     feeAddress: feeInfo[0].toString(),
@@ -77,6 +85,7 @@ const fetchIazoData = async (chainId: number, id: string, address: string): Prom
     name: iazoTokenName.toString(),
     symbol: iazoTokenSymbol.toString(),
     decimals: iazoTokenDecimals.toString(),
+    totalSupply: iazoTokenTotalSupply.toString(),
   }
 
   return {

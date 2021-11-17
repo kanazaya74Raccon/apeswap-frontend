@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { ButtonSquare } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
-import useApproveIazoFactory from 'views/Iazos/hooks/useApproveIazoFactory'
+import useApproveIazo from 'views/Iazos/hooks/useApproveIazo'
 
 interface ApproveCreateIazoProps {
   tokenAddress: string
+  iazoAddress: string
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -16,13 +17,13 @@ const StyledButton = styled(ButtonSquare)`
   font-weight: 700;
 `
 
-const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress }) => {
-  const onApprovetokenAddress = useApproveIazoFactory(tokenAddress).onApprove
+const ApproveIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress, iazoAddress }) => {
+  const onApproveIazo = useApproveIazo(tokenAddress, iazoAddress).onApprove
 
   return (
     <StyledButton
       onClick={async () => {
-        await onApprovetokenAddress()
+        await onApproveIazo()
       }}
     >
       APPROVE
@@ -30,4 +31,4 @@ const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress }) =
   )
 }
 
-export default ApproveCreateIazo
+export default ApproveIazo

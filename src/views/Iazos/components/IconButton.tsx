@@ -4,8 +4,8 @@ import { Text, Button } from '@apeswapfinance/uikit'
 
 interface IconButtonProps {
   icon: string
-  onClick?: () => void
   text?: string
+  onClick?: () => void
 }
 
 const StyledButton = styled(Button)<{ live?: boolean }>`
@@ -25,18 +25,19 @@ const StyledButton = styled(Button)<{ live?: boolean }>`
 `
 
 const IconText = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
   color: #ffffff;
   padding-left: 10px;
+  font-weight: 500;
 `
 
 const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick }) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       <img src={`/images/${icon}.svg`} alt="Icon" />
       {text && <IconText>{text}</IconText>}
     </StyledButton>

@@ -25,8 +25,7 @@ const IconImage = styled.div<{ image: string }>`
 const DatePickerContainer = styled.div`
   position: absolute;
   left: 50px;
-  width: 200px;
-  height: 200px;
+  width: 400px;
   top: -150px;
   z-index: 100;
 `
@@ -54,6 +53,7 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {
         {datePickerOpen && (
           <DatePickerContainer ref={datePickerRef}>
             <DatePicker
+              showTimeSelect
               selected={date}
               onChange={(d) => {
                 setDate(d)

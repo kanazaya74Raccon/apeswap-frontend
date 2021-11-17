@@ -295,3 +295,12 @@ export const createNewIazo = async (
       return tx.transactionHash
     })
 }
+
+export const userDeposit = async (iazoContract, amount, account) => {
+  return iazoContract.methods
+    .userDeposit(amount)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

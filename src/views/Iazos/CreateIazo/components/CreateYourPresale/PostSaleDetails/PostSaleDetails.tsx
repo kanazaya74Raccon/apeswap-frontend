@@ -76,13 +76,18 @@ const InputsWrapper = styled.div`
 `
 
 const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onChange }) => {
-  const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>()
-
   const lockedLiquidityValues = {
     '2 Years': SECONDS_PER_YEAR.times(2).toNumber(),
     '1 Year': SECONDS_PER_YEAR.toNumber(),
     '6 Months': SECONDS_PER_YEAR.div(2).toNumber(),
   }
+  
+  const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
+    liquidityPercent: null,
+    listingPrice: null,
+    lockLiquidity: lockedLiquidityValues['6 Months'],
+  })
+
   const onLiquidityClick = (amount: number) => {
     setLiquidityDetails((prevState) => ({ ...prevState, liquidityPercent: amount }))
   }

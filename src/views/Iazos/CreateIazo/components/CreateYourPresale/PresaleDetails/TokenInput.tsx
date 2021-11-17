@@ -7,7 +7,7 @@ interface TextInputProps {
   title?: string
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void
   backgroundColor?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'mdlg' | 'lg' | 'xl'
   ml?: string
   mr?: string
   disabled?: boolean
@@ -20,6 +20,7 @@ interface TextInputProps {
 const sizes = {
   sm: '250px',
   md: '310px',
+  mdlg: '410px',
   lg: '525px',
   xl: '645px',
 }
@@ -124,7 +125,7 @@ const TokenInput: React.FC<TextInputProps> = ({
     <InputContainer size={size} ml={ml} mr={mr}>
       <InputTitle>{title}</InputTitle>
       <Input
-        defaultValue={defaultVal}
+        value={defaultVal === 'NaN' ? '' : defaultVal}
         onChange={onChange}
         backgroundColor={backgroundColor}
         placeholder={placeholderText}
@@ -138,7 +139,7 @@ const TokenInput: React.FC<TextInputProps> = ({
       ) : (
         <TokenWrapper>
           <StyledHeader>{tokenSymbol}</StyledHeader>
-          <UserBalanceWrapper> Balance: {userBalance.toFixed(6)} </UserBalanceWrapper>
+          <UserBalanceWrapper> Balance: {userBalance?.toFixed(6)} </UserBalanceWrapper>
         </TokenWrapper>
       )}
     </InputContainer>

@@ -4,8 +4,6 @@ import { Text } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
-import getTimePeriods from 'utils/getTimePeriods'
-import { useCurrentTime } from 'hooks/useTimer'
 import Timer from './Timer'
 
 interface iazoCardProps {
@@ -85,6 +83,8 @@ const TokenImage = styled.img`
 const TokenName = styled(Text)`
   font-size: 24px;
   padding-left: 15px;
+  font-family: Poppins;
+  font-weight: 700;
 `
 
 const BoldAfterText = styled(Text)<{ boldContent?: string }>`
@@ -111,12 +111,13 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
 `
 
 const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
-  const { maxSpendPerBuyer, amount, baseToken, iazoToken, timeInfo, status, hardcap, softcap } = iazo
+  const { maxSpendPerBuyer, baseToken, iazoToken, timeInfo, status, hardcap, softcap, liquidityPercent } = iazo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer)).toString()
   const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
   const hardcapFormated = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
   const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
   const percentRaised = (totalRaiseFormated / hardcapFormated) * 100
+  const liqudiityLock = parseInt(liquidityPercent) / 10
 
   return (
     <IazoCardWrapper>
@@ -134,7 +135,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
       <TopBodyWrapper>
         <TextBoxWrapper align="flex-start">
           <BoldAfterText boldContent={`${baseToken.symbol} / ${iazoToken.symbol}`} />
-          <BoldAfterText boldContent="70%">Liquidity Lock: </BoldAfterText>
+          <BoldAfterText boldContent={`${liqudiityLock}%`}>Liquidity Lock: </BoldAfterText>
         </TextBoxWrapper>
         <TextBoxWrapper justify="flex-end" padding="15px">
           <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>

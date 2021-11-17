@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useIazos } from 'state/hooks'
-import { Text, Skeleton, Spinner } from '@apeswapfinance/uikit'
+import { useFetchIazos, useIazos } from 'state/hooks'
+import useCurrentTime from 'hooks/useTimer'
+import { Text, Spinner } from '@apeswapfinance/uikit'
 import IconButton from './components/IconButton'
 import TextInput from './components/TextInput'
 import IazoCard from './components/IazoCard/IazoCard'
@@ -83,11 +84,12 @@ const TopNavWrapper = styled.div`
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-size: 45px;
   font-style: normal;
   line-height: 52px;
   padding-right: 35px;
+  font-weight: 700;
 `
 
 const StyledButton = styled.button`
@@ -114,7 +116,33 @@ const SpinnerHolder = styled.div`
 `
 
 const Iazos: React.FC = () => {
+  useFetchIazos()
   const { iazos, isInitialized } = useIazos()
+  const currentTime = useCurrentTime() / 1000
+  const [sort, setSort] = useState(null)
+  const currentIazos = iazos?.iazos?.filter(
+    (iazo) =>
+      parseInt(iazo.timeInfo.startTime) < currentTime &&
+      currentTime < parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
+  )
+  const upcomingIazos = iazos?.iazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
+  const pastIAzos = iazos?.iazos?.filter(
+    (iazo) => currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
+  )
+
+  const renderIazos = () => {
+    switch (sort) {
+      case 'upcoming':
+        return upcomingIazos
+      case 'live':
+        return currentIazos
+      case 'done':
+        return pastIAzos
+      default:
+        return iazos?.iazos
+    }
+  }
+
   return (
     <>
       <Header />
@@ -122,26 +150,24 @@ const Iazos: React.FC = () => {
         <LaunchPadWrapper>
           <TopNavWrapper />
           <HeaderWrapper>
-            <StyledHeader>Self Serve Launchpad</StyledHeader>
+            <StyledHeader>Self-Serve Launchpad</StyledHeader>
             <Link to="/iazos/create">
-              <StyledButton> CREATE IAZO</StyledButton>
+              <StyledButton> CREATE </StyledButton>
             </Link>
           </HeaderWrapper>
           <SettingsWrapper>
-            <IconButton icon="calander" text="Upcoming" />
-            <IconButton icon="graph" text="Live" />
-            <IconButton icon="graph" text="Done" />
+            <IconButton icon="calander" text="Upcoming" onClick={() => setSort('upcoming')} />
+            <IconButton icon="graph" text="Live" onClick={() => setSort('live')} />
+            <IconButton icon="graph" text="Done" onClick={() => setSort('done')} />
             <TextInput placeholderText="Search token name or address...." icon="magnifiglass.svg" />
           </SettingsWrapper>
           <IlosWrapper>
-            <PresaleText>
-              {isInitialized ? `${iazos?.iazos?.length} Presales` : <Skeleton width="100px" />}{' '}
-            </PresaleText>
-            {isInitialized ? (
-              iazos?.iazos?.map((iazo) => {
+            <PresaleText>{(isInitialized || iazos) && `${renderIazos()?.length} Presales`}</PresaleText>
+            {isInitialized || iazos ? (
+              renderIazos()?.map((iazo) => {
                 return (
-                  <Link to={`/iazos/${iazo.iazoId}`}>
-                    <IazoCard iazo={iazo} />
+                  <Link to={`/iazos/${iazo.iazoId}`} key={iazo.iazoId}>
+                    <IazoCard iazo={iazo} key={iazo.iazoId} />
                   </Link>
                 )
               })

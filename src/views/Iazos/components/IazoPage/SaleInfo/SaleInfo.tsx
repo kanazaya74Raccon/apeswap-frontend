@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
-import Presale from './Presale'
 import InfoTab from './InfoTab'
 import About from './About'
 
@@ -23,7 +22,8 @@ const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 265.33px;
+  width: 50%;
+  font-family: Poppins;
   height: 60px;
   font-size: 24px;
   color: white;
@@ -35,12 +35,9 @@ const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
 `
 
 const SaleInfo: React.FC<SaleInfoProps> = ({ iazo }) => {
-  const [currentTabIndex, setCurrentTabIndex] = useState(1)
+  const [currentTabIndex, setCurrentTabIndex] = useState(0)
   const renderTabComponent = () => {
     if (currentTabIndex === 0) {
-      return <Presale />
-    }
-    if (currentTabIndex === 1) {
       return <InfoTab iazo={iazo} />
     }
     return <About />
@@ -48,13 +45,10 @@ const SaleInfo: React.FC<SaleInfoProps> = ({ iazo }) => {
   return (
     <>
       <SaleInfoWrapper>
-        <Tab onClick={() => setCurrentTabIndex(0)} active={currentTabIndex === 0} borderRadius="10px 0px 0px 0px">
-          Presale
-        </Tab>
-        <Tab onClick={() => setCurrentTabIndex(1)} active={currentTabIndex === 1}>
+        <Tab onClick={() => setCurrentTabIndex(0)} active={currentTabIndex === 0}>
           Info
         </Tab>
-        <Tab onClick={() => setCurrentTabIndex(2)} active={currentTabIndex === 2} borderRadius="0px 10px 0px 0px">
+        <Tab onClick={() => setCurrentTabIndex(1)} active={currentTabIndex === 1} borderRadius="0px 10px 0px 0px">
           About
         </Tab>
       </SaleInfoWrapper>

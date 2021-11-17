@@ -255,6 +255,7 @@ export interface IazoTokenInfo {
   name: string
   symbol: string
   decimals: string
+  totalSupply?: string
 }
 
 export interface IazoFeeInfo {

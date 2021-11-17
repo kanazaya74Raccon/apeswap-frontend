@@ -25,6 +25,7 @@ import multi from 'config/abi/Multicall.json'
 import iazoExposerAbi from 'config/abi/iazoExposer.json'
 import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import iazoFactoryAbi from 'config/abi/iazoFactory.json'
+import iazoAbi from 'config/abi/iazo.json'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 import {
@@ -189,6 +190,11 @@ export const useIazoSettingsContract = () => {
 export const useIazoFactoryContract = () => {
   const abi = iazoFactoryAbi as unknown as AbiItem
   return useContract(abi, useIazoFactoryAddress())
+}
+
+export const useIazoContract = (address: string) => {
+  const abi = iazoAbi as unknown as AbiItem
+  return useContract(abi, address)
 }
 
 export default useContract

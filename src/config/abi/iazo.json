@@ -208,8 +208,11 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "contract ERC20", "name": "token", "type": "address" }],
-    "name": "sweepToken",
+    "inputs": [
+      { "internalType": "contract ERC20[]", "name": "_tokens", "type": "address[]" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "sweepTokens",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

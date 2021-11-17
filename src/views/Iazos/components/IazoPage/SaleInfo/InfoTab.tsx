@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
-import Graph from '../../Graph'
+import DonutChart from 'views/Iazos/CreateIazo/components/CreateYourPresale/DonutChart'
+import { getBalanceNumber } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
+import InfoFooter from './InfoFooter'
 
 interface InfoTabProps {
   iazo: Iazo
@@ -17,59 +20,48 @@ const InfoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`
-const TokenName = styled(Text)`
-  font-size: 24px;
-  padding-left: 2px;
-  align-self: flex-start;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  align-self: center;
-`
-
-const GraphWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding-right: 30px;
-`
-
-const GraphCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const GraphCard = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  height: 38px;
-  width: 135px;
-  border-radius: 5px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: 30px;
+  padding-top: 20px;
 `
 
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
-  const { iazoToken } = iazo
-  console.log(iazo)
+  const { iazoToken, amount, liquidityPercent, feeInfo } = iazo
+  const { decimals, name, totalSupply } = iazoToken
+  const { iazoTokenFee } = feeInfo
+  const tokenTotalSupply = getBalanceNumber(new BigNumber(totalSupply), parseInt(decimals))
+  const tokenFee = parseInt(iazoTokenFee) / 1000
+  const liquidityPercentParsed = parseFloat(liquidityPercent) / 1000
+
+  // Inputs
+  const tokensForSale = getBalanceNumber(new BigNumber(amount), parseInt(decimals))
+  const tokensForLiquidity = tokensForSale * liquidityPercentParsed
+  const tokensForFees = tokenFee * tokensForSale
+  const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
+  const items = [
+    {
+      label: 'For Sale',
+      value: tokensForSale,
+      color: 'rgba(255, 179, 0, 1)',
+    },
+    {
+      label: 'Liquidity',
+      value: tokensForLiquidity,
+      color: 'rgba(56, 166, 17, 1)',
+    },
+    {
+      label: 'Fees',
+      value: tokensForFees,
+      color: 'rgba(161, 101, 82, 1)',
+    },
+    {
+      label: 'Dev/Other',
+      value: tokensForOther,
+      color: 'rgba(122, 122, 122, 1)',
+    },
+  ]
   return (
     <InfoWrapper>
-      <TokenName>{iazoToken?.name} Tokenomics</TokenName>
-      <GraphWrapper>
-        <Graph size={250} />
-        <GraphCardWrapper>
-          <GraphCard color="#FFB300">FOR SALE</GraphCard>
-          <GraphCard color="#38A611">LIQUIDITY</GraphCard>
-          <GraphCard color="#7A7A7A">DEV/OTHER</GraphCard>
-        </GraphCardWrapper>
-      </GraphWrapper>
+      <DonutChart items={items} title={`${name} Tokenomics`} />
+      <InfoFooter />
     </InfoWrapper>
   )
 }

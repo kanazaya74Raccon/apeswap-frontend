@@ -19,7 +19,6 @@ const useERC20Details = () => {
   const multicallContract = getContract(multicallABI, multicallAddress, chainId)
   const handleERC20Details = useCallback(
     async (tokenAddress: string): Promise<ERC20DetailsReturned> => {
-      console.log(tokenAddress)
       const erc20Calls = [
         // Balance in users account
         {
