@@ -32,12 +32,10 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
 
   // Format token price
   // TOKEN_PRICE = BASE_TOKEN_AMOUNT * 10**(18 - iazoTokenDecimals)
-  const formattedPricePerToken =
-    tokenDecimals === 18
-      ? new BigNumber(pricePerToken).times(new BigNumber(10).pow(18)).toString()
-      : new BigNumber(pricePerToken).times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
-
-  console.log(formattedPricePerToken)
+  const formatTokenPriceToBaseToken = new BigNumber(pricePerToken).times(
+    new BigNumber(10).pow(quoteTokenObject.decimals),
+  )
+  const formattedPricePerToken = formatTokenPriceToBaseToken.times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
 
   // Format max spend of the quote token per user
   const formattedMaxSpend = new BigNumber(limitPerUser)
