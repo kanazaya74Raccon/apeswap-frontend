@@ -31,16 +31,13 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
   const quoteTokenObject: Token = tokens[quoteToken.toLowerCase()]
 
   // Format token price
-  // IMPORTANT this equation applies to all tokens regardless of decimals - TOKEN_PRICE = BASE_TOKEN_AMOUNT * 10**(18 - iazoTokenDecimals)
-  // const bigPricePerToken = new BigNumber(pricePerToken)
-  //   .times(new BigNumber(10).pow(quoteTokenObject?.decimals))
-  //   .times(10)
-  //   .toString()
-  // console.log(bigPricePerToken)
-  const formattedPricePerToken = new BigNumber(pricePerToken)
-    .times(new BigNumber(10).pow(quoteTokenObject?.decimals))
-    .times(10)
-    .toString()
+  // TOKEN_PRICE = BASE_TOKEN_AMOUNT * 10**(18 - iazoTokenDecimals)
+  const formattedPricePerToken =
+    tokenDecimals === 18
+      ? new BigNumber(pricePerToken).times(new BigNumber(10).pow(18)).toString()
+      : new BigNumber(pricePerToken).times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
+
+  console.log(formattedPricePerToken)
 
   // Format max spend of the quote token per user
   const formattedMaxSpend = new BigNumber(limitPerUser)
