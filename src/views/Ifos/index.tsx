@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
@@ -17,7 +17,7 @@ const Header = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/banners/iao-bg.svg)' : 'url(/images/banners/stats.svg)'};
+    theme.isDark ? 'url(/images/banners/iao-bg.svg)' : 'url(/images/banners/iao-bg.svg)'};
   height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -63,10 +63,34 @@ const StyledHeading = styled(Heading)`
   }
 `
 
-const CircleWindow = styled.img`
+const WindowContainer = styled.div`
+  /* USING THE WINDOW LIKE THIS WON'T ALLOW TRANSPARENT TO SEE THE APE */
+  margin-right: 0 px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: red; */
+  background-image: url(/images/banners/iao-window.svg);
+  background-position: center;
+  width: 55%;
+  height: inherit;
   position: absolute;
-  display: none;
+  top: 0;
+  right: 0;
 `
+
+const CircleWindow = styled.img`
+  width: 60%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: inherit;
+`
+
+const WinCon = styled.div`
+  background-color: red;
+`
+
+const WinImg = styled.img``
 
 const Banana = styled.img`
   margin-top: -10px;
@@ -79,6 +103,12 @@ const Banana = styled.img`
   right: 0;
 `
 
+const float = keyframes`
+  from { transform: translate(0, 0px); }
+  50%  { transform: translate(0, -20px); }
+  to   { transform: translate(0, 0px); } 
+`
+
 const Ape = styled.img`
   position: absolute;
   margin-top: 60px;
@@ -86,6 +116,9 @@ const Ape = styled.img`
   right: 0;
   top: 0;
   width: 550px;
+
+  transform: translatey(0px);
+  animation: ${float} 6s ease-in-out infinite;
 `
 
 const Ifos = () => {
@@ -100,7 +133,13 @@ const Ifos = () => {
             {TranslateString(999, 'Initial Ape Offerings')}
           </StyledHeading>
         </HeadingContainer>
+
         <CircleWindow src="/images/banners/iao-window.svg" className="window" />
+
+        {/* <WindowContainer className="window" /> */}
+        {/* <WinCon className="win-con">
+          <WinImg src="/images/banners/iao-window.svg" className="win-img" />
+        </WinCon> */}
         <Banana src="/images/banners/iao-banana.svg" className="banana" />
         <Ape src="/images/banners/iao-ape.svg" className="ape" />
       </Header>
