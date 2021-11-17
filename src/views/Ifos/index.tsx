@@ -14,8 +14,8 @@ const Header = styled.div`
   overflow-y: hidden;
   overflow-x: hidden;
   padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
   background-image: ${({ theme }) =>
     theme.isDark ? 'url(/images/banners/iao-bg.svg)' : 'url(/images/banners/iao-bg.svg)'};
   height: 250px;
@@ -23,6 +23,7 @@ const Header = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 32px;
+  z-index: auto;
 
   ${({ theme }) => theme.mediaQueries.md} {
     height: 300px;
@@ -41,11 +42,15 @@ const HeadingContainer = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
+  z-index: 2;
+  position: relative;
+  padding-left: 10px;
 `
 
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
+  z-index: 9999;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -63,17 +68,39 @@ const StyledHeading = styled(Heading)`
   }
 `
 
+const RightDiv = styled.div`
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+`
+
+const WinImg = styled.div`
+  width: 100%;
+  background-image: url(/images/banners/iao-window.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: inherit;
+  background-position: inherit;
+`
+
 const WinCon = styled.div`
   top: 0;
   position: absolute;
   width: 800px;
   right: 0;
   margin: 0px auto;
-`
 
-const WinImg = styled.img`
-  height: 300px;
-  max-width: 955px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    /* width: 400px; */
+    /* background-color: yellow; */
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    /* background-color: yellow; */
+    /* width: 700px; */
+  }
 `
 
 const bananaFloat = keyframes`
@@ -123,16 +150,14 @@ const Ifos = () => {
           </StyledHeading>
         </HeadingContainer>
 
-        <WinCon className="win-con">
-          <WinImg src="/images/banners/iao-window.svg" alt="window1" />
-        </WinCon>
-
-        {/* <WinCon className="window-con">
+        <RightDiv className="r-d">
           <WinImg className="window" />
-        </WinCon> */}
+        </RightDiv>
 
-        <Banana src="/images/banners/iao-banana.svg" className="banana" />
-        <Ape src="/images/banners/iao-ape.svg" className="ape" />
+        {/* <WinCon className="win-con">
+          <Banana src="/images/banners/iao-banana.svg" className="banana" />
+          <Ape src="/images/banners/iao-ape.svg" className="ape" />
+        </WinCon> */}
       </Header>
 
       {/* <Hero /> */}
