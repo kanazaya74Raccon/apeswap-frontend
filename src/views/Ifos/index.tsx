@@ -66,22 +66,26 @@ const StyledHeading = styled(Heading)`
 const CircleWindow = styled.img`
   position: absolute;
   display: none;
-  /* background-image: 'url(/images/banners/iao-window.svg)'; */
 `
 
 const Banana = styled.img`
-  margin-right: 80px;
-  width: 150px;
+  margin-top: -10px;
+  margin-right: 140px;
+  width: 200px;
   bottom: 0;
   top: 0;
   position: absolute;
-  z-index: 999;
+  z-index: 1;
   right: 0;
 `
 
 const Ape = styled.img`
   position: absolute;
-  /* background-image: 'url(/images/banners/iao-window.svg)'; */
+  margin-top: 60px;
+  margin-right: 75px;
+  right: 0;
+  top: 0;
+  width: 550px;
 `
 
 const Ifos = () => {
