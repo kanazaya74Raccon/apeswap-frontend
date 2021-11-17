@@ -49,6 +49,7 @@ const Input = styled.input<{ backgroundColor: string }>`
   line-height: 23px;
   text-align: left;
   background: ${(props) => props.backgroundColor || '#333333'};
+  color: ${(props) => (props.theme.isDark ? 'white' : 'rgba(161, 101, 82, 1)')};
   border: none;
   z-index: 0;
 `
