@@ -24,7 +24,7 @@ const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   const { address } = baseToken
   const chainId = useNetworkChainId()
   const approved = useIazoAllowance(address, iazoAddress)?.gt(0)
-  const isNative = address === getNativeWrappedAddress(chainId)
+  const isNative = address.toLowerCase() === getNativeWrappedAddress(chainId).toLowerCase()
   console.log(approved)
   return (
     <ActionWrapper>
