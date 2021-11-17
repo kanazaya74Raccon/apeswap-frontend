@@ -2516,6 +2516,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://frax.finance/',
   },
   {
+    pid: 157,
+    image: 'FRAX.svg',
+    lpSymbol: 'FRAX-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x5292600758A090490D34367d4864ed6291D254fe',
+    },
+    tokenSymbol: 'FRAX',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x90c97f71e18723b0cf0dfa30ee176ab653e89f40',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://frax.finance/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
