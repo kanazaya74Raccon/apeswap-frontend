@@ -63,34 +63,24 @@ const StyledHeading = styled(Heading)`
   }
 `
 
-const WindowContainer = styled.div`
-  /* USING THE WINDOW LIKE THIS WON'T ALLOW TRANSPARENT TO SEE THE APE */
-  margin-right: 0 px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  /* background-color: red; */
-  background-image: url(/images/banners/iao-window.svg);
-  background-position: center;
-  width: 55%;
-  height: inherit;
-  position: absolute;
-  top: 0;
-  right: 0;
-`
-
-const CircleWindow = styled.img`
-  width: 60%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: inherit;
-`
-
 const WinCon = styled.div`
-  background-color: red;
+  top: 0;
+  position: absolute;
+  width: 800px;
+  right: 0;
+  margin: 0px auto;
 `
 
-const WinImg = styled.img``
+const WinImg = styled.img`
+  height: 300px;
+  max-width: 955px;
+`
+
+const bananaFloat = keyframes`
+  0% { transform: translate(0px, 0px); }
+  65%  { transform: translate(20px, 0px); }
+  100%   { transform: translate(-0px, 0px); }
+`
 
 const Banana = styled.img`
   margin-top: -10px;
@@ -101,12 +91,13 @@ const Banana = styled.img`
   position: absolute;
   z-index: 1;
   right: 0;
+  animation: ${bananaFloat} 10s linear infinite;
 `
 
-const float = keyframes`
-  from { transform: translate(0, 0px); }
-  50%  { transform: translate(0, -20px); }
-  to   { transform: translate(0, 0px); } 
+const apeFloat = keyframes`
+  0% { transform: translate(0, 0px); }
+  65%  { transform: translate(0, -20px); }
+  100%   { transform: translate(0, -0px); }
 `
 
 const Ape = styled.img`
@@ -116,9 +107,7 @@ const Ape = styled.img`
   right: 0;
   top: 0;
   width: 550px;
-
-  transform: translatey(0px);
-  animation: ${float} 6s ease-in-out infinite;
+  animation: ${apeFloat} 10s ease-in-out infinite;
 `
 
 const Ifos = () => {
@@ -134,12 +123,14 @@ const Ifos = () => {
           </StyledHeading>
         </HeadingContainer>
 
-        <CircleWindow src="/images/banners/iao-window.svg" className="window" />
+        <WinCon className="win-con">
+          <WinImg src="/images/banners/iao-window.svg" alt="window1" />
+        </WinCon>
 
-        {/* <WindowContainer className="window" /> */}
-        {/* <WinCon className="win-con">
-          <WinImg src="/images/banners/iao-window.svg" className="win-img" />
+        {/* <WinCon className="window-con">
+          <WinImg className="window" />
         </WinCon> */}
+
         <Banana src="/images/banners/iao-banana.svg" className="banana" />
         <Ape src="/images/banners/iao-ape.svg" className="ape" />
       </Header>
