@@ -8,6 +8,7 @@ import { IazoTimeInfo } from 'state/types'
 const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string }>`
   font-family: poppins;
   font-weight: ${(props) => props.fontSize};
+  color: white;
   &:after {
     font-weight: 700;
     font-size: ${(props) => props.fontSize || '17px'};

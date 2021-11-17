@@ -88,7 +88,7 @@ export const useFetchPublicData = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
-    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+    if (chainId === CHAIN_ID.BSC) {
       dispatch(fetchFarmsPublicDataAsync(chainId))
       dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
     }
@@ -426,7 +426,7 @@ export const useFetchIazos = () => {
   const chainId = useNetworkChainId()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
-    console.log("pulling a lot")
+    console.log('pulling a lot')
     dispatch(fetchIazos(chainId))
   }, [dispatch, fastRefresh, chainId])
 }

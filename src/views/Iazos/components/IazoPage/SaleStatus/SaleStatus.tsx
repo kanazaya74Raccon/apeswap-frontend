@@ -18,20 +18,6 @@ interface SaleStatus {
   iazoAddress: string
 }
 
-const IazoSymbolWrapper = styled.div`
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  margin-left: 10px;
-`
-
-const IazoSymbolsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-`
-
 const SaleStatusContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

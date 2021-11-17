@@ -24,7 +24,8 @@ const Input = styled.input<{ backgroundColor: string; imgSrc: string }>`
   font-size: 18px;
   line-height: 23px;
   text-align: left;
-  background: ${(props) => props.backgroundColor || '#333333'};
+  background: ${(props) => (props.backgroundColor || props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+};
   color: #ffffff;
   border: none;
   z-index: 0;

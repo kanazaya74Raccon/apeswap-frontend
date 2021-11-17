@@ -7,8 +7,8 @@ const AboutWrapper = styled.div`
   height: 60px;
   width: 796px;
   margin-bottom: 20px;
-  background: #333333;
-  border-radius: 10px;
+  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
+  border-radius: 0px 0px 10px 10px;
 `
 
 const About: React.FC = () => {

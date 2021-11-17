@@ -81,7 +81,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onCh
     '1 Year': SECONDS_PER_YEAR.toNumber(),
     '6 Months': SECONDS_PER_YEAR.div(2).toNumber(),
   }
-  
+
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
     liquidityPercent: null,
     listingPrice: null,

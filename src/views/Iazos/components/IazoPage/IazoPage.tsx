@@ -40,7 +40,7 @@ const Header = styled.div`
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: -50px;
-  background: #222222;
+  background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +55,7 @@ const TopNavWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 30px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(161, 101, 82, 1)')};
   z-index: 0;
 `
 
@@ -85,7 +85,6 @@ const StyledHeader = styled(Text)`
   font-size: 45px;
   font-style: normal;
   line-height: 52px;
-  color: #ffffff;
 `
 
 const BackWrapper = styled.div`
@@ -94,7 +93,6 @@ const BackWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  color: #ffffff;
   font-family: Poppins;
 `
 
@@ -120,7 +118,7 @@ const WarningWrapper = styled.div`
 `
 
 const BeforeSaleWrapper = styled.div`
-  background: rgba(51, 51, 51, 1);
+  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
   border-radius: 10px;
   width: 796px;
   margin-top: 40px;
@@ -154,7 +152,7 @@ const IazoPage: React.FC = () => {
             <Link to="/iazos">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <StyledText>Back to Ape Launchpad</StyledText>
+                <StyledText color="white">Back to Ape Launchpad</StyledText>
               </BackWrapper>
             </Link>
           </TopNavWrapper>

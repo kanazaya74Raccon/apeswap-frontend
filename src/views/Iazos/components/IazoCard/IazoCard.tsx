@@ -17,7 +17,7 @@ const IazoCardWrapper = styled.div`
   border-radius: 10px;
   margin-top: 12.5px;
   margin-bottom: 12.5px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   cursor: pointer;
 `
 
@@ -26,7 +26,10 @@ const CardMonkey = styled.div`
   height: 286px;
   width: 796px;
   overflow: hidden;
-  background: url(images/card-ape.svg) no-repeat 425px 110px;
+  background: ${(props) =>
+    props.theme.isDark
+      ? 'url(images/card-ape.svg) no-repeat 425px 110px'
+      : 'url(images/card-ape-light.svg) no-repeat 425px 110px'};
   opacity: 0.2;
 `
 
@@ -42,7 +45,7 @@ const HeadingWrapper = styled(CardWrapperTemplate)`
   height: 110px;
   width: 796px;
   border-radius: 10px 10px 0px 0px;
-  background: #414141;
+  background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
 `
 
 const TopBodyWrapper = styled(CardWrapperTemplate)`
@@ -125,11 +128,11 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
       <HeadingWrapper>
         <TokenHeaderInformationWrapper>
           <TokenImage src="images/tokens/BANANA.svg" />
-          <TokenName> {iazoToken.symbol}</TokenName>
+          <TokenName color="white"> {iazoToken.symbol}</TokenName>
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
           <Timer timeInfo={timeInfo} />
-          <BoldAfterText>Duration 5d</BoldAfterText>
+          <BoldAfterText color="white">Duration 5d</BoldAfterText>
         </TextBoxWrapper>
       </HeadingWrapper>
       <TopBodyWrapper>

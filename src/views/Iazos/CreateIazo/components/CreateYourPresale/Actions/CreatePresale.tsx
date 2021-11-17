@@ -48,9 +48,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
     .toString()
 
   // Format hardcap and softcap for the contract
-  const formattedHardcap = new BigNumber(parseFloat(tokensForSale) * parseFloat(pricePerToken))
-    .times(new BigNumber(10).pow(quoteTokenObject?.decimals))
-    .toString()
+  const formattedHardcap = new BigNumber(tokensForSale).times(new BigNumber(10).pow(tokenDecimals)).toString()
 
   const formattedSoftcap = new BigNumber(softcap).times(new BigNumber(10).pow(quoteTokenObject?.decimals)).toString()
 
@@ -85,6 +83,8 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
   ]
 
   const onCreateIazo = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams).onCreateIazo
+
+  console.log(formattedHardcap)
 
   return (
     <>

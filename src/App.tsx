@@ -215,7 +215,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       {(window.location.pathname === '/farms' ||
         window.location.pathname === '/pools' ||
-        window.location.pathname === '/vaults' || 
+        window.location.pathname === '/vaults' ||
         window.location.pathname === '/iazos') && <StyledChevronUpIcon onClick={scrollToTop} />}
       {loadMenu()}
       <ToastListener />

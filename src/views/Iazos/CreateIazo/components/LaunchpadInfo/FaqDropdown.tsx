@@ -10,7 +10,7 @@ interface FaqDropdownProps {
 const FaqWrapper = styled.div`
   width: 733px;
   border-radius: 10px;
-  background: #414141;
+  background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -28,13 +28,11 @@ const StyledHeader = styled(Text)`
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0em;
-  color: #ffffff;
   text-align: left;
   padding-left: 20px;
 `
 
 const StyledText = styled(Text)`
-  color: #ffffff;
   text-align: start;
   padding: 20px 15px 10px 20px;
   font-family: poppins;
@@ -56,9 +54,9 @@ const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, description }) => {
   return (
     <FaqWrapper onClick={() => setOpened(!opened)}>
       <HeaderWrapper opened={opened}>
-        <StyledHeader>{title}</StyledHeader>
+        <StyledHeader color="white">{title}</StyledHeader>
       </HeaderWrapper>
-      {opened && <StyledText>{description}</StyledText>}
+      {opened && <StyledText color="white">{description}</StyledText>}
     </FaqWrapper>
   )
 }

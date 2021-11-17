@@ -8,7 +8,6 @@ const InfoWrapper = styled.div`
   width: 796px;
   height: 100px;
   margin-bottom: 20px;
-  background: #333333;
   border-radius: 10px;
   align-items: center;
   justify-content: center;

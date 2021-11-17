@@ -14,7 +14,7 @@ const SaleInfoWrapper = styled.div`
   height: 60px;
   width: 796px;
   margin-top: 25px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
   border-radius: 10px;
 `
 
@@ -29,7 +29,7 @@ const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
   color: white;
   cursor: pointer;
   border-bottom: ${(props) => props.active && '2.5px solid rgba(255, 179, 0, 1)'};
-  background-color: ${(props) => (props.active ? 'rgba(65, 65, 65, 1)' : '#333333')};
+  background-color: ${(props) => (props.theme.isDark ? 'rgba(65, 65, 65, 1)' : 'rgba(161, 101, 82, 1)')};
   border-radius: ${(props) => props.borderRadius};
 };
 `

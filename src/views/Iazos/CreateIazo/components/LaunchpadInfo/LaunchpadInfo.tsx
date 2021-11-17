@@ -23,7 +23,7 @@ const listOfFaqs = [
 const LaunchPadInfoWrapper = styled.div`
   width: 796px;
   border-radius: 10px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -31,16 +31,15 @@ const LaunchPadInfoWrapper = styled.div`
   flex-direction: column;
 `
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
+  font-weight: 700;
   font-size: 24px;
   font-style: normal;
   line-height: 27px;
-  color: #ffffff;
   padding-top: 25px;
 `
 
 const StyledText = styled(Text)`
-  color: #ffffff;
   padding: 20px 40px 0px 40px;
   text-align: center;
   padding-bottom: 15px;
@@ -53,7 +52,6 @@ const MoreInfo = styled(Text)`
   font-weight: 400;
   line-height: 17px;
   text-align: center;
-  color: #ffffff;
   padding-top: 15px;
   padding-bottom: 20px;
   cursor: pointer;
@@ -62,7 +60,7 @@ const MoreInfo = styled(Text)`
 export default function LuanchpadInfo(): JSX.Element {
   return (
     <LaunchPadInfoWrapper>
-      <StyledHeader>Ape Launchpad Info</StyledHeader>
+      <StyledHeader>Launchpad Info</StyledHeader>
       <StyledText>
         Run a decentralised Initial Ape Offering (IAO) to raise funds and liquidity for your project with our trusted
         decentalised launchpad.

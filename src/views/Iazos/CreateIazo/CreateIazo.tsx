@@ -35,7 +35,7 @@ const Header = styled.div`
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: -50px;
-  background: #222222;
+  background: ${(props) => (props.theme.isDark ? '#222222' : 'white')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@ const TopNavWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-left: 30px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(161, 101, 82, 1)')};
   z-index: 0;
 `
 
@@ -75,20 +75,16 @@ const HeaderWrapper = styled.div`
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
+  font-weight: 700;
   font-size: 45px;
   font-style: normal;
   line-height: 52px;
-  color: #ffffff;
 `
 
 const BackWrapper = styled.div`
   z-index: 1;
   display: flex;
-`
-
-const StyledText = styled(Text)`
-  color: #ffffff;
 `
 
 const BackArrow = styled.img`
@@ -107,7 +103,7 @@ export default function CreateIazo(): JSX.Element {
             <Link to="/iazos">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <StyledText>Back to Ape Launchpad</StyledText>
+                <Text color="white" fontFamily="poppins">Back to Ape Launchpad</Text>
               </BackWrapper>
             </Link>
           </TopNavWrapper>

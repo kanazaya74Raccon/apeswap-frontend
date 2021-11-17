@@ -18,7 +18,7 @@ const IazoCardWrapper = styled.div`
   width: 796px;
   border-radius: 10px;
   margin-bottom: 12.5px;
-  background: rgba(65, 65, 65, 1);
+  background: ${(props) => (props.theme.isDark ? ' rgba(65, 65, 65, 1)' : 'rgba(161, 101, 82, 1)')};
 `
 const CardMonkey = styled.div`
   position: absolute;
@@ -85,7 +85,7 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
       <CardMonkey />
       <TokenImage src="/images/tokens/BANANA.svg" />
       <TokenHeaderInformationWrapper>
-        <TokenName> {tokenName} </TokenName>
+        <TokenName color="white"> {tokenName} </TokenName>
         <TokenButtonsWrapper>
           <TokenInfoButton opacity="1">BscScan</TokenInfoButton>
           <TokenInfoButton opacity=".1">{formatTokenAddress}</TokenInfoButton>

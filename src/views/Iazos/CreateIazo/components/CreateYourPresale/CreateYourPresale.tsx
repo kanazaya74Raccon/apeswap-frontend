@@ -20,7 +20,7 @@ interface Stepper {
 const LaunchPadInfoWrapper = styled.div`
   width: 796px;
   border-radius: 10px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -28,11 +28,11 @@ const LaunchPadInfoWrapper = styled.div`
   flex-direction: column;
 `
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-size: 24px;
+  font-weight: 700;
   font-style: normal;
   line-height: 27px;
-  color: #ffffff;
   padding-top: 25px;
 `
 

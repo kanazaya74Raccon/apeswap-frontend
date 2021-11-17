@@ -11,7 +11,7 @@ interface IconButtonProps {
 const StyledButton = styled(Button)<{ live?: boolean }>`
   height: 44px;
   border-radius: 10px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   padding-left: 10px;
   padding-right: 10px;
   margin-right: 15px;
@@ -20,7 +20,7 @@ const StyledButton = styled(Button)<{ live?: boolean }>`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: #333333;
+    background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   }
 `
 
@@ -30,7 +30,6 @@ const IconText = styled(Text)`
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
-  color: #ffffff;
   padding-left: 10px;
   font-weight: 500;
 `

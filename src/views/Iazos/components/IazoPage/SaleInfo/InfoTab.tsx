@@ -15,7 +15,7 @@ const InfoWrapper = styled.div`
   display: flex;
   width: 796px;
   margin-bottom: 20px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
   border-radius: 0px 0px 10px 10px;
   align-items: center;
   justify-content: center;
