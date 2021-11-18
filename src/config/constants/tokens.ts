@@ -721,6 +721,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  fxs: {
+    symbol: 'FXS',
+    address: {
+      56: '0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

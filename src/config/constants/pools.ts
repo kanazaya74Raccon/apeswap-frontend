@@ -2656,6 +2656,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 139,
+    tokenName: 'FXS',
+    image: 'FXS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.fxs,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x565478B15dDABCDAf8B42528a0bD6a1c04ce070b',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://frax.finance/',
+    harvest: true,
+    tokenPerBlock: `0.005772569444444444`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

@@ -226,6 +226,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <StyledLinkExternal className="noClick" href={bsc}>
         {TranslateString(999, 'View on BscScan')}
       </StyledLinkExternal>
+      {farm.projectLink && (
+        <StyledLinkExternal className="noClick" href={farm.projectLink}>
+          {TranslateString(356, 'View Project Site')}
+        </StyledLinkExternal>
+      )}
       <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
         Add to Metamask
       </StyledLink>

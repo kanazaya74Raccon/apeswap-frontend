@@ -26,13 +26,12 @@ export default PoolTabButtons
 
 const Wrapper = styled.div`
   margin-right: 10px;
-  margin-left: 30px;
+  margin-left: 20px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 64px;
     margin-right: 44px;
   }
 
@@ -40,7 +39,6 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20px;
     margin-right: 34px;
   }
 
@@ -48,7 +46,6 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 64px;
-    margin-right: 74px;
+    margin-right: 55px;
   }
 `
