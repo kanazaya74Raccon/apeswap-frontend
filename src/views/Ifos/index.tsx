@@ -157,9 +157,6 @@ const Ifos = () => {
           <Banana src="/images/banners/iao-banana.svg" className="banana" />
           <Ape src="/images/banners/iao-ape.svg" className="ape" />
         </RightDiv>
-
-        {/* <WinCon className="win-con">
-        </WinCon> */}
       </Header>
 
       <Container>
