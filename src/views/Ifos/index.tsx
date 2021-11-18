@@ -152,10 +152,10 @@ const Ifos = () => {
           </StyledHeading>
         </HeadingContainer>
 
-        <RightDiv className="r-d">
-          <WinImg className="window" />
-          <Banana src="/images/banners/iao-banana.svg" className="banana" />
-          <Ape src="/images/banners/iao-ape.svg" className="ape" />
+        <RightDiv>
+          <WinImg />
+          <Banana src="/images/banners/iao-banana.svg" />
+          <Ape src="/images/banners/iao-ape.svg" />
         </RightDiv>
       </Header>
 
