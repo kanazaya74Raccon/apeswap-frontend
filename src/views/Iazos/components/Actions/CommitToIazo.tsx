@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { IazoTokenInfo } from 'state/types'
 import useCommitToIazo from 'views/Iazos/hooks/useCommitToIazo'
 import BigNumber from 'bignumber.js'
+import { ZERO_ADDRESS } from 'config'
 import TokenInput from '../../CreateIazo/components/CreateYourPresale/PresaleDetails/TokenInput'
 
 interface ApproveCreateIazoProps {
@@ -33,8 +34,9 @@ const Wrapper = styled.div`
 
 const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken, isNative }) => {
   const { address, symbol, decimals } = baseToken
+  const [pendingTrx, setPendingTrx] = useState(false)
   const [amountToCommit, setAmountToCommit] = useState(null)
-  const userBalance = useTokenBalance(address)
+  const userBalance = useTokenBalance(isNative ? ZERO_ADDRESS : address)
   const userBalanceFormatted = getBalanceNumber(userBalance, parseInt(decimals))
   const onCommit = useCommitToIazo(
     iazoAddress,
@@ -52,9 +54,12 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken
       />
       <StyledButton
         onClick={async () => {
-          console.log(new BigNumber(amountToCommit).times(new BigNumber(10).pow(parseInt(decimals))).toString())
+          setPendingTrx(true)
           await onCommit()
+          setPendingTrx(false)
         }}
+        disabled={pendingTrx}
+        endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
         Commit
       </StyledButton>

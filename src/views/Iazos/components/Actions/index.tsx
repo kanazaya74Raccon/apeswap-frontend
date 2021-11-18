@@ -22,22 +22,19 @@ const ActionWrapper = styled.div`
 `
 const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   const { address } = baseToken
-  const initApprove = useIazoAllowance(address, iazoAddress)?.gt(0)
-  const [approved, setApproved] = useState(initApprove)
+  const [approveTrx, setApproveTrx] = useState(false)
+  const approved = useIazoAllowance(address, iazoAddress, approveTrx)?.gt(0)
   const chainId = useNetworkChainId()
   const isNative = address.toLowerCase() === getNativeWrappedAddress(chainId).toLowerCase()
-  console.log('This is rendering')
-  console.log(initApprove)
-  useEffect(() => {
-    console.log('IN THISS')
-    setApproved(initApprove)
-  }, [initApprove])
+  const onApprove = (pendingTrx: boolean) => {
+    setApproveTrx(pendingTrx)
+  }
   return (
     <ActionWrapper>
       {approved || isNative ? (
         <CommitToIazo baseToken={baseToken} iazoAddress={iazoAddress} isNative={isNative} />
       ) : (
-        <ApproveIazo tokenAddress={address} iazoAddress={iazoAddress} />
+        <ApproveIazo tokenAddress={address} iazoAddress={iazoAddress} onApproveChange={onApprove} />
       )}
     </ActionWrapper>
   )

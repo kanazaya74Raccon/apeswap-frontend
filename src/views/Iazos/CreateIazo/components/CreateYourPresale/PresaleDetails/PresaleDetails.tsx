@@ -25,10 +25,11 @@ const LaunchPadInfoWrapper = styled.div`
   padding: 10px;
 `
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-size: 22px;
   line-height: 27px;
   margin-top: 15px;
+  font-weight: 700;
 `
 
 const CheckboxContainer = styled.div`
@@ -56,7 +57,13 @@ const StyledText = styled(Text)`
 
 const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange }) => {
   const { tokenSymbol, quoteToken, userBalance, tokenDecimals } = pairTokenDetails
-  const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>()
+  const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>({
+    tokensForSale: null,
+    pricePerToken: null,
+    limitPerUser: null,
+    softcap: null,
+    burnRemains: false,
+  })
   const balance = getBalanceNumber(new BigNumber(userBalance), tokenDecimals)
 
   useEffect(() => {

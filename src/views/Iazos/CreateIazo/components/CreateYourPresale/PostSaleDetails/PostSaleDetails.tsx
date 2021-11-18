@@ -25,10 +25,11 @@ const LaunchPadInfoWrapper = styled.div`
   padding: 10px 20px 20px 20px;
 `
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-size: 22px;
   line-height: 27px;
   margin-top: 15px;
+  font-weight: 700;
 `
 
 const InputTitle = styled(Text)`

@@ -19,10 +19,11 @@ const DateContainer = styled.div`
   flex-direction: column;
 `
 const StyledHeader = styled(Text)`
-  font-family: Titan One;
+  font-family: Poppins;
   font-size: 24px;
   font-style: normal;
   line-height: 27px;
+  font-weight: 700;
   color: #ffffff;
   margin-top: 25px;
 `

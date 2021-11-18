@@ -98,10 +98,12 @@ const StyledButton = styled.button`
   color: #ffffff;
   background-color: #ffb300;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 18px;
   margin-top: 20px;
   border: none;
   cursor: pointer;
+  font-family: Poppins;
+  font-weight: 700;
 `
 const PresaleText = styled(Text)`
   font-family: Poppins;

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import useCreateIazo from 'views/Iazos/hooks/useCreateIazo'
 import tokens from 'config/constants/tokens'
 import { useNetworkChainId } from 'state/hooks'
@@ -79,6 +79,8 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
 
   const onCreateIazo = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams).onCreateIazo
 
+  const [pendingTrx, setPendingTrx] = useState(false)
+
   console.log(formattedHardcap)
 
   return (
@@ -86,11 +88,16 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
       <StyledButton
         onClick={async () => {
           try {
+            setPendingTrx(true)
             await onCreateIazo()
+            setPendingTrx(false)
           } catch (e) {
             console.log(e)
+            setPendingTrx(false)
           }
         }}
+        disabled={pendingTrx}
+        endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
         CREATE PRESALE
       </StyledButton>

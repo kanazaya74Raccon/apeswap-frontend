@@ -16,7 +16,6 @@ const ActionWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid red;
   margin-top: 50px;
   margin-bottom: 100px;
 `
