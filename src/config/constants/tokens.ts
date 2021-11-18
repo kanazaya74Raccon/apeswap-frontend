@@ -20,7 +20,7 @@ const tokens = {
   gnana: {
     symbol: 'GNANA',
     address: {
-      97: '0x9407026d236DEAE22CC1F3c419A9e47CBfCFE9E5',
+      97: '0xf693bDA9D3C56D5F9165c8633d9098e3C4Ae495A',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     decimals: 18,
