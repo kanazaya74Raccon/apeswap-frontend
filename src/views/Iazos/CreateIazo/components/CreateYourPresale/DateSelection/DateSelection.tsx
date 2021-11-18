@@ -80,8 +80,6 @@ const formatDate = (date: Date) => {
 }
 
 const formatCountdown = (startDate, endDate) => {
-  console.log('MATHS')
-  console.log(Math.abs(endDate - startDate))
   const timeUntil = getTimePeriods(Math.abs(endDate - startDate) / 1000)
   return `in ${timeUntil?.months} months ${timeUntil?.days} days ${timeUntil?.hours} hours`
 }
