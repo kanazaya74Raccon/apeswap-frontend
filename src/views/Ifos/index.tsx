@@ -71,11 +71,13 @@ const RightDiv = styled.div`
   top: 0;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    /* width: 70%; */
     right: 0px;
     width: 700px;
     margin: 0px auto;
-    background-color: yellow;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 800px;
   }
 `
 
@@ -86,28 +88,6 @@ const WinImg = styled.div`
   background-repeat: no-repeat;
   height: inherit;
   background-position: inherit;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding: 0px;
-  }
-`
-
-const WinCon = styled.div`
-  top: 0;
-  position: absolute;
-  width: 800px;
-  right: 0;
-  margin: 0px auto;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    /* width: 400px; */
-    /* background-color: yellow; */
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    /* background-color: yellow; */
-    /* width: 700px; */
-  }
 `
 
 const bananaFloat = keyframes`
@@ -127,6 +107,10 @@ const Banana = styled.img`
   ${({ theme }) => theme.mediaQueries.md} {
     width: 150px;
     margin-right: 80px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 180px;
   }
 `
 
@@ -148,6 +132,10 @@ const Ape = styled.img`
   ${({ theme }) => theme.mediaQueries.md} {
     width: 400px;
     margin-right: 30px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 500px;
   }
 `
 
