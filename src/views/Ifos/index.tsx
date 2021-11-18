@@ -5,7 +5,6 @@ import useI18n from 'hooks/useI18n'
 import { Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
 import IfoTabButtons from './components/IfoTabButtons'
-// import Hero from './components/Hero'
 import CurrentIfo from './CurrentIfo'
 import PastIfo from './PastIfo'
 
@@ -14,10 +13,7 @@ const Header = styled.div`
   overflow-y: hidden;
   overflow-x: hidden;
   padding-top: 36px;
-  /* padding-left: 10px;
-  padding-right: 10px; */
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/banners/iao-bg.svg)' : 'url(/images/banners/iao-bg.svg)'};
+  background-image: url(/images/banners/iao-bg.svg);
   height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -69,11 +65,18 @@ const StyledHeading = styled(Heading)`
 `
 
 const RightDiv = styled.div`
-  background-color: red;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    /* width: 70%; */
+    right: 0px;
+    width: 700px;
+    margin: 0px auto;
+    background-color: yellow;
+  }
 `
 
 const WinImg = styled.div`
@@ -83,6 +86,10 @@ const WinImg = styled.div`
   background-repeat: no-repeat;
   height: inherit;
   background-position: inherit;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 0px;
+  }
 `
 
 const WinCon = styled.div`
@@ -110,15 +117,17 @@ const bananaFloat = keyframes`
 `
 
 const Banana = styled.img`
-  margin-top: -10px;
-  margin-right: 140px;
-  width: 200px;
-  bottom: 0;
+  margin-right: 25px;
+  width: 100px;
   top: 0;
   position: absolute;
-  z-index: 1;
   right: 0;
   animation: ${bananaFloat} 10s linear infinite;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 150px;
+    margin-right: 80px;
+  }
 `
 
 const apeFloat = keyframes`
@@ -129,12 +138,17 @@ const apeFloat = keyframes`
 
 const Ape = styled.img`
   position: absolute;
-  margin-top: 60px;
-  margin-right: 75px;
+  margin-top: 80px;
+  margin-right: 0px;
   right: 0;
   top: 0;
-  width: 550px;
+  width: 300px;
   animation: ${apeFloat} 10s ease-in-out infinite;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 400px;
+    margin-right: 30px;
+  }
 `
 
 const Ifos = () => {
@@ -152,15 +166,14 @@ const Ifos = () => {
 
         <RightDiv className="r-d">
           <WinImg className="window" />
+          <Banana src="/images/banners/iao-banana.svg" className="banana" />
+          <Ape src="/images/banners/iao-ape.svg" className="ape" />
         </RightDiv>
 
         {/* <WinCon className="win-con">
-          <Banana src="/images/banners/iao-banana.svg" className="banana" />
-          <Ape src="/images/banners/iao-ape.svg" className="ape" />
         </WinCon> */}
       </Header>
 
-      {/* <Hero /> */}
       <Container>
         <IfoTabButtons />
         <Route exact path={`${path}`}>
