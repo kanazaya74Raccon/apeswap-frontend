@@ -76,7 +76,7 @@ const DateSelectionContainer = styled.div`
 `
 
 const formatDate = (date: Date) => {
-  return `${date?.getUTCMonth() + 1} ${date?.getUTCDate()} ${date?.getUTCFullYear()}`
+  return `${date?.getMonth() + 1} ${date?.getDate()} ${date?.getFullYear()}`
 }
 
 const formatCountdown = (startDate, endDate) => {
