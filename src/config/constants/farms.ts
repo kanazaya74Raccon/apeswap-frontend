@@ -2518,7 +2518,7 @@ const farms: FarmConfig[] = [
   {
     pid: 157,
     image: 'FRAX.svg',
-    lpSymbol: 'FRAX-BUSD',
+    lpSymbol: 'FRAX-BUSD LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x5292600758A090490D34367d4864ed6291D254fe',
@@ -2531,6 +2531,23 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://frax.finance/',
+  },
+  {
+    pid: 158,
+    image: 'RELAY.svg',
+    lpSymbol: 'RELAY-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xab29d19dc9a32fe37275371f0ddfeea3d0c72c25',
+    },
+    tokenSymbol: 'RELAY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://www.relaychain.com/',
   },
   {
     pid: 7, // NOTE: Inactive Farm
