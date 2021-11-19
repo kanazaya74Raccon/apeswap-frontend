@@ -74,8 +74,11 @@ const Nft = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'NFA List')}
+          <StyledHeading as="h1" mt={0} color="white">
+            {TranslateString(999, 'NFA')}
+          </StyledHeading>
+          <StyledHeading as="h1" mb="8px" mt={1} color="white">
+            {TranslateString(999, 'Collection')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
