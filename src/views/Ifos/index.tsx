@@ -72,14 +72,15 @@ const RightDiv = styled.div`
   /* background-color: red; */
 
   ${({ theme }) => theme.mediaQueries.md} {
-    right: 0px;
-    width: 700px;
+    width: 80%;
     margin: 0px auto;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 800px;
+    /* width: 800px; */
   }
+
+  /* do for screen size 768px */
 `
 
 const apeFloat = keyframes`
@@ -98,6 +99,7 @@ const Ape = styled.img`
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: 400px;
+    right: 20px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
