@@ -2518,7 +2518,7 @@ const farms: FarmConfig[] = [
   {
     pid: 157,
     image: 'FRAX.svg',
-    lpSymbol: 'FRAX-BUSD',
+    lpSymbol: 'FRAX-BUSD LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x5292600758A090490D34367d4864ed6291D254fe',
