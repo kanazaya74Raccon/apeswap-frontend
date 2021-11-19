@@ -728,6 +728,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  relay: {
+    symbol: 'RELAY',
+    address: {
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
