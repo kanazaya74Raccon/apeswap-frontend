@@ -2550,6 +2550,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://www.relaychain.com/',
   },
   {
+    pid: 159,
+    image: 'QUIDD.svg',
+    lpSymbol: 'QUIDD-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x813cf14699a230185eada5266b18403d77593e12',
+    },
+    tokenSymbol: 'QUIDD',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://market.onquidd.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

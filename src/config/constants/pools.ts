@@ -2694,6 +2694,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 141,
+    tokenName: 'QUIDD',
+    image: 'QUIDD.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.quidd,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x7de443badcfcf49417864f70fe7734b8144082f1',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://market.onquidd.com/',
+    harvest: true,
+    tokenPerBlock: `0.047315827546296296`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // PUT ALL ADMIN POOLS UNDER HERE
