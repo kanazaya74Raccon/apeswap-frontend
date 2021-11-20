@@ -2567,6 +2567,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://market.onquidd.com/',
   },
   {
+    pid: 160,
+    image: 'MONI.svg',
+    lpSymbol: 'MONI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe89dff611f926b86293a8e0e6f1c384c6ae0cb69',
+    },
+    tokenSymbol: 'MONI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://monstainfinite.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
