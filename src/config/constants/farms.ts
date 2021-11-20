@@ -2567,7 +2567,7 @@ const farms: FarmConfig[] = [
     projectLink: 'https://market.onquidd.com/',
   },
   {
-    pid: 159,
+    pid: 160,
     image: 'MONI.svg',
     lpSymbol: 'MONI-BNB LP',
     lpAddresses: {
