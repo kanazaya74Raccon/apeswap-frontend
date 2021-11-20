@@ -735,6 +735,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  quidd: {
+    symbol: 'QUIDD',
+    address: {
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
