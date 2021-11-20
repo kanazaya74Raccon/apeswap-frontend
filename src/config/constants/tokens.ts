@@ -742,6 +742,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  moni: {
+    symbol: 'MONI',
+    address: {
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
