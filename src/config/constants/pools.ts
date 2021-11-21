@@ -2745,7 +2745,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://infomatix.io/',
     harvest: true,
-    tokenPerBlock: `1.282793055555555555`,
+    tokenPerBlock: `0.641396527777777800`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
