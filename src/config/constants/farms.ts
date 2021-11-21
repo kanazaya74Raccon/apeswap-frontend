@@ -2584,6 +2584,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://monstainfinite.com/',
   },
   {
+    pid: 161,
+    image: 'INFO.svg',
+    lpSymbol: 'INFO-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x194613d18f07Cc19f886De6AC63F67Db235b5DEE',
+    },
+    tokenSymbol: 'INFO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xdf727040d3997b5d95dee8c661fa96e3c13ee0c9',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://infomatix.io/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

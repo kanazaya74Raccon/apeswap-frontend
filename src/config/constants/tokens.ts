@@ -749,6 +749,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  info: {
+    symbol: 'INFO',
+    address: {
+      56: '0xdF727040d3997b5D95deE8c661fA96E3c13eE0C9',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
