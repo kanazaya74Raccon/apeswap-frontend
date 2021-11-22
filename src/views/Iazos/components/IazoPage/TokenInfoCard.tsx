@@ -69,9 +69,6 @@ const TokenInfoButton = styled.div<{ opacity: string }>`
   cursor: pointer;
   background-color: rgba(255, 179, 0, ${(props) => props.opacity});
   color: white;
-  font-family: poppins;
-  font-weight: 100;
-  font-size: 15px;
   z-index: 1;
 `
 
@@ -83,13 +80,31 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
   return (
     <IazoCardWrapper>
       <CardMonkey />
-      <TokenImage src="/images/tokens/BANANA.svg" />
+      <TokenImage src={tokenImage} />
       <TokenHeaderInformationWrapper>
         <TokenName color="white"> {tokenName} </TokenName>
         <TokenButtonsWrapper>
-          <TokenInfoButton opacity="1">BscScan</TokenInfoButton>
-          <TokenInfoButton opacity=".1">{formatTokenAddress}</TokenInfoButton>
-          <TokenInfoButton opacity=".1">Website</TokenInfoButton>
+          <TokenInfoButton opacity="1">
+            <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
+              <Text fontFamily="poppins" fontSize="15px">
+                BscScan
+              </Text>
+            </a>
+          </TokenInfoButton>
+          <TokenInfoButton opacity=".1">
+            <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
+              <Text fontFamily="poppins" fontSize="15px">
+                {formatTokenAddress}
+              </Text>
+            </a>
+          </TokenInfoButton>
+          <TokenInfoButton opacity=".1">
+            <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
+              <Text fontFamily="poppins" fontSize="15px">
+                Website
+              </Text>
+            </a>
+          </TokenInfoButton>
         </TokenButtonsWrapper>
       </TokenHeaderInformationWrapper>
     </IazoCardWrapper>

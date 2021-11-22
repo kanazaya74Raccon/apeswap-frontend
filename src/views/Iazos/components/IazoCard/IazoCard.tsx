@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
+import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import Timer from './Timer'
@@ -114,25 +115,32 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
 `
 
 const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
-  const { maxSpendPerBuyer, baseToken, iazoToken, timeInfo, status, hardcap, softcap, liquidityPercent } = iazo
+  const { maxSpendPerBuyer, baseToken, iazoToken, timeInfo, status, hardcap, softcap, liquidityPercent, socialInfo } =
+    iazo
+  const { tokenImage } = socialInfo
+  const { activeTime, lockPeriod } = timeInfo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer)).toString()
   const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
   const hardcapFormated = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
   const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
   const percentRaised = (totalRaiseFormated / hardcapFormated) * 100
   const liqudiityLock = parseInt(liquidityPercent) / 10
+  const duration = getTimePeriods(parseInt(activeTime), true)
+  const lockTime = getTimePeriods(parseInt(lockPeriod), true)
 
   return (
     <IazoCardWrapper>
       <CardMonkey />
       <HeadingWrapper>
         <TokenHeaderInformationWrapper>
-          <TokenImage src="images/tokens/BANANA.svg" />
-          <TokenName color="white"> {iazoToken.symbol}</TokenName>
+          <TokenImage src={tokenImage} />
+          <TokenName color="white"> {iazoToken.name}</TokenName>
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
           <Timer timeInfo={timeInfo} />
-          <BoldAfterText color="white">Duration 5d</BoldAfterText>
+          <BoldAfterText color="white">
+            Duration {duration.days}d, {duration.hours}h
+          </BoldAfterText>
         </TextBoxWrapper>
       </HeadingWrapper>
       <TopBodyWrapper>
@@ -144,7 +152,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
           <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
         </TextBoxWrapper>
         <TextBoxWrapper align="flex-end">
-          <BoldAfterText>11 Months Lock</BoldAfterText>
+          <BoldAfterText>{lockTime.days} Days Lock</BoldAfterText>
           <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>Soft Cap: </BoldAfterText>
         </TextBoxWrapper>
       </TopBodyWrapper>

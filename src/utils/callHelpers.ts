@@ -281,16 +281,9 @@ export const createNewIazo = async (
   burnRemains, // Bool
   unitParams, // uint256[9]
 ) => {
-  console.log({
-    iazoOwner, // Address
-    iazoToken, // Address
-    baseToken, // Address
-    burnRemains, // Bool
-    unitParams,
-  })
   return iazoFactoryContract.methods
     .createIAZO(iazoOwner, iazoToken, baseToken, burnRemains, unitParams)
-    .send({ from: iazoOwner, value: new BigNumber('1').times(new BigNumber(10).pow(18)).toString() })
+    .send({ from: iazoOwner, value: new BigNumber('.01').times(new BigNumber(10).pow(18)).toString() })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })

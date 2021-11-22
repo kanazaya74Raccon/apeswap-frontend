@@ -122,13 +122,13 @@ const Iazos: React.FC = () => {
   const { iazos, isInitialized } = useIazos()
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
-  const currentIazos = iazos?.iazos?.filter(
+  const currentIazos = iazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
       currentTime < parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
   )
-  const upcomingIazos = iazos?.iazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
-  const pastIAzos = iazos?.iazos?.filter(
+  const upcomingIazos = iazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
+  const pastIAzos = iazos?.filter(
     (iazo) => currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
   )
 
@@ -141,9 +141,11 @@ const Iazos: React.FC = () => {
       case 'done':
         return pastIAzos
       default:
-        return iazos?.iazos
+        return iazos
     }
   }
+
+  console.log(renderIazos())
 
   return (
     <>
@@ -168,8 +170,8 @@ const Iazos: React.FC = () => {
             {isInitialized || iazos ? (
               renderIazos()?.map((iazo) => {
                 return (
-                  <Link to={`/iazos/${iazo.iazoId}`} key={iazo.iazoId}>
-                    <IazoCard iazo={iazo} key={iazo.iazoId} />
+                  <Link to={`/iazos/${iazo.iazoContractAddress}`} key={iazo.iazoContractAddress}>
+                    <IazoCard iazo={iazo} key={iazo.iazoContractAddress} />
                   </Link>
                 )
               })

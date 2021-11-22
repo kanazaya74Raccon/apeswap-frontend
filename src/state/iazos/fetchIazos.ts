@@ -6,18 +6,12 @@ import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } fr
 import multicallABI from 'config/abi/Multicall.json'
 import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
-import {
-  IazoFeeInfo,
-  IazoTimeInfo,
-  IazoStatus,
-  Iazo,
-  IazoOverall,
-  IazoDefaultSettings,
-  IazoTokenInfo,
-} from 'state/types'
+import { IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
 import BigNumber from 'bignumber.js'
 
-const fetchIazoData = async (chainId: number, id: string, address: string): Promise<Iazo> => {
+// Not being used anymore, but keeping just in case we need to flip if the API goes down
+
+const fetchIazoData = async (chainId: number, address: string): Promise<Iazo> => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = [
@@ -90,7 +84,6 @@ const fetchIazoData = async (chainId: number, id: string, address: string): Prom
 
   return {
     iazoContractAddress: address,
-    iazoId: id,
     iazoOwnerAddress: iazoInfo[0].toString(),
     iazoSaleInNative: iazoInfo[3].toString(),
     tokenPrice: iazoInfo[4].toString(),
@@ -109,7 +102,7 @@ const fetchIazoData = async (chainId: number, id: string, address: string): Prom
   }
 }
 
-const fetchAllIazos = async (chainId: number): Promise<IazoOverall> => {
+const fetchAllIazos = async (chainId: number): Promise<Iazo[]> => {
   const iazoExposerAddress = getIazoExposerAddress(chainId)
   const iazoSettingsAddress = getIazoSettingsAddress(chainId)
   const multicallContractAddress = getMulticallAddress(chainId)
@@ -142,14 +135,11 @@ const fetchAllIazos = async (chainId: number): Promise<IazoOverall> => {
     minLockPeriod: iazoDefaultSettings[10].toString(),
   }
 
-  return {
-    iazoDefaultSettings: iazoDefaultSettingsData,
-    iazos: await Promise.all(
-      listOfIazoAddresses.map(async (address, i) => {
-        return fetchIazoData(chainId, i.toString(), address[0])
-      }),
-    ),
-  }
+  return await Promise.all(
+    listOfIazoAddresses.map(async (address, i) => {
+      return fetchIazoData(chainId, address[0])
+    }),
+  )
 }
 
 export default fetchAllIazos

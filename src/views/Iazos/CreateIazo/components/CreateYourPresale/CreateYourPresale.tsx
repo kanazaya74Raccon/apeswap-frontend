@@ -15,6 +15,7 @@ interface Stepper {
   datesSelected: boolean
   presaleDetailsSet: boolean
   postsaleDetailsSet: boolean
+  informationStepCompleted: boolean
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -43,6 +44,7 @@ export default function CreateYourPresale(): JSX.Element {
     datesSelected: false,
     presaleDetailsSet: false,
     postsaleDetailsSet: false,
+    informationStepCompleted: false,
   })
 
   const presaleStepsCompleted =
@@ -70,6 +72,7 @@ export default function CreateYourPresale(): JSX.Element {
 
   const onInformation = useCallback((val) => {
     setPresaleData((prevState) => ({ ...prevState, information: val }))
+    setStepper((prevState) => ({ ...prevState, informationStepCompleted: val && true }))
   }, [])
 
   console.log(presaleData)
@@ -94,9 +97,9 @@ export default function CreateYourPresale(): JSX.Element {
             pairDetails={presaleData.pairCreation}
           />
           <Information onChange={onInformation} />
-          <Actions presaleData={presaleData} />
         </>
       )}
+      {presaleStepsCompleted && stepper.informationStepCompleted && <Actions presaleData={presaleData} />}
     </LaunchPadInfoWrapper>
   )
 }

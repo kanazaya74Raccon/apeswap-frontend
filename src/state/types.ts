@@ -280,11 +280,24 @@ export interface IazoStatus {
   numBuyers: string
 }
 
+export interface IazoSocialInfo {
+  telegram: string
+  twitter: string
+  website: string
+  whitepaper: string
+  tokenImage: string
+  medium: string
+  description: string
+}
+
+export interface IazoTags {
+  verification: string
+}
+
 export interface Iazo {
   iazoContractAddress: string
-  iazoId?: string
   iazoOwnerAddress: string
-  iazoSaleInNative: boolean
+  iazoSaleInNative?: boolean
   tokenPrice: string
   amount: string
   hardcap: string
@@ -298,11 +311,8 @@ export interface Iazo {
   status: IazoStatus
   baseToken: IazoTokenInfo
   iazoToken: IazoTokenInfo
-}
-
-export interface IazoOverall {
-  iazoDefaultSettings: IazoDefaultSettings
-  iazos: Iazo[]
+  socialInfo?: IazoSocialInfo
+  iazoTags?: IazoTags
 }
 
 export interface TokenPrices {
@@ -380,7 +390,8 @@ export interface StatsOverallState {
 export interface IazosState {
   isInitialized: boolean
   isLoading: boolean
-  data: IazoOverall
+  iazoData: Iazo[]
+  iazoDefaultSettings: IazoDefaultSettings
 }
 
 export type TeamResponse = {

@@ -432,13 +432,13 @@ export const useFetchIazos = () => {
 }
 
 export const useIazos = () => {
-  const { isInitialized, isLoading, data }: IazosState = useSelector((state: State) => state.iazos)
-  return { iazos: data, isInitialized, isLoading }
+  const { isInitialized, isLoading, iazoData }: IazosState = useSelector((state: State) => state.iazos)
+  return { iazos: iazoData, isInitialized, isLoading }
 }
 
-export const useIazoFromId = (id): Iazo => {
+export const useIazoFromAddress = (address): Iazo => {
   useSelector((state: State) => console.log(state))
-  const iazo: Iazo = useSelector((state: State) => state.iazos.data.iazos.find((i) => i.iazoId === id))
+  const iazo: Iazo = useSelector((state: State) => state.iazos.iazoData.find((i) => i.iazoContractAddress === address))
   return iazo
 }
 

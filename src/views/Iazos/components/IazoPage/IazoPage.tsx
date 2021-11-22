@@ -140,8 +140,9 @@ const IazoPage: React.FC = () => {
   useFetchIazos()
   const { id }: { id: string } = useParams()
   const { iazos, isInitialized } = useIazos()
-  const iazo = isInitialized && iazos.iazos.find((i) => i.iazoId === id)
-  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress } = isInitialized && iazo
+  const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
+  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress, socialInfo } = isInitialized && iazo
+  const { tokenImage, website } = socialInfo
   return (
     <>
       <Header />
@@ -171,8 +172,8 @@ const IazoPage: React.FC = () => {
                 <TokenInfoCard
                   tokenName={iazoToken?.name}
                   tokenAddress={iazoToken?.address}
-                  tokenImage=""
-                  tokenWebsite=""
+                  tokenImage={tokenImage}
+                  tokenWebsite={website}
                 />
                 <SaleStatus
                   timeInfo={timeInfo}

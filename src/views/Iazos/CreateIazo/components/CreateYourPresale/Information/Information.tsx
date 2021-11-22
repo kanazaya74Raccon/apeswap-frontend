@@ -33,7 +33,15 @@ const HeaderWrapper = styled.div`
 `
 
 const Information: React.FC<InformationProps> = ({ onChange }) => {
-  const [information, setInformation] = useState<SaleInformation>(null)
+  const [information, setInformation] = useState<SaleInformation>({
+    website: '',
+    whitepaper: '',
+    twitter: '',
+    telegram: '',
+    medium: '',
+    description: '',
+    tokenLogo: null,
+  })
 
   useEffect(() => {
     onChange(information)
@@ -91,7 +99,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           title="Medium:*"
         />
         <TextInput
-          onChange={(e) => setInformation({ ...information, description: e.currentTarget.value })}
+          onLargeChange={(e) => setInformation({ ...information, description: e.currentTarget.value })}
           backgroundColor="rgba(34, 34, 34, 1)"
           size="lg"
           height="lg"
