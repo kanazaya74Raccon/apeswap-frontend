@@ -2601,7 +2601,7 @@ const farms: FarmConfig[] = [
     projectLink: 'https://infomatix.io/',
   },
   {
-    pid: 162,
+    pid: 163,
     image: 'SHILL.svg',
     lpSymbol: 'SHILL-BUSD LP',
     lpAddresses: {
