@@ -7,6 +7,8 @@ interface IazoSymbolProps {
   iconImage: 'monkey' | 'lock' | 'dollar' | 'twitter' | 'medium' | 'website' | 'whitepaper' | 'telegram'
   title?: string
   description?: string
+  link?: boolean
+  url?: string
 }
 
 const icons = {
@@ -41,7 +43,6 @@ const FullIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px solid red;
 `
 
 const SvgContainer = styled.div`
@@ -63,7 +64,14 @@ const Icon = styled.div<{ iconImage: string }>`
   z-index: 2;
 `
 
-const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description }) => {
+const StyledLink = styled.a`
+  font-family: Poppins;
+  color: rgba(255, 179, 0, 1);
+  text-decoration: underline;
+  margin-top: 5px;
+`
+
+const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description, link, url }) => {
   const strokeWidth = 1
   const cx = 7.5
   const cy = 7.5
@@ -92,6 +100,11 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description 
       <Text fontFamily="poppins" fontSize="16px">
         {description}
       </Text>
+      {link && (
+        <StyledLink href={url} target="_blank" rel="noopener noreferrer">
+          {iconImage}
+        </StyledLink>
+      )}
     </FullIconContainer>
   )
 }

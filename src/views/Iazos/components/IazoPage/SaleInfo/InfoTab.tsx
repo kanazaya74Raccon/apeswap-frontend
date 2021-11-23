@@ -24,7 +24,7 @@ const InfoWrapper = styled.div`
 `
 
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
-  const { iazoToken, amount, liquidityPercent, feeInfo } = iazo
+  const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo } = iazo
   const { decimals, name, totalSupply } = iazoToken
   const { iazoTokenFee } = feeInfo
   const tokenTotalSupply = getBalanceNumber(new BigNumber(totalSupply), parseInt(decimals))
@@ -61,7 +61,7 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   return (
     <InfoWrapper>
       <DonutChart items={items} title={`${name} Tokenomics`} />
-      <InfoFooter />
+      <InfoFooter social={socialInfo}/>
     </InfoWrapper>
   )
 }

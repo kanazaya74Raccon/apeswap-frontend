@@ -7,7 +7,6 @@ import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
 
-
 const PageWrapper = styled.div`
   display: none;
   display: flex;

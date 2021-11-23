@@ -70,7 +70,7 @@ const AfterSale: React.FC<BeforeSaleProps> = ({
   status,
   tokenPrice,
   userCommitData,
-  iazoAddress
+  iazoAddress,
 }) => {
   const { symbol, decimals, address } = baseToken
   const { deposited, tokensBought } = userCommitData
