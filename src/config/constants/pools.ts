@@ -2751,6 +2751,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 144,
+    tokenName: 'SHILL',
+    image: 'SHILL.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.shill,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x5E4Aa216B9e748e83D02b1F0334A0B8EB5ee9c32',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://projectseed.io/',
+    harvest: true,
+    tokenPerBlock: `0.018827314814814814`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // PUT ALL ADMIN POOLS UNDER HERE
