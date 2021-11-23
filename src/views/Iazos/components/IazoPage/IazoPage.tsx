@@ -3,12 +3,10 @@ import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import { Text, Spinner } from '@apeswapfinance/uikit'
 import { useFetchIazos, useIazos } from 'state/hooks'
-import Timer from '../IazoCard/Timer'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
-import BeforeSale from './SaleStatus/BeforeSale'
-import DuringSale from './SaleStatus/DuringSale'
+
 
 const PageWrapper = styled.div`
   display: none;
@@ -25,7 +23,8 @@ const Header = styled.div`
   height: 251px;
   width: 100%;
   padding-top: 36px;
-  background-image: url(/images/auction-banner.svg);
+  background-image: ${(props) =>
+    props.theme.isDark ? 'url(/images/iazo-banner-dark.svg)' : 'url(/images/iazo-banner-light.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -39,7 +38,7 @@ const Header = styled.div`
 
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: -50px;
+  margin-top: 50px;
   background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
   display: flex;
   flex-direction: column;
@@ -141,8 +140,9 @@ const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
   const { iazos, isInitialized } = useIazos()
   const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
-  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress, socialInfo } = isInitialized && iazo
-  const { tokenImage, website } = socialInfo
+  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress, socialInfo, tokenPrice } =
+    isInitialized && iazo
+  const { tokenImage, website } = isInitialized && socialInfo
   return (
     <>
       <Header />
@@ -181,6 +181,8 @@ const IazoPage: React.FC = () => {
                   baseToken={baseToken}
                   status={status}
                   iazoAddress={iazoContractAddress}
+                  tokenPrice={tokenPrice}
+                  iazoToken={iazoToken}
                 />
               </>
             ) : (

@@ -119,11 +119,10 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
     iazo
   const { tokenImage } = socialInfo
   const { activeTime, lockPeriod } = timeInfo
-  const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer)).toString()
+  const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer), parseInt(baseToken.decimals)).toString()
   const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
-  const hardcapFormated = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
   const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
-  const percentRaised = (totalRaiseFormated / hardcapFormated) * 100
+  const percentRaised = (totalRaiseFormated / parseFloat(hardcap)) * 100
   const liqudiityLock = parseInt(liquidityPercent) / 10
   const duration = getTimePeriods(parseInt(activeTime), true)
   const lockTime = getTimePeriods(parseInt(lockPeriod), true)
@@ -160,7 +159,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
         <ProgressBar>
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
-        <BoldAfterText boldContent={`${totalRaiseFormated} / ${hardcapFormated} ${baseToken.symbol}`} />
+        <BoldAfterText boldContent={`${totalRaiseFormated} / ${hardcap} ${baseToken.symbol}`} />
       </BottomBodyWrapper>
     </IazoCardWrapper>
   )

@@ -426,7 +426,6 @@ export const useFetchIazos = () => {
   const chainId = useNetworkChainId()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
-    console.log('pulling a lot')
     dispatch(fetchIazos(chainId))
   }, [dispatch, fastRefresh, chainId])
 }
@@ -460,6 +459,14 @@ export const useTokenPriceFromSymbol = (symbol: string) => {
   const tokenPrice = useSelector((state: State) =>
     state.tokenPrices.data.find((token) => token.symbol === symbol),
   ).price
+  return tokenPrice
+}
+
+export const useTokenPriceFromAddress = (address: string) => {
+  const chainId = useNetworkChainId()
+  const tokenPrice = useSelector((state: State) =>
+    state?.tokenPrices?.data?.find((token) => token.address[chainId].toLowerCase() === address.toLowerCase()),
+  )?.price
   return tokenPrice
 }
 

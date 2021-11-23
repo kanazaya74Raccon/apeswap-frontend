@@ -306,3 +306,12 @@ export const userDepositNative = async (iazoContract, amount, account) => {
       return tx.transactionHash
     })
 }
+
+export const userWithdraw = async (iazoContract, account) => {
+  return iazoContract.methods
+    .userWithdraw()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

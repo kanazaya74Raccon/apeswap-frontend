@@ -4,18 +4,19 @@ import { Text } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import { useTokenPriceFromAddress } from 'state/hooks'
-import Timer from '../../IazoCard/Timer'
-import Actions from '../../Actions'
-import IazoSymbols from '../../IazoSymbols'
+import ClaimIazo from '../../Actions/ClaimIazo'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
   hardcap: string
   baseToken: IazoTokenInfo
+  iazoTokenDecimals: string
   status: IazoStatus
   iazoAddress: string
   tokenPrice: string
+  userCommitData: UserCommit
 }
 
 const BeforeSaleWrapper = styled.div`
@@ -47,13 +48,14 @@ const ProgressBar = styled.div`
   background: #c4c4c4;
 `
 
-const IazoSymbolsContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 300px;
-  border: 1px solid red;
+const BoldAfterText = styled(Text)<{ boldContent?: string }>`
+  font-family: poppins;
+  font-weight: 400;
+  &:after {
+    font-weight: 700;
+    font-size: 17px;
+    content: '${(props) => props.boldContent}';
+  }
 `
 
 const Progress = styled(ProgressBar)<{ percentComplete: string }>`
@@ -61,14 +63,24 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, status, iazoAddress, tokenPrice }) => {
+const AfterSale: React.FC<BeforeSaleProps> = ({
+  hardcap,
+  baseToken,
+  iazoTokenDecimals,
+  status,
+  tokenPrice,
+  userCommitData,
+  iazoAddress
+}) => {
   const { symbol, decimals, address } = baseToken
+  const { deposited, tokensBought } = userCommitData
+  const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
+  const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoTokenDecimals)).toString()
+
   const { totalBaseCollected } = status
+  const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
-  const baseTokenPrice = useTokenPriceFromAddress(address)
-  const tokenPriceFormatted =
-    baseTokenPrice && (getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)) * baseTokenPrice).toString()
 
   return (
     <BeforeSaleWrapper>
@@ -80,14 +92,10 @@ const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, s
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      <Timer timeInfo={timeInfo} />
-      <Actions iazoAddress={iazoAddress} baseToken={baseToken} />
-      <IazoSymbolsContainer>
-        <IazoSymbols iconImage="dollar" title={tokenPriceFormatted} description="Presale price" />
-        <IazoSymbols iconImage="lock" title="yes" description="Lock for 11 months" />
-      </IazoSymbolsContainer>
+      <BoldAfterText boldContent={tokensBoughtFormatted}>Tokens bought: </BoldAfterText>
+      <ClaimIazo iazoAddress={iazoAddress} tokensDeposited={tokensDepositedFormatted} />
     </BeforeSaleWrapper>
   )
 }
 
-export default DuringSale
+export default AfterSale

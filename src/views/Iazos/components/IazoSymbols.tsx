@@ -1,9 +1,12 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
+import { Title } from 'views/DualFarms/components/FarmTable/Actions/styles'
 
 interface IazoSymbolProps {
   iconImage: 'monkey' | 'lock' | 'dollar' | 'twitter' | 'medium' | 'website' | 'whitepaper' | 'telegram'
+  title?: string
+  description?: string
 }
 
 const icons = {
@@ -33,12 +36,20 @@ const IazoSymbolSvg = styled.svg`
   width: 100%;
 `
 
+const FullIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 1px solid red;
+`
+
 const SvgContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100px;
   width: 100%;
 `
 
@@ -52,28 +63,36 @@ const Icon = styled.div<{ iconImage: string }>`
   z-index: 2;
 `
 
-const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage }) => {
+const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description }) => {
   const strokeWidth = 1
   const cx = 7.5
   const cy = 7.5
   const r = 6
   return (
-    <SvgContainer>
-      <Icon iconImage={iconImage} />
-      <IazoSymbolSvg viewBox="0 0 15 15">
-        <circle cx={cx} cy={cy} r={r} fill="transparent" stroke="rgba(96, 96, 96, 1)" strokeWidth={strokeWidth} />
-        <OuterCircle
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill="transparent"
-          stroke="rgba(255, 179, 0, 1)"
-          strokeDasharray="38, 100"
-          strokeWidth={strokeWidth}
-          transform={`rotate(-90, ${cx}, ${cy})`}
-        />
-      </IazoSymbolSvg>
-    </SvgContainer>
+    <FullIconContainer>
+      <SvgContainer>
+        <Icon iconImage={iconImage} />
+        <IazoSymbolSvg viewBox="0 0 15 15">
+          <circle cx={cx} cy={cy} r={r} fill="transparent" stroke="rgba(96, 96, 96, 1)" strokeWidth={strokeWidth} />
+          <OuterCircle
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill="transparent"
+            stroke="rgba(255, 179, 0, 1)"
+            strokeDasharray="38, 100"
+            strokeWidth={strokeWidth}
+            transform={`rotate(-90, ${cx}, ${cy})`}
+          />
+        </IazoSymbolSvg>
+      </SvgContainer>
+      <Text fontFamily="poppins" fontSize="24px" bold>
+        {title}
+      </Text>
+      <Text fontFamily="poppins" fontSize="16px">
+        {description}
+      </Text>
+    </FullIconContainer>
   )
 }
 
