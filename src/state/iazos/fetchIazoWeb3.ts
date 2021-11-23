@@ -6,14 +6,7 @@ import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } fr
 import multicallABI from 'config/abi/Multicall.json'
 import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
-import {
-  IazoFeeInfo,
-  IazoTimeInfo,
-  IazoStatus,
-  Iazo,
-  IazoDefaultSettings,
-  IazoTokenInfo,
-} from 'state/types'
+import { IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
 import BigNumber from 'bignumber.js'
 
 const fetchIazoDefaultSettings = async (chainId: number) => {

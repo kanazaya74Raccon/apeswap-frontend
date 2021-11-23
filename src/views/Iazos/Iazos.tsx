@@ -23,7 +23,8 @@ const Header = styled.div`
   height: 251px;
   width: 100%;
   padding-top: 36px;
-  background-image: url(/images/auction-banner.svg);
+  background-image: ${(props) =>
+    props.theme.isDark ? 'url(/images/iazo-banner-dark.svg)' : 'url(/images/iazo-banner-light.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -37,7 +38,7 @@ const Header = styled.div`
 
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: -50px;
+  margin-top: 50px;
   background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
   display: flex;
   flex-direction: column;
