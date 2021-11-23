@@ -61,7 +61,7 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   return (
     <InfoWrapper>
       <DonutChart items={items} title={`${name} Tokenomics`} />
-      <InfoFooter social={socialInfo}/>
+      <InfoFooter social={socialInfo} />
     </InfoWrapper>
   )
 }

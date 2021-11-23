@@ -1,13 +1,11 @@
 import iazoAbi from 'config/abi/iazo.json'
-import iazoExposerAbi from 'config/abi/iazoExposer.json'
 import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import erc20Abi from 'config/abi/erc20.json'
-import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
+import { getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
 import multicallABI from 'config/abi/Multicall.json'
 import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
-import { IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
-import BigNumber from 'bignumber.js'
+import { IazoFeeInfo, IazoStatus, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
 
 const fetchIazoDefaultSettings = async (chainId: number) => {
   const iazoSettingsAddress = getIazoSettingsAddress(chainId)
