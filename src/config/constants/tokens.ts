@@ -756,6 +756,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  shill: {
+    symbol: 'SHILL',
+    address: {
+      56: '0xfb9C339b4BacE4Fe63ccc1dd9a3c3C531441D5fE',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
