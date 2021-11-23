@@ -276,4 +276,4 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   )
 }
 
-export default IfoCard
+export default React.memo(IfoCard)

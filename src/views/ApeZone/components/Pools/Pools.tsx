@@ -280,7 +280,6 @@ const Pools: React.FC = () => {
   const block = useBlock()
   const TranslateString = useI18n()
   const isActive = !pathname.includes('history')
-
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
@@ -379,4 +378,4 @@ const Pools: React.FC = () => {
   )
 }
 
-export default Pools
+export default React.memo(Pools)

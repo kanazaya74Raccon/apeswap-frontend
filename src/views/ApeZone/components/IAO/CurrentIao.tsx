@@ -179,4 +179,4 @@ const Iao = () => {
   )
 }
 
-export default Iao
+export default React.memo(Iao)
