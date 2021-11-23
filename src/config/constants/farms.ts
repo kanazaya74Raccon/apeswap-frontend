@@ -2608,14 +2608,14 @@ const farms: FarmConfig[] = [
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x77A3B1bBa24D8Cdc28992dc242F05deD6648A8B3',
     },
-    tokenSymbol: 'INFO',
+    tokenSymbol: 'SHILL',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xfb9c339b4bace4fe63ccc1dd9a3c3c531441d5fe',
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
-    projectLink: 'https://projectseed.io/ ',
+    projectLink: 'https://projectseed.io/',
   },
   {
     pid: 7, // NOTE: Inactive Farm

@@ -2762,7 +2762,7 @@ const pools: PoolConfig[] = [
       56: '0x5E4Aa216B9e748e83D02b1F0334A0B8EB5ee9c32',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://projectseed.io/ ',
+    projectLink: 'https://projectseed.io/',
     harvest: true,
     tokenPerBlock: `0.018827314814814814`,
     sortOrder: 1,
