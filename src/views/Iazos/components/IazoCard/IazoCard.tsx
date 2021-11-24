@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -44,8 +44,12 @@ const CardWrapperTemplate = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
 `
 
 const HeadingWrapper = styled(CardWrapperTemplate)`
@@ -87,32 +91,46 @@ const TokenHeaderInformationWrapper = styled.div`
 const TextBoxWrapper = styled.div<{ align?: string; justify?: string; padding?: string }>`
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: ${(props) => props.justify || 'center'};
   align-items: ${(props) => props.align || 'center'};
   padding-bottom: ${(props) => props.padding};
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 100%;
+  }
 `
 
 const TokenImage = styled.img`
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 55px;
+  height: 55px;
+  margin-left: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+  }
 `
 
 const TokenName = styled(Text)`
-  font-size: 24px;
+  font-size: 15px;
   padding-left: 15px;
   font-family: Poppins;
   font-weight: 700;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 24px;
+  }
 `
 
 const BoldAfterText = styled(Text)<{ boldContent?: string }>`
   font-family: poppins;
   font-weight: 400;
+  font-size: 10px;
   &:after {
     font-weight: 700;
-    font-size: 17px;
     content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
   }
 `
 
@@ -141,6 +159,8 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const liqudiityLock = parseInt(liquidityPercent) / 10
   const duration = getTimePeriods(parseInt(activeTime), true)
   const lockTime = getTimePeriods(parseInt(lockPeriod), true)
+  const { isMd, isSm } = useMatchBreakpoints()
+  const isMobile = isMd || isSm
 
   return (
     <IazoCardWrapper>
@@ -148,10 +168,11 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
       <HeadingWrapper>
         <TokenHeaderInformationWrapper>
           <TokenImage src={tokenImage} />
-          <TokenName color="white"> {iazoToken.name}</TokenName>
+          {!isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
-          <Timer timeInfo={timeInfo} />
+          {isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
+          <Timer timeInfo={timeInfo} fontSize={isMobile ? '12px' : '16px'} />
           <BoldAfterText color="white">
             Duration {duration.days}d, {duration.hours}h
           </BoldAfterText>
@@ -162,15 +183,22 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
           <BoldAfterText boldContent={`${baseToken.symbol} / ${iazoToken.symbol}`} />
           <BoldAfterText boldContent={`${liqudiityLock}%`}>Liquidity Lock: </BoldAfterText>
         </TextBoxWrapper>
-        <TextBoxWrapper justify="flex-end" padding="15px">
-          <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
-        </TextBoxWrapper>
+        {!isMobile && (
+          <TextBoxWrapper justify="flex-end" padding="15px">
+            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
+          </TextBoxWrapper>
+        )}
         <TextBoxWrapper align="flex-end">
           <BoldAfterText>{lockTime.days} Days Lock</BoldAfterText>
           <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>Soft Cap: </BoldAfterText>
         </TextBoxWrapper>
       </TopBodyWrapper>
       <BottomBodyWrapper>
+        {isMobile && (
+          <TextBoxWrapper justify="flex-end" padding="5px">
+            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
+          </TextBoxWrapper>
+        )}
         <ProgressBar>
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
