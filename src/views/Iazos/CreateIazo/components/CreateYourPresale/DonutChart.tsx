@@ -52,10 +52,10 @@ const GraphCardWrapper = styled.div`
   margin-bottom: 20px;
   margin-left: 15px;
   ${({ theme }) => theme.mediaQueries.md} {
+    align-items: flex-start;
     margin-left: 335px;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 0px;
   }
 `
 
