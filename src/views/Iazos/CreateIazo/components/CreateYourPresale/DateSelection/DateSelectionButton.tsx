@@ -30,7 +30,6 @@ const DatePickerContainer = styled.div`
   z-index: 100;
 `
 
-
 const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {
   const [datePickerOpen, setDatePickerOpen] = useState(false)
   const delayedDate = new Date().setDate(new Date().getDate() + 0)

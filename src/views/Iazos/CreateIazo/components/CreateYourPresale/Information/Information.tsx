@@ -68,8 +68,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size="lg"
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Whitepaper..."
-          title="Whitepaper:"
+          placeholderText="Docs..."
+          title="Docs:"
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, twitter: e.currentTarget.value })}
