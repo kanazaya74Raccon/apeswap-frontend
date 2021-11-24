@@ -21,6 +21,7 @@ import styled from 'styled-components'
 import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
+import { useWeb3React } from '@web3-react/core'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -65,13 +66,14 @@ const StyledButton = styled(Button)`
   margin-left: 0px;
 `
 
-const SellCard = ({ account }) => {
+const SellCard = () => {
   const [val, setVal] = useState('1')
   const valBanana = parseFloat(val) * 0.98
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
   const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
+  const { account } = useWeb3React()
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()
@@ -81,6 +83,8 @@ const SellCard = ({ account }) => {
   }, [goldenBananaBalance])
 
   const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
+
+  
 
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -162,4 +166,4 @@ const SellCard = ({ account }) => {
   )
 }
 
-export default SellCard
+export default React.memo(SellCard)

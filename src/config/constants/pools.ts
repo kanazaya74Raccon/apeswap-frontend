@@ -2770,6 +2770,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 145,
+    tokenName: 'LMN',
+    image: 'LMN.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.lmn,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x387021bA95c80856Be8B061533c67b47b5c148a6',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://lemonn.io/',
+    harvest: true,
+    tokenPerBlock: `0.040985243055555555`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // PUT ALL ADMIN POOLS UNDER HERE

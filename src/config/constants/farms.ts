@@ -2618,6 +2618,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://projectseed.io/',
   },
   {
+    pid: 164,
+    image: 'LMN.svg',
+    lpSymbol: 'LMN-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x05290964C32722D9E0Ae01cEde50c30Fa6b7ed01',
+    },
+    tokenSymbol: 'LMN',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lemonn.io/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

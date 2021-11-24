@@ -763,6 +763,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  lmn: {
+    symbol: 'LMN',
+    address: {
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
