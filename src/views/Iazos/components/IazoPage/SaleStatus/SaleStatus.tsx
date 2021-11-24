@@ -25,12 +25,15 @@ interface SaleStatus {
 const SaleStatusContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 796px;
+  width: 300px;
   flex-direction: row;
   align-items: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
   justify-content: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const SaleStatus: React.FC<SaleStatus> = ({

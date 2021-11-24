@@ -43,6 +43,9 @@ const FullIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  width: 120px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
 const SvgContainer = styled.div`
@@ -51,7 +54,6 @@ const SvgContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100px;
-  width: 100%;
 `
 
 const Icon = styled.div<{ iconImage: string }>`

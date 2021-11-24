@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 
 interface TokenInfoCardProps {
   tokenName: string
@@ -15,18 +15,24 @@ const IazoCardWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   height: 110px;
-  width: 796px;
+  width: 300px;
   border-radius: 10px;
   margin-bottom: 12.5px;
   background: ${(props) => (props.theme.isDark ? ' rgba(65, 65, 65, 1)' : 'rgba(161, 101, 82, 1)')};
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 const CardMonkey = styled.div`
   position: absolute;
   height: 110px;
-  width: 796px;
+  width: 300px;
   overflow: hidden;
   background: url(images/card-ape.svg) no-repeat 425px 0px;
   opacity: 0.2;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const TokenHeaderInformationWrapper = styled.div`
@@ -40,39 +46,58 @@ const TokenHeaderInformationWrapper = styled.div`
 
 const TokenImage = styled.img`
   border-radius: 50%;
-  width: 71px;
-  height: 71px;
-  margin-left: 25px;
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 71px;
+    height: 71px;
+    margin-left: 25px;
+  }
 `
 
 const TokenName = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 19px;
   padding-left: 2px;
   align-self: flex-start;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 24px;
+  }
 `
 
 const TokenButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 330px;
+  width: 200px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 330px;
+  }
 `
 
 const TokenInfoButton = styled.div<{ opacity: string }>`
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
   height: 27px;
   border-radius: 5px;
+  font-size: 9px;
   cursor: pointer;
   background-color: rgba(255, 179, 0, ${(props) => props.opacity});
   color: white;
   z-index: 1;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `
 
 const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, tokenWebsite, tokenImage }) => {
+  const { isMd, isSm } = useMatchBreakpoints()
+  const isMobile = isMd || isSm
   const formatTokenAddress = `${tokenAddress?.slice(0, 5)}...${tokenAddress?.slice(
     tokenAddress?.length - 3,
     tokenAddress?.length,
@@ -86,21 +111,21 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
         <TokenButtonsWrapper>
           <TokenInfoButton opacity="1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize="15px">
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
                 BscScan
               </Text>
             </a>
           </TokenInfoButton>
           <TokenInfoButton opacity=".1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize="15px">
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
                 {formatTokenAddress}
               </Text>
             </a>
           </TokenInfoButton>
           <TokenInfoButton opacity=".1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize="15px">
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
                 Website
               </Text>
             </a>

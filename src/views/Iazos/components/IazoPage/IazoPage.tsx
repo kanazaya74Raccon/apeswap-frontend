@@ -48,13 +48,16 @@ const LaunchPadWrapper = styled.div`
 const TopNavWrapper = styled.div`
   position: relative;
   height: 60px;
-  width: 856px;
+  width: 320px;
   border-radius: 20px 20px 0px 0px;
   display: flex;
   align-items: center;
   padding-left: 30px;
   background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(161, 101, 82, 1)')};
   z-index: 0;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 856px;
+  }
 `
 
 const TopNavMonkey = styled.div`
@@ -80,9 +83,12 @@ const HeaderWrapper = styled.div`
 const StyledHeader = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
-  font-size: 45px;
+  font-size: 30px;
   font-style: normal;
   line-height: 52px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 45px;
+  }
 `
 
 const BackWrapper = styled.div`
@@ -92,6 +98,11 @@ const BackWrapper = styled.div`
 
 const StyledText = styled(Text)`
   font-family: Poppins;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+    margin-top: 20px;
+  }
 `
 
 const BackArrow = styled.img`
@@ -104,23 +115,29 @@ const WarningWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 235px;
-  width: 796px;
+  width: 300px;
   left: 411px;
   top: 502px;
   background-color: rgba(223, 65, 65, 0.1);
   border-radius: 10px;
   margin-top: 20px;
   z-index: 0;
-  padding: 50px;
+  padding: 25px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+    padding: 50px;
+  }
 `
 
 const BeforeSaleWrapper = styled.div`
   background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
   border-radius: 10px;
-  width: 796px;
+  width: 300px;
   margin-top: 40px;
   margin-bottom: 40px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const SpinnerHolder = styled.div`
@@ -158,7 +175,6 @@ const IazoPage: React.FC = () => {
           </TopNavWrapper>
           <WarningWrapper>
             <StyledHeader fontSize="10px"> Safety Alert</StyledHeader>
-            <br />
             <StyledText>
               This is a decentralised and open presale platform. Anyone can create and name a presale freely including
               fake versions of existing tokens. It is also possible for developers of a token to mint near infinite

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 
 interface DonutChartProps {
   items: {
@@ -20,16 +20,23 @@ const chartAnimation = keyframes`
 const ChartWrapper = styled.div`
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 500px;
   width: 100%;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 500px;
+  }
 `
 
 const ChartSvg = styled.svg`
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  position: relative;
+  border: 1px solid red;
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
 `
 
 const ChartCircle = styled.circle`
@@ -42,7 +49,11 @@ const GraphCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 335px;
+  border: 1px solid red;
+  ${({ theme }) => theme.mediaQueries.md} {
+    align-items: flex-start;
+    margin-left: 335px;
+  }
 `
 
 const GraphCard = styled.div<{ color: string }>`
@@ -82,6 +93,9 @@ const StyledHeader = styled(Text)`
 
 // Creating a svg chart to have more control over design
 const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
+  const { isMd, isSm } = useMatchBreakpoints()
+  const isMobile = isMd || isSm
+
   const calculateOffset = (val) => {
     return circumference - getPercent(val) * circumference
   }
@@ -89,8 +103,8 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
     return val / total
   }
   const strokeWidth = 6
-  const cx = 25
-  const cy = 52
+  const cx = isMobile ? 50 : 25
+  const cy = isMobile ? 64 : 52
   const r = 29
   const circumference = Math.PI * 2 * r
   const total = items.reduce((a, b) => a + b.value, 0)

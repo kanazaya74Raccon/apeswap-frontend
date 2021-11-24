@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
@@ -12,8 +12,6 @@ interface BeforeSaleProps {
 }
 
 const BeforeSaleWrapper = styled.div`
-  padding-top: 20px;
-  width: 796px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,9 +25,11 @@ const Heading = styled(Text)`
 `
 
 const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, status }) => {
+  const { isMd, isSm } = useMatchBreakpoints()
+  const isMobile = isMd || isSm
   return (
     <BeforeSaleWrapper>
-      <Timer fontSize="24px" timeInfo={timeInfo} />
+      <Timer fontSize={isMobile ? "16px" : "24px" } timeInfo={timeInfo} />
     </BeforeSaleWrapper>
   )
 }

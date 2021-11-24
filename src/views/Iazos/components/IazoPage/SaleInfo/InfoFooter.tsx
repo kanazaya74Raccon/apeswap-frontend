@@ -10,14 +10,20 @@ interface InfoFooterProps {
 
 const InfoWrapper = styled.div`
   display: flex;
-  width: 796px;
-  height: 100px;
+  flex-wrap: wrap;
+  width: 300px;
   margin-bottom: 60px;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-right: 25px;
+  padding-left: 25px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+    padding-right: 50px;
+    padding-left: 50px;
+    justify-content: space-between;
+  }
 `
 const StyledText = styled(Text)`
   font-family: Poppins;
