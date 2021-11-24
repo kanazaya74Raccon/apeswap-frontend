@@ -136,7 +136,6 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallAddress, chainId)
   const [userTokenStatus, setUserTokenStatus] = useState({
     stakeTokenHarvest: new BigNumber(0),
     offeringTokenHarvest: new BigNumber(0),
@@ -154,6 +153,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
+      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -217,7 +217,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, fastRefresh, multicallContract])
+  }, [account, contract, address, pendingTx, fastRefresh, multicallAddress, chainId])
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
