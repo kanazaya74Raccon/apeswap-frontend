@@ -1,7 +1,8 @@
 import iazoAbi from 'config/abi/iazo.json'
+import iazoExposerABI from 'config/abi/iazoExposer.json'
 import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import erc20Abi from 'config/abi/erc20.json'
-import { getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
+import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
 import multicallABI from 'config/abi/Multicall.json'
 import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
@@ -100,6 +101,16 @@ export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
   console.log('AT THIS')
 
   return { feeInfo: feeInfoData, status: iazoStatusData }
+}
+
+export const isRegisteredIazoCheck = async (chainId: number, address: string) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const iazoExposerAddress = getIazoExposerAddress(chainId)
+  const resp = await multicall(multicallContract, iazoExposerABI, [
+    { address: iazoExposerAddress, name: 'IAZOIsRegistered', params: [address] },
+  ])
+  return { isRegistered: resp[0][0] }
 }
 
 export default fetchIazoDefaultSettings

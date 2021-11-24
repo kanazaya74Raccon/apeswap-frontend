@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IazosState, Iazo } from '../types'
 import fetchAllIazos from './fetchIazos'
 import fetchIazosFromApi from './fetchIazosFromApi'
-import { fetchIazoTokenDetails, fetchIazoStatusInfo } from './fetchIazoWeb3'
+import { fetchIazoTokenDetails, fetchIazoStatusInfo, isRegisteredIazoCheck } from './fetchIazoWeb3'
 
 const initialState: IazosState = {
   isInitialized: false,
@@ -51,6 +51,8 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
     const iazos = await fetchIazosFromApi()
     dispatch(iazosFetchSucceeded(iazos))
     iazos?.map(async (iazo) => {
+      const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
+      dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
       const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
       dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
       const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)

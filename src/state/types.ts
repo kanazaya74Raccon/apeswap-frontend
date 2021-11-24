@@ -311,6 +311,7 @@ export interface Iazo {
   status: IazoStatus
   baseToken: IazoTokenInfo
   iazoToken: IazoTokenInfo
+  isRegistered?: boolean
   socialInfo?: IazoSocialInfo
   iazoTags?: IazoTags
 }

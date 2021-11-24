@@ -89,7 +89,6 @@ const StyledHeader = styled(Text)`
   font-size: 45px;
   font-style: normal;
   line-height: 52px;
-  padding-right: 35px;
   font-weight: 700;
 `
 
@@ -121,15 +120,16 @@ const SpinnerHolder = styled.div`
 const Iazos: React.FC = () => {
   useFetchIazos()
   const { iazos, isInitialized } = useIazos()
+  const registeredIazos = iazos?.filter((iazo) => iazo.isRegistered)
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
-  const currentIazos = iazos?.filter(
+  const currentIazos = registeredIazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
       currentTime < parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
   )
-  const upcomingIazos = iazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
-  const pastIAzos = iazos?.filter(
+  const upcomingIazos = registeredIazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
+  const pastIAzos = registeredIazos?.filter(
     (iazo) => currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
   )
 
@@ -142,11 +142,9 @@ const Iazos: React.FC = () => {
       case 'done':
         return pastIAzos
       default:
-        return iazos
+        return registeredIazos
     }
   }
-
-  console.log(renderIazos())
 
   return (
     <>
@@ -155,7 +153,7 @@ const Iazos: React.FC = () => {
         <LaunchPadWrapper>
           <TopNavWrapper />
           <HeaderWrapper>
-            <StyledHeader>Self-Serve Launchpad</StyledHeader>
+            <StyledHeader>SS-IAO Launchpad</StyledHeader>
             <Link to="/iazos/create">
               <StyledButton> CREATE </StyledButton>
             </Link>
