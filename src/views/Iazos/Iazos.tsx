@@ -56,10 +56,14 @@ const HeaderWrapper = styled.div`
 const SettingsWrapper = styled.div`
   width: 100%;
   display: flex;
-  height: 60px;
-  margin-top: 40px;
+  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 60px;
+    margin-top: 40px;
+  }
 `
 
 const IlosWrapper = styled.div`
@@ -76,12 +80,15 @@ const IlosWrapper = styled.div`
 const TopNavWrapper = styled.div`
   position: relative;
   height: 0px;
-  width: 856px;
+  width: 320px;
   border-radius: 20px 20px 0px 0px;
   display: flex;
   align-items: center;
   padding-left: 30px;
   z-index: 0;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 856px;
+  }
 `
 
 const StyledHeader = styled(Text)`

@@ -14,24 +14,30 @@ interface iazoCardProps {
 const IazoCardWrapper = styled.div`
   position: relative;
   height: 286px;
-  width: 796px;
+  width: 320px;
   border-radius: 10px;
   margin-top: 12.5px;
   margin-bottom: 12.5px;
   background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   cursor: pointer;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const CardMonkey = styled.div`
   position: absolute;
   height: 286px;
-  width: 796px;
+  width: 320px;
   overflow: hidden;
   background: ${(props) =>
     props.theme.isDark
       ? 'url(images/card-ape.svg) no-repeat 425px 110px'
       : 'url(images/card-ape-light.svg) no-repeat 425px 110px'};
   opacity: 0.2;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const CardWrapperTemplate = styled.div`
@@ -44,22 +50,31 @@ const CardWrapperTemplate = styled.div`
 
 const HeadingWrapper = styled(CardWrapperTemplate)`
   height: 110px;
-  width: 796px;
+  width: 320px;
   border-radius: 10px 10px 0px 0px;
   background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const TopBodyWrapper = styled(CardWrapperTemplate)`
-  width: 796px;
+  width: 320px;
   height: 80px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const BottomBodyWrapper = styled(CardWrapperTemplate)`
-  width: 796px;
+  width: 320px;
   height: 96px;
   flex-direction: column;
   justify-content: center;
   border-radius: 0px 0px 10px 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const TokenHeaderInformationWrapper = styled.div`
