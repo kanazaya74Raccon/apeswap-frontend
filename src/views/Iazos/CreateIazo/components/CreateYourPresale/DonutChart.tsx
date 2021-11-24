@@ -31,7 +31,6 @@ const ChartWrapper = styled.div`
 
 const ChartSvg = styled.svg`
   position: relative;
-  border: 1px solid red;
   ${({ theme }) => theme.mediaQueries.md} {
     position: absolute;
     height: 100%;
@@ -49,17 +48,21 @@ const GraphCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid red;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15px;
   ${({ theme }) => theme.mediaQueries.md} {
-    align-items: flex-start;
     margin-left: 335px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
   }
 `
 
 const GraphCard = styled.div<{ color: string }>`
   background-color: ${(props) => props.color};
-  height: 35px;
-  width: 30px;
+  height: 25px;
+  width: 20px;
   border-radius: 5px;
   color: white;
   display: flex;
@@ -68,6 +71,10 @@ const GraphCard = styled.div<{ color: string }>`
   margin-bottom: 10px;
   margin-top: 10px;
   margin-right: 15px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 35px;
+    width: 30px;
+  }
 `
 
 const IconAndTextWrapper = styled.div`
@@ -79,16 +86,27 @@ const IconAndTextWrapper = styled.div`
 const StyledText = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
 `
 
 const StyledHeader = styled(Text)`
+  display: flex;
   position: absolute;
   top: 20px;
   font-family: Poppins;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 27px;
   margin-top: 15px;
+  height: 50px;
+  justify-content: center;
+  text-align: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 22px;
+  }
 `
 
 // Creating a svg chart to have more control over design

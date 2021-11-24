@@ -29,7 +29,7 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, status }) => {
   const isMobile = isMd || isSm
   return (
     <BeforeSaleWrapper>
-      <Timer fontSize={isMobile ? "16px" : "24px" } timeInfo={timeInfo} />
+      <Timer fontSize={isMobile ? '16px' : '24px'} timeInfo={timeInfo} />
     </BeforeSaleWrapper>
   )
 }
