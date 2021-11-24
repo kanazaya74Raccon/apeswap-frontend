@@ -21,10 +21,11 @@ interface TimerProps {
 }
 
 const formatCountdown = (countdown: any): string => {
+  const formatDays = countdown.days < 10 ? `0${countdown.days}` : countdown.days.toString()
   const formatHours = countdown.hours < 10 ? `0${countdown.hours}` : countdown.hours.toString()
   const formatMinutes = countdown.minutes < 10 ? `0${countdown.minutes}` : countdown.minutes.toString()
   const formatSeconds = countdown.seconds < 9 ? `0${countdown.seconds.toFixed(0)}` : countdown.seconds.toFixed(0)
-  return `${formatHours}:${formatMinutes}:${formatSeconds}`
+  return `${formatDays}:${formatHours}:${formatMinutes}:${formatSeconds}`
 }
 
 const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize }) => {
