@@ -85,7 +85,8 @@ const formatCountdown = (startDate, endDate) => {
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
-  const [dateState, setDateState] = useState<DateObject>({ start: new Date(), end: new Date() })
+  const delayedDate = new Date(new Date().setDate(new Date().getDate() + 0))
+  const [dateState, setDateState] = useState<DateObject>({ start: delayedDate, end: delayedDate })
 
   useEffect(() => {
     onChange(dateState)

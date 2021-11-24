@@ -14,18 +14,21 @@ const SaleReview: React.FC<SaleReviewProps> = ({ presaleDetails, postsaleDetails
   const { tokensForSale, pricePerToken } = presaleDetails
   const { liquidityPercent } = postsaleDetails
   const { totalSupply, tokenDecimals, quoteToken } = pairDetails
+
   // Tokenomics chart details
   const formatedTotalSupply = getBalanceNumber(new BigNumber(totalSupply), tokenDecimals)
+
+  // Tokens for sale after subtracting liquidity and fees
   const tokensForLiquidity = parseFloat(tokensForSale) * liquidityPercent
   const tokensForFees = 0.018 * parseFloat(tokensForSale)
-  // Tokens for sale after subtracting liquidity and fees
-  const tokensForSaleMinusInputs = parseFloat(tokensForSale) - tokensForLiquidity - tokensForFees
-  const tokensForOther = formatedTotalSupply - parseFloat(tokensForSale)
+  const tokensForOther = formatedTotalSupply - parseFloat(tokensForSale) - tokensForLiquidity - tokensForFees
+
   // Amount raised chart details
   const amountRaisedInQuoteToken = parseFloat(pricePerToken) * parseFloat(tokensForSale)
   const quoteTokenForLiqudity = amountRaisedInQuoteToken * liquidityPercent
   const quoteTokenForFees = 0.018 * amountRaisedInQuoteToken
-  const quoteTokenForOther = amountRaisedInQuoteToken - quoteTokenForLiqudity - quoteTokenForFees
+  const amountForOther =
+    liquidityPercent === 1 ? 0 : amountRaisedInQuoteToken - quoteTokenForLiqudity - quoteTokenForFees
 
   return (
     <>
@@ -33,7 +36,7 @@ const SaleReview: React.FC<SaleReviewProps> = ({ presaleDetails, postsaleDetails
         items={[
           {
             label: 'For Sale',
-            value: tokensForSaleMinusInputs,
+            value: parseFloat(tokensForSale),
             color: 'rgba(255, 179, 0, 1)',
           },
           {
@@ -62,7 +65,7 @@ const SaleReview: React.FC<SaleReviewProps> = ({ presaleDetails, postsaleDetails
             value: quoteTokenForFees,
             color: 'rgba(122, 122, 122, 1)',
           },
-          { label: 'Dev/Other', value: quoteTokenForOther, color: 'rgba(161, 101, 82, 1)' },
+          { label: 'Dev/Other', value: amountForOther, color: 'rgba(161, 101, 82, 1)' },
         ]}
         title={`${quoteToken} Raised`}
       />

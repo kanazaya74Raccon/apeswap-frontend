@@ -38,7 +38,7 @@ const PresaleInfoContainer = styled.div`
 `
 
 const StyledText = styled(Text)<{ wallet: string }>`
-  font-family: Roboto;
+  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -61,18 +61,11 @@ const PairContainer = styled.div`
 `
 
 const StyledDescription = styled(Text)`
-  font-family: Roboto;
+  font-family: Poppins;
   font-style: normal;
   font-weight: 400;
   line-height: 14px;
   margin-top: 10px;
-`
-
-const ComponentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `
 
 const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
