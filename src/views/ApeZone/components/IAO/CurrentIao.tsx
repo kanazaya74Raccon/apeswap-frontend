@@ -96,7 +96,6 @@ const prevIfos = zoneIfo.filter((ifo) => !ifo.isActive)
 const Iao = () => {
   const TranslateString = useI18n()
   const [showHistory, setShowHistory] = useState(false)
-
   return (
     <>
       <StyledHeroSection>
@@ -179,4 +178,4 @@ const Iao = () => {
   )
 }
 
-export default Iao
+export default React.memo(Iao)
