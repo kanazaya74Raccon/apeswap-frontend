@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {} from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
@@ -154,8 +155,11 @@ const Home: React.FC = () => {
     )
   }
 
+  console.log('pathname', window.location.pathname)
+
   return (
     <>
+      {window.location.pathname.includes('startModal=simple') && <></>}
       <Page width="1200px">
         <BannerContainer>
           <Banner />

@@ -161,9 +161,6 @@ const Ifos = () => {
           <Ape src="/images/banners/iao-ape.svg" className="ape" />
           <WindowImage className="window" />
           <Banana src="/images/banners/iao-banana.svg" className="banana" />
-          {/* <Ape src="/images/banners/iao-ape.svg" /> */}
-          {/* <WinImg /> */}
-          {/* <Banana src="/images/banners/iao-banana.svg" /> */}
         </RightDiv>
       </Header>
 
