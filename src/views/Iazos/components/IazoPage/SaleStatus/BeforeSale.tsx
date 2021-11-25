@@ -25,8 +25,8 @@ const Heading = styled(Text)`
 `
 
 const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, status }) => {
-  const { isMd, isSm } = useMatchBreakpoints()
-  const isMobile = isMd || isSm
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   return (
     <BeforeSaleWrapper>
       <Timer fontSize={isMobile ? '16px' : '24px'} timeInfo={timeInfo} />

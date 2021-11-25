@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Text, Checkbox } from '@apeswapfinance/uikit'
+import { Text, Checkbox, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import TokenInput from './TokenInput'
@@ -15,21 +15,29 @@ const LaunchPadInfoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 524px;
-  width: 686px;
+  height: 800px;
+  width: 280px;
   border-radius: 10px;
   background: #414141;
   margin-bottom: 30px;
   align-items: space-between;
   justify-content: center;
   padding: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 686px;
+    height: 524px;
+  }
 `
 const StyledHeader = styled(Text)`
   font-family: Poppins;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 27px;
   margin-top: 15px;
   font-weight: 700;
+  text-align: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 22px;
+  }
 `
 
 const CheckboxContainer = styled.div`
@@ -50,12 +58,17 @@ const FooterContainer = styled.div`
 
 const StyledText = styled(Text)`
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   margin-left: 15px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
 `
 
 const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange }) => {
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   const { tokenSymbol, quoteToken, userBalance, tokenDecimals } = pairTokenDetails
   const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>({
     tokensForSale: null,
@@ -76,7 +89,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         <StyledHeader>How many {tokenSymbol} are up for presale?</StyledHeader>
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, tokensForSale: e.currentTarget.value })}
-          size="xl"
+          size="lg"
           tokenSymbol={tokenSymbol}
           userBalance={balance}
           backgroundColor="rgba(51, 51, 51, 1)"
@@ -84,7 +97,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, pricePerToken: e.currentTarget.value })}
           title={`Price of 1 ${tokenSymbol}`}
-          mr="12.5px"
+          mr={isMobile ? '0px' : '12.5px'}
           quoteTokenSymbol={quoteToken}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
@@ -93,7 +106,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           onChange={(e) => setTokenDetails({ ...tokenDetails, limitPerUser: e.currentTarget.value })}
           title={`${quoteToken} limit per user`}
           quoteTokenSymbol={quoteToken}
-          ml="12.5px"
+          ml={isMobile ? '0px' : '12.5px'}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
         />
@@ -101,14 +114,14 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           onChange={(e) => setTokenDetails({ ...tokenDetails, softcap: e.currentTarget.value })}
           title="Softcap"
           quoteTokenSymbol={quoteToken}
-          mr="12.5px"
+          mr={isMobile ? '0px' : '12.5px'}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
         />
         <TokenInput
           defaultVal={(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)).toString()}
           title="Hardcap"
-          ml="12.5px"
+          ml={isMobile ? '0px' : '12.5px'}
           size="md"
           disabled
           quoteTokenSymbol={quoteToken}

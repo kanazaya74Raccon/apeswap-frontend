@@ -8,7 +8,7 @@ interface FaqDropdownProps {
 }
 
 const FaqWrapper = styled.div`
-  width: 733px;
+  width: 280px;
   border-radius: 10px;
   background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
   margin-top: 10px;
@@ -20,6 +20,9 @@ const FaqWrapper = styled.div`
   padding-bottom: 5px;
   cursor: pointer;
   flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 733px;
+  }
 `
 const StyledHeader = styled(Text)`
   font-family: Poppins;

@@ -39,7 +39,7 @@ export const NETWORK_RPC = {
     'https://bsc-dataseed1.defibit.io',
     'https://bsc-dataseed.binance.org/',
   ],
-  [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s3.binance.org:8545/'],
+  [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s2.binance.org:8545/'],
   [CHAIN_ID.MATIC]: ['https://polygon-rpc.com/'],
   [CHAIN_ID.MATIC_TESTNET]: ['https://matic-mumbai.chainstacklabs.com'],
 }

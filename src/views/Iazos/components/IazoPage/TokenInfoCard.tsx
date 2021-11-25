@@ -96,8 +96,8 @@ const TokenInfoButton = styled.div<{ opacity: string }>`
 `
 
 const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, tokenWebsite, tokenImage }) => {
-  const { isMd, isSm } = useMatchBreakpoints()
-  const isMobile = isMd || isSm
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   const formatTokenAddress = `${tokenAddress?.slice(0, 5)}...${tokenAddress?.slice(
     tokenAddress?.length - 3,
     tokenAddress?.length,

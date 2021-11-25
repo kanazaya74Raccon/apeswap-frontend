@@ -159,8 +159,8 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const liqudiityLock = parseInt(liquidityPercent) / 10
   const duration = getTimePeriods(parseInt(activeTime), true)
   const lockTime = getTimePeriods(parseInt(lockPeriod), true)
-  const { isMd, isSm } = useMatchBreakpoints()
-  const isMobile = isMd || isSm
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
 
   return (
     <IazoCardWrapper>

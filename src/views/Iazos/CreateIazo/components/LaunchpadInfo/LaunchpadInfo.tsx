@@ -21,7 +21,7 @@ const listOfFaqs = [
 ]
 
 const LaunchPadInfoWrapper = styled.div`
-  width: 796px;
+  width: 300px;
   border-radius: 10px;
   background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
   margin-top: 30px;
@@ -29,6 +29,9 @@ const LaunchPadInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 const StyledHeader = styled(Text)`
   font-family: Poppins;

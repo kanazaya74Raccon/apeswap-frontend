@@ -111,8 +111,8 @@ const StyledHeader = styled(Text)`
 
 // Creating a svg chart to have more control over design
 const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
-  const { isMd, isSm } = useMatchBreakpoints()
-  const isMobile = isMd || isSm
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
 
   const calculateOffset = (val) => {
     return circumference - getPercent(val) * circumference

@@ -16,7 +16,7 @@ interface TextInputProps {
 }
 
 const sizes = {
-  sm: '250px',
+  sm: '285px',
   md: '450px',
   lg: '525px',
   xl: '600px',

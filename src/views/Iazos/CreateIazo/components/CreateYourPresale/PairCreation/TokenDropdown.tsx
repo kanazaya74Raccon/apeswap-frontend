@@ -7,8 +7,8 @@ interface TokenDropdown {
   onChange: (token: string) => void
 }
 
-const FaqWrapper = styled.div`
-  width: 175px;
+const Wrapper = styled.div`
+  width: 285px;
   border-radius: 10px;
   background: #414141;
   display: flex;
@@ -17,6 +17,12 @@ const FaqWrapper = styled.div`
   padding-bottom: 5px;
   cursor: pointer;
   flex-direction: column;
+  margin-top: 20px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 175px;
+    flex-wrap: nowrap;
+    margin-top: 0px;
+  }
 `
 const StyledHeader = styled(Text)`
   font-family: Poppins;
@@ -67,7 +73,7 @@ const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {
   const [selectedToken, setSelectedToken] = useState(tokens[0])
   const dropdownTokens = tokens.filter((token) => token !== selectedToken)
   return (
-    <FaqWrapper onClick={() => setOpened(!opened)}>
+    <Wrapper onClick={() => setOpened(!opened)}>
       <HeaderWrapper opened={opened}>
         <IconImage height={25} width={25} src={`/images/tokens/${selectedToken}.svg`} alt="token" />
         <StyledHeader>{selectedToken}</StyledHeader>
@@ -84,7 +90,7 @@ const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {
             <StyledText>{token}</StyledText>
           </DropdownItem>
         ))}
-    </FaqWrapper>
+    </Wrapper>
   )
 }
 

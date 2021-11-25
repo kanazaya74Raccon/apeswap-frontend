@@ -46,13 +46,16 @@ const LaunchPadWrapper = styled.div`
 const TopNavWrapper = styled.div`
   position: relative;
   height: 60px;
-  width: 856px;
+  width: 320px;
   border-radius: 20px 20px 0px 0px;
   display: flex;
   align-items: center;
   padding-left: 30px;
   background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(161, 101, 82, 1)')};
   z-index: 0;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 856px;
+  }
 `
 
 const TopNavMonkey = styled.div`
