@@ -101,7 +101,7 @@ const StyledText = styled(Text)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 3px;
   }
 `
 
