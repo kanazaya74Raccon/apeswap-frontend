@@ -12,12 +12,15 @@ interface ActionsProps {
 }
 
 const ActionWrapper = styled.div`
-  width: 450px;
+  width: 280px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 100px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 450px;
+  }
 `
 const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
   const { pairCreation } = presaleData

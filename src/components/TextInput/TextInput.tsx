@@ -13,6 +13,7 @@ interface TextInputProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   height?: 'sm' | 'md' | 'lg' | 'xl'
   load?: boolean
+  above?: boolean
 }
 
 const sizes = {
@@ -37,7 +38,7 @@ const InputContainer = styled.div<{ size: string; height: string }>`
   width: ${(props) => sizes[props.size]};
 `
 
-const Input = styled.input<{ backgroundColor: string; imgSrc: string; textColor: string }>`
+const Input = styled.input<{ backgroundColor: string; imgSrc: string; textColor: string; above?: boolean }>`
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -102,10 +103,20 @@ const Container = styled.div`
   justify-content: flex-start;
 `
 
-const StyledText = styled(Text)`
+const StyledText = styled(Text)<{ large?: boolean }>`
+  position: absolute;
+  height: ${(props) => (props.large ? '155px' : '90px')};
   font-family: Poppins;
   font-weight: 500;
   width: 130px;
+  font-size: 14px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: relative;
+    width: 130px;
+    flex-wrap: nowrap;
+    height: 30px;
+    font-size: 16px;
+  }
 `
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -119,10 +130,11 @@ const TextInput: React.FC<TextInputProps> = ({
   icon,
   load,
   title,
+  above,
 }) => {
   return (
     <Container>
-      {title && <StyledText>{title}</StyledText>}
+      {title && <StyledText large={height === 'lg' || height === 'xl'}>{title}</StyledText>}
       <InputContainer size={size} height={height}>
         {height === 'lg' || height === 'xl' ? (
           <LargeInput

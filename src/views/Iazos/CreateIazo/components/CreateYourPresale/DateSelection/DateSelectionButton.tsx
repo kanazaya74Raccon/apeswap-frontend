@@ -8,8 +8,12 @@ interface DateSelectionProps {
 }
 
 const IconWrapper = styled.div`
-  position: relative;
-  display: flex;
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: relative;
+  }
 `
 
 const IconImage = styled.div<{ image: string }>`
@@ -24,10 +28,13 @@ const IconImage = styled.div<{ image: string }>`
 
 const DatePickerContainer = styled.div`
   position: absolute;
-  left: 50px;
-  width: 400px;
-  top: -150px;
+  right: -35px;
+  width: 330px;
+  top: -240px;
   z-index: 100;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 400px;
+  }
 `
 
 const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {

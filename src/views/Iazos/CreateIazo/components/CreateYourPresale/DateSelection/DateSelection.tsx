@@ -10,13 +10,16 @@ interface DateSelectorProps {
 }
 
 const DateContainer = styled.div`
-  width: 796px;
+  width: 300px;
   border-radius: 10px;
   background: #333333;
   margin-bottom: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 const StyledHeader = styled(Text)`
   font-family: Poppins;
@@ -30,19 +33,25 @@ const StyledHeader = styled(Text)`
 
 const StyledText = styled(Text)`
   font-family: Poppins;
-  font-size: 22px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 33px;
   letter-spacing: 0.05em;
   text-align: left;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 22px;
+  }
 `
 
 const StyledSubText = styled(Text)`
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 24px;
   color: #ffffff;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
 `
 
 const TextContainer = styled.div`
@@ -67,12 +76,15 @@ const DateSelectionContainer = styled.div`
   display: flex;
   height: 135px;
   background: #414141;
-  width: 686px;
+  width: 280px;
   border-radius: 10px;
   margin-top: 15px;
   align-items: center;
   margin-bottom: 20px;
   z-index: 0;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 686px;
+  }
 `
 
 const formatDate = (date: Date) => {

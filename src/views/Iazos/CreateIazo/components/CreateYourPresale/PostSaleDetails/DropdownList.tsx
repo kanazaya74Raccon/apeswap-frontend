@@ -46,6 +46,7 @@ const DropdownItem = styled.div`
   height: 60px;
   cursor: pointer;
   opacity: 0.7;
+  z-index: 100;
   &:hover {
     opacity: 1;
   }
@@ -62,7 +63,7 @@ const InputTitle = styled(Text)`
 `
 
 const DropDownWrapper = styled.div`
-  width: 318px;
+  width: 100%;
   position: absolute;
   top: 60px;
   display: flex;
