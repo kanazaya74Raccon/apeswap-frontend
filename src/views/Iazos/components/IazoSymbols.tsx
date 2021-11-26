@@ -42,10 +42,12 @@ const FullIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
-  width: 120px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 `
 
 const SvgContainer = styled.div`

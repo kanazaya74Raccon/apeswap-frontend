@@ -20,6 +20,7 @@ interface SaleStatus {
   status: IazoStatus
   iazoAddress: string
   tokenPrice: string
+  liquidityPercent: string
 }
 
 const SaleStatusContainer = styled.div`
@@ -44,18 +45,27 @@ const SaleStatus: React.FC<SaleStatus> = ({
   iazoAddress,
   tokenPrice,
   iazoToken,
+  liquidityPercent,
 }) => {
   const userCommitData: UserCommit = useFetchUserIazoCommit(iazoAddress)
   const { activeTime, startTime } = timeInfo
+  const { symbol, decimals } = baseToken
   const currentTime = useCurrentTime() / 1000
   const endTime = parseInt(activeTime) + parseInt(startTime)
   const timeUntilStart = parseInt(startTime) - currentTime
   const timeUntilEnd = endTime - currentTime
-  console.log(userCommitData)
+  const tokenPriceFormatted = getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)).toString()
 
   const renderSaleStatus = () => {
     if (timeUntilStart > 0) {
-      return <BeforeSale timeInfo={timeInfo} status={status} />
+      return (
+        <BeforeSale
+          timeInfo={timeInfo}
+          baseTokenSymbol={symbol}
+          tokenPrice={tokenPriceFormatted}
+          liquidityPercent={liquidityPercent}
+        />
+      )
     }
     if (timeUntilEnd > 0) {
       return (
@@ -65,7 +75,8 @@ const SaleStatus: React.FC<SaleStatus> = ({
           baseToken={baseToken}
           status={status}
           iazoAddress={iazoAddress}
-          tokenPrice={tokenPrice}
+          tokenPrice={tokenPriceFormatted}
+          liquidityPercent={liquidityPercent}
         />
       )
     }
@@ -76,7 +87,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
         baseToken={baseToken}
         status={status}
         iazoAddress={iazoAddress}
-        tokenPrice={tokenPrice}
+        tokenPrice={tokenPriceFormatted}
         userCommitData={userCommitData}
         iazoTokenDecimals={iazoToken.decimals}
       />

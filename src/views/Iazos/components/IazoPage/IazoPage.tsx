@@ -156,7 +156,7 @@ const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
   const { iazos, isInitialized } = useIazos()
   const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
-  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress, socialInfo, tokenPrice } =
+  const { iazoToken, timeInfo, hardcap, baseToken, status, iazoContractAddress, socialInfo, tokenPrice, liquidityPercent } =
     isInitialized && iazo
   const { tokenImage, website } = isInitialized && socialInfo
   return (
@@ -198,6 +198,7 @@ const IazoPage: React.FC = () => {
                   iazoAddress={iazoContractAddress}
                   tokenPrice={tokenPrice}
                   iazoToken={iazoToken}
+                  liquidityPercent={liquidityPercent}
                 />
               </>
             ) : (

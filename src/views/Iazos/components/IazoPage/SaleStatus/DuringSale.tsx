@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import getTimePeriods from 'utils/getTimePeriods'
 import { useTokenPriceFromAddress } from 'state/hooks'
 import Timer from '../../IazoCard/Timer'
 import Actions from '../../Actions'
@@ -16,6 +17,7 @@ interface BeforeSaleProps {
   status: IazoStatus
   iazoAddress: string
   tokenPrice: string
+  liquidityPercent: string
 }
 
 const BeforeSaleWrapper = styled.div`
@@ -51,9 +53,7 @@ const IazoSymbolsContainer = styled.div`
   position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
-  width: 300px;
-  border: 1px solid red;
+  justify-content: space-between;
 `
 
 const Progress = styled(ProgressBar)<{ percentComplete: string }>`
@@ -61,14 +61,25 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, status, iazoAddress, tokenPrice }) => {
+const DuringSale: React.FC<BeforeSaleProps> = ({
+  timeInfo,
+  hardcap,
+  baseToken,
+  status,
+  iazoAddress,
+  tokenPrice,
+  liquidityPercent,
+}) => {
   const { symbol, decimals, address } = baseToken
-  const { totalBaseCollected } = status
+  const { totalBaseCollected, numBuyers } = status
+  const { lockPeriod } = timeInfo
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
   const baseTokenPrice = useTokenPriceFromAddress(address)
   const tokenPriceFormatted =
     baseTokenPrice && (getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)) * baseTokenPrice).toString()
+  const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
+  const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
 
   return (
     <BeforeSaleWrapper>
@@ -83,8 +94,13 @@ const DuringSale: React.FC<BeforeSaleProps> = ({ timeInfo, hardcap, baseToken, s
       <Timer timeInfo={timeInfo} />
       <Actions iazoAddress={iazoAddress} baseToken={baseToken} />
       <IazoSymbolsContainer>
-        <IazoSymbols iconImage="dollar" title={tokenPriceFormatted} description="Presale price" />
-        <IazoSymbols iconImage="lock" title="yes" description="Lock for 11 months" />
+        <IazoSymbols iconImage="dollar" title={tokenPrice} description="Presale price" />
+        <IazoSymbols
+          iconImage="lock"
+          title={`${liquidityPercentFormatted}%`}
+          description={`Locked for ${daysLocked.days} days`}
+        />
+        <IazoSymbols iconImage="monkey" title={numBuyers} description="Participants" />
       </IazoSymbolsContainer>
     </BeforeSaleWrapper>
   )
