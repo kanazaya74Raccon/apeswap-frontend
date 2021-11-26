@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import {} from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
@@ -29,7 +28,6 @@ const BannerContainer = styled.div`
     padding-right: 0px;
   }
 `
-
 const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,7 +39,6 @@ const PageContainer = styled.div`
     margin-bottom: 0px;
   }
 `
-
 const FrontRowWrapper = styled.div`
   display: flex;
   width: auto;
@@ -155,11 +152,8 @@ const Home: React.FC = () => {
     )
   }
 
-  console.log('pathname', window.location.pathname)
-
   return (
     <>
-      {window.location.pathname.includes('startModal=simple') && <></>}
       <Page width="1200px">
         <BannerContainer>
           <Banner />

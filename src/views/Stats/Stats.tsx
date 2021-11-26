@@ -9,6 +9,7 @@ import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
+import HomeModalCheck from '../../components/HomeModalCheck'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -96,6 +97,7 @@ const Stats: React.FC = () => {
 
   return (
     <>
+      <HomeModalCheck />
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
