@@ -48,17 +48,17 @@ const HeadingContainer = styled.div`
 
 const StyledHeading = styled(Heading)`
   font-size: 32px;
-  max-width: 176px !important;
+  max-width: 300px !important;
   color: ${({ theme }) => (theme.isDark ? 'white' : '#A16552')};
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 36px;
-    max-width: 240px !important;
+    max-width: 400px !important;
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 44px;
-    max-width: 400px !important;
+    max-width: 500px !important;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -75,7 +75,7 @@ const Nft = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mt={0} color="white">
-            {TranslateString(999, 'NFA')}
+            {TranslateString(999, 'Non Fungible Apes')}
           </StyledHeading>
           <StyledHeading as="h1" mb="8px" mt={1} color="white">
             {TranslateString(999, 'Collection')}
