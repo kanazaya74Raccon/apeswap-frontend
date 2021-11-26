@@ -17,6 +17,7 @@ const Header = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 32px;
+  overflow: hidden;
 
   ${({ theme }) => theme.mediaQueries.md} {
     height: 300px;
@@ -62,7 +63,7 @@ const RightDiv = styled.div`
   width: 100%;
   height: inherit;
   max-width: 800px;
-  overflow-y: hidden;
+  overflow: hidden;
 `
 
 const apeFloat = keyframes`
