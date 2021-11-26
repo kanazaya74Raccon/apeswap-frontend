@@ -132,7 +132,6 @@ const Banana = styled.img`
   position: absolute;
   top: 10px;
   right: 0;
-  -webkit-animation: ${bananaFloat} 10s linear infinite;
   animation: ${bananaFloat} 10s linear infinite;
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -144,13 +143,79 @@ const Banana = styled.img`
   }
 `
 
+const Hd = styled.div`
+  display: flex;
+  width: 100%;
+  background-image: url(/images/banners/iao-bg.svg);
+  height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 32px;
+`
+const Hc = styled.div`
+  position: absolute;
+  z-index: 999;
+  padding-top: 36px;
+  padding-left: 10px;
+  height: inherit;
+`
+const Sh = styled(Heading)`
+  font-size: 32px;
+  max-width: 176px !important;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    font-size: 36px;
+    max-width: 240px !important;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 44px;
+    max-width: 400px !important;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 60px;
+    max-width: 600px !important;
+  }
+`
+const Rd = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: inherit;
+  max-width: 800px;
+  overflow-y: hidden;
+`
+const Ap = styled.img`
+  width: 300px;
+  margin-top: 80%;
+  margin-left: 20%;
+  animation: ${apeFloat} 10s ease-in-out infinite;
+`
+const WiDiv = styled.div`
+  background-color: red;
+  position: absolute;
+  background-image: url(/images/banners/iao-window.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: inherit;
+  background-position: inherit;
+  width: 100%;
+`
+// const Wi = styled.img`
+//   width: 100%;
+//   height: auto;
+// `
+
 const Ifos = () => {
   const { path } = useRouteMatch()
   const TranslateString = useI18n()
 
   return (
     <>
-      <Header>
+      {/* <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {TranslateString(999, 'Initial Ape Offerings')}
@@ -158,14 +223,26 @@ const Ifos = () => {
         </HeadingContainer>
 
         <RightDiv>
-          <Ape src="/images/banners/iao-ape.svg" className="ape" />
-          <WindowImage className="window" />
+          <WindowImage className="window">
+            <Ape src="/images/banners/iao-ape.svg" className="ape" />
+          </WindowImage>
           <Banana src="/images/banners/iao-banana.svg" className="banana" />
-          {/* <Ape src="/images/banners/iao-ape.svg" /> */}
-          {/* <WinImg /> */}
-          {/* <Banana src="/images/banners/iao-banana.svg" /> */}
         </RightDiv>
-      </Header>
+      </Header> */}
+
+      <Hd>
+        <Hc>
+          <Sh as="h1" mb="8px" mt={0} color="white">
+            {TranslateString(999, 'Initial Ape Offerings')}
+          </Sh>
+        </Hc>
+
+        <Rd>
+          <Ap src="/images/banners/iao-ape.svg" className="ape" />
+          <WiDiv className="window">{/* <Wi src="/images/banners/iao-window.svg" className="ape" /> */}</WiDiv>
+          <Banana src="/images/banners/iao-banana.svg" className="banana" />
+        </Rd>
+      </Hd>
 
       <Container>
         <IfoTabButtons />
