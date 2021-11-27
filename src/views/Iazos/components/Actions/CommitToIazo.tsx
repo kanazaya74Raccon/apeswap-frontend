@@ -60,7 +60,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   return (
     <Wrapper>
       <TokenInput
-        size={isMobile ? "sm" : "mdlg"}
+        size={isMobile ? 'sm' : 'mdlg'}
         backgroundColor="rgba(65, 65, 65, 1)"
         tokenSymbol={symbol}
         userBalance={userBalanceFormatted}

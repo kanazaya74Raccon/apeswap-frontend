@@ -48,7 +48,7 @@ const Input = styled.input<{ backgroundColor: string }>`
   padding-left: 15px;
   font-family: Poppins;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 23px;
   text-align: left;
   background: ${(props) => props.backgroundColor || '#333333'};
@@ -63,6 +63,9 @@ const Input = styled.input<{ backgroundColor: string }>`
   ::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 22px;
   }
 `
 
@@ -93,7 +96,7 @@ const IconImage = styled(Image)`
 const HeaderWrapper = styled.div`
   position: absolute;
   height: 35px;
-  right: 15px;
+  right: 25px;
   width: 90px;
   display: flex;
   align-items: center;
@@ -114,9 +117,12 @@ const TokenWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  right: 0px;
+  right: -25px;
   height: 54px;
   width: 170px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    right: 0px;
+  }
 `
 
 const TokenInput: React.FC<TextInputProps> = ({
