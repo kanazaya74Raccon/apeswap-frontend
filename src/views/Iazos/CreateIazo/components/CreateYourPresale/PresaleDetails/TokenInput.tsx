@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
+import { useToast } from 'state/hooks'
 
 interface TextInputProps {
   placeholderText?: string
@@ -15,6 +16,8 @@ interface TextInputProps {
   defaultVal?: string
   quoteTokenSymbol?: string
   tokenSymbol?: string
+  min?: number
+  max?: number
 }
 
 const sizes = {
@@ -120,7 +123,24 @@ const TokenInput: React.FC<TextInputProps> = ({
   ml,
   mr,
   defaultVal,
+  min,
+  max,
 }) => {
+  const { toastError } = useToast()
+
+  const onValidate = (e) => {
+    const val = parseFloat(e.currentTarget.value)
+    if (val < min) {
+      toastError(`Value must be greater than ${min}`)
+      e.currentTarget.value = min
+    }
+    if (val > max) {
+      toastError(`Value must be less than ${max}`)
+      e.currentTarget.value = max
+    }
+    return val
+  }
+
   return (
     <InputContainer size={size} ml={ml} mr={mr}>
       <InputTitle>{title}</InputTitle>
@@ -130,6 +150,8 @@ const TokenInput: React.FC<TextInputProps> = ({
         backgroundColor={backgroundColor}
         placeholder={placeholderText}
         disabled={disabled}
+        type="number"
+        onKeyUp={onValidate}
       />
       {quoteTokenSymbol ? (
         <HeaderWrapper>

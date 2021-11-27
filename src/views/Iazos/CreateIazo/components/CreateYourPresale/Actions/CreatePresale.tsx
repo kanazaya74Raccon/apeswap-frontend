@@ -1,16 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
+import { useHistory } from 'react-router-dom'
 import useCreateIazo from 'views/Iazos/hooks/useCreateIazo'
 import tokens from 'config/constants/tokens'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import useCreateIazoApi from 'views/Iazos/hooks/useCreateIazoApi'
 import { Token } from 'config/constants/types'
+import { useToast } from 'state/hooks'
 import { PresaleData } from '../types'
 
 interface CreatePresaleProps {
   presaleData: PresaleData
+  disabled: boolean
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -26,8 +29,10 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
+const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) => {
   const { chainId, account } = useWeb3React()
+  const history = useHistory()
+  const { toastSuccess, toastError } = useToast()
   const { datesSelected, pairCreation, postsaleDetails, presaleTokenDetails, information } = presaleData
   const { tokenAddress, quoteToken, tokenDecimals, tokenSymbol } = pairCreation
   const { burnRemains, pricePerToken, softcap, limitPerUser, tokensForSale } = presaleTokenDetails
@@ -125,14 +130,21 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData }) => {
               console.log(resp)
               const iazoAddress = resp.events.IAZOCreated.returnValues.newIAZO
               apiObject.append('iazoAddress', iazoAddress)
-              onCreateIazoApi(apiObject)
+              onCreateIazoApi(apiObject).then((apiResp: any) => {
+                if (apiResp.status === 201) {
+                  history.push('/iazos')
+                  toastSuccess('Your SS-IAO was successfully created!')
+                } else {
+                  toastError('Your SS-IAO encountered an error. Please contact the ApeSwap team for help.')
+                }
+              })
             })
             .catch((e) => {
-              console.log(e)
+              console.error(e)
             })
           setPendingTrx(false)
         }}
-        disabled={pendingTrx}
+        disabled={pendingTrx || disabled}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
         CREATE PRESALE

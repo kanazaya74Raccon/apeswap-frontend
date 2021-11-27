@@ -21,11 +21,11 @@ const BeforeSaleWrapper = styled.div`
 `
 
 const IazoSymbolsContainer = styled.div`
-  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 50px;
+  padding-left: 7.5px;
 `
 
 const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, tokenPrice, liquidityPercent }) => {
@@ -34,11 +34,12 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, toke
   const { lockPeriod } = timeInfo
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
+  console.log("render bender")
   return (
     <BeforeSaleWrapper>
       <Timer fontSize={isMobile ? '16px' : '24px'} timeInfo={timeInfo} />
       <IazoSymbolsContainer>
-        <IazoSymbols iconImage="dollar" title={tokenPrice} description="Presale price" />
+        <IazoSymbols iconImage="dollar" title={`${tokenPrice} ${baseTokenSymbol}`} description="Presale price" />
         <IazoSymbols
           iconImage="lock"
           title={`${liquidityPercentFormatted}%`}
@@ -49,4 +50,4 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, toke
   )
 }
 
-export default BeforeSale
+export default React.memo(BeforeSale)

@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import DatePicker from 'react-datepicker'
-import { Text, ButtonSquare } from '@apeswapfinance/uikit'
-import 'react-datepicker/dist/react-datepicker.css'
+import useIazoAllowance from 'views/Iazos/hooks/useIazoAllowance'
+import { useIazoFactoryAddress } from 'hooks/useAddress'
 import ApproveCreateIazo from './ApproveCreateIazo'
 import CreatePresale from './CreatePresale'
+import Validations from '../Validations'
 import { PresaleData } from '../types'
 
 interface ActionsProps {
@@ -17,7 +17,7 @@ const ActionWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 450px;
   }
@@ -25,11 +25,32 @@ const ActionWrapper = styled.div`
 const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
   const { pairCreation } = presaleData
   const { tokenAddress } = pairCreation
+  const [validated, setValidated] = useState(true)
+  const [pendingApproved, setPendingApproved] = useState(true)
+  const iazoFactoryAddress = useIazoFactoryAddress()
+  const approved = useIazoAllowance(tokenAddress, iazoFactoryAddress, pendingApproved)?.gt(0)
+
+  const onPendingApproved = useCallback((pendingTrx: boolean) => {
+    setPendingApproved(pendingTrx)
+  }, [])
+
+  const onValidationChange = useCallback((valid: boolean) => {
+    setValidated(valid)
+  }, [])
+
   return (
-    <ActionWrapper>
-      <ApproveCreateIazo tokenAddress={tokenAddress} />
-      <CreatePresale presaleData={presaleData} />
-    </ActionWrapper>
+    <>
+      <ActionWrapper>
+        <ApproveCreateIazo
+          tokenAddress={tokenAddress}
+          disabled={validated}
+          approved={approved}
+          onPendingApproved={onPendingApproved}
+        />
+        <CreatePresale presaleData={presaleData} disabled={validated || !approved} />
+      </ActionWrapper>
+      <Validations presaleData={presaleData} onValidationChange={onValidationChange} />
+    </>
   )
 }
 

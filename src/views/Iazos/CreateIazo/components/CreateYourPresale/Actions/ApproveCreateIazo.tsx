@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
-import 'react-datepicker/dist/react-datepicker.css'
 import useApproveIazoFactory from 'views/Iazos/hooks/useApproveIazoFactory'
-import useIazoAllowance from 'views/Iazos/hooks/useIazoAllowance'
-import { useIazoFactoryAddress } from 'hooks/useAddress'
+import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 
 interface ApproveCreateIazoProps {
   tokenAddress: string
+  disabled: boolean
+  approved: boolean
+  onPendingApproved: (pendingTrx: boolean) => void
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -23,11 +23,14 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress }) => {
-  const iazoFactoryAddress = useIazoFactoryAddress()
+const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({
+  tokenAddress,
+  disabled,
+  approved,
+  onPendingApproved,
+}) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const onApprovetokenAddress = useApproveIazoFactory(tokenAddress).onApprove
-  const approved = useIazoAllowance(tokenAddress, iazoFactoryAddress, pendingTrx)?.gt(0)
 
   return (
     <StyledButton
@@ -35,8 +38,9 @@ const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress }) =
         setPendingTrx(true)
         await onApprovetokenAddress()
         setPendingTrx(false)
+        onPendingApproved(false)
       }}
-      disabled={pendingTrx || approved}
+      disabled={pendingTrx || approved || disabled}
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
     >
       {approved ? 'APPROVED' : 'APPROVE'}

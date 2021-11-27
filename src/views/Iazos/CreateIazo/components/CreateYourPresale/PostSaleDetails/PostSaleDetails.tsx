@@ -8,6 +8,7 @@ import { LiquidityLockDetails } from '../types'
 
 interface PostSaleDetailsProp {
   quoteTokenSymbol: string
+  presalePrice: string
   onChange?: (postSaleDetails: LiquidityLockDetails) => void
 }
 
@@ -99,7 +100,7 @@ const InputsWrapper = styled.div`
   }
 `
 
-const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onChange }) => {
+const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, presalePrice, onChange }) => {
   const lockedLiquidityValues = {
     '2 Years': SECONDS_PER_YEAR.times(2).toNumber(),
     '1 Year': SECONDS_PER_YEAR.toNumber(),
@@ -115,6 +116,9 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onCh
   const onLiquidityClick = (amount: number) => {
     setLiquidityDetails((prevState) => ({ ...prevState, liquidityPercent: amount }))
   }
+
+  const minListPrice = presalePrice && parseFloat(presalePrice) - parseFloat(presalePrice) * 0.25
+  const maxListPrice = presalePrice && parseFloat(presalePrice) + parseFloat(presalePrice) * 0.5
 
   useEffect(() => {
     onChange(liquidityDetails)
@@ -146,6 +150,8 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, onCh
             quoteTokenSymbol={quoteTokenSymbol}
             size="md"
             backgroundColor="rgba(51, 51, 51, 1)"
+            min={minListPrice}
+            max={maxListPrice}
           />
           <DropdownList
             onChange={(item) =>

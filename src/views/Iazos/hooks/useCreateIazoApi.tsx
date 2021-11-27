@@ -5,14 +5,14 @@ const useCreateIazoApi = () => {
   const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
   const handleCreateIazoApi = useCallback(async (data) => {
     try {
-      await fetch(`${apiBaseUrl}/iazo/`, {
-        mode: 'no-cors',
+      const resp = await fetch(`${apiBaseUrl}/iazo/`, {
         method: 'POST',
         body: data,
       })
+      return resp
     } catch (error) {
-      console.log(error)
       console.warn('Unable to post data:', error)
+      return error
     }
   }, [])
 

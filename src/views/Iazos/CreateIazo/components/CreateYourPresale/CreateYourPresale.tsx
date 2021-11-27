@@ -89,7 +89,11 @@ export default function CreateYourPresale(): JSX.Element {
         <>
           <PresaleDetails onChange={onPresaleDetails} pairTokenDetails={presaleData.pairCreation} />
           <DateSelection onChange={onDateSelection} />
-          <PostSaleDetails onChange={onPostsaleDetails} quoteTokenSymbol={presaleData.pairCreation.quoteToken} />
+          <PostSaleDetails
+            onChange={onPostsaleDetails}
+            quoteTokenSymbol={presaleData.pairCreation.quoteToken}
+            presalePrice={presaleData?.presaleTokenDetails?.pricePerToken}
+          />
         </>
       )}
       {presaleStepsCompleted && (

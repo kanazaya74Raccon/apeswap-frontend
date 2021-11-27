@@ -91,9 +91,9 @@ const formatDate = (date: Date) => {
   return `${date?.getMonth() + 1} ${date?.getDate()} ${date?.getFullYear()}`
 }
 
-const formatCountdown = (startDate, endDate) => {
+const formatCountdown = (startDate, endDate, duration?) => {
   const timeUntil = getTimePeriods(Math.abs(endDate - startDate) / 1000)
-  return `in ${timeUntil?.months} months ${timeUntil?.days} days ${timeUntil?.hours} hours`
+  return `${duration ? 'Last for' : 'Starts in'} ${timeUntil?.months} months ${timeUntil?.days} days ${timeUntil?.hours} hours`
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
@@ -119,11 +119,20 @@ const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
       <StyledHeader>End Date</StyledHeader>
       <DateSelectionContainer>
         <TextContainer>
-          <StyledText>{formatDate(dateState.end)}</StyledText>
-          <StyledSubText>{formatCountdown(dateState.start, dateState.end)}</StyledSubText>
+          <StyledText>
+            {dateState.start > dateState.end ? formatDate(dateState.start) : formatDate(dateState.end)}
+          </StyledText>
+          <StyledSubText>
+            {dateState.start > dateState.end
+              ? formatCountdown(new Date(), dateState.start, true)
+              : formatCountdown(dateState.start, dateState.end, true)}
+          </StyledSubText>
         </TextContainer>
         <DateButtonContainer>
-          <DateSelectionButton onChange={(date) => setDateState({ ...dateState, end: date })} />
+          <DateSelectionButton
+            minDate={dateState.start}
+            onChange={(date) => setDateState({ ...dateState, end: date })}
+          />
         </DateButtonContainer>
       </DateSelectionContainer>
     </DateContainer>

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
-import { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
+import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import { useTokenPriceFromAddress } from 'state/hooks'
 import ClaimIazo from '../../Actions/ClaimIazo'
 
@@ -12,11 +12,10 @@ interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
   hardcap: string
   baseToken: IazoTokenInfo
-  iazoTokenDecimals: string
+  iazoToken: IazoTokenInfo
   status: IazoStatus
   iazoAddress: string
   tokenPrice: string
-  userCommitData: UserCommit
 }
 
 const BeforeSaleWrapper = styled.div`
@@ -63,24 +62,23 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const AfterSale: React.FC<BeforeSaleProps> = ({
-  hardcap,
-  baseToken,
-  iazoTokenDecimals,
-  status,
-  tokenPrice,
-  userCommitData,
-  iazoAddress,
-}) => {
+const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, tokenPrice, iazoAddress }) => {
   const { symbol, decimals, address } = baseToken
-  const { deposited, tokensBought } = userCommitData
+  const [pendingUserInfo, setPendingUserInfo] = useState(true)
+  const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
-  const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoTokenDecimals)).toString()
+  const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
 
   const { totalBaseCollected } = status
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
+
+  console.log("render render")
+
+  const onPendingClaim = useCallback((pendingTrx: boolean) => {
+    setPendingUserInfo(pendingTrx)
+  }, [])
 
   return (
     <BeforeSaleWrapper>
@@ -92,10 +90,12 @@ const AfterSale: React.FC<BeforeSaleProps> = ({
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      <BoldAfterText boldContent={tokensBoughtFormatted}>Tokens bought: </BoldAfterText>
-      <ClaimIazo iazoAddress={iazoAddress} tokensDeposited={tokensDepositedFormatted} />
+      <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+        Tokens bought:{' '}
+      </BoldAfterText>
+      <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} />
     </BeforeSaleWrapper>
   )
 }
 
-export default AfterSale
+export default React.memo(AfterSale)

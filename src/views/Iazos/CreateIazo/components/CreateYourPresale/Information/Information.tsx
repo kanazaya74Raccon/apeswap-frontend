@@ -69,6 +69,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           textColor="rgba(255, 179, 0, 1)"
           placeholderText="Website..."
           title="Website:*"
+          url
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, whitepaper: e.currentTarget.value })}
@@ -78,6 +79,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           textColor="rgba(255, 179, 0, 1)"
           placeholderText="Docs..."
           title="Docs:"
+          url
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, twitter: e.currentTarget.value })}
@@ -87,6 +89,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           textColor="rgba(255, 179, 0, 1)"
           placeholderText="Twitter..."
           title="Twitter:*"
+          url
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, telegram: e.currentTarget.value })}
@@ -96,6 +99,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           textColor="rgba(255, 179, 0, 1)"
           placeholderText="Telegram..."
           title="Telegram:*"
+          url
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, medium: e.currentTarget.value })}
@@ -105,6 +109,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           textColor="rgba(255, 179, 0, 1)"
           placeholderText="Medium..."
           title="Medium:*"
+          url
         />
         <TextInput
           onLargeChange={(e) => setInformation({ ...information, description: e.currentTarget.value })}

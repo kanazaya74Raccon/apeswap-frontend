@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useCurrentTime from 'hooks/useTimer'
-import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import BigNumber from 'bignumber.js'
 import Timer from '../../IazoCard/Timer'
 import DuringSale from './DuringSale'
@@ -47,7 +46,6 @@ const SaleStatus: React.FC<SaleStatus> = ({
   iazoToken,
   liquidityPercent,
 }) => {
-  const userCommitData: UserCommit = useFetchUserIazoCommit(iazoAddress)
   const { activeTime, startTime } = timeInfo
   const { symbol, decimals } = baseToken
   const currentTime = useCurrentTime() / 1000
@@ -55,6 +53,8 @@ const SaleStatus: React.FC<SaleStatus> = ({
   const timeUntilStart = parseInt(startTime) - currentTime
   const timeUntilEnd = endTime - currentTime
   const tokenPriceFormatted = getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)).toString()
+  console.log("yeeee")
+
 
   const renderSaleStatus = () => {
     if (timeUntilStart > 0) {
@@ -77,6 +77,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
           iazoAddress={iazoAddress}
           tokenPrice={tokenPriceFormatted}
           liquidityPercent={liquidityPercent}
+          iazoToken={iazoToken}
         />
       )
     }
@@ -88,12 +89,11 @@ const SaleStatus: React.FC<SaleStatus> = ({
         status={status}
         iazoAddress={iazoAddress}
         tokenPrice={tokenPriceFormatted}
-        userCommitData={userCommitData}
-        iazoTokenDecimals={iazoToken.decimals}
+        iazoToken={iazoToken}
       />
     )
   }
   return <SaleStatusContainer>{renderSaleStatus()}</SaleStatusContainer>
 }
 
-export default SaleStatus
+export default React.memo(SaleStatus)

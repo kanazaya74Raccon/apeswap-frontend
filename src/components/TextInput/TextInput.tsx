@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useToast } from 'state/hooks'
 import { AutoRenewIcon, Text } from '@apeswapfinance/uikit'
 
 interface TextInputProps {
@@ -13,7 +14,7 @@ interface TextInputProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   height?: 'sm' | 'md' | 'lg' | 'xl'
   load?: boolean
-  above?: boolean
+  url?: boolean
 }
 
 const sizes = {
@@ -119,6 +120,15 @@ const StyledText = styled(Text)<{ large?: boolean }>`
   }
 `
 
+const isValidUrl = (val: string) => {
+  try {
+    const url = new URL(val)
+  } catch {
+    return false
+  }
+  return true
+}
+
 const TextInput: React.FC<TextInputProps> = ({
   size = 'md',
   height = 'md',
@@ -130,8 +140,24 @@ const TextInput: React.FC<TextInputProps> = ({
   icon,
   load,
   title,
-  above,
+  url,
 }) => {
+  const { toastError } = useToast()
+  const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
+
+  const onValidate = (e) => {
+    const val = e.currentTarget.value
+    const isUrl = isValidUrl(val)
+    if (url) {
+      if (!isUrl) {
+        setBackgroundColorForInput('rgb(255,0,0, .3)')
+        toastError('Please enter a valid url')
+      } else {
+        setBackgroundColorForInput(backgroundColor)
+      }
+    }
+  }
+
   return (
     <Container>
       {title && <StyledText large={height === 'lg' || height === 'xl'}>{title}</StyledText>}
@@ -147,10 +173,11 @@ const TextInput: React.FC<TextInputProps> = ({
         ) : (
           <Input
             onChange={onChange}
-            backgroundColor={backgroundColor}
+            backgroundColor={backgroundColorForInput}
             placeholder={placeholderText}
             imgSrc={`images/${icon}`}
             textColor={textColor}
+            onKeyUp={onValidate}
           />
         )}
         {load ? (

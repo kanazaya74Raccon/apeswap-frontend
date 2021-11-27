@@ -14,6 +14,8 @@ interface ApproveCreateIazoProps {
   iazoAddress: string
   baseToken: IazoTokenInfo
   isNative: boolean
+  disabled?: boolean
+  onPendingContribute: (pendingTrx: boolean) => void
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -32,7 +34,13 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 
-const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken, isNative }) => {
+const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
+  iazoAddress,
+  baseToken,
+  isNative,
+  onPendingContribute,
+  disabled,
+}) => {
   const { address, symbol, decimals } = baseToken
   const [pendingTrx, setPendingTrx] = useState(false)
   const [amountToCommit, setAmountToCommit] = useState(null)
@@ -51,14 +59,17 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, baseToken
         tokenSymbol={symbol}
         userBalance={userBalanceFormatted}
         onChange={(e) => setAmountToCommit(e.currentTarget.value)}
+        max={userBalanceFormatted}
+        min={0}
       />
       <StyledButton
         onClick={async () => {
           setPendingTrx(true)
           await onCommit()
+          onPendingContribute(false)
           setPendingTrx(false)
         }}
-        disabled={pendingTrx}
+        disabled={pendingTrx || disabled}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
         Commit

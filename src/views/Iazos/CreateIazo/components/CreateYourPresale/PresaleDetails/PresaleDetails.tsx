@@ -93,6 +93,8 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           tokenSymbol={tokenSymbol}
           userBalance={balance}
           backgroundColor="rgba(51, 51, 51, 1)"
+          min={0}
+          max={balance}
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, pricePerToken: e.currentTarget.value })}
@@ -101,6 +103,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           quoteTokenSymbol={quoteToken}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
+          min={0}
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, limitPerUser: e.currentTarget.value })}
@@ -109,6 +112,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           ml={isMobile ? '0px' : '12.5px'}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
+          min={0}
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, softcap: e.currentTarget.value })}
@@ -117,6 +121,8 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           mr={isMobile ? '0px' : '12.5px'}
           size="md"
           backgroundColor="rgba(51, 51, 51, 1)"
+          min={0}
+          max={parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)}
         />
         <TokenInput
           defaultVal={(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)).toString()}
@@ -126,6 +132,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           disabled
           quoteTokenSymbol={quoteToken}
           backgroundColor="rgba(51, 51, 51, 1)"
+          min={0}
         />
         <FooterContainer>
           <CheckboxContainer>

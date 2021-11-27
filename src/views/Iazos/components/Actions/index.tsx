@@ -11,6 +11,8 @@ import CommitToIazo from './CommitToIazo'
 interface ActionsProps {
   iazoAddress: string
   baseToken: IazoTokenInfo
+  disabled?: boolean
+  onPendingContribute: (pendingTrx: boolean) => void
 }
 
 const ActionWrapper = styled.div`
@@ -20,7 +22,7 @@ const ActionWrapper = styled.div`
   margin-top: 15px;
   margin-bottom: 50px;
 `
-const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
+const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken, onPendingContribute, disabled }) => {
   const { address } = baseToken
   const [approveTrx, setApproveTrx] = useState(false)
   const approved = useIazoAllowance(address, iazoAddress, approveTrx)?.gt(0)
@@ -32,7 +34,13 @@ const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken }) => {
   return (
     <ActionWrapper>
       {approved || isNative ? (
-        <CommitToIazo baseToken={baseToken} iazoAddress={iazoAddress} isNative={isNative} />
+        <CommitToIazo
+          baseToken={baseToken}
+          iazoAddress={iazoAddress}
+          isNative={isNative}
+          onPendingContribute={onPendingContribute}
+          disabled={disabled}
+        />
       ) : (
         <ApproveIazo tokenAddress={address} iazoAddress={iazoAddress} onApproveChange={onApprove} />
       )}

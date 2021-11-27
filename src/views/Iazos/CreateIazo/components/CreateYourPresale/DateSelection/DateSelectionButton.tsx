@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 interface DateSelectionProps {
   onChange: (date: Date) => void
+  minDate?: Date
 }
 
 const IconWrapper = styled.div`
@@ -28,7 +29,7 @@ const IconImage = styled.div<{ image: string }>`
 
 const DatePickerContainer = styled.div`
   position: absolute;
-  right: -35px;
+  right: -100px;
   width: 330px;
   top: -240px;
   z-index: 100;
@@ -37,10 +38,10 @@ const DatePickerContainer = styled.div`
   }
 `
 
-const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {
+const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }) => {
   const [datePickerOpen, setDatePickerOpen] = useState(false)
-  const delayedDate = new Date().setDate(new Date().getDate() + 0)
-  const [date, setDate] = useState(delayedDate)
+  const delayedDate = new Date(new Date().setDate(new Date().getDate() + 0))
+  const [date, setDate] = useState<Date>(delayedDate)
   const datePickerRef = useRef(null)
   const iconRef = useRef(null)
 
@@ -54,6 +55,11 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {
     return () => window.removeEventListener('click', handler)
   }, [])
 
+  if (date.getTime() < minDate?.getTime()) {
+    setDate(minDate)
+    onChange(minDate)
+  }
+
   return (
     <>
       <IconWrapper>
@@ -61,9 +67,9 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange }) => {
         {datePickerOpen && (
           <DatePickerContainer ref={datePickerRef}>
             <DatePicker
-              showTimeSelect
+              showTimeInput
               selected={date}
-              minDate={delayedDate}
+              minDate={minDate || delayedDate}
               onChange={(d) => {
                 setDate(d)
                 onChange(d)

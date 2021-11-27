@@ -50,9 +50,9 @@ const StyledText = styled(Text)`
   font-weight: 400;
 `
 const MoreInfo = styled(Text)`
-  font-family: Titan One;
+  font-family: poppins;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 17px;
   text-align: center;
   padding-top: 15px;

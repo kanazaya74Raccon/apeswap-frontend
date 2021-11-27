@@ -8,8 +8,8 @@ import useClaimIazo from 'views/Iazos/hooks/useClaimIazo'
 interface ApproveCreateIazoProps {
   tokenAddress?: string
   iazoAddress?: string
-  tokensDeposited: number
-  onApproveChange?: (pendingTrx: boolean) => void
+  tokensToClaim: number
+  onPendingClaim: (pendingTrx: boolean) => void
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -21,22 +21,18 @@ const StyledButton = styled(ButtonSquare)`
   margin-top: 20px;
 `
 
-const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
-  tokenAddress,
-  iazoAddress,
-  onApproveChange,
-  tokensDeposited,
-}) => {
+const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress, iazoAddress, onPendingClaim, tokensToClaim }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const onClaim = useClaimIazo(iazoAddress).onClaim
 
   return (
     <>
-      {tokensDeposited > 0 ? (
+      {tokensToClaim > 0 ? (
         <StyledButton
           onClick={async () => {
             setPendingTrx(true)
             await onClaim()
+            onPendingClaim(false)
             setPendingTrx(false)
           }}
           disabled={pendingTrx}
