@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation, useParams, useRouteMatch } from 'react-router-dom'
 import { useHomeModal } from '@apeswapfinance/uikit'
 
-const HomeModalCheck: React.FC = () => {
+const HomeModalCheck = () => {
   const location = useLocation()
   const params = useParams()
   const route = useRouteMatch()
@@ -16,12 +16,12 @@ const HomeModalCheck: React.FC = () => {
     () => null,
   )
 
-  console.log('location', location)
-  console.log('params', params)
-  console.log('route', route)
+  // console.log('location', location)
+  // console.log('params', params)
+  // console.log('route', route)
 
-  return <div>{onPresentHomeModal}</div>
-  // return <div>{route && route.path.includes('?startModal=simple') && onPresentHomeModal}</div>
+  // return <>{onPresentHomeModal()}</>
+  return <>{location && location.pathname.includes('?startModal=simple') && onPresentHomeModal}</>
 }
 
 export default HomeModalCheck
