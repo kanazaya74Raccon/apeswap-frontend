@@ -95,7 +95,7 @@ const StyledText = styled(Text)`
 const StyledHeader = styled(Text)`
   display: flex;
   position: absolute;
-  top: 20px;
+  top: 10px;
   font-family: Poppins;
   font-weight: 700;
   font-size: 18px;
@@ -106,6 +106,7 @@ const StyledHeader = styled(Text)`
   text-align: center;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 22px;
+    top: 20px;
   }
 `
 
