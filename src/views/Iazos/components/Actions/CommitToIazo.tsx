@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, ButtonSquare, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -20,10 +20,14 @@ interface ApproveCreateIazoProps {
 
 const StyledButton = styled(ButtonSquare)`
   height: 50px;
-  width: 200px;
-  font-size: 16px;
+  width: 150px;
+  font-size: 14px;
   font-family: Poppins;
   font-weight: 700;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 200px;
+    font-size: 16px;
+  }
 `
 
 const Wrapper = styled.div`
@@ -41,6 +45,8 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   onPendingContribute,
   disabled,
 }) => {
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   const { address, symbol, decimals } = baseToken
   const [pendingTrx, setPendingTrx] = useState(false)
   const [amountToCommit, setAmountToCommit] = useState(null)
@@ -54,7 +60,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   return (
     <Wrapper>
       <TokenInput
-        size="mdlg"
+        size={isMobile ? "sm" : "mdlg"}
         backgroundColor="rgba(65, 65, 65, 1)"
         tokenSymbol={symbol}
         userBalance={userBalanceFormatted}

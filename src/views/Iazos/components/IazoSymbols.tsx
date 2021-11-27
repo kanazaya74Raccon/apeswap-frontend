@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Text, Button } from '@apeswapfinance/uikit'
+import { Text, Button, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { Title } from 'views/DualFarms/components/FarmTable/Actions/styles'
 
 interface IazoSymbolProps {
@@ -63,9 +63,13 @@ const Icon = styled.div<{ iconImage: string }>`
   background-image: ${(props) => icons[props.iconImage]};
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
   z-index: 2;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 45px;
+    width: 45px;
+  }
 `
 
 const StyledLink = styled.a`
@@ -76,10 +80,12 @@ const StyledLink = styled.a`
 `
 
 const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description, link, url }) => {
-  const strokeWidth = 1
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
+  const strokeWidth = isMobile ? 0.8 : 1
   const cx = 7.5
   const cy = 7.5
-  const r = 6
+  const r = isMobile ? 4.5 : 6
   return (
     <FullIconContainer>
       <SvgContainer>
@@ -98,10 +104,10 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description,
           />
         </IazoSymbolSvg>
       </SvgContainer>
-      <Text fontFamily="poppins" fontSize="24px" bold>
+      <Text fontFamily="poppins" fontSize={isMobile ? '18' : '24px'} bold>
         {title}
       </Text>
-      <Text fontFamily="poppins" fontSize="16px">
+      <Text fontFamily="poppins" fontSize={isMobile ? '12' : '16px'}>
         {description}
       </Text>
       {link && (

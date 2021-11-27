@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
@@ -23,25 +23,34 @@ interface BeforeSaleProps {
 }
 
 const BeforeSaleWrapper = styled.div`
-  width: 796px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
 `
 
 const Heading = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 25px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 30px;
+  }
 `
 
 const ProgressBarWrapper = styled.div`
-  width: 557px;
+  width: 280px;
   margin-top: 15px;
   margin-bottom: 20px;
   border-radius: 20px;
   overflow: hidden;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 557px;
+  }
 `
 
 const ProgressBar = styled.div`
@@ -54,17 +63,29 @@ const ProgressBar = styled.div`
 const IazoSymbolsContainer = styled.div`
   position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  ${({ theme }) => theme.mediaQueries.md} {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 `
 
 const BoldAfterText = styled(Text)<{ boldContent?: string }>`
   font-family: poppins;
   font-weight: 400;
+  font-size: 13px;
   &:after {
     font-weight: 700;
-    font-size: 17px;
+    font-size: 14px;
+    ${({ theme }) => theme.mediaQueries.md} {
+      font-size: 17px;
+    }
     content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
   }
 `
 
