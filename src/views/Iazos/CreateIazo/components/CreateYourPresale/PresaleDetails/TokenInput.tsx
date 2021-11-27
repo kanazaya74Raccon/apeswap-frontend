@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
 import { useToast } from 'state/hooks'
@@ -55,6 +55,15 @@ const Input = styled.input<{ backgroundColor: string }>`
   color: ${(props) => (props.theme.isDark ? 'white' : 'rgba(161, 101, 82, 1)')};
   border: none;
   z-index: 0;
+  -webkit-appearance: none;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 const InputTitle = styled(Text)`
@@ -127,17 +136,21 @@ const TokenInput: React.FC<TextInputProps> = ({
   max,
 }) => {
   const { toastError } = useToast()
+  const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
 
   const onValidate = (e) => {
     const val = parseFloat(e.currentTarget.value)
     if (val < min) {
       toastError(`Value must be greater than ${min}`)
-      e.currentTarget.value = min
+      setBackgroundColorForInput('rgb(255,0,0, .3)')
+      return val
     }
     if (val > max) {
       toastError(`Value must be less than ${max}`)
-      e.currentTarget.value = max
+      setBackgroundColorForInput('rgb(255,0,0, .3)')
+      return val
     }
+    setBackgroundColorForInput(backgroundColor)
     return val
   }
 
@@ -147,7 +160,7 @@ const TokenInput: React.FC<TextInputProps> = ({
       <Input
         value={defaultVal === 'NaN' ? '' : defaultVal}
         onChange={onChange}
-        backgroundColor={backgroundColor}
+        backgroundColor={backgroundColorForInput}
         placeholder={placeholderText}
         disabled={disabled}
         type="number"
