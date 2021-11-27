@@ -29,31 +29,42 @@ const BeforeSaleWrapper = styled.div`
 const Heading = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 25px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 30px;
+  }
 `
 
 const ProgressBarWrapper = styled.div`
-  width: 557px;
+  width: 280px;
   margin-top: 15px;
   margin-bottom: 20px;
   border-radius: 20px;
   overflow: hidden;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 557px;
+  }
 `
-
 const ProgressBar = styled.div`
   height: 18px;
   width: 100%;
   border-radius: 20px;
   background: #c4c4c4;
 `
-
 const BoldAfterText = styled(Text)<{ boldContent?: string }>`
   font-family: poppins;
   font-weight: 400;
+  font-size: 13px;
   &:after {
     font-weight: 700;
-    font-size: 17px;
+    font-size: 14px;
+    ${({ theme }) => theme.mediaQueries.md} {
+      font-size: 17px;
+    }
     content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
   }
 `
 

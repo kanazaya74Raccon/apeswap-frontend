@@ -13,12 +13,16 @@ interface ApproveCreateIazoProps {
 }
 
 const StyledButton = styled(ButtonSquare)`
-  height: 50px;
+height: 50px;
+width: 150px;
+font-size: 14px;
+font-family: Poppins;
+font-weight: 700;
+margin-top: 20px;
+${({ theme }) => theme.mediaQueries.md} {
   width: 200px;
   font-size: 16px;
-  font-family: Poppins;
-  font-weight: 700;
-  margin-top: 20px;
+}
 `
 
 const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress, iazoAddress, onPendingClaim, tokensToClaim }) => {
