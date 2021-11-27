@@ -93,7 +93,9 @@ const formatDate = (date: Date) => {
 
 const formatCountdown = (startDate, endDate, duration?) => {
   const timeUntil = getTimePeriods(Math.abs(endDate - startDate) / 1000)
-  return `${duration ? 'Last for' : 'Starts in'} ${timeUntil?.months} months ${timeUntil?.days} days ${timeUntil?.hours} hours`
+  return `${duration ? 'Last for' : 'Starts in'} ${timeUntil?.months} months ${timeUntil?.days} days ${
+    timeUntil?.hours
+  } hours`
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {

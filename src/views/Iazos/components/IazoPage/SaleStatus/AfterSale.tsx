@@ -74,7 +74,7 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
 
-  console.log("render render")
+  console.log('render render')
 
   const onPendingClaim = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)

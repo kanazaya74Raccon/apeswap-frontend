@@ -34,7 +34,7 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, toke
   const { lockPeriod } = timeInfo
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
-  console.log("render bender")
+  console.log('render bender')
   return (
     <BeforeSaleWrapper>
       <Timer fontSize={isMobile ? '16px' : '24px'} timeInfo={timeInfo} />
