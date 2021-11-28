@@ -139,6 +139,10 @@ const Hdr = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 300px;
+  }
 `
 const Hc = styled.div`
   max-width: 1024px;
@@ -146,10 +150,35 @@ const Hc = styled.div`
   margin-right: auto;
   position: absolute;
   z-index: 999;
+
+  /* xs: 370,
+  sm: 576,
+  md: 852,
+  lg: 968,
+  xl: 1080, */
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    position: relative;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 90%;
+    position: relative;
+  }
 `
 const Sh = styled(Heading)`
   font-size: 36px;
   max-width: 240px !important;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 44px;
+    max-width: 400px !important;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 60px;
+    max-width: 600px !important;
+  }
 `
 
 const Rd = styled.div`
