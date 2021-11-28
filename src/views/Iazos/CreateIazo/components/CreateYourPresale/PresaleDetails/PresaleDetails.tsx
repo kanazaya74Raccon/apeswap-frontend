@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text, Checkbox, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import useTheme from 'hooks/useTheme'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import TokenInput from './TokenInput'
@@ -70,6 +71,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
   const { tokenSymbol, quoteToken, userBalance, tokenDecimals } = pairTokenDetails
+  const { isDark } = useTheme()
   const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>({
     tokensForSale: null,
     pricePerToken: null,
@@ -92,7 +94,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           size="lg"
           tokenSymbol={tokenSymbol}
           userBalance={balance}
-          backgroundColor="rgba(51, 51, 51, 1)"
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
           min={0}
           max={balance}
         />
@@ -102,7 +104,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           mr={isMobile ? '0px' : '12.5px'}
           quoteTokenSymbol={quoteToken}
           size="md"
-          backgroundColor="rgba(51, 51, 51, 1)"
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
           min={0}
         />
         <TokenInput
@@ -111,7 +113,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           quoteTokenSymbol={quoteToken}
           ml={isMobile ? '0px' : '12.5px'}
           size="md"
-          backgroundColor="rgba(51, 51, 51, 1)"
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
           min={0}
         />
         <TokenInput
@@ -120,7 +122,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           quoteTokenSymbol={quoteToken}
           mr={isMobile ? '0px' : '12.5px'}
           size="md"
-          backgroundColor="rgba(51, 51, 51, 1)"
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
           min={0}
           max={parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)}
         />
@@ -131,7 +133,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           size="md"
           disabled
           quoteTokenSymbol={quoteToken}
-          backgroundColor="rgba(51, 51, 51, 1)"
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
           min={0}
         />
         <FooterContainer>

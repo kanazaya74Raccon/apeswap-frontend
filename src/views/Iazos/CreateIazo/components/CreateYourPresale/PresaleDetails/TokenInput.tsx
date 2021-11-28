@@ -142,7 +142,7 @@ const TokenInput: React.FC<TextInputProps> = ({
   max,
 }) => {
   const { toastError } = useToast()
-  const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
+  const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
 
   const onValidate = (e) => {
     const val = parseFloat(e.currentTarget.value)
@@ -166,7 +166,7 @@ const TokenInput: React.FC<TextInputProps> = ({
       <Input
         value={defaultVal === 'NaN' ? '' : defaultVal}
         onChange={onChange}
-        backgroundColor={backgroundColorForInput}
+        backgroundColor={backgroundColorForInput || backgroundColor}
         placeholder={placeholderText}
         disabled={disabled}
         type="number"

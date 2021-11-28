@@ -50,7 +50,7 @@ const Input = styled.input<{ backgroundColor: string; imgSrc: string; textColor:
   word-break: break-word;
   text-align: left;
   background: ${(props) => props.backgroundColor || '#333333'};
-  color: ${(props) => props.textColor || '#ffffff'};
+  color: ${(props) => props.theme.colors.text};
   border: none;
   z-index: 0;
   :focus {
@@ -173,7 +173,7 @@ const TextInput: React.FC<TextInputProps> = ({
         ) : (
           <Input
             onChange={onChange}
-            backgroundColor={backgroundColorForInput}
+            backgroundColor={url ? backgroundColorForInput : backgroundColor}
             placeholder={placeholderText}
             imgSrc={`images/${icon}`}
             textColor={textColor}

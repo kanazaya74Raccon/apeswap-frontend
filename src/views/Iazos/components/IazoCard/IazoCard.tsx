@@ -172,7 +172,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
           {isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
-          <Timer timeInfo={timeInfo} fontSize={isMobile ? '12px' : '16px'} />
+          <Timer timeInfo={timeInfo} fontSize={isMobile ? '12px' : '16px'} fontColor="white" />
           <BoldAfterText color="white">
             Duration {duration.days}d, {duration.hours}h
           </BoldAfterText>

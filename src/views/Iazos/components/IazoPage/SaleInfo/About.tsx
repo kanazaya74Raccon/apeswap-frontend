@@ -12,7 +12,7 @@ const AboutWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  color: white;
+  color: ${(props) => props.theme.colors.text};
   font-family: Poppins;
   line-height: 25px;
   font-weight: 500;

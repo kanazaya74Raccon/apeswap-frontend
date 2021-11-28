@@ -149,7 +149,7 @@ const Iazos: React.FC = () => {
       case 'done':
         return pastIAzos
       default:
-        return registeredIazos
+        return [...currentIazos, ...upcomingIazos]
     }
   }
 

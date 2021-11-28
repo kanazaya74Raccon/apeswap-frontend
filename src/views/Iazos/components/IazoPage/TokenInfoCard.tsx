@@ -111,21 +111,21 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
         <TokenButtonsWrapper>
           <TokenInfoButton opacity="1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'} color="white">
                 BscScan
               </Text>
             </a>
           </TokenInfoButton>
           <TokenInfoButton opacity=".1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'} color="white">
                 {formatTokenAddress}
               </Text>
             </a>
           </TokenInfoButton>
           <TokenInfoButton opacity=".1">
             <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
-              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'}>
+              <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'} color="white">
                 Website
               </Text>
             </a>

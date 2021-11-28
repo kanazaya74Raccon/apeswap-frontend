@@ -10,7 +10,7 @@ interface TokenDropdown {
 const Wrapper = styled.div`
   width: 285px;
   border-radius: 10px;
-  background: #414141;
+  background: ${(props) => (props.theme.isDark ? '#414141' : 'white')};
   display: flex;
   align-items: center;
   padding-top: 5px;

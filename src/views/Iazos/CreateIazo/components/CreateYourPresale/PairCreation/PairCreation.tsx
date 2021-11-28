@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import useTheme from 'hooks/useTheme'
 import TextInput from 'components/TextInput'
 import useERC20Details from 'hooks/useERC20Details'
 import { useToast } from 'state/hooks'
@@ -17,7 +18,7 @@ const PairCreationWrapper = styled.div`
   flex-direction: row;
   width: 285px;
   border-radius: 10px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -103,6 +104,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
   const accountFormated = ` ${account?.slice(0, 6)}...${account?.slice(account?.length - 4, account?.length)}`
   const { onHandleERC20Details } = useERC20Details()
   const { toastError } = useToast()
+  const { isDark } = useTheme()
 
   const handleAddressChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -136,6 +138,8 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
     }
   }, [selectedToken, tokenApproved, onChange])
 
+  console.log(isDark)
+
   return (
     <>
       <PairCreationWrapper>
@@ -143,7 +147,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           placeholderText="Token Address..."
           onChange={handleAddressChange}
           size={isMobile ? 'sm' : 'lg'}
-          backgroundColor="#414141"
+          backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
           icon="cancel.svg"
           load={loadingTokenData}
         />

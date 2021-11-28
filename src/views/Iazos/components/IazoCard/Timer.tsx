@@ -5,10 +5,10 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoTimeInfo } from 'state/types'
 
-const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string }>`
+const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string; fontColor?: string }>`
   font-family: poppins;
   font-weight: ${(props) => props.fontSize};
-  color: white;
+  color: ${(props) => props.fontColor};
   &:after {
     font-weight: 700;
     font-size: ${(props) => props.fontSize || '17px'};
@@ -17,6 +17,7 @@ const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string }>`
 `
 interface TimerProps {
   timeInfo: IazoTimeInfo
+  fontColor?: string
   fontSize?: string
 }
 
@@ -28,7 +29,7 @@ const formatCountdown = (countdown: any): string => {
   return `${formatDays}:${formatHours}:${formatMinutes}:${formatSeconds}`
 }
 
-const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize }) => {
+const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
   const { activeTime, startTime } = timeInfo
   const currentTime = useCurrentTime() / 1000
   const endTime = parseInt(activeTime) + parseInt(startTime)
@@ -40,14 +41,14 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize }) => {
   const timeToDisplay = () => {
     if (timeUntilStart > 0) {
       return (
-        <BoldAfterText fontSize={fontSize} boldContent={timeUntilStartFormatted}>
+        <BoldAfterText fontSize={fontSize} boldContent={timeUntilStartFormatted} fontColor={fontColor}>
           Starts in{' '}
         </BoldAfterText>
       )
     }
     if (timeUntilEnd > 0) {
       return (
-        <BoldAfterText fontSize={fontSize} boldContent={timeUntilEndFormatted}>
+        <BoldAfterText fontSize={fontSize} boldContent={timeUntilEndFormatted} fontColor={fontColor}>
           Ends in{' '}
         </BoldAfterText>
       )

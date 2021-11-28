@@ -4,6 +4,7 @@ import { AutoRenewIcon, ButtonSquare, useMatchBreakpoints } from '@apeswapfinanc
 import 'react-datepicker/dist/react-datepicker.css'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
+import useTheme from 'hooks/useTheme'
 import { IazoTokenInfo } from 'state/types'
 import useCommitToIazo from 'views/Iazos/hooks/useCommitToIazo'
 import BigNumber from 'bignumber.js'
@@ -52,6 +53,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   const [amountToCommit, setAmountToCommit] = useState(null)
   const userBalance = useTokenBalance(isNative ? ZERO_ADDRESS : address)
   const userBalanceFormatted = getBalanceNumber(userBalance, parseInt(decimals))
+  const { isDark } = useTheme()
   const onCommit = useCommitToIazo(
     iazoAddress,
     new BigNumber(amountToCommit).times(new BigNumber(10).pow(parseInt(decimals))).toString(),
@@ -61,7 +63,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
     <Wrapper>
       <TokenInput
         size={isMobile ? 'sm' : 'mdlg'}
-        backgroundColor="rgba(65, 65, 65, 1)"
+        backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
         tokenSymbol={symbol}
         userBalance={userBalanceFormatted}
         onChange={(e) => setAmountToCommit(e.currentTarget.value)}
