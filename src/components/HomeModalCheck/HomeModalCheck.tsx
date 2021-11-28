@@ -16,12 +16,12 @@ const HomeModalCheck = () => {
     () => null,
   )
 
-  // console.log('location', location)
-  // console.log('params', params)
-  // console.log('route', route)
+  console.log('location', location)
+  console.log('params', params)
+  console.log('route', route)
 
   // return <>{onPresentHomeModal()}</>
-  return <>{location && location.pathname.includes('?startModal=simple') && onPresentHomeModal}</>
+  return <>{location && location.search.includes('?startModal=simple') && onPresentHomeModal()}</>
 }
 
 export default HomeModalCheck

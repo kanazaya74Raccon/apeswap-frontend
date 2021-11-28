@@ -97,7 +97,6 @@ const Stats: React.FC = () => {
 
   return (
     <>
-      <HomeModalCheck />
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
