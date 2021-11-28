@@ -57,7 +57,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   aling-items: flex-start;
   height 80px;
-  width: 300px;
+  width: 400px;
   margin-left: 35px;
 `
 
@@ -86,7 +86,9 @@ const DateSelectionContainer = styled.div`
 `
 
 const formatDate = (date: Date) => {
-  return `${date?.getMonth() + 1} ${date?.getDate()} ${date?.getFullYear()}`
+  const [weekDay, month, dayNumber, year] = date?.toDateString().split(' ')
+  const time = date?.toTimeString().split(' ')
+  return `${weekDay} ${dayNumber} ${month} ${year} ${time[0]}`
 }
 
 const formatCountdown = (startDate, endDate, duration?) => {

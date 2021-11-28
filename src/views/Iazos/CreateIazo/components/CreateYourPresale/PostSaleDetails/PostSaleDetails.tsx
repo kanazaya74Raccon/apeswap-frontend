@@ -110,7 +110,6 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
 
   const { isDark } = useTheme()
 
-
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
     liquidityPercent: null,
     listingPrice: null,
