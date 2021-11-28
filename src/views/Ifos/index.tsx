@@ -153,7 +153,7 @@ const Sh = styled(Heading)`
 `
 
 const Rd = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   position: absolute;
   width: 100%;
   height: 100%;
@@ -164,6 +164,14 @@ const Rd = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 80%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 60%;
+  }
 
   .ele-con {
     position: relative;
@@ -180,6 +188,20 @@ const Ap = styled.img`
   margin-top: 15em;
   margin-left: 80px;
   animation: ${apeFloat} 10s ease-in-out infinite;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 400px;
+    margin-top: 20em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 450px;
+    margin-top: 22em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-top: 24em;
+  }
 `
 
 const WinDiv = styled.div`
@@ -190,6 +212,37 @@ const WinDiv = styled.div`
   background-repeat: no-repeat;
   position: absolute;
   top: 0;
+`
+
+const Ba = styled.img`
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  animation: ${bananaFloat} 10s linear infinite;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 150px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 180px;
+    margin-right: 5em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 180px;
+    margin-right: 5em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-right: 1em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-right: 2em;
+  }
 `
 
 const Ifos = () => {
@@ -208,6 +261,7 @@ const Ifos = () => {
         <Rd>
           <Ap src="/images/banners/iao-ape.svg" className="ape" />
           <WinDiv className="window" />
+          <Ba src="/images/banners/iao-banana.svg" className="banana" />
           {/* <div className="ele-con">
           </div> */}
         </Rd>
