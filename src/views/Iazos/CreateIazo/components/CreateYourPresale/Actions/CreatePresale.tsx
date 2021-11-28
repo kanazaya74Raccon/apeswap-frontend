@@ -74,8 +74,12 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) 
   const quoteTokenAddress = quoteTokenObject.address[chainId]
 
   // Calculate post listing price
+  const formatListingPriceToBaseToken = new BigNumber(listingPrice).times(
+    new BigNumber(10).pow(quoteTokenObject.decimals),
+  )
+
   const postListingPrice =
-    listingPrice === pricePerToken ? 0 : new BigNumber(listingPrice).times(new BigNumber(10).pow(18)).toString()
+    listingPrice === pricePerToken ? 0 : formatListingPriceToBaseToken.times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
 
   // IAZO unit params
   const unitParams = [
@@ -142,6 +146,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) 
             .catch((e) => {
               console.error(e)
             })
+
           setPendingTrx(false)
         }}
         disabled={pendingTrx || disabled}
