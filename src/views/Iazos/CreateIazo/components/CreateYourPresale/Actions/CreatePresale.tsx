@@ -79,7 +79,9 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) 
   )
 
   const postListingPrice =
-    listingPrice === pricePerToken ? 0 : formatListingPriceToBaseToken.times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
+    listingPrice === pricePerToken
+      ? 0
+      : formatListingPriceToBaseToken.times(new BigNumber(10).pow(18 - tokenDecimals)).toString()
 
   // IAZO unit params
   const unitParams = [

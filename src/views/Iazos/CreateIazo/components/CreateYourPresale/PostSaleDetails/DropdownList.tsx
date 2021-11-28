@@ -13,7 +13,7 @@ const FaqWrapper = styled.div`
   position: relative;
   width: 318px;
   border-radius: 10px;
-  background: rgba(51, 51, 51, 1);
+  background: ${(props) => (props.theme.isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@ const DropDownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0px 0px 10px 10px;
-  background: rgba(51, 51, 51, 1);
+  background: ${(props) => (props.theme.isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5')};
 `
 
 const HeaderWrapper = styled.div`

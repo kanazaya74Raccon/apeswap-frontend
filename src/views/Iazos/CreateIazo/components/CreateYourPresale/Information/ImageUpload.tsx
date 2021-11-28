@@ -44,7 +44,7 @@ const DragImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222222;
+  background: ${(props) => (props.theme.isDark ? '#222222' : 'white')};
   border: 2px dashed #ffb300;
   box-sizing: border-box;
   border-radius: 10px;
@@ -70,7 +70,7 @@ const DragAndDropText = styled(Text)`
 const ImageCircle = styled.div<{ image?: string }>`
   width: 74px;
   height: 74px;
-  background: #222222;
+  background: ${(props) => (props.theme.isDark ? '#222222' : 'white')};
   border-radius: 50px;
   margin-right: 20px;
   background-image: ${(props) => `url(${props?.image})`};

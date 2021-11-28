@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useToast } from 'state/hooks'
 import { AutoRenewIcon, Text } from '@apeswapfinance/uikit'
@@ -144,6 +144,9 @@ const TextInput: React.FC<TextInputProps> = ({
 }) => {
   const { toastError } = useToast()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
+  useEffect(() => {
+    setBackgroundColorForInput(backgroundColor)
+  }, [backgroundColor])
 
   const onValidate = (e) => {
     const val = e.currentTarget.value

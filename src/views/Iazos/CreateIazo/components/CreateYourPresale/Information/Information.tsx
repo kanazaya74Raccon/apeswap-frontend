@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import TextInput from 'components/TextInput'
+import useTheme from 'hooks/useTheme'
 import ImageUpload from './ImageUpload'
 import { SaleInformation } from '../types'
 
@@ -41,6 +42,7 @@ const HeaderWrapper = styled.div`
 const Information: React.FC<InformationProps> = ({ onChange }) => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
+  const { isDark } = useTheme()
   const [information, setInformation] = useState<SaleInformation>({
     website: '',
     whitepaper: '',
@@ -63,7 +65,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
       <InputWrapper>
         <TextInput
           onChange={(e) => setInformation({ ...information, website: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
@@ -73,7 +75,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, whitepaper: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
@@ -83,7 +85,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, twitter: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
@@ -93,7 +95,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, telegram: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
@@ -103,7 +105,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, medium: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
@@ -113,7 +115,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
         />
         <TextInput
           onLargeChange={(e) => setInformation({ ...information, description: e.currentTarget.value })}
-          backgroundColor="rgba(34, 34, 34, 1)"
+          backgroundColor={isDark ? '#222222' : 'white'}
           size={isMobile ? 'sm' : 'lg'}
           height="lg"
           textColor="rgba(255, 179, 0, 1)"

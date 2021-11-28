@@ -19,6 +19,7 @@ const IconWrapper = styled.div`
 
 const IconImage = styled.div<{ image: string }>`
   align: left;
+  background-color: ${(props) => (props.theme.isDark ? '#444444' : '#E5E5E5')};
   background-image: ${(props) => `url(/images/${props.image}.svg)`};
   height: 30px;
   width: 30px;

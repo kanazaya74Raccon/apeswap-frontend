@@ -19,7 +19,7 @@ const LaunchPadInfoWrapper = styled.div`
   height: 800px;
   width: 280px;
   border-radius: 10px;
-  background: #414141;
+  background-color: ${(props) => (props.theme.isDark ? '#414141' : 'white')};
   margin-bottom: 30px;
   align-items: space-between;
   justify-content: center;
@@ -94,7 +94,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           size="lg"
           tokenSymbol={tokenSymbol}
           userBalance={balance}
-          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
           min={0}
           max={balance}
         />
@@ -104,7 +104,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           mr={isMobile ? '0px' : '12.5px'}
           quoteTokenSymbol={quoteToken}
           size="md"
-          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
           min={0}
         />
         <TokenInput
@@ -113,7 +113,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           quoteTokenSymbol={quoteToken}
           ml={isMobile ? '0px' : '12.5px'}
           size="md"
-          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
           min={0}
         />
         <TokenInput
@@ -122,7 +122,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           quoteTokenSymbol={quoteToken}
           mr={isMobile ? '0px' : '12.5px'}
           size="md"
-          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
           min={0}
           max={parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)}
         />
@@ -133,7 +133,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           size="md"
           disabled
           quoteTokenSymbol={quoteToken}
-          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : 'white'}
+          backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
           min={0}
         />
         <FooterContainer>

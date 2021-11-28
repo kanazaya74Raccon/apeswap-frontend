@@ -12,7 +12,7 @@ interface DateSelectorProps {
 const DateContainer = styled.div`
   width: 300px;
   border-radius: 10px;
-  background: #333333;
+  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
   margin-bottom: 30px;
   display: flex;
   align-items: center;
@@ -27,7 +27,6 @@ const StyledHeader = styled(Text)`
   font-style: normal;
   line-height: 27px;
   font-weight: 700;
-  color: #ffffff;
   margin-top: 25px;
 `
 
@@ -48,7 +47,6 @@ const StyledSubText = styled(Text)`
   font-family: Poppins;
   font-size: 12px;
   line-height: 24px;
-  color: #ffffff;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
   }
@@ -75,7 +73,7 @@ const DateSelectionContainer = styled.div`
   position: relative;
   display: flex;
   height: 135px;
-  background: #414141;
+  background: ${(props) => (props.theme.isDark ? '#444444' : 'white')};
   width: 280px;
   border-radius: 10px;
   margin-top: 15px;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { SECONDS_PER_YEAR } from 'config'
+import useTheme from 'hooks/useTheme'
 import TokenInput from '../PresaleDetails/TokenInput'
 import DropdownList from './DropdownList'
 import { LiquidityLockDetails } from '../types'
@@ -19,7 +20,7 @@ const LaunchPadInfoWrapper = styled.div`
   height: 471px;
   width: 280px;
   border-radius: 10px;
-  background: #414141;
+  background-color: ${(props) => (props.theme.isDark ? '#414141' : 'white')};
   margin-bottom: 30px;
   align-items: center;
   justify-content: space-between;
@@ -107,6 +108,9 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
     '6 Months': SECONDS_PER_YEAR.div(2).toNumber(),
   }
 
+  const { isDark } = useTheme()
+
+
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
     liquidityPercent: null,
     listingPrice: null,
@@ -149,7 +153,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
             title="Listing Price"
             quoteTokenSymbol={quoteTokenSymbol}
             size="md"
-            backgroundColor="rgba(51, 51, 51, 1)"
+            backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
             min={minListPrice}
             max={maxListPrice}
           />
