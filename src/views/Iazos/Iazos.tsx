@@ -75,10 +75,15 @@ const TopNavWrapper = styled.div`
 
 const StyledHeader = styled(Text)`
   font-family: Poppins;
-  font-size: 45px;
+  font-size: 30px;
   font-style: normal;
   line-height: 52px;
+  text-align: center;
+  width: 100%;
   font-weight: 700;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 45px;
+  }
 `
 
 const StyledButton = styled.button`
@@ -172,6 +177,7 @@ const Iazos: React.FC = () => {
               backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}
               onChange={handleChangeQuery}
               size={isMobile ? 'sm' : 'md'}
+              margin={isMobile ? '30px 0px 0px 0px;' : ''}
             />
           </SettingsWrapper>
           <IlosWrapper>

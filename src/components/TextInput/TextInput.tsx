@@ -15,6 +15,7 @@ interface TextInputProps {
   height?: 'sm' | 'md' | 'lg' | 'xl'
   load?: boolean
   url?: boolean
+  margin?: string
 }
 
 const sizes = {
@@ -39,16 +40,24 @@ const InputContainer = styled.div<{ size: string; height: string }>`
   width: ${(props) => sizes[props.size]};
 `
 
-const Input = styled.input<{ backgroundColor: string; imgSrc: string; textColor: string; above?: boolean }>`
+const Input = styled.input<{
+  backgroundColor: string
+  imgSrc: string
+  textColor: string
+  above?: boolean
+  margin?: string
+  sizeText?: string
+}>`
   height: 100%;
   width: 100%;
   border-radius: 10px;
   padding-left: 15px;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: ${props => props.sizeText === 'sm' ? '13px' : '18px'};
   line-height: 23px;
   word-break: break-word;
   text-align: left;
+  margin: ${(props) => props.margin};
   background: ${(props) => props.backgroundColor || '#333333'};
   color: ${(props) => props.theme.colors.text};
   border: none;
@@ -141,6 +150,7 @@ const TextInput: React.FC<TextInputProps> = ({
   load,
   title,
   url,
+  margin,
 }) => {
   const { toastError } = useToast()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
@@ -181,6 +191,8 @@ const TextInput: React.FC<TextInputProps> = ({
             imgSrc={`images/${icon}`}
             textColor={textColor}
             onKeyUp={onValidate}
+            margin={margin}
+            sizeText={size}
           />
         )}
         {load ? (
