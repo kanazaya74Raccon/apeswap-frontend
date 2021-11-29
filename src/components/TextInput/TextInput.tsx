@@ -53,7 +53,7 @@ const Input = styled.input<{
   border-radius: 10px;
   padding-left: 15px;
   font-family: Poppins;
-  font-size: ${props => props.sizeText === 'sm' ? '13px' : '18px'};
+  font-size: ${(props) => (props.sizeText === 'sm' ? '13px' : '18px')};
   line-height: 23px;
   word-break: break-word;
   text-align: left;

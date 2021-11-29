@@ -50,12 +50,13 @@ const FullIconContainer = styled.div`
   margin-right: 10px;
 `
 
-const SvgContainer = styled.div`
+const SvgContainer = styled.div<{ link: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100px;
+  cursor: ${(props) => props.link && 'pointer'};
 `
 
 const Icon = styled.div<{ iconImage: string }>`
@@ -88,22 +89,43 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description,
   const r = isMobile ? 4.5 : 6
   return (
     <FullIconContainer>
-      <SvgContainer>
-        <Icon iconImage={iconImage} />
-        <IazoSymbolSvg viewBox="0 0 15 15">
-          <circle cx={cx} cy={cy} r={r} fill="transparent" stroke="rgba(96, 96, 96, 1)" strokeWidth={strokeWidth} />
-          <OuterCircle
-            cx={cx}
-            cy={cy}
-            r={r}
-            fill="transparent"
-            stroke="rgba(255, 179, 0, 1)"
-            strokeDasharray="38, 100"
-            strokeWidth={strokeWidth}
-            transform={`rotate(-90, ${cx}, ${cy})`}
-          />
-        </IazoSymbolSvg>
-      </SvgContainer>
+      {link ? (
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <SvgContainer link={link}>
+            <Icon iconImage={iconImage} />
+            <IazoSymbolSvg viewBox="0 0 15 15">
+              <circle cx={cx} cy={cy} r={r} fill="transparent" stroke="rgba(96, 96, 96, 1)" strokeWidth={strokeWidth} />
+              <OuterCircle
+                cx={cx}
+                cy={cy}
+                r={r}
+                fill="transparent"
+                stroke="rgba(255, 179, 0, 1)"
+                strokeDasharray="38, 100"
+                strokeWidth={strokeWidth}
+                transform={`rotate(-90, ${cx}, ${cy})`}
+              />
+            </IazoSymbolSvg>
+          </SvgContainer>
+        </a>
+      ) : (
+        <SvgContainer link={link}>
+          <Icon iconImage={iconImage} />
+          <IazoSymbolSvg viewBox="0 0 15 15">
+            <circle cx={cx} cy={cy} r={r} fill="transparent" stroke="rgba(96, 96, 96, 1)" strokeWidth={strokeWidth} />
+            <OuterCircle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="transparent"
+              stroke="rgba(255, 179, 0, 1)"
+              strokeDasharray="38, 100"
+              strokeWidth={strokeWidth}
+              transform={`rotate(-90, ${cx}, ${cy})`}
+            />
+          </IazoSymbolSvg>
+        </SvgContainer>
+      )}
       <Text fontFamily="poppins" fontSize={isMobile ? '18' : '24px'} bold>
         {title}
       </Text>
