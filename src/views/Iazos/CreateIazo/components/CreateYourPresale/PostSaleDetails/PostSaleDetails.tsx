@@ -162,7 +162,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
             }
             dropdownList={['2 Years', '1 Year', '6 Months']}
             title="Lock Liquidity for"
-            defaultIndex={2}
+            defaultIndex={1}
           />
         </InputsWrapper>
       </LaunchPadInfoWrapper>
