@@ -19,14 +19,27 @@ export const iazosSlice = createSlice({
     iazosFetchStart: (state) => {
       state.isLoading = true
     },
-    iazosFetchSucceeded: (state, action: PayloadAction<Iazo[]>) => {
-      const liveIazosData = action.payload
-      state.iazoData = state.iazoData
-        ? liveIazosData.map((iazo) => {
-            const liveIazoData = state.iazoData.find((entry) => entry.iazoContractAddress === iazo.iazoContractAddress)
-            return { ...iazo, ...liveIazoData }
-          })
-        : liveIazosData
+    iazosFetchSucceeded: (state, action) => {
+      const { liveIazosData, singleFlag } = action.payload
+      if (singleFlag) {
+        state.iazoData = state.iazoData
+          ? state.iazoData.map((iazo) => {
+              const liveIazoData = state.iazoData.find(
+                (entry) => entry.iazoContractAddress === iazo.iazoContractAddress,
+              )
+              return { ...liveIazoData, ...iazo }
+            })
+          : liveIazosData
+      } else {
+        state.iazoData = state.iazoData
+          ? liveIazosData.map((iazo) => {
+              const liveIazoData = state.iazoData.find(
+                (entry) => entry.iazoContractAddress === iazo.iazoContractAddress,
+              )
+              return { ...iazo, ...liveIazoData }
+            })
+          : liveIazosData
+      }
       state.isInitialized = true
       state.isLoading = false
     },
@@ -49,7 +62,7 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
   try {
     dispatch(iazosFetchStart())
     const iazos = await fetchIazosFromApi()
-    dispatch(iazosFetchSucceeded(iazos))
+    dispatch(iazosFetchSucceeded({ liveIazosData: iazos, singleFlag: false }))
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
       dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
@@ -68,7 +81,7 @@ export const fetchIazo = (chainId: number, address: string) => async (dispatch) 
   try {
     dispatch(iazosFetchStart())
     const iazos = await fetchIazoFromApi(address)
-    dispatch(iazosFetchSucceeded(iazos))
+    dispatch(iazosFetchSucceeded({ liveIazosData: iazos, singleFlag: true }))
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
       dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
