@@ -132,10 +132,10 @@ const StyledText = styled(Text)<{ large?: boolean }>`
 const isValidUrl = (val: string) => {
   try {
     const url = new URL(val)
+    return url
   } catch {
     return false
   }
-  return true
 }
 
 const TextInput: React.FC<TextInputProps> = ({

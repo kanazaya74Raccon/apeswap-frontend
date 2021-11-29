@@ -6,6 +6,7 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import Timer from './Timer'
+import Badges from './Badges'
 
 interface iazoCardProps {
   iazo: Iazo
@@ -148,8 +149,18 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
 `
 
 const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
-  const { maxSpendPerBuyer, baseToken, iazoToken, timeInfo, status, hardcap, softcap, liquidityPercent, socialInfo } =
-    iazo
+  const {
+    maxSpendPerBuyer,
+    baseToken,
+    iazoToken,
+    timeInfo,
+    status,
+    hardcap,
+    softcap,
+    liquidityPercent,
+    socialInfo,
+    iazoTags,
+  } = iazo
   const { tokenImage } = socialInfo
   const { activeTime, lockPeriod } = timeInfo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer), parseInt(baseToken.decimals)).toString()
@@ -169,6 +180,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
         <TokenHeaderInformationWrapper>
           <TokenImage src={tokenImage} />
           {!isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
+          <Badges />
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
           {isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
