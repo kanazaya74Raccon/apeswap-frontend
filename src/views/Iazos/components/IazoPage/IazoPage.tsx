@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import { Text, Spinner } from '@apeswapfinance/uikit'
-import { useFetchIazos, useIazos } from 'state/hooks'
+import { useFetchIazos, useFetchIazo, useIazos } from 'state/hooks'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
@@ -123,8 +123,8 @@ const SpinnerHolder = styled.div`
 `
 
 const IazoPage: React.FC = () => {
-  useFetchIazos()
   const { id }: { id: string } = useParams()
+  useFetchIazo(id)
   const { iazos, isInitialized } = useIazos()
   const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
   const {

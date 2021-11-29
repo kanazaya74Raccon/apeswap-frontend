@@ -1,13 +1,5 @@
 // import { apiBaseUrl } from 'hooks/api'
-import {
-  IazoSocialInfo,
-  IazoFeeInfo,
-  IazoTimeInfo,
-  IazoStatus,
-  Iazo,
-  IazoDefaultSettings,
-  IazoTokenInfo,
-} from 'state/types'
+import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo } from 'state/types'
 
 const getIazosFromApi = async () => {
   const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
@@ -15,6 +7,22 @@ const getIazosFromApi = async () => {
     const response = await fetch(`${apiBaseUrl}/iazo`)
     const statRes = await response.json()
     console.log(statRes)
+    if (statRes.statusCode === 500) {
+      return null
+    }
+    return statRes
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
+const getIazoFromApi = async (address: string) => {
+  const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
+  console.log(`${apiBaseUrl}/iazo/${address}`)
+  try {
+    const response = await fetch(`${apiBaseUrl}/iazo/${address}`)
+    const statRes = await response.json()
     if (statRes.statusCode === 500) {
       return null
     }
@@ -95,6 +103,14 @@ const formatIazoData = (iazo): Iazo => {
 const fetchIazosFromApi = async (): Promise<Iazo[]> => {
   const iazos = await getIazosFromApi()
 
+  const formattedIazos = iazos.map((iazo) => {
+    return formatIazoData(iazo)
+  })
+  return formattedIazos
+}
+
+export const fetchIazoFromApi = async (address: string): Promise<Iazo[]> => {
+  const iazos = await getIazoFromApi(address)
   const formattedIazos = iazos.map((iazo) => {
     return formatIazoData(iazo)
   })

@@ -44,7 +44,7 @@ import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
-import { fetchIazos } from './iazos'
+import { fetchIazo, fetchIazos } from './iazos'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
@@ -428,6 +428,15 @@ export const useFetchIazos = () => {
   useEffect(() => {
     dispatch(fetchIazos(chainId))
   }, [dispatch, fastRefresh, chainId])
+}
+
+export const useFetchIazo = (address: string) => {
+  const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { fastRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchIazo(chainId, address))
+  }, [dispatch, fastRefresh, chainId, address])
 }
 
 export const useIazos = () => {

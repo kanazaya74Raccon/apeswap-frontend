@@ -2,7 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IazosState, Iazo } from '../types'
 import fetchAllIazos from './fetchIazos'
-import fetchIazosFromApi from './fetchIazosFromApi'
+import fetchIazosFromApi, { fetchIazoFromApi } from './fetchIazosFromApi'
 import { fetchIazoTokenDetails, fetchIazoStatusInfo, isRegisteredIazoCheck } from './fetchIazoWeb3'
 
 const initialState: IazosState = {
@@ -22,9 +22,9 @@ export const iazosSlice = createSlice({
     iazosFetchSucceeded: (state, action: PayloadAction<Iazo[]>) => {
       const liveIazosData = action.payload
       state.iazoData = state.iazoData
-        ? state.iazoData.map((iazo) => {
-            const liveIazoData = liveIazosData.find((entry) => entry.iazoContractAddress === iazo.iazoContractAddress)
-            return { ...liveIazoData, ...iazo }
+        ? liveIazosData.map((iazo) => {
+            const liveIazoData = state.iazoData.find((entry) => entry.iazoContractAddress === iazo.iazoContractAddress)
+            return { ...iazo, ...liveIazoData }
           })
         : liveIazosData
       state.isInitialized = true
@@ -49,6 +49,25 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
   try {
     dispatch(iazosFetchStart())
     const iazos = await fetchIazosFromApi()
+    dispatch(iazosFetchSucceeded(iazos))
+    iazos?.map(async (iazo) => {
+      const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
+      dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
+      const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
+      dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
+      const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
+      dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
+    })
+  } catch (error) {
+    console.error(error)
+    dispatch(iazosFetchFailed())
+  }
+}
+
+export const fetchIazo = (chainId: number, address: string) => async (dispatch) => {
+  try {
+    dispatch(iazosFetchStart())
+    const iazos = await fetchIazoFromApi(address)
     dispatch(iazosFetchSucceeded(iazos))
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
