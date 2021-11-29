@@ -77,6 +77,14 @@ const BackArrow = styled.img`
   margin-right: 20px;
 `
 
+const StyledText = styled(Text)`
+  font-family: Poppins;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
+`
+
 export default function CreateIazo(): JSX.Element {
   return (
     <>
@@ -88,9 +96,9 @@ export default function CreateIazo(): JSX.Element {
             <Link to="/ss-iao">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <Text color="white" fontFamily="poppins">
+                <StyledText color="white">
                   Back to SS-IAO Launchpad
-                </Text>
+                </StyledText>
               </BackWrapper>
             </Link>
           </TopNavWrapper>

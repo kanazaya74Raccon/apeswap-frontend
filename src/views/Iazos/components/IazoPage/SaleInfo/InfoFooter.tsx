@@ -16,8 +16,8 @@ const InfoWrapper = styled.div`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  padding-right: 25px;
-  padding-left: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
     padding-right: 50px;
@@ -29,7 +29,10 @@ const StyledText = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
   font-size: 20px;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-bottom: 45px;
+  }
 `
 
 const InfoFooter: React.FC<InfoFooterProps> = ({ social }) => {
