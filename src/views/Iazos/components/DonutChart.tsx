@@ -121,10 +121,10 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
   const getPercent = (val) => {
     return val / total
   }
-  const strokeWidth = 6
-  const cx = isMobile ? 50 : 25
-  const cy = isMobile ? 64 : 52
-  const r = 29
+  const strokeWidth = 3
+  const cx = isMobile ? 25 : 12.5
+  const cy = isMobile ? 32 : 26
+  const r = 14.5
   const circumference = Math.PI * 2 * r
   const total = items.reduce((a, b) => a + b.value, 0)
   const sortedItems = items.sort((a, b) => (a.value > b.value ? -1 : 1))
@@ -142,9 +142,9 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
   return (
     <ChartWrapper>
       <StyledHeader>{title}</StyledHeader>
-      <ChartSvg viewBox="0 0 100 100">
-        <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.5} />
-        <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.5} />
+      <ChartSvg viewBox="0 0 50 50">
+        <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
+        <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
         <ChartCircle cx={cx} cy={cy} r={r} fill="transparent" stroke="white" strokeWidth={strokeWidth} />
         {offsetChart.map((item) => (
           <ChartCircle
@@ -154,7 +154,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
             fill="transparent"
             stroke={item.color}
             strokeWidth={strokeWidth}
-            strokeDasharray={circumference - 0.4}
+            strokeDasharray={circumference - 0.2}
             strokeDashoffset={calculateOffset(item.value)}
             transform={item.angleRotate}
           />

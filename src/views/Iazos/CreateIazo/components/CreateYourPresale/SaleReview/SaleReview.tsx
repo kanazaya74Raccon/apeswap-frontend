@@ -1,7 +1,7 @@
 import React from 'react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
-import DonutChart from '../DonutChart'
+import DonutChart from '../../../../components/DonutChart'
 import { TokenSaleDetails, LiquidityLockDetails, ExtendedERC20Details } from '../types'
 
 interface SaleReviewProps {
