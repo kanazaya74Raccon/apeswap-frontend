@@ -138,7 +138,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) 
               apiObject.append('iazoAddress', iazoAddress)
               onCreateIazoApi(apiObject).then((apiResp: any) => {
                 if (apiResp.status === 201) {
-                  history.push('/iazos')
+                  history.push('/ss-iao')
                   toastSuccess('Your SS-IAO was successfully created!')
                 } else {
                   toastError('Your SS-IAO encountered an error. Please contact the ApeSwap team for help.')

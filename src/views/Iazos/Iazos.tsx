@@ -168,7 +168,12 @@ const Iazos: React.FC = () => {
             </Link>
           </HeaderWrapper>
           <SettingsWrapper>
-            <IconButton icon="calendar" text="Upcoming" active={sort === 'upcoming'} onClick={() => setSort('upcoming')} />
+            <IconButton
+              icon="calendar"
+              text="Upcoming"
+              active={sort === 'upcoming'}
+              onClick={() => setSort('upcoming')}
+            />
             <IconButton icon="graph" text="Live" active={sort === 'live'} onClick={() => setSort('live')} />
             <IconButton icon="check" text="Done" active={sort === 'done'} onClick={() => setSort('done')} />
             <TextInput
