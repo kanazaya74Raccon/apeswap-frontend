@@ -103,7 +103,6 @@ const PresaleText = styled(Text)`
   font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
-  color: #ffffff;
 `
 
 const SpinnerHolder = styled.div`
@@ -169,9 +168,9 @@ const Iazos: React.FC = () => {
             </Link>
           </HeaderWrapper>
           <SettingsWrapper>
-            <IconButton icon="calendar" text="Upcoming" onClick={() => setSort('upcoming')} />
-            <IconButton icon="graph" text="Live" onClick={() => setSort('live')} />
-            <IconButton icon="check" text="Done" onClick={() => setSort('done')} />
+            <IconButton icon="calendar" text="Upcoming" active={sort === 'upcoming'} onClick={() => setSort('upcoming')} />
+            <IconButton icon="graph" text="Live" active={sort === 'live'} onClick={() => setSort('live')} />
+            <IconButton icon="check" text="Done" active={sort === 'done'} onClick={() => setSort('done')} />
             <TextInput
               placeholderText="Search token name or address...."
               backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}

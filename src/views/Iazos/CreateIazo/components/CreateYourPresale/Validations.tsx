@@ -69,6 +69,10 @@ const postSaleValidation = (data: LiquidityLockDetails): { error: string; messag
 const informationValidation = (data: SaleInformation): { error: string; message: string }[] => {
   const validationList: { error: string; message: string }[] = []
   const { website, twitter, telegram, medium, tokenLogo } = data
+  const fileExtension = tokenLogo?.name?.split('.')[tokenLogo?.name?.split('.').length - 1]
+  const fileSize = tokenLogo?.size
+  const acceptableFiles = ['jpg', 'svg', 'png']
+  console.log(tokenLogo)
   if (!website) {
     validationList.push({ error: 'Website URL Missing', message: 'Please enter a website url' })
   }
@@ -85,6 +89,12 @@ const informationValidation = (data: SaleInformation): { error: string; message:
     validationList.push({ error: 'Token Logo Missing', message: 'Please upload an image' })
   }
 
+  if (!acceptableFiles.includes(fileExtension?.toLowerCase())) {
+    validationList.push({ error: 'Token Logo File Not Valid', message: 'Please use a .jpg .png .svg instead' })
+  }
+  if (fileSize > 1000000) {
+    validationList.push({ error: 'Token Logo File Size To Large', message: 'Please upload a file size under 1MB' })
+  }
   if (!isValidUrl(website)) {
     validationList.push({ error: 'Website Is Not a Valid URL', message: 'Please enter a valid website url' })
   }

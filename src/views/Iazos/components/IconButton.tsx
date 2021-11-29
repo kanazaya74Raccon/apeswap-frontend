@@ -10,9 +10,10 @@ interface IconButtonProps {
   text?: string
   onClick?: () => void
   icon: 'check' | 'graph' | 'calendar'
+  active?: boolean
 }
 
-const StyledButton = styled(Button)<{ live?: boolean }>`
+const StyledButton = styled(Button)<{ active?: boolean }>`
   height: 44px;
   border-radius: 10px;
   background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
@@ -46,7 +47,7 @@ const IconText = styled(Text)`
   }
 `
 
-const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick }) => {
+const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) => {
   const { isDark } = useTheme()
   const iconColor = isDark ? 'white' : '#A16552'
   const renderIcon = () => {
@@ -63,7 +64,7 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick }) => {
   }
 
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} active={active}>
       {renderIcon()}
       {text && <IconText>{text}</IconText>}
     </StyledButton>

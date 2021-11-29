@@ -148,7 +148,6 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           onChange={handleAddressChange}
           size={isMobile ? 'sm' : 'lg'}
           backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
-          icon="cancel.svg"
           load={loadingTokenData}
         />
         <TokenDropdown

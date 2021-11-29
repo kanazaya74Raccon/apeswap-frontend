@@ -97,7 +97,7 @@ const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {
               setSelectedToken(token)
               onChange(token)
             }}
-            last={i === tokens.length-2}
+            last={i === tokens.length - 2}
           >
             <IconImage height={25} width={25} src={`/images/tokens/${token}.svg`} alt="token" />
             <StyledText>{token}</StyledText>
