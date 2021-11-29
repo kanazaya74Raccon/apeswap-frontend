@@ -96,9 +96,7 @@ export default function CreateIazo(): JSX.Element {
             <Link to="/ss-iao">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <StyledText color="white">
-                  Back to SS-IAO Launchpad
-                </StyledText>
+                <StyledText color="white">Back to SS-IAO Launchpad</StyledText>
               </BackWrapper>
             </Link>
           </TopNavWrapper>

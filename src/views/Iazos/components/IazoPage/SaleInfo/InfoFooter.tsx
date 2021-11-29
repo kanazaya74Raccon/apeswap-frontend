@@ -14,10 +14,9 @@ const InfoWrapper = styled.div`
   width: 300px;
   margin-bottom: 60px;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  padding-right: 10px;
-  padding-left: 10px;
+  justify-content: space-between;
+  padding-right: 15px;
+  padding-left: 15px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
     padding-right: 50px;
