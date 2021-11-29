@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, ButtonSquare, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -14,6 +14,7 @@ import TokenInput from '../../CreateIazo/components/CreateYourPresale/PresaleDet
 interface ApproveCreateIazoProps {
   iazoAddress: string
   baseToken: IazoTokenInfo
+  maxSpendFormatted: number
   isNative: boolean
   disabled?: boolean
   onPendingContribute: (pendingTrx: boolean) => void
@@ -39,12 +40,30 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 
+const BoldAfterText = styled(Text)<{ boldContent?: string }>`
+  font-family: poppins;
+  font-weight: 400;
+  font-size: 13px;
+  &:after {
+    font-weight: 700;
+    font-size: 14px;
+    ${({ theme }) => theme.mediaQueries.md} {
+      font-size: 17px;
+    }
+    content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
+`
+
 const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   iazoAddress,
   baseToken,
   isNative,
   onPendingContribute,
   disabled,
+  maxSpendFormatted,
 }) => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -67,9 +86,11 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
         tokenSymbol={symbol}
         userBalance={userBalanceFormatted}
         onChange={(e) => setAmountToCommit(e.currentTarget.value)}
-        max={userBalanceFormatted}
+        max={maxSpendFormatted < userBalanceFormatted ? maxSpendFormatted : userBalanceFormatted}
         min={0}
       />
+      <BoldAfterText boldContent={`${maxSpendFormatted.toString()} ${symbol}`}>Max commitment: </BoldAfterText>
+      <br />
       <StyledButton
         onClick={async () => {
           setPendingTrx(true)

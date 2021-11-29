@@ -20,6 +20,7 @@ interface BeforeSaleProps {
   iazoAddress: string
   tokenPrice: string
   liquidityPercent: string
+  maxSpend: string
 }
 
 const BeforeSaleWrapper = styled.div`
@@ -103,6 +104,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   iazoToken,
   tokenPrice,
   liquidityPercent,
+  maxSpend,
 }) => {
   const { symbol, decimals, address } = baseToken
   const { totalBaseCollected, numBuyers } = status
@@ -112,6 +114,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
+  const maxSpendFormatted = getBalanceNumber(new BigNumber(maxSpend), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
   const baseTokenPrice = useTokenPriceFromAddress(address)
   const tokenPriceFormatted =
@@ -149,7 +152,8 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         iazoAddress={iazoAddress}
         baseToken={baseToken}
         onPendingContribute={onPendingContribute}
-        disabled={percentRaised >= 100}
+        disabled={percentRaised >= 100 || tokensDepositedFormatted === maxSpendFormatted}
+        maxSpendFormatted={maxSpendFormatted}
       />
       <IazoSymbolsContainer>
         <IazoSymbols iconImage="dollar" title={tokenPrice} description="Presale price" />

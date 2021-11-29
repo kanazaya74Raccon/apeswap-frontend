@@ -20,6 +20,7 @@ interface SaleStatus {
   iazoAddress: string
   tokenPrice: string
   liquidityPercent: string
+  maxSpend: string
 }
 
 const SaleStatusContainer = styled.div`
@@ -45,6 +46,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
   tokenPrice,
   iazoToken,
   liquidityPercent,
+  maxSpend,
 }) => {
   const { activeTime, startTime } = timeInfo
   const { symbol, decimals } = baseToken
@@ -53,7 +55,6 @@ const SaleStatus: React.FC<SaleStatus> = ({
   const timeUntilStart = parseInt(startTime) - currentTime
   const timeUntilEnd = endTime - currentTime
   const tokenPriceFormatted = getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)).toString()
-  console.log('yeeee')
 
   const renderSaleStatus = () => {
     if (timeUntilStart > 0) {
@@ -77,6 +78,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
           tokenPrice={tokenPriceFormatted}
           liquidityPercent={liquidityPercent}
           iazoToken={iazoToken}
+          maxSpend={maxSpend}
         />
       )
     }

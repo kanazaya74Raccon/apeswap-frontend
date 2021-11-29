@@ -12,6 +12,7 @@ interface ActionsProps {
   iazoAddress: string
   baseToken: IazoTokenInfo
   disabled?: boolean
+  maxSpendFormatted: number
   onPendingContribute: (pendingTrx: boolean) => void
 }
 
@@ -22,7 +23,7 @@ const ActionWrapper = styled.div`
   margin-top: 15px;
   margin-bottom: 50px;
 `
-const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken, onPendingContribute, disabled }) => {
+const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken, onPendingContribute, disabled, maxSpendFormatted }) => {
   const { address } = baseToken
   const [approveTrx, setApproveTrx] = useState(false)
   const approved = useIazoAllowance(address, iazoAddress, approveTrx)?.gt(0)
@@ -40,6 +41,7 @@ const Actions: React.FC<ActionsProps> = ({ iazoAddress, baseToken, onPendingCont
           isNative={isNative}
           onPendingContribute={onPendingContribute}
           disabled={disabled}
+          maxSpendFormatted={maxSpendFormatted}
         />
       ) : (
         <ApproveIazo tokenAddress={address} iazoAddress={iazoAddress} onApproveChange={onApprove} />

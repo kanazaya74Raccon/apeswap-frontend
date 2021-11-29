@@ -166,6 +166,7 @@ const IazoPage: React.FC = () => {
     socialInfo,
     tokenPrice,
     liquidityPercent,
+    maxSpendPerBuyer,
   } = isInitialized && iazo
   const { tokenImage, website } = isInitialized && socialInfo
   return (
@@ -209,6 +210,7 @@ const IazoPage: React.FC = () => {
                   tokenPrice={tokenPrice}
                   iazoToken={iazoToken}
                   liquidityPercent={liquidityPercent}
+                  maxSpend={maxSpendPerBuyer}
                 />
               </>
             ) : (
