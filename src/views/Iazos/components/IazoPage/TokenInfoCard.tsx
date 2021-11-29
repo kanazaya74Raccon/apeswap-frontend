@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { BLOCK_EXPLORER } from 'config/constants/chains'
+import { useNetworkChainId } from 'state/hooks'
 
 interface TokenInfoCardProps {
   tokenName: string
   tokenAddress: string
   tokenWebsite?: string
   tokenImage: string
+  contractAddress: string
 }
 
 const IazoCardWrapper = styled.div`
@@ -95,13 +98,23 @@ const TokenInfoButton = styled.div<{ opacity: string }>`
   }
 `
 
-const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, tokenWebsite, tokenImage }) => {
+const TokenInfoCard: React.FC<TokenInfoCardProps> = ({
+  tokenName,
+  tokenAddress,
+  tokenWebsite,
+  tokenImage,
+  contractAddress,
+}) => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const chainId = useNetworkChainId()
   const isMobile = isMd || isSm || isXs
   const formatTokenAddress = `${tokenAddress?.slice(0, 5)}...${tokenAddress?.slice(
     tokenAddress?.length - 3,
     tokenAddress?.length,
   )}`
+  const tokenLink = `${BLOCK_EXPLORER[chainId]}address/${tokenAddress}`
+  const contractLink = `${BLOCK_EXPLORER[chainId]}address/${tokenAddress}`
+
   return (
     <IazoCardWrapper>
       <CardMonkey />
@@ -110,14 +123,14 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({ tokenName, tokenAddress, 
         <TokenName color="white"> {tokenName} </TokenName>
         <TokenButtonsWrapper>
           <TokenInfoButton opacity="1">
-            <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
+            <a href={contractLink} target="_blank" rel="noopener noreferrer">
               <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'} color="white">
                 BscScan
               </Text>
             </a>
           </TokenInfoButton>
           <TokenInfoButton opacity=".1">
-            <a href={tokenWebsite} target="_blank" rel="noopener noreferrer">
+            <a href={tokenLink} target="_blank" rel="noopener noreferrer">
               <Text fontFamily="poppins" fontSize={isMobile ? '11px' : '15px'} color="white">
                 {formatTokenAddress}
               </Text>

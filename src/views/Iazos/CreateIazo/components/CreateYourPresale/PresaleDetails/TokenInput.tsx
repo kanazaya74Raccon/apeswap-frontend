@@ -171,6 +171,8 @@ const TokenInput: React.FC<TextInputProps> = ({
         disabled={disabled}
         type="number"
         onKeyUp={onValidate}
+        inputMode="numeric"
+        onWheel={(e) => e.currentTarget.blur()}
       />
       {quoteTokenSymbol ? (
         <HeaderWrapper>

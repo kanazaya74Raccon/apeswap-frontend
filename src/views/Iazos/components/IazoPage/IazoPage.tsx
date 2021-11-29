@@ -178,7 +178,7 @@ const IazoPage: React.FC = () => {
             <Link to="/iazos">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
-                <StyledText color="white">Back to Ape Launchpad</StyledText>
+                <StyledText color="white">Back to SS-IAO Launchpad</StyledText>
               </BackWrapper>
             </Link>
           </TopNavWrapper>
@@ -198,6 +198,7 @@ const IazoPage: React.FC = () => {
                   tokenAddress={iazoToken?.address}
                   tokenImage={tokenImage}
                   tokenWebsite={website}
+                  contractAddress={iazoContractAddress}
                 />
                 <SaleStatus
                   timeInfo={timeInfo}
