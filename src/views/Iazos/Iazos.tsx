@@ -5,7 +5,7 @@ import { useFetchIazos, useIazos } from 'state/hooks'
 import useCurrentTime from 'hooks/useTimer'
 import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
-import { Text, Spinner } from '@apeswapfinance/uikit'
+import { Text, Spinner, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import IconButton from './components/IconButton'
 import IazoCard from './components/IazoCard/IazoCard'
 import Header from './components/Header'
@@ -110,7 +110,8 @@ const Iazos: React.FC = () => {
   useFetchIazos()
   const { iazos, isInitialized } = useIazos()
   const { isDark } = useTheme()
-
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   const registeredIazos = iazos?.filter((iazo) => iazo.isRegistered)
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
@@ -170,6 +171,7 @@ const Iazos: React.FC = () => {
               placeholderText="Search token name or address...."
               backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}
               onChange={handleChangeQuery}
+              size={isMobile ? 'sm' : 'md'}
             />
           </SettingsWrapper>
           <IlosWrapper>
