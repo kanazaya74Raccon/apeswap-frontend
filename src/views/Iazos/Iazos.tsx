@@ -36,6 +36,31 @@ const Header = styled.div`
   }
 `
 
+const HeadingText = styled(Text)`
+  position: absolute;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
+  width: 366px;
+  height: 125px;
+  font-family: Titan One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 57px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  top: 5px;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    top: 80px;
+    margin-right: 525px;
+    width: 585px;
+    height: 80px;
+    font-size: 60px;
+    line-height: 20px;
+  }
+`
+
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: 50px;
@@ -155,7 +180,9 @@ const Iazos: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header>
+        <HeadingText>Self-Serve IAO</HeadingText>
+      </Header>
       <PageWrapper>
         <LaunchPadWrapper>
           <TopNavWrapper />
