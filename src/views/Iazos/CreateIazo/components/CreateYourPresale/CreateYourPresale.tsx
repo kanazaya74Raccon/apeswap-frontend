@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { IazoDefaultSettings } from 'state/types'
 import { PresaleData } from './types'
 import PairCreation from './PairCreation/PairCreation'
 import DateSelection from './DateSelection/DateSelection'
@@ -16,6 +17,10 @@ interface Stepper {
   presaleDetailsSet: boolean
   postsaleDetailsSet: boolean
   informationStepCompleted: boolean
+}
+
+interface CreateIazoProps {
+  settings: IazoDefaultSettings
 }
 
 const LaunchPadInfoWrapper = styled.div`
@@ -40,7 +45,17 @@ const StyledHeader = styled(Text)`
   padding-top: 25px;
 `
 
-export default function CreateYourPresale(): JSX.Element {
+const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
+  const {
+    baseFee,
+    iazoTokenFee,
+    maxBaseFee,
+    maxIazoLength,
+    maxIazoTokenFee,
+    minIazoLength,
+    minLockPeriod,
+    nativeCreationFee,
+  } = settings !== null && settings
   const [presaleData, setPresaleData] = useState<PresaleData>()
   const [stepper, setStepper] = useState<Stepper>({
     pairCreated: false,
@@ -102,11 +117,17 @@ export default function CreateYourPresale(): JSX.Element {
             presaleDetails={presaleData.presaleTokenDetails}
             postsaleDetails={presaleData.postsaleDetails}
             pairDetails={presaleData.pairCreation}
+            iazoTokenFee={iazoTokenFee}
+            baseFee={baseFee}
           />
           <Information onChange={onInformation} />
         </>
       )}
-      {presaleStepsCompleted && stepper.informationStepCompleted && <Actions presaleData={presaleData} />}
+      {presaleStepsCompleted && stepper.informationStepCompleted && (
+        <Actions presaleData={presaleData} creationFee={nativeCreationFee} />
+      )}
     </LaunchPadInfoWrapper>
   )
 }
+
+export default CreateIazo

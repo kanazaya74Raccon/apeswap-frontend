@@ -14,6 +14,7 @@ import { PresaleData } from '../types'
 interface CreatePresaleProps {
   presaleData: PresaleData
   disabled: boolean
+  creationFee: string
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -29,7 +30,7 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) => {
+const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, creationFee }) => {
   const { chainId, account } = useWeb3React()
   const history = useHistory()
   const { toastSuccess, toastError } = useToast()
@@ -121,7 +122,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled }) 
   apiObject.append('description', description)
   apiObject.append('pathImage', tokenSymbol)
 
-  const onCreateIazo = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams).onCreateIazo
+  const onCreateIazo = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams, creationFee).onCreateIazo
   const onCreateIazoApi = useCreateIazoApi().onCreateIazoApi
 
   const [pendingTrx, setPendingTrx] = useState(false)

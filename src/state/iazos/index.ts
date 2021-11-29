@@ -3,7 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IazosState, Iazo } from '../types'
 import fetchAllIazos from './fetchIazos'
 import fetchIazosFromApi, { fetchIazoFromApi } from './fetchIazosFromApi'
-import { fetchIazoTokenDetails, fetchIazoStatusInfo, isRegisteredIazoCheck } from './fetchIazoWeb3'
+import fetchIazoDefaultSettings, {
+  fetchIazoTokenDetails,
+  fetchIazoStatusInfo,
+  isRegisteredIazoCheck,
+} from './fetchIazoWeb3'
 
 const initialState: IazosState = {
   isInitialized: false,
@@ -43,6 +47,10 @@ export const iazosSlice = createSlice({
       state.isInitialized = true
       state.isLoading = false
     },
+    iazoDefaultSettings: (state, action) => {
+      const settings = action.payload
+      state.iazoDefaultSettings = settings
+    },
     iazosFetchFailed: (state) => {
       state.isLoading = false
       state.isInitialized = false
@@ -56,7 +64,8 @@ export const iazosSlice = createSlice({
 })
 
 // Actions
-export const { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed, updateIazoWeb3Data } = iazosSlice.actions
+export const { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed, updateIazoWeb3Data, iazoDefaultSettings } =
+  iazosSlice.actions
 
 export const fetchIazos = (chainId: number) => async (dispatch) => {
   try {
@@ -90,6 +99,17 @@ export const fetchIazo = (chainId: number, address: string) => async (dispatch) 
       const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
       dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
     })
+  } catch (error) {
+    console.error(error)
+    dispatch(iazosFetchFailed())
+  }
+}
+
+export const fetchSettings = (chainId: number) => async (dispatch) => {
+  try {
+    const settings = await fetchIazoDefaultSettings(chainId)
+    console.log(settings)
+    dispatch(iazoDefaultSettings(settings))
   } catch (error) {
     console.error(error)
     dispatch(iazosFetchFailed())

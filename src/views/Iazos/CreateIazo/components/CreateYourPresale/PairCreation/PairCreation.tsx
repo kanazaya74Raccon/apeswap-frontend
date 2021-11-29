@@ -87,7 +87,7 @@ const StyledDescription = styled(Text)`
 `
 
 const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
-  const tokenList = ['WBNB', 'BUSD', 'GNANA']
+  const tokenList = ['WBNB', 'BUSD']
   const [selectedToken, setSelectedToken] = useState<ExtendedERC20Details>({
     userBalance: null,
     tokenSymbol: null,

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
 import Header from '../components/Header'
@@ -86,6 +87,8 @@ const StyledText = styled(Text)`
 `
 
 export default function CreateIazo(): JSX.Element {
+  useFetchIazoSettings()
+  const settings = useIazoSettings()
   return (
     <>
       <Header />
@@ -104,7 +107,7 @@ export default function CreateIazo(): JSX.Element {
             <StyledHeader>Create</StyledHeader>
           </HeaderWrapper>
           <LuanchpadInfo />
-          <CreateYourPresale />
+          <CreateYourPresale settings={settings} />
         </LaunchPadWrapper>
       </PageWrapper>
     </>

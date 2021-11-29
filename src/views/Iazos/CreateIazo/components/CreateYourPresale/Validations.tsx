@@ -42,6 +42,7 @@ const ValidationText = styled(Text)<{ boldContent?: string }>`
 const isValidUrl = (val: string) => {
   try {
     const url = new URL(val)
+    return url
   } catch {
     return false
   }
@@ -155,13 +156,7 @@ const Validations: React.FC<ValidationProps> = ({ presaleData, onValidationChang
     presaleValid.length === 0 &&
     aggregatedErrors.length === 0
 
-  console.log(postSaleValid)
-  console.log(infoValid)
-  console.log(datesValid)
-  console.log(presaleValid)
-
   useEffect(() => {
-    console.log(!isValid)
     onValidationChange(!isValid)
   }, [isValid, onValidationChange])
 

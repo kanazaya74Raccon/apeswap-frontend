@@ -9,6 +9,7 @@ import { PresaleData } from '../types'
 
 interface ActionsProps {
   presaleData: PresaleData
+  creationFee: string
 }
 
 const ActionWrapper = styled.div`
@@ -22,7 +23,7 @@ const ActionWrapper = styled.div`
     width: 450px;
   }
 `
-const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
+const Actions: React.FC<ActionsProps> = ({ presaleData, creationFee }) => {
   const { pairCreation } = presaleData
   const { tokenAddress } = pairCreation
   const [validated, setValidated] = useState(true)
@@ -47,7 +48,7 @@ const Actions: React.FC<ActionsProps> = ({ presaleData }) => {
           approved={approved}
           onPendingApproved={onPendingApproved}
         />
-        <CreatePresale presaleData={presaleData} disabled={validated || !approved} />
+        <CreatePresale presaleData={presaleData} disabled={validated || !approved} creationFee={creationFee}/>
       </ActionWrapper>
       <Validations presaleData={presaleData} onValidationChange={onValidationChange} />
     </>

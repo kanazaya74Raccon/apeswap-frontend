@@ -44,7 +44,7 @@ import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
-import { fetchIazo, fetchIazos } from './iazos'
+import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
@@ -421,6 +421,15 @@ export const useAuctions = () => {
   return { auctions: data, isInitialized, isLoading }
 }
 
+export const useFetchIazoSettings = () => {
+  const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchSettings(chainId))
+  }, [dispatch, slowRefresh, chainId])
+}
+
 export const useFetchIazos = () => {
   const dispatch = useDispatch()
   const chainId = useNetworkChainId()
@@ -442,6 +451,11 @@ export const useFetchIazo = (address: string) => {
 export const useIazos = () => {
   const { isInitialized, isLoading, iazoData }: IazosState = useSelector((state: State) => state.iazos)
   return { iazos: iazoData, isInitialized, isLoading }
+}
+
+export const useIazoSettings = () => {
+  const { iazoDefaultSettings }: IazosState = useSelector((state: State) => state.iazos)
+  return iazoDefaultSettings
 }
 
 export const useIazoFromAddress = (address): Iazo => {

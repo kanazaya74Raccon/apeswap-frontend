@@ -8,25 +8,36 @@ interface SaleReviewProps {
   presaleDetails: TokenSaleDetails
   postsaleDetails: LiquidityLockDetails
   pairDetails: ExtendedERC20Details
+  iazoTokenFee: string
+  baseFee: string
 }
 
-const SaleReview: React.FC<SaleReviewProps> = ({ presaleDetails, postsaleDetails, pairDetails }) => {
+const SaleReview: React.FC<SaleReviewProps> = ({
+  presaleDetails,
+  postsaleDetails,
+  pairDetails,
+  iazoTokenFee,
+  baseFee,
+}) => {
   const { tokensForSale, pricePerToken } = presaleDetails
   const { liquidityPercent } = postsaleDetails
   const { totalSupply, tokenDecimals, quoteToken } = pairDetails
+
+  const baseFeeFormatted = parseFloat(baseFee) / 1000
+  const iazoTokenFeeFormatted = parseFloat(iazoTokenFee) / 1000
 
   // Tokenomics chart details
   const formatedTotalSupply = getBalanceNumber(new BigNumber(totalSupply), tokenDecimals)
 
   // Tokens for sale after subtracting liquidity and fees
   const tokensForLiquidity = parseFloat(tokensForSale) * liquidityPercent
-  const tokensForFees = 0.018 * parseFloat(tokensForSale)
+  const tokensForFees = iazoTokenFeeFormatted * parseFloat(tokensForSale)
   const tokensForOther = formatedTotalSupply - parseFloat(tokensForSale) - tokensForLiquidity - tokensForFees
 
   // Amount raised chart details
   const amountRaisedInQuoteToken = parseFloat(pricePerToken) * parseFloat(tokensForSale)
   const quoteTokenForLiqudity = amountRaisedInQuoteToken * liquidityPercent
-  const quoteTokenForFees = 0.018 * amountRaisedInQuoteToken
+  const quoteTokenForFees = baseFeeFormatted * amountRaisedInQuoteToken
   const amountForOther =
     liquidityPercent === 1 ? 0 : amountRaisedInQuoteToken - quoteTokenForLiqudity - quoteTokenForFees
 
