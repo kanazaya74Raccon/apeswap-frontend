@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useFetchIazos, useIazos } from 'state/hooks'
 import useCurrentTime from 'hooks/useTimer'
+import TextInput from 'components/TextInput'
+import useTheme from 'hooks/useTheme'
 import { Text, Spinner } from '@apeswapfinance/uikit'
 import IconButton from './components/IconButton'
-import TextInput from './components/TextInput'
 import IazoCard from './components/IazoCard/IazoCard'
 import Header from './components/Header'
 
@@ -108,9 +109,12 @@ const SpinnerHolder = styled.div`
 const Iazos: React.FC = () => {
   useFetchIazos()
   const { iazos, isInitialized } = useIazos()
+  const { isDark } = useTheme()
+
   const registeredIazos = iazos?.filter((iazo) => iazo.isRegistered)
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
+  const [searchQuery, setSearchQuery] = useState(null)
   const currentIazos = registeredIazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
@@ -121,7 +125,20 @@ const Iazos: React.FC = () => {
     (iazo) => currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
   )
 
+  const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value)
+  }
+
   const renderIazos = () => {
+    if (searchQuery) {
+      const lowercaseQuery = searchQuery.toLowerCase()
+      const filteredIazos = registeredIazos?.filter(
+        (iazo) =>
+          iazo.iazoToken.name.toLowerCase().includes(lowercaseQuery) ||
+          iazo.iazoToken.address.includes(searchQuery),
+      )
+      return filteredIazos
+    }
     switch (sort) {
       case 'upcoming':
         return upcomingIazos
@@ -150,7 +167,11 @@ const Iazos: React.FC = () => {
             <IconButton icon="calander" text="Upcoming" onClick={() => setSort('upcoming')} />
             <IconButton icon="graph" text="Live" onClick={() => setSort('live')} />
             <IconButton icon="graph" text="Done" onClick={() => setSort('done')} />
-            <TextInput placeholderText="Search token name or address...." icon="magnifiglass.svg" />
+            <TextInput
+              placeholderText="Search token name or address...."
+              backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}
+              onChange={handleChangeQuery}
+            />
           </SettingsWrapper>
           <IlosWrapper>
             <PresaleText>{(isInitialized || iazos) && `${renderIazos()?.length} Presales`}</PresaleText>

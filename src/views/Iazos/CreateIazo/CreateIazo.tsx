@@ -6,7 +6,6 @@ import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
 import Header from '../components/Header'
 
-
 const PageWrapper = styled.div`
   display: none;
   display: flex;

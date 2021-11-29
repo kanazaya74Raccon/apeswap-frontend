@@ -113,7 +113,7 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({
     tokenAddress?.length,
   )}`
   const tokenLink = `${BLOCK_EXPLORER[chainId]}address/${tokenAddress}`
-  const contractLink = `${BLOCK_EXPLORER[chainId]}address/${tokenAddress}`
+  const contractLink = `${BLOCK_EXPLORER[chainId]}address/${contractAddress}`
 
   return (
     <IazoCardWrapper>
