@@ -169,9 +169,9 @@ const Iazos: React.FC = () => {
             </Link>
           </HeaderWrapper>
           <SettingsWrapper>
-            <IconButton icon="calander" text="Upcoming" onClick={() => setSort('upcoming')} />
+            <IconButton icon="calendar" text="Upcoming" onClick={() => setSort('upcoming')} />
             <IconButton icon="graph" text="Live" onClick={() => setSort('live')} />
-            <IconButton icon="graph" text="Done" onClick={() => setSort('done')} />
+            <IconButton icon="check" text="Done" onClick={() => setSort('done')} />
             <TextInput
               placeholderText="Search token name or address...."
               backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}

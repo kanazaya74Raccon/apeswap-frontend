@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import useTheme from 'hooks/useTheme'
 import { Text, Button } from '@apeswapfinance/uikit'
+import CheckMarkIcon from './Icons/CheckMarkIcon'
+import CalendarIcon from './Icons/CalendarIcon'
+import GraphIcon from './Icons/GraphIcon'
 
 interface IconButtonProps {
-  icon: string
   text?: string
   onClick?: () => void
+  icon: 'check' | 'graph' | 'calendar'
 }
 
 const StyledButton = styled(Button)<{ live?: boolean }>`
@@ -43,9 +47,24 @@ const IconText = styled(Text)`
 `
 
 const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick }) => {
+  const { isDark } = useTheme()
+  const iconColor = isDark ? 'white' : '#A16552'
+  const renderIcon = () => {
+    if (icon === 'check') {
+      return <CheckMarkIcon fill={iconColor} />
+    }
+    if (icon === 'graph') {
+      return <GraphIcon fill={iconColor} />
+    }
+    if (icon === 'calendar') {
+      return <CalendarIcon fill={iconColor} />
+    }
+    return <></>
+  }
+
   return (
     <StyledButton onClick={onClick}>
-      <img src={`/images/${icon}.svg`} alt="Icon" />
+      {renderIcon()}
       {text && <IconText>{text}</IconText>}
     </StyledButton>
   )
