@@ -48,7 +48,7 @@ const Actions: React.FC<ActionsProps> = ({ presaleData, creationFee }) => {
           approved={approved}
           onPendingApproved={onPendingApproved}
         />
-        <CreatePresale presaleData={presaleData} disabled={validated || !approved} creationFee={creationFee}/>
+        <CreatePresale presaleData={presaleData} disabled={validated || !approved} creationFee={creationFee} />
       </ActionWrapper>
       <Validations presaleData={presaleData} onValidationChange={onValidationChange} />
     </>

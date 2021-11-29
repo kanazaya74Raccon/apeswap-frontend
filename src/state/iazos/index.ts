@@ -75,10 +75,12 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
       dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
-      const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
-      dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
-      const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
-      dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
+      if (isRegestered?.isRegistered) {
+        const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
+        dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
+        const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
+        dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
+      }
     })
   } catch (error) {
     console.error(error)
@@ -94,10 +96,12 @@ export const fetchIazo = (chainId: number, address: string) => async (dispatch) 
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
       dispatch(updateIazoWeb3Data({ value: isRegestered, contractAddress: iazo.iazoContractAddress }))
-      const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
-      dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
-      const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
-      dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
+      if (isRegestered?.isRegistered) {
+        const iazoTokenDetails = await fetchIazoTokenDetails(chainId, iazo.baseToken.address, iazo.iazoToken.address)
+        dispatch(updateIazoWeb3Data({ value: iazoTokenDetails, contractAddress: iazo.iazoContractAddress }))
+        const iazoStatusInfo = await fetchIazoStatusInfo(chainId, iazo.iazoContractAddress)
+        dispatch(updateIazoWeb3Data({ value: iazoStatusInfo, contractAddress: iazo.iazoContractAddress }))
+      }
     })
   } catch (error) {
     console.error(error)

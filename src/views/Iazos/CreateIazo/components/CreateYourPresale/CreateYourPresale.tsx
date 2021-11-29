@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { useWeb3React } from '@web3-react/core'
+import UnlockButton from 'components/UnlockButton'
 import { IazoDefaultSettings } from 'state/types'
 import { PresaleData } from './types'
 import PairCreation from './PairCreation/PairCreation'
@@ -56,6 +58,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
     minLockPeriod,
     nativeCreationFee,
   } = settings !== null && settings
+  const { account } = useWeb3React()
   const [presaleData, setPresaleData] = useState<PresaleData>()
   const [stepper, setStepper] = useState<Stepper>({
     pairCreated: false,
@@ -99,7 +102,15 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
   return (
     <LaunchPadInfoWrapper>
       <StyledHeader>Create Your Presale</StyledHeader>
-      <PairCreation onChange={onPairCreation} />
+      {account ? (
+        <PairCreation onChange={onPairCreation} />
+      ) : (
+        <>
+          <br />
+          <UnlockButton />
+          <br />
+        </>
+      )}
       {stepper.pairCreated && (
         <>
           <PresaleDetails onChange={onPresaleDetails} pairTokenDetails={presaleData.pairCreation} />

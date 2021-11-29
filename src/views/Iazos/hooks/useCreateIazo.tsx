@@ -9,7 +9,15 @@ const useCreateIazo = (iazoToken: string, baseToken: string, burnRemains: boolea
   const iazoFactoryContract = useIazoFactoryContract()
   const handleCreateIazo = useCallback(async () => {
     try {
-      const tx = await createNewIazo(iazoFactoryContract, account, iazoToken, baseToken, burnRemains, unitParams, creationFee)
+      const tx = await createNewIazo(
+        iazoFactoryContract,
+        account,
+        iazoToken,
+        baseToken,
+        burnRemains,
+        unitParams,
+        creationFee,
+      )
       return tx
     } catch (e) {
       console.log(e)
