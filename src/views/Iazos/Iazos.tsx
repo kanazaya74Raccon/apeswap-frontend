@@ -134,8 +134,7 @@ const Iazos: React.FC = () => {
       const lowercaseQuery = searchQuery.toLowerCase()
       const filteredIazos = registeredIazos?.filter(
         (iazo) =>
-          iazo.iazoToken.name.toLowerCase().includes(lowercaseQuery) ||
-          iazo.iazoToken.address.includes(searchQuery),
+          iazo.iazoToken.name.toLowerCase().includes(lowercaseQuery) || iazo.iazoToken.address.includes(searchQuery),
       )
       return filteredIazos
     }
@@ -159,7 +158,7 @@ const Iazos: React.FC = () => {
           <TopNavWrapper />
           <HeaderWrapper>
             <StyledHeader>SS-IAO Launchpad</StyledHeader>
-            <Link to="/iazos/create">
+            <Link to="/ss-iao/create">
               <StyledButton> CREATE </StyledButton>
             </Link>
           </HeaderWrapper>
@@ -178,7 +177,7 @@ const Iazos: React.FC = () => {
             {isInitialized || iazos ? (
               renderIazos()?.map((iazo) => {
                 return (
-                  <Link to={`/iazos/${iazo.iazoContractAddress}`} key={iazo.iazoContractAddress}>
+                  <Link to={`/ss-iao/${iazo.iazoContractAddress}`} key={iazo.iazoContractAddress}>
                     <IazoCard iazo={iazo} key={iazo.iazoContractAddress} />
                   </Link>
                 )

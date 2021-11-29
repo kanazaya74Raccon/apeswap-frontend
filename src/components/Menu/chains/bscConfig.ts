@@ -35,7 +35,7 @@ const bscConfig: MenuEntry[] = [
       },
       {
         label: 'SS-IAO',
-        href: '/iazos',
+        href: '/ss-iao',
       },
     ],
   },

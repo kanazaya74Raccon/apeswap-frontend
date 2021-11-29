@@ -147,7 +147,7 @@ const IazoPage: React.FC = () => {
         <LaunchPadWrapper>
           <TopNavWrapper>
             <TopNavMonkey />
-            <Link to="/iazos">
+            <Link to="/ss-iao">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
                 <StyledText color="white">Back to SS-IAO Launchpad</StyledText>

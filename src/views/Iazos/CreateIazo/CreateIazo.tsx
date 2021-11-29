@@ -85,7 +85,7 @@ export default function CreateIazo(): JSX.Element {
         <LaunchPadWrapper>
           <TopNavWrapper>
             <TopNavMonkey />
-            <Link to="/iazos">
+            <Link to="/ss-iao">
               <BackWrapper>
                 <BackArrow src="/images/left-arrow.svg" />
                 <Text color="white" fontFamily="poppins">

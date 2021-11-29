@@ -135,6 +135,15 @@ const App: React.FC = () => {
               <Route path="/stats">
                 <Redirect to="/" />
               </Route>
+              <Route exact path="/ss-iao">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/ss-iao/create">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/ss-iao/:id">
+                <Redirect to="/" />
+              </Route>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
@@ -170,13 +179,13 @@ const App: React.FC = () => {
             <Route path="/auction">
               <Auction />
             </Route>
-            <Route exact path="/iazos">
+            <Route exact path="/ss-iao">
               <Iazos />
             </Route>
-            <Route path="/iazos/create">
+            <Route path="/ss-iao/create">
               <CreateIazo />
             </Route>
-            <Route path="/iazos/:id">
+            <Route path="/ss-iao/:id">
               <IazoPage />
             </Route>
             <Route exact path="/nft">
