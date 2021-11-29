@@ -31,6 +31,14 @@ const ChartWrapper = styled.div`
 
 const ChartSvg = styled.svg`
   position: relative;
+  height: 100%;
+  width: 100%;
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: absolute;
+  }
+`
+
+const ChartContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     position: absolute;
     height: 100%;
@@ -142,24 +150,26 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
   return (
     <ChartWrapper>
       <StyledHeader>{title}</StyledHeader>
-      <ChartSvg viewBox="0 0 50 50">
-        <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
-        <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
-        <ChartCircle cx={cx} cy={cy} r={r} fill="transparent" stroke="white" strokeWidth={strokeWidth} />
-        {offsetChart.map((item) => (
-          <ChartCircle
-            cx={cx}
-            cy={cy}
-            r={r}
-            fill="transparent"
-            stroke={item.color}
-            strokeWidth={strokeWidth}
-            strokeDasharray={circumference - 0.2}
-            strokeDashoffset={calculateOffset(item.value)}
-            transform={item.angleRotate}
-          />
-        ))}
-      </ChartSvg>
+      <ChartContainer>
+        <ChartSvg viewBox="0 0 50 50">
+          <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
+          <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
+          <ChartCircle cx={cx} cy={cy} r={r} fill="transparent" stroke="white" strokeWidth={strokeWidth} />
+          {offsetChart.map((item) => (
+            <ChartCircle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="transparent"
+              stroke={item.color}
+              strokeWidth={strokeWidth}
+              strokeDasharray={circumference - 0.2}
+              strokeDashoffset={calculateOffset(item.value)}
+              transform={item.angleRotate}
+            />
+          ))}
+        </ChartSvg>
+      </ChartContainer>
       <GraphCardWrapper>
         {offsetChart.map((item) => (
           <IconAndTextWrapper>
