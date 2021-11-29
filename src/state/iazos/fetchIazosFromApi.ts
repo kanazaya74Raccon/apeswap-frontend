@@ -1,5 +1,5 @@
 // import { apiBaseUrl } from 'hooks/api'
-import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo } from 'state/types'
+import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo, IazoTags } from 'state/types'
 
 const getIazosFromApi = async () => {
   const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
@@ -92,6 +92,7 @@ const formatIazoData = (iazo): Iazo => {
     liquidityPercent: iazo.percentageLock,
     listingPrice: iazo.priceListing,
     burnRemain: iazo.burnRemaining,
+    iazoTags: iazo.tags,
     feeInfo,
     timeInfo,
     status,

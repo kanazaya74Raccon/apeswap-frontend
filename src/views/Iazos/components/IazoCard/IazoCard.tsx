@@ -161,6 +161,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
     socialInfo,
     iazoTags,
   } = iazo
+  console.log(iazo)
   const { tokenImage } = socialInfo
   const { activeTime, lockPeriod } = timeInfo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer), parseInt(baseToken.decimals)).toString()
@@ -180,7 +181,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
         <TokenHeaderInformationWrapper>
           <TokenImage src={tokenImage} />
           {!isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
-          <Badges />
+          <Badges badges={iazoTags} />
         </TokenHeaderInformationWrapper>
         <TextBoxWrapper align="flex-end">
           {isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}

@@ -433,10 +433,10 @@ export const useFetchIazoSettings = () => {
 export const useFetchIazos = () => {
   const dispatch = useDispatch()
   const chainId = useNetworkChainId()
-  const { fastRefresh } = useRefresh()
+  const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchIazos(chainId))
-  }, [dispatch, fastRefresh, chainId])
+  }, [dispatch, slowRefresh, chainId])
 }
 
 export const useFetchIazo = (address: string) => {

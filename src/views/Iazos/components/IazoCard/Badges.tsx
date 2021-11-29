@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import useTheme from 'hooks/useTheme'
-import Tooltip from 'components/Tooltip/Tooltip'
+import { IazoTags } from 'state/types'
 import { Text, Button } from '@apeswapfinance/uikit'
+import Tooltip from './Tooltip'
 import KycBadge from '../Icons/KycBadge'
 import ShieldBadge from '../Icons/ShieldBadge'
 import RugDocBadge from '../Icons/RugDocBadge'
 import RedditBadge from '../Icons/RedditBadge'
+
+interface BadgeProps {
+  badges: IazoTags[]
+}
 
 const BadgeContainer = styled.div`
   display: flex;
@@ -30,31 +35,54 @@ const BadgeWrapper = styled.div`
     margin-right: 5px;
   }
 `
-const Badges: React.FC = () => {
+const Badges: React.FC<BadgeProps> = ({ badges }) => {
   const { isDark } = useTheme()
   const iconFill = isDark ? '#333' : 'rgba(240, 240, 240, .1)'
+  const renderBadge = (badge: IazoTags) => {
+    const { tagName, tagLinks } = badge
+    if (tagName === 'Security') {
+      return (
+        <BadgeWrapper>
+          <Tooltip title={tagName} tagLink={tagLinks}>
+            <ShieldBadge fill={iconFill} />
+          </Tooltip>
+        </BadgeWrapper>
+      )
+    }
+    if (tagName === 'Rug Doc') {
+      return (
+        <BadgeWrapper>
+          <Tooltip title={tagName} tagLink={tagLinks}>
+            <RugDocBadge fill={iconFill} />
+          </Tooltip>
+        </BadgeWrapper>
+      )
+    }
+    if (tagName === 'Reddit') {
+      return (
+        <BadgeWrapper>
+          <Tooltip title={tagName} tagLink={tagLinks}>
+            <RedditBadge fill={iconFill} />
+          </Tooltip>
+        </BadgeWrapper>
+      )
+    }
+    if (tagName === 'KYC') {
+      return (
+        <BadgeWrapper>
+          <Tooltip title={tagName} tagLink={tagLinks}>
+            <KycBadge fill={iconFill} />
+          </Tooltip>
+        </BadgeWrapper>
+      )
+    }
+    return <></>
+  }
   return (
     <BadgeContainer>
-      <BadgeWrapper>
-        <Tooltip content="This is a test">
-          <ShieldBadge fill={iconFill} />
-        </Tooltip>
-      </BadgeWrapper>
-      <BadgeWrapper>
-        <Tooltip content="This is a test">
-          <RugDocBadge fill={iconFill} />
-        </Tooltip>
-      </BadgeWrapper>
-      <BadgeWrapper>
-        <Tooltip content="This is a test">
-          <KycBadge fill={iconFill} />
-        </Tooltip>
-      </BadgeWrapper>
-      <BadgeWrapper>
-        <Tooltip content="This is a test">
-          <RedditBadge fill={iconFill} />
-        </Tooltip>
-      </BadgeWrapper>
+      {badges?.map((badge) => {
+        return renderBadge(badge)
+      })}
     </BadgeContainer>
   )
 }

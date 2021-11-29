@@ -290,8 +290,15 @@ export interface IazoSocialInfo {
   description: string
 }
 
+export interface TagLink {
+  link: string
+  position: number
+  title: string
+}
+
 export interface IazoTags {
-  verification: string
+  tagLinks: TagLink
+  tagName: string
 }
 
 export interface Iazo {
@@ -313,7 +320,7 @@ export interface Iazo {
   iazoToken: IazoTokenInfo
   isRegistered?: boolean
   socialInfo?: IazoSocialInfo
-  iazoTags?: IazoTags
+  iazoTags?: IazoTags[]
 }
 
 export interface TokenPrices {
