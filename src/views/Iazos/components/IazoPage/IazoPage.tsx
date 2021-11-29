@@ -59,6 +59,7 @@ const StyledHeader = styled(Text)`
   line-height: 52px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 45px;
+    margin-bottom: 20px;
   }
 `
 
@@ -72,7 +73,6 @@ const StyledText = styled(Text)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
-    margin-top: 3px;
   }
 `
 
@@ -157,9 +157,14 @@ const IazoPage: React.FC = () => {
           <WarningWrapper>
             <StyledHeader fontSize="10px"> Safety Alert</StyledHeader>
             <StyledText>
-              This is a decentralised and open presale platform. Anyone can create and name a presale freely including
-              fake versions of existing tokens. It is also possible for developers of a token to mint near infinite
-              tokens and dump them on locked liquidity. Please do your own research before using this platform.
+              Warning: SS-IAOs are NOT ApeSwap endorsed or yet official ApeSwap partners. Always DYOR. Be sure to read
+              our medium articles on best DYOR Practices before aping in and talk with your fellow Apes!
+            </StyledText>
+            <br />
+            <StyledText>
+              This is a fully decentralized and open launchpad. Anyone can create an SS-IAO, under any token name with
+              any capabilities. There is also no control of what happens post launch (projects could leave with your
+              money, have an unlimited mint function to extract all liquidity, or any other malicious activity).
             </StyledText>
           </WarningWrapper>
           <BeforeSaleWrapper>
