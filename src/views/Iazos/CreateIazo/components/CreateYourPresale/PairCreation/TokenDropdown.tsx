@@ -65,7 +65,9 @@ const DropdownItem = styled.div<{ last?: boolean }>`
   width: 100%;
   height: 60px;
   cursor: pointer;
-  box-shadow: ${(props) => !props.last && '0px 1px 0px #333333'};
+  -webkit-box-shadow: ${(props) => !props.last && ' 0 3px 4px -2px #333333'};
+  -moz-box-shadow: ${(props) => !props.last && '0 3px 4px -2px #333333'};
+  box-shadow: ${(props) => !props.last && ' 0 3px 4px -2px #333333'};
 `
 
 const HeaderWrapper = styled.div<{ opened?: boolean }>`
@@ -76,7 +78,9 @@ const HeaderWrapper = styled.div<{ opened?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  box-shadow: ${(props) => props.opened && '0px 1px 0px #333333'};
+  -webkit-box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
+  -moz-box-shadow: ${(props) => props.opened && '0 3px 4px -2px #333333'};
+  box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
 `
 
 const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {

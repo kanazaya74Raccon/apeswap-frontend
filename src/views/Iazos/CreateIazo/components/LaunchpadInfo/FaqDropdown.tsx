@@ -49,7 +49,9 @@ const HeaderWrapper = styled.div<{ opened?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: ${(props) => props.opened && '0px 3px 7px #333333'};
+  -webkit-box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
+  -moz-box-shadow: ${(props) => props.opened && '0 3px 4px -2px #333333'};
+  box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
 `
 
 const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, description }) => {
