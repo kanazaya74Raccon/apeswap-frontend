@@ -6,6 +6,7 @@ import { useFetchIazos, useIazos } from 'state/hooks'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
+import Header from '../Header'
 
 const PageWrapper = styled.div`
   display: none;
@@ -13,26 +14,6 @@ const PageWrapper = styled.div`
   padding-bottom: 200px;
   margin-bottom: 100px;
   justify-content: center;
-`
-
-const Header = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  height: 251px;
-  width: 100%;
-  padding-top: 36px;
-  background-image: ${(props) =>
-    props.theme.isDark ? 'url(/images/iazo-banner-dark.svg)' : 'url(/images/iazo-banner-light.svg)'};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-  }
 `
 
 const LaunchPadWrapper = styled.div`
@@ -70,16 +51,6 @@ const TopNavMonkey = styled.div`
   opacity: 0.2;
   z-index: 0;
 `
-
-const HeaderWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  height: 60px;
-  margin-top: 20px;
-  align-items: center;
-  justify-content: center;
-`
-
 const StyledHeader = styled(Text)`
   font-family: Poppins;
   font-weight: 700;

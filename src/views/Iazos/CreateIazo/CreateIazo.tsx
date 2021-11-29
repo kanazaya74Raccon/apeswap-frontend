@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
+import Header from '../components/Header'
+
 
 const PageWrapper = styled.div`
   display: none;
@@ -11,26 +13,6 @@ const PageWrapper = styled.div`
   padding-bottom: 200px;
   margin-bottom: 100px;
   justify-content: center;
-`
-
-const Header = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  height: 251px;
-  width: 100%;
-  padding-top: 36px;
-  background-image: ${(props) =>
-    props.theme.isDark ? 'url(/images/iazo-banner-dark.svg)' : 'url(/images/iazo-banner-light.svg)'};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-  }
 `
 
 const LaunchPadWrapper = styled.div`
