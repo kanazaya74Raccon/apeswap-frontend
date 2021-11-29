@@ -31,6 +31,7 @@ const OuterCircle = styled.circle`
 `
 
 const IazoSymbolSvg = styled.svg`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
