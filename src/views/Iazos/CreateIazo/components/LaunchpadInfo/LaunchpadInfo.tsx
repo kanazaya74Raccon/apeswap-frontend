@@ -5,18 +5,17 @@ import FaqDropdown from './FaqDropdown'
 
 const listOfFaqs = [
   {
-    title: 'FAQ Titles',
-    description: `Is your project stellar!? Apply to be incubated by Unicrypt by sending us a mail at: support@unicrypt.network If you would like to be incubated do not create a presale yet, we'll help with marketing, KYC, Audits, Hardcaps and presale parameters.`,
+    title: 'How to Create an SS-IAO',
+    description: `Read our documentation before you begin to make sure you understand how SS-IAOs works, what you should have in place before you launch, and the associated risks.`,
   },
   {
-    title: 'Presale best practices',
+    title: 'SS-IAO Best Practices',
     description:
-      'this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text',
+      'Looking for tips on what the best of the best projects do? Or wanting to make sure you can quickly get listed on ApeSwap post launch? Read our guide from our own due diligence expert Alpha Rho',
   },
   {
-    title: 'Some other info',
-    description:
-      'this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text this is some sort of text',
+    title: 'FAQ',
+    description: 'Have any other burning questions about SS-IAOs? Check out our FAQ to get all the answers!',
   },
 ]
 
@@ -45,11 +44,11 @@ const StyledHeader = styled(Text)`
 const StyledText = styled(Text)`
   padding: 20px 40px 0px 40px;
   text-align: center;
-  padding-bottom: 15px;
   font-family: poppins;
   font-weight: 400;
+  padding-bottom: 25px;
 `
-const MoreInfo = styled(Text)`
+const MoreInfo = styled.a`
   font-family: poppins;
   font-size: 15px;
   font-weight: 700;
@@ -58,20 +57,28 @@ const MoreInfo = styled(Text)`
   padding-top: 15px;
   padding-bottom: 20px;
   cursor: pointer;
+  color: ${(props) => props.theme.colors.text};
 `
 
 export default function LuanchpadInfo(): JSX.Element {
   return (
     <LaunchPadInfoWrapper>
-      <StyledHeader>Launchpad Info</StyledHeader>
+      <StyledHeader>SS-IAO Launchpad Info</StyledHeader>
       <StyledText>
-        Run a decentralised Initial Ape Offering (IAO) to raise funds and liquidity for your project with our trusted
-        decentalised launchpad.
+        Run your own decentralized Self Serve Initial Ape Offering (SS-IAO) to raise funds and liquidity for your
+        project!
       </StyledText>
+
       {listOfFaqs.map((faq) => (
         <FaqDropdown key={faq.title} title={faq.title} description={faq.description} />
       ))}
-      <MoreInfo>MORE INFO {'>'}</MoreInfo>
+      <MoreInfo
+        href="https://apeswap.gitbook.io/apeswap-finance/product-information/self-serve-iaos-ss-iaos"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        MORE INFO {'>'}
+      </MoreInfo>
     </LaunchPadInfoWrapper>
   )
 }
