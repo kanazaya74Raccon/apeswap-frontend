@@ -2789,7 +2789,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-
+  {
+    sousId: 146,
+    tokenName: 'SISTA',
+    image: 'SISTA.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.sista,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xd4b688873df6af18f5fd9e226730adcce635f5eb',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://srnartgallery.com',
+    harvest: true,
+    tokenPerBlock: `1.736111496913580246`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
