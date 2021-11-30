@@ -83,7 +83,7 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
       <TokenInput
         size={isMobile ? 'sm' : 'mdlg'}
         backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
-        tokenSymbol={symbol}
+        tokenSymbol={isNative ? 'BNB' : symbol}
         userBalance={userBalanceFormatted}
         onChange={(e) => setAmountToCommit(e.currentTarget.value)}
         max={maxSpendFormatted < userBalanceFormatted ? maxSpendFormatted : userBalanceFormatted}
