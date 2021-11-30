@@ -48,12 +48,16 @@ const isValidUrl = (val: string) => {
   } catch {
     return false
   }
-  return true
 }
 
-const postSaleValidation = (data: LiquidityLockDetails): { error: string; message: string }[] => {
+export const postSaleValidation = (
+  data: LiquidityLockDetails,
+  presalePrice: string,
+): { error: string; message: string }[] => {
   const validationList: { error: string; message: string }[] = []
   const { lockLiquidity, liquidityPercent, listingPrice } = data
+  const minListPrice = presalePrice && parseFloat(presalePrice) - parseFloat(presalePrice) * 0.25
+  const maxListPrice = presalePrice && parseFloat(presalePrice) + parseFloat(presalePrice) * 0.5
   if (!lockLiquidity) {
     validationList.push({ error: 'Liquidity Lock Missing', message: 'Please choose a liquidity lock time' })
   }
@@ -64,6 +68,18 @@ const postSaleValidation = (data: LiquidityLockDetails): { error: string; messag
     validationList.push({
       error: 'Liquidity Listing Price Missing',
       message: 'Please choose a liquidity listing price',
+    })
+  }
+  if (parseFloat(listingPrice) < minListPrice) {
+    validationList.push({
+      error: 'Liquidity Listing Price Too Low',
+      message: 'Please choose higher your liquidity listing price',
+    })
+  }
+  if (parseFloat(listingPrice) > maxListPrice) {
+    validationList.push({
+      error: 'Liquidity Listing Price Too High',
+      message: 'Please raise your liquidity listing price',
     })
   }
   return validationList
@@ -113,7 +129,7 @@ const informationValidation = (data: SaleInformation): { error: string; message:
   return validationList
 }
 
-const dateSelectionValidation = (
+export const dateSelectionValidation = (
   data: DateObject,
   maxIazoLength: string,
   minIazoLength: string,
@@ -135,7 +151,7 @@ const dateSelectionValidation = (
   return validationList
 }
 
-const presaleValidation = (data: TokenSaleDetails): { error: string; message: string }[] => {
+export const presaleValidation = (data: TokenSaleDetails): { error: string; message: string }[] => {
   const validationList = []
   const { pricePerToken, softcap, limitPerUser, tokensForSale } = data
   if (parseFloat(softcap) > parseFloat(tokensForSale) * parseFloat(pricePerToken)) {
@@ -161,7 +177,7 @@ const presaleValidation = (data: TokenSaleDetails): { error: string; message: st
 
 const Validations: React.FC<ValidationProps> = ({ presaleData, settings, onValidationChange }) => {
   const { datesSelected, information, postsaleDetails, presaleTokenDetails } = presaleData
-  const postSaleValid = postSaleValidation(postsaleDetails)
+  const postSaleValid = postSaleValidation(postsaleDetails, presaleTokenDetails?.pricePerToken)
   const infoValid = informationValidation(information)
   const datesValid = dateSelectionValidation(datesSelected, settings?.maxIazoLength, settings?.minIazoLength)
   const presaleValid = presaleValidation(presaleTokenDetails)

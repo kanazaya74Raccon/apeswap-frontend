@@ -12,6 +12,7 @@ import PostSaleDetails from './PostSaleDetails/PostSaleDetails'
 import SaleReview from './SaleReview/SaleReview'
 import Information from './Information/Information'
 import Actions from './Actions'
+import { presaleValidation, postSaleValidation } from './Validations'
 
 interface Stepper {
   pairCreated: boolean
@@ -59,6 +60,13 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
     informationStepCompleted: false,
   })
 
+  const presaleValid = presaleData?.presaleTokenDetails
+    ? presaleValidation(presaleData?.presaleTokenDetails).length === 0
+    : false
+  const postsaleValid = presaleData?.postsaleDetails
+    ? postSaleValidation(presaleData?.postsaleDetails, presaleData?.presaleTokenDetails?.pricePerToken).length === 0
+    : false
+
   const presaleStepsCompleted =
     stepper.pairCreated && stepper.datesSelected && stepper.presaleDetailsSet && stepper.postsaleDetailsSet
 
@@ -87,9 +95,6 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
     setStepper((prevState) => ({ ...prevState, informationStepCompleted: val && true }))
   }, [])
 
-  console.log(presaleData)
-  console.log(presaleData?.presaleTokenDetails)
-
   return (
     <LaunchPadInfoWrapper>
       <StyledHeader>Create Your Presale</StyledHeader>
@@ -113,7 +118,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
           />
         </>
       )}
-      {presaleStepsCompleted && (
+      {presaleStepsCompleted && presaleValid && postsaleValid && (
         <>
           <SaleReview
             presaleDetails={presaleData.presaleTokenDetails}
@@ -125,7 +130,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
           <Information onChange={onInformation} />
         </>
       )}
-      {presaleStepsCompleted && stepper.informationStepCompleted && (
+      {presaleStepsCompleted && stepper.informationStepCompleted && presaleValid && postsaleValid && (
         <Actions presaleData={presaleData} settings={settings} />
       )}
     </LaunchPadInfoWrapper>

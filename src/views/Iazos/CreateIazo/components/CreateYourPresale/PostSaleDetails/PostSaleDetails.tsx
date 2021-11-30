@@ -113,7 +113,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
     liquidityPercent: null,
     listingPrice: null,
-    lockLiquidity: lockedLiquidityValues['6 Months'],
+    lockLiquidity: lockedLiquidityValues['1 Year'],
   })
 
   const onLiquidityClick = (amount: number) => {
@@ -126,6 +126,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
   useEffect(() => {
     onChange(liquidityDetails)
   }, [liquidityDetails, onChange])
+
 
   return (
     <>
