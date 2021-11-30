@@ -29,7 +29,9 @@ const useFetchUserIazoCommit = (iazoAddress: string, dependency?: boolean) => {
         console.log(e)
       }
     }
-    fetch()
+    if (account) {
+      fetch()
+    }
   }, [account, iazoAddress, multicallContractAddress, chainId, dependency])
 
   return commited

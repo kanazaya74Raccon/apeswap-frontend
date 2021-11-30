@@ -38,6 +38,7 @@ const Actions: React.FC<ActionsProps> = ({
   const onApprove = (pendingTrx: boolean) => {
     setApproveTrx(pendingTrx)
   }
+  
   return (
     <ActionWrapper>
       {approved || isNative ? (

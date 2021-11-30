@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useWeb3React } from '@web3-react/core'
+import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import { useTokenPriceFromAddress } from 'state/hooks'
 import ClaimIazo from '../../Actions/ClaimIazo'
+
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -76,6 +79,7 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
 const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, tokenPrice, iazoAddress }) => {
   const { symbol, decimals, address } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
+  const {account} = useWeb3React()
   const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
@@ -104,7 +108,15 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
       <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
         Tokens bought:{' '}
       </BoldAfterText>
-      <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} />
+      {account ? (
+        <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} />
+      ) : (
+        <>
+          <br />
+          <UnlockButton />
+          <br />
+        </>
+      )}
     </BeforeSaleWrapper>
   )
 }

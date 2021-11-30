@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import UnlockButton from 'components/UnlockButton'
+import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
 import { useTokenPriceFromAddress } from 'state/hooks'
@@ -109,6 +111,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const { symbol, decimals, address } = baseToken
   const { totalBaseCollected, numBuyers } = status
   const { lockPeriod } = timeInfo
+  const { account } = useWeb3React()
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
@@ -148,13 +151,21 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
           </BoldAfterText>
         </>
       )}
-      <Actions
-        iazoAddress={iazoAddress}
-        baseToken={baseToken}
-        onPendingContribute={onPendingContribute}
-        disabled={percentRaised >= 100 || tokensDepositedFormatted === maxSpendFormatted}
-        maxSpendFormatted={maxSpendFormatted}
-      />
+      {account ? (
+        <Actions
+          iazoAddress={iazoAddress}
+          baseToken={baseToken}
+          onPendingContribute={onPendingContribute}
+          disabled={percentRaised >= 100 || tokensDepositedFormatted === maxSpendFormatted}
+          maxSpendFormatted={maxSpendFormatted}
+        />
+      ) : (
+        <>
+          <br />
+          <UnlockButton />
+          <br />
+        </>
+      )}
       <IazoSymbolsContainer>
         <IazoSymbols iconImage="dollar" title={tokenPrice} description="Presale price" />
         <IazoSymbols
