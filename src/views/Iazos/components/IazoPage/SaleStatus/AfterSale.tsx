@@ -10,7 +10,6 @@ import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUs
 import { useTokenPriceFromAddress } from 'state/hooks'
 import ClaimIazo from '../../Actions/ClaimIazo'
 
-
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
   hardcap: string
@@ -79,7 +78,7 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
 const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, tokenPrice, iazoAddress }) => {
   const { symbol, decimals, address } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
-  const {account} = useWeb3React()
+  const { account } = useWeb3React()
   const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
@@ -89,7 +88,6 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
 
-  console.log('render render')
 
   const onPendingClaim = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)

@@ -54,7 +54,10 @@ const SaleStatus: React.FC<SaleStatus> = ({
   const endTime = parseInt(activeTime) + parseInt(startTime)
   const timeUntilStart = parseInt(startTime) - currentTime
   const timeUntilEnd = endTime - currentTime
-  const tokenPriceFormatted = getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)).toString()
+  const normalizeTokenPrice = new BigNumber(tokenPrice).times(
+    new BigNumber(10).pow(new BigNumber(parseInt(iazoToken?.decimals) - 18)),
+  )
+  const tokenPriceFormatted = getBalanceNumber(normalizeTokenPrice, parseInt(decimals)).toString()
 
   const renderSaleStatus = () => {
     if (timeUntilStart > 0) {
