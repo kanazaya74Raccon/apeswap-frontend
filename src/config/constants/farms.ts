@@ -2518,7 +2518,7 @@ const farms: FarmConfig[] = [
   {
     pid: 157,
     image: 'FRAX.svg',
-    lpSymbol: 'FRAX-BUSD',
+    lpSymbol: 'FRAX-BUSD LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x5292600758A090490D34367d4864ed6291D254fe',
@@ -2531,6 +2531,108 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://frax.finance/',
+  },
+  {
+    pid: 158,
+    image: 'RELAY.svg',
+    lpSymbol: 'RELAY-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xab29d19dc9a32fe37275371f0ddfeea3d0c72c25',
+    },
+    tokenSymbol: 'RELAY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://www.relaychain.com/',
+  },
+  {
+    pid: 159,
+    image: 'QUIDD.svg',
+    lpSymbol: 'QUIDD-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x813cf14699a230185eada5266b18403d77593e12',
+    },
+    tokenSymbol: 'QUIDD',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://market.onquidd.com/',
+  },
+  {
+    pid: 160,
+    image: 'MONI.svg',
+    lpSymbol: 'MONI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe89dff611f926b86293a8e0e6f1c384c6ae0cb69',
+    },
+    tokenSymbol: 'MONI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://monstainfinite.com/',
+  },
+  {
+    pid: 161,
+    image: 'INFO.svg',
+    lpSymbol: 'INFO-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x194613d18f07Cc19f886De6AC63F67Db235b5DEE',
+    },
+    tokenSymbol: 'INFO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xdf727040d3997b5d95dee8c661fa96e3c13ee0c9',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://infomatix.io/',
+  },
+  {
+    pid: 163,
+    image: 'SHILL.svg',
+    lpSymbol: 'SHILL-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x77A3B1bBa24D8Cdc28992dc242F05deD6648A8B3',
+    },
+    tokenSymbol: 'SHILL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb9c339b4bace4fe63ccc1dd9a3c3c531441d5fe',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://projectseed.io/',
+  },
+  {
+    pid: 164,
+    image: 'LMN.svg',
+    lpSymbol: 'LMN-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x05290964C32722D9E0Ae01cEde50c30Fa6b7ed01',
+    },
+    tokenSymbol: 'LMN',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lemonn.io/',
   },
   {
     pid: 7, // NOTE: Inactive Farm

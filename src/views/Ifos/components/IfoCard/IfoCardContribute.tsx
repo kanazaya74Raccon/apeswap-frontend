@@ -159,10 +159,10 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallAddress, chainId)
 
   useEffect(() => {
     const fetch = async () => {
+      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -226,7 +226,7 @@ const IfoCardContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh, multicallContract])
+  }, [account, contract, address, pendingTx, slowRefresh, multicallAddress, chainId])
 
   if (allowance === null) {
     return null

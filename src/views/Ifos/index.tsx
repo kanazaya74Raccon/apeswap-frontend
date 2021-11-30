@@ -8,48 +8,55 @@ import IfoTabButtons from './components/IfoTabButtons'
 import CurrentIfo from './CurrentIfo'
 import PastIfo from './PastIfo'
 
+const apeFloat = keyframes`
+  0% { transform: translate(0, 0px); }
+  65%  { transform: translate(0, -20px); }
+  100%   { transform: translate(0, -0px); }
+`
+
+const bananaFloat = keyframes`
+  0% { transform: translate(0px, 0px); }
+  65%  { transform: translate(20px, 0px); }
+  100%   { transform: translate(-0px, 0px); }
+`
+
 const Header = styled.div`
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
   padding-top: 36px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-image: url(/images/banners/iao-bg.svg);
   height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     height: 300px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 `
-
-const HeadingContainer = styled.div`
+const HeaderContainer = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  padding-left: 10px;
+  position: absolute;
   z-index: 999;
-`
 
-const StyledHeading = styled(Heading)`
-  font-size: 32px;
-  max-width: 176px !important;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
-    max-width: 240px !important;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    position: relative;
   }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 90%;
+    position: relative;
+  }
+`
+const StyledHeading = styled(Heading)`
+  font-size: 36px;
+  max-width: 240px !important;
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 44px;
@@ -63,84 +70,85 @@ const StyledHeading = styled(Heading)`
 `
 
 const RightDiv = styled.div`
+  position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 800px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* background-color: red; */
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     width: 80%;
-    margin: 0px auto;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    /* width: 800px; */
+    width: 60%;
   }
-
-  /* do for screen size 768px */
-`
-
-const apeFloat = keyframes`
-  0% { transform: translate(0, 0px); }
-  65%  { transform: translate(0, -20px); }
-  100%   { transform: translate(0, -0px); }
 `
 
 const Ape = styled.img`
-  /* background-color: yellow; */
   width: 300px;
-  margin-top: 100px;
-  position: absolute;
-  right: -30px;
+  margin-top: 15em;
+  margin-left: 80px;
   animation: ${apeFloat} 10s ease-in-out infinite;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     width: 400px;
-    right: 20px;
+    margin-top: 20em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 450px;
+    margin-top: 22em;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    width: 500px;
+    margin-top: 24em;
   }
 `
 
-const WindowImage = styled.div`
-  /* background-color: green; */
+const WindowDiv = styled.div`
   background-image: url(/images/banners/iao-window.svg);
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  height: inherit;
-  background-position: inherit;
-  width: 100%;
   position: absolute;
   top: 0;
 `
 
-const bananaFloat = keyframes`
-  0% { transform: translate(0px, 0px); }
-  65%  { transform: translate(20px, 0px); }
-  100%   { transform: translate(-0px, 0px); }
-`
-
 const Banana = styled.img`
-  /* background-color: blue; */
   width: 100px;
   height: auto;
   position: absolute;
   top: 10px;
   right: 0;
-  -webkit-animation: ${bananaFloat} 10s linear infinite;
   animation: ${bananaFloat} 10s linear infinite;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     width: 150px;
   }
 
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: 180px;
+    margin-right: 5em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 180px;
+    margin-right: 5em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-right: 1em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-right: 2em;
   }
 `
 
@@ -151,15 +159,15 @@ const Ifos = () => {
   return (
     <>
       <Header>
-        <HeadingContainer>
+        <HeaderContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {TranslateString(999, 'Initial Ape Offerings')}
           </StyledHeading>
-        </HeadingContainer>
+        </HeaderContainer>
 
         <RightDiv>
           <Ape src="/images/banners/iao-ape.svg" className="ape" />
-          <WindowImage className="window" />
+          <WindowDiv className="window" />
           <Banana src="/images/banners/iao-banana.svg" className="banana" />
         </RightDiv>
       </Header>

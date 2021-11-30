@@ -124,4 +124,4 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   )
 }
 
-export default PoolCard
+export default React.memo(PoolCard)
