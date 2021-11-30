@@ -56,6 +56,7 @@ const Input = styled.input<{ backgroundColor: string }>`
   border: none;
   z-index: 0;
   -webkit-appearance: none;
+  -moz-appearance: textfield;
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
