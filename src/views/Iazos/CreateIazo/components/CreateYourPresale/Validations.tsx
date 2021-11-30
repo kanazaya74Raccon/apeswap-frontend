@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { IazoDefaultSettings } from 'state/types'
 import { PresaleData, SaleInformation, DateObject, TokenSaleDetails, LiquidityLockDetails } from './types'
 
 interface ValidationProps {
   presaleData: PresaleData
+  settings: IazoDefaultSettings
   onValidationChange: (valid: boolean) => void
 }
 
@@ -73,7 +75,6 @@ const informationValidation = (data: SaleInformation): { error: string; message:
   const fileExtension = tokenLogo?.name?.split('.')[tokenLogo?.name?.split('.').length - 1]
   const fileSize = tokenLogo?.size
   const acceptableFiles = ['jpg', 'svg', 'png']
-  console.log(tokenLogo)
   if (!website) {
     validationList.push({ error: 'Website URL Missing', message: 'Please enter a website url' })
   }
@@ -112,9 +113,25 @@ const informationValidation = (data: SaleInformation): { error: string; message:
   return validationList
 }
 
-const dateSelectionValidation = (data: DateObject): { error: string; message: string }[] => {
+const dateSelectionValidation = (
+  data: DateObject,
+  maxIazoLength: string,
+  minIazoLength: string,
+): { error: string; message: string }[] => {
   const validationList = []
   const { start, end } = data
+  // Convert Date types into unix timestamp in seconds
+  const startDateInSeconds = Math.floor(start.valueOf() / 1000)
+  const endDateInSeconds = Math.floor(end.valueOf() / 1000)
+
+  // Get the amount of time the IAZO will be active
+  const activeTime = endDateInSeconds - startDateInSeconds
+  if (activeTime < parseInt(minIazoLength)) {
+    validationList.push({ error: 'Your IAZO Length Is Too Short', message: 'Please enter a longer IAZO time length' })
+  }
+  if (activeTime > parseInt(maxIazoLength)) {
+    validationList.push({ error: 'Your IAZO Length Is Too Long', message: 'Please enter a shorter IAZO time length' })
+  }
   return validationList
 }
 
@@ -142,11 +159,11 @@ const presaleValidation = (data: TokenSaleDetails): { error: string; message: st
   return validationList
 }
 
-const Validations: React.FC<ValidationProps> = ({ presaleData, onValidationChange }) => {
+const Validations: React.FC<ValidationProps> = ({ presaleData, settings, onValidationChange }) => {
   const { datesSelected, information, postsaleDetails, presaleTokenDetails } = presaleData
   const postSaleValid = postSaleValidation(postsaleDetails)
   const infoValid = informationValidation(information)
-  const datesValid = dateSelectionValidation(datesSelected)
+  const datesValid = dateSelectionValidation(datesSelected, settings?.maxIazoLength, settings?.minIazoLength)
   const presaleValid = presaleValidation(presaleTokenDetails)
   const aggregatedErrors = [...postSaleValid, ...infoValid, ...datesValid, ...presaleValid]
   const isValid =
@@ -163,10 +180,7 @@ const Validations: React.FC<ValidationProps> = ({ presaleData, onValidationChang
   return (
     <ValidationContainer>
       {aggregatedErrors.map((error) => (
-        <ValidationText boldContent={`${error.error}:`}>
-          {'  '}
-          {error.message}
-        </ValidationText>
+        <ValidationText boldContent={`${error.error}:  `}>{error.message}</ValidationText>
       ))}
     </ValidationContainer>
   )

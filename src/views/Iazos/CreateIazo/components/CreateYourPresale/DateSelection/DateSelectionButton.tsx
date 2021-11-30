@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import CalendarIcon from 'views/Iazos/components/Icons/CalendarIcon'
+import useTheme from 'hooks/useTheme'
 
 interface DateSelectionProps {
   onChange: (date: Date) => void
@@ -17,25 +19,21 @@ const IconWrapper = styled.div`
   }
 `
 
-const IconImage = styled.div<{ image: string }>`
+const IconImageWrapper = styled.div`
   align: left;
-  background-color: ${(props) => (props.theme.isDark ? '#444444' : '#E5E5E5')};
-  background-image: ${(props) => `url(/images/${props.image}.svg)`};
   height: 30px;
   width: 30px;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   cursor: pointer;
 `
 
 const DatePickerContainer = styled.div`
   position: absolute;
-  right: -100px;
-  width: 330px;
-  top: -240px;
+  right: 10px;
+  top: -280px;
   z-index: 100;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 400px;
+    right: 40px;
+    top: -260px;
   }
 `
 
@@ -45,6 +43,8 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }
   const [date, setDate] = useState<Date>(delayedDate)
   const datePickerRef = useRef(null)
   const iconRef = useRef(null)
+  const { isDark } = useTheme()
+  const iconColor = isDark ? 'white' : '#A16552'
 
   useEffect(() => {
     function handler(event) {
@@ -64,7 +64,9 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }
   return (
     <>
       <IconWrapper>
-        <IconImage image="calander" onClick={() => setDatePickerOpen(!datePickerOpen)} ref={iconRef} />
+        <IconImageWrapper onClick={() => setDatePickerOpen(!datePickerOpen)} ref={iconRef}>
+          <CalendarIcon fill={iconColor} />
+        </IconImageWrapper>
         {datePickerOpen && (
           <DatePickerContainer ref={datePickerRef}>
             <DatePicker

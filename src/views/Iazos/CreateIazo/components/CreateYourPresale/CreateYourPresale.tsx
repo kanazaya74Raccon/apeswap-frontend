@@ -48,16 +48,7 @@ const StyledHeader = styled(Text)`
 `
 
 const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
-  const {
-    baseFee,
-    iazoTokenFee,
-    maxBaseFee,
-    maxIazoLength,
-    maxIazoTokenFee,
-    minIazoLength,
-    minLockPeriod,
-    nativeCreationFee,
-  } = settings !== null && settings
+  const { baseFee, iazoTokenFee } = settings !== null && settings
   const { account } = useWeb3React()
   const [presaleData, setPresaleData] = useState<PresaleData>()
   const [stepper, setStepper] = useState<Stepper>({
@@ -135,7 +126,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
         </>
       )}
       {presaleStepsCompleted && stepper.informationStepCompleted && (
-        <Actions presaleData={presaleData} creationFee={nativeCreationFee} />
+        <Actions presaleData={presaleData} settings={settings} />
       )}
     </LaunchPadInfoWrapper>
   )

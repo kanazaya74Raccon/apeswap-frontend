@@ -1,12 +1,11 @@
-// import { apiBaseUrl } from 'hooks/api'
+import { apiBaseUrl } from 'hooks/api'
 import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo, IazoTags } from 'state/types'
 
-const getIazosFromApi = async () => {
-  const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
+const getIazosFromApi = async (chainId: number) => {
+  const apiUrl = chainId === 97 ? 'https://apeswap-api-development.herokuapp.com' : apiBaseUrl
   try {
-    const response = await fetch(`${apiBaseUrl}/iazo`)
+    const response = await fetch(`${apiUrl}/iazo`)
     const statRes = await response.json()
-    console.log(statRes)
     if (statRes.statusCode === 500) {
       return null
     }
@@ -17,11 +16,10 @@ const getIazosFromApi = async () => {
   }
 }
 
-const getIazoFromApi = async (address: string) => {
-  const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
-  console.log(`${apiBaseUrl}/iazo/${address}`)
+const getIazoFromApi = async (chainId: number, address: string) => {
+  const apiUrl = chainId === 97 ? 'https://apeswap-api-development.herokuapp.com' : apiBaseUrl
   try {
-    const response = await fetch(`${apiBaseUrl}/iazo/${address}`)
+    const response = await fetch(`${apiUrl}/iazo/${address}`)
     const statRes = await response.json()
     if (statRes.statusCode === 500) {
       return null
@@ -101,8 +99,8 @@ const formatIazoData = (iazo): Iazo => {
     socialInfo: iazoSocialInfo,
   }
 }
-const fetchIazosFromApi = async (): Promise<Iazo[]> => {
-  const iazos = await getIazosFromApi()
+const fetchIazosFromApi = async (chainId: number): Promise<Iazo[]> => {
+  const iazos = await getIazosFromApi(chainId)
 
   const formattedIazos = iazos.map((iazo) => {
     return formatIazoData(iazo)
@@ -110,8 +108,8 @@ const fetchIazosFromApi = async (): Promise<Iazo[]> => {
   return formattedIazos
 }
 
-export const fetchIazoFromApi = async (address: string): Promise<Iazo[]> => {
-  const iazos = await getIazoFromApi(address)
+export const fetchIazoFromApi = async (chainId: number, address: string): Promise<Iazo[]> => {
+  const iazos = await getIazoFromApi(chainId, address)
   const formattedIazos = iazos.map((iazo) => {
     return formatIazoData(iazo)
   })

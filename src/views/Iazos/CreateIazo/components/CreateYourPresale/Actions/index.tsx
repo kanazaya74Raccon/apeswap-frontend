@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import useIazoAllowance from 'views/Iazos/hooks/useIazoAllowance'
 import { useIazoFactoryAddress } from 'hooks/useAddress'
+import { IazoDefaultSettings } from 'state/types'
 import ApproveCreateIazo from './ApproveCreateIazo'
 import CreatePresale from './CreatePresale'
 import Validations from '../Validations'
@@ -9,7 +10,7 @@ import { PresaleData } from '../types'
 
 interface ActionsProps {
   presaleData: PresaleData
-  creationFee: string
+  settings: IazoDefaultSettings
 }
 
 const ActionWrapper = styled.div`
@@ -23,7 +24,7 @@ const ActionWrapper = styled.div`
     width: 450px;
   }
 `
-const Actions: React.FC<ActionsProps> = ({ presaleData, creationFee }) => {
+const Actions: React.FC<ActionsProps> = ({ presaleData, settings }) => {
   const { pairCreation } = presaleData
   const { tokenAddress } = pairCreation
   const [validated, setValidated] = useState(true)
@@ -48,9 +49,13 @@ const Actions: React.FC<ActionsProps> = ({ presaleData, creationFee }) => {
           approved={approved}
           onPendingApproved={onPendingApproved}
         />
-        <CreatePresale presaleData={presaleData} disabled={validated || !approved} creationFee={creationFee} />
+        <CreatePresale
+          presaleData={presaleData}
+          disabled={validated || !approved}
+          creationFee={settings?.nativeCreationFee}
+        />
       </ActionWrapper>
-      <Validations presaleData={presaleData} onValidationChange={onValidationChange} />
+      <Validations presaleData={presaleData} onValidationChange={onValidationChange} settings={settings} />
     </>
   )
 }

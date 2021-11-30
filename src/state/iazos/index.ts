@@ -70,7 +70,7 @@ export const { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed, updateIaz
 export const fetchIazos = (chainId: number) => async (dispatch) => {
   try {
     dispatch(iazosFetchStart())
-    const iazos = await fetchIazosFromApi()
+    const iazos = await fetchIazosFromApi(chainId)
     dispatch(iazosFetchSucceeded({ liveIazosData: iazos, singleFlag: false }))
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
@@ -91,7 +91,7 @@ export const fetchIazos = (chainId: number) => async (dispatch) => {
 export const fetchIazo = (chainId: number, address: string) => async (dispatch) => {
   try {
     dispatch(iazosFetchStart())
-    const iazos = await fetchIazoFromApi(address)
+    const iazos = await fetchIazoFromApi(chainId, address)
     dispatch(iazosFetchSucceeded({ liveIazosData: iazos, singleFlag: true }))
     iazos?.map(async (iazo) => {
       const isRegestered = await isRegisteredIazoCheck(chainId, iazo.iazoContractAddress)
