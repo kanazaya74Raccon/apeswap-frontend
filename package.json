@@ -72,7 +72,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "^26.0.19",
     "eslint": "^7.26.0",
-    "husky": "^4.3.0",
+    "husky": "^7.0.4",
     "prettier": "^2.1.2",
     "source-map-explorer": "^2.5.1"
   }
