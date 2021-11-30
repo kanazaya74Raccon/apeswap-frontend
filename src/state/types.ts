@@ -297,8 +297,9 @@ export interface TagLink {
 }
 
 export interface IazoTags {
-  tagLinks: TagLink
+  tagLinks: TagLink[]
   tagName: string
+  tagIcon: string
 }
 
 export interface Iazo {

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export interface TooltipProps {
   title: string
-  tagLink?: TagLink
+  tagLinks?: TagLink[]
 }
 
 const TooltipContent = styled.div`
@@ -63,19 +63,23 @@ const StyledLink = styled.a`
   align-text: center;
 `
 
-const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLink }) => {
+const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
   return (
     <Container>
-      <a href={tagLink?.link} target="_blank" rel="noopener noreferrer">
-        {children}
-        <TooltipContent>
-          {title}
-          <br />
-          <StyledLink href={tagLink?.link} target="_blank" rel="noopener noreferrer">
-            {tagLink?.title}
-          </StyledLink>
-        </TooltipContent>
-      </a>
+      {children}
+      <TooltipContent>
+        {title}
+        {tagLinks?.map((tagLink) => {
+          return (
+            <>
+              <br />
+              <StyledLink href={tagLink?.link} target="_blank" rel="noopener noreferrer">
+                {tagLink?.title}
+              </StyledLink>
+            </>
+          )
+        })}
+      </TooltipContent>
     </Container>
   )
 }

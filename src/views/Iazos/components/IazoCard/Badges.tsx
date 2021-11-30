@@ -39,38 +39,38 @@ const Badges: React.FC<BadgeProps> = ({ badges }) => {
   const { isDark } = useTheme()
   const iconFill = isDark ? '#333' : 'rgba(240, 240, 240, .1)'
   const renderBadge = (badge: IazoTags) => {
-    const { tagName, tagLinks } = badge
-    if (tagName === 'Security') {
+    const { tagName, tagLinks, tagIcon } = badge
+    if (tagIcon === 'security') {
       return (
         <BadgeWrapper>
-          <Tooltip title={tagName} tagLink={tagLinks}>
+          <Tooltip title={tagName} tagLinks={tagLinks}>
             <ShieldBadge fill={iconFill} />
           </Tooltip>
         </BadgeWrapper>
       )
     }
-    if (tagName === 'Rug Doc') {
+    if (tagIcon === 'rugdoc') {
       return (
         <BadgeWrapper>
-          <Tooltip title={tagName} tagLink={tagLinks}>
+          <Tooltip title={tagName} tagLinks={tagLinks}>
             <RugDocBadge fill={iconFill} />
           </Tooltip>
         </BadgeWrapper>
       )
     }
-    if (tagName === 'Reddit') {
+    if (tagIcon === 'reddit') {
       return (
         <BadgeWrapper>
-          <Tooltip title={tagName} tagLink={tagLinks}>
+          <Tooltip title={tagName} tagLinks={tagLinks}>
             <RedditBadge fill={iconFill} />
           </Tooltip>
         </BadgeWrapper>
       )
     }
-    if (tagName === 'KYC') {
+    if (tagIcon === 'kyc') {
       return (
         <BadgeWrapper>
-          <Tooltip title={tagName} tagLink={tagLinks}>
+          <Tooltip title={tagName} tagLinks={tagLinks}>
             <KycBadge fill={iconFill} />
           </Tooltip>
         </BadgeWrapper>

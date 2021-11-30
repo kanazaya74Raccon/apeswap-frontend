@@ -127,7 +127,6 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
     onChange(liquidityDetails)
   }, [liquidityDetails, onChange])
 
-
   return (
     <>
       <LaunchPadInfoWrapper>
