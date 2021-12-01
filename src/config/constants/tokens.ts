@@ -770,6 +770,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  hera: {
+    symbol: 'HERA',
+    address: {
+      56: '0x49C7295ff86EaBf5bf58C6eBC858DB4805738c01',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

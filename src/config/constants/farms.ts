@@ -2635,6 +2635,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://lemonn.io/',
   },
   {
+    pid: 165,
+    image: 'HERA.png',
+    lpSymbol: 'HERA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xA29C9E83b951F5b043EbAC5d4FB4a5d108F156ed',
+    },
+    tokenSymbol: 'HERA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x49c7295ff86eabf5bf58c6ebc858db4805738c01',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://heroarena.app/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
