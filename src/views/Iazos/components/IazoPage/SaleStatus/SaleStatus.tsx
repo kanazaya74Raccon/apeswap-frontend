@@ -72,7 +72,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
         />
       )
     }
-    if (timeUntilEnd > 0 || iazoState !== 'HARD_CAP_MET') {
+    if (timeUntilEnd > 0 && iazoState !== 'HARD_CAP_MET' && iazoState !== 'FAILED') {
       return (
         <DuringSale
           timeInfo={timeInfo}
@@ -96,6 +96,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
         iazoAddress={iazoAddress}
         tokenPrice={tokenPriceFormatted}
         iazoToken={iazoToken}
+        iazoState={iazoState}
       />
     )
   }

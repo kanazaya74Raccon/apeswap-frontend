@@ -76,7 +76,14 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, tokenPrice, iazoAddress }) => {
+const CreatorAfter: React.FC<BeforeSaleProps> = ({
+  hardcap,
+  baseToken,
+  iazoToken,
+  status,
+  tokenPrice,
+  iazoAddress,
+}) => {
   const { symbol, decimals, address } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
@@ -119,4 +126,4 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   )
 }
 
-export default React.memo(AfterSale)
+export default React.memo(CreatorAfter)

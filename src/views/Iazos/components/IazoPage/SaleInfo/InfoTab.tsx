@@ -26,6 +26,25 @@ const InfoWrapper = styled.div`
   }
 `
 
+const BoldAfterText = styled(Text)<{ boldContent?: string }>`
+  font-family: poppins;
+  font-weight: 400;
+  font-size: 13px;
+  margin-bottom: 5px;
+  text-align: flex-end;
+  &:after {
+    font-weight: 700;
+    font-size: 14px;
+    ${({ theme }) => theme.mediaQueries.md} {
+      font-size: 17px;
+    }
+    content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
+`
+
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo } = iazo
   const { decimals, name, totalSupply } = iazoToken
@@ -64,6 +83,13 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   return (
     <InfoWrapper>
       <DonutChart items={items} title={`${name} Tokenomics`} />
+      <div>
+        <BoldAfterText boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForLiquidity.toString()}> Total Tokens For Liquidity: </BoldAfterText>
+      </div>
+      <br />
+      <br />
       <InfoFooter social={socialInfo} />
     </InfoWrapper>
   )
