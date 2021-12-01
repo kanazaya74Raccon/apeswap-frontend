@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
-import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
+import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useCurrentTime from 'hooks/useTimer'
 import BigNumber from 'bignumber.js'
@@ -21,6 +21,7 @@ interface SaleStatus {
   tokenPrice: string
   liquidityPercent: string
   maxSpend: string
+  iazoState: IazoState
 }
 
 const SaleStatusContainer = styled.div`
@@ -47,6 +48,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
   iazoToken,
   liquidityPercent,
   maxSpend,
+  iazoState,
 }) => {
   const { activeTime, startTime } = timeInfo
   const { symbol, decimals } = baseToken
@@ -70,7 +72,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
         />
       )
     }
-    if (timeUntilEnd > 0) {
+    if (timeUntilEnd > 0 || iazoState !== 'HARD_CAP_MET') {
       return (
         <DuringSale
           timeInfo={timeInfo}

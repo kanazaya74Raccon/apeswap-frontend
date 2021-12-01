@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Text, Button, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, Button, Skeleton, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { Title } from 'views/DualFarms/components/FarmTable/Actions/styles'
 
 interface IazoSymbolProps {
@@ -128,7 +128,11 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description,
         </SvgContainer>
       )}
       <Text fontFamily="poppins" fontSize={isMobile ? '18' : '24px'} bold>
-        {title}
+        {!link && (title === 'NaN' || !title || title.includes('null')) ? (
+          <Skeleton width="80px" height="25px" margin="5px 0 5px 0" />
+        ) : (
+          title
+        )}
       </Text>
       <Text fontFamily="poppins" fontSize={isMobile ? '12' : '16px'}>
         {description}

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
 
@@ -120,7 +120,7 @@ const TokenInfoCard: React.FC<TokenInfoCardProps> = ({
       <CardMonkey />
       <TokenImage src={tokenImage} />
       <TokenHeaderInformationWrapper>
-        <TokenName color="white"> {tokenName} </TokenName>
+        <TokenName color="white"> {tokenName || <Skeleton width="200px" height="35px" />} </TokenName>
         <TokenButtonsWrapper>
           <TokenInfoButton opacity="1">
             <a href={contractLink} target="_blank" rel="noopener noreferrer">

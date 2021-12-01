@@ -95,6 +95,7 @@ const fetchIazoData = async (chainId: number, address: string): Promise<Iazo> =>
     listingPrice: iazoInfo[10].toString(),
     burnRemain: iazoInfo[11].toString(),
     feeInfo: feeInfoData,
+    iazoState: null,
     timeInfo: iazoTimeInfoData,
     status: iazoStatusData,
     baseToken: baseTokenData,

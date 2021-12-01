@@ -91,6 +91,7 @@ const formatIazoData = (iazo): Iazo => {
     listingPrice: iazo.priceListing,
     burnRemain: iazo.burnRemaining,
     iazoTags: iazo.tags,
+    iazoState: null,
     feeInfo,
     timeInfo,
     status,

@@ -79,8 +79,16 @@ export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
   const calls = [
     { address, name: 'FEE_INFO' },
     { address, name: 'STATUS' },
+    { address, name: 'getIAZOState' },
   ]
-  const [feeInfo, status] = await multicall(multicallContract, iazoAbi, calls)
+  const iazoStates = {
+    '0': 'QUEUED',
+    '1': 'ACTIVE',
+    '2': 'SUCCESS',
+    '3': 'HARD_CAP_MET',
+    '4': 'FAILED',
+  }
+  const [feeInfo, status, iazoState] = await multicall(multicallContract, iazoAbi, calls)
 
   const feeInfoData: IazoFeeInfo = {
     feeAddress: feeInfo[0].toString(),
@@ -98,9 +106,7 @@ export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
     numBuyers: status[6].toString(),
   }
 
-  console.log('AT THIS')
-
-  return { feeInfo: feeInfoData, status: iazoStatusData }
+  return { feeInfo: feeInfoData, status: iazoStatusData, iazoState: iazoStates[iazoState.toString()] }
 }
 
 export const isRegisteredIazoCheck = async (chainId: number, address: string) => {

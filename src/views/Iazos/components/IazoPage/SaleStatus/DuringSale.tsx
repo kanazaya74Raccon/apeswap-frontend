@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import UnlockButton from 'components/UnlockButton'
@@ -132,11 +132,15 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   return (
     <BeforeSaleWrapper>
       <Heading>
-        {baseCollectedFormatted} / {hardcap} {symbol}
+        {baseCollectedFormatted.toString() === 'NaN' ? (
+          <Skeleton width="200px" height="30px" />
+        ) : (
+          `${baseCollectedFormatted} / ${hardcap} ${symbol}`
+        )}
       </Heading>
       <ProgressBarWrapper>
         <ProgressBar>
-          <Progress percentComplete={`${percentRaised}%`} />
+          <Progress percentComplete={`${percentRaised.toString() === 'NaN' ? 0 : percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
       <Timer timeInfo={timeInfo} />
@@ -167,7 +171,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         </>
       )}
       <IazoSymbolsContainer>
-        <IazoSymbols iconImage="dollar" title={tokenPrice} description="Presale price" />
+        <IazoSymbols iconImage="dollar" title={`${tokenPrice} ${symbol}`} description="Presale price" />
         <IazoSymbols
           iconImage="lock"
           title={`${liquidityPercentFormatted}%`}

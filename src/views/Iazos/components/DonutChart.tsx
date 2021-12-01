@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
 
 interface DonutChartProps {
   items: {
@@ -149,7 +149,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
 
   return (
     <ChartWrapper>
-      <StyledHeader>{title}</StyledHeader>
+      <StyledHeader>{title.includes('null') ? <Skeleton width="200px" height="35px" /> : title}</StyledHeader>
       <ChartContainer>
         <ChartSvg viewBox="0 0 50 50">
           <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
@@ -175,7 +175,11 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
           <IconAndTextWrapper>
             <GraphCard color={item.color} />
             <StyledText>
-              {item.label.toUpperCase()} - {(getPercent(item.value) * 100).toFixed(0)}%
+              {item.value.toString() === 'NaN' ? (
+                <Skeleton width="150px" height="35px" />
+              ) : (
+                `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(0)}%`
+              )}
             </StyledText>
           </IconAndTextWrapper>
         ))}

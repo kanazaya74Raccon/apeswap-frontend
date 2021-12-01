@@ -302,6 +302,8 @@ export interface IazoTags {
   tagIcon: string
 }
 
+export type IazoState = 'QUEUED' | 'ACTIVE' | 'SUCCESS' | 'HARD_CAP_MET' | 'FAILED'
+
 export interface Iazo {
   iazoContractAddress: string
   iazoOwnerAddress: string
@@ -313,6 +315,7 @@ export interface Iazo {
   maxSpendPerBuyer: string
   liquidityPercent: string
   listingPrice: string
+  iazoState: IazoState
   burnRemain: boolean
   feeInfo: IazoFeeInfo
   timeInfo: IazoTimeInfo
