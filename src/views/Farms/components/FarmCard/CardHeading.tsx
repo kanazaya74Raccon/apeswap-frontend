@@ -250,8 +250,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const { earnings } = useFarmUser(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
   const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
-  const { isXl } = useMatchBreakpoints()
-  const isDesktop = isXl
+  const { isXl: isDesktop } = useMatchBreakpoints()
   const { account } = useWeb3React()
 
   return (

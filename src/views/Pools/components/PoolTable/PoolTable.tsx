@@ -13,11 +13,11 @@ import CellLayout from './CellLayout'
 import Details from './Details'
 import Earned from './Earned'
 import Apr from './Apr'
-import ActionPanel from './ActionPanel'
 import Staked from './Liquidity'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
+import ContainerDetail from '../ContainerDetail'
 
 interface HarvestProps {
   pool: Pool
@@ -115,7 +115,8 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const { account } = useWeb3React()
   const block = useBlock()
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
-  const toggleActionPanel = () => {
+  const toggleActionPanel = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setActionPanelToggled(!actionPanelToggled)
   }
   const chainId = useNetworkChainId()
@@ -212,7 +213,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
               isStaked={accountHasStakedBalance}
             />
           </StakeContainer>
-          <ActionPanel
+          <ContainerDetail
             totalStaked={getBalanceNumber(totalStaked)}
             personalValueStaked={getBalanceNumber(stakedBalance)}
             blocksRemaining={blocksRemaining}
@@ -228,6 +229,9 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[chainId]}`}
             tokenDecimals={tokenDecimals}
+            type="table"
+            rewardToken={rewardToken}
+            imageToken={image}
           />
         </>
       )}

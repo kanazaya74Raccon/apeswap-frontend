@@ -367,19 +367,22 @@ export const useFetchStats = () => {
   const { account } = useWeb3React()
   const dispatch = useDispatch()
   const { statsOverall } = useStatsOverall()
-  const { slowRefresh } = useRefresh()
-  const [slow, setSlow] = useState(-1)
+  const block = useBlock()
   const farms = useFarms(account)
   const pools = usePools(account)
-  const curBlock = useBlock()
+  const { slowRefresh } = useRefresh()
   const bananaBalance = useTokenBalance(useBananaAddress())
+  const [render, setRender] = useState(false)
+
+  // Stats was rendering an insane amount so hot fix until its redone
+  if (account && farms && pools && statsOverall && render) {
+    dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, block))
+    setRender(false)
+  }
 
   useEffect(() => {
-    if (account && farms && pools && statsOverall && (slowRefresh !== slow || slowRefresh === 0)) {
-      dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, curBlock))
-      setSlow(slowRefresh)
-    }
-  }, [account, pools, farms, statsOverall, bananaBalance, dispatch, slow, slowRefresh, curBlock])
+    setRender((prev) => !prev)
+  }, [slowRefresh])
 }
 
 export const useStats = () => {

@@ -707,6 +707,69 @@ const tokens = {
     },
     decimals: 18,
   },
+  lico: {
+    symbol: 'LICO',
+    address: {
+      56: '0x4F3266a56589357B4f8082918b14B923693e57f0',
+    },
+    decimals: 18,
+  },
+  lime: {
+    symbol: 'LIME',
+    address: {
+      56: '0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd',
+    },
+    decimals: 18,
+  },
+  fxs: {
+    symbol: 'FXS',
+    address: {
+      56: '0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE',
+    },
+    decimals: 18,
+  },
+  relay: {
+    symbol: 'RELAY',
+    address: {
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    decimals: 18,
+  },
+  quidd: {
+    symbol: 'QUIDD',
+    address: {
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    decimals: 18,
+  },
+  moni: {
+    symbol: 'MONI',
+    address: {
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    decimals: 18,
+  },
+  info: {
+    symbol: 'INFO',
+    address: {
+      56: '0xdF727040d3997b5D95deE8c661fA96E3c13eE0C9',
+    },
+    decimals: 18,
+  },
+  shill: {
+    symbol: 'SHILL',
+    address: {
+      56: '0xfb9C339b4BacE4Fe63ccc1dd9a3c3C531441D5fE',
+    },
+    decimals: 18,
+  },
+  lmn: {
+    symbol: 'LMN',
+    address: {
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

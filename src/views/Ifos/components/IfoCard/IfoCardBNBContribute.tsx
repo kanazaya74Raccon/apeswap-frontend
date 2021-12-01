@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
+import multicallABI from 'config/abi/Multicall.json'
 import { useModal, Text, Button } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
 import getTimePeriods from 'utils/getTimePeriods'
-import { useMulticallContract } from 'hooks/useContract'
+import { getMulticallAddress } from 'utils/addressHelper'
+import { useNetworkChainId } from 'state/hooks'
 import multicall from 'utils/multicall'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { getContract } from 'utils/web3'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -131,7 +134,8 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: new BigNumber(0), refunded: false })
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
-  const multicallContract = useMulticallContract()
+  const chainId = useNetworkChainId()
+  const multicallAddress = getMulticallAddress(chainId)
   const [userTokenStatus, setUserTokenStatus] = useState({
     stakeTokenHarvest: new BigNumber(0),
     offeringTokenHarvest: new BigNumber(0),
@@ -149,6 +153,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
+      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -212,7 +217,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, fastRefresh, multicallContract])
+  }, [account, contract, address, pendingTx, fastRefresh, multicallAddress, chainId])
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)

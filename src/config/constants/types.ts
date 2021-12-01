@@ -73,6 +73,7 @@ export interface FarmConfig {
     earnLabel: string
     endBlock: number
   }
+  projectLink?: string
 }
 
 export interface PoolConfig {

@@ -2,8 +2,6 @@ import { apiBaseUrl } from 'hooks/api'
 import { Stats, Pool } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const getStats = async (address: string): Promise<Stats> => {
   try {
     const response = await fetch(`${apiBaseUrl}/stats/${address}`)
@@ -31,7 +29,7 @@ export const fetchPoolStats = (pools: Pool[], curBlock): any[] => {
     const finished = curBlock > pool?.endBlock
     return {
       id: pool.sousId,
-      address: pool.contractAddress[CHAIN_ID],
+      address: pool.contractAddress[56],
       name: pool.stakingToken.symbol,
       rewardTokenSymbol: pool.rewardToken ? pool?.rewardToken.symbol : pool.tokenName,
       stakedTvl,
