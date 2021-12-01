@@ -2811,7 +2811,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 147,
     tokenName: 'HERA',
-    image: 'HERA.svg',
+    image: 'HERA.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.hera,
     contractAddress: {
