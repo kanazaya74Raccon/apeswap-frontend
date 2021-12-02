@@ -777,6 +777,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  gmee: {
+    symbol: 'GMEE',
+    address: {
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
