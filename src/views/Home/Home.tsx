@@ -5,6 +5,7 @@ import { CHAIN_ID } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
 import FarmStakingCard from 'views/Home/components/FarmStaking/FarmStakingCard'
 import ApeSwapStats from 'views/Home/components/ApeSwapStats'
+import HomeModalCheck from 'components/HomeModalCheck'
 import WelcomeCard from './components/WelcomeCard'
 import Banner from './components/Header/Banner'
 import HotFarms from './components/HotFarms/HotFarms'
@@ -155,6 +156,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Page width="1200px">
+        <HomeModalCheck />
         <BannerContainer>
           <Banner />
         </BannerContainer>
