@@ -25,7 +25,7 @@ export const fetchPoolsAllowance = async (chainId: number, account) => {
     params: [account, p.contractAddress[chainId]],
   }))
 
-  const allowances = await multicall(multicallContract, erc20ABI, calls)
+  const allowances = await multicall(chainId, erc20ABI, calls)
   return nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(allowances[index]).toJSON() }),
     {},
@@ -41,7 +41,7 @@ export const fetchUserBalances = async (chainId: number, account) => {
     name: 'balanceOf',
     params: [account],
   }))
-  const tokenBalancesRaw = await multicall(multicallContract, erc20ABI, calls)
+  const tokenBalancesRaw = await multicall(chainId, erc20ABI, calls)
   const tokenBalances = nonBnbPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
@@ -67,7 +67,7 @@ export const fetchUserStakeBalances = async (chainId: number, account) => {
     name: 'userInfo',
     params: [account],
   }))
-  const userInfo = await multicall(multicallContract, sousChefABI, calls)
+  const userInfo = await multicall(chainId, sousChefABI, calls)
   const stakedBalances = nonMasterPools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -91,7 +91,7 @@ export const fetchUserPendingRewards = async (chainId: number, account) => {
     name: 'pendingReward',
     params: [account],
   }))
-  const res = await multicall(multicallContract, sousChefABI, calls)
+  const res = await multicall(chainId, sousChefABI, calls)
   const pendingRewards = nonMasterPools.reduce(
     (acc, pool, index) => ({
       ...acc,

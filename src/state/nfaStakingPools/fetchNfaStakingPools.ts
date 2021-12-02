@@ -28,8 +28,8 @@ export const fetchPoolsBlockLimits = async (chainId) => {
     }
   })
 
-  const starts = await multicall(multicallContract, nfaStakingAbi, callsStartBlock)
-  const ends = await multicall(multicallContract, nfaStakingAbi, callsEndBlock)
+  const starts = await multicall(chainId, nfaStakingAbi, callsStartBlock)
+  const ends = await multicall(chainId, nfaStakingAbi, callsEndBlock)
 
   return nfaStakingPoolsConfig.map((nfaStakingPool, index) => {
     const startBlock = starts[index]
@@ -54,7 +54,7 @@ export const fetchPoolsTotalStatking = async (chainId) => {
     }
   })
 
-  const nfaStakingPoolTotalStaked = await multicall(multicallContract, nonFungibleApesAbi, calls)
+  const nfaStakingPoolTotalStaked = await multicall(chainId, nonFungibleApesAbi, calls)
 
   return [
     ...nfaStakingPoolsConfig.map((p, index) => ({

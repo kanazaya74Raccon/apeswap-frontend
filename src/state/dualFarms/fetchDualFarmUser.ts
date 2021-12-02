@@ -2,22 +2,18 @@ import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
 import miniChefABI from 'config/abi/miniApeV2.json'
 import rewarderABI from 'config/abi/miniComplexRewarder.json'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getMiniChefAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getMiniChefAddress } from 'utils/addressHelper'
 import multicall from 'utils/multicall'
 import { dualFarmsConfig } from 'config/constants'
 
 export const fetchDualFarmUserAllowances = async (chainId: number, account: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const miniChefAddress = getMiniChefAddress(chainId)
   const calls = dualFarmsConfig.map((farm) => {
     const lpContractAddress = farm.stakeTokenAddress
     return { address: lpContractAddress, name: 'allowance', params: [account, miniChefAddress] }
   })
 
-  const rawLpAllowances = await multicall(multicallContract, erc20ABI, calls)
+  const rawLpAllowances = await multicall(chainId, erc20ABI, calls)
   const parsedLpAllowances = rawLpAllowances.map((lpBalance) => {
     return new BigNumber(lpBalance).toJSON()
   })
@@ -25,8 +21,6 @@ export const fetchDualFarmUserAllowances = async (chainId: number, account: stri
 }
 
 export const fetchDualFarmUserTokenBalances = async (chainId: number, account: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = dualFarmsConfig.map((farm) => {
     const lpContractAddress = farm.stakeTokenAddress
     return {
@@ -36,7 +30,7 @@ export const fetchDualFarmUserTokenBalances = async (chainId: number, account: s
     }
   })
 
-  const rawTokenBalances = await multicall(multicallContract, erc20ABI, calls)
+  const rawTokenBalances = await multicall(chainId, erc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })
@@ -48,8 +42,6 @@ export const fetchDualFarmUserStakedBalances = async (
 
   account: string,
 ) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const miniChefAddress = getMiniChefAddress(chainId)
   const calls = dualFarmsConfig.map((farm) => {
     return {
@@ -59,7 +51,7 @@ export const fetchDualFarmUserStakedBalances = async (
     }
   })
 
-  const rawStakedBalances = await multicall(multicallContract, miniChefABI, calls)
+  const rawStakedBalances = await multicall(chainId, miniChefABI, calls)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
@@ -71,8 +63,6 @@ export const fetchDualMiniChefEarnings = async (
 
   account: string,
 ) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const miniChefAddress = getMiniChefAddress(chainId)
   const calls = dualFarmsConfig.map((farm) => {
     return {
@@ -82,7 +72,7 @@ export const fetchDualMiniChefEarnings = async (
     }
   })
 
-  const rawEarnings = await multicall(multicallContract, miniChefABI, calls)
+  const rawEarnings = await multicall(chainId, miniChefABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })
@@ -90,8 +80,6 @@ export const fetchDualMiniChefEarnings = async (
 }
 
 export const fetchDualFarmRewarderEarnings = async (chainId: number, account: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = dualFarmsConfig.map((farm) => {
     return {
       address: farm.rewarderAddress,
@@ -100,7 +88,7 @@ export const fetchDualFarmRewarderEarnings = async (chainId: number, account: st
     }
   })
 
-  const rawEarnings = await multicall(multicallContract, rewarderABI, calls)
+  const rawEarnings = await multicall(chainId, rewarderABI, calls)
   const parsedEarnings = rawEarnings.map((earnings) => {
     return new BigNumber(earnings).toJSON()
   })

@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from 'web3-eth-contract'
-import { ethers } from 'ethers'
+import { ethers, Contract } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
@@ -10,6 +9,7 @@ import { CHAIN_ID } from 'config/constants'
 import { updateFarmUserAllowances } from 'state/farms'
 import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
+import useActiveWeb3React from './useActiveWeb3React'
 import { useAuctionAddress } from './useAddress'
 import {
   useMasterchef,
@@ -24,7 +24,7 @@ import {
 // Approve a Farm
 export const useApprove = (lpContract: Contract, pid: number) => {
   const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
@@ -51,7 +51,7 @@ export const useApprove = (lpContract: Contract, pid: number) => {
 // Approve a Pool
 export const useSousApprove = (lpContract: Contract, sousId) => {
   const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
@@ -78,7 +78,7 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
 
 // Approve the lottery
 export const useLotteryApprove = () => {
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const bananaContract = useBanana()
   const lotteryContract = useLottery()
 
@@ -96,7 +96,7 @@ export const useLotteryApprove = () => {
 
 // Approve an IFO
 export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const onApprove = useCallback(async () => {
     try {
       const tx = await tokenContract.methods
@@ -115,7 +115,7 @@ export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) =
 export const useAuctionApprove = () => {
   const tokenContract = useNonFungibleApes()
   const spenderAddress = useAuctionAddress()
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await tokenContract.methods.setApprovalForAll(spenderAddress, true).send({ from: account })
@@ -132,7 +132,7 @@ export const useAuctionApprove = () => {
 export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   const dispatch = useDispatch()
   const tokenContract = useNonFungibleApes()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
       const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
@@ -148,7 +148,7 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
 
 // Approve vault
 export const useVaultApeApprove = (lpContract: Contract, pid) => {
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
   const handleApprove = useCallback(async () => {
@@ -175,7 +175,7 @@ export const useVaultApeApprove = (lpContract: Contract, pid) => {
 // Approve a Farm
 export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
   const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const miniChefContract = useMiniChefContract()
 
   const handleApprove = useCallback(async () => {

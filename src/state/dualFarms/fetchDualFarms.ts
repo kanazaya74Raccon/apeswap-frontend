@@ -3,17 +3,13 @@ import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import miniChefABI from 'config/abi/miniApeV2.json'
 import miniComplexRewarderABI from 'config/abi/miniComplexRewarder.json'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getMiniChefAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getMiniChefAddress } from 'utils/addressHelper'
 import { dualFarmsConfig } from 'config/constants'
 import { TokenPrices } from 'state/types'
 import { getDualFarmApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const miniChefAddress = getMiniChefAddress(chainId)
   const filteredDualFarms = dualFarmsConfig.filter((dualFarm) => dualFarm.network === chainId)
   const data = await Promise.all(
@@ -59,7 +55,7 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
       ]
 
       const [quoteTokenBlanceLP, tokenBalanceLP, lpTokenBalanceMC, lpTotalSupply] = await multicall(
-        multicallContract,
+        chainId,
         erc20,
         calls,
       )
@@ -88,7 +84,7 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
       let multiplier = 'unset'
       let miniChefPoolRewardPerSecond = null
       try {
-        const [info, totalAllocPoint, miniChefRewardsPerSecond] = await multicall(multicallContract, miniChefABI, [
+        const [info, totalAllocPoint, miniChefRewardsPerSecond] = await multicall(chainId, miniChefABI, [
           {
             address: miniChefAddress,
             name: 'poolInfo',
@@ -123,7 +119,7 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
       if (dualFarmConfig.rewarderAddress === '0x1F234B1b83e21Cb5e2b99b4E498fe70Ef2d6e3bf') {
         // Temporary until we integrate the subgraph to the frontend
         rewarderTotalAlloc = 10000
-        const multiReturn = await multicall(multicallContract, miniComplexRewarderABI, [
+        const multiReturn = await multicall(chainId, miniComplexRewarderABI, [
           {
             address: dualFarmConfig.rewarderAddress,
             name: 'poolInfo',
@@ -137,7 +133,7 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
         rewarderInfo = multiReturn[0]
         rewardsPerSecond = multiReturn[1]
       } else {
-        const multiReturn = await multicall(multicallContract, miniComplexRewarderABI, [
+        const multiReturn = await multicall(chainId, miniComplexRewarderABI, [
           {
             address: dualFarmConfig.rewarderAddress,
             name: 'poolInfo',

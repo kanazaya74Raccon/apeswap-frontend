@@ -10,10 +10,9 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { getMulticallAddress } from 'utils/addressHelper'
 import { useNetworkChainId } from 'state/hooks'
 import multicall from 'utils/multicall'
-import { Contract } from 'web3-eth-contract'
+import { Contract } from 'ethers'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { getContract } from 'utils/web3'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -153,7 +152,6 @@ const IfoCardBNBContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -206,7 +204,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      ] = await multicall(chainId, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -221,7 +219,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
-    await contract.methods.harvest(harvestPeriod).send({ from: account })
+    await contract.harvest(harvestPeriod).send({ from: account })
     setPendingTx(false)
   }
 

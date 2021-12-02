@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from 'web3-eth-contract'
+import { Contract } from 'ethers'
 import { useBanana, useLottery, useNonFungibleApes } from './useContract'
 import { getAllowance } from '../utils/erc20'
 
@@ -36,7 +36,7 @@ export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string,
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await tokenContract.methods.allowance(account, spenderAddress).call()
+        const res = await tokenContract.allowance(account, spenderAddress).call()
         setAllowance(new BigNumber(res))
       } catch (e) {
         setAllowance(null)
@@ -56,7 +56,7 @@ export const useNfaAllowance = (spenderAddress: string, dependency?: any) => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await tokenContract.methods.isApprovedForAll(account, spenderAddress).call()
+        const res = await tokenContract.isApprovedForAll(account, spenderAddress).call()
         setAllowance(res)
       } catch (e) {
         setAllowance(null)

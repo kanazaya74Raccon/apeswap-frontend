@@ -11,6 +11,7 @@ interface ApprovalActionProps {
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
   const stakingTokenContract = useERC20(stakingTokenContractAddress)
+  console.log(stakingTokenContract)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)

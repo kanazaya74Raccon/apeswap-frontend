@@ -15,7 +15,7 @@ export const fetchVaultUserAllowances = async (account: string, chainId: number)
   const calls = filteredVaultsToFetch.map((vault) => {
     return { address: vault.stakeTokenAddress, name: 'allowance', params: [account, vaultApeAddress] }
   })
-  const rawStakeAllowances = await multicall(multicallContract, erc20ABI, calls)
+  const rawStakeAllowances = await multicall(chainId, erc20ABI, calls)
   const parsedStakeAllowances = rawStakeAllowances.map((stakeBalance) => {
     return new BigNumber(stakeBalance).toJSON()
   })
@@ -33,7 +33,7 @@ export const fetchVaultUserTokenBalances = async (account: string, chainId: numb
       params: [account],
     }
   })
-  const rawTokenBalances = await multicall(multicallContract, erc20ABI, calls)
+  const rawTokenBalances = await multicall(chainId, erc20ABI, calls)
   const parsedTokenBalances = rawTokenBalances.map((tokenBalance) => {
     return new BigNumber(tokenBalance).toJSON()
   })
@@ -53,7 +53,7 @@ export const fetchVaultUserStakedBalances = async (account: string, chainId: num
     }
   })
 
-  const rawStakedBalances = await multicall(multicallContract, vaultApeABI, calls)
+  const rawStakedBalances = await multicall(chainId, vaultApeABI, calls)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })

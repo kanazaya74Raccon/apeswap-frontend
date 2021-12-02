@@ -24,6 +24,15 @@ export interface Ifo {
   burnedTxUrl?: string
 }
 
+export interface SerializedToken {
+  chainId: number
+  address: string
+  decimals: number
+  symbol?: string
+  name?: string
+  projectLink?: string
+}
+
 export enum QuoteToken {
   'BNB' = 'BNB',
   'CAKE' = 'CAKE',

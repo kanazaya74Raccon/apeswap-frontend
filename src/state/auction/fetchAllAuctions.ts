@@ -1,15 +1,12 @@
 import auctionAbi from 'config/abi/auction.json'
-import { Contract } from 'web3-eth-contract'
 import { AuctionsOverall, Auction } from 'state/types'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getAuctionAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getAuctionAddress } from 'utils/addressHelper'
 import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import multicall from 'utils/multicall'
 
-export const fetchAuctionDetails = async (auctionContractAddress: string, multicallContract: Contract) => {
+export const fetchAuctionDetails = async (auctionContractAddress: string, chainId: number) => {
   const call = [
     {
       address: auctionContractAddress,
@@ -32,16 +29,14 @@ export const fetchAuctionDetails = async (auctionContractAddress: string, multic
       name: 'lastNodeId',
     },
   ]
-  const auctionDetails = await multicall(multicallContract, auctionAbi, call)
+  const auctionDetails = await multicall(chainId, auctionAbi, call)
   return auctionDetails
 }
 
 export const fetchAllAuctions = async (chainId: number): Promise<AuctionsOverall> => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const auctionContractAddress = getAuctionAddress(chainId)
   const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
-    await fetchAuctionDetails(auctionContractAddress, multicallContract)
+    await fetchAuctionDetails(auctionContractAddress, chainId)
   const getAuctionCalls = [...Array(new BigNumber(pushedAuctions).toNumber())].map((e, i) => {
     return {
       address: auctionContractAddress,
@@ -49,7 +44,7 @@ export const fetchAllAuctions = async (chainId: number): Promise<AuctionsOverall
       params: [i + 1],
     }
   })
-  const allAuctions = await multicall(multicallContract, auctionAbi, getAuctionCalls)
+  const allAuctions = await multicall(chainId, auctionAbi, getAuctionCalls)
   const auctionData = {
     activeAuctionId: new BigNumber(activeAuctionId).toNumber(),
     auctionFeePercent: new BigNumber(auctionFeePercent).toNumber(),

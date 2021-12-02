@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AbiItem } from 'web3-utils'
-import { Contract, ContractOptions } from 'web3-eth-contract'
-import useWeb3 from 'hooks/useWeb3'
+import { Contract } from '@ethersproject/contracts'
+import { useWeb3React } from '@web3-react/core'
 import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { PoolCategory } from 'config/constants/types'
+import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
 import erc20 from 'config/abi/erc20.json'
+import erc20Bytes from 'config/abi/erc20_bytes32.json'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import nonFungibleApes from 'config/abi/nonFungibleApes.json'
 import lottery from 'config/abi/lottery.json'
@@ -22,6 +24,9 @@ import vaultApe from 'config/abi/vaultApe.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
 import miniChef from 'config/abi/miniApeV2.json'
 import multi from 'config/abi/Multicall.json'
+import ensPublicResolver from 'config/abi/ens-public-resolver.json'
+import ens from 'config/abi/ens-registrar.json'
+import { getContract } from 'utils'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 import {
@@ -40,38 +45,21 @@ import {
   useTreasuryAddress,
   useVaultApeAddress,
 } from './useAddress'
+import useActiveWeb3React from './useActiveWeb3React'
 
-const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions): Contract => {
-  const web3 = useWeb3()
-  const [contract, setContract] = useState(new web3.eth.Contract(abi, address, contractOptions))
+export function useContract(ABI: AbiItem, address: string | undefined, withSignerIfPossible = true): Contract | null {
+  const { library, account } = useActiveWeb3React()
 
-  useEffect(() => {
-    setContract(new web3.eth.Contract(abi, address, contractOptions))
-  }, [abi, address, contractOptions, web3])
-
-  return contract
-}
-
-const useSafeContract = (abi: AbiItem, address?: string, contractOptions?: ContractOptions): Contract | undefined => {
-  const web3 = useWeb3()
-  const [contract, setContract] = useState<Contract | undefined>(
-    address && new web3.eth.Contract(abi, address, contractOptions),
-  )
-
-  useEffect(() => {
-    if (address) {
-      setContract(new web3.eth.Contract(abi, address, contractOptions))
-    } else {
-      setContract(undefined)
+  return useMemo(() => {
+    if (!address || !ABI || !library) return null
+    try {
+      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+    } catch (error) {
+      console.error('Failed to get contract', error)
+      return null
     }
-  }, [abi, address, contractOptions, web3])
-
-  return contract
+  }, [address, ABI, library, withSignerIfPossible, account])
 }
-
-/**
- * Helper hooks to get specific contracts (by ABI)
- */
 
 export const useMulticallContract = () => {
   const multiAbi = multi as unknown as AbiItem
@@ -85,7 +73,7 @@ export const useIfoContract = (address: string) => {
 
 export const useSafeIfoContract = (address?: string): Contract | undefined => {
   const ifoAbi = ifo as unknown as AbiItem
-  return useSafeContract(ifoAbi, address)
+  return useContract(ifoAbi, address)
 }
 
 export const useERC20 = (address: string) => {
@@ -170,6 +158,37 @@ export const useApePriceGetter = () => {
 export const useMiniChefContract = () => {
   const abi = miniChef as unknown as AbiItem
   return useContract(abi, useMiniChefAddress())
+}
+
+export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
+  const abi = ens as unknown as AbiItem
+  const { chainId } = useWeb3React()
+  let address: string | undefined
+  if (chainId) {
+    // eslint-disable-next-line default-case
+    switch (chainId) {
+      case CHAIN_ID.BSC:
+      case CHAIN_ID.BSC_TESTNET:
+        address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+        break
+    }
+  }
+  return useContract(abi, address, withSignerIfPossible)
+}
+
+export function useENSResolverContract(address: string | undefined, withSignerIfPossible?: boolean): Contract | null {
+  const abi = ensPublicResolver as unknown as AbiItem
+  return useContract(abi, address, withSignerIfPossible)
+}
+
+export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  const abi = erc20 as unknown as AbiItem
+  return useContract(abi, tokenAddress, withSignerIfPossible)
+}
+
+export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  const abi = erc20Bytes as unknown as AbiItem
+  return useContract(abi, tokenAddress, withSignerIfPossible)
 }
 
 export default useContract

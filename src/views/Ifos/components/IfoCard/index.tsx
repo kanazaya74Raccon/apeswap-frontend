@@ -13,7 +13,6 @@ import useBlock from 'hooks/useBlock'
 import { getMulticallAddress } from 'utils/addressHelper'
 import { useNetworkChainId } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
-import { getContract } from 'utils/web3'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
@@ -122,12 +121,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     )
   const Ribbon = getRibbonComponent(state.status, TranslateString)
   const chainId = useNetworkChainId()
-  const multicallAddress = getMulticallAddress(chainId)
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
-
       if (!address) {
         // Allow IAO details to be shown before contracts are deployed
         return
@@ -179,7 +175,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         harvestTwoBlock,
         harvestThreeBlock,
         harvestFourBlock,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      ] = await multicall(chainId, ifoAbi, calls)
+
 
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -200,6 +197,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       const harvestThreeBlockRelease = (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME
       const harvestFourBlockRelease = (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME
 
+      console.log(harvestOneBlockRelease)
+      console.log(progress)
+
+
       setState({
         isLoading: currentBlock === 0,
         secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
@@ -219,7 +220,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, multicallAddress, chainId])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, chainId])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
