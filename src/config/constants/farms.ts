@@ -2652,6 +2652,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://heroarena.app/',
   },
   {
+    pid: 166,
+    image: 'GMEE.svg',
+    lpSymbol: 'GMEE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE2Ab715823f6431714e971E2209e377F2a833f05',
+    },
+    tokenSymbol: 'GMEE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.gamee.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

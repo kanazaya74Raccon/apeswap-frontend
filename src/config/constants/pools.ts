@@ -2827,6 +2827,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 148,
+    tokenName: 'GMEE',
+    image: 'GMEE.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.gmee,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x61713875F0759803DD1C7e2a83ACd11265Ff80BB',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.gamee.com/',
+    harvest: true,
+    tokenPerBlock: `0.276112654320987654`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
