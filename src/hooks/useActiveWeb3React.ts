@@ -22,7 +22,6 @@ const useActiveWeb3React = (): Web3ReactContextInterface<Web3Provider> => {
     }
   }, [library, appProvider])
 
-  console.log({ library: provider, chainId: chainId || appChainId, account, ...web3React })
   return { library: provider, chainId: chainId || appChainId, account, ...web3React }
 }
 

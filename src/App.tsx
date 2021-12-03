@@ -13,6 +13,7 @@ import {
   useNetworkChainId,
   useUpdateNetwork,
 } from 'state/hooks'
+import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -34,6 +35,7 @@ const Auction = lazy(() => import('./views/Auction'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
+const Swap = lazy(() => import('./views/Swap'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -70,6 +72,7 @@ const App: React.FC = () => {
   const appChainId = useNetworkChainId()
 
   useUpdateNetwork()
+  usePollBlockNumber()
   useEagerConnect()
   useFetchTokenPrices()
   useFetchPublicData()
@@ -149,6 +152,7 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/swap" component={Swap} />
             <Route path="/farms">
               <Farms />
             </Route>

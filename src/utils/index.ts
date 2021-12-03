@@ -7,7 +7,7 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@apeswapfinance/sdk'
 import { ROUTER_ADDRESS } from '../config/constants'
-// import { TokenAddressMap } from '../state/lists/hooks'
+import { TokenAddressMap } from '../state/lists/hooks'
 
 export { default as formatAddress } from './formatAddress'
 
@@ -92,7 +92,7 @@ export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
 }
 
-// export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-//   if (currency === ETHER) return true
-//   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
-// }
+export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
+  if (currency === ETHER) return true
+  return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
+}

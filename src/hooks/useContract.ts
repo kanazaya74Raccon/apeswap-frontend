@@ -26,6 +26,7 @@ import miniChef from 'config/abi/miniApeV2.json'
 import multi from 'config/abi/Multicall.json'
 import ensPublicResolver from 'config/abi/ens-public-resolver.json'
 import ens from 'config/abi/ens-registrar.json'
+import weth from 'config/abi/weth.json'
 import { getContract } from 'utils'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
@@ -40,6 +41,7 @@ import {
   useMasterChefAddress,
   useMiniChefAddress,
   useMulticallAddress,
+  useNativeWrapCurrencyAddress,
   useNonFungibleApesAddress,
   useRabbitMintingFarmAddress,
   useTreasuryAddress,
@@ -63,7 +65,7 @@ export function useContract(ABI: AbiItem, address: string | undefined, withSigne
 
 export const useMulticallContract = () => {
   const multiAbi = multi as unknown as AbiItem
-  return useContract(multiAbi, useMulticallAddress())
+  return useContract(multiAbi, useMulticallAddress(), false)
 }
 
 export const useIfoContract = (address: string) => {
@@ -189,6 +191,11 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   const abi = erc20Bytes as unknown as AbiItem
   return useContract(abi, tokenAddress, withSignerIfPossible)
+}
+
+export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
+  const abi = weth as unknown as AbiItem
+  return useContract(abi, useNativeWrapCurrencyAddress(), withSignerIfPossible)
 }
 
 export default useContract

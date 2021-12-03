@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@apeswapfinance/sdk'
 import { useMemo } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ERC20_INTERFACE from 'config/abi/erc20'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
@@ -10,7 +10,7 @@ import { useSingleContractMultipleData, useMultipleContractSingleData } from '..
 /**
  * Returns a map of the given addresses to their eventually consistent BNB balances.
  */
-export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
+export function useETHBalances(uncheckedAddresses?: (string | undefined)[]): {
   [address: string]: CurrencyAmount | undefined
 } {
   const multicallContract = useMulticallContract()
@@ -56,7 +56,6 @@ export function useTokenBalancesWithLoadingIndicator(
   )
 
   const validatedTokenAddresses = useMemo(() => validatedTokens.map((vt) => vt.address), [validatedTokens])
-
   const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20_INTERFACE, 'balanceOf', [address])
 
   const anyLoading: boolean = useMemo(() => balances.some((callState) => callState.loading), [balances])
@@ -105,7 +104,7 @@ export function useCurrencyBalances(
 
   const tokenBalances = useTokenBalances(account, tokens)
   const containsBNB: boolean = useMemo(() => currencies?.some((currency) => currency === ETHER) ?? false, [currencies])
-  const ethBalance = useBNBBalances(containsBNB ? [account] : [])
+  const ethBalance = useETHBalances(containsBNB ? [account] : [])
 
   return useMemo(
     () =>
@@ -125,7 +124,7 @@ export function useCurrencyBalance(account?: string, currency?: Currency): Curre
 
 // mimics useAllBalances
 export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | undefined } {
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const allTokens = useAllTokens()
   const allTokensArray = useMemo(() => Object.values(allTokens ?? {}), [allTokens])
   const balances = useTokenBalances(account ?? undefined, allTokensArray)

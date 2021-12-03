@@ -3,11 +3,16 @@
 import { TokenList } from '@uniswap/token-lists'
 import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'
+import defaultTokenJson from 'config/constants/token-lists/apeswap.json'
 import contenthashToUri from './contenthashToUri'
 import { parseENSAddress } from './ENS/parseENSAddress'
 import uriToHttp from './uriToHttp'
 
 const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
+
+export function getDefaultTokenListAddresses() {
+  return defaultTokenJson?.tokens?.map((token) => token.address.toLowerCase())
+}
 
 /**
  * Contains the logic for resolving a list URL to a validated token list

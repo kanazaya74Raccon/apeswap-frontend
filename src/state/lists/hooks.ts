@@ -2,11 +2,10 @@ import { ChainId, Token } from '@apeswapfinance/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { DEFAULT_LIST_OF_LISTS } from 'config/constants/lists'
-import { AppState } from '../index'
 import DEFAULT_TOKEN_LIST from '@apeswapfinance/token-lists/lists/apeswap.json'
-import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
+import { UNSUPPORTED_LIST_URLS, DEFAULT_LIST_OF_LISTS } from 'config/constants/lists'
 import UNSUPPORTED_TOKEN_LIST from 'config/constants/token-lists/sushiswap-v2-unsupported.tokenlist.json'
+import { AppState } from '../index'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {

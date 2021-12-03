@@ -11,7 +11,6 @@ export const blockSlice = createSlice({
       if (state.initialBlock === 0) {
         state.initialBlock = action.payload
       }
-
       state.currentBlock = action.payload
     },
   },

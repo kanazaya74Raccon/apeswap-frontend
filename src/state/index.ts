@@ -14,16 +14,21 @@ import tokenPricesReducer from './tokenPrices'
 import networkReducer from './network'
 import nfaStakingPoolsReducer from './nfaStakingPools'
 import dualFarmsReducer from './dualFarms'
+import blockReducer from './block'
 import multicall from './multicall/reducer'
 import swap from './swap/reducer'
 import user from './user/reducer'
 import lists from './lists/reducer'
+import transactions from './transactions/reducer'
+import burn from './burn/reducer'
+import mint from './mint/reducer'
 
-const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists']
+const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
 const store = configureStore({
   reducer: {
     farms: farmsReducer,
+    block: blockReducer,
     toasts: toastsReducer,
     pools: poolsReducer,
     profile: profileReducer,
@@ -39,6 +44,9 @@ const store = configureStore({
     swap,
     user,
     lists,
+    transactions,
+    burn,
+    mint,
   },
   middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   preloadedState: load({ states: PERSISTED_KEYS }),
