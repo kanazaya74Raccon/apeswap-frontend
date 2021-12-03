@@ -1,17 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'
-import {
-  Flex,
-  Heading,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  Text,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Flex, Heading, useModal, Text, ButtonSquare, MinusIcon, AddIcon, IconButtonSquare } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useNfaStake } from 'hooks/useStake'
@@ -40,7 +31,6 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
 `
-
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
@@ -71,14 +61,7 @@ const WhyCantIBid = styled.a`
   text-decoration: underline;
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({
-  pool,
-  stakedBalance,
-  isApproved,
-  firstStake,
-  tier,
-  stakedNfas,
-}) => {
+const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isApproved, firstStake, tier, stakedNfas }) => {
   const TranslateString = useI18n()
 
   const { sousId } = pool

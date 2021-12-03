@@ -14,7 +14,7 @@ export const buy = async (contract, amount, account) => {
         return tx.transactionHash
       })
   } catch (err) {
-    return console.error(err)
+    return console.warn(err)
   }
 }
 
@@ -27,7 +27,7 @@ export const sell = async (contract, amount, account) => {
         return tx.transactionHash
       })
   } catch (err) {
-    return console.error(err)
+    return console.warn(err)
   }
 }
 

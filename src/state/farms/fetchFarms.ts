@@ -1,26 +1,29 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
-import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
-import { getMasterChefAddress } from 'utils/addressHelpers'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getMasterChefAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
+import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
-const fetchFarms = async () => {
+const fetchFarms = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
+  const masterChefAddress = getMasterChefAddress(chainId)
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
-      const lpAdress = farmConfig.lpAddresses[CHAIN_ID]
+      const lpAdress = farmConfig.lpAddresses[chainId]
       const calls = [
         // Balance of token in the LP contract
         {
-          address: farmConfig.tokenAddresses[CHAIN_ID],
+          address: farmConfig.tokenAddresses[chainId],
           name: 'balanceOf',
           params: [lpAdress],
         },
         // Balance of quote token on LP contract
         {
-          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
+          address: farmConfig.quoteTokenAdresses[chainId],
           name: 'balanceOf',
           params: [lpAdress],
         },
@@ -28,7 +31,7 @@ const fetchFarms = async () => {
         {
           address: lpAdress,
           name: 'balanceOf',
-          params: [getMasterChefAddress()],
+          params: [masterChefAddress],
         },
         // Total supply of LP tokens
         {
@@ -37,18 +40,18 @@ const fetchFarms = async () => {
         },
         // Token decimals
         {
-          address: farmConfig.tokenAddresses[CHAIN_ID],
+          address: farmConfig.tokenAddresses[chainId],
           name: 'decimals',
         },
         // Quote token decimals
         {
-          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
+          address: farmConfig.quoteTokenAdresses[chainId],
           name: 'decimals',
         },
       ]
 
       const [tokenBalanceLP, quoteTokenBlanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
-        await multicall(erc20, calls)
+        await multicall(multicallContract, erc20, calls)
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
@@ -71,14 +74,14 @@ const fetchFarms = async () => {
       let alloc = null
       let multiplier = 'unset'
       try {
-        const [info, totalAllocPoint] = await multicall(masterchefABI, [
+        const [info, totalAllocPoint] = await multicall(multicallContract, masterchefABI, [
           {
-            address: getMasterChefAddress(),
+            address: masterChefAddress,
             name: 'poolInfo',
             params: [farmConfig.pid],
           },
           {
-            address: getMasterChefAddress(),
+            address: masterChefAddress,
             name: 'totalAllocPoint',
           },
         ])
@@ -88,7 +91,7 @@ const fetchFarms = async () => {
         multiplier = `${allocPoint.div(100).toString()}X`
         // eslint-disable-next-line no-empty
       } catch (error) {
-        console.log('Error fetching farm', error, farmConfig)
+        console.warn('Error fetching farm', error, farmConfig)
       }
 
       return {

@@ -15,7 +15,7 @@ export const useApproval = (onPresentApprove: () => void) => {
       }
       onPresentApprove()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove, onPresentApprove])
 

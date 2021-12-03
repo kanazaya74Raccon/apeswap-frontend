@@ -5,7 +5,7 @@ import useI18n from 'hooks/useI18n'
 import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
-import { Flex, Heading, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
@@ -189,28 +189,27 @@ const LabelContainer2 = styled.div`
   }
 `
 
-const FlexSwitch = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
+// const FlexSwitch = styled.div`
+//   display: flex;
+//   flex-direction: row-reverse;
+//   justify-content: center;
+//   align-items: center;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row-reverse;
-  }
-`
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     flex-direction: row-reverse;
+//   }
+// `
 
-const StyledAPRText = styled.div`
-  font-size: 12px;
-  line-height: 11px;
-  letter-spacing: 1px;
-  margin-left: 5px;
-  margin-bottom: 2px;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 20px;
-    line-height: 23px;
-  }
-`
+// const StyledAPRText = styled.div`
+//   font-size: 12px;
+//   line-height: 11px;
+//   letter-spacing: 1px;
+//   margin-left: 5px;
+//   margin-bottom: 2px;
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     font-size: 20px;
+//     line-height: 23px;
+//   }
 
 const ButtonContainer = styled.div`
   width: 180px;
@@ -300,16 +299,13 @@ const StyledNumber = styled.div`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   pool,
-  apr,
   stakeToken,
   earnToken,
   tier,
-  poolAPR,
   removed,
   sousId,
   earnTokenImage,
   showExpandableSection,
-  rewardTokenPrice,
 }) => {
   const TranslateString = useI18n()
   const { userData, tokenPerBlock, totalStaked } = pool

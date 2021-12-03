@@ -2,33 +2,35 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import bananaABI from 'config/abi/banana.json'
 import wbnbABI from 'config/abi/weth.json'
+import multicall from 'utils/multicall'
+import multicallABI from 'config/abi/Multicall.json'
+import { getMulticallAddress, getNativeWrappedAddress } from 'utils/addressHelper'
+import { getContract } from 'utils/web3'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken } from 'config/constants/types'
-import multicall from 'utils/multicall'
-import { getWbnbAddress } from 'utils/addressHelpers'
 import BigNumber from 'bignumber.js'
 import { TokenPrices } from 'state/types'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
-export const fetchPoolsBlockLimits = async () => {
+export const fetchPoolsBlockLimits = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
-      address: poolConfig.contractAddress[CHAIN_ID],
+      address: poolConfig.contractAddress[chainId],
       name: 'startBlock',
     }
   })
   const callsEndBlock = poolsWithEnd.map((poolConfig) => {
     return {
-      address: poolConfig.contractAddress[CHAIN_ID],
+      address: poolConfig.contractAddress[chainId],
       name: 'bonusEndBlock',
     }
   })
 
-  const starts = await multicall(sousChefABI, callsStartBlock)
-  const ends = await multicall(sousChefABI, callsEndBlock)
+  const starts = await multicall(multicallContract, sousChefABI, callsStartBlock)
+  const ends = await multicall(multicallContract, sousChefABI, callsEndBlock)
 
   return poolsWithEnd.map((bananaPoolConfig, index) => {
     const startBlock = starts[index]
@@ -41,34 +43,37 @@ export const fetchPoolsBlockLimits = async () => {
   })
 }
 
-export const fetchPoolsTotalStatking = async () => {
+export const fetchPoolsTotalStaking = async (chainId: number) => {
+  const multicallContractAddress = getMulticallAddress(chainId)
+  const nativeWrappedAddress = getNativeWrappedAddress(chainId)
+  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== QuoteToken.BNB)
   const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === QuoteToken.BNB)
 
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     if (poolConfig.reflect || poolConfig.stakingToken.symbol === 'GNANA') {
       return {
-        address: poolConfig.contractAddress[CHAIN_ID],
+        address: poolConfig.contractAddress[chainId],
         name: 'totalStaked',
       }
     }
     return {
-      address: poolConfig.stakingToken.address[CHAIN_ID],
+      address: poolConfig.stakingToken.address[chainId],
       name: 'balanceOf',
-      params: [poolConfig.contractAddress[CHAIN_ID]],
+      params: [poolConfig.contractAddress[chainId]],
     }
   })
 
   const callsBnbPools = bnbPool.map((poolConfig) => {
     return {
-      address: getWbnbAddress(),
+      address: nativeWrappedAddress,
       name: 'balanceOf',
-      params: [poolConfig.contractAddress[CHAIN_ID]],
+      params: [poolConfig.contractAddress[chainId]],
     }
   })
 
-  const nonBnbPoolsTotalStaked = await multicall(bananaABI, callsNonBnbPools)
-  const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
+  const nonBnbPoolsTotalStaked = await multicall(multicallContract, bananaABI, callsNonBnbPools)
+  const bnbPoolsTotalStaked = await multicall(multicallContract, wbnbABI, callsBnbPools)
 
   return [
     ...nonBnbPools.map((p, index) => ({
@@ -82,17 +87,15 @@ export const fetchPoolsTotalStatking = async () => {
   ]
 }
 
-export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList) => {
+export const fetchPoolTokenStatsAndApr = async (tokenPrices: TokenPrices[], totalStakingList, chainId: number) => {
   const mappedValues = poolsConfig.map((pool) => {
     // Get values needed to calculate apr
     const curPool = pool
     const rewardToken = tokenPrices
-      ? tokenPrices.find(
-          (token) => pool?.rewardToken && token?.address[CHAIN_ID] === pool?.rewardToken.address[CHAIN_ID],
-        )
+      ? tokenPrices.find((token) => pool?.rewardToken && token?.address[chainId] === pool?.rewardToken.address[chainId])
       : pool.rewardToken
     const stakingToken = tokenPrices
-      ? tokenPrices.find((token) => token?.address[CHAIN_ID] === pool?.stakingToken.address[CHAIN_ID])
+      ? tokenPrices.find((token) => token?.address[chainId] === pool?.stakingToken.address[chainId])
       : pool.stakingToken
     const totalStaked = totalStakingList.find((totalStake) => totalStake.sousId === pool.sousId)?.totalStaked
     // Calculate apr

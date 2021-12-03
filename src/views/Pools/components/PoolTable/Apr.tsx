@@ -41,6 +41,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   text-align: left;
   font-size: 20px;
+  font-weight: 200;
 `
 
 const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewardTokenPrice, apr }) => {
@@ -49,7 +50,7 @@ const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewar
   return poolApr !== '0' ? (
     <Container>
       {poolApr ? (
-        <Flex justifyContent="center">
+        <Flex justifyContent="center" className="noClick">
           <AprWrapper>{poolApr}%</AprWrapper>
           {!hideButton && (
             <ApyButton

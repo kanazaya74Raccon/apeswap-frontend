@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { useStats } from 'state/hooks'
+import { useNetworkChainId, useStats } from 'state/hooks'
 import { Farm } from 'state/types'
 import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
@@ -112,13 +112,13 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
   const yourStats = useStats()
+  const chainId = useNetworkChainId()
   const farmStats = yourStats?.stats?.farms
   const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
   // NAR-CAKE LP. The images should be cake-bnb.svg, link-bnb.svg, nar-cake.svg
-  const farmImage = farm.lpSymbol.split(' ')[0].toLocaleLowerCase()
 
   const totalValueFormated = farm.liquidity
     ? `$${Number(farm.liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -128,11 +128,17 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const farmAPR = farm.apr && farm.apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1)
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses } = farm
-  const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses })
+  const liquidityUrlPathParts = getLiquidityUrlPathParts({
+    quoteTokenAdresses,
+    quoteTokenSymbol,
+    tokenAddresses,
+    chainId,
+  })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const FarmStyle = styles[farm.style]
 
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setShowExpandableSection(!showExpandableSection)
   }
 
@@ -141,7 +147,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
       {FarmStyle && <FarmStyle />}
       <CardHeading
         lpLabel={lpLabel}
-        farmImage={farmImage}
+        token0={quoteTokenSymbol}
+        token1={farm.tokenSymbol}
         tokenSymbol={farm.tokenSymbol}
         pid={farm.pid}
         lpSymbol={farm.lpSymbol}
@@ -151,6 +158,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
         farmAPR={farmAPR}
         removed={removed}
         showExpandableSection={showExpandableSection}
+        image={farm?.image}
       />
       <StyledContainer>
         <ExpandingWrapper expanded={showExpandableSection}>
@@ -170,6 +178,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             multiplier={farm.multiplier}
             liquidity={farm.liquidity}
             pid={farm.pid}
+            farmLp={farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}
+            farm={farm}
           />
         </ExpandingWrapper>
       </StyledContainer>

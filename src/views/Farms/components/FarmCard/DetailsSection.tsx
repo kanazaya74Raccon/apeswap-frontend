@@ -2,10 +2,12 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
+import { FarmWithStakedValue } from 'views/Home/components/HotFarms/FarmCardForHome'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
-import { useFarmUser, usePriceBananaBusd } from 'state/hooks'
+import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { getTokenInfo, registerToken } from 'utils/wallet'
 import Multiplier from '../FarmTable/Multiplier'
 
 export interface ExpandableSectionProps {
@@ -18,6 +20,8 @@ export interface ExpandableSectionProps {
   multiplier?: string
   liquidity?: BigNumber
   pid?: number
+  farmLp?: string
+  farm?: FarmWithStakedValue
 }
 
 const Wrapper = styled.div`
@@ -72,9 +76,11 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   multiplier,
   pid,
   liquidity,
+  farmLp,
+  farm,
 }) => {
   const TranslateString = useI18n()
-
+  const chainId = useNetworkChainId()
   const totalValuePersonalFormated = farmStats
     ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
@@ -95,6 +101,11 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     displayHarvestBalance = `$${earningsBusd.toLocaleString()}`
   }
 
+  const addTokenWallet = async (address) => {
+    if (!address) return
+    const tokenInfo = await getTokenInfo(address, chainId)
+    registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
+  }
   return (
     <Wrapper>
       <ValueWrapper>
@@ -136,6 +147,18 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
+        </StyledLink>
+      </Flex>
+      {farm.projectLink && (
+        <Flex justifyContent="center">
+          <StyledLink external href={farm.projectLink} bold={false}>
+            {TranslateString(356, 'View Project Site')}
+          </StyledLink>
+        </Flex>
+      )}
+      <Flex justifyContent="center">
+        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
+          Add to Metamask
         </StyledLink>
       </Flex>
     </Wrapper>

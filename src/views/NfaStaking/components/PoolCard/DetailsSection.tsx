@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Text, Flex, Link } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
-import getTimePeriods from 'utils/getTimePeriods'
-import { BSC_BLOCK_TIME } from 'config'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string

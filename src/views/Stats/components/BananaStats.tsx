@@ -5,7 +5,7 @@ import { Stats } from 'state/types'
 import useI18n from 'hooks/useI18n'
 import { usePriceBananaBusd } from 'state/hooks'
 import useTokenBalance from 'hooks/useTokenBalance'
-import { getGoldenBananaAddress } from 'utils/addressHelpers'
+import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from './CardValue'
 import Divider from './Divider'
@@ -30,7 +30,7 @@ const Row = styled.div`
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
   const TranslateString = useI18n()
   const price = usePriceBananaBusd()
-  const goldenBananaBalance = useTokenBalance(getGoldenBananaAddress())
+  const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(goldenBananaBalance)

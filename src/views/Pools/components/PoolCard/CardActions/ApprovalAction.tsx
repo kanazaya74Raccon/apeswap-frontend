@@ -27,7 +27,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       }
     } catch (e) {
       rewardRefReward.current?.rewardMe()
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove, setRequestedApproval])
 
@@ -36,7 +36,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
           Enable
         </ButtonSquare>
       )}

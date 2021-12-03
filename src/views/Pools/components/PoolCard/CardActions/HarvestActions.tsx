@@ -42,6 +42,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
     if (emergencyWithdraw) {
       return (
         <ButtonSquare
+          className="noClick"
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -60,6 +61,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
     if (compound) {
       return (
         <ButtonSquare
+          className="noClick"
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -77,6 +79,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
     }
     return (
       <ButtonSquare
+        className="noClick"
         disabled={earningTokenBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)

@@ -5,6 +5,7 @@ const tokens = {
     address: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+      137: '0x5d47baba0d66083c52009271faf3f50dcc01023c',
     },
     decimals: 18,
   },
@@ -17,10 +18,19 @@ const tokens = {
     decimals: 18,
   },
   wbnb: {
-    symbol: 'WBNB',
+    symbol: 'BNB',
     address: {
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
+      137: '0xa649325aa7c5093d12d6f98eb4378deae68ce23f',
+    },
+    decimals: 18,
+  },
+  wmatic: {
+    symbol: 'MATIC',
+    address: {
+      56: '0xcc42724c6683b7e57334c4e856f4c9965ed682bd',
+      137: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
     },
     decimals: 18,
   },
@@ -37,6 +47,7 @@ const tokens = {
     address: {
       97: '0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378',
       56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+      137: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
     },
     decimals: 18,
   },
@@ -45,6 +56,7 @@ const tokens = {
     address: {
       97: '0x6ce8da28e2f864420840cf74474eff5fd80e65b8',
       56: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c',
+      137: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6',
     },
     decimals: 18,
   },
@@ -73,6 +85,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       56: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+      137: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
     },
     decimals: 18,
   },
@@ -525,6 +538,27 @@ const tokens = {
     },
     decimals: 18,
   },
+  crystl: {
+    symbol: 'CRYSTL',
+    address: {
+      137: '0x76bF0C28e604CC3fE9967c83b3C3F31c213cfE64',
+    },
+    decimals: 18,
+  },
+  dai: {
+    symbol: 'DAI',
+    address: {
+      137: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
+    },
+    decimals: 18,
+  },
+  usdt: {
+    symbol: 'USDT',
+    address: {
+      137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
+    },
+    decimals: 18,
+  },
   wsg: {
     symbol: 'WSG',
     address: {
@@ -560,6 +594,49 @@ const tokens = {
     },
     decimals: 18,
   },
+  tako: {
+    symbol: 'TAKO',
+    address: {
+      56: '0x2F3391AeBE27393aBa0a790aa5E1577fEA0361c2',
+    },
+    decimals: 18,
+  },
+  hair: {
+    symbol: 'HAIR',
+    address: {
+      137: '0x100A947f51fA3F1dcdF97f3aE507A72603cAE63C',
+    },
+    decimals: 18,
+  },
+  sing: {
+    symbol: 'SING',
+    address: {
+      137: '0xcb898b0efb084df14dd8e018da37b4d0f06ab26d',
+      56: '0x23894c0ce2d79b79ea33a4d02e67ae843ef6e563',
+    },
+    decimals: 18,
+  },
+  inku: {
+    symbol: 'INKU',
+    address: {
+      56: '0xb37cad62441ef8b866f3e36f12fd42062b6c0f33',
+    },
+    decimals: 18,
+  },
+  bbq: {
+    symbol: 'BBQ',
+    address: {
+      56: '0xd9a88f9b7101046786490baf433f0f6ab3d753e2',
+    },
+    decimals: 18,
+  },
+  nalis: {
+    symbol: 'NALIS',
+    address: {
+      56: '0xb2ebaa0ad65e9c888008bf10646016f7fcdd73c3',
+    },
+    decimals: 18,
+  },
   bbnana: {
     symbol: 'BBNANA',
     address: {
@@ -585,6 +662,125 @@ const tokens = {
     symbol: 'TOON',
     address: {
       56: '0xaeE433ADeBe0FBB88dAa47eF0C1A513CaA52EF02',
+    },
+    decimals: 18,
+  },
+  abr: {
+    symbol: 'ABR',
+    address: {
+      137: '0x04429fbb948bbd09327763214b45e505a5293346',
+    },
+    decimals: 18,
+  },
+  wing: {
+    symbol: 'WING',
+    address: {
+      56: '0x3cb7378565718c64ab86970802140cc48ef1f969',
+    },
+    decimals: 9,
+  },
+  gan: {
+    symbol: 'GAN',
+    address: {
+      56: '0x8F1408171EAe06AEC4549fD0a5808A42cee6DD84',
+    },
+    decimals: 18,
+  },
+  bcpay: {
+    symbol: 'BCPAY',
+    address: {
+      56: '0x21f1ce0FCf1E9E39F8e79B7762801E8096d9f6CD',
+    },
+    decimals: 8,
+  },
+  ibfr: {
+    symbol: 'iBFR',
+    address: {
+      56: '0xa296aD1C47FE6bDC133f39555C1D1177BD51fBc5',
+    },
+    decimals: 18,
+  },
+  sata: {
+    symbol: 'SATA',
+    address: {
+      56: '0x6b1C8765C7EFf0b60706b0ae489EB9bb9667465A',
+    },
+    decimals: 18,
+  },
+  lico: {
+    symbol: 'LICO',
+    address: {
+      56: '0x4F3266a56589357B4f8082918b14B923693e57f0',
+    },
+    decimals: 18,
+  },
+  lime: {
+    symbol: 'LIME',
+    address: {
+      56: '0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd',
+    },
+    decimals: 18,
+  },
+  fxs: {
+    symbol: 'FXS',
+    address: {
+      56: '0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE',
+    },
+    decimals: 18,
+  },
+  relay: {
+    symbol: 'RELAY',
+    address: {
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    decimals: 18,
+  },
+  quidd: {
+    symbol: 'QUIDD',
+    address: {
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    decimals: 18,
+  },
+  moni: {
+    symbol: 'MONI',
+    address: {
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    decimals: 18,
+  },
+  info: {
+    symbol: 'INFO',
+    address: {
+      56: '0xdF727040d3997b5D95deE8c661fA96E3c13eE0C9',
+    },
+    decimals: 18,
+  },
+  shill: {
+    symbol: 'SHILL',
+    address: {
+      56: '0xfb9C339b4BacE4Fe63ccc1dd9a3c3C531441D5fE',
+    },
+    decimals: 18,
+  },
+  lmn: {
+    symbol: 'LMN',
+    address: {
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    decimals: 18,
+  },
+  hera: {
+    symbol: 'HERA',
+    address: {
+      56: '0x49C7295ff86EaBf5bf58C6eBC858DB4805738c01',
+    },
+    decimals: 18,
+  },
+  gmee: {
+    symbol: 'GMEE',
+    address: {
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
     },
     decimals: 18,
   },

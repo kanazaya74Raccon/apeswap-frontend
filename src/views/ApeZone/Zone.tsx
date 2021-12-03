@@ -2,13 +2,11 @@ import React from 'react'
 import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
-import { useWeb3React } from '@web3-react/core'
 import Divider from './components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
 import Iao from './components/IAO/CurrentIao'
 import Description from './components/Description/Description'
-import Pools from './components/Pools/Pools'
 
 const StyledHeroSection = styled.div`
   max-width: 1200px;
@@ -46,8 +44,6 @@ const PaddedCard = styled(Card)`
 `
 
 const Zone = () => {
-  const { account } = useWeb3React()
-
   return (
     <>
       <Description />
@@ -57,10 +53,10 @@ const Zone = () => {
             {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
           <PaddedCard>
-            <Heading size="lg" fontFamily="poppins" color="warning" bold>
+            <Heading size="lg" fontFamily="poppins" color="warning">
               WARNING
             </Heading>
-            <Text fontFamily="poppins" bold>
+            <Text fontFamily="poppins">
               Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
             </Text>
             <Text fontFamily="poppins">
@@ -68,15 +64,14 @@ const Zone = () => {
             </Text>
           </PaddedCard>
           <Cards>
-            <BuyCard account={account} />
-            <SellCard account={account} />
+            <BuyCard />
+            <SellCard />
           </Cards>
         </MarginContainer>
       </StyledHeroSection>
       <Iao />
       <Divider />
-      <Pools />
     </>
   )
 }
-export default Zone
+export default React.memo(Zone)

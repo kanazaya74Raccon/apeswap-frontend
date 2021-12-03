@@ -16,7 +16,6 @@ import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
-import { ViewMode } from '../Pools/components/types'
 
 interface LabelProps {
   active?: boolean
@@ -457,9 +456,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 
 const AdminPools: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly, setGnanaOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
-  const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -476,16 +473,6 @@ const AdminPools: React.FC = () => {
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
-
-  useEffect(() => {
-    if (size.width !== undefined) {
-      if (size.width < 968) {
-        setViewMode(ViewMode.CARD)
-      } else {
-        setViewMode(ViewMode.TABLE)
-      }
-    }
-  }, [size])
 
   useEffect(() => {
     const showMorePools = (entries) => {
@@ -560,7 +547,7 @@ const AdminPools: React.FC = () => {
 
   const poolsToShow = () => {
     let chosenPools = []
-    if (stakedOnly && !gnanaOnly) {
+    if (stakedOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
     } else {
       chosenPools = isActive ? openPools : finishedPools

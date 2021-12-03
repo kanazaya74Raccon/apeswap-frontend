@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
+import multicallABI from 'config/abi/Multicall.json'
 import { useModal, Button, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
+import { getMulticallAddress } from 'utils/addressHelper'
+import { useNetworkChainId } from 'state/hooks'
+import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
 import multicall from 'utils/multicall'
 import useRefresh from 'hooks/useRefresh'
@@ -153,9 +157,12 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
   const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
   const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
+  const chainId = useNetworkChainId()
+  const multicallAddress = getMulticallAddress(chainId)
 
   useEffect(() => {
     const fetch = async () => {
+      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -208,7 +215,7 @@ const IfoCardContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(ifoAbi, calls)
+      ] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -219,7 +226,7 @@ const IfoCardContribute: React.FC<Props> = ({
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, slowRefresh])
+  }, [account, contract, address, pendingTx, slowRefresh, multicallAddress, chainId])
 
   if (allowance === null) {
     return null
@@ -267,7 +274,7 @@ const IfoCardContribute: React.FC<Props> = ({
             setPendingTx(false)
           } catch (e) {
             setPendingTx(false)
-            console.error(e)
+            console.warn(e)
           }
         }}
       >

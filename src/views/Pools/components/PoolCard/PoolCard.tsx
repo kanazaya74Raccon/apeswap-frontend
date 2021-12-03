@@ -6,9 +6,9 @@ import { useWeb3React } from '@web3-react/core'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import StakeAction from './CardActions/StakeActions'
+import ContainerDetail from '../ContainerDetail'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
@@ -55,7 +55,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     contractAddress,
     tokenDecimals,
   } = pool
-
   const { account } = useWeb3React()
   const block = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -70,7 +69,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const pendingReward = userData?.pendingReward
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setShowExpandableSection(!showExpandableSection)
   }
 
@@ -78,10 +78,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     <PCard onClick={toggleExpand}>
       <CardHeading
         pool={pool}
-        stakeToken={stakingToken.symbol}
+        stakeToken={stakingToken?.symbol}
         earnToken={tokenName}
         earnTokenImage={image}
-        stakingTokenAddress={stakingToken.address[CHAIN_ID]}
+        stakingTokenAddress={stakingToken?.address[CHAIN_ID]}
         sousId={sousId}
         apr={new BigNumber(apr)}
         poolAPR={apr?.toFixed(2)}
@@ -99,7 +99,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isStaked={accountHasStakedBalance}
           />
         </Flex>
-        <DetailsSection
+        <ContainerDetail
           totalStaked={getBalanceNumber(totalStaked)}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           blocksRemaining={blocksRemaining}
@@ -112,13 +112,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           }
           stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}
-          projectSite={projectLink}
+          projectLink={projectLink}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
           tokenDecimals={tokenDecimals}
+          type="card"
+          rewardToken={rewardToken}
+          imageToken={image}
         />
       </ExpandingWrapper>
     </PCard>
   )
 }
 
-export default PoolCard
+export default React.memo(PoolCard)

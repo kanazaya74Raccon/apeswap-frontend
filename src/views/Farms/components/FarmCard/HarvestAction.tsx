@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import { getContract } from 'utils/erc20'
 import { useWeb3React } from '@web3-react/core'
-import { useFarmUser, useFarmFromSymbol } from 'state/hooks'
+import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 
 import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
@@ -31,6 +31,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const onStake = useReward(rewardRefPos, useStake(pid).onStake)
   const [pendingTx, setPendingTx] = useState(false)
   const onReward = useReward(rewardRef, useHarvest(pid).onReward)
+  const chainId = useNetworkChainId()
 
   const rawEarningsBalance = getBalanceNumber(earnings)
 
@@ -38,14 +39,14 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
 
   const { lpAddresses } = useFarmFromSymbol(lpSymbol)
-  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = lpAddresses[chainId]
   const lpContract = useMemo(() => {
     return getContract(library, lpAddress)
   }, [library, lpAddress])
 
   const lpName = lpSymbol.toUpperCase()
 
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useApprove(lpContract, pid)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -56,7 +57,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
       setRequestedApproval(false)
       rewardRef.current?.rewardMe()
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
   }, [onApprove])
   const isApproved = account && allowance && allowance.isGreaterThan(0)
@@ -80,16 +81,21 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
           {TranslateString(999, 'Enable')}
         </ButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
-      return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</ButtonSquare>
+      return (
+        <ButtonSquare className="noClick" onClick={onPresentDeposit}>
+          {TranslateString(999, 'Stake LP')}
+        </ButtonSquare>
+      )
     }
     return (
       <ButtonSquare
+        className="noClick"
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)

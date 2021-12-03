@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { useDispatch } from 'react-redux'
 import useI18n from 'hooks/useI18n'
-import { usePendingUsd } from 'state/hooks'
-import { fetchFarmUserDataAsync } from 'state/farms'
-import useRefresh from 'hooks/useRefresh'
+import { usePriceBananaBusd } from 'state/hooks'
+import useAllEarnings from 'hooks/useAllEarnings'
+import BigNumber from 'bignumber.js'
 import CardValue from '../CardValue'
 
 const BananaHarvestUsdBalance = () => {
   const TranslateString = useI18n()
+  const [pending, setPending] = useState(0)
   const { account } = useWeb3React()
-  const { pending } = usePendingUsd()
-  const { slowRefresh } = useRefresh()
-  const dispatch = useDispatch()
+  const allEarnings = useAllEarnings()
+  const bananaPrice = usePriceBananaBusd().toNumber()
+  const earningsSum = allEarnings.reduce((accum, earning) => {
+    return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()
+  }, 0)
 
   useEffect(() => {
-    if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
-    }
-  }, [account, dispatch, slowRefresh])
+    setPending(earningsSum * bananaPrice)
+  }, [earningsSum, bananaPrice])
 
   if (!account) {
     return (

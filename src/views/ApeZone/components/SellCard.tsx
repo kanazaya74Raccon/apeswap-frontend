@@ -18,9 +18,10 @@ import { ethers } from 'ethers'
 import TokenInput from 'components/TokenInput'
 import useTokenBalance from 'hooks/useTokenBalance'
 import styled from 'styled-components'
-import { getGoldenBananaAddress } from 'utils/addressHelpers'
+import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
+import { useWeb3React } from '@web3-react/core'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -65,13 +66,14 @@ const StyledButton = styled(Button)`
   margin-left: 0px;
 `
 
-const SellCard = ({ account }) => {
+const SellCard = () => {
   const [val, setVal] = useState('1')
   const valBanana = parseFloat(val) * 0.98
   const [processing, setProcessing] = useState(false)
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
-  const goldenBananaBalance = useTokenBalance(getGoldenBananaAddress())
+  const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
+  const { account } = useWeb3React()
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()
@@ -96,7 +98,7 @@ const SellCard = ({ account }) => {
       setProcessing(false)
     } catch (e) {
       setProcessing(false)
-      console.error(e)
+      console.warn(e)
     }
   }, [handleSell, val])
 
@@ -113,7 +115,7 @@ const SellCard = ({ account }) => {
         const currentAllowance = new BigNumber(response)
         return currentAllowance.gt(0)
       } catch (error) {
-        console.error(error)
+        console.warn(error)
         return false
       }
     },
@@ -162,4 +164,4 @@ const SellCard = ({ account }) => {
   )
 }
 
-export default SellCard
+export default React.memo(SellCard)
