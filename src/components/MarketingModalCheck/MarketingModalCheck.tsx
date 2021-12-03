@@ -1,12 +1,12 @@
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { HomeModal } from '@apeswapfinance/uikit'
+import { MarketingModal } from '@apeswapfinance/uikit'
 
-const HomeModalCheck = () => {
+const MarketingModalCheck = () => {
   const location = useLocation()
   const history = useHistory()
 
-  const correctDisplayRoute = location.search.includes('?startModal=simple')
+  const correctDisplayRoute = location.search.includes('modal=1')
 
   const onDismiss = () => {
     history.push({
@@ -16,7 +16,7 @@ const HomeModalCheck = () => {
 
   return (
     correctDisplayRoute && (
-      <HomeModal
+      <MarketingModal
         title="Welcome to ApeSwap's Farms"
         description="Start earning passive income with your cryptocurrency!"
         onDismiss={onDismiss}
@@ -29,4 +29,4 @@ const HomeModalCheck = () => {
   )
 }
 
-export default HomeModalCheck
+export default MarketingModalCheck

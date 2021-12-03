@@ -12,6 +12,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import useBlock from 'hooks/useBlock'
+import MarketingModalCheck from 'components/MarketingModalCheck'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
@@ -685,6 +686,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
+      <MarketingModalCheck />
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
