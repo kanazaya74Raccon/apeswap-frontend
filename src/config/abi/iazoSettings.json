@@ -19,15 +19,6 @@
   {
     "anonymous": false,
     "inputs": [
-      { "indexed": false, "internalType": "address", "name": "previousBurnAddress", "type": "address" },
-      { "indexed": false, "internalType": "address", "name": "newBurnAddress", "type": "address" }
-    ],
-    "name": "UpdateBurnAddress",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
       { "indexed": true, "internalType": "address", "name": "previousFeeAddress", "type": "address" },
       { "indexed": true, "internalType": "address", "name": "newFeeAddress", "type": "address" }
     ],
@@ -59,10 +50,28 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "previousMaxLiquidityPercent", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "newMaxLiquidityPercent", "type": "uint256" }
+    ],
+    "name": "UpdateMaxLiquidityPercent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       { "indexed": false, "internalType": "uint256", "name": "previousMinLength", "type": "uint256" },
       { "indexed": false, "internalType": "uint256", "name": "newMinLength", "type": "uint256" }
     ],
     "name": "UpdateMinIAZOLength",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "previousMinLiquidityPercent", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "newMinLiquidityPercent", "type": "uint256" }
+    ],
+    "name": "UpdateMinLiquidityPercent",
     "type": "event"
   },
   {
@@ -73,6 +82,28 @@
     ],
     "name": "UpdateMinLockPeriod",
     "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "previousStartDelay", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "newStartDelay", "type": "uint256" }
+    ],
+    "name": "UpdateStartDelay",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DELAY_SETTINGS",
+    "outputs": [
+      { "internalType": "uint256", "name": "MIN_IAZO_LENGTH", "type": "uint256" },
+      { "internalType": "uint256", "name": "MAX_IAZO_LENGTH", "type": "uint256" },
+      { "internalType": "uint256", "name": "MIN_LOCK_PERIOD", "type": "uint256" },
+      { "internalType": "uint256", "name": "START_DELAY", "type": "uint256" },
+      { "internalType": "uint256", "name": "MAX_START_DELAY", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -86,9 +117,8 @@
       { "internalType": "uint256", "name": "IAZO_TOKEN_FEE", "type": "uint256" },
       { "internalType": "uint256", "name": "MAX_IAZO_TOKEN_FEE", "type": "uint256" },
       { "internalType": "uint256", "name": "NATIVE_CREATION_FEE", "type": "uint256" },
-      { "internalType": "uint256", "name": "MIN_IAZO_LENGTH", "type": "uint256" },
-      { "internalType": "uint256", "name": "MAX_IAZO_LENGTH", "type": "uint256" },
-      { "internalType": "uint256", "name": "MIN_LOCK_PERIOD", "type": "uint256" }
+      { "internalType": "uint256", "name": "MIN_LIQUIDITY_PERCENT", "type": "uint256" },
+      { "internalType": "uint256", "name": "MAX_LIQUIDITY_PERCENT", "type": "uint256" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -151,6 +181,13 @@
   },
   {
     "inputs": [],
+    "name": "getMaxLiquidityPercent",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getMinIAZOLength",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
@@ -158,7 +195,21 @@
   },
   {
     "inputs": [],
+    "name": "getMinLiquidityPercent",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getMinLockPeriod",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getMinStartTime",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
@@ -192,17 +243,10 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "_burnAddress", "type": "address" }],
-    "name": "setBurnAddress",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address payable", "name": "_address", "type": "address" }],
+    "inputs": [{ "internalType": "address payable", "name": "_feeAddress", "type": "address" }],
     "name": "setFeeAddress",
     "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -224,6 +268,13 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "uint256", "name": "_maxLiquidityPercent", "type": "uint256" }],
+    "name": "setMaxLiquidityPercent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "uint256", "name": "_minLength", "type": "uint256" }],
     "name": "setMinIAZOLength",
     "outputs": [],
@@ -231,8 +282,22 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "uint256", "name": "_minLiquidityPercent", "type": "uint256" }],
+    "name": "setMinLiquidityPercent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [{ "internalType": "uint256", "name": "_minLockPeriod", "type": "uint256" }],
     "name": "setMinLockPeriod",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_newStartDelay", "type": "uint256" }],
+    "name": "setStartDelay",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

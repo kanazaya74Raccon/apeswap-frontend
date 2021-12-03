@@ -12,10 +12,13 @@ const fetchIazoDefaultSettings = async (chainId: number) => {
   const iazoSettingsAddress = getIazoSettingsAddress(chainId)
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
-  const fetchIazoDefaultSetting = await multicall(multicallContract, iazoSettingsAbi, [
+  const [fetchIazoDefaultSetting, fetchIazoDelaySetting] = await multicall(multicallContract, iazoSettingsAbi, [
     { address: iazoSettingsAddress, name: 'SETTINGS' },
+    { address: iazoSettingsAddress, name: 'DELAY_SETTINGS' },
   ])
-  const iazoDefaultSettings = fetchIazoDefaultSetting[0]
+  const iazoDefaultSettings = fetchIazoDefaultSetting
+  const iazoDelaySettings = fetchIazoDelaySetting
+
   const iazoDefaultSettingsData: IazoDefaultSettings = {
     adminAddress: iazoDefaultSettings[0].toString(),
     feeAddress: iazoDefaultSettings[1].toString(),
@@ -25,9 +28,9 @@ const fetchIazoDefaultSettings = async (chainId: number) => {
     iazoTokenFee: iazoDefaultSettings[5].toString(),
     maxIazoTokenFee: iazoDefaultSettings[6].toString(),
     nativeCreationFee: iazoDefaultSettings[7].toString(),
-    minIazoLength: iazoDefaultSettings[8].toString(),
-    maxIazoLength: iazoDefaultSettings[9].toString(),
-    minLockPeriod: iazoDefaultSettings[10].toString(),
+    minIazoLength: iazoDelaySettings[0].toString(),
+    maxIazoLength: iazoDelaySettings[1].toString(),
+    minLockPeriod: iazoDelaySettings[3].toString(),
   }
   return iazoDefaultSettingsData
 }
