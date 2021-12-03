@@ -104,6 +104,7 @@ const App: React.FC = () => {
               <Route path="/vaults">
                 <Vaults />
               </Route>
+              <Route path="/swap" component={Swap} />
               {/* Redirects */}
               <Route exact path="/nft">
                 <Redirect to="/" />
