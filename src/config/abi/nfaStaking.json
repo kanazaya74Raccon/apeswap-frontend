@@ -100,6 +100,19 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "maxStakedAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogUpdateMaxStakedAmount",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "bonusEndBlock",
         "type": "uint256"
       },
@@ -153,23 +166,10 @@
   },
   {
     "inputs": [],
-    "name": "NFA_TIERS",
-    "outputs": [
-      {
-        "internalType": "contract INonFungibleApes",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
     "name": "NFT_CONTRACT",
     "outputs": [
       {
-        "internalType": "contract IERC721",
+        "internalType": "contract INonFungibleApes",
         "name": "",
         "type": "address"
       }
@@ -195,9 +195,9 @@
     "name": "TIER",
     "outputs": [
       {
-        "internalType": "uint8",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint8"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -256,21 +256,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256[]",
-        "name": "_ids",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "emergencyWithdraw",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "emergencyWithdrawAll",
+    "name": "emergencyWithdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -315,18 +302,13 @@
   {
     "inputs": [
       {
-        "internalType": "contract IERC721",
+        "internalType": "contract INonFungibleApes",
         "name": "_nftContract",
         "type": "address"
       },
       {
         "internalType": "contract IERC20",
         "name": "_rewardToken",
-        "type": "address"
-      },
-      {
-        "internalType": "contract INonFungibleApes",
-        "name": "_nfaTiers",
         "type": "address"
       },
       {
@@ -345,14 +327,27 @@
         "type": "uint256"
       },
       {
-        "internalType": "uint8",
+        "internalType": "uint256",
         "name": "_tier",
-        "type": "uint8"
+        "type": "uint256"
       }
     ],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxStakedAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -452,6 +447,19 @@
       }
     ],
     "name": "setBonusEndBlock",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_maxStakedAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setMaxStakedAmount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

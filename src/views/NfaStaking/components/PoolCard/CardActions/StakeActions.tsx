@@ -2,7 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'
-import { Flex, Heading, useModal, Text, ButtonSquare, MinusIcon, AddIcon, IconButtonSquare } from '@apeswapfinance/uikit'
+import {
+  Flex,
+  Heading,
+  useModal,
+  Text,
+  ButtonSquare,
+  MinusIcon,
+  AddIcon,
+  IconButtonSquare,
+} from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useNfaStake } from 'hooks/useStake'
@@ -61,7 +70,14 @@ const WhyCantIBid = styled.a`
   text-decoration: underline;
 `
 
-const StakeAction: React.FC<StakeActionsProps> = ({ pool, stakedBalance, isApproved, firstStake, tier, stakedNfas }) => {
+const StakeAction: React.FC<StakeActionsProps> = ({
+  pool,
+  stakedBalance,
+  isApproved,
+  firstStake,
+  tier,
+  stakedNfas,
+}) => {
   const TranslateString = useI18n()
 
   const { sousId } = pool

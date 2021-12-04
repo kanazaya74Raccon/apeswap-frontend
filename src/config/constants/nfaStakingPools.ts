@@ -8,9 +8,9 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0xd138D4F886EdFe593dfA85d2EE2E184E7915a160',
-      56: '0xC84E54e4e09FfD7f971C674f87002A54A2D6B5E3',
+      56: '0xeb6D978c6cA8BF3c2ffaC5536e13021920E4e3E6',
     },
-    tokenPerBlock: '0.1',
+    tokenPerBlock: '0.0000001',
     isFinished: false,
   },
   {
@@ -19,9 +19,9 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0x28B868bf63bdB1bcAf30184eFb6684312FEf134A',
-      56: '0xa6824F494D26BFB8bAae9cC95c6e01A3657E44d0',
+      56: '0x0aAd4a7509617c9254B20e565bFcf58B917Fac2c',
     },
-    tokenPerBlock: '0.1',
+    tokenPerBlock: '0.0000001',
     isFinished: false,
   },
   {
@@ -30,9 +30,9 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0x26b6414bC46aC1a149bb4ECD789163C0710f2d55',
-      56: '0x00ee52127D42322E8bbfC10BE6E129b47CCdaE0A',
+      56: '0xBabFEce5c014ec5cE5A7Dd36625F942CA0f7E313',
     },
-    tokenPerBlock: '0.1',
+    tokenPerBlock: '0.0000001',
     isFinished: false,
   },
   {
@@ -41,9 +41,9 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0x01FA5C85D152994B57314313e1b4f7005D12CD90',
-      56: '0x98fBbC7Cb6B02E66Bd2c294D0a69D13e67afB2f7',
+      56: '0xed66A25F551555e03456356510628060166f81F9',
     },
-    tokenPerBlock: '0.1',
+    tokenPerBlock: '0.0000001',
     isFinished: false,
   },
   {
@@ -52,9 +52,9 @@ const nftStakingPools: NfaStakingPoolConfig[] = [
     rewardToken: tokens.banana,
     contractAddress: {
       97: '0x6f2361afb0E69C5fde812f79C7B206A94f127e0f',
-      56: '0xec1eD44688d7E5A622656b699eD1339e70890385',
+      56: '0x9CAe4d6Fd1Ad948C810D6F1b4Fdbd69716BA50a0',
     },
-    tokenPerBlock: '0.1',
+    tokenPerBlock: '0.0000001',
     isFinished: false,
   },
 ]
