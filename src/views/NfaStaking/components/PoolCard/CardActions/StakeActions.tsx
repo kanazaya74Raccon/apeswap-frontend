@@ -64,12 +64,6 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const WhyCantIBid = styled.a`
-  color: ${(props) => props.theme.colors.text};
-  bottom: 0px;
-  text-decoration: underline;
-`
-
 const StakeAction: React.FC<StakeActionsProps> = ({
   pool,
   stakedBalance,
