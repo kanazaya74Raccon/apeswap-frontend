@@ -92,7 +92,7 @@ export default {
     137: '0x54aff400858Dcac39797a81894D9920f16972D1D',
   },
   iazoFactoryProxy: {
-    56: '0x4D72Fdd4798c200E1BA68eC86948F4D00dF063f2',
+    56: '0xD6C35D6551330a48Ed6d2e09b2BcBe38f6bA4C4a',
     97: '0x3b707dfB7F0d40D55Ac35b9a9753960C52Cf6f83',
   },
   iazoExposer: {
