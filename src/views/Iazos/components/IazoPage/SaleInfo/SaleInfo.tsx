@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
 import InfoTab from './InfoTab'
 import About from './About'

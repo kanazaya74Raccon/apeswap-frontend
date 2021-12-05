@@ -137,7 +137,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
   const total = items.reduce((a, b) => a + b.value, 0)
   const sortedItems = items.sort((a, b) => (a.value > b.value ? -1 : 1))
   let angleOffset = -90
-  const offsetChart = sortedItems.map((item, i) => {
+  const offsetChart = sortedItems.map((item) => {
     const temp = {
       ...item,
       angleOffset,

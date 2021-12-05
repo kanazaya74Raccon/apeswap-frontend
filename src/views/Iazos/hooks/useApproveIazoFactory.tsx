@@ -16,7 +16,7 @@ const useApproveIazoFactory = (tokenAddress: string) => {
         .send({ from: account })
       return tx
     } catch (e) {
-      console.log(e)
+      console.error(e)
       return false
     }
   }, [account, iazoFactoryAddress, tokenContract])

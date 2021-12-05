@@ -7,7 +7,6 @@ import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
-import { useTokenPriceFromAddress } from 'state/hooks'
 import ClaimIazo from '../../Actions/ClaimIazo'
 
 interface BeforeSaleProps {
@@ -76,16 +75,14 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, tokenPrice, iazoAddress }) => {
-  const { symbol, decimals, address } = baseToken
+const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, iazoAddress }) => {
+  const { symbol, decimals } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
-  const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
-  const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
+  const { tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
 
   const { totalBaseCollected } = status
-  const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
 

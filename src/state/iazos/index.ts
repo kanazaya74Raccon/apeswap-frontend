@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IazosState, Iazo } from '../types'
-import fetchAllIazos from './fetchIazos'
+import { createSlice } from '@reduxjs/toolkit'
+import { IazosState } from '../types'
 import fetchIazosFromApi, { fetchIazoFromApi } from './fetchIazosFromApi'
 import fetchIazoDefaultSettings, {
   fetchIazoTokenDetails,
@@ -124,7 +123,6 @@ export const fetchIazo = (chainId: number, address: string) => async (dispatch) 
 export const fetchSettings = (chainId: number) => async (dispatch) => {
   try {
     const settings = await fetchIazoDefaultSettings(chainId)
-    console.log(settings)
     dispatch(iazoDefaultSettings(settings))
   } catch (error) {
     console.error(error)

@@ -459,7 +459,6 @@ export const useIazoSettings = () => {
 }
 
 export const useIazoFromAddress = (address): Iazo => {
-  useSelector((state: State) => console.log(state))
   const iazo: Iazo = useSelector((state: State) => state.iazos.iazoData.find((i) => i.iazoContractAddress === address))
   return iazo
 }

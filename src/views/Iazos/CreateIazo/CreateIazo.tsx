@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'

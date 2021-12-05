@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import FaqDropdown from './FaqDropdown'
 
 const listOfFaqs = [

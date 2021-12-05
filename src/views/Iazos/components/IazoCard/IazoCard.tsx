@@ -161,7 +161,6 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
     socialInfo,
     iazoTags,
   } = iazo
-  console.log(iazo)
   const { tokenImage } = socialInfo
   const { activeTime, lockPeriod } = timeInfo
   const maxSpend = getBalanceNumber(new BigNumber(maxSpendPerBuyer), parseInt(baseToken.decimals)).toString()

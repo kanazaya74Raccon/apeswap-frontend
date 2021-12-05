@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Text, ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 
 interface FaqDropdownProps {
   title: string
@@ -8,6 +8,7 @@ interface FaqDropdownProps {
 }
 
 const FaqWrapper = styled.div`
+  position: relative;
   width: 280px;
   border-radius: 10px;
   background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
@@ -41,6 +42,22 @@ const StyledText = styled(Text)`
   font-family: poppins;
 `
 
+const DropDownArrow = styled(ArrowDropDownIcon)`
+  position: absolute;
+  right: 20px;
+  width: 15px;
+  top: 15px;
+  fill: white;
+`
+
+const DropUpArrow = styled(ArrowDropUpIcon)`
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 15px;
+  fill: white;
+`
+
 const HeaderWrapper = styled.div<{ opened?: boolean }>`
   height: 35px;
   width: 100%;
@@ -58,6 +75,7 @@ const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, description }) => {
   const [opened, setOpened] = useState(false)
   return (
     <FaqWrapper onClick={() => setOpened(!opened)}>
+      {opened ? <DropUpArrow /> : <DropDownArrow />}
       <HeaderWrapper opened={opened}>
         <StyledHeader color="white">{title}</StyledHeader>
       </HeaderWrapper>

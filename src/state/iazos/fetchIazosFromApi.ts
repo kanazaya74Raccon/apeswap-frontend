@@ -1,5 +1,5 @@
 import { apiBaseUrl } from 'hooks/api'
-import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo, IazoTags } from 'state/types'
+import { IazoSocialInfo, IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo } from 'state/types'
 
 const getIazosFromApi = async (chainId: number) => {
   const apiUrl = chainId === 97 ? 'https://apeswap-api-development.herokuapp.com' : apiBaseUrl

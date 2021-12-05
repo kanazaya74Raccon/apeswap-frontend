@@ -1,7 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import iazoAbi from 'config/abi/iazo.json'
 import multicallABI from 'config/abi/Multicall.json'
-import { useERC20 } from 'hooks/useContract'
 import { useEffect, useState } from 'react'
 import { getMulticallAddress } from 'utils/addressHelper'
 import multicall from 'utils/multicall'
@@ -26,7 +25,7 @@ const useFetchUserIazoCommit = (iazoAddress: string, dependency?: boolean) => {
         ])
         setCommited({ deposited: buyers[0][0].toString(), tokensBought: buyers[0][1].toString() })
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     }
     if (account) {

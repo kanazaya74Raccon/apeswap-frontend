@@ -14,7 +14,7 @@ const useCommitToIazo = (iazoAddress: string, amount: string, isNative?: boolean
         : await userDeposit(iazoContract, amount, account)
       return tx
     } catch (e) {
-      console.log(e)
+      console.error(e)
       return false
     }
   }, [account, iazoContract, amount, isNative])

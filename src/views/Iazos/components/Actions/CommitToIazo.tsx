@@ -73,11 +73,11 @@ const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   const userBalance = useTokenBalance(isNative ? ZERO_ADDRESS : address)
   const userBalanceFormatted = getBalanceNumber(userBalance, parseInt(decimals))
   const { isDark } = useTheme()
-  const onCommit = useCommitToIazo(
+  const { onCommit } = useCommitToIazo(
     iazoAddress,
     new BigNumber(amountToCommit).times(new BigNumber(10).pow(parseInt(decimals))).toString(),
     isNative,
-  ).onCommit
+  )
   return (
     <Wrapper>
       <TokenInput

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Text, Button, Skeleton, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import { Title } from 'views/DualFarms/components/FarmTable/Actions/styles'
+import { Text, Skeleton, useMatchBreakpoints } from '@apeswapfinance/uikit'
 
 interface IazoSymbolProps {
   iconImage: 'monkey' | 'lock' | 'dollar' | 'twitter' | 'medium' | 'website' | 'whitepaper' | 'telegram'

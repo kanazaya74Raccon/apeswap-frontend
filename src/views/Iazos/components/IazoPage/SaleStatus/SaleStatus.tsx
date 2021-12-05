@@ -1,15 +1,12 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
 import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useCurrentTime from 'hooks/useTimer'
 import BigNumber from 'bignumber.js'
-import Timer from '../../IazoCard/Timer'
 import DuringSale from './DuringSale'
 import AfterSale from './AfterSale'
 import BeforeSale from './BeforeSale'
-import IazoSymbols from '../../IazoSymbols'
 
 interface SaleStatus {
   timeInfo: IazoTimeInfo

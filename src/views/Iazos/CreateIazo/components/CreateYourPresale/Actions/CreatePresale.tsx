@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import { useHistory } from 'react-router-dom'
@@ -122,8 +122,8 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
   apiObject.append('description', description)
   apiObject.append('pathImage', tokenSymbol)
 
-  const onCreateIazo = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams, creationFee).onCreateIazo
-  const onCreateIazoApi = useCreateIazoApi().onCreateIazoApi
+  const { onCreateIazo } = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams, creationFee)
+  const { onCreateIazoApi } = useCreateIazoApi()
 
   const [pendingTrx, setPendingTrx] = useState(false)
 
@@ -134,7 +134,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
           setPendingTrx(true)
           await onCreateIazo()
             .then((resp) => {
-              console.log(resp)
+              console.info(resp)
               const iazoAddress = resp.events.IAZOCreated.returnValues.newIAZO
               apiObject.append('iazoAddress', iazoAddress)
               onCreateIazoApi(apiObject).then((apiResp: any) => {

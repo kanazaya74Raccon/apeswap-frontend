@@ -138,8 +138,6 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
     }
   }, [selectedToken, tokenApproved, onChange])
 
-  console.log(isDark)
-
   return (
     <>
       <PairCreationWrapper>

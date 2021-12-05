@@ -20,7 +20,7 @@ const useCreateIazo = (iazoToken: string, baseToken: string, burnRemains: boolea
       )
       return tx
     } catch (e) {
-      console.log(e)
+      console.error(e)
       return false
     }
   }, [account, iazoFactoryContract, iazoToken, baseToken, burnRemains, unitParams, creationFee])

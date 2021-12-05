@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { userDeposit, userDepositNative, userWithdraw } from 'utils/callHelpers'
+import { userWithdraw } from 'utils/callHelpers'
 import { useIazoContract } from 'hooks/useContract'
 
 // Approve an iazo
@@ -12,7 +12,7 @@ const useClaimIazo = (iazoAddress: string) => {
       const tx = await userWithdraw(iazoContract, account)
       return tx
     } catch (e) {
-      console.log(e)
+      console.error(e)
       return false
     }
   }, [account, iazoContract])

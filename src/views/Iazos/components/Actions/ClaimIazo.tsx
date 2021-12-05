@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
-import useApproveIazo from 'views/Iazos/hooks/useApproveIazo'
 import useClaimIazo from 'views/Iazos/hooks/useClaimIazo'
 
 interface ApproveCreateIazoProps {
@@ -25,9 +24,9 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress, iazoAddress, onPendingClaim, tokensToClaim }) => {
+const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, onPendingClaim, tokensToClaim }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
-  const onClaim = useClaimIazo(iazoAddress).onClaim
+  const { onClaim } = useClaimIazo(iazoAddress)
 
   return (
     <>

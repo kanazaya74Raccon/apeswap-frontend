@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { TagLink } from 'state/types'
 import styled from 'styled-components'
 

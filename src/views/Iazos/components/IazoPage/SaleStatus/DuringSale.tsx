@@ -1,13 +1,12 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
+import { Text, Skeleton } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
-import { useTokenPriceFromAddress } from 'state/hooks'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import Timer from '../../IazoCard/Timer'
 import Actions from '../../Actions'
@@ -108,7 +107,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   liquidityPercent,
   maxSpend,
 }) => {
-  const { symbol, decimals, address } = baseToken
+  const { symbol, decimals } = baseToken
   const { totalBaseCollected, numBuyers } = status
   const { lockPeriod } = timeInfo
   const { account } = useWeb3React()
@@ -119,9 +118,6 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const maxSpendFormatted = getBalanceNumber(new BigNumber(maxSpend), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
-  const baseTokenPrice = useTokenPriceFromAddress(address)
-  const tokenPriceFormatted =
-    baseTokenPrice && (getBalanceNumber(new BigNumber(tokenPrice), parseInt(decimals)) * baseTokenPrice).toString()
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
 
