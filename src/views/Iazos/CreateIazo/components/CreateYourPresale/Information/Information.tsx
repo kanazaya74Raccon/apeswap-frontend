@@ -72,6 +72,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           placeholderText="Website..."
           title="Website:*"
           url
+          mandatory
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, whitepaper: e.currentTarget.value })}
@@ -92,6 +93,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           placeholderText="Twitter..."
           title="Twitter:*"
           url
+          mandatory
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, telegram: e.currentTarget.value })}
@@ -102,6 +104,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           placeholderText="Telegram..."
           title="Telegram:*"
           url
+          mandatory
         />
         <TextInput
           onChange={(e) => setInformation({ ...information, medium: e.currentTarget.value })}
@@ -112,6 +115,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           placeholderText="Medium..."
           title="Medium:*"
           url
+          mandatory
         />
         <TextInput
           onLargeChange={(e) => setInformation({ ...information, description: e.currentTarget.value })}

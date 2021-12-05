@@ -16,6 +16,7 @@ interface TextInputProps {
   load?: boolean
   url?: boolean
   margin?: string
+  mandatory?: boolean
 }
 
 const sizes = {
@@ -151,6 +152,7 @@ const TextInput: React.FC<TextInputProps> = ({
   title,
   url,
   margin,
+  mandatory,
 }) => {
   const { toastError } = useToast()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
@@ -161,6 +163,10 @@ const TextInput: React.FC<TextInputProps> = ({
   const onValidate = (e) => {
     const val = e.currentTarget.value
     const isUrl = isValidUrl(val)
+    if (!mandatory && val.length === 0) {
+      setBackgroundColorForInput(backgroundColor)
+      return val
+    }
     if (url) {
       if (!isUrl) {
         setBackgroundColorForInput('rgb(255,0,0, .3)')
@@ -169,6 +175,7 @@ const TextInput: React.FC<TextInputProps> = ({
         setBackgroundColorForInput(backgroundColor)
       }
     }
+    return val
   }
 
   return (
