@@ -784,6 +784,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  arv: {
+    symbol: 'ARV',
+    address: {
+      56: '0x6679eB24F59dFe111864AEc72B443d1Da666B360',
+    },
+    decimals: 8,
+  },
+  rasko: {
+    symbol: 'rASKO',
+    address: {
+      56: '0xd118f42eDbc839F7e1E85d5269A25288792c141B',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
