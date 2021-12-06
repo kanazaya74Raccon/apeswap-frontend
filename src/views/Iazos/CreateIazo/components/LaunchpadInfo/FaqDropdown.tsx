@@ -4,7 +4,6 @@ import { Text, ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 
 interface FaqDropdownProps {
   title: string
-  description: string
 }
 
 const FaqWrapper = styled.div`
@@ -71,7 +70,7 @@ const HeaderWrapper = styled.div<{ opened?: boolean }>`
   box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
 `
 
-const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, description }) => {
+const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, children }) => {
   const [opened, setOpened] = useState(false)
   return (
     <FaqWrapper onClick={() => setOpened(!opened)}>
@@ -79,7 +78,7 @@ const FaqDropdown: React.FC<FaqDropdownProps> = ({ title, description }) => {
       <HeaderWrapper opened={opened}>
         <StyledHeader color="white">{title}</StyledHeader>
       </HeaderWrapper>
-      {opened && <StyledText color="white">{description}</StyledText>}
+      {opened && <StyledText color="white">{children}</StyledText>}
     </FaqWrapper>
   )
 }

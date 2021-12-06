@@ -12,7 +12,6 @@ import PostSaleDetails from './PostSaleDetails/PostSaleDetails'
 import SaleReview from './SaleReview/SaleReview'
 import Information from './Information/Information'
 import Actions from './Actions'
-import { presaleValidation, postSaleValidation } from './Validations'
 
 interface Stepper {
   pairCreated: boolean
@@ -59,13 +58,6 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
     postsaleDetailsSet: false,
     informationStepCompleted: false,
   })
-
-  const presaleValid = presaleData?.presaleTokenDetails
-    ? presaleValidation(presaleData?.presaleTokenDetails).length === 0
-    : false
-  const postsaleValid = presaleData?.postsaleDetails
-    ? postSaleValidation(presaleData?.postsaleDetails, presaleData?.presaleTokenDetails?.pricePerToken).length === 0
-    : false
 
   const presaleStepsCompleted =
     stepper.pairCreated && stepper.datesSelected && stepper.presaleDetailsSet && stepper.postsaleDetailsSet
@@ -118,7 +110,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
           />
         </>
       )}
-      {presaleStepsCompleted && presaleValid && postsaleValid && (
+      {presaleStepsCompleted && (
         <>
           <SaleReview
             presaleDetails={presaleData.presaleTokenDetails}
@@ -130,7 +122,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
           <Information onChange={onInformation} />
         </>
       )}
-      {presaleStepsCompleted && stepper.informationStepCompleted && presaleValid && postsaleValid && (
+      {presaleStepsCompleted && stepper.informationStepCompleted && (
         <Actions presaleData={presaleData} settings={settings} />
       )}
     </LaunchPadInfoWrapper>

@@ -123,11 +123,16 @@ const Iazos: React.FC = () => {
   const currentIazos = registeredIazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
-      currentTime < parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
+      currentTime < parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime) &&
+      iazo.iazoState !== 'HARD_CAP_MET' &&
+      iazo.iazoState !== 'FAILED',
   )
   const upcomingIazos = registeredIazos?.filter((iazo) => parseInt(iazo.timeInfo.startTime) > currentTime)
   const pastIAzos = registeredIazos?.filter(
-    (iazo) => currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime),
+    (iazo) =>
+      currentTime > parseInt(iazo.timeInfo.startTime) + parseInt(iazo.timeInfo.activeTime) ||
+      iazo.iazoState === 'HARD_CAP_MET' ||
+      iazo.iazoState === 'FAILED',
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,7 +167,7 @@ const Iazos: React.FC = () => {
         <LaunchPadWrapper>
           <TopNavWrapper />
           <HeaderWrapper>
-            <StyledHeader>SS-IAO Launchpad</StyledHeader>
+            <StyledHeader>Self-Serve Launchpad</StyledHeader>
             <Link to="/ss-iao/create">
               <StyledButton> CREATE </StyledButton>
             </Link>

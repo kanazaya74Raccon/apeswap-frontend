@@ -7,7 +7,6 @@ import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
-import { useTokenPriceFromAddress } from 'state/hooks'
 import ClaimIazo from '../../Actions/ClaimIazo'
 
 interface BeforeSaleProps {
@@ -83,6 +82,7 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({
   status,
   tokenPrice,
   iazoAddress,
+  iazoState
 }) => {
   const { symbol, decimals, address } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
@@ -114,7 +114,7 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({
         Tokens bought:{' '}
       </BoldAfterText>
       {account ? (
-        <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} />
+        <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} iazoState={iazoState} />
       ) : (
         <>
           <br />

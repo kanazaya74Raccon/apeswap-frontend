@@ -166,14 +166,14 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           <PresaleInfoContainer>
             <StyledText wallet={accountFormated}>Presale Creator:</StyledText>
             <StyledDescription fontSize="13px">
-              This account will be the only account capable of retrieving funds raised from the SS-IAO. If this account
-              gets compromised in ANY capacity, ApeSwap has no ability to help. In addition this is a fully
-              decentralized product. Make sure you understand the risks and procedures before you begin to deploy your
-              SS-IAO.
+              Please Note: This account will be the only account capable of retrieving funds raised from the SS-IAO. If
+              this account gets compromised in ANY capacity, ApeSwap has no ability to help. In addition, this is a
+              fully decentralized product, please make sure you understand the risks and procedures before you begin to
+              deploy your SS-IAO.
             </StyledDescription>
             <StyledDescription fontSize="13px">
-              You cannot make any changes once you deploy your SS-IAO, and everything is final. See all the details in
-              our docs above and our FAQ.
+              You cannot make any changes once you deploy your SS-IAO, and everything is final. All details are included
+              in our documentation and FAQ above.
             </StyledDescription>
           </PresaleInfoContainer>
         </>

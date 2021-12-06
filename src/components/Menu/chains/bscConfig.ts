@@ -26,15 +26,15 @@ const bscConfig: MenuEntry[] = [
     href: '/vaults',
   },
   {
-    label: 'Launch',
+    label: 'IAO',
     icon: 'IfoIcon',
     items: [
       {
-        label: 'IAO',
+        label: 'Official',
         href: '/iao',
       },
       {
-        label: 'SS-IAO',
+        label: 'Self-Serve',
         href: '/ss-iao',
       },
     ],

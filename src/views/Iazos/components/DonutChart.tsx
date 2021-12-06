@@ -178,7 +178,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
               {item.value.toString() === 'NaN' ? (
                 <Skeleton width="150px" height="35px" />
               ) : (
-                `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(0)}%`
+                `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(1)}%`
               )}
             </StyledText>
           </IconAndTextWrapper>

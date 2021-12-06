@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Text, Spinner } from '@apeswapfinance/uikit'
-import {useFetchIazo, useIazos } from 'state/hooks'
+import { useFetchIazo, useIazos } from 'state/hooks'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
 import Header from '../Header'
+import TopNav from '../TopNav'
 
 const PageWrapper = styled.div`
   display: none;
@@ -26,31 +27,6 @@ const LaunchPadWrapper = styled.div`
   z-index: 1;
 `
 
-const TopNavWrapper = styled.div`
-  position: relative;
-  height: 60px;
-  width: 320px;
-  border-radius: 20px 20px 0px 0px;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(161, 101, 82, 1)')};
-  z-index: 0;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 856px;
-  }
-`
-
-const TopNavMonkey = styled.div`
-  position: absolute;
-  height: 60px;
-  width: 100px;
-  right: 20px;
-  overflow: hidden;
-  background: url(/images/header-ape.svg) no-repeat 0px 10px;
-  opacity: 0.2;
-  z-index: 0;
-`
 const StyledHeader = styled(Text)`
   font-family: Poppins;
   font-weight: 700;
@@ -62,23 +38,12 @@ const StyledHeader = styled(Text)`
     margin-bottom: 20px;
   }
 `
-
-const BackWrapper = styled.div`
-  z-index: 1;
-  display: flex;
-`
-
 const StyledText = styled(Text)`
   font-family: Poppins;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
   }
-`
-
-const BackArrow = styled.img`
-  cursor: pointer;
-  margin-right: 20px;
 `
 
 const WarningWrapper = styled.div`
@@ -146,26 +111,21 @@ const IazoPage: React.FC = () => {
       <Header />
       <PageWrapper>
         <LaunchPadWrapper>
-          <TopNavWrapper>
-            <TopNavMonkey />
-            <Link to="/ss-iao">
-              <BackWrapper>
-                <BackArrow src="/images/left-arrow.svg" />
-                <StyledText color="white">Back to SS-IAO Launchpad</StyledText>
-              </BackWrapper>
-            </Link>
-          </TopNavWrapper>
+          <TopNav />
           <WarningWrapper>
             <StyledHeader fontSize="10px"> Safety Alert</StyledHeader>
+            <StyledText>WARNING</StyledText>
+            <br />
             <StyledText>
-              Warning: SS-IAOs are NOT ApeSwap endorsed or yet official ApeSwap partners. Always DYOR. Be sure to read
-              our medium articles on best DYOR Practices before aping in and talk with your fellow Apes!
+              SS-IAOs are NOT ApeSwap endorsed or official ApeSwap partners. Always DYOR. Be sure to read our medium
+              article on DYOR best practices before aping in and always talk with your fellow Apes on the project Reddit
+              thread!
             </StyledText>
             <br />
             <StyledText>
-              This is a fully decentralized and open launchpad. Anyone can create an SS-IAO, under any token name with
-              any capabilities. There is also no control of what happens post launch (projects could leave with your
-              money, have an unlimited mint function to extract all liquidity, or any other malicious activity).
+              This is a fully decentralized and open launchpad, anyone can create an SS-IAO, under any token name, with
+              any capabilities. Also, there is no control of what happens post launch (projects could leave with your
+              money, have an unlimited mint function to extract all liquidity, and/or perform other malicious activity).
             </StyledText>
           </WarningWrapper>
           <BeforeSaleWrapper>

@@ -75,16 +75,18 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, iazoAddress }) => {
+const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, iazoAddress, iazoState }) => {
   const { symbol, decimals } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
-  const { tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
+  const { tokensBought, deposited }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
+  const baseTokensDeposited = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
 
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
+  const iazoFailed = iazoState === 'FAILED'
 
   const onPendingClaim = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)
@@ -100,11 +102,21 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-        Tokens bought:{' '}
-      </BoldAfterText>
+      {iazoFailed ? (
+        <BoldAfterText>IAZO failed please claim your refund</BoldAfterText>
+      ) : (
+        <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+          Tokens bought:{' '}
+        </BoldAfterText>
+      )}
       {account ? (
-        <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} />
+        <ClaimIazo
+          iazoAddress={iazoAddress}
+          tokensToClaim={tokensBoughtFormatted}
+          baseTokensToClaim={baseTokensDeposited}
+          onPendingClaim={onPendingClaim}
+          iazoState={iazoState}
+        />
       ) : (
         <>
           <br />

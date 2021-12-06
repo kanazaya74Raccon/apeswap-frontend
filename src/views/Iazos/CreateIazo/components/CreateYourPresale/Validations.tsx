@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoDefaultSettings } from 'state/types'
+import getTimePeriods from 'utils/getTimePeriods'
 import { PresaleData, SaleInformation, DateObject, TokenSaleDetails, LiquidityLockDetails } from './types'
 
 interface ValidationProps {
@@ -142,11 +143,21 @@ export const dateSelectionValidation = (
 
   // Get the amount of time the IAZO will be active
   const activeTime = endDateInSeconds - startDateInSeconds
+
+  const formattedMinTime = getTimePeriods(parseInt(minIazoLength))
+  const formattedMaxTime = getTimePeriods(parseInt(maxIazoLength))
+
   if (activeTime < parseInt(minIazoLength)) {
-    validationList.push({ error: 'Your IAZO Length Is Too Short', message: 'Please enter a longer IAZO time length' })
+    validationList.push({
+      error: 'Your IAZO Length Is Too Short',
+      message: `Please enter a longer IAZO time than the minimum: ${formattedMinTime.days}days, ${formattedMinTime.hours}hours, ${formattedMinTime.minutes} minutes`,
+    })
   }
   if (activeTime > parseInt(maxIazoLength)) {
-    validationList.push({ error: 'Your IAZO Length Is Too Long', message: 'Please enter a shorter IAZO time length' })
+    validationList.push({
+      error: 'Your IAZO Length Is Too Long',
+      message: `Please enter a shorter IAZO time than the maximum: ${formattedMaxTime.days}days, ${formattedMaxTime.hours}hours, ${formattedMaxTime.minutes} minutes`,
+    })
   }
   return validationList
 }
