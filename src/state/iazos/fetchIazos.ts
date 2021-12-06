@@ -105,7 +105,7 @@ const fetchIazoData = async (chainId: number, address: string): Promise<Iazo> =>
 
 const fetchAllIazos = async (chainId: number): Promise<Iazo[]> => {
   const iazoExposerAddress = getIazoExposerAddress(chainId)
-  const iazoSettingsAddress = getIazoSettingsAddress(chainId)
+  // const iazoSettingsAddress = getIazoSettingsAddress(chainId)
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const amountOfIazos = await multicall(multicallContract, iazoExposerAbi, [
@@ -118,25 +118,25 @@ const fetchAllIazos = async (chainId: number): Promise<Iazo[]> => {
       return { address: iazoExposerAddress, name: 'IAZOAtIndex', params: [i] }
     }),
   )
-  const fetchIazoDefaultSettings = await multicall(multicallContract, iazoSettingsAbi, [
-    { address: iazoSettingsAddress, name: 'SETTINGS' },
-  ])
-  const iazoDefaultSettings = fetchIazoDefaultSettings[0]
-  const iazoDefaultSettingsData: IazoDefaultSettings = {
-    adminAddress: iazoDefaultSettings[0].toString(),
-    feeAddress: iazoDefaultSettings[1].toString(),
-    burnAddress: iazoDefaultSettings[2].toString(),
-    baseFee: iazoDefaultSettings[3].toString(),
-    maxBaseFee: iazoDefaultSettings[4].toString(),
-    iazoTokenFee: iazoDefaultSettings[5].toString(),
-    maxIazoTokenFee: iazoDefaultSettings[6].toString(),
-    nativeCreationFee: iazoDefaultSettings[7].toString(),
-    minIazoLength: iazoDefaultSettings[8].toString(),
-    maxIazoLength: iazoDefaultSettings[9].toString(),
-    minLockPeriod: iazoDefaultSettings[10].toString(),
-  }
+  // const fetchIazoDefaultSettings = await multicall(multicallContract, iazoSettingsAbi, [
+  //   { address: iazoSettingsAddress, name: 'SETTINGS' },
+  // ])
+  // const iazoDefaultSettings = fetchIazoDefaultSettings[0]
+  // const iazoDefaultSettingsData: IazoDefaultSettings = {
+  //   adminAddress: iazoDefaultSettings[0].toString(),
+  //   feeAddress: iazoDefaultSettings[1].toString(),
+  //   burnAddress: iazoDefaultSettings[2].toString(),
+  //   baseFee: iazoDefaultSettings[3].toString(),
+  //   maxBaseFee: iazoDefaultSettings[4].toString(),
+  //   iazoTokenFee: iazoDefaultSettings[5].toString(),
+  //   maxIazoTokenFee: iazoDefaultSettings[6].toString(),
+  //   nativeCreationFee: iazoDefaultSettings[7].toString(),
+  //   minIazoLength: iazoDefaultSettings[8].toString(),
+  //   maxIazoLength: iazoDefaultSettings[9].toString(),
+  //   minLockPeriod: iazoDefaultSettings[10].toString(),
+  // }
 
-  return await Promise.all(
+  return Promise.all(
     listOfIazoAddresses.map(async (address, i) => {
       return fetchIazoData(chainId, address[0])
     }),

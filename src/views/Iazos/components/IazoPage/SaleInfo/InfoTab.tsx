@@ -46,16 +46,17 @@ const BoldAfterText = styled(Text)<{ boldContent?: string }>`
 `
 
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
-  const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo } = iazo
+  const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo, listingPrice, baseToken, tokenPrice } = iazo
   const { decimals, name, totalSupply } = iazoToken
   const { iazoTokenFee } = feeInfo
   const tokenTotalSupply = getBalanceNumber(new BigNumber(totalSupply), parseInt(decimals))
   const tokenFee = parseInt(iazoTokenFee) / 1000
   const liquidityPercentParsed = parseFloat(liquidityPercent) / 1000
+  const priceDifference = Math.abs(parseFloat(tokenPrice) / parseFloat(listingPrice))
 
   // Inputs
   const tokensForSale = getBalanceNumber(new BigNumber(amount), parseInt(decimals))
-  const tokensForLiquidity = tokensForSale * liquidityPercentParsed
+  const tokensForLiquidity = tokensForSale * priceDifference * liquidityPercentParsed
   const tokensForFees = tokenFee * tokensForSale
   const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
   const items = [

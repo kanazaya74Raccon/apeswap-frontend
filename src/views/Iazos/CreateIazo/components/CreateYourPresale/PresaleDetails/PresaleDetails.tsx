@@ -29,6 +29,11 @@ const LaunchPadInfoWrapper = styled.div`
     height: 524px;
   }
 `
+
+const CheckBoxStyled = styled(Checkbox)`
+  background: #e5e5e5;
+`
+
 const StyledHeader = styled(Text)`
   font-family: Poppins;
   font-size: 18px;
@@ -138,7 +143,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <FooterContainer>
           <CheckboxContainer>
-            <Checkbox
+            <CheckBoxStyled
               checked={tokenDetails?.burnRemains}
               onChange={() => setTokenDetails({ ...tokenDetails, burnRemains: !tokenDetails?.burnRemains })}
             />

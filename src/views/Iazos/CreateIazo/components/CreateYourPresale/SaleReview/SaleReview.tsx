@@ -20,17 +20,19 @@ const SaleReview: React.FC<SaleReviewProps> = ({
   baseFee,
 }) => {
   const { tokensForSale, pricePerToken } = presaleDetails
-  const { liquidityPercent } = postsaleDetails
+  const { liquidityPercent, listingPrice } = postsaleDetails
   const { totalSupply, tokenDecimals, quoteToken } = pairDetails
 
   const baseFeeFormatted = parseFloat(baseFee) / 1000
   const iazoTokenFeeFormatted = parseFloat(iazoTokenFee) / 1000
 
+  const priceDifference = Math.abs(parseFloat(pricePerToken) / parseFloat(listingPrice))
+
   // Tokenomics chart details
   const formatedTotalSupply = getBalanceNumber(new BigNumber(totalSupply), tokenDecimals)
 
   // Tokens for sale after subtracting liquidity and fees
-  const tokensForLiquidity = parseFloat(tokensForSale) * liquidityPercent
+  const tokensForLiquidity = parseFloat(tokensForSale) * priceDifference * liquidityPercent
   const tokensForFees = iazoTokenFeeFormatted * parseFloat(tokensForSale)
   const tokensForOther = formatedTotalSupply - parseFloat(tokensForSale) - tokensForLiquidity - tokensForFees
 
