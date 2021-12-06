@@ -4,13 +4,13 @@ import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import 'react-datepicker/dist/react-datepicker.css'
 import useWithdrawOfferTokens from 'views/Iazos/hooks/useWithdrawOfferTokens'
 import { IazoState } from 'state/types'
-import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { useAccountTokenBalance } from 'hooks/useTokenBalance'
 
 interface ApproveCreateIazoProps {
   tokenAddress?: string
   iazoAddress?: string
   tokensToClaim: number
-  iazoState: IazoState
+  iazoState?: IazoState
   onPendingClaim: (pendingTrx: boolean) => void
 }
 
@@ -27,11 +27,10 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const WithdrawTokens: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, onPendingClaim, tokenAddress, iazoState }) => {
+const WithdrawTokens: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, onPendingClaim, tokenAddress }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onWithdraw } = useWithdrawOfferTokens(iazoAddress)
   const contractBalance = useAccountTokenBalance(iazoAddress, tokenAddress)?.toNumber()
-  //   const iazoFailed = iazoState === 'FAILED'
 
   return contractBalance > 0 ? (
     <StyledButton

@@ -1,12 +1,11 @@
 import iazoAbi from 'config/abi/iazo.json'
 import iazoExposerAbi from 'config/abi/iazoExposer.json'
-import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import erc20Abi from 'config/abi/erc20.json'
-import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
+import { getIazoExposerAddress, getMulticallAddress } from 'utils/addressHelper'
 import multicallABI from 'config/abi/Multicall.json'
 import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
-import { IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
+import { IazoFeeInfo, IazoTimeInfo, IazoStatus, Iazo, IazoTokenInfo } from 'state/types'
 import BigNumber from 'bignumber.js'
 
 // Not being used anymore, but keeping just in case we need to flip if the API goes down
@@ -105,7 +104,6 @@ const fetchIazoData = async (chainId: number, address: string): Promise<Iazo> =>
 
 const fetchAllIazos = async (chainId: number): Promise<Iazo[]> => {
   const iazoExposerAddress = getIazoExposerAddress(chainId)
-  // const iazoSettingsAddress = getIazoSettingsAddress(chainId)
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const amountOfIazos = await multicall(multicallContract, iazoExposerAbi, [
@@ -118,26 +116,9 @@ const fetchAllIazos = async (chainId: number): Promise<Iazo[]> => {
       return { address: iazoExposerAddress, name: 'IAZOAtIndex', params: [i] }
     }),
   )
-  // const fetchIazoDefaultSettings = await multicall(multicallContract, iazoSettingsAbi, [
-  //   { address: iazoSettingsAddress, name: 'SETTINGS' },
-  // ])
-  // const iazoDefaultSettings = fetchIazoDefaultSettings[0]
-  // const iazoDefaultSettingsData: IazoDefaultSettings = {
-  //   adminAddress: iazoDefaultSettings[0].toString(),
-  //   feeAddress: iazoDefaultSettings[1].toString(),
-  //   burnAddress: iazoDefaultSettings[2].toString(),
-  //   baseFee: iazoDefaultSettings[3].toString(),
-  //   maxBaseFee: iazoDefaultSettings[4].toString(),
-  //   iazoTokenFee: iazoDefaultSettings[5].toString(),
-  //   maxIazoTokenFee: iazoDefaultSettings[6].toString(),
-  //   nativeCreationFee: iazoDefaultSettings[7].toString(),
-  //   minIazoLength: iazoDefaultSettings[8].toString(),
-  //   maxIazoLength: iazoDefaultSettings[9].toString(),
-  //   minLockPeriod: iazoDefaultSettings[10].toString(),
-  // }
 
   return Promise.all(
-    listOfIazoAddresses.map(async (address, i) => {
+    listOfIazoAddresses.map(async (address) => {
       return fetchIazoData(chainId, address[0])
     }),
   )

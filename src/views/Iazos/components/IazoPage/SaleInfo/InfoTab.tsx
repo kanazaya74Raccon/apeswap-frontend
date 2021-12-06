@@ -46,7 +46,7 @@ const BoldAfterText = styled(Text)<{ boldContent?: string }>`
 `
 
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
-  const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo, listingPrice, baseToken, tokenPrice } = iazo
+  const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo, listingPrice, tokenPrice } = iazo
   const { decimals, name, totalSupply } = iazoToken
   const { iazoTokenFee } = feeInfo
   const tokenTotalSupply = getBalanceNumber(new BigNumber(totalSupply), parseInt(decimals))

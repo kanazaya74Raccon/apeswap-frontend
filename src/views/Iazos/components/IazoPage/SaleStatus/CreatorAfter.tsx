@@ -80,9 +80,8 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
   const { symbol, decimals } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
-  const { tokensBought, deposited }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
+  const { tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
-  const baseTokensDeposited = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
 
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
