@@ -1,5 +1,6 @@
 import React from 'react'
 import { TagLink } from 'state/types'
+import { Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 export interface TooltipProps {
@@ -21,27 +22,23 @@ const TooltipContent = styled.div`
   max-height: 500px;
   z-index: 1000;
   position: absolute;
-  bottom: calc(100% + 16px);
+  bottom: calc(100% + 0px);
   transform: translate(34px, 0);
   right: 0;
   max-width: 246px;
   &:after {
     content: '';
-    display: block;
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid grey;
     bottom: 0;
     position: absolute;
-    transform: translate(-34px, 9px);
-    right: 0;
     z-index: 1000;
   }
 
   &:hover {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1000;
   }
 `
@@ -50,17 +47,27 @@ const Container = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+  pointer-events: auto !important;
   &:hover ${TooltipContent}, &:focus-within ${TooltipContent} {
-    display: block;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto !important;
   }
 `
 
 const StyledLink = styled.a`
+  margin-top: 5px;
+  position: relative;
+  display: block;
   font-family: Poppins;
+  font-weight: 400;
   font-size: 15px;
-  line-height: 25px;
   text-decoration: underline;
   align-text: center;
+  pointer-events: auto !important;
 `
 
 const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
@@ -68,15 +75,22 @@ const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
     <Container>
       {children}
       <TooltipContent>
-        {title}
+        <Text fontFamily="poppins" fontSize="19px" bold>
+          {' '}
+          {title}
+        </Text>
         {tagLinks?.map((tagLink) => {
           return (
-            <>
-              <br />
-              <StyledLink href={tagLink?.link} target="_blank" rel="noopener noreferrer">
-                {tagLink?.title}
-              </StyledLink>
-            </>
+            <StyledLink
+              href={tagLink?.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+            >
+              {tagLink?.title}
+            </StyledLink>
           )
         })}
       </TooltipContent>
