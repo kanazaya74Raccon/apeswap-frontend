@@ -9,7 +9,7 @@ import { IazoTokenInfo } from 'state/types'
 import useCommitToIazo from 'views/Iazos/hooks/useCommitToIazo'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
-import TokenInput from '../../CreateIazo/components/CreateYourPresale/PresaleDetails/TokenInput'
+import TokenInput from '../CreateIazo/components/CreateYourPresale/PresaleDetails/TokenInput'
 
 interface ApproveCreateIazoProps {
   iazoAddress: string

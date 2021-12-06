@@ -4,8 +4,8 @@ import { Text } from '@apeswapfinance/uikit'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
-import Header from '../components/Header'
-import TopNav from '../components/TopNav'
+import Header from '../Header'
+import TopNav from '../TopNav'
 
 const PageWrapper = styled.div`
   display: none;
