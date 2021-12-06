@@ -53,6 +53,7 @@ const Actions: React.FC<ActionsProps> = ({ presaleData, settings }) => {
           presaleData={presaleData}
           disabled={validated || !approved}
           creationFee={settings?.nativeCreationFee}
+          iazoFee={settings?.iazoTokenFee}
         />
       </ActionWrapper>
       <Validations presaleData={presaleData} onValidationChange={onValidationChange} settings={settings} />

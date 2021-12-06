@@ -15,6 +15,7 @@ interface CreatePresaleProps {
   presaleData: PresaleData
   disabled: boolean
   creationFee: string
+  iazoFee: string
 }
 
 const StyledButton = styled(ButtonSquare)`
@@ -30,7 +31,7 @@ const StyledButton = styled(ButtonSquare)`
   }
 `
 
-const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, creationFee }) => {
+const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, creationFee, iazoFee }) => {
   const { chainId, account } = useWeb3React()
   const history = useHistory()
   const { toastSuccess, toastError } = useToast()
@@ -62,7 +63,8 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
   const hardcapForApi = parseFloat(tokensForSale) * parseFloat(pricePerToken)
 
   // Format liquidity percent to be readable
-  const formattedLiquidityPercent = liquidityPercent * 1000
+  const formattedLiquidityPercent =
+    liquidityPercent === 1 ? liquidityPercent * 1000 - parseFloat(iazoFee) : liquidityPercent * 1000
 
   // Convert Date types into unix timestamp in seconds
   const startDateInSeconds = Math.floor(start.valueOf() / 1000)
