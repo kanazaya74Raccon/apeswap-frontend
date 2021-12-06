@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoDefaultSettings } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
+import { getBalanceNumber } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
 import { PresaleData, SaleInformation, DateObject, TokenSaleDetails, LiquidityLockDetails } from './types'
 
 interface ValidationProps {
@@ -186,13 +188,43 @@ export const presaleValidation = (data: TokenSaleDetails): { error: string; mess
   return validationList
 }
 
+const tokenAmountCheck = (
+  liquidityPercent: number,
+  listingPrice: string,
+  pricePerToken: string,
+  tokensForSale: string,
+  userBalance: string,
+  tokenDecimals: number,
+) => {
+  const validationList = []
+  const priceDifference = Math.abs(parseFloat(pricePerToken) / parseFloat(listingPrice))
+  const tokensForLiquidity = parseFloat(tokensForSale) * priceDifference * liquidityPercent
+  const totalTokens = tokensForLiquidity + parseFloat(tokensForSale)
+  const formattedUserBalance = getBalanceNumber(new BigNumber(userBalance), tokenDecimals)
+  if (totalTokens > formattedUserBalance) {
+    validationList.push({
+      error: 'Token Sale Exceeds User Balance',
+      message: `Your current tokens for sale ${totalTokens} should be lower than your balance ${formattedUserBalance}`,
+    })
+  }
+  return validationList
+}
+
 const Validations: React.FC<ValidationProps> = ({ presaleData, settings, onValidationChange }) => {
-  const { datesSelected, information, postsaleDetails, presaleTokenDetails } = presaleData
+  const { datesSelected, information, postsaleDetails, presaleTokenDetails, pairCreation } = presaleData
   const postSaleValid = postSaleValidation(postsaleDetails, presaleTokenDetails?.pricePerToken)
   const infoValid = informationValidation(information)
   const datesValid = dateSelectionValidation(datesSelected, settings?.maxIazoLength, settings?.minIazoLength)
   const presaleValid = presaleValidation(presaleTokenDetails)
-  const aggregatedErrors = [...postSaleValid, ...infoValid, ...datesValid, ...presaleValid]
+  const balanceValid = tokenAmountCheck(
+    postsaleDetails?.liquidityPercent,
+    postsaleDetails?.listingPrice,
+    presaleTokenDetails?.pricePerToken,
+    presaleTokenDetails?.tokensForSale,
+    pairCreation?.userBalance,
+    pairCreation?.tokenDecimals,
+  )
+  const aggregatedErrors = [...postSaleValid, ...infoValid, ...datesValid, ...presaleValid, ...balanceValid]
   const isValid =
     postSaleValid.length === 0 &&
     infoValid.length === 0 &&
