@@ -8,6 +8,7 @@ import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import ClaimIazo from '../../Actions/ClaimIazo'
+import WithdrawTokens from '../../Actions/WithdrawTokens'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -75,26 +76,18 @@ const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
 
-const CreatorAfter: React.FC<BeforeSaleProps> = ({
-  hardcap,
-  baseToken,
-  iazoToken,
-  status,
-  tokenPrice,
-  iazoAddress,
-  iazoState
-}) => {
-  const { symbol, decimals, address } = baseToken
+const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, iazoAddress, iazoState }) => {
+  const { symbol, decimals } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
-  const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
-  const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
+  const { tokensBought, deposited }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
+  const baseTokensDeposited = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
 
   const { totalBaseCollected } = status
-  const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
+  const iazoFailed = iazoState === 'FAILED'
 
   const onPendingClaim = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)
@@ -110,11 +103,35 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-        Tokens bought:{' '}
-      </BoldAfterText>
+      {iazoFailed ? (
+        <BoldAfterText>IAZO failed please claim your refund</BoldAfterText>
+      ) : (
+        <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+          Tokens bought:{' '}
+        </BoldAfterText>
+      )}
       {account ? (
-        <ClaimIazo iazoAddress={iazoAddress} tokensToClaim={tokensBoughtFormatted} onPendingClaim={onPendingClaim} iazoState={iazoState} />
+        <>
+          <ClaimIazo
+            iazoAddress={iazoAddress}
+            tokensToClaim={tokensBoughtFormatted}
+            onPendingClaim={onPendingClaim}
+            iazoState={iazoState}
+          />
+          <br />
+          {iazoFailed && (
+            <>
+              <BoldAfterText>IAZO Failed. Please withdraw all tokens. </BoldAfterText>
+              <WithdrawTokens
+                iazoAddress={iazoAddress}
+                tokensToClaim={tokensBoughtFormatted}
+                onPendingClaim={onPendingClaim}
+                iazoState={iazoState}
+                tokenAddress={iazoToken?.address}
+              />
+            </>
+          )}
+        </>
       ) : (
         <>
           <br />

@@ -316,3 +316,12 @@ export const userWithdraw = async (iazoContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const withdrawOfferTokensOnFailure = async (iazoContract, account) => {
+  return iazoContract.methods
+    .withdrawOfferTokensOnFailure()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

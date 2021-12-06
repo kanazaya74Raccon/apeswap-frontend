@@ -177,7 +177,13 @@
     "stateMutability": "view",
     "type": "function"
   },
-  { "inputs": [], "name": "addLiquidity", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [],
+    "name": "addLiquidity",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
   { "inputs": [], "name": "forceFailAdmin", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [],
@@ -242,5 +248,12 @@
     "type": "function"
   },
   { "inputs": [], "name": "userDepositNative", "outputs": [], "stateMutability": "payable", "type": "function" },
-  { "inputs": [], "name": "userWithdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }
+  { "inputs": [], "name": "userWithdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [],
+    "name": "withdrawOfferTokensOnFailure",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ]

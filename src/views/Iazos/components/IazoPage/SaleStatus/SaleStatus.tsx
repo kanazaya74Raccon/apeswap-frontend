@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useCurrentTime from 'hooks/useTimer'
+import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import DuringSale from './DuringSale'
 import AfterSale from './AfterSale'
 import BeforeSale from './BeforeSale'
+import CreatorAfter from './CreatorAfter'
 
 interface SaleStatus {
   timeInfo: IazoTimeInfo
@@ -19,6 +21,7 @@ interface SaleStatus {
   liquidityPercent: string
   maxSpend: string
   iazoState: IazoState
+  iazoOwner: string
 }
 
 const SaleStatusContainer = styled.div`
@@ -46,7 +49,9 @@ const SaleStatus: React.FC<SaleStatus> = ({
   liquidityPercent,
   maxSpend,
   iazoState,
+  iazoOwner,
 }) => {
+  const { account } = useWeb3React()
   const { activeTime, startTime } = timeInfo
   const { symbol, decimals } = baseToken
   const currentTime = useCurrentTime() / 1000
@@ -69,31 +74,45 @@ const SaleStatus: React.FC<SaleStatus> = ({
         />
       )
     }
-    if (timeUntilEnd > 0 && iazoState !== 'HARD_CAP_MET' && iazoState !== 'FAILED') {
+    if (timeUntilEnd < 0 || iazoState === 'HARD_CAP_MET' || iazoState === 'FAILED') {
+      if (account === iazoOwner) {
+        return (
+          <CreatorAfter
+            timeInfo={timeInfo}
+            hardcap={hardcap}
+            baseToken={baseToken}
+            status={status}
+            iazoAddress={iazoAddress}
+            tokenPrice={tokenPriceFormatted}
+            iazoToken={iazoToken}
+            iazoState={iazoState}
+          />
+        )
+      }
       return (
-        <DuringSale
+        <AfterSale
           timeInfo={timeInfo}
           hardcap={hardcap}
           baseToken={baseToken}
           status={status}
           iazoAddress={iazoAddress}
           tokenPrice={tokenPriceFormatted}
-          liquidityPercent={liquidityPercent}
           iazoToken={iazoToken}
-          maxSpend={maxSpend}
+          iazoState={iazoState}
         />
       )
     }
     return (
-      <AfterSale
+      <DuringSale
         timeInfo={timeInfo}
         hardcap={hardcap}
         baseToken={baseToken}
         status={status}
         iazoAddress={iazoAddress}
         tokenPrice={tokenPriceFormatted}
+        liquidityPercent={liquidityPercent}
         iazoToken={iazoToken}
-        iazoState={iazoState}
+        maxSpend={maxSpend}
       />
     )
   }
