@@ -82,6 +82,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
         {tagLinks?.map((tagLink) => {
           return (
             <StyledLink
+              key={tagLink.title}
               href={tagLink?.link}
               target="_blank"
               rel="noopener noreferrer"
