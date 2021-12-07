@@ -1,0 +1,182 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "newIAZO", "type": "address" }],
+    "name": "IAZOCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "contract IIAZO", "name": "newIAZO", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "versionId", "type": "uint256" }
+    ],
+    "name": "PushIAZOVersion",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "receiver", "type": "address" },
+      { "indexed": true, "internalType": "contract IERC20", "name": "token", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "balance", "type": "uint256" }
+    ],
+    "name": "SweepWithdraw",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint256", "name": "previousVersion", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "newVersion", "type": "uint256" }
+    ],
+    "name": "UpdateIAZOVersion",
+    "type": "event"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "IAZOImplementations",
+    "outputs": [{ "internalType": "contract IIAZO", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "IAZOVersion",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "IAZO_EXPOSER",
+    "outputs": [{ "internalType": "contract IIAZO_EXPOSER", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "IAZO_LIQUIDITY_LOCKER",
+    "outputs": [{ "internalType": "contract IIAZOLiquidityLocker", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "IAZO_SETTINGS",
+    "outputs": [{ "internalType": "contract IIAZOSettings", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "WNative",
+    "outputs": [{ "internalType": "contract IWNative", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address payable", "name": "_IAZOOwner", "type": "address" },
+      { "internalType": "contract ERC20", "name": "_IAZOToken", "type": "address" },
+      { "internalType": "contract ERC20", "name": "_baseToken", "type": "address" },
+      { "internalType": "bool", "name": "_burnRemains", "type": "bool" },
+      { "internalType": "uint256[9]", "name": "_uint_params", "type": "uint256[9]" }
+    ],
+    "name": "createIAZO",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_tokenPrice", "type": "uint256" }
+    ],
+    "name": "getHardCap",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_amount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_tokenPrice", "type": "uint256" },
+      { "internalType": "uint256", "name": "_listingPrice", "type": "uint256" },
+      { "internalType": "uint256", "name": "_liquidityPercent", "type": "uint256" }
+    ],
+    "name": "getTokensRequired",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "contract IIAZO_EXPOSER", "name": "_iazoExposer", "type": "address" },
+      { "internalType": "contract IIAZOSettings", "name": "_iazoSettings", "type": "address" },
+      { "internalType": "contract IIAZOLiquidityLocker", "name": "_iazoliquidityLocker", "type": "address" },
+      { "internalType": "contract IIAZO", "name": "_iazoInitialImplementation", "type": "address" },
+      { "internalType": "contract IWNative", "name": "_wnative", "type": "address" },
+      { "internalType": "address", "name": "_admin", "type": "address" }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isIAZOFactory",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "contract IIAZO", "name": "_newIAZOImplementation", "type": "address" }],
+    "name": "pushIAZOVersion",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_newIAZOVersion", "type": "uint256" }],
+    "name": "setIAZOVersion",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "contract IERC20[]", "name": "_tokens", "type": "address[]" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "sweepTokens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

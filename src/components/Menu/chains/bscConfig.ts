@@ -28,7 +28,16 @@ const bscConfig: MenuEntry[] = [
   {
     label: 'IAO',
     icon: 'IfoIcon',
-    href: '/iao',
+    items: [
+      {
+        label: 'Official',
+        href: '/iao',
+      },
+      {
+        label: 'Self-Serve',
+        href: '/ss-iao',
+      },
+    ],
   },
   {
     label: 'NFA',

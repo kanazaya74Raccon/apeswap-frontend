@@ -31,6 +31,8 @@ import {
   Vault,
   VaultsState,
   TokenPricesState,
+  IazosState,
+  Iazo,
   NfaStakingPool,
   DualFarm,
   HomepageData,
@@ -42,6 +44,7 @@ import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
+import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
@@ -85,7 +88,7 @@ export const useFetchPublicData = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
-    if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
+    if (chainId === CHAIN_ID.BSC) {
       dispatch(fetchFarmsPublicDataAsync(chainId))
       dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
     }
@@ -421,6 +424,48 @@ export const useAuctions = () => {
   return { auctions: data, isInitialized, isLoading }
 }
 
+export const useFetchIazoSettings = () => {
+  const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchSettings(chainId))
+  }, [dispatch, slowRefresh, chainId])
+}
+
+export const useFetchIazos = () => {
+  const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchIazos(chainId))
+  }, [dispatch, slowRefresh, chainId])
+}
+
+export const useFetchIazo = (address: string) => {
+  const dispatch = useDispatch()
+  const chainId = useNetworkChainId()
+  const { fastRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchIazo(chainId, address))
+  }, [dispatch, fastRefresh, chainId, address])
+}
+
+export const useIazos = () => {
+  const { isInitialized, isLoading, iazoData }: IazosState = useSelector((state: State) => state.iazos)
+  return { iazos: iazoData, isInitialized, isLoading }
+}
+
+export const useIazoSettings = () => {
+  const { iazoDefaultSettings }: IazosState = useSelector((state: State) => state.iazos)
+  return iazoDefaultSettings
+}
+
+export const useIazoFromAddress = (address): Iazo => {
+  const iazo: Iazo = useSelector((state: State) => state.iazos.iazoData.find((i) => i.iazoContractAddress === address))
+  return iazo
+}
+
 export const useFetchTokenPrices = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
@@ -433,6 +478,21 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useTokenPriceFromSymbol = (symbol: string) => {
+  const tokenPrice = useSelector((state: State) =>
+    state.tokenPrices.data.find((token) => token.symbol === symbol),
+  ).price
+  return tokenPrice
+}
+
+export const useTokenPriceFromAddress = (address: string) => {
+  const chainId = useNetworkChainId()
+  const tokenPrice = useSelector((state: State) =>
+    state?.tokenPrices?.data?.find((token) => token.address[chainId].toLowerCase() === address.toLowerCase()),
+  )?.price
+  return tokenPrice
 }
 
 export const usePendingUsd = () => {
