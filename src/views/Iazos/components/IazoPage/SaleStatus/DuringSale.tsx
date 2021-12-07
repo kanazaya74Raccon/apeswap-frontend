@@ -91,6 +91,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
+  const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const maxSpendFormatted = getBalanceNumber(new BigNumber(maxSpend), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
@@ -106,7 +107,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         {baseCollectedFormatted.toString() === 'NaN' ? (
           <Skeleton width="200px" height="30px" />
         ) : (
-          `${baseCollectedFormatted} / ${hardcap} ${symbol}`
+          `${baseCollectedFormatted} / ${hardcapFormatted} ${symbol}`
         )}
       </Heading>
       <ProgressBarWrapper>

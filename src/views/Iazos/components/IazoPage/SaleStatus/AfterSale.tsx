@@ -57,6 +57,8 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   const { tokensBought, deposited }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
   const baseTokensDeposited = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
+  const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
+
 
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
@@ -70,7 +72,7 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   return (
     <BeforeSaleWrapper>
       <Heading>
-        {baseCollectedFormatted} / {hardcap} {symbol}
+        {baseCollectedFormatted} / {hardcapFormatted} {symbol}
       </Heading>
       <ProgressBarWrapper>
         <ProgressBar>
