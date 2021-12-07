@@ -25,7 +25,7 @@ const ApeZone: { ifos: Ifo[] } = {
     {
       id: 'gan',
       address: '0x11D8aB92837085eA0e410EA96eDd8D751894933d', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       name: 'Galactic Arena',
       subTitle: 'Welcome to the Galactic Arena!',
       description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
