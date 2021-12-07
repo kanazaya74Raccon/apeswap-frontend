@@ -315,7 +315,9 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const allowance = userData?.allowance
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
-  const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString(undefined, { maximumFractionDigits: 4 }) : '?'
+  const displayBalance = rawEarningsBalance
+    ? rawEarningsBalance.toLocaleString(undefined, { maximumFractionDigits: 4 })
+    : '?'
   const isLoading = !pool.userData
   const { account } = useWeb3React()
   const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
