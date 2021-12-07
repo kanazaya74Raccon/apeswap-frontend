@@ -8,7 +8,7 @@ const ApeZone: { ifos: Ifo[] } = {
       isActive: true,
       name: '99Starz',
       subTitle: `The World's Biggest NFT Yield Ecosystem`,
-      description: `99Starz is creating a results driven cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and the 99Starz asset leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare to name a few.`,
+      description: `99Starz is creating a results driven cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and the 99Starz NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare to name a few.`,
       launchDate: 'December 11th',
       launchTime: '5:00 UTC',
       saleAmount: '500,000 STZ',
