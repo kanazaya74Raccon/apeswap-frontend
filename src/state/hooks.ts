@@ -233,7 +233,7 @@ export const usePollNfaStakingData = () => {
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
-    fetchNfaStakingPoolsPublicDataAsync(chainId, tokenPrices)
+    dispatch(fetchNfaStakingPoolsPublicDataAsync(chainId, tokenPrices))
     if (account) {
       dispatch(fetchNfaStakingPoolsUserDataAsync(chainId, account))
     }

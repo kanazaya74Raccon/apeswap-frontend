@@ -44,7 +44,6 @@ const PaddedCard = styled(Card)`
 `
 
 const Zone = () => {
-
   return (
     <>
       <Description />

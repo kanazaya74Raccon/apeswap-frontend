@@ -42,6 +42,10 @@ const bscConfig: MenuEntry[] = [
         label: 'Auction',
         href: '/auction',
       },
+      {
+        label: 'Staking',
+        href: '/staking',
+      },
     ],
   },
   {
