@@ -51,7 +51,7 @@ const bscConfig: MenuEntry[] = [
   },
   {
     label: 'Burn',
-    icon: 'SunIcon',
+    icon: 'GameBurnIcon',
     href: '/burn',
   },
   {
