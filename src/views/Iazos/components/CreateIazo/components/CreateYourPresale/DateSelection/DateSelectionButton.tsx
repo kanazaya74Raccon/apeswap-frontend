@@ -39,7 +39,7 @@ const DatePickerContainer = styled.div`
 
 const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }) => {
   const [datePickerOpen, setDatePickerOpen] = useState(false)
-  const delayedDate = new Date(new Date().setDate(new Date().getDate() + 0))
+  const delayedDate = new Date(new Date().setDate(new Date().getDate() + 10))
   const [date, setDate] = useState<Date>(delayedDate)
   const datePickerRef = useRef(null)
   const iconRef = useRef(null)
