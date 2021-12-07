@@ -320,7 +320,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     : '?'
   const isLoading = !pool.userData
   const { account } = useWeb3React()
-  const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
+  const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toFixed(3)
 
   const cardHeaderButton = () => {
     if (!account) {
