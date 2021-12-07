@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-// import { BLOCKS_PER_DAY } from 'config'
+import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
@@ -11,7 +11,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
-// import StakeAction from './CardActions/StakeActions'
+import StakeAction from './CardActions/StakeActions'
 import Image from '../../../Nft/components/Image'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
@@ -308,17 +308,19 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   showExpandableSection,
 }) => {
   const TranslateString = useI18n()
-  const { userData } = pool
-  // const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  const { userData, tokenPerBlock, totalStaked } = pool
+  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
-  const allowance = 1 // userData?.allowance
+  const allowance = userData?.allowance
   const rawEarningsBalance = getBalanceNumber(earnings, 18)
-  const displayBalance = rawEarningsBalance ? rawEarningsBalance.toLocaleString() : '?'
+  const displayBalance = rawEarningsBalance
+    ? rawEarningsBalance.toLocaleString(undefined, { maximumFractionDigits: 4 })
+    : '?'
   const isLoading = !pool.userData
   const { account } = useWeb3React()
-  // const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toNumber()
+  const bananaPerDay = BLOCKS_PER_DAY.times(new BigNumber(tokenPerBlock)).div(totalStaked).toFixed(3)
 
   const cardHeaderButton = () => {
     if (!account) {
@@ -331,15 +333,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
     }
     if (allowance && !accountHasStakedBalance) {
       return (
-        // <StakeAction
-        //   pool={pool}
-        //   stakingTokenBalance={stakingTokenBalance}
-        //   stakedBalance={stakedBalance}
-        //   isStaked={accountHasStakedBalance}
-        //   firstStake={!accountHasStakedBalance}
-        //   tier={tier}
-        // />
-        <></>
+        <StakeAction
+          pool={pool}
+          stakingTokenBalance={stakingTokenBalance}
+          stakedBalance={stakedBalance}
+          isStaked={accountHasStakedBalance}
+          firstStake={!accountHasStakedBalance}
+          tier={tier}
+        />
       )
     }
     return <HarvestActions earnings={earnings} sousId={sousId} isLoading={isLoading} tokenDecimals={18} />
@@ -361,8 +362,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer>
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
-            <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">BPD: 0</StyledText1>
+            <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+              <StyledText1 fontFamily="poppins">BPD: {bananaPerDay}</StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
