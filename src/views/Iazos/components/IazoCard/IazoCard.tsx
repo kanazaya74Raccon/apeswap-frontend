@@ -155,7 +155,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const totalRaiseFormated = getBalanceNumber(new BigNumber(status.totalBaseCollected), parseInt(baseToken.decimals))
   const softcapFormated = getBalanceNumber(new BigNumber(softcap), parseInt(baseToken.decimals))
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(baseToken.decimals))
-  const percentRaised = (totalRaiseFormated / parseFloat(hardcap)) * 100
+  const percentRaised = (totalRaiseFormated / hardcapFormatted) * 100
   const liqudiityLock = parseInt(liquidityPercent) / 10
   const duration = getTimePeriods(parseInt(activeTime), true)
   const lockTime = getTimePeriods(parseInt(lockPeriod), true)

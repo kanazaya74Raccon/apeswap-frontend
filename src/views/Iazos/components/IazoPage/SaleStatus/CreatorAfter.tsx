@@ -61,7 +61,7 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
 
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
-  const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
+  const percentRaised = (baseCollectedFormatted / hardcapFormatted) * 100
   const iazoFailed = iazoState === 'FAILED'
 
   const onPendingClaim = useCallback((pendingTrx: boolean) => {

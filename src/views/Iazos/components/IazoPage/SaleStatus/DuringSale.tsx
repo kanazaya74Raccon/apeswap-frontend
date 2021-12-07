@@ -93,9 +93,10 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
   const maxSpendFormatted = getBalanceNumber(new BigNumber(maxSpend), parseInt(decimals))
-  const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
+  const percentRaised = (baseCollectedFormatted / hardcapFormatted) * 100
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
+  
 
   const onPendingContribute = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)
