@@ -15,6 +15,7 @@ const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string; fo
     content: '${(props) => props.boldContent}';
   }
 `
+
 interface TimerProps {
   timeInfo: IazoTimeInfo
   fontColor?: string

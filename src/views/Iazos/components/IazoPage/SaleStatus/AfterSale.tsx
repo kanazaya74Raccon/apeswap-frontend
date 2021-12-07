@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
 import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
@@ -8,6 +7,7 @@ import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import ClaimIazo from '../../Actions/ClaimIazo'
+import { BoldAfterTextLarge, Heading } from '../../styles'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -28,15 +28,6 @@ const BeforeSaleWrapper = styled.div`
   flex-direction: column;
 `
 
-const Heading = styled(Text)`
-  font-family: Poppins;
-  font-weight: 700;
-  font-size: 25px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 30px;
-  }
-`
-
 const ProgressBarWrapper = styled.div`
   width: 280px;
   margin-top: 15px;
@@ -52,22 +43,6 @@ const ProgressBar = styled.div`
   width: 100%;
   border-radius: 20px;
   background: #c4c4c4;
-`
-const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
-  font-size: 13px;
-  &:after {
-    font-weight: 700;
-    font-size: 14px;
-    ${({ theme }) => theme.mediaQueries.md} {
-      font-size: 17px;
-    }
-    content: '${(props) => props.boldContent}';
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 16px;
-  }
 `
 
 const Progress = styled(ProgressBar)<{ percentComplete: string }>`
@@ -103,11 +78,11 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
         </ProgressBar>
       </ProgressBarWrapper>
       {iazoFailed ? (
-        <BoldAfterText>IAZO failed please claim your refund</BoldAfterText>
+        <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
       ) : (
-        <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+        <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
           Tokens bought:{' '}
-        </BoldAfterText>
+        </BoldAfterTextLarge>
       )}
       {account ? (
         <ClaimIazo

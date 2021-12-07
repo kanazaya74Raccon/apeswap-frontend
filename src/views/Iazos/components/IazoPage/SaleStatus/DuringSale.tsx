@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Text, Skeleton } from '@apeswapfinance/uikit'
+import { Skeleton } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import UnlockButton from 'components/UnlockButton'
@@ -11,6 +11,7 @@ import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUs
 import Timer from '../../IazoCard/Timer'
 import Actions from '../../Actions'
 import IazoSymbols from '../../IazoSymbols'
+import { BoldAfterTextLarge, Heading } from '../../styles'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -32,15 +33,6 @@ const BeforeSaleWrapper = styled.div`
   flex-direction: column;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
-  }
-`
-
-const Heading = styled(Text)`
-  font-family: Poppins;
-  font-weight: 700;
-  font-size: 25px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 30px;
   }
 `
 
@@ -71,23 +63,6 @@ const IazoSymbolsContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     align-items: flex-start;
     justify-content: space-between;
-  }
-`
-
-const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
-  font-size: 13px;
-  &:after {
-    font-weight: 700;
-    font-size: 14px;
-    ${({ theme }) => theme.mediaQueries.md} {
-      font-size: 17px;
-    }
-    content: '${(props) => props.boldContent}';
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 16px;
   }
 `
 
@@ -143,12 +118,12 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
       {tokensDepositedFormatted > 0 && (
         <>
           <br />
-          <BoldAfterText boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+          <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
             Tokens bought:{' '}
-          </BoldAfterText>
-          <BoldAfterText boldContent={`${tokensDepositedFormatted.toString()} ${symbol}`}>
+          </BoldAfterTextLarge>
+          <BoldAfterTextLarge boldContent={`${tokensDepositedFormatted.toString()} ${symbol}`}>
             Amount contributed:{' '}
-          </BoldAfterText>
+          </BoldAfterTextLarge>
         </>
       )}
       {account ? (

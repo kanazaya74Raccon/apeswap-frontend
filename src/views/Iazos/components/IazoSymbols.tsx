@@ -44,10 +44,7 @@ const FullIconContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px 10px 10px 10px;
 `
 
 const SvgContainer = styled.div<{ link: boolean }>`

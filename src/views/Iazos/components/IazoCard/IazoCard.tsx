@@ -5,6 +5,7 @@ import { Iazo } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { BoldAfterText } from '../styles'
 import Timer from './Timer'
 import Badges from './Badges'
 
@@ -119,19 +120,6 @@ const TokenName = styled(Text)`
   font-weight: 700;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 24px;
-  }
-`
-
-const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
-  font-size: 10px;
-  &:after {
-    font-weight: 700;
-    content: '${(props) => props.boldContent}';
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 16px;
   }
 `
 
