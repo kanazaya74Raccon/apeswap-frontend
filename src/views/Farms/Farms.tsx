@@ -119,6 +119,7 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 24px;
     padding-right: 24px;
+    height: 300px;
   }
 `
 
@@ -395,7 +396,6 @@ const FlexLayout = styled.div`
 
 const Farms: React.FC = () => {
   const size: Size = useWindowSize()
-
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()

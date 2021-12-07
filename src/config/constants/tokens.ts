@@ -695,6 +695,118 @@ const tokens = {
     },
     decimals: 18,
   },
+  bcpay: {
+    symbol: 'BCPAY',
+    address: {
+      56: '0x21f1ce0FCf1E9E39F8e79B7762801E8096d9f6CD',
+    },
+    decimals: 8,
+  },
+  ibfr: {
+    symbol: 'iBFR',
+    address: {
+      56: '0xa296aD1C47FE6bDC133f39555C1D1177BD51fBc5',
+    },
+    decimals: 18,
+  },
+  sata: {
+    symbol: 'SATA',
+    address: {
+      56: '0x6b1C8765C7EFf0b60706b0ae489EB9bb9667465A',
+    },
+    decimals: 18,
+  },
+  lico: {
+    symbol: 'LICO',
+    address: {
+      56: '0x4F3266a56589357B4f8082918b14B923693e57f0',
+    },
+    decimals: 18,
+  },
+  lime: {
+    symbol: 'LIME',
+    address: {
+      56: '0x7bC75e291E656E8658D66Be1cc8154A3769A35Dd',
+    },
+    decimals: 18,
+  },
+  fxs: {
+    symbol: 'FXS',
+    address: {
+      56: '0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE',
+    },
+    decimals: 18,
+  },
+  relay: {
+    symbol: 'RELAY',
+    address: {
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    decimals: 18,
+  },
+  quidd: {
+    symbol: 'QUIDD',
+    address: {
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    decimals: 18,
+  },
+  moni: {
+    symbol: 'MONI',
+    address: {
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    decimals: 18,
+  },
+  info: {
+    symbol: 'INFO',
+    address: {
+      56: '0xdF727040d3997b5D95deE8c661fA96E3c13eE0C9',
+    },
+    decimals: 18,
+  },
+  shill: {
+    symbol: 'SHILL',
+    address: {
+      56: '0xfb9C339b4BacE4Fe63ccc1dd9a3c3C531441D5fE',
+    },
+    decimals: 18,
+  },
+  lmn: {
+    symbol: 'LMN',
+    address: {
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    decimals: 18,
+  },
+  hera: {
+    symbol: 'HERA',
+    address: {
+      56: '0x49C7295ff86EaBf5bf58C6eBC858DB4805738c01',
+    },
+    decimals: 18,
+  },
+  gmee: {
+    symbol: 'GMEE',
+    address: {
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    decimals: 18,
+  },
+  arv: {
+    symbol: 'ARV',
+    address: {
+      56: '0x6679eB24F59dFe111864AEc72B443d1Da666B360',
+    },
+    decimals: 8,
+  },
+  rasko: {
+    symbol: 'rASKO',
+    address: {
+      56: '0xd118f42eDbc839F7e1E85d5269A25288792c141B',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

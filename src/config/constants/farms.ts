@@ -99,6 +99,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.bitfresh.win',
   },
   {
     pid: 28,
@@ -115,6 +116,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://squirrel.finance/',
   },
   {
     pid: 41,
@@ -131,6 +133,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://autofarm.network/',
   },
   {
     pid: 42,
@@ -147,6 +150,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://xbtc.fi/',
   },
   {
     pid: 50,
@@ -163,6 +167,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.nerve.fi',
   },
   {
     pid: 43,
@@ -181,6 +186,7 @@ const farms: FarmConfig[] = [
     disableApr: true,
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://valuedefi.io/',
   },
   {
     pid: 44,
@@ -197,6 +203,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.yieldwatch.net/',
   },
   {
     pid: 30,
@@ -213,6 +220,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://keyfi.com/',
   },
   {
     pid: 31,
@@ -229,6 +237,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ont.io',
   },
   {
     pid: 27,
@@ -245,6 +254,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://jdiyield.com',
   },
   {
     pid: 49,
@@ -261,6 +271,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://fantom.foundation/',
   },
   {
     pid: 32,
@@ -277,6 +288,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ripple.com/xrp/',
   },
   {
     pid: 52,
@@ -293,6 +305,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://z.cash/',
   },
   {
     pid: 54,
@@ -309,6 +322,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://near.org/',
   },
   {
     pid: 56,
@@ -325,6 +339,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.synthetix.io/',
   },
   {
     pid: 57,
@@ -341,6 +356,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bluzelle.com/',
   },
   {
     pid: 58,
@@ -357,6 +373,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://apetools.co/',
   },
   {
     pid: 59,
@@ -373,6 +390,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.celer.network/',
   },
   {
     pid: 60,
@@ -389,6 +407,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://shibatoken.com/',
   },
   {
     pid: 61,
@@ -405,6 +424,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.bitcrush.com/',
   },
   {
     pid: 62,
@@ -421,6 +441,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://game.seascape.network/',
   },
   {
     pid: 53,
@@ -437,6 +458,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://coti.io/',
   },
   {
     pid: 51,
@@ -453,6 +475,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.avalabs.org/',
   },
   {
     pid: 45,
@@ -469,6 +492,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://polygon.technology/',
   },
   {
     pid: 46,
@@ -485,6 +509,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://aave.com/',
   },
   {
     pid: 47,
@@ -501,6 +526,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ethereumclassic.org/',
   },
   {
     pid: 48,
@@ -517,6 +543,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://compound.finance/',
   },
   {
     pid: 38,
@@ -533,6 +560,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://dogecoin.com/',
   },
   {
     pid: 39,
@@ -549,6 +577,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://litecoin.org/',
   },
   {
     pid: 33,
@@ -565,6 +594,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://polkadot.network/',
   },
   {
     pid: 35,
@@ -581,6 +611,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://swipe.io/',
   },
   {
     pid: 36,
@@ -597,6 +628,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://chain.link/',
   },
   {
     pid: 17,
@@ -613,6 +645,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cardano.org/',
   },
   {
     pid: 18,
@@ -629,6 +662,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
+    projectLink: 'https://cardano.org/',
   },
   {
     pid: 22,
@@ -645,6 +679,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.iota.org/',
   },
   {
     pid: 20,
@@ -661,6 +696,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://basicattentiontoken.org/',
   },
   {
     pid: 21,
@@ -677,6 +713,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
+    projectLink: 'https://basicattentiontoken.org/',
   },
   {
     pid: 12,
@@ -726,6 +763,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://makerdao.com/en/',
   },
   {
     pid: 34,
@@ -758,6 +796,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://app.sushi.com/',
   },
   {
     pid: 14,
@@ -774,6 +813,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
+    projectLink: 'https://app.sushi.com/',
   },
   {
     pid: 55,
@@ -790,6 +830,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://moonlighttoken.com/',
   },
   {
     pid: 24,
@@ -806,6 +847,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://astronaut.to',
   },
   {
     pid: 26,
@@ -822,6 +864,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.bakeryswap.org/',
   },
   {
     pid: 25,
@@ -838,6 +881,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://pancakeswap.finance/',
   },
   {
     pid: 4,
@@ -870,6 +914,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://jetfuel.finance/',
   },
   {
     pid: 11,
@@ -886,6 +931,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.beefy.finance/',
   },
   {
     pid: 29,
@@ -902,6 +948,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://swamp.finance',
   },
   {
     pid: 63,
@@ -918,6 +965,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://typhoon.network/',
   },
   {
     pid: 64,
@@ -934,6 +982,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://multiplier.finance/',
   },
   {
     pid: 69,
@@ -950,6 +999,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://hifigamingsociety.com',
   },
   {
     pid: 70,
@@ -966,6 +1016,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.gmr.finance/',
   },
   {
     pid: 65,
@@ -982,6 +1033,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://aperocket.finance/',
   },
   {
     pid: 66,
@@ -998,6 +1050,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://fegtoken.com/',
   },
 
   {
@@ -1015,6 +1068,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.ata.network/',
   },
   {
     pid: 68,
@@ -1031,6 +1085,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.thegrandbanks.finance/',
   },
   {
     pid: 71,
@@ -1047,6 +1102,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://farmhero.io/',
   },
   {
     pid: 72,
@@ -1063,6 +1119,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://twin.finance/',
   },
   {
     pid: 73,
@@ -1079,6 +1136,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.mobox.io/',
   },
   {
     pid: 74,
@@ -1095,6 +1153,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://foxynft.org',
   },
   {
     pid: 76,
@@ -1111,6 +1170,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://wyverntoken.com/',
   },
   {
     pid: 77,
@@ -1127,6 +1187,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bogged.finance/',
   },
   {
     pid: 79,
@@ -1143,6 +1204,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://yieldparrot.finance',
   },
   {
     pid: 78,
@@ -1159,6 +1221,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://scamily.io/',
   },
   {
     pid: 80,
@@ -1175,6 +1238,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.fruitsadventures.com/',
   },
   {
     pid: 81,
@@ -1191,6 +1255,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.cryptoblades.io/',
   },
   {
     pid: 82,
@@ -1207,6 +1272,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.greentrusttoken.com/',
   },
   {
     pid: 83,
@@ -1223,6 +1289,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.safepal.io/',
   },
   {
     pid: 84,
@@ -1239,6 +1306,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://trustwallet.com/',
   },
   {
     pid: 85,
@@ -1255,6 +1323,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ellipsis.finance/',
   },
   {
     pid: 86,
@@ -1271,6 +1340,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://venus.io/',
   },
   {
     pid: 87,
@@ -1287,6 +1357,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://pacoca.io',
   },
   {
     pid: 88,
@@ -1303,10 +1374,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.newb.farm/',
   },
   {
     pid: 89,
-    image: '',
+    image: 'BISON.png',
     lpSymbol: 'BISON-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1319,6 +1391,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bishares.finance',
   },
   {
     pid: 90,
@@ -1335,6 +1408,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://yearn.finance/',
   },
   {
     pid: 91,
@@ -1351,6 +1425,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.mogulproductions.com/',
   },
   {
     pid: 92,
@@ -1367,6 +1442,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://srnartgallery.com',
   },
   {
     pid: 93,
@@ -1383,6 +1459,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.ternoa.com/',
   },
   {
     pid: 94,
@@ -1399,6 +1476,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://birb.com/',
   },
   {
     pid: 95,
@@ -1415,6 +1493,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://axieinfinity.com/',
   },
   {
     pid: 96,
@@ -1431,6 +1510,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.dinopark.fun/',
   },
   {
     pid: 97,
@@ -1447,6 +1527,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://riyoku.tv/',
   },
   {
     pid: 98,
@@ -1463,10 +1544,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://pera.finance',
   },
   {
     pid: 99,
-    image: '',
+    image: 'GUARD.png',
     lpSymbol: 'GUARD-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1479,6 +1561,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.wolfdencrypto.com/',
   },
   {
     pid: 100,
@@ -1495,6 +1578,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://landshare.io/',
   },
   {
     pid: 101,
@@ -1511,6 +1595,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://moonpot.com/',
   },
   {
     pid: 102,
@@ -1527,6 +1612,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://srnartgallery.com/',
   },
   {
     pid: 103,
@@ -1543,6 +1629,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://billionhappiness.finance/',
   },
   {
     pid: 104,
@@ -1559,6 +1646,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://dragonary.com/',
   },
   {
     pid: 105,
@@ -1575,6 +1663,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://hotcross.com/',
   },
   {
     pid: 106,
@@ -1591,6 +1680,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lympo.io/lmt/',
   },
   {
     pid: 107,
@@ -1607,6 +1697,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bigfoottoken.finance/',
   },
   {
     pid: 108,
@@ -1623,6 +1714,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://nabox.io/',
   },
   {
     pid: 109,
@@ -1639,6 +1731,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://babylons.io/',
   },
   {
     pid: 110,
@@ -1655,6 +1748,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://revvmotorsport.com/',
   },
   {
     pid: 111,
@@ -1671,6 +1765,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://wizard.financial',
   },
   {
     pid: 113,
@@ -1687,6 +1782,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://zignaly.com/',
   },
   {
     pid: 114,
@@ -1703,6 +1799,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://nerve.network/',
   },
   {
     pid: 115,
@@ -1719,6 +1816,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://mor.growthdefi.com/',
   },
   {
     pid: 116,
@@ -1735,6 +1833,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.polarsync.app/',
   },
   {
     pid: 117,
@@ -1751,6 +1850,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ceek.com/',
   },
   {
     pid: 118,
@@ -1767,6 +1867,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ydragon.io/',
   },
   {
     pid: 119,
@@ -1783,6 +1884,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ont.io/',
   },
   {
     pid: 120,
@@ -1799,6 +1901,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://dea.sg/',
   },
   {
     pid: 121,
@@ -1815,6 +1918,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://risingsun.finance/',
   },
   {
     pid: 122,
@@ -1831,6 +1935,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://tixl.org/',
   },
   {
     pid: 123,
@@ -1847,6 +1952,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://seedify.fund/',
   },
   {
     pid: 124,
@@ -1863,6 +1969,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.phx.finance/',
   },
   {
     pid: 125,
@@ -1879,6 +1986,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ferrum.network/',
   },
   {
     pid: 126,
@@ -1895,6 +2003,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://gamexchange.app/',
   },
   {
     pid: 127,
@@ -1911,6 +2020,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cyberfi.tech/',
   },
   {
     pid: 128,
@@ -1927,6 +2037,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.sx.technology/',
   },
   {
     pid: 129,
@@ -1943,6 +2054,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.rocki.app/',
   },
   {
     pid: 130,
@@ -1959,6 +2071,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://gummybull.io/',
   },
   {
     pid: 131,
@@ -1975,10 +2088,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://decubate.com/',
   },
   {
     pid: 132,
-    image: '',
+    image: 'NFTY.png',
     lpSymbol: 'NFTY-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1991,6 +2105,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://nftynetwork.io/',
   },
   {
     pid: 133,
@@ -2007,6 +2122,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://secretswap.io/',
   },
   {
     pid: 134,
@@ -2023,6 +2139,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.ihcoin.io/',
   },
   {
     pid: 135,
@@ -2039,6 +2156,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://prosper.so/',
   },
   {
     pid: 136,
@@ -2055,6 +2173,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.airnfts.com/',
   },
   {
     pid: 137,
@@ -2071,6 +2190,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://thetanarena.com/',
   },
   {
     pid: 138,
@@ -2087,6 +2207,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://wsg.gg/',
   },
   {
     pid: 139,
@@ -2103,6 +2224,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://fomochronicles.com/',
   },
   {
     pid: 140,
@@ -2119,6 +2241,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.tnns.pro/',
   },
   {
     pid: 141,
@@ -2135,6 +2258,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cryptobladeskingdoms.io/',
   },
   {
     pid: 142,
@@ -2151,6 +2275,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://filecoin.io/',
   },
   {
     pid: 143,
@@ -2167,6 +2292,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://trueusd.com/',
   },
   {
     pid: 144,
@@ -2183,6 +2309,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://idex.io/',
   },
   {
     pid: 145,
@@ -2199,6 +2326,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.crazydefenseheroes.com/',
   },
   {
     pid: 146,
@@ -2215,6 +2343,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://wazirx.com/',
   },
   {
     pid: 147,
@@ -2231,9 +2360,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://projectoasis.io/',
   },
   {
     pid: 148,
+    image: '',
     lpSymbol: 'HOTCROSS-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2246,9 +2377,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://hotcross.com/ ',
   },
   {
     pid: 149,
+    image: '',
     lpSymbol: 'TOON-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2261,9 +2394,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://pontoon.fi/',
   },
   {
     pid: 150,
+    image: '',
     lpSymbol: 'WING-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2276,9 +2411,11 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://wing.finance/',
   },
   {
     pid: 151,
+    image: '',
     lpSymbol: 'GAN-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2291,6 +2428,279 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://galacticarena.io/',
+  },
+  {
+    pid: 152,
+    image: '',
+    lpSymbol: 'BCPAY-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x16DE6d67F19880afB653C196728e40A2DA245616',
+    },
+    tokenSymbol: 'BCPAY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x21f1ce0FCf1E9E39F8e79B7762801E8096d9f6CD',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bitcashpay.net/',
+  },
+  {
+    pid: 153,
+    image: '',
+    lpSymbol: 'iBFR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xd023d87f668838Cb147AF80E67F55cAf04e602f4',
+    },
+    tokenSymbol: 'iBFR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa296ad1c47fe6bdc133f39555c1d1177bd51fbc5',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.buffer.finance/',
+  },
+  {
+    pid: 154,
+    image: '',
+    lpSymbol: 'SATA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xBA593C9619301409D506332417236CAEb0453D09',
+    },
+    tokenSymbol: 'SATA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6b1c8765c7eff0b60706b0ae489eb9bb9667465a',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://sata.technology/',
+  },
+  {
+    pid: 155,
+    image: '',
+    lpSymbol: 'LIME-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2919128aAcC9e608A9E629aaB6b0189BF7932947',
+    },
+    tokenSymbol: 'LIME',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7bc75e291e656e8658d66be1cc8154a3769a35dd',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://imem.app/',
+  },
+  {
+    pid: 156,
+    image: 'FXS.svg',
+    lpSymbol: 'FXS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8210D92a8951d50de3D46AC0ee39cb5E2C14e18A',
+    },
+    tokenSymbol: 'FXS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xe48a3d7d0bc88d552f730b62c006bc925eadb9ee',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://frax.finance/',
+  },
+  {
+    pid: 157,
+    image: 'FRAX.svg',
+    lpSymbol: 'FRAX-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x5292600758A090490D34367d4864ed6291D254fe',
+    },
+    tokenSymbol: 'FRAX',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x90c97f71e18723b0cf0dfa30ee176ab653e89f40',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://frax.finance/',
+  },
+  {
+    pid: 158,
+    image: 'RELAY.svg',
+    lpSymbol: 'RELAY-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xab29d19dc9a32fe37275371f0ddfeea3d0c72c25',
+    },
+    tokenSymbol: 'RELAY',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xE338D4250A4d959F88Ff8789EaaE8c32700BD175',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://www.relaychain.com/',
+  },
+  {
+    pid: 159,
+    image: 'QUIDD.svg',
+    lpSymbol: 'QUIDD-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x813cf14699a230185eada5266b18403d77593e12',
+    },
+    tokenSymbol: 'QUIDD',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://market.onquidd.com/',
+  },
+  {
+    pid: 160,
+    image: 'MONI.svg',
+    lpSymbol: 'MONI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe89dff611f926b86293a8e0e6f1c384c6ae0cb69',
+    },
+    tokenSymbol: 'MONI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x9573c88ae3e37508f87649f87c4dd5373c9f31e0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://monstainfinite.com/',
+  },
+  {
+    pid: 161,
+    image: 'INFO.svg',
+    lpSymbol: 'INFO-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x194613d18f07Cc19f886De6AC63F67Db235b5DEE',
+    },
+    tokenSymbol: 'INFO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xdf727040d3997b5d95dee8c661fa96e3c13ee0c9',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://infomatix.io/',
+  },
+  {
+    pid: 163,
+    image: 'SHILL.svg',
+    lpSymbol: 'SHILL-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x77A3B1bBa24D8Cdc28992dc242F05deD6648A8B3',
+    },
+    tokenSymbol: 'SHILL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb9c339b4bace4fe63ccc1dd9a3c3c531441d5fe',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://projectseed.io/',
+  },
+  {
+    pid: 164,
+    image: 'LMN.svg',
+    lpSymbol: 'LMN-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x05290964C32722D9E0Ae01cEde50c30Fa6b7ed01',
+    },
+    tokenSymbol: 'LMN',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lemonn.io/',
+  },
+  {
+    pid: 165,
+    image: 'HERA.png',
+    lpSymbol: 'HERA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xA29C9E83b951F5b043EbAC5d4FB4a5d108F156ed',
+    },
+    tokenSymbol: 'HERA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x49c7295ff86eabf5bf58c6ebc858db4805738c01',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://heroarena.app/',
+  },
+  {
+    pid: 166,
+    image: 'GMEE.svg',
+    lpSymbol: 'GMEE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE2Ab715823f6431714e971E2209e377F2a833f05',
+    },
+    tokenSymbol: 'GMEE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.gamee.com/',
+  },
+  {
+    pid: 167,
+    image: 'ARV.svg',
+    lpSymbol: 'ARV-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2C7447BF72FFd23e7f2A5Aa04bdFF0Faf5798658',
+    },
+    tokenSymbol: 'ARV',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6679eb24f59dfe111864aec72b443d1da666b360',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ariva.digital/',
+  },
+  {
+    pid: 168,
+    image: 'rASKO.svg',
+    lpSymbol: 'rASKO-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xC0A9261cbB82923d974A9ba804aF4FC8DDE7BeD2',
+    },
+    tokenSymbol: 'rASKO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xd118f42edbc839f7e1e85d5269a25288792c141b',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://asko.finance/rasko',
   },
   {
     pid: 7, // NOTE: Inactive Farm

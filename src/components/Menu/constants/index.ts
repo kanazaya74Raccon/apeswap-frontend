@@ -42,10 +42,6 @@ export const MORE_INFO = {
       href: 'https://ape-swap.medium.com/',
     },
     {
-      label: 'Team',
-      href: 'https://ape-swap.medium.com/meet-the-founding-monkeys-behind-apeswap-6f837113db00',
-    },
-    {
       label: 'Partnership Application',
       href: 'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
     },
@@ -54,12 +50,12 @@ export const MORE_INFO = {
       href: 'https://anchor.fm/apetv',
     },
     {
-      label: 'Bug Bounty Program',
-      href: 'https://apeswap.gitbook.io/apeswap-finance/security/bug-bounty-program',
+      label: 'ApeLabs',
+      href: 'https://www.apelabs.education',
     },
     {
-      label: 'Audits',
-      href: 'https://apeswap.gitbook.io/apeswap-finance/security/audits',
+      label: 'Bug Bounty Program',
+      href: 'https://apeswap.gitbook.io/apeswap-finance/security/bug-bounty-program',
     },
   ],
 }

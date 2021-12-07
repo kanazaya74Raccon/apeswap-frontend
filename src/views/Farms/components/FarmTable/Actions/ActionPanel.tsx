@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
+import { LinkExternal, Text, Flex, Link } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { getTokenInfo, registerToken } from 'utils/wallet'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
@@ -43,7 +44,11 @@ const StyledLinkExternal = styled(LinkExternal)`
   text-decoration-line: underline;
   margin-bottom: 10px;
 `
-
+const StyledLink = styled(Link)`
+  font-size: 12px;
+  text-decoration-line: underline;
+  margin-bottom: 14px;
+`
 const ActionContainer = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -146,6 +151,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     liquidityDigits = liquidity?.liquidity?.toFixed(0).toString().length
   }
 
+  const addTokenWallet = async (address) => {
+    if (!address) return
+    const tokenInfo = await getTokenInfo(address, chainId)
+    registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
+  }
   return (
     <>
       <Container>
@@ -164,8 +174,8 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
                 <StyledText fontFamily="poppins" fontSize="12px">
                   {TranslateString(999, 'Stake:')}
                 </StyledText>
-                <LinkExternal href={addLiquidityUrl}>
-                  <StyledText fontFamily="poppins" fontSize="12px">
+                <LinkExternal className="noClick" href={addLiquidityUrl}>
+                  <StyledText className="noClick" fontFamily="poppins" fontSize="12px">
                     {farm.lpSymbol}
                   </StyledText>
                 </LinkExternal>
@@ -213,7 +223,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={bsc}>{TranslateString(999, 'View on BscScan')}</StyledLinkExternal>
+      <StyledLinkExternal className="noClick" href={bsc}>
+        {TranslateString(999, 'View on BscScan')}
+      </StyledLinkExternal>
+      {farm.projectLink && (
+        <StyledLinkExternal className="noClick" href={farm.projectLink}>
+          {TranslateString(356, 'View Project Site')}
+        </StyledLinkExternal>
+      )}
+      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
+        Add to Metamask
+      </StyledLink>
     </>
   )
 }

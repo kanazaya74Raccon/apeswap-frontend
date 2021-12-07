@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import addresses from 'config/constants/contracts'
 import { Address } from 'config/constants/types'
-import { useSelector } from 'react-redux'
-import { State } from 'state/types'
+import { useWeb3React } from '@web3-react/core'
 
 const useAddress = (curAddresses: Address) => {
-  // Using selector to avoid circular dependecies
-  const chainId = useSelector((state: State) => state.network.data.chainId)
+  const { chainId } = useWeb3React()
   const [address, setAddress] = useState(curAddresses[chainId])
   useEffect(() => {
     setAddress(curAddresses[chainId])

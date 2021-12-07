@@ -63,10 +63,10 @@ const config: MenuEntry[] = [
         label: 'Auction',
         href: '/auction',
       },
-      // {
-      //   label: 'Staking',
-      //   href: '/staking',
-      // },
+      {
+        label: 'Staking',
+        href: '/staking',
+      },
     ],
   },
   {

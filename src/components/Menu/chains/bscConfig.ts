@@ -44,12 +44,16 @@ const bscConfig: MenuEntry[] = [
     icon: 'apeNFTIcon',
     items: [
       {
-        label: 'List',
+        label: 'Collection',
         href: '/nft',
       },
       {
         label: 'Auction',
         href: '/auction',
+      },
+      {
+        label: 'Staking',
+        href: '/staking',
       },
     ],
   },

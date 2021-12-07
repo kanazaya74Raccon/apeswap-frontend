@@ -92,6 +92,10 @@ const Banner = () => {
     }
   }, [activeIndex, filteredBanners])
 
+  useEffect(() => {
+    setActiveIndex(0)
+  }, [chainId])
+
   return (
     <>
       {loading ? (

@@ -9,7 +9,7 @@ import { updateFarmUserEarnings } from 'state/farms'
 import { useNetworkChainId } from 'state/hooks'
 import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
-import { useMasterchef, useMiniChefContract, useSousChef } from './useContract'
+import { useMasterchef, useMiniChefContract, useSousChef, useNfaStakingChef } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
@@ -88,7 +88,7 @@ export const useNfaStakingHarvest = (sousId) => {
   const dispatch = useDispatch()
   const { account } = useWeb3React()
   const chainId = useNetworkChainId()
-  const nfaStakingChef = useNfaStakingHarvest(sousId)
+  const nfaStakingChef = useNfaStakingChef(sousId)
   const handleHarvest = useCallback(async () => {
     await nfaStakeHarvest(nfaStakingChef, account)
     dispatch(updateUserNfaStakingPendingReward(chainId, sousId, account))

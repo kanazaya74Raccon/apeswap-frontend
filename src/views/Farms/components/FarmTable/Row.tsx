@@ -132,7 +132,8 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
 
-  const toggleActionPanel = () => {
+  const toggleActionPanel = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setActionPanelToggled(!actionPanelToggled)
   }
 

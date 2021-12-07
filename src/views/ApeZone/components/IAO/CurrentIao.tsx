@@ -96,7 +96,6 @@ const prevIfos = zoneIfo.filter((ifo) => !ifo.isActive)
 const Iao = () => {
   const TranslateString = useI18n()
   const [showHistory, setShowHistory] = useState(false)
-
   return (
     <>
       <StyledHeroSection>
@@ -172,11 +171,11 @@ const Iao = () => {
               </Text>
             </StyledTextContainer>
           </StyledCard>
-          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp />)}
+          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp gnana />)}
         </Cards>
       </StyledFlex>
     </>
   )
 }
 
-export default Iao
+export default React.memo(Iao)

@@ -137,7 +137,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const FarmStyle = styles[farm.style]
 
-  const toggleExpand = () => {
+  const toggleExpand = (e) => {
+    if (e.target?.classList.contains('noClick')) return
     setShowExpandableSection(!showExpandableSection)
   }
 
@@ -177,6 +178,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             multiplier={farm.multiplier}
             liquidity={farm.liquidity}
             pid={farm.pid}
+            farmLp={farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]}
+            farm={farm}
           />
         </ExpandingWrapper>
       </StyledContainer>
