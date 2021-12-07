@@ -26,7 +26,6 @@ const InfoWrapper = styled.div`
   }
 `
 
-
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo, listingPrice, tokenPrice } = iazo
   const { decimals, name, totalSupply } = iazoToken
@@ -41,6 +40,8 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const tokensForLiquidity = tokensForSale * priceDifference * liquidityPercentParsed
   const tokensForFees = tokenFee * tokensForSale
   const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
+  console.log(iazo)
+  console.log(liquidityPercentParsed)
   const items = [
     {
       label: 'For Sale',
@@ -69,7 +70,10 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
       <div>
         <BoldAfterTextLarge boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterTextLarge>
         <BoldAfterTextLarge boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterTextLarge>
-        <BoldAfterTextLarge boldContent={tokensForLiquidity.toString()}> Total Tokens For Liquidity: </BoldAfterTextLarge>
+        <BoldAfterTextLarge boldContent={tokensForLiquidity.toString()}>
+          {' '}
+          Total Tokens For Liquidity:{' '}
+        </BoldAfterTextLarge>
       </div>
       <br />
       <br />

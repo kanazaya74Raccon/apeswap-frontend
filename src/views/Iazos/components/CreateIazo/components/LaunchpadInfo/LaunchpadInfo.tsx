@@ -47,7 +47,7 @@ const MoreInfo = styled.a`
 const FaqLink = styled.a`
   font-family: poppins;
   font-size: 16px;
-  color: blue;
+  font-weight: 700;
   text-decoration: underline;
 `
 
