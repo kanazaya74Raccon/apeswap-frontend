@@ -55,7 +55,7 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
   const { symbol, decimals } = baseToken
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { account } = useWeb3React()
-  const { tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
+  const { tokensBought, deposited }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
 
@@ -78,13 +78,13 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      {iazoFailed ? (
-        <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
-      ) : (
-        <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-          Tokens bought:{' '}
-        </BoldAfterTextLarge>
-      )}
+      {iazoFailed
+        ? parseInt(tokensBought) > 0 && <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
+        : parseInt(deposited) > 0 && (
+            <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+              Tokens bought:{' '}
+            </BoldAfterTextLarge>
+          )}
       {account ? (
         <>
           <ClaimIazo
@@ -92,7 +92,9 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
             tokensToClaim={tokensBoughtFormatted}
             onPendingClaim={onPendingClaim}
             iazoState={iazoState}
+            baseTokensToClaim={tokensBoughtFormatted}
           />
+
           <br />
           {iazoFailed && (
             <>

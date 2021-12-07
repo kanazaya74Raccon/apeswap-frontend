@@ -40,8 +40,6 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const tokensForLiquidity = tokensForSale * priceDifference * liquidityPercentParsed
   const tokensForFees = tokenFee * tokensForSale
   const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
-  console.log(iazo)
-  console.log(liquidityPercentParsed)
   const items = [
     {
       label: 'For Sale',

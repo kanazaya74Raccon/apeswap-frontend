@@ -59,7 +59,6 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   const baseTokensDeposited = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
 
-
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / parseFloat(hardcap)) * 100
@@ -79,13 +78,13 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
           <Progress percentComplete={`${percentRaised}%`} />
         </ProgressBar>
       </ProgressBarWrapper>
-      {iazoFailed ? (
-        <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
-      ) : (
-        <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-          Tokens bought:{' '}
-        </BoldAfterTextLarge>
-      )}
+      {iazoFailed
+        ? parseInt(tokensBought) > 0 && <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
+        : parseInt(deposited) > 0 && (
+            <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
+              Tokens bought:{' '}
+            </BoldAfterTextLarge>
+          )}
       {account ? (
         <ClaimIazo
           iazoAddress={iazoAddress}

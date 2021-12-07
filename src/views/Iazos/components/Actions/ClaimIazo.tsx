@@ -39,7 +39,7 @@ const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
   const iazoFailed = iazoState === 'FAILED'
 
   const renderButton = () => {
-    if (iazoFailed) {
+    if (iazoFailed && tokensToClaim > 0) {
       return baseTokensToClaim > 0 ? (
         <StyledButton
           onClick={async () => {
@@ -57,22 +57,25 @@ const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
         <StyledButton disabled> REFUNDED</StyledButton>
       )
     }
-    return tokensToClaim > 0 ? (
-      <StyledButton
-        onClick={async () => {
-          setPendingTrx(true)
-          await onClaim()
-          onPendingClaim(false)
-          setPendingTrx(false)
-        }}
-        disabled={pendingTrx}
-        endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
-      >
-        CLAIM
-      </StyledButton>
-    ) : (
-      <StyledButton disabled> CLAIMED</StyledButton>
-    )
+    if (baseTokensToClaim > 0) {
+      return tokensToClaim > 0 ? (
+        <StyledButton
+          onClick={async () => {
+            setPendingTrx(true)
+            await onClaim()
+            onPendingClaim(false)
+            setPendingTrx(false)
+          }}
+          disabled={pendingTrx}
+          endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
+        >
+          CLAIM
+        </StyledButton>
+      ) : (
+        <StyledButton disabled> CLAIMED</StyledButton>
+      )
+    }
+    return <></>
   }
 
   return renderButton()
