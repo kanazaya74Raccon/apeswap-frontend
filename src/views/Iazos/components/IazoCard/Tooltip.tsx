@@ -8,6 +8,35 @@ export interface TooltipProps {
   tagLinks?: TagLink[]
 }
 
+const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
+  return (
+    <Container>
+      {children}
+      <TooltipContent>
+        <Text fontFamily="poppins" fontSize="19px" bold>
+          {' '}
+          {title}
+        </Text>
+        {tagLinks?.map((tagLink) => {
+          return (
+            <StyledLink
+              key={tagLink.title}
+              href={tagLink?.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+            >
+              {tagLink?.title}
+            </StyledLink>
+          )
+        })}
+      </TooltipContent>
+    </Container>
+  )
+}
+
 const TooltipContent = styled.div`
   padding: 16px;
   background: ${({ theme }) => theme.colors.background};
@@ -69,34 +98,5 @@ const StyledLink = styled.a`
   align-text: center;
   pointer-events: auto !important;
 `
-
-const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
-  return (
-    <Container>
-      {children}
-      <TooltipContent>
-        <Text fontFamily="poppins" fontSize="19px" bold>
-          {' '}
-          {title}
-        </Text>
-        {tagLinks?.map((tagLink) => {
-          return (
-            <StyledLink
-              key={tagLink.title}
-              href={tagLink?.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                e.stopPropagation()
-              }}
-            >
-              {tagLink?.title}
-            </StyledLink>
-          )
-        })}
-      </TooltipContent>
-    </Container>
-  )
-}
 
 export default Tooltip

@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react'
-import styled from 'styled-components'
 import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
@@ -8,6 +7,7 @@ import BigNumber from 'bignumber.js'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import ClaimIazo from '../../Actions/ClaimIazo'
 import { BoldAfterTextLarge, Heading } from '../../styles'
+import { Wrapper, ProgressBarWrapper, ProgressBar, Progress } from './styles'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -19,36 +19,6 @@ interface BeforeSaleProps {
   tokenPrice: string
   iazoState: IazoState
 }
-
-const BeforeSaleWrapper = styled.div`
-  width: 796px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`
-
-const ProgressBarWrapper = styled.div`
-  width: 280px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 557px;
-  }
-`
-const ProgressBar = styled.div`
-  height: 18px;
-  width: 100%;
-  border-radius: 20px;
-  background: #c4c4c4;
-`
-
-const Progress = styled(ProgressBar)<{ percentComplete: string }>`
-  width: ${(props) => props.percentComplete};
-  background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
-`
 
 const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, status, iazoAddress, iazoState }) => {
   const { symbol, decimals } = baseToken
@@ -69,7 +39,7 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
   }, [])
 
   return (
-    <BeforeSaleWrapper>
+    <Wrapper>
       <Heading>
         {baseCollectedFormatted} / {hardcapFormatted} {symbol}
       </Heading>
@@ -100,7 +70,7 @@ const AfterSale: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken, s
           <br />
         </>
       )}
-    </BeforeSaleWrapper>
+    </Wrapper>
   )
 }
 

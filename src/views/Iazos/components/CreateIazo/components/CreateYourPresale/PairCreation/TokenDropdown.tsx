@@ -7,6 +7,34 @@ interface TokenDropdown {
   onChange: (token: string) => void
 }
 
+const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {
+  const [opened, setOpened] = useState(false)
+  const [selectedToken, setSelectedToken] = useState(tokens[0])
+  const dropdownTokens = tokens.filter((token) => token !== selectedToken)
+  return (
+    <Wrapper onClick={() => setOpened(!opened)}>
+      <HeaderWrapper opened={opened}>
+        <IconImage height={25} width={25} src={`/images/tokens/${selectedToken}.svg`} alt="token" />
+        <StyledHeader>{selectedToken}</StyledHeader>
+        {opened ? <DropUpArrow /> : <DropDownArrow />}
+      </HeaderWrapper>
+      {opened &&
+        dropdownTokens.map((token, i) => (
+          <DropdownItem
+            onClick={() => {
+              setSelectedToken(token)
+              onChange(token)
+            }}
+            last={i === tokens.length - 2}
+          >
+            <IconImage height={25} width={25} src={`/images/tokens/${token}.svg`} alt="token" />
+            <StyledText>{token}</StyledText>
+          </DropdownItem>
+        ))}
+    </Wrapper>
+  )
+}
+
 const Wrapper = styled.div`
   position: relative;
   width: 285px;
@@ -82,33 +110,5 @@ const HeaderWrapper = styled.div<{ opened?: boolean }>`
   -moz-box-shadow: ${(props) => props.opened && '0 3px 4px -2px #333333'};
   box-shadow: ${(props) => props.opened && ' 0 3px 4px -2px #333333'};
 `
-
-const TokenDropdown: React.FC<TokenDropdown> = ({ tokens, onChange }) => {
-  const [opened, setOpened] = useState(false)
-  const [selectedToken, setSelectedToken] = useState(tokens[0])
-  const dropdownTokens = tokens.filter((token) => token !== selectedToken)
-  return (
-    <Wrapper onClick={() => setOpened(!opened)}>
-      <HeaderWrapper opened={opened}>
-        <IconImage height={25} width={25} src={`/images/tokens/${selectedToken}.svg`} alt="token" />
-        <StyledHeader>{selectedToken}</StyledHeader>
-        {opened ? <DropUpArrow /> : <DropDownArrow />}
-      </HeaderWrapper>
-      {opened &&
-        dropdownTokens.map((token, i) => (
-          <DropdownItem
-            onClick={() => {
-              setSelectedToken(token)
-              onChange(token)
-            }}
-            last={i === tokens.length - 2}
-          >
-            <IconImage height={25} width={25} src={`/images/tokens/${token}.svg`} alt="token" />
-            <StyledText>{token}</StyledText>
-          </DropdownItem>
-        ))}
-    </Wrapper>
-  )
-}
 
 export default TokenDropdown

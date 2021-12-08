@@ -21,62 +21,6 @@ const icons = {
   telegram: 'url(/images/telegram.svg)',
 }
 
-const circleAnimation = keyframes`
-    0%{stroke-dasharray: 0, 100}
-`
-
-const OuterCircle = styled.circle`
-  animation: ${circleAnimation} 2s;
-`
-
-const IazoSymbolSvg = styled.svg`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-`
-
-const FullIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 10px 10px 10px 10px;
-`
-
-const SvgContainer = styled.div<{ link: boolean }>`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  cursor: ${(props) => props.link && 'pointer'};
-`
-
-const Icon = styled.div<{ iconImage: string }>`
-  position: absolute;
-  background-image: ${(props) => icons[props.iconImage]};
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 35px;
-  width: 35px;
-  z-index: 2;
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 45px;
-    width: 45px;
-  }
-`
-
-const StyledLink = styled.a`
-  font-family: Poppins;
-  color: rgba(255, 179, 0, 1);
-  text-decoration: underline;
-  margin-top: 5px;
-`
-
 const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description, link, url }) => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -141,5 +85,61 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description,
     </FullIconContainer>
   )
 }
+
+const circleAnimation = keyframes`
+    0%{stroke-dasharray: 0, 100}
+`
+
+const OuterCircle = styled.circle`
+  animation: ${circleAnimation} 2s;
+`
+
+const IazoSymbolSvg = styled.svg`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`
+
+const FullIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 10px 10px 10px 10px;
+`
+
+const SvgContainer = styled.div<{ link: boolean }>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  cursor: ${(props) => props.link && 'pointer'};
+`
+
+const Icon = styled.div<{ iconImage: string }>`
+  position: absolute;
+  background-image: ${(props) => icons[props.iconImage]};
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 35px;
+  width: 35px;
+  z-index: 2;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 45px;
+    width: 45px;
+  }
+`
+
+const StyledLink = styled.a`
+  font-family: Poppins;
+  color: rgba(255, 179, 0, 1);
+  text-decoration: underline;
+  margin-top: 5px;
+`
 
 export default IazoSymbols

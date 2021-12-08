@@ -1,55 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
 import FaqDropdown from './FaqDropdown'
-
-const LaunchPadInfoWrapper = styled.div`
-  width: 300px;
-  border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-const StyledHeader = styled(Text)`
-  font-family: Poppins;
-  font-weight: 700;
-  font-size: 24px;
-  font-style: normal;
-  line-height: 27px;
-  padding-top: 25px;
-`
-
-const StyledText = styled(Text)`
-  padding: 20px 40px 0px 40px;
-  text-align: center;
-  font-family: poppins;
-  font-weight: 400;
-  padding-bottom: 25px;
-`
-const MoreInfo = styled.a`
-  font-family: poppins;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 17px;
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 20px;
-  cursor: pointer;
-  color: ${(props) => props.theme.colors.text};
-`
-
-const FaqLink = styled.a`
-  font-family: poppins;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: underline;
-`
+import { LaunchPadInfoWrapper, StyledHeader, StyledText, MoreInfo, FaqLink } from './styles'
 
 const listOfFaqs = [
   {

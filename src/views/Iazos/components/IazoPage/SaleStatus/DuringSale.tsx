@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react'
-import styled from 'styled-components'
 import { Skeleton } from '@apeswapfinance/uikit'
 import { IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -12,6 +11,7 @@ import Timer from '../../IazoCard/Timer'
 import Actions from '../../Actions'
 import IazoSymbols from '../../IazoSymbols'
 import { BoldAfterTextLarge, Heading } from '../../styles'
+import { Wrapper, ProgressBarWrapper, ProgressBar, IazoSymbolsContainer, Progress } from './styles'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -24,52 +24,6 @@ interface BeforeSaleProps {
   liquidityPercent: string
   maxSpend: string
 }
-
-const BeforeSaleWrapper = styled.div`
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const ProgressBarWrapper = styled.div`
-  width: 280px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 557px;
-  }
-`
-
-const ProgressBar = styled.div`
-  height: 18px;
-  width: 100%;
-  border-radius: 20px;
-  background: #c4c4c4;
-`
-
-const IazoSymbolsContainer = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  ${({ theme }) => theme.mediaQueries.md} {
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-`
-
-const Progress = styled(ProgressBar)<{ percentComplete: string }>`
-  width: ${(props) => props.percentComplete};
-  background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
-`
 
 const DuringSale: React.FC<BeforeSaleProps> = ({
   timeInfo,
@@ -96,14 +50,13 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const percentRaised = (baseCollectedFormatted / hardcapFormatted) * 100
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
-  
 
   const onPendingContribute = useCallback((pendingTrx: boolean) => {
     setPendingUserInfo(pendingTrx)
   }, [])
 
   return (
-    <BeforeSaleWrapper>
+    <Wrapper>
       <Heading>
         {baseCollectedFormatted.toString() === 'NaN' ? (
           <Skeleton width="200px" height="30px" />
@@ -152,7 +105,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         />
         <IazoSymbols iconImage="monkey" title={numBuyers} description="Participants" />
       </IazoSymbolsContainer>
-    </BeforeSaleWrapper>
+    </Wrapper>
   )
 }
 

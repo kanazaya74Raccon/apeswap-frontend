@@ -9,7 +9,36 @@ interface DropdownListProps {
   onChange: (item: string) => void
 }
 
-const FaqWrapper = styled.div`
+const DropdownList: React.FC<DropdownListProps> = ({ dropdownList, title, defaultIndex, onChange }) => {
+  const [opened, setOpened] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(dropdownList[defaultIndex])
+  const dropdownListFiltered = dropdownList.filter((item) => item !== selectedItem)
+
+  return (
+    <DropdownWrapper onClick={() => setOpened(!opened)}>
+      <InputTitle>{title}</InputTitle>
+      <HeaderWrapper>
+        <StyledHeader>{selectedItem}</StyledHeader>
+      </HeaderWrapper>
+      {opened && (
+        <DropDownWrapper>
+          {dropdownListFiltered.map((item) => (
+            <DropdownItem
+              onClick={() => {
+                setSelectedItem(item)
+                onChange(item)
+              }}
+            >
+              <StyledText>{item}</StyledText>
+            </DropdownItem>
+          ))}
+        </DropDownWrapper>
+      )}
+    </DropdownWrapper>
+  )
+}
+
+const DropdownWrapper = styled.div`
   position: relative;
   width: 318px;
   border-radius: 10px;
@@ -79,34 +108,5 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
 `
-
-const DropdownList: React.FC<DropdownListProps> = ({ dropdownList, title, defaultIndex, onChange }) => {
-  const [opened, setOpened] = useState(false)
-  const [selectedItem, setSelectedItem] = useState(dropdownList[defaultIndex])
-  const dropdownListFiltered = dropdownList.filter((item) => item !== selectedItem)
-
-  return (
-    <FaqWrapper onClick={() => setOpened(!opened)}>
-      <InputTitle>{title}</InputTitle>
-      <HeaderWrapper>
-        <StyledHeader>{selectedItem}</StyledHeader>
-      </HeaderWrapper>
-      {opened && (
-        <DropDownWrapper>
-          {dropdownListFiltered.map((item) => (
-            <DropdownItem
-              onClick={() => {
-                setSelectedItem(item)
-                onChange(item)
-              }}
-            >
-              <StyledText>{item}</StyledText>
-            </DropdownItem>
-          ))}
-        </DropDownWrapper>
-      )}
-    </FaqWrapper>
-  )
-}
 
 export default DropdownList

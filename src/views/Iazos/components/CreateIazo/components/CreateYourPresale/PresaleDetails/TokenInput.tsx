@@ -28,6 +28,69 @@ const sizes = {
   xl: '645px',
 }
 
+const TokenInput: React.FC<TextInputProps> = ({
+  size = 'md',
+  disabled,
+  onChange,
+  backgroundColor,
+  quoteTokenSymbol,
+  tokenSymbol,
+  userBalance,
+  placeholderText,
+  title,
+  ml,
+  mr,
+  defaultVal,
+  min,
+  max,
+}) => {
+  const { toastError } = useToast()
+  const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
+
+  const onValidate = (e) => {
+    const val = parseFloat(e.currentTarget.value)
+    if (val < min) {
+      toastError(`Value must be greater than ${min}`)
+      setBackgroundColorForInput('rgb(255,0,0, .3)')
+      return val
+    }
+    if (val > max) {
+      toastError(`Value must be less than ${max}`)
+      setBackgroundColorForInput('rgb(255,0,0, .3)')
+      return val
+    }
+    setBackgroundColorForInput(backgroundColor)
+    return val
+  }
+
+  return (
+    <InputContainer size={size} ml={ml} mr={mr}>
+      <InputTitle>{title}</InputTitle>
+      <Input
+        value={defaultVal === 'NaN' ? '' : defaultVal}
+        onChange={onChange}
+        backgroundColor={backgroundColorForInput || backgroundColor}
+        placeholder={placeholderText}
+        disabled={disabled}
+        type="number"
+        onKeyUp={onValidate}
+        onWheel={(e) => e.currentTarget.blur()}
+      />
+      {quoteTokenSymbol ? (
+        <HeaderWrapper>
+          <IconImage height={25} width={25} src={`/images/tokens/${quoteTokenSymbol}.svg`} alt="token" />
+          <StyledHeader>{quoteTokenSymbol}</StyledHeader>
+        </HeaderWrapper>
+      ) : (
+        <TokenWrapper>
+          <StyledHeader>{tokenSymbol}</StyledHeader>
+          <UserBalanceWrapper> Balance: {userBalance?.toFixed(6)} </UserBalanceWrapper>
+        </TokenWrapper>
+      )}
+    </InputContainer>
+  )
+}
+
 const InputContainer = styled.div<{ size: string; ml: string; mr: string }>`
   position: relative;
   display: flex;
@@ -125,68 +188,5 @@ const TokenWrapper = styled.div`
     right: 0px;
   }
 `
-
-const TokenInput: React.FC<TextInputProps> = ({
-  size = 'md',
-  disabled,
-  onChange,
-  backgroundColor,
-  quoteTokenSymbol,
-  tokenSymbol,
-  userBalance,
-  placeholderText,
-  title,
-  ml,
-  mr,
-  defaultVal,
-  min,
-  max,
-}) => {
-  const { toastError } = useToast()
-  const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
-
-  const onValidate = (e) => {
-    const val = parseFloat(e.currentTarget.value)
-    if (val < min) {
-      toastError(`Value must be greater than ${min}`)
-      setBackgroundColorForInput('rgb(255,0,0, .3)')
-      return val
-    }
-    if (val > max) {
-      toastError(`Value must be less than ${max}`)
-      setBackgroundColorForInput('rgb(255,0,0, .3)')
-      return val
-    }
-    setBackgroundColorForInput(backgroundColor)
-    return val
-  }
-
-  return (
-    <InputContainer size={size} ml={ml} mr={mr}>
-      <InputTitle>{title}</InputTitle>
-      <Input
-        value={defaultVal === 'NaN' ? '' : defaultVal}
-        onChange={onChange}
-        backgroundColor={backgroundColorForInput || backgroundColor}
-        placeholder={placeholderText}
-        disabled={disabled}
-        type="number"
-        onKeyUp={onValidate}
-        onWheel={(e) => e.currentTarget.blur()}
-      />
-      {quoteTokenSymbol ? (
-        <HeaderWrapper>
-          <IconImage height={25} width={25} src={`/images/tokens/${quoteTokenSymbol}.svg`} alt="token" />
-          <StyledHeader>{quoteTokenSymbol}</StyledHeader>
-        </HeaderWrapper>
-      ) : (
-        <TokenWrapper>
-          <StyledHeader>{tokenSymbol}</StyledHeader>
-          <UserBalanceWrapper> Balance: {userBalance?.toFixed(6)} </UserBalanceWrapper>
-        </TokenWrapper>
-      )}
-    </InputContainer>
-  )
-}
 
 export default TokenInput

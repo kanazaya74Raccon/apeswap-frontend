@@ -12,6 +12,31 @@ interface ImageUploadProps {
   onChange: (file: FileProps) => void
 }
 
+const ImageUpload: React.FC<ImageUploadProps> = ({ title, onChange }) => {
+  const fileDrop = useRef(null)
+  const [file, setFile] = useState<FileProps>(null)
+
+  const onSetFile = (e) => {
+    const imageFile = e.target.files[0]
+    if (imageFile) {
+      const displayUrl = URL.createObjectURL(imageFile)
+      setFile({ imageFile, displayUrl })
+      onChange({ imageFile, displayUrl })
+    }
+  }
+
+  return (
+    <Container>
+      <StyledText> {title} </StyledText>
+      <ImageCircle image={file?.displayUrl} />
+      <DragImageWrapper>
+        <HiddenInput type="file" ref={fileDrop} onChange={onSetFile} />
+        <DragAndDropText>{file?.imageFile?.name || 'Click here or Drop your PNG/SVG file here!'}</DragAndDropText>
+      </DragImageWrapper>
+    </Container>
+  )
+}
+
 const Container = styled.div`
   height: 120px;
   width: 280px;
@@ -88,30 +113,5 @@ const StyledText = styled(Text)`
     font-size: 16px;
   }
 `
-
-const ImageUpload: React.FC<ImageUploadProps> = ({ title, onChange }) => {
-  const fileDrop = useRef(null)
-  const [file, setFile] = useState<FileProps>(null)
-
-  const onSetFile = (e) => {
-    const imageFile = e.target.files[0]
-    if (imageFile) {
-      const displayUrl = URL.createObjectURL(imageFile)
-      setFile({ imageFile, displayUrl })
-      onChange({ imageFile, displayUrl })
-    }
-  }
-
-  return (
-    <Container>
-      <StyledText> {title} </StyledText>
-      <ImageCircle image={file?.displayUrl} />
-      <DragImageWrapper>
-        <HiddenInput type="file" ref={fileDrop} onChange={onSetFile} />
-        <DragAndDropText>{file?.imageFile?.name || 'Click here or Drop your PNG/SVG file here!'}</DragAndDropText>
-      </DragImageWrapper>
-    </Container>
-  )
-}
 
 export default React.memo(ImageUpload)

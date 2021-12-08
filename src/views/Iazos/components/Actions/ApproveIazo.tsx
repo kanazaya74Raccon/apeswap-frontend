@@ -1,22 +1,13 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
-import 'react-datepicker/dist/react-datepicker.css'
+import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useApproveIazo from 'views/Iazos/hooks/useApproveIazo'
+import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
   tokenAddress: string
   iazoAddress: string
   onApproveChange: (pendingTrx: boolean) => void
 }
-
-const StyledButton = styled(ButtonSquare)`
-  height: 50px;
-  width: 200px;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 700;
-`
 
 const ApproveIazo: React.FC<ApproveCreateIazoProps> = ({ tokenAddress, iazoAddress, onApproveChange }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
