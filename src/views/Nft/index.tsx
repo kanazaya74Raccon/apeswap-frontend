@@ -67,6 +67,10 @@ const StyledHeading = styled(Heading)`
   }
 `
 
+const StyledAnchor = styled.a`
+  font-family: 'Titan One';
+`
+
 const Nft = () => {
   const TranslateString = useI18n()
 
@@ -74,10 +78,10 @@ const Nft = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mt={0} color="white">
+          <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Non Fungible Apes')}
           </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white">
+          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Collection')}
           </StyledHeading>
         </HeadingContainer>
@@ -86,15 +90,23 @@ const Nft = () => {
       <Page>
         <StyledHero>
           <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
-            <a href="https://github.com/ApeSwapFinance/non-fungible-apes" target="_blank" rel="noopener noreferrer">
+            <StyledAnchor
+              href="https://github.com/ApeSwapFinance/non-fungible-apes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {TranslateString(999, 'More Info')}
-            </a>
+            </StyledAnchor>
           </Text>
           <OwnedNfts />
           <Text fontSize="25px" style={{ textDecoration: 'underline', marginTop: '25px', color: 'subtle' }}>
-            <a href="https://nftkey.app/collections/nfas/?nfasTab=forSale" target="_blank" rel="noopener noreferrer">
+            <StyledAnchor
+              href="https://nftkey.app/collections/nfas/?nfasTab=forSale"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {TranslateString(999, 'Checkout the NFA aftermarket on NFTKEY!')}
-            </a>
+            </StyledAnchor>
           </Text>
         </StyledHero>
         <SortNfts nftSet={nfts} />

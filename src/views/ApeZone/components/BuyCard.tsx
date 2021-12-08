@@ -143,7 +143,7 @@ const BuyCard = () => {
       <CardBody>
         <StyledBanana />
         <StyledBananaPair />
-        <Heading color="contrast" size="xl">
+        <Heading color="contrast" size="xl" fontFamily="Titan One">
           Buy
         </Heading>
         <TokenInput
@@ -163,11 +163,9 @@ const BuyCard = () => {
           </StyledButton>
         )}
         <Flex flexDirection="column" alignItems="center" mb="10px">
-          <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="poppins" />
-          <Text fontSize="11px" fontFamily="poppins">
-            * Current max buy is {displayMax}
-          </Text>
-          <StyledText fontSize="11px">
+          <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="Titan One" />
+          <Text fontSize="11px">* Current max buy is {displayMax}</Text>
+          <StyledText fontSize="11px" fontFamily="Titan One">
             <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand what I am
             doing and want to enable unlimited buy.
           </StyledText>

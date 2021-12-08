@@ -49,7 +49,7 @@ const Zone = () => {
       <Description />
       <StyledHeroSection>
         <MarginContainer>
-          <Heading size="xl" mb="26px" color="primary">
+          <Heading size="xl" mb="26px" color="primary" fontFamily="Titan One">
             {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
           <PaddedCard>
