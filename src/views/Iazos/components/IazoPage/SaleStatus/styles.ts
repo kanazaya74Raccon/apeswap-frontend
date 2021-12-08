@@ -59,4 +59,3 @@ export const Progress = styled(ProgressBar)<{ percentComplete: string }>`
   width: ${(props) => props.percentComplete};
   background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
 `
-

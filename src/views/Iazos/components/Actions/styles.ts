@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ButtonSquare, Text } from '@apeswapfinance/uikit'
 
-export const StyledButton = styled(ButtonSquare)`
+const StyledButton = styled(ButtonSquare)`
   height: 50px;
   width: 150px;
   font-size: 14px;
@@ -46,3 +46,5 @@ export const ActionWrapper = styled.div`
   margin-top: 15px;
   margin-bottom: 50px;
 `
+
+export default StyledButton

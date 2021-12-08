@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useClaimIazo from 'views/Iazos/hooks/useClaimIazo'
 import { IazoState } from 'state/types'
-import { StyledButton } from './styles'
+import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
   tokenAddress?: string

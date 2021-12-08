@@ -3,7 +3,7 @@ import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useWithdrawOfferTokens from 'views/Iazos/hooks/useWithdrawOfferTokens'
 import { IazoState } from 'state/types'
 import { useAccountTokenBalance } from 'hooks/useTokenBalance'
-import { StyledButton } from './styles'
+import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
   tokenAddress?: string

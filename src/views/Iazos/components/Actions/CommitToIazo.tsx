@@ -8,7 +8,7 @@ import useCommitToIazo from 'views/Iazos/hooks/useCommitToIazo'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import TokenInput from '../CreateIazo/components/CreateYourPresale/PresaleDetails/TokenInput'
-import { StyledButton, Wrapper, BoldAfterText } from './styles'
+import StyledButton, { Wrapper, BoldAfterText } from './styles'
 
 interface ApproveCreateIazoProps {
   iazoAddress: string

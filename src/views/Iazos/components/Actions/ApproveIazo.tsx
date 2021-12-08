@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useApproveIazo from 'views/Iazos/hooks/useApproveIazo'
-import { StyledButton } from './styles'
+import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
   tokenAddress: string

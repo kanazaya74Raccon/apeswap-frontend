@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 
-
 const Header: React.FC = () => {
   return (
     <HeaderWrapper>

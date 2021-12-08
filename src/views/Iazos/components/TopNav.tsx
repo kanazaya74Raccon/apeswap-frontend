@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Text } from '@apeswapfinance/uikit'
 
-
 const TopNav: React.FC = () => {
   return (
     <TopNavWrapper>

@@ -13,7 +13,6 @@ interface IconButtonProps {
   active?: boolean
 }
 
-
 const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) => {
   const { isDark } = useTheme()
   const iconColor = isDark ? 'white' : '#A16552'
@@ -37,7 +36,6 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) 
     </StyledButton>
   )
 }
-
 
 const StyledButton = styled(Button)<{ active?: boolean }>`
   height: 44px;

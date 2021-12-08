@@ -53,10 +53,7 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
       <div>
         <BoldAfterText boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterText>
         <BoldAfterText boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterText>
-        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}>
-          {' '}
-          Total Tokens For Liquidity:{' '}
-        </BoldAfterText>
+        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}> Total Tokens For Liquidity: </BoldAfterText>
       </div>
       <br />
       <br />

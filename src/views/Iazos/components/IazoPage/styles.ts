@@ -164,5 +164,3 @@ export const TokenInfoButton = styled.div<{ opacity: string }>`
     padding-right: 15px;
   }
 `
-
-

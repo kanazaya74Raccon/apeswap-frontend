@@ -3,7 +3,6 @@ import BigNumber from 'bignumber.js'
 import { useERC20 } from 'hooks/useContract'
 import { useEffect, useState } from 'react'
 
-
 const useIazoAllowance = (tokenAddress: string, iazoAddress: string, dependency?: boolean) => {
   const { account } = useWeb3React()
   const [allowance, setAllowance] = useState(null)
