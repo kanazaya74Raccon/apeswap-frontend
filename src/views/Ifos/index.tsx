@@ -7,6 +7,8 @@ import Container from 'components/layout/Container'
 import IfoTabButtons from './components/IfoTabButtons'
 import CurrentIfo from './CurrentIfo'
 import PastIfo from './PastIfo'
+import HowItWorks from './components/HowItWorks'
+import Ideology from './components/Ideology'
 
 const apeFloat = keyframes`
   0% { transform: translate(0, 0px); }
@@ -180,6 +182,8 @@ const Ifos = () => {
         <Route path={`${path}/history`}>
           <PastIfo />
         </Route>
+        <HowItWorks />
+        <Ideology />
       </Container>
     </>
   )
