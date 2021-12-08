@@ -13,6 +13,76 @@ interface DonutChartProps {
   title: string
 }
 
+// Creating a svg chart to have more control over design
+const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
+
+  const calculateOffset = (val) => {
+    return circumference - getPercent(val) * circumference
+  }
+  const getPercent = (val) => {
+    return val / total
+  }
+  const strokeWidth = 3
+  const cx = isMobile ? 25 : 12.5
+  const cy = isMobile ? 32 : 26
+  const r = 14.5
+  const circumference = Math.PI * 2 * r
+  const total = items.reduce((a, b) => a + b.value, 0)
+  const sortedItems = items.sort((a, b) => (a.value > b.value ? -1 : 1))
+  let angleOffset = -90
+  const offsetChart = sortedItems.map((item) => {
+    const temp = {
+      ...item,
+      angleOffset,
+      angleRotate: `rotate(${angleOffset}, ${cx}, ${cy})`,
+    }
+    angleOffset = getPercent(item.value) * 360 + angleOffset
+    return temp
+  })
+
+  return (
+    <ChartWrapper>
+      <StyledHeader>{title.includes('null') ? <Skeleton width="200px" height="35px" /> : title}</StyledHeader>
+      <ChartContainer>
+        <ChartSvg viewBox="0 0 50 50">
+          <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
+          <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
+          <ChartCircle cx={cx} cy={cy} r={r} fill="transparent" stroke="white" strokeWidth={strokeWidth} />
+          {offsetChart.map((item) => (
+            <ChartCircle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill="transparent"
+              stroke={item.color}
+              strokeWidth={strokeWidth}
+              strokeDasharray={circumference - 0.2}
+              strokeDashoffset={calculateOffset(item.value)}
+              transform={item.angleRotate}
+            />
+          ))}
+        </ChartSvg>
+      </ChartContainer>
+      <GraphCardWrapper>
+        {offsetChart.map((item) => (
+          <IconAndTextWrapper>
+            <GraphCard color={item.color} />
+            <StyledText>
+              {item.value.toString() === 'NaN' ? (
+                <Skeleton width="150px" height="35px" />
+              ) : (
+                `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(1)}%`
+              )}
+            </StyledText>
+          </IconAndTextWrapper>
+        ))}
+      </GraphCardWrapper>
+    </ChartWrapper>
+  )
+}
+
 const chartAnimation = keyframes`
     0%{stroke-dashoffset: 0}
 `
@@ -117,75 +187,5 @@ const StyledHeader = styled(Text)`
     top: 20px;
   }
 `
-
-// Creating a svg chart to have more control over design
-const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
-  const { isMd, isSm, isXs } = useMatchBreakpoints()
-  const isMobile = isMd || isSm || isXs
-
-  const calculateOffset = (val) => {
-    return circumference - getPercent(val) * circumference
-  }
-  const getPercent = (val) => {
-    return val / total
-  }
-  const strokeWidth = 3
-  const cx = isMobile ? 25 : 12.5
-  const cy = isMobile ? 32 : 26
-  const r = 14.5
-  const circumference = Math.PI * 2 * r
-  const total = items.reduce((a, b) => a + b.value, 0)
-  const sortedItems = items.sort((a, b) => (a.value > b.value ? -1 : 1))
-  let angleOffset = -90
-  const offsetChart = sortedItems.map((item) => {
-    const temp = {
-      ...item,
-      angleOffset,
-      angleRotate: `rotate(${angleOffset}, ${cx}, ${cy})`,
-    }
-    angleOffset = getPercent(item.value) * 360 + angleOffset
-    return temp
-  })
-
-  return (
-    <ChartWrapper>
-      <StyledHeader>{title.includes('null') ? <Skeleton width="200px" height="35px" /> : title}</StyledHeader>
-      <ChartContainer>
-        <ChartSvg viewBox="0 0 50 50">
-          <ChartCircle cx={cx} cy={cy} r={r - strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
-          <ChartCircle cx={cx} cy={cy} r={r + strokeWidth / 2} fill="transparent" stroke="white" strokeWidth={0.3} />
-          <ChartCircle cx={cx} cy={cy} r={r} fill="transparent" stroke="white" strokeWidth={strokeWidth} />
-          {offsetChart.map((item) => (
-            <ChartCircle
-              cx={cx}
-              cy={cy}
-              r={r}
-              fill="transparent"
-              stroke={item.color}
-              strokeWidth={strokeWidth}
-              strokeDasharray={circumference - 0.2}
-              strokeDashoffset={calculateOffset(item.value)}
-              transform={item.angleRotate}
-            />
-          ))}
-        </ChartSvg>
-      </ChartContainer>
-      <GraphCardWrapper>
-        {offsetChart.map((item) => (
-          <IconAndTextWrapper>
-            <GraphCard color={item.color} />
-            <StyledText>
-              {item.value.toString() === 'NaN' ? (
-                <Skeleton width="150px" height="35px" />
-              ) : (
-                `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(1)}%`
-              )}
-            </StyledText>
-          </IconAndTextWrapper>
-        ))}
-      </GraphCardWrapper>
-    </ChartWrapper>
-  )
-}
 
 export default React.memo(DonutChart)

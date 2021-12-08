@@ -13,37 +13,6 @@ interface ValidationProps {
   onValidationChange: (valid: boolean) => void
 }
 
-const ValidationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 286px;
-  border-radius: 10px;
-  border-radius: 10px;
-  margin-bottom: 35px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 686px;
-    padding: 20px 30px 20px 70px;
-  }
-`
-
-const ValidationText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
-  font-size: 10px;
-  font-size: 10px;
-  font-weight: 200;
-  color: rgba(223, 65, 65, 1);
-  line-height: 20px;
-  &:before {
-    font-weight: 700;
-    content: '${(props) => props.boldContent}';
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 16px;
-    line-height: 40px;
-  }
-`
-
 const isValidUrl = (val: string) => {
   try {
     const url = new URL(val)
@@ -244,5 +213,36 @@ const Validations: React.FC<ValidationProps> = ({ presaleData, settings, onValid
     </ValidationContainer>
   )
 }
+
+const ValidationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 286px;
+  border-radius: 10px;
+  border-radius: 10px;
+  margin-bottom: 35px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 686px;
+    padding: 20px 30px 20px 70px;
+  }
+`
+
+const ValidationText = styled(Text)<{ boldContent?: string }>`
+  font-family: poppins;
+  font-weight: 400;
+  font-size: 10px;
+  font-size: 10px;
+  font-weight: 200;
+  color: rgba(223, 65, 65, 1);
+  line-height: 20px;
+  &:before {
+    font-weight: 700;
+    content: '${(props) => props.boldContent}';
+  }
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+    line-height: 40px;
+  }
+`
 
 export default React.memo(Validations)

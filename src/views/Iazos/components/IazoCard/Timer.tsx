@@ -5,17 +5,6 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoTimeInfo } from 'state/types'
 
-const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string; fontColor?: string }>`
-  font-family: poppins;
-  font-weight: ${(props) => props.fontSize};
-  color: ${(props) => props.fontColor};
-  &:after {
-    font-weight: 700;
-    font-size: ${(props) => props.fontSize || '17px'};
-    content: '${(props) => props.boldContent}';
-  }
-`
-
 interface TimerProps {
   timeInfo: IazoTimeInfo
   fontColor?: string
@@ -58,5 +47,16 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
   }
   return timeToDisplay()
 }
+
+const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string; fontColor?: string }>`
+  font-family: poppins;
+  font-weight: ${(props) => props.fontSize};
+  color: ${(props) => props.fontColor};
+  &:after {
+    font-weight: 700;
+    font-size: ${(props) => props.fontSize || '17px'};
+    content: '${(props) => props.boldContent}';
+  }
+`
 
 export default Timer

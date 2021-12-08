@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
-import 'react-datepicker/dist/react-datepicker.css'
+import { AutoRenewIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useTheme from 'hooks/useTheme'
@@ -10,6 +8,7 @@ import useCommitToIazo from 'views/Iazos/hooks/useCommitToIazo'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import TokenInput from '../CreateIazo/components/CreateYourPresale/PresaleDetails/TokenInput'
+import StyledButton, { Wrapper, BoldAfterText } from './styles'
 
 interface ApproveCreateIazoProps {
   iazoAddress: string
@@ -19,43 +18,6 @@ interface ApproveCreateIazoProps {
   disabled?: boolean
   onPendingContribute: (pendingTrx: boolean) => void
 }
-
-const StyledButton = styled(ButtonSquare)`
-  height: 50px;
-  width: 150px;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 700;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 200px;
-    font-size: 16px;
-  }
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
-  font-size: 13px;
-  &:after {
-    font-weight: 700;
-    font-size: 14px;
-    ${({ theme }) => theme.mediaQueries.md} {
-      font-size: 17px;
-    }
-    content: '${(props) => props.boldContent}';
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 16px;
-  }
-`
 
 const CommitToIazo: React.FC<ApproveCreateIazoProps> = ({
   iazoAddress,

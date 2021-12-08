@@ -3,6 +3,20 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Text } from '@apeswapfinance/uikit'
 
+const TopNav: React.FC = () => {
+  return (
+    <TopNavWrapper>
+      <TopNavMonkey />
+      <Link to="/ss-iao">
+        <BackWrapper>
+          <BackArrow src="/images/left-arrow.svg" />
+          <StyledText color="white">Back to Self-Serve Launchpad</StyledText>
+        </BackWrapper>
+      </Link>
+    </TopNavWrapper>
+  )
+}
+
 const TopNavWrapper = styled.div`
   position: relative;
   height: 60px;
@@ -46,19 +60,5 @@ const StyledText = styled(Text)`
     font-size: 16px;
   }
 `
-
-const TopNav: React.FC = () => {
-  return (
-    <TopNavWrapper>
-      <TopNavMonkey />
-      <Link to="/ss-iao">
-        <BackWrapper>
-          <BackArrow src="/images/left-arrow.svg" />
-          <StyledText color="white">Back to Self-Serve Launchpad</StyledText>
-        </BackWrapper>
-      </Link>
-    </TopNavWrapper>
-  )
-}
 
 export default TopNav

@@ -25,28 +25,6 @@ interface CreateIazoProps {
   settings: IazoDefaultSettings
 }
 
-const LaunchPadInfoWrapper = styled.div`
-  width: 300px;
-  border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-const StyledHeader = styled(Text)`
-  font-family: Poppins;
-  font-size: 24px;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 27px;
-  padding-top: 25px;
-`
-
 const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
   const { baseFee, iazoTokenFee } = settings !== null && settings
   const { account } = useWeb3React()
@@ -128,5 +106,27 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
     </LaunchPadInfoWrapper>
   )
 }
+
+const LaunchPadInfoWrapper = styled.div`
+  width: 300px;
+  border-radius: 10px;
+  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 796px;
+  }
+`
+const StyledHeader = styled(Text)`
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 27px;
+  padding-top: 25px;
+`
 
 export default CreateIazo

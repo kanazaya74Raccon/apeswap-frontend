@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { AutoRenewIcon, ButtonSquare } from '@apeswapfinance/uikit'
+import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import { useHistory } from 'react-router-dom'
 import useCreateIazo from 'views/Iazos/hooks/useCreateIazo'
 import tokens from 'config/constants/tokens'
@@ -10,6 +9,7 @@ import useCreateIazoApi from 'views/Iazos/hooks/useCreateIazoApi'
 import { Token } from 'config/constants/types'
 import { useToast } from 'state/hooks'
 import { PresaleData } from '../types'
+import StyledButton from './styles'
 
 interface CreatePresaleProps {
   presaleData: PresaleData
@@ -17,19 +17,6 @@ interface CreatePresaleProps {
   creationFee: string
   iazoFee: string
 }
-
-const StyledButton = styled(ButtonSquare)`
-  height: 40px;
-  width: 135px;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 700;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 200px;
-    height: 50px;
-    font-size: 16px;
-  }
-`
 
 const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, creationFee, iazoFee }) => {
   const { chainId, account } = useWeb3React()
@@ -138,6 +125,8 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
             .then((resp) => {
               console.info(resp)
               const iazoAddress = resp.events.IAZOCreated.returnValues.newIAZO
+              const trxHash = resp.transactionHash
+              apiObject.append('createTransactionHash', trxHash)
               apiObject.append('iazoAddress', iazoAddress)
               onCreateIazoApi(apiObject).then((apiResp: any) => {
                 if (apiResp.status === 201) {
