@@ -13,6 +13,7 @@ export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './
 export { statsFetchStart, statsFetchSucceeded, statsFetchFailed } from './stats'
 export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
 export { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } from './tokenPrices'
+export { iazosFetchStart, iazosFetchSucceeded, iazosFetchFailed } from './iazos'
 export {
   setNfaStakingPoolsPublicData,
   setNfaStakingPoolsUserData,

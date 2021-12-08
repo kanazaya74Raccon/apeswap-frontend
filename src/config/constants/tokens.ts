@@ -9,10 +9,18 @@ const tokens = {
     },
     decimals: 18,
   },
+  MockERC20: {
+    symbol: 'MockERC20',
+    address: {
+      97: '0x68D24FA18c00B5Df32e91C1dDDfa6419083606F9',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    decimals: 18,
+  },
   gnana: {
     symbol: 'GNANA',
     address: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      97: '0xf693bDA9D3C56D5F9165c8633d9098e3C4Ae495A',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     decimals: 18,
@@ -37,7 +45,8 @@ const tokens = {
   busd: {
     symbol: 'BUSD',
     address: {
-      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
+      // Swapped to base token for now
+      97: '0x68d24fa18c00b5df32e91c1dddfa6419083606f9',
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     },
     decimals: 18,
