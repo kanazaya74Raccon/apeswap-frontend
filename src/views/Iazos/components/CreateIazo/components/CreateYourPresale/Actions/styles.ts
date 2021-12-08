@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ButtonSquare } from '@apeswapfinance/uikit'
 
-export const StyledButton = styled(ButtonSquare)`
+const StyledButton = styled(ButtonSquare)`
   height: 40px;
   width: 135px;
   font-size: 14px;
@@ -13,3 +13,4 @@ export const StyledButton = styled(ButtonSquare)`
     font-size: 16px;
   }
 `
+export default StyledButton

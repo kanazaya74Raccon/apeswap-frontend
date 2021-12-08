@@ -9,7 +9,7 @@ import useCreateIazoApi from 'views/Iazos/hooks/useCreateIazoApi'
 import { Token } from 'config/constants/types'
 import { useToast } from 'state/hooks'
 import { PresaleData } from '../types'
-import { StyledButton } from './styles'
+import StyledButton from './styles'
 
 interface CreatePresaleProps {
   presaleData: PresaleData
