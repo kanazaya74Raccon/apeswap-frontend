@@ -81,7 +81,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove} fontFamily="Titan One">
           {TranslateString(999, 'Enable')}
         </ButtonSquare>
       )

@@ -145,19 +145,19 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false}>
+        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       {farm.projectLink && (
         <Flex justifyContent="center">
-          <StyledLink external href={farm.projectLink} bold={false}>
+          <StyledLink external href={farm.projectLink} bold={false} fontFamily="Titan One">
             {TranslateString(356, 'View Project Site')}
           </StyledLink>
         </Flex>
       )}
       <Flex justifyContent="center">
-        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
+        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)} fontFamily="Titan One">
           Add to Metamask
         </StyledLink>
       </Flex>
