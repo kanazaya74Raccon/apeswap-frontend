@@ -40,7 +40,6 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   saleAmount,
   raiseAmount,
   bananaToBurn,
-  projectSiteUrl,
   raisingAmount,
   totalAmount,
   vestingTime,
@@ -103,9 +102,6 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
           <Text fontSize="14px">{`${percentRaised || subscribeAmount}%`}</Text>
         </Item>
       </StyledIfoCardDetails>
-      <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
-        {TranslateString(412, 'View project site')}
-      </LinkExternal>
       {burnedTxUrl && burnedTxUrl !== '' && (
         <LinkExternal href={burnedTxUrl} style={{ margin: 'auto' }}>
           {TranslateString(412, 'View burned transactions')}

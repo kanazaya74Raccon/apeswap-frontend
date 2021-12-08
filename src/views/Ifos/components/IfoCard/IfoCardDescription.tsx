@@ -9,16 +9,7 @@ export interface IfoCardDescriptionProps {
 }
 
 const StyledIfoCardDescription = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-`
-
-const Divider = styled.div`
-  background-color: ${({ theme }) => theme.colors.borderColor};
-  height: 1px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
+  width: 100%;
 `
 
 const ToggleButton = styled.button`
@@ -27,13 +18,13 @@ const ToggleButton = styled.button`
   color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   display: block;
-  font-weight: 300;
+  font-weight: 800;
+  font-family: Poppins;
   outline: 0;
-  padding: 24px 16px;
   width: 100%;
 `
 
-const Description = styled(Text)<{ isOpen: boolean }>`
+const Description = styled(Text).attrs({ fontFamily: 'poppins' })<{ isOpen: boolean }>`
   color: ${({ theme }) => theme.colors.textSubtle};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `
@@ -46,7 +37,6 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({ defaultIsOpen =
 
   return (
     <StyledIfoCardDescription>
-      <Divider />
       <ToggleButton onClick={handleClick}>
         {isOpen ? TranslateString(999, 'Hide') : TranslateString(999, 'Show')}
       </ToggleButton>

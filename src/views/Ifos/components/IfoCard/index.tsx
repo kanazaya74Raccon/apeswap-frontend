@@ -17,7 +17,6 @@ import { getContract } from 'utils/web3'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
-import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardTime from './IfoCardTime'
 import IfoCardContribute from './IfoCardContribute'
@@ -29,19 +28,10 @@ export interface IfoCardProps {
   gnana?: boolean
 }
 
-const StyledIfoCard = styled(Card)<{ ifoId: string; gnana?: boolean }>`
-  background-image: ${(props) =>
-    props.gnana ? `url('/images/ifos/${props.ifoId}-gnana-bg.svg')` : `url('/images/ifos/${props.ifoId}-bg.svg')`};
-  background-repeat: no-repeat;
-  background-position: -5px -5px;
-  background-size: contain;
-  padding-top: 112px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 437px;
-  border-radius: 50px;
-  width: 100%;
-  background-size: 102.5%;
+const Container = styled.div`
+  background-color: #383838;
+  padding: 24px;
+  border-radius: 20px;
 `
 
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
@@ -226,54 +216,51 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
   return (
-    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive} gnana={gnana}>
-      <CardBody>
-        <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
-        <IfoCardProgress progress={state.progress} />
-        {vesting && (
-          <IfoCardTime
-            isComingSoon={!address}
-            isLoading={state.isLoading}
-            status={state.status}
-            secondsUntilStart={state.secondsUntilStart}
-            secondsUntilEnd={state.secondsUntilEnd}
-            block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
-          />
-        )}
-        {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && vesting && (
-          <ContributeCard
-            address={address}
-            currency={currency}
-            currencyAddress={currencyAddress}
-            contract={contract}
-            status={state.status}
-            raisingAmount={state.raisingAmount}
-            tokenDecimals={tokenDecimals}
-            totalAmount={state.totalAmount}
-            notLp={notLp}
-            harvestTwoBlockRelease={state.harvestTwoBlockRelease}
-            harvestThreeBlockRelease={state.harvestThreeBlockRelease}
-            harvestFourBlockRelease={state.harvestFourBlockRelease}
-          />
-        )}
-        <IfoCardDetails
-          launchDate={launchDate}
-          launchTime={launchTime}
-          saleAmount={saleAmount}
-          raiseAmount={raiseAmount}
-          bananaToBurn={bananaToBurn}
-          projectSiteUrl={projectSiteUrl}
-          raisingAmount={state.raisingAmount}
-          vestingTime={vestingTime}
-          totalAmount={state.totalAmount}
-          burnedTxUrl={burnedTxUrl}
-          address={address}
-          percentRaised={raisePercent}
+    <Container>
+      <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
+      <IfoCardProgress progress={state.progress} />
+      {vesting && (
+        <IfoCardTime
+          isComingSoon={!address}
+          isLoading={state.isLoading}
+          status={state.status}
+          secondsUntilStart={state.secondsUntilStart}
+          secondsUntilEnd={state.secondsUntilEnd}
+          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
-        <IfoCardDescription description={description} />
-      </CardBody>
-    </StyledIfoCard>
+      )}
+      {!account && <UnlockButton fullWidth />}
+      {(isActive || isFinished) && vesting && (
+        <ContributeCard
+          address={address}
+          currency={currency}
+          currencyAddress={currencyAddress}
+          contract={contract}
+          status={state.status}
+          raisingAmount={state.raisingAmount}
+          tokenDecimals={tokenDecimals}
+          totalAmount={state.totalAmount}
+          notLp={notLp}
+          harvestTwoBlockRelease={state.harvestTwoBlockRelease}
+          harvestThreeBlockRelease={state.harvestThreeBlockRelease}
+          harvestFourBlockRelease={state.harvestFourBlockRelease}
+        />
+      )}
+      <IfoCardDetails
+        launchDate={launchDate}
+        launchTime={launchTime}
+        saleAmount={saleAmount}
+        raiseAmount={raiseAmount}
+        bananaToBurn={bananaToBurn}
+        projectSiteUrl={projectSiteUrl}
+        raisingAmount={state.raisingAmount}
+        vestingTime={vestingTime}
+        totalAmount={state.totalAmount}
+        burnedTxUrl={burnedTxUrl}
+        address={address}
+        percentRaised={raisePercent}
+      />
+    </Container>
   )
 }
 
