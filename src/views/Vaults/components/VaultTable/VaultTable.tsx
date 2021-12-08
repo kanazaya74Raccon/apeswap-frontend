@@ -200,7 +200,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
         </TotalStakedContainer>
         {rawStakedBalance ? (
           <UserStakedContainer>
-            <StyledText fontFamily="poppins">Staked</StyledText>
+            <StyledText>Staked</StyledText>
             <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
               {displayBalance}
             </StyledHeadingGreen>
