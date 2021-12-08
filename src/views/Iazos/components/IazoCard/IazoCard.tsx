@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { Iazo } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -8,133 +7,23 @@ import BigNumber from 'bignumber.js'
 import { BoldAfterText } from '../styles'
 import Timer from './Timer'
 import Badges from './Badges'
+import {
+  IazoCardWrapper,
+  CardMonkey,
+  HeadingWrapper,
+  TopBodyWrapper,
+  BottomBodyWrapper,
+  TokenHeaderInformationWrapper,
+  TextBoxWrapper,
+  TokenImage,
+  TokenName,
+  ProgressBar,
+  Progress,
+} from './styles'
 
 interface iazoCardProps {
   iazo: Iazo
 }
-
-const IazoCardWrapper = styled.div`
-  position: relative;
-  height: 286px;
-  width: 320px;
-  border-radius: 10px;
-  margin-top: 12.5px;
-  margin-bottom: 12.5px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const CardMonkey = styled.div`
-  position: absolute;
-  height: 286px;
-  width: 320px;
-  overflow: hidden;
-  background: ${(props) =>
-    props.theme.isDark
-      ? 'url(images/card-ape.svg) no-repeat 425px 110px'
-      : 'url(images/card-ape-light.svg) no-repeat 425px 110px'};
-  opacity: 0.2;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const CardWrapperTemplate = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 35px;
-    padding-right: 35px;
-  }
-`
-
-const HeadingWrapper = styled(CardWrapperTemplate)`
-  height: 110px;
-  width: 320px;
-  border-radius: 10px 10px 0px 0px;
-  background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const TopBodyWrapper = styled(CardWrapperTemplate)`
-  width: 320px;
-  height: 80px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const BottomBodyWrapper = styled(CardWrapperTemplate)`
-  width: 320px;
-  height: 96px;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0px 0px 10px 10px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
-
-const TokenHeaderInformationWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-`
-
-const TextBoxWrapper = styled.div<{ align?: string; justify?: string; padding?: string }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: ${(props) => props.justify || 'center'};
-  align-items: ${(props) => props.align || 'center'};
-  padding-bottom: ${(props) => props.padding};
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 100%;
-  }
-`
-
-const TokenImage = styled.img`
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  margin-left: 10px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 35px;
-    height: 35px;
-    margin-left: 0px;
-  }
-`
-
-const TokenName = styled(Text)`
-  font-size: 15px;
-  padding-left: 15px;
-  font-family: Poppins;
-  font-weight: 700;
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 24px;
-  }
-`
-
-const ProgressBar = styled.div`
-  height: 8px;
-  width: 100%;
-  border-radius: 20px;
-  background: #c4c4c4;
-  margin-bottom: 15px;
-`
-
-const Progress = styled(ProgressBar)<{ percentComplete: string }>`
-  width: ${(props) => props.percentComplete};
-  background: linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%);
-`
 
 const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const {

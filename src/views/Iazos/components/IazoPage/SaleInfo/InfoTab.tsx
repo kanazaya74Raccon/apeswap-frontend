@@ -1,30 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Iazo } from 'state/types'
 import DonutChart from 'views/Iazos/components/DonutChart'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import InfoFooter from './InfoFooter'
-import { BoldAfterTextLarge } from '../../styles'
+import { BoldAfterText } from '../../styles'
+import { InfoWrapper } from './styles'
 
 interface InfoTabProps {
   iazo: Iazo
 }
-
-const InfoWrapper = styled.div`
-  display: flex;
-  width: 300px;
-  margin-bottom: 20px;
-  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
-  border-radius: 0px 0px 10px 10px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding-top: 20px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
 
 const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const { iazoToken, amount, liquidityPercent, feeInfo, socialInfo, listingPrice, tokenPrice } = iazo
@@ -66,12 +51,12 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
     <InfoWrapper>
       <DonutChart items={items} title={`${name} Tokenomics`} />
       <div>
-        <BoldAfterTextLarge boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterTextLarge>
-        <BoldAfterTextLarge boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterTextLarge>
-        <BoldAfterTextLarge boldContent={tokensForLiquidity.toString()}>
+        <BoldAfterText boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}>
           {' '}
           Total Tokens For Liquidity:{' '}
-        </BoldAfterTextLarge>
+        </BoldAfterText>
       </div>
       <br />
       <br />

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import 'react-datepicker/dist/react-datepicker.css'
 import useIazoAllowance from 'views/Iazos/hooks/useIazoAllowance'
 import { IazoTokenInfo } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
 import { getNativeWrappedAddress } from 'utils/addressHelper'
 import ApproveIazo from './ApproveIazo'
 import CommitToIazo from './CommitToIazo'
+import { ActionWrapper } from './styles'
 
 interface ActionsProps {
   iazoAddress: string
@@ -16,13 +15,6 @@ interface ActionsProps {
   onPendingContribute: (pendingTrx: boolean) => void
 }
 
-const ActionWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 15px;
-  margin-bottom: 50px;
-`
 const Actions: React.FC<ActionsProps> = ({
   iazoAddress,
   baseToken,

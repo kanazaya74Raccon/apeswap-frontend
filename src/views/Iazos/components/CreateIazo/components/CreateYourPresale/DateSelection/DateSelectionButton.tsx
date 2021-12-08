@@ -10,32 +10,6 @@ interface DateSelectionProps {
   minDate?: Date
 }
 
-const IconWrapper = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 20px;
-  ${({ theme }) => theme.mediaQueries.md} {
-    position: relative;
-  }
-`
-
-const IconImageWrapper = styled.div`
-  align: left;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-`
-
-const DatePickerContainer = styled.div`
-  position: absolute;
-  right: 10px;
-  top: -280px;
-  z-index: 100;
-  ${({ theme }) => theme.mediaQueries.md} {
-    right: 40px;
-    top: -260px;
-  }
-`
 
 const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }) => {
   const [datePickerOpen, setDatePickerOpen] = useState(false)
@@ -86,5 +60,32 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }
     </>
   )
 }
+
+const IconWrapper = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    position: relative;
+  }
+`
+
+const IconImageWrapper = styled.div`
+  align: left;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+`
+
+const DatePickerContainer = styled.div`
+  position: absolute;
+  right: 10px;
+  top: -280px;
+  z-index: 100;
+  ${({ theme }) => theme.mediaQueries.md} {
+    right: 40px;
+    top: -260px;
+  }
+`
 
 export default DateSelectionButton

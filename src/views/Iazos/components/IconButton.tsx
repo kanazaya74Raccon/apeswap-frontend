@@ -13,6 +13,32 @@ interface IconButtonProps {
   active?: boolean
 }
 
+
+const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) => {
+  const { isDark } = useTheme()
+  const iconColor = isDark ? 'white' : '#A16552'
+  const renderIcon = () => {
+    if (icon === 'check') {
+      return <CheckMarkIcon fill={iconColor} />
+    }
+    if (icon === 'graph') {
+      return <GraphIcon fill={iconColor} />
+    }
+    if (icon === 'calendar') {
+      return <CalendarIcon fill={iconColor} />
+    }
+    return <></>
+  }
+
+  return (
+    <StyledButton onClick={onClick} active={active}>
+      {renderIcon()}
+      {text && <IconText>{text}</IconText>}
+    </StyledButton>
+  )
+}
+
+
 const StyledButton = styled(Button)<{ active?: boolean }>`
   height: 44px;
   border-radius: 10px;
@@ -46,29 +72,5 @@ const IconText = styled(Text)`
     font-size: 13px;
   }
 `
-
-const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) => {
-  const { isDark } = useTheme()
-  const iconColor = isDark ? 'white' : '#A16552'
-  const renderIcon = () => {
-    if (icon === 'check') {
-      return <CheckMarkIcon fill={iconColor} />
-    }
-    if (icon === 'graph') {
-      return <GraphIcon fill={iconColor} />
-    }
-    if (icon === 'calendar') {
-      return <CalendarIcon fill={iconColor} />
-    }
-    return <></>
-  }
-
-  return (
-    <StyledButton onClick={onClick} active={active}>
-      {renderIcon()}
-      {text && <IconText>{text}</IconText>}
-    </StyledButton>
-  )
-}
 
 export default IconButton

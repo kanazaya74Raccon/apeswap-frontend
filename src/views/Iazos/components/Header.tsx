@@ -2,6 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 
+
+const Header: React.FC = () => {
+  return (
+    <HeaderWrapper>
+      <HeadingText>Self-Serve IAO</HeadingText>
+    </HeaderWrapper>
+  )
+}
+
 const HeaderWrapper = styled.div`
   position: relative;
   overflow-y: hidden;
@@ -61,13 +70,5 @@ const HeadingText = styled(Text)`
     left: 250px;
   }
 `
-
-const Header: React.FC = () => {
-  return (
-    <HeaderWrapper>
-      <HeadingText>Self-Serve IAO</HeadingText>
-    </HeaderWrapper>
-  )
-}
 
 export default Header

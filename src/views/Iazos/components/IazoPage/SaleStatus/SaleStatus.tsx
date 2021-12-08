@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { IazoState, IazoStatus, IazoTimeInfo, IazoTokenInfo } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useCurrentTime from 'hooks/useTimer'
@@ -9,6 +8,7 @@ import DuringSale from './DuringSale'
 import AfterSale from './AfterSale'
 import BeforeSale from './BeforeSale'
 import CreatorAfter from './CreatorAfter'
+import { SaleStatusContainer } from './styles'
 
 interface SaleStatus {
   timeInfo: IazoTimeInfo
@@ -23,20 +23,6 @@ interface SaleStatus {
   iazoState: IazoState
   iazoOwner: string
 }
-
-const SaleStatusContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  flex-direction: row;
-  align-items: space-between;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  justify-content: center;
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: 796px;
-  }
-`
 
 const SaleStatus: React.FC<SaleStatus> = ({
   timeInfo,

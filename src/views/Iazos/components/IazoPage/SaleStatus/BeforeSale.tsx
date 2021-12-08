@@ -1,10 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { IazoTimeInfo } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
 import Timer from '../../IazoCard/Timer'
 import IazoSymbols from '../../IazoSymbols'
+import { Wrapper, IazoSymbolsContainer } from './styles'
 
 interface BeforeSaleProps {
   timeInfo: IazoTimeInfo
@@ -13,21 +13,6 @@ interface BeforeSaleProps {
   liquidityPercent: string
 }
 
-const BeforeSaleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`
-
-const IazoSymbolsContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-top: 50px;
-  padding-left: 7.5px;
-`
-
 const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, tokenPrice, liquidityPercent }) => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -35,7 +20,7 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, toke
   const daysLocked = getTimePeriods(parseInt(lockPeriod), true)
   const liquidityPercentFormatted = parseInt(liquidityPercent) / 10
   return (
-    <BeforeSaleWrapper>
+    <Wrapper>
       <Timer fontSize={isMobile ? '16px' : '24px'} timeInfo={timeInfo} />
       <IazoSymbolsContainer>
         <IazoSymbols iconImage="dollar" title={`${tokenPrice} ${baseTokenSymbol}`} description="Presale price" />
@@ -45,7 +30,7 @@ const BeforeSale: React.FC<BeforeSaleProps> = ({ timeInfo, baseTokenSymbol, toke
           description={`Locked for ${daysLocked.days} days`}
         />
       </IazoSymbolsContainer>
-    </BeforeSaleWrapper>
+    </Wrapper>
   )
 }
 
