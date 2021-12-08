@@ -171,7 +171,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
         />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading>
+        <StyledHeading fontFamily="Titan One">
           {farm?.stakeTokens?.token0?.symbol}-{farm?.stakeTokens?.token1?.symbol}
         </StyledHeading>
         <ApyWrapper>

@@ -76,7 +76,7 @@ const ApeSwapStats = () => {
   return (
     <StyledBananaStats>
       <StyledCardBody>
-        <Heading size="lg" mb="8px" textAlign="center">
+        <Heading size="lg" mb="8px" textAlign="center" fontFamily="Titan One">
           {TranslateString(534, 'ApeSwap Stats')}
         </Heading>
         <GreyRow>
