@@ -687,7 +687,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
@@ -708,9 +708,7 @@ const Pools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>

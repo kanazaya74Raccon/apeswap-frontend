@@ -46,13 +46,15 @@ const ControlContainer = styled(Card)`
 const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
   margin-left: 0px;
   cursor: pointer;
   ${Text} {
     margin-left: 4px;
-  ${({ theme }) => theme.mediaQueries.md} { margin-left: 8px;}
-  }
+    ${({ theme }) => theme.mediaQueries.md} {
+      margin-left: 8px;
+    }
+  } ;
 `
 
 const ToggleContainer = styled.div`
@@ -368,7 +370,7 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
   transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
   margin-left: 7px;
   margin-top: 2px;
-  'rotate(180deg)' : 'rotate(0)'
+  /* 'rotate(180deg)' : 'rotate(0)'; */
 `
 
 const FlexLayout = styled.div`
@@ -591,7 +593,7 @@ const Vaults: React.FC = () => {
   const renderHeader = () => {
     const headerContents = (
       <HeadingContainer>
-        <StyledHeading as="h1" mb="8px" mt={0} color="white">
+        <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
           {TranslateString(999, 'Burning Vaults')}
         </StyledHeading>
       </HeadingContainer>

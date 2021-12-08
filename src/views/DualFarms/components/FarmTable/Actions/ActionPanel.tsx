@@ -83,16 +83,16 @@ const StyledText = styled(Text)`
 
 const StakedText = styled(Text)`
   font-weight: 700;
-  margin-left 60px;
+  margin-left: 60px;
   ${({ theme }) => theme.mediaQueries.xl} {
-    margin-left 85px;
+    margin-left: 85px;
   }
 `
 
 const StakedValueText = styled(Text)`
-  margin-left 60px;
+  margin-left: 60px;
   ${({ theme }) => theme.mediaQueries.xl} {
-    margin-left 85px;
+    margin-left: 85px;
   }
 `
 
@@ -188,7 +188,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={blockExplorer}>
+      <StyledLinkExternal href={blockExplorer} fontFamily="Titan One">
         {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
       </StyledLinkExternal>
     </>

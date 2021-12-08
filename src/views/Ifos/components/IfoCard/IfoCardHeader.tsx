@@ -19,6 +19,7 @@ const Description = styled(Text)`
   font-size: 14px;
   text-align: left;
   padding: 36px;
+  font-family: 'Titan One';
 `
 
 const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({ ifoId, subTitle }) => {

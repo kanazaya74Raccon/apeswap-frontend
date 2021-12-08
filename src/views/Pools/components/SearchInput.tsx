@@ -4,9 +4,10 @@ import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
   border-radius: 20px;
-  background: ${({ theme }) => (theme.isDark ? '#353547' : '#f0f0f0')}
+  background: ${({ theme }) => (theme.isDark ? '#353547' : '#f0f0f0')};
   margin-left: auto;
   height: 28px;
+  font-family: 'Titan One', sans-serif;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 32px;

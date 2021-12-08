@@ -145,12 +145,12 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} className="noClick">
+        <StyledLink external href={bscScanAddress} bold={false} className="noClick" fontFamily="Titan One">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={projectLink} bold={false} className="noClick">
+        <StyledLink external href={projectLink} bold={false} className="noClick" fontFamily="Titan One">
           {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>
@@ -166,6 +166,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
               `${URLactual.origin}/images/tokens/${imageToken || `${rewardToken?.symbol}.svg`}`,
             )
           }
+          fontFamily="Titan One"
         >
           Add to Metamask
         </StyledLink>

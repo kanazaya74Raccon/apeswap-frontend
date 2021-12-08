@@ -113,7 +113,7 @@ const WelcomeCard = () => {
             )}
           </CardBody>
         </StyledWelcomeCard>
-        <Heading as="h1" size="lg" mb="6px" color="contrast">
+        <Heading as="h1" size="lg" mb="6px" color="contrast" fontFamily="Titan One">
           {TranslateString(576, 'Welcome all Apes!')}
         </Heading>
         <StyledText color="textSubtle" fontFamily="poppins">

@@ -183,7 +183,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
         )}
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading>
+        <StyledHeading fontFamily="Titan One">
           {vault?.isPair ? `${vault?.token1?.symbol}-${vault?.token0?.symbol}` : vault?.token0?.symbol}
         </StyledHeading>
         <ApyWrapper>

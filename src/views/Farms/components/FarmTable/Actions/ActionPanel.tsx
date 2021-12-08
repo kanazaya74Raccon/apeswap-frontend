@@ -223,15 +223,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal className="noClick" href={bsc}>
+      <StyledLinkExternal className="noClick" href={bsc} fontFamily="Titan One">
         {TranslateString(999, 'View on BscScan')}
       </StyledLinkExternal>
       {farm.projectLink && (
-        <StyledLinkExternal className="noClick" href={farm.projectLink}>
+        <StyledLinkExternal className="noClick" href={farm.projectLink} fontFamily="Titan One">
           {TranslateString(356, 'View Project Site')}
         </StyledLinkExternal>
       )}
-      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
+      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)} fontFamily="Titan One">
         Add to Metamask
       </StyledLink>
     </>

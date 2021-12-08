@@ -76,7 +76,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false}>
+        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>

@@ -93,10 +93,10 @@ const Nfa = () => {
         </NfaHolder>
         <DetailsHolder>
           <BoxShadow>
-            <Text fontSize="32px" color="primary">
+            <Text fontSize="32px" color="primary" fontFamily="Titan One">
               {TranslateString(999, `${nfa.name} ${nfa.index}`)}
             </Text>
-            <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+            <Text fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
               {TranslateString(999, nfa.attributes.rarityTierName)}
             </Text>
             <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>

@@ -42,6 +42,7 @@ const AprWrapper = styled.div`
   text-align: left;
   font-size: 20px;
   font-weight: 200;
+  font-family: 'Titan One';
 `
 
 const Apr: React.FC<AprProps> = ({

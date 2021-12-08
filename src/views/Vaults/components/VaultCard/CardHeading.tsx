@@ -75,6 +75,8 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
+  font-family: 'Titan One';
+
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
@@ -162,6 +164,8 @@ const StyledAPRText = styled.div`
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
+  font-family: 'Titan One';
+
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
     line-height: 23px;
@@ -331,12 +335,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <StyledFlexContainer>
         <LabelContainer>
           <TitleContainer>
-            <StyledHeading fontSize="20px">{lpLabel}</StyledHeading>
+            <StyledHeading fontSize="20px" fontFamily="Titan One">
+              {lpLabel}
+            </StyledHeading>
             {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
           </TitleContainer>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">APY:</StyledText1>
+              <StyledText1>APY:</StyledText1>
               {apyDaily ? (
                 <FlexSwitch>
                   <StyledAPRText>{apyYearly}%</StyledAPRText>
@@ -350,7 +356,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
-              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+              <StyledText2 color="primary" pr="3px">
                 {TranslateString(999, 'Staked')}
               </StyledText2>
             </Flex>

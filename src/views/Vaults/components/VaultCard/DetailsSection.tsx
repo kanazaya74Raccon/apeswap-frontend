@@ -149,7 +149,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={blockExplorer} bold={false}>
+        <StyledLink external href={blockExplorer} bold={false} fontFamily="Titan One">
           {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
         </StyledLink>
       </Flex>
