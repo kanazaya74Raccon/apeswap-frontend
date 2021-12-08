@@ -73,7 +73,6 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           disabled={requestedApproval}
           onClick={handleApprove}
           endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
-          fontFamily="Titan One"
         >
           {TranslateString(999, 'Enable')}
         </ButtonSquare>
