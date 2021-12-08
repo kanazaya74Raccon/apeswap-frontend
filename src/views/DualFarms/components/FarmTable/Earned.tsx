@@ -14,6 +14,7 @@ const Amount = styled.span<{ earned: number }>`
   font-size: 20px;
   width: 110px;
   font-weight: 200;
+  font-family: 'Titan One';
 `
 
 const Earned: React.FunctionComponent<EarnedProps> = ({ earnings }) => {

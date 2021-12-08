@@ -32,7 +32,6 @@ const Wrapper = styled.div`
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
   font-weight: bold;
-  font-family: 'Poppins';
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -109,40 +108,24 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Wrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(999, 'Multiplier:')}
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(999, 'Multiplier:')}</StyledText>
         <Multiplier multiplier={multiplier} />
       </ValueWrapper>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Liquidity')}:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {totalValueFormated}
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Liquidity')}:</StyledText>
+        <StyledText fontSize="12px">{totalValueFormated}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Stake')}:
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {totalValuePersonalFormated}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">{totalValuePersonalFormated}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {displayHarvestBalance}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">{displayHarvestBalance}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">

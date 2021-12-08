@@ -659,16 +659,14 @@ const Farms: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
             <ButtonCheckWrapper>
               <FarmTabButtons />
               <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                 <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText fontFamily="poppins"> {TranslateString(1116, 'Staked')}</StyledText>
+                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
               </ToggleWrapper>
             </ButtonCheckWrapper>
             {isDark ? (
