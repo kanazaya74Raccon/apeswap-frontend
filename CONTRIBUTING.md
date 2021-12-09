@@ -1,4 +1,4 @@
-# Contributing to the ApeSwap ecosystem 🥞
+# Contributing to the ApeSwap ecosystem 🍌
 
 Thanks for taking the time to contribute !
 
@@ -23,7 +23,7 @@ yarn start
 
 Don't forget to setup your IDE with `eslint` and `prettier`.
  
-## Projet structure
+## Project structure
 
 - **components** contains generic components used inside the application.
 - **views** contains building blocks for each page. The entry point of a view is used as the root component of each route.
