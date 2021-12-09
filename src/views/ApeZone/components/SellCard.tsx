@@ -84,8 +84,6 @@ const SellCard = () => {
 
   const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
 
-  
-
   const handleChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       setVal(e.currentTarget.value)

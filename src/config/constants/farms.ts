@@ -2635,6 +2635,74 @@ const farms: FarmConfig[] = [
     projectLink: 'https://lemonn.io/',
   },
   {
+    pid: 165,
+    image: 'HERA.png',
+    lpSymbol: 'HERA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xA29C9E83b951F5b043EbAC5d4FB4a5d108F156ed',
+    },
+    tokenSymbol: 'HERA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x49c7295ff86eabf5bf58c6ebc858db4805738c01',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://heroarena.app/',
+  },
+  {
+    pid: 166,
+    image: 'GMEE.svg',
+    lpSymbol: 'GMEE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE2Ab715823f6431714e971E2209e377F2a833f05',
+    },
+    tokenSymbol: 'GMEE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.gamee.com/',
+  },
+  {
+    pid: 167,
+    image: 'ARV.svg',
+    lpSymbol: 'ARV-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x2C7447BF72FFd23e7f2A5Aa04bdFF0Faf5798658',
+    },
+    tokenSymbol: 'ARV',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6679eb24f59dfe111864aec72b443d1da666b360',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ariva.digital/',
+  },
+  {
+    pid: 168,
+    image: 'rASKO.svg',
+    lpSymbol: 'rASKO-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xC0A9261cbB82923d974A9ba804aF4FC8DDE7BeD2',
+    },
+    tokenSymbol: 'rASKO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xd118f42edbc839f7e1e85d5269a25288792c141b',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://asko.finance/rasko',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

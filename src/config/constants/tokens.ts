@@ -9,10 +9,18 @@ const tokens = {
     },
     decimals: 18,
   },
+  MockERC20: {
+    symbol: 'MockERC20',
+    address: {
+      97: '0x68D24FA18c00B5Df32e91C1dDDfa6419083606F9',
+      56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+    },
+    decimals: 18,
+  },
   gnana: {
     symbol: 'GNANA',
     address: {
-      97: '0x4fb99590ca95fc3255d9fa66a1ca46c43c34b09a',
+      97: '0xf693bDA9D3C56D5F9165c8633d9098e3C4Ae495A',
       56: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
     },
     decimals: 18,
@@ -37,7 +45,8 @@ const tokens = {
   busd: {
     symbol: 'BUSD',
     address: {
-      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
+      // Swapped to base token for now
+      97: '0x68d24fa18c00b5df32e91c1dddfa6419083606f9',
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
     },
     decimals: 18,
@@ -767,6 +776,34 @@ const tokens = {
     symbol: 'LMN',
     address: {
       56: '0x7251C7A2155d8FEDb42a1DC4333aDe589e4d6919',
+    },
+    decimals: 18,
+  },
+  hera: {
+    symbol: 'HERA',
+    address: {
+      56: '0x49C7295ff86EaBf5bf58C6eBC858DB4805738c01',
+    },
+    decimals: 18,
+  },
+  gmee: {
+    symbol: 'GMEE',
+    address: {
+      56: '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    },
+    decimals: 18,
+  },
+  arv: {
+    symbol: 'ARV',
+    address: {
+      56: '0x6679eB24F59dFe111864AEc72B443d1Da666B360',
+    },
+    decimals: 8,
+  },
+  rasko: {
+    symbol: 'rASKO',
+    address: {
+      56: '0xd118f42eDbc839F7e1E85d5269A25288792c141B',
     },
     decimals: 18,
   },
