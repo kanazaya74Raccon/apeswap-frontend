@@ -807,6 +807,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  pel: {
+    symbol: 'PEL',
+    address: {
+      56: '0xA75E7928d3de682e3F44dA60C26F33117c4E6C5c',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
