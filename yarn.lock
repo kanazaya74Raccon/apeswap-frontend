@@ -17,10 +17,10 @@
     eslint-plugin-react-hooks "^4.0.0"
     typescript "4.4.3"
 
-"@apeswapfinance/uikit@0.10.4-6.0":
-  version "0.10.4-6.0"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.4-6.0/d8c358773fed82088268e19ce62a64e04b2dd8582dafa599a10eab88022a9fcd#a3bf9dd89c2fce6b642dbbea41c4449c87316db3"
-  integrity sha512-hwiM6e5iIH0XCv4N/DIsk2Xj7Op2sJHaecZCmq2x9rylT4tQgFiYv9nLpZplrGxGo0pth2mDU1P/FchncrMymQ==
+"@apeswapfinance/uikit@^0.10.5-0.0":
+  version "0.10.5-0.0"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-0.0/bc960d7484f699053abb0c9ca6bda62779bc8a8fcffb1ad747d6418b7c1f414b#8533f437f1232fd521ce0d1acbd037d93553983c"
+  integrity sha512-8aS/dXkLbLemDB3rwcanUevY58ZJhQc+P3QpEIPr0zLeChzj954aQH9sRf0ntAqIh/2ZDFCjV3rIopyd3wGwFg==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
