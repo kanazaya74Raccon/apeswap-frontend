@@ -1,6 +1,8 @@
 import { apiBaseUrl } from 'hooks/api'
 import { useCallback } from 'react'
 import { useNetworkChainId } from 'state/hooks'
+import axiosRetry from 'axios-retry'
+import axios from 'axios'
 
 const useCreateIazoApi = () => {
   const chainId = useNetworkChainId()
@@ -8,10 +10,11 @@ const useCreateIazoApi = () => {
   const handleCreateIazoApi = useCallback(
     async (data) => {
       try {
-        const resp = await fetch(`${apiUrl}/iazo/`, {
-          method: 'POST',
-          body: data,
+        axiosRetry(axios, {
+          retries: 3,
+          retryCondition: () => true,
         })
+        const resp = await axios.post(`${apiUrl}/iazo/`, data)
         return resp
       } catch (error) {
         console.warn('Unable to post data:', error)

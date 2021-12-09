@@ -50,7 +50,7 @@ const SaleStatus: React.FC<SaleStatus> = ({
   const tokenPriceFormatted = getBalanceNumber(normalizeTokenPrice, parseInt(decimals)).toString()
 
   const renderSaleStatus = () => {
-    if (timeUntilStart > 0) {
+    if (timeUntilStart > 0 && iazoState !== 'FAILED') {
       return (
         <BeforeSale
           timeInfo={timeInfo}
