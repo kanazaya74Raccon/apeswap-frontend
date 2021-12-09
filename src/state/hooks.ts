@@ -378,7 +378,7 @@ export const useFetchStats = () => {
   const [render, setRender] = useState(false)
 
   // Stats was rendering an insane amount so hot fix until its redone
-  if (account && farms && pools && statsOverall && render) {
+  if (account && farms && pools && statsOverall && render && block) {
     dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, block))
     setRender(false)
   }
