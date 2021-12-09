@@ -5,6 +5,7 @@ import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
+import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
 import {
   useFetchPublicData,
@@ -201,6 +202,7 @@ const App: React.FC = () => {
     <Router>
       <ResetCSS />
       <GlobalStyle />
+      <MarketingModalCheck />
       {(window.location.pathname === '/farms' ||
         window.location.pathname === '/pools' ||
         window.location.pathname === '/vaults') && <StyledChevronUpIcon onClick={scrollToTop} />}
