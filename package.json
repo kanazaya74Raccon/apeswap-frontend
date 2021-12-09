@@ -72,6 +72,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "^26.0.19",
+    "@types/react-datepicker": "^4.3.2",
     "eslint": "^7.26.0",
     "husky": "^7.0.4",
     "prettier": "^2.1.2",

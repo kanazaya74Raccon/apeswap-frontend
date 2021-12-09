@@ -47,10 +47,9 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }
               selected={date}
               minDate={minDate || delayedDate}
               onChange={(d) => {
-                setDate(d)
-                onChange(d)
+                setDate(d as Date)
+                onChange(d as Date)
               }}
-              zIndex="100"
               inline
             />
           </DatePickerContainer>
