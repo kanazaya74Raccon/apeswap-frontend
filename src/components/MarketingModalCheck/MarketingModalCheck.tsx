@@ -40,4 +40,4 @@ const MarketingModalCheck = () => {
   )
 }
 
-export default MarketingModalCheck
+export default React.memo(MarketingModalCheck)
