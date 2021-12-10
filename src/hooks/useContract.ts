@@ -22,6 +22,10 @@ import vaultApe from 'config/abi/vaultApe.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
 import miniChef from 'config/abi/miniApeV2.json'
 import multi from 'config/abi/Multicall.json'
+import iazoExposerAbi from 'config/abi/iazoExposer.json'
+import iazoSettingsAbi from 'config/abi/iazoSettings.json'
+import iazoFactoryAbi from 'config/abi/iazoFactory.json'
+import iazoAbi from 'config/abi/iazo.json'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 import {
@@ -30,6 +34,9 @@ import {
   useBananaAddress,
   useBananaProfileAddress,
   useGoldenBananaAddress,
+  useIazoExposerAddress,
+  useIazoFactoryAddress,
+  useIazoSettingsAddress,
   useLotteryAddress,
   useLotteryTicketAddress,
   useMasterChefAddress,
@@ -170,6 +177,24 @@ export const useApePriceGetter = () => {
 export const useMiniChefContract = () => {
   const abi = miniChef as unknown as AbiItem
   return useContract(abi, useMiniChefAddress())
+}
+
+export const useIazoExposerContract = () => {
+  const abi = iazoExposerAbi as unknown as AbiItem
+  return useContract(abi, useIazoExposerAddress())
+}
+export const useIazoSettingsContract = () => {
+  const abi = iazoSettingsAbi as unknown as AbiItem
+  return useContract(abi, useIazoSettingsAddress())
+}
+export const useIazoFactoryContract = () => {
+  const abi = iazoFactoryAbi as unknown as AbiItem
+  return useContract(abi, useIazoFactoryAddress())
+}
+
+export const useIazoContract = (address: string) => {
+  const abi = iazoAbi as unknown as AbiItem
+  return useContract(abi, address)
 }
 
 export default useContract

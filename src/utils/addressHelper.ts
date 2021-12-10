@@ -1,4 +1,5 @@
 import addresses from 'config/constants/contracts'
+import tokens from 'config/constants/tokens'
 
 export const getBananaAddress = (chainId: number) => {
   return addresses.banana[chainId]
@@ -53,4 +54,18 @@ export const getMiniChefAddress = (chainId: number) => {
 }
 export const getNativeWrappedAddress = (chainId: number) => {
   return addresses.nativeWrapped[chainId]
+}
+export const getIazoExposerAddress = (chainId: number) => {
+  return addresses.iazoExposer[chainId]
+}
+export const getIazoSettingsAddress = (chainId: number) => {
+  return addresses.iazoSettings[chainId]
+}
+export const getIazoFactoryAddress = (chainId: number) => {
+  return addresses.iazoFactoryProxy[chainId]
+}
+export const getTokenSymbolFromAddress = (chainId: number, address: string) => {
+  return Object.keys(tokens).find((token) => {
+    return tokens[token].address[chainId] === address
+  })
 }

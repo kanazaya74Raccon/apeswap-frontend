@@ -234,6 +234,99 @@ export interface FarmOverall {
   rewardTokenSymbol: string
 }
 
+// Start IAZO
+
+export interface IazoDefaultSettings {
+  adminAddress: string
+  feeAddress: string
+  burnAddress: string
+  baseFee: string
+  maxBaseFee: string
+  iazoTokenFee: string
+  maxIazoTokenFee: string
+  nativeCreationFee: string
+  minIazoLength: string
+  maxIazoLength: string
+  minLockPeriod: string
+}
+
+export interface IazoTokenInfo {
+  address: string
+  name: string
+  symbol: string
+  decimals: string
+  totalSupply?: string
+}
+
+export interface IazoFeeInfo {
+  feeAddress: string
+  baseFee: string
+  iazoTokenFee: string
+}
+
+export interface IazoTimeInfo {
+  startTime: string
+  activeTime: string
+  lockPeriod: string
+}
+
+export interface IazoStatus {
+  lpGenerationComplete: boolean
+  forceFailed: boolean
+  totalBaseCollected: string
+  totalTokensSold: string
+  totalTokensWithdraw: string
+  totalBaseWithdraw: string
+  numBuyers: string
+}
+
+export interface IazoSocialInfo {
+  telegram: string
+  twitter: string
+  website: string
+  whitepaper: string
+  tokenImage: string
+  medium: string
+  description: string
+}
+
+export interface TagLink {
+  link: string
+  position: number
+  title: string
+}
+
+export interface IazoTags {
+  tagLinks: TagLink[]
+  tagName: string
+  tagIcon: string
+}
+
+export type IazoState = 'QUEUED' | 'ACTIVE' | 'SUCCESS' | 'HARD_CAP_MET' | 'FAILED'
+
+export interface Iazo {
+  iazoContractAddress: string
+  iazoOwnerAddress: string
+  iazoSaleInNative?: boolean
+  tokenPrice: string
+  amount: string
+  hardcap: string
+  softcap: string
+  maxSpendPerBuyer: string
+  liquidityPercent: string
+  listingPrice: string
+  iazoState: IazoState
+  burnRemain: boolean
+  feeInfo: IazoFeeInfo
+  timeInfo: IazoTimeInfo
+  status: IazoStatus
+  baseToken: IazoTokenInfo
+  iazoToken: IazoTokenInfo
+  isRegistered?: boolean
+  socialInfo?: IazoSocialInfo
+  iazoTags?: IazoTags[]
+}
+
 export interface TokenPrices {
   symbol: string
   address: Address
@@ -306,6 +399,13 @@ export interface StatsOverallState {
   data: StatsOverall
 }
 
+export interface IazosState {
+  isInitialized: boolean
+  isLoading: boolean
+  iazoData: Iazo[]
+  iazoDefaultSettings: IazoDefaultSettings
+}
+
 export type TeamResponse = {
   0: string
   1: string
@@ -337,6 +437,7 @@ export interface State {
   auctions: AuctionsState
   vaults: VaultsState
   tokenPrices: TokenPricesState
+  iazos: IazosState
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
