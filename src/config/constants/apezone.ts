@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"
       isActive: true,
       name: '99Starz',
       subTitle: `The World's Biggest NFT Yield Ecosystem`,
@@ -15,8 +15,8 @@ const ApeZone: { ifos: Ifo[] } = {
       raiseAmount: '$250,000',
       vestingTime: '3 Months',
       projectSiteUrl: 'https://99starz.io/',
-      currency: 'BNB',
-      currencyAddress: '0x0000000000000000000000000000000000000000',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
       releaseBlockNumber: 22364007, // block to start showing contract details
       vesting: true,
