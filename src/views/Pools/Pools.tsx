@@ -436,7 +436,7 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
   transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
   margin-left: 7px;
   margin-top: 2px;
-  'rotate(180deg)' : 'rotate(0)'
+  /* 'rotate(180deg)' : 'rotate(0)'; */
 `
 
 const FlexLayout = styled.div`

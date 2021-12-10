@@ -143,7 +143,7 @@ const BurningGames: React.FC = () => {
       <StyledPage width="1130px">
         {data.length !== 0 && (
           <CardFull isMobile={!isDesktop}>
-            <CardBurningGame game={data[0]} isFull={isDesktop} />
+            <CardBurningGame game={data[0]} />
           </CardFull>
         )}
         <Cards isMobile={!isDesktop}>{data.map((i, index) => index > 0 && <CardBurningGame game={i} />)}</Cards>

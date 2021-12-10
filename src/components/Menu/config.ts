@@ -42,6 +42,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
+    label: 'IAZOs',
+    icon: 'IfoIcon',
+    href: '/iazos',
+  },
+  {
     label: 'IAO',
     icon: 'IfoIcon',
     href: '/iao',

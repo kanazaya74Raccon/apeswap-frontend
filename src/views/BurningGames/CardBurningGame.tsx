@@ -61,12 +61,12 @@ const ButtonSocial = styled.div`
     display: block;
   }
 `
-const FullImage = styled.div<{ pathImage: string; isFull: boolean }>`
+const FullImage = styled.div<{ pathImage: string; }>`
   margin-right: 15px;
   width: 50%;
   height: 100%;
   background-image: url(${(props) => props.pathImage || ''});
-  background-size: ${(props) => (props.isFull ? '100% 100%' : 'cover')};
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 7px;
@@ -133,13 +133,13 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
   margin-top: 2px;
   'rotate(180deg)':'rotate(0)'cursor: pointer;
 `
-const CardBurningGame: React.FC<any> = ({ game, isFull }) => {
+const CardBurningGame: React.FC<any> = ({ game }) => {
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   return (
     <>
       <ColumnFull className="column-full" key={game.id} showDescription={sortDirection === 'asc'}>
         <ContainerGeneral className="container-general">
-          <FullImage pathImage={game.image?.url} isFull={isFull} />
+          <FullImage pathImage={game.image?.url} />
           <ContainerResumeInfo className="container-resumen-info">
             <ContainerTitle className="container-title">
               <Text className="partner-name" fontFamily="poppins" bold>
