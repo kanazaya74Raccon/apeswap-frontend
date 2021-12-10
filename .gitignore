@@ -35,4 +35,5 @@ yarn-error.log*
 .vscode/launch.json
 .vscode/settings.json
 
-
+# iCloud generated
+*.icloud
