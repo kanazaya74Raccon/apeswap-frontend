@@ -91,6 +91,8 @@ const StakedText = styled(Text)`
 
 const StakedValueText = styled(Text)`
   margin-left: 60px;
+  font-family: 'Titan One';
+
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left: 85px;
   }
@@ -119,57 +121,41 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           <InfoContainer liquidityDigits={liquidityDigits}>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  Reward Tokens
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px">
+                <StyledText fontSize="12px">Reward Tokens</StyledText>
+                <StyledText fontSize="12px">
                   {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {farm?.rewardTokens?.token0?.symbol} Earned:
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                <StyledText fontSize="12px">{farm?.rewardTokens?.token0?.symbol} Earned:</StyledText>
+                <StyledText fontSize="12px" color="green">
                   {miniChefEarnings ? miniChefEarnings.toFixed(4) : '0'}
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {farm?.rewardTokens?.token1?.symbol} Earned:
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                <StyledText fontSize="12px">{farm?.rewardTokens?.token1?.symbol} Earned:</StyledText>
+                <StyledText fontSize="12px" color="green">
                   {rewarderEarnings ? rewarderEarnings.toFixed(4) : '0'}
                 </StyledText>
               </ValueWrapper>
             </ValueContainer>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {TranslateString(999, 'Stake:')}
-                </StyledText>
+                <StyledText fontSize="12px">{TranslateString(999, 'Stake:')}</StyledText>
                 <LinkExternal href={BASE_ADD_LIQUIDITY_URL}>
-                  <StyledText fontFamily="poppins" fontSize="12px">
-                    {farm.stakeTokens.token0.symbol}
-                  </StyledText>
+                  <StyledText fontSize="12px">{farm.stakeTokens.token0.symbol}</StyledText>
                 </LinkExternal>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  Staked Amount
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}
-                </StyledText>
+                <StyledText fontSize="12px">Staked Amount</StyledText>
+                <StyledText fontSize="12px">{rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}</StyledText>
               </ValueWrapper>
             </ValueContainer>
           </InfoContainer>
           <Flex flexDirection="column">
             {account && rawStakedBalance !== 0 && (
               <>
-                <StakedText fontFamily="poppins" fontSize="12px">
-                  Staked
-                </StakedText>
+                <StakedText fontSize="12px">Staked</StakedText>
                 <StakedValueText color="green" fontSize="20px">
                   ${totalStakedValue.toFixed(2)}
                 </StakedValueText>
@@ -178,9 +164,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </Flex>
           <ValueContainerNoneLarge>
             <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(736, 'APR:')}
-              </StyledText>
+              <StyledText fontSize="12px">{TranslateString(736, 'APR:')}</StyledText>
             </ValueWrapper>
           </ValueContainerNoneLarge>
           <ActionContainer>
