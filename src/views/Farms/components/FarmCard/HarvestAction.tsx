@@ -88,7 +88,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
     }
     if (rawStakedBalance === 0) {
       return (
-        <ButtonSquare className="noClick" onClick={onPresentDeposit}>
+        <ButtonSquare className="noClick" onClick={onPresentDeposit} fontFamily="Titan One">
           {TranslateString(999, 'Stake LP')}
         </ButtonSquare>
       )
@@ -106,6 +106,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
           })
           setPendingTx(false)
         }}
+        fontFamily="Titan One"
       >
         {TranslateString(999, 'Harvest')}
       </ButtonSquare>

@@ -60,20 +60,12 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Wrapper>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Amount')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          {totalStaked}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Amount')}:</StyledText>
+        <StyledTextGreen fontSize="12px">{totalStaked}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">

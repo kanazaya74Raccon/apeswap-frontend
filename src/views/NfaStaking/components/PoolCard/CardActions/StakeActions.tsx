@@ -125,7 +125,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start" marginRight="6px">
         <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontFamily="Titan One">
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>

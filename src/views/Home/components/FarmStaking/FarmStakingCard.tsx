@@ -73,6 +73,7 @@ const StyledButton = styled(Button)`
   border: 0px;
   width: 234px;
   height: 44px;
+  font-family: 'Titan One';
 `
 
 const StyledLabel = styled(Label)`

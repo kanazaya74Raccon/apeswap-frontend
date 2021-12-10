@@ -614,9 +614,7 @@ const Vaults: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -624,11 +622,11 @@ const Vaults: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBurnOnly(!burnOnly)}>
                   <StyledCheckbox checked={burnOnly} onChange={() => setBurnOnly(!burnOnly)} />
-                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'Burning')}</StyledText>
+                  <StyledText> {TranslateString(1116, 'Burning')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

@@ -344,16 +344,14 @@ const NfaStaking: React.FC = () => {
         <ControlContainer>
           <ViewControls>
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

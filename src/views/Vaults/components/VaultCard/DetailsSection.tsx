@@ -94,58 +94,32 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     <Wrapper>
       {depositFee && (
         <Flex justifyContent="space-between">
-          <StyledText fontFamily="poppins" fontSize="12px">
-            {TranslateString(316, 'Deposit Fee')}:
-          </StyledText>
-          <StyledText fontFamily="poppins" fontSize="12px">
-            {depositFee}%
-          </StyledText>
+          <StyledText fontSize="12px">{TranslateString(316, 'Deposit Fee')}:</StyledText>
+          <StyledText fontSize="12px">{depositFee}%</StyledText>
         </Flex>
       )}
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Withdraw Fee')}:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {withdrawFee}%
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Withdraw Fee')}:</StyledText>
+        <StyledText fontSize="12px">{withdrawFee}%</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Amount')}:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {personalValueStaked}
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Amount')}:</StyledText>
+        <StyledText fontSize="12px">{personalValueStaked}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${totalUserStaked}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Total Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${totalDollarAmountStakedFormated}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(316, 'Total Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${totalDollarAmountStakedFormated}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Total Staked Amount')}:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {totalStakedFormated}
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Total Staked Amount')}:</StyledText>
+        <StyledText fontSize="12px">{totalStakedFormated}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Stake')}:
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
