@@ -187,10 +187,9 @@ const MoreInfo = styled.div`
   height: 35px;
   background: #ffb300;
   border-radius: 10px;
-  font-family: Titan One;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 32.5px;
   letter-spacing: 0.05em;
   text-align: left;
@@ -224,7 +223,7 @@ const Auction: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MoreInfo>How It Works</MoreInfo>
+                <MoreInfo>HOW IT WORKS</MoreInfo>
               </a>
               <ListYourNfa />
             </ButtonHolder>

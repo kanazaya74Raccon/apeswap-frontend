@@ -39,9 +39,8 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals
           })
           setPendingTx(false)
         }}
-        fontFamily="Titan One"
       >
-        {TranslateString(999, 'Harvest')}
+        {TranslateString(999, 'HARVEST')}
       </ButtonSquare>
     )
   }
