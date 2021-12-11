@@ -13,8 +13,7 @@ import { Input as NumericalInput } from './NumericalInput'
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
   display: flex;
   justify-content: flex-start;
-  background-color: ${({ theme }) => theme.colors.input};
-  box-shadow: ${({ theme }) => theme.shadows.inset};
+  background-color: ${({ theme }) => (theme.isDark ? 'rgba(96, 96, 96, 1)' : 'rgba(230, 230, 230, 1)')};
   width: 244px;
   height: 75px;
   padding: 0;
@@ -35,8 +34,7 @@ const Container = styled.div`
   border-radius: 16px;
   width: 336px;
   height: 75px;
-  background-color: ${({ theme }) => theme.colors.input};
-  box-shadow: ${({ theme }) => theme.shadows.inset};
+  background-color: ${({ theme }) => (theme.isDark ? 'rgba(96, 96, 96, 1)' : 'rgba(230, 230, 230, 1)')};
 `
 
 const CurrencyInputContainer = styled.div`
@@ -110,7 +108,7 @@ export default function CurrencyInputPanel({
                 {pair?.token0.symbol}:{pair?.token1.symbol}
               </Text>
             ) : (
-              <Text id="pair" fontSize="19px" bold style={{marginLeft: '10px' }}>
+              <Text id="pair" fontSize="19px" bold style={{ marginLeft: '10px' }}>
                 {(currency && currency.symbol && currency.symbol.length > 20
                   ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                       currency.symbol.length - 5,
@@ -122,12 +120,20 @@ export default function CurrencyInputPanel({
             {!disableCurrencySelect && <ChevronDownIcon />}
           </Flex>
         </CurrencySelectButton>
+        <Text
+          onClick={onMax}
+          color="textSubtle"
+          fontSize="14px"
+          style={{ display: 'inline', cursor: 'pointer', position: 'absolute', top: '-30px', marginLeft: '10px' }}
+        >
+          {id === 'swap-currency-output' ? 'To:' : 'From:'}
+        </Text>
         {account && (
           <Text
             onClick={onMax}
             color="textSubtle"
             fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '30px' }}
+            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '10px' }}
           >
             {!hideBalance && !!currency ? `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}` : ' -'}
           </Text>

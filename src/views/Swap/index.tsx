@@ -98,7 +98,7 @@ export default function Swap({ history }: RouteComponentProps) {
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
-  console.log({v2Trade, balances: currencyBalances, parsedAmount, currencies})
+  console.log({ v2Trade, balances: currencyBalances, parsedAmount, currencies })
 
   // Price data
   const {
@@ -318,11 +318,10 @@ export default function Swap({ history }: RouteComponentProps) {
                 <CurrencyInputHeader
                   title="Swap"
                   subtitle="Trade tokens in an instant"
-                  setIsChartDisplayed={setIsChartDisplayed}
                   isChartDisplayed={isChartDisplayed}
                 />
                 <Wrapper id="swap-page">
-                  <AutoColumn gap="md" style={{border: '1px solid orange'}}>
+                  <AutoColumn gap="md">
                     <CurrencyInputPanel
                       label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
                       value={formattedAmounts[Field.INPUT]}
@@ -335,24 +334,34 @@ export default function Swap({ history }: RouteComponentProps) {
                       id="swap-currency-input"
                     />
 
-                    <AutoColumn justify="space-between" style={{border: '1px solid orange'}}>
-                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                        <IconButton>
-                          <ArrowDownIcon
-                            width="16px"
-                            onClick={() => {
-                              setApprovalSubmitted(false) // reset 2 step UI for approvals
-                              onSwitchTokens()
-                            }}
-                            color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
-                          />
-                        </IconButton>
-                        {recipient === null && !showWrap && isExpertMode ? (
-                          <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                            + Add a send (optional)
-                          </Button>
-                        ) : null}
-                      </AutoRow>
+                    <AutoColumn
+                      style={{
+                        position: 'relative',
+                        height: '0px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <IconButton
+                        style={{ backgroundColor: '#FFB300', borderRadius: '50px', width: '50px', height: '50px' }}
+                        onClick={() => {
+                          setApprovalSubmitted(false) // reset 2 step UI for approvals
+                          onSwitchTokens()
+                        }}
+                      >
+                        <ArrowDownIcon
+                          width="18px"
+                          color="white"
+                          style={{ transform: 'rotate(180deg)', fontWeight: 700 }}
+                        />
+                        <ArrowDownIcon width="18px" color="white" />
+                      </IconButton>
+                      {recipient === null && !showWrap && isExpertMode ? (
+                        <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
+                          + Add a send (optional)
+                        </Button>
+                      ) : null}
                     </AutoColumn>
                     <CurrencyInputPanel
                       value={formattedAmounts[Field.OUTPUT]}
