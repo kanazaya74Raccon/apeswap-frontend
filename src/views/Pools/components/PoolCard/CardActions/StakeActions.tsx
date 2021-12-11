@@ -158,8 +158,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   if (firstStake) {
     return (
-      <ButtonSquare className="noClick" onClick={onPresentDeposit}>
-        {TranslateString(999, `Stake ${stakingTokenName}`)}
+      <ButtonSquare size="sm" className="noClick" onClick={onPresentDeposit}>
+        {TranslateString(999, `STAKE ${stakingTokenName}`)}
       </ButtonSquare>
     )
   }
