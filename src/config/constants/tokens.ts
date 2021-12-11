@@ -814,6 +814,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  stz: {
+    symbol: "STZ",
+    address: {
+      56: "0x7FE378c5e0B5C32AF2ecc8829beDF02245A0E4eF",
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
