@@ -50,6 +50,7 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
+  font-family: 'Titan One';
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -167,7 +168,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start" marginRight="6px">
         <StyledText>{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontFamily="Titan One">
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>

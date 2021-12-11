@@ -81,7 +81,6 @@ const StyledButton = styled(Button)`
   outline: none !important;
   box-shadow: none !important;
   border-radius: 10px;
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

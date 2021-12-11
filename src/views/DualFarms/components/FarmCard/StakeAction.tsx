@@ -127,7 +127,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start">
         <StyledText>{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={stakedBalanceUsd === 0 ? 'textDisabled' : 'text'} fontFamily="Titan One">
+        <StyledHeadingGreen color={stakedBalanceUsd === 0 ? 'textDisabled' : 'text'}>
           ${displayBalance}
         </StyledHeadingGreen>
       </Flex>

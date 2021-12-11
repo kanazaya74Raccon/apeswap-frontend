@@ -81,15 +81,15 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove} fontFamily="Titan One">
-          {TranslateString(999, 'Enable')}
+        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
+          {TranslateString(999, 'ENABLE')}
         </ButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
       return (
-        <ButtonSquare className="noClick" onClick={onPresentDeposit} fontFamily="Titan One">
-          {TranslateString(999, 'Stake LP')}
+        <ButtonSquare className="noClick" onClick={onPresentDeposit}>
+          {TranslateString(999, 'STAKE LP')}
         </ButtonSquare>
       )
     }
@@ -106,9 +106,8 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
           })
           setPendingTx(false)
         }}
-        fontFamily="Titan One"
       >
-        {TranslateString(999, 'Harvest')}
+        {TranslateString(999, 'HARVEST')}
       </ButtonSquare>
     )
   }

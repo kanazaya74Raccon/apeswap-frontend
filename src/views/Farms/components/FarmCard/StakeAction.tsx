@@ -34,6 +34,7 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
+  font-family: 'Titan One';
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;

@@ -101,6 +101,8 @@ const StakedText = styled(Text)`
 
 const StakedValueText = styled(Text)`
   margin-left 60px;
+  font-family: "Titan One";
+  
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left 85px;
   }

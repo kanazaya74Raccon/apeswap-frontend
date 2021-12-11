@@ -106,7 +106,7 @@ const Stats: React.FC = () => {
 
       <Page>
         {!account ? (
-          <UnlockButton fullWidth />
+          <UnlockButton fullWidth fontSize="14px" />
         ) : (
           <div>
             {stats !== null ? (

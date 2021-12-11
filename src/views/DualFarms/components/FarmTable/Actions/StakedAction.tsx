@@ -82,7 +82,7 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData 
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
         <Button onClick={onPresentDeposit} fontFamily="Titan One">
-          {TranslateString(999, 'Stake LP')}
+          {TranslateString(999, 'STAKE LP')}
         </Button>
       </IconButtonWrapper>
     ) : (

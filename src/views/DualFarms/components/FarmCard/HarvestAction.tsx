@@ -73,9 +73,8 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           disabled={requestedApproval}
           onClick={handleApprove}
           endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
-          fontFamily="Titan One"
         >
-          {TranslateString(999, 'Enable')}
+          {TranslateString(999, 'ENABLE')}
         </ButtonSquare>
       )
     }
@@ -85,9 +84,8 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           disabled={stakeTx}
           onClick={onPresentDeposit}
           endIcon={stakeTx && <AutoRenewIcon spin color="currentColor" />}
-          fontFamily="Titan One"
         >
-          {TranslateString(999, 'Stake LP')}
+          {TranslateString(999, 'STAKE LP')}
         </ButtonSquare>
       )
     }
@@ -100,9 +98,8 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           setPendingTx(false)
         }}
         endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
-        fontFamily="Titan One"
       >
-        {TranslateString(999, 'Harvest')}
+        {TranslateString(999, 'HARVEST')}
       </ButtonSquare>
     )
   }
