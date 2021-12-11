@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"
+      address: '0xd4076853fB9F82F7EaEd9aDcf50561B1EAbe4232', // Leave empty for "Coming Soon!"
       isActive: true,
       name: '99Starz',
       subTitle: `The World's Biggest NFT Yield Ecosystem`,

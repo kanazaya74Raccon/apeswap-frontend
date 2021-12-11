@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0xa526477bBf22643bE96D02Ebf3934BA1721059f3', // Leave empty for "Coming Soon!"
+    address: '0xeaEF48e0b033E08d9050ab9ca8C7494b6D067d79', // Leave empty for "Coming Soon!"
     isActive: true,
     name: '99Starz',
     subTitle: `The World's Biggest NFT Yield Ecosystem`,
