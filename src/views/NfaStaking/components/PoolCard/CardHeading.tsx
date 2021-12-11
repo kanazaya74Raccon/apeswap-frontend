@@ -71,6 +71,7 @@ const StyledBackground = styled(Flex)`
 
 const StyledHeading = styled(Heading)`
   font-size: 12px;
+  font-family: 'Titan One';
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
   }
@@ -97,6 +98,7 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
+  font-family: 'Titan One';
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
@@ -281,6 +283,8 @@ const NumberHolder = styled.div`
 
 const StyledNumber = styled.div`
   opacity: 0;
+  font-family: 'Titan One';
+
   @media (min-width: 500px) {
     opacity: 1;
     line-height: 0px;

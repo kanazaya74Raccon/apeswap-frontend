@@ -9,10 +9,9 @@ const MoreInfo = styled.div`
   height: 35px;
   background: #ffb300;
   border-radius: 10px;
-  font-family: Titan One;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 32.5px;
   letter-spacing: 0.05em;
   text-align: left;
@@ -34,7 +33,7 @@ const ListYourNfa: React.FC = () => {
     />,
   )
 
-  return <MoreInfo onClick={onPresentNfaListingModal}> List Your NFA </MoreInfo>
+  return <MoreInfo onClick={onPresentNfaListingModal}> LIST YOUR NFA </MoreInfo>
 }
 
 export default ListYourNfa

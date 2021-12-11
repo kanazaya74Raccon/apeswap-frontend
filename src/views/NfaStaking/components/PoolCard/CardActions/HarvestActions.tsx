@@ -40,7 +40,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals
           setPendingTx(false)
         }}
       >
-        {TranslateString(999, 'Harvest')}
+        {TranslateString(999, 'HARVEST')}
       </ButtonSquare>
     )
   }

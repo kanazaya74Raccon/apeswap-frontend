@@ -68,6 +68,8 @@ const BoughtText = styled(Text)`
   position: absolute;
   top: 36px;
   font-size: 25px;
+  font-family: 'Titan One';
+
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 30px;
     font-size: 20px;
@@ -78,6 +80,8 @@ const NameText = styled(Text)`
   position: absolute;
   top: 8px;
   font-size: 25px;
+  font-family: 'Titan One';
+
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 0px;
     font-size: 20px;

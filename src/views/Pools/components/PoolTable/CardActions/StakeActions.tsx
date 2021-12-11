@@ -56,6 +56,7 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
+  font-family: 'Titan One';
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -164,13 +165,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `Stake ${stakingTokenName}`)}</ButtonSquare>
+    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `STAKE ${stakingTokenName}`)}</ButtonSquare>
   }
 
   return (
     <StyledFlex justifyContent="space-between">
       <Flex flexDirection="column" justifyContent="space-between" marginRight="6px">
-        <StyledText fontFamily="poppins">{TranslateString(999, 'Staked')}</StyledText>
+        <StyledText>{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>

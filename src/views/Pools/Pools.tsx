@@ -687,11 +687,11 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
-            <Text fontSize="22px" fontFamily="poppins" fontWeight={400} color="white">
+            <Text fontSize="22px" fontWeight={400} color="white">
               Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
               block.
             </Text>
@@ -708,9 +708,7 @@ const Pools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -718,15 +716,15 @@ const Pools: React.FC = () => {
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                  <StyledText fontFamily="poppins"> {TranslateString(1116, 'GNANA')}</StyledText>
+                  <StyledText> {TranslateString(1116, 'GNANA')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
                   <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />
-                  <StyledText fontFamily="poppins"> BANANA</StyledText>
+                  <StyledText> BANANA</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

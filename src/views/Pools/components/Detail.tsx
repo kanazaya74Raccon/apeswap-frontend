@@ -91,9 +91,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
     <>
       {blocksUntilStart > 0 && (
         <>
-          <StyledText fontFamily="poppins" fontSize="12px">
-            {TranslateString(410, 'Start')}
-          </StyledText>
+          <StyledText fontSize="12px">{TranslateString(410, 'Start')}</StyledText>
           <StyledText
             fontFamily="poppins"
             fontSize="12px"
@@ -103,54 +101,38 @@ const Detail: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart === 0 && blocksRemaining > 0 && (
         <>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(410, 'End')}
-            </StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${
-              timeUntilEnd.hours
-            }h, ${timeUntilEnd.minutes}m`}</StyledText>
+            <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
+            <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+              timeUntilEnd.minutes
+            }m`}</StyledText>
           </Flex>
         </>
       )}
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, totalStakedTitle)}:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {totalStakedFormated}
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, totalStakedTitle)}:</StyledText>
+        <StyledText fontSize="12px">{totalStakedFormated}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Stake')}:
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl} className="noClick">
           {lpLabel}
         </StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${totalUserStaked}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} className="noClick">
+        <StyledLink external href={bscScanAddress} bold={false} className="noClick" fontFamily="Titan One">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={projectLink} bold={false} className="noClick">
+        <StyledLink external href={projectLink} bold={false} className="noClick" fontFamily="Titan One">
           {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>
@@ -166,6 +148,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
               `${URLactual.origin}/images/tokens/${imageToken || `${rewardToken?.symbol}.svg`}`,
             )
           }
+          fontFamily="Titan One"
         >
           Add to Metamask
         </StyledLink>

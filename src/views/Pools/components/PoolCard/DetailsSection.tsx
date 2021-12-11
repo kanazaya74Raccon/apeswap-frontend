@@ -98,9 +98,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart > 0 && (
         <>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(410, 'Start')}
-            </StyledText>
+            <StyledText fontSize="12px">{TranslateString(410, 'Start')}</StyledText>
             <StyledText
               fontFamily="poppins"
               fontSize="12px"
@@ -111,52 +109,36 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart === 0 && blocksRemaining > 0 && (
         <>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(410, 'End')}
-            </StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${
-              timeUntilEnd.hours
-            }h, ${timeUntilEnd.minutes}m`}</StyledText>
+            <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
+            <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+              timeUntilEnd.minutes
+            }m`}</StyledText>
           </Flex>
         </>
       )}
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Total Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${totalDollarAmountStakedFormated}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(316, 'Total Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${totalDollarAmountStakedFormated}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Stake')}:
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Staked Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${totalUserStaked}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(23, 'Earned Value')}:
-        </StyledText>
-        <StyledTextGreen fontFamily="poppins" fontSize="12px">
-          ${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}
-        </StyledTextGreen>
+        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false}>
+        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={projectSite} bold={false}>
+        <StyledLink external href={projectSite} bold={false} fontFamily="Titan One">
           {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>

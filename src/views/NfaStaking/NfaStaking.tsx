@@ -46,13 +46,15 @@ const ControlContainer = styled(Card)`
 const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
   margin-left: 0px;
   cursor: pointer;
   ${Text} {
     margin-left: 4px;
-  ${({ theme }) => theme.mediaQueries.md} { margin-left: 8px;}
-  }
+    ${({ theme }) => theme.mediaQueries.md} {
+      margin-left: 8px;
+    }
+  } ;
 `
 
 const ToggleContainer = styled.div`
@@ -329,7 +331,7 @@ const NfaStaking: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'NFA Staking')}
           </StyledHeading>
           {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}
@@ -342,16 +344,14 @@ const NfaStaking: React.FC = () => {
         <ControlContainer>
           <ViewControls>
             <LabelWrapper>
-              <StyledText fontFamily="poppins" mr="15px">
-                Search
-              </StyledText>
+              <StyledText mr="15px">Search</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText fontFamily="poppins">{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

@@ -97,7 +97,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
         <Link to={`/nft/${nft.index}`}>
           <CardFlipFront>
             <Image src={nft.image} alt={nft.image} rarityTier={nft.attributes.rarityTierNumber} />
-            <Text fontSize="20px" paddingTop="20px" color="subtle">
+            <Text fontSize="20px" paddingTop="20px" color="subtle" fontFamily="Titan One">
               {nft.name} - #{pad(`${nft.index}`, '4')}
             </Text>
           </CardFlipFront>
@@ -106,10 +106,10 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
           <Link to={`/nft/${nft.index}`}>
             {Object.keys(nft.attributes).map((key, index) => (
               <Row key={key}>
-                <Text as="p" color="subtle" style={{ paddingLeft: '10px', textAlign: 'left' }}>
+                <Text as="p" color="subtle" style={{ paddingLeft: '10px', textAlign: 'left' }} fontFamily="Titan One">
                   {nfaAttributes[index]}:
                 </Text>
-                <Text as="p" color="subtle" style={{ paddingRight: '10px', textAlign: 'right' }}>
+                <Text as="p" color="subtle" style={{ paddingRight: '10px', textAlign: 'right' }} fontFamily="Titan One">
                   {nft.attributes[key]}
                 </Text>
               </Row>
