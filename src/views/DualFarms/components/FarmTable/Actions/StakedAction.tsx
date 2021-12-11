@@ -11,7 +11,6 @@ import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useDualFarmStake } from 'hooks/useStake'
 import { useMiniChefUnstake } from 'hooks/useUnstake'
-
 import DepositModal from '../../DepositModal'
 import WithdrawModal from '../../WithdrawModal'
 
@@ -82,7 +81,9 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
-        <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake LP')}</Button>
+        <Button onClick={onPresentDeposit} fontFamily="Titan One">
+          {TranslateString(999, 'Stake LP')}
+        </Button>
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>

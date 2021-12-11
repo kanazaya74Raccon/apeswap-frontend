@@ -98,7 +98,7 @@ const Stats: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Ape Stats')}
           </StyledHeading>
         </HeadingContainer>

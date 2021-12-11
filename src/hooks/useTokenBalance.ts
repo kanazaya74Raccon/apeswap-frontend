@@ -34,17 +34,18 @@ export const useAccountTokenBalance = (account: string, tokenAddress: string) =>
   const [balance, setBalance] = useState(new BigNumber(0))
   const { fastRefresh } = useRefresh()
   const web3 = useWeb3()
+  const tokenContract = useERC20(tokenAddress)
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const res = await getTokenBalance(web3, tokenAddress, account)
+      const res = await getTokenBalance(web3, tokenAddress, account, tokenContract)
       setBalance(new BigNumber(res))
     }
 
     if (account && web3) {
       fetchBalance()
     }
-  }, [account, tokenAddress, fastRefresh, web3])
+  }, [account, tokenAddress, fastRefresh, web3, tokenContract])
 
   return balance
 }

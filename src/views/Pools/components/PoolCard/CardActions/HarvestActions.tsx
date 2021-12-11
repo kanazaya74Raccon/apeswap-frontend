@@ -53,6 +53,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             })
             setPendingTx(false)
           }}
+          fontFamily="Titan One"
         >
           {TranslateString(999, 'Withdraw')}
         </ButtonSquare>
@@ -72,6 +73,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             })
             setPendingTx(false)
           }}
+          fontFamily="Titan One"
         >
           {TranslateString(999, 'Ape Harder')}
         </ButtonSquare>
@@ -90,6 +92,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           })
           setPendingTx(false)
         }}
+        fontFamily="Titan One"
       >
         {TranslateString(999, 'Harvest')}
       </ButtonSquare>

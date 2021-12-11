@@ -258,3 +258,68 @@ export const miniChefUnstake = async (miniChefContract, pid, amount, account) =>
       return tx.transactionHash
     })
 }
+
+/* 
+unitParams[9]
+0: tokenPrice - string
+1: amount - string (hardcap)
+2: softCap - string
+3: startTime - string (unix timstamp)
+4: activeTime - number (seconds)
+5: lockPeriod - number (seconds)
+6: maxSpendPerBuyer - string
+7: liquidityPercent - number
+8: listingPrice - number (if 0 same as tokenPrice)
+*/
+export const createNewIazo = async (
+  iazoFactoryContract, // Contract
+  iazoOwner, // Address
+  iazoToken, // Address
+  baseToken, // Address
+  burnRemains, // Bool
+  unitParams, // uint256[9]
+  creationFee, // string
+) => {
+  return iazoFactoryContract.methods
+    .createIAZO(iazoOwner, iazoToken, baseToken, burnRemains, unitParams)
+    .send({ from: iazoOwner, value: creationFee })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const userDeposit = async (iazoContract, amount, account) => {
+  return iazoContract.methods
+    .userDeposit(amount)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const userDepositNative = async (iazoContract, amount, account) => {
+  return iazoContract.methods
+    .userDepositNative()
+    .send({ from: account, value: amount })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const userWithdraw = async (iazoContract, account) => {
+  return iazoContract.methods
+    .userWithdraw()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+export const withdrawOfferTokensOnFailure = async (iazoContract, account) => {
+  return iazoContract.methods
+    .withdrawOfferTokensOnFailure()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

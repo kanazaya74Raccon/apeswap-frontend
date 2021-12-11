@@ -28,6 +28,10 @@ import ensPublicResolver from 'config/abi/ens-public-resolver.json'
 import ens from 'config/abi/ens-registrar.json'
 import weth from 'config/abi/weth.json'
 import { getContract } from 'utils'
+import iazoExposerAbi from 'config/abi/iazoExposer.json'
+import iazoSettingsAbi from 'config/abi/iazoSettings.json'
+import iazoFactoryAbi from 'config/abi/iazoFactory.json'
+import iazoAbi from 'config/abi/iazo.json'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 import {
@@ -36,6 +40,9 @@ import {
   useBananaAddress,
   useBananaProfileAddress,
   useGoldenBananaAddress,
+  useIazoExposerAddress,
+  useIazoFactoryAddress,
+  useIazoSettingsAddress,
   useLotteryAddress,
   useLotteryTicketAddress,
   useMasterChefAddress,
@@ -196,6 +203,23 @@ export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossi
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
   const abi = weth as unknown as AbiItem
   return useContract(abi, useNativeWrapCurrencyAddress(), withSignerIfPossible)
+}
+export const useIazoExposerContract = () => {
+  const abi = iazoExposerAbi as unknown as AbiItem
+  return useContract(abi, useIazoExposerAddress())
+}
+export const useIazoSettingsContract = () => {
+  const abi = iazoSettingsAbi as unknown as AbiItem
+  return useContract(abi, useIazoSettingsAddress())
+}
+export const useIazoFactoryContract = () => {
+  const abi = iazoFactoryAbi as unknown as AbiItem
+  return useContract(abi, useIazoFactoryAddress())
+}
+
+export const useIazoContract = (address: string) => {
+  const abi = iazoAbi as unknown as AbiItem
+  return useContract(abi, address)
 }
 
 export default useContract

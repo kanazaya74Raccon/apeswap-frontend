@@ -42,6 +42,11 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
+    label: 'IAZOs',
+    icon: 'IfoIcon',
+    href: '/iazos',
+  },
+  {
     label: 'IAO',
     icon: 'IfoIcon',
     href: '/iao',
@@ -58,10 +63,10 @@ const config: MenuEntry[] = [
         label: 'Auction',
         href: '/auction',
       },
-      // {
-      //   label: 'Staking',
-      //   href: '/staking',
-      // },
+      {
+        label: 'Staking',
+        href: '/staking',
+      },
     ],
   },
   {

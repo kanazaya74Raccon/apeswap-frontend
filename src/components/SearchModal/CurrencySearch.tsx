@@ -1,5 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
+import styled from 'styled-components'
 import { Text, Input } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'
@@ -118,55 +119,51 @@ function CurrencySearch({
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
 
   return (
-    <>
-      <div>
-        <AutoColumn gap="16px">
-          <Row>
-            <Input
-              id="token-search-input"
-              placeholder="Search name or paste address"
-              scale="lg"
-              autoComplete="off"
-              value={searchQuery}
-              ref={inputRef as RefObject<HTMLInputElement>}
-              onChange={handleInput}
-              onKeyDown={handleEnter}
-            />
-          </Row>
-          {showCommonBases && (
-            <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
-          )}
-        </AutoColumn>
-        {searchToken && !searchTokenIsAdded ? (
-          <Column style={{ padding: '20px 0', height: '100%' }}>
-            <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
-          </Column>
-        ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
-          <div>
-            <CurrencyList
-              height={390}
-              showETH={showETH}
-              currencies={
-                filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
-              }
-              breakIndex={inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined}
-              onCurrencySelect={handleCurrencySelect}
-              otherCurrency={otherSelectedCurrency}
-              selectedCurrency={selectedCurrency}
-              fixedListRef={fixedList}
-              showImportView={showImportView}
-              setImportToken={setImportToken}
-            />
-          </div>
-        ) : (
-          <Column style={{ padding: '20px', height: '100%' }}>
-            <Text color="textSubtle" textAlign="center" mb="20px">
-              No results found
-            </Text>
-          </Column>
+    <div>
+      <AutoColumn style={{margin: "20px 0 20px 0"}}>
+        <Row padding="0 15px 0 15px">
+          <Input
+            id="token-search-input"
+            placeholder="Search name or paste address"
+            scale="lg"
+            autoComplete="off"
+            value={searchQuery}
+            ref={inputRef as RefObject<HTMLInputElement>}
+            onChange={handleInput}
+            onKeyDown={handleEnter}
+          />
+        </Row>
+        {showCommonBases && (
+          <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
-      </div>
-    </>
+      </AutoColumn>
+      {searchToken && !searchTokenIsAdded ? (
+        <Column style={{ padding: '20px 0', height: '100%' }}>
+          <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
+        </Column>
+      ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
+        <CurrencyList
+          height={380}
+          showETH={showETH}
+          currencies={
+            filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
+          }
+          breakIndex={inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined}
+          onCurrencySelect={handleCurrencySelect}
+          otherCurrency={otherSelectedCurrency}
+          selectedCurrency={selectedCurrency}
+          fixedListRef={fixedList}
+          showImportView={showImportView}
+          setImportToken={setImportToken}
+        />
+      ) : (
+        <Column style={{ padding: '20px', height: '100%' }}>
+          <Text color="textSubtle" textAlign="center" mb="20px">
+            No results found
+          </Text>
+        </Column>
+      )}
+    </div>
   )
 }
 

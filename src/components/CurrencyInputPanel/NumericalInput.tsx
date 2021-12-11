@@ -5,13 +5,14 @@ import { escapeRegExp } from '../../utils'
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
   color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
   width: 0;
+  height: 100%;
   position: relative;
   font-weight: 500;
   outline: none;
   border: none;
   flex: 1 1 auto;
   background-color: transparent;
-  font-size: 16px;
+  font-size: ${({ fontSize }) => fontSize || '16px'};
   text-align: ${({ align }) => align && align};
   white-space: nowrap;
   overflow: hidden;
@@ -34,7 +35,7 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textSubtle};
+    color: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -68,7 +69,7 @@ export const Input = React.memo(function InnerInput({
       }}
       // universal input options
       inputMode="decimal"
-      title='Token Amount'
+      title="Token Amount"
       autoComplete="off"
       autoCorrect="off"
       // text-specific options
@@ -78,6 +79,8 @@ export const Input = React.memo(function InnerInput({
       minLength={1}
       maxLength={79}
       spellCheck="false"
+      fontSize="25px"
+      style={{marginRight: '10px'}}
     />
   )
 })

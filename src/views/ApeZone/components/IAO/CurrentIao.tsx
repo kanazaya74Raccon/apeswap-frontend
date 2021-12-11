@@ -100,10 +100,10 @@ const Iao = () => {
     <>
       <StyledHeroSection>
         <StyledHeroHeading>
-          <Heading size="xl" color="white">
+          <Heading size="xl" color="white" fontFamily="Titan One">
             {TranslateString(594, 'Golden Banana IAO')}
           </Heading>
-          <Heading size="sm" color="white">
+          <Heading size="sm" color="white" fontFamily="Titan One">
             {TranslateString(594, 'Buy new token by staking GNANA')}
           </Heading>
         </StyledHeroHeading>
@@ -114,7 +114,9 @@ const Iao = () => {
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
-              <Heading size="xl">{TranslateString(594, 'GOLDEN BANANA IAO')}</Heading>
+              <Heading size="xl" fontFamily="Titan One">
+                {TranslateString(594, 'GOLDEN BANANA IAO')}
+              </Heading>
               <Title as="h2" mt="15px" mb="15px" fontFamily="poppins" size="sm">
                 {TranslateString(592, 'How To Take Part')}
               </Title>

@@ -106,46 +106,28 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
         <InfoContainer>
           {depositFee && (
             <Flex justifyContent="space-between">
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(316, 'Deposit Fee')}:
-              </StyledText>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {depositFee}%
-              </StyledText>
+              <StyledText fontSize="12px">{TranslateString(316, 'Deposit Fee')}:</StyledText>
+              <StyledText fontSize="12px">{depositFee}%</StyledText>
             </Flex>
           )}
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(316, 'Withdraw Fee')}:
-            </StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {withdrawFee}%
-            </StyledText>
+            <StyledText fontSize="12px">{TranslateString(316, 'Withdraw Fee')}:</StyledText>
+            <StyledText fontSize="12px">{withdrawFee}%</StyledText>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(316, 'Total Staked')}:
-            </StyledText>
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {totalStakedFormated}
-            </StyledText>
+            <StyledText fontSize="12px">{TranslateString(316, 'Total Staked')}:</StyledText>
+            <StyledText fontSize="12px">{totalStakedFormated}</StyledText>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(316, 'Stake')}:
-            </StyledText>
+            <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
             <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontFamily="poppins" fontSize="12px">
-              {TranslateString(23, 'Staked Value')}:
-            </StyledText>
-            <StyledTextGreen fontFamily="poppins" fontSize="12px">
-              ${totalUserStaked}
-            </StyledTextGreen>
+            <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+            <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">
-            <StyledLink external href={blockExplorer} bold={false}>
+            <StyledLink external href={blockExplorer} bold={false} fontFamily="Titan One">
               {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
             </StyledLink>
           </Flex>

@@ -322,7 +322,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   isChartDisplayed={isChartDisplayed}
                 />
                 <Wrapper id="swap-page">
-                  <AutoColumn gap="md">
+                  <AutoColumn gap="md" style={{border: '1px solid orange'}}>
                     <CurrencyInputPanel
                       label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
                       value={formattedAmounts[Field.INPUT]}
@@ -335,7 +335,7 @@ export default function Swap({ history }: RouteComponentProps) {
                       id="swap-currency-input"
                     />
 
-                    <AutoColumn justify="space-between">
+                    <AutoColumn justify="space-between" style={{border: '1px solid orange'}}>
                       <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                         <IconButton>
                           <ArrowDownIcon

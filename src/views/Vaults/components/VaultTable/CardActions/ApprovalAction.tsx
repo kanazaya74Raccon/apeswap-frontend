@@ -36,7 +36,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
       {isLoading ? (
         <Skeleton width="70px" height="52px" />
       ) : (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <ButtonSquare disabled={requestedApproval} onClick={handleApprove} fontFamily="Titan One">
           Enable
         </ButtonSquare>
       )}

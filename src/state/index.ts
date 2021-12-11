@@ -11,6 +11,7 @@ import statsOverallReducer from './statsOverall'
 import auctionReducer from './auction'
 import vaultReducer from './vaults'
 import tokenPricesReducer from './tokenPrices'
+import iazosReducer from './iazos'
 import networkReducer from './network'
 import nfaStakingPoolsReducer from './nfaStakingPools'
 import dualFarmsReducer from './dualFarms'
@@ -37,6 +38,7 @@ const store = configureStore({
     auctions: auctionReducer,
     vaults: vaultReducer,
     tokenPrices: tokenPricesReducer,
+    iazos: iazosReducer,
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,
     dualFarms: dualFarmsReducer,

@@ -38,11 +38,7 @@ export const NETWORK_RPC = {
     'https://bsc-dataseed1.ninicoin.io',
     'https://bsc-dataseed.binance.org/',
   ],
-  [CHAIN_ID.BSC_TESTNET]: [
-    'https://data-seed-prebsc-1-s1.binance.org:8545/',
-    'https://data-seed-prebsc-2-s1.binance.org:8545/',
-    'https://data-seed-prebsc-1-s2.binance.org:8545/',
-  ],
+  [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s3.binance.org:8545/'],
   [CHAIN_ID.MATIC]: ['https://polygon-rpc.com/'],
   [CHAIN_ID.MATIC_TESTNET]: ['https://matic-mumbai.chainstacklabs.com'],
 }
@@ -68,6 +64,17 @@ export const CHAIN_PARAMS = {
     rpcUrls: NETWORK_RPC[CHAIN_ID.BSC],
     blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.BSC]],
   },
+  [CHAIN_ID.BSC_TESTNET]: {
+    chainId: '0x61',
+    chainName: 'Binance Smart Chain Testnet',
+    nativeCurrency: {
+      name: 'bnb',
+      symbol: 'BNB',
+      decimals: 18,
+    },
+    rpcUrls: NETWORK_RPC[CHAIN_ID.BSC_TESTNET],
+    blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.BSC_TESTNET]],
+  },
   [CHAIN_ID.MATIC]: {
     chainId: '0x89',
     chainName: 'Matic',
@@ -78,5 +85,16 @@ export const CHAIN_PARAMS = {
     },
     rpcUrls: NETWORK_RPC[CHAIN_ID.MATIC],
     blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.MATIC]],
+  },
+  [CHAIN_ID.MATIC_TESTNET]: {
+    chainId: '0x89',
+    chainName: 'Matic',
+    nativeCurrency: {
+      name: 'Matic',
+      symbol: 'MATIC',
+      decimals: 18,
+    },
+    rpcUrls: NETWORK_RPC[CHAIN_ID.MATIC_TESTNET],
+    blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.MATIC_TESTNET]],
   },
 }

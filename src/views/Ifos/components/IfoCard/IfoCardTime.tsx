@@ -20,6 +20,7 @@ const Details = styled.div`
   height: 24px;
   justify-content: center;
   margin-bottom: 24px;
+  font-family: 'Titan One';
 `
 
 const Countdown = styled.div`
@@ -53,7 +54,7 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({
   if (countdownToUse <= 0) {
     return (
       <Details>
-        <Text>{TranslateString(999, 'Finished!')}</Text>
+        <Text fontFamily="Titan One">{TranslateString(999, 'Finished!')}</Text>
       </Details>
     )
   }
