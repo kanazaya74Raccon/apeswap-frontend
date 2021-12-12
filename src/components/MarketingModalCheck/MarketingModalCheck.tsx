@@ -25,6 +25,11 @@ const MarketingModalCheck = () => {
     return window.open('https://app.apeswap.finance/add', '_blank')
   }
 
+  const openConnectModal = () => {
+    onDismiss()
+    onPresentConnectModal()
+  }
+
   return (
     correctDisplayRoute && (
       <MarketingModal
@@ -33,7 +38,7 @@ const MarketingModalCheck = () => {
         onDismiss={onDismiss}
         goToFarms={openFarmsLink}
         goToLiquidity={openLiquidityLink}
-        connectWallet={onPresentConnectModal}
+        connectWallet={openConnectModal}
         startEarning={onDismiss}
       />
     )
