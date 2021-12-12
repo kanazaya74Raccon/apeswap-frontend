@@ -8,9 +8,10 @@ interface CardValueProps {
   fontSize?: string
   prefix?: string
   suffix?: string
+  fontFamily?: string
 }
 
-const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px', prefix, suffix }) => {
+const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px', prefix, suffix, fontFamily }) => {
   const { countUp, update } = useCountUp({
     start: 0,
     end: value,
@@ -28,7 +29,7 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px
   }, [value, updateValue])
 
   return (
-    <Text fontSize={fontSize}>
+    <Text fontFamily={fontFamily} fontSize={fontSize}>
       {prefix} {countUp} {suffix}
     </Text>
   )

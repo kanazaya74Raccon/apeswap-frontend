@@ -37,7 +37,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
         <Skeleton width="100%" height="52px" />
       ) : (
         <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
-          Enable
+          ENABLE
         </ButtonSquare>
       )}
     </>

@@ -155,7 +155,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading>
+        <StyledHeading fontFamily="Titan One">
           {tokenSymbol}-{quoteTokenSymbol}
         </StyledHeading>
         <ApyWrapper>

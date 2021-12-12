@@ -34,7 +34,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract,
           }}
           endIcon={pendingApprove && <AutoRenewIcon spin color="currentColor" />}
         >
-          Enable
+          ENABLE
         </ButtonSquare>
       )}
     </>

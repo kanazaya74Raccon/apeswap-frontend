@@ -181,7 +181,7 @@ const FarmedStakingCard = () => {
           </HarvestDiv>
         ) : (
           <FlexRow>
-            <StyledTextLock>LOCKED</StyledTextLock>
+            <StyledTextLock fontFamily="Titan One">LOCKED</StyledTextLock>
           </FlexRow>
         )}
         <Actions>
@@ -199,7 +199,7 @@ const FarmedStakingCard = () => {
               </StyledButton>
             </Reward>
           ) : (
-            <UnlockButton fullWidth />
+            <UnlockButton fontSize="14px" />
           )}
         </Actions>
       </CardBody>

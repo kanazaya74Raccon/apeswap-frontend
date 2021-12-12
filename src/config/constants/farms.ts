@@ -2703,6 +2703,40 @@ const farms: FarmConfig[] = [
     projectLink: 'https://asko.finance/rasko',
   },
   {
+    pid: 169,
+    image: 'PEL.svg',
+    lpSymbol: 'PEL-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x63466E1e432d4E684700433CEBF5C69d72cDD6C2',
+    },
+    tokenSymbol: 'PEL',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa75e7928d3de682e3f44da60c26f33117c4e6c5c',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://propel.xyz/',
+  },
+  {
+    pid: 170,
+    image: 'STZ.svg',
+    lpSymbol: 'STZ-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x79c38d6c5ea40e9dd82d004bff98e3ec707d2c3d',
+    },
+    tokenSymbol: 'STZ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7FE378c5e0B5C32AF2ecc8829beDF02245A0E4eF',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://99starz.io/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

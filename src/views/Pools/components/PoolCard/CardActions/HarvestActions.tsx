@@ -54,7 +54,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             setPendingTx(false)
           }}
         >
-          {TranslateString(999, 'Withdraw')}
+          {TranslateString(999, 'WITHDRAW')}
         </ButtonSquare>
       )
     }
@@ -73,7 +73,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             setPendingTx(false)
           }}
         >
-          {TranslateString(999, 'Ape Harder')}
+          {TranslateString(999, 'APE HARDER')}
         </ButtonSquare>
       )
     }
@@ -91,7 +91,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           setPendingTx(false)
         }}
       >
-        {TranslateString(999, 'Harvest')}
+        {TranslateString(999, 'HARVEST')}
       </ButtonSquare>
     )
   }

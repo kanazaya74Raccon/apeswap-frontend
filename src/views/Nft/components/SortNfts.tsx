@@ -37,6 +37,8 @@ const DropDownContent = styled.div`
 const DropDownItem = styled.p`
   cursor: pointer;
   opacity: 0.8;
+  font-family: 'Titan One';
+
   &:hover {
     opacity: 1;
   }
@@ -93,6 +95,8 @@ const SearchBox = styled.input`
   box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
   background-color: ${(props) => props.theme.colors};
   color: ${(props) => props.theme.colors.textSubtle};
+  font-family: 'Titan One';
+
   &:focus {
     outline: none !important;
     border-color: ${(props) => props.theme.colors};
@@ -121,6 +125,11 @@ const BackToTop = styled.button`
   &:focus {
     outline: none !important;
   }
+`
+
+const SortTitle = styled.p`
+  font-family: 'Titan One';
+  color: ${(props) => props.theme.colors.white};
 `
 
 const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
@@ -206,14 +215,14 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
     <>
       <SortHolder>
         <DropDown>
-          <p>{currentSortName}</p>
+          <SortTitle>{currentSortName}</SortTitle>
           <DropDownContent>
             <DropDownItem onClick={() => sortBy('index')}>Ape #</DropDownItem>
             <DropDownItem onClick={() => sortBy('rarity')}>Rarity</DropDownItem>
           </DropDownContent>
         </DropDown>
         <DropDown>
-          <p>{currentFilterName}</p>
+          <SortTitle>{currentFilterName}</SortTitle>
           <DropDownContent>
             <DropDownItem onClick={() => nextSet()}>Next Sale</DropDownItem>
             <DropDownItem onClick={() => filterBy(1)}>Tier 1</DropDownItem>
