@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { LinkExternal, Text, Flex, Link } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
+import {
+  useFarmUser,
+  usePriceBananaBusd,
+  useNetworkChainId,
+} from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import StakedAction from './StakedAction'
@@ -18,6 +22,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   account: string
   addLiquidityUrl: string
+  farmsPrices: Record<string, unknown>
 }
 
 export interface InfoPropsContainer {
@@ -112,6 +117,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   account,
   addLiquidityUrl,
   liquidity,
+  farmsPrices
 }) => {
   const farm = details
 
@@ -136,11 +142,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const yourStats = useStats()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
-  const totalValuePersonalFormated = filteredFarmStats
-    ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  const lpPrice = Number(farmsPrices[farm.pid])
+
+  const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
+    ? `$${(lpPrice*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   let liquidityDigits

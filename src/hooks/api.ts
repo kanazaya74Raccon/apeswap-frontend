@@ -332,3 +332,10 @@ export const getHeadersHome = async () => {
 
   return headers
 }
+
+export const getFarmPrices = async () => {
+  const url = "https://api.apeswap.finance/stats/farmPrices";
+  const resp = await fetch(url);
+  const data = await resp.json();
+  return data;
+}
