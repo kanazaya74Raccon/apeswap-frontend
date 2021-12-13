@@ -17,6 +17,15 @@ export const AboutWrapper = styled.div`
   background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
   border-radius: 0px 0px 10px 10px;
   padding: 40px 10px 40px 10px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
     padding: 80px 60px 80px 60px;
