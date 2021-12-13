@@ -10,7 +10,7 @@ export interface IfoCardProps {
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  /* background-image: ${(props) => `url('/images/ifos/${props.ifoId}-bg.svg')`}; */
+  background-image: ${(props) => `url('/images/ifos/${props.ifoId}-bg.svg')`};
   background-repeat: no-repeat;
   background-position: -5px -5px;
   background-size: contain;
@@ -28,10 +28,10 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 20px;
+  padding: 24px 30px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 24px 30px;
+    padding: 24px 50px;
   }
 `
 

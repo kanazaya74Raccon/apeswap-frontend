@@ -5,8 +5,6 @@ import { Text, LinkExternal, Link } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 export interface IfoCardDetailsProps {
-  launchDate: string
-  launchTime: string
   saleAmount: string
   raiseAmount: string
   bananaToBurn: string
@@ -21,12 +19,27 @@ export interface IfoCardDetailsProps {
 
 const StyledIfoCardDetails = styled.div`
   margin: 32px 0;
+  border-radius: 5px;
 `
 
 const Item = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.secondary};
   display: flex;
+  padding: 4px 10px;
+  background: #7c7c7d0f;
+
+  &:first-child {
+    border-radius: 5px 5px 0px 0px;
+  }
+
+  &:last-child {
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  &:nth-child(even) {
+    background: #7c7c7d08;
+  }
 `
 
 const Display = styled(Text)`
@@ -35,15 +48,13 @@ const Display = styled(Text)`
 `
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
-  launchDate,
-  launchTime,
   saleAmount,
   raiseAmount,
   bananaToBurn,
   raisingAmount,
   totalAmount,
   vestingTime,
-  burnedTxUrl,
+  burnedTxUrl, // TODO: Where to show it
   address,
   percentRaised,
 }) => {
@@ -64,26 +75,6 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
     <>
       <StyledIfoCardDetails>
         <Item>
-          <Display>{TranslateString(582, 'Launch Time')}</Display>
-          <Text fontSize="14px">
-            {launchDate},
-            <Link
-              fontSize="14px"
-              href="https://www.timeanddate.com/time/aboututc.html"
-              target="blank"
-              rel="noopener noreferrer"
-              ml="4px"
-              style={{ display: 'inline' }}
-            >
-              {launchTime}
-            </Link>
-          </Text>
-        </Item>
-        <Item>
-          <Display>{TranslateString(584, 'Total Vesting Time')}</Display>
-          <Text fontSize="14px">{vestingTime}</Text>
-        </Item>
-        <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>
           <Text fontSize="14px">{saleAmount}</Text>
         </Item>
@@ -98,15 +89,19 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
           </Item>
         )}
         <Item>
-          <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
+          <Display>{TranslateString(999, 'Total raised (% of the target)')}</Display>
           <Text fontSize="14px">{`${percentRaised || subscribeAmount}%`}</Text>
         </Item>
+        <Item>
+          <Display>{TranslateString(584, 'Total Vesting Time')}</Display>
+          <Text fontSize="14px">{vestingTime}</Text>
+        </Item>
       </StyledIfoCardDetails>
-      {burnedTxUrl && burnedTxUrl !== '' && (
+      {/* {burnedTxUrl && burnedTxUrl !== '' && (
         <LinkExternal href={burnedTxUrl} style={{ margin: 'auto' }}>
           {TranslateString(412, 'View burned transactions')}
         </LinkExternal>
-      )}
+      )} */}
     </>
   )
 }

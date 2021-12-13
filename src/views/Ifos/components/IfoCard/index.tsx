@@ -30,7 +30,7 @@ export interface IfoCardProps {
 
 const Container = styled.div`
   background-color: #383838;
-  padding: 24px;
+  padding: 20px;
   border-radius: 20px;
 `
 
@@ -66,6 +66,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const {
     id,
     address,
+    isLinear,
     name,
     subTitle,
     description,
@@ -102,7 +103,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     harvestFourBlockRelease: 0,
   })
   const { account } = useWeb3React()
-  const contract = useSafeIfoContract(address)
+  const contract = useSafeIfoContract(address, isLinear)
   const currentBlock = useBlock()
   const TranslateString = useI18n()
   const raisePercent =
@@ -215,18 +216,26 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const isFinished = state.status === 'finished'
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
+  console.log('state', state)
+
   return (
     <Container>
-      <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
+      <IfoCardHeader
+        ifoId={id}
+        gnana={gnana}
+        isComingSoon={!address}
+        isLoading={state.isLoading}
+        status={state.status}
+        secondsUntilStart={state.secondsUntilStart}
+        secondsUntilEnd={state.secondsUntilEnd}
+      />
       <IfoCardProgress progress={state.progress} />
       {vesting && (
         <IfoCardTime
-          isComingSoon={!address}
-          isLoading={state.isLoading}
+          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}
           secondsUntilEnd={state.secondsUntilEnd}
-          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
       )}
       {!account && <UnlockButton fullWidth />}
@@ -247,8 +256,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         />
       )}
       <IfoCardDetails
-        launchDate={launchDate}
-        launchTime={launchTime}
         saleAmount={saleAmount}
         raiseAmount={raiseAmount}
         bananaToBurn={bananaToBurn}
