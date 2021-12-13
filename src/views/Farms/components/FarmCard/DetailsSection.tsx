@@ -4,7 +4,6 @@ import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Home/components/HotFarms/FarmCardForHome'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { FarmPool } from 'state/types'
 import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
@@ -16,7 +15,7 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
-  farmStats?: FarmPool
+  farmsPrices?: Record<string, unknown>
   multiplier?: string
   liquidity?: BigNumber
   pid?: number
@@ -72,7 +71,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   lpLabel,
   addLiquidityUrl,
-  farmStats,
+  farmsPrices,
   multiplier,
   pid,
   liquidity,
@@ -81,8 +80,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
-  const totalValuePersonalFormated = farmStats
-    ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+
+  const {stakedBalance} = useFarmUser(pid)
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const lpPrice = Number(farmsPrices[farm.pid])
+
+  const totalValuePersonalFormated = farmsPrices && rawStakedBalance > 0
+    ? `$${Number(lpPrice*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   const totalValueFormated = liquidity

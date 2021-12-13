@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
-import { useNetworkChainId, useStats } from 'state/hooks'
+import { useNetworkChainId } from 'state/hooks'
 import { Farm } from 'state/types'
 import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
@@ -107,14 +107,12 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   bananaPrice?: BigNumber
+  farmsPrices: Record<string, unknown>
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
-  const yourStats = useStats()
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account, farmsPrices }) => {
   const chainId = useNetworkChainId()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   // We assume the token name is coin pair + lp e.g. CAKE-BNB LP, LINK-BNB LP,
@@ -174,7 +172,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             totalValueFormated={totalValueFormated}
             lpLabel={lpLabel}
             addLiquidityUrl={addLiquidityUrl}
-            farmStats={filteredFarmStats}
+            farmsPrices={farmsPrices}
             multiplier={farm.multiplier}
             liquidity={farm.liquidity}
             pid={farm.pid}

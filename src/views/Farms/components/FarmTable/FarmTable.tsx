@@ -7,6 +7,7 @@ import Row, { RowProps } from './Row'
 export interface ITableProps {
   data: RowProps[]
   columns: ColumnType<RowProps>[]
+  farmsPrices: Record<string, unknown>
 }
 
 const Container = styled.div`
@@ -45,7 +46,7 @@ const TableContainer = styled.div`
 
 const FarmTable: React.FC<ITableProps> = (props) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
-  const { data, columns } = props
+  const { data, columns , farmsPrices} = props
 
   const { rows } = useTable(columns, data, {
     sortable: true,
@@ -58,7 +59,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
               {rows.map((row) => {
-                return <Row {...row.original} key={row.id} />
+                return <Row {...row.original} key={row.id} farmsPrices={farmsPrices}/>
               })}
             </StyledTable>
           </TableWrapper>

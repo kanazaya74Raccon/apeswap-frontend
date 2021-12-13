@@ -21,6 +21,7 @@ import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import {useFetchFarmPrices} from "../../state/strapi/fetchStrapi";
 
 interface LabelProps {
   active?: boolean
@@ -407,6 +408,7 @@ const Farms: React.FC = () => {
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
+  const farmsPrices = useFetchFarmPrices()
 
   const ethPriceUsd = usePriceEthBusd()
 
@@ -608,7 +610,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} />
+      return <Table data={rowData} columns={columns} farmsPrices={farmsPrices}/>
     }
 
     return (
@@ -616,12 +618,12 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} farmsPrices={farmsPrices}/>
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed farmsPrices={farmsPrices}/>
             ))}
           </Route>
         </FlexLayout>

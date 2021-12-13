@@ -3,11 +3,7 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { LinkExternal, Text, Flex, Link } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import {
-  useFarmUser,
-  usePriceBananaBusd,
-  useNetworkChainId,
-} from 'state/hooks'
+import { useFarmUser, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import StakedAction from './StakedAction'
