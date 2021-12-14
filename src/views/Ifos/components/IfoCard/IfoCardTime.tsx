@@ -17,6 +17,7 @@ const Details = styled.div`
   height: 24px;
   justify-content: center;
   margin-bottom: 24px;
+  font-family: 'Titan One';
 `
 
 const Countdown = styled.div`

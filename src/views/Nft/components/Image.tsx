@@ -57,6 +57,10 @@ const TierSvg = styled.div`
   fill: rgba(255, 255, 255, 0.1);
 `
 
+const TierNumber = styled.p`
+  font-family: 'Titan One';
+`
+
 const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => {
   let gradientStyle = ''
   let backgroundSize = ''
@@ -84,7 +88,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => 
   return (
     <Container gradient={gradientStyle} backgroundSize={backgroundSize} borderRadius={borderRadius}>
       <TierSvg>
-        <p>{rarityTier}</p>
+        <TierNumber>{rarityTier}</TierNumber>
       </TierSvg>
       {src && <StyledImage src={src} alt={alt} />}
     </Container>

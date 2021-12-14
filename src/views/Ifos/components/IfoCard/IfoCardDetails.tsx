@@ -45,6 +45,11 @@ const Item = styled.div`
 const Display = styled(Text)`
   flex: 1;
   font-size: 14px;
+  font-family: 'Titan One';
+`
+
+const DisplayText = styled(Text)`
+  font-family: 'Titan One';
 `
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
@@ -76,29 +81,30 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
       <StyledIfoCardDetails>
         <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>
-          <Text fontSize="14px">{saleAmount}</Text>
+          <DisplayText fontSize="14px">{saleAmount}</DisplayText>
         </Item>
         <Item>
           <Display>{TranslateString(999, 'To raise (USD)')}</Display>
-          <Text fontSize="14px">{raiseAmount}</Text>
+          <DisplayText fontSize="14px">{raiseAmount}</DisplayText>
         </Item>
         {bananaToBurn && (
           <Item>
             <Display>{TranslateString(586, 'BANANA to burn (USD)')}</Display>
-            <Text fontSize="14px">{bananaToBurn}</Text>
+            <DisplayText fontSize="14px">{bananaToBurn}</DisplayText>
           </Item>
         )}
         <Item>
           <Display>{TranslateString(999, 'Total raised (% of the target)')}</Display>
-          <Text fontSize="14px">{`${percentRaised || subscribeAmount}%`}</Text>
+          <DisplayText fontSize="14px">{`${percentRaised || subscribeAmount}%`}</DisplayText>
         </Item>
         <Item>
           <Display>{TranslateString(584, 'Total Vesting Time')}</Display>
           <Text fontSize="14px">{vestingTime}</Text>
         </Item>
       </StyledIfoCardDetails>
+
       {/* {burnedTxUrl && burnedTxUrl !== '' && (
-        <LinkExternal href={burnedTxUrl} style={{ margin: 'auto' }}>
+        <LinkExternal fontFamily="Titan One" href={burnedTxUrl} style={{ margin: 'auto' }}>
           {TranslateString(412, 'View burned transactions')}
         </LinkExternal>
       )} */}

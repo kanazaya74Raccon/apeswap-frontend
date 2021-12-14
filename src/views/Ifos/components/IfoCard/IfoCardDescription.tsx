@@ -22,11 +22,13 @@ const ToggleButton = styled.button`
   font-family: Poppins;
   outline: 0;
   width: 100%;
+  font-family: 'Titan One';
 `
 
 const Description = styled(Text).attrs({ fontFamily: 'poppins' })<{ isOpen: boolean }>`
   color: ${({ theme }) => theme.colors.textSubtle};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  font-family: 'Titan One';
 `
 
 const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({ defaultIsOpen = true, description }) => {

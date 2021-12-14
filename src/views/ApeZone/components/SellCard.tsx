@@ -134,7 +134,7 @@ const SellCard = () => {
       <CardBody>
         <StyledBanana />
         <StyledBananaPair />
-        <Heading color="contrast" size="xl">
+        <Heading color="contrast" size="xl" fontFamily="Titan One">
           Sell
         </Heading>
         <TokenInput
@@ -154,7 +154,7 @@ const SellCard = () => {
           </StyledButton>
         )}
         <Flex flexDirection="column" alignItems="center" mb="10px">
-          <CardValue fontSize="13px" decimals={4} value={valBanana} prefix="OUTPUT BANANA" fontFamily="poppins" />
+          <CardValue fontSize="13px" decimals={4} value={valBanana} prefix="OUTPUT BANANA" fontFamily="Titan One" />
           <Text fontSize="11px" fontFamily="poppins">
             * After 2% reflect fees
           </Text>

@@ -73,7 +73,7 @@ const CoolPools = () => {
   return (
     <>
       <CoolPoolsWrapper>
-        <CoolPoolsText>Cool Pools</CoolPoolsText>
+        <CoolPoolsText fontFamily="Titan One">Cool Pools</CoolPoolsText>
         <PoolWrapper>
           {loading ? (
             <></>

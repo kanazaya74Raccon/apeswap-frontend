@@ -162,7 +162,7 @@ const Ifos = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
             {TranslateString(999, 'Initial Ape Offerings')}
           </StyledHeading>
         </HeaderContainer>
