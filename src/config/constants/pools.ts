@@ -2922,6 +2922,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 153,
+    tokenName: 'QA',
+    image: 'QA.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.qa,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x008fd008A139187aD57DD7E030BE00252E3eD757',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://quantumassets.vg/ ',
+    harvest: true,
+    tokenPerBlock: `1.199604552469135802`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

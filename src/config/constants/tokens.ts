@@ -821,6 +821,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  qa: {
+    symbol: 'QA',
+    address: {
+      56: '0x4ef29F3B804C316bA8bA464A765C601Fc092a2e9',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

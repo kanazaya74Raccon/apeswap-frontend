@@ -2737,6 +2737,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://99starz.io/',
   },
   {
+    pid: 171,
+    image: 'QA.svg',
+    lpSymbol: 'QA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x756Ed14D42475b1EE7Cf1c5Ba035E3D1A9295061',
+    },
+    tokenSymbol: 'QA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x4ef29f3b804c316ba8ba464a765c601fc092a2e9',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://quantumassets.vg/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
