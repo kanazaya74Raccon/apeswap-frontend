@@ -32,6 +32,7 @@ const List = styled.ul`
 
 const IfoHeading = styled(Heading)`
   margin-top: 32px;
+  font-family: 'Titan One';
 `
 
 const ListItem = styled.li`
@@ -53,7 +54,9 @@ const Ifo = () => {
       </IfoCards>
       <LaunchIfoCallout>
         <div>
-          <Title as="h2">{TranslateString(592, 'How to take part')}</Title>
+          <Title as="h2" fontFamily="Titan One">
+            {TranslateString(592, 'How to take part')}
+          </Title>
           <IfoHeading mb="16px">{TranslateString(594, 'Before Sale')}:</IfoHeading>
           <List>
             <ListItem>{TranslateString(596, 'Get BNB or GNANA tokens')}</ListItem>
@@ -95,8 +98,10 @@ const Ifo = () => {
         <div>
           <Image src="/images/ape.png" alt="iao ape" width={537} height={370} responsive />
           <div>
-            <Title as="h2">{TranslateString(512, 'Want to launch your own IAO?')}</Title>
-            <Text mb={3}>
+            <Title as="h2" fontFamily="Titan One">
+              {TranslateString(512, 'Want to launch your own IAO?')}
+            </Title>
+            <Text mb={3} fontFamily="Titan One">
               {TranslateString(
                 514,
                 'Launch your project with ApeSwap, Binance Smart Chain’s most-loved AMM project, to bring your token directly to the most active and rapidly growing ape community on BSC.',

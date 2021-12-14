@@ -31,11 +31,13 @@ const ToggleButton = styled.button`
   outline: 0;
   padding: 24px 16px;
   width: 100%;
+  font-family: 'Titan One';
 `
 
 const Description = styled(Text)<{ isOpen: boolean }>`
   color: ${({ theme }) => theme.colors.textSubtle};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  font-family: 'Titan One';
 `
 
 const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({ defaultIsOpen = true, description }) => {

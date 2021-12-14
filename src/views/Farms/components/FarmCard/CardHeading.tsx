@@ -70,6 +70,8 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
+  font-family: 'Titan One', sans-serif;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
@@ -178,6 +180,7 @@ const StyledAPRText = styled.div`
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
+  font-family: 'Titan One', sans-serif;
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
     line-height: 23px;
@@ -276,10 +279,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading>{lpLabel}</StyledHeading>
+          <StyledHeading fontFamily="Titan One">{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">APR:</StyledText1>
+              <StyledText1>APR:</StyledText1>
               {apr ? (
                 <FlexSwitch>
                   <ApyButton
@@ -297,10 +300,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             </Text>
           )}
           <StyledFlexEarnedSmall>
-            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+            <StyledText4 color="primary" pr="3px">
               {TranslateString(999, 'Banana ')}
             </StyledText4>
-            <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+            <StyledText2 color="primary" pr="3px">
               {TranslateString(999, 'Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
@@ -309,10 +312,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
-              <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+              <StyledText4 color="primary" pr="3px">
                 {TranslateString(999, 'Banana ')}
               </StyledText4>
-              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+              <StyledText2 color="primary" pr="3px">
                 {TranslateString(999, 'Earned')}
               </StyledText2>
             </Flex>

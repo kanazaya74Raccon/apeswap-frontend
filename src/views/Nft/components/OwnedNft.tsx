@@ -11,7 +11,7 @@ const OwnedNfts = () => {
     <>
       {profile?.ownedNfts && (
         <>
-          <Text fontSize="25px" style={{ color: 'subtle', paddingTop: '25px' }}>
+          <Text fontSize="25px" style={{ color: 'subtle', paddingTop: '25px' }} fontFamily="Titan One">
             {TranslateString(999, 'Your Apes')}
           </Text>
           <Card

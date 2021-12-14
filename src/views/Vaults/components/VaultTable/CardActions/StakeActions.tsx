@@ -133,7 +133,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (isApproved && firstStake && isHeader) {
-    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</ButtonSquare>
+    return <ButtonSquare onClick={onPresentDeposit}>{TranslateString(999, 'STAKE')}</ButtonSquare>
   }
 
   return (
