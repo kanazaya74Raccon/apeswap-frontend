@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import masterChefABI from 'config/abi/masterchef.json'
 import multicallABI from 'config/abi/Multicall.json'
@@ -16,7 +16,10 @@ const useAllEarnings = () => {
   const { fastRefresh } = useRefresh()
   const masterChefAddress = getMasterChefAddress(chainId)
   const multicallAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallAddress, chainId)
+  const multicallContract = useMemo(
+    () => getContract(multicallABI, multicallAddress, chainId),
+    [multicallAddress, chainId],
+  )
   const miniChefAddress = getMiniChefAddress(chainId)
 
   useEffect(() => {
