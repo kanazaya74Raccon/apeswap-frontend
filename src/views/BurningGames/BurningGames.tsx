@@ -131,7 +131,7 @@ const BurningGames: React.FC = () => {
     <ContainerPrincipal isDark={!isDark}>
       <Header banner={banner}>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} color="white">
+          <StyledHeading as="h1" mb="12px" mt={0} color="white" fontFamily="TitanOne">
             BANANA Burns
           </StyledHeading>
           <SubtitleHeading isMobile={!isDesktop} fontFamily="poppins" fontWeight={400} color="white">

@@ -47,7 +47,7 @@ const ContainerDescription = styled.div`
     }
   }
 `
-const ButtonSocial = styled.div`
+const ButtonSocial = styled(Button)`
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -59,6 +59,7 @@ const ButtonSocial = styled.div`
     margin-left: auto;
     margin-right: auto;
     display: block;
+    max-width: 100px;
   }
 `
 const FullImage = styled.div<{ pathImage: string; }>`
@@ -169,12 +170,12 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           <div className="content-description">{game.description}</div>
           <div className="social-description">
             {game.twitter && (
-              <ButtonSocial>
+              <ButtonSocial as="a" href={game.twitter} target="_blank">
                 <img src="/images/social/twitter.svg" alt="twitter" />
               </ButtonSocial>
             )}
             {game.telegram && (
-              <ButtonSocial>
+              <ButtonSocial as="a" href={game.telegram} target="_blank">
                 <img src="/images/social/telegram.svg" alt="telegram" />
               </ButtonSocial>
             )}
