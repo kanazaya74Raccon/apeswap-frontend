@@ -39,6 +39,7 @@ const StyledInput = styled(Input)`
   width: 60px;
   margin: 0 8px;
   padding: 0 8px;
+  font-family: 'Titan One';
 
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 80px;
@@ -76,8 +77,10 @@ const ModalInput: React.FC<ModalInputProps> = ({
     <div style={{ position: 'relative' }}>
       <StyledTokenInput isWarning={isBalanceZero}>
         <Flex justifyContent="space-between" pl="16px">
-          <Text fontSize="14px">{inputTitle}</Text>
-          <Text fontSize="14px">
+          <Text fontSize="14px" fontFamily="Titan One">
+            {inputTitle}
+          </Text>
+          <Text fontSize="14px" fontFamily="Titan One">
             {TranslateString(999, 'Balance')}: {displayBalance.toLocaleString()}
           </Text>
         </Flex>
@@ -86,13 +89,15 @@ const ModalInput: React.FC<ModalInputProps> = ({
           <Button size="sm" onClick={onSelectMax} mr="8px">
             {TranslateString(452, 'Max')}
           </Button>
-          <Text fontSize="16px">{symbol}</Text>
+          <Text fontSize="16px" fontFamily="Titan One">
+            {symbol}
+          </Text>
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (
         <StyledErrorMessage fontSize="14px" color="failure">
           No tokens to stake:{' '}
-          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure">
+          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure" fontFamily="Titan One">
             {TranslateString(999, 'get')} {symbol}
           </Link>
         </StyledErrorMessage>

@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "@apeswapfinance/uikit": "0.10.4-6.0",
+    "@apeswapfinance/uikit": "^0.10.5-2.0",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.10.1",
     "@ethersproject/abi": "^5.0.7",
@@ -73,6 +73,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "^26.0.19",
+    "@types/react-datepicker": "^4.3.2",
     "eslint": "^7.26.0",
     "husky": "^7.0.4",
     "prettier": "^2.1.2",

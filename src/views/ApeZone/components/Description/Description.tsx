@@ -150,7 +150,7 @@ const Description = () => {
     <StyledContainer>
       <StyledFlex>
         <StyledTextContainer>
-          <Heading size="xxl" color="white">
+          <Heading size="xxl" color="white" fontFamily="Titan One">
             {TranslateString(594, 'GOLDEN BANANA')}
           </Heading>
           <Title as="h2" mt="15px" mb="15px" color="white" fontFamily="poppins" size="lg" fontWeight={700}>

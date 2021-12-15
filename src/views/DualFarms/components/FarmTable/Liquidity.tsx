@@ -43,7 +43,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   return (
     <Container>
       <LiquidityWrapper>
-        <StyledText>{displayLiquidity}</StyledText>
+        <StyledText fontFamily="Titan One">{displayLiquidity}</StyledText>
       </LiquidityWrapper>
     </Container>
   )
