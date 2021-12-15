@@ -25,8 +25,8 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
   const endTime = parseInt(activeTime) + parseInt(startTime)
   const timeUntilStart = parseInt(startTime) - currentTime
   const timeUntilEnd = endTime - currentTime
-  const timeUntilStartFormatted = formatCountdown(getTimePeriods(timeUntilStart))
-  const timeUntilEndFormatted = formatCountdown(getTimePeriods(timeUntilEnd))
+  const timeUntilStartFormatted = formatCountdown(getTimePeriods(timeUntilStart, true))
+  const timeUntilEndFormatted = formatCountdown(getTimePeriods(timeUntilEnd, true))
 
   const timeToDisplay = () => {
     if (timeUntilStart > 0) {
