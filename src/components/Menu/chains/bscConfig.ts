@@ -4,11 +4,6 @@ import { HOME, EXCHANGE, MORE_INFO } from '../constants'
 
 const bscConfig: MenuEntry[] = [
   HOME,
-  {
-    label: 'Ape Stats',
-    icon: 'StatsIcon',
-    href: '/stats',
-  },
   EXCHANGE,
   {
     label: 'Farms',
