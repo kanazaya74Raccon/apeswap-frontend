@@ -828,6 +828,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  loa: {
+    symbol: 'LOA',
+    address: {
+      56: '0x94b69263FCA20119Ae817b6f783Fc0F13B02ad50',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
