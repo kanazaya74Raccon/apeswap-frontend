@@ -12,11 +12,11 @@ export const EXCHANGE = {
   items: [
     {
       label: 'Exchange',
-      href: BASE_EXCHANGE_URL,
+      href: '/swap',
     },
     {
       label: 'Liquidity',
-      href: BASE_LIQUIDITY_POOL_URL,
+      href: '/pool',
     },
   ],
 }

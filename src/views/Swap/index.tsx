@@ -55,7 +55,6 @@ import CurrencyInputHeader from './components/CurrencyInputHeader'
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -312,16 +311,12 @@ export default function Swap({ history }: RouteComponentProps) {
     <Page>
       <Flex justifyContent="center">
         <Flex flexDirection="column">
-          <StyledSwapContainer $isChartExpanded={isChartExpanded}>
+          <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
-                <CurrencyInputHeader
-                  title="Swap"
-                  subtitle="Trade tokens in an instant"
-                  isChartDisplayed={isChartDisplayed}
-                />
+                <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
                 <Wrapper id="swap-page">
-                  <AutoColumn gap="md">
+                  <AutoColumn gap="10px">
                     <CurrencyInputPanel
                       label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
                       value={formattedAmounts[Field.INPUT]}
@@ -403,9 +398,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                           <RowBetween align="center">
                             <Label>Slippage Tolerance</Label>
-                            <Text bold color="primary">
-                              {allowedSlippage / 100}%
-                            </Text>
+                            <Text bold>{allowedSlippage / 100}%</Text>
                           </RowBetween>
                         )}
                       </AutoColumn>
@@ -417,7 +410,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         Unsupported Asset
                       </Button>
                     ) : !account ? (
-                      <UnlockButton width="100%" />
+                      <UnlockButton large />
                     ) : showWrap ? (
                       <Button disabled={Boolean(wrapInputError)} onClick={onWrap}>
                         {wrapInputError ??

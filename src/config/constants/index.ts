@@ -7,6 +7,8 @@ export const CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID)
 
 export const ROUTER_ADDRESS = '0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607'
 
+export const BIG_INT_ZERO = JSBI.BigInt(0)
+
 export const WRAPPED_NATIVE_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],

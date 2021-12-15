@@ -6,7 +6,6 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
   position: relative;
   padding: 1rem;
-  border: 1px solid red;
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

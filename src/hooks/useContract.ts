@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { Contract } from '@ethersproject/contracts'
+import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { useWeb3React } from '@web3-react/core'
 import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
@@ -220,6 +221,11 @@ export const useIazoFactoryContract = () => {
 export const useIazoContract = (address: string) => {
   const abi = iazoAbi as unknown as AbiItem
   return useContract(abi, address)
+}
+
+export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  const abi = IUniswapV2PairABI as unknown as AbiItem
+  return useContract(abi, pairAddress, withSignerIfPossible)
 }
 
 export default useContract
