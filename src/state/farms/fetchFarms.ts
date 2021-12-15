@@ -1,15 +1,11 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getMasterChefAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getMasterChefAddress } from 'utils/addressHelper'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
 
 const fetchFarms = async (chainId: number) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const masterChefAddress = getMasterChefAddress(chainId)
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
@@ -51,7 +47,7 @@ const fetchFarms = async (chainId: number) => {
       ]
 
       const [tokenBalanceLP, quoteTokenBlanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
-        await multicall(multicallContract, erc20, calls)
+        await multicall(chainId, erc20, calls)
 
       // Ratio in % a LP tokens that are in staking, vs the total number in circulation
       const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
@@ -74,7 +70,7 @@ const fetchFarms = async (chainId: number) => {
       let alloc = null
       let multiplier = 'unset'
       try {
-        const [info, totalAllocPoint] = await multicall(multicallContract, masterchefABI, [
+        const [info, totalAllocPoint] = await multicall(chainId, masterchefABI, [
           {
             address: masterChefAddress,
             name: 'poolInfo',

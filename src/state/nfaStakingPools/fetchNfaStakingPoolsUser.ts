@@ -17,7 +17,7 @@ export const fetchPoolsAllowance = async (chainId, account) => {
     params: [account, p.contractAddress[chainId]],
   }))
 
-  const allowances = await multicall(multicallContract, nfaAbi, calls)
+  const allowances = await multicall(chainId, nfaAbi, calls)
   return nfaStakingPools.reduce((acc, pool, index) => ({ ...acc, [pool.sousId]: allowances[index][0] }), {})
 }
 
@@ -30,7 +30,7 @@ export const fetchUserBalances = async (chainId, account) => {
     name: 'balanceOf',
     params: [account],
   }))
-  const tokenBalancesRaw = await multicall(multicallContract, nfaAbi, calls)
+  const tokenBalancesRaw = await multicall(chainId, nfaAbi, calls)
   const tokenBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({ ...acc, [pool.sousId]: new BigNumber(tokenBalancesRaw[index]).toJSON() }),
     {},
@@ -46,7 +46,7 @@ export const fetchUserStakeBalances = async (chainId, account) => {
     name: 'userInfo',
     params: [account],
   }))
-  const userInfo = await multicall(multicallContract, nfaStakingPoolsAbi, calls)
+  const userInfo = await multicall(chainId, nfaStakingPoolsAbi, calls)
   const stakedBalances = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -66,7 +66,7 @@ export const fetchUserPendingRewards = async (chainId, account) => {
     name: 'pendingReward',
     params: [account],
   }))
-  const res = await multicall(multicallContract, nfaStakingPoolsAbi, calls)
+  const res = await multicall(chainId, nfaStakingPoolsAbi, calls)
   const pendingRewards = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -86,7 +86,7 @@ export const fetchUserStakedNfas = async (chainId, account) => {
     name: 'stakedNfts',
     params: [account],
   }))
-  const res = await multicall(multicallContract, nfaStakingPoolsAbi, calls)
+  const res = await multicall(chainId, nfaStakingPoolsAbi, calls)
   const stakedNfas = nfaStakingPools.reduce(
     (acc, pool, index) => ({
       ...acc,

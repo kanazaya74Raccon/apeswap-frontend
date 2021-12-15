@@ -7,11 +7,10 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { getMulticallAddress } from 'utils/addressHelper'
 import { useNetworkChainId } from 'state/hooks'
-import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
 import multicall from 'utils/multicall'
 import useRefresh from 'hooks/useRefresh'
-import { Contract } from 'web3-eth-contract'
+import { Contract } from 'ethers'
 import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
@@ -162,7 +161,6 @@ const IfoCardContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       const calls = [
         {
           address,
@@ -215,7 +213,7 @@ const IfoCardContribute: React.FC<Props> = ({
         harvestTwoFlag,
         harvestThreeFlag,
         harvestFourFlag,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      ] = await multicall(chainId, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
@@ -234,7 +232,7 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async (harvestPeriod: number) => {
     setPendingTx(true)
-    const tx = await contract.methods.harvest(harvestPeriod).send({ from: account })
+    const tx = await contract.harvest(harvestPeriod).send({ from: account })
     setPendingTx(false)
     track({
       event: 'iao',

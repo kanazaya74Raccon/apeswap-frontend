@@ -1,8 +1,10 @@
 import React, { useState, useRef, useMemo, useCallback } from 'react'
-import { getContract } from 'utils/erc20'
+import { getContract } from 'utils'
+import erc20 from 'config/abi/erc20.json'
 import { useWeb3React } from '@web3-react/core'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AutoRenewIcon, ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useMiniChefHarvest } from 'hooks/useHarvest'
@@ -18,7 +20,8 @@ interface DualFarmProps {
 
 const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { pid, stakeTokenAddress, stakeTokens } = dualFarm
-  const { account, library } = useWeb3React()
+  const { account } = useWeb3React()
+  const { library } = useActiveWeb3React()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
   const { onStake } = useDualFarmStake(pid)
@@ -31,7 +34,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const lpContract = useMemo(() => {
-    return getContract(library, stakeTokenAddress)
+    return getContract(stakeTokenAddress, erc20, library)
   }, [library, stakeTokenAddress])
 
   const lpName = lpSymbol.toUpperCase()

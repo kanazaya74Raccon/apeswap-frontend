@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import { provider as ProviderType } from 'web3-core'
-import { Contract } from 'web3-eth-contract'
+import { Contract } from 'ethers'
 import { AbiItem } from 'web3-utils'
 import erc20 from 'config/abi/erc20.json'
 import { ZERO_ADDRESS } from 'config'

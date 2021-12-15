@@ -4,7 +4,7 @@ import { ConnectorNames } from '@apeswapfinance/uikit'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import getRpcUrl from 'utils/getRpcUrl'
 import { CHAIN_ID } from 'config/constants/chains'
-import Web3 from 'web3'
+import { Web3Provider } from '@ethersproject/providers'
 
 const POLLING_INTERVAL = 15000
 
@@ -29,6 +29,8 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.BSC]: bscConnector,
 }
 
-export const getLibrary = (provider): Web3 => {
-  return provider
+export const getLibrary = (provider: any): Web3Provider => {
+  const library = new Web3Provider(provider, 'any')
+  library.pollingInterval = 15000
+  return library
 }

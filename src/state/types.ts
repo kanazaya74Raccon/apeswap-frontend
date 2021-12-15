@@ -1,3 +1,5 @@
+import { ThunkAction } from 'redux-thunk'
+import { AnyAction } from '@reduxjs/toolkit'
 import { Toast } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import {
@@ -10,6 +12,8 @@ import {
   VaultConfig,
   DualFarmConfig,
 } from 'config/constants/types'
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -108,6 +112,11 @@ export interface Profile {
 export interface Network {
   chainId: number
   chainIdFromUrl?: boolean
+}
+
+export interface BlockState {
+  currentBlock: number
+  initialBlock: number
 }
 
 export interface Stats {
@@ -428,6 +437,7 @@ export interface TeamsState {
 
 export interface State {
   farms: FarmsState
+  block: BlockState
   toasts: ToastsState
   pools: PoolsState
   profile: ProfileState

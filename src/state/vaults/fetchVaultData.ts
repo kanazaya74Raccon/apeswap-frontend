@@ -46,7 +46,7 @@ const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
       ]
 
       const [totalAllocPoint, poolInfo, userInfo, rewardsPerBlock] = await multicall(
-        multicallContract,
+        chainId,
         masterchefABI,
         masterchefCalls,
       )
@@ -93,7 +93,7 @@ const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
       ]
 
       const [quoteTokenPairBalance, pairBalanceMc, pairTotalSupply, stakeTokenDecimals, quoteTokenDecimals] =
-        await multicall(multicallContract, erc20ABI, erc20Calls)
+        await multicall(chainId, erc20ABI, erc20Calls)
 
       const quoteTokenAmountTotal = isPair
         ? new BigNumber(quoteTokenPairBalance).div(new BigNumber(10).pow(quoteTokenDecimals))

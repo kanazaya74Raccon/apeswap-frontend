@@ -29,8 +29,8 @@ export const fetchPoolsBlockLimits = async (chainId: number) => {
     }
   })
 
-  const starts = await multicall(multicallContract, sousChefABI, callsStartBlock)
-  const ends = await multicall(multicallContract, sousChefABI, callsEndBlock)
+  const starts = await multicall(chainId, sousChefABI, callsStartBlock)
+  const ends = await multicall(chainId, sousChefABI, callsEndBlock)
 
   return poolsWithEnd.map((bananaPoolConfig, index) => {
     const startBlock = starts[index]
@@ -72,8 +72,8 @@ export const fetchPoolsTotalStaking = async (chainId: number) => {
     }
   })
 
-  const nonBnbPoolsTotalStaked = await multicall(multicallContract, bananaABI, callsNonBnbPools)
-  const bnbPoolsTotalStaked = await multicall(multicallContract, wbnbABI, callsBnbPools)
+  const nonBnbPoolsTotalStaked = await multicall(chainId, bananaABI, callsNonBnbPools)
+  const bnbPoolsTotalStaked = await multicall(chainId, wbnbABI, callsBnbPools)
 
   return [
     ...nonBnbPools.map((p, index) => ({

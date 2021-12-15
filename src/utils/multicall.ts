@@ -1,5 +1,8 @@
 import { Interface } from '@ethersproject/abi'
-import { Contract } from 'web3-eth-contract'
+import multicallABI from 'config/abi/Multicall.json'
+import { ethers } from 'ethers'
+import { getMulticallAddress } from './addressHelper'
+import getProvider from './getProvider'
 
 interface Call {
   address: string // Address of the contract
@@ -7,13 +10,14 @@ interface Call {
   params?: any[] // Function params
 }
 
-const multicall = async (multi: Contract, abi: any[], calls: Call[]) => {
+const multicall = async (chainId: number, abi: any[], calls: Call[]) => {
+  const multicallAddress = getMulticallAddress(chainId)
+  const provider = getProvider(chainId)
+  const multi = new ethers.Contract(multicallAddress, multicallABI, provider)
   const itf = new Interface(abi)
-
   const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])
-  const { returnData } = await multi.methods.aggregate(calldata).call()
+  const { returnData } = await multi.aggregate(calldata)
   const res = returnData.map((call, i) => itf.decodeFunctionResult(calls[i].name, call))
-
   return res
 }
 
