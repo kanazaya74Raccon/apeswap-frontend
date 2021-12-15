@@ -273,6 +273,14 @@ export const getPromosHome = async () => {
   return promos
 }
 
+export const getBurningGames = async () => {
+  const url = `${baseUrlStrapi}/burning-games?_sort=order:asc`
+  const resp = await fetch(url)
+  const data = await resp.json()
+
+  return data
+}
+
 export const getNewsHome = async () => {
   const url = `${baseUrlStrapi}/home-news?_sort=published_at:desc`
   const resp = await fetch(url)
