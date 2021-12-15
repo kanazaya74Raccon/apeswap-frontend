@@ -821,6 +821,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  qa: {
+    symbol: 'QA',
+    address: {
+      56: '0x4ef29F3B804C316bA8bA464A765C601Fc092a2e9',
+    },
+    decimals: 18,
+  },
+  loa: {
+    symbol: 'LOA',
+    address: {
+      56: '0x94b69263FCA20119Ae817b6f783Fc0F13B02ad50',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
