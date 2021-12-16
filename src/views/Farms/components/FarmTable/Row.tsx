@@ -21,6 +21,7 @@ import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
 import HarvestAction from '../FarmCard/HarvestAction'
+import {LpTokenPrices} from "../../../../state/types";
 
 export interface RowProps {
   apr: AprProps
@@ -29,7 +30,7 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
-  farmsPrices?: Record<string, unknown>
+  farmsPrices?: LpTokenPrices[]
 }
 
 const cells = {

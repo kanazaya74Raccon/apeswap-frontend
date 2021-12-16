@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { useTable, ColumnType } from '@apeswapfinance/uikit'
 
 import Row, { RowProps } from './Row'
+import {LpTokenPrices} from "../../../../state/types";
 
 export interface ITableProps {
   data: RowProps[]
   columns: ColumnType<RowProps>[]
-  farmsPrices: Record<string, unknown>
+  farmsPrices: LpTokenPrices[]
 }
 
 const Container = styled.div`

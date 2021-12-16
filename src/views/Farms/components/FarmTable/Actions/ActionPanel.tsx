@@ -10,6 +10,7 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import { LiquidityProps } from '../Liquidity'
+import {LpTokenPrices} from "../../../../../state/types";
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -18,7 +19,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   account: string
   addLiquidityUrl: string
-  farmsPrices: Record<string, unknown>
+  farmsPrices: LpTokenPrices[]
 }
 
 export interface InfoPropsContainer {
@@ -138,10 +139,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const lpPrice = Number(farmsPrices[farm.pid])
+  const lpPrice : LpTokenPrices = farmsPrices.find((lp)=> lp.pid === farm.pid)
 
   const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
-    ? `$${(lpPrice*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ? `$${(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   let liquidityDigits

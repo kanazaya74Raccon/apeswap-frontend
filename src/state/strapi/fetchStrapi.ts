@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome, getFarmPrices} from '../../hooks/api'
+import {getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome} from '../../hooks/api'
 
 export const useFetchPromoHome = () => {
   const [state, setState] = useState({
@@ -111,23 +111,6 @@ export const useFetchHeadersHome = () => {
           headersData: headers,
           loading: false,
         })
-      } catch (error) {
-        console.warn('Unable to fetch data:', error)
-      }
-    }
-    fetchData()
-  }, [])
-  return state
-}
-
-export const useFetchFarmPrices = () => {
-  const [state, setState] = useState(null)
-
-  useEffect(()=> {
-    const fetchData = async () => {
-      try {
-        const res = await getFarmPrices()
-        setState(res)
       } catch (error) {
         console.warn('Unable to fetch data:', error)
       }

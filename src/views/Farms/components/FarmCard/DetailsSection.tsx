@@ -8,6 +8,7 @@ import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import Multiplier from '../FarmTable/Multiplier'
+import {LpTokenPrices} from "../../../../state/types";
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -15,7 +16,7 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
-  farmsPrices?: Record<string, unknown>
+  farmsPrices?: LpTokenPrices[]
   multiplier?: string
   liquidity?: BigNumber
   pid?: number
@@ -83,10 +84,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const {stakedBalance} = useFarmUser(pid)
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const lpPrice = Number(farmsPrices[farm.pid])
+  const lpPrice : LpTokenPrices = farmsPrices.find((lp)=> lp.pid === farm.pid)
 
-  const totalValuePersonalFormated = farmsPrices && rawStakedBalance > 0
-    ? `$${Number(lpPrice*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+  const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
+    ? `$${Number(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
   const totalValueFormated = liquidity

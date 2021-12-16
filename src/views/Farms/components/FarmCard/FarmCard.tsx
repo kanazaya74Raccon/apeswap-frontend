@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useNetworkChainId } from 'state/hooks'
-import { Farm } from 'state/types'
+import {Farm, LpTokenPrices} from 'state/types'
 import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -107,7 +107,7 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   bananaPrice?: BigNumber
-  farmsPrices: Record<string, unknown>
+  farmsPrices: LpTokenPrices[]
   account?: string
 }
 
