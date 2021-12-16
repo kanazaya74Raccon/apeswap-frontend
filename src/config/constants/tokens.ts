@@ -835,6 +835,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ads: {
+    symbol: 'ADS',
+    address: {
+      56: '0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A',
+    },
+    decimals: 11,
+  },
 }
 
 export default tokens
