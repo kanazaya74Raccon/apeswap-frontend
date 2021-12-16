@@ -26,7 +26,6 @@ const MarketingModalCheck = () => {
   }
 
   const openConnectModal = () => {
-    onDismiss()
     onPresentConnectModal()
   }
 
