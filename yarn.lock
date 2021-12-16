@@ -17,10 +17,10 @@
     eslint-plugin-react-hooks "^4.0.0"
     typescript "4.4.3"
 
-"@apeswapfinance/uikit@^0.10.5-3.0":
-  version "0.10.5-3.0"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-3.0/ccba8653d4f3c04a6da66a8918efddc9113ef9362ddc2cda38a7c8a09fefccd2#6dd757148e06e0999dfe4e56486a64f00c48c1f4"
-  integrity sha512-8isRW2AUT2dOPqqmSVTrVLMSZizC0xs77DCCd86apLgrXKD6JC4EqGgfT66BANDecfCsDF8HnApoUW6onXbWhQ==
+"@apeswapfinance/uikit@^0.10.5-3.1":
+  version "0.10.5-3.1"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-3.1/0c6fb083c72d97298e5ee3ab9976c6e40f46928b73a52b47cbf65769f84efefb#46d0f2f8d26944b0c4f3ff077bc13a72aee24e5b"
+  integrity sha512-Ne/12waq3dgToUOqB0vPzVTedYSgJ+x49fLh/nOkd6QxfI7zo8D2sCUdgcT5Mln2T907fOYOSu5bISLa6CvfmA==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -2630,6 +2630,16 @@
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
+
+"@types/react-datepicker@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.3.2.tgz#e071b9f5fbc6f183a66f6d6dab7c9f2f21b01d40"
+  integrity sha512-vj8sN+tdQPF13bH4CU8DdTuT0Z4h6+3IG14lGCSDlIw1QvTe3svr2Yqp7KbDlcRpbdcnhya3e91SnCVk+kH/RQ==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/react" "*"
+    date-fns "^2.0.1"
+    react-popper "^2.2.5"
 
 "@types/react-dom@^17.0.0":
   version "17.0.9"
@@ -5436,6 +5446,11 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+date-fns@^2.0.1:
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.27.0.tgz#e1ff3c3ddbbab8a2eaadbb6106be2929a5a2d92b"
+  integrity sha512-sj+J0Mo2p2X1e306MHq282WS4/A8Pz/95GIFcsPNMPMZVI3EUrAdSv90al1k+p74WGLCruMXk23bfEDZa71X9Q==
 
 date-fns@^2.16.1:
   version "2.24.0"

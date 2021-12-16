@@ -32,6 +32,7 @@ const Nfa = lazy(() => import('./views/Nft/Nfa'))
 const ApeZone = lazy(() => import('./views/ApeZone'))
 const Stats = lazy(() => import('./views/Stats'))
 const Auction = lazy(() => import('./views/Auction'))
+const BurningGames = lazy(() => import('./views/BurningGames'))
 const Iazos = lazy(() => import('./views/Iazos'))
 const CreateIazo = lazy(() => import('./views/Iazos/components/CreateIazo'))
 const IazoPage = lazy(() => import('./views/Iazos/components/IazoPage'))
@@ -203,6 +204,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/stats">
               <Stats />
+            </Route>
+            <Route path="/burn">
+              <BurningGames />
             </Route>
             {/* Redirect */}
             <Route path="/staking">
