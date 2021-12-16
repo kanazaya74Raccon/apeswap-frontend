@@ -2960,6 +2960,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 155,
+    tokenName: 'ADS',
+    image: 'ADS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.ads,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x66a17DAcE2d77f036422BDD50F3A20579613f5C0',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://adshares.net/',
+    harvest: true,
+    tokenPerBlock: `0.00902777777`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 11,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
