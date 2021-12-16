@@ -84,10 +84,10 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const {stakedBalance} = useFarmUser(pid)
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const lpPrice : LpTokenPrices = farmsPrices.find((lp)=> lp.pid === farm.pid)
+  const lpPrice : LpTokenPrices = farmsPrices?.find((lp)=> lp.pid === farm.pid)
 
   const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
-    ? `$${Number(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+    ? `$${Number(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   const totalValueFormated = liquidity
