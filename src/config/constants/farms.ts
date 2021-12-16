@@ -2785,7 +2785,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://adshares.net/ ',
+    projectLink: 'https://adshares.net/',
   },
   {
     pid: 174,
