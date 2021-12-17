@@ -2805,6 +2805,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://zignaly.com/',
   },
   {
+    pid: 175,
+    image: 'KAI.svg',
+    lpSymbol: 'KAI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xc792BC0E9a8e102B3e59C25b4b5722aea430EABD',
+    },
+    tokenSymbol: 'KAI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x39ae8eefb05138f418bb27659c21632dc1ddab10',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://kardiachain.io/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

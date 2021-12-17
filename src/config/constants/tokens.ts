@@ -842,6 +842,13 @@ const tokens = {
     },
     decimals: 11,
   },
+  kai: {
+    symbol: 'KAI',
+    address: {
+      56: '0x39Ae8EEFB05138f418Bb27659c21632Dc1DDAb10',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
