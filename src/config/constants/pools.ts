@@ -2979,6 +2979,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 11,
   },
+  {
+    sousId: 156,
+    tokenName: 'KAI',
+    image: 'KAI.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.kai,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x3b15B487902Bb10Cba34c489Cb35AC342F73Cff2',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://kardiachain.io/',
+    harvest: true,
+    tokenPerBlock: `0.82740162037037037`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
