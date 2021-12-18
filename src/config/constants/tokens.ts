@@ -849,6 +849,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  dose: {
+    symbol: 'DOSE',
+    address: {
+      56: '0x7837fd820bA38f95c54D6dAC4ca3751b81511357',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
