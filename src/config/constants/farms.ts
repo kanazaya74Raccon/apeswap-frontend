@@ -2771,6 +2771,74 @@ const farms: FarmConfig[] = [
     projectLink: 'https://www.leagueofancients.com/',
   },
   {
+    pid: 173,
+    image: 'ADS.svg',
+    lpSymbol: 'ADS-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x744770647Ff719BedCAba5fd80525EB9cFffbd11',
+    },
+    tokenSymbol: 'ADS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xcfcecfe2bd2fed07a9145222e8a7ad9cf1ccd22a',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://adshares.net/',
+  },
+  {
+    pid: 174,
+    image: 'ZIG.png',
+    lpSymbol: 'ZIG-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xA0244A8c019243e41476e1f82d991B2431964396',
+    },
+    tokenSymbol: 'ZIG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8c907e0a72c3d55627e853f4ec6a96b0c8771145',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://zignaly.com/',
+  },
+  {
+    pid: 175,
+    image: 'KAI.svg',
+    lpSymbol: 'KAI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xc792BC0E9a8e102B3e59C25b4b5722aea430EABD',
+    },
+    tokenSymbol: 'KAI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x39ae8eefb05138f418bb27659c21632dc1ddab10',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://kardiachain.io/',
+  },
+  {
+    pid: 176,
+    image: 'DOSE.svg',
+    lpSymbol: 'DOSE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xB69d0311dDff8EAc8AA9B426Ff2b7F8eE73bEe15',
+    },
+    tokenSymbol: 'DOSE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7837fd820bA38f95c54D6dAC4ca3751b81511357',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://dosetoken.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
