@@ -2998,6 +2998,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 157,
+    tokenName: 'DOSE',
+    image: 'DOSE.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.dose,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xd0378c1b37D530a00E91764A7a41EfEB3d6A5fbC',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://dosetoken.com/',
+    harvest: true,
+    tokenPerBlock: `0.299904899691358024`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
