@@ -1,5 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
+import styled from 'styled-components'
 import { Text, Input } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'
@@ -25,7 +26,6 @@ interface CurrencySearchProps {
   setImportToken: (token: Token) => void
 }
 
-const swapSound = new Audio('swap.mp3')
 
 function CurrencySearch({
   selectedCurrency,
@@ -55,7 +55,7 @@ function CurrencySearch({
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
-    return s === '' || s === 'b' || s === 'bn' || s === 'bnb'
+    return s === '' || s === 'e' || s === 'et' || s === 'eth'
   }, [debouncedQuery])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
@@ -64,20 +64,23 @@ function CurrencySearch({
     return filterTokens(Object.values(allTokens), debouncedQuery)
   }, [allTokens, debouncedQuery])
 
+
   const sortedTokens: Token[] = useMemo(() => {
     return filteredTokens.sort(tokenComparator)
   }, [filteredTokens, tokenComparator])
 
+  console.log(sortedTokens)
+
   const filteredSortedTokens = useSortedTokensByQuery(sortedTokens, debouncedQuery)
+
+  console.log(filteredSortedTokens)
+
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
-      if (audioPlay) {
-        swapSound.play()
-      }
     },
-    [audioPlay, onCurrencySelect],
+    [onCurrencySelect],
   )
 
   // manage focus on modal show
@@ -98,7 +101,7 @@ function CurrencySearch({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = debouncedQuery.toLowerCase().trim()
-        if (s === 'bnb') {
+        if (s === 'eth') {
           handleCurrencySelect(ETHER)
         } else if (filteredSortedTokens.length > 0) {
           if (
@@ -118,56 +121,64 @@ function CurrencySearch({
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
 
   return (
-    <>
-      <div>
-        <AutoColumn gap="16px">
-          <Row>
-            <Input
-              id="token-search-input"
-              placeholder="Search name or paste address"
-              scale="lg"
-              autoComplete="off"
-              value={searchQuery}
-              ref={inputRef as RefObject<HTMLInputElement>}
-              onChange={handleInput}
-              onKeyDown={handleEnter}
-            />
-          </Row>
-          {showCommonBases && (
-            <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
-          )}
-        </AutoColumn>
-        {searchToken && !searchTokenIsAdded ? (
-          <Column style={{ padding: '20px 0', height: '100%' }}>
-            <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
-          </Column>
-        ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
-          <div>
-            <CurrencyList
-              height={390}
-              showETH={showETH}
-              currencies={
-                filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
-              }
-              breakIndex={inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined}
-              onCurrencySelect={handleCurrencySelect}
-              otherCurrency={otherSelectedCurrency}
-              selectedCurrency={selectedCurrency}
-              fixedListRef={fixedList}
-              showImportView={showImportView}
-              setImportToken={setImportToken}
-            />
-          </div>
-        ) : (
-          <Column style={{ padding: '20px', height: '100%' }}>
-            <Text color="textSubtle" textAlign="center" mb="20px">
-              No results found
-            </Text>
-          </Column>
+    <div>
+      <AutoColumn style={{margin: "20px 0 20px 0"}}>
+        <Row padding="0 15px 0 15px">
+          <StyledInput
+            id="token-search-input"
+            placeholder="Search name or paste address"
+            scale="lg"
+            autoComplete="off"
+            value={searchQuery}
+            ref={inputRef as RefObject<HTMLInputElement>}
+            onChange={handleInput}
+            onKeyDown={handleEnter}
+          />
+        </Row>
+        {showCommonBases && (
+          <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
-      </div>
-    </>
+      </AutoColumn>
+      {searchToken && !searchTokenIsAdded ? (
+        <Column style={{ padding: '20px 0', height: '100%' }}>
+          <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
+        </Column>
+      ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
+        <CurrencyList
+          height={380}
+          showETH={showETH}
+          currencies={
+            filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
+          }
+          breakIndex={inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined}
+          onCurrencySelect={handleCurrencySelect}
+          otherCurrency={otherSelectedCurrency}
+          selectedCurrency={selectedCurrency}
+          fixedListRef={fixedList}
+          showImportView={showImportView}
+          setImportToken={setImportToken}
+        />
+      ) : (
+        <Column style={{ padding: '20px', height: '100%' }}>
+          <Text color="textSubtle" textAlign="center" mb="20px">
+            No results found
+          </Text>
+        </Column>
+      )}
+    </div>
   )
 }
+
+const StyledInput = styled(Input)`
+color: ${props => props.theme.colors.text};
+placeholder-color: black;
+::placeholder {
+  color: ${props => props.theme.colors.text};
+}
+:focus {
+  outline: 1px solid #ffb300 !important;
+  box-shadow: none !important;
+}  
+`
 
 export default CurrencySearch

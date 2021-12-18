@@ -35,10 +35,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.171/c657bf4b8bd32b24615bb49bd2e468edb48df36c5d50160fc12f276c62049c1f#2f430928bbdef0ba6d52c0eab7ccc9c9c61f818d"
   integrity sha512-bGrjL1bbcvOGQtNGg6evVYnn4/lU50/4HxYZZtp1PqP7812hzNttp+00IsgIUvTjM4kY9wydm961bjhL73rc3g==
 
-"@apeswapfinance/uikit@0.10.4-5.0":
-  version "0.10.4-5.0"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.4-5.0/472b4c5ea8eb22ed67fa415ec1863a1f8ca3893090c41997909e6cbe0475e1a1#a6a542e60aa960c8cf9967d9a9df1cfd587f9ca3"
-  integrity sha512-an8CBc4KXQ1E2+oJaW1aKW6WVOYRx7+ssLoQiMojZLUnmgdlWD228XdIWNCnoXxfbc7ROAEWHo8dg1SEhoxGAQ==
+"@apeswapfinance/uikit@^0.10.5-1.0":
+  version "0.10.5-1.0"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-1.0/2592a71214d9c95264fd02a5c99bf7e7026d9060c333e0c5c2081fcc64592063#4a052f43f498a24c985725e885383333281f4324"
+  integrity sha512-TFqEfLuD8WVUCWhYEQ/JH5hfSxCN/CgeJ0pL3UeqPDaOTzEZ1flY25TNLrDGhzdBuPem4r0+EKSnH5D4PwFiww==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -1213,7 +1213,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.14.0":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.14.0", "@babel/runtime@^7.15.4":
   version "7.16.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
@@ -1224,13 +1224,6 @@
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.15.4":
-  version "7.16.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
-  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 

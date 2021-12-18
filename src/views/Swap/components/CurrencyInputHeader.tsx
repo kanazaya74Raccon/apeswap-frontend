@@ -1,45 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, IconButton, Text, useModal } from '@apeswapfinance/uikit'
+import {
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+  useModal,
+  ButtonSquare,
+  CogIcon,
+  ButtonMenu,
+  ButtonMenuItem,
+} from '@apeswapfinance/uikit'
+import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useExpertModeManager } from 'state/user/hooks'
+import { Link, useLocation } from 'react-router-dom'
 
 interface Props {
-  title: string
-  subtitle: string
+  title?: string
+  subtitle?: string
   noConfig?: boolean
-  setIsChartDisplayed?: React.Dispatch<React.SetStateAction<boolean>>
   isChartDisplayed?: boolean
 }
 
 const CurrencyInputContainer = styled(Flex)`
+  display: flex;
   align-items: center;
-  padding: 24px;
+  justify-content: space-between;
+  padding: 20px;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.background};
 `
 
-const CurrencyInputHeader: React.FC<Props> = ({ title, subtitle, setIsChartDisplayed }) => {
+const CurrencyInputHeader: React.FC<Props> = () => {
   const [expertMode] = useExpertModeManager()
-  const toggleChartDisplayed = () => {
-    setIsChartDisplayed((currentIsChartDisplayed) => !currentIsChartDisplayed)
-  }
-
+  const path = useLocation()
+  const swapActive = path.pathname.includes('swap')
   return (
     <CurrencyInputContainer>
-      <Flex alignItems="flex-start" justifyContent="space-between">
-        <Flex flexDirection="column" alignItems="center">
-          <Heading as="h2" mb="8px">
-            {title}
-          </Heading>
-          <Flex alignItems="center">
-            <Text color="textSubtle" fontSize="14px">
-              {subtitle}
-            </Text>
-          </Flex>
-        </Flex>
-        <Flex>
-          <></>
-        </Flex>
+      <ButtonMenu activeIndex={swapActive ? 0 : 1} size="sm" variant="yellow">
+        <ButtonMenuItem as={Link} to="/swap" fontSize="14px">
+          SWAP
+        </ButtonMenuItem>
+        <ButtonMenuItem as={Link} to="/pool" fontSize="14px">
+          LIQUIDITY
+        </ButtonMenuItem>
+      </ButtonMenu>
+      <Flex>
+        <ButtonSquare style={{ fontSize: '15px', fontWeight: 700, marginRight: '20px' }}>BRIDGE</ButtonSquare>
+        <GlobalSettings />
       </Flex>
     </CurrencyInputContainer>
   )

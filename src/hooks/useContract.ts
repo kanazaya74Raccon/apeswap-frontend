@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { Contract } from '@ethersproject/contracts'
+import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { useWeb3React } from '@web3-react/core'
 import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
@@ -24,14 +25,14 @@ import vaultApe from 'config/abi/vaultApe.json'
 import apePriceGetter from 'config/abi/apePriceGetter.json'
 import miniChef from 'config/abi/miniApeV2.json'
 import multi from 'config/abi/Multicall.json'
-import iazoExposerAbi from 'config/abi/iazoExposer.json'
-import iazoSettingsAbi from 'config/abi/iazoSettings.json'
-import iazoFactoryAbi from 'config/abi/iazoFactory.json'
-import iazoAbi from 'config/abi/iazo.json'
 import ensPublicResolver from 'config/abi/ens-public-resolver.json'
 import ens from 'config/abi/ens-registrar.json'
 import weth from 'config/abi/weth.json'
 import { getContract } from 'utils'
+import iazoExposerAbi from 'config/abi/iazoExposer.json'
+import iazoSettingsAbi from 'config/abi/iazoSettings.json'
+import iazoFactoryAbi from 'config/abi/iazoFactory.json'
+import iazoAbi from 'config/abi/iazo.json'
 import { useSelector } from 'react-redux'
 import { State } from 'state/types'
 import {
@@ -220,6 +221,11 @@ export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossi
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
   const abi = weth as unknown as AbiItem
   return useContract(abi, useNativeWrapCurrencyAddress(), withSignerIfPossible)
+}
+
+export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
+  const abi = IUniswapV2PairABI as unknown as AbiItem
+  return useContract(abi, pairAddress, withSignerIfPossible)
 }
 
 export default useContract

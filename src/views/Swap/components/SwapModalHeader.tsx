@@ -104,7 +104,7 @@ export default function SwapModalHeader({
         </SwapShowAcceptChanges>
       ) : null}
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '24px 0 0 0px' }}>
-        <Text small color="textSubtle" textAlign="left" style={{ width: '100%' }}>
+        <Text small textAlign="left" style={{ width: '100%' }}>
           {estimatedText}
           <b>
             {amount} {symbol}
@@ -114,7 +114,7 @@ export default function SwapModalHeader({
       </AutoColumn>
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
-          <Text color="textSubtle">
+          <Text>
             {recipientSentToText}
             <b title={recipient}>{truncatedRecipient}</b>
             {postSentToText}

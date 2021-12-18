@@ -1,16 +1,23 @@
-import { Flex } from '@apeswapfinance/uikit'
+import { Flex, ButtonSquare } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
-export const StyledSwapContainer = styled(Flex)<{ $isChartExpanded: boolean }>`
+export const StyledSwapContainer = styled(Flex)`
   flex-shrink: 0;
   height: fit-content;
-  ${({ $isChartExpanded }) => ($isChartExpanded ? 'padding: 0 40px' : 'padding: 0 40px')};
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    ${({ $isChartExpanded }) => ($isChartExpanded ? 'padding: 0 120px' : 'padding: 0 40px')};
-  }
+  width: 680px;
 `
 
 export const StyledInputCurrencyWrapper = styled.div`
-  width: 328px;
+  width: 680px;
 `
+
+export const LargeStyledButton = styled(ButtonSquare)`
+  font-weight: 700;
+  font-size: 20px;
+  width: 100%;
+  height: 60px;
+  border-radius: 20px;
+  margin-top: 10px;
+`
+
+// export const UnlockButtonLarge = styled()

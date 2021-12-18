@@ -18,7 +18,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
     <AutoColumn style={{ padding: '0 16px' }}>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="14px">
             {isExactIn ? 'Minimum received' : 'Maximum sold'}
           </Text>
         </RowFixed>
@@ -33,7 +33,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
       </RowBetween>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="14px" >
             Price Impact
           </Text>
         </RowFixed>
@@ -42,7 +42,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
 
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" color="textSubtle">
+          <Text fontSize="14px">
             Liquidity Provider Fee
           </Text>
         </RowFixed>
@@ -72,7 +72,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
               <RowBetween style={{ padding: '0 16px' }}>
                 <span style={{ display: 'flex', alignItems: 'center' }}>
-                  <Text fontSize="14px" color="textSubtle">
+                  <Text fontSize="14px">
                     Route
                   </Text>
                 </span>

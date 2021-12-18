@@ -1,6 +1,6 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@apeswapfinance/sdk'
-import { Text, Card } from '@apeswapfinance/uikit'
+import { Text, Card, Skeleton } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
@@ -64,7 +64,7 @@ function CurrencyRow({
   otherSelected: boolean
   style: CSSProperties
 }) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const key = currencyKey(currency)
   const selectedTokenList = useCombinedActiveList()
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
@@ -82,13 +82,15 @@ function CurrencyRow({
     >
       <CurrencyLogo currency={currency} size="24px" />
       <Column>
-        <Text bold>{currency.symbol}</Text>
-        <Text color="textSubtle" small>
-          {!isOnSelectedList && customAdded && 'Added by user •'} {currency.name}
+        <Text title={currency.getName(chainId)} fontWeight={500}>
+          {currency.getSymbol(chainId)}
+        </Text>
+        <Text fontSize="13px">
+          {!isOnSelectedList && customAdded && 'Added by user •'} {currency.getName(chainId)}
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>
-        <Balance balance={balance} />
+        {balance ? <Balance balance={balance} /> : account ? <Skeleton width="50px" /> : null}
       </RowFixed>
     </MenuItem>
   )

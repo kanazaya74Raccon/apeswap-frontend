@@ -426,7 +426,7 @@ export const useAuctions = () => {
 }
 
 export const useFetchIazoSettings = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
@@ -435,7 +435,7 @@ export const useFetchIazoSettings = () => {
 }
 
 export const useFetchIazos = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
@@ -444,7 +444,7 @@ export const useFetchIazos = () => {
 }
 
 export const useFetchIazo = (address: string) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { fastRefresh } = useRefresh()
   useEffect(() => {

@@ -4,8 +4,7 @@ import { Card } from '@apeswapfinance/uikit'
 
 export const BodyWrapper = styled(Card)`
   border-radius: 24px;
-  max-width: 436px;
-  width: 100%;
+  width: 680px;
   z-index: 1;
 `
 

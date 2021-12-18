@@ -49,13 +49,12 @@ import {
 } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
+import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -98,7 +97,7 @@ export default function Swap({ history }: RouteComponentProps) {
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
-  console.log({v2Trade, balances: currencyBalances, parsedAmount, currencies})
+  console.log({ v2Trade, balances: currencyBalances, parsedAmount, currencies })
 
   // Price data
   const {
@@ -134,6 +133,7 @@ export default function Swap({ history }: RouteComponentProps) {
     },
     [onUserInput],
   )
+  
   const handleTypeOutput = useCallback(
     (value: string) => {
       onUserInput(Field.OUTPUT, value)
@@ -312,17 +312,12 @@ export default function Swap({ history }: RouteComponentProps) {
     <Page>
       <Flex justifyContent="center">
         <Flex flexDirection="column">
-          <StyledSwapContainer $isChartExpanded={isChartExpanded}>
+          <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
-                <CurrencyInputHeader
-                  title="Swap"
-                  subtitle="Trade tokens in an instant"
-                  setIsChartDisplayed={setIsChartDisplayed}
-                  isChartDisplayed={isChartDisplayed}
-                />
+                <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
                 <Wrapper id="swap-page">
-                  <AutoColumn gap="md">
+                  <AutoColumn gap="10px">
                     <CurrencyInputPanel
                       label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
                       value={formattedAmounts[Field.INPUT]}
@@ -335,24 +330,34 @@ export default function Swap({ history }: RouteComponentProps) {
                       id="swap-currency-input"
                     />
 
-                    <AutoColumn justify="space-between">
-                      <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                        <IconButton>
-                          <ArrowDownIcon
-                            width="16px"
-                            onClick={() => {
-                              setApprovalSubmitted(false) // reset 2 step UI for approvals
-                              onSwitchTokens()
-                            }}
-                            color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? 'primary' : 'text'}
-                          />
-                        </IconButton>
-                        {recipient === null && !showWrap && isExpertMode ? (
-                          <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                            + Add a send (optional)
-                          </Button>
-                        ) : null}
-                      </AutoRow>
+                    <AutoColumn
+                      style={{
+                        position: 'relative',
+                        height: '0px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <IconButton
+                        style={{ backgroundColor: '#FFB300', borderRadius: '50px', width: '50px', height: '50px' }}
+                        onClick={() => {
+                          setApprovalSubmitted(false) // reset 2 step UI for approvals
+                          onSwitchTokens()
+                        }}
+                      >
+                        <ArrowDownIcon
+                          width="18px"
+                          color="white"
+                          style={{ transform: 'rotate(180deg)', fontWeight: 700 }}
+                        />
+                        <ArrowDownIcon width="18px" color="white" />
+                      </IconButton>
+                      {recipient === null && !showWrap && isExpertMode ? (
+                        <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
+                          + Add a send (optional)
+                        </Button>
+                      ) : null}
                     </AutoColumn>
                     <CurrencyInputPanel
                       value={formattedAmounts[Field.OUTPUT]}
@@ -394,9 +399,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                           <RowBetween align="center">
                             <Label>Slippage Tolerance</Label>
-                            <Text bold color="primary">
-                              {allowedSlippage / 100}%
-                            </Text>
+                            <Text bold>{allowedSlippage / 100}%</Text>
                           </RowBetween>
                         )}
                       </AutoColumn>
@@ -408,27 +411,27 @@ export default function Swap({ history }: RouteComponentProps) {
                         Unsupported Asset
                       </Button>
                     ) : !account ? (
-                      <UnlockButton width="100%" />
+                      <UnlockButton large />
                     ) : showWrap ? (
-                      <Button disabled={Boolean(wrapInputError)} onClick={onWrap}>
+                      <LargeStyledButton disabled={Boolean(wrapInputError)} onClick={onWrap}>
                         {wrapInputError ??
                           (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
-                      </Button>
+                      </LargeStyledButton>
                     ) : noRoute && userHasSpecifiedInputOutput ? (
                       <Card style={{ textAlign: 'center' }}>
-                        <Text color="textSubtle" mb="4px">
+                        <Text mb="4px">
                           Insufficient liquidity for this trade
                         </Text>
                         {singleHopOnly && (
-                          <Text color="textSubtle" mb="4px">
+                          <Text mb="4px">
                             Try enabling multi-hop trades.
                           </Text>
                         )}
                       </Card>
                     ) : showApproveFlow ? (
                       <RowBetween>
-                        <Button
-                          variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
+                        <LargeStyledButton
+                          style={{ marginRight: '10px' }}
                           onClick={approveCallback}
                           disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                         >
@@ -441,9 +444,9 @@ export default function Swap({ history }: RouteComponentProps) {
                           ) : (
                             `Enable ${currencies[Field.INPUT]?.symbol ?? ''}`
                           )}
-                        </Button>
-                        <Button
-                          variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
+                        </LargeStyledButton>
+                        <LargeStyledButton
+                          style={{ marginLeft: '10px' }}
                           onClick={() => {
                             if (isExpertMode) {
                               handleSwap()
@@ -469,11 +472,11 @@ export default function Swap({ history }: RouteComponentProps) {
                             : priceImpactSeverity > 2
                             ? 'Swap Anyway'
                             : 'Swap'}
-                        </Button>
+                        </LargeStyledButton>
                       </RowBetween>
                     ) : (
-                      <Button
-                        variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+                      <LargeStyledButton
+                        fullWidth
                         onClick={() => {
                           if (isExpertMode) {
                             handleSwap()
@@ -496,7 +499,7 @@ export default function Swap({ history }: RouteComponentProps) {
                             : priceImpactSeverity > 2
                             ? 'Swap Anyway'
                             : 'Swap')}
-                      </Button>
+                      </LargeStyledButton>
                     )}
                     {showApproveFlow && (
                       <Column style={{ marginTop: '1rem' }}>

@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import ethers, { Contract, CallOverrides } from 'ethers'
-import { useGasPrice } from 'state/user/hooks'
 import { get } from 'lodash'
 
 /**
@@ -12,7 +11,6 @@ import { get } from 'lodash'
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
 export function useCallWithGasPrice() {
-  const gasPrice = useGasPrice()
 
   const callWithGasPrice = useCallback(
     async (
@@ -26,12 +24,12 @@ export function useCallWithGasPrice() {
 
       const tx = await contractMethod(
         ...methodArgs,
-        hasManualGasPriceOverride ? { ...overrides } : { ...overrides, gasPrice },
+        hasManualGasPriceOverride ? { ...overrides } : { ...overrides },
       )
 
       return tx
     },
-    [gasPrice],
+    [],
   )
 
   return { callWithGasPrice }

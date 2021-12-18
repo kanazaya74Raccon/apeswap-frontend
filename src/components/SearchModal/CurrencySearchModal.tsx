@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Currency, Token } from '@apeswapfinance/sdk'
-import { InjectedModalProps, Heading, Button } from '@apeswapfinance/uikit'
+import { InjectedModalProps, Heading, Button, Modal } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
 import { TokenList } from '@uniswap/token-lists'
@@ -12,17 +12,16 @@ import { CurrencyModalView } from './types'
 
 const Footer = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.background};
   text-align: center;
 `
 
 const StyledModalContainer = styled.div`
   max-width: 420px;
   width: 100%;
+  z-index: 101;
 `
 
-const StyledModalBody = styled.div`
-  padding: 24px;
+const StyledModalBody = styled(Modal)`
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -49,6 +48,7 @@ export default function CurrencySearchModal({
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
+      console.log(currency)
       onDismiss()
       onCurrencySelect(currency)
     },
@@ -78,7 +78,7 @@ export default function CurrencySearchModal({
 
   return (
     <StyledModalContainer>
-      <StyledModalBody>
+      <StyledModalBody title="Tokens" onDismiss={onDismiss} bodyPadding="none">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
@@ -108,6 +108,7 @@ export default function CurrencySearchModal({
               variant="text"
               onClick={() => setModalView(CurrencyModalView.manage)}
               className="list-token-manage-button"
+              margin="10px 0 10px 0"
             >
               Manage Tokens
             </Button>

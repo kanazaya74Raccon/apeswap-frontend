@@ -13,6 +13,7 @@ import { AutoColumn } from 'components/layout/Column'
 import { AutoRow, RowBetween, RowFixed } from 'components/layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import { LargeStyledButton } from '../styles'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
   margin-top: 24px;
@@ -101,15 +102,14 @@ export default function SwapModalFooter({
       </SwapModalFooterContainer>
 
       <AutoRow>
-        <Button
-          variant={severity > 2 ? 'danger' : 'primary'}
+        <LargeStyledButton
           onClick={onConfirm}
           disabled={disabledConfirm}
           mt="12px"
           id="confirm-swap-or-send"
         >
           {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
-        </Button>
+        </LargeStyledButton>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
       </AutoRow>

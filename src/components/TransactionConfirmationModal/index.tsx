@@ -22,7 +22,9 @@ const ConfirmedIcon = styled(ColumnCenter)`
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   return (
     <Wrapper>
-      <ConfirmedIcon><></></ConfirmedIcon>
+      <ConfirmedIcon>
+        <></>
+      </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
         <Text fontSize="20px">Waiting For Confirmation</Text>
         <AutoColumn gap="12px" justify="center">
@@ -30,7 +32,7 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
             {pendingText}
           </Text>
         </AutoColumn>
-        <Text small color="textSubtle" textAlign="center">
+        <Text small textAlign="center">
           Confirm this transaction in your wallet
         </Text>
       </AutoColumn>
@@ -67,7 +69,9 @@ function TransactionSubmittedContent({
             </Link>
           )}
           {currencyToAdd && library?.provider?.isMetaMask && (
-            <Button variant="tertiary" mt="12px" onClick={() => console.log('clicked')}><></></Button>
+            <Button variant="tertiary" mt="12px" onClick={() => console.log('clicked')}>
+              <></>
+            </Button>
           )}
           <Button onClick={onDismiss} mt="20px">
             Close
@@ -142,20 +146,22 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null
 
   return (
-    <Modal title={title} onDismiss={handleDismiss}>
-      {attemptingTxn ? (
-        <ConfirmationPendingContent pendingText={pendingText} />
-      ) : hash ? (
-        <TransactionSubmittedContent
-          chainId={chainId}
-          hash={hash}
-          onDismiss={onDismiss}
-          currencyToAdd={currencyToAdd}
-        />
-      ) : (
-        content()
-      )}
-    </Modal>
+    <div style={{maxWidth: '420px', zIndex:101}}>
+      <Modal title={title} onDismiss={handleDismiss}>
+        {attemptingTxn ? (
+          <ConfirmationPendingContent pendingText={pendingText} />
+        ) : hash ? (
+          <TransactionSubmittedContent
+            chainId={chainId}
+            hash={hash}
+            onDismiss={onDismiss}
+            currencyToAdd={currencyToAdd}
+          />
+        ) : (
+          content()
+        )}
+      </Modal>
+    </div>
   )
 }
 
