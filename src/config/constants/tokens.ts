@@ -856,6 +856,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ore: {
+    symbol: 'ORE',
+    address: {
+      56: '0x91F006ee672F8f39C6E63cA75B1cA14067b3c366',
+    },
+    decimals: 8,
+  },
 }
 
 export default tokens
