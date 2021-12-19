@@ -3017,6 +3017,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 158,
+    tokenName: 'ORE',
+    image: 'ORE.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.ore,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x633dd43b5f056ab9362162894f1e451f4d704681',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://outrace.game/',
+    harvest: true,
+    tokenPerBlock: `1.92418981`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
