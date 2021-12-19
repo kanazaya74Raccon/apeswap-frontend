@@ -2840,7 +2840,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 177,
-    image: 'ORE.svg',
+    image: 'ORE.png',
     lpSymbol: 'ORE-BNB LP',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',

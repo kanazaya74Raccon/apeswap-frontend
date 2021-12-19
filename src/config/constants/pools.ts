@@ -3020,7 +3020,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 158,
     tokenName: 'ORE',
-    image: 'ORE.svg',
+    image: 'ORE.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.ore,
     contractAddress: {
