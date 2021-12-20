@@ -821,6 +821,48 @@ const tokens = {
     },
     decimals: 18,
   },
+  qa: {
+    symbol: 'QA',
+    address: {
+      56: '0x4ef29F3B804C316bA8bA464A765C601Fc092a2e9',
+    },
+    decimals: 18,
+  },
+  loa: {
+    symbol: 'LOA',
+    address: {
+      56: '0x94b69263FCA20119Ae817b6f783Fc0F13B02ad50',
+    },
+    decimals: 18,
+  },
+  ads: {
+    symbol: 'ADS',
+    address: {
+      56: '0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A',
+    },
+    decimals: 11,
+  },
+  kai: {
+    symbol: 'KAI',
+    address: {
+      56: '0x39Ae8EEFB05138f418Bb27659c21632Dc1DDAb10',
+    },
+    decimals: 18,
+  },
+  dose: {
+    symbol: 'DOSE',
+    address: {
+      56: '0x7837fd820bA38f95c54D6dAC4ca3751b81511357',
+    },
+    decimals: 18,
+  },
+  ore: {
+    symbol: 'ORE',
+    address: {
+      56: '0x91F006ee672F8f39C6E63cA75B1cA14067b3c366',
+    },
+    decimals: 8,
+  },
 }
 
 export default tokens

@@ -192,7 +192,7 @@ const Description = () => {
           <Text as="div" pt="16px" mt="22px" mb="16px" color="white">
             <StyledButton
               as="a"
-              href="https://apeswap.gitbook.io/apeswap-finance/tokens-and-economics/golden-banana"
+              href="https://apeswap.gitbook.io/apeswap-finance/tokens-and-economics/the-usdgnana-token"
               target="_blank"
             >
               {TranslateString(610, 'READ MORE')}

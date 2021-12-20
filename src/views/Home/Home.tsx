@@ -28,7 +28,6 @@ const BannerContainer = styled.div`
     padding-right: 0px;
   }
 `
-
 const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -40,7 +39,6 @@ const PageContainer = styled.div`
     margin-bottom: 0px;
   }
 `
-
 const FrontRowWrapper = styled.div`
   display: flex;
   width: auto;
