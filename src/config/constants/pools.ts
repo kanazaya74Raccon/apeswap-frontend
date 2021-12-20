@@ -3036,6 +3036,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 8,
   },
+  {
+    sousId: 159,
+    tokenName: 'MYRA',
+    image: 'MYRA.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.myra,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x18d9d84e6649fe0f3e60c338ff5a9e96d5f85702',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://mytheria.io/',
+    harvest: true,
+    tokenPerBlock: `0.036078559027777777`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

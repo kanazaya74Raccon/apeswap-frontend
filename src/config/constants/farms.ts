@@ -2856,6 +2856,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://outrace.game/',
   },
   {
+    pid: 178,
+    image: 'MYRA.svg',
+    lpSymbol: 'MYRA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x490d7932387692b54865a24ebb6903b38fef884c',
+    },
+    tokenSymbol: 'MYRA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6ef238e9e8cd2a96740897761c18894fc086b9d0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://mytheria.io/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

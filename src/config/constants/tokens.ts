@@ -863,6 +863,13 @@ const tokens = {
     },
     decimals: 8,
   },
+  myra: {
+    symbol: 'MYRA',
+    address: {
+      56: '0x6ef238E9E8CD2A96740897761C18894Fc086B9d0',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
