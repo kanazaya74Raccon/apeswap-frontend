@@ -870,6 +870,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  godz: {
+    symbol: 'GODZ',
+    address: {
+      56: '0xF0A8EcBCE8caADB7A07d1FcD0f87Ae1Bd688dF43',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
