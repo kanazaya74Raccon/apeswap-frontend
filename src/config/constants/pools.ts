@@ -3055,6 +3055,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 160,
+    tokenName: 'GODZ',
+    image: 'GODZ.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.godz,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x8b91f9584dD43Ba4aEd7729b33aA1D459af1c5cc',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptogodz.io/',
+    harvest: true,
+    tokenPerBlock: `0.057725694444444444`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
