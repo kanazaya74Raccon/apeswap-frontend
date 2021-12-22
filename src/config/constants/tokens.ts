@@ -877,6 +877,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  mnft: {
+    symbol: 'MNFT',
+    address: {
+      56: '0x36953b5ec00a13edceceb3af258d034913d2a79d',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens

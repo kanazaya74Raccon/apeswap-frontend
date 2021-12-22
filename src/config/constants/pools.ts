@@ -3074,6 +3074,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 161,
+    tokenName: 'MNFT',
+    image: 'MNFT.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.mnft,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xe4d4ffd1c58d21858f0a8cf915aa2b422740328d',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://manufactory.gg',
+    harvest: true,
+    tokenPerBlock: `1.92901234375`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
