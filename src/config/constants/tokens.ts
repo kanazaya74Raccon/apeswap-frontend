@@ -884,6 +884,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  gmr: {
+    symbol: 'GMR',
+    address: {
+      56: '0xADCa52302e0a6c2d5D68EDCdB4Ac75DeB5466884',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
