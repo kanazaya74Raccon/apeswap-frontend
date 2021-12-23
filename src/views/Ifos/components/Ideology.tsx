@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Heading, Text } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
+import { useHistory } from 'react-router-dom'
 
 const FeatureBox = styled.div`
   display: flex;
@@ -71,7 +72,8 @@ const ButtonBox = styled.div`
   flex-direction: column;
   gap: 16px;
 
-  > button {
+  > a,
+  button {
     width: 260px;
   }
 
@@ -96,6 +98,12 @@ const Icon = ({ name }: Props) => {
 }
 
 const HowItWorks = () => {
+  const history = useHistory()
+
+  const handleDoOwnClick = () => {
+    history.push('/ss-iao')
+  }
+
   return (
     <Container>
       <SectionHeading size="lg" fontFamily="poppins" textAlign="center">
@@ -137,8 +145,12 @@ const HowItWorks = () => {
         </FeatureBox>
       </Frame>
       <ButtonBox>
-        <Button variant="yellow">BE A PARTNER</Button>
-        <Button variant="yellow">DO YOUR OWN</Button>
+        <Button variant="yellow" external href="https://ApeSwap.Click/Partners" as="a">
+          BE A PARTNER
+        </Button>
+        <Button variant="yellow" onClick={handleDoOwnClick}>
+          DO YOUR OWN
+        </Button>
       </ButtonBox>
     </Container>
   )

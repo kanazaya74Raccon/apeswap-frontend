@@ -216,7 +216,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const isFinished = state.status === 'finished'
   const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
-  console.log('state', state)
+  // console.log('state', state)
 
   return (
     <Container>

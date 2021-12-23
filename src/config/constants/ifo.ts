@@ -207,4 +207,6 @@ const ifos: Ifo[] = [
   },
 ]
 
+export const pastIfos: Ifo[] = ifos.filter((ifo) => !ifo.isActive)
+
 export default ifos

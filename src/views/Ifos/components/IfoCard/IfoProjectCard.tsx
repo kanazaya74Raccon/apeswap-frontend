@@ -2,12 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, Heading, Text, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { Ifo } from 'config/constants/types'
+import { zoneIfo, ifosConfig } from 'config/constants'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCard from './index'
-
-export interface IfoCardProps {
-  ifo: Ifo
-}
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   background-image: ${(props) => `url('/images/ifos/${props.ifoId}-bg.svg')`};
@@ -46,7 +43,19 @@ const CardListBox = styled.div`
   }
 `
 
-const IfoProjectCard: React.FC<IfoCardProps> = ({ ifo }) => {
+interface IfoCardProps {
+  ifoId: string
+}
+
+const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
+  const ifo = React.useMemo(() => ifosConfig.find((each) => each.id === ifoId), [ifoId])
+  const gnanaIfo = React.useMemo(() => zoneIfo.find((each) => each.id === ifoId), [ifoId]) // TODO: Double check if this is correct GNANA project info
+
+  if (!ifo || !gnanaIfo) {
+    console.warn(`For project:${ifoId}, ifo or gnannaIfo is not found`, ifo, gnanaIfo)
+    return null
+  }
+
   const { id, subTitle, description, launchDate, launchTime, projectSiteUrl } = ifo
 
   return (
@@ -73,7 +82,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
         <CardListBox>
           <IfoCard ifo={ifo} />
-          <IfoCard ifo={ifo} gnana />
+          <IfoCard ifo={gnanaIfo} gnana />
         </CardListBox>
 
         <LinkExternal href={projectSiteUrl} fontFamily="poppins">

@@ -1,14 +1,15 @@
 import React from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
+import ifos, { pastIfos } from 'config/constants/ifo'
 import IfoTabButtons from './components/IfoTabButtons'
-import CurrentIfo from './CurrentIfo'
-import PastIfo from './PastIfo'
 import HowItWorks from './components/HowItWorks'
 import Ideology from './components/Ideology'
+import IfoPastProjectSwiper from './components/IfoPastProjectSwiper'
+import { TabOption } from './types'
+import IfoProjectCard from './components/IfoCard/IfoProjectCard'
 
 const apeFloat = keyframes`
   0% { transform: translate(0, 0px); }
@@ -154,9 +155,18 @@ const Banana = styled.img`
   }
 `
 
+const firstPastIfoId = pastIfos.length > 0 ? pastIfos[0].id : undefined
+const activeIfoId = ifos.find((ifo) => ifo.isActive).id
+
 const Ifos = () => {
-  const { path } = useRouteMatch()
   const TranslateString = useI18n()
+  const [tabOption, setTabOption] = React.useState<TabOption>('current')
+  const [projectId, setProjectId] = React.useState<string | undefined>(activeIfoId)
+
+  const handleTabSelectionChange = (option: TabOption) => {
+    setTabOption(option)
+    if (option === 'past') setProjectId(firstPastIfoId)
+  }
 
   return (
     <>
@@ -175,13 +185,9 @@ const Ifos = () => {
       </Header>
 
       <Container>
-        <IfoTabButtons />
-        <Route exact path={`${path}`}>
-          <CurrentIfo />
-        </Route>
-        <Route path={`${path}/history`}>
-          <PastIfo />
-        </Route>
+        <IfoProjectCard ifoId={projectId} />
+        {tabOption === 'past' && <IfoPastProjectSwiper onSelectProject={setProjectId} />}
+        <IfoTabButtons onSelect={handleTabSelectionChange} selectedTab={tabOption} />
         <HowItWorks />
         <Ideology />
       </Container>
