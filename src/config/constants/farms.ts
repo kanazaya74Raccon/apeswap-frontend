@@ -2907,6 +2907,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://manufactory.gg/',
   },
   {
+    pid: 181,
+    image: 'GMR2.svg',
+    lpSymbol: 'GMR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x5ff97410ff9bdb715b7b283828796dd0ad7a884a',
+    },
+    tokenSymbol: 'GMR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xADCa52302e0a6c2d5D68EDCdB4Ac75DeB5466884',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://gmr.center/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
