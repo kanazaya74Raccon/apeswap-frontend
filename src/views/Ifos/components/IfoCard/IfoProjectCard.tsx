@@ -1,23 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, Heading, Text, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { Ifo } from 'config/constants/types'
 import { zoneIfo, ifosConfig } from 'config/constants'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCard from './index'
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  background-image: ${(props) => `url('/images/ifos/${props.ifoId}-bg.svg')`};
-  background-repeat: no-repeat;
-  background-position: -5px -5px;
-  background-size: contain;
-  padding-top: 112px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
   width: 100%;
-  background-size: 102.5%;
   margin-bottom: 26px;
+`
+
+const Banner = styled.img`
+  width: 100%;
+  height: 135px;
 `
 
 const Content = styled.div`
@@ -41,6 +39,10 @@ const CardListBox = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
   }
+
+  > div {
+    flex: 1;
+  }
 `
 
 interface IfoCardProps {
@@ -51,8 +53,8 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
   const ifo = React.useMemo(() => ifosConfig.find((each) => each.id === ifoId), [ifoId])
   const gnanaIfo = React.useMemo(() => zoneIfo.find((each) => each.id === ifoId), [ifoId]) // TODO: Double check if this is correct GNANA project info
 
-  if (!ifo || !gnanaIfo) {
-    console.warn(`For project:${ifoId}, ifo or gnannaIfo is not found`, ifo, gnanaIfo)
+  if (!ifo) {
+    console.warn(`For project:${ifoId}, ifo configuration is not found`, ifo)
     return null
   }
 
@@ -60,6 +62,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
 
   return (
     <StyledIfoCard ifoId={id}>
+      <Banner src={`/images/ifos/${ifoId}-bg.svg`} alt={ifoId} />
       <Content>
         <Heading fontFamily="poppins" as="h3" fontWeight={700}>
           {subTitle}
@@ -82,7 +85,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
 
         <CardListBox>
           <IfoCard ifo={ifo} />
-          <IfoCard ifo={gnanaIfo} gnana />
+          {gnanaIfo ? <IfoCard ifo={gnanaIfo} gnana /> : null}
         </CardListBox>
 
         <LinkExternal href={projectSiteUrl} fontFamily="poppins">
