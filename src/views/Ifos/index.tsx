@@ -166,6 +166,7 @@ const Ifos = () => {
   const handleTabSelectionChange = (option: TabOption) => {
     setTabOption(option)
     if (option === 'past') setProjectId(firstPastIfoId)
+    if (option === 'current') setProjectId(activeIfoId)
   }
 
   return (
