@@ -19,8 +19,8 @@ import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
-import LabelButton from './LabelButton'
-import ContributeModal from './ContributeModal'
+import LabelButton from '../LabelButton'
+import ContributeModal from '../ContributeModal'
 
 export interface Props {
   address: string
@@ -32,9 +32,6 @@ export interface Props {
   totalAmount: BigNumber
   tokenDecimals: number
   notLp?: boolean
-  harvestTwoBlockRelease: number
-  harvestThreeBlockRelease: number
-  harvestFourBlockRelease: number
 }
 
 const VestingButtonWrapper = styled.div`
@@ -131,9 +128,6 @@ const IfoCardContribute: React.FC<Props> = ({
   totalAmount,
   tokenDecimals,
   notLp,
-  harvestTwoBlockRelease,
-  harvestThreeBlockRelease,
-  harvestFourBlockRelease,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
@@ -154,9 +148,6 @@ const IfoCardContribute: React.FC<Props> = ({
   const [onPresentContributeModal] = useModal(
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp={notLp} />,
   )
-  const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
-  const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
-  const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
 
@@ -310,7 +301,7 @@ const IfoCardContribute: React.FC<Props> = ({
                 <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
                   {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
                 </VestingClaimButton>
-                {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
+                {/* {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
                   <>
                     <VestingClaimButton
                       disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
@@ -325,34 +316,8 @@ const IfoCardContribute: React.FC<Props> = ({
                         </>
                       )}
                     </VestingClaimButton>
-                    <VestingClaimButton
-                      disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
-                      onClick={() => claim(2)}
-                    >
-                      {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                      {harvestThreeBlockRelease > 0 && (
-                        <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                          <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
-                        </>
-                      )}
-                    </VestingClaimButton>
-                    <VestingClaimButton
-                      disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
-                      onClick={() => claim(3)}
-                    >
-                      {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                      {harvestFourBlockRelease > 0 && (
-                        <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                          <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
-                        </>
-                      )}
-                    </VestingClaimButton>
                   </>
-                )}
+                )} */}
               </>
             )}
           </VestingButtonWrapper>

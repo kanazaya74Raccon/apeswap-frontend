@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import ifoAbi from 'config/abi/ifo.json'
+import ifoLinearAbi from 'config/abi/ifoLinear.json'
 import multicallABI from 'config/abi/Multicall.json'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
@@ -19,8 +19,8 @@ import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardTime from './IfoCardTime'
-import IfoCardContribute from './IfoCardContribute'
-import IfoCardBNBContribute from './IfoCardBNBContribute'
+import FourPhaseVestingCards from './FourPhaseVesting'
+import LinearVestingCards from './LinearVesting'
 
 export interface IfoCardProps {
   ifo: Ifo
@@ -97,10 +97,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     totalAmount: new BigNumber(0),
     startBlockNum: 0,
     endBlockNum: 0,
-    harvestOneBlockRelease: 0,
-    harvestTwoBlockRelease: 0,
-    harvestThreeBlockRelease: 0,
-    harvestFourBlockRelease: 0,
   })
   const { account } = useWeb3React()
   const contract = useSafeIfoContract(address, isLinear)
@@ -140,37 +136,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
           address,
           name: 'totalAmount',
         },
-        {
-          address,
-          name: 'harvestReleaseBlocks',
-          params: [0],
-        },
-        {
-          address,
-          name: 'harvestReleaseBlocks',
-          params: [1],
-        },
-        {
-          address,
-          name: 'harvestReleaseBlocks',
-          params: [2],
-        },
-        {
-          address,
-          name: 'harvestReleaseBlocks',
-          params: [3],
-        },
       ]
-      const [
-        startBlock,
-        endBlock,
-        raisingAmount,
-        totalAmount,
-        harvestOneBlock,
-        harvestTwoBlock,
-        harvestThreeBlock,
-        harvestFourBlock,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      const [startBlock, endBlock, raisingAmount, totalAmount] = await multicall(multicallContract, ifoLinearAbi, calls) // Do not need to switch the abi
 
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -185,12 +152,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
           ? ((currentBlock - startBlockNum) / totalBlocks) * 100
           : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
 
-      // Get block release times in seconds
-      const harvestOneBlockRelease = (harvestOneBlock - currentBlock) * BSC_BLOCK_TIME
-      const harvestTwoBlockRelease = (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME
-      const harvestThreeBlockRelease = (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME
-      const harvestFourBlockRelease = (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME
-
       setState({
         isLoading: currentBlock === 0,
         secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
@@ -202,10 +163,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         blocksRemaining,
         startBlockNum,
         endBlockNum,
-        harvestOneBlockRelease,
-        harvestTwoBlockRelease,
-        harvestThreeBlockRelease,
-        harvestFourBlockRelease,
       })
     }
 
@@ -214,9 +171,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
-  const ContributeCard = currencyAddress === ZERO_ADDRESS ? IfoCardBNBContribute : IfoCardContribute
 
-  // console.log('state', state)
+  const VestingMethodGroup = isLinear ? LinearVestingCards : FourPhaseVestingCards
+  const ContributeCard = currencyAddress === ZERO_ADDRESS ? VestingMethodGroup.BNB : VestingMethodGroup.GNANA
+
+  // TODO: Verify if this is the correct case division.
+  // TODO: What are `notLp` and `gnana` boolean?
 
   return (
     <Container>
@@ -250,23 +210,23 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
           tokenDecimals={tokenDecimals}
           totalAmount={state.totalAmount}
           notLp={notLp}
-          harvestTwoBlockRelease={state.harvestTwoBlockRelease}
-          harvestThreeBlockRelease={state.harvestThreeBlockRelease}
-          harvestFourBlockRelease={state.harvestFourBlockRelease}
         />
       )}
-      <IfoCardDetails
-        saleAmount={saleAmount}
-        raiseAmount={raiseAmount}
-        bananaToBurn={bananaToBurn}
-        projectSiteUrl={projectSiteUrl}
-        raisingAmount={state.raisingAmount}
-        vestingTime={vestingTime}
-        totalAmount={state.totalAmount}
-        burnedTxUrl={burnedTxUrl}
-        address={address}
-        percentRaised={raisePercent}
-      />
+      {/* For LinearVesting cards, the IfoCardDetails is used inside */}
+      {!isLinear && (
+        <IfoCardDetails
+          saleAmount={saleAmount}
+          raiseAmount={raiseAmount}
+          bananaToBurn={bananaToBurn}
+          projectSiteUrl={projectSiteUrl}
+          raisingAmount={state.raisingAmount}
+          vestingTime={vestingTime}
+          totalAmount={state.totalAmount}
+          burnedTxUrl={burnedTxUrl}
+          address={address}
+          percentRaised={raisePercent}
+        />
+      )}
     </Container>
   )
 }

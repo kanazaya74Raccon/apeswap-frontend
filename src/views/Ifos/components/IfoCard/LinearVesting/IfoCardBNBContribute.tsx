@@ -14,8 +14,9 @@ import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getContract } from 'utils/web3'
-import LabelButton from './LabelButton'
-import ContributeModal from './ContributeModal'
+import LabelButton from '../LabelButton'
+import ContributeModal from '../ContributeModal'
+import IfoCardDetails from './IfoCardDetails'
 
 export interface Props {
   address: string
@@ -27,9 +28,6 @@ export interface Props {
   totalAmount: BigNumber
   tokenDecimals: number
   notLp?: boolean
-  harvestTwoBlockRelease: number
-  harvestThreeBlockRelease: number
-  harvestFourBlockRelease: number
 }
 
 const VestingButtonWrapper = styled.div`
@@ -124,22 +122,20 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   raisingAmount,
   totalAmount,
   tokenDecimals,
-  harvestTwoBlockRelease,
-  harvestThreeBlockRelease,
-  harvestFourBlockRelease,
   address,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
   const [userAllocation, setAllocation] = useState(0)
   const [userInfo, setUserInfo] = useState({ amount: new BigNumber(0), refunded: false })
-  const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
   const [userTokenStatus, setUserTokenStatus] = useState({
-    stakeTokenHarvest: new BigNumber(0),
-    offeringTokenHarvest: new BigNumber(0),
-    offeringTokensVested: new BigNumber(0),
+    stakeTokenHarvest: 0,
+    offeringTokenTotalHarvest: 0,
+    offeringTokenInitialHarvest: 0,
+    offeringTokensVested: 0,
+    offeringTokenVestedHarvest: 0,
   })
   const { fastRefresh } = useRefresh()
   const { account } = useWeb3React()
@@ -147,9 +143,7 @@ const IfoCardBNBContribute: React.FC<Props> = ({
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} notLp />,
   )
 
-  const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
-  const harvestThreeTime = getTimePeriods(harvestThreeBlockRelease, true)
-  const harvestFourTime = getTimePeriods(harvestFourBlockRelease, true)
+  // const harvestTwoTime = getTimePeriods(harvestTwoBlockRelease, true)
 
   useEffect(() => {
     const fetch = async () => {
@@ -175,53 +169,41 @@ const IfoCardBNBContribute: React.FC<Props> = ({
           name: 'userTokenStatus',
           params: [account],
         },
-        {
-          address,
-          name: 'hasHarvested',
-          params: [account, 0],
-        },
-        {
-          address,
-          name: 'hasHarvested',
-          params: [account, 1],
-        },
-        {
-          address,
-          name: 'hasHarvested',
-          params: [account, 2],
-        },
-        {
-          address,
-          name: 'hasHarvested',
-          params: [account, 3],
-        },
       ]
 
-      const [
-        balance,
-        userinfo,
-        allocation,
-        userTokens,
-        harvestOneFlag,
-        harvestTwoFlag,
-        harvestThreeFlag,
-        harvestFourFlag,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      const [balance, userinfo, allocation, userTokens] = await multicall(multicallContract, ifoAbi, calls)
       setUserInfo(userinfo)
       setAllocation(allocation / 1e10)
       setOfferingTokenBalance(new BigNumber(balance))
-      setUserTokenStatus(userTokens)
-      setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
+      setUserTokenStatus({
+        stakeTokenHarvest: getBalanceNumber(new BigNumber(userTokens?.stakeTokenHarvest.toString()), tokenDecimals),
+        offeringTokenTotalHarvest: getBalanceNumber(
+          new BigNumber(userTokens?.offeringTokenTotalHarvest.toString()),
+          tokenDecimals,
+        ),
+        offeringTokenInitialHarvest: getBalanceNumber(
+          new BigNumber(userTokens?.offeringTokenInitialHarvest.toString()),
+          tokenDecimals,
+        ),
+        offeringTokenVestedHarvest: getBalanceNumber(
+          new BigNumber(userTokens?.offeringTokenVestedHarvest.toString()),
+          tokenDecimals,
+        ),
+        offeringTokensVested: getBalanceNumber(
+          new BigNumber(userTokens?.offeringTokensVested.toString()),
+          tokenDecimals,
+        ),
+      })
     }
 
     if (account) {
       fetch()
     }
-  }, [account, contract, address, pendingTx, fastRefresh, multicallAddress, chainId])
+  }, [account, contract, address, pendingTx, fastRefresh, multicallAddress, chainId, tokenDecimals])
 
-  const claim = async (harvestPeriod: number) => {
+  const claim = async () => {
     setPendingTx(true)
-    await contract.methods.harvest(harvestPeriod).send({ from: account })
+    await contract.methods.harvest().send({ from: account })
     setPendingTx(false)
   }
 
@@ -231,14 +213,6 @@ const IfoCardBNBContribute: React.FC<Props> = ({
   const percentOfUserContribution = overSubscribed
     ? userAllocation
     : new BigNumber(userInfo.amount.toString()).div(raisingAmount).times(100)
-  const tokensHarvestedAvailable = getBalanceNumber(
-    new BigNumber(userTokenStatus?.offeringTokenHarvest.toString()),
-    tokenDecimals,
-  )
-
-  const tokensVested = getBalanceNumber(new BigNumber(userTokenStatus?.offeringTokensVested.toString()), tokenDecimals)
-  const totalTokensHarvested =
-    getBalanceNumber(offeringTokenBalance, tokenDecimals) - (tokensVested + tokensHarvestedAvailable)
 
   return (
     <>
@@ -264,58 +238,15 @@ const IfoCardBNBContribute: React.FC<Props> = ({
           <VestingButtonWrapper>
             {amountContributed > 0 && (
               <>
-                <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
-                  {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
+                <VestingClaimButton disabled={userTokenStatus.offeringTokenVestedHarvest > 0} onClick={() => claim()}>
+                  <Claim color="white">Claim</Claim>
                 </VestingClaimButton>
-                {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
-                  <>
-                    <VestingClaimButton
-                      disabled={harvestTwoBlockRelease > 0 || userHarvestedFlags[1]}
-                      onClick={() => claim(1)}
-                    >
-                      {userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[1] && harvestTwoBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                      {harvestTwoBlockRelease > 0 && (
-                        <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                          <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
-                        </>
-                      )}
-                    </VestingClaimButton>
-                    <VestingClaimButton
-                      disabled={harvestThreeBlockRelease > 0 || userHarvestedFlags[2]}
-                      onClick={() => claim(2)}
-                    >
-                      {userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[2] && harvestThreeBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                      {harvestThreeBlockRelease > 0 && (
-                        <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                          <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
-                        </>
-                      )}
-                    </VestingClaimButton>
-                    <VestingClaimButton
-                      disabled={harvestFourBlockRelease > 0 || userHarvestedFlags[3]}
-                      onClick={() => claim(3)}
-                    >
-                      {userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[3] && harvestFourBlockRelease < 0 && <Claim color="white">Claim</Claim>}
-                      {harvestFourBlockRelease > 0 && (
-                        <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
-                          <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
-                        </>
-                      )}
-                    </VestingClaimButton>
-                  </>
-                )}
               </>
             )}
           </VestingButtonWrapper>
           {amountContributed > 0 && (
             <VestingStatsWrapper>
-              <TextWrapRow>
+              {/* <TextWrapRow>
                 <TokenAmountRemaining>Tokens available to harvest:</TokenAmountRemaining>
                 <TokenAmountRemaining>{tokensHarvestedAvailable.toFixed(4)}</TokenAmountRemaining>
               </TextWrapRow>
@@ -326,11 +257,13 @@ const IfoCardBNBContribute: React.FC<Props> = ({
               <TextWrapRow>
                 <TokenAmountRemaining>Tokens harvested:</TokenAmountRemaining>
                 <TokenAmountRemaining>{totalTokensHarvested.toFixed(4)}</TokenAmountRemaining>
-              </TextWrapRow>
+              </TextWrapRow> */}
             </VestingStatsWrapper>
           )}
         </>
       )}
+      {/* TODO: Based on the harvest status, change this to reveal the harvest status per design */}
+      <IfoCardDetails stats={[]} />
     </>
   )
 }
