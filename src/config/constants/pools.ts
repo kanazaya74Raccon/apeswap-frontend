@@ -3131,6 +3131,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 164,
+    tokenName: 'ONG',
+    image: 'ONG.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.ong,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xc573890a14b3dddffade9a2bd7e6bada160724b6',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://ont.io/',
+    harvest: true,
+    tokenPerBlock: `0.014892104`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
