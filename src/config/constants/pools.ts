@@ -3163,7 +3163,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://astronaut.to/',
     harvest: true,
-    tokenPerBlock: `0.01717361`,
+    tokenPerBlock: `0.01569357`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
