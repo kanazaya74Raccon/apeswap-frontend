@@ -3150,6 +3150,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 165,
+    tokenName: 'NAUT',
+    image: 'NAUT.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.naut,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xcFA6CAEd7E2eCB4411254B1444E31dE43824b3E8',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://astronaut.to/',
+    harvest: true,
+    tokenPerBlock: `0.01717361`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
