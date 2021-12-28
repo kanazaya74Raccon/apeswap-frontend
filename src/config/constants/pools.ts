@@ -3169,6 +3169,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 8,
   },
+  {
+    sousId: 166,
+    tokenName: 'ZIG',
+    image: 'ZIG.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.zig,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xEbd0Cd94DC2BE20575EcdC0370a7d9A2c1AeD40c',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://zignaly.com/',
+    harvest: true,
+    tokenPerBlock: `0.25076929012345679`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
