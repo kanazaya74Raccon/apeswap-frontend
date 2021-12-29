@@ -3188,6 +3188,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 167,
+    tokenName: 'DEP',
+    image: 'DEP.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.dep,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xca676dfEbcfC16bF0aA10e7D6291E92F69c61f50',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://dea.sg/',
+    harvest: true,
+    tokenPerBlock: `0.503472222222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
