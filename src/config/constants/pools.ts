@@ -3218,7 +3218,7 @@ const pools: PoolConfig[] = [
       56: '0xaaF270fb5Ffa43ea2F49DE261E805D1efF06FDEE',
     },
     poolCategory: PoolCategory.APEZONE,
-    projectLink: 'Replace with project link',
+    projectLink: 'https://moonlighttoken.com',
     harvest: true,
     tokenPerBlock: `2601273.148150000`,
     sortOrder: 1,
