@@ -891,6 +891,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  moonlight: {
+    symbol: 'MOONLIGHT',
+    address: {
+      56: '0xB1CeD2e320E3f4C8e3511B1DC59203303493F382',
+    },
+    decimals: 9,
+  },
 }
 
 export default tokens
