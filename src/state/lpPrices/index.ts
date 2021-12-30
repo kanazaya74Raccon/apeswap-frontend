@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import fetchLpPrices from './fetchLpPrices'
+import lpTokens from "../../config/constants/lpTokens";
+import fetchPrices from '../tokenPrices/fetchPrices'
 import {LpTokenPricesState, LpTokenPrices} from '../types'
 
 const initialState: LpTokenPricesState = {
@@ -34,7 +35,7 @@ export const { lpTokenPricesFetchStart, lpTokenPricesFetchSucceeded, lpTokenPric
 export const fetchLpTokenPrices = (chainId) => async (dispatch) => {
     try {
         dispatch(lpTokenPricesFetchStart())
-        const tokenPrices = await fetchLpPrices(chainId)
+        const tokenPrices = await fetchPrices(chainId, lpTokens)
         dispatch(lpTokenPricesFetchSucceeded(tokenPrices))
     } catch (error) {
         dispatch(lpTokenPricesFetchFailed())
