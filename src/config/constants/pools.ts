@@ -3207,6 +3207,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 168,
+    tokenName: 'MOONLIGHT',
+    image: 'MOONLIGHT.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.moonlight,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xaaF270fb5Ffa43ea2F49DE261E805D1efF06FDEE',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://moonlighttoken.com',
+    harvest: true,
+    tokenPerBlock: `2601273.148150000`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 9,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
