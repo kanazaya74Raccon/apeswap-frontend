@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Trade, TradeType } from '@apeswapfinance/sdk'
 import { Button, Text, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { Field } from 'state/swap/actions'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,
@@ -37,6 +38,7 @@ export default function SwapModalFooter({
   disabledConfirm: boolean
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
+  const {chainId} = useActiveWeb3React()
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [allowedSlippage, trade],
@@ -80,8 +82,8 @@ export default function SwapModalFooter({
             </Text>
             <Text fontSize="14px" marginLeft="4px">
               {trade.tradeType === TradeType.EXACT_INPUT
-                ? trade.outputAmount.currency.symbol
-                : trade.inputAmount.currency.symbol}
+                ? trade.outputAmount.currency.getSymbol(chainId)
+                : trade.inputAmount.currency.getSymbol(chainId)}
             </Text>
           </RowFixed>
         </RowBetween>
@@ -96,7 +98,7 @@ export default function SwapModalFooter({
             <Text fontSize="14px">Liquidity Provider Fee</Text>
           </RowFixed>
           <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
+            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.getSymbol(chainId)}` : '-'}
           </Text>
         </RowBetween>
       </SwapModalFooterContainer>

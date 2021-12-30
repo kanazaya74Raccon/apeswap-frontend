@@ -30,13 +30,27 @@ const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
 
+const StyledText = styled(Text)`
+  font-size: 14px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 20px;
+  }
+`
+
+const Title = styled(Text)`
+  font-size: 18px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 22px;
+  }
+`
+
 interface PositionCardProps extends CardProps {
   pair: Pair
   showUnwrapped?: boolean
 }
 
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
@@ -71,17 +85,17 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
             <AutoColumn gap="16px">
               <FixedHeightRow>
                 <RowFixed>
-                  <Text color="secondary" bold>
+                  <StyledText color="secondary" bold>
                     LP tokens in your wallet
-                  </Text>
+                  </StyledText>
                 </RowFixed>
               </FixedHeightRow>
               <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
-                  <Text small color="textSubtle">
-                    {currency0.symbol}-{currency1.symbol} LP
-                  </Text>
+                  <StyledText small color="textSubtle">
+                    {currency0.getSymbol(chainId)}-{currency1.getSymbol(chainId)} LP
+                  </StyledText>
                 </RowFixed>
                 <RowFixed>
                   <Text>{userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}</Text>
@@ -96,7 +110,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {`Pooled ${currency0.symbol}`}:
+                    {`Pooled ${currency0.getSymbol(chainId)}`}:
                   </Text>
                   {token0Deposited ? (
                     <RowFixed>
@@ -108,7 +122,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {`Pooled ${currency1.symbol}`}:
+                    {`Pooled ${currency1.getSymbol(chainId)}`}:
                   </Text>
                   {token1Deposited ? (
                     <RowFixed>
@@ -135,7 +149,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 }
 
 export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
@@ -168,9 +182,13 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={28} />
-            <Text bold ml="8px" fontSize="22px">
-              {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
-            </Text>
+            <Title bold ml="8px" fontSize="22px">
+              {!currency0 || !currency1 ? (
+                <Dots>Loading</Dots>
+              ) : (
+                `${currency0.getSymbol(chainId)}/${currency1.getSymbol(chainId)}`
+              )}
+            </Title>
           </Flex>
         </Flex>
         {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />}
@@ -180,13 +198,11 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
         <AutoColumn gap="16px" style={{ padding: '16px' }}>
           <FixedHeightRow>
             <RowFixed>
-              <Text fontSize="20px">Your total pooled tokens</Text>
+              <StyledText>Your total pooled tokens</StyledText>
             </RowFixed>
             {userPoolBalance ? (
               <RowFixed>
-                <Text ml="6px" fontSize="20px">
-                  {userPoolBalance?.toSignificant(4)}
-                </Text>
+                <StyledText ml="6px">{userPoolBalance?.toSignificant(4)}</StyledText>
               </RowFixed>
             ) : (
               '-'
@@ -194,13 +210,13 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
           <FixedHeightRow>
             <RowFixed>
-              <Text fontSize="20px">Pooled {currency0.symbol}</Text>
+              <StyledText>Pooled {currency0.getSymbol(chainId)}</StyledText>
             </RowFixed>
             {token0Deposited ? (
               <RowFixed>
-                <Text ml="6px" mr="6px" fontSize="20px">
+                <StyledText ml="6px" mr="6px">
                   {token0Deposited?.toSignificant(6)}
-                </Text>
+                </StyledText>
                 <CurrencyLogo size="20px" currency={currency0} />
               </RowFixed>
             ) : (
@@ -209,13 +225,13 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
           <FixedHeightRow>
             <RowFixed>
-              <Text fontSize="20px">Pooled {currency1.symbol}</Text>
+              <StyledText fontSize="20px">Pooled {currency1.getSymbol(chainId)}</StyledText>
             </RowFixed>
             {token1Deposited ? (
               <RowFixed>
-                <Text ml="6px" mr="6px" fontSize="20px">
+                <StyledText ml="6px" mr="6px" fontSize="20px">
                   {token1Deposited?.toSignificant(6)}
-                </Text>
+                </StyledText>
                 <CurrencyLogo size="20px" currency={currency1} />
               </RowFixed>
             ) : (
@@ -224,12 +240,12 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
 
           <FixedHeightRow>
-            <Text fontSize="20px">Share of pool</Text>
-            <Text fontSize="20px">
+            <StyledText>Share of pool</StyledText>
+            <StyledText>
               {poolTokenPercentage
                 ? `${poolTokenPercentage.toFixed(2) === '0.00' ? '<0.01' : poolTokenPercentage.toFixed(2)}%`
                 : '-'}
-            </Text>
+            </StyledText>
           </FixedHeightRow>
 
           {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, BIG_INT_ZERO) && (
@@ -238,18 +254,18 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                 fullWidth
-                style={{ height: '40px', fontSize: '20px', marginRight: '8px', fontWeight: 700 }}
+                style={{ height: '40px', fontSize: '20px', marginRight: '8px' }}
               >
-                Add
+                <Title>Add</Title>
               </ButtonSquare>
               <ButtonSquare
                 as={Link}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 mb="8px"
                 fullWidth
-                style={{ height: '40px', fontSize: '20px', marginLeft: '8px', fontWeight: 700 }}
+                style={{ height: '40px', marginLeft: '8px' }}
               >
-                Remove
+                <Title>Remove</Title>
               </ButtonSquare>
             </Flex>
           )}

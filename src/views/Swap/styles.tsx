@@ -4,11 +4,17 @@ import styled from 'styled-components'
 export const StyledSwapContainer = styled(Flex)`
   flex-shrink: 0;
   height: fit-content;
-  width: 680px;
+  width: 360px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 680px;
+  }
 `
 
 export const StyledInputCurrencyWrapper = styled.div`
-  width: 680px;
+  width: 360px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 680px;
+  }
 `
 
 export const LargeStyledButton = styled(ButtonSquare)`
@@ -20,4 +26,3 @@ export const LargeStyledButton = styled(ButtonSquare)`
   margin-top: 10px;
 `
 
-// export const UnlockButtonLarge = styled()

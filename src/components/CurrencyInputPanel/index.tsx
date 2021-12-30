@@ -13,10 +13,13 @@ import { Input as NumericalInput } from './NumericalInput'
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
   display: flex;
   justify-content: flex-start;
-  background-color: ${({ theme }) => (theme.isDark ? 'rgba(96, 96, 96, 1)' : 'rgba(230, 230, 230, 1)')};
-  width: 244px;
+  background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
   height: 75px;
+  width: 310px;
   padding: 0;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 244px;
+  }
 `
 const InputPanel = styled.div`
   display: flex;
@@ -32,19 +35,30 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-  width: 336px;
+  width: 310px;
   height: 75px;
-  background-color: ${({ theme }) => (theme.isDark ? 'rgba(96, 96, 96, 1)' : 'rgba(230, 230, 230, 1)')};
+  background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 336px;
+  }
 `
 
 const CurrencyInputContainer = styled.div`
-  background: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 15px 0px 15px;
-  height: 155px;
+  padding: 45px 0px 25px 0px;
+  height: 263px;
+  width: 330px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    height: 155px;
+    width: 640px;
+    flex-direction: row;
+    padding: 0px 15px 0px 15px;
+  }
 `
 interface CurrencyInputPanelProps {
   value: string
@@ -105,7 +119,7 @@ export default function CurrencyInputPanel({
             ) : null}
             {pair ? (
               <Text id="pair" bold>
-                {pair?.token0.symbol}:{pair?.token1.symbol}
+                {pair?.token0.getSymbol(chainId)}-{pair?.token1.getSymbol(chainId)}
               </Text>
             ) : (
               <Text id="pair" fontSize="19px" bold style={{ marginLeft: '10px' }}>

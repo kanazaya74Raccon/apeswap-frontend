@@ -97,7 +97,6 @@ export default function Swap({ history }: RouteComponentProps) {
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
-  console.log({ v2Trade, balances: currencyBalances, parsedAmount, currencies })
 
   // Price data
   const {
@@ -306,6 +305,7 @@ export default function Swap({ history }: RouteComponentProps) {
       swapErrorMessage={swapErrorMessage}
       customOnDismiss={handleConfirmDismiss}
     />,
+    true
   )
 
   return (

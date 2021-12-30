@@ -47,7 +47,7 @@ export default function CurrencyLogo({
     return []
   }, [currency, uriLocations])
 
-  if (currency === ETHER) {
+  if (currency === ETHER || currency.getSymbol(chainId) === 'WMATIC') {
     if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
       return <MaticIcon size={size} style={style}/>
     }

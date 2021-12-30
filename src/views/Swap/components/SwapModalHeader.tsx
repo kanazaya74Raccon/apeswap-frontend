@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import { Trade, TradeType } from '@apeswapfinance/sdk'
-import { Button, Text, ErrorIcon, ArrowDownIcon } from '@apeswapfinance/uikit'
+import { Button, Text, ErrorIcon, ArrowDownIcon, ButtonSquare } from '@apeswapfinance/uikit'
 import { Field } from 'state/swap/actions'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AutoColumn } from 'components/layout/Column'
 import { CurrencyLogo } from 'components/Logo'
 import { RowBetween, RowFixed } from 'components/layout/Row'
@@ -26,6 +27,7 @@ export default function SwapModalHeader({
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [trade, allowedSlippage],
   )
+  const {chainId} = useActiveWeb3React()
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
@@ -34,7 +36,7 @@ export default function SwapModalHeader({
       ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)
       : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)
   const symbol =
-    trade.tradeType === TradeType.EXACT_INPUT ? trade.outputAmount.currency.symbol : trade.inputAmount.currency.symbol
+    trade.tradeType === TradeType.EXACT_INPUT ? trade.outputAmount.currency.getSymbol(chainId) : trade.inputAmount.currency.getSymbol(chainId)
 
   const tradeInfoText =
     trade.tradeType === TradeType.EXACT_INPUT
@@ -63,7 +65,7 @@ export default function SwapModalHeader({
         </RowFixed>
         <RowFixed gap="0px">
           <Text fontSize="24px" ml="10px">
-            {trade.inputAmount.currency.symbol}
+            {trade.inputAmount.currency.getSymbol(chainId)}
           </Text>
         </RowFixed>
       </RowBetween>
@@ -88,7 +90,7 @@ export default function SwapModalHeader({
         </RowFixed>
         <RowFixed gap="0px">
           <Text fontSize="24px" ml="10px">
-            {trade.outputAmount.currency.symbol}
+            {trade.outputAmount.currency.getSymbol(chainId)}
           </Text>
         </RowFixed>
       </RowBetween>
@@ -99,7 +101,7 @@ export default function SwapModalHeader({
               <ErrorIcon mr="8px" />
               <Text bold>Price Updated</Text>
             </RowFixed>
-            <Button onClick={onAcceptChanges}>Accept</Button>
+            <ButtonSquare style={{fontSize:"16px"}} onClick={onAcceptChanges}>Accept</ButtonSquare>
           </RowBetween>
         </SwapShowAcceptChanges>
       ) : null}

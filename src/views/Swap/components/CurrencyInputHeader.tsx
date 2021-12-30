@@ -46,7 +46,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </ButtonMenuItem>
       </ButtonMenu>
       <Flex>
-        <ButtonSquare style={{ fontSize: '15px', fontWeight: 700, marginRight: '20px' }}>BRIDGE</ButtonSquare>
+        <ButtonSquare style={{ fontSize: '15px', fontWeight: 700, marginRight: '15px', marginLeft: '15px', padding: 10 }}>BRIDGE</ButtonSquare>
         <GlobalSettings />
       </Flex>
     </CurrencyInputContainer>

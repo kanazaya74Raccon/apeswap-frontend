@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@apeswapfinance/sdk'
-import { Button, Text, Flex, AddIcon, CardBody, useModal, Card, IconButton } from '@apeswapfinance/uikit'
+import { Button, Text, Flex, AddIcon, CardBody, useModal, Card, IconButton,  } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -11,6 +11,7 @@ import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import Page from 'components/layout/Page'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { LargeStyledButton } from 'views/Swap/styles'
+import { Wrapper } from 'views/Swap/components/styleds'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
@@ -185,8 +186,8 @@ export default function AddLiquidity({
 
           addTransaction(response, {
             summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
-              currencies[Field.CURRENCY_A]?.symbol
-            } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
+              currencies[Field.CURRENCY_A]?.getSymbol(chainId)
+            } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`,
           })
 
           setTxHash(response.hash)
@@ -205,7 +206,7 @@ export default function AddLiquidity({
     return noLiquidity ? (
       <Flex alignItems="center">
         <Text fontSize="48px" marginRight="10px">
-          {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol}`}
+          {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}
         </Text>
         <DoubleCurrencyLogo
           currency0={currencies[Field.CURRENCY_A]}
@@ -227,7 +228,7 @@ export default function AddLiquidity({
         </Flex>
         <Row>
           <Text fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} Pool Tokens`}
+            {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(chainId)} Pool Tokens`}
           </Text>
         </Row>
         <Text small textAlign="left" my="24px">
@@ -253,8 +254,8 @@ export default function AddLiquidity({
   }
 
   const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6) ?? ''} ${
-    currencies[Field.CURRENCY_A]?.symbol ?? ''
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencies[Field.CURRENCY_B]?.symbol ?? ''}`
+    currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''
+  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''}`
 
   const handleCurrencyASelect = useCallback(
     (currencyA_: Currency) => {
@@ -313,7 +314,7 @@ export default function AddLiquidity({
         <AppBody>
           <CurrencyInputHeader />
           <LiquidityPositionLink />
-          <CardBody>
+          <Wrapper>
             <AutoColumn gap="10px">
               {noLiquidity && (
                 <ColumnCenter>
@@ -376,23 +377,13 @@ export default function AddLiquidity({
                 showCommonBases
               />
               {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
-                <>
-                  <Card padding="0px">
-                    <RowBetween padding="1rem">
-                      <Text fontSize="14px">
-                        {noLiquidity ? 'Initial prices and pool share' : 'Prices and pool share'}
-                      </Text>
-                    </RowBetween>{' '}
-                    <Card padding="1rem">
-                      <PoolPriceBar
-                        currencies={currencies}
-                        poolTokenPercentage={poolTokenPercentage}
-                        noLiquidity={noLiquidity}
-                        price={price}
-                      />
-                    </Card>
-                  </Card>
-                </>
+                <PoolPriceBar
+                  currencies={currencies}
+                  poolTokenPercentage={poolTokenPercentage}
+                  noLiquidity={noLiquidity}
+                  price={price}
+                  chainId={chainId}
+                />
               )}
 
               {addIsUnsupported ? (
@@ -412,18 +403,18 @@ export default function AddLiquidity({
                         {approvalA !== ApprovalState.APPROVED && (
                           <LargeStyledButton onClick={approveACallback} disabled={approvalA === ApprovalState.PENDING}>
                             {approvalA === ApprovalState.PENDING ? (
-                              <Dots>{`Enabling ${currencies[Field.CURRENCY_A]?.symbol}`}</Dots>
+                              <Dots>{`Enabling ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
                             ) : (
-                              `Enable ${currencies[Field.CURRENCY_A]?.symbol}`
+                              `Enable ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
                             )}
                           </LargeStyledButton>
                         )}
                         {approvalB !== ApprovalState.APPROVED && (
                           <LargeStyledButton onClick={approveBCallback} disabled={approvalB === ApprovalState.PENDING}>
                             {approvalB === ApprovalState.PENDING ? (
-                              <Dots>{`Enabling ${currencies[Field.CURRENCY_B]?.symbol}`}</Dots>
+                              <Dots>{`Enabling ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
                             ) : (
-                              `Enable ${currencies[Field.CURRENCY_B]?.symbol}`
+                              `Enable ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
                             )}
                           </LargeStyledButton>
                         )}
@@ -444,13 +435,14 @@ export default function AddLiquidity({
                 </AutoColumn>
               )}
             </AutoColumn>
-          </CardBody>
+          </Wrapper>
         </AppBody>
         {!addIsUnsupported ? (
           pair && !noLiquidity && pairState !== PairState.INVALID ? (
-            <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-              <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
-            </AutoColumn>
+            // <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
+            //   <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
+            // </AutoColumn>
+            <></>
           ) : null
         ) : (
           <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />

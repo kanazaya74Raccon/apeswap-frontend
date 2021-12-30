@@ -48,6 +48,8 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   attemptingTxn,
   txHash,
 }) => {
+  console.log(trade)
+  console.log(originalTrade)
   const showAcceptChanges = useMemo(
     () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
     [originalTrade, trade],
@@ -106,4 +108,4 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   )
 }
 
-export default ConfirmSwapModal
+export default React.memo(ConfirmSwapModal)
