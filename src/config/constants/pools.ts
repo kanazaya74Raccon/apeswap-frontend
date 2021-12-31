@@ -3226,6 +3226,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 9,
   },
+  {
+    sousId: 169,
+    tokenName: 'LAND',
+    image: 'LAND.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.land,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x4CA13C1b85211aBC06455a164A15a2Ef6a1733E0',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://landshare.io/',
+    harvest: true,
+    tokenPerBlock: `0.003325810185185185`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
