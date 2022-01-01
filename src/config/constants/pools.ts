@@ -3245,6 +3245,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 170,
+    tokenName: 'SPACE',
+    image: 'SPACE.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.space,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x31BA18dF9a445D2E01Aa55B393cde86b149CBC4A',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.aperocket.finance/',
+    harvest: true,
+    tokenPerBlock: `0.005246913580246913`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

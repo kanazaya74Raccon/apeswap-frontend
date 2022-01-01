@@ -898,6 +898,13 @@ const tokens = {
     },
     decimals: 9,
   },
+  space: {
+    symbol: 'SPACE',
+    address: {
+      56: '0xe486a69E432Fdc29622bF00315f6b34C99b45e80',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
