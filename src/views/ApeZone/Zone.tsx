@@ -28,7 +28,28 @@ const Option1 = styled.div`
 `
 const HeadCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  border-radius: 22px;
 `
+const HeadBody = styled(CardBody)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+`
+const HeadTitle = styled(Heading)`
+  font-size: 22px;
+  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
+  font-weight: 700;
+  text-transform: uppercase;
+`
+const HeadDesc = styled(Text)`
+  font-size: 12px;
+  color: #ffb300;
+  font-weight: 500;
+`
+
 const Section = styled.div`
   display: flex;
 `
@@ -59,10 +80,10 @@ export const GnanaUtility = () => (
     <Options>
       <Option1>
         <HeadCard>
-          <CardBody>
-            <Heading textTransform="uppercase">Option 1</Heading>
-            <Text>Hold in Wallet</Text>
-          </CardBody>
+          <HeadBody>
+            <HeadTitle>Option 1</HeadTitle>
+            <HeadDesc>Hold in Wallet</HeadDesc>
+          </HeadBody>
         </HeadCard>
 
         <Section>
