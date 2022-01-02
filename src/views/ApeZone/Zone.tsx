@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseLayout, Card, CardBody, Heading, Text, ButtonSquare } from '@apeswapfinance/uikit'
+import { BaseLayout, Card, CardBody, Heading, Text, ButtonSquare, AddIcon, SvgProps } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { TranslateString } from 'utils/translateTextHelpers'
@@ -49,26 +49,126 @@ const HeadDesc = styled(Text)`
   color: #ffb300;
   font-weight: 500;
 `
-
-const Section = styled.div`
-  display: flex;
+// NOT BEING USED FOR NOW (Example how to use UIKit Icon)
+const StyledAddIcon = styled(AddIcon)`
+  fill: #ffb300;
+  width: 60px;
 `
-const OtherOptions = styled.div`
-  display: flex;
+const PlusIcon = styled(Text)`
+  color: #ffb300;
+  font-family: 'Titan One';
+  font-size: 35px;
 `
 
-export const OpDetails = ({ Icon, Title, Desc, onAction, ActionTitle, ...props }) => {
+const Section = styled(Card)`
+  display: flex;
+  justify-content: space-between;
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  align-items: center;
+  margin-top: 0.5em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+`
+const OpCon = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.textDisabled)};
+  width: 125px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 32px;
+`
+const ImgBorder = styled.div`
+  width: 95px;
+  height: 95px;
+  max-width: 95px;
+  max-height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: radial-gradient(
+    108.59% 108.6% at 6.38% 83.17%,
+    #ffe988 0%,
+    #ba801e 25%,
+    #fbec83 50%,
+    #ba801f 75%,
+    #ffe97f 100%
+  );
+  margin-bottom: 0.6em;
+`
+const ImgCon = styled.div`
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const OpHeadingCon = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 0.5em;
+`
+const OpHeading = styled(Heading)`
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  line-height: 22px;
+`
+const OpDesc = styled(Text)`
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  height: 30px;
+  /* margin-bottom: 1em; */
+`
+const ActionDiv = styled.div`
+  margin-top: 2em;
+  height: 40px;
+`
+const ActionButton = styled(ButtonSquare)``
+
+interface OpDetailsProps {
+  Icon?: SvgProps
+  Title: string
+  Desc: string
+  onAction: () => null
+  ActionTitle: string
+  OpStyle?: Record<string, unknown>
+}
+
+export const OpDetails: React.FC<OpDetailsProps> = ({
+  Icon,
+  Title,
+  Desc,
+  onAction,
+  ActionTitle,
+  OpStyle,
+  ...props
+}) => {
   const TranslateString1 = useI18n()
 
   return (
-    <div>
-      <Text>Icon: {Icon}</Text>
-      <Heading>{Title}</Heading>
-      <Text>{Desc}</Text>
-      <ButtonSquare onClick={onAction} {...props}>
-        {TranslateString1(292, ActionTitle)}
-      </ButtonSquare>
-    </div>
+    <OpCon style={OpStyle} {...props}>
+      <ImgBorder>
+        <ImgCon>{Icon}</ImgCon>
+      </ImgBorder>
+
+      <OpHeadingCon>
+        <OpHeading>{Title}</OpHeading>
+      </OpHeadingCon>
+
+      <OpDesc>{Desc}</OpDesc>
+
+      <ActionDiv>
+        <ActionButton onClick={onAction}>{TranslateString1(292, ActionTitle)}</ActionButton>
+      </ActionDiv>
+    </OpCon>
   )
 }
 
@@ -88,15 +188,16 @@ export const GnanaUtility = () => (
 
         <Section>
           <OpDetails
-            Icon="PFarming"
+            Icon={<StyledAddIcon />}
             Title="Passive Farming"
             Desc="Propose and Vote on platform decisions"
             ActionTitle="Buy Gnana"
             onAction={() => null}
           />
-          <Text>Plus Sign</Text>
+          {/* <StyledAddIcon /> */}
+          <PlusIcon>+</PlusIcon>
           <OpDetails
-            Icon="Governance"
+            Icon={<StyledAddIcon />}
             Title="Governance"
             Desc="Propose and Vote on platform decisions"
             ActionTitle="Explore"
@@ -105,25 +206,28 @@ export const GnanaUtility = () => (
         </Section>
       </Option1>
 
-      <OtherOptions>
+      <Section>
         {/* Option2 */}
         <OpDetails
-          Icon="XPools"
+          Icon={<StyledAddIcon />}
           Title="Exclusive Pools"
           Desc="Access unique pools with higher APRs"
           ActionTitle="Go to pools"
           onAction={() => null}
+          OpStyle={{
+            width: '45%',
+          }}
         />
 
         {/* Option3 */}
         <OpDetails
-          Icon="X IAO Access"
+          Icon={<StyledAddIcon />}
           Title="Exclusive IAO Acess"
           Desc="Access to secondary offerings for a higher token allocation"
           ActionTitle="Go to IAOs"
           onAction={() => null}
         />
-      </OtherOptions>
+      </Section>
     </Options>
   </UtilityCon>
 )
