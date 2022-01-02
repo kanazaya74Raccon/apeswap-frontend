@@ -8,6 +8,7 @@ export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
   addLiquidityUrl?: string
   bananaPrice?: BigNumber
+  lpPrice?: BigNumber
 }
 
 interface HarvestProps {
