@@ -26,9 +26,15 @@ const Option1 = styled.div`
   display: flex;
   flex-direction: column;
 `
+const OtherOptions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5em;
+`
 const HeadCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  border-radius: 22px;
+  border-radius: 20px;
+  margin-bottom: 0.5em;
 `
 const HeadBody = styled(CardBody)`
   display: flex;
@@ -39,7 +45,7 @@ const HeadBody = styled(CardBody)`
   padding-bottom: 15px;
 `
 const HeadTitle = styled(Heading)`
-  font-size: 22px;
+  font-size: 20px;
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-weight: 700;
   text-transform: uppercase;
@@ -59,29 +65,25 @@ const PlusIcon = styled(Text)`
   font-family: 'Titan One';
   font-size: 35px;
 `
-
 const Section = styled(Card)`
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   align-items: center;
-  margin-top: 0.5em;
   padding-left: 0.6em;
   padding-right: 0.6em;
+  border-radius: 22px;
 `
 const OpCon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.textDisabled)};
-  width: 125px;
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   padding-top: 1em;
   padding-bottom: 1em;
-  border-radius: 32px;
+  border-radius: 22px;
   height: 325px;
-  /* padding-left: 0.2em;
-  padding-right: 0.2em; */
 `
 const ImgBorder = styled.div`
   width: 95px;
@@ -136,10 +138,15 @@ const ActionButton = styled(ButtonSquare)`
   padding-right: 0.1em;
   padding-left: 0.1em;
   width: 90%;
+  font-weight: 700;
 `
 const OtherOpStyle = {
-  width: '49%',
+  // width: '49%',
 }
+const Section2 = styled(Card)`
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  border-radius: 22px;
+`
 interface OpDetailsProps {
   Icon?: SvgProps
   Title: string
@@ -147,9 +154,11 @@ interface OpDetailsProps {
   onAction: () => null
   ActionTitle: string
   OpStyle?: Record<string, unknown>
+  type?: string
 }
 
 export const OpDetails: React.FC<OpDetailsProps> = ({
+  type,
   Icon,
   Title,
   Desc,
@@ -161,7 +170,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
   const TranslateString1 = useI18n()
 
   return (
-    <OpCon style={OpStyle} {...props}>
+    <OpCon style={{ ...OpStyle, width: type === '1' ? '125px' : '100%' }} {...props}>
       <ImgBorder>
         <ImgCon>{Icon}</ImgCon>
       </ImgBorder>
@@ -174,7 +183,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
         <OpDesc>{Desc}</OpDesc>
       </OpDescCon>
 
-      <ActionButton onClick={onAction} fullWidth>
+      <ActionButton onClick={onAction} fullWidth fontSize="14px">
         {TranslateString1(292, ActionTitle)}
       </ActionButton>
     </OpCon>
@@ -187,14 +196,7 @@ export const GnanaUtility = () => (
       <Heading textTransform="uppercase">Gnana Utility</Heading>
     </UtilityTitle>
     <Options>
-      <Option1>
-        <HeadCard>
-          <HeadBody>
-            <HeadTitle>Option 1</HeadTitle>
-            <HeadDesc>Hold in Wallet</HeadDesc>
-          </HeadBody>
-        </HeadCard>
-
+      <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
         <Section>
           <OpDetails
             Icon={<StyledAddIcon />}
@@ -203,6 +205,7 @@ export const GnanaUtility = () => (
             ActionTitle="BUY GNANA"
             onAction={() => null}
             OpStyle={OtherOpStyle}
+            type="1"
           />
           <PlusIcon>+</PlusIcon>
           <OpDetails
@@ -212,33 +215,54 @@ export const GnanaUtility = () => (
             ActionTitle="EXPLORE"
             onAction={() => null}
             OpStyle={OtherOpStyle}
+            type="1"
           />
         </Section>
-      </Option1>
+      </OptionCard>
 
-      <Section>
-        {/* Option2 */}
-        <OpDetails
-          Icon={<StyledAddIcon />}
-          Title="Exclusive Pools"
-          Desc="Access unique pools with higher APRs"
-          ActionTitle="GO TO POOLS"
-          onAction={() => null}
-          OpStyle={OtherOpStyle}
-        />
+      <OtherOptions>
+        <OptionCard type="2" title="Option 2" desc="Stake">
+          <Section2>
+            <OpDetails
+              Icon={<StyledAddIcon />}
+              Title="Exclusive Pools"
+              Desc="Access unique pools with higher APRs"
+              ActionTitle="GO TO POOLS"
+              onAction={() => null}
+              OpStyle={OtherOpStyle}
+              type="2"
+            />
+          </Section2>
+        </OptionCard>
 
-        {/* Option3 */}
-        <OpDetails
-          Icon={<StyledAddIcon />}
-          Title="Exclusive IAO Acess"
-          Desc="Access to secondary offerings for a higher token allocation"
-          ActionTitle="GO TO IAOs"
-          onAction={() => null}
-          OpStyle={OtherOpStyle}
-        />
-      </Section>
+        <OptionCard type="3" title="Option 3" desc="Commit">
+          <Section2>
+            <OpDetails
+              Icon={<StyledAddIcon />}
+              Title="Exclusive IAO Acess"
+              Desc="Access to secondary offerings for a higher token allocation"
+              ActionTitle="GO TO IAOs"
+              onAction={() => null}
+              OpStyle={OtherOpStyle}
+              type="3"
+            />
+          </Section2>
+        </OptionCard>
+      </OtherOptions>
     </Options>
   </UtilityCon>
+)
+// style={{ width: type === '1' ? '125px' : '100%' }}
+export const OptionCard = ({ type, title, desc, children }) => (
+  <Option1 style={{ width: type === '1' ? '100%' : '49%' }}>
+    <HeadCard>
+      <HeadBody>
+        <HeadTitle>{title}</HeadTitle>
+        <HeadDesc>{desc}</HeadDesc>
+      </HeadBody>
+    </HeadCard>
+    {children}
+  </Option1>
 )
 
 // GNANA UTILITY END
