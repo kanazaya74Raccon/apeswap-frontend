@@ -3264,6 +3264,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 171,
+    tokenName: 'WATCH',
+    image: 'WATCH.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.watch,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xb0329d2A9BA4BC1ff7D4944412EF8DF0D4bDF304',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://yieldwatch.net/',
+    harvest: true,
+    tokenPerBlock: `0.079089506172839506`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
