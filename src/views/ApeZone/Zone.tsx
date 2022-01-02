@@ -79,6 +79,9 @@ const OpCon = styled.div`
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 32px;
+  height: 325px;
+  /* padding-left: 0.2em;
+  padding-right: 0.2em; */
 `
 const ImgBorder = styled.div`
   width: 95px;
@@ -97,7 +100,7 @@ const ImgBorder = styled.div`
     #ba801f 75%,
     #ffe97f 100%
   );
-  margin-bottom: 0.6em;
+  margin-bottom: 1em;
 `
 const ImgCon = styled.div`
   width: 90%;
@@ -111,7 +114,7 @@ const ImgCon = styled.div`
 const OpHeadingCon = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 30px;
   margin-bottom: 0.5em;
 `
 const OpHeading = styled(Heading)`
@@ -120,19 +123,23 @@ const OpHeading = styled(Heading)`
   text-align: center;
   line-height: 22px;
 `
+const OpDescCon = styled.div`
+  height: 30px;
+  margin-bottom: 1em;
+`
 const OpDesc = styled(Text)`
-  font-weight: 500;
   font-size: 12px;
   text-align: center;
-  height: 30px;
-  /* margin-bottom: 1em; */
+  font-weight: 600;
 `
-const ActionDiv = styled.div`
-  margin-top: 2em;
-  height: 40px;
+const ActionButton = styled(ButtonSquare)`
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+  width: 90%;
 `
-const ActionButton = styled(ButtonSquare)``
-
+const OtherOpStyle = {
+  width: '49%',
+}
 interface OpDetailsProps {
   Icon?: SvgProps
   Title: string
@@ -163,11 +170,13 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
         <OpHeading>{Title}</OpHeading>
       </OpHeadingCon>
 
-      <OpDesc>{Desc}</OpDesc>
+      <OpDescCon>
+        <OpDesc>{Desc}</OpDesc>
+      </OpDescCon>
 
-      <ActionDiv>
-        <ActionButton onClick={onAction}>{TranslateString1(292, ActionTitle)}</ActionButton>
-      </ActionDiv>
+      <ActionButton onClick={onAction} fullWidth>
+        {TranslateString1(292, ActionTitle)}
+      </ActionButton>
     </OpCon>
   )
 }
@@ -191,17 +200,18 @@ export const GnanaUtility = () => (
             Icon={<StyledAddIcon />}
             Title="Passive Farming"
             Desc="Propose and Vote on platform decisions"
-            ActionTitle="Buy Gnana"
+            ActionTitle="BUY GNANA"
             onAction={() => null}
+            OpStyle={OtherOpStyle}
           />
-          {/* <StyledAddIcon /> */}
           <PlusIcon>+</PlusIcon>
           <OpDetails
             Icon={<StyledAddIcon />}
             Title="Governance"
             Desc="Propose and Vote on platform decisions"
-            ActionTitle="Explore"
+            ActionTitle="EXPLORE"
             onAction={() => null}
+            OpStyle={OtherOpStyle}
           />
         </Section>
       </Option1>
@@ -212,11 +222,9 @@ export const GnanaUtility = () => (
           Icon={<StyledAddIcon />}
           Title="Exclusive Pools"
           Desc="Access unique pools with higher APRs"
-          ActionTitle="Go to pools"
+          ActionTitle="GO TO POOLS"
           onAction={() => null}
-          OpStyle={{
-            width: '45%',
-          }}
+          OpStyle={OtherOpStyle}
         />
 
         {/* Option3 */}
@@ -224,8 +232,9 @@ export const GnanaUtility = () => (
           Icon={<StyledAddIcon />}
           Title="Exclusive IAO Acess"
           Desc="Access to secondary offerings for a higher token allocation"
-          ActionTitle="Go to IAOs"
+          ActionTitle="GO TO IAOs"
           onAction={() => null}
+          OpStyle={OtherOpStyle}
         />
       </Section>
     </Options>
