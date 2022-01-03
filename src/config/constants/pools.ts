@@ -3283,6 +3283,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 172,
+    tokenName: 'LMT',
+    image: 'LMT.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.lmt,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x9f3Fa4d728F26C9bb53a0641C51A5657544E257A',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://lympo.io/lmt/',
+    harvest: true,
+    tokenPerBlock: `0.395784143518518518`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
