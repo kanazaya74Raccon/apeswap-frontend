@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, BaseLayout } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
@@ -86,6 +86,11 @@ const StyledHeading = styled(Heading)`
   }
 `
 
+const PaddedCard = styled(Card)`
+  padding: 26px;
+  margin-bottom: 10px;
+`
+
 const Stats: React.FC = () => {
   useFetchStatsOverall()
   useFetchStats()
@@ -105,6 +110,14 @@ const Stats: React.FC = () => {
       </Header>
 
       <Page>
+      <PaddedCard>
+          <Heading size="lg" fontFamily="poppins" color="warning">
+            HEADS UP, APES!
+          </Heading>
+          <Text fontFamily="poppins">
+            The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">yieldwatch</a>, <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">JDI</a>, or <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">Pacoca</a> for alternative dashboards!
+          </Text>
+      </PaddedCard>
         {!account ? (
           <UnlockButton fullWidth fontSize="14px" />
         ) : (
