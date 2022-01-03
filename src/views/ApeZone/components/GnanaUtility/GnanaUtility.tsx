@@ -23,7 +23,7 @@ const OtherOptions = styled.div`
   margin-top: 0.5em;
 `
 
-// NOT BEING USED FOR NOW (Example how to use UIKit Icon)
+// (Example how to use UIKit Icon)
 const StyledAddIcon = styled(AddIcon)`
   fill: #ffb300;
   width: 60px;
@@ -49,67 +49,82 @@ const Section2 = styled(Card)`
 
 const OtherOpStyle = {}
 
-export const GnanaUtility: React.FC = () => (
-  <UtilityCon>
-    <UtilityTitle>
-      <Heading textTransform="uppercase">Gnana Utility</Heading>
-    </UtilityTitle>
-    <Options>
-      <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
-        <Section>
-          <OpDetails
-            Icon={<StyledAddIcon />}
-            Title="Passive Farming"
-            Desc="Propose and Vote on platform decisions"
-            ActionTitle="BUY GNANA"
-            onAction={() => null}
-            OpStyle={OtherOpStyle}
-            type="1"
-          />
-          <PlusIcon>+</PlusIcon>
-          <OpDetails
-            Icon={<StyledAddIcon />}
-            Title="Governance"
-            Desc="Propose and Vote on platform decisions"
-            ActionTitle="EXPLORE"
-            onAction={() => null}
-            OpStyle={OtherOpStyle}
-            type="1"
-          />
-        </Section>
-      </OptionCard>
+export const GnanaUtility: React.FC = () => {
+  const buyGnana = () => {
+    return window.open('https://apeswap.finance/gnana', '_blank')
+  }
+  const exploreGovernance = () => {
+    return window.open('https://vote.apeswap.finance/', '_blank')
+  }
+  const goToPools = () => {
+    return window.open('https://apeswap.finance/pools', '_blank')
+  }
+  const goToIAOs = () => {
+    return window.open('https://apeswap.finance/iao', '_blank')
+  }
 
-      <OtherOptions>
-        <OptionCard type="2" title="Option 2" desc="Stake">
-          <Section2>
+  return (
+    <UtilityCon>
+      <UtilityTitle>
+        <Heading textTransform="uppercase">Gnana Utility</Heading>
+      </UtilityTitle>
+      <Options>
+        <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
+          <Section>
             <OpDetails
               Icon={<StyledAddIcon />}
-              Title="Exclusive Pools"
-              Desc="Access unique pools with higher APRs"
-              ActionTitle="GO TO POOLS"
-              onAction={() => null}
+              Title="Passive Farming"
+              Desc="Propose and Vote on platform decisions"
+              ActionTitle="BUY GNANA"
+              onAction={buyGnana}
               OpStyle={OtherOpStyle}
-              type="2"
+              type="1"
             />
-          </Section2>
-        </OptionCard>
-
-        <OptionCard type="3" title="Option 3" desc="Commit">
-          <Section2>
+            <PlusIcon>+</PlusIcon>
             <OpDetails
               Icon={<StyledAddIcon />}
-              Title="Exclusive IAO Acess"
-              Desc="Access to secondary offerings for a higher token allocation"
-              ActionTitle="GO TO IAOs"
-              onAction={() => null}
+              Title="Governance"
+              Desc="Propose and Vote on platform decisions"
+              ActionTitle="EXPLORE"
+              onAction={exploreGovernance}
               OpStyle={OtherOpStyle}
-              type="3"
+              type="1"
             />
-          </Section2>
+          </Section>
         </OptionCard>
-      </OtherOptions>
-    </Options>
-  </UtilityCon>
-)
+
+        <OtherOptions>
+          <OptionCard type="2" title="Option 2" desc="Stake">
+            <Section2>
+              <OpDetails
+                Icon={<StyledAddIcon />}
+                Title="Exclusive Pools"
+                Desc="Access unique pools with higher APRs"
+                ActionTitle="GO TO POOLS"
+                onAction={goToPools}
+                OpStyle={OtherOpStyle}
+                type="2"
+              />
+            </Section2>
+          </OptionCard>
+
+          <OptionCard type="3" title="Option 3" desc="Commit">
+            <Section2>
+              <OpDetails
+                Icon={<StyledAddIcon />}
+                Title="Exclusive IAO Acess"
+                Desc="Access to secondary offerings for a higher token allocation"
+                ActionTitle="GO TO IAOs"
+                onAction={goToIAOs}
+                OpStyle={OtherOpStyle}
+                type="3"
+              />
+            </Section2>
+          </OptionCard>
+        </OtherOptions>
+      </Options>
+    </UtilityCon>
+  )
+}
 
 export default GnanaUtility

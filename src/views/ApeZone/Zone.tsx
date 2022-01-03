@@ -8,6 +8,7 @@ import SellCard from './components/SellCard'
 import Iao from './components/IAO/CurrentIao'
 import Description from './components/Description/Description'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
+import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
 
 const StyledHeroSection = styled.div`
   max-width: 1200px;
@@ -69,6 +70,7 @@ const Zone = () => {
             <SellCard />
           </Cards>
           <GnanaUtility />
+          <GnanaDisclaimers />
         </MarginContainer>
       </StyledHeroSection>
       <Iao />

@@ -73,7 +73,7 @@ interface OpDetailsProps {
   Icon?: SvgProps
   Title: string
   Desc: string
-  onAction: () => null
+  onAction: () => void
   ActionTitle: string
   OpStyle?: Record<string, unknown>
   type?: string
