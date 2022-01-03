@@ -89,7 +89,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
   OpStyle,
   ...props
 }) => {
-  const TranslateString1 = useI18n()
+  const TranslateString = useI18n()
 
   return (
     <OpCon style={{ ...OpStyle, width: type === '1' ? '125px' : '100%' }} {...props}>
@@ -106,7 +106,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
       </OpDescCon>
 
       <ActionButton onClick={onAction} fullWidth fontSize="14px">
-        {TranslateString1(292, ActionTitle)}
+        {TranslateString(292, ActionTitle)}
       </ActionButton>
     </OpCon>
   )
