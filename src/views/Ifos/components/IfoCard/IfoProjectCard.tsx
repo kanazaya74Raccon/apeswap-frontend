@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Heading, Text, Link, LinkExternal } from '@apeswapfinance/uikit'
+import { Card, Heading, Text } from '@apeswapfinance/uikit'
 import { zoneIfo, ifosConfig } from 'config/constants'
 import IfoCardDescription from './IfoCardDescription'
-import IfoCard from './index'
+import LinearVestingCard from './LinearVesting'
+import FourPhaseVestingCard from './FourPhaseVesting'
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   margin-left: auto;
@@ -68,31 +69,20 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
           {subTitle}
         </Heading>
 
-        <Text fontSize="14px">
-          On {launchDate},
-          <Link
-            fontSize="14px"
-            fontFamily="poppins"
-            href="https://www.timeanddate.com/time/aboututc.html"
-            target="blank"
-            rel="noopener noreferrer"
-            ml="4px"
-            style={{ display: 'inline' }}
-          >
-            {launchTime}
-          </Link>
+        {/* // TODO: Cannot use block number for the countdown link, as this is the card for the project, not specific to each offering (IAOLinearVesting contract), so `startBlock` is not available */}
+        <Text fontSize="14px" color="yellow" fontWeight={700}>
+          On {launchDate}, {launchTime}
         </Text>
 
         <CardListBox>
-          <IfoCard ifo={ifo} />
-          {gnanaIfo ? <IfoCard ifo={gnanaIfo} gnana /> : null}
+          {ifo.isLinear ? <LinearVestingCard ifo={ifo} /> : <FourPhaseVestingCard ifo={ifo} />}
+
+          {gnanaIfo?.isLinear && <LinearVestingCard ifo={gnanaIfo}  gnana />}
+
+          {!!gnanaIfo && !gnanaIfo.isLinear && <FourPhaseVestingCard gnana ifo={gnanaIfo} />}
         </CardListBox>
 
-        <LinkExternal href={projectSiteUrl} fontFamily="poppins">
-          View project site
-        </LinkExternal>
-
-        <IfoCardDescription description={description} defaultIsOpen />
+        <IfoCardDescription description={description} projectSiteUrl={projectSiteUrl} defaultIsOpen />
       </Content>
     </StyledIfoCard>
   )

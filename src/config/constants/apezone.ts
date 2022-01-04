@@ -17,6 +17,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://99starz.io/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'STZ',
       tokenDecimals: 18,
       releaseBlockNumber: 22364007, // block to start showing contract details
       vesting: true,
@@ -37,6 +38,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'http://galacticarena.io/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'GAN',
       tokenDecimals: 18,
       releaseBlockNumber: 12364007, // block to start showing contract details
       vesting: true,
@@ -57,6 +59,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://nftynetwork.io/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'NFTY',
       tokenDecimals: 18,
       releaseBlockNumber: 11342539, // block to start showing contract details
       vesting: true,
@@ -79,6 +82,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://dragonary.com/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'CYT',
       tokenDecimals: 18,
       releaseBlockNumber: 9828870, // block to start showing contract details
       vesting: true,
@@ -99,6 +103,7 @@ const ApeZone: { ifos: Ifo[] } = {
       totalAmountRaised: '$369,901',
       bananaToBurn: '$50,000',
       projectSiteUrl: 'https://www.bitfresh.win/public-sale',
+      offeringCurrency: 'BFT',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       tokenDecimals: 18,
@@ -121,6 +126,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://aperocket.finance',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+      offeringCurrency: 'SPACE',
       tokenDecimals: 18,
       releaseBlockNumber: 7378325,
       // burnedTxUrl: 'https://bscscan.com/tx/0x938454e722fdef0a2f34b16f16bed50f6deb692b942331a9a6e2cf96977e116b',
@@ -143,6 +149,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://hifigamingsociety.com/',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+      offeringCurrency: 'HIFI',
       tokenDecimals: 18,
       releaseBlockNumber: 8135430, // block to start showing contract details
       // burnedTxUrl: '',
@@ -163,6 +170,7 @@ const ApeZone: { ifos: Ifo[] } = {
       projectSiteUrl: 'https://bishares.finance/',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
+      offeringCurrency: 'BISON',
       tokenDecimals: 18,
       releaseBlockNumber: 8993971, // block to start showing contract details
       // burnedTxUrl: '',

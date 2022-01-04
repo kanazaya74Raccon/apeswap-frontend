@@ -1,4 +1,4 @@
-export type IfoStatus = 'coming_soon' | 'live' | 'finished'
+export type IfoStatus = 'coming_soon' | 'live' | 'finished';
 
 export interface Ifo {
   id: string
@@ -17,6 +17,7 @@ export interface Ifo {
   projectSiteUrl: string
   currency: string
   currencyAddress: string
+  offeringCurrency: string
   tokenDecimals: number
   releaseBlockNumber: number
   vestingTime?: string

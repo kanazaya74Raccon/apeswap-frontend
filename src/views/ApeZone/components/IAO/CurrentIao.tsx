@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { BaseLayout, Button, Flex, Heading, Text, Card } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
-import IfoCard from '../../../Ifos/components/IfoCard'
+import LinearVestingCard from '../../../Ifos/components/IfoCard/LinearVesting'
+import FourPhaseVestingCard from '../../../Ifos/components/IfoCard/FourPhaseVesting'
 import Title from '../Description/Title'
 
 const List = styled.ul`
@@ -110,7 +111,13 @@ const Iao = () => {
       </StyledHeroSection>
       <StyledFlex>
         <Cards>
-          <IfoCard ifo={activeIfo} notLp gnana />
+          {/* TODO: Check with the designer */}
+          {activeIfo.isLinear ? (
+            <LinearVestingCard ifo={activeIfo} gnana />
+          ) : (
+            <FourPhaseVestingCard ifo={activeIfo} gnana />
+          )}
+
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
@@ -173,7 +180,10 @@ const Iao = () => {
               </Text>
             </StyledTextContainer>
           </StyledCard>
-          {showHistory && prevIfos.map((ifo) => <IfoCard ifo={ifo} notLp gnana />)}
+          {showHistory &&
+            prevIfos.map((ifo) =>
+              ifo.isLinear ? <LinearVestingCard ifo={ifo} gnana /> : <FourPhaseVestingCard ifo={ifo} gnana />,
+            )}
         </Cards>
       </StyledFlex>
     </>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IfoStatus } from 'config/constants/types'
-import { Text, Flex, Heading } from '@apeswapfinance/uikit'
+import { Text, Flex } from '@apeswapfinance/uikit'
 
 interface IfoCardHeaderProps {
   ifoId: string
@@ -45,16 +45,16 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
     }
 
     if (countdownToUse <= 0) {
-      return <Text>Finished!</Text>
+      return <Text>Finished</Text>
     }
-    return null
+    return <Text>LIVE NOW!</Text>
   }
 
   return (
     <StyledIfoCardHeader mb="24px" alignItems="center">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />
       <Stack>
-        <Heading>{`${gnana ? 'GNANA' : 'BNB'} OFFERING`}</Heading>
+        <Text fontWeight={800} as="h2" fontSize="26px">{`${gnana ? 'GNANA' : 'BNB'} OFFERING`}</Text>
         {getStatus()}
       </Stack>
     </StyledIfoCardHeader>
