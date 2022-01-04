@@ -6,6 +6,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'stz',
       address: '0x2C662A52a9cB68589f8caA592C4899887172cc55', // Leave empty for "Coming Soon!"
       isActive: true,
+      isLinear: false,
       name: '99Starz',
       subTitle: `The World's Biggest NFT Yield Ecosystem`,
       description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
@@ -27,6 +28,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'gan',
       address: '0x11D8aB92837085eA0e410EA96eDd8D751894933d', // Leave empty for "Coming Soon!"
       isActive: false,
+      isLinear: false,
       name: 'Galactic Arena',
       subTitle: 'Welcome to the Galactic Arena!',
       description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
@@ -48,6 +50,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'nfty',
       address: '0xF04c0efc1aBF1c98076a8ecEd2a68009ee55A0A9', // Leave empty for "Coming Soon!"
       isActive: false,
+      isLinear: false,
       name: 'NFTY Network',
       subTitle: 'Decentralized NFT Gating Ecosystem',
       description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
@@ -69,6 +72,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'dragonary',
       address: '0x1D51e7e0cB6f181489c9F24E396e54cb02D1EF0e', // Leave empty for "Coming Soon!"
       isActive: false,
+      isLinear: false,
       name: 'Dragonary',
       subTitle: 'Decentralized NFT Gaming',
       description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
@@ -92,6 +96,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'bitfresh',
       address: '0x0aA255267CBE1cC9366509056A24608385F07617',
       isActive: false,
+      isLinear: false,
       name: 'Bitfresh',
       subTitle: 'The first community-driven iGaming platform where everyone wins.',
       description:
@@ -113,6 +118,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'aperocket',
       address: '0xF5413C7033ED5dF58b0F6A942BAEA1548a9AD2F4',
       isActive: false,
+      isLinear: false,
       name: 'ApeRocket',
       subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
       description:
@@ -136,6 +142,7 @@ const ApeZone: { ifos: Ifo[] } = {
       // address: '0x0dEFfe964CbCfBDA31251ADaa8DA6dA0961eba3C', // Leave empty for "Coming Soon!"
       address: '0xe3528182889afEAEADE455841b6CFE9AC1e53a03', // IAO Aux contract
       isActive: false,
+      isLinear: false,
       name: 'Hifi',
       subTitle: 'Decentralized retro gaming ecosystem.',
       description:
@@ -158,6 +165,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'bishares',
       address: '0xf6718973d21F72845300Ee2ded2e4624CF06b06e', // Leave empty for "Coming Soon!"
       isActive: false,
+      isLinear: false,
       name: 'BiShares',
       subTitle: 'Decentralized Index Funds',
       description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,

@@ -5,7 +5,7 @@ const ifos: Ifo[] = [
     id: 'stz',
     address: '0x2C662A52a9cB68589f8caA592C4899887172cc55', // Leave empty for "Coming Soon!"
     isActive: true,
-    isLinear: false,
+    isLinear: true,
     name: '99Starz',
     subTitle: `The World's Biggest NFT Yield Ecosystem`,
     description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
@@ -27,6 +27,7 @@ const ifos: Ifo[] = [
     id: 'gan',
     address: '0xdDb35EE8d3B54216B114190a1Bc14eB11408BE23', // Leave empty for "Coming Soon!"
     isActive: false,
+    isLinear: false,
     name: 'Galactic Arena',
     subTitle: 'Welcome to the Galactic Arena!',
     description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
@@ -48,6 +49,7 @@ const ifos: Ifo[] = [
     id: 'nfty',
     address: '0xc55114204b5fA30b34c360De0E938eB3B3d4c0f6', // Leave empty for "Coming Soon!"
     isActive: false,
+    isLinear: false,
     name: 'NFTY Network',
     subTitle: 'Decentralized NFT Gating Ecosystem',
     description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
@@ -69,6 +71,7 @@ const ifos: Ifo[] = [
     id: 'dragonary',
     address: '0x9BC1bC6C4010A2b0384C59b9513d841AA8b5BDF4', // Leave empty for "Coming Soon!"
     isActive: false,
+    isLinear: false,
     name: 'Dragonary',
     subTitle: 'Decentralized NFT Gaming',
     description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
@@ -90,6 +93,7 @@ const ifos: Ifo[] = [
     id: 'astronaut',
     address: '0xd7e98ca54e6202fb6237b98c881817ed3e54d2ed',
     isActive: false,
+    isLinear: false,
     name: 'Astronaut',
     subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
     description:
@@ -112,6 +116,7 @@ const ifos: Ifo[] = [
     id: 'jediyield',
     address: '0xCBe256573185d767EfD4a797CB360880728B8fD8',
     isActive: false,
+    isLinear: false,
     name: 'Jedi Yield',
     subTitle: 'The only app you need for all your yield farming needs',
     description:
@@ -134,6 +139,7 @@ const ifos: Ifo[] = [
     id: 'bitfresh',
     address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
     isActive: false,
+    isLinear: false,
     name: 'Bitfresh',
     subTitle: 'The first community-driven iGaming platform where everyone wins.',
     description:
@@ -156,6 +162,7 @@ const ifos: Ifo[] = [
     id: 'aperocket',
     address: '0x8AC93DC2F83cEf4032FbC71070Dc5Af06fd9D105',
     isActive: false,
+    isLinear: false,
     name: 'ApeRocket',
     subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
     description:
@@ -178,6 +185,7 @@ const ifos: Ifo[] = [
     // address: '0xF9F1B0945A31FB2Ea429014e58fCA47dAEee4743', // Leave empty for "Coming Soon!"
     address: '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47', // IAO Aux contract!"
     isActive: false,
+    isLinear: false,
     name: 'Hifi',
     subTitle: 'Decentralized retro gaming ecosystem.',
     description:
@@ -199,6 +207,7 @@ const ifos: Ifo[] = [
     id: 'bishares',
     address: '0x5B31A7124A4Abf8CA9B4090532A669783d8E11eE', // Leave empty for "Coming Soon!"
     isActive: false,
+    isLinear: false,
     name: 'BiShares',
     subTitle: 'Decentralized Index Funds',
     description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
