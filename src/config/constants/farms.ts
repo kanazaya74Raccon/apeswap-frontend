@@ -2856,6 +2856,74 @@ const farms: FarmConfig[] = [
     projectLink: 'https://outrace.game/',
   },
   {
+    pid: 178,
+    image: 'MYRA.svg',
+    lpSymbol: 'MYRA-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x490d7932387692b54865a24ebb6903b38fef884c',
+    },
+    tokenSymbol: 'MYRA',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x6ef238e9e8cd2a96740897761c18894fc086b9d0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://mytheria.io/',
+  },
+  {
+    pid: 179,
+    image: 'GODZ.svg',
+    lpSymbol: 'GODZ-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xDE60997a41A224215857a3F2cC46E190B4EB7a8C',
+    },
+    tokenSymbol: 'GODZ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xF0A8EcBCE8caADB7A07d1FcD0f87Ae1Bd688dF43',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cryptogodz.io/',
+  },
+  {
+    pid: 180,
+    image: 'MNFT.png',
+    lpSymbol: 'MNFT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1a9db0d17369933d9f2d2c1a6af7f0f4261c4af7',
+    },
+    tokenSymbol: 'MNFT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x36953b5ec00a13edceceb3af258d034913d2a79d',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://manufactory.gg/',
+  },
+  {
+    pid: 181,
+    image: 'GMR2.svg',
+    lpSymbol: 'GMR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x5ff97410ff9bdb715b7b283828796dd0ad7a884a',
+    },
+    tokenSymbol: 'GMR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xADCa52302e0a6c2d5D68EDCdB4Ac75DeB5466884',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://gmr.center/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

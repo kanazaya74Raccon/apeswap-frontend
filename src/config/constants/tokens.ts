@@ -863,6 +863,48 @@ const tokens = {
     },
     decimals: 8,
   },
+  myra: {
+    symbol: 'MYRA',
+    address: {
+      56: '0x6ef238E9E8CD2A96740897761C18894Fc086B9d0',
+    },
+    decimals: 18,
+  },
+  godz: {
+    symbol: 'GODZ',
+    address: {
+      56: '0xF0A8EcBCE8caADB7A07d1FcD0f87Ae1Bd688dF43',
+    },
+    decimals: 18,
+  },
+  mnft: {
+    symbol: 'MNFT',
+    address: {
+      56: '0x36953b5ec00a13edceceb3af258d034913d2a79d',
+    },
+    decimals: 18,
+  },
+  gmr: {
+    symbol: 'GMR',
+    address: {
+      56: '0xADCa52302e0a6c2d5D68EDCdB4Ac75DeB5466884',
+    },
+    decimals: 18,
+  },
+  moonlight: {
+    symbol: 'MOONLIGHT',
+    address: {
+      56: '0xB1CeD2e320E3f4C8e3511B1DC59203303493F382',
+    },
+    decimals: 9,
+  },
+  space: {
+    symbol: 'SPACE',
+    address: {
+      56: '0xe486a69E432Fdc29622bF00315f6b34C99b45e80',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
