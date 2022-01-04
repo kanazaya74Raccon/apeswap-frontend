@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome} from '../../hooks/api'
+import { getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome } from '../../hooks/api'
 
 export const useFetchPromoHome = () => {
   const [state, setState] = useState({
@@ -117,5 +117,6 @@ export const useFetchHeadersHome = () => {
     }
     fetchData()
   }, [])
+
   return state
 }

@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import tokens from 'config/constants/tokens'
 import fetchPrices from './fetchPrices'
 import { TokenPricesState, TokenPrices } from '../types'
 
@@ -35,7 +34,7 @@ export const { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetc
 export const fetchTokenPrices = (chainId) => async (dispatch) => {
   try {
     dispatch(tokenPricesFetchStart())
-    const tokenPrices = await fetchPrices(chainId, tokens)
+    const tokenPrices = await fetchPrices(chainId)
     dispatch(tokenPricesFetchSucceeded(tokenPrices))
   } catch (error) {
     dispatch(tokenPricesFetchFailed())
