@@ -16,7 +16,7 @@ const StyledProgress = styled.div`
   justify-content: center;
   gap: 8px;
   align-items: center;
-  width: 320px;
+  width: 100%;
 `
 
 const ProgressBar = styled.div`
