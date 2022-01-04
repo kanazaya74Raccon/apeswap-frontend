@@ -9,20 +9,57 @@ const UtilityCon = styled.div`
   display: flex;
   flex-direction: column;
   background: transparent;
+  border-radius: 22px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 1em;
+    background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  }
 `
 const UtilityTitle = styled.div`
   display: none;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+    margin-top: 1em;
+  }
 `
+const UtilityHeading = styled(Heading)`
+  text-transform: uppercase;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 20px;
+    font-weight: 700;
+  }
+`
+
 const Options = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `
 const OtherOptions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 0.5em;
-`
 
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-top: 0;
+    width: 49%;
+  }
+`
+const FirstOption = styled.div`
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 49%;
+  }
+`
 // (Example how to use UIKit Icon)
 const StyledAddIcon = styled(AddIcon)`
   fill: #ffb300;
@@ -41,10 +78,25 @@ const Section = styled(Card)`
   padding-left: 0.6em;
   padding-right: 0.6em;
   border-radius: 22px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  }
 `
 const Section2 = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   border-radius: 22px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-right: 0;
+    padding-left: 0;
+    background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  }
 `
 
 const OtherOpStyle = {}
@@ -66,32 +118,34 @@ export const GnanaUtility: React.FC = () => {
   return (
     <UtilityCon>
       <UtilityTitle>
-        <Heading textTransform="uppercase">Gnana Utility</Heading>
+        <UtilityHeading>Gnana Utility</UtilityHeading>
       </UtilityTitle>
       <Options>
-        <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
-          <Section>
-            <OpDetails
-              Icon={<StyledAddIcon />}
-              Title="Passive Farming"
-              Desc="Propose and Vote on platform decisions"
-              ActionTitle="BUY GNANA"
-              onAction={buyGnana}
-              OpStyle={OtherOpStyle}
-              type="1"
-            />
-            <PlusIcon>+</PlusIcon>
-            <OpDetails
-              Icon={<StyledAddIcon />}
-              Title="Governance"
-              Desc="Propose and Vote on platform decisions"
-              ActionTitle="EXPLORE"
-              onAction={exploreGovernance}
-              OpStyle={OtherOpStyle}
-              type="1"
-            />
-          </Section>
-        </OptionCard>
+        <FirstOption>
+          <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
+            <Section>
+              <OpDetails
+                Icon={<StyledAddIcon />}
+                Title="Passive Farming"
+                Desc="Propose and Vote on platform decisions"
+                ActionTitle="BUY GNANA"
+                onAction={buyGnana}
+                OpStyle={OtherOpStyle}
+                type="1"
+              />
+              <PlusIcon>+</PlusIcon>
+              <OpDetails
+                Icon={<StyledAddIcon />}
+                Title="Governance"
+                Desc="Propose and Vote on platform decisions"
+                ActionTitle="EXPLORE"
+                onAction={exploreGovernance}
+                OpStyle={OtherOpStyle}
+                type="1"
+              />
+            </Section>
+          </OptionCard>
+        </FirstOption>
 
         <OtherOptions>
           <OptionCard type="2" title="Option 2" desc="Stake">

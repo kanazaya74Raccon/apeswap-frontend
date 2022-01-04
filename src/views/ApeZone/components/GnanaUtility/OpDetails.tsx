@@ -3,7 +3,11 @@ import { SvgProps, Heading, Text, ButtonSquare } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 
-const OpCon = styled.div`
+interface OpConProps {
+  type?: string
+}
+
+const OpCon = styled.div<OpConProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +17,13 @@ const OpCon = styled.div`
   padding-bottom: 1em;
   border-radius: 22px;
   height: 325px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  }
 `
 const ImgBorder = styled.div`
   width: 95px;
@@ -53,6 +64,10 @@ const OpHeading = styled(Heading)`
   font-size: 16px;
   text-align: center;
   line-height: 22px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 18px;
+  }
 `
 const OpDescCon = styled.div`
   height: 30px;
@@ -80,7 +95,6 @@ interface OpDetailsProps {
 }
 
 export const OpDetails: React.FC<OpDetailsProps> = ({
-  type,
   Icon,
   Title,
   Desc,
@@ -92,7 +106,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
   const TranslateString = useI18n()
 
   return (
-    <OpCon style={{ ...OpStyle, width: type === '1' ? '125px' : '100%' }} {...props}>
+    <OpCon style={{ ...OpStyle }} {...props}>
       <ImgBorder>
         <ImgCon>{Icon}</ImgCon>
       </ImgBorder>

@@ -5,12 +5,20 @@ import styled from 'styled-components'
 const Option1 = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 50%;
+  }
 `
 
 const HeadCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   border-radius: 20px;
   margin-bottom: 0.5em;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  }
 `
 const HeadBody = styled(CardBody)`
   display: flex;
@@ -32,7 +40,6 @@ const HeadDesc = styled(Text)`
   font-weight: 500;
 `
 
-// style={{ width: type === '1' ? '125px' : '100%' }}
 export const OptionCard = ({ type, title, desc, children }) => (
   <Option1 style={{ width: type === '1' ? '100%' : '49%' }}>
     <HeadCard>
