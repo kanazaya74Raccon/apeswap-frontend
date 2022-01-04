@@ -47,6 +47,8 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
   useEffect(() => {
     const fetch = async () => {
       const multicallContract = getContract(multicallABI, multicallAddress, chainId)
+      if (!address) return
+
       const calls = [
         {
           address,

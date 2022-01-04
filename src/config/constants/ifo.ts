@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0x2C662A52a9cB68589f8caA592C4899887172cc55', // Leave empty for "Coming Soon!"
+    address: '0x2DCca22D4d1356f2619228fdFB689c45CC0ffA81', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: '99Starz',

@@ -46,6 +46,9 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
   useEffect(() => {
     const fetch = async () => {
       const multicallContract = getContract(multicallABI, multicallAddress, chainId)
+
+      if (!address) return
+
       const calls = [
         {
           address,
@@ -66,10 +69,14 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           address,
           name: 'getOfferingAmount',
           params: [account],
-        }
+        },
       ]
 
-      const [userTokens, userInfos, refundingAmount, offeringAmount] = await multicall(multicallContract, ifoLinearAbi, calls)
+      const [userTokens, userInfos, refundingAmount, offeringAmount] = await multicall(
+        multicallContract,
+        ifoLinearAbi,
+        calls,
+      )
       setUserTokenStatus({
         stakeTokenHarvest: getBalanceNumber(new BigNumber(userTokens?.stakeTokenHarvest.toString()), tokenDecimals),
         offeringTokenTotalHarvest: getBalanceNumber(

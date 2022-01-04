@@ -76,7 +76,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     secondsUntilEnd: 0,
     raisingAmount: new BigNumber(0),
     totalAmount: new BigNumber(0),
-    totalStakedAmount: new BigNumber(0),
     startBlockNum: 0,
     endBlockNum: 0,
   })
@@ -116,12 +115,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
           address,
           name: 'totalAmount',
         },
-        {
-          address,
-          name: 'getTotalStakeTokenBalance',
-        },
       ]
-      const [startBlock, endBlock, vestingEndBlock, raisingAmount, totalAmount, totalStakedAmount] = await multicall(
+      const [startBlock, endBlock, vestingEndBlock, raisingAmount, totalAmount] = await multicall(
         multicallContract,
         ifoLinearAbi,
         calls,
@@ -141,7 +136,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         vestingEndBlock: vestingEndBlockNum,
         raisingAmount: new BigNumber(raisingAmount),
         totalAmount: new BigNumber(totalAmount),
-        totalStakedAmount: new BigNumber(totalStakedAmount),
         status,
         blocksRemaining,
         startBlockNum,
@@ -160,7 +154,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const isComingSoon = state.status === 'coming_soon'
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
-  const hasStarted = state.startBlockNum >= currentBlock
+  const hasStarted = currentBlock && state.startBlockNum >= currentBlock
 
   let progressBarAmountLabel = ''
   let progressBarTimeLabel = ''
@@ -174,7 +168,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   } else if (isActive) {
     const timeUntil = getTimePeriods(state.secondsUntilEnd)
 
-    progressBarAmountLabel = `${getBalanceNumber(state.totalStakedAmount) / getBalanceNumber(state.totalAmount)}`
+    progressBarAmountLabel = `${getBalanceNumber(state.totalAmount).toFixed(2)} ${currency} / ${getBalanceNumber(
+      state.raisingAmount,
+    ).toFixed(2)} ${currency}`
     progressBarTimeLabel = `${timeUntil.days}d, ${timeUntil.hours}h, ${timeUntil.minutes}m until finish`
     progress = ((currentBlock - state.startBlockNum) / (state.endBlockNum - state.startBlockNum)) * 100
   } else if (isFinished) {
@@ -198,7 +194,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     if (hasStarted) {
       texts.splice(2, 0, {
         label: 'Total raised (% of the target)',
-        value: `${state.totalStakedAmount.dividedBy(state.totalAmount).multipliedBy(100).toFixed(2)}%`,
+        value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
       })
       return texts
     }
@@ -216,19 +212,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     }
     return texts
   }, [
-    hasStarted,
-    amount,
-    currency,
-    isFinished,
-    offeringTokensClaimed,
-    raiseAmount,
-    refundingAmount,
     saleAmount,
-    state.totalAmount,
-    state.totalStakedAmount,
-    userOfferingAmount,
-    userTokenStatus.offeringTokensVested,
+    raiseAmount,
     vestingTime,
+    hasStarted,
+    isFinished,
+    userOfferingAmount,
+    state.totalAmount,
+    state.raisingAmount,
+    offeringTokensClaimed,
+    userTokenStatus.offeringTokensVested,
+    amount,
+    refundingAmount,
+    currency,
   ])
 
   return (
