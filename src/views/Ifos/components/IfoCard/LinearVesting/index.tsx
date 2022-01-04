@@ -177,7 +177,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     const timeUntil = getTimePeriods((state.vestingEndBlock - currentBlock) * BSC_BLOCK_TIME)
     const vestingPeriodInSec = (state.vestingEndBlock - state.endBlockNum) * BSC_BLOCK_TIME
 
-    progressBarAmountLabel = `${offeringTokensClaimed} ${offeringCurrency} / ${userOfferingAmount} ${offeringCurrency}`
+    progressBarAmountLabel = `${offeringTokensClaimed.toFixed(4)} ${offeringCurrency} / ${userOfferingAmount.toFixed(4)} ${offeringCurrency}`
     progressBarTimeLabel = `${timeUntil.days}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${Math.ceil(
       vestingPeriodInSec / 60 / 60 / 24,
     )}d`
@@ -191,13 +191,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       { label: 'Total vesting time', value: vestingTime },
     ]
 
-    if (hasStarted) {
-      texts.splice(2, 0, {
-        label: 'Total raised (% of the target)',
-        value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
-      })
-      return texts
-    }
     if (isFinished && userOfferingAmount > 0) {
       texts = [
         {
@@ -207,8 +200,18 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         // TODO: Calculate the vested amount based on the current block
         { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVested).toString() },
         { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toString() },
-        { label: 'Vested value', value: `${Number(amount - refundingAmount).toString()} ${currency}` },
+        { label: 'Vested value', value: `${Number(amount - refundingAmount).toFixed(4)} ${currency}` },
       ]
+
+      return texts;
+    }
+
+    if (hasStarted) {
+      texts.splice(2, 0, {
+        label: 'Total raised (% of the target)',
+        value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
+      })
+      return texts
     }
     return texts
   }, [

@@ -167,13 +167,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       { label: 'Total vesting time', value: vestingTime },
     ]
 
-    if (hasStarted) {
-      texts.splice(2, 0, {
-        label: 'Total raised (% of the target)',
-        value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
-      })
-      return texts
-    }
     if (isFinished && offeringTokenBalance.isGreaterThan(0)) {
       const tokensHarvestedAvailable = getBalanceNumber(
         new BigNumber(userTokenStatus?.offeringTokenHarvest.toString()),
@@ -195,10 +188,21 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         { label: 'Tokens harvested', value: totalTokensHarvested.toFixed(4) },
         {
           label: 'Vested value',
-          value: `${getBalanceNumber(userInfo.amount.minus(userInfo.refundingAmount), 18).toString()} ${currency}`,
+          value: `${getBalanceNumber(userInfo.amount.minus(userInfo.refundingAmount), 18).toFixed(4)} ${currency}`,
         },
       ]
+
+      return texts;
     }
+
+    if (hasStarted) {
+      texts.splice(2, 0, {
+        label: 'Total raised (% of the target)',
+        value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
+      })
+      return texts
+    }
+
     return texts
   }, [
     currency,
