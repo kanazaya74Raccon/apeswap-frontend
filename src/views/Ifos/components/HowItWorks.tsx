@@ -70,11 +70,11 @@ const CenteredImage = styled.img`
   transform: translate(-50%, -50%);
 `
 
-interface Props {
+interface IconProps {
   name: string
 }
 
-const Icon = ({ name }: Props) => {
+const Icon = ({ name }: IconProps) => {
   const { isDark } = useTheme()
 
   return (
@@ -84,7 +84,26 @@ const Icon = ({ name }: Props) => {
   )
 }
 
-const HowItWorks = () => {
+interface Props {
+  onParticipate: () => boolean
+}
+
+const HowItWorks = ({ onParticipate }: Props) => {
+  const handleParticipateClick = () => {
+    const isSwitching = onParticipate()
+    const scroll = () =>
+      window.scrollTo({
+        top: 360,
+        behavior: 'smooth',
+      })
+
+    if (isSwitching) {
+      setTimeout(scroll, 500)
+    } else {
+      scroll();
+    }
+  }
+
   return (
     <Container>
       <SectionHeading size="lg" fontFamily="poppins">
@@ -132,7 +151,9 @@ const HowItWorks = () => {
           </div>
         </FeatureBox>
       </Frame>
-      <Button variant="yellow">PARTICIPATE NOW</Button>
+      <Button variant="yellow" onClick={handleParticipateClick}>
+        PARTICIPATE NOW
+      </Button>
     </Container>
   )
 }

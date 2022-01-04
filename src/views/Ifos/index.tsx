@@ -169,6 +169,15 @@ const Ifos = () => {
     if (option === 'current') setProjectId(activeIfoId)
   }
 
+  const openCurrentProject = () => {
+    if (tabOption === 'past') {
+      setTabOption('current')
+      setProjectId(activeIfoId)
+      return true;
+    }
+    return false;
+  }
+
   return (
     <>
       <Header>
@@ -189,7 +198,7 @@ const Ifos = () => {
         <IfoProjectCard ifoId={projectId} />
         {tabOption === 'past' && <IfoPastProjectSwiper onSelectProject={setProjectId} />}
         <IfoTabButtons onSelect={handleTabSelectionChange} selectedTab={tabOption} />
-        <HowItWorks />
+        <HowItWorks onParticipate={openCurrentProject} />
         <Ideology />
       </Container>
     </>

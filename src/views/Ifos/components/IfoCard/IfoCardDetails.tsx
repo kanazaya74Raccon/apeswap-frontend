@@ -37,11 +37,7 @@ const Item = styled.div`
 const Display = styled(Text)`
   flex: 1;
   font-size: 14px;
-  font-family: 'Titan One';
-`
-
-const DisplayText = styled(Text)`
-  font-family: 'Titan One';
+  font-weight: 700;
 `
 
 const IfoCardDetails: React.FC<Props> = ({ stats }) => {
@@ -50,7 +46,7 @@ const IfoCardDetails: React.FC<Props> = ({ stats }) => {
       {stats.map((stat) => (
         <Item key={stat.label}>
           <Display>{stat.label}</Display>
-          <DisplayText fontSize="14px">{stat.value}</DisplayText>
+          <Text fontSize="14px" fontWeight={700}>{stat.value}</Text>
         </Item>
       ))}
     </StyledIfoCardDetails>
