@@ -198,7 +198,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     if (hasStarted) {
       texts.splice(2, 0, {
         label: 'Total raised (% of the target)',
-        value: state.totalStakedAmount.dividedBy(state.totalAmount).multipliedBy(100).toFixed(2),
+        value: `${state.totalStakedAmount.dividedBy(state.totalAmount).multipliedBy(100).toFixed(2)}%`,
       })
       return texts
     }
