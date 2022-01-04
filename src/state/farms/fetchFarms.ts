@@ -2,17 +2,15 @@ import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import multicallABI from 'config/abi/Multicall.json'
-import {getMulticallAddress, getMasterChefAddress, getApePriceGetterAddress} from 'utils/addressHelper'
+import { getMulticallAddress, getMasterChefAddress } from 'utils/addressHelper'
 import { getContract } from 'utils/web3'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
-import apePriceGetterABI from "../../config/abi/apePriceGetter.json";
 
 const fetchFarms = async (chainId: number) => {
   const multicallContractAddress = getMulticallAddress(chainId)
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const masterChefAddress = getMasterChefAddress(chainId)
-  const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
       const lpAdress = farmConfig.lpAddresses[chainId]
@@ -96,17 +94,8 @@ const fetchFarms = async (chainId: number) => {
         console.warn('Error fetching farm', error, farmConfig)
       }
 
-      const lpPrice = await multicall(multicallContract, apePriceGetterABI, [
-          {
-              address: apePriceGetterAddress,
-              name: 'getLPPrice',
-              params: [farmConfig.lpAddresses[chainId], tokenDecimals]
-          }
-      ])
-
       return {
         ...farmConfig,
-        lpPrice,
         tokenAmount: tokenAmount.toJSON(),
         quoteTokenAmount: quoteTokenAmount.toJSON(),
         totalInQuoteToken: totalInQuoteToken.toJSON(),

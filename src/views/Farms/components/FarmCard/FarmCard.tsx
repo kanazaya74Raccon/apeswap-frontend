@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { useNetworkChainId } from 'state/hooks'
-import { Farm } from 'state/types'
+import {Farm, LpTokenPrices} from 'state/types'
 import { FarmStyles } from 'config/constants/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -14,7 +14,6 @@ export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
-  lpPrice?: BigNumber
 }
 
 const RainbowLight = keyframes`
@@ -108,10 +107,11 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
   bananaPrice?: BigNumber
+  farmsPrices: LpTokenPrices[]
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account, farmsPrices }) => {
   const chainId = useNetworkChainId()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
@@ -172,6 +172,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
             totalValueFormated={totalValueFormated}
             lpLabel={lpLabel}
             addLiquidityUrl={addLiquidityUrl}
+            farmsPrices={farmsPrices}
             multiplier={farm.multiplier}
             liquidity={farm.liquidity}
             pid={farm.pid}

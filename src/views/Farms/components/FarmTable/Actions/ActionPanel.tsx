@@ -10,6 +10,7 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import { LiquidityProps } from '../Liquidity'
+import {LpTokenPrices} from "../../../../../state/types";
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -18,6 +19,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   account: string
   addLiquidityUrl: string
+  farmsPrices: LpTokenPrices[]
 }
 
 export interface InfoPropsContainer {
@@ -112,6 +114,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   account,
   addLiquidityUrl,
   liquidity,
+  farmsPrices
 }) => {
   const farm = details
 
@@ -121,7 +124,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = farm.lpAddresses[chainId]
   const bsc = `https://bscscan.com/address/${lpAddress}`
 
-  const { earnings } = useFarmUser(farm.pid)
+  const { earnings, stakedBalance } = useFarmUser(farm.pid)
   const bananaPrice = usePriceBananaBusd()
   let earningsToReport = null
   let earningsBusd = 0
@@ -133,12 +136,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     displayHarvestBalance = earningsBusd.toLocaleString()
   }
 
-  const rawStakedBalance = getBalanceNumber(farm?.userData?.stakedBalance)
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
-  const lpPrice = getBalanceNumber(farm?.lpPrice)
 
-  const totalValuePersonalFormated = farm && rawStakedBalance > 0
-    ? `${(lpPrice*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+  const lpPrice : LpTokenPrices = farmsPrices?.find((lp)=> lp.pid === farm.pid)
+
+  const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
+    ? `${(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
     : '-'
 
   let liquidityDigits

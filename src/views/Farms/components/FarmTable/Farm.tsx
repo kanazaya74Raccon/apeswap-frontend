@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
-import BigNumber from "bignumber.js/bignumber";
 
 export interface FarmProps {
   label: string
@@ -9,7 +8,6 @@ export interface FarmProps {
   token0?: string
   token1?: string
   image?: string
-  lpPrice?: BigNumber
 }
 
 const IconImage = styled(Image)`
