@@ -48,7 +48,7 @@ const IfoCardDetails: React.FC<Props> = ({ stats }) => {
   return (
     <StyledIfoCardDetails>
       {stats.map((stat) => (
-        <Item>
+        <Item key={stat.label}>
           <Display>{stat.label}</Display>
           <DisplayText fontSize="14px">{stat.value}</DisplayText>
         </Item>

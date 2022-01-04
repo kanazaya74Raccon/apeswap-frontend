@@ -87,8 +87,6 @@ const App: React.FC = () => {
     })
   }
 
-  console.log('appChainId', appChainId)
-
   const loadMenu = () => {
     // MATIC routes
     if (appChainId === CHAIN_ID.MATIC || appChainId === CHAIN_ID.MATIC_TESTNET) {

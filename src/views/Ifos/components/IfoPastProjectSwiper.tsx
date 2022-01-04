@@ -4,7 +4,6 @@ import { Image, Text } from '@apeswapfinance/uikit'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { pastIfos } from 'config/constants/ifo'
-import { Ifo } from 'config/constants/types'
 
 import 'swiper/swiper.min.css'
 
@@ -59,7 +58,6 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
 
   const handleSlideChange = (index: number) => {
     const id = pastIfos[index]?.id
-    console.log('handleSlideChange', pastIfos[index], id)
 
     if (!id) {
       console.warn('Selected past IFO project id is either undefined or an empty string')

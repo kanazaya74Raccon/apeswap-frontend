@@ -57,7 +57,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     saleAmount,
     raiseAmount,
     bananaToBurn,
-    projectSiteUrl,
     currency,
     vestingTime,
     currencyAddress,
@@ -169,7 +168,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
 
   if (isComingSoon) {
     const timeUntil = getTimePeriods(state.secondsUntilStart)
-    
+
     progressBarTimeLabel = `${timeUntil.days}d, ${timeUntil.hours}h, ${timeUntil.minutes}m until start`
     progress = ((currentBlock - releaseBlockNumber) / (state.startBlockNum - releaseBlockNumber)) * 100
   } else if (isActive) {
