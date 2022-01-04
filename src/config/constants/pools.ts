@@ -3302,6 +3302,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 173,
+    tokenName: 'GMR',
+    image: 'GMR.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.gmr,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x24CD8C40d0B47Fd0E12D03A0d56fFfD44dD31f3F',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://gmr.center/',
+    harvest: true,
+    tokenPerBlock: `0.290167824074074074`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
