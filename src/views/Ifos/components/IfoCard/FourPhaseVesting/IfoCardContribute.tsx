@@ -9,6 +9,7 @@ import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { ZERO_ADDRESS } from 'config'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 import useUserInfo from './useUserInfo'
@@ -117,11 +118,11 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestThreeTime = getTimePeriods(harvestBlockReleases.three, true)
   const harvestFourTime = getTimePeriods(harvestBlockReleases.four, true)
 
-  if (allowance === null) {
+  if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
   }
 
-  if (allowance <= 0) {
+  if (currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
     return (
       <Button
         fullWidth

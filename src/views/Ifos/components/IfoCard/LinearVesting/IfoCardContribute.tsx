@@ -5,6 +5,7 @@ import { Contract } from 'web3-eth-contract'
 import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
+import { ZERO_ADDRESS } from 'config'
 
 import ContributeInput from '../ContributeInput'
 
@@ -88,11 +89,11 @@ const IfoCardContribute: React.FC<Props> = ({
     setPendingTx(false)
   }
 
-  if (allowance === null) {
+  if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
   }
 
-  if (allowance <= 0) {
+  if (currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
     return (
       <Button
         fullWidth
