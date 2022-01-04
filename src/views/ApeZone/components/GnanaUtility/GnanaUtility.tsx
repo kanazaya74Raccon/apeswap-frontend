@@ -34,6 +34,10 @@ const UtilityHeading = styled(Heading)`
     font-size: 20px;
     font-weight: 700;
   }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 24px;
+  }
 `
 
 const Options = styled.div`
