@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'STZ',
     tokenDecimals: 18,
-    releaseBlockNumber: 22364007, // block to start showing contract details
+    releaseBlockNumber: 15571398, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },

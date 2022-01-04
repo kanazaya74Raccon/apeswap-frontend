@@ -47,7 +47,11 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
     if (countdownToUse <= 0) {
       return <Text>Finished</Text>
     }
-    return <Text>LIVE NOW!</Text>
+
+    if (status === 'live') {
+      return <Text>LIVE NOW!</Text>
+    }
+    return null
   }
 
   return (
