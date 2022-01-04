@@ -43,6 +43,9 @@ const Title = styled(Text)`
     font-size: 22px;
   }
 `
+const StyledCard = styled(Card)`
+  background-color: ${({ theme }) => (theme.isDark ? '#212121' : '#FFFFFF')};
+`
 
 interface PositionCardProps extends CardProps {
   pair: Pair
@@ -177,7 +180,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       : [undefined, undefined]
 
   return (
-    <Card style={{ borderRadius: '12px' }} {...props}>
+    <StyledCard style={{ borderRadius: '20px' }} {...props}>
       <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
@@ -271,6 +274,6 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           )}
         </AutoColumn>
       )}
-    </Card>
+    </StyledCard>
   )
 }

@@ -1,4 +1,4 @@
-import { Flex, ButtonSquare } from '@apeswapfinance/uikit'
+import { Flex, ButtonSquare, Button } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 export const StyledSwapContainer = styled(Flex)`
@@ -26,3 +26,13 @@ export const LargeStyledButton = styled(ButtonSquare)`
   margin-top: 10px;
 `
 
+export const ExpertButton = styled(Button)`
+  position: absolute;
+  font-size: 10px;
+  right: -20px;
+  margin-top: 1px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    right: 8px;
+    font-size: 14px;
+  }
+`

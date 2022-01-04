@@ -49,7 +49,7 @@ import {
 } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton } from './styles'
+import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton, ExpertButton } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 
 const Label = styled(Text)`
@@ -354,9 +354,9 @@ export default function Swap({ history }: RouteComponentProps) {
                         <ArrowDownIcon width="18px" color="white" />
                       </IconButton>
                       {recipient === null && !showWrap && isExpertMode ? (
-                        <Button variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
+                        <ExpertButton variant="text" id="add-recipient-button" onClick={() => onChangeRecipient('')}>
                           + Add a send (optional)
-                        </Button>
+                        </ExpertButton>
                       ) : null}
                     </AutoColumn>
                     <CurrencyInputPanel

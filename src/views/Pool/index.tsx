@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { Pair } from '@apeswapfinance/sdk'
-import { Text, Flex, CardBody, CardFooter, Button, AddIcon, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, Flex, CardBody, CardFooter, Button, AddIcon, ButtonSquare, Card } from '@apeswapfinance/uikit'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { Link } from 'react-router-dom'
 import Page from 'components/layout/Page'
@@ -17,6 +17,19 @@ import { AppBody } from '../../components/App'
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.background};
 `
+
+const StyledCard = styled(Card)`
+  background-color: ${({ theme }) => (theme.isDark ? '#212121' : '#FFFFFF')};
+`
+
+const StyledText = styled(Text)`
+  font-size: 16px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 25px;
+  }
+`
+
+
 
 export default function Pool() {
   const { account } = useActiveWeb3React()
@@ -78,11 +91,7 @@ export default function Pool() {
         />
       ))
     }
-    return (
-      <Text  textAlign="center">
-        No liquidity found.
-      </Text>
-    )
+    return <Text textAlign="center">No liquidity found.</Text>
   }
 
   return (
@@ -91,29 +100,48 @@ export default function Pool() {
         <AppBody>
           <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
           <Body>
+            <StyledCard style={{ height: '160px', borderRadius: '20px' }} mb="25px">
+              <Flex
+                flexDirection="column"
+                paddingTop="25px"
+                paddingBottom="10px"
+                justifyContent="space-between"
+                alignItems="center"
+                style={{ height: '100%' }}
+              >
+                <StyledText fontWeight={700}>
+                  Add liquidity to receieve LP tokens
+                </StyledText>
+                <ButtonSquare
+                  id="join-pool-button"
+                  as={Link}
+                  to="/add"
+                  startIcon={<AddIcon color="white" />}
+                  style={{ fontSize: '16px', fontWeight: 700, marginBottom: '20px' }}
+                >
+                  Add Liquidity
+                </ButtonSquare>
+              </Flex>
+            </StyledCard>
             {renderBody()}
+          </Body>
             {account && !v2IsLoading && (
-              <Flex flexDirection="column" alignItems="center" mt="24px">
-                <Text  mb="8px">
-                  Dont see a pool you joined?
-                </Text>
-                <ButtonSquare id="import-pool-link" as={Link} to="/find" style={{backgroundColor: 'rgb(0,0,0,0)', border:'1px solid #ffb300', fontSize:'16px', color:'text'}}>
-                  Find other LP tokens
+              <Flex flexDirection="column" alignItems="center" pt="20px" pb="10px">
+                <Text mb="8px">Dont see a pool you joined?</Text>
+                <ButtonSquare
+                  id="import-pool-link"
+                  as={Link}
+                  to="/find"
+                  style={{
+                    backgroundColor: 'rgb(0,0,0,0)',
+                    fontSize: '16px',
+                    color: 'Primary',
+                  }}
+                >
+                  <Text style={{textDecoration: 'underline'}} mb="8px"> Find other LP tokens</Text>
                 </ButtonSquare>
               </Flex>
             )}
-          </Body>
-          <CardFooter style={{ textAlign: 'center', padding:"50px 0 50px 0" }}>
-            <ButtonSquare
-              id="join-pool-button"
-              as={Link}
-              to="/add"
-              startIcon={<AddIcon color="white" />}
-              style={{ fontSize: '16px', fontWeight: 700 }}
-            >
-              Add Liquidity
-            </ButtonSquare>
-          </CardFooter>
         </AppBody>
       </Flex>
     </Page>
