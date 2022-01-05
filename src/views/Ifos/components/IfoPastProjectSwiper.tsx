@@ -81,7 +81,6 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
           type: 'fraction',
         }}
         navigation
-        className="mySwiper"
       >
         {pastIfos.map((ifo, index) => (
           <SwiperSlide key={ifo.id}>

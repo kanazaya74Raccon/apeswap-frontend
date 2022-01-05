@@ -7,9 +7,6 @@ export interface IfoCardDescriptionProps {
   projectSiteUrl: string
 }
 
-
-
-
 const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
   defaultIsOpen = true,
   description,
@@ -27,8 +24,11 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
       </Link>
       <ToggleButton onClick={handleClick}>
         {isOpen ? 'Hide' : 'Show'}
-        {/* TODO: Update arrow/down icon, and color based on dark/light theme */}
-        <IconImage src="/images/down-arrow.svg" alt="down" width={10} height={10} />
+        {isOpen ? (
+          <IconImage src="/images/up-arrow.svg" alt="up" width={10} height={10} />
+        ) : (
+          <IconImage src="/images/down-arrow.svg" alt="down" width={10} height={10} />
+        )}
       </ToggleButton>
       <Description isOpen={isOpen}>{description}</Description>
     </StyledIfoCardDescription>
