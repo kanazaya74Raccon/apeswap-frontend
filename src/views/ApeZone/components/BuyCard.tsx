@@ -166,8 +166,7 @@ const BuyCard = () => {
           <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="Titan One" />
           <Text fontSize="11px">* Current max buy is {displayMax}</Text>
           <StyledText fontSize="11px" fontFamily="Titan One">
-            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand what I am
-            doing and want to enable unlimited buy.
+            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand that each GNANA token transfer costs 2% and want to enable unlimited buy.
           </StyledText>
         </Flex>
       </CardBody>
