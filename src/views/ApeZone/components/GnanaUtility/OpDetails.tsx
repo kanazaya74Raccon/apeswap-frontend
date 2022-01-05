@@ -25,34 +25,6 @@ const OpCon = styled.div<OpConProps>`
     background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
   }
 `
-const ImgBorder = styled.div`
-  width: 95px;
-  height: 95px;
-  max-width: 95px;
-  max-height: 95px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background: radial-gradient(
-    108.59% 108.6% at 6.38% 83.17%,
-    #ffe988 0%,
-    #ba801e 25%,
-    #fbec83 50%,
-    #ba801f 75%,
-    #ffe97f 100%
-  );
-  margin-bottom: 1em;
-`
-const ImgCon = styled.div`
-  width: 90%;
-  height: 90%;
-  border-radius: 50%;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 const OpHeadingCon = styled.div`
   display: flex;
   align-items: center;
@@ -107,9 +79,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
 
   return (
     <OpCon style={{ ...OpStyle }} {...props}>
-      <ImgBorder>
-        <ImgCon>{Icon}</ImgCon>
-      </ImgBorder>
+      {Icon}
 
       <OpHeadingCon>
         <OpHeading>{Title}</OpHeading>

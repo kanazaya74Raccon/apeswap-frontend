@@ -27,6 +27,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
+  [ConnectorNames.Walletlink]: bscConnector,
 }
 
 export const getLibrary = (provider): Web3 => {

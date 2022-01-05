@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AddIcon, Text, Card, Heading } from '@apeswapfinance/uikit'
+import { Text, Card, Heading, PFarmingIcon, XPoolsIcon, GovernanceIcon, IaoIcon } from '@apeswapfinance/uikit'
+import useTheme from 'hooks/useTheme'
 
 import OptionCard from './OptionCard'
 import OpDetails from './OpDetails'
@@ -64,11 +65,6 @@ const FirstOption = styled.div`
     width: 49%;
   }
 `
-// (Example how to use UIKit Icon)
-const StyledAddIcon = styled(AddIcon)`
-  fill: #ffb300;
-  width: 60px;
-`
 const PlusIcon = styled(Text)`
   color: #ffb300;
   font-family: 'Titan One';
@@ -106,6 +102,8 @@ const Section2 = styled(Card)`
 const OtherOpStyle = {}
 
 export const GnanaUtility: React.FC = () => {
+  const theme = useTheme()
+
   const buyGnana = () => {
     return window.open('https://apeswap.finance/gnana', '_blank')
   }
@@ -129,7 +127,14 @@ export const GnanaUtility: React.FC = () => {
           <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
             <Section>
               <OpDetails
-                Icon={<StyledAddIcon />}
+                Icon={
+                  <PFarmingIcon
+                    width="90px"
+                    height="90px"
+                    bgColor={theme.isDark ? '#212121' : '#FFF'}
+                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                  />
+                }
                 Title="Passive Farming"
                 Desc="Propose and Vote on platform decisions"
                 ActionTitle="BUY GNANA"
@@ -139,7 +144,14 @@ export const GnanaUtility: React.FC = () => {
               />
               <PlusIcon>+</PlusIcon>
               <OpDetails
-                Icon={<StyledAddIcon />}
+                Icon={
+                  <GovernanceIcon
+                    width="90px"
+                    height="90px"
+                    bgColor={theme.isDark ? '#212121' : '#FFF'}
+                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                  />
+                }
                 Title="Governance"
                 Desc="Propose and Vote on platform decisions"
                 ActionTitle="EXPLORE"
@@ -155,7 +167,14 @@ export const GnanaUtility: React.FC = () => {
           <OptionCard type="2" title="Option 2" desc="Stake">
             <Section2>
               <OpDetails
-                Icon={<StyledAddIcon />}
+                Icon={
+                  <XPoolsIcon
+                    width="90px"
+                    height="90px"
+                    bgColor={theme.isDark ? '#212121' : '#FFF'}
+                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                  />
+                }
                 Title="Exclusive Pools"
                 Desc="Access unique pools with higher APRs"
                 ActionTitle="GO TO POOLS"
@@ -169,7 +188,14 @@ export const GnanaUtility: React.FC = () => {
           <OptionCard type="3" title="Option 3" desc="Commit">
             <Section2>
               <OpDetails
-                Icon={<StyledAddIcon />}
+                Icon={
+                  <IaoIcon
+                    width="90px"
+                    height="90px"
+                    bgColor={theme.isDark ? '#212121' : '#FFF'}
+                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                  />
+                }
                 Title="Exclusive IAO Acess"
                 Desc="Access to secondary offerings for a higher token allocation"
                 ActionTitle="GO TO IAOs"
