@@ -1,74 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Button, Heading, Text } from '@apeswapfinance/uikit'
+import { Button, Text } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 
-const FeatureBox = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-`
-
-const B = styled(Text).attrs({
-  fontFamily: 'poppins',
-  as: 'span',
-})`
-  font-weight: 700;
-`
-
-const SectionHeading = styled(Heading)`
-  font-weight: 800;
-`
-
-const Frame = styled.div`
-  margin-top: 48px;
-  margin-bottom: 32px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px 20px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      '. .'
-      '. .';
-  }
-`
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.card};
-  margin-bottom: 57px;
-  padding: 30px 20px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 30px 50px;
-  }
-`
-
-const IconBox = styled.div`
-  border-radius: 5px;
-  width: 100px;
-  height: 100px;
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#E5E5E5')};
-  position: relative;
-  flex-shrink: 0;
-`
-
-const CenteredImage = styled.img`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`
+import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles';
 
 interface IconProps {
   name: string

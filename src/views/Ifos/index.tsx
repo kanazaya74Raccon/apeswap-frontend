@@ -5,11 +5,11 @@ import { Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
 import ifos, { pastIfos } from 'config/constants/ifo'
 import IfoTabButtons from './components/IfoTabButtons'
-import HowItWorks from './components/HowItWorks'
-import Ideology from './components/Ideology'
+import HowItWorks from './components/HowItWorks/HowItWorks'
+import Ideology from './components/Ideology/Ideology'
 import IfoPastProjectSwiper from './components/IfoPastProjectSwiper'
 import { TabOption } from './types'
-import IfoProjectCard from './components/IfoCard/IfoProjectCard'
+import IfoProjectCard from './components/IfoCard/ProjectCard/IfoProjectCard'
 
 const apeFloat = keyframes`
   0% { transform: translate(0, 0px); }

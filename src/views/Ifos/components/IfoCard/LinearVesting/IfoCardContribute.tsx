@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Button, Text } from '@apeswapfinance/uikit'
 import { Contract } from 'web3-eth-contract'
 import { useERC20 } from 'hooks/useContract'
@@ -7,7 +6,8 @@ import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
 
-import ContributeInput from '../ContributeInput'
+import { VestingClaimButton, Claim, TextWrapRow } from './styles'
+import ContributeInput from '../ContributeInput/ContributeInput'
 
 export interface Props {
   account: string
@@ -28,44 +28,6 @@ export interface Props {
   isActive?: boolean
   isFinished?: boolean
 }
-
-const VestingClaimButton = styled(Button)`
-  width: 220px;
-  height: 44px;
-  background-color: secondary;
-  margin: 0 auto;
-  flex-shrink: 0;
-  background: #ffb300;
-  padding: 0;
-  :focus {
-    outline: none !important;
-    box-shadow: none !important;
-    background: #ffb300;
-  }
-  display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-`
-
-const Claim = styled(Text)`
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 20px;
-  }
-`
-
-const TextWrapRow = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-`
 
 const IfoCardContribute: React.FC<Props> = ({
   account,

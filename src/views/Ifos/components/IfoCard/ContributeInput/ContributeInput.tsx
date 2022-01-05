@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Text, Input } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import { ZERO_ADDRESS } from 'config'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
+
+import { Label, Box, ContributeButton, ContributeInput } from './styles'
 
 interface Props {
   currency: string
@@ -16,25 +17,6 @@ interface Props {
   currencyAddress: string
   disabled?: boolean
 }
-
-const Label = styled(Text)`
-  font-size: 12px;
-  font-weight: 500;
-`
-
-const Box = styled(Flex)`
-  gap: 20px;
-  justify-content: space-between;
-  margin-bottom: 12px;
-`
-
-const ContributeButton = styled(Button)`
-  margin-top: 18px;
-`
-
-const ContributeInput = styled(Input)`
-  background-color: ${({ theme }) => (theme.isDark ? '#424242' : '#e5e5e5')};
-`
 
 const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, disabled }) => {
   const [value, setValue] = useState('')

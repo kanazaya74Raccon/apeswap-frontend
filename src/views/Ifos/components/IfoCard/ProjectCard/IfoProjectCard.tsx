@@ -1,50 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Card, Heading, Text } from '@apeswapfinance/uikit'
+import { Heading, Text } from '@apeswapfinance/uikit'
 import { zoneIfo, ifosConfig } from 'config/constants'
-import IfoCardDescription from './IfoCardDescription'
-import LinearVestingCard from './LinearVesting'
-import FourPhaseVestingCard from './FourPhaseVesting'
+import IfoCardDescription from '../CardDescription/IfoCardDescription'
+import LinearVestingCard from '../LinearVesting'
+import FourPhaseVestingCard from '../FourPhaseVesting'
 
-const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 50px;
-  width: 100%;
-  margin-bottom: 26px;
-`
-
-const Banner = styled.img`
-  width: 100%;
-  height: 135px;
-`
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 24px 30px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 24px 50px;
-  }
-`
-
-const CardListBox = styled.div`
-  display: flex;
-  padding: 20px 0px;
-  gap: 20px;
-  flex-direction: column;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    flex-direction: row;
-  }
-
-  > div {
-    flex: 1;
-  }
-`
+import { StyledIfoCard, Banner, Content, CardListBox } from './styles'
 
 interface IfoCardProps {
   ifoId: string
@@ -77,7 +38,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
         <CardListBox>
           {ifo.isLinear ? <LinearVestingCard ifo={ifo} /> : <FourPhaseVestingCard ifo={ifo} />}
 
-          {gnanaIfo?.isLinear && <LinearVestingCard ifo={gnanaIfo}  gnana />}
+          {gnanaIfo?.isLinear && <LinearVestingCard ifo={gnanaIfo} gnana />}
 
           {!!gnanaIfo && !gnanaIfo.isLinear && <FourPhaseVestingCard gnana ifo={gnanaIfo} />}
         </CardListBox>
