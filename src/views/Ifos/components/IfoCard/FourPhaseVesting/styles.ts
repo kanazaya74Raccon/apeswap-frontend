@@ -1,6 +1,15 @@
 import styled from 'styled-components'
 import { Button, Text } from '@apeswapfinance/uikit'
 
+export const Container = styled.div`
+  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const VestingButtonWrapper = styled.div`
   width: 100%;
   display: flex;

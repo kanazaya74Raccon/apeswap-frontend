@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
 import multicallABI from 'config/abi/Multicall.json'
 import { useWeb3React } from '@web3-react/core'
@@ -20,18 +19,13 @@ import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import useUserInfo from './useUserInfo'
+import { Container } from './styles'
 
 export interface IfoCardProps {
   ifo: Ifo
   notLp?: boolean
   gnana?: boolean
 }
-
-const Container = styled.div`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
-  padding: 20px;
-  border-radius: 20px;
-`
 
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
   if (currentBlock < startBlock) {
