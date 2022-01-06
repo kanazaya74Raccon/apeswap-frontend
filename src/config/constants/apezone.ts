@@ -20,7 +20,7 @@ const ApeZone: { ifos: Ifo[] } = {
       currencyAddress: '0xf693bda9d3c56d5f9165c8633d9098e3c4ae495a',
       offeringCurrency: 'IAZO',
       tokenDecimals: 18,
-      releaseBlockNumber: 15633000, // block to start showing contract details
+      releaseBlockNumber: 15632000, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },

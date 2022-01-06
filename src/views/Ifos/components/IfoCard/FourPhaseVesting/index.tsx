@@ -133,7 +133,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const isComingSoon = state.status === 'coming_soon'
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
-  const hasStarted = currentBlock && state.startBlockNum <= currentBlock
+  const hasStarted = currentBlock && state.startBlockNum && state.startBlockNum <= currentBlock
 
   let progressBarAmountLabel = ''
   let progressBarTimeLabel = ''

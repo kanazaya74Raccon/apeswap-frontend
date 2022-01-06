@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'IAZO',
     tokenDecimals: 18,
-    releaseBlockNumber: 15633000, // block to start showing contract details
+    releaseBlockNumber: 15632000, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
