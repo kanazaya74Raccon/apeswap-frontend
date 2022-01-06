@@ -3,9 +3,9 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0xa9AEf02a591EC31349A37c8247F5d0eAC1d8ac79', // Leave empty for "Coming Soon!"
+    address: '0xa526477bBf22643bE96D02Ebf3934BA1721059f3', // Leave empty for "Coming Soon!"
     isActive: true,
-    isLinear: true,
+    isLinear: false,
     name: '99Starz',
     subTitle: `The World's Biggest NFT Yield Ecosystem`,
     description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'STZ',
     tokenDecimals: 18,
-    releaseBlockNumber: 15571398, // block to start showing contract details
+    releaseBlockNumber: 22364007, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
