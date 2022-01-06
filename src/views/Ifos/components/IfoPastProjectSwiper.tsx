@@ -33,6 +33,7 @@ const ArrowImage = styled.div`
   cursor: pointer;
 `
 const StatusTitle = styled(Text)<{ isActive?: boolean }>`
+  font-family: Titan one;
   opacity: ${({ isActive }) => (isActive ? 1 : 0.2)};
 `
 
