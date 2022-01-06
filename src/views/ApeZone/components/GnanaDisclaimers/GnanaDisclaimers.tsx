@@ -44,7 +44,7 @@ const FirstHeader = styled(Heading)`
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 24px;
+    font-size: 30px;
   }
 `
 const FirstHeader2 = styled(FirstHeader)`
@@ -156,7 +156,7 @@ const Text2 = styled(Text1)`
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 20px;
+    font-size: 22px;
   }
 `
 const Text3 = styled(Text1)`
@@ -194,14 +194,14 @@ const Text4 = styled(Text3)`
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 20px;
+    font-size: 22px;
   }
 `
 const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1em;
+  margin-top: 1.5em;
 `
 
 const InfoSect1 = styled.div`
@@ -214,6 +214,13 @@ const InfoSect2 = styled(InfoSect1)`
   display: none;
   ${({ theme }) => theme.mediaQueries.md} {
     display: unset;
+  }
+`
+const LearnMoreBtn = styled(ButtonSquare)`
+  font-size: 12px;
+  font-weight: 700;
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 16px;
   }
 `
 interface InfoProps {
@@ -248,13 +255,13 @@ export const GnanaDisclaimers: React.FC = () => {
               <Text1>Fee1</Text1>
             </Sect1a>
             <Sect1b>
-              <Text2>Buying</Text2>
+              <Text2>Converting</Text2>
             </Sect1b>
             <Sect1c>
               <Text4>Staking/Committing</Text4>
             </Sect1c>
             <Sect1d>
-              <Text4>Selling</Text4>
+              <Text4>Returning</Text4>
             </Sect1d>
           </Sect1>
 
@@ -310,9 +317,7 @@ export const GnanaDisclaimers: React.FC = () => {
       </Main2>
 
       <Footer>
-        <ButtonSquare onClick={learnMore} fontSize="12px">
-          {TranslateString(292, 'LEARN MORE')}
-        </ButtonSquare>
+        <LearnMoreBtn onClick={learnMore}>{TranslateString(292, 'LEARN MORE')}</LearnMoreBtn>
       </Footer>
     </Container>
   )

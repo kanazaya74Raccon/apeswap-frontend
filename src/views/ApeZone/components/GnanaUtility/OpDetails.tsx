@@ -40,6 +40,10 @@ const OpHeading = styled(Heading)`
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 18px;
   }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 20px;
+  }
 `
 const OpDescCon = styled.div`
   height: 30px;
@@ -48,7 +52,7 @@ const OpDescCon = styled.div`
 const OpDesc = styled(Text)`
   font-size: 12px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
 `
 const ActionButton = styled(ButtonSquare)`
   padding-right: 0.1em;

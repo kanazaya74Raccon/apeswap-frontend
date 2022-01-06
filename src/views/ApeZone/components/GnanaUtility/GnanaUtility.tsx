@@ -37,7 +37,7 @@ const UtilityHeading = styled(Heading)`
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 24px;
+    font-size: 30px;
   }
 `
 
@@ -68,7 +68,8 @@ const FirstOption = styled.div`
 const PlusIcon = styled(Text)`
   color: #ffb300;
   font-family: 'Titan One';
-  font-size: 35px;
+  font-size: 48px;
+  font-weight: 400;
 `
 const Section = styled(Card)`
   display: flex;
@@ -136,8 +137,8 @@ export const GnanaUtility: React.FC = () => {
                   />
                 }
                 Title="Passive Farming"
-                Desc="Propose and Vote on platform decisions"
-                ActionTitle="BUY GNANA"
+                Desc="Collect a 2% Reflect Fee on all GNANA Transactions"
+                ActionTitle="CONVERT"
                 onAction={buyGnana}
                 OpStyle={OtherOpStyle}
                 type="1"

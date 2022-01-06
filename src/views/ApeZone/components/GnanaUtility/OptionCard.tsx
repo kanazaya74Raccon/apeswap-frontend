@@ -33,6 +33,10 @@ const HeadTitle = styled(Heading)`
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-weight: 700;
   text-transform: uppercase;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    font-size: 22px;
+  }
 `
 const HeadDesc = styled(Text)`
   font-size: 12px;
