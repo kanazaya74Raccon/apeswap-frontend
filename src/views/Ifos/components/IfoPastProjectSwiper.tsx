@@ -97,7 +97,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
                 <StatusTitle marginTop={16} isActive={isActive}>
                   {ifo.name}
                 </StatusTitle>
-                <StatusTitle>{`#${padLeadingZeros(index + 1, 3)}`}</StatusTitle>
+                <StatusTitle>{`#${padLeadingZeros(pastIfos.length - index, 3)}`}</StatusTitle>
               </Box>
             )}
           </SwiperSlide>

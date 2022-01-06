@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Text } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -12,7 +12,7 @@ import { ZERO_ADDRESS } from 'config'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 import useUserInfo from './useUserInfo'
-import { VestingButtonWrapper, VestingClaimButton, Claim, DisplayVestingTime, TextWrapRow } from './styles'
+import { ApproveButton, VestingButtonWrapper, VestingClaimButton, Claim, DisplayVestingTime, TextWrapRow } from './styles'
 
 import ContributeInput from '../ContributeInput/ContributeInput'
 
@@ -64,8 +64,7 @@ const IfoCardContribute: React.FC<Props> = ({
 
   if (currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
     return (
-      <Button
-        fullWidth
+      <ApproveButton
         disabled={pendingTx}
         variant="yellow"
         onClick={async () => {
@@ -79,8 +78,8 @@ const IfoCardContribute: React.FC<Props> = ({
           }
         }}
       >
-        Approve
-      </Button>
+        APPROVE
+      </ApproveButton>
     )
   }
 

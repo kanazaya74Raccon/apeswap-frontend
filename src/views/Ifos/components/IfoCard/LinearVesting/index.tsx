@@ -12,14 +12,13 @@ import { useNetworkChainId } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
-import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
 import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import useUserInfo from './useUserInfo'
-import { Container } from './styles'
+import { Container, UnlockButton } from './styles'
 
 export interface IfoCardProps {
   ifo: Ifo
@@ -154,7 +153,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   let progressBarTimeLabel = ''
   let progress = 0
 
-  if (isComingSoon) {
+  if (state.isLoading) {
+    progressBarTimeLabel = '';
+  } else if (isComingSoon) {
     const timeUntil = getTimePeriods(state.secondsUntilStart)
 
     progressBarTimeLabel = `${timeUntil.days}d, ${timeUntil.hours}h, ${timeUntil.minutes}m until start`
@@ -239,7 +240,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       <IfoCardProgress progress={progress} amountLabel={progressBarAmountLabel} timeLabel={progressBarTimeLabel} />
 
       {!account ? (
-        <UnlockButton fullWidth />
+        <UnlockButton />
       ) : (
         (isActive || isFinished) &&
         vesting && (

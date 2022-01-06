@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Button, Text } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import { Contract } from 'web3-eth-contract'
 import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
 
-import { VestingClaimButton, Claim, TextWrapRow } from './styles'
+import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
 
 export interface Props {
@@ -57,8 +57,7 @@ const IfoCardContribute: React.FC<Props> = ({
 
   if (currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
     return (
-      <Button
-        fullWidth
+      <ApproveButton
         disabled={pendingTx}
         variant="yellow"
         onClick={async () => {
@@ -72,8 +71,8 @@ const IfoCardContribute: React.FC<Props> = ({
           }
         }}
       >
-        Approve
-      </Button>
+        APPROVE
+      </ApproveButton>
     )
   }
 
