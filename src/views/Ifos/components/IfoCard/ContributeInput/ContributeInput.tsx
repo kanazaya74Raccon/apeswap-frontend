@@ -23,7 +23,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWeb3React()
   const tokenBalance = useTokenBalance(currencyAddress)
-  const balance = getFullDisplayBalance(tokenBalance)
+  const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
 
   const deposit = async () => {
     const depositValue = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
