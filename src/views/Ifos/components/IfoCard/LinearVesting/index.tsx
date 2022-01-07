@@ -190,11 +190,11 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       texts = [
         {
           label: 'Tokens available',
-          value: Number(userOfferingAmount - offeringTokensClaimed).toString(),
+          value: Number(userOfferingAmount - offeringTokensClaimed).toFixed(4),
         },
         // TODO: Calculate the vested amount based on the current block
-        { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVested).toString() },
-        { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toString() },
+        { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVested).toFixed(4) },
+        { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
         { label: 'Vested value', value: `${Number(amount - refundingAmount).toFixed(4)} ${currency}` },
       ]
 
