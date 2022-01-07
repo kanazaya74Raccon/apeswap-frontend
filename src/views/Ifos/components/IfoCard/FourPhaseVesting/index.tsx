@@ -159,8 +159,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     let texts = [
       { label: 'For Sale', value: saleAmount },
       { label: 'To raise (USD)', value: raiseAmount },
-      { label: 'Total vesting time', value: vestingTime },
     ]
+
+    if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
 
     if (isFinished && offeringTokenBalance.isGreaterThan(0)) {
       const tokensHarvestedAvailable = getBalanceNumber(
@@ -221,6 +222,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       <IfoCardHeader
         ifoId={id}
         gnana={gnana}
+        isLP={!!burnedTxUrl}
         isComingSoon={!address}
         isLoading={state.isLoading}
         status={state.status}

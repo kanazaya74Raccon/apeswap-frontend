@@ -7,6 +7,7 @@ import { StyledIfoCardHeader, Stack, Title } from './styles'
 interface IfoCardHeaderProps {
   ifoId: string
   gnana?: boolean
+  isLP?: boolean
   isComingSoon: boolean
   isLoading: boolean
   status: IfoStatus
@@ -14,12 +15,12 @@ interface IfoCardHeaderProps {
   secondsUntilEnd: number
 }
 
-
 const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
   ifoId,
   gnana,
   isComingSoon,
   isLoading,
+  isLP,
   status,
   secondsUntilStart,
   secondsUntilEnd,
@@ -49,7 +50,8 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
     <StyledIfoCardHeader mb="24px" alignItems="center">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />
       <Stack>
-        <Title as="h2">{`${gnana ? 'GNANA' : 'BNB'} OFFERING`}</Title>
+        {isLP && <Title as="h2">LP OFFERING</Title>}
+        {!isLP && <Title as="h2">{`${gnana ? 'GNANA' : 'BNB'} OFFERING`}</Title>}
         {getStatus()}
       </Stack>
     </StyledIfoCardHeader>
