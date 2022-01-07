@@ -8,7 +8,7 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useBlock from 'hooks/useBlock'
 import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId, usePriceBnbBusd } from 'state/hooks'
+import { useNetworkChainId, usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -42,20 +42,18 @@ const getStatus = (currentBlock: number, startBlock: number, endBlock: number): 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const {
     id,
     address,
     isLinear,
     saleAmount,
     raiseAmount,
-    bananaToBurn,
     currency,
     vestingTime,
     currencyAddress,
     tokenDecimals,
     releaseBlockNumber,
-    burnedTxUrl,
     vesting,
     startBlock: start,
     offeringCurrency,
@@ -78,6 +76,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
   const bnbPrice = usePriceBnbBusd()
+  const gnanaPrice = usePriceGnanaBusd()
+  const currencyPrice = gnana ? gnanaPrice : bnbPrice
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -192,7 +192,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
 
     if (isFinished && userOfferingAmount > 0) {
       const vestedValueAmount = amount - refundingAmount
-      const vestedValueDollar = (getBalanceNumber(bnbPrice, 0) * vestedValueAmount).toFixed(2)
+      const vestedValueDollar = (getBalanceNumber(currencyPrice, 0) * vestedValueAmount).toFixed(2)
       texts = [
         {
           label: 'Tokens available',
@@ -226,7 +226,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     hasStarted,
     amount,
     refundingAmount,
-    bnbPrice,
+    currencyPrice,
     userTokenStatus.offeringTokenTotalHarvest,
     userTokenStatus.offeringTokensVested,
     offeringTokensClaimed,

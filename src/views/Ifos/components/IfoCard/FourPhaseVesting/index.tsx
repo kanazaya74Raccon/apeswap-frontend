@@ -8,7 +8,7 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useBlock from 'hooks/useBlock'
 import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId } from 'state/hooks'
+import { useNetworkChainId, usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -42,14 +42,13 @@ const getStatus = (currentBlock: number, startBlock: number, endBlock: number): 
   return null
 }
 
-const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
+const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const {
     id,
     address,
     isLinear,
     saleAmount,
     raiseAmount,
-    bananaToBurn,
     currency,
     vestingTime,
     currencyAddress,
@@ -75,6 +74,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const currentBlock = useBlock()
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
+  const bnbPrice = usePriceBnbBusd()
+  const gnanaPrice = usePriceGnanaBusd()
+  const currencyPrice = gnana ? gnanaPrice : bnbPrice
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -174,6 +176,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       )
       const totalTokensHarvested =
         getBalanceNumber(offeringTokenBalance, tokenDecimals) - (tokensVested + tokensHarvestedAvailable)
+      const vestedValueAmount = userInfo.amount.minus(userInfo.refundingAmount)
+      const vestedValueDollar = getBalanceNumber(vestedValueAmount.times(currencyAddress), 18).toFixed(2)
 
       texts = [
         {
@@ -184,7 +188,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
         { label: 'Tokens harvested', value: totalTokensHarvested.toFixed(4) },
         {
           label: 'Vested value',
-          value: `${getBalanceNumber(userInfo.amount.minus(userInfo.refundingAmount), 18).toFixed(4)} ${currency}`,
+          value: `${Number(vestedValueAmount).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
         },
       ]
 
@@ -207,6 +211,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     offeringTokenBalance,
     raiseAmount,
     saleAmount,
+    currencyAddress,
     state.raisingAmount,
     state.totalAmount,
     tokenDecimals,
