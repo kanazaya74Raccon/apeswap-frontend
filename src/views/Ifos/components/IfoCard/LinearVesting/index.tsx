@@ -8,7 +8,7 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useBlock from 'hooks/useBlock'
 import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId } from 'state/hooks'
+import { useNetworkChainId, usePriceBnbBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -77,6 +77,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   const currentBlock = useBlock()
   const chainId = useNetworkChainId()
   const multicallAddress = getMulticallAddress(chainId)
+  const bnbPrice = usePriceBnbBusd()
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -154,7 +155,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
   let progress = 0
 
   if (state.isLoading) {
-    progressBarTimeLabel = '';
+    progressBarTimeLabel = ''
   } else if (isComingSoon) {
     const timeUntil = getTimePeriods(state.secondsUntilStart)
 
@@ -172,7 +173,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     const timeUntil = getTimePeriods((state.vestingEndBlock - currentBlock) * BSC_BLOCK_TIME)
     const vestingPeriodInSec = (state.vestingEndBlock - state.endBlockNum) * BSC_BLOCK_TIME
 
-    progressBarAmountLabel = `${offeringTokensClaimed.toFixed(4)} ${offeringCurrency} / ${userOfferingAmount.toFixed(4)} ${offeringCurrency}`
+    progressBarAmountLabel = `${offeringTokensClaimed.toFixed(4)} ${offeringCurrency} / ${userOfferingAmount.toFixed(
+      4,
+    )} ${offeringCurrency}`
     progressBarTimeLabel = `${timeUntil.days}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${Math.ceil(
       vestingPeriodInSec / 60 / 60 / 24,
     )}d`
@@ -187,18 +190,22 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     ]
 
     if (isFinished && userOfferingAmount > 0) {
+      const vestedValueAmount = amount - refundingAmount
+      const vestedValueDollar = (getBalanceNumber(bnbPrice, 0) * vestedValueAmount).toFixed(2)
       texts = [
         {
           label: 'Tokens available',
-          value: Number(userOfferingAmount - offeringTokensClaimed).toFixed(4),
+          value: Number(userTokenStatus.offeringTokenTotalHarvest).toFixed(4),
         },
-        // TODO: Calculate the vested amount based on the current block
         { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVested).toFixed(4) },
         { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
-        { label: 'Vested value', value: `${Number(amount - refundingAmount).toFixed(4)} ${currency}` },
+        {
+          label: 'Vested value',
+          value: `${Number(vestedValueAmount).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
+        },
       ]
 
-      return texts;
+      return texts
     }
 
     if (hasStarted) {
@@ -213,16 +220,18 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
     saleAmount,
     raiseAmount,
     vestingTime,
-    hasStarted,
     isFinished,
     userOfferingAmount,
-    state.totalAmount,
-    state.raisingAmount,
-    offeringTokensClaimed,
-    userTokenStatus.offeringTokensVested,
+    hasStarted,
     amount,
     refundingAmount,
+    bnbPrice,
+    userTokenStatus.offeringTokenTotalHarvest,
+    userTokenStatus.offeringTokensVested,
+    offeringTokensClaimed,
     currency,
+    state.totalAmount,
+    state.raisingAmount,
   ])
 
   return (
