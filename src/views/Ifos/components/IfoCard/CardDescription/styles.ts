@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Text, Image, LinkExternal } from '@apeswapfinance/uikit'
+import { UpArrow, DownArrow } from 'components/Icons'
 
 export const StyledIfoCardDescription = styled.div`
   width: 100%;
@@ -34,4 +35,18 @@ export const IconImage = styled(Image)`
 
 export const Link = styled(LinkExternal)`
   color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+`
+
+export const UpArrowIcon = styled(UpArrow)`
+  width: 14px;
+  height: 9px;
+  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  margin-left: 8px;
+`
+
+export const DownArrowIcon = styled(DownArrow)`
+  width: 14px;
+  height: 9px;
+  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  margin-left: 8px;
 `

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyledIfoCardDescription, Link, ToggleButton, Description, IconImage } from './styles'
+import { StyledIfoCardDescription, Link, ToggleButton, Description, UpArrowIcon, DownArrowIcon } from './styles'
 
 export interface IfoCardDescriptionProps {
   defaultIsOpen?: boolean
@@ -25,9 +25,9 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
       <ToggleButton onClick={handleClick}>
         {isOpen ? 'Hide' : 'Show'}
         {isOpen ? (
-          <IconImage src="/images/up-arrow.svg" alt="up" width={10} height={10} />
+          <UpArrowIcon />
         ) : (
-          <IconImage src="/images/down-arrow.svg" alt="down" width={10} height={10} />
+          <DownArrowIcon />
         )}
       </ToggleButton>
       <Description isOpen={isOpen}>{description}</Description>
