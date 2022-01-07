@@ -1,41 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Image, Text } from '@apeswapfinance/uikit'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { pastIfos } from 'config/constants/ifo'
+import { Container, Box, ProjectImage, ArrowImage, StatusTitle, LeftArrowIcon, RightArrowIcon } from './styles'
 
 import 'swiper/swiper.min.css'
 
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 32px;
-  margin-bottom: 32px;
-`
-
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const ProjectImage = styled.img<{ isActive?: boolean }>`
-  width: 64px;
-  height: 64px;
-  border-radius: 100%;
-  opacity: ${({ isActive }) => (isActive ? 1 : 0.2)};
-`
-const ArrowImage = styled.div`
-  width: 50px;
-  cursor: pointer;
-`
-const StatusTitle = styled(Text)<{ isActive?: boolean }>`
-  font-family: Titan one;
-  opacity: ${({ isActive }) => (isActive ? 1 : 0.2)};
-`
 
 const padLeadingZeros = (num: number, size: number) => {
   let s = num.toString()
@@ -70,7 +40,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
   return (
     <Container>
       <ArrowImage onClick={handleClickPrev}>
-        <Image src="/images/left-arrow.svg" alt="Prev" width={24} height={28} />
+        <LeftArrowIcon />
       </ArrowImage>
       <Swiper
         onSwiper={setSwiperRef}
@@ -105,7 +75,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
         ))}
       </Swiper>
       <ArrowImage onClick={handleClickNext}>
-        <Image src="/images/arrow.svg" alt="Next" width={24} height={28} />
+        <RightArrowIcon />
       </ArrowImage>
     </Container>
   )

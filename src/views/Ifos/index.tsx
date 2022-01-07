@@ -7,7 +7,7 @@ import ifos, { pastIfos } from 'config/constants/ifo'
 import IfoTabButtons from './components/IfoTabButtons'
 import HowItWorks from './components/HowItWorks/HowItWorks'
 import Ideology from './components/Ideology/Ideology'
-import IfoPastProjectSwiper from './components/IfoPastProjectSwiper'
+import IfoPastProjectSwiper from './components/PastProjectSwiper/IfoPastProjectSwiper'
 import { TabOption } from './types'
 import IfoProjectCard from './components/IfoCard/ProjectCard/IfoProjectCard'
 
