@@ -8,6 +8,7 @@ import { ZERO_ADDRESS } from 'config'
 
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
+import useLinearIAOHarvest from '../../../hooks/useLinearIAOHarvest'
 
 export interface Props {
   account: string
@@ -44,12 +45,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const contractRaisingToken = useERC20(currencyAddress)
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)
-
-  const claim = async () => {
-    setPendingTx(true)
-    await contract.methods.harvest().send({ from: account })
-    setPendingTx(false)
-  }
+  const onClaim = useLinearIAOHarvest(contract, setPendingTx)
 
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
@@ -64,11 +60,10 @@ const IfoCardContribute: React.FC<Props> = ({
           try {
             setPendingTx(true)
             await onApprove()
-            setPendingTx(false)
           } catch (e) {
-            setPendingTx(false)
             console.warn(e)
           }
+          setPendingTx(false)
         }}
       >
         APPROVE
@@ -99,7 +94,7 @@ const IfoCardContribute: React.FC<Props> = ({
         </>
       )}
       {isFinished && amountContributed > 0 && (
-        <VestingClaimButton disabled={!userTokenStatus.offeringTokenTotalHarvest} onClick={() => claim()}>
+        <VestingClaimButton disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx} onClick={onClaim}>
           <Claim color="white">Claim</Claim>
         </VestingClaimButton>
       )}

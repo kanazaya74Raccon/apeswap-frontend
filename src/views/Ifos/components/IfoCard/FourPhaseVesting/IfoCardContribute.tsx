@@ -12,9 +12,17 @@ import { ZERO_ADDRESS } from 'config'
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 import useUserInfo from './useUserInfo'
-import { ApproveButton, VestingButtonWrapper, VestingClaimButton, Claim, DisplayVestingTime, TextWrapRow } from './styles'
+import {
+  ApproveButton,
+  VestingButtonWrapper,
+  VestingClaimButton,
+  Claim,
+  DisplayVestingTime,
+  TextWrapRow,
+} from './styles'
 
 import ContributeInput from '../ContributeInput/ContributeInput'
+import useFourPhaseIAOHarvest from '../../../hooks/useFourPhaseIAOHarvest'
 
 export interface Props {
   account: string
@@ -53,6 +61,7 @@ const IfoCardContribute: React.FC<Props> = ({
     tokenDecimals,
     address,
   )
+  const onClaim = useFourPhaseIAOHarvest(contract, setPendingTx)
 
   const harvestTwoTime = getTimePeriods(harvestBlockReleases.two, true)
   const harvestThreeTime = getTimePeriods(harvestBlockReleases.three, true)
@@ -91,22 +100,6 @@ const IfoCardContribute: React.FC<Props> = ({
   )
   const tokensVested = getBalanceNumber(new BigNumber(userTokenStatus?.offeringTokensVested.toString()), tokenDecimals)
 
-  const claim = async (harvestPeriod: number) => {
-    setPendingTx(true)
-    const tx = await contract.methods.harvest(harvestPeriod).send({ from: account })
-    setPendingTx(false)
-    track({
-      event: 'iao',
-      chain: CHAIN_ID,
-      data: {
-        amount: tokensHarvestedAvailable,
-        cat: 'claim',
-        instance: harvestPeriod,
-        contract: tx.to,
-      },
-    })
-  }
-
   return (
     <>
       {!isFinished && account && (
@@ -134,14 +127,14 @@ const IfoCardContribute: React.FC<Props> = ({
           <VestingButtonWrapper>
             {amountContributed > 0 && (
               <>
-                <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => claim(0)}>
+                <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => onClaim(0)}>
                   {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
                 </VestingClaimButton>
                 {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
                   <>
                     <VestingClaimButton
                       disabled={harvestBlockReleases.two > 0 || userHarvestedFlags[1]}
-                      onClick={() => claim(1)}
+                      onClick={() => onClaim(1)}
                     >
                       {userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim>Claimed</Claim>}
                       {!userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim color="white">Claim</Claim>}
@@ -154,7 +147,7 @@ const IfoCardContribute: React.FC<Props> = ({
                     </VestingClaimButton>
                     <VestingClaimButton
                       disabled={harvestBlockReleases.three > 0 || userHarvestedFlags[2]}
-                      onClick={() => claim(2)}
+                      onClick={() => onClaim(2)}
                     >
                       {userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim>Claimed</Claim>}
                       {!userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim color="white">Claim</Claim>}
@@ -167,7 +160,7 @@ const IfoCardContribute: React.FC<Props> = ({
                     </VestingClaimButton>
                     <VestingClaimButton
                       disabled={harvestBlockReleases.four > 0 || userHarvestedFlags[3]}
-                      onClick={() => claim(3)}
+                      onClick={() => onClaim(3)}
                     >
                       {userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim>Claimed</Claim>}
                       {!userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim color="white">Claim</Claim>}

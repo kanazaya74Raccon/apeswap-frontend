@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
-import { ZERO_ADDRESS } from 'config'
-import track from 'utils/track'
-import { CHAIN_ID } from 'config/constants'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
 
 import { Label, Box, ContributeButton, ContributeInput } from './styles'
+import useIAODeposit from '../../../hooks/useIAODeposit'
 
 interface Props {
   currency: string
@@ -20,47 +16,10 @@ interface Props {
 
 const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, disabled }) => {
   const [value, setValue] = useState('')
-  const [pendingTx, setPendingTx] = useState(false)
-  const { account } = useWeb3React()
   const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
 
-  const deposit = async () => {
-    const depositValue = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
-    if (currencyAddress === ZERO_ADDRESS) {
-      return contract.methods.depositNative().send({ from: account, value: depositValue })
-    }
-    return contract.methods.deposit(depositValue).send({ from: account })
-  }
-
-  const validate = () => {
-    const bigAmount = new BigNumber(value).times(new BigNumber(10).pow(18))
-
-    return bigAmount.isGreaterThan(0) && bigAmount.isLessThanOrEqualTo(tokenBalance)
-  }
-
-  const handleContributeClick = async () => {
-    if (!validate()) return
-
-    setPendingTx(true)
-
-    try {
-      await deposit()
-      const amount = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
-      track({
-        event: 'iao',
-        chain: CHAIN_ID,
-        data: {
-          amount,
-          cat: 'buy',
-          contract: contract.address,
-        },
-      })
-    } catch (e) {
-      console.error('Deposit error', e);
-    }
-    setPendingTx(false)
-  }
+  const { pendingTx, handleDeposit } = useIAODeposit(contract, currencyAddress, tokenBalance);
 
   return (
     <Box>
@@ -73,7 +32,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
         </Flex>
         <ContributeInput value={value} scale="lg" type="number" onChange={(e) => setValue(e.currentTarget.value)} />
       </Flex>
-      <ContributeButton disabled={disabled || pendingTx} variant="yellow" onClick={handleContributeClick}>
+      <ContributeButton disabled={disabled || pendingTx} variant="yellow" onClick={() => handleDeposit(value)}>
         CONTRIBUTE
       </ContributeButton>
     </Box>
