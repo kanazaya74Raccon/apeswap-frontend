@@ -12,18 +12,11 @@ const fetchLpPrices = async (chainId) => {
     const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
     const apePriceGetterAddress = getApePriceGetterAddress(chainId)
     const tokensToCall = Object.keys(farmsConfig).filter((token) => farmsConfig[token].lpAddresses[chainId] !== undefined)
-    const erc20Calls = tokensToCall.map((token) => {
-        return {
-            address: farmsConfig[token].lpAddresses[chainId],
-            name: 'decimals',
-        }
-    })
-    const tokenDecimals = await multicall(multicallContract, erc20ABI, erc20Calls)
     const calls = tokensToCall.map((token, i) => {
         return {
             address: apePriceGetterAddress,
             name: 'getLPPrice',
-            params: [farmsConfig[token].lpAddresses[chainId], tokenDecimals[i][0]],
+            params: [farmsConfig[token].lpAddresses[chainId], 18],
         }
     })
     const tokenPrices = await multicall(multicallContract, apePriceGetterABI, calls)
@@ -32,8 +25,8 @@ const fetchLpPrices = async (chainId) => {
         return {
             symbol: farmsConfig[token].lpSymbol,
             address: farmsConfig[token].lpAddresses,
-            price: getBalanceNumber(tokenPrices[i], tokenDecimals[i][0]),
-            decimals: tokenDecimals[i][0],
+            price: getBalanceNumber(tokenPrices[i], 18),
+            decimals: 18,
             pid: farmsConfig[token].pid
         }
     })
