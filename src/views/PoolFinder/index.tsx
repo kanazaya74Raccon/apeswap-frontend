@@ -23,15 +23,15 @@ enum Fields {
   TOKEN1 = 1,
 }
 
-const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.input};
+const StyledButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
+  background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
   border-radius: 16px;
 `
 
 export default function PoolFinder() {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const [activeField, setActiveField] = useState<number>(Fields.TOKEN1)
   const [currency0, setCurrency0] = useState<Currency | null>(ETHER)
@@ -69,17 +69,14 @@ export default function PoolFinder() {
   )
 
   const prerequisiteMessage = (
-    <Card padding="45px 10px">
-      <Text textAlign="center">
-        {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
-      </Text>
-    </Card>
+    <Text textAlign="center">
+      {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
+    </Text>
   )
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
       onCurrencySelect={handleCurrencySelect}
-      showCommonBases
       selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
     />,
   )
@@ -89,7 +86,7 @@ export default function PoolFinder() {
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
         <AppBody>
           <CurrencyInputHeader />
-          <AutoColumn style={{ padding: '1rem' }} gap="md">
+          <AutoColumn justify="center" style={{ padding: '1rem' }} gap="md">
             <StyledButton
               endIcon={<ChevronDownIcon />}
               onClick={() => {
@@ -100,7 +97,7 @@ export default function PoolFinder() {
               {currency0 ? (
                 <Row>
                   <CurrencyLogo currency={currency0} />
-                  <Text ml="8px">{currency0.symbol}</Text>
+                  <Text ml="8px">{currency0.getSymbol(chainId)}</Text>
                 </Row>
               ) : (
                 <Text ml="8px">Select a Token</Text>
@@ -112,6 +109,7 @@ export default function PoolFinder() {
             </ColumnCenter>
 
             <StyledButton
+              mb="20px"
               endIcon={<ChevronDownIcon />}
               onClick={() => {
                 onPresentCurrencyModal()
@@ -121,7 +119,7 @@ export default function PoolFinder() {
               {currency1 ? (
                 <Row>
                   <CurrencyLogo currency={currency1} />
-                  <Text ml="8px">{currency1.symbol}</Text>
+                  <Text ml="8px">{currency1.getSymbol(chainId)}</Text>
                 </Row>
               ) : (
                 <Text as={Row}>Select a Token</Text>
@@ -144,41 +142,33 @@ export default function PoolFinder() {
                 hasPosition && pair ? (
                   <MinimalPositionCard pair={pair} />
                 ) : (
-                  <Card padding="45px 10px">
-                    <AutoColumn gap="sm" justify="center">
-                      <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
-                      <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                        <Text textAlign="center">Add Liquidity</Text>
-                      </StyledInternalLink>
-                    </AutoColumn>
-                  </Card>
-                )
-              ) : validPairNoLiquidity ? (
-                <Card padding="45px 10px">
                   <AutoColumn gap="sm" justify="center">
-                    <Text textAlign="center">No pool found.</Text>
+                    <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
                     <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                      Create pool.
+                      <Text textAlign="center">Add Liquidity</Text>
                     </StyledInternalLink>
                   </AutoColumn>
-                </Card>
+                )
+              ) : validPairNoLiquidity ? (
+                <AutoColumn gap="sm" justify="center">
+                  <Text textAlign="center">No pool found.</Text>
+                  <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                    Create pool.
+                  </StyledInternalLink>
+                </AutoColumn>
               ) : pairState === PairState.INVALID ? (
-                <Card padding="45px 10px">
-                  <AutoColumn gap="sm" justify="center">
-                    <Text textAlign="center" fontWeight={500}>
-                      Invalid pair.
-                    </Text>
-                  </AutoColumn>
-                </Card>
+                <AutoColumn gap="sm" justify="center">
+                  <Text textAlign="center" fontWeight={500}>
+                    Invalid pair.
+                  </Text>
+                </AutoColumn>
               ) : pairState === PairState.LOADING ? (
-                <Card padding="45px 10px">
-                  <AutoColumn gap="sm" justify="center">
-                    <Text textAlign="center">
-                      Loading
-                      <Dots />
-                    </Text>
-                  </AutoColumn>
-                </Card>
+                <AutoColumn gap="sm" justify="center">
+                  <Text textAlign="center">
+                    Loading
+                    <Dots />
+                  </Text>
+                </AutoColumn>
               ) : null
             ) : (
               prerequisiteMessage
