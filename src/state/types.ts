@@ -334,6 +334,14 @@ export interface TokenPrices {
   decimals: number
 }
 
+export interface LpTokenPrices {
+  symbol: string
+  pid: number
+  address: Address
+  price: number
+  decimals: number
+}
+
 // Slices states
 
 export interface ToastsState {
@@ -392,6 +400,11 @@ export interface TokenPricesState {
   isLoading: boolean
   data: TokenPrices[]
 }
+export interface LpTokenPricesState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: LpTokenPrices[]
+}
 
 export interface StatsOverallState {
   isInitialized: boolean
@@ -437,6 +450,7 @@ export interface State {
   auctions: AuctionsState
   vaults: VaultsState
   tokenPrices: TokenPricesState
+  lpTokenPrices: LpTokenPricesState
   iazos: IazosState
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
