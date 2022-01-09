@@ -7,7 +7,14 @@ import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apes
 import styled from 'styled-components'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceBananaBusd, usePriceEthBusd } from 'state/hooks'
+import {
+  useFarms,
+  usePriceBnbBusd,
+  usePriceBananaBusd,
+  usePriceEthBusd,
+  useFetchLpTokenPrices,
+  useLpTokenPrices
+} from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { Farm } from 'state/types'
@@ -411,6 +418,9 @@ const Farms: React.FC = () => {
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
 
+  useFetchLpTokenPrices()
+  const { lpTokenPrices }= useLpTokenPrices()
+
   const ethPriceUsd = usePriceEthBusd()
 
   useEffect(() => {
@@ -611,7 +621,7 @@ const Farms: React.FC = () => {
         sortable: column.sortable,
       }))
 
-      return <Table data={rowData} columns={columns} />
+      return <Table data={rowData} columns={columns} farmsPrices={lpTokenPrices} />
     }
 
     return (
@@ -619,12 +629,12 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} farmsPrices={lpTokenPrices} />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed />
+              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed farmsPrices={lpTokenPrices}/>
             ))}
           </Route>
         </FlexLayout>
