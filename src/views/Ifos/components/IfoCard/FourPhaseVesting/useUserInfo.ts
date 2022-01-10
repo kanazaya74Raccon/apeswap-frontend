@@ -140,7 +140,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           calls3,
         )
 
-        console.log('third calls done');
+        console.log('third calls done', { userinfo, refundingAmount, userTokens });
 
         setOfferingTokenBalance(new BigNumber(balance))
 

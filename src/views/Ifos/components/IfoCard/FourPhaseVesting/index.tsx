@@ -131,6 +131,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
   const { userTokenStatus, userInfo, offeringTokenBalance } = useUserInfo(contract, tokenDecimals, address)
 
+  console.log('useUserInfo', {userTokenStatus, userInfo, offeringTokenBalance})
+
   const isComingSoon = state.status === 'coming_soon'
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'

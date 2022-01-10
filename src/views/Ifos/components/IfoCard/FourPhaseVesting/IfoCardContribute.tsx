@@ -98,6 +98,8 @@ const IfoCardContribute: React.FC<Props> = ({
   )
   const tokensVested = getBalanceNumber(new BigNumber(userTokenStatus?.offeringTokensVested.toString()), tokenDecimals)
 
+  console.log('IfoCardContribute', {amountContributed, tokensVested})
+  
   return (
     <>
       {!isFinished && account && (
