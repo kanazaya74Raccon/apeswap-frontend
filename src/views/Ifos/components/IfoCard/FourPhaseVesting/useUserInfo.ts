@@ -53,7 +53,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       if (!address || !account) return
 
-      const calls = [
+      const calls1 = [
         {
           address,
           name: 'getOfferingAmount',
@@ -74,6 +74,9 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           name: 'userTokenStatus',
           params: [account],
         },
+      ]
+
+      const calls2 = [
         {
           address,
           name: 'hasHarvested',
@@ -94,6 +97,9 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           name: 'hasHarvested',
           params: [account, 3],
         },
+      ]
+
+      const calls3 = [
         {
           address,
           name: 'harvestReleaseBlocks',
@@ -117,20 +123,24 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       ]
 
       try {
-        const [
-          balance,
-          refundingAmount,
-          userinfo,
-          userTokens,
-          harvestOneFlag,
-          harvestTwoFlag,
-          harvestThreeFlag,
-          harvestFourFlag,
-          harvestOneBlock,
-          harvestTwoBlock,
-          harvestThreeBlock,
-          harvestFourBlock,
-        ] = await multicall(multicallContract, ifoAbi, calls)
+        const [balance, refundingAmount, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
+
+        console.log('first calls done');
+
+        const [harvestOneFlag, harvestTwoFlag, harvestThreeFlag, harvestFourFlag] = await multicall(
+          multicallContract,
+          ifoAbi,
+          calls2,
+        )
+        console.log('second calls done');
+
+        const [harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock] = await multicall(
+          multicallContract,
+          ifoAbi,
+          calls3,
+        )
+
+        console.log('third calls done');
 
         setOfferingTokenBalance(new BigNumber(balance))
 
