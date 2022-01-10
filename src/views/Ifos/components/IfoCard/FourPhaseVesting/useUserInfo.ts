@@ -35,7 +35,11 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
     offeringTokenHarvest: new BigNumber(0),
     offeringTokensVested: new BigNumber(0),
   })
-  const [userInfo, setUserInfo] = useState({ amount: new BigNumber(0), refunded: false, refundingAmount: new BigNumber(0) })
+  const [userInfo, setUserInfo] = useState({
+    amount: new BigNumber(0),
+    refunded: false,
+    refundingAmount: new BigNumber(0),
+  })
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
   const [harvestBlockReleases, setHarvestBlockReleases] = useState({
     one: 0,
@@ -47,7 +51,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
   useEffect(() => {
     const fetch = async () => {
       const multicallContract = getContract(multicallABI, multicallAddress, chainId)
-      if (!address) return
+      if (!address || !account) return
 
       const calls = [
         {
@@ -112,42 +116,46 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
         },
       ]
 
-      const [
-        balance,
-        refundingAmount,
-        userinfo,
-        userTokens,
-        harvestOneFlag,
-        harvestTwoFlag,
-        harvestThreeFlag,
-        harvestFourFlag,
-        harvestOneBlock,
-        harvestTwoBlock,
-        harvestThreeBlock,
-        harvestFourBlock,
-      ] = await multicall(multicallContract, ifoAbi, calls)
+      try {
+        const [
+          balance,
+          refundingAmount,
+          userinfo,
+          userTokens,
+          harvestOneFlag,
+          harvestTwoFlag,
+          harvestThreeFlag,
+          harvestFourFlag,
+          harvestOneBlock,
+          harvestTwoBlock,
+          harvestThreeBlock,
+          harvestFourBlock,
+        ] = await multicall(multicallContract, ifoAbi, calls)
 
-      setOfferingTokenBalance(new BigNumber(balance))
+        setOfferingTokenBalance(new BigNumber(balance))
 
-      // Get block release times in seconds
-      setHarvestBlockReleases({
-        one: (harvestOneBlock - currentBlock) * BSC_BLOCK_TIME,
-        two: (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME,
-        three: (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME,
-        four: (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME,
-      })
+        // Get block release times in seconds
+        setHarvestBlockReleases({
+          one: (harvestOneBlock - currentBlock) * BSC_BLOCK_TIME,
+          two: (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME,
+          three: (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME,
+          four: (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME,
+        })
 
-      setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
+        setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
 
-      setUserTokenStatus(userTokens)
-      setUserInfo({
-        amount: new BigNumber(userinfo.amount || 0),
-        refunded: userinfo.refunded,
-        refundingAmount: new BigNumber(refundingAmount || 0),
-      })
+        setUserTokenStatus(userTokens)
+        setUserInfo({
+          amount: new BigNumber(userinfo.amount || 0),
+          refunded: userinfo.refunded,
+          refundingAmount: new BigNumber(refundingAmount || 0),
+        })
+      } catch (e) {
+        console.error('Multicall error', e, { address, account, chainId, multicallAddress })
+      }
     }
 
-    if (account) {
+    if (address && account) {
       fetch()
     }
   }, [account, contract, address, refetch, fastRefresh, multicallAddress, chainId, tokenDecimals, currentBlock])

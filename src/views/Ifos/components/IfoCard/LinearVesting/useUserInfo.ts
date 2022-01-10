@@ -47,8 +47,6 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
     const fetch = async () => {
       const multicallContract = getContract(multicallABI, multicallAddress, chainId)
 
-      if (!address) return
-
       const calls = [
         {
           address,
@@ -72,45 +70,49 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
         },
       ]
 
-      const [userTokens, userInfos, refundingAmount, offeringAmount] = await multicall(
-        multicallContract,
-        ifoLinearAbi,
-        calls,
-      )
-      setUserTokenStatus({
-        stakeTokenHarvest: getBalanceNumber(new BigNumber(userTokens?.stakeTokenHarvest.toString()), tokenDecimals),
-        offeringTokenTotalHarvest: getBalanceNumber(
-          new BigNumber(userTokens?.offeringTokenTotalHarvest?.toString()),
-          tokenDecimals,
-        ),
-        offeringTokenInitialHarvest: getBalanceNumber(
-          new BigNumber(userTokens?.offeringTokenInitialHarvest?.toString()),
-          tokenDecimals,
-        ),
-        offeringTokenVestedHarvest: getBalanceNumber(
-          new BigNumber(userTokens?.offeringTokenVestedHarvest?.toString()),
-          tokenDecimals,
-        ),
-        offeringTokensVested: getBalanceNumber(
-          new BigNumber(userTokens?.offeringTokensVested?.toString()),
-          tokenDecimals,
-        ),
-      })
-      setUserInfo({
-        amount: getBalanceNumber(new BigNumber(userInfos?.amount.toString())),
-        refundingAmount: getBalanceNumber(new BigNumber(refundingAmount.toString())),
-        offeringAmount: getBalanceNumber(new BigNumber(offeringAmount.toString()), tokenDecimals),
-        offeringTokensClaimed: getBalanceNumber(
-          new BigNumber(userInfos?.offeringTokensClaimed?.toString()),
-          tokenDecimals,
-        ),
-        lastBlockHarvested: new BigNumber(userInfos?.offeringTokenInitialHarvest?.toString()).toNumber(),
-        refunded: userInfos?.refunded,
-        hasHarvestedInitial: userInfos?.hasHarvestedInitial,
-      })
+      try {
+        const [userTokens, userInfos, refundingAmount, offeringAmount] = await multicall(
+          multicallContract,
+          ifoLinearAbi,
+          calls,
+        )
+        setUserTokenStatus({
+          stakeTokenHarvest: getBalanceNumber(new BigNumber(userTokens?.stakeTokenHarvest.toString()), tokenDecimals),
+          offeringTokenTotalHarvest: getBalanceNumber(
+            new BigNumber(userTokens?.offeringTokenTotalHarvest?.toString()),
+            tokenDecimals,
+          ),
+          offeringTokenInitialHarvest: getBalanceNumber(
+            new BigNumber(userTokens?.offeringTokenInitialHarvest?.toString()),
+            tokenDecimals,
+          ),
+          offeringTokenVestedHarvest: getBalanceNumber(
+            new BigNumber(userTokens?.offeringTokenVestedHarvest?.toString()),
+            tokenDecimals,
+          ),
+          offeringTokensVested: getBalanceNumber(
+            new BigNumber(userTokens?.offeringTokensVested?.toString()),
+            tokenDecimals,
+          ),
+        })
+        setUserInfo({
+          amount: getBalanceNumber(new BigNumber(userInfos?.amount.toString())),
+          refundingAmount: getBalanceNumber(new BigNumber(refundingAmount.toString())),
+          offeringAmount: getBalanceNumber(new BigNumber(offeringAmount.toString()), tokenDecimals),
+          offeringTokensClaimed: getBalanceNumber(
+            new BigNumber(userInfos?.offeringTokensClaimed?.toString()),
+            tokenDecimals,
+          ),
+          lastBlockHarvested: new BigNumber(userInfos?.offeringTokenInitialHarvest?.toString()).toNumber(),
+          refunded: userInfos?.refunded,
+          hasHarvestedInitial: userInfos?.hasHarvestedInitial,
+        })
+      } catch (e) {
+        console.error('Multicall error', e, { address, account, chainId, multicallAddress })
+      }
     }
 
-    if (account) {
+    if (address && account) {
       fetch()
     }
   }, [account, contract, address, refetch, fastRefresh, multicallAddress, chainId, tokenDecimals])
