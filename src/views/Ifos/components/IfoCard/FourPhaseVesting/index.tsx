@@ -190,7 +190,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
         { label: 'Tokens harvested', value: totalTokensHarvested.toFixed(4) },
         {
           label: 'Vested value',
-          value: `${Number(vestedValueAmount).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
+          value: `${Number(getBalanceNumber(vestedValueAmount, 18)).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
         },
       ]
 
