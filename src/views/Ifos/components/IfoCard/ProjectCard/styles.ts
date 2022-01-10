@@ -19,7 +19,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 30px;
+  padding: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px 50px;

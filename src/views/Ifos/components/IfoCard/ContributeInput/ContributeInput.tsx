@@ -19,22 +19,40 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
 
-  const { pendingTx, handleDeposit } = useIAODeposit(contract, currencyAddress, tokenBalance);
+  const { pendingTx, handleDeposit } = useIAODeposit(contract, currencyAddress, tokenBalance)
 
   return (
     <Box>
-      <Flex flexDirection="column">
-        <Flex justifyContent="space-between" px="8px">
-          <Label>BALANCE:</Label>
-          <Label>
-            {balance} {currency}
-          </Label>
-        </Flex>
-        <ContributeInput value={value} scale="lg" type="number" onChange={(e) => setValue(e.currentTarget.value)} />
-      </Flex>
-      <ContributeButton disabled={disabled || pendingTx} variant="yellow" onClick={() => handleDeposit(value)}>
-        CONTRIBUTE
-      </ContributeButton>
+      <table>
+        <thead>
+          <th>
+            <Flex justifyContent="space-between" px="8px">
+              <Label>BALANCE: </Label>
+              <Label>
+                {balance} {currency}
+              </Label>
+            </Flex>
+          </th>
+          <th> </th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <ContributeInput
+                value={value}
+                scale="lg"
+                type="number"
+                onChange={(e) => setValue(e.currentTarget.value)}
+              />
+            </td>
+            <td>
+              <ContributeButton disabled={disabled || pendingTx} variant="yellow" onClick={() => handleDeposit(value)}>
+                CONTRIBUTE
+              </ContributeButton>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </Box>
   )
 }

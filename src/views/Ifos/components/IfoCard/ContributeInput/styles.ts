@@ -13,7 +13,7 @@ export const Box = styled(Flex)`
 `
 
 export const ContributeButton = styled(Button)`
-  margin-top: 18px;
+  margin-left: 16px;
 `
 
 export const ContributeInput = styled(Input)`
