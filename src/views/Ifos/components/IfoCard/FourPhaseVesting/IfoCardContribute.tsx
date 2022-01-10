@@ -35,7 +35,7 @@ export interface Props {
 }
 
 const formatTime = (time: any): string => {
-  return `${time.days}d - ${time.hours}h - ${time.minutes}m`
+  return `${time.days}d ${time.hours}h ${time.minutes}m`
 }
 
 const IfoCardContribute: React.FC<Props> = ({
@@ -98,8 +98,6 @@ const IfoCardContribute: React.FC<Props> = ({
   )
   const tokensVested = getBalanceNumber(new BigNumber(userTokenStatus?.offeringTokensVested.toString()), tokenDecimals)
 
-  console.log('IfoCardContribute', {amountContributed, tokensVested})
-  
   return (
     <>
       {!isFinished && account && (
@@ -140,7 +138,7 @@ const IfoCardContribute: React.FC<Props> = ({
                       {!userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim color="white">Claim</Claim>}
                       {harvestBlockReleases.two > 0 && (
                         <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
                         </>
                       )}
@@ -153,7 +151,7 @@ const IfoCardContribute: React.FC<Props> = ({
                       {!userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim color="white">Claim</Claim>}
                       {harvestBlockReleases.three > 0 && (
                         <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
                         </>
                       )}
@@ -166,7 +164,7 @@ const IfoCardContribute: React.FC<Props> = ({
                       {!userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim color="white">Claim</Claim>}
                       {harvestBlockReleases.four > 0 && (
                         <>
-                          <DisplayVestingTime>Vesting Timer</DisplayVestingTime>
+                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
                         </>
                       )}

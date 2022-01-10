@@ -125,22 +125,17 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       try {
         const [balance, refundingAmount, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
 
-        console.log('first calls done')
-
         const [harvestOneFlag, harvestTwoFlag, harvestThreeFlag, harvestFourFlag] = await multicall(
           multicallContract,
           ifoAbi,
           calls2,
         )
-        console.log('second calls done')
 
         const [harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock] = await multicall(
           multicallContract,
           ifoAbi,
           calls3,
         )
-
-        console.log('third calls done', { userinfo, refundingAmount, userTokens })
 
         setOfferingTokenBalance(new BigNumber(balance?.toString()))
 
@@ -159,7 +154,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           offeringTokenHarvest: new BigNumber(userTokens.offeringTokenHarvest.toString()),
           offeringTokensVested: new BigNumber(userTokens.offeringTokensVested.toString()),
         })
-        
+
         setUserInfo({
           amount: new BigNumber(userinfo.amount?.toString() || 0),
           refunded: userinfo.refunded,

@@ -21,8 +21,8 @@ export const VestingButtonWrapper = styled.div`
 `
 
 export const VestingClaimButton = styled(Button)`
-  width: 120px;
-  height: 60px;
+  width: 130px;
+  height: 44px;
   background-color: secondary;
   margin: 10px;
   flex-shrink: 0;
@@ -35,31 +35,22 @@ export const VestingClaimButton = styled(Button)`
   }
   display: flex;
   flex-direction: column;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    width: 140px;
-  }
 `
 
-export const DisplayVestingTime = styled(Text)`
+export const DisplayVestingTime = styled(Text)<{label?: boolean}>`
   font-family: Poppins;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 26px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 13px;
-  }
+  font-size: ${({ label }) => label ? '12px' : '14px'};
+  font-weight: ${({ label }) => label ? 'normal' : 'bold'};
+  line-height: ${({ label }) => label ? '18px' : '24px'};
 `
 
 export const Claim = styled(Text)`
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 36px;
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 20px;
-  }
+  line-height: 24px;
+  text-transform: uppercase;
 `
 
 export const TextWrapRow = styled.div`
