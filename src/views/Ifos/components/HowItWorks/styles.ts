@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Text, Heading } from '@apeswapfinance/uikit'
+import { Text, Heading } from '@apeswapfinance/uikit'
 
 export const FeatureBox = styled.div`
   display: flex;

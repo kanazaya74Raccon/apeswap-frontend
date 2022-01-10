@@ -177,7 +177,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
       const totalTokensHarvested =
         getBalanceNumber(offeringTokenBalance, tokenDecimals) - (tokensVested + tokensHarvestedAvailable)
       const vestedValueAmount = userInfo.amount.minus(userInfo.refundingAmount)
-      const vestedValueDollar = getBalanceNumber(vestedValueAmount.times(currencyAddress), 18).toFixed(2)
+      const vestedValueDollar = getBalanceNumber(vestedValueAmount.times(currencyPrice), 18).toFixed(2)
 
       texts = [
         {
@@ -211,7 +211,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     offeringTokenBalance,
     raiseAmount,
     saleAmount,
-    currencyAddress,
+    currencyPrice,
     state.raisingAmount,
     state.totalAmount,
     tokenDecimals,

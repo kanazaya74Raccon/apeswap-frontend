@@ -9,8 +9,6 @@ import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
-import { CHAIN_ID } from 'config/constants'
-import track from 'utils/track'
 import useUserInfo from './useUserInfo'
 import {
   ApproveButton,
