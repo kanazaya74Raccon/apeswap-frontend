@@ -125,14 +125,14 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       try {
         const [balance, refundingAmount, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
 
-        console.log('first calls done');
+        console.log('first calls done')
 
         const [harvestOneFlag, harvestTwoFlag, harvestThreeFlag, harvestFourFlag] = await multicall(
           multicallContract,
           ifoAbi,
           calls2,
         )
-        console.log('second calls done');
+        console.log('second calls done')
 
         const [harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock] = await multicall(
           multicallContract,
@@ -140,9 +140,9 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           calls3,
         )
 
-        console.log('third calls done', { userinfo, refundingAmount, userTokens });
+        console.log('third calls done', { userinfo, refundingAmount, userTokens })
 
-        setOfferingTokenBalance(new BigNumber(balance))
+        setOfferingTokenBalance(new BigNumber(balance?.toString()))
 
         // Get block release times in seconds
         setHarvestBlockReleases({
@@ -154,11 +154,16 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
 
         setUserHarvestedFlags([harvestOneFlag[0], harvestTwoFlag[0], harvestThreeFlag[0], harvestFourFlag[0]])
 
-        setUserTokenStatus(userTokens)
+        setUserTokenStatus({
+          stakeTokenHarvest: new BigNumber(userTokens.stakeTokenHarvest.toString()),
+          offeringTokenHarvest: new BigNumber(userTokens.offeringTokenHarvest.toString()),
+          offeringTokensVested: new BigNumber(userTokens.offeringTokensVested.toString()),
+        })
+        
         setUserInfo({
-          amount: new BigNumber(userinfo.amount || 0),
+          amount: new BigNumber(userinfo.amount?.toString() || 0),
           refunded: userinfo.refunded,
-          refundingAmount: new BigNumber(refundingAmount || 0),
+          refundingAmount: new BigNumber(refundingAmount?.toString() || 0),
         })
       } catch (e) {
         console.error('Multicall error', e, { address, account, chainId, multicallAddress })
