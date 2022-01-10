@@ -10,7 +10,11 @@ export const StyledProgress = styled.div`
   gap: 8px;
   align-items: center;
   width: 100%;
-  min-width: 320px;
+  
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    min-width: 320px;
+  }
 `
 
 export const ProgressBar = styled.div`

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { SwiperSlide } from 'swiper/react'
 
 import { pastIfos } from 'config/constants/ifo'
-import { Container, Box, ProjectImage, ArrowImage, StatusTitle, LeftArrowIcon, RightArrowIcon } from './styles'
+import { Container, Box, ProjectImage, ArrowImage, StatusTitle, LeftArrowIcon, RightArrowIcon, ProjectSwiper } from './styles'
 
 import 'swiper/swiper.min.css'
 
@@ -42,12 +42,12 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
       <ArrowImage onClick={handleClickPrev}>
         <LeftArrowIcon />
       </ArrowImage>
-      <Swiper
+      <ProjectSwiper
         onSwiper={setSwiperRef}
         onSlideChange={(w) => handleSlideChange(w.activeIndex)}
-        slidesPerView={5}
+        slidesPerView={3}
         centeredSlides
-        spaceBetween={30}
+        spaceBetween={10}
         pagination={{
           type: 'fraction',
         }}
@@ -73,7 +73,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
             )}
           </SwiperSlide>
         ))}
-      </Swiper>
+      </ProjectSwiper>
       <ArrowImage onClick={handleClickNext}>
         <RightArrowIcon />
       </ArrowImage>

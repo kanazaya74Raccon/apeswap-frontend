@@ -12,6 +12,7 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
   const handleDeposit = useCallback(
     async (amount: string) => {
       const depositValue = new BigNumber(amount).times(new BigNumber(10).pow(18))
+
       const isValid = depositValue.isGreaterThan(0) && depositValue.isLessThanOrEqualTo(tokenBalance)
 
       if (!isValid) return
