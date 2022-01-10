@@ -45,7 +45,7 @@ export const RightArrowIcon = styled(RightArrow)`
 `
 
 export const ProjectSwiper = styled(Swiper)`
-width: calc(57vw);
+  width: calc(57vw);
   ${({ theme }) => theme.mediaQueries.sm} {
     width: 100%;
   }

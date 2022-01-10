@@ -1,11 +1,20 @@
 import React from 'react'
+import useMedia from 'use-media'
 import { SwiperSlide } from 'swiper/react'
 
 import { pastIfos } from 'config/constants/ifo'
-import { Container, Box, ProjectImage, ArrowImage, StatusTitle, LeftArrowIcon, RightArrowIcon, ProjectSwiper } from './styles'
+import {
+  Container,
+  Box,
+  ProjectImage,
+  ArrowImage,
+  StatusTitle,
+  LeftArrowIcon,
+  RightArrowIcon,
+  ProjectSwiper,
+} from './styles'
 
 import 'swiper/swiper.min.css'
-
 
 const padLeadingZeros = (num: number, size: number) => {
   let s = num.toString()
@@ -18,6 +27,7 @@ interface Props {
 }
 
 const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
+  const isWide = useMedia({ minWidth: '576px' })
   const [swiperRef, setSwiperRef] = React.useState<any>(null)
 
   const handleClickPrev = () => {
@@ -45,9 +55,9 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
       <ProjectSwiper
         onSwiper={setSwiperRef}
         onSlideChange={(w) => handleSlideChange(w.activeIndex)}
-        slidesPerView={3}
+        slidesPerView={isWide ? 5 : 3}
         centeredSlides
-        spaceBetween={10}
+        spaceBetween={isWide ? 30 : 10}
         pagination={{
           type: 'fraction',
         }}
