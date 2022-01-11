@@ -3340,6 +3340,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 175,
+    tokenName: 'BCMC',
+    image: 'BCMC.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.bcmc,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xb1c0a6518b766809dac889f2e49134864ea2cb57',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://bcmhunt.com/',
+    harvest: true,
+    tokenPerBlock: `0.033096064814814814`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

@@ -2924,6 +2924,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://gmr.center/',
   },
   {
+    pid: 182,
+    image: 'BCMC.png',
+    lpSymbol: 'BCMC-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe30da8e84b561f72acc4b21f136c9025d9e344fd',
+    },
+    tokenSymbol: 'BCMC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xc10358f062663448a3489fc258139944534592ac',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bcmhunt.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
