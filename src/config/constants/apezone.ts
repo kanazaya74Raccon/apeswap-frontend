@@ -2,28 +2,28 @@ import { Ifo } from './types'
 
 const ApeZone: { ifos: Ifo[] } = {
   ifos: [
-    // {
-    //   id: 'stz',
-    //   address: '0xe92e36608867411241b4c7862c2a5aD2E7F9ecf4', // Leave empty for "Coming Soon!"
-    //   isActive: true,
-    //   isLinear: true,
-    //   name: 'LinearIAO Test 1',
-    //   subTitle: `Testing LinearVesting IAO on the testnet`,
-    //   description: `We will test if the LinearVesting IAO works correctly on the testnet.`,
-    //   launchDate: 'Jan 7th',
-    //   launchTime: '20:41:02 UTC',
-    //   saleAmount: '100 IAZO',
-    //   raiseAmount: '$47.5',
-    //   vestingTime: '1 day 7 hours',
-    //   projectSiteUrl: 'https://99starz.io/',
-    //   currency: 'GNANA',
-    //   currencyAddress: '0xf693bda9d3c56d5f9165c8633d9098e3c4ae495a',
-    //   offeringCurrency: 'IAZO',
-    //   tokenDecimals: 18,
-    //   releaseBlockNumber: 15664089, // block to start showing contract details
-    //   vesting: true,
-    //   // burnedTxUrl: '',
-    // },
+    {
+      id: 'stz',
+      address: '0xF06BFE229Da1A8d4479D6684DB35DB9030bcF94c', // Leave empty for "Coming Soon!"
+      isActive: true,
+      isLinear: true,
+      name: 'LinearIAO Test 1',
+      subTitle: `Testing LinearVesting IAO on the testnet`,
+      description: `We will test if the LinearVesting IAO works correctly on the testnet.`,
+      launchDate: 'Jan 11st',
+      launchTime: '14:29:32 UTC',
+      saleAmount: '100 IAZO',
+      raiseAmount: '$47.5',
+      vestingTime: '2 hours',
+      projectSiteUrl: 'https://99starz.io/',
+      currency: 'GNANA',
+      currencyAddress: '0xf693bda9d3c56d5f9165c8633d9098e3c4ae495a',
+      offeringCurrency: 'IAZO',
+      tokenDecimals: 18,
+      releaseBlockNumber: 15771000, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
     {
       id: 'stz',
       address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"

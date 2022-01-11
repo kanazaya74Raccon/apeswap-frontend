@@ -1,28 +1,28 @@
 import { Ifo } from './types'
 
 const ifos: Ifo[] = [
-  // {
-  //   id: 'stz',
-  //   address: '0x9EEDF3fB42fED2Ef6bDbDaF87A0f59B864D240be', // Leave empty for "Coming Soon!"
-  //   isActive: true,
-  //   isLinear: true,
-  //   name: 'LinearIAO Test 1',
-  //   subTitle: `Testing LinearVesting IAO on the testnet`,
-  //   description: `We will test if the LinearVesting IAO works correctly on the testnet.`,
-  //   launchDate: 'Jan 7th',
-  //   launchTime: '20:41:02 UTC',
-  //   saleAmount: '100 IAZO',
-  //   raiseAmount: '$47.5',
-  //   vestingTime: '1 day 7 hours',
-  //   projectSiteUrl: 'https://99starz.io/',
-  //   currency: 'BNB',
-  //   currencyAddress: '0x0000000000000000000000000000000000000000',
-  //   offeringCurrency: 'IAZO',
-  //   tokenDecimals: 18,
-  //   releaseBlockNumber: 15664089, // block to start showing contract details
-  //   vesting: true,
-  //   // burnedTxUrl: '',
-  // },
+  {
+    id: 'stz',
+    address: '0xF52FdC5A58e880408E0c3C02837C7936b855CCC3', // Leave empty for "Coming Soon!"
+    isActive: true,
+    isLinear: true,
+    name: 'LinearIAO Test 1',
+    subTitle: `Testing LinearVesting IAO on the testnet`,
+    description: `We will test if the LinearVesting IAO works correctly on the testnet.`,
+    launchDate: 'Jan 11st',
+    launchTime: '14:29:32 UTC',
+    saleAmount: '100 IAZO',
+    raiseAmount: '$47.5',
+    vestingTime: '2 hours',
+    projectSiteUrl: 'https://99starz.io/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    offeringCurrency: 'IAZO',
+    tokenDecimals: 18,
+    releaseBlockNumber: 15771000, // block to start showing contract details
+    vesting: true,
+    // burnedTxUrl: '',
+  },
   {
     id: 'stz',
     address: '0xa526477bBf22643bE96D02Ebf3934BA1721059f3', // Leave empty for "Coming Soon!"
