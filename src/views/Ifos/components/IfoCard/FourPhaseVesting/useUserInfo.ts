@@ -38,7 +38,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
   const [userInfo, setUserInfo] = useState({
     amount: new BigNumber(0),
     refunded: false,
-    refundingAmount: new BigNumber(0),
+    allocation: new BigNumber(0),
   })
   const [userHarvestedFlags, setUserHarvestedFlags] = useState([true, true, true, true])
   const [harvestBlockReleases, setHarvestBlockReleases] = useState({
@@ -61,7 +61,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
         },
         {
           address,
-          name: 'getRefundingAmount',
+          name: 'getUserAllocation',
           params: [account],
         },
         {
@@ -123,7 +123,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       ]
 
       try {
-        const [balance, refundingAmount, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
+        const [balance, userAllocation, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
 
         const [harvestOneFlag, harvestTwoFlag, harvestThreeFlag, harvestFourFlag] = await multicall(
           multicallContract,
@@ -155,10 +155,11 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           offeringTokensVested: new BigNumber(userTokens.offeringTokensVested.toString()),
         })
 
+
         setUserInfo({
-          amount: new BigNumber(userinfo.amount?.toString() || 0),
+          amount: new BigNumber(userinfo.amount.toString()),
           refunded: userinfo.refunded,
-          refundingAmount: new BigNumber(refundingAmount?.toString() || 0),
+          allocation: new BigNumber(userAllocation.toString()).dividedBy(new BigNumber(10).pow(12)),
         })
       } catch (e) {
         console.error('Multicall error', e, { address, account, chainId, multicallAddress })
