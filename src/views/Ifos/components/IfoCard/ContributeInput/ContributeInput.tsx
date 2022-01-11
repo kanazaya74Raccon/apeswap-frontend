@@ -42,6 +42,8 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
                 value={value}
                 scale="lg"
                 type="number"
+                min="0"
+                step="0.01"
                 onChange={(e) => setValue(e.currentTarget.value)}
               />
             </td>
