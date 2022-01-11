@@ -905,6 +905,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  bcmc: {
+    symbol: 'BCMC',
+    address: {
+      56: '0xc10358f062663448a3489fC258139944534592ac',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
