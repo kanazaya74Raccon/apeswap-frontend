@@ -38,6 +38,7 @@ const IfoCardContribute: React.FC<Props> = ({
   contract,
   amountContributed,
   isFinished,
+  isActive,
   userTokenStatus,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
@@ -51,7 +52,7 @@ const IfoCardContribute: React.FC<Props> = ({
     return null
   }
 
-  if (currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
+  if (isActive && currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
     return (
       <ApproveButton
         disabled={pendingTx}
