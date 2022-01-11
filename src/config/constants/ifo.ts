@@ -3,9 +3,9 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0xF52FdC5A58e880408E0c3C02837C7936b855CCC3', // Leave empty for "Coming Soon!"
+    address: '0x280889B272915ecb1E42D09eFEE5396f0c684000', // Leave empty for "Coming Soon!"
     isActive: true,
-    isLinear: true,
+    isLinear: false,
     name: 'LinearIAO Test 1',
     subTitle: `Testing LinearVesting IAO on the testnet`,
     description: `We will test if the LinearVesting IAO works correctly on the testnet.`,
