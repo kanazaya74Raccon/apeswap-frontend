@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
+import web3 from 'web3';
 import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 import { ZERO_ADDRESS } from 'config'
@@ -21,9 +22,9 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
 
       try {
         if (currencyAddress === ZERO_ADDRESS) {
-          await contract.methods.depositNative().send({ from: account, value: depositValue })
+          await contract.methods.depositNative().send({ from: account, value: web3.utils.toBN(depositValue.toString()) })
         } else {
-          await contract.methods.deposit(depositValue).send({ from: account })
+          await contract.methods.deposit(web3.utils.toBN(depositValue.toString())).send({ from: account })
         }
 
         track({
