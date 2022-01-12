@@ -1,0 +1,7 @@
+{
+    "redirects": [
+        { "source": "/home", "destination": "/", "permanent": true },
+        { "source": "/about", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
+        { "source": "/pool", "destination": "/pools", "permanent": true }
+    ]
+}
