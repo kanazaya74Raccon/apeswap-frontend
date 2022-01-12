@@ -6,7 +6,7 @@ const ApeZone: { ifos: Ifo[] } = {
       id: 'stz',
       address: '0xb2ceE94E3A757307eDf89A629F6a04F9e5E0Ed96', // Leave empty for "Coming Soon!"
       isActive: true,
-      isLinear: false,
+      isLinear: true,
       name: 'LinearIAO Test 1',
       subTitle: `Testing LinearVesting IAO on the mainnet`,
       description: `We will test if the LinearVesting IAO works correctly on the mainnet.`,
