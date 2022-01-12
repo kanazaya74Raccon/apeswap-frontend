@@ -5,7 +5,7 @@ const ifos: Ifo[] = [
     id: 'stz',
     address: '0x37cEb9F73d7cE2Da8A97979A32C1935F60aBa26A', // Leave empty for "Coming Soon!"
     isActive: true,
-    isLinear: false,
+    isLinear: true,
     name: 'LinearIAO Test 1',
     subTitle: `Testing LinearVesting IAO on the mainnet`,
     description: `We will test if the LinearVesting IAO works correctly on the mainnet.`,
