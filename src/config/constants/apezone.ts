@@ -4,21 +4,21 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0x1c5A8380D645BA3F29D2481430BBA4Bb6FaFB1D9', // Leave empty for "Coming Soon!"
+      address: '0x2BC7F5E98Da4Df92916164016082F24076f0a4d5', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: false,
       name: 'Phase vesting Test 2',
       subTitle: `Testing 4-phase vesting IAO on the mainnet`,
       description: `We will test if the 4-phase vesting IAO works correctly on the mainnet.`,
       launchDate: 'Jan 13rd',
-      launchTime: '18:57:17 UTC',
-      saleAmount: '100 SCAR',
+      launchTime: '19:42:08 UTC',
+      saleAmount: '2,000,000,000,000 IAW',
       raiseAmount: '$2',
       vestingTime: '2 hours',
       projectSiteUrl: 'https://99starz.io/',
       currency: 'GNANA',
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
-      offeringCurrency: 'SCAR',
+      offeringCurrency: 'IAW',
       tokenDecimals: 18,
       releaseBlockNumber: 14331871, // block to start showing contract details
       vesting: true,
