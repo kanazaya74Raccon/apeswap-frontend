@@ -1,5 +1,5 @@
-import React from 'react'
-import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
+import React, { useState } from 'react'
+import { BaseLayout, Card, Heading, Text, WarningIcon, CardBody } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
 
@@ -9,19 +9,8 @@ import Divider from './components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
 import Iao from './components/IAO/CurrentIao'
-import Description from './components/Description/Description'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
 import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
-
-const StyledHeroSection = styled.div`
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const MarginContainer = styled.div`
-  margin: 53px 30px;
-`
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -44,10 +33,6 @@ const Cards = styled(BaseLayout)`
     }
   }
 `
-const PaddedCard = styled(Card)`
-  padding: 26px;
-`
-
 const Header = styled.div`
   position: relative;
   overflow-y: hidden;
@@ -56,37 +41,37 @@ const Header = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/banners/stats-night.svg)' : 'url(/images/banners/stats.svg)'};
+    theme.isDark ? 'url(/images/banners/gnana-dark-bg.svg)' : 'url(/images/banners/gnana-light-bg.svg)'};
   height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-bottom: 30px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     height: 300px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 `
-const HeadingContainer = styled.div`
+const HeaderContainer = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
+  position: absolute;
+  z-index: 999;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    position: relative;
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 90%;
+    position: relative;
+  }
 `
 const StyledHeading = styled(Heading)`
-  font-size: 32px;
-  max-width: 176px !important;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
-    max-width: 240px !important;
-  }
+  font-size: 36px;
+  max-width: 240px !important;
+  text-transform: uppercase;
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 44px;
@@ -98,27 +83,83 @@ const StyledHeading = styled(Heading)`
     max-width: 600px !important;
   }
 `
+const WindowDiv = styled.div`
+  background-image: url(/images/banners/gnana-light-banana.svg);
+`
+const PaddedCard = styled(Card)`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
+  padding: 10px;
+  border-radius: 20px;
+`
+const WarningHeader = styled(Heading)`
+  color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.white)};
+  font-size: 30px;
+  font-weight: 700;
+`
+const Warning = styled(WarningIcon)`
+  fill: #fff;
+  width: 52px;
+`
+const ReadMore = styled(Text)`
+  text-decoration-line: underline;
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.white};
+`
+const TopCard = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
+const Content = styled(CardBody)`
+  padding: 10px 20px;
+`
+const ContentText = styled(Text)`
+  letter-spacing: 5%;
+  font-size: 12px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
+`
 
 const Zone = () => {
+  const [readingMore, setReadingMore] = useState(false)
+
   return (
     <>
       <Header>
-        <HeadingContainer>
+        <HeaderContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
-            {TranslateString(999, 'Gnana Banana ?')}
+            {TranslateString(999, 'Golden Banana ?')}
           </StyledHeading>
-        </HeadingContainer>
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+            {TranslateString(999, '?')}
+          </StyledHeading>
+        </HeaderContainer>
+
+        <WindowDiv className="window" />
       </Header>
 
       <Page>
         <PaddedCard>
-          <Heading size="lg" fontFamily="poppins" color="warning">
-            WARNING
-          </Heading>
-          <Text fontFamily="poppins">
-            Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
-          </Text>
-          <Text fontFamily="poppins">This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA</Text>
+          <TopCard>
+            <Warning />
+            <WarningHeader>WARNING</WarningHeader>
+            <Warning />
+          </TopCard>
+          {!readingMore && <ReadMore>Read More</ReadMore>}
+          {readingMore && (
+            <Content>
+              <ContentText>
+                Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
+                that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+              </ContentText>
+            </Content>
+          )}
         </PaddedCard>
 
         <Cards>
@@ -127,20 +168,10 @@ const Zone = () => {
         </Cards>
         <GnanaUtility />
         <GnanaDisclaimers />
-        <Iao />
-        <Divider />
       </Page>
 
-      {/* 
-      <StyledHeroSection>
-        <MarginContainer>
-      <Description />
-          <Heading size="xl" mb="26px" color="primary" fontFamily="Titan One">
-            {TranslateString(999, 'Buy Golden Banana')}
-          </Heading>
-
-        </MarginContainer>
-      </StyledHeroSection> */}
+      <Iao />
+      <Divider />
     </>
   )
 }
