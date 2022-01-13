@@ -912,6 +912,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ari: {
+    symbol: 'ARI',
+    address: {
+      56: '0xc80A0A55CAF6a7bfB4Ee22f9380C4077312c4a35',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
