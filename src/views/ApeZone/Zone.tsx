@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BaseLayout, Card, Heading, Text, WarningIcon, CardBody } from '@apeswapfinance/uikit'
+import { BaseLayout, Card, Heading, Text, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
 
@@ -103,11 +103,17 @@ const Warning = styled(WarningIcon)`
   fill: #fff;
   width: 52px;
 `
-const ReadMore = styled(Text)`
+const ReadMore = styled(Button)`
+  background: none;
+  padding: 0;
+  margin: 0;
   text-decoration-line: underline;
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
+  border-radius: 0;
+  box-shadow: unset;
+  height: 20px;
 `
 const TopCard = styled.div`
   display: flex;
@@ -128,6 +134,10 @@ const ContentText = styled(Text)`
 
 const Zone = () => {
   const [readingMore, setReadingMore] = useState(false)
+
+  const toggleReadMore = () => {
+    setReadingMore(!readingMore)
+  }
 
   return (
     <>
@@ -151,7 +161,7 @@ const Zone = () => {
             <WarningHeader>WARNING</WarningHeader>
             <Warning />
           </TopCard>
-          {!readingMore && <ReadMore>Read More</ReadMore>}
+          {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
           {readingMore && (
             <Content>
               <ContentText>
