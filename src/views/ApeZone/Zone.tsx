@@ -1,16 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import { BaseLayout, Card, Heading, Text, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
+import BigNumber from 'bignumber.js'
+import { ethers } from 'ethers'
+import { useWeb3React } from '@web3-react/core'
 
+import useApproveTransaction from 'hooks/useApproveTransaction'
+import { useBanana, useTreasury } from 'hooks/useContract'
+import { useBuyGoldenBanana } from 'hooks/useGoldenBanana'
+import { useToast } from 'state/hooks'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { useBananaAddress } from 'hooks/useAddress'
+
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import CardValue from 'views/Home/components/CardValue'
 import Page from 'components/layout/Page'
-
 import Divider from './components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
 import Iao from './components/IAO/CurrentIao'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
 import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
+import ExchangeCard from './components/ExchangeCard'
 
 const Cards = styled(BaseLayout)`
   align-items: stretch;
@@ -134,6 +146,58 @@ const ContentText = styled(Text)`
 
 const Zone = () => {
   const [readingMore, setReadingMore] = useState(false)
+  // BUY (CONVERT)
+  const MAX_BUY = 50
+  const [val, setVal] = useState('1')
+  const [unlimited, setUnlimited] = useState(false)
+  const gnanaVal = parseFloat(val) * 0.7
+  const [processing, setProcessing] = useState(false)
+  const treasuryContract = useTreasury()
+  const { handleBuy } = useBuyGoldenBanana()
+  const bananaBalance = useTokenBalance(useBananaAddress())
+  const { toastSuccess } = useToast()
+  const bananaContract = useBanana()
+  const { account } = useWeb3React()
+
+  const fullBalance = useMemo(() => {
+    return getFullDisplayBalance(bananaBalance)
+  }, [bananaBalance])
+
+  const handleChange = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      if (!unlimited && parseInt(e.currentTarget.value) > MAX_BUY) return
+      setVal(e.currentTarget.value)
+    },
+    [setVal, unlimited],
+  )
+
+  const handleSelectMax = useCallback(() => {
+    const max = parseInt(fullBalance) < MAX_BUY || unlimited ? fullBalance : MAX_BUY
+    setVal(max.toString())
+  }, [fullBalance, unlimited, setVal])
+
+  const { isApproving, isApproved, handleApprove } = useApproveTransaction({
+    onRequiresApproval: async (loadedAccount) => {
+      try {
+        const response = await bananaContract.methods.allowance(loadedAccount, treasuryContract.options.address).call()
+        const currentAllowance = new BigNumber(response)
+        return currentAllowance.gt(0)
+      } catch (error) {
+        console.warn(error)
+        return false
+      }
+    },
+    onApprove: () => {
+      return bananaContract.methods
+        .approve(treasuryContract.options.address, ethers.constants.MaxUint256)
+        .send({ from: account })
+    },
+    onSuccess: async () => {
+      toastSuccess('Approved!')
+    },
+  })
+
+  //
 
   const toggleReadMore = () => {
     setReadingMore(!readingMore)
@@ -173,6 +237,15 @@ const Zone = () => {
         </PaddedCard>
 
         <Cards>
+          <ExchangeCard
+            header="Convert"
+            fromToken="BANANA"
+            toToken="GNANA"
+            inputVal={val}
+            handleSelectMax={handleSelectMax}
+            handleChange={handleChange}
+            fullBalance={fullBalance}
+          />
           <BuyCard />
           <SellCard />
         </Cards>
