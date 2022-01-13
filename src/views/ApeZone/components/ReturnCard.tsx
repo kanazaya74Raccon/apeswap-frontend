@@ -77,10 +77,12 @@ const NewCheckBox = styled(Checkbox)`
 `
 
 const CheckBoxSection = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  visibility: hidden;
+  display: none;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: unset;
+    visibility: hidden;
+  }
 `
 
 const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
