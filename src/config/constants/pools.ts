@@ -3359,6 +3359,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 176,
+    tokenName: 'ARI',
+    image: 'ARI.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.ari,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x00262752032F07C51216B57909F175C972002393',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.manarium.com/',
+    harvest: true,
+    tokenPerBlock: `1.154513888888888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
