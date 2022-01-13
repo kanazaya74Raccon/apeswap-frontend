@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0xe13863C9f94520e633106CDe6b9fB2879d732408', // Leave empty for "Coming Soon!"
+      address: '0x1c5A8380D645BA3F29D2481430BBA4Bb6FaFB1D9', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: false,
       name: 'Phase vesting Test 2',
