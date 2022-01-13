@@ -2279,7 +2279,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 118,
     tokenName: 'IHC',
-    image: 'IHC.svg',
+    image: 'IHC.png',
     stakingToken: tokens.gnana,
     rewardToken: tokens.ihc,
     contractAddress: {
