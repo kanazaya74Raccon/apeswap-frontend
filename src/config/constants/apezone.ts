@@ -4,13 +4,13 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0x37cEb9F73d7cE2Da8A97979A32C1935F60aBa26A', // Leave empty for "Coming Soon!"
+      address: '0xe13863C9f94520e633106CDe6b9fB2879d732408', // Leave empty for "Coming Soon!"
       isActive: true,
-      isLinear: true,
-      name: 'LinearIAO Test 1',
-      subTitle: `Testing LinearVesting IAO on the mainnet`,
-      description: `We will test if the LinearVesting IAO works correctly on the mainnet.`,
-      launchDate: 'Jan 12nd',
+      isLinear: false,
+      name: 'Phase vesting Test 2',
+      subTitle: `Testing 4-phase vesting IAO on the mainnet`,
+      description: `We will test if the 4-phase vesting IAO works correctly on the mainnet.`,
+      launchDate: 'Jan 13rd',
       launchTime: '18:57:17 UTC',
       saleAmount: '100 IAZO',
       raiseAmount: '$4',
@@ -20,7 +20,7 @@ const ApeZone: { ifos: Ifo[] } = {
       currencyAddress: '0xddb3bd8645775f59496c821e4f55a7ea6a6dc299',
       offeringCurrency: 'IAZO',
       tokenDecimals: 18,
-      releaseBlockNumber: 14307896, // block to start showing contract details
+      releaseBlockNumber: 14331871, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },
