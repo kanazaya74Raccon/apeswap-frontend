@@ -1,10 +1,9 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 
 const useLinearIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unknown) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   const handleClaim = useCallback(async () => {
     try {
@@ -13,7 +12,7 @@ const useLinearIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unknow
 
       track({
         event: 'iao',
-        chain: CHAIN_ID,
+        chain: chainId,
         data: {
           cat: 'claim',
           contract: tx.to,
@@ -24,7 +23,7 @@ const useLinearIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unknow
     }
 
     setPendingTx(false)
-  }, [account, contract.methods, setPendingTx])
+  }, [account, contract.methods, setPendingTx, chainId])
 
   return handleClaim
 }

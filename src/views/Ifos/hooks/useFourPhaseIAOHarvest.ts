@@ -1,10 +1,9 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { CHAIN_ID } from 'config/constants'
 import track from 'utils/track'
 
 const useFourPhaseIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unknown) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   const handleClaim = useCallback(async (harvestPeriod: number) => {
     try {
@@ -13,7 +12,7 @@ const useFourPhaseIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unk
 
       track({
         event: 'iao',
-        chain: CHAIN_ID,
+        chain: chainId,
         data: {
           cat: 'claim',
           contract: tx.to,
@@ -25,7 +24,7 @@ const useFourPhaseIAOHarvest = (contract: any, setPendingTx: (f: boolean) => unk
     }
 
     setPendingTx(false)
-  }, [account, contract.methods, setPendingTx])
+  }, [account, contract.methods, setPendingTx, chainId])
 
   return handleClaim
 }

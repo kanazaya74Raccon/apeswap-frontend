@@ -1,25 +1,24 @@
 import { useCallback, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import web3 from 'web3';
-import { CHAIN_ID } from 'config/constants'
+import web3 from 'web3'
 import track from 'utils/track'
 import { ZERO_ADDRESS } from 'config'
 
 const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: BigNumber) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const [pendingTx, setPendingTx] = useState(false)
-  
+
   const isAmountValid = useCallback(
     (amount: string) => {
       const depositValue = new BigNumber(amount).times(new BigNumber(10).pow(18))
 
       const isValid = depositValue.isGreaterThan(0) && depositValue.isLessThanOrEqualTo(tokenBalance)
 
-      return isValid;
+      return isValid
     },
-    [tokenBalance]
-  );
+    [tokenBalance],
+  )
 
   const handleDeposit = useCallback(
     async (amount: string) => {
@@ -33,14 +32,16 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
 
       try {
         if (currencyAddress === ZERO_ADDRESS) {
-          await contract.methods.depositNative().send({ from: account, value: web3.utils.toBN(depositValue.toString()) })
+          await contract.methods
+            .depositNative()
+            .send({ from: account, value: web3.utils.toBN(depositValue.toString()) })
         } else {
           await contract.methods.deposit(web3.utils.toBN(depositValue.toString())).send({ from: account })
         }
 
         track({
           event: 'iao',
-          chain: CHAIN_ID,
+          chain: chainId,
           data: {
             amount: depositValue,
             cat: 'buy',
@@ -52,7 +53,7 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
       }
       setPendingTx(false)
     },
-    [account, contract.address, contract.methods, currencyAddress, tokenBalance],
+    [account, contract.address, contract.methods, currencyAddress, tokenBalance, chainId],
   )
 
   return {
