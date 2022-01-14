@@ -19,7 +19,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
 
-  const { pendingTx, handleDeposit } = useIAODeposit(contract, currencyAddress, tokenBalance)
+  const { pendingTx, handleDeposit, isAmountValid } = useIAODeposit(contract, currencyAddress, tokenBalance)
 
   return (
     <Box>
@@ -48,7 +48,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
               />
             </td>
             <td>
-              <ContributeButton disabled={disabled || pendingTx} variant="yellow" onClick={() => handleDeposit(value)}>
+              <ContributeButton disabled={disabled || pendingTx || !isAmountValid(value)} variant="yellow" onClick={() => handleDeposit(value)}>
                 CONTRIBUTE
               </ContributeButton>
             </td>
