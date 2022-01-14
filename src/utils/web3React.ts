@@ -1,5 +1,6 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { ConnectorNames } from '@apeswapfinance/uikit'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import getRpcUrl from 'utils/getRpcUrl'
@@ -23,10 +24,19 @@ const walletconnect = new WalletConnectConnector({
 
 const bscConnector = new BscConnector({ supportedChainIds: [CHAIN_ID.BSC] })
 
-export const connectorsByName: { [connectorName in ConnectorNames]?: any } = {
+export const walletlink = new WalletLinkConnector({
+  url: getRpcUrl(CHAIN_ID.BSC),
+  supportedChainIds: [CHAIN_ID.BSC],
+  appName: 'Apeswap',
+  darkMode: true,
+  appLogoUrl: 'https://apeswap.finance/logo.png',
+})
+
+export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
+  [ConnectorNames.Walletlink]: walletlink
 }
 
 export const getLibrary = (provider): Web3 => {

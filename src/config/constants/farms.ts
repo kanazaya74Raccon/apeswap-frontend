@@ -2126,7 +2126,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 134,
-    image: '',
+    image: 'IHC.png',
     lpSymbol: 'IHC-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -2922,6 +2922,40 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://gmr.center/',
+  },
+  {
+    pid: 182,
+    image: 'BCMC.png',
+    lpSymbol: 'BCMC-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xe30da8e84b561f72acc4b21f136c9025d9e344fd',
+    },
+    tokenSymbol: 'BCMC',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xc10358f062663448a3489fc258139944534592ac',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bcmhunt.com/',
+  },
+  {
+    pid: 183,
+    image: 'ARI.svg',
+    lpSymbol: 'ARI-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x63137d2Ffa818B5377F0F53FA1f3e3b020C5CCDe',
+    },
+    tokenSymbol: 'ARI',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xc80A0A55CAF6a7bfB4Ee22f9380C4077312c4a35',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.manarium.com/',
   },
   {
     pid: 7, // NOTE: Inactive Farm
