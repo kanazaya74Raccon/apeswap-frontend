@@ -33,6 +33,10 @@ export const ArrowImage = styled.div`
 export const StatusTitle = styled(Text)<{ isActive?: boolean }>`
   font-family: Titan one;
   text-align: center;
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 16px;
+  }
   opacity: ${({ isActive }) => (isActive ? 1 : 0.2)};
 `
 

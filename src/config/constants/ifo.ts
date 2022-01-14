@@ -10,7 +10,7 @@ const ifos: Ifo[] = [
     subTitle: `Testing 4-phase vesting IAO on the mainnet`,
     description: `We will test if the 4-phase vesting IAO works correctly on the mainnet.`,
     launchDate: 'Jan 13rd',
-    launchTime: '18:57:17 UTC',
+    launchTime: '19:42:08 UTC',
     saleAmount: '2,000,000,000,000 IAW',
     raiseAmount: '$4',
     vestingTime: '2 hours',

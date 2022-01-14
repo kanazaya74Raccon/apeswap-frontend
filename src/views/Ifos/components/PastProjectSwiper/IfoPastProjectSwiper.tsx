@@ -70,8 +70,8 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
                 <ProjectImage
                   src={`/images/ifos/${ifo.id}.svg`}
                   alt={ifo.id}
-                  width="64px"
-                  height="64px"
+                  width="60px"
+                  height="60px"
                   isActive={isActive}
                 />
 
