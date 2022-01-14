@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { BaseLayout, Card, Heading, Text, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
+import { Card, Heading, Text, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import { TranslateString } from 'utils/translateTextHelpers'
 
+import { TranslateString } from 'utils/translateTextHelpers'
 import Page from 'components/layout/Page'
 import Divider from './components/Divider'
 import Iao from './components/IAO/CurrentIao'
@@ -11,25 +11,20 @@ import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
 import ConvertCard from './components/ConvertCard'
 import ReturnCard from './components/ReturnCard'
 
-const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
+interface ContentProps {
+  readingMore: boolean
+}
+
+const Cards = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 32px 0px;
-  & > div {
-    grid-column: span 6;
-    width: 100%;
-  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
-    }
+    flex-direction: row;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 6;
-    }
   }
 `
 const Header = styled.div`
@@ -40,7 +35,7 @@ const Header = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/banners/gnana-dark-bg.svg)' : 'url(/images/banners/gnana-light-bg.svg)'};
+    theme.isDark ? 'url(/images/banners/gnana-mobile-dark.svg)' : 'url(/images/banners/gnana-mobile-light.svg)'};
   height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -113,6 +108,10 @@ const ReadMore = styled(Button)`
   border-radius: 0;
   box-shadow: unset;
   height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
 `
 const TopCard = styled.div`
   display: flex;
@@ -120,8 +119,14 @@ const TopCard = styled.div`
   align-items: center;
   width: 100%;
 `
-const Content = styled(CardBody)`
+const Content = styled(CardBody)<ContentProps>`
   padding: 10px 20px;
+  display: ${({ readingMore }) => (readingMore ? 'unset' : 'none')};
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 14px;
+    display: unset;
+  }
 `
 const ContentText = styled(Text)`
   letter-spacing: 5%;
@@ -129,6 +134,10 @@ const ContentText = styled(Text)`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 14px;
+  }
 `
 
 const Zone = () => {
@@ -160,15 +169,15 @@ const Zone = () => {
             <WarningHeader>WARNING</WarningHeader>
             <Warning />
           </TopCard>
+
           {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
-          {readingMore && (
-            <Content>
-              <ContentText>
-                Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
-                that for every 1 BANANA you trade in, you will receive 0.7 GNANA
-              </ContentText>
-            </Content>
-          )}
+
+          <Content readingMore={readingMore}>
+            <ContentText>
+              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that
+              for every 1 BANANA you trade in, you will receive 0.7 GNANA
+            </ContentText>
+          </Content>
         </PaddedCard>
 
         <Cards>

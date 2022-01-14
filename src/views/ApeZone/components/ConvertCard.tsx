@@ -71,15 +71,20 @@ const StyledText = styled(Text)`
 `
 
 const NewCheckBox = styled(Checkbox)`
-  background: #fff;
+  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
   width: 50px;
-  height: 40px;
+  height: 35px;
 `
 
 const CheckBoxSection = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+`
+const FlexSection = styled(Flex)`
+  ${({ theme }) => theme.mediaQueries.sm} {
+    height: 120px;
+  }
 `
 
 const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
@@ -180,7 +185,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           </StyledButton>
         )}
 
-        <Flex flexDirection="column" alignItems="center" mb="10px">
+        <FlexSection flexDirection="column" alignItems="center" mb="10px">
           <CardValue
             top="10px"
             fontWeight={700}
@@ -200,7 +205,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
               I understand what I am doing and want to enable unlimited buy.
             </StyledText>
           </CheckBoxSection>
-        </Flex>
+        </FlexSection>
       </ContentCard>
     </StyledCard>
   )

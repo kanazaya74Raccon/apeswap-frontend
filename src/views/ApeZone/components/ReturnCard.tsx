@@ -26,6 +26,12 @@ const StyledCard = styled(Card)`
   border-radius: 20px;
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   padding: 10px;
+  margin-top: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-top: 0px;
+    margin-left: 10px;
+  }
 `
 const HeaderCard = styled(Card)`
   display: flex;
@@ -79,9 +85,15 @@ const NewCheckBox = styled(Checkbox)`
 const CheckBoxSection = styled.div`
   display: none;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     display: unset;
     visibility: hidden;
+  }
+`
+
+const FlexSection = styled(Flex)`
+  ${({ theme }) => theme.mediaQueries.sm} {
+    height: 120px;
   }
 `
 
@@ -173,7 +185,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
           </StyledButton>
         )}
 
-        <Flex flexDirection="column" alignItems="center" mb="10px">
+        <FlexSection flexDirection="column" alignItems="center" mb="10px">
           <CardValue
             top="10px"
             fontWeight={700}
@@ -193,7 +205,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
               I understand what I am doing and want to enable unlimited buy.
             </StyledText>
           </CheckBoxSection>
-        </Flex>
+        </FlexSection>
       </ContentCard>
     </StyledCard>
   )

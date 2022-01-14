@@ -147,6 +147,7 @@ const Text2 = styled(Text1)`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;
+    font-weight: 500;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -185,6 +186,7 @@ const Text4 = styled(Text3)`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;
+    font-weight: 500;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
