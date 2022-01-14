@@ -17,12 +17,14 @@ import {
   Card,
   useModal,
   useMatchBreakpoints,
+  ButtonSquare,
 } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Wrapper } from 'views/Swap/components/styleds'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
+import SwapBanner from 'components/SwapBanner'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -383,8 +385,7 @@ export default function RemoveLiquidity({
             </Text>
           </RowFixed>
         </RowBetween>
-
-        <Text small textAlign="left" pt="12px">
+        <Text small textAlign="left" pt="12px" mb="25px" style={{ fontStyle: 'italic' }}>
           {`Output is estimated. If the price changes by more than ${
             allowedSlippage / 100
           }% your transaction will revert.`}
@@ -421,9 +422,15 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
+        <ButtonSquare
+          fullWidth
+          mt="25px"
+          style={{ fontSize: '20px', height: '50px' }}
+          disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
+          onClick={onRemove}
+        >
           Confirm
-        </Button>
+        </ButtonSquare>
       </>
     )
   }
@@ -490,14 +497,23 @@ export default function RemoveLiquidity({
       content={() => <ConfirmationModalContent topContent={modalHeader} bottomContent={modalBottom} />}
       pendingText={pendingText}
     />,
+    true,
+    true,
+    'removeLiquidityModal',
   )
 
   return (
     <Page>
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+        <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
-          <LiquidityPositionLink />
+          <Flex alignItems="center" mt="15px" mb="5px">
+            <LiquidityPositionLink />
+            <Text bold fontSize="22px">
+              Remove Liquidity
+            </Text>
+          </Flex>
           <Wrapper>
             <CurrencyInputPanel
               value={formattedAmounts[Field.LIQUIDITY_PERCENT]}

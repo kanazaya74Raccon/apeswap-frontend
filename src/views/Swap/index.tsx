@@ -12,6 +12,7 @@ import {
   Card,
 } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
+import SwapBanner from 'components/SwapBanner'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { RouteComponentProps } from 'react-router-dom'
 import AddressInputPanel from './components/AddressInputPanel'
@@ -63,6 +64,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const [isChartExpanded, setIsChartExpanded] = useState(false)
   const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
   const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
+  const { chainId } = useActiveWeb3React()
 
   useEffect(() => {
     setUserChartPreference(isChartDisplayed)
@@ -132,7 +134,7 @@ export default function Swap({ history }: RouteComponentProps) {
     },
     [onUserInput],
   )
-  
+
   const handleTypeOutput = useCallback(
     (value: string) => {
       onUserInput(Field.OUTPUT, value)
@@ -227,16 +229,15 @@ export default function Swap({ history }: RouteComponentProps) {
     !(priceImpactSeverity > 3 && !isExpertMode)
 
   const handleConfirmDismiss = useCallback(() => {
-    setSwapState({ tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
-    // if there was a tx hash, we want to clear the input
+    setSwapState((prevState) => ({ ...prevState, showConfirm: false })) // if there was a tx hash, we want to clear the input
     if (txHash) {
       onUserInput(Field.INPUT, '')
     }
-  }, [attemptingTxn, onUserInput, swapErrorMessage, tradeToConfirm, txHash])
+  }, [onUserInput, txHash])
 
   const handleAcceptChanges = useCallback(() => {
-    setSwapState({ tradeToConfirm: trade, swapErrorMessage, txHash, attemptingTxn })
-  }, [attemptingTxn, swapErrorMessage, trade, txHash])
+    setSwapState((prevState) => ({ ...prevState, tradeToConfirm: trade }))
+  }, [trade])
 
   // swap warning state
   const [swapWarningCurrency, setSwapWarningCurrency] = useState(null)
@@ -305,13 +306,16 @@ export default function Swap({ history }: RouteComponentProps) {
       swapErrorMessage={swapErrorMessage}
       customOnDismiss={handleConfirmDismiss}
     />,
-    true
+    true,
+    true,
+    'swapConfirmModal',
   )
 
   return (
     <Page>
       <Flex justifyContent="center">
         <Flex flexDirection="column">
+          <SwapBanner />
           <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
@@ -419,14 +423,8 @@ export default function Swap({ history }: RouteComponentProps) {
                       </LargeStyledButton>
                     ) : noRoute && userHasSpecifiedInputOutput ? (
                       <Card style={{ textAlign: 'center' }}>
-                        <Text mb="4px">
-                          Insufficient liquidity for this trade
-                        </Text>
-                        {singleHopOnly && (
-                          <Text mb="4px">
-                            Try enabling multi-hop trades.
-                          </Text>
-                        )}
+                        <Text mb="4px">Insufficient liquidity for this trade</Text>
+                        {singleHopOnly && <Text mb="4px">Try enabling multi-hop trades.</Text>}
                       </Card>
                     ) : showApproveFlow ? (
                       <RowBetween>
@@ -442,7 +440,7 @@ export default function Swap({ history }: RouteComponentProps) {
                           ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                             'Enabled'
                           ) : (
-                            `Enable ${currencies[Field.INPUT]?.symbol ?? ''}`
+                            `Enable ${currencies[Field.INPUT]?.getSymbol(chainId) ?? ''}`
                           )}
                         </LargeStyledButton>
                         <LargeStyledButton

@@ -6,7 +6,7 @@ import { AutoRow } from 'components/layout/Row'
 import { AutoColumn } from 'components/layout/Column'
 import { CurrencyLogo } from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getBscScanLink } from 'utils'
+import { getEtherscanLink } from 'utils'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { useUnsupportedTokens } from '../hooks/Tokens'
 
@@ -50,7 +50,7 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
                   <Text>{token.symbol}</Text>
                 </AutoRow>
                 {chainId && (
-                  <Link external small color="primaryDark" href={getBscScanLink(token.address, 'address', chainId)}>
+                  <Link external small color="primaryDark" href={getEtherscanLink(token.address, 'address', chainId)}>
                     {token.address}
                   </Link>
                 )}

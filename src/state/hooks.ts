@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
 import { useWeb3React } from '@web3-react/core'
@@ -327,16 +327,16 @@ export const useToast = () => {
     const push = (toast: Toast) => dispatch(pushToast(toast))
 
     return {
-      toastError: (title: string, description?: string) => {
+      toastError: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.DANGER, title, description })
       },
-      toastInfo: (title: string, description?: string) => {
+      toastInfo: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.INFO, title, description })
       },
-      toastSuccess: (title: string, description?: string) => {
+      toastSuccess: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.SUCCESS, title, description })
       },
-      toastWarning: (title: string, description?: string) => {
+      toastWarning: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.WARNING, title, description })
       },
       push,

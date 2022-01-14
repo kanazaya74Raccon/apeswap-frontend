@@ -5,6 +5,7 @@ import TransactionConfirmationModal, {
   ConfirmationModalContent,
   TransactionErrorContent,
 } from 'components/TransactionConfirmationModal'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
 
@@ -48,8 +49,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   attemptingTxn,
   txHash,
 }) => {
-  console.log(trade)
-  console.log(originalTrade)
+  const { chainId } = useActiveWeb3React()
   const showAcceptChanges = useMemo(
     () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
     [originalTrade, trade],
@@ -81,8 +81,8 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
 
   // text to show while loading
   const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
-    trade?.inputAmount?.currency?.symbol ?? ''
-  } for ${trade?.outputAmount?.toSignificant(6) ?? ''} ${trade?.outputAmount?.currency?.symbol ?? ''}`
+    trade?.inputAmount?.currency?.getSymbol(chainId) ?? ''
+  } for ${trade?.outputAmount?.toSignificant(6) ?? ''} ${trade?.outputAmount?.currency?.getSymbol(chainId) ?? ''}`
 
   const confirmationContent = useCallback(
     () =>

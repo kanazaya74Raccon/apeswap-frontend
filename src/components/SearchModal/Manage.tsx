@@ -7,9 +7,6 @@ import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'
 import { CurrencyModalView } from './types'
 
-const StyledButtonMenu = styled(ButtonMenu)`
-  width: 100%;
-`
 
 export default function Manage({
   setModalView,
@@ -24,11 +21,18 @@ export default function Manage({
 }) {
   const [showLists, setShowLists] = useState(true)
   return (
-    <div>
-      <StyledButtonMenu activeIndex={showLists ? 0 : 1} onClick={() => setShowLists((prev) => !prev)} variant="subtle">
-        <ButtonMenuItem>Lists</ButtonMenuItem>
-        <ButtonMenuItem>Tokens</ButtonMenuItem>
-      </StyledButtonMenu>
+    <div style={{ padding: '0px 10px 20px 10px' }}>
+      <div style={{ margin: '10px 0px 20px 0px' }}>
+        <ButtonMenu
+          activeIndex={showLists ? 0 : 1}
+          onClick={() => setShowLists((prev) => !prev)}
+          size="sm"
+          variant="yellow"
+        >
+          <ButtonMenuItem>Lists</ButtonMenuItem>
+          <ButtonMenuItem>Tokens</ButtonMenuItem>
+        </ButtonMenu>
+      </div>
       {showLists ? (
         <ManageLists setModalView={setModalView} setImportList={setImportList} setListUrl={setListUrl} />
       ) : (

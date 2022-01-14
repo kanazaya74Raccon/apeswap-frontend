@@ -5,7 +5,7 @@ import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/layout/Column'
 import { RowBetween } from '../../../components/layout/Row'
-import { getBscScanLink } from '../../../utils'
+import { getEtherscanLink } from '../../../utils'
 
 const InputPanel = styled.div`
   display: flex;
@@ -99,7 +99,7 @@ export default function AddressInputPanel({
             <RowBetween>
               <Text>Recipient</Text>
               {address && chainId && (
-                <Link external small href={getBscScanLink(name ?? address, 'address', chainId)}>
+                <Link external small href={getEtherscanLink(name ?? address, 'address', chainId)}>
                   View on BscScan
                 </Link>
               )}

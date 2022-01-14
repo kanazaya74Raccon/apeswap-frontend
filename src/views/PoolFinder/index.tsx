@@ -4,6 +4,8 @@ import { Button, ChevronDownIcon, Text, AddIcon, useModal, Card, Flex } from '@a
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
+import SwapBanner from 'components/SwapBanner'
+import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import { CurrencyLogo } from '../../components/Logo'
 import { MinimalPositionCard } from '../../components/PositionCard'
@@ -84,8 +86,12 @@ export default function PoolFinder() {
   return (
     <Page>
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+        <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
+          <Flex alignItems="center" mt="15px" mb="5px">
+            <LiquidityPositionLink />
+          </Flex>
           <AutoColumn justify="center" style={{ padding: '1rem' }} gap="md">
             <StyledButton
               endIcon={<ChevronDownIcon />}

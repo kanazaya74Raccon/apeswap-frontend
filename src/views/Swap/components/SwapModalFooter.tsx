@@ -38,7 +38,7 @@ export default function SwapModalFooter({
   disabledConfirm: boolean
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [allowedSlippage, trade],
@@ -61,7 +61,7 @@ export default function SwapModalFooter({
               paddingLeft: '10px',
             }}
           >
-            {formatExecutionPrice(trade, showInverted)}
+            {formatExecutionPrice(chainId, trade, showInverted)}
             <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
               <AutoRenewIcon width="14px" />
             </StyledBalanceMaxMini>
@@ -98,18 +98,15 @@ export default function SwapModalFooter({
             <Text fontSize="14px">Liquidity Provider Fee</Text>
           </RowFixed>
           <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.getSymbol(chainId)}` : '-'}
+            {realizedLPFee
+              ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.getSymbol(chainId)}`
+              : '-'}
           </Text>
         </RowBetween>
       </SwapModalFooterContainer>
 
       <AutoRow>
-        <LargeStyledButton
-          onClick={onConfirm}
-          disabled={disabledConfirm}
-          mt="12px"
-          id="confirm-swap-or-send"
-        >
+        <LargeStyledButton onClick={onConfirm} disabled={disabledConfirm} mt="12px" id="confirm-swap-or-send">
           {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
         </LargeStyledButton>
 

@@ -21,7 +21,7 @@ export function isAddress(value: any): string | false {
   }
 }
 
-export function getBscScanLink(
+export function getEtherscanLink(
   data: string | number,
   type: 'transaction' | 'token' | 'address' | 'block' | 'countdown',
   chainId: number,

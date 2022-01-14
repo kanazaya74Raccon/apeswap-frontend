@@ -1,4 +1,5 @@
 import { CurrencyAmount, Fraction, JSBI, Percent, Price, TokenAmount, Trade } from '@apeswapfinance/sdk'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
@@ -68,17 +69,17 @@ export function warningSeverity(priceImpact: Percent | undefined): 0 | 1 | 2 | 3
   return 0
 }
 
-export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string {
+export function formatExecutionPrice(chainId: number, trade?: Trade, inverted?: boolean, ): string {
   if (!trade) {
     return ''
   }
   return inverted
-    ? `${trade.executionPrice.invert().toSignificant(6)} ${trade.inputAmount.currency.symbol} / ${
-        trade.outputAmount.currency.symbol
-      }`
-    : `${trade.executionPrice.toSignificant(6)} ${trade.outputAmount.currency.symbol} / ${
-        trade.inputAmount.currency.symbol
-      }`
+    ? `${trade.executionPrice
+        .invert()
+        .toSignificant(6)} ${trade.inputAmount.currency.getSymbol(chainId)} / ${trade.outputAmount.currency.getSymbol(chainId)}`
+    : `${trade.executionPrice.toSignificant(
+        6,
+      )} ${trade.outputAmount.currency.getSymbol(chainId)} / ${trade.inputAmount.currency.getSymbol(chainId)}`
 }
 
 /**

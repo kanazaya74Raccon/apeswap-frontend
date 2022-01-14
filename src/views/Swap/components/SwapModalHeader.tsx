@@ -27,7 +27,7 @@ export default function SwapModalHeader({
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [trade, allowedSlippage],
   )
-  const {chainId} = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
@@ -36,7 +36,9 @@ export default function SwapModalHeader({
       ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)
       : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)
   const symbol =
-    trade.tradeType === TradeType.EXACT_INPUT ? trade.outputAmount.currency.getSymbol(chainId) : trade.inputAmount.currency.getSymbol(chainId)
+    trade.tradeType === TradeType.EXACT_INPUT
+      ? trade.outputAmount.currency.getSymbol(chainId)
+      : trade.inputAmount.currency.getSymbol(chainId)
 
   const tradeInfoText =
     trade.tradeType === TradeType.EXACT_INPUT
@@ -101,12 +103,14 @@ export default function SwapModalHeader({
               <ErrorIcon mr="8px" />
               <Text bold>Price Updated</Text>
             </RowFixed>
-            <ButtonSquare style={{fontSize:"16px"}} onClick={onAcceptChanges}>Accept</ButtonSquare>
+            <ButtonSquare style={{ fontSize: '16px' }} onClick={onAcceptChanges}>
+              Accept
+            </ButtonSquare>
           </RowBetween>
         </SwapShowAcceptChanges>
       ) : null}
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '24px 0 0 0px' }}>
-        <Text small textAlign="left" style={{ width: '100%' }}>
+        <Text small textAlign="center" style={{ width: '100%', fontStyle: 'italic' }}>
           {estimatedText}
           <b>
             {amount} {symbol}

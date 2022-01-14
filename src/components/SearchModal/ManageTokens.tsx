@@ -7,7 +7,7 @@ import { useToken } from 'hooks/Tokens'
 import { useRemoveUserAddedToken } from 'state/user/hooks'
 import useUserAddedTokens from 'state/user/hooks/useUserAddedTokens'
 import { CurrencyLogo } from 'components/Logo'
-import { getBscScanLink, isAddress } from 'utils'
+import { getEtherscanLink, isAddress } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Column, { AutoColumn } from '../layout/Column'
 import ImportRow from './ImportRow'
@@ -70,7 +70,7 @@ export default function ManageTokens({
         <RowBetween key={token.address} width="100%">
           <RowFixed>
             <CurrencyLogo currency={token} size="20px" />
-            <Link external href={getBscScanLink(token.address, 'address', chainId)} color="textSubtle" ml="10px">
+            <Link external href={getEtherscanLink(token.address, 'address', chainId)} color="textSubtle" ml="10px">
               {token.symbol}
             </Link>
           </RowFixed>
@@ -78,7 +78,7 @@ export default function ManageTokens({
             <IconButton variant="text" onClick={() => removeToken(chainId, token.address)}>
               <CloseIcon />
             </IconButton>
-            <LinkExternal href={getBscScanLink(token.address, 'address', chainId)} />
+            <LinkExternal href={getEtherscanLink(token.address, 'address', chainId)} />
           </RowFixed>
         </RowBetween>
       ))
@@ -115,7 +115,7 @@ export default function ManageTokens({
         </AutoColumn>
         {tokenList}
         <Footer>
-          <Text bold color="textSubtle">
+          <Text bold textAlign='center'>
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? 'Custom Token' : 'Custom Tokens'}
           </Text>
           {userAddedTokens.length > 0 && (

@@ -1,10 +1,23 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { ChainId, Currency, Token } from '@apeswapfinance/sdk'
 import styled from 'styled-components'
-import { Button, Text, ErrorIcon, Flex, Link, Modal, InjectedModalProps } from '@apeswapfinance/uikit'
+import {
+  Button,
+  Text,
+  ErrorIcon,
+  Flex,
+  Link,
+  Modal,
+  InjectedModalProps,
+  ButtonSquare,
+  MetamaskIcon,
+} from '@apeswapfinance/uikit'
 import { registerToken } from 'utils/wallet'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
+import { ArrowUpCircle } from 'react-feather'
+import Spinner from 'components/Spinner'
+import { getEtherscanLink } from 'utils'
 import { RowFixed } from '../layout/Row'
 import { AutoColumn, ColumnCenter } from '../layout/Column'
 
@@ -23,7 +36,7 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   return (
     <Wrapper>
       <ConfirmedIcon>
-        <></>
+        <Spinner />
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
         <Text fontSize="20px">Waiting For Confirmation</Text>
@@ -57,27 +70,32 @@ function TransactionSubmittedContent({
 
   return (
     <Wrapper>
-      <Section>
-        <ConfirmedIcon>
-          <></>
-        </ConfirmedIcon>
-        <AutoColumn gap="12px" justify="center">
-          <Text fontSize="20px">Transaction Submitted</Text>
-          {chainId && hash && (
-            <Link external small href="https://google.com">
-              View on BscScan
-            </Link>
-          )}
-          {currencyToAdd && library?.provider?.isMetaMask && (
-            <Button variant="tertiary" mt="12px" onClick={() => console.log('clicked')}>
-              <></>
-            </Button>
-          )}
-          <Button onClick={onDismiss} mt="20px">
-            Close
+      <ConfirmedIcon>
+        <ArrowUpCircle strokeWidth={1} size={97} color="rgba(255, 179, 0, 1)" />
+      </ConfirmedIcon>
+      <AutoColumn gap="12px" justify="center">
+        <Text fontSize="20px">Transaction Submitted</Text>
+        {chainId && hash && (
+          <Link color="text" external small href={getEtherscanLink(hash, 'transaction', chainId)}>
+            View on explorer
+          </Link>
+        )}
+        {currencyToAdd && library?.provider?.isMetaMask && (
+          <Button
+            variant="tertiary"
+            mt="12px"
+            onClick={() => registerToken(token.address, token.symbol, token.decimals, '')}
+          >
+            <RowFixed>
+              <Text>{`Add ${currencyToAdd.getSymbol(chainId)} to Metamask`}</Text>
+              <MetamaskIcon width="16px" ml="6px" />
+            </RowFixed>{' '}
           </Button>
-        </AutoColumn>
-      </Section>
+        )}
+        <ButtonSquare fullWidth onClick={onDismiss} style={{ height: '50px', fontSize: '20px' }} mt="20px">
+          Close
+        </ButtonSquare>
+      </AutoColumn>
     </Wrapper>
   )
 }
@@ -146,7 +164,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null
 
   return (
-    <div style={{maxWidth: '420px', zIndex:101}}>
+    <div style={{ maxWidth: '420px', zIndex: 101 }}>
       <Modal title={title} onDismiss={handleDismiss}>
         {attemptingTxn ? (
           <ConfirmationPendingContent pendingText={pendingText} />

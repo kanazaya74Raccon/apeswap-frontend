@@ -6,6 +6,7 @@ import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { Link } from 'react-router-dom'
 import Page from 'components/layout/Page'
 import UnlockButton from 'components/UnlockButton'
+import SwapBanner from 'components/SwapBanner'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
@@ -97,6 +98,8 @@ export default function Pool() {
   return (
     <Page>
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+      <SwapBanner />
+
         <AppBody>
           <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
           <Body>

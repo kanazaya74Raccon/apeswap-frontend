@@ -5,12 +5,14 @@ import { Field } from 'state/swap/actions'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'
 import { AutoColumn } from 'components/layout/Column'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { RowBetween, RowFixed } from 'components/layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
+  const { chainId } = useActiveWeb3React()
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
@@ -18,36 +20,29 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
     <AutoColumn style={{ padding: '0 16px' }}>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px">
-            {isExactIn ? 'Minimum received' : 'Maximum sold'}
-          </Text>
+          <Text fontSize="14px">{isExactIn ? 'Minimum received' : 'Maximum sold'}</Text>
         </RowFixed>
         <RowFixed>
           <Text fontSize="14px">
             {isExactIn
-              ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
-                '-'
-              : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ?? '-'}
+              ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.getSymbol(chainId)}` ?? '-'
+              : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.getSymbol(chainId)}` ?? '-'}
           </Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px" >
-            Price Impact
-          </Text>
+          <Text fontSize="14px">Price Impact</Text>
         </RowFixed>
         <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
       </RowBetween>
 
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px">
-            Liquidity Provider Fee
-          </Text>
+          <Text fontSize="14px">Liquidity Provider Fee</Text>
         </RowFixed>
         <Text fontSize="14px">
-          {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+          {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.getSymbol(chainId)}` : '-'}
         </Text>
       </RowBetween>
     </AutoColumn>
@@ -72,9 +67,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
               <RowBetween style={{ padding: '0 16px' }}>
                 <span style={{ display: 'flex', alignItems: 'center' }}>
-                  <Text fontSize="14px">
-                    Route
-                  </Text>
+                  <Text fontSize="14px">Route</Text>
                 </span>
                 <SwapRoute trade={trade} />
               </RowBetween>

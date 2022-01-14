@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@apeswapfinance/sdk'
-import { Button, Text, Flex, AddIcon, CardBody, useModal, Card, IconButton,  } from '@apeswapfinance/uikit'
+import { Text, Flex, AddIcon, useModal } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
@@ -12,6 +12,7 @@ import Page from 'components/layout/Page'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { LargeStyledButton } from 'views/Swap/styles'
 import { Wrapper } from 'views/Swap/components/styleds'
+import SwapBanner from 'components/SwapBanner'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
@@ -19,7 +20,6 @@ import TransactionConfirmationModal, { ConfirmationModalContent } from '../../co
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { DoubleCurrencyLogo } from '../../components/Logo'
 import { AppBody } from '../../components/App'
-import { MinimalPositionCard } from '../../components/PositionCard'
 import Row, { RowBetween } from '../../components/layout/Row'
 import UnlockButton from '../../components/UnlockButton'
 
@@ -185,9 +185,11 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
-              currencies[Field.CURRENCY_A]?.getSymbol(chainId)
-            } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`,
+            summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[
+              Field.CURRENCY_A
+            ]?.getSymbol(chainId)} and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[
+              Field.CURRENCY_B
+            ]?.getSymbol(chainId)}`,
           })
 
           setTxHash(response.hash)
@@ -205,7 +207,7 @@ export default function AddLiquidity({
   const modalHeader = () => {
     return noLiquidity ? (
       <Flex alignItems="center">
-        <Text fontSize="48px" marginRight="10px">
+        <Text bold fontSize="24px" marginRight="10px">
           {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}
         </Text>
         <DoubleCurrencyLogo
@@ -217,7 +219,7 @@ export default function AddLiquidity({
     ) : (
       <AutoColumn>
         <Flex alignItems="center">
-          <Text fontSize="48px" marginRight="10px">
+          <Text bold fontSize="24px" marginRight="10px">
             {liquidityMinted?.toSignificant(6)}
           </Text>
           <DoubleCurrencyLogo
@@ -227,11 +229,13 @@ export default function AddLiquidity({
           />
         </Flex>
         <Row>
-          <Text fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(chainId)} Pool Tokens`}
+          <Text fontSize="20px">
+            {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(
+              chainId,
+            )} Pool Tokens`}
           </Text>
         </Row>
-        <Text small textAlign="left" my="24px">
+        <Text small textAlign="left" my="24px" style={{ fontStyle: 'italic' }}>
           {`Output is estimated. If the price changes by more than ${
             allowedSlippage / 100
           }% your transaction will revert.`}
@@ -255,7 +259,9 @@ export default function AddLiquidity({
 
   const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6) ?? ''} ${
     currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''}`
+  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${
+    currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''
+  }`
 
   const handleCurrencyASelect = useCallback(
     (currencyA_: Currency) => {
@@ -306,25 +312,43 @@ export default function AddLiquidity({
       pendingText={pendingText}
       currencyToAdd={pair?.liquidityToken}
     />,
+    true,
+    true,
+    'addLiquidityModal',
   )
 
   return (
     <Page>
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+        <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
-          <LiquidityPositionLink />
+          <Flex alignItems="center" mt="15px" mb="5px">
+            <LiquidityPositionLink />
+            <Text bold fontSize="22px">
+              Add Liquidity
+            </Text>
+          </Flex>
           <Wrapper>
             <AutoColumn gap="10px">
               {noLiquidity && (
                 <ColumnCenter>
                   <>
-                    <div>
-                      <Text bold mb="8px">
-                        You are the first liquidity provider.
-                      </Text>
-                      <Text mb="8px">The ratio of tokens you add will set the price of this pool.</Text>
-                      <Text>Once you are happy with the rate click supply to review.</Text>
+                    <div
+                      style={{
+                        backgroundColor: 'rgb(255, 0, 0, .2)',
+                        borderRadius: '20px',
+                        width: '100%',
+                        padding: '20px 10px 20px 10px',
+                      }}
+                    >
+                      <Flex flexDirection="column" justifyContent="center" alignItems="center">
+                        <Text bold mb="8px">
+                          You are the first liquidity provider.
+                        </Text>
+                        <Text mb="8px">The ratio of tokens you add will set the price of this pool.</Text>
+                        <Text>Once you are happy with the rate click supply to review.</Text>
+                      </Flex>
                     </div>
                   </>
                 </ColumnCenter>
@@ -383,7 +407,6 @@ export default function AddLiquidity({
                   chainId={chainId}
                 />
               )}
-
               {addIsUnsupported ? (
                 <LargeStyledButton disabled mb="4px">
                   Unsupported Asset

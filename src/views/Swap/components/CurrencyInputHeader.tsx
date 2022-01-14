@@ -10,6 +10,7 @@ import {
   CogIcon,
   ButtonMenu,
   ButtonMenuItem,
+  LinkExternal,
 } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useExpertModeManager } from 'state/user/hooks'
@@ -46,7 +47,13 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </ButtonMenuItem>
       </ButtonMenu>
       <Flex>
-        <ButtonSquare style={{ fontSize: '15px', fontWeight: 700, marginRight: '15px', marginLeft: '15px', padding: 10 }}>BRIDGE</ButtonSquare>
+        <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
+          <ButtonSquare
+            style={{ fontSize: '15px', fontWeight: 700, marginRight: '15px', marginLeft: '15px', padding: 10 }}
+          >
+            BRIDGE
+          </ButtonSquare>
+        </a>
         <GlobalSettings />
       </Flex>
     </CurrencyInputContainer>
