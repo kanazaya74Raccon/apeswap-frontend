@@ -3,14 +3,14 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0x81024028bcb5bB445374E5732faFBD197f088f9F', // Leave empty for "Coming Soon!"
+    address: '0x28E3586d47C8f8A3562f04869d40c82D0a929D59', // Leave empty for "Coming Soon!"
     isActive: true,
-    isLinear: false,
-    name: 'Phase vesting Test 3',
-    subTitle: `Testing 4-phase vesting IAO on the mainnet`,
-    description: `We will test if the 4-phase vesting IAO works correctly on the mainnet.`,
-    launchDate: 'Jan 13rd',
-    launchTime: '19:42:08 UTC',
+    isLinear: true,
+    name: 'Linear vesting test 2',
+    subTitle: `Testing LinearVesting IAO on the mainnet`,
+    description: `We will test if the LinearVesting IAO works correctly on the mainnet.`,
+    launchDate: 'Jan 14th',
+    launchTime: '02:06:56 UTC',
     saleAmount: '2,000,000,000,000 IAW',
     raiseAmount: '$4',
     vestingTime: '2 hours',
@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'IAW',
     tokenDecimals: 18,
-    releaseBlockNumber: 14337987, // block to start showing contract details
+    releaseBlockNumber: 14344857, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
