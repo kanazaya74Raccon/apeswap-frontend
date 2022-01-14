@@ -45,6 +45,16 @@ const Header = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     height: 300px;
   }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    background-image: ${({ theme }) =>
+      theme.isDark ? 'url(/images/banners/gnana-dark-968.svg)' : 'url(/images/banners/gnana-light-968.svg)'};
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    background-image: ${({ theme }) =>
+      theme.isDark ? 'url(/images/banners/gnana-dark-bg.svg)' : 'url(/images/banners/gnana-light-bg.svg)'};
+  }
 `
 const HeaderContainer = styled.div`
   max-width: 1024px;
