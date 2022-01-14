@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 import { TranslateString } from 'utils/translateTextHelpers'
 import Page from 'components/layout/Page'
-import Divider from './components/Divider'
-import Iao from './components/IAO/CurrentIao'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
 import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
 import ConvertCard from './components/ConvertCard'
@@ -42,13 +40,10 @@ const Header = styled.div`
   background-position: center;
   margin-bottom: 30px;
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 300px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.sm} {
     background-image: ${({ theme }) =>
       theme.isDark ? 'url(/images/banners/gnana-dark-968.svg)' : 'url(/images/banners/gnana-light-968.svg)'};
+    height: 300px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -65,6 +60,7 @@ const HeaderContainer = styled.div`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     position: relative;
+    display: flex;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -72,13 +68,15 @@ const HeaderContainer = styled.div`
     position: relative;
   }
 `
+const LeftHead = styled.div``
 const StyledHeading = styled(Heading)`
-  font-size: 36px;
+  font-size: 42px;
+  font-weight: 400;
   max-width: 240px !important;
   text-transform: uppercase;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 44px;
+    font-size: 60px;
     max-width: 400px !important;
   }
 
@@ -87,8 +85,22 @@ const StyledHeading = styled(Heading)`
     max-width: 600px !important;
   }
 `
-const WindowDiv = styled.div`
-  background-image: url(/images/banners/gnana-light-banana.svg);
+const QuestionHeader = styled(Heading)`
+  font-size: 24px;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 8px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 36px;
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+  }
 `
 const PaddedCard = styled(Card)`
   display: flex;
@@ -161,15 +173,18 @@ const Zone = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
-            {TranslateString(999, 'Golden Banana ?')}
-          </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <LeftHead>
+            <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
+              {TranslateString(999, 'Golden')}
+            </StyledHeading>
+            <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
+              {TranslateString(999, 'Banana')}
+            </StyledHeading>
+          </LeftHead>
+          <QuestionHeader as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
             {TranslateString(999, '?')}
-          </StyledHeading>
+          </QuestionHeader>
         </HeaderContainer>
-
-        <WindowDiv className="window" />
       </Header>
 
       <Page>
@@ -197,9 +212,6 @@ const Zone = () => {
         <GnanaUtility />
         <GnanaDisclaimers />
       </Page>
-
-      <Iao />
-      <Divider />
     </>
   )
 }
