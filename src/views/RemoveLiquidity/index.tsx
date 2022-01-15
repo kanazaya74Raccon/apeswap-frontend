@@ -67,8 +67,8 @@ const StyledCard = styled(Card)`
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
   height: 110px;
   width: 48.5%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 `
 
 const EvenRow = styled(AutoRow)`
@@ -520,7 +520,9 @@ export default function RemoveLiquidity({
               onUserInput={(val) =>
                 parseInt(val) > 100
                   ? onUserInput(Field.LIQUIDITY_PERCENT, '100')
-                  : onUserInput(Field.LIQUIDITY_PERCENT, val)
+                  : val.toString() === ''
+                  ? onUserInput(Field.LIQUIDITY_PERCENT, '0')
+                  : onUserInput(Field.LIQUIDITY_PERCENT, parseInt(val).toString())
               }
               onMax={() => {
                 onUserInput(Field.LIQUIDITY_PERCENT, '100')
@@ -531,6 +533,7 @@ export default function RemoveLiquidity({
               pair={pair}
               id="liquidity-amount"
               onCurrencySelect={() => null}
+              removeLiquidity
             />
             {isMobile ? (
               <div style={{ marginTop: '20px', marginBottom: '10px' }}>
@@ -558,16 +561,16 @@ export default function RemoveLiquidity({
                     <StyledCard>
                       <AutoColumn justify="center">
                         {/* <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text> */}
-                        <Text fontSize="17px" pt={1}>
+                        <Text bold fontSize="17px" pt={1}>
                           {currencyA?.getSymbol(chainId) ?? ''}
                         </Text>
                         <Text small>{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
                       </AutoColumn>
                     </StyledCard>
-                    <StyledCard>
+                    <StyledCard mr="7px">
                       <AutoColumn justify="center">
                         {/* <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text> */}
-                        <Text fontSize="17px" pt={1}>
+                        <Text bold fontSize="17px" pt={1}>
                           {currencyB?.getSymbol(chainId) ?? ''}
                         </Text>
                         <Text small>{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
@@ -575,9 +578,9 @@ export default function RemoveLiquidity({
                     </StyledCard>
                   </AutoRow>
                 </AutoColumn>
-                <RowBetween>
-                  <Text>Share of pool</Text>
-                  <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
+                <RowBetween style={{ padding: '0px 15px 0px 10px' }}>
+                  <Text bold>Share of pool</Text>
+                  <Text bold>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </RowBetween>
               </>
             )}

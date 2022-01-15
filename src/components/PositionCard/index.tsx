@@ -9,6 +9,8 @@ import {
   Flex,
   CardProps,
   ButtonSquare,
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
 } from '@apeswapfinance/uikit'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -39,12 +41,13 @@ const StyledText = styled(Text)`
 
 const Title = styled(Text)`
   font-size: 18px;
+  font-weight: bold;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 22px;
   }
 `
 const StyledCard = styled(Card)`
-  background-color: ${({ theme }) => (theme.isDark ? '#212121' : '#FFFFFF')};
+  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
 `
 
 interface PositionCardProps extends CardProps {
@@ -194,7 +197,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
             </Title>
           </Flex>
         </Flex>
-        {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        {showMore ? <ArrowDropUpIcon width="13px" /> : <ArrowDropDownIcon width="13px" />}
       </Flex>
 
       {showMore && (
@@ -259,7 +262,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 fullWidth
                 style={{ height: '40px', fontSize: '20px', marginRight: '8px' }}
               >
-                <Title>Add</Title>
+                <Title color="white">Add</Title>
               </ButtonSquare>
               <ButtonSquare
                 as={Link}
@@ -268,7 +271,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 fullWidth
                 style={{ height: '40px', marginLeft: '8px' }}
               >
-                <Title>Remove</Title>
+                <Title color='white'>Remove</Title>
               </ButtonSquare>
             </Flex>
           )}

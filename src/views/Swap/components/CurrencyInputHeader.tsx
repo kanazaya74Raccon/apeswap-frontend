@@ -27,10 +27,9 @@ const CurrencyInputContainer = styled(Flex)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 25px 0px 20px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.background};
-`
+  `
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const [expertMode] = useExpertModeManager()
@@ -49,7 +48,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
       <Flex>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <ButtonSquare
-            style={{ fontSize: '15px', fontWeight: 700, marginRight: '15px', marginLeft: '15px', padding: 10 }}
+            style={{ fontSize: '15px', fontWeight: 700, marginRight: '25px', marginLeft: '15px', padding: 10 }}
           >
             BRIDGE
           </ButtonSquare>

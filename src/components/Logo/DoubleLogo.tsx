@@ -24,8 +24,8 @@ export default function DoubleCurrencyLogo({
 }: DoubleCurrencyLogoProps) {
   return (
     <Wrapper margin={margin}>
-      {currency0 && <CurrencyLogo currency={currency0} size={`${size.toString()}px`} style={{ marginRight: '4px' }} />}
-      {currency1 && <CurrencyLogo currency={currency1} size={`${size.toString()}px`} />}
+      {currency0 && <CurrencyLogo currency={currency0} size={`${size.toString()}px`} style={{ marginLeft: '0px' }} />}
+      {currency1 && <CurrencyLogo currency={currency1} size={`${size.toString()}px`} style={{ marginLeft: '-8px', marginRight:'4px' }}/>}
     </Wrapper>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Text } from '@apeswapfinance/uikit'
 import { escapeRegExp } from '../../utils'
 
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
@@ -45,10 +46,12 @@ export const Input = React.memo(function InnerInput({
   value,
   onUserInput,
   placeholder,
+  removeLiquidity,
   ...rest
 }: {
   value: string | number
   onUserInput: (input: string) => void
+  removeLiquidity?: boolean
   error?: boolean
   fontSize?: string
   align?: 'right' | 'left'
@@ -60,28 +63,37 @@ export const Input = React.memo(function InnerInput({
   }
 
   return (
-    <StyledInput
-      {...rest}
-      value={value}
-      onChange={(event) => {
-        // replace commas with periods, because we exclusively uses period as the decimal separator
-        enforcer(event.target.value.replace(/,/g, '.'))
-      }}
-      // universal input options
-      inputMode="decimal"
-      title="Token Amount"
-      autoComplete="off"
-      autoCorrect="off"
-      // text-specific options
-      type="text"
-      pattern="^[0-9]*[.,]?[0-9]*$"
-      placeholder={placeholder || '0.0'}
-      minLength={1}
-      maxLength={79}
-      spellCheck="false"
-      fontSize="20px"
-      style={{marginRight: '10px'}}
-    />
+    <>
+      <StyledInput
+        {...rest}
+        value={value}
+        onChange={(event) => {
+          // replace commas with periods, because we exclusively uses period as the decimal separator
+          enforcer(event.target.value.replace(/,/g, '.'))
+        }}
+        // universal input options
+        inputMode="decimal"
+        title="Token Amount"
+        autoComplete="off"
+        autoCorrect="off"
+        // text-specific options
+        type="text"
+        pattern="^[0-9]*[.,]?[0-9]*$"
+        placeholder={placeholder || '0.0'}
+        minLength={1}
+        maxLength={79}
+        spellCheck="false"
+        fontSize="22px"
+        style={{ marginRight: removeLiquidity ? '2.5px' : '10px' }}
+      />
+      {removeLiquidity && (
+        <div style={{ marginRight: '10px' }}>
+          <Text fontSize="22px" mt=".55px" bold>
+            %
+          </Text>
+        </div>
+      )}
+    </>
   )
 })
 

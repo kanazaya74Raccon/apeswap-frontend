@@ -1,6 +1,6 @@
 import React from 'react'
 import { Currency, Pair } from '@apeswapfinance/sdk'
-import { Button, ChevronDownIcon, Text, useModal, Flex, ButtonSquare } from '@apeswapfinance/uikit'
+import { Button, ChevronDownIcon, Text, useModal, Flex, ButtonSquare, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
@@ -10,15 +10,15 @@ import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 import { RowBetween } from '../layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
 
-const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
-  display: flex;
+const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ removeLiquidity: boolean }>`
+  display: flex;s
   justify-content: flex-start;
   background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
   height: 75px;
   width: 310px;
   padding: 0;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 244px;
+    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '244px')}};
   }
 `
 const InputPanel = styled.div`
@@ -30,7 +30,7 @@ const InputPanel = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 `
-const Container = styled.div`
+const Container = styled.div<{ removeLiquidity: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@ const Container = styled.div`
   height: 75px;
   background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 336px;
+    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '340px')}};
   }
 `
 
@@ -74,6 +74,8 @@ interface CurrencyInputPanelProps {
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
+  removeLiquidity?: boolean
+  addLiquidity?: boolean
 }
 export default function CurrencyInputPanel({
   value,
@@ -89,6 +91,8 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
+  removeLiquidity,
+  addLiquidity,
 }: CurrencyInputPanelProps) {
   const { account, chainId } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -105,24 +109,27 @@ export default function CurrencyInputPanel({
     <CurrencyInputContainer>
       <Flex style={{ position: 'relative' }}>
         <CurrencySelectButton
+          removeLiquidity={removeLiquidity}
           onClick={() => {
             if (!disableCurrencySelect) {
               onPresentCurrencyModal()
             }
           }}
         >
-          <Flex alignItems="center" justifyContent="flex-start">
+          <Flex alignItems="center" justifyContent="flex-start" style={{ width: '100%' }}>
             {pair ? (
-              <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+              <div style={{ paddingLeft: '10px' }}>
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={30} margin />
+              </div>
             ) : currency ? (
               <CurrencyLogo currency={currency} size="50px" style={{ margin: '0 0px 0 10px' }} />
             ) : null}
             {pair ? (
-              <Text id="pair" bold>
+              <Text id="pair" bold fontSize="19px">
                 {pair?.token0.getSymbol(chainId)}-{pair?.token1.getSymbol(chainId)}
               </Text>
             ) : (
-              <Text id="pair" fontSize="19px" bold style={{ marginLeft: '10px' }}>
+              <Text id="pair" fontSize="21px" bold style={{ marginLeft: '10px' }}>
                 {(currency && currency.symbol && currency.symbol.length > 20
                   ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                       currency.symbol.length - 5,
@@ -135,28 +142,36 @@ export default function CurrencyInputPanel({
                 )}
               </Text>
             )}
-            {!disableCurrencySelect && <ChevronDownIcon />}
+            {!disableCurrencySelect && (
+              <ArrowDropDownIcon width="13px" style={{ position: 'absolute', right: '15px' }} />
+            )}
           </Flex>
         </CurrencySelectButton>
-        <Text
-          onClick={onMax}
-          fontSize="14px"
-          style={{ display: 'inline', cursor: 'pointer', position: 'absolute', top: '-30px', marginLeft: '10px' }}
-        >
-          {id === 'swap-currency-output' ? 'To:' : 'From:'}
-        </Text>
+        {!removeLiquidity && !addLiquidity && (
+          <Text
+            onClick={onMax}
+            fontSize="14px"
+            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', top: '-30px', marginLeft: '10px' }}
+          >
+            {id === 'swap-currency-output' ? 'To:' : 'From:'}
+          </Text>
+        )}
         {account && (
           <Text
             onClick={onMax}
             fontSize="14px"
             style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '10px' }}
           >
-            {!hideBalance && !!currency ? `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}` : ' -'}
+            {!hideBalance && !!currency
+              ? removeLiquidity
+                ? `LP Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}`
+                : `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}`
+              : ' -'}
           </Text>
         )}
       </Flex>
       <InputPanel id={id}>
-        <Container>
+        <Container removeLiquidity={removeLiquidity}>
           {account && currency && showMaxButton && label !== 'To' && (
             <ButtonSquare
               onClick={onMax}
@@ -176,12 +191,31 @@ export default function CurrencyInputPanel({
           <RowBetween>
             <NumericalInput
               id="token-amount-input"
+              removeLiquidity={removeLiquidity}
               value={value}
               onUserInput={(val) => {
                 onUserInput(val)
               }}
             />
           </RowBetween>
+          {removeLiquidity && account && (
+            <Text
+              fontSize="14px"
+              style={{
+                position: 'absolute',
+                bottom: '-30px',
+                marginLeft: '-120px',
+              }}
+            >
+              {!hideBalance && !!currency && value
+                ? `LP to Remove: ${
+                    selectedCurrencyBalance?.toSignificant(6)
+                      ? (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100)).toFixed(6)
+                      : 'Loading'
+                  }`
+                : '-'}
+            </Text>
+          )}
         </Container>
       </InputPanel>
     </CurrencyInputContainer>
