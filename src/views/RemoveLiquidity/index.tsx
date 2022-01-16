@@ -83,6 +83,15 @@ const OddRow = styled(AutoRow)`
   padding: 2.5px 15px 2.5px 15px;
 `
 
+const Title = styled(Text)`
+  margin-left: 85px;
+  margin-top: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+`
+
 export default function RemoveLiquidity({
   history,
   match: {
@@ -508,11 +517,11 @@ export default function RemoveLiquidity({
         <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
-          <Flex alignItems="center" mt="15px" mb="5px">
+          <Flex flexWrap="wrap" alignItems="center" mt="15px" mb="5px">
             <LiquidityPositionLink />
-            <Text bold fontSize="22px">
+            <Title bold fontSize="22px">
               Remove Liquidity
-            </Text>
+            </Title>
           </Flex>
           <Wrapper>
             <CurrencyInputPanel

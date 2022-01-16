@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@apeswapfinance/sdk'
@@ -40,6 +41,15 @@ import Dots from '../../components/Loader/Dots'
 import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
+
+const Title = styled(Text)`
+  margin-left: 110px;
+  margin-top: 10px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+`
 
 export default function AddLiquidity({
   match: {
@@ -323,11 +333,11 @@ export default function AddLiquidity({
         <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
-          <Flex alignItems="center" mt="15px" mb="5px">
+          <Flex flexWrap='wrap' alignItems="center" mt="15px" mb="5px">
             <LiquidityPositionLink />
-            <Text bold fontSize="22px">
+            <Title bold fontSize="22px">
               Add Liquidity
-            </Text>
+            </Title>
           </Flex>
           <Wrapper>
             <AutoColumn gap="10px">

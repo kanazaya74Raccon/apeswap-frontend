@@ -43,14 +43,14 @@ const Container = styled.div<{ removeLiquidity: boolean }>`
   }
 `
 
-const CurrencyInputContainer = styled.div`
+const CurrencyInputContainer = styled.div<{ removeLiquidity: boolean }>`
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 45px 0px 25px 0px;
+  padding:  ${({ removeLiquidity }) => (removeLiquidity ? '25px 0px 40px 0px' : '45px 0px 25px 0px')}};
   height: 263px;
   width: 330px;
   ${({ theme }) => theme.mediaQueries.md} {
@@ -106,7 +106,7 @@ export default function CurrencyInputPanel({
     />,
   )
   return (
-    <CurrencyInputContainer>
+    <CurrencyInputContainer removeLiquidity={removeLiquidity}>
       <Flex style={{ position: 'relative' }}>
         <CurrencySelectButton
           removeLiquidity={removeLiquidity}
