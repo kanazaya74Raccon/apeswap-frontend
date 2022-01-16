@@ -10,7 +10,7 @@ const UtilityCon = styled.div`
   display: flex;
   flex-direction: column;
   background: transparent;
-  border-radius: 22px;
+  border-radius: 10px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 1em;
@@ -78,7 +78,7 @@ const Section = styled(Card)`
   align-items: center;
   padding-left: 0.6em;
   padding-right: 0.6em;
-  border-radius: 22px;
+  border-radius: 10px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
@@ -86,7 +86,7 @@ const Section = styled(Card)`
 `
 const Section2 = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  border-radius: 22px;
+  border-radius: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-right: 0.5em;

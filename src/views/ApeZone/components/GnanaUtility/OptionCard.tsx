@@ -13,7 +13,7 @@ const Option1 = styled.div`
 
 const HeadCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 0.5em;
 
   ${({ theme }) => theme.mediaQueries.md} {
