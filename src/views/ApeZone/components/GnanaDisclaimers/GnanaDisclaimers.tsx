@@ -1,230 +1,31 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Card, Heading, Text, ButtonSquare } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
-const Container = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  border-radius: 20px;
-  margin-top: 0.5em;
-  padding-top: 1.2em;
-  padding-bottom: 1.2em;
+import {
+  InfoSect1,
+  InfoCon,
+  InfoSect2,
+  InfoText,
+  Container,
+  Main,
+  FirstHeader,
+  FirstHeader2,
+  FirstHeaderCon,
+  Sect,
+  Sect1,
+  Sect1a,
+  Sect1b,
+  Sect1c,
+  Sect1d,
+  Text1,
+  Text2,
+  Text3,
+  Text4,
+  Main2,
+  Footer,
+  LearnMoreBtn,
+} from './styles'
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding: 2em;
-  }
-`
-const Main = styled.div`
-  width: 100%;
-`
-const Main2 = styled.div`
-  width: 100%;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-top: 1.5em;
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    margin-top: 2em;
-  }
-`
-const FirstHeaderCon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 25px;
-`
-const FirstHeader = styled(Heading)`
-  font-size: 20px;
-  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
-  font-weight: 700;
-  text-transform: uppercase;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: none;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 30px;
-  }
-`
-const FirstHeader2 = styled(FirstHeader)`
-  display: none;
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: unset;
-  }
-`
-
-const InfoCon = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 35px;
-  border-radius: 10px;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 45px;
-  }
-`
-const InfoText = styled(Text)`
-  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
-  font-size: 10px;
-  font-weight: 400;
-  text-align: center;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 12px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 14px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 16px;
-    font-weight: 500;
-  }
-`
-const Sect = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 280px;
-  justify-content: space-evenly;
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    height: 320px;
-  }
-`
-const Sect1 = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`
-const Sect1a = styled.div`
-  width: 15%;
-  height: 80px;
-  /* background: yellow; */
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    height: 89px;
-  }
-`
-const Sect1b = styled(Sect1a)`
-  width: 20%;
-  /* background: red; */
-`
-const Sect1c = styled(Sect1a)`
-  width: 40%;
-  /* background: green; */
-`
-const Sect1d = styled(Sect1a)`
-  width: 20%;
-  /* background: blue; */
-`
-const Text1 = styled(Text)`
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
-  font-size: 12px;
-  font-weight: 400;
-  height: 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  padding-left: 0.4em;
-  padding-right: 0.4em;
-  text-align: center;
-  visibility: hidden;
-`
-const Text2 = styled(Text1)`
-  height: 30px;
-  visibility: visible;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
-    font-weight: 500;
-    height: 49px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 22px;
-  }
-`
-const Text3 = styled(Text1)`
-  font-size: 10px;
-  height: 100%;
-  visibility: visible;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 12px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 14px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 16px;
-    font-weight: 500;
-  }
-`
-
-const Text4 = styled(Text3)`
-  font-size: 12px;
-  padding-left: 0.3em;
-  padding-right: 0.3em;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
-    font-weight: 500;
-    height: 49px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 22px;
-  }
-`
-const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5em;
-`
-
-const InfoSect1 = styled.div`
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: none;
-  }
-`
-
-const InfoSect2 = styled(InfoSect1)`
-  display: none;
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: unset;
-  }
-`
-const LearnMoreBtn = styled(ButtonSquare)`
-  font-size: 12px;
-  font-weight: 700;
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 16px;
-  }
-`
 interface InfoProps {
   content: string
 }

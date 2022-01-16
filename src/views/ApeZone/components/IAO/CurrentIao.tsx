@@ -1,91 +1,20 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { BaseLayout, Button, Flex, Heading, Text, Card } from '@apeswapfinance/uikit'
+import { Button, Heading, Text } from '@apeswapfinance/uikit'
 import { zoneIfo } from 'config/constants'
 import useI18n from 'hooks/useI18n'
 import IfoCard from '../../../Ifos/components/IfoCard'
 import Title from '../Description/Title'
 
-const List = styled.ul`
-  color: ${({ theme }) => theme.colors.text};
-
-  & > li {
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
-`
-
-const StyledHeroHeading = styled.div`
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 99px;
-  padding-top: 49px;
-  padding-left: 53px;
-  padding-right: 53px;
-`
-
-const StyledHeroSection = styled.div`
-  background-color: #a16552;
-`
-
-const StyledFlex = styled(Flex)`
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 28px;
-  margin-top: -100px;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: -90px;
-    padding-left: 53px;
-    padding-right: 53px;
-  }
-`
-
-const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
-  margin: 32px 0px;
-  & > div {
-    grid-column: span 6;
-    width: 100%;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
-    }
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 6;
-    }
-  }
-`
-
-const StyledCard = styled(Card)`
-  padding: 24px;
-`
-
-const StyledTextContainer = styled.div`
-  margin-top: 28px;
-  margin-bottom: 28px;
-`
-
-const StyledGoldenMonkey = styled.img`
-  width: 100%;
-  height: 200px;
-  margin-left: auto;
-  margin-right: auto;
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-  }
-`
+import {
+  StyledHeroHeading,
+  StyledHeroSection,
+  StyledCard,
+  StyledFlex,
+  Cards,
+  StyledGoldenMonkey,
+  StyledTextContainer,
+  List,
+} from './styles'
 
 /**
  * Note: currently there should be only 1 active IFO at a time

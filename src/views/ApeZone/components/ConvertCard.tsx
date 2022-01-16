@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
@@ -16,78 +15,24 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import TokenInput from 'components/TokenInput'
 import CardValue from 'views/Home/components/CardValue'
 
+import {
+  FlexSection,
+  CheckBoxCon,
+  NewCheckBox,
+  CBS,
+  HeaderCard,
+  Header,
+  TokensDisplay,
+  ContentCard,
+  StyledButton,
+  StyledText,
+  StyledCard2,
+} from './styles'
+
 interface ConvertCardType {
   fromToken: string
   toToken: string
 }
-
-const StyledCard = styled(Card)`
-  overflow: visible;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  padding: 10px;
-`
-const HeaderCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  padding-top: 10px;
-  padding-bottom: 5px;
-`
-const Header = styled(Heading)`
-  font-size: 25px;
-  font-weight: 700;
-  text-transform: uppercase;
-`
-const TokensDisplay = styled(Text)`
-  font-size: 12px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.yellow};
-  text-transform: uppercase;
-`
-const ContentCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  margin-top: 10px;
-  padding: 10px;
-`
-const StyledButton = styled(Button)`
-  background: #ffb300;
-  border-radius: 10px;
-  box-shadow: none;
-  text-transform: uppercase;
-  margin-top: 15px;
-`
-const StyledText = styled(Text)`
-  z-index: 199;
-  margin-left: 10px;
-`
-const CheckBoxSection = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-`
-const CheckBoxCon = styled.div`
-  display: flex;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-`
-const NewCheckBox = styled(Checkbox)`
-  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
-`
-const FlexSection = styled(Flex)`
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 120px;
-  }
-`
 
 const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   const MAX_BUY = 50
@@ -161,7 +106,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   }, [unlimited, setUnlimited])
 
   return (
-    <StyledCard>
+    <StyledCard2>
       <HeaderCard>
         <Header>CONVERT</Header>
         <TokensDisplay>
@@ -201,17 +146,17 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
             *Current max buy is {displayMax}
           </Text>
 
-          <CheckBoxSection>
+          <CBS>
             <CheckBoxCon>
               <NewCheckBox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited buy.
             </StyledText>
-          </CheckBoxSection>
+          </CBS>
         </FlexSection>
       </ContentCard>
-    </StyledCard>
+    </StyledCard2>
   )
 }
 

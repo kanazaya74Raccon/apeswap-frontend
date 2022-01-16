@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Heading, Card, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
@@ -16,87 +15,24 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import TokenInput from 'components/TokenInput'
 import CardValue from 'views/Home/components/CardValue'
 
+import {
+  StyledCard,
+  HeaderCard,
+  Header,
+  TokensDisplay,
+  ContentCard,
+  StyledButton,
+  FlexSection,
+  NewCheckBox,
+  CheckBoxCon,
+  CheckBoxSection,
+  StyledText,
+} from './styles'
+
 interface ReturnCardType {
   fromToken: string
   toToken: string
 }
-
-const StyledCard = styled(Card)`
-  overflow: visible;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  padding: 10px;
-  margin-top: 20px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: 0px;
-    margin-left: 10px;
-  }
-`
-const HeaderCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  padding-top: 10px;
-  padding-bottom: 5px;
-`
-const Header = styled(Heading)`
-  font-size: 25px;
-  font-weight: 700;
-  text-transform: uppercase;
-`
-const TokensDisplay = styled(Text)`
-  font-size: 12px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.yellow};
-  text-transform: uppercase;
-`
-const ContentCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
-  margin-top: 10px;
-  padding: 10px;
-`
-const StyledButton = styled(Button)`
-  background: #ffb300;
-  border-radius: 10px;
-  box-shadow: none;
-  text-transform: uppercase;
-  margin-top: 15px;
-`
-const StyledText = styled(Text)`
-  z-index: 199;
-  margin-left: 10px;
-`
-const CheckBoxSection = styled.div`
-  display: none;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    display: unset;
-    visibility: hidden;
-  }
-`
-const CheckBoxCon = styled.div`
-  display: flex;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-`
-const NewCheckBox = styled(Checkbox)`
-  background: #fff;
-`
-const FlexSection = styled(Flex)`
-  ${({ theme }) => theme.mediaQueries.sm} {
-    height: 120px;
-  }
-`
 
 const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
   const [val, setVal] = useState('1')
