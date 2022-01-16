@@ -26,8 +26,8 @@ function PoolPriceBar({
   return (
     <>
       {isMobile ? (
-        <div style={{marginTop: '10px'}}>
-          <OddRow justify="space-around" style={{borderRadius:'5px 5px 0px 0px'}}>
+        <div style={{ marginTop: '10px' }}>
+          <OddRow justify="space-around" style={{ borderRadius: '5px 5px 0px 0px' }}>
             <Text pt={1}>
               {`${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''} per ${
                 currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''
@@ -36,23 +36,21 @@ function PoolPriceBar({
             <Text>{price?.toSignificant(6) ?? '-'}</Text>
           </OddRow>
           <EvenRow justify="space-around">
-            <Text pt={1}>
-              Share of Pool
+            <Text pt={1} textAlign="flex-start">
+              {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''} per ${
+                currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''
+              }`}
             </Text>
+            <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text>
+          </EvenRow>
+          <OddRow justify="space-around" style={{ borderRadius: '0px 0px 5px 5px' }}>
+            <Text pt={1}>Share of Pool</Text>
             <Text>
               {noLiquidity && price
                 ? '100'
                 : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ?? '0'}
               %
             </Text>
-          </EvenRow>
-          <OddRow justify="space-around" style={{borderRadius:'0px 0px 5px 5px'}}>
-            <Text pt={1} textAlign='flex-start'>
-              {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''} per ${
-                currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''
-              }`}
-            </Text>
-            <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text>
           </OddRow>
         </div>
       ) : (
@@ -109,13 +107,13 @@ const StyledCard = styled(Card)`
 `
 
 const EvenRow = styled(AutoRow)`
-  background-color: rgba(124, 124, 125, .08);
+  background-color: rgba(124, 124, 125, 0.08);
   justify-content: space-between;
   padding: 2.5px 15px 2.5px 15px;
 `
 
 const OddRow = styled(AutoRow)`
-  background-color: rgba(124, 124, 125, .15);
+  background-color: rgba(124, 124, 125, 0.15);
   justify-content: space-between;
   padding: 2.5px 15px 2.5px 15px;
 `

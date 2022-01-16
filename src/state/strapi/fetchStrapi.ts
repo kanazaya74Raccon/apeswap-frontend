@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome } from '../../hooks/api'
+import { getPromosHome, getNewsHome, getFarmsHome, getPoolsHome, getHeadersHome, getSwapBanners } from '../../hooks/api'
 
 export const useFetchPromoHome = () => {
   const [state, setState] = useState({
@@ -109,6 +109,31 @@ export const useFetchHeadersHome = () => {
         const headers = await getHeadersHome()
         setState({
           headersData: headers,
+          loading: false,
+        })
+      } catch (error) {
+        console.warn('Unable to fetch data:', error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  return state
+}
+
+
+export const useFetchSwapBanners = () => {
+  const [state, setState] = useState({
+    swapBannersData: [],
+    loading: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const swapBanners = await getSwapBanners()
+        setState({
+          swapBannersData: swapBanners,
           loading: false,
         })
       } catch (error) {

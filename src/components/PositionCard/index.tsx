@@ -204,7 +204,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
         <AutoColumn gap="16px" style={{ padding: '16px' }}>
           <FixedHeightRow>
             <RowFixed>
-              <StyledText>Your total pooled tokens</StyledText>
+              <StyledText>Total pooled tokens</StyledText>
             </RowFixed>
             {userPoolBalance ? (
               <RowFixed>

@@ -340,3 +340,20 @@ export const getHeadersHome = async () => {
 
   return headers
 }
+
+
+export const getSwapBanners = async () => {
+  const url = `${baseUrlStrapi}/swapbanners`
+  const resp = await fetch(url)
+  const data = await resp.json()
+  const banners = data.map((banner) => {
+    return {
+      desktop: banner.desktop,
+      mobile: banner.mobile,
+      link: banner.link,
+      param: banner.param,
+    }
+  })
+
+  return banners
+}
