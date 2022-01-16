@@ -60,7 +60,6 @@ const HeaderContainer = styled.div`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     position: relative;
-    display: flex;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -68,7 +67,6 @@ const HeaderContainer = styled.div`
     position: relative;
   }
 `
-const LeftHead = styled.div``
 const StyledHeading = styled(Heading)`
   font-size: 42px;
   font-weight: 400;
@@ -85,27 +83,10 @@ const StyledHeading = styled(Heading)`
     max-width: 600px !important;
   }
 `
-const QuestionHeader = styled(Heading)`
-  font-size: 24px;
-  font-weight: 400;
-  background: rgba(255, 255, 255, 0.1);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-align: center;
-  padding: 8px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    font-size: 36px;
-    width: 56px;
-    height: 56px;
-    padding: 8px;
-  }
-`
 const PaddedCard = styled(Card)`
   display: flex;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
   padding: 10px;
   border-radius: 20px;
@@ -135,14 +116,15 @@ const ReadMore = styled(Button)`
     display: none;
   }
 `
-const TopCard = styled.div`
+const CenterCard = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 `
 const Content = styled(CardBody)<ContentProps>`
-  padding: 10px 20px;
+  padding: 10px 10px;
   display: ${({ readingMore }) => (readingMore ? 'unset' : 'none')};
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -173,36 +155,30 @@ const Zone = () => {
     <>
       <Header>
         <HeaderContainer>
-          <LeftHead>
-            <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
-              {TranslateString(999, 'Golden')}
-            </StyledHeading>
-            <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
-              {TranslateString(999, 'Banana')}
-            </StyledHeading>
-          </LeftHead>
-          <QuestionHeader as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
-            {TranslateString(999, '?')}
-          </QuestionHeader>
+          <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
+            {TranslateString(999, 'Golden')}
+          </StyledHeading>
+          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
+            {TranslateString(999, 'Banana')}
+          </StyledHeading>
         </HeaderContainer>
       </Header>
 
       <Page>
         <PaddedCard>
-          <TopCard>
-            <Warning />
+          <Warning />
+          <CenterCard>
             <WarningHeader>WARNING</WarningHeader>
-            <Warning />
-          </TopCard>
+            {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
 
-          {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
-
-          <Content readingMore={readingMore}>
-            <ContentText>
-              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that
-              for every 1 BANANA you trade in, you will receive 0.7 GNANA
-            </ContentText>
-          </Content>
+            <Content readingMore={readingMore}>
+              <ContentText>
+                Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
+                that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+              </ContentText>
+            </Content>
+          </CenterCard>
+          <Warning />
         </PaddedCard>
 
         <Cards>
