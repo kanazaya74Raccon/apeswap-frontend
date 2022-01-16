@@ -58,6 +58,7 @@ const StyledButton = styled(Button)`
   font-size: 16px;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 10px;
 `
 
 const StyledMaxText = styled.div`

@@ -105,9 +105,6 @@ const OtherOpStyle = {}
 export const GnanaUtility: React.FC = () => {
   const theme = useTheme()
 
-  const buyGnana = () => {
-    return window.open('https://apeswap.finance/gnana', '_blank')
-  }
   const exploreGovernance = () => {
     return window.open('https://vote.apeswap.finance/', '_blank')
   }
@@ -139,7 +136,7 @@ export const GnanaUtility: React.FC = () => {
                 Title="Passive Farming"
                 Desc="Collect a 2% Reflect Fee on all GNANA Transactions"
                 ActionTitle="CONVERT"
-                onAction={buyGnana}
+                actionHref="#convert"
                 OpStyle={OtherOpStyle}
                 type="1"
               />

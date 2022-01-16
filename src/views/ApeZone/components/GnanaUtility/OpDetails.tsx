@@ -54,20 +54,23 @@ const OpDesc = styled(Text)`
   text-align: center;
   font-weight: 500;
 `
+const AnchorTag = styled.a`
+  width: 90%;
+`
 const ActionButton = styled(ButtonSquare)`
   padding-right: 0.1em;
   padding-left: 0.1em;
-  width: 90%;
   font-weight: 700;
 `
 interface OpDetailsProps {
   Icon?: SvgProps
   Title: string
   Desc: string
-  onAction: () => void
+  onAction?: () => void
   ActionTitle: string
   OpStyle?: Record<string, unknown>
   type?: string
+  actionHref?: string
 }
 
 export const OpDetails: React.FC<OpDetailsProps> = ({
@@ -77,6 +80,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
   onAction,
   ActionTitle,
   OpStyle,
+  actionHref,
   ...props
 }) => {
   const TranslateString = useI18n()
@@ -93,9 +97,11 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
         <OpDesc>{Desc}</OpDesc>
       </OpDescCon>
 
-      <ActionButton onClick={onAction} fullWidth fontSize="14px">
-        {TranslateString(292, ActionTitle)}
-      </ActionButton>
+      <AnchorTag href={actionHref}>
+        <ActionButton onClick={onAction} fullWidth fontSize="14px">
+          {TranslateString(292, ActionTitle)}
+        </ActionButton>
+      </AnchorTag>
     </OpCon>
   )
 }

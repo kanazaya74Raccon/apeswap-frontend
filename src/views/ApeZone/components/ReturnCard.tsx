@@ -23,7 +23,7 @@ interface ReturnCardType {
 
 const StyledCard = styled(Card)`
   overflow: visible;
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   padding: 10px;
   margin-top: 20px;
@@ -38,7 +38,7 @@ const HeaderCard = styled(Card)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
   padding-top: 10px;
   padding-bottom: 5px;
@@ -59,7 +59,7 @@ const ContentCard = styled(Card)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
   margin-top: 10px;
   padding: 10px;

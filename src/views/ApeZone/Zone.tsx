@@ -86,7 +86,6 @@ const StyledHeading = styled(Heading)`
 const PaddedCard = styled(Card)`
   display: flex;
   align-items: center;
-  /* flex-direction: column; */
   background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
   padding: 10px;
   border-radius: 20px;
@@ -181,7 +180,7 @@ const Zone = () => {
           <Warning />
         </PaddedCard>
 
-        <Cards>
+        <Cards id="convert">
           <ConvertCard fromToken="BANANA" toToken="GNANA" />
           <ReturnCard fromToken="GNANA" toToken="BANANA" />
         </Cards>
