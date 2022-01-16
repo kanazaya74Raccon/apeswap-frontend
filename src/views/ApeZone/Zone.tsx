@@ -85,10 +85,16 @@ const StyledHeading = styled(Heading)`
 `
 const PaddedCard = styled(Card)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
+`
+const TopCon = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `
 const WarningHeader = styled(Heading)`
   color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.white)};
@@ -97,7 +103,7 @@ const WarningHeader = styled(Heading)`
 `
 const Warning = styled(WarningIcon)`
   fill: #fff;
-  width: 52px;
+  width: 70px;
 `
 const ReadMore = styled(Button)`
   background: none;
@@ -122,16 +128,16 @@ const CenterCard = styled.div`
   align-items: center;
   width: 100%;
 `
-const Content = styled(CardBody)<ContentProps>`
-  padding: 10px 10px;
-  display: ${({ readingMore }) => (readingMore ? 'unset' : 'none')};
+const InnerContent = styled(CardBody)<ContentProps>`
+  padding: 0px 20px;
+  display: none;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;
     display: unset;
   }
 `
-const ContentText = styled(Text)`
+const InnerContentText = styled(Text)`
   letter-spacing: 5%;
   font-size: 12px;
   font-weight: 400;
@@ -140,6 +146,18 @@ const ContentText = styled(Text)`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;
+  }
+`
+const OuterContent = styled(InnerContent)<ContentProps>`
+  padding: 10px 20px;
+  display: ${({ readingMore }) => (readingMore ? 'unset' : 'none')};
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
+`
+const OuterContentText = styled(InnerContentText)`
+  ${({ theme }) => theme.mediaQueries.sm} {
   }
 `
 
@@ -165,19 +183,28 @@ const Zone = () => {
 
       <Page>
         <PaddedCard>
-          <Warning />
-          <CenterCard>
-            <WarningHeader>WARNING</WarningHeader>
-            {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
+          <TopCon>
+            <Warning />
+            <CenterCard>
+              <WarningHeader>WARNING</WarningHeader>
+              {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
 
-            <Content readingMore={readingMore}>
-              <ContentText>
-                Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
-                that for every 1 BANANA you trade in, you will receive 0.7 GNANA
-              </ContentText>
-            </Content>
-          </CenterCard>
-          <Warning />
+              <InnerContent readingMore={readingMore}>
+                <InnerContentText>
+                  Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
+                  that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+                </InnerContentText>
+              </InnerContent>
+            </CenterCard>
+            <Warning />
+          </TopCon>
+
+          <OuterContent readingMore={readingMore}>
+            <OuterContentText>
+              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that
+              for every 1 BANANA you trade in, you will receive 0.7 GNANA
+            </OuterContentText>
+          </OuterContent>
         </PaddedCard>
 
         <Cards id="convert">

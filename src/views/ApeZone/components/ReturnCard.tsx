@@ -75,13 +75,6 @@ const StyledText = styled(Text)`
   z-index: 199;
   margin-left: 10px;
 `
-
-const NewCheckBox = styled(Checkbox)`
-  background: #fff;
-  width: 50px;
-  height: 40px;
-`
-
 const CheckBoxSection = styled.div`
   display: none;
 
@@ -90,7 +83,15 @@ const CheckBoxSection = styled.div`
     visibility: hidden;
   }
 `
-
+const CheckBoxCon = styled.div`
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+`
+const NewCheckBox = styled(Checkbox)`
+  background: #fff;
+`
 const FlexSection = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 120px;
@@ -200,7 +201,9 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
           </Text>
 
           <CheckBoxSection>
-            <NewCheckBox id="checkbox" scale="md" />
+            <CheckBoxCon>
+              <NewCheckBox id="checkbox" scale="md" />
+            </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited buy.
             </StyledText>
