@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { JSBI, Pair, Percent } from '@apeswapfinance/sdk'
+import React, { useEffect, useState } from 'react'
+import { JSBI, Pair, Percent, Token } from '@apeswapfinance/sdk'
 import {
   Text,
   ChevronUpIcon,
@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -40,10 +41,12 @@ const StyledText = styled(Text)`
 `
 
 const Title = styled(Text)`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
+  margin-top: 5px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 22px;
+    margin-top: 0px;
   }
 `
 const StyledCard = styled(Card)`
@@ -157,6 +160,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
   const { account, chainId } = useActiveWeb3React()
 
+  const [currencyPrice, setCurrencyPrice] = useState<number>(null)
+
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
 
@@ -164,6 +169,14 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
 
   const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
   const totalPoolTokens = useTotalSupply(pair.liquidityToken)
+
+  useEffect(() => {
+    const fetchCurrencyTokenPrice = async () => {
+      const tokenPriceReturned = await getTokenUsdPrice(chainId, pair?.liquidityToken?.address, 18, true, false)
+      setCurrencyPrice(tokenPriceReturned)
+    }
+    fetchCurrencyTokenPrice()
+  }, [pair, chainId])
 
   const poolTokenPercentage =
     !!userPoolBalance && !!totalPoolTokens && JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
@@ -195,6 +208,9 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 `${currency0.getSymbol(chainId)}/${currency1.getSymbol(chainId)}`
               )}
             </Title>
+            <Text small style={{ position: 'absolute', right: '40px' }} mt="5px">
+              ~ ${(currencyPrice * parseFloat(userPoolBalance?.toSignificant(4))).toFixed(2)}
+            </Text>
           </Flex>
         </Flex>
         {showMore ? <ArrowDropUpIcon width="13px" /> : <ArrowDropDownIcon width="13px" />}
@@ -271,7 +287,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 fullWidth
                 style={{ height: '40px', marginLeft: '8px' }}
               >
-                <Title color='white'>Remove</Title>
+                <Title color="white">Remove</Title>
               </ButtonSquare>
             </Flex>
           )}
