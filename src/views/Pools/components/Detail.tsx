@@ -84,7 +84,6 @@ const Detail: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const totalStakedTitle = type === 'card' ? 'Total Staked Value' : 'Total Staked'
-
   const chainId = process.env.REACT_APP_CHAIN_ID
   const URLactual = window.location
 
