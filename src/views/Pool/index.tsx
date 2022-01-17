@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { Pair } from '@apeswapfinance/sdk'
-import { Text, Flex, CardBody, CardFooter, Button, AddIcon, ButtonSquare, Card } from '@apeswapfinance/uikit'
+import { Text, Flex, AddIcon, ButtonSquare, Card } from '@apeswapfinance/uikit'
 import { Wrapper } from 'views/Swap/components/styleds'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { Link } from 'react-router-dom'
@@ -15,10 +15,6 @@ import { usePairs } from '../../hooks/usePairs'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import Dots from '../../components/Loader/Dots'
 import { AppBody } from '../../components/App'
-
-const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.background};
-`
 
 const StyledCard = styled(Card)`
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};

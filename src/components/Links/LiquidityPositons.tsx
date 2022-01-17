@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { ArrowDropUpIcon, Flex, Text } from '@apeswapfinance/uikit'
 import { Link } from 'react-router-dom'
 

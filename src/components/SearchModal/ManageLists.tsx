@@ -1,14 +1,14 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react'
-import { Button, Text, CheckmarkIcon, CogIcon, Input, Toggle, LinkExternal, Card } from '@apeswapfinance/uikit'
+import { Button, Text, CheckmarkIcon, CogIcon, Input, Toggle, Card } from '@apeswapfinance/uikit'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { TokenList, Version } from '@uniswap/token-lists'
+import { TokenList } from '@uniswap/token-lists'
 import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
 import { parseENSAddress } from 'utils/ENS/parseENSAddress'
 import useFetchListCallback from '../../hooks/useFetchListCallback'
 
 import { AppDispatch, AppState } from '../../state'
-import { acceptListUpdate, removeList, disableList, enableList } from '../../state/lists/actions'
+import { disableList, enableList } from '../../state/lists/actions'
 import { useIsListActive, useAllLists, useActiveListUrls } from '../../state/lists/hooks'
 import uriToHttp from '../../utils/uriToHttp'
 
@@ -17,9 +17,6 @@ import { ListLogo } from '../Logo'
 import Row, { RowFixed, RowBetween } from '../layout/Row'
 import { CurrencyModalView } from './types'
 
-function listVersionLabel(version: Version): string {
-  return `v${version.major}.${version.minor}.${version.patch}`
-}
 
 const Wrapper = styled(Column)`
   width: 100%;
@@ -43,21 +40,9 @@ function listUrlRowHTMLId(listUrl: string) {
 const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>((state) => state.lists.byUrl)
   const dispatch = useDispatch<AppDispatch>()
-  const { current: list, pendingUpdate: pending } = listsByUrl[listUrl]
+  const { current: list} = listsByUrl[listUrl]
 
   const isActive = useIsListActive(listUrl)
-
-  const handleAcceptListUpdate = useCallback(() => {
-    if (!pending) return
-    dispatch(acceptListUpdate(listUrl))
-  }, [dispatch, listUrl, pending])
-
-  const handleRemoveList = useCallback(() => {
-    // eslint-disable-next-line no-alert
-    if (window.confirm('Please confirm you would like to remove this list')) {
-      dispatch(removeList(listUrl))
-    }
-  }, [dispatch, listUrl])
 
   const handleEnableList = useCallback(() => {
     dispatch(enableList(listUrl))

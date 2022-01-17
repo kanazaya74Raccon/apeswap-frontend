@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from '@apeswapfinance/sdk'
+import { Pair, Token } from '@apeswapfinance/sdk'
 import flatMap from 'lodash/flatMap'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,7 +20,6 @@ import {
   updateUserFarmStakedOnly,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
-  updateGasPrice,
   addWatchlistToken,
   addWatchlistPool,
   updateUserPoolStakedOnly,
@@ -34,7 +33,7 @@ import {
   hidePhishingWarningBanner,
   setIsExchangeChartDisplayed,
 } from '../actions'
-import { deserializeToken, GAS_PRICE_GWEI, serializeToken } from './helpers'
+import { deserializeToken, serializeToken } from './helpers'
 
 export function useAudioModeManager(): [boolean, () => void] {
   const dispatch = useDispatch<AppDispatch>()

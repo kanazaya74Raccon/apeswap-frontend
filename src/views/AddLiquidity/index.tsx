@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@apeswapfinance/sdk'
+import { Currency, ETHER, TokenAmount } from '@apeswapfinance/sdk'
 import { Text, Flex, AddIcon, useModal } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -69,11 +69,6 @@ export default function AddLiquidity({
     }
   }, [dispatch, currencyIdA, currencyIdB])
 
-  const oneCurrencyIsWETH = Boolean(
-    chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId]))),
-  )
 
   const expertMode = useIsExpertMode()
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Currency, ETHER, JSBI, TokenAmount } from '@apeswapfinance/sdk'
-import { Button, ChevronDownIcon, Text, AddIcon, useModal, Card, Flex } from '@apeswapfinance/uikit'
+import { Button, ChevronDownIcon, Text, AddIcon, useModal, Flex } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'

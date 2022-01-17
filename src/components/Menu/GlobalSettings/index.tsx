@@ -1,13 +1,9 @@
 import React from 'react'
-import { Flex, IconButton, CogIcon, useModal, ButtonSquare } from '@apeswapfinance/uikit'
+import {CogIcon, useModal, ButtonSquare } from '@apeswapfinance/uikit'
 import SettingsModal from './SettingsModal'
 
-type Props = {
-  color?: string
-  mr?: string
-}
 
-const GlobalSettings = ({ color, mr = '8px' }: Props) => {
+const GlobalSettings = () => {
   const [onPresentSettingsModal] = useModal(<SettingsModal />)
 
   return (

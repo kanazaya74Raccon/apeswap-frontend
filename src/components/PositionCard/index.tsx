@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { JSBI, Pair, Percent, Token } from '@apeswapfinance/sdk'
+import { JSBI, Pair, Percent } from '@apeswapfinance/sdk'
 import {
   Text,
-  ChevronUpIcon,
-  ChevronDownIcon,
   Card,
   CardBody,
   Flex,

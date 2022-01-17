@@ -1,18 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import Slider from 'components/Slider'
-import { Currency, currencyEquals, ETHER, JSBI, Percent, Token, WETH } from '@apeswapfinance/sdk'
+import { ETHER, JSBI, Percent, Token } from '@apeswapfinance/sdk'
 import { LargeStyledButton } from 'views/Swap/styles'
 import Page from 'components/layout/Page'
 import {
-  Button,
   Text,
   AddIcon,
-  ArrowDownIcon,
-  CardBody,
   Flex,
   Card,
   useModal,
@@ -26,10 +21,9 @@ import { Wrapper } from 'views/Swap/components/styleds'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
-import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
+import { AutoColumn } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { MinimalPositionCard } from '../../components/PositionCard'
 import { AppBody } from '../../components/App'
 import { RowBetween, RowFixed, AutoRow } from '../../components/layout/Row'
 import UnlockButton from '../../components/UnlockButton'
@@ -42,24 +36,16 @@ import { usePairContract } from '../../hooks/useContract'
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 
 import { useTransactionAdder } from '../../state/transactions/hooks'
-import StyledInternalLink from '../../components/Links'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
-import { currencyId } from '../../utils/currencyId'
-import useDebouncedChangeHandler from '../../hooks/useDebouncedChangeHandler'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
-import { useDerivedMintInfo } from '../../state/mint/hooks'
 import { Field } from '../../state/burn/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
-const BorderCard = styled.div`
-  border: solid 1px ${({ theme }) => theme.colors.background};
-  padding: 16px;
-`
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -94,7 +80,6 @@ const Title = styled(Text)`
 `
 
 export default function RemoveLiquidity({
-  history,
   match: {
     params: { currencyIdA, currencyIdB },
   },
@@ -157,7 +142,6 @@ export default function RemoveLiquidity({
       : undefined
 
   // modal and loading
-  const [showDetailed, setShowDetailed] = useState<boolean>(false)
   const [attemptingTxn, setAttemptingTxn] = useState(false) // clicked confirm
 
   // txn values
@@ -261,9 +245,9 @@ export default function RemoveLiquidity({
     [_onUserInput],
   )
 
-  const onLiquidityInput = useCallback((value: string): void => onUserInput(Field.LIQUIDITY, value), [onUserInput])
-  const onCurrencyAInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_A, value), [onUserInput])
-  const onCurrencyBInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_B, value), [onUserInput])
+  // const onLiquidityInput = useCallback((value: string): void => onUserInput(Field.LIQUIDITY, value), [onUserInput])
+  // const onCurrencyAInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_A, value), [onUserInput])
+  // const onCurrencyBInput = useCallback((value: string): void => onUserInput(Field.CURRENCY_B, value), [onUserInput])
 
   // tx sending
   const addTransaction = useTransactionAdder()
@@ -481,40 +465,7 @@ export default function RemoveLiquidity({
     currencyA?.getSymbol(chainId) ?? ''
   } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencyB?.getSymbol(chainId) ?? ''}`
 
-  const liquidityPercentChangeCallback = useCallback(
-    (value: number) => {
-      onUserInput(Field.LIQUIDITY_PERCENT, value.toString())
-    },
-    [onUserInput],
-  )
 
-  const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
-  const oneCurrencyIsWETH = Boolean(
-    chainId &&
-      ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
-        (currencyB && currencyEquals(WETH[chainId], currencyB))),
-  )
-
-  const handleSelectCurrencyA = useCallback(
-    (currency: Currency) => {
-      if (currencyIdB && currencyId(currency) === currencyIdB) {
-        history.push(`/remove/${currencyId(currency)}/${currencyIdA}`)
-      } else {
-        history.push(`/remove/${currencyId(currency)}/${currencyIdB}`)
-      }
-    },
-    [currencyIdA, currencyIdB, history],
-  )
-  const handleSelectCurrencyB = useCallback(
-    (currency: Currency) => {
-      if (currencyIdA && currencyId(currency) === currencyIdA) {
-        history.push(`/remove/${currencyIdB}/${currencyId(currency)}`)
-      } else {
-        history.push(`/remove/${currencyIdA}/${currencyId(currency)}`)
-      }
-    },
-    [currencyIdA, currencyIdB, history],
-  )
 
   const handleDismissConfirmation = useCallback(() => {
     setSignatureData(null) // important that we clear signature data to avoid bad sigs
@@ -525,10 +476,6 @@ export default function RemoveLiquidity({
     setTxHash('')
   }, [onUserInput, txHash])
 
-  const [innerLiquidityPercentage, setInnerLiquidityPercentage] = useDebouncedChangeHandler(
-    Number.parseInt(parsedAmounts[Field.LIQUIDITY_PERCENT].toFixed(0)),
-    liquidityPercentChangeCallback,
-  )
 
   const [onPresentRemoveLiquidity] = useModal(
     <TransactionConfirmationModal

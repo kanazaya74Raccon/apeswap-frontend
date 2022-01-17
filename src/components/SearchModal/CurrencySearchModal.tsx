@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Currency, Token } from '@apeswapfinance/sdk'
-import { InjectedModalProps, Heading, Button, Modal } from '@apeswapfinance/uikit'
+import { InjectedModalProps, Button, Modal } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import usePrevious from 'hooks/usePreviousValue'
 import { TokenList } from '@uniswap/token-lists'
 import CurrencySearch from './CurrencySearch'
 import ImportToken from './ImportToken'
@@ -48,15 +47,11 @@ export default function CurrencySearchModal({
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
-      console.log(currency)
       onDismiss()
       onCurrencySelect(currency)
     },
     [onDismiss, onCurrencySelect],
   )
-
-  // for token import view
-  const prevView = usePrevious(modalView)
 
   // used for import token flow
   const [importToken, setImportToken] = useState<Token | undefined>()
@@ -64,17 +59,6 @@ export default function CurrencySearchModal({
   // used for import list
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
-
-  const config = {
-    [CurrencyModalView.search]: { title: 'Select a Token', onBack: undefined },
-    [CurrencyModalView.manage]: { title: 'Manage', onBack: () => setModalView(CurrencyModalView.search) },
-    [CurrencyModalView.importToken]: {
-      title: 'Import Tokens',
-      onBack: () =>
-        setModalView(prevView && prevView !== CurrencyModalView.importToken ? prevView : CurrencyModalView.search),
-    },
-    [CurrencyModalView.importList]: { title: 'Import List', onBack: () => setModalView(CurrencyModalView.search) },
-  }
 
   return (
     <StyledModalContainer>

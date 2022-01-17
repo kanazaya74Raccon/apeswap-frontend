@@ -1,5 +1,4 @@
 import { CurrencyAmount, Fraction, JSBI, Percent, Price, TokenAmount, Trade } from '@apeswapfinance/sdk'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,

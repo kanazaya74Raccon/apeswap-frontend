@@ -3,7 +3,6 @@ import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
 import styled from 'styled-components'
 import { Text, Input } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
-import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
@@ -51,8 +50,6 @@ function CurrencySearch({
   const searchToken = useToken(debouncedQuery)
   const searchTokenIsAdded = useIsUserAddedToken(searchToken)
 
-  const [audioPlay] = useAudioModeManager()
-
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
     return s === '' || s === 'e' || s === 'et' || s === 'eth'
@@ -69,11 +66,8 @@ function CurrencySearch({
     return filteredTokens.sort(tokenComparator)
   }, [filteredTokens, tokenComparator])
 
-  console.log(sortedTokens)
 
   const filteredSortedTokens = useSortedTokensByQuery(sortedTokens, debouncedQuery)
-
-  console.log(filteredSortedTokens)
 
 
   const handleCurrencySelect = useCallback(

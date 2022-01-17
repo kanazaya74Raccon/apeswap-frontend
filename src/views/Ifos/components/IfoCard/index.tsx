@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
-import multicallABI from 'config/abi/Multicall.json'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon } from '@apeswapfinance/uikit'
@@ -10,7 +9,6 @@ import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { getMulticallAddress } from 'utils/addressHelper'
 import { useNetworkChainId } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
@@ -196,10 +194,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, notLp, gnana }) => {
       const harvestTwoBlockRelease = (harvestTwoBlock - currentBlock) * BSC_BLOCK_TIME
       const harvestThreeBlockRelease = (harvestThreeBlock - currentBlock) * BSC_BLOCK_TIME
       const harvestFourBlockRelease = (harvestFourBlock - currentBlock) * BSC_BLOCK_TIME
-
-      console.log(harvestOneBlockRelease)
-      console.log(progress)
-
 
       setState({
         isLoading: currentBlock === 0,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare } from '@apeswapfinance/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
 
 interface ExpertModalProps extends InjectedModalProps {
@@ -8,7 +8,7 @@ interface ExpertModalProps extends InjectedModalProps {
 }
 
 const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, setShowExpertModeAcknowledgement }) => {
-  const [expertMode, toggleExpertMode] = useExpertModeManager()
+  const [, toggleExpertMode] = useExpertModeManager()
   const [isRememberChecked, setIsRememberChecked] = useState(false)
 
   return (

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
-import multicallABI from 'config/abi/Multicall.json'
 import { useModal, Button, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'

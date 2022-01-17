@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Toggle, Flex, Modal, InjectedModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, InjectedModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import {
-  useAudioModeManager,
   useExpertModeManager,
   useUserExpertModeAcknowledgementShow,
   useUserSingleHopOnly,
 } from 'state/user/hooks'
 import { useSwapActionHandlers } from 'state/swap/hooks'
-import useTheme from 'hooks/useTheme'
 import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
 

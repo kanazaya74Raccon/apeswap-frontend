@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { escapeRegExp } from 'utils'
 import styled from 'styled-components'
-import { Text, Input, Flex, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, Input, Flex } from '@apeswapfinance/uikit'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
 
 enum SlippageError {

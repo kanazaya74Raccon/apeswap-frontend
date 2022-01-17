@@ -8,7 +8,6 @@ import {
   useModal,
   Flex,
   IconButton,
-  useMatchBreakpoints,
   Card,
 } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
@@ -20,7 +19,6 @@ import Column, { AutoColumn } from '../../components/layout/Column'
 import ConfirmSwapModal from './components/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow, RowBetween } from '../../components/layout/Row'
-import AdvancedSwapDetailsDropdown from './components/AdvancedSwapDetailsDropdown'
 import confirmPriceImpactWithoutFee from './components/confirmPriceImpactWithoutFee'
 import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import TradePrice from './components/TradePrice'
@@ -46,7 +44,6 @@ import {
   useExpertModeManager,
   useUserSlippageTolerance,
   useUserSingleHopOnly,
-  useExchangeChartManager,
 } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
@@ -60,15 +57,7 @@ const Label = styled(Text)`
 
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
-  const { isMobile } = useMatchBreakpoints()
-  const [isChartExpanded, setIsChartExpanded] = useState(false)
-  const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
-  const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
   const { chainId } = useActiveWeb3React()
-
-  useEffect(() => {
-    setUserChartPreference(isChartDisplayed)
-  }, [isChartDisplayed, setUserChartPreference])
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -234,10 +223,10 @@ export default function Swap({ history }: RouteComponentProps) {
   }, [trade])
 
   // swap warning state
-  const [swapWarningCurrency, setSwapWarningCurrency] = useState(null)
+  const [, setSwapWarningCurrency] = useState(null)
 
   const shouldShowSwapWarning = (swapCurrency) => {
-    return null
+    return swapCurrency
   }
 
   const handleInputSelect = useCallback(
@@ -304,8 +293,6 @@ export default function Swap({ history }: RouteComponentProps) {
     true,
     'swapConfirmModal',
   )
-
-  console.log(formattedAmounts)
 
   return (
     <Page>

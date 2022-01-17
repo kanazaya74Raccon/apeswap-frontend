@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFetchSwapBanners } from 'state/strapi/fetchStrapi'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SwapBanner: React.FC = () => {

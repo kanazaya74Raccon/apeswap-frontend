@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {
   Flex,
-  Heading,
-  IconButton,
-  Text,
-  useModal,
   ButtonSquare,
-  CogIcon,
   ButtonMenu,
   ButtonMenuItem,
-  LinkExternal,
   useMatchBreakpoints,
 } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
-import { useExpertModeManager } from 'state/user/hooks'
 import { Link, useLocation } from 'react-router-dom'
 
 interface Props {
@@ -33,7 +26,6 @@ const CurrencyInputContainer = styled(Flex)`
 `
 
 const CurrencyInputHeader: React.FC<Props> = () => {
-  const [expertMode] = useExpertModeManager()
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()

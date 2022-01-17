@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Currency, Pair, Token } from '@apeswapfinance/sdk'
 import {
   Button,
-  ChevronDownIcon,
   Text,
   useModal,
   Flex,

@@ -1,4 +1,3 @@
-import { BASE_EXCHANGE_URL, BASE_LIQUIDITY_POOL_URL } from 'config'
 
 export const HOME = {
   label: 'Home',

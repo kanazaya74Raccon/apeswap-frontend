@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Trade, TradeType } from '@apeswapfinance/sdk'
-import { Button, Text, AutoRenewIcon } from '@apeswapfinance/uikit'
+import { Text, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { Field } from 'state/swap/actions'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {

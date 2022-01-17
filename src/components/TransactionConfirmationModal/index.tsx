@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import { ChainId, Currency, Token } from '@apeswapfinance/sdk'
 import styled from 'styled-components'
 import {
@@ -23,9 +23,6 @@ import { AutoColumn, ColumnCenter } from '../layout/Column'
 
 const Wrapper = styled.div`
   width: 100%;
-`
-const Section = styled(AutoColumn)`
-  padding: 24px;
 `
 
 const ConfirmedIcon = styled(ColumnCenter)`

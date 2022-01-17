@@ -28,7 +28,7 @@ export default function Updater(): null {
   const fetchAllListsCallback = useCallback(() => {
     if (!isWindowVisible) return
     Object.keys(lists).forEach((url) =>
-      fetchList(url).catch((error) => console.debug('interval list fetching error', error)),
+      fetchList(url).catch((error) => console.info('interval list fetching error', error)),
     )
   }, [fetchList, isWindowVisible, lists])
 
@@ -40,7 +40,7 @@ export default function Updater(): null {
     Object.keys(lists).forEach((listUrl) => {
       const list = lists[listUrl]
       if (!list.current && !list.loadingRequestId && !list.error) {
-        fetchList(listUrl).catch((error) => console.debug('list added fetching error', error))
+        fetchList(listUrl).catch((error) => console.info('list added fetching error', error))
       }
     })
   }, [dispatch, fetchList, library, lists])
@@ -50,7 +50,7 @@ export default function Updater(): null {
     Object.keys(UNSUPPORTED_LIST_URLS).forEach((listUrl) => {
       const list = lists[listUrl]
       if (!list || (!list.current && !list.loadingRequestId && !list.error)) {
-        fetchList(listUrl).catch((error) => console.debug('list added fetching error', error))
+        fetchList(listUrl).catch((error) => console.info('list added fetching error', error))
       }
     })
   }, [dispatch, fetchList, library, lists])

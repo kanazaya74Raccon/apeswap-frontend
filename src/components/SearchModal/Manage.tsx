@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Token } from '@apeswapfinance/sdk'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'
 import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'

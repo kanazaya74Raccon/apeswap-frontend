@@ -18,7 +18,6 @@ export const usePollBlockNumber = (refreshTime = 6000) => {
     () => {
       const fetchBlock = async () => {
         const blockNumber = await provider.getBlockNumber()
-        console.log(blockNumber)
         dispatch(setBlock(blockNumber))
       }
 
