@@ -9,7 +9,7 @@ import CardValue from './CardValue'
 const StyledBananaStats = styled(Card)`
   width: 336px;
   height: 203px;
-  margin-top: 40px;
+  margin-top: 40px;s
   @media screen and (max-width: 350px) {
     width: 320px;
   }
@@ -132,7 +132,7 @@ const ApeSwapStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
+            <a href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/banana">{TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}</a>
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={900} />
         </Row>

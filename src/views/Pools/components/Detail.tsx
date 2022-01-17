@@ -84,6 +84,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const totalStakedTitle = type === 'card' ? 'Total Staked Value' : 'Total Staked'
+
   const chainId = process.env.REACT_APP_CHAIN_ID
   const URLactual = window.location
 
@@ -102,7 +103,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         <>
           <Flex justifyContent="space-between">
             <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
-            <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+            <StyledText fontSize="12px">{rewardToken.symbol === 'BANANA' ? 'Never' : `${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
               timeUntilEnd.minutes
             }m`}</StyledText>
           </Flex>
