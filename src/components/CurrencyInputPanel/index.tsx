@@ -1,8 +1,9 @@
-import React from 'react'
-import { Currency, Pair } from '@apeswapfinance/sdk'
+import React, { useState } from 'react'
+import { Currency, Pair, Token } from '@apeswapfinance/sdk'
 import { Button, ChevronDownIcon, Text, useModal, Flex, ButtonSquare, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
@@ -73,6 +74,7 @@ interface CurrencyInputPanelProps {
   pair?: Pair | null
   otherCurrency?: Currency | null
   id: string
+  isLp?: boolean
   showCommonBases?: boolean
   removeLiquidity?: boolean
   addLiquidity?: boolean
@@ -86,6 +88,7 @@ export default function CurrencyInputPanel({
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
+  isLp = false,
   hideBalance = false,
   pair = null, // used for double token logo
   otherCurrency,
@@ -96,6 +99,20 @@ export default function CurrencyInputPanel({
 }: CurrencyInputPanelProps) {
   const { account, chainId } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
+  const [tokenPrice, setTokenPrice] = useState<number>(null)
+  const isNative = currency?.symbol === 'ETH'
+
+  const fetchTokenPrice = async () => {
+    const tokenPriceReturned = await getTokenUsdPrice(
+      chainId,
+      currency instanceof Token ? currency?.address : '',
+      currency?.decimals,
+      isLp,
+      isNative,
+    )
+    setTokenPrice(tokenPriceReturned)
+  }
+  fetchTokenPrice()
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -204,7 +221,7 @@ export default function CurrencyInputPanel({
               style={{
                 position: 'absolute',
                 bottom: '-30px',
-                marginLeft: '-120px',
+                left: '10px',
               }}
             >
               {!hideBalance && !!currency && value
@@ -214,6 +231,26 @@ export default function CurrencyInputPanel({
                       : 'Loading'
                   }`
                 : '-'}
+            </Text>
+          )}
+          {account && (
+            <Text
+              fontSize="14px"
+              style={{
+                display: 'inline',
+                position: 'absolute',
+                bottom: '-30px',
+                right: '10px',
+              }}
+            >
+              {!hideBalance && !!currency && value
+                ? isLp
+                  ? `~ $${(
+                      tokenPrice *
+                      (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100))
+                    )?.toFixed(2)}`
+                  : `~ $${(tokenPrice * parseFloat(value))?.toFixed(2)}`
+                : ' -'}
             </Text>
           )}
         </Container>

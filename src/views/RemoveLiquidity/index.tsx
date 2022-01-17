@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import Slider from 'components/Slider'
-import { Currency, currencyEquals, ETHER, JSBI, Percent, WETH } from '@apeswapfinance/sdk'
+import { Currency, currencyEquals, ETHER, JSBI, Percent, Token, WETH } from '@apeswapfinance/sdk'
 import { LargeStyledButton } from 'views/Swap/styles'
 import Page from 'components/layout/Page'
 import {
@@ -19,6 +19,7 @@ import {
   useMatchBreakpoints,
   ButtonSquare,
 } from '@apeswapfinance/uikit'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Wrapper } from 'views/Swap/components/styleds'
@@ -99,6 +100,8 @@ export default function RemoveLiquidity({
   },
 }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
+  const [currencyAPrice, setCurrencyAPrice] = useState<number>(null)
+  const [currencyBPrice, setCurrencyBPrice] = useState<number>(null)
 
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -108,6 +111,36 @@ export default function RemoveLiquidity({
     () => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)],
     [currencyA, currencyB, chainId],
   )
+
+  const isANative = currencyA?.symbol === 'ETH'
+  const isBNative = currencyB?.symbol === 'ETH'
+
+  useEffect(() => {
+    const fetchCurrencyATokenPrice = async () => {
+      const tokenPriceReturned = await getTokenUsdPrice(
+        chainId,
+        currencyA instanceof Token ? currencyA?.address : '',
+        currencyA?.decimals,
+        false,
+        isANative,
+      )
+      setCurrencyAPrice(tokenPriceReturned)
+    }
+    fetchCurrencyATokenPrice()
+  }, [currencyA, chainId, isANative])
+  useEffect(() => {
+    const fetchCurrencyBTokenPrice = async () => {
+      const tokenPriceReturned = await getTokenUsdPrice(
+        chainId,
+        currencyB instanceof Token ? currencyB?.address : '',
+        currencyB?.decimals,
+        false,
+        isBNative,
+      )
+      setCurrencyBPrice(tokenPriceReturned)
+    }
+    fetchCurrencyBTokenPrice()
+  }, [currencyB, chainId, isBNative])
 
   // burn state
   const { independentField, typedValue } = useBurnState()
@@ -543,6 +576,7 @@ export default function RemoveLiquidity({
               id="liquidity-amount"
               onCurrencySelect={() => null}
               removeLiquidity
+              isLp
             />
             {isMobile ? (
               <div style={{ marginTop: '20px', marginBottom: '10px' }}>
@@ -574,6 +608,11 @@ export default function RemoveLiquidity({
                           {currencyA?.getSymbol(chainId) ?? ''}
                         </Text>
                         <Text small>{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
+                        <Text small>
+                          {currencyAPrice && formattedAmounts[Field.CURRENCY_A]
+                            ? `~ $${(currencyAPrice * parseFloat(formattedAmounts[Field.CURRENCY_A])).toFixed(2)}`
+                            : '-'}
+                        </Text>
                       </AutoColumn>
                     </StyledCard>
                     <StyledCard mr="7px">
@@ -583,6 +622,11 @@ export default function RemoveLiquidity({
                           {currencyB?.getSymbol(chainId) ?? ''}
                         </Text>
                         <Text small>{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
+                        <Text small>
+                          {currencyBPrice && formattedAmounts[Field.CURRENCY_B]
+                            ? `~ $${(currencyBPrice * parseFloat(formattedAmounts[Field.CURRENCY_B])).toFixed(2)}`
+                            : '-'}
+                        </Text>
                       </AutoColumn>
                     </StyledCard>
                   </AutoRow>

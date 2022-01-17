@@ -6,7 +6,6 @@ import styled from 'styled-components'
 const SwapBanner: React.FC = () => {
   const banners = useFetchSwapBanners()
   const location = useLocation()
-  const history = useHistory()
   const bannerToDisplay = banners.swapBannersData.find((banner) => {
     if (location.search.includes(banner?.param)) {
       return banner
@@ -14,13 +13,18 @@ const SwapBanner: React.FC = () => {
     return null
   })
 
-  console.log(banners)
-  console.log(location)
-  console.log(bannerToDisplay)
-  return <StyledBanner image={bannerToDisplay?.desktop?.url}/>
+  return (
+    <>
+      {bannerToDisplay && (
+        <a href={bannerToDisplay?.link} target="_blank" rel="noopener noreferrer">
+          <StyledBanner image={bannerToDisplay?.desktop?.url} />
+        </a>
+      )}
+    </>
+  )
 }
 
-const StyledBanner = styled.div<{image: string}>`
+const StyledBanner = styled.div<{ image: string }>`
   height: 120px;
   width: 360px;
   border-radius: 20px;

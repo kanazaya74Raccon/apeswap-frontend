@@ -8,7 +8,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 const fetchPrices = async (chainId) => {
   const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const tokensToCall = Object.keys(tokens).filter((token) => tokens[token].address[chainId] !== undefined)
-  console.log("here")
   const erc20Calls = tokensToCall.map((token) => {
     return {
       address: tokens[token].address[chainId],
@@ -31,7 +30,6 @@ const fetchPrices = async (chainId) => {
     }
   })
   const tokenPrices = await multicall(chainId, apePriceGetterABI, calls)
-  console.log("here")
 
   // Banana should always be the first token
   const mappedTokenPrices = tokensToCall.map((token, i) => {

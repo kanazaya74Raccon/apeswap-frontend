@@ -76,6 +76,11 @@ export const MATIC: { [key: string]: Token } = {
   FXS: new Token(ChainId.MATIC, '0x3e121107F6F22DA4911079845a470757aF4e1A1b', 18, 'FXS', 'Frax Share'),
 }
 
+export const CHAIN_USD: { [key: number]: Token } = {
+  [ChainId.BSC]: BSC.USD,
+  [ChainId.MATIC]: MATIC.USDC,
+}
+
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
