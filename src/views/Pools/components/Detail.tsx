@@ -102,7 +102,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         <>
           <Flex justifyContent="space-between">
             <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
-            <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+            <StyledText fontSize="12px">{rewardToken.symbol === 'BANANA' ? 'Never' : `${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
               timeUntilEnd.minutes
             }m`}</StyledText>
           </Flex>
