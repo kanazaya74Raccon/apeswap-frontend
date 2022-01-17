@@ -176,7 +176,7 @@ placeholder-color: black;
   color: ${props => props.theme.colors.text};
 }
 :focus {
-  outline: 1px solid #ffb300 !important;
+  border: 1px solid #ffb300 !important;
   box-shadow: none !important;
 }  
 `

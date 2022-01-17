@@ -209,7 +209,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
               )}
             </Title>
             <Text small style={{ position: 'absolute', right: '40px' }} mt="5px">
-              ~ ${(currencyPrice * parseFloat(userPoolBalance?.toSignificant(4))).toFixed(2)}
+              {currencyPrice ? `~ ${(currencyPrice * parseFloat(userPoolBalance?.toSignificant(4))).toFixed(2)}` : '-'}
             </Text>
           </Flex>
         </Flex>

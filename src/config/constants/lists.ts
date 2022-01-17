@@ -22,11 +22,12 @@ const GEMINI_LIST = 'https://www.gemini.com/uniswap/manifest.json'
 const QUICK_SWAP = 'https://unpkg.com/quickswap-default-token-list@latest/build/quickswap-default.tokenlist.json'
 const SUSHI_SWAP = 'https://unpkg.com/@sushiswap/default-token-list@latest/build/sushiswap-default.tokenlist.json'
 const BUIDL = 'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/lists/buidl.json'
+const NFT_INDEX = 'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/lists/nftindex.json'
+
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
-    SUSHI_SWAP,
-    QUICK_SWAP,
     BUIDL,
+    NFT_INDEX,
     /* YEARN_LIST,
     COMPOUND_LIST,
     AAVE_LIST,
