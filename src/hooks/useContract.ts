@@ -59,6 +59,8 @@ import useActiveWeb3React from './useActiveWeb3React'
 
 export function useContract(ABI: AbiItem, address: string | undefined, withSignerIfPossible = true): Contract | null {
   const { library, account } = useActiveWeb3React()
+  console.log('this is the library')
+  console.log(library)
 
   return useMemo(() => {
     if (!address || !ABI || !library) return null

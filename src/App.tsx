@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
@@ -97,7 +97,7 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 const App: React.FC = () => {
   // Monkey patch warn() because of web3 flood
   // To be removed when web3 1.3.5 is released
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
 
   useEffect(() => {
     console.warn = () => null

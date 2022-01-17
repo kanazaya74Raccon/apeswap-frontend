@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import addresses from 'config/constants/contracts'
 import { Address } from 'config/constants/types'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from './useActiveWeb3React'
 
 const useAddress = (curAddresses: Address) => {
-  const { chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   const [address, setAddress] = useState(curAddresses[chainId])
   useEffect(() => {
     setAddress(curAddresses[chainId])

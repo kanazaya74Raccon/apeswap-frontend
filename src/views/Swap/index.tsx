@@ -100,12 +100,6 @@ export default function Swap({ history }: RouteComponentProps) {
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
 
-  // Price data
-  const {
-    [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId },
-  } = useSwapState()
-
   const {
     wrapType,
     execute: onWrap,
@@ -310,6 +304,8 @@ export default function Swap({ history }: RouteComponentProps) {
     true,
     'swapConfirmModal',
   )
+
+  console.log(formattedAmounts)
 
   return (
     <Page>

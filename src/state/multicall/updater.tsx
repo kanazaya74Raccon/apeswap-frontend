@@ -140,10 +140,6 @@ export function outdatedListeningKeys(
 }
 
 export default function Updater(): null {
-  console.log("at this")
-  console.log("at this")
-  console.log("at this")
-  console.log("at this")
   const dispatch = useDispatch<AppDispatch>()
   const state = useSelector<AppState, AppState['multicall']>((s) => s.multicall)
   // wait for listeners to settle before triggering updates
@@ -151,11 +147,9 @@ export default function Updater(): null {
   const { currentBlock } = useBlock()
   const { chainId } = useActiveWeb3React()
   const multicallContract = useMulticallContract()
+  console.log("This is the multicall contract")
+  console.log(multicallContract)
   const cancellations = useRef<{ blockNumber: number; cancellations: (() => void)[] }>()
-  console.log("at this")
-  console.log("at this")
-  console.log("at this")
-  console.log("at this")
 
   console.log({ currentBlock, chainId, multicallContract, cancellations })
   const listeningKeys: { [callKey: string]: number } = useMemo(() => {

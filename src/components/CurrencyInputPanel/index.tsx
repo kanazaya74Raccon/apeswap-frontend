@@ -197,7 +197,7 @@ export default function CurrencyInputPanel({
               : ' -'}
           </Text>
         )}
-        {account && isMobile && (
+        {isMobile && (
           <Text
             fontSize="14px"
             style={{
@@ -264,7 +264,7 @@ export default function CurrencyInputPanel({
                 : '-'}
             </Text>
           )}
-          {account && !isMobile && (
+          {!isMobile && (
             <Text
               fontSize="14px"
               style={{
