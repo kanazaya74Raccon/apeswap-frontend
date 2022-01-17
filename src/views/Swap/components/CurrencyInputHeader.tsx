@@ -11,6 +11,7 @@ import {
   ButtonMenu,
   ButtonMenuItem,
   LinkExternal,
+  useMatchBreakpoints,
 } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useExpertModeManager } from 'state/user/hooks'
@@ -29,26 +30,28 @@ const CurrencyInputContainer = styled(Flex)`
   justify-content: space-between;
   padding: 20px 25px 0px 20px;
   width: 100%;
-  `
+`
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const [expertMode] = useExpertModeManager()
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
   const path = useLocation()
   const swapActive = path.pathname.includes('swap')
   return (
     <CurrencyInputContainer>
-      <ButtonMenu activeIndex={swapActive ? 0 : 1} size="sm" variant="yellow">
-        <ButtonMenuItem as={Link} to="/swap" fontSize="14px">
+      <ButtonMenu activeIndex={swapActive ? 0 : 1} size="mds" variant="yellow">
+        <ButtonMenuItem as={Link} to="/swap" fontSize="14px" isMobile={isMobile}>
           SWAP
         </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to="/pool" fontSize="14px">
+        <ButtonMenuItem as={Link} to="/pool" fontSize="14px" isMobile={isMobile}>
           LIQUIDITY
         </ButtonMenuItem>
       </ButtonMenu>
       <Flex>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <ButtonSquare
-            style={{ fontSize: '15px', fontWeight: 700, marginRight: '25px', marginLeft: '15px', padding: 10 }}
+            style={{ fontSize: '15px', fontWeight: 700, marginRight: isMobile ? '15px ' : '25px', marginLeft: '15px', padding: 10 }}
           >
             BRIDGE
           </ButtonSquare>

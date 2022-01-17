@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 import { Currency, Pair, Token } from '@apeswapfinance/sdk'
-import { Button, ChevronDownIcon, Text, useModal, Flex, ButtonSquare, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import {
+  Button,
+  ChevronDownIcon,
+  Text,
+  useModal,
+  Flex,
+  ButtonSquare,
+  ArrowDropDownIcon,
+  useMatchBreakpoints,
+} from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
@@ -101,6 +110,8 @@ export default function CurrencyInputPanel({
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const [tokenPrice, setTokenPrice] = useState<number>(null)
   const isNative = currency?.symbol === 'ETH'
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
 
   const fetchTokenPrice = async () => {
     const tokenPriceReturned = await getTokenUsdPrice(
@@ -186,6 +197,26 @@ export default function CurrencyInputPanel({
               : ' -'}
           </Text>
         )}
+        {account && isMobile && (
+          <Text
+            fontSize="14px"
+            style={{
+              display: 'inline',
+              position: 'absolute',
+              bottom: '-30px',
+              right: '10px',
+            }}
+          >
+            {!hideBalance && !!currency && value
+              ? isLp
+                ? `~ $${(
+                    tokenPrice *
+                    (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100))
+                  )?.toFixed(2)}`
+                : `~ $${(tokenPrice * parseFloat(value))?.toFixed(2)}`
+              : ' -'}
+          </Text>
+        )}
       </Flex>
       <InputPanel id={id}>
         <Container removeLiquidity={removeLiquidity}>
@@ -233,7 +264,7 @@ export default function CurrencyInputPanel({
                 : '-'}
             </Text>
           )}
-          {account && (
+          {account && !isMobile && (
             <Text
               fontSize="14px"
               style={{
