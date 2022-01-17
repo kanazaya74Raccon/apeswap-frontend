@@ -23,6 +23,7 @@ import lists from './lists/reducer'
 import transactions from './transactions/reducer'
 import burn from './burn/reducer'
 import mint from './mint/reducer'
+import lpPricesReducer from './lpPrices'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -38,6 +39,7 @@ const store = configureStore({
     auctions: auctionReducer,
     vaults: vaultReducer,
     tokenPrices: tokenPricesReducer,
+    lpTokenPrices: lpPricesReducer,
     iazos: iazosReducer,
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,

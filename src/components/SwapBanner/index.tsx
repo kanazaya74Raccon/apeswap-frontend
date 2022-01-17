@@ -7,7 +7,7 @@ const SwapBanner: React.FC = () => {
   const banners = useFetchSwapBanners()
   const location = useLocation()
   const bannerToDisplay = banners.swapBannersData.find((banner) => {
-    if (location.search.includes(banner?.param)) {
+    if (location.search.includes(`banner=${banner?.param}`)) {
       return banner
     }
     return null

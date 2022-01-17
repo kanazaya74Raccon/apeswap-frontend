@@ -21,6 +21,7 @@ import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
 import HarvestAction from '../FarmCard/HarvestAction'
+import {LpTokenPrices} from "../../../../state/types";
 
 export interface RowProps {
   apr: AprProps
@@ -29,6 +30,7 @@ export interface RowProps {
   multiplier: MultiplierProps
   liquidity: LiquidityProps
   details: FarmWithStakedValue
+  farmsPrices?: LpTokenPrices[]
 }
 
 const cells = {
@@ -129,7 +131,7 @@ const ArrowContainer = styled(Flex)`
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
-  const { details, liquidity } = props
+  const { details, liquidity, farmsPrices } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
@@ -214,7 +216,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
             })}
           </StyledFlex>
           {actionPanelToggled && details && (
-            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} liquidity={liquidity} />
+            <ActionPanel {...props} account={account} addLiquidityUrl={addLiquidityUrl} liquidity={liquidity} farmsPrices={farmsPrices} />
           )}
         </StyledTr>
       )

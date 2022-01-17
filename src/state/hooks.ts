@@ -37,6 +37,7 @@ import {
   NfaStakingPool,
   DualFarm,
   HomepageData,
+  LpTokenPricesState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -49,6 +50,7 @@ import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
+import { fetchLpTokenPrices } from "./lpPrices";
 
 const ZERO = new BigNumber(0)
 
@@ -479,6 +481,20 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useFetchLpTokenPrices = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    dispatch(fetchLpTokenPrices(chainId))
+  }, [dispatch, slowRefresh, chainId])
+}
+
+export const useLpTokenPrices = () => {
+  const { isInitialized, isLoading, data }: LpTokenPricesState = useSelector((state: State) => state.lpTokenPrices)
+  return { lpTokenPrices: data, isInitialized, isLoading }
 }
 
 export const useTokenPriceFromSymbol = (symbol: string) => {

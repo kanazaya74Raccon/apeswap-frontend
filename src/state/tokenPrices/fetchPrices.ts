@@ -37,7 +37,7 @@ const fetchPrices = async (chainId) => {
       symbol: tokens[token].symbol,
       address: tokens[token].address,
       price:
-        tokens[token].symbol === 'GNANA'
+          tokens[token].symbol === 'GNANA'
           ? getBalanceNumber(tokenPrices[0], tokenDecimals[i][0]) * 1.389
           : getBalanceNumber(tokenPrices[i], tokenDecimals[i][0]),
       decimals: tokenDecimals[i][0],
