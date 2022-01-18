@@ -10,7 +10,6 @@ import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
 import erc20 from 'config/abi/erc20.json'
 import erc20Bytes from 'config/abi/erc20_bytes32.json'
-import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import nonFungibleApes from 'config/abi/nonFungibleApes.json'
 import lottery from 'config/abi/lottery.json'
 import treasuryAbi from 'config/abi/treasury.json'
@@ -51,7 +50,6 @@ import {
   useMulticallAddress,
   useNativeWrapCurrencyAddress,
   useNonFungibleApesAddress,
-  useRabbitMintingFarmAddress,
   useTreasuryAddress,
   useVaultApeAddress,
 } from './useAddress'
@@ -102,11 +100,6 @@ export const useGoldenBanana = () => {
 export const useTreasury = () => {
   const treasury = treasuryAbi as unknown as AbiItem
   return useContract(treasury, useTreasuryAddress())
-}
-
-export const useRabbitMintingFarm = () => {
-  const rabbitMintingFarmAbi = rabbitmintingfarm as unknown as AbiItem
-  return useContract(rabbitMintingFarmAbi, useRabbitMintingFarmAddress())
 }
 
 export const useNonFungibleApes = () => {

@@ -2134,17 +2134,6 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@pancakeswap-libs/uikit@^0.10.1":
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.10.7.tgz#e0cccfbcb3035f37e91e72552ac9b83088ef033b"
-  integrity sha512-1AiTNRLHJQ0HLPmI1i8yKTd3aaz0MIDfwiiRy5FJrt/ZqlBWiha16ndOrVBKRSuOUCnr+s75OiDP4szqdk6bPA==
-  dependencies:
-    "@types/lodash" "^4.14.162"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
