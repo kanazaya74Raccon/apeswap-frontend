@@ -2,10 +2,8 @@ import React from 'react'
 import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TranslateString } from 'utils/translateTextHelpers'
-import Divider from './components/Divider'
 import BuyCard from './components/BuyCard'
 import SellCard from './components/SellCard'
-import Iao from './components/IAO/CurrentIao'
 import Description from './components/Description/Description'
 
 const StyledHeroSection = styled.div`
@@ -69,8 +67,6 @@ const Zone = () => {
           </Cards>
         </MarginContainer>
       </StyledHeroSection>
-      <Iao />
-      <Divider />
     </>
   )
 }

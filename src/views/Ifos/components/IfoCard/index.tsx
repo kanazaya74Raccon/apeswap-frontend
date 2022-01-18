@@ -13,12 +13,12 @@ import { useNetworkChainId } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import IfoCardHeader from './IfoCardHeader'
-import IfoCardProgress from './IfoCardProgress'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardTime from './IfoCardTime'
 import IfoCardContribute from './IfoCardContribute'
 import IfoCardBNBContribute from './IfoCardBNBContribute'
+import IfoCardProgress from './CardProgress/IfoCardProgress'
 
 export interface IfoCardProps {
   ifo: Ifo

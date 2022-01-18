@@ -10,14 +10,12 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
   const { large } = props
 
-  return (
-   large ? (
+  return large ? (
     <LargeButton onClick={onPresentConnectModal}>{TranslateString(292, 'UNLOCK WALLET')}</LargeButton>
   ) : (
     <ButtonSquare onClick={onPresentConnectModal} {...props}>
       {TranslateString(292, 'UNLOCK WALLET')}
     </ButtonSquare>
-  )
   )
 }
 
