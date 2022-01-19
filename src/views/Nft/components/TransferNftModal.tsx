@@ -52,7 +52,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuc
         setError(TranslateString(999, 'Please enter a valid wallet address'))
       } else {
         setIsLoading(true)
-        await nonFungibleApesContract.methods
+        await nonFungibleApesContract
           .safeTransferFrom(account, value, tokenId)
           .send({ from: account })
           .on('transactionHash', (tx) => {

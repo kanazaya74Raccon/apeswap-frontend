@@ -14,7 +14,6 @@ import {
   useMasterchef,
   useBanana,
   useSousChef,
-  useLottery,
   useNonFungibleApes,
   useVaultApe,
   useMiniChefContract,
@@ -28,6 +27,7 @@ export const useApprove = (lpContract: Contract, pid: number) => {
 
   const handleApprove = useCallback(async () => {
     try {
+      console.log({ lpContract, masterChefContract, account })
       const tx = await approve(lpContract, masterChefContract, account)
       dispatch(updateFarmUserAllowances(chainId, pid, account))
       track({
@@ -75,32 +75,13 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
   return { onApprove: handleApprove }
 }
 
-// Approve the lottery
-export const useLotteryApprove = () => {
-  const { account } = useActiveWeb3React()
-  const bananaContract = useBanana()
-  const lotteryContract = useLottery()
-
-  const handleApprove = useCallback(async () => {
-    try {
-      const tx = await approve(bananaContract, lotteryContract, account)
-      return tx
-    } catch (e) {
-      return false
-    }
-  }, [account, bananaContract, lotteryContract])
-
-  return { onApprove: handleApprove }
-}
 
 // Approve an IFO
 export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
   const { account } = useActiveWeb3React()
   const onApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.methods
-        .approve(spenderAddress, ethers.constants.MaxUint256)
-        .send({ from: account })
+      const tx = await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
       return tx
     } catch {
       return false
@@ -117,7 +98,7 @@ export const useAuctionApprove = () => {
   const { account } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.methods.setApprovalForAll(spenderAddress, true).send({ from: account })
+      const tx = await tokenContract.setApprovalForAll(spenderAddress, true).send({ from: account })
       return tx
     } catch {
       return false
@@ -134,7 +115,7 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   const { account, chainId } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.methods.setApprovalForAll(contractToApprove, true).send({ from: account })
+      const tx = await tokenContract.setApprovalForAll(contractToApprove, true).send({ from: account })
       dispatch(updateNfaStakingUserAllowance(chainId, sousId, account))
       return tx
     } catch {

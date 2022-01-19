@@ -1,18 +1,16 @@
 import React from 'react'
 import { Menu as UikitMenu } from '@apeswapfinance/uikit'
-
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
-import { useNetworkChainId, useProfile, useTokenPrices } from 'state/hooks'
+import { useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
 
 const Menu = (props) => {
-  const { account } = useWeb3React()
-  const chainId = useNetworkChainId()
+  const { account, chainId } = useActiveWeb3React()
   const { login, logout } = useAuth()
   const { switchNetwork } = useSelectNetwork()
   const { isDark, toggleTheme } = useTheme()

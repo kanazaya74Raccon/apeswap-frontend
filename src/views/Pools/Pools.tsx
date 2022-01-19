@@ -8,10 +8,10 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
+import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
-import useBlock from 'hooks/useBlock'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
@@ -498,7 +498,7 @@ const Pools: React.FC = () => {
   const size: Size = useWindowSize()
   const allPools = usePools(account)
   const TranslateString = useI18n()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -537,7 +537,7 @@ const Pools: React.FC = () => {
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
   const curPools = allNonAdminPools.map((pool) => {
-    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })
 
   const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)

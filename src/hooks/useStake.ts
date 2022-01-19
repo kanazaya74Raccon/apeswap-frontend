@@ -18,6 +18,7 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
+import BigNumber from 'bignumber.js'
 import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
 
 const useStake = (pid: number) => {
@@ -27,7 +28,7 @@ const useStake = (pid: number) => {
 
   const handleStake = useCallback(
     async (amount: string) => {
-      const txHash = await stake(masterChefContract, pid, amount, account)
+      const txHash = await stake(masterChefContract, pid, amount)
       dispatch(updateFarmUserStakedBalances(chainId, pid, account))
       dispatch(updateFarmUserTokenBalances(chainId, pid, account))
       dispatch(updateFarmUserEarnings(chainId, pid, account))
@@ -57,11 +58,11 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
   const handleStake = useCallback(
     async (amount: string) => {
       if (sousId === 0) {
-        await stake(masterChefContract, 0, amount, account)
+        await stake(masterChefContract, 0, amount)
       } else if (isUsingBnb) {
         await sousStakeBnb(sousChefContract, amount, account)
       } else {
-        await sousStake(sousChefContract, amount, account)
+        await sousStake(sousChefContract, amount)
       }
 
       track({
@@ -115,22 +116,31 @@ export const useVaultStake = (pid: number) => {
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
   const chainId = useNetworkChainId()
+  // console.log({ vaultApeContract, chainId, account, pid })
 
   const handleStake = useCallback(
     async (amount: string) => {
-      const txHash = await stakeVault(vaultApeContract, pid, amount, account)
-      track({
-        event: 'vault',
-        chain: chainId,
-        data: {
-          cat: 'stake',
-          amount,
+      try {
+        console.log(vaultApeContract)
+        const txHash = await vaultApeContract['deposit(uint256,uint256)'](
           pid,
-        },
-      })
-      dispatch(updateVaultUserBalance(account, chainId, pid))
-      dispatch(updateVaultUserStakedBalance(account, chainId, pid))
-      console.info(txHash)
+          new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
+        )
+        track({
+          event: 'vault',
+          chain: chainId,
+          data: {
+            cat: 'stake',
+            amount,
+            pid,
+          },
+        })
+        dispatch(updateVaultUserBalance(account, chainId, pid))
+        dispatch(updateVaultUserStakedBalance(account, chainId, pid))
+        console.info(txHash)
+      } catch (e) {
+        console.error(e)
+      }
     },
     [account, vaultApeContract, dispatch, pid, chainId],
   )

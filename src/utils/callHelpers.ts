@@ -2,65 +2,36 @@ import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 
 export const approve = async (lpContract, masterChefContract, account) => {
-  return lpContract.approve(masterChefContract.address, ethers.constants.MaxUint256).send({ from: account })
+  return lpContract.approve(masterChefContract.address, ethers.constants.MaxUint256)
 }
 
-export const stake = async (masterChefContract, pid, amount, account) => {
+export const stake = async (masterChefContract, pid, amount) => {
+  console.log(masterChefContract)
   if (pid === 0) {
-    return masterChefContract
-      .enterStaking(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-      .send({ from: account })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    return masterChefContract.enterStaking(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
   }
 
-  return masterChefContract
-    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  return masterChefContract.deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
-export const sousStake = async (sousChefContract, amount, account) => {
-  return sousChefContract
-    .deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+export const sousStake = async (sousChefContract, amount) => {
+  return sousChefContract.deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
 export const sousStakeBnb = async (sousChefContract, amount, account) => {
-  return sousChefContract
-    .deposit()
-    .send({ from: account, value: new BigNumber(amount).times(new BigNumber(10).pow(18)).toString() })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  return sousChefContract.deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
 export const unstake = async (masterChefContract, pid, amount, account) => {
   if (pid === 0) {
-    return masterChefContract
-      .leaveStaking(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-      .send({ from: account })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    return masterChefContract.leaveStaking(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
   }
-  return masterChefContract
-    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  return masterChefContract.withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
 export const sousUnstake = async (sousChefContract, amount, account) => {
   // shit code: hard fix for old CTK and BLK
-  if (sousChefContract.options.address === '0x3B9B74f48E89Ebd8b45a53444327013a2308A9BC') {
+  if (sousChefContract.address === '0x3B9B74f48E89Ebd8b45a53444327013a2308A9BC') {
     return sousChefContract
       .emergencyWithdraw()
       .send({ from: account })
@@ -68,7 +39,7 @@ export const sousUnstake = async (sousChefContract, amount, account) => {
         return tx.transactionHash
       })
   }
-  if (sousChefContract.options.address === '0xBb2B66a2c7C2fFFB06EA60BeaD69741b3f5BF831') {
+  if (sousChefContract.address === '0xBb2B66a2c7C2fFFB06EA60BeaD69741b3f5BF831') {
     return sousChefContract
       .emergencyWithdraw()
       .send({ from: account })
@@ -205,22 +176,12 @@ export const nfaUnstake = async (nfaStakingChefContract, ids, account) => {
     })
 }
 
-export const stakeVault = async (vaultApeContract, pid, amount, account) => {
-  return vaultApeContract
-    .deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+export const stakeVault = async (vaultApeContract, pid, amount) => {
+  return vaultApeContract.deposit(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
 export const vaultUnstake = async (vaultApeContract, pid, amount, account) => {
-  return vaultApeContract
-    .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => {
-      return tx.transactionHash
-    })
+  return vaultApeContract.withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
 }
 
 export const vaultUnstakeAll = async (vaultApeContract, pid, account) => {
@@ -280,7 +241,7 @@ export const createNewIazo = async (
   unitParams, // uint256[9]
   creationFee, // string
 ) => {
-  return iazoFactoryContract.methods
+  return iazoFactoryContract
     .createIAZO(iazoOwner, iazoToken, baseToken, burnRemains, unitParams)
     .send({ from: iazoOwner, value: creationFee })
     .on('transactionHash', (tx) => {
@@ -289,7 +250,7 @@ export const createNewIazo = async (
 }
 
 export const userDeposit = async (iazoContract, amount, account) => {
-  return iazoContract.methods
+  return iazoContract
     .userDeposit(amount)
     .send({ from: account })
     .on('transactionHash', (tx) => {
@@ -298,7 +259,7 @@ export const userDeposit = async (iazoContract, amount, account) => {
 }
 
 export const userDepositNative = async (iazoContract, amount, account) => {
-  return iazoContract.methods
+  return iazoContract
     .userDepositNative()
     .send({ from: account, value: amount })
     .on('transactionHash', (tx) => {
@@ -307,7 +268,7 @@ export const userDepositNative = async (iazoContract, amount, account) => {
 }
 
 export const userWithdraw = async (iazoContract, account) => {
-  return iazoContract.methods
+  return iazoContract
     .userWithdraw()
     .send({ from: account })
     .on('transactionHash', (tx) => {
@@ -316,7 +277,7 @@ export const userWithdraw = async (iazoContract, account) => {
 }
 
 export const withdrawOfferTokensOnFailure = async (iazoContract, account) => {
-  return iazoContract.methods
+  return iazoContract
     .withdrawOfferTokensOnFailure()
     .send({ from: account })
     .on('transactionHash', (tx) => {

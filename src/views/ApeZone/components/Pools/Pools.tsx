@@ -5,10 +5,10 @@ import styled, { keyframes } from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
 import partition from 'lodash/partition'
-import useBlock from 'hooks/useBlock'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { usePools } from 'state/hooks'
+import { useBlock } from 'state/block/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../../../Pools/components/SearchInput'
 import PoolTabButtons from '../../../Pools/components/PoolTabButtons'
@@ -279,7 +279,7 @@ const Pools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const TranslateString = useI18n()
   const isActive = !pathname.includes('history')
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -287,7 +287,7 @@ const Pools: React.FC = () => {
   }
 
   const curPools = allPools.map((pool) => {
-    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })
 
   const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)

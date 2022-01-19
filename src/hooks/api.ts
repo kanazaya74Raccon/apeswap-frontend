@@ -287,6 +287,7 @@ export const getNewsHome = async () => {
   const data = await resp.json()
   const news = data.map((curNews) => {
     return {
+      id: curNews.id,
       title: curNews.title,
       description: curNews.description,
       image: curNews.image,
@@ -340,7 +341,6 @@ export const getHeadersHome = async () => {
 
   return headers
 }
-
 
 export const getSwapBanners = async () => {
   const url = `${baseUrlStrapi}/swapbanners`

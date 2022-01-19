@@ -4,7 +4,6 @@ import erc20 from 'config/abi/erc20.json'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import { getContract } from 'utils'
-import { useWeb3React } from '@web3-react/core'
 import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
@@ -25,8 +24,7 @@ interface FarmCardActionsProps {
 }
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol, addLiquidityUrl }) => {
-  const { account } = useWeb3React()
-  const { library } = useActiveWeb3React()
+  const { library, account } = useActiveWeb3React()
   const TranslateString = useI18n()
   const rewardRef = useRef(null)
   const rewardRefPos = useRef(null)
@@ -44,8 +42,8 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const { lpAddresses } = useFarmFromSymbol(lpSymbol)
   const lpAddress = lpAddresses[chainId]
   const lpContract = useMemo(() => {
-    return getContract(lpAddress, erc20, library)
-  }, [library, lpAddress])
+    return getContract(lpAddress, erc20, library, account)
+  }, [library, lpAddress, account])
 
   const lpName = lpSymbol.toUpperCase()
 

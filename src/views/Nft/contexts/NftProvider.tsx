@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import useBlock from 'hooks/useBlock'
 import { useMulticallAddress, useNonFungibleApesAddress } from 'hooks/useAddress'
 import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
+import { useBlock } from 'state/block/hooks'
 
 type State = {
   isInitialized: boolean
@@ -31,7 +31,7 @@ const NftProvider: React.FC = ({ children }) => {
     balanceOf: 0,
   })
   const { account } = useWeb3React()
-  const currentBlock = useBlock()
+  const { currentBlock } = useBlock()
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state
   const multicallAddress = useMulticallAddress()
@@ -57,7 +57,7 @@ const NftProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const balanceOf = await nonFungibleApesContract.methods.balanceOf(account).call()
+        const balanceOf = await nonFungibleApesContract.balanceOf(account)
 
         setState((prevState) => ({
           ...prevState,

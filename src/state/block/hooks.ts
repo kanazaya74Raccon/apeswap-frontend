@@ -1,9 +1,8 @@
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useInterval from 'hooks/useInterval'
 import useIsWindowVisible from 'hooks/useIsWindowVisible'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { useNetworkChainId } from 'state/hooks'
-import getProvider from 'utils/getProvider'
 
 import { setBlock } from '.'
 import { State } from '../types'
@@ -11,13 +10,12 @@ import { State } from '../types'
 export const usePollBlockNumber = (refreshTime = 6000) => {
   const dispatch = useAppDispatch()
   const isWindowVisible = useIsWindowVisible()
-  const chainId = useNetworkChainId()
-  const provider = getProvider(chainId)
+  const { library } = useActiveWeb3React()
 
   useInterval(
     () => {
       const fetchBlock = async () => {
-        const blockNumber = await provider.getBlockNumber()
+        const blockNumber = await library.getBlockNumber()
         dispatch(setBlock(blockNumber))
       }
 

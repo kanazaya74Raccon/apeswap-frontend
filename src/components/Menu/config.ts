@@ -1,5 +1,5 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
-import { BASE_EXCHANGE_URL, BASE_LIQUIDITY_POOL_URL } from 'config'
+import { BASE_EXCHANGE_URL } from 'config'
 
 const config: MenuEntry[] = [
   {

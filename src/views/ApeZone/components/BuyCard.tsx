@@ -120,8 +120,8 @@ const BuyCard = () => {
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
       try {
-        const response = await bananaContract.methods.allowance(loadedAccount, treasuryContract.options.address).call()
-        const currentAllowance = new BigNumber(response)
+        const response = await bananaContract.allowance(loadedAccount, treasuryContract.address)
+        const currentAllowance = new BigNumber(response.toString())
         return currentAllowance.gt(0)
       } catch (error) {
         console.warn(error)
@@ -129,9 +129,7 @@ const BuyCard = () => {
       }
     },
     onApprove: () => {
-      return bananaContract.methods
-        .approve(treasuryContract.options.address, ethers.constants.MaxUint256)
-        .send({ from: account })
+      return bananaContract.approve(treasuryContract.address, ethers.constants.MaxUint256)
     },
     onSuccess: async () => {
       toastSuccess('Approved!')
@@ -166,7 +164,8 @@ const BuyCard = () => {
           <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="Titan One" />
           <Text fontSize="11px">* Current max buy is {displayMax}</Text>
           <StyledText fontSize="11px" fontFamily="Titan One">
-            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand that each GNANA token transfer costs 2% and want to enable unlimited buy.
+            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand that each
+            GNANA token transfer costs 2% and want to enable unlimited buy.
           </StyledText>
         </Flex>
       </CardBody>

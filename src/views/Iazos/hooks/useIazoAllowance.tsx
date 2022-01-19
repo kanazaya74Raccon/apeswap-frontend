@@ -11,8 +11,8 @@ const useIazoAllowance = (tokenAddress: string, iazoAddress: string, dependency?
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await tokenContract.methods.allowance(account, iazoAddress).call()
-        setAllowance(new BigNumber(res))
+        const res = await tokenContract.allowance(account, iazoAddress)
+        setAllowance(new BigNumber(res?.toString()))
       } catch (e) {
         console.error(e)
         setAllowance(null)
