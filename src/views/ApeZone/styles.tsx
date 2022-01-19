@@ -21,12 +21,9 @@ export const Header = styled.div`
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
-  padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
   background-image: ${({ theme }) =>
     theme.isDark ? 'url(/images/banners/gnana-mobile-dark.svg)' : 'url(/images/banners/gnana-mobile-light.svg)'};
-  height: 250px;
+  height: 278px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -44,26 +41,32 @@ export const Header = styled.div`
   }
 `
 export const HeaderContainer = styled.div`
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   position: absolute;
   z-index: 999;
+  margin-left: 1em;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     position: relative;
+    margin-left: 3em;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
-    width: 90%;
     position: relative;
   }
 `
 export const StyledHeading = styled(Heading)`
   font-size: 42px;
-  font-weight: 400;
+  font-weight: 700;
   max-width: 240px !important;
   text-transform: uppercase;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-weight: 800;
+  }
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 60px;

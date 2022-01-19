@@ -110,7 +110,7 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FFF' : '#af6e5aff'}
                   />
                 }
-                Title="Exclusive IAO Acess"
+                Title="Exclusive IAO Access"
                 Desc="Access to secondary offerings for a higher token allocation"
                 ActionTitle="GO TO IAOs"
                 onAction={goToIAOs}

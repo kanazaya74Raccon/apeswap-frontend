@@ -143,7 +143,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           />
 
           <Text fontSize="12px" fontWeight={500}>
-            *Current max buy is {displayMax}
+            *Current max conversion is {displayMax}
           </Text>
 
           <CBS>
@@ -151,7 +151,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
               <NewCheckBox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
-              I understand what I am doing and want to enable unlimited buy.
+              I understand what I am doing and want to enable unlimited conversion.
             </StyledText>
           </CBS>
         </FlexSection>

@@ -4,12 +4,12 @@ import { Card, Heading, ButtonSquare, Text } from '@apeswapfinance/uikit'
 export const Container = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
   border-radius: 10px;
-  margin-top: 0.5em;
-  padding-top: 1.2em;
-  padding-bottom: 1.2em;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 2em;
+    padding-bottom: 0;
   }
 `
 export const Main = styled.div`
@@ -19,7 +19,7 @@ export const Main2 = styled.div`
   width: 100%;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-top: 1.5em;
+  margin-top: 20px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-top: 2em;
@@ -29,19 +29,16 @@ export const FirstHeaderCon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 `
 export const FirstHeader = styled(Heading)`
-  font-size: 20px;
+  font-size: 25px;
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-weight: 700;
   text-transform: uppercase;
 
   ${({ theme }) => theme.mediaQueries.md} {
     display: none;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 30px;
   }
 `
@@ -77,10 +74,6 @@ export const InfoText = styled(Text)`
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 14px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 16px;
     font-weight: 500;
   }
@@ -145,7 +138,7 @@ export const Text2 = styled(Text1)`
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
     height: 49px;
   }
@@ -164,10 +157,6 @@ export const Text3 = styled(Text1)`
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 14px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 16px;
     font-weight: 500;
   }
@@ -175,6 +164,7 @@ export const Text3 = styled(Text1)`
 
 export const Text4 = styled(Text3)`
   font-size: 12px;
+  font-weight: 400;
   padding-left: 0.3em;
   padding-right: 0.3em;
 
@@ -184,7 +174,7 @@ export const Text4 = styled(Text3)`
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
     height: 49px;
   }
@@ -197,7 +187,8 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5em;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 export const InfoSect1 = styled.div`
@@ -215,7 +206,8 @@ export const InfoSect2 = styled(InfoSect1)`
 export const LearnMoreBtn = styled(ButtonSquare)`
   font-size: 12px;
   font-weight: 700;
-  ${({ theme }) => theme.mediaQueries.xl} {
+
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
   }
 `

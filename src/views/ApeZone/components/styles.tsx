@@ -27,6 +27,10 @@ export const Header = styled(Heading)`
   font-size: 25px;
   font-weight: 700;
   text-transform: uppercase;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 30px;
+  }
 `
 export const TokensDisplay = styled(Text)`
   font-size: 12px;
@@ -70,7 +74,7 @@ export const CheckBoxCon = styled.div`
   height: 50px;
 `
 export const NewCheckBox = styled(Checkbox)`
-  background: #fff;
+  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
 `
 export const FlexSection = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {

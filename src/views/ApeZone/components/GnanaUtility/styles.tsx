@@ -6,6 +6,7 @@ export const UtilityCon = styled.div`
   flex-direction: column;
   background: transparent;
   border-radius: 10px;
+  margin-bottom: 32px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 1em;
@@ -27,12 +28,8 @@ export const UtilityHeading = styled(Heading)`
   text-transform: uppercase;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 30px;
+    font-weight: 700;
   }
 `
 
@@ -65,6 +62,7 @@ export const PlusIcon = styled(Text)`
   font-family: 'Titan One';
   font-size: 48px;
   font-weight: 400;
+  margin-top: -50px;
 `
 export const Section = styled(Card)`
   display: flex;
@@ -111,7 +109,7 @@ export const OpCon = styled.div<OpConProps>`
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 22px;
-  height: 325px;
+  height: 338px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
@@ -123,31 +121,31 @@ export const OpCon = styled.div<OpConProps>`
 export const OpHeadingCon = styled.div`
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 60px;
   margin-bottom: 0.5em;
+  margin-top: 0.5em;
 `
 export const OpHeading = styled(Heading)`
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
-  line-height: 22px;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 18px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 20px;
-  }
+  line-height: 30px;
 `
 export const OpDescCon = styled.div`
-  height: 30px;
+  height: 84px;
   margin-bottom: 1em;
 `
 export const OpDesc = styled(Text)`
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
-  font-weight: 500;
+  line-height: 21px;
+  font-weight: 600;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+  }
 `
 export const AnchorTag = styled.a`
   width: 90%;
@@ -186,14 +184,10 @@ export const HeadBody = styled(CardBody)`
   padding-bottom: 15px;
 `
 export const HeadTitle = styled(Heading)`
-  font-size: 20px;
+  font-size: 22px;
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-weight: 700;
   text-transform: uppercase;
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 22px;
-  }
 `
 export const HeadDesc = styled(Text)`
   font-size: 12px;

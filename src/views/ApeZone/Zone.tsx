@@ -36,10 +36,10 @@ const Zone = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mt={0} color="white">
             {TranslateString(999, 'Golden')}
           </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={1} color="white">
             {TranslateString(999, 'Banana')}
           </StyledHeading>
         </HeaderContainer>
@@ -55,8 +55,8 @@ const Zone = () => {
 
               <InnerContent readingMore={readingMore}>
                 <InnerContentText>
-                  Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means
-                  that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+                  Converting GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This
+                  means that for every 1 BANANA you trade in, you will receive 0.7 GNANA
                 </InnerContentText>
               </InnerContent>
             </CenterCard>
@@ -75,8 +75,10 @@ const Zone = () => {
           <ConvertCard fromToken="BANANA" toToken="GNANA" />
           <ReturnCard fromToken="GNANA" toToken="BANANA" />
         </Cards>
+
         <GnanaUtility />
         <GnanaDisclaimers />
+
         <Spacer size="lg" />
         <Spacer size="md" />
       </Page>

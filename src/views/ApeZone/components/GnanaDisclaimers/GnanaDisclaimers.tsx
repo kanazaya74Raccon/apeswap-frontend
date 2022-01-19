@@ -90,13 +90,13 @@ export const GnanaDisclaimers: React.FC = () => {
               <Text2>Value</Text2>
             </Sect1a>
             <Sect1b>
-              <Text3>.7 GNANA Per BANANA</Text3>
+              <Text3>.7 GNANA per BANANA</Text3>
             </Sect1b>
             <Sect1c>
               <Text3>1 GNANA calculated as 1.389 BANANA</Text3>
             </Sect1c>
             <Sect1d>
-              <Text3>.98 BANANA Per GNANA</Text3>
+              <Text3>.98 BANANA per GNANA</Text3>
             </Sect1d>
           </Sect1>
         </Sect>
@@ -120,7 +120,9 @@ export const GnanaDisclaimers: React.FC = () => {
       </Main2>
 
       <Footer>
-        <LearnMoreBtn onClick={learnMore}>{TranslateString(292, 'LEARN MORE')}</LearnMoreBtn>
+        <LearnMoreBtn onClick={learnMore} size="md">
+          {TranslateString(292, 'LEARN MORE')}
+        </LearnMoreBtn>
       </Footer>
     </Container>
   )

@@ -141,7 +141,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
               <NewCheckBox id="checkbox" scale="md" />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
-              I understand what I am doing and want to enable unlimited buy.
+              I understand what I am doing and want to enable unlimited conversion.
             </StyledText>
           </CheckBoxSection>
         </FlexSection>
