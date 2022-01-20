@@ -49,12 +49,14 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
+      console.log('loadedAccount', loadedAccount)
       try {
         const response = await bananaContract.methods.allowance(loadedAccount, treasuryContract.options.address).call()
-
         console.log('response', response)
+
         const currentAllowance = new BigNumber(response)
         console.log('currentAllowance', currentAllowance)
+
         console.log('currentAllowance.gt(0)', currentAllowance.gt(0))
 
         return currentAllowance.gt(0)
@@ -73,6 +75,8 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
       toastSuccess('Approved!')
     },
   })
+  console.log('isApproving', isApproving)
+  console.log('isApproved', isApproved)
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(bananaBalance)
