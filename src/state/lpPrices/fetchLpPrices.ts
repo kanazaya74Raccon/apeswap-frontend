@@ -1,5 +1,4 @@
 import apePriceGetterABI from 'config/abi/apePriceGetter.json'
-import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import multicallABI from 'config/abi/Multicall.json'
 import { getMulticallAddress, getApePriceGetterAddress } from 'utils/addressHelper'
@@ -12,7 +11,7 @@ const fetchLpPrices = async (chainId) => {
     const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
     const apePriceGetterAddress = getApePriceGetterAddress(chainId)
     const tokensToCall = Object.keys(farmsConfig).filter((token) => farmsConfig[token].lpAddresses[chainId] !== undefined)
-    const calls = tokensToCall.map((token, i) => {
+    const calls = tokensToCall.map((token) => {
         return {
             address: apePriceGetterAddress,
             name: 'getLPPrice',

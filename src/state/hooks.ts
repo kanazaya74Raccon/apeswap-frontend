@@ -306,6 +306,11 @@ export const usePriceBananaBusd = (): BigNumber => {
   return price || ZERO
 }
 
+export const usePriceGnanaBusd = (): BigNumber => {
+  const bananaPrice = usePriceBananaBusd()
+  return bananaPrice.times(1.3889);
+}
+
 /*
   // TODO Revisit this 
   const pid = BANANA_POOL_PID // BANANA-BNB LP
