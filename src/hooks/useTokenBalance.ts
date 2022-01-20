@@ -16,8 +16,6 @@ const useTokenBalance = (tokenAddress: string) => {
   useEffect(() => {
     const fetchBalance = async () => {
       const tokenContract = getContract(erc20ABI, tokenAddress, chainId, library)
-      console.log('at token balance')
-      console.log(tokenContract)
       const res = await getTokenBalance(library, tokenAddress, account, tokenContract)
       setBalance(new BigNumber(res))
     }

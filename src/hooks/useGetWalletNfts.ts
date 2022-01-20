@@ -47,7 +47,7 @@ const useGetWalletNfts = () => {
   useEffect(() => {
     const fetchNfts = async () => {
       try {
-        const balanceOf = await nonFungibleApesContract.balanceOf(account)
+        const balanceOf = await (await nonFungibleApesContract.balanceOf(account)).toNumber()
 
         if (balanceOf > 0) {
           let nfts: NftMap = {}

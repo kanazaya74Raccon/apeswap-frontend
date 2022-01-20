@@ -164,9 +164,6 @@ const App: React.FC = () => {
               <Route exact path="/nft">
                 <Redirect to="/" />
               </Route>
-              <Route path="/farms">
-                <Redirect to="/" />
-              </Route>
               <Route path="/pools">
                 <Redirect to="/" />
               </Route>

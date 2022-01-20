@@ -3,7 +3,6 @@ import { Contract } from '@ethersproject/contracts'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
-import { PoolCategory } from 'config/constants/types'
 import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
 import ifoLinear from 'config/abi/ifoLinear.json'
@@ -14,7 +13,6 @@ import treasuryAbi from 'config/abi/treasury.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import nfaStakingAbi from 'config/abi/nfaStaking.json'
-import sousChefBnb from 'config/abi/sousChefBnb.json'
 import profile from 'config/abi/bananaProfile.json'
 import auction from 'config/abi/auction.json'
 import vaultApe from 'config/abi/vaultApe.json'
@@ -37,11 +35,11 @@ import {
   IazoExposer,
   IazoFactory,
   IazoSettings,
+  Iazo,
   EnsPublicResolver,
   EnsRegistrar,
   Multicall,
   ApePriceGetter,
-  SousChefBnb,
   SousChef,
   Weth,
   BananaProfile,
@@ -49,7 +47,6 @@ import {
   Erc20,
   Erc20Bytes32,
   MiniApeV2,
-  MiniComplexRewarder,
   Auction,
   NfaStaking,
   NonFungibleApes,
@@ -106,45 +103,44 @@ export const useERC20 = (address: string) => {
 }
 
 export const useBanana = () => {
-  return useERC20(useBananaAddress())
+  return useERC20(useBananaAddress()) as Erc20
 }
 
 export const useGoldenBanana = () => {
-  return useERC20(useGoldenBananaAddress())
+  return useERC20(useGoldenBananaAddress()) as Erc20
 }
 
 export const useTreasury = () => {
-  return useContract(treasuryAbi, useTreasuryAddress())
+  return useContract(treasuryAbi, useTreasuryAddress()) as Treasury
 }
 
 export const useNonFungibleApes = () => {
-  return useContract(nonFungibleApes, useNonFungibleApesAddress())
+  return useContract(nonFungibleApes, useNonFungibleApesAddress()) as NonFungibleApes
 }
 
 export const useProfile = () => {
-  return useContract(profile, useBananaProfileAddress())
+  return useContract(profile, useBananaProfileAddress()) as BananaProfile
 }
 
 export const useMasterchef = () => {
-  return useContract(masterChef, useMasterChefAddress())
+  return useContract(masterChef, useMasterChefAddress()) as Masterchef
 }
 
 export const useSousChef = (id) => {
   // Using selector to avoid circular dependecies
   const chainId = useSelector((state: State) => state.network.data.chainId)
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
-  return useContract(rawAbi, config.contractAddress[chainId])
+  return useContract(sousChef, config.contractAddress[chainId]) as SousChef
 }
 
 export const useNfaStakingChef = (id) => {
   const config = nfaStakingPools.find((pool) => pool.sousId === id)
   const rawAbi = nfaStakingAbi
-  return useContract(rawAbi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
+  return useContract(rawAbi, config.contractAddress[process.env.REACT_APP_CHAIN_ID]) as NfaStaking
 }
 
 export const useAuction = () => {
-  return useContract(auction, useAuctionAddress())
+  return useContract(auction, useAuctionAddress()) as Auction
 }
 
 export const useVaultApe = () => {
@@ -152,26 +148,27 @@ export const useVaultApe = () => {
 }
 
 export const useApePriceGetter = () => {
-  return useContract(apePriceGetter, useApePriceGetterAddress())
+  return useContract(apePriceGetter, useApePriceGetterAddress()) as ApePriceGetter
 }
 
 export const useMiniChefContract = () => {
-  return useContract(miniChef, useMiniChefAddress())
+  return useContract(miniChef, useMiniChefAddress()) as MiniApeV2
 }
 
 export const useIazoExposerContract = () => {
-  return useContract(iazoExposerAbi, useIazoExposerAddress())
+  return useContract(iazoExposerAbi, useIazoExposerAddress()) as IazoExposer
 }
 export const useIazoSettingsContract = () => {
-  return useContract(iazoSettingsAbi, useIazoSettingsAddress())
+  return useContract(iazoSettingsAbi, useIazoSettingsAddress()) as IazoSettings
 }
 export const useIazoFactoryContract = () => {
-  return useContract(iazoFactoryAbi, useIazoFactoryAddress())
+  return useContract(iazoFactoryAbi, useIazoFactoryAddress()) as IazoFactory
 }
 
 export const useIazoContract = (address: string) => {
-  return useContract(iazoAbi, address)
+  return useContract(iazoAbi, address) as Iazo
 }
+
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
   let address: string | undefined
@@ -184,23 +181,23 @@ export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contrac
         break
     }
   }
-  return useContract(ens, address, withSignerIfPossible)
+  return useContract(ens, address, withSignerIfPossible) as EnsRegistrar
 }
 
 export function useENSResolverContract(address: string | undefined, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(ensPublicResolver, address, withSignerIfPossible)
+  return useContract(ensPublicResolver, address, withSignerIfPossible) as EnsPublicResolver
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(erc20, tokenAddress, withSignerIfPossible)
+  return useContract(erc20, tokenAddress, withSignerIfPossible) as Erc20
 }
 
 export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(erc20Bytes, tokenAddress, withSignerIfPossible)
+  return useContract(erc20Bytes, tokenAddress, withSignerIfPossible) as Erc20Bytes32
 }
 
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
-  return useContract(weth, useNativeWrapCurrencyAddress(), withSignerIfPossible)
+  return useContract(weth, useNativeWrapCurrencyAddress(), withSignerIfPossible) as Weth
 }
 
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {

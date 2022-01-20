@@ -21,7 +21,6 @@ import styled from 'styled-components'
 import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
-import { useWeb3React } from '@web3-react/core'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -73,7 +72,6 @@ const SellCard = () => {
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
   const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
-  const { account } = useWeb3React()
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()

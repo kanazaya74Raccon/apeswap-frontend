@@ -36,7 +36,7 @@ const useUnstake = (pid: number) => {
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      const txHash = await unstake(masterChefContract, pid, amount, account)
+      const txHash = await unstake(masterChefContract, pid, amount)
       dispatch(updateFarmUserStakedBalances(chainId, pid, account))
       dispatch(updateFarmUserTokenBalances(chainId, pid, account))
       dispatch(updateFarmUserEarnings(chainId, pid, account))
@@ -70,13 +70,13 @@ export const useSousUnstake = (sousId) => {
   const handleUnstake = useCallback(
     async (amount: string) => {
       if (sousId === 0) {
-        const txHash = await unstake(masterChefContract, 0, amount, account)
+        const txHash = await unstake(masterChefContract, 0, amount)
         console.info(txHash)
       } else if (isOldSyrup) {
-        const txHash = await sousEmegencyWithdraw(sousChefContract, account)
+        const txHash = await sousEmegencyWithdraw(sousChefContract)
         console.info(txHash)
       } else {
-        const txHash = await sousUnstake(sousChefContract, amount, account)
+        const txHash = await sousUnstake(sousChefContract, amount)
         console.info(txHash)
       }
       dispatch(updateUserStakedBalance(chainId, sousId, account))
@@ -103,7 +103,7 @@ export const useSousEmergencyWithdraw = (sousId) => {
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const handleEmergencyWithdraw = useCallback(async () => {
-    const txHash = await sousEmegencyWithdraw(sousChefContract, account)
+    const txHash = await sousEmegencyWithdraw(sousChefContract)
     dispatch(updateUserStakedBalance(chainId, sousId, account))
     dispatch(updateUserBalance(chainId, sousId, account))
     dispatch(updateUserPendingReward(chainId, sousId, account))
@@ -120,7 +120,7 @@ export const useNfaUnstake = (sousId) => {
 
   const handleUnstake = useCallback(
     async (ids: number[]) => {
-      await nfaUnstake(nfaStakeChefContract, ids, account)
+      await nfaUnstake(nfaStakeChefContract, ids)
       dispatch(updateUserNfaStakingStakedBalance(chainId, sousId, account))
       dispatch(updateNfaStakingUserBalance(chainId, sousId, account))
       dispatch(updateUserNfaStakingPendingReward(chainId, sousId, account))
@@ -147,7 +147,7 @@ export const useVaultUnstake = (pid: number) => {
   const handleUnstake = useCallback(
     async (amount: string) => {
       try {
-        const txHash = await vaultUnstake(vaultApeContract, pid, amount, account)
+        const txHash = await vaultUnstake(vaultApeContract, pid, amount)
         track({
           event: 'vault',
           chain: chainId,
@@ -175,7 +175,7 @@ export const useVaultUnstakeAll = (pid: number) => {
   const dispatch = useDispatch()
 
   const handleUnstake = useCallback(async () => {
-    const txHash = await vaultUnstakeAll(vaultApeContract, pid, account)
+    const txHash = await vaultUnstakeAll(vaultApeContract, pid)
     track({
       event: 'vault',
       chain: chainId,

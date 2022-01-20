@@ -7,7 +7,7 @@ import {
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
 } from 'state/actions'
-import { stake, sousStake, sousStakeBnb, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
+import { stake, sousStake, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { updateFarmUserStakedBalances, updateFarmUserTokenBalances, updateFarmUserEarnings } from 'state/farms'
@@ -18,7 +18,6 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
-import BigNumber from 'bignumber.js'
 import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
 
 const useStake = (pid: number) => {
@@ -49,7 +48,7 @@ const useStake = (pid: number) => {
   return { onStake: handleStake }
 }
 
-export const useSousStake = (sousId, isUsingBnb = false) => {
+export const useSousStake = (sousId) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
@@ -59,8 +58,6 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
     async (amount: string) => {
       if (sousId === 0) {
         await stake(masterChefContract, 0, amount)
-      } else if (isUsingBnb) {
-        await sousStakeBnb(sousChefContract, amount, account)
       } else {
         await sousStake(sousChefContract, amount)
       }
@@ -78,7 +75,7 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
       dispatch(updateUserStakedBalance(chainId, sousId, account))
       dispatch(updateUserBalance(chainId, sousId, account))
     },
-    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, chainId],
+    [account, dispatch, masterChefContract, sousChefContract, sousId, chainId],
   )
 
   return { onStake: handleStake }
@@ -92,7 +89,7 @@ export const useNfaStake = (sousId) => {
 
   const handleStake = useCallback(
     async (ids: number[]) => {
-      await nfaStake(nfaStakeChefContract, ids, account)
+      await nfaStake(nfaStakeChefContract, ids)
       dispatch(updateUserNfaStakingStakedBalance(chainId, sousId, account))
       dispatch(updateNfaStakingUserBalance(chainId, sousId, account))
       track({
@@ -116,16 +113,11 @@ export const useVaultStake = (pid: number) => {
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
   const chainId = useNetworkChainId()
-  // console.log({ vaultApeContract, chainId, account, pid })
 
   const handleStake = useCallback(
     async (amount: string) => {
       try {
-        console.log(vaultApeContract)
-        const txHash = await vaultApeContract['deposit(uint256,uint256)'](
-          pid,
-          new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
-        )
+        const txHash = await stakeVault(vaultApeContract, pid, amount)
         track({
           event: 'vault',
           chain: chainId,
@@ -138,9 +130,11 @@ export const useVaultStake = (pid: number) => {
         dispatch(updateVaultUserBalance(account, chainId, pid))
         dispatch(updateVaultUserStakedBalance(account, chainId, pid))
         console.info(txHash)
+        return txHash
       } catch (e) {
         console.error(e)
       }
+      return null
     },
     [account, vaultApeContract, dispatch, pid, chainId],
   )
@@ -168,6 +162,7 @@ export const useDualFarmStake = (pid: number) => {
         },
       })
       console.info(txHash)
+      return txHash
     },
     [account, dispatch, miniChefContract, pid, chainId],
   )

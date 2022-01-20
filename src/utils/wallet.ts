@@ -1,7 +1,8 @@
 // Set of helper functions to facilitate wallet setup
-import { AbiItem } from 'web3-utils'
 import erc20 from 'config/abi/erc20.json'
+import { getContract } from 'utils'
 import { CHAIN_PARAMS } from 'config/constants/chains'
+import { Erc20 } from 'config/abi/types'
 import getProvider from './getProvider'
 
 /**
@@ -58,11 +59,11 @@ export const registerToken = async (
 }
 
 export const getTokenInfo = async (tokenAddress: string, chainId: number) => {
-  // const provider = getProvider(chainId)
-  // const token = new provider.eth.Contract(erc20 as unknown as AbiItem, tokenAddress)
+  const provider = getProvider(chainId)
+  const token = getContract(tokenAddress, erc20, provider) as Erc20
   return {
-    symbolToken: '',
-    nameToken: '',
-    decimalsToken: 18,
+    symbolToken: await token.symbol(),
+    nameToken: await token.name(),
+    decimalsToken: await token.decimals(),
   }
 }

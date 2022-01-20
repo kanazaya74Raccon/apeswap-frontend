@@ -13,7 +13,7 @@
   },
   "extends": "@apeswapfinance/eslint-config-apeswap",
   "rules": {
-    "no-console": ["warn", { "allow": ["info", "warn", "error"] }],
+    "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
     "no-underscore-dangle": 0,

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ethers, Contract } from 'ethers'
+import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
@@ -10,25 +10,17 @@ import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
 import useActiveWeb3React from './useActiveWeb3React'
 import { useAuctionAddress } from './useAddress'
-import {
-  useMasterchef,
-  useBanana,
-  useSousChef,
-  useNonFungibleApes,
-  useVaultApe,
-  useMiniChefContract,
-} from './useContract'
+import { useMasterchef, useSousChef, useNonFungibleApes, useVaultApe, useMiniChefContract } from './useContract'
 
 // Approve a Farm
-export const useApprove = (lpContract: Contract, pid: number) => {
+export const useApprove = (lpContract, pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useActiveWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
     try {
-      console.log({ lpContract, masterChefContract, account })
-      const tx = await approve(lpContract, masterChefContract, account)
+      const tx = await approve(lpContract, masterChefContract)
       dispatch(updateFarmUserAllowances(chainId, pid, account))
       track({
         event: 'farm',
@@ -48,14 +40,14 @@ export const useApprove = (lpContract: Contract, pid: number) => {
 }
 
 // Approve a Pool
-export const useSousApprove = (lpContract: Contract, sousId) => {
+export const useSousApprove = (lpContract, sousId) => {
   const dispatch = useDispatch()
   const { account, chainId } = useActiveWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await approve(lpContract, sousChefContract, account)
+      const tx = await approve(lpContract, sousChefContract)
       dispatch(updateUserAllowance(chainId, sousId, account))
       track({
         event: 'pool',
@@ -75,9 +67,8 @@ export const useSousApprove = (lpContract: Contract, sousId) => {
   return { onApprove: handleApprove }
 }
 
-
 // Approve an IFO
-export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
+export const useIfoApprove = (tokenContract, spenderAddress: string) => {
   const { account } = useActiveWeb3React()
   const onApprove = useCallback(async () => {
     try {
@@ -95,15 +86,14 @@ export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) =
 export const useAuctionApprove = () => {
   const tokenContract = useNonFungibleApes()
   const spenderAddress = useAuctionAddress()
-  const { account } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.setApprovalForAll(spenderAddress, true).send({ from: account })
+      const tx = await tokenContract.setApprovalForAll(spenderAddress, true)
       return tx
     } catch {
       return false
     }
-  }, [account, spenderAddress, tokenContract])
+  }, [spenderAddress, tokenContract])
 
   return { onApprove: handleApprove }
 }
@@ -115,7 +105,7 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
   const { account, chainId } = useActiveWeb3React()
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.setApprovalForAll(contractToApprove, true).send({ from: account })
+      const tx = await tokenContract.setApprovalForAll(contractToApprove, true)
       dispatch(updateNfaStakingUserAllowance(chainId, sousId, account))
       return tx
     } catch {
@@ -127,13 +117,13 @@ export const useNfaStakingApprove = (contractToApprove: string, sousId) => {
 }
 
 // Approve vault
-export const useVaultApeApprove = (lpContract: Contract, pid) => {
+export const useVaultApeApprove = (lpContract, pid) => {
   const { account, chainId } = useActiveWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await approve(lpContract, vaultApeContract, account)
+      const tx = await approve(lpContract, vaultApeContract)
       track({
         event: 'vaults',
         chain: chainId,
@@ -153,14 +143,14 @@ export const useVaultApeApprove = (lpContract: Contract, pid) => {
 }
 
 // Approve a Farm
-export const useDualFarmApprove = (lpContract: Contract, pid: number) => {
+export const useDualFarmApprove = (lpContract, pid: number) => {
   const dispatch = useDispatch()
   const { account, chainId } = useActiveWeb3React()
   const miniChefContract = useMiniChefContract()
 
   const handleApprove = useCallback(async () => {
     try {
-      const tx = await approve(lpContract, miniChefContract, account)
+      const tx = await approve(lpContract, miniChefContract)
       track({
         event: 'dualFarm',
         chain: chainId,

@@ -6,7 +6,6 @@ import useReward from 'hooks/useReward'
 import { getContract } from 'utils'
 import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-
 import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useHarvest } from 'hooks/useHarvest'
