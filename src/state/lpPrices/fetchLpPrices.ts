@@ -11,7 +11,7 @@ const fetchLpPrices = async (chainId) => {
   const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const tokensToCall = Object.keys(farmsConfig).filter((token) => farmsConfig[token].lpAddresses[chainId] !== undefined)
-  const calls = tokensToCall.map((token, i) => {
+  const calls = tokensToCall.map((token) => {
     return {
       address: apePriceGetterAddress,
       name: 'getLPPrice',

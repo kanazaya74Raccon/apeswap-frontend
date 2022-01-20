@@ -6,6 +6,7 @@ import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
+import ifoLinear from 'config/abi/ifoLinear.json'
 import erc20 from 'config/abi/erc20.json'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import nonFungibleApes from 'config/abi/nonFungibleApes.json'
@@ -85,13 +86,13 @@ export const useMulticallContract = () => {
   return useContract(multiAbi, useMulticallAddress())
 }
 
-export const useIfoContract = (address: string) => {
-  const ifoAbi = ifo as unknown as AbiItem
+export const useIfoContract = (address: string, isLinear?: boolean) => {
+  const ifoAbi = (isLinear ? ifoLinear : ifo) as unknown as AbiItem
   return useContract(ifoAbi, address)
 }
 
-export const useSafeIfoContract = (address?: string): Contract | undefined => {
-  const ifoAbi = ifo as unknown as AbiItem
+export const useSafeIfoContract = (address?: string, isLinear?: boolean): Contract | undefined => {
+  const ifoAbi = (isLinear ? ifoLinear : ifo) as unknown as AbiItem
   return useSafeContract(ifoAbi, address)
 }
 

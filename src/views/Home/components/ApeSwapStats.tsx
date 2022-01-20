@@ -132,7 +132,7 @@ const ApeSwapStats = () => {
         </GreyRow>
         <Row>
           <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
+            <a href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/banana"  target="_blank" rel="noopener noreferrer">{TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}</a>
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={900} />
         </Row>

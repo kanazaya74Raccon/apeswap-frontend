@@ -51,10 +51,16 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
     onRequiresApproval: async (loadedAccount) => {
       try {
         const response = await bananaContract.methods.allowance(loadedAccount, treasuryContract.options.address).call()
+
+        console.log('response', response)
         const currentAllowance = new BigNumber(response)
+        console.log('currentAllowance', currentAllowance)
+        console.log('currentAllowance.gt(0)', currentAllowance.gt(0))
+
         return currentAllowance.gt(0)
       } catch (error) {
         console.warn(error)
+        console.log(error)
         return false
       }
     },
