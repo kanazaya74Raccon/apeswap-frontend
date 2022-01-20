@@ -4,7 +4,6 @@ import useI18n from 'hooks/useI18n'
 import {
   InfoSect1,
   InfoCon,
-  InfoSect2,
   InfoText,
   Container,
   Main,
@@ -42,7 +41,7 @@ export const GnanaDisclaimers: React.FC = () => {
   const TranslateString = useI18n()
 
   const learnMore = () => {
-    return window.open('https://apeswap.gitbook.io/apeswap-finance/', '_blank')
+    return window.open('https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/gnana', '_blank')
   }
   return (
     <Container>
@@ -109,14 +108,9 @@ export const GnanaDisclaimers: React.FC = () => {
         </FirstHeaderCon>
 
         <InfoSect1>
-          <Info content="The reflect fee occurs every Tx" />
-          <Info content="You do not get reflects in staking pools" />
-        </InfoSect1>
-
-        <InfoSect2>
-          <Info content="The 2% reflect fee occurs on ALL transactions" />
+          <Info content="The 2% reflect fee applies to all $GNANA transactions, including transfer, staking, unstaking, and participation in IAOs." />
           <Info content="You do not accumulate reflect fees when your GNANA is staked in a pool" />
-        </InfoSect2>
+        </InfoSect1>
       </Main2>
 
       <Footer>

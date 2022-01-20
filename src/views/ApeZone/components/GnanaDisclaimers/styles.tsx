@@ -54,20 +54,22 @@ export const InfoCon = styled(Card)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
   border-radius: 10px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  padding: 10px 40px;
+  height: 66px;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  /* ${({ theme }) => theme.mediaQueries.md} {
     height: 45px;
-  }
+  } */
 `
 export const InfoText = styled(Text)`
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-size: 10px;
   font-weight: 400;
   text-align: center;
+  line-height: 15px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 12px;
@@ -191,18 +193,8 @@ export const Footer = styled.div`
   margin-bottom: 20px;
 `
 
-export const InfoSect1 = styled.div`
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: none;
-  }
-`
+export const InfoSect1 = styled.div``
 
-export const InfoSect2 = styled(InfoSect1)`
-  display: none;
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: unset;
-  }
-`
 export const LearnMoreBtn = styled(ButtonSquare)`
   font-size: 12px;
   font-weight: 700;
