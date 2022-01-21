@@ -92,9 +92,7 @@ const ApyWrapper = styled.div`
 `
 
 const ApyText = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 19px;
   display: flex;
@@ -104,9 +102,7 @@ const ApyText = styled(Text)`
 `
 
 const ApyNumber = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 18px;
   line-height: 20px;
   margin-left: 4px;
@@ -183,7 +179,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
         )}
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontFamily="Titan One">
+        <StyledHeading fontWeight={800}>
           {vault?.isPair ? `${vault?.token1?.symbol}-${vault?.token0?.symbol}` : vault?.token0?.symbol}
         </StyledHeading>
         <ApyWrapper>
