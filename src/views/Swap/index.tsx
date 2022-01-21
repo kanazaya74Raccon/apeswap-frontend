@@ -1,15 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
-import {
-  Button,
-  Text,
-  ArrowDownIcon,
-  useModal,
-  Flex,
-  IconButton,
-  Card,
-} from '@apeswapfinance/uikit'
+import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import SwapBanner from 'components/SwapBanner'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -40,15 +32,12 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from '../../state/swap/hooks'
-import {
-  useExpertModeManager,
-  useUserSlippageTolerance,
-  useUserSingleHopOnly,
-} from '../../state/user/hooks'
+import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton, ExpertButton } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
+import FormattedPriceImpact from './components/FormattedPriceImpact'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -374,14 +363,20 @@ export default function Swap({ history }: RouteComponentProps) {
                     {showWrap ? null : (
                       <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
                         {Boolean(trade) && (
-                          <RowBetween align="center">
-                            <Label>Price</Label>
-                            <TradePrice
-                              price={trade?.executionPrice}
-                              showInverted={showInverted}
-                              setShowInverted={setShowInverted}
-                            />
-                          </RowBetween>
+                          <>
+                            <RowBetween align="center">
+                              <Label>Price</Label>
+                              <TradePrice
+                                price={trade?.executionPrice}
+                                showInverted={showInverted}
+                                setShowInverted={setShowInverted}
+                              />
+                            </RowBetween>
+                            <RowBetween align="center">
+                              <Label>Price Impact</Label>
+                              <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
+                            </RowBetween>
+                          </>
                         )}
                         {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                           <RowBetween align="center">
