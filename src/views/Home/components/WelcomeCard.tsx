@@ -83,7 +83,6 @@ const StyledButton = styled(Button)`
   border-radius: 10px;
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: center;
@@ -112,7 +111,7 @@ const WelcomeCard = () => {
             )}
           </CardBody>
         </StyledWelcomeCard>
-        <Heading as="h1" size="lg" mb="6px" color="contrast" fontFamily="Titan One">
+        <Heading as="h1" size="lg" mb="6px" color="contrast" fontWeight={800}>
           {TranslateString(576, 'Welcome all Apes!')}
         </Heading>
         <StyledText color="textSubtle" fontFamily="poppins">

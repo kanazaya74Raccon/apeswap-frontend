@@ -76,65 +76,44 @@ const ApeSwapStats = () => {
   return (
     <StyledBananaStats>
       <StyledCardBody>
-        <Heading size="lg" mb="8px" textAlign="center" fontFamily="Titan One">
+        <Heading size="lg" mb="8px" textAlign="center" fontWeight={800}>
           {TranslateString(534, 'ApeSwap Stats')}
         </Heading>
         <GreyRow>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'TOTAL VALUE LOCKED')}
-          </StyledText>
-          {stats?.tvl && <CardValue fontSize="14px" value={stats?.tvl} prefix="$" text="poppins" fontWeight={700} />}
+          <StyledText fontSize="14px">{TranslateString(536, 'TOTAL VALUE LOCKED')}</StyledText>
+          {stats?.tvl && <CardValue fontSize="14px" value={stats?.tvl} prefix="$" fontWeight={600} />}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'USD MARKET CAP')}
-          </StyledText>
+          <StyledText fontSize="14px">{TranslateString(536, 'USD MARKET CAP')}</StyledText>
           {stats?.marketCap && (
-            <CardValue
-              fontSize="14px"
-              value={stats?.marketCap}
-              decimals={0}
-              prefix="$"
-              text="poppins"
-              fontWeight={700}
-            />
+            <CardValue fontSize="14px" value={stats?.marketCap} decimals={0} prefix="$" fontWeight={600} />
           )}
         </Row>
         <GreyRow>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'BANANA IN CIRCULATION')}
-          </StyledText>
-          {stats?.circulatingSupply && (
-            <CardValue fontSize="14px" value={stats?.circulatingSupply} text="poppins" fontWeight={700} />
-          )}
+          <StyledText fontSize="14px">{TranslateString(536, 'BANANA IN CIRCULATION')}</StyledText>
+          {stats?.circulatingSupply && <CardValue fontSize="14px" value={stats?.circulatingSupply} fontWeight={600} />}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(536, 'GNANA IN CIRCULATION')}
-          </StyledText>
+          <StyledText fontSize="14px">{TranslateString(536, 'GNANA IN CIRCULATION')}</StyledText>
           {stats?.gnanaCirculatingSupply && (
-            <CardValue
-              fontSize="14px"
-              value={stats?.gnanaCirculatingSupply}
-              decimals={0}
-              text="poppins"
-              fontWeight={700}
-            />
+            <CardValue fontSize="14px" value={stats?.gnanaCirculatingSupply} decimals={0} fontWeight={600} />
           )}
         </Row>
         <GreyRow>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            {TranslateString(538, 'TOTAL BANANA BURNED')}
-          </StyledText>
-          {stats?.burntAmount && (
-            <CardValue fontSize="14px" decimals={0} value={stats?.burntAmount} text="poppins" fontWeight={700} />
-          )}
+          <StyledText fontSize="14px">{TranslateString(538, 'TOTAL BANANA BURNED')}</StyledText>
+          {stats?.burntAmount && <CardValue fontSize="14px" decimals={0} value={stats?.burntAmount} fontWeight={600} />}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px" fontFamily="poppins">
-            <a href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/banana"  target="_blank" rel="noopener noreferrer">{TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}</a>
+          <StyledText fontSize="14px">
+            <a
+              href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/banana"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
+            </a>
           </StyledText>
-          <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} text="poppins" fontWeight={900} />
+          <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} fontWeight={600} />
         </Row>
       </StyledCardBody>
     </StyledBananaStats>

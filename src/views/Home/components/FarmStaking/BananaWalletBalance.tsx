@@ -20,7 +20,7 @@ const BananaWalletBalance = () => {
     )
   }
 
-  return <CardValue value={getBalanceNumber(bananaBalance)} fontSize="40px" fontFamily="Titan One" />
+  return <CardValue value={getBalanceNumber(bananaBalance)} fontSize="40px" fontWeight={800} />
 }
 
 export default BananaWalletBalance

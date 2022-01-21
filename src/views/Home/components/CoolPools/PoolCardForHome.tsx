@@ -80,9 +80,7 @@ const ApyWrapper = styled.div`
 `
 
 const ApyText = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 19px;
   display: flex;
@@ -92,9 +90,7 @@ const ApyText = styled(Text)`
 `
 
 const ApyNumber = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 18px;
   line-height: 20px;
   margin-left: 4px;
@@ -134,7 +130,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontFamily="Titan One">{tokenName}</StyledHeading>
+        <StyledHeading fontWeight={800}>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
           {apr ? <ApyNumber>{apr?.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}

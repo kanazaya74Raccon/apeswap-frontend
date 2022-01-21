@@ -137,7 +137,7 @@ const HotFarms = () => {
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontFamily="Titan One">Hot Farms</HotFarmsText>
+        <HotFarmsText fontWeight={800}>Hot Farms</HotFarmsText>
         <FarmWrapper>
           {farmsFetched.slice(1).map((farm: Farm) => (
             <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>

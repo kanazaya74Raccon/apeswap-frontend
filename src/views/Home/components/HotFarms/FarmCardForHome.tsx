@@ -100,7 +100,7 @@ const ApyWrapper = styled.div`
 const ApyText = styled(Text)`
   font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 19px;
   display: flex;
@@ -110,9 +110,7 @@ const ApyText = styled(Text)`
 `
 
 const ApyNumber = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 18px;
   line-height: 20px;
   margin-left: 4px;
@@ -155,7 +153,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontFamily="Titan One">
+        <StyledHeading fontWeight={800}>
           {tokenSymbol}-{quoteTokenSymbol}
         </StyledHeading>
         <ApyWrapper>
