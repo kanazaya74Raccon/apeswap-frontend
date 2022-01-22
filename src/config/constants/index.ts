@@ -134,7 +134,16 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
 
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WRAPPED_NATIVE_ONLY,
-  [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDT],
+  [ChainId.MATIC]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.MATIC],
+    MATIC.USDC,
+    MATIC.WBTC,
+    MATIC.DAI,
+    MATIC.WETH,
+    MATIC.USDT,
+    MATIC.BANANA,
+  ],
+  [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB],
 }
 
 // default allowed slippage, in bips

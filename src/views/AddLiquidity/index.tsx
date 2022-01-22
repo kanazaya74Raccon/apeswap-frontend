@@ -369,6 +369,7 @@ export default function AddLiquidity({
                 currency={currencies[Field.CURRENCY_A]}
                 addLiquidity
                 id="add-liquidity-input-tokena"
+                showCommonBases
               />
               <ColumnCenter
                 style={{
@@ -404,6 +405,7 @@ export default function AddLiquidity({
                 currency={currencies[Field.CURRENCY_B]}
                 id="add-liquidity-input-tokenb"
                 addLiquidity
+                showCommonBases
               />
               {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
                 <PoolPriceBar

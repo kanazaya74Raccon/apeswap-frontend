@@ -12,8 +12,7 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   border-radius: 10px;
   display: flex;
   padding: 6px;
-
-  align-items: center;
+  margin: 5px 5px 2px 5px;
   :hover {
     cursor: ${({ disable }) => !disable && 'pointer'};
     background-color: ${({ theme, disable }) => !disable && theme.colors.background};
@@ -35,9 +34,11 @@ export default function CommonBases({
   return (
     <AutoColumn gap="md">
       <AutoRow>
-        <Text fontSize="14px">Common bases</Text>
+        <Text margin="20px 0px 0px 20px" fontSize="16px">
+          Common bases
+        </Text>
       </AutoRow>
-      <AutoRow gap="auto">
+      <AutoRow style={{ padding: '0px 10px 0px 10px' }}>
         <BaseWrapper
           onClick={() => {
             if (!selectedCurrency || !currencyEquals(selectedCurrency, ETHER)) {
