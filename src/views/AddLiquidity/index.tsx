@@ -324,7 +324,7 @@ export default function AddLiquidity({
 
   return (
     <Page>
-      <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+      <Flex alignItems="center" flexDirection="column" flexWrap="nowrap" mb="20px">
         <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />

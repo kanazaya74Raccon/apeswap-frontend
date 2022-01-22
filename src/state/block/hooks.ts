@@ -15,8 +15,12 @@ export const usePollBlockNumber = (refreshTime = 6000) => {
   useInterval(
     () => {
       const fetchBlock = async () => {
-        const blockNumber = await library.getBlockNumber()
-        dispatch(setBlock(blockNumber))
+        try {
+          const blockNumber = await library.getBlockNumber()
+          dispatch(setBlock(blockNumber))
+        } catch {
+          console.error('Could not fetch block number')
+        }
       }
 
       fetchBlock()

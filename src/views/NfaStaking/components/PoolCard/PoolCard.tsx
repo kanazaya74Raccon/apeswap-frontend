@@ -90,7 +90,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           blocksRemaining={blocksRemaining}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}
-          addLiquidityUrl="https://app.apeswap.finance/swap"
+          addLiquidityUrl="https://apeswap.finance/swap"
           pendingReward={pendingReward}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
         />

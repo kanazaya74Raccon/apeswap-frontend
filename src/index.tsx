@@ -19,8 +19,8 @@ function Updaters() {
 ReactDOM.render(
   <React.StrictMode>
     <Providers>
-      <Updaters />
       <App />
+      <Updaters />
     </Providers>
   </React.StrictMode>,
   document.getElementById('root'),

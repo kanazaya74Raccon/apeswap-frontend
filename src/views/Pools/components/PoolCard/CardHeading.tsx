@@ -323,7 +323,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                   <ApyButton
                     lpLabel={stakeToken}
                     rewardTokenName={earnToken}
-                    addLiquidityUrl="https://app.apeswap.finance/swap"
+                    addLiquidityUrl="https://apeswap.finance/swap"
                     rewardTokenPrice={new BigNumber(rewardTokenPrice)}
                     apy={apr.div(100)}
                   />

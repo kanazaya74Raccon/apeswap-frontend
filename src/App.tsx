@@ -7,13 +7,7 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
-import {
-  useFetchPublicData,
-  useFetchTokenPrices,
-  useFetchProfile,
-  useNetworkChainId,
-  useUpdateNetwork,
-} from 'state/hooks'
+import { useFetchPublicData, useFetchTokenPrices, useFetchProfile, useUpdateNetwork } from 'state/hooks'
 import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -96,26 +90,18 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 `
 
 const App: React.FC = () => {
-  // Monkey patch warn() because of web3 flood
-  // To be removed when web3 1.3.5 is released
-  const { account } = useActiveWeb3React()
+  useUpdateNetwork()
+  useEagerConnect()
+  useFetchTokenPrices()
+  usePollBlockNumber()
+  useFetchPublicData()
+  useFetchProfile()
 
-  useEffect(() => {
-    console.warn = () => null
-  }, [])
+  const { account, chainId } = useActiveWeb3React()
 
   useEffect(() => {
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
   }, [account])
-
-  const appChainId = useNetworkChainId()
-
-  useUpdateNetwork()
-  usePollBlockNumber()
-  useEagerConnect()
-  useFetchTokenPrices()
-  useFetchPublicData()
-  useFetchProfile()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -142,7 +128,7 @@ const App: React.FC = () => {
 
   const loadMenu = () => {
     // MATIC routes
-    if (appChainId === CHAIN_ID.MATIC || appChainId === CHAIN_ID.MATIC_TESTNET) {
+    if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
       return (
         <Menu>
           <Suspense fallback={<PageLoader />}>

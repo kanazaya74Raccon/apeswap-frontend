@@ -92,7 +92,7 @@ export default function Pool() {
 
   return (
     <Page>
-      <Flex alignItems="center" flexDirection="column" flexWrap="nowrap">
+      <Flex alignItems="center" flexDirection="column" flexWrap="nowrap" mb="20px">
         <SwapBanner />
         <AppBody>
           <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
@@ -106,7 +106,7 @@ export default function Pool() {
                 alignItems="center"
                 style={{ height: '100%' }}
               >
-                <StyledText fontWeight={700}>Add liquidity to receieve LP tokens</StyledText>
+                <StyledText fontWeight={700}>Add liquidity to receive LP tokens</StyledText>
                 <ButtonSquare
                   id="join-pool-button"
                   as={Link}

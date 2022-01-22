@@ -285,7 +285,7 @@ export default function Swap({ history }: RouteComponentProps) {
 
   return (
     <Page>
-      <Flex justifyContent="center">
+      <Flex justifyContent="center" mb="20px">
         <Flex flexDirection="column">
           <SwapBanner />
           <StyledSwapContainer>
