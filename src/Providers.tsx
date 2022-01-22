@@ -5,7 +5,6 @@ import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { getLibrary } from 'utils/web3React'
 import { ThemeContextProvider } from 'contexts/ThemeContext'
-import { RefreshContextProvider } from 'contexts/RefreshContext'
 import store from 'state'
 import NftProvider from 'views/Nft/contexts/NftProvider'
 import { NetworkContextName } from 'config/constants'
@@ -20,9 +19,7 @@ const Providers: React.FC = ({ children }) => {
           <HelmetProvider>
             <ThemeContextProvider>
               <NftProvider>
-                <RefreshContextProvider>
-                  <ModalProvider>{children}</ModalProvider>
-                </RefreshContextProvider>
+                <ModalProvider>{children}</ModalProvider>
               </NftProvider>
             </ThemeContextProvider>
           </HelmetProvider>
