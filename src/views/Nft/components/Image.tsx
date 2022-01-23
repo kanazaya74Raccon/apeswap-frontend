@@ -58,7 +58,7 @@ const TierSvg = styled.div`
 `
 
 const TierNumber = styled.p`
-  font-family: 800;
+  font-weight: 800;
 `
 
 const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => {

@@ -62,7 +62,7 @@ const ButtonSocial = styled(Button)`
     max-width: 100px;
   }
 `
-const FullImage = styled.div<{ pathImage: string; }>`
+const FullImage = styled.div<{ pathImage: string }>`
   margin-right: 15px;
   width: 50%;
   height: 100%;
@@ -119,10 +119,9 @@ const PlayButton = styled(Button)`
   }
 `
 const PlayText = styled(Text)`
-  font-family: Poppins;
   font-size: 18px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 36px;
   ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 20px;
@@ -143,10 +142,10 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           <FullImage pathImage={game.image?.url} />
           <ContainerResumeInfo className="container-resumen-info">
             <ContainerTitle className="container-title">
-              <Text className="partner-name" fontFamily="poppins" bold>
+              <Text className="partner-name" fontWeight={600}>
                 {game.name}
               </Text>
-              <Text className="sub-name" fontFamily="poppins" bold>
+              <Text className="sub-name" fontWeight={600}>
                 {game.subtitle}
               </Text>
             </ContainerTitle>
@@ -164,7 +163,7 @@ const CardBurningGame: React.FC<any> = ({ game }) => {
           </ContainerResumeInfo>
         </ContainerGeneral>
         <ContainerDescription>
-          <Text fontFamily="poppins" bold fontSize="17">
+          <Text fontWeight={600} fontSize="17">
             {game.subtitle}
           </Text>
           <div className="content-description">{game.description}</div>
