@@ -161,7 +161,7 @@ const HeaderPolygon = styled(Header)`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -593,7 +593,7 @@ const Vaults: React.FC = () => {
   const renderHeader = () => {
     const headerContents = (
       <HeadingContainer>
-        <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+        <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
           {TranslateString(999, 'Burning Vaults')}
         </StyledHeading>
       </HeadingContainer>

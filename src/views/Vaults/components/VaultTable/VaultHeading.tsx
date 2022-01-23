@@ -96,7 +96,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
         )}
       </StyledBackground>
       <TitleContainer>
-        <Text fontSize="20px" fontFamily="Titan One">
+        <Text fontSize="20px" fontWeight={800}>
           {isPair ? `${token1}-${token0}` : token0}{' '}
         </Text>
         {isBurning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}

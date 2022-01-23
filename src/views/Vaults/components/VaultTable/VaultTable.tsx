@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
-import UnlockButton from 'components/UnlockButton'
 import { useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { Vault } from 'state/types'
 import VaultHeading from './VaultHeading'
 import CellLayout from './CellLayout'
@@ -72,6 +72,7 @@ const CellInner = styled.div`
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -123,6 +124,10 @@ const StakeContainer = styled.div`
   }
 `
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+`
+
 const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
   const { pid, stakeTokenAddress, token0, token1, userData, isPair, apy, totalStaked } = vault
 
@@ -148,7 +153,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton padding="8px" />
+      return <StyledUnlockButton size="sm" />
     }
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakeTokenAddress} pid={pid} isLoading={isLoading} />
@@ -201,10 +206,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
         {rawStakedBalance ? (
           <UserStakedContainer>
             <StyledText>Staked</StyledText>
-            <StyledHeadingGreen
-              color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}
-              fontFamily="Titan One" // Check this later
-            >
+            <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
               {displayBalance}
             </StyledHeadingGreen>
           </UserStakedContainer>

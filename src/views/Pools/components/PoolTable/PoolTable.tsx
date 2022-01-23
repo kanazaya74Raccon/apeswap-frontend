@@ -96,7 +96,6 @@ const StakeContainer = styled.div`
 
 const StyledUnlockButton = styled(UnlockButtonSquare)`
   font-weight: 600;
-  font-size: 11.5px;
 `
 
 const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
