@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import UnlockButton from 'components/UnlockButton'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import PoolHeading from './PoolHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
@@ -94,6 +94,11 @@ const StakeContainer = styled.div`
   }
 `
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+  font-size: 11.5px;
+`
+
 const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const {
     sousId,
@@ -139,7 +144,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton padding="8px" />
+      return <StyledUnlockButton size="sm" />
     }
     if (needsApproval) {
       return (

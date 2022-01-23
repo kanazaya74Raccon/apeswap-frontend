@@ -35,8 +35,7 @@ export interface ExpandableSectionProps {
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -51,7 +50,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -59,10 +58,11 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 const Detail: React.FC<ExpandableSectionProps> = ({
@@ -102,9 +102,11 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         <>
           <Flex justifyContent="space-between">
             <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
-            <StyledText fontSize="12px">{rewardToken.symbol === 'BANANA' ? 'Never' : `${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
-              timeUntilEnd.minutes
-            }m`}</StyledText>
+            <StyledText fontSize="12px">
+              {rewardToken.symbol === 'BANANA'
+                ? 'Never'
+                : `${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${timeUntilEnd.minutes}m`}
+            </StyledText>
           </Flex>
         </>
       )}
@@ -127,12 +129,12 @@ const Detail: React.FC<ExpandableSectionProps> = ({
         <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} className="noClick" fontFamily="Titan One">
+        <StyledLink external href={bscScanAddress} bold={false} className="noClick">
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={projectLink} bold={false} className="noClick" fontFamily="Titan One">
+        <StyledLink external href={projectLink} bold={false} className="noClick">
           {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>
@@ -148,7 +150,6 @@ const Detail: React.FC<ExpandableSectionProps> = ({
               `${URLactual.origin}/images/tokens/${imageToken || `${rewardToken?.symbol}.svg`}`,
             )
           }
-          fontFamily="Titan One"
         >
           Add to Metamask
         </StyledLink>

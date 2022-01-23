@@ -1,12 +1,12 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
+import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { useNetworkChainId } from 'state/hooks'
-import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
-import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
@@ -50,6 +50,7 @@ const StyledBackground = styled.div`
 
 const StyledHeading = styled(Heading)`
   font-size: 12px;
+  font-weight: 800;
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
   }
@@ -60,15 +61,16 @@ const StyledHeading = styled(Heading)`
 `
 
 const StyledText1 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 15px;
   }
 `
 
 const StyledText2 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   margin-top: 1px;
 `
@@ -76,7 +78,7 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
@@ -86,7 +88,7 @@ const StyledText3 = styled(Text)`
 
 const StyledText4 = styled(Text)`
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 1px;
   display: none;
 
@@ -186,7 +188,7 @@ const StyledAPRText = styled.div`
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -230,6 +232,11 @@ const Container = styled.div`
   align-items: center;
 `
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+  font-size: 11.5px;
+`
+
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   pool,
   apr,
@@ -259,7 +266,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton padding="8px" />
+      return <StyledUnlockButton size="sm" />
     }
     if (needsApproval) {
       return (
@@ -314,10 +321,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading fontFamily="Titan One">{earnToken}</StyledHeading>
+          <StyledHeading>{earnToken}</StyledHeading>
           {!removed && !pool?.forAdmins && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1 fontFamily="poppins">APR:</StyledText1>
+              <StyledText1>APR:</StyledText1>
               {apr ? (
                 <FlexSwitch className="noClick">
                   <ApyButton
@@ -335,10 +342,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             </Text>
           )}
           <StyledFlexEarnedSmall>
-            <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+            <StyledText4 color="primary" pr="3px">
               {TranslateString(999, `${earnToken}`)}
             </StyledText4>
-            <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+            <StyledText2 color="primary" pr="3px">
               {TranslateString(999, 'Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
@@ -347,10 +354,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer2>
           <StyledFlexEarned>
             <Flex>
-              <StyledText4 fontFamily="poppins" color="primary" pr="3px">
+              <StyledText4 color="primary" pr="3px">
                 {TranslateString(999, `${earnToken}`)}
               </StyledText4>
-              <StyledText2 fontFamily="poppins" color="primary" pr="3px">
+              <StyledText2 color="primary" pr="3px">
                 {TranslateString(999, 'Earned')}
               </StyledText2>
             </Flex>

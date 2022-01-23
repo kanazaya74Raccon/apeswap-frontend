@@ -41,8 +41,7 @@ const Container = styled.div`
 const AprWrapper = styled.div`
   text-align: left;
   font-size: 20px;
-  font-weight: 200;
-  font-family: 'Titan One';
+  font-weight: 800;
 `
 
 const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewardTokenPrice, apr }) => {
