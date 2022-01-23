@@ -68,7 +68,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const StyledAnchor = styled.a`
-  font-family: 'Titan One';
+  font-weight: 800;
 `
 
 const Nft = () => {
@@ -78,10 +78,10 @@ const Nft = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Non Fungible Apes')}
           </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontWeight={800}>
             {TranslateString(999, 'Collection')}
           </StyledHeading>
         </HeadingContainer>

@@ -31,11 +31,11 @@ const Wrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -43,6 +43,7 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
@@ -68,7 +69,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
+        <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
