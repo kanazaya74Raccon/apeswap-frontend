@@ -19,16 +19,10 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
   return (
     <StyledIfoCardDescription>
       {/* TODO: Update external link icon color based on dark/light theme */}
-      <Link href={projectSiteUrl} fontFamily="poppins">
-        View project site
-      </Link>
+      <Link href={projectSiteUrl}>View project site</Link>
       <ToggleButton onClick={handleClick}>
         {isOpen ? 'Hide' : 'Show'}
-        {isOpen ? (
-          <UpArrowIcon />
-        ) : (
-          <DownArrowIcon />
-        )}
+        {isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
       </ToggleButton>
       <Description isOpen={isOpen}>{description}</Description>
     </StyledIfoCardDescription>

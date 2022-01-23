@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Text } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 
-import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles';
+import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles'
 
 interface IconProps {
   name: string
@@ -34,15 +34,13 @@ const HowItWorks = ({ onParticipate }: Props) => {
     if (isSwitching) {
       setTimeout(scroll, 500)
     } else {
-      scroll();
+      scroll()
     }
   }
 
   return (
     <Container>
-      <SectionHeading size="lg" fontFamily="poppins">
-        HOW IT WORKS
-      </SectionHeading>
+      <SectionHeading size="lg">HOW IT WORKS</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="time-circle" />

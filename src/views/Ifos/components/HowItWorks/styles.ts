@@ -8,14 +8,13 @@ export const FeatureBox = styled.div`
 `
 
 export const B = styled(Text).attrs({
-  fontFamily: 'poppins',
   as: 'span',
 })`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 export const SectionHeading = styled(Heading)`
-  font-weight: 800;
+  font-weight: 600;
 `
 
 export const Frame = styled.div`

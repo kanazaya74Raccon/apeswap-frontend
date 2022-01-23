@@ -173,16 +173,16 @@ const Ifos = () => {
     if (tabOption === 'past') {
       setTabOption('current')
       setProjectId(activeIfoId)
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
   return (
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Initial Ape Offerings')}
           </StyledHeading>
         </HeaderContainer>

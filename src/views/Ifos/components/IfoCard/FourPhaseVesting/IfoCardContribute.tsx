@@ -74,7 +74,7 @@ const IfoCardContribute: React.FC<Props> = ({
     return (
       <ApproveButton
         disabled={pendingTx}
-        variant="yellow"
+        // variant="yellow"
         onClick={async () => {
           try {
             setPendingTx(true)
@@ -111,10 +111,10 @@ const IfoCardContribute: React.FC<Props> = ({
           />
           {amountContributed > 0 && (
             <TextWrapRow>
-              <Text fontSize="14px" color="textSubtle" fontWeight={700}>
+              <Text fontSize="14px" color="textSubtle" fontWeight={600}>
                 Your contributions:
               </Text>
-              <Text fontSize="14px" color="textSubtle" fontWeight={700}>
+              <Text fontSize="14px" color="textSubtle" fontWeight={600}>
                 {amountContributed.toFixed(4)} {currency}
               </Text>
             </TextWrapRow>

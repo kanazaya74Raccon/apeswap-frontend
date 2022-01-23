@@ -9,7 +9,6 @@ export const FeatureBox = styled.div`
 `
 
 export const Motto = styled(Text).attrs({
-  fontFamily: 'poppins',
   textAlign: 'center',
 })`
   color: ${({ theme }) => theme.colors.yellow};
@@ -17,7 +16,7 @@ export const Motto = styled(Text).attrs({
 `
 
 export const SectionHeading = styled(Heading)`
-  font-weight: 800;
+  font-weight: 600;
 `
 
 export const Frame = styled.div`

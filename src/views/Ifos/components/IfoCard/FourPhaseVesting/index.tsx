@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
 import multicallABI from 'config/abi/Multicall.json'
 import { useWeb3React } from '@web3-react/core'
@@ -9,6 +10,7 @@ import multicall from 'utils/multicall'
 import useBlock from 'hooks/useBlock'
 import { getMulticallAddress } from 'utils/addressHelper'
 import { useNetworkChainId, usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { useSafeIfoContract } from 'hooks/useContract'
 import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -18,8 +20,15 @@ import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import useUserInfo from './useUserInfo'
-import { Container, UnlockButton } from './styles'
+import { Container } from './styles'
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  padding: 25px 35px;
+  display: flex;
+  align-self: center;
+  font-size: 16px;
+  font-weight: 600;
+`
 export interface IfoCardProps {
   ifo: Ifo
   notLp?: boolean
@@ -240,7 +249,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
       )}
 
       {!account ? (
-        <UnlockButton />
+        <StyledUnlockButton size="lg" />
       ) : (
         (isActive || isFinished) &&
         vesting && (

@@ -16,8 +16,7 @@ export const ToggleButton = styled.button`
   color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
   cursor: pointer;
   display: block;
-  font-weight: 800;
-  font-family: Poppins;
+  font-weight: 600;
   outline: 0;
   width: 100%;
 `
