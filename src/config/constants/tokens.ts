@@ -920,7 +920,7 @@ const tokens = {
     decimals: 18,
   },
   nfty2: {
-    symbol: 'NFTY Token',
+    symbol: 'NFTY ',
     address: {
       56: '0x8623e66Bea0DCe41B6d47f9C44e806A115baBae0',
       137: '0x8623e66bea0dce41b6d47f9c44e806a115babae0'
