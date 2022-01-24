@@ -81,6 +81,9 @@ export default function PoolFinder() {
       onCurrencySelect={handleCurrencySelect}
       selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
     />,
+    true,
+    true,
+    'selectCurrencyModal',
   )
 
   return (
@@ -138,7 +141,9 @@ export default function PoolFinder() {
               >
                 <Text textAlign="center">Pool Found!</Text>
                 <StyledInternalLink to="/pool">
-                  <Text textAlign="center" style={{textDecoration:'underline'}} >Manage this pool.</Text>
+                  <Text textAlign="center" style={{ textDecoration: 'underline' }}>
+                    Manage this pool.
+                  </Text>
                 </StyledInternalLink>
               </ColumnCenter>
             )}
@@ -151,7 +156,9 @@ export default function PoolFinder() {
                   <AutoColumn gap="sm" justify="center">
                     <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
                     <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                      <Text style={{textDecoration:'underline'}} textAlign="center">Add Liquidity</Text>
+                      <Text style={{ textDecoration: 'underline' }} textAlign="center">
+                        Add Liquidity
+                      </Text>
                     </StyledInternalLink>
                   </AutoColumn>
                 )
