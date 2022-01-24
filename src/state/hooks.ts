@@ -85,19 +85,6 @@ export const useUpdateNetwork = () => {
 
 // Fetch public pool and farm data
 
-export const useFetchPublicData = () => {
-  const chainId = useNetworkChainId()
-  const { tokenPrices } = useTokenPrices()
-  const dispatch = useAppDispatch()
-  const { slowRefresh } = useRefresh()
-  useEffect(() => {
-    if (chainId === CHAIN_ID.BSC) {
-      dispatch(fetchFarmsPublicDataAsync(chainId))
-      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
-    }
-  }, [dispatch, slowRefresh, tokenPrices, chainId])
-}
-
 export const usePollPools = () => {
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
@@ -112,14 +99,13 @@ export const usePollPools = () => {
 
 export const usePollFarms = () => {
   const chainId = useNetworkChainId()
-  const { tokenPrices } = useTokenPrices()
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC) {
       dispatch(fetchFarmsPublicDataAsync(chainId))
     }
-  }, [dispatch, slowRefresh, tokenPrices, chainId])
+  }, [dispatch, slowRefresh, chainId])
 }
 
 // Vault data
