@@ -58,35 +58,35 @@ function PoolPriceBar({
           <AutoRow justify="space-around">
             <StyledCard>
               <AutoColumn justify="center">
-                <Text>{price?.toSignificant(6) ?? '-'}</Text>
-                <Text fontSize="17px" pt={1}>
+                <Text bold fontSize="17px" pt={1}>
                   {`${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''} per ${
                     currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''
                   }`}
                 </Text>
+                <Text>{price?.toSignificant(6) ?? '-'}</Text>
               </AutoColumn>
             </StyledCard>
             <StyledCard>
               <AutoColumn justify="center">
+                <Text bold fontSize="17px" pt={1}>
+                  Share of Pool
+                </Text>
                 <Text>
                   {noLiquidity && price
                     ? '100'
                     : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ?? '0'}
                   %
                 </Text>
-                <Text fontSize="17px" pt={1}>
-                  Share of Pool
-                </Text>
               </AutoColumn>
             </StyledCard>
             <StyledCard>
               <AutoColumn justify="center">
-                <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text>
-                <Text fontSize="17px" pt={1}>
+                <Text bold fontSize="17px" pt={1}>
                   {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''} per ${
                     currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''
                   }`}
                 </Text>
+                <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text>
               </AutoColumn>
             </StyledCard>
           </AutoRow>

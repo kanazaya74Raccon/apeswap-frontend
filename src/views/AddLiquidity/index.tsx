@@ -69,7 +69,6 @@ export default function AddLiquidity({
     }
   }, [dispatch, currencyIdA, currencyIdB])
 
-
   const expertMode = useIsExpertMode()
 
   // mint state
@@ -328,7 +327,7 @@ export default function AddLiquidity({
         <SwapBanner />
         <AppBody>
           <CurrencyInputHeader />
-          <Flex flexWrap='wrap' alignItems="center" mt="15px" mb="5px">
+          <Flex flexWrap="wrap" alignItems="center" mt="15px" mb="5px">
             <LiquidityPositionLink />
             <Title bold fontSize="22px">
               Add Liquidity
@@ -469,9 +468,6 @@ export default function AddLiquidity({
         </AppBody>
         {!addIsUnsupported ? (
           pair && !noLiquidity && pairState !== PairState.INVALID ? (
-            // <AutoColumn style={{ minWidth: '20rem', width: '100%', maxWidth: '400px', marginTop: '1rem' }}>
-            //   <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
-            // </AutoColumn>
             <></>
           ) : null
         ) : (
