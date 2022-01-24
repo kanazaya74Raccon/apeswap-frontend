@@ -50,12 +50,16 @@ export function useSortedTokensByQuery(tokens: Token[] | undefined, searchQuery:
       return tokens
     }
 
+    const bananaToken: Token[] = []
     const exactMatches: Token[] = []
     const symbolSubstrings: Token[] = []
     const rest: Token[] = []
 
     // sort tokens by exact match -> substring on symbol match -> rest
     tokens.map((token) => {
+      if (token.symbol?.toLowerCase() === 'banana') {
+        return bananaToken.push(token)
+      }
       if (token.symbol?.toLowerCase() === symbolMatch[0]) {
         return exactMatches.push(token)
       }
@@ -65,6 +69,6 @@ export function useSortedTokensByQuery(tokens: Token[] | undefined, searchQuery:
       return rest.push(token)
     })
 
-    return [...exactMatches, ...symbolSubstrings, ...rest]
+    return [...bananaToken, ...exactMatches, ...symbolSubstrings, ...rest]
   }, [tokens, searchQuery])
 }
