@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
-import { useFetchPublicData, useFetchTokenPrices, useFetchProfile, useUpdateNetwork } from 'state/hooks'
+import { useFetchTokenPrices, useFetchProfile, useUpdateNetwork } from 'state/hooks'
 import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -94,7 +94,6 @@ const App: React.FC = () => {
   useEagerConnect()
   useFetchTokenPrices()
   usePollBlockNumber()
-  useFetchPublicData()
   useFetchProfile()
 
   const { account, chainId } = useActiveWeb3React()
