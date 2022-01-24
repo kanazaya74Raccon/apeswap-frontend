@@ -4,7 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { useFetchPoolsHome } from 'state/strapi/fetchStrapi'
 import { Pool } from 'state/types'
 import pools from 'config/constants/pools'
-import { usePoolFromPid } from 'state/hooks'
+import { usePollPools, usePoolFromPid } from 'state/hooks'
 import PoolCardForHome from './PoolCardForHome'
 
 const CoolPoolsWrapper = styled.div`
@@ -55,6 +55,7 @@ const PoolWrapper = styled.div`
 const DEFAULT_POOL = 0
 
 const CoolPools = () => {
+  usePollPools()
   const { poolsData, loading } = useFetchPoolsHome()
 
   const poolMustBeUnder = pools.reduce((prev, curr) => (prev.sousId > curr.sousId ? prev : curr)).sousId

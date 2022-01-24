@@ -98,6 +98,30 @@ export const useFetchPublicData = () => {
   }, [dispatch, slowRefresh, tokenPrices, chainId])
 }
 
+export const usePollPools = () => {
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    if (chainId === CHAIN_ID.BSC) {
+      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
+    }
+  }, [dispatch, slowRefresh, tokenPrices, chainId])
+}
+
+export const usePollFarms = () => {
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    if (chainId === CHAIN_ID.BSC) {
+      dispatch(fetchFarmsPublicDataAsync(chainId))
+    }
+  }, [dispatch, slowRefresh, tokenPrices, chainId])
+}
+
 // Vault data
 export const usePollVaultsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()

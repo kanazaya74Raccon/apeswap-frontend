@@ -14,6 +14,7 @@ import {
   usePriceEthBusd,
   useFetchLpTokenPrices,
   useLpTokenPrices,
+  usePollFarms,
 } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
@@ -407,6 +408,7 @@ const FlexLayout = styled.div`
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
+  usePollFarms()
   const size: Size = useWindowSize()
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
