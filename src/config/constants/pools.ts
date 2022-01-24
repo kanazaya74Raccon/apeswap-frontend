@@ -3378,6 +3378,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 177,
+    tokenName: 'NFTY',
+    image: 'NFTY2.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.nfty2,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x0F555e92e9470d064F8A6D0b97a2E3F7d26A222d',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://nftytoken.io/ ',
+    harvest: true,
+    tokenPerBlock: `0.073888888888888888`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
