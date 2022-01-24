@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
-import { useWeb3React } from '@web3-react/core'
 import { getTokenBalance } from 'utils/erc20'
-import { getContract, getWeb3 } from 'utils/web3'
+import { getContract } from 'utils/getContract'
 import useRefresh from './useRefresh'
 import { useBananaAddress } from './useAddress'
-import useWeb3 from './useWeb3'
 import { useERC20 } from './useContract'
+import useActiveWeb3React from './useActiveWeb3React'
 
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
-  const { account, library, chainId } = useWeb3React()
+  const { account, library, chainId } = useActiveWeb3React()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const web3 = getWeb3(chainId)
-      const tokenContract = getContract(erc20ABI, tokenAddress, chainId)
-      const res = await getTokenBalance(web3, tokenAddress, account, tokenContract)
+      const tokenContract = getContract(erc20ABI, tokenAddress, chainId, library)
+      const res = await getTokenBalance(library, tokenAddress, account, tokenContract)
       setBalance(new BigNumber(res))
     }
 
@@ -33,19 +31,19 @@ const useTokenBalance = (tokenAddress: string) => {
 export const useAccountTokenBalance = (account: string, tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { fastRefresh } = useRefresh()
-  const web3 = useWeb3()
+  const { library } = useActiveWeb3React()
   const tokenContract = useERC20(tokenAddress)
 
   useEffect(() => {
     const fetchBalance = async () => {
-      const res = await getTokenBalance(web3, tokenAddress, account, tokenContract)
+      const res = await getTokenBalance(library, tokenAddress, account, tokenContract)
       setBalance(new BigNumber(res))
     }
 
-    if (account && web3) {
+    if (account && library) {
       fetchBalance()
     }
-  }, [account, tokenAddress, fastRefresh, web3, tokenContract])
+  }, [account, tokenAddress, fastRefresh, library, tokenContract])
 
   return balance
 }
@@ -58,8 +56,8 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const supply = await bananaContract.methods.totalSupply().call()
-      setTotalSupply(new BigNumber(supply))
+      const supply = await bananaContract.totalSupply()
+      setTotalSupply(new BigNumber(supply.toString()))
     }
 
     fetchTotalSupply()
@@ -71,17 +69,22 @@ export const useTotalSupply = () => {
 export const useBurnedBalance = (tokenAddress: string) => {
   const { slowRefresh } = useRefresh()
   const [balance, setBalance] = useState(new BigNumber(0))
-  const web3 = useWeb3()
+  const { library } = useActiveWeb3React()
   const tokenContract = useERC20(tokenAddress)
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const res = await getTokenBalance(web3, tokenAddress, '0x000000000000000000000000000000000000dEaD', tokenContract)
+      const res = await getTokenBalance(
+        library,
+        tokenAddress,
+        '0x000000000000000000000000000000000000dEaD',
+        tokenContract,
+      )
       setBalance(new BigNumber(res))
     }
 
     fetchTotalSupply()
-  }, [slowRefresh, tokenAddress, web3, tokenContract])
+  }, [slowRefresh, tokenAddress, library, tokenContract])
 
   return balance
 }

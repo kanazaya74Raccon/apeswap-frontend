@@ -36,7 +36,7 @@ const Label = styled.label`
   margin-top: 24px;
 `
 
-const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuccess, onDismiss }) => {
+const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDismiss }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
@@ -52,19 +52,13 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onSuc
         setError(TranslateString(999, 'Please enter a valid wallet address'))
       } else {
         setIsLoading(true)
-        await nonFungibleApesContract.methods
-          .safeTransferFrom(account, value, tokenId)
-          .send({ from: account })
-          .on('transactionHash', (tx) => {
-            onDismiss()
-            onSuccess()
-            return tx
-          })
-          .on('error', () => {
-            console.warn(error)
-            setError('Unable to transfer NFT')
-            setIsLoading(false)
-          })
+        await nonFungibleApesContract['safeTransferFrom(address,address,uint256)'](account, value, tokenId).then(
+          (trx) => {
+            return trx.wait()
+          },
+        )
+        setIsLoading(false)
+        onDismiss()
       }
     } catch (err) {
       console.warn('Unable to transfer NFT:', err)

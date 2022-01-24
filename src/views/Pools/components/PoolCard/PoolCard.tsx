@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useBlock from 'hooks/useBlock'
+import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Pool } from 'state/types'
 import CardHeading from './CardHeading'
@@ -56,7 +56,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
     tokenDecimals,
   } = pool
   const { account } = useWeb3React()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const allowance = new BigNumber(userData?.allowance || 0)
@@ -64,8 +64,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
 
-  const blocksUntilStart = Math.max(startBlock - block, 0)
-  const blocksRemaining = Math.max(endBlock - block, 0)
+  const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
+  const blocksRemaining = Math.max(endBlock - currentBlock, 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const pendingReward = userData?.pendingReward
@@ -108,7 +108,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           rewardTokenPrice={rewardToken?.price}
           lpLabel={stakingToken.symbol}
           addLiquidityUrl={
-            stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
+            stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://apeswap.finance/swap`
           }
           stakedTokenPrice={stakingToken?.price}
           pendingReward={pendingReward}

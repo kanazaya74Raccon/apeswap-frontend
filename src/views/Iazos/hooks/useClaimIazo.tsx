@@ -5,11 +5,11 @@ import { useIazoContract } from 'hooks/useContract'
 import track from 'utils/track'
 
 const useClaimIazo = (iazoAddress: string) => {
-  const { account, chainId } = useWeb3React()
+  const { chainId } = useWeb3React()
   const iazoContract = useIazoContract(iazoAddress)
   const handleClaim = useCallback(async () => {
     try {
-      const tx = await userWithdraw(iazoContract, account)
+      const tx = await userWithdraw(iazoContract)
 
       track({
         event: 'iazo',
@@ -25,7 +25,7 @@ const useClaimIazo = (iazoAddress: string) => {
       console.error(e)
       return false
     }
-  }, [account, iazoContract, iazoAddress, chainId])
+  }, [iazoContract, iazoAddress, chainId])
 
   return { onClaim: handleClaim }
 }

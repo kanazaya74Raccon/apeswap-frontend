@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, useMemo } from 'react'
+import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -13,7 +13,8 @@ import {
   usePriceBananaBusd,
   usePriceEthBusd,
   useFetchLpTokenPrices,
-  useLpTokenPrices
+  useLpTokenPrices,
+  usePollFarms,
 } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
@@ -404,12 +405,17 @@ const FlexLayout = styled.div`
   }
 `
 
+const NUMBER_OF_FARMS_VISIBLE = 12
+
 const Farms: React.FC = () => {
+  usePollFarms()
   const size: Size = useWindowSize()
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const bananaPrice = usePriceBananaBusd()
+  const [observerIsSet, setObserverIsSet] = useState(false)
+  const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const bnbPrice = usePriceBnbBusd()
   const { account } = useWeb3React()
   const farmsLP = useFarms(account)
@@ -417,9 +423,10 @@ const Farms: React.FC = () => {
   const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
+  const loadMoreRef = useRef<HTMLDivElement>(null)
 
   useFetchLpTokenPrices()
-  const { lpTokenPrices }= useLpTokenPrices()
+  const { lpTokenPrices } = useLpTokenPrices()
 
   const ethPriceUsd = usePriceEthBusd()
 
@@ -432,6 +439,24 @@ const Farms: React.FC = () => {
       }
     }
   }, [size])
+
+  useEffect(() => {
+    const showMoreFarms = (entries) => {
+      const [entry] = entries
+      if (entry.isIntersecting) {
+        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
+      }
+    }
+
+    if (!observerIsSet) {
+      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
+        rootMargin: '0px',
+        threshold: 1,
+      })
+      loadMoreObserver.observe(loadMoreRef.current)
+      setObserverIsSet(true)
+    }
+  }, [observerIsSet])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
@@ -502,9 +527,9 @@ const Farms: React.FC = () => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      return farmsToDisplayWithAPR
+      return farmsToDisplayWithAPR.slice(0, numberOfFarmsVisible)
     },
-    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query],
+    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, numberOfFarmsVisible],
   )
 
   const farmsStakedMemoized = useMemo(() => {
@@ -629,12 +654,26 @@ const Farms: React.FC = () => {
         <FlexLayout>
           <Route exact path={`${path}`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed={false} farmsPrices={lpTokenPrices} />
+              <FarmCard
+                key={farm.pid}
+                farm={farm}
+                bananaPrice={bananaPrice}
+                account={account}
+                removed={false}
+                farmsPrices={lpTokenPrices}
+              />
             ))}
           </Route>
           <Route exact path={`${path}/history`}>
             {farmsStakedMemoized.map((farm) => (
-              <FarmCard key={farm.pid} farm={farm} bananaPrice={bananaPrice} account={account} removed farmsPrices={lpTokenPrices}/>
+              <FarmCard
+                key={farm.pid}
+                farm={farm}
+                bananaPrice={bananaPrice}
+                account={account}
+                removed
+                farmsPrices={lpTokenPrices}
+              />
             ))}
           </Route>
         </FlexLayout>
@@ -723,6 +762,7 @@ const Farms: React.FC = () => {
           </StyledLabelContainerEarned>
         </ContainerLabels>
         {viewMode === null ? null : renderContent()}
+        <div ref={loadMoreRef} />
       </StyledPage>
     </>
   )

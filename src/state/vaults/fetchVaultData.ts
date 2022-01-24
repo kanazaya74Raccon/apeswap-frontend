@@ -1,10 +1,7 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
-import multicallABI from 'config/abi/Multicall.json'
 import multicall from 'utils/multicall'
-import { getMulticallAddress } from 'utils/addressHelper'
 import { CHAIN_ID } from 'config/constants/chains'
-import { getContract } from 'utils/web3'
 import { VaultConfig } from 'config/constants/types'
 import { vaultsConfig } from 'config/constants'
 import { BLOCKS_PER_YEAR, MATIC_BLOCKS_PER_YEAR, SECONDS_PER_YEAR, VAULT_COMPOUNDS_PER_DAY } from 'config'
@@ -14,8 +11,6 @@ import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compound
 import masterchefABI from './vaultedMasterChefABI.json'
 
 const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const filteredVaultsToFetch = vaultsConfig.filter((vault) => vault.network === chainId)
   const data = await Promise.all(
     filteredVaultsToFetch.map(async (vault: VaultConfig) => {
@@ -46,7 +41,7 @@ const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
       ]
 
       const [totalAllocPoint, poolInfo, userInfo, rewardsPerBlock] = await multicall(
-        multicallContract,
+        chainId,
         masterchefABI,
         masterchefCalls,
       )
@@ -93,7 +88,7 @@ const fetchVaultData = async (chainId: number, tokenPrices: TokenPrices[]) => {
       ]
 
       const [quoteTokenPairBalance, pairBalanceMc, pairTotalSupply, stakeTokenDecimals, quoteTokenDecimals] =
-        await multicall(multicallContract, erc20ABI, erc20Calls)
+        await multicall(chainId, erc20ABI, erc20Calls)
 
       const quoteTokenAmountTotal = isPair
         ? new BigNumber(quoteTokenPairBalance).div(new BigNumber(10).pow(quoteTokenDecimals))

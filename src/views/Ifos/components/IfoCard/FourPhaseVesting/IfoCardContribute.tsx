@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
-import { Contract } from 'web3-eth-contract'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
+import { Contract } from 'ethers'
 import useUserInfo from './useUserInfo'
 import {
   ApproveButton,
@@ -49,7 +49,7 @@ const IfoCardContribute: React.FC<Props> = ({
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
 
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
 
   const contractRaisingToken = useERC20(currencyAddress)
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)

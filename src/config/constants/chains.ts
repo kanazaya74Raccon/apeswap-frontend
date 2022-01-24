@@ -36,8 +36,8 @@ export const NETWORK_INFO_LINK = {
 export const NETWORK_RPC = {
   [CHAIN_ID.BSC]: [
     'https://bsc-dataseed1.ninicoin.io',
-    'https://bsc-dataseed1.defibit.io',
     'https://bsc-dataseed.binance.org/',
+    'https://bsc-dataseed1.defibit.io',
   ],
   [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s3.binance.org:8545/'],
   [CHAIN_ID.MATIC]: ['https://polygon-rpc.com/'],
