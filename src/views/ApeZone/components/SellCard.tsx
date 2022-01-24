@@ -21,7 +21,6 @@ import styled from 'styled-components'
 import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from 'views/Home/components/CardValue'
-import { useWeb3React } from '@web3-react/core'
 
 const StyledCard = styled(Card)`
   overflow: visible;
@@ -73,7 +72,6 @@ const SellCard = () => {
   const treasuryContract = useTreasury()
   const { handleSell } = useSellGoldenBanana()
   const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
-  const { account } = useWeb3React()
 
   const { toastSuccess } = useToast()
   const goldenBananaContract = useGoldenBanana()
@@ -109,10 +107,8 @@ const SellCard = () => {
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
       try {
-        const response = await goldenBananaContract.methods
-          .allowance(loadedAccount, treasuryContract.options.address)
-          .call()
-        const currentAllowance = new BigNumber(response)
+        const response = await goldenBananaContract.allowance(loadedAccount, treasuryContract.address)
+        const currentAllowance = new BigNumber(response.toString())
         return currentAllowance.gt(0)
       } catch (error) {
         console.warn(error)
@@ -120,9 +116,7 @@ const SellCard = () => {
       }
     },
     onApprove: () => {
-      return goldenBananaContract.methods
-        .approve(treasuryContract.options.address, ethers.constants.MaxUint256)
-        .send({ from: account })
+      return goldenBananaContract.approve(treasuryContract.address, ethers.constants.MaxUint256)
     },
     onSuccess: async () => {
       toastSuccess('Approved!')

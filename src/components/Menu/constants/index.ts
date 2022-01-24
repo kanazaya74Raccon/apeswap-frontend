@@ -1,4 +1,3 @@
-import { BASE_EXCHANGE_URL, BASE_LIQUIDITY_POOL_URL } from 'config'
 
 export const HOME = {
   label: 'Home',
@@ -12,11 +11,11 @@ export const EXCHANGE = {
   items: [
     {
       label: 'Exchange',
-      href: BASE_EXCHANGE_URL,
+      href: '/swap',
     },
     {
       label: 'Liquidity',
-      href: BASE_LIQUIDITY_POOL_URL,
+      href: '/pool',
     },
   ],
 }

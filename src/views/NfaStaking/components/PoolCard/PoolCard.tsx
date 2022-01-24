@@ -2,8 +2,8 @@ import BigNumber from 'bignumber.js'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@apeswapfinance/uikit'
+import { useBlock } from 'state/block/hooks'
 import { useWeb3React } from '@web3-react/core'
-import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { NfaStakingPool } from 'state/types'
 import DetailsSection from './DetailsSection'
@@ -41,7 +41,7 @@ const PCard = styled.div`
 const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const { sousId, tier, apr, totalStaked, startBlock, endBlock, userData, rewardToken, contractAddress } = pool
   const { account } = useWeb3React()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const allowance = userData?.allowance
@@ -50,8 +50,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
 
-  const blocksUntilStart = Math.max(startBlock - block, 0)
-  const blocksRemaining = Math.max(endBlock - block, 0)
+  const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
+  const blocksRemaining = Math.max(endBlock - currentBlock, 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance
   const pendingReward = userData?.pendingReward
@@ -90,7 +90,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
           blocksRemaining={blocksRemaining}
           blocksUntilStart={blocksUntilStart}
           rewardTokenPrice={rewardToken?.price}
-          addLiquidityUrl="https://app.apeswap.finance/swap"
+          addLiquidityUrl="https://apeswap.finance/swap"
           pendingReward={pendingReward}
           bscScanAddress={`https://bscscan.com/address/${contractAddress[CHAIN_ID]}`}
         />

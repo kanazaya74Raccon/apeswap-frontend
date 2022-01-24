@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import fetchPrices from './fetchPrices'
-import { TokenPricesState, TokenPrices } from '../types'
+import { TokenPricesState, TokenPrices, AppThunk } from '../types'
 
 const initialState: TokenPricesState = {
   isInitialized: false,
@@ -31,14 +31,16 @@ export const tokenPricesSlice = createSlice({
 // Actions
 export const { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } = tokenPricesSlice.actions
 
-export const fetchTokenPrices = (chainId) => async (dispatch) => {
-  try {
-    dispatch(tokenPricesFetchStart())
-    const tokenPrices = await fetchPrices(chainId)
-    dispatch(tokenPricesFetchSucceeded(tokenPrices))
-  } catch (error) {
-    dispatch(tokenPricesFetchFailed())
+export const fetchTokenPrices =
+  (chainId): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(tokenPricesFetchStart())
+      const tokenPrices = await fetchPrices(chainId)
+      dispatch(tokenPricesFetchSucceeded(tokenPrices))
+    } catch (error) {
+      dispatch(tokenPricesFetchFailed())
+    }
   }
-}
 
 export default tokenPricesSlice.reducer

@@ -1,8 +1,9 @@
 // Set of helper functions to facilitate wallet setup
-import { AbiItem } from 'web3-utils'
 import erc20 from 'config/abi/erc20.json'
+import { getContract } from 'utils'
 import { CHAIN_PARAMS } from 'config/constants/chains'
-import { getWeb3 } from './web3'
+import { Erc20 } from 'config/abi/types'
+import getProvider from './getProvider'
 
 /**
  * Prompt the user to add BSC as a network on Metamask, or switch to BSC if the wallet is on a different network
@@ -58,11 +59,11 @@ export const registerToken = async (
 }
 
 export const getTokenInfo = async (tokenAddress: string, chainId: number) => {
-  const web3 = getWeb3(chainId)
-  const token = new web3.eth.Contract(erc20 as unknown as AbiItem, tokenAddress)
+  const provider = getProvider(chainId)
+  const token = getContract(tokenAddress, erc20, provider) as Erc20
   return {
-    symbolToken: await token.methods.symbol().call(),
-    nameToken: await token.methods.name().call(),
-    decimalsToken: await token.methods.decimals().call(),
+    symbolToken: await token.symbol(),
+    nameToken: await token.name(),
+    decimalsToken: await token.decimals(),
   }
 }

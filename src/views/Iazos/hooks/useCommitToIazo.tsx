@@ -1,18 +1,18 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { userDeposit, userDepositNative } from 'utils/callHelpers'
 import { useIazoContract } from 'hooks/useContract'
 import track from 'utils/track'
 
 // Approve an iazo
 const useCommitToIazo = (iazoAddress: string, amount: string, isNative?: boolean) => {
-  const { account, chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   const iazoContract = useIazoContract(iazoAddress)
   const handleCommitToIazo = useCallback(async () => {
     try {
       const tx = isNative
-        ? await userDepositNative(iazoContract, amount, account)
-        : await userDeposit(iazoContract, amount, account)
+        ? await userDepositNative(iazoContract, amount)
+        : await userDeposit(iazoContract, amount)
 
       track({
         event: 'iazo',
@@ -29,7 +29,7 @@ const useCommitToIazo = (iazoAddress: string, amount: string, isNative?: boolean
       console.error(e)
       return false
     }
-  }, [account, iazoContract, iazoAddress, amount, isNative, chainId])
+  }, [iazoContract, iazoAddress, amount, isNative, chainId])
 
   return { onCommit: handleCommitToIazo }
 }

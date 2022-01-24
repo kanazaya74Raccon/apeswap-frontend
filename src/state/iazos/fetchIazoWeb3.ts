@@ -2,17 +2,13 @@ import iazoAbi from 'config/abi/iazo.json'
 import iazoExposerABI from 'config/abi/iazoExposer.json'
 import iazoSettingsAbi from 'config/abi/iazoSettings.json'
 import erc20Abi from 'config/abi/erc20.json'
-import { getIazoExposerAddress, getIazoSettingsAddress, getMulticallAddress } from 'utils/addressHelper'
-import multicallABI from 'config/abi/Multicall.json'
-import { getContract } from 'utils/web3'
+import { getIazoExposerAddress, getIazoSettingsAddress } from 'utils/addressHelper'
 import multicall from 'utils/multicall'
 import { IazoFeeInfo, IazoStatus, IazoDefaultSettings, IazoTokenInfo } from 'state/types'
 
 const fetchIazoDefaultSettings = async (chainId: number) => {
   const iazoSettingsAddress = getIazoSettingsAddress(chainId)
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
-  const [fetchIazoDefaultSetting, fetchIazoDelaySetting] = await multicall(multicallContract, iazoSettingsAbi, [
+  const [fetchIazoDefaultSetting, fetchIazoDelaySetting] = await multicall(chainId, iazoSettingsAbi, [
     { address: iazoSettingsAddress, name: 'SETTINGS' },
     { address: iazoSettingsAddress, name: 'DELAY_SETTINGS' },
   ])
@@ -36,8 +32,6 @@ const fetchIazoDefaultSettings = async (chainId: number) => {
 }
 
 export const fetchIazoTokenDetails = async (chainId: number, iazoTokenAddress: string, baseTokenAddress: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const erc20Calls = [
     { address: baseTokenAddress, name: 'name' },
     { address: baseTokenAddress, name: 'symbol' },
@@ -56,7 +50,7 @@ export const fetchIazoTokenDetails = async (chainId: number, iazoTokenAddress: s
     iazoTokenSymbol,
     iazoTokenDecimals,
     iazoTokenTotalSupply,
-  ] = await multicall(multicallContract, erc20Abi, erc20Calls)
+  ] = await multicall(chainId, erc20Abi, erc20Calls)
 
   const baseTokenData: IazoTokenInfo = {
     address: baseTokenAddress.toString(),
@@ -77,8 +71,6 @@ export const fetchIazoTokenDetails = async (chainId: number, iazoTokenAddress: s
 }
 
 export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const calls = [
     { address, name: 'FEE_INFO' },
     { address, name: 'STATUS' },
@@ -92,7 +84,7 @@ export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
     '3': 'HARD_CAP_MET',
     '4': 'FAILED',
   }
-  const [feeInfo, status, iazoState, iazoInfo] = await multicall(multicallContract, iazoAbi, calls)
+  const [feeInfo, status, iazoState, iazoInfo] = await multicall(chainId, iazoAbi, calls)
 
   const iazoData = {
     tokenPrice: iazoInfo[4].toString(),
@@ -124,10 +116,8 @@ export const fetchIazoStatusInfo = async (chainId: number, address: string) => {
 }
 
 export const isRegisteredIazoCheck = async (chainId: number, address: string) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const iazoExposerAddress = getIazoExposerAddress(chainId)
-  const resp = await multicall(multicallContract, iazoExposerABI, [
+  const resp = await multicall(chainId, iazoExposerABI, [
     { address: iazoExposerAddress, name: 'IAZOIsRegistered', params: [address] },
   ])
   return { isRegistered: resp[0][0] }

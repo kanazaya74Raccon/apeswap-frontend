@@ -19,6 +19,7 @@ export default {
   nativeWrapped: {
     97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+    137: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
   },
   lottery: {
     97: '0xe42Ff4758C37ccC3A54004b176384477bbBe70D6',

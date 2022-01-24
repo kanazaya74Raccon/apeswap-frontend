@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import web3 from 'web3'
 import track from 'utils/track'
 import { ZERO_ADDRESS } from 'config'
+import { Contract } from 'ethers'
 
-const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: BigNumber) => {
-  const { account, chainId } = useWeb3React()
+const useIAODeposit = (contract: Contract, currencyAddress: string, tokenBalance: BigNumber) => {
+  const { account, chainId } = useActiveWeb3React()
   const [pendingTx, setPendingTx] = useState(false)
 
   const isAmountValid = useCallback(
@@ -32,11 +33,9 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
 
       try {
         if (currencyAddress === ZERO_ADDRESS) {
-          await contract.methods
-            .depositNative()
-            .send({ from: account, value: web3.utils.toBN(depositValue.toString()) })
+          await contract.depositNative().send({ from: account, value: web3.utils.toBN(depositValue.toString()) })
         } else {
-          await contract.methods.deposit(web3.utils.toBN(depositValue.toString())).send({ from: account })
+          await contract.deposit(web3.utils.toBN(depositValue.toString())).send({ from: account })
         }
 
         track({
@@ -53,7 +52,7 @@ const useIAODeposit = (contract: any, currencyAddress: string, tokenBalance: Big
       }
       setPendingTx(false)
     },
-    [account, contract.address, contract.methods, currencyAddress, tokenBalance, chainId],
+    [account, contract, currencyAddress, tokenBalance, chainId],
   )
 
   return {

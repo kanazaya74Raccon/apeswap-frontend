@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
 import { updateUserBalance, updateUserPendingReward } from 'state/actions'
-import { soushHarvest, soushHarvestBnb, harvest, nfaStakeHarvest, miniChefHarvest } from 'utils/callHelpers'
+import { soushHarvest, harvest, nfaStakeHarvest, miniChefHarvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants/chains'
 import track from 'utils/track'
 import { updateFarmUserEarnings } from 'state/farms'
@@ -17,7 +17,7 @@ export const useHarvest = (farmPid: number) => {
   const masterChefContract = useMasterchef()
 
   const handleHarvest = useCallback(async () => {
-    const txHash = await harvest(masterChefContract, farmPid, account)
+    const txHash = await harvest(masterChefContract, farmPid)
     track({
       event: 'farm',
       chain: chainId,
@@ -46,26 +46,25 @@ export const useAllHarvest = (farmPids: number[], chainId: number) => {
       return Promise.all(harvestPromises)
     }
     const harvestPromises = farmPids.reduce((accum, pid) => {
-      return [...accum, harvest(masterChefContract, pid, account)]
+      return [...accum, harvest(masterChefContract, pid)]
     }, [])
     return Promise.all(harvestPromises)
   }, [account, farmPids, masterChefContract, miniChefContract, chainId])
   return { onReward: handleHarvest }
 }
 
-export const useSousHarvest = (sousId, isUsingBnb = false) => {
+export const useSousHarvest = (sousId) => {
   const dispatch = useDispatch()
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const masterChefContract = useMasterchef()
 
   const handleHarvest = useCallback(async () => {
+    let trxHash
     if (sousId === 0) {
-      await harvest(masterChefContract, 0, account)
-    } else if (isUsingBnb) {
-      await soushHarvestBnb(sousChefContract, account)
+      trxHash = await harvest(masterChefContract, 0)
     } else {
-      await soushHarvest(sousChefContract, account)
+      trxHash = await soushHarvest(sousChefContract)
     }
 
     track({
@@ -79,7 +78,8 @@ export const useSousHarvest = (sousId, isUsingBnb = false) => {
 
     dispatch(updateUserPendingReward(chainId, sousId, account))
     dispatch(updateUserBalance(chainId, sousId, account))
-  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, chainId])
+    return trxHash
+  }, [account, dispatch, masterChefContract, sousChefContract, sousId, chainId])
 
   return { onReward: handleHarvest }
 }
@@ -90,7 +90,7 @@ export const useNfaStakingHarvest = (sousId) => {
   const chainId = useNetworkChainId()
   const nfaStakingChef = useNfaStakingChef(sousId)
   const handleHarvest = useCallback(async () => {
-    await nfaStakeHarvest(nfaStakingChef, account)
+    const trxHash = await nfaStakeHarvest(nfaStakingChef)
     dispatch(updateUserNfaStakingPendingReward(chainId, sousId, account))
     dispatch(updateNfaStakingUserBalance(chainId, sousId, account))
     track({
@@ -101,6 +101,7 @@ export const useNfaStakingHarvest = (sousId) => {
         pid: sousId,
       },
     })
+    return trxHash
   }, [account, dispatch, nfaStakingChef, sousId, chainId])
 
   return { onReward: handleHarvest }
