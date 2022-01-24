@@ -27,12 +27,18 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   return (
     <div style={{ padding: '20px 20px 20px 20px' }}>
       <AutoColumn gap="lg">
-        <Text>
-          Anyone can create a BEP20 token on BSC with any name, including creating fake versions of existing tokens and
-          tokens that claim to represent projects that do not have a token
+        <Text textAlign="center">
+          <h1 style={{ fontSize: '26px' }}>Trade at your own risk!</h1>
+          <br />
+          ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity.
+          Unlisted tokens may unfortunately be a scam.
           <br />
           <br />
-          If you purchase an arbitrary token, you may be unable to sell it back
+          Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
+          projects that can pass our DD.
+          <a href="apeswap.click/partners" target="_blank" rel="noopener noreferrer">
+            Apply to be listed today and join the Jungle family!
+          </a>
         </Text>
 
         {tokens.map((token) => {
