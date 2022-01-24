@@ -1,26 +1,16 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@web3-react/core'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { listNfa } from 'utils/callHelpers'
 import { useAuction } from './useContract'
 
 const useListNfa = () => {
-  const { account } = useWeb3React()
   const auctionContract = useAuction()
 
   const handleListNfa = useCallback(
     async (id, auctionLength, timeToExtend, minimumExtendTime, minimumBid) => {
       try {
-        const txHash = await listNfa(
-          auctionContract,
-          id,
-          auctionLength,
-          timeToExtend,
-          minimumExtendTime,
-          minimumBid,
-          account,
-        )
+        const txHash = await listNfa(auctionContract, id, auctionLength, timeToExtend, minimumExtendTime, minimumBid)
         track({
           event: 'nfa',
           chain: CHAIN_ID,
@@ -37,7 +27,7 @@ const useListNfa = () => {
         console.warn(e)
       }
     },
-    [account, auctionContract],
+    [auctionContract],
   )
 
   return { onListNfa: handleListNfa }

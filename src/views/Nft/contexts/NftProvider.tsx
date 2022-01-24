@@ -1,11 +1,8 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
-import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import useBlock from 'hooks/useBlock'
-import multicall from 'utils/multicall'
-import { useMulticallAddress, useNonFungibleApesAddress, useRabbitMintingFarmAddress } from 'hooks/useAddress'
+import { useMulticallAddress, useNonFungibleApesAddress } from 'hooks/useAddress'
 import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
-import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
+import { useBlock } from 'state/block/hooks'
 
 type State = {
   isInitialized: boolean
@@ -34,31 +31,19 @@ const NftProvider: React.FC = ({ children }) => {
     balanceOf: 0,
   })
   const { account } = useWeb3React()
-  const currentBlock = useBlock()
+  const { currentBlock } = useBlock()
   const { nfts: nftList } = useGetWalletNfts()
   const { isInitialized } = state
   const multicallAddress = useMulticallAddress()
-  const rabbitMintingFarmAddress = useRabbitMintingFarmAddress()
   const nonFungibleApesContract = useNonFungibleApesAddress()
 
   // Static data
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const [startBlockNumberArr, endBlockNumberArr] = await multicall(multicallAddress, rabbitmintingfarm, [
-          { address: rabbitMintingFarmAddress, name: 'startBlockNumber' },
-          { address: rabbitMintingFarmAddress, name: 'endBlockNumber' },
-        ])
-
-        // TODO: Figure out why these are coming back as arrays
-        const [startBlockNumber]: [BigNumber] = startBlockNumberArr
-        const [endBlockNumber]: [BigNumber] = endBlockNumberArr
-
         setState((prevState) => ({
           ...prevState,
           isInitialized: true,
-          startBlockNumber: startBlockNumber.toNumber(),
-          endBlockNumber: endBlockNumber.toNumber(),
         }))
       } catch (error) {
         console.warn('an error occured', error)
@@ -66,22 +51,17 @@ const NftProvider: React.FC = ({ children }) => {
     }
 
     fetchContractData()
-  }, [isInitialized, setState, multicallAddress, rabbitMintingFarmAddress])
+  }, [isInitialized, setState, multicallAddress])
 
   // Data from the contract that needs an account
   useEffect(() => {
     const fetchContractData = async () => {
       try {
-        const [hasClaimedArr] = await multicall(multicallAddress, rabbitmintingfarm, [
-          { address: rabbitMintingFarmAddress, name: 'hasClaimed', params: [account] },
-        ])
-        const balanceOf = await nonFungibleApesContract.methods.balanceOf(account).call()
-        const [hasClaimed]: [boolean] = hasClaimedArr
+        const balanceOf = await nonFungibleApesContract.balanceOf(account)
 
         setState((prevState) => ({
           ...prevState,
           isInitialized: true,
-          hasClaimed,
           balanceOf,
         }))
       } catch (error) {
@@ -92,7 +72,7 @@ const NftProvider: React.FC = ({ children }) => {
     if (account) {
       fetchContractData()
     }
-  }, [isInitialized, account, setState, multicallAddress, rabbitMintingFarmAddress, nonFungibleApesContract])
+  }, [isInitialized, account, setState, multicallAddress, nonFungibleApesContract])
 
   useEffect(() => {
     return () => {

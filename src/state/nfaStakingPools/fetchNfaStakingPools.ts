@@ -2,9 +2,7 @@ import nfaStakingPoolsConfig from 'config/constants/nfaStakingPools'
 import nfaStakingAbi from 'config/abi/nfaStaking.json'
 import nonFungibleApesAbi from 'config/abi/nonFungibleApes.json'
 import { getPoolApr } from 'utils/apr'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getNonFungibleApesAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getNonFungibleApesAddress } from 'utils/addressHelper'
 import { getBalanceNumber } from 'utils/formatBalance'
 import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
@@ -13,8 +11,6 @@ import { TokenPrices } from 'state/types'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const fetchPoolsBlockLimits = async (chainId) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const callsStartBlock = nfaStakingPoolsConfig.map((nfaStakingPool) => {
     return {
       address: nfaStakingPool.contractAddress[CHAIN_ID],
@@ -28,8 +24,8 @@ export const fetchPoolsBlockLimits = async (chainId) => {
     }
   })
 
-  const starts = await multicall(multicallContract, nfaStakingAbi, callsStartBlock)
-  const ends = await multicall(multicallContract, nfaStakingAbi, callsEndBlock)
+  const starts = await multicall(chainId, nfaStakingAbi, callsStartBlock)
+  const ends = await multicall(chainId, nfaStakingAbi, callsEndBlock)
 
   return nfaStakingPoolsConfig.map((nfaStakingPool, index) => {
     const startBlock = starts[index]
@@ -43,8 +39,6 @@ export const fetchPoolsBlockLimits = async (chainId) => {
 }
 
 export const fetchPoolsTotalStatking = async (chainId) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const nfaAddress = getNonFungibleApesAddress(chainId)
   const calls = nfaStakingPoolsConfig.map((poolConfig) => {
     return {
@@ -54,7 +48,7 @@ export const fetchPoolsTotalStatking = async (chainId) => {
     }
   })
 
-  const nfaStakingPoolTotalStaked = await multicall(multicallContract, nonFungibleApesAbi, calls)
+  const nfaStakingPoolTotalStaked = await multicall(chainId, nonFungibleApesAbi, calls)
 
   return [
     ...nfaStakingPoolsConfig.map((p, index) => ({

@@ -4,8 +4,15 @@ import { useIazoFactoryContract } from 'hooks/useContract'
 import { createNewIazo } from 'utils/callHelpers'
 import track from 'utils/track'
 
+
 // Approve an iazo
-const useCreateIazo = (iazoToken: string, baseToken: string, burnRemains: boolean, unitParams, creationFee: string) => {
+const useCreateIazo = (
+  iazoToken: string,
+  baseToken: string,
+  burnRemains: boolean,
+  unitParams,
+  creationFee: string,
+) => {
   const { account, chainId } = useWeb3React()
   const iazoFactoryContract = useIazoFactoryContract()
   const handleCreateIazo = useCallback(async () => {

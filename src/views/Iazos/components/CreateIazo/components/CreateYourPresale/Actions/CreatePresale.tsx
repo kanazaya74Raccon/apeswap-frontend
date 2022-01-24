@@ -123,8 +123,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
           setPendingTrx(true)
           await onCreateIazo()
             .then((resp) => {
-              console.info(resp)
-              const iazoAddress = resp.events.IAZOCreated.returnValues.newIAZO
+              const iazoAddress = resp.events[2].args.newIAZO
               const trxHash = resp.transactionHash
               apiObject.append('createTransactionHash', trxHash)
               apiObject.append('iazoAddress', iazoAddress)

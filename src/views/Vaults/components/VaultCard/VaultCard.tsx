@@ -72,7 +72,7 @@ const VaultCard: React.FC<HarvestProps> = ({ vault, removed }) => {
           totalStakedRaw={getBalanceNumber(new BigNumber(vault?.strategyPairBalance)).toString()}
           personalValueStaked={getBalanceNumber(stakedBalance)}
           lpLabel={lpLabel}
-          addLiquidityUrl="https://app.apeswap.finance/swap"
+          addLiquidityUrl="https://apeswap.finance/swap"
           blockExplorer={`${BLOCK_EXPLORER[chainId]}/address/${vault?.strat}`}
           stakedTokenPrice={vault?.stakeTokenPrice}
           withdrawFee={vault?.withdrawFee}

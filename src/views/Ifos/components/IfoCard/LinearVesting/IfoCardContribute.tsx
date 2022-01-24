@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { Contract } from 'web3-eth-contract'
 import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
+import { Contract } from 'ethers'
 
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'

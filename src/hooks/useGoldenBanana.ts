@@ -7,7 +7,7 @@ import track from 'utils/track'
 
 export const buy = async (contract, amount, account) => {
   try {
-    return contract.methods
+    return contract
       .buy(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
       .send({ from: account })
       .on('transactionHash', (tx) => {
@@ -20,7 +20,7 @@ export const buy = async (contract, amount, account) => {
 
 export const sell = async (contract, amount, account) => {
   try {
-    return contract.methods
+    return contract
       .sell(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
       .send({ from: account })
       .on('transactionHash', (tx) => {

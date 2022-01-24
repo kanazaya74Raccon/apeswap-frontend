@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react'
 import ifoLinearAbi from 'config/abi/ifoLinear.json'
-import multicallABI from 'config/abi/Multicall.json'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
-import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId } from 'state/hooks'
 import multicall from 'utils/multicall'
-import { Contract } from 'web3-eth-contract'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { getContract } from 'utils/web3'
+import { Contract } from 'ethers'
 
 export interface Props {
   address: string
@@ -22,8 +18,6 @@ export interface Props {
 }
 
 function useUserInfo(contract: Contract, tokenDecimals: number, address: string, refetch?: boolean) {
-  const chainId = useNetworkChainId()
-  const multicallAddress = getMulticallAddress(chainId)
   const [userTokenStatus, setUserTokenStatus] = useState({
     stakeTokenHarvest: 0,
     offeringTokenTotalHarvest: 0,
@@ -41,11 +35,10 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
     offeringTokensClaimed: 0,
   })
   const { fastRefresh } = useRefresh()
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   useEffect(() => {
     const fetch = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
 
       const calls = [
         {
@@ -72,7 +65,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
 
       try {
         const [userTokens, userInfos, refundingAmount, offeringAmount] = await multicall(
-          multicallContract,
+          chainId,
           ifoLinearAbi,
           calls,
         )
@@ -108,14 +101,14 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           hasHarvestedInitial: userInfos?.hasHarvestedInitial,
         })
       } catch (e) {
-        console.error('Multicall error', e, { address, account, chainId, multicallAddress })
+        console.error('Multicall error', e, { address, account, chainId })
       }
     }
 
     if (address && account) {
       fetch()
     }
-  }, [account, contract, address, refetch, fastRefresh, multicallAddress, chainId, tokenDecimals])
+  }, [account, contract, address, refetch, fastRefresh, chainId, tokenDecimals])
 
   return {
     userTokenStatus,

@@ -8,7 +8,7 @@ import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import Multiplier from '../FarmTable/Multiplier'
-import {LpTokenPrices} from "../../../../state/types";
+import { LpTokenPrices } from '../../../../state/types'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -81,13 +81,14 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
 
-  const {stakedBalance} = useFarmUser(pid)
+  const { stakedBalance } = useFarmUser(pid)
   const rawStakedBalance = getBalanceNumber(stakedBalance)
-  const lpPrice : LpTokenPrices = farmsPrices?.find((lp)=> lp.pid === farm.pid)
+  const lpPrice: LpTokenPrices = farmsPrices?.find((lp) => lp.pid === farm.pid)
 
-  const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
-    ? `$${Number(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
-    : '-'
+  const totalValuePersonalFormated =
+    lpPrice && rawStakedBalance > 0
+      ? `$${Number(lpPrice.price * rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+      : '-'
 
   const totalValueFormated = liquidity
     ? `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -107,8 +108,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const addTokenWallet = async (address) => {
     if (!address) return
-    const tokenInfo = await getTokenInfo(address, chainId)
-    registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
+    const { symbolToken, decimalsToken } = await getTokenInfo(address, chainId)
+    registerToken(address, symbolToken, decimalsToken, '')
   }
   return (
     <Wrapper>
