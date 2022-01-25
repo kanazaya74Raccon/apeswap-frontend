@@ -16,6 +16,10 @@ import {
   Sect1b,
   Sect1c,
   Sect1d,
+  Sect2a,
+  Sect2b,
+  Sect2c,
+  Sect2d,
   Text1,
   Text2,
   Text3,
@@ -68,35 +72,35 @@ export const GnanaDisclaimers: React.FC = () => {
           </Sect1>
 
           <Sect1>
-            <Sect1a>
+            <Sect2a>
               <Text2>Fee</Text2>
-            </Sect1a>
-            <Sect1b>
+            </Sect2a>
+            <Sect2b>
               <Text3>
                 28% Burn Fee <br /> 2% Reflect Fee
               </Text3>
-            </Sect1b>
-            <Sect1c>
+            </Sect2b>
+            <Sect2c>
               <Text3>2% Reflect Fee (Both in and out)</Text3>
-            </Sect1c>
-            <Sect1d>
+            </Sect2c>
+            <Sect2d>
               <Text3>2% Reflect Fee</Text3>
-            </Sect1d>
+            </Sect2d>
           </Sect1>
 
           <Sect1>
-            <Sect1a>
+            <Sect2a>
               <Text2>Value</Text2>
-            </Sect1a>
-            <Sect1b>
+            </Sect2a>
+            <Sect2b>
               <Text3>.7 GNANA per BANANA</Text3>
-            </Sect1b>
-            <Sect1c>
+            </Sect2b>
+            <Sect2c>
               <Text3>1 GNANA calculated as 1.389 BANANA</Text3>
-            </Sect1c>
-            <Sect1d>
+            </Sect2c>
+            <Sect2d>
               <Text3>.98 BANANA per GNANA</Text3>
-            </Sect1d>
+            </Sect2d>
           </Sect1>
         </Sect>
       </Main>

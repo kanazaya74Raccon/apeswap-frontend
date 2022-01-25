@@ -117,6 +117,11 @@ export const OpCon = styled.div<OpConProps>`
   ${({ theme }) => theme.mediaQueries.md} {
     background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
   }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `
 export const OpHeadingCon = styled.div`
   display: flex;

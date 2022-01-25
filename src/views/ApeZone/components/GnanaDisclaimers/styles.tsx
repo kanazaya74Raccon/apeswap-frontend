@@ -59,10 +59,6 @@ export const InfoCon = styled(Card)`
   margin-bottom: 0.5em;
   padding: 10px 40px;
   height: 66px;
-
-  /* ${({ theme }) => theme.mediaQueries.md} {
-    height: 45px;
-  } */
 `
 export const InfoText = styled(Text)`
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
@@ -96,10 +92,10 @@ export const Sect1 = styled.div`
 `
 export const Sect1a = styled.div`
   width: 15%;
-  height: 80px;
+  height: 30px;
   border-radius: 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     height: 89px;
@@ -113,6 +109,39 @@ export const Sect1c = styled(Sect1a)`
 `
 export const Sect1d = styled(Sect1a)`
   width: 20%;
+`
+
+export const Sect2a = styled(Sect1a)`
+  align-items: center;
+  height: 80px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    height: 89px;
+  }
+`
+export const Sect2b = styled(Sect1b)`
+  align-items: center;
+  height: 80px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    height: 89px;
+  }
+`
+export const Sect2c = styled(Sect1c)`
+  align-items: center;
+  height: 80px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    height: 89px;
+  }
+`
+export const Sect2d = styled(Sect1d)`
+  align-items: center;
+  height: 80px;
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    height: 89px;
+  }
 `
 export const Text1 = styled(Text)`
   background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
@@ -169,6 +198,7 @@ export const Text4 = styled(Text3)`
   font-weight: 400;
   padding-left: 0.3em;
   padding-right: 0.3em;
+  height: 30px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;
