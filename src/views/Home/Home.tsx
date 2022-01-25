@@ -155,14 +155,10 @@ const Home: React.FC = () => {
   return (
     <>
       <Page width="1200px">
-        <BannerContainer>
-          <Banner />
-        </BannerContainer>
         <PageContainer>
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
-              <FarmStakingCard />
             </FrontRowWrapper>
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
