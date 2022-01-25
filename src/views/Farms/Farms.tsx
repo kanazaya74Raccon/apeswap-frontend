@@ -527,9 +527,9 @@ const Farms: React.FC = () => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      return farmsToDisplayWithAPR.slice(0, numberOfFarmsVisible)
+      return farmsToDisplayWithAPR
     },
-    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query, numberOfFarmsVisible],
+    [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query],
   )
 
   const farmsStakedMemoized = useMemo(() => {
@@ -564,8 +564,7 @@ const Farms: React.FC = () => {
       farmsStaked = stakedOnly ? farmsList(stakedInactiveFarms) : farmsList(inactiveFarms)
     }
 
-    return sortFarms(farmsStaked)
-    // .slice(0, numberOfFarmsVisible)
+    return sortFarms(farmsStaked).slice(0, numberOfFarmsVisible)
   }, [
     sortOption,
     activeFarms,
@@ -579,7 +578,7 @@ const Farms: React.FC = () => {
     stakedInactiveFarms,
     stakedOnly,
     stakedOnlyFarms,
-    // numberOfFarmsVisible,
+    numberOfFarmsVisible,
     sortDirection,
   ])
 
