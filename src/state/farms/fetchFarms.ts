@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
-import multicall from 'utils/multicall'
+import multicall, { dynamicMulticall } from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelper'
 import masterchefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
@@ -89,6 +89,25 @@ const fetchFarms = async (chainId: number) => {
       } catch (error) {
         console.warn('Error fetching farm', error, farmConfig)
       }
+
+      const values = dynamicMulticall(
+        chainId,
+        [...erc20, ...masterchefABI],
+        [
+          ...calls,
+          ...[
+            {
+              address: masterChefAddress,
+              name: 'poolInfo',
+              params: [farmConfig.pid],
+            },
+            {
+              address: masterChefAddress,
+              name: 'totalAllocPoint',
+            },
+          ],
+        ],
+      )
 
       return {
         ...farmConfig,

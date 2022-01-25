@@ -162,9 +162,7 @@ const Home: React.FC = () => {
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
-              <FarmStakingCard />
             </FrontRowWrapper>
-            <FarmAndPoolsWrapper>{renderYieldCards()}</FarmAndPoolsWrapper>
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
             <WhenNewsSer />
