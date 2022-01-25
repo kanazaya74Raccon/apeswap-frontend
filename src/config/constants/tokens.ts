@@ -930,7 +930,6 @@ const tokens = {
   kom: {
     symbol: 'KOM',
     address: {
-      56: '',
       137: '0xC004e2318722EA2b15499D6375905d75Ee5390B8',
     },
     decimals: 8,
