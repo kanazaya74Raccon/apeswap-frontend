@@ -58,7 +58,13 @@ export default function CurrencyLogo({
 
   if (currency === ETHER && chainId) {
     if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
-      return <StyledNativeCurrencyLogo src="images/tokens/MATIC.svg" size={size} style={style} />
+      return (
+        <StyledNativeCurrencyLogo
+          size={size}
+          style={style}
+          src="https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/MATIC.svg"
+        />
+      )
     }
     return <BinanceIcon width={size} style={style} />
   }
