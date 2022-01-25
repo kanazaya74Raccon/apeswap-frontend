@@ -162,6 +162,7 @@ const Home: React.FC = () => {
           <LeftSideFlexWrapper>
             <FrontRowWrapper>
               <WelcomeCard />
+              <FarmStakingCard />
             </FrontRowWrapper>
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
