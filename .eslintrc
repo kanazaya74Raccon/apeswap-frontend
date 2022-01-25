@@ -27,9 +27,9 @@
     "@typescript-eslint/no-explicit-any": 0,
     "radix": 0,
     "import/no-extraneous-dependencies": 0,
-    "react/require-default-props": 0, 
+    "react/require-default-props": 0,
     "react/no-unused-prop-types": 0,
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state", "memo"] }],
+    "no-param-reassign": 0,
     "no-nested-ternary": 0
     // End temporary rules
   }
