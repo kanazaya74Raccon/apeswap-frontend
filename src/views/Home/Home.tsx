@@ -166,7 +166,6 @@ const Home: React.FC = () => {
             </FrontRowWrapper>
           </LeftSideFlexWrapper>
           <RightSideFlexWrapper>
-            <WhenNewsSer />
             <ApeSwapStats />
           </RightSideFlexWrapper>
         </PageContainer>
