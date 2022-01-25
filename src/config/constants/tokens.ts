@@ -923,9 +923,17 @@ const tokens = {
     symbol: 'NFTY ',
     address: {
       56: '0x8623e66Bea0DCe41B6d47f9C44e806A115baBae0',
-      137: '0x8623e66bea0dce41b6d47f9c44e806a115babae0'
+      137: '0x8623e66bea0dce41b6d47f9c44e806a115babae0',
     },
     decimals: 18,
+  },
+  kom: {
+    symbol: 'KOM',
+    address: {
+      56: '',
+      137: '0xC004e2318722EA2b15499D6375905d75Ee5390B8',
+    },
+    decimals: 8,
   },
 }
 
