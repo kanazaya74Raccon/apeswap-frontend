@@ -314,7 +314,6 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
   )
 }
 
-
 function serializePair(pair: Pair): SerializedPair {
   return {
     token0: serializeToken(pair.token0),

@@ -4,8 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'ethers'
 import { useNonFungibleApes } from './useContract'
 
-
-
 // Retrieve IFO allowance
 export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string, dependency?: any) => {
   const { account } = useWeb3React()
