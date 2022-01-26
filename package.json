@@ -15,12 +15,6 @@
     "postinstall": "yarn run typechain",
     "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "git diff HEAD --quiet && yarn lint && yarn format:check && yarn compile"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
