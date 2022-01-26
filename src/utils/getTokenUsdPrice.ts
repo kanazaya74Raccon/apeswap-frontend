@@ -3,7 +3,6 @@ import apePriceGetterABI from 'config/abi/apePriceGetter.json'
 import { getBalanceNumber } from 'utils/formatBalance'
 import multicall from 'utils/multicall'
 
-
 export const getTokenUsdPrice = async (
   chainId: number,
   tokenAddress: string,

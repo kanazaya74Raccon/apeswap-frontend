@@ -10,7 +10,6 @@ export const StyledProgress = styled.div`
   gap: 8px;
   align-items: center;
   width: 100%;
-  
 
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 320px;

@@ -17,7 +17,6 @@ import { ListLogo } from '../Logo'
 import Row, { RowFixed, RowBetween } from '../layout/Row'
 import { CurrencyModalView } from './types'
 
-
 const Wrapper = styled(Column)`
   width: 100%;
   height: 100%;
@@ -40,7 +39,7 @@ function listUrlRowHTMLId(listUrl: string) {
 const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>((state) => state.lists.byUrl)
   const dispatch = useDispatch<AppDispatch>()
-  const { current: list} = listsByUrl[listUrl]
+  const { current: list } = listsByUrl[listUrl]
 
   const isActive = useIsListActive(listUrl)
 

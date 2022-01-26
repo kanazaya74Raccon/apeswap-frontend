@@ -1,12 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  Flex,
-  ButtonSquare,
-  ButtonMenu,
-  ButtonMenuItem,
-  useMatchBreakpoints,
-} from '@apeswapfinance/uikit'
+import { Flex, ButtonSquare, ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -43,7 +37,13 @@ const CurrencyInputHeader: React.FC<Props> = () => {
       <Flex>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <ButtonSquare
-            style={{ fontSize: '15px', fontWeight: 700, marginRight: isMobile ? '15px ' : '25px', marginLeft: '15px', padding: 10 }}
+            style={{
+              fontSize: '15px',
+              fontWeight: 700,
+              marginRight: isMobile ? '15px ' : '25px',
+              marginLeft: '15px',
+              padding: 10,
+            }}
           >
             BRIDGE
           </ButtonSquare>

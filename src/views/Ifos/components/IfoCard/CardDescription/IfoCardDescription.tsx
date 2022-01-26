@@ -24,11 +24,7 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
       </Link>
       <ToggleButton onClick={handleClick}>
         {isOpen ? 'Hide' : 'Show'}
-        {isOpen ? (
-          <UpArrowIcon />
-        ) : (
-          <DownArrowIcon />
-        )}
+        {isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
       </ToggleButton>
       <Description isOpen={isOpen}>{description}</Description>
     </StyledIfoCardDescription>

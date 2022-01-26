@@ -6,26 +6,29 @@ import { Contract } from 'ethers'
 const useFourPhaseIAOHarvest = (contract: Contract, setPendingTx: (f: boolean) => unknown) => {
   const { account, chainId } = useActiveWeb3React()
 
-  const handleClaim = useCallback(async (harvestPeriod: number) => {
-    try {
-      setPendingTx(true)
-      const tx = await contract.harvest(harvestPeriod).send({ from: account })
+  const handleClaim = useCallback(
+    async (harvestPeriod: number) => {
+      try {
+        setPendingTx(true)
+        const tx = await contract.harvest(harvestPeriod).send({ from: account })
 
-      track({
-        event: 'iao',
-        chain: chainId,
-        data: {
-          cat: 'claim',
-          contract: tx.to,
-          instance: harvestPeriod,
-        },
-      })
-    } catch (e) {
-      console.error('Claim error', e)
-    }
+        track({
+          event: 'iao',
+          chain: chainId,
+          data: {
+            cat: 'claim',
+            contract: tx.to,
+            instance: harvestPeriod,
+          },
+        })
+      } catch (e) {
+        console.error('Claim error', e)
+      }
 
-    setPendingTx(false)
-  }, [account, contract, setPendingTx, chainId])
+      setPendingTx(false)
+    },
+    [account, contract, setPendingTx, chainId],
+  )
 
   return handleClaim
 }

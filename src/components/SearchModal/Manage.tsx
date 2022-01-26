@@ -6,7 +6,6 @@ import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'
 import { CurrencyModalView } from './types'
 
-
 export default function Manage({
   setModalView,
   setImportList,

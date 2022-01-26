@@ -110,14 +110,27 @@ const Stats: React.FC = () => {
       </Header>
 
       <Page>
-      <PaddedCard>
+        <PaddedCard>
           <Heading size="lg" fontFamily="poppins" color="warning">
             HEADS UP, APES!
           </Heading>
           <Text fontFamily="poppins">
-            The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">yieldwatch</a>, <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">JDI</a>, or <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">Pacoca</a> for alternative dashboards!
+            The data on this page is not always up to date. Please do not rely on it for an accurate representation of
+            your holdings. For similar services, consider our partners such as{' '}
+            <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
+              yieldwatch
+            </a>
+            ,{' '}
+            <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">
+              JDI
+            </a>
+            , or{' '}
+            <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">
+              Pacoca
+            </a>{' '}
+            for alternative dashboards!
           </Text>
-      </PaddedCard>
+        </PaddedCard>
         {!account ? (
           <UnlockButton fullWidth fontSize="14px" />
         ) : (

@@ -62,7 +62,7 @@ const ButtonSocial = styled(Button)`
     max-width: 100px;
   }
 `
-const FullImage = styled.div<{ pathImage: string; }>`
+const FullImage = styled.div<{ pathImage: string }>`
   margin-right: 15px;
   width: 50%;
   height: 100%;
