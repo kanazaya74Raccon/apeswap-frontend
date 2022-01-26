@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 import addresses from 'config/constants/contracts'
 import { Address } from 'config/constants/types'
+import { ChainId } from '@apeswapfinance/sdk'
 import useActiveWeb3React from './useActiveWeb3React'
+
+export const parseAddress = (currAddress: Address, chainId: ChainId) => {
+  return currAddress[chainId]
+}
 
 const useAddress = (curAddresses: Address) => {
   const { chainId } = useActiveWeb3React()
-  const [address, setAddress] = useState(curAddresses[chainId])
+  const [address, setAddress] = useState(parseAddress(curAddresses, chainId))
   useEffect(() => {
-    setAddress(curAddresses[chainId])
+    setAddress(parseAddress(curAddresses, chainId))
   }, [chainId, curAddresses])
   return address
 }

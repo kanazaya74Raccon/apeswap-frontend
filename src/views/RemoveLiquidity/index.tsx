@@ -2,18 +2,10 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { ETHER, JSBI, Percent, Token } from '@apeswapfinance/sdk'
+import { ETHER, JSBI, Percent, Token, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
 import { LargeStyledButton } from 'views/Swap/styles'
 import Page from 'components/layout/Page'
-import {
-  Text,
-  AddIcon,
-  Flex,
-  Card,
-  useModal,
-  useMatchBreakpoints,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare } from '@apeswapfinance/uikit'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
@@ -21,6 +13,7 @@ import { Wrapper } from 'views/Swap/components/styleds'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
+import { parseAddress } from 'hooks/useAddress'
 import { AutoColumn } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -29,7 +22,6 @@ import { RowBetween, RowFixed, AutoRow } from '../../components/layout/Row'
 import UnlockButton from '../../components/UnlockButton'
 
 import { CurrencyLogo, DoubleCurrencyLogo } from '../../components/Logo'
-import { ROUTER_ADDRESS } from '../../config/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency } from '../../hooks/Tokens'
 import { usePairContract } from '../../hooks/useContract'
@@ -45,7 +37,6 @@ import { Field } from '../../state/burn/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useTotalSupply from '../../hooks/useTotalSupply'
-
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -170,7 +161,10 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
+  const [approval, approveCallback] = useApproveCallback(
+    parsedAmounts[Field.LIQUIDITY],
+    parseAddress(ROUTER_ADDRESS, chainId),
+  )
 
   const onAttemptToApprove = async () => {
     if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
@@ -465,8 +459,6 @@ export default function RemoveLiquidity({
     currencyA?.getSymbol(chainId) ?? ''
   } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencyB?.getSymbol(chainId) ?? ''}`
 
-
-
   const handleDismissConfirmation = useCallback(() => {
     setSignatureData(null) // important that we clear signature data to avoid bad sigs
     // if there was a tx hash, we want to clear the input
@@ -475,7 +467,6 @@ export default function RemoveLiquidity({
     }
     setTxHash('')
   }, [onUserInput, txHash])
-
 
   const [onPresentRemoveLiquidity] = useModal(
     <TransactionConfirmationModal
