@@ -33,7 +33,7 @@ export const dynamicMulticall = async (chainId: number, abis: any[], calls: Call
     return { ...call, functionName: call.name, abi: [abis.find((item) => item.name === call.name)] }
   })
   const returnData = await multicallDynamicAbi('https://bsc-dataseed.binance.org/', callData)
-  console.log(returnData)
+  return returnData
 }
 
 export default multicall
