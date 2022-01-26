@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, ETHER, TokenAmount } from '@apeswapfinance/sdk'
+import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
 import { Text, Flex, AddIcon, useModal } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -15,6 +15,7 @@ import { LargeStyledButton } from 'views/Swap/styles'
 import { Wrapper } from 'views/Swap/components/styleds'
 import SwapBanner from 'components/SwapBanner'
 import { useDispatch } from 'react-redux'
+import { parseAddress } from 'hooks/useAddress'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -23,8 +24,6 @@ import { DoubleCurrencyLogo } from '../../components/Logo'
 import { AppBody } from '../../components/App'
 import Row, { RowBetween } from '../../components/layout/Row'
 import UnlockButton from '../../components/UnlockButton'
-
-import { ROUTER_ADDRESS } from '../../config/constants'
 import { PairState } from '../../hooks/usePairs'
 import { useCurrency } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
@@ -127,8 +126,14 @@ export default function AddLiquidity({
   )
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS)
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS)
+  const [approvalA, approveACallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_A],
+    parseAddress(ROUTER_ADDRESS, chainId),
+  )
+  const [approvalB, approveBCallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_B],
+    parseAddress(ROUTER_ADDRESS, chainId),
+  )
 
   const addTransaction = useTransactionAdder()
 
