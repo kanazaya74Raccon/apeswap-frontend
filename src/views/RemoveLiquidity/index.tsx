@@ -5,15 +5,7 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { ETHER, JSBI, Percent, Token } from '@apeswapfinance/sdk'
 import { LargeStyledButton } from 'views/Swap/styles'
 import Page from 'components/layout/Page'
-import {
-  Text,
-  AddIcon,
-  Flex,
-  Card,
-  useModal,
-  useMatchBreakpoints,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare } from '@apeswapfinance/uikit'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
@@ -45,7 +37,6 @@ import { Field } from '../../state/burn/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useTotalSupply from '../../hooks/useTotalSupply'
-
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -465,8 +456,6 @@ export default function RemoveLiquidity({
     currencyA?.getSymbol(chainId) ?? ''
   } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencyB?.getSymbol(chainId) ?? ''}`
 
-
-
   const handleDismissConfirmation = useCallback(() => {
     setSignatureData(null) // important that we clear signature data to avoid bad sigs
     // if there was a tx hash, we want to clear the input
@@ -475,7 +464,6 @@ export default function RemoveLiquidity({
     }
     setTxHash('')
   }, [onUserInput, txHash])
-
 
   const [onPresentRemoveLiquidity] = useModal(
     <TransactionConfirmationModal

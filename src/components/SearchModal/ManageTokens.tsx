@@ -115,7 +115,7 @@ export default function ManageTokens({
         </AutoColumn>
         {tokenList}
         <Footer>
-          <Text bold textAlign='center'>
+          <Text bold textAlign="center">
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? 'Custom Token' : 'Custom Tokens'}
           </Text>
           {userAddedTokens.length > 0 && (

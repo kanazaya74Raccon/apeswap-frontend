@@ -173,9 +173,9 @@ const Ifos = () => {
     if (tabOption === 'past') {
       setTabOption('current')
       setProjectId(activeIfoId)
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
   return (

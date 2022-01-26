@@ -26,8 +26,8 @@ const NFT_INDEX = 'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-toke
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
-    NFT_INDEX,
-    /* YEARN_LIST,
+  NFT_INDEX,
+  /* YEARN_LIST,
     COMPOUND_LIST,
     AAVE_LIST,
     SYNTHETIX_LIST,
@@ -43,7 +43,7 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
     KLEROS_LIST,
     GEMINI_LIST,
     QUICK_SWAP, */
-    ...UNSUPPORTED_LIST_URLS // need to load unsupported tokens as well
+  ...UNSUPPORTED_LIST_URLS, // need to load unsupported tokens as well
 ]
 
 // default lists to be 'active' aka searched across
