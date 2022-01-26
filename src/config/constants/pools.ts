@@ -408,7 +408,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `1.9290123456790123`,
     sortOrder: 2,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -579,7 +579,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.2314816600938735`,
     sortOrder: 4,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -769,7 +769,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.031348765432098765`,
     sortOrder: 2,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -1550,7 +1550,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.54976851851`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -1645,7 +1645,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.597993827160493827`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -1969,7 +1969,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `14.081790123456790123`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2083,7 +2083,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.000011226851851851`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2140,7 +2140,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.263310185185185185`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2197,7 +2197,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `1.924189814814814814`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2235,7 +2235,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `9.620949074074074074`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2254,7 +2254,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.885127`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 6,
   },
   {
@@ -2273,7 +2273,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.060892361111111111`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2292,7 +2292,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `23.098493287037037037`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2311,7 +2311,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `1.303447916666666666`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2349,7 +2349,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.025462962962962962`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2387,7 +2387,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `1.316145833333333333`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2425,7 +2425,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.128603009250000000`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
@@ -2444,7 +2444,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: `0.05787037037037037`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
