@@ -22,7 +22,7 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
     stakeTokenHarvest: 0,
     offeringTokenTotalHarvest: 0,
     offeringTokenInitialHarvest: 0,
-    offeringTokensVested: 0,
+    offeringTokensVesting: 0,
     offeringTokenVestedHarvest: 0,
   })
   const [userInfo, setUserInfo] = useState({
@@ -83,8 +83,8 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
             new BigNumber(userTokens?.offeringTokenVestedHarvest?.toString()),
             tokenDecimals,
           ),
-          offeringTokensVested: getBalanceNumber(
-            new BigNumber(userTokens?.offeringTokensVested?.toString()),
+          offeringTokensVesting: getBalanceNumber(
+            new BigNumber(userTokens?.offeringTokensVesting?.toString()),
             tokenDecimals,
           ),
         })
