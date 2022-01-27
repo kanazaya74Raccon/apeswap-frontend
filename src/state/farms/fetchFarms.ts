@@ -7,14 +7,15 @@ import fetchFarmCalls from './fetchFarmCalls'
 import cleanFarmData from './cleanFarmData'
 
 const fetchFarms = async (chainId: number) => {
+  const farmIds = []
   const farmCalls = farmsConfig.flatMap((farm) => {
-    const farmCall = fetchFarmCalls(farm, chainId)
-    return farmCall
+    farmIds.push(farm.pid)
+    return fetchFarmCalls(farm, chainId)
   })
   const vals = await multicall(chainId, [...masterchefABI, ...erc20], farmCalls)
   const chunkSize = farmCalls.length / farmsConfig.length
   const chunkedFarms = chunk(vals, chunkSize)
-  return cleanFarmData(chunkedFarms)
+  return cleanFarmData(farmIds, chunkedFarms)
 }
 
 export default fetchFarms

@@ -5,8 +5,8 @@ import { Contract } from '@ethersproject/contracts'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@apeswapfinance/sdk'
-import { ROUTER_ADDRESS } from '../config/constants'
+import { JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
+import { parseAddress } from 'hooks/useAddress'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 export { default as formatAddress } from './formatAddress'
@@ -85,7 +85,12 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 
 // account is optional
 export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
+  return getContract(
+    parseAddress(ROUTER_ADDRESS, library.network?.chainId || 56),
+    IUniswapV2Router02ABI,
+    library,
+    account,
+  )
 }
 
 export function escapeRegExp(string: string): string {

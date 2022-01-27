@@ -1,7 +1,8 @@
 import { getMasterChefAddress } from 'utils/addressHelper'
+import { Call } from 'utils/multicall'
 import { FarmConfig } from 'config/constants/types'
 
-const fetchFarmCalls = (farm: FarmConfig, chainId: number) => {
+const fetchFarmCalls = (farm: FarmConfig, chainId: number): Call[] => {
   const masterChefAddress = getMasterChefAddress(chainId)
   const lpAdress = farm.lpAddresses[chainId]
   const calls = [

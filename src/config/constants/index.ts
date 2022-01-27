@@ -5,8 +5,6 @@ import farms from './farms'
 
 export const CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID)
 
-export const ROUTER_ADDRESS = '0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607'
-
 export const NetworkContextName = 'NETWORK'
 
 export const BIG_INT_ZERO = JSBI.BigInt(0)

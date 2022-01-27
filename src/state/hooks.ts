@@ -89,12 +89,11 @@ export const usePollPools = () => {
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   const dispatch = useAppDispatch()
-  const { slowRefresh } = useRefresh()
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC) {
       dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
     }
-  }, [dispatch, slowRefresh, tokenPrices, chainId])
+  }, [dispatch, tokenPrices, chainId])
 }
 
 export const usePollFarms = () => {
@@ -212,14 +211,14 @@ export const useVaultUser = (pid) => {
 // Pools
 
 export const usePools = (account): Pool[] => {
-  const { fastRefresh } = useRefresh()
+  const { slowRefresh } = useRefresh()
   const dispatch = useAppDispatch()
   const { chainId } = useActiveWeb3React()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
       dispatch(fetchPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, fastRefresh, chainId])
+  }, [account, dispatch, slowRefresh, chainId])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -374,7 +373,9 @@ export const useFetchProfile = () => {
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchProfile(chainId, account))
+    if (account) {
+      dispatch(fetchProfile(chainId, account))
+    }
   }, [account, dispatch, slowRefresh, chainId])
 }
 

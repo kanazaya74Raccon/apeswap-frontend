@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
 import { farmsConfig } from 'config/constants'
 
-const cleanFarmData = (chunkedFarms: any[]) => {
+const cleanFarmData = (farmIds: number[], chunkedFarms: any[]) => {
   const data = chunkedFarms.map((chunk, index) => {
-    const farmConfig = farmsConfig[index]
+    const farmConfig = farmsConfig.find((farm) => farm.pid === farmIds[index])
     const [
       tokenBalanceLP,
       quoteTokenBlanceLP,
