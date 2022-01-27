@@ -13,8 +13,7 @@
     "format:check:staged": "pretty-quick --staged --check",
     "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "postinstall": "yarn run typechain",
-    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\"",
-    "prepare": "husky install"
+    "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
   },
   "browserslist": {
     "production": [
