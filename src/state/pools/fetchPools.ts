@@ -8,16 +8,15 @@ import fetchPoolCalls from './fetchPoolCalls'
 import cleanPoolData from './cleanPoolData'
 
 const fetchPools = async (chainId: number, tokenPrices: TokenPrices[]) => {
-  const filterPools = poolsConfig
   const poolIds = []
-  const poolCalls = filterPools.flatMap((pool) => {
+  const poolCalls = poolsConfig.flatMap((pool) => {
     poolIds.push(pool.sousId)
     return fetchPoolCalls(pool, chainId)
   })
   // We do not want the block time for the banana earn banana pool so we append two null values to keep the chunks even
   const vals = await multicall(chainId, [...sousChefABI, ...bananaABI], poolCalls)
   const formattedVals = [null, null, ...vals]
-  const chunkSize = formattedVals.length / filterPools.length
+  const chunkSize = formattedVals.length / poolsConfig.length
   const chunkedPools = chunk(formattedVals, chunkSize)
 
   return cleanPoolData(poolIds, chunkedPools, tokenPrices, chainId)
