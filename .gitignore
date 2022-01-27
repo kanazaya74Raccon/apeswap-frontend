@@ -36,6 +36,11 @@ yarn-error.log*
 .vscode/launch.json
 .vscode/settings.json
 
+yalc*
+yalc.lock*
+
+src/config/abi/types
+
 # iCloud generated
 *.icloud
 

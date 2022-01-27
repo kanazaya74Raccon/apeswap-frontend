@@ -1,6 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useReducer } from 'react'
-import makeBatchRequest from 'utils/makeBatchRequest'
 import { useNonFungibleApes } from './useContract'
 
 export type NftMap = {
@@ -48,28 +47,12 @@ const useGetWalletNfts = () => {
   useEffect(() => {
     const fetchNfts = async () => {
       try {
-        const balanceOf = await nonFungibleApesContract.methods.balanceOf(account).call()
+        const balanceOf = await (await nonFungibleApesContract.balanceOf(account)).toNumber()
 
         if (balanceOf > 0) {
           let nfts: NftMap = {}
 
-          const getTokenIdAndBunnyId = async (index: number) => {
-            try {
-              const { tokenOfOwnerByIndex, getBunnyId, tokenURI } = nonFungibleApesContract.methods
-              const tokenId = await tokenOfOwnerByIndex(account, index).call()
-              const [bunnyId, tokenUri] = await makeBatchRequest([getBunnyId(tokenId).call, tokenURI(tokenId).call], 56)
-
-              return [Number(bunnyId), Number(tokenId), tokenUri]
-            } catch (error) {
-              return null
-            }
-          }
-
           const tokenIdPromises = []
-
-          for (let i = 0; i < balanceOf; i++) {
-            tokenIdPromises.push(getTokenIdAndBunnyId(i))
-          }
 
           const tokenIdsOwnedByWallet = await Promise.all(tokenIdPromises)
 

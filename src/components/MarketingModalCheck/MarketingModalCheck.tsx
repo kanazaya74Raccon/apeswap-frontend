@@ -22,7 +22,7 @@ const MarketingModalCheck = () => {
   }
 
   const openLiquidityLink = () => {
-    return window.open('https://app.apeswap.finance/add', '_blank')
+    return window.open('https://apeswap.finance/add', '_blank')
   }
 
   const openConnectModal = () => {

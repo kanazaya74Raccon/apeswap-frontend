@@ -1,4 +1,4 @@
-export type IfoStatus = 'coming_soon' | 'live' | 'finished';
+export type IfoStatus = 'coming_soon' | 'live' | 'finished'
 
 export interface Ifo {
   id: string
@@ -24,6 +24,15 @@ export interface Ifo {
   vesting?: boolean
   startBlock?: number
   burnedTxUrl?: string
+}
+
+export interface SerializedToken {
+  chainId: number
+  address: string
+  decimals: number
+  symbol?: string
+  name?: string
+  projectLink?: string
 }
 
 export enum QuoteToken {

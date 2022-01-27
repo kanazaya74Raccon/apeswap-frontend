@@ -56,7 +56,7 @@ const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewar
             <ApyButton
               lpLabel={earnToken}
               rewardTokenName={earnToken}
-              addLiquidityUrl="https://app.apeswap.finance/swap"
+              addLiquidityUrl="https://apeswap.finance/swap"
               rewardTokenPrice={new BigNumber(rewardTokenPrice)}
               apy={apr.div(100)}
             />

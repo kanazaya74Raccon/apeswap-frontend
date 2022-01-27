@@ -109,8 +109,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const addTokenWallet = async (address) => {
     if (!address) return
-    const tokenInfo = await getTokenInfo(address, chainId)
-    registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
+    const { symbolToken, decimalsToken } = await getTokenInfo(address, chainId)
+    registerToken(address, symbolToken, decimalsToken, '')
   }
   return (
     <Wrapper>

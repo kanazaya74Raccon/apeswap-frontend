@@ -1,9 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import { useCallback } from 'react'
-import multicallABI from 'config/abi/Multicall.json'
 import erc20ABI from 'config/abi/erc20.json'
-import { getMulticallAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
 import multicall from 'utils/multicall'
 
 export interface ERC20DetailsReturned {
@@ -15,8 +12,6 @@ export interface ERC20DetailsReturned {
 
 const useERC20Details = () => {
   const { account, chainId } = useWeb3React()
-  const multicallAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallAddress, chainId)
   const handleERC20Details = useCallback(
     async (tokenAddress: string): Promise<ERC20DetailsReturned> => {
       const erc20Calls = [
@@ -42,11 +37,7 @@ const useERC20Details = () => {
           name: 'decimals',
         },
       ]
-      const [userBalance, tokenSymbol, totalSupply, tokenDecimals] = await multicall(
-        multicallContract,
-        erc20ABI,
-        erc20Calls,
-      )
+      const [userBalance, tokenSymbol, totalSupply, tokenDecimals] = await multicall(chainId, erc20ABI, erc20Calls)
       return {
         userBalance: userBalance.toString(),
         tokenSymbol: tokenSymbol[0],
@@ -54,7 +45,7 @@ const useERC20Details = () => {
         tokenDecimals: parseInt(tokenDecimals),
       }
     },
-    [multicallContract, account],
+    [account, chainId],
   )
 
   return { onHandleERC20Details: handleERC20Details }

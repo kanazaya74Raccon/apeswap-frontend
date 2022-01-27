@@ -1,15 +1,11 @@
 import apePriceGetterABI from 'config/abi/apePriceGetter.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import multicallABI from 'config/abi/Multicall.json'
-import { getMulticallAddress, getApePriceGetterAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getApePriceGetterAddress } from 'utils/addressHelper'
 import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const fetchPrices = async (chainId) => {
-  const multicallContractAddress = getMulticallAddress(chainId)
-  const multicallContract = getContract(multicallABI, multicallContractAddress, chainId)
   const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const tokensToCall = Object.keys(tokens).filter((token) => tokens[token].address[chainId] !== undefined)
   const erc20Calls = tokensToCall.map((token) => {
@@ -18,7 +14,7 @@ const fetchPrices = async (chainId) => {
       name: 'decimals',
     }
   })
-  const tokenDecimals = await multicall(multicallContract, erc20ABI, erc20Calls)
+  const tokenDecimals = await multicall(chainId, erc20ABI, erc20Calls)
   const calls = tokensToCall.map((token, i) => {
     if (tokens[token].lpToken) {
       return {
@@ -33,14 +29,15 @@ const fetchPrices = async (chainId) => {
       params: [tokens[token].address[chainId], tokenDecimals[i][0]],
     }
   })
-  const tokenPrices = await multicall(multicallContract, apePriceGetterABI, calls)
+  const tokenPrices = await multicall(chainId, apePriceGetterABI, calls)
+
   // Banana should always be the first token
   const mappedTokenPrices = tokensToCall.map((token, i) => {
     return {
       symbol: tokens[token].symbol,
       address: tokens[token].address,
       price:
-          tokens[token].symbol === 'GNANA'
+        tokens[token].symbol === 'GNANA'
           ? getBalanceNumber(tokenPrices[0], tokenDecimals[i][0]) * 1.389
           : getBalanceNumber(tokenPrices[i], tokenDecimals[i][0]),
       decimals: tokenDecimals[i][0],

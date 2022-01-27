@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Skeleton, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { useFetchHeadersHome } from 'state/strapi/fetchStrapi'
 import { useNetworkChainId } from 'state/hooks'
 import { NETWORK_LABEL } from 'config/constants/chains'
@@ -56,6 +56,10 @@ const LinkArea = styled.a`
   z-index: 1;
 `
 
+const StyledSkeleton = styled(Skeleton)`
+  border-radius: 30px;
+`
+
 const SLIDETIME = 6000
 
 const Banner = () => {
@@ -99,7 +103,9 @@ const Banner = () => {
   return (
     <>
       {loading ? (
-        <Header image="" />
+        <Header image="">
+          <StyledSkeleton width={1} height={300} />
+        </Header>
       ) : (
         <Header image={getImageSize(filteredBanners[activeIndex])}>
           <LinkArea href={filteredBanners[activeIndex]?.link} target="_blank" rel="noopener noreferrer" />

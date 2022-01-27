@@ -230,7 +230,7 @@ const VaultTable: React.FC<HarvestProps> = ({ vault, removed }) => {
             totalStaked={getBalanceNumber(new BigNumber(vault?.strategyPairBalance))}
             personalValueStaked={getBalanceNumber(stakedBalance)}
             lpLabel={lpLabel}
-            addLiquidityUrl="https://app.apeswap.finance/swap"
+            addLiquidityUrl="https://apeswap.finance/swap"
             blockExplorer={`${BLOCK_EXPLORER[chainId]}/address/${vault?.strat}`}
             stakedTokenPrice={vault?.stakeTokenPrice}
             withdrawFee={vault?.withdrawFee}

@@ -1,4 +1,4 @@
-import { getWeb3 } from './web3'
+import getProvider from './getProvider'
 
 /**
  * Accepts an array of contract method calls and batches them
@@ -12,8 +12,8 @@ import { getWeb3 } from './web3'
  */
 const makeBatchRequest = (calls: any[], chainId: number) => {
   try {
-    const web3 = getWeb3(chainId)
-    const batch = new web3.BatchRequest()
+    const provider = getProvider(chainId)
+    const batch = new provider.BatchRequest()
 
     const promises = calls.map((call) => {
       return new Promise((resolve, reject) => {

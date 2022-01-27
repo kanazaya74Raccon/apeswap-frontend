@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react'
 import ifoAbi from 'config/abi/ifo.json'
-import multicallABI from 'config/abi/Multicall.json'
-import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import useRefresh from 'hooks/useRefresh'
-import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId } from 'state/hooks'
 import multicall from 'utils/multicall'
-import { Contract } from 'web3-eth-contract'
-import { getContract } from 'utils/web3'
-import useBlock from 'hooks/useBlock'
 import { BSC_BLOCK_TIME } from 'config'
+import { Contract } from 'ethers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useBlock } from 'state/block/hooks'
 
 export interface Props {
   address: string
@@ -23,11 +19,9 @@ export interface Props {
 }
 
 function useUserInfo(contract: Contract, tokenDecimals: number, address: string, refetch?: boolean) {
-  const chainId = useNetworkChainId()
-  const currentBlock = useBlock()
-  const multicallAddress = getMulticallAddress(chainId)
+  const { currentBlock } = useBlock()
   const { fastRefresh } = useRefresh()
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
   const [userTokenStatus, setUserTokenStatus] = useState({
@@ -50,7 +44,6 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
 
   useEffect(() => {
     const fetch = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
       if (!address || !account) return
 
       const calls1 = [
@@ -123,16 +116,16 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
       ]
 
       try {
-        const [balance, userAllocation, userinfo, userTokens] = await multicall(multicallContract, ifoAbi, calls1)
+        const [balance, userAllocation, userinfo, userTokens] = await multicall(chainId, ifoAbi, calls1)
 
         const [harvestOneFlag, harvestTwoFlag, harvestThreeFlag, harvestFourFlag] = await multicall(
-          multicallContract,
+          chainId,
           ifoAbi,
           calls2,
         )
 
         const [harvestOneBlock, harvestTwoBlock, harvestThreeBlock, harvestFourBlock] = await multicall(
-          multicallContract,
+          chainId,
           ifoAbi,
           calls3,
         )
@@ -155,21 +148,20 @@ function useUserInfo(contract: Contract, tokenDecimals: number, address: string,
           offeringTokensVested: new BigNumber(userTokens.offeringTokensVested.toString()),
         })
 
-
         setUserInfo({
           amount: new BigNumber(userinfo.amount.toString()),
           refunded: userinfo.refunded,
           allocation: new BigNumber(userAllocation.toString()).dividedBy(new BigNumber(10).pow(12)),
         })
       } catch (e) {
-        console.error('Multicall error', e, { address, account, chainId, multicallAddress })
+        console.error('Multicall error', e, { address, account, chainId })
       }
     }
 
     if (address && account) {
       fetch()
     }
-  }, [account, contract, address, refetch, fastRefresh, multicallAddress, chainId, tokenDecimals, currentBlock])
+  }, [account, contract, address, refetch, fastRefresh, chainId, tokenDecimals, currentBlock])
 
   return {
     userTokenStatus,

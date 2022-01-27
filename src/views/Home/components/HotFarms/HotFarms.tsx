@@ -7,7 +7,7 @@ import { QuoteToken } from 'config/constants/types'
 import farms from 'config/constants/farms'
 import { Farm } from 'state/types'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
-import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd } from 'state/hooks'
+import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd, usePollFarms } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
 const HotFarmsWrapper = styled.div`
@@ -74,6 +74,7 @@ const FarmWrapper = styled.div`
 const DEFAULT_FARM = 1
 
 const HotFarms = () => {
+  usePollFarms()
   const { farmsData, loading } = useFetchFarmsHome()
   const bnbPrice = usePriceBnbBusd()
   const ethPriceUsd = usePriceEthBusd()

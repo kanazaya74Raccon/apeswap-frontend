@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ifoAbi from 'config/abi/ifo.json'
-import multicallABI from 'config/abi/Multicall.json'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import { BSC_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import useBlock from 'hooks/useBlock'
-import { getMulticallAddress } from 'utils/addressHelper'
-import { useNetworkChainId, usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import { useBlock } from 'state/block/hooks'
+import { usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
-import { getContract } from 'utils/web3'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
@@ -78,19 +75,15 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     startBlockNum: 0,
     endBlockNum: 0,
   })
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const contract = useSafeIfoContract(address, isLinear)
-  const currentBlock = useBlock()
-  const chainId = useNetworkChainId()
-  const multicallAddress = getMulticallAddress(chainId)
+  const { currentBlock } = useBlock()
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
   const currencyPrice = gnana ? gnanaPrice : bnbPrice
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const multicallContract = getContract(multicallABI, multicallAddress, chainId)
-
       if (!address) {
         // Allow IAO details to be shown before contracts are deployed
         return
@@ -114,7 +107,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           name: 'totalAmount',
         },
       ]
-      const [startBlock, endBlock, raisingAmount, totalAmount] = await multicall(multicallContract, ifoAbi, calls)
+      const [startBlock, endBlock, raisingAmount, totalAmount] = await multicall(chainId, ifoAbi, calls)
 
       const startBlockNum = start || parseInt(startBlock, 10)
       const endBlockNum = parseInt(endBlock, 10)
@@ -136,7 +129,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, multicallAddress, chainId])
+  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, chainId])
 
   const { userTokenStatus, userInfo, offeringTokenBalance } = useUserInfo(contract, tokenDecimals, address)
 
