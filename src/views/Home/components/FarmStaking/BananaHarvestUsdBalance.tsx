@@ -23,7 +23,7 @@ const BananaHarvestUsdBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '60px', fontWeight: 700 }} fontFamily="poppins">
+      <Text color="textDisabled" style={{ lineHeight: '60px', fontWeight: 700 }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )

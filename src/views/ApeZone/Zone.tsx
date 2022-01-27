@@ -47,19 +47,15 @@ const Zone = () => {
       <Description />
       <StyledHeroSection>
         <MarginContainer>
-          <Heading size="xl" mb="26px" color="primary" fontFamily="Titan One">
+          <Heading size="xl" mb="26px" color="primary" fontWeight={800}>
             {TranslateString(999, 'Buy Golden Banana')}
           </Heading>
           <PaddedCard>
-            <Heading size="lg" fontFamily="poppins" color="warning">
+            <Heading size="lg" color="warning">
               WARNING
             </Heading>
-            <Text fontFamily="poppins">
-              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
-            </Text>
-            <Text fontFamily="poppins">
-              This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA
-            </Text>
+            <Text>Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.</Text>
+            <Text>This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA</Text>
           </PaddedCard>
           <Cards>
             <BuyCard />

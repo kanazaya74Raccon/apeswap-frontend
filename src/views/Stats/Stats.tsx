@@ -103,21 +103,34 @@ const Stats: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
 
       <Page>
-      <PaddedCard>
-          <Heading size="lg" fontFamily="poppins" color="warning">
+        <PaddedCard>
+          <Heading size="lg" color="warning">
             HEADS UP, APES!
           </Heading>
-          <Text fontFamily="poppins">
-            The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">yieldwatch</a>, <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">JDI</a>, or <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">Pacoca</a> for alternative dashboards!
+          <Text>
+            The data on this page is not always up to date. Please do not rely on it for an accurate representation of
+            your holdings. For similar services, consider our partners such as{' '}
+            <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
+              yieldwatch
+            </a>
+            ,{' '}
+            <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">
+              JDI
+            </a>
+            , or{' '}
+            <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">
+              Pacoca
+            </a>{' '}
+            for alternative dashboards!
           </Text>
-      </PaddedCard>
+        </PaddedCard>
         {!account ? (
           <UnlockButton fullWidth fontSize="14px" />
         ) : (

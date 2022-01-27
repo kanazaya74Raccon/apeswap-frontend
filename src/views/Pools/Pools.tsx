@@ -418,9 +418,8 @@ const StyledPage = styled(Page)`
 const StyledLabel = styled.div<LabelProps>`
   display: flex;
   color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
   padding: 4px 12px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};

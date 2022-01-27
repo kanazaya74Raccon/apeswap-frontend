@@ -63,13 +63,11 @@ const StyledMaxText = styled.div`
   font-weight: 450;
   height: 44px;
   justify-content: flex-end;
-  font-family: 'Poppins';
 `
 
 const StyledTokenSymbol = styled.span`
   color: ${(props) => props.theme.colors.primary};
   font-weight: 450;
-  font-family: 'Poppins';
 `
 
 export default TokenInput

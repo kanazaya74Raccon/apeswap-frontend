@@ -81,7 +81,7 @@ const StyledHeadingGreen = styled(Heading)`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
 `
 

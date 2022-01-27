@@ -102,7 +102,7 @@ const APRContainer = styled.div`
 const LiquidtyContainer = styled.div`
   position: absolute;
   left: 480px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 587px;
@@ -113,7 +113,7 @@ const EarnedContainer = styled.div`
   position: absolute;
   left: 660px;
   top: 19px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 803px;

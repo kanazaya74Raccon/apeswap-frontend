@@ -20,7 +20,6 @@ export const LaunchPadWrapper = styled.div`
 `
 
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 30px;
   font-style: normal;
@@ -31,7 +30,6 @@ export const StyledHeader = styled(Text)`
   }
 `
 export const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
@@ -127,7 +125,6 @@ export const TokenImage = styled.img`
 `
 
 export const TokenName = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 19px;
   padding-left: 2px;

@@ -25,6 +25,7 @@ export const Description = styled(Text).attrs({ fontFamily: 'poppins' })<{ isOpe
   color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   margin-top: 24px;
+  font-weight: 300;
 `
 
 export const IconImage = styled(Image)`

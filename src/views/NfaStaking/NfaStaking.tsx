@@ -276,7 +276,6 @@ const FlexLayout = styled.div`
 `
 
 const AdminText = styled(Text)`
-  font-family: poppins;
   font-size: 18px;
   font-weight: 500;
   color: white;

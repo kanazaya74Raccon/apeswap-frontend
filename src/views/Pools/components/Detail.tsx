@@ -92,10 +92,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart > 0 && (
         <>
           <StyledText fontSize="12px">{TranslateString(410, 'Start')}</StyledText>
-          <StyledText
-            fontFamily="poppins"
-            fontSize="12px"
-          >{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
+          <StyledText fontSize="12px">{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
         </>
       )}
       {blocksUntilStart === 0 && blocksRemaining > 0 && (

@@ -349,7 +349,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer>
           <StyledHeading>Tier {tier}</StyledHeading>
           {!removed && (
-            <Text bold style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Text fontWeight={600} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1>BPD: {bananaPerDay}</StyledText1>
             </Text>
           )}

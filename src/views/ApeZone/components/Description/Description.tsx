@@ -116,9 +116,8 @@ const StyledButton = styled(Button)`
   box-sizing: border-box;
   border-radius: 10px;
   padding: 10px 40px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   color: #a16552;
@@ -150,42 +149,38 @@ const Description = () => {
     <StyledContainer>
       <StyledFlex>
         <StyledTextContainer>
-          <Heading size="xxl" color="white" fontFamily="Titan One">
+          <Heading size="xxl" color="white" fontWeight={800}>
             {TranslateString(594, 'GOLDEN BANANA')}
           </Heading>
-          <Title as="h2" mt="15px" mb="15px" color="white" fontFamily="poppins" size="lg" fontWeight={700}>
+          <Title as="h2" mt="15px" mb="15px" color="white" size="lg" fontWeight={700}>
             {TranslateString(592, 'What is it good for?')}
           </Title>
-          <Title color="white" fontFamily="poppins" size="md" mb="12px" fontWeight={500}>
+          <Title color="white" size="md" mb="12px" fontWeight={500}>
             {TranslateString(594, 'Passive Farming')}
           </Title>
           <List>
-            <Text color="white" fontFamily="poppins">
-              {TranslateString(596, 'GNANA is a reflect token with a 2% transfer fee')}
-            </Text>
-            <Text color="white" fontFamily="poppins">
+            <Text color="white">{TranslateString(596, 'GNANA is a reflect token with a 2% transfer fee')}</Text>
+            <Text color="white">
               {TranslateString(
                 596,
                 'GNANA holders get a share of the fee proportional to their holdings just by having it in their wallets',
               )}
             </Text>
           </List>
-          <Title color="white" fontFamily="poppins" size="md" mb="12px" mt="12px" fontWeight={500}>
+          <Title color="white" size="md" mb="12px" mt="12px" fontWeight={500}>
             {TranslateString(594, 'Exclusive perks')}
           </Title>
           <List>
-            <Text color="white" fontFamily="poppins">
-              {TranslateString(596, 'Gain access to GNANA only IAO allocation')}
-            </Text>
-            <Text color="white" fontFamily="poppins">
+            <Text color="white">{TranslateString(596, 'Gain access to GNANA only IAO allocation')}</Text>
+            <Text color="white">
               {TranslateString(596, 'A new array of pools will be made available only to GNANA holders')}
             </Text>
           </List>
-          <Title color="white" fontFamily="poppins" size="md" mb="12px" mt="12px" fontWeight={500}>
+          <Title color="white" size="md" mb="12px" mt="12px" fontWeight={500}>
             {TranslateString(594, 'Governance')}
           </Title>
           <List>
-            <Text color="white" fontFamily="poppins">
+            <Text color="white">
               {TranslateString(596, 'GNANA is being lined up to be the official governance token of ApeSwap')}
             </Text>
           </List>

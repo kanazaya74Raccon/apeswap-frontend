@@ -57,10 +57,8 @@ const StyledCardBody = styled(CardBody)`
 `
 
 const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   font-style: normal;
-  font-weight: 400;
   text-align: left;
   font-weight: 400;
   margin-right: 10px;

@@ -137,7 +137,6 @@ const SecondaryText = styled(Text)`
   color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
   width: 366px;
   height: 125px;
-  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

@@ -29,7 +29,7 @@ const StyledInput = styled.input`
   margin: 0;
   padding: 0;
   outline: none;
-  font-family: 'Titan One';
+  font-weight: 800;
 `
 
 const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, startAdornment, value }) => {

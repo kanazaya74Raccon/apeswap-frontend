@@ -135,7 +135,7 @@ const BurningGames: React.FC = () => {
           <StyledHeading as="h1" mb="12px" mt={0} color="white">
             BANANA Burns
           </StyledHeading>
-          <SubtitleHeading isMobile={!isDesktop} fontFamily="poppins" fontWeight={400} color="white">
+          <SubtitleHeading isMobile={!isDesktop} fontWeight={400} color="white">
             Partners Supporting The Jungle
           </SubtitleHeading>
         </HeadingContainer>

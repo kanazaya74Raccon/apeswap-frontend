@@ -24,9 +24,8 @@ const NfaName = styled(Text)`
 const NfaTitle = styled(Text)`
   font-size: 14px;
   line-height: 21px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   margin-top: 5px;
   margin-left: 0px;
 `

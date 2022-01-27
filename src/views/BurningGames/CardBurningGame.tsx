@@ -37,7 +37,6 @@ const ContainerDescription = styled.div`
     padding-top: 8px;
     color: #af6e5aff;
     font-size: 14px;
-    font-family: Poppins;
     font-weight: 400;
     line-height: 1.5;
   }

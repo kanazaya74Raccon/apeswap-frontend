@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Heading, Text } from '@apeswapfinance/uikit'
 
+export const StyledText = styled(Text)`
+  font-weight: 300;
+`
+
 export const FeatureBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,6 +17,7 @@ export const Motto = styled(Text).attrs({
 })`
   color: ${({ theme }) => theme.colors.yellow};
   margin: 2px 0 6px 0;
+  font-weight: 300;
 `
 
 export const SectionHeading = styled(Heading)`

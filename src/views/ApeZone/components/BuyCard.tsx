@@ -143,7 +143,7 @@ const BuyCard = () => {
       <CardBody>
         <StyledBanana />
         <StyledBananaPair />
-        <Heading color="contrast" size="xl" fontFamily="Titan One">
+        <Heading color="contrast" size="xl" fontWeight={800}>
           Buy
         </Heading>
         <TokenInput
@@ -163,10 +163,11 @@ const BuyCard = () => {
           </StyledButton>
         )}
         <Flex flexDirection="column" alignItems="center" mb="10px">
-          <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontFamily="Titan One" />
+          <CardValue fontSize="13px" decimals={4} value={gnanaVal} prefix="OUTPUT GNANA" fontWeight={800} />
           <Text fontSize="11px">* Current max buy is {displayMax}</Text>
-          <StyledText fontSize="11px" fontFamily="Titan One">
-            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand that each GNANA token transfer costs 2% and want to enable unlimited buy.
+          <StyledText fontSize="11px" fontWeight={800}>
+            <Checkbox id="checkbox" scale="sm" checked={unlimited} onChange={handleCheckbox} />I understand that each
+            GNANA token transfer costs 2% and want to enable unlimited buy.
           </StyledText>
         </Flex>
       </CardBody>

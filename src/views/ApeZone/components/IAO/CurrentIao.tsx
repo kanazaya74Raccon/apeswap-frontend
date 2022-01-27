@@ -101,10 +101,10 @@ const Iao = () => {
     <>
       <StyledHeroSection>
         <StyledHeroHeading>
-          <Heading size="xl" color="white" fontFamily="Titan One">
+          <Heading size="xl" color="white" fontWeight={800}>
             {TranslateString(594, 'Golden Banana IAO')}
           </Heading>
-          <Heading size="sm" color="white" fontFamily="Titan One">
+          <Heading size="sm" color="white" fontWeight={800}>
             {TranslateString(594, 'Buy new token by staking GNANA')}
           </Heading>
         </StyledHeroHeading>
@@ -121,53 +121,49 @@ const Iao = () => {
           <StyledCard>
             <StyledGoldenMonkey src="/images/monkey-golden-banana.svg" alt="monkey" />
             <StyledTextContainer>
-              <Heading size="xl" fontFamily="Titan One">
+              <Heading size="xl" fontWeight={800}>
                 {TranslateString(594, 'GOLDEN BANANA IAO')}
               </Heading>
-              <Title as="h2" mt="15px" mb="15px" fontFamily="poppins" size="sm">
+              <Title as="h2" mt="15px" mb="15px" size="sm">
                 {TranslateString(592, 'How To Take Part')}
               </Title>
-              <Title fontFamily="poppins" fontWeight={700}>
-                {TranslateString(594, 'Before Sale')}
-              </Title>
+              <Title fontWeight={700}>{TranslateString(594, 'Before Sale')}</Title>
               <List>
-                <Text fontFamily="poppins">{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</Text>
-                <Text fontFamily="poppins">{TranslateString(598, 'Purchase GNANA using BANANA')}</Text>
+                <Text>{TranslateString(596, 'Be ready to pay a 30% fee to buy GNANA')}</Text>
+                <Text>{TranslateString(598, 'Purchase GNANA using BANANA')}</Text>
               </List>
-              <Text fontSize="10px" fontFamily="poppins">
+              <Text fontSize="10px">
                 * Remember buying GNANA means you lose 30% of your BANANA when making the purchase
               </Text>
-              <Title fontFamily="poppins" fontWeight={700} mt="15px">
+              <Title fontWeight={700} mt="15px">
                 {TranslateString(600, 'During Sale')}
               </Title>
               <List>
-                <Text fontFamily="poppins">
+                <Text>
                   {TranslateString(602, 'While the sale is live, commit your GNANA tokens to buy the IAO tokens')}
                 </Text>
               </List>
-              <Title fontFamily="poppins" fontWeight={700} mt="15px">
+              <Title fontWeight={700} mt="15px">
                 {TranslateString(604, 'After Sale')}
               </Title>
               <List>
-                <Text fontFamily="poppins">
+                <Text>
                   {TranslateString(
                     606,
                     'Immediately after sale: You may claim your refund and 25% of your offering tokens',
                   )}
                 </Text>
-                <Text fontFamily="poppins">
+                <Text>
                   {TranslateString(606, '30 days after sale: You may claim another 25% of your offering tokens')}
                 </Text>
-                <Text fontFamily="poppins">
+                <Text>
                   {TranslateString(606, '60 days after sale: You may claim another 25% of your offering tokens')}
                 </Text>
-                <Text fontFamily="poppins">
+                <Text>
                   {TranslateString(606, '90 days after sale: You may claim the final 25% of your offering tokens')}
                 </Text>
-                <Text fontFamily="poppins">{TranslateString(608, 'Done!')}</Text>
-                <Text fontSize="10px" fontFamily="poppins">
-                  * Remember selling GNANA returns you BANANA at a 1:1 ratio
-                </Text>
+                <Text>{TranslateString(608, 'Done!')}</Text>
+                <Text fontSize="10px">* Remember selling GNANA returns you BANANA at a 1:1 ratio</Text>
               </List>
 
               <Text as="div" pt="16px" mb="16px" mt="16px" color="primary">

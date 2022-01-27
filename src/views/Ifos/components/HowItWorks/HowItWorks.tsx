@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button, Text } from '@apeswapfinance/uikit'
+import { Button } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 
-import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles'
+import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container, StyledText } from './styles'
 
 interface IconProps {
   name: string
@@ -45,41 +45,39 @@ const HowItWorks = ({ onParticipate }: Props) => {
         <FeatureBox>
           <Icon name="time-circle" />
           <div>
-            <SectionHeading fontFamily="poppins">24 HOURS LONG</SectionHeading>
-            <Text fontFamily="poppins">
-              The IAO time has been expanded allow Apes across the globe to invest with ease.
-            </Text>
+            <SectionHeading>CONTRIBUTION WINDOW</SectionHeading>
+            <StyledText>
+              IAOs run anywhere from 12-24 hours to ensure everyone across the globe has time to enter with ease.
+            </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="calendar" />
           <div>
-            <SectionHeading fontFamily="poppins">VESTING SCHEDULE</SectionHeading>
-            <Text fontFamily="poppins">
-              25% of the tokens unlocked inmediately and 25% unlocked every month for 3 months.
-            </Text>
+            <SectionHeading>VESTING SCHEDULE</SectionHeading>
+            <StyledText>25% of tokens unlock immediately and the remaining 75% vest linearly over 120 days.</StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="bnb-gnana" />
           <div>
-            <SectionHeading fontFamily="poppins">2 WAYS TO PARTICIPATE</SectionHeading>
-            <Text fontFamily="poppins">
-              <B>Option 1</B>: Token available via <B>BNB</B>.
-            </Text>
-            <Text fontFamily="poppins">
-              <B>Option 2</B>: Token available via <B>GNANA</B>.
-            </Text>
+            <SectionHeading>2 WAYS TO PARTICIPATE</SectionHeading>
+            <StyledText>
+              <B>Option 1</B>: Commit with <B>BNB</B>.
+            </StyledText>
+            <StyledText>
+              <B>Option 2</B>: Commit with <B>GNANA</B>.
+            </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="overflow-dollars" />
           <div>
-            <SectionHeading fontFamily="poppins">OVERFLOW MODEL</SectionHeading>
-            <Text fontFamily="poppins">
-              After the IAO finishes you can claim your token allocation and your overflow $BNB and/or $GNANA will be
-              returned to you wallet
-            </Text>
+            <SectionHeading>OVERFLOW MODEL</SectionHeading>
+            <StyledText>
+              Your token allocation is based on your percentage of the total raise. All overflow contributions will be
+              returned post-raise.
+            </StyledText>
           </div>
         </FeatureBox>
       </Frame>

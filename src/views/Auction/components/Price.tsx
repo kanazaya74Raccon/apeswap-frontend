@@ -32,9 +32,8 @@ const PriceText = styled(Text)`
   position: absolute;
   width: 52px;
   height: 24px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.05em;

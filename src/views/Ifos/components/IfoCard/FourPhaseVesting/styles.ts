@@ -39,7 +39,6 @@ export const VestingClaimButton = styled(Button)`
 `
 
 export const DisplayVestingTime = styled(Text)<{ label?: boolean }>`
-  font-family: Poppins;
   font-size: ${({ label }) => (label ? '12px' : '14px')};
   font-weight: ${({ label }) => (label ? 'normal' : 600)};
   line-height: ${({ label }) => (label ? '18px' : '24px')};

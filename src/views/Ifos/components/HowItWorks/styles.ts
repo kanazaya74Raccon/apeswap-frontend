@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Text, Heading } from '@apeswapfinance/uikit'
 
+export const StyledText = styled(Text)`
+  font-weight: 300;
+`
+
 export const FeatureBox = styled.div`
   display: flex;
   gap: 20px;

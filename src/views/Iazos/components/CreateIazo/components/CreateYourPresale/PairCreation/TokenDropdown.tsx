@@ -65,7 +65,6 @@ const DropUpArrow = styled(ArrowDropUpIcon)`
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -79,7 +78,7 @@ const IconImage = styled(Image)`
 `
 const StyledText = styled(Text)`
   text-align: start;
-  font-family: Poppins;
+
   font-size: 18px;
   font-weight: 500;
   margin-left: 12px;

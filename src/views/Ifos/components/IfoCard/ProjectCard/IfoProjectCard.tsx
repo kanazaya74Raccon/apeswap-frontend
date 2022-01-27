@@ -26,7 +26,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
     <StyledIfoCard ifoId={id}>
       <Banner src={`/images/ifos/${ifoId}-bg.svg`} alt={ifoId} />
       <Content>
-        <Heading fontFamily="poppins" as="h3" fontWeight={400}>
+        <Heading as="h3" fontWeight={400}>
           {subTitle}
         </Heading>
 
