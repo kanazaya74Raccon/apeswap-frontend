@@ -7,7 +7,7 @@ export const BodyWrapper = styled(Card)`
   z-index: 1;
   width: 360px;
   margin-bottom: 80px;
-  background-color: ${({theme}) => theme.isDark ? '#212121' : '#FFFFFF'};
+  background-color: ${({ theme }) => (theme.isDark ? '#212121' : '#FFFFFF')};
   ${({ theme }) => theme.mediaQueries.md} {
     width: 680px;
     margin-bottom: 0px;

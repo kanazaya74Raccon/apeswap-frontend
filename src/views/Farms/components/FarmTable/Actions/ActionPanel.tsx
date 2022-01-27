@@ -10,7 +10,7 @@ import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import { LiquidityProps } from '../Liquidity'
-import {LpTokenPrices} from "../../../../../state/types";
+import { LpTokenPrices } from '../../../../../state/types'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -116,7 +116,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   account,
   addLiquidityUrl,
   liquidity,
-  farmsPrices
+  farmsPrices,
 }) => {
   const farm = details
 
@@ -141,11 +141,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const lpPrice : LpTokenPrices = farmsPrices?.find((lp)=> lp.pid === farm.pid)
+  const lpPrice: LpTokenPrices = farmsPrices?.find((lp) => lp.pid === farm.pid)
 
-  const totalValuePersonalFormated = lpPrice && rawStakedBalance > 0
-    ? `${(lpPrice.price*rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
-    : '-'
+  const totalValuePersonalFormated =
+    lpPrice && rawStakedBalance > 0
+      ? `${(lpPrice.price * rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+      : '-'
 
   let liquidityDigits
   if (typeof liquidity.liquidity === 'string') {

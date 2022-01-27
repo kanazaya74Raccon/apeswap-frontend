@@ -37,11 +37,11 @@ export const VestingClaimButton = styled(Button)`
   flex-direction: column;
 `
 
-export const DisplayVestingTime = styled(Text)<{label?: boolean}>`
+export const DisplayVestingTime = styled(Text)<{ label?: boolean }>`
   font-family: Poppins;
-  font-size: ${({ label }) => label ? '12px' : '14px'};
-  font-weight: ${({ label }) => label ? 'normal' : 'bold'};
-  line-height: ${({ label }) => label ? '18px' : '24px'};
+  font-size: ${({ label }) => (label ? '12px' : '14px')};
+  font-weight: ${({ label }) => (label ? 'normal' : 'bold')};
+  line-height: ${({ label }) => (label ? '18px' : '24px')};
 `
 
 export const Claim = styled(Text)`

@@ -124,7 +124,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 5,
@@ -145,7 +145,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 19,
@@ -166,7 +166,7 @@ const vaults: VaultConfig[] = [
     totalFees: 50,
     withdrawFee: 0.1,
     burning: true,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 23,
@@ -187,7 +187,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 24,
@@ -208,7 +208,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 25,
@@ -229,7 +229,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 26,
@@ -250,7 +250,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 27,
@@ -271,7 +271,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 28,
@@ -292,7 +292,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 29,
@@ -313,7 +313,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 30,
@@ -334,7 +334,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 31,
@@ -355,7 +355,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 32,
@@ -376,7 +376,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
   {
     pid: 36,
@@ -418,7 +418,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
 
   {
@@ -440,7 +440,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
-    inactive: true
+    inactive: true,
   },
 
   {
@@ -463,7 +463,7 @@ const vaults: VaultConfig[] = [
     withdrawFee: 0.1,
     burning: false,
     rewardsInSeconds: true,
-    inactive: true
+    inactive: true,
   },
 
   {
@@ -486,7 +486,7 @@ const vaults: VaultConfig[] = [
     withdrawFee: 0.1,
     burning: false,
     rewardsInSeconds: true,
-    inactive: true
+    inactive: true,
   },
 
   // MATIC VAULTS
