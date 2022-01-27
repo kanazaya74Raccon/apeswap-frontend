@@ -1,6 +1,11 @@
 import React, { useCallback, useState } from 'react'
+import styled from 'styled-components'
 import { Skeleton, ButtonSquare, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { useNfaStakingApprove } from 'hooks/useApprove'
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 interface ApprovalActionProps {
   nfaStakingPoolContract: string
@@ -25,7 +30,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract,
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <ButtonSquare
+        <StyledButtonSquare
           disabled={pendingApprove}
           onClick={async () => {
             setPendingApprove(true)
@@ -35,7 +40,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ nfaStakingPoolContract,
           endIcon={pendingApprove && <AutoRenewIcon spin color="currentColor" />}
         >
           ENABLE
-        </ButtonSquare>
+        </StyledButtonSquare>
       )}
     </>
   )

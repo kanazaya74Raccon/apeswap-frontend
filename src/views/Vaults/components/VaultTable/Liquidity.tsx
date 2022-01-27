@@ -29,7 +29,7 @@ const Container = styled.div`
 
 const StyledText = styled(Text)`
   font-size: 20px;
-  font-family: 'Titan One';
+  font-weight: 800;
 `
 
 const Staked: React.FunctionComponent<LiquidityProps> = ({ staked }) => {

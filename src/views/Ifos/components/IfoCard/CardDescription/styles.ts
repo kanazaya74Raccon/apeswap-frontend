@@ -16,8 +16,7 @@ export const ToggleButton = styled.button`
   color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
   cursor: pointer;
   display: block;
-  font-weight: 800;
-  font-family: Poppins;
+  font-weight: 600;
   outline: 0;
   width: 100%;
 `
@@ -26,6 +25,7 @@ export const Description = styled(Text).attrs({ fontFamily: 'poppins' })<{ isOpe
   color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   margin-top: 24px;
+  font-weight: 300;
 `
 
 export const IconImage = styled(Image)`

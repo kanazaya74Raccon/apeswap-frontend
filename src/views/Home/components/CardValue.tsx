@@ -53,7 +53,7 @@ const CardValue: React.FC<CardValueProps> = ({
   }, [value, updateValue])
 
   return (
-    <StyledText fontSize={fontSize} color={color} fontFamily={fontFamily}>
+    <StyledText fontSize={fontSize} color={color} fontWeight={fontWeight} fontFamily={fontFamily}>
       {prefix} {countUp}
     </StyledText>
   )

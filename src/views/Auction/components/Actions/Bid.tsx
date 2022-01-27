@@ -81,7 +81,7 @@ const SubButton = styled.div`
 const ButtonText = styled(Text)`
   width: 52px;
   height: 30px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -92,7 +92,7 @@ const ButtonText = styled(Text)`
 const SubText = styled(Text)`
   position: absolute;
   height: 41px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: 500;
   font-size: 27px;
@@ -106,9 +106,9 @@ const UserBalanceWrapper = styled(Text)`
   height: 15px;
   left: 20px;
   bottom: 10px;
-  font-family: Poppins;
+
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 10px;
   line-height: 15px;
   display: flex;
@@ -127,9 +127,8 @@ const BidInput = styled.input`
   top: 5px;
   outline: none;
   border: none;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 27px;
   line-height: 10px;
   display: flex;

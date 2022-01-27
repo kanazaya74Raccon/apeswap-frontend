@@ -28,8 +28,7 @@ const StyledInput = styled.input`
   margin: 0;
   padding: 0;
   outline: none;
-  font-size: 30px;
-  font-weight: 700;
+  font-weight: 800;
 `
 
 const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, startAdornment, value }) => {

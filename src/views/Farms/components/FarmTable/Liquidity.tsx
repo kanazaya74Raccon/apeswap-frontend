@@ -30,7 +30,7 @@ const Container = styled.div`
 
 const StyledText = styled(Text)`
   font-size: 20px;
-  font-family: 'Titan One', sans-serif;
+  font-weight: 800;
 `
 
 const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {

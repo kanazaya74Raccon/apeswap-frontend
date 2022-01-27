@@ -39,9 +39,8 @@ const HistoryWrapper = styled.div`
 const HistoryTitle = styled(Text)`
   position: absolute;
   top: 30px;
-  font-family: Titan One;
+  font-weight: 800;
   font-style: normal;
-  font-weight: normal;
   font-size: 22px;
   line-height: 25px;
   letter-spacing: 0.05em;
@@ -59,9 +58,8 @@ const ColumnHeadersWrapper = styled.div`
   padding-right: 70px;
 `
 const HeaderText = styled(Text)`
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0.05em;
@@ -94,7 +92,7 @@ const Row = styled.div<RowProps>`
 const Column = styled.div`
   height: 27;
   width: 120px;
-  font-family: Poppins;
+  font-weight: 600;
   font-style: normal;
   font-size: 14px;
   text-align: center;

@@ -19,9 +19,8 @@ const DropDownWrapper = styled.div`
 `
 
 const MoreInformation = styled(Text)`
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.05em;
   padding-right: 10px;

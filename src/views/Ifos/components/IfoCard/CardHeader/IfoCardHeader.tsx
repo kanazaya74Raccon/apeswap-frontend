@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { IfoStatus } from 'config/constants/types'
 import { Text } from '@apeswapfinance/uikit'
 
@@ -14,6 +15,10 @@ interface IfoCardHeaderProps {
   secondsUntilStart: number
   secondsUntilEnd: number
 }
+
+const StyledText = styled(Text)`
+  font-weight: 300;
+`
 
 const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
   ifoId,
@@ -37,7 +42,7 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
     }
 
     if (countdownToUse <= 0) {
-      return <Text>Finished</Text>
+      return <StyledText>Finished</StyledText>
     }
 
     if (status === 'live') {

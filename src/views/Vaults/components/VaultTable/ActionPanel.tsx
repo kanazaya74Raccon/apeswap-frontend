@@ -46,8 +46,7 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -62,7 +61,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -70,10 +69,11 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 const InfoContainer = styled.div`
@@ -127,7 +127,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
             <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">
-            <StyledLink external href={blockExplorer} bold={false} fontFamily="Titan One">
+            <StyledLink external href={blockExplorer} bold={false}>
               {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
             </StyledLink>
           </Flex>

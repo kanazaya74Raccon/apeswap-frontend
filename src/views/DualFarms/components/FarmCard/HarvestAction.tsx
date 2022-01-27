@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo, useCallback } from 'react'
+import styled from 'styled-components'
 import { getContract } from 'utils'
 import erc20 from 'config/abi/erc20.json'
 import { DualFarm } from 'state/types'
@@ -12,6 +13,10 @@ import { useDualFarmStake } from 'hooks/useStake'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 import DepositModal from '../DepositModal'
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 interface DualFarmProps {
   dualFarm?: DualFarm
@@ -70,28 +75,28 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare
+        <StyledButtonSquare
           disabled={requestedApproval}
           onClick={handleApprove}
           endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
         >
           {TranslateString(999, 'ENABLE')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
       return (
-        <ButtonSquare
+        <StyledButtonSquare
           disabled={stakeTx}
           onClick={onPresentDeposit}
           endIcon={stakeTx && <AutoRenewIcon spin color="currentColor" />}
         >
           {TranslateString(999, 'STAKE LP')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     return (
-      <ButtonSquare
+      <StyledButtonSquare
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
@@ -101,7 +106,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
         endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
       >
         {TranslateString(999, 'HARVEST')}
-      </ButtonSquare>
+      </StyledButtonSquare>
     )
   }
 

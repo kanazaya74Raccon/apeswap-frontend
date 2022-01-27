@@ -69,13 +69,11 @@ const StyledMaxText = styled.div`
   font-weight: 500;
   height: 18px;
   justify-content: flex-end;
-  margin-right: 30px;
 `
 
 const StyledTokenSymbol = styled.span`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
-  font-weight: 500;
-  font-size: 16px;
+  color: ${(props) => props.theme.colors.primary};
+  font-weight: 450;
 `
 
 export default TokenInput

@@ -19,7 +19,6 @@ export const LaunchPadInfoWrapper = styled.div`
   }
 `
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 22px;
   line-height: 27px;
   margin-top: 15px;
@@ -32,7 +31,7 @@ export const InputTitle = styled(Text)`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Poppins;
+
   font-size: 12px;
   font-weight: 700;
   width: 230px;
@@ -67,7 +66,7 @@ export const LiquidityButton = styled.div<{ active: boolean }>`
   border-radius: 5px;
   color: white;
   font-weight: 700;
-  font-family: Poppins;
+
   align-items: center;
   justify-content: center;
   cursor: pointer;

@@ -102,9 +102,7 @@ const ApyWrapper = styled.div`
 `
 
 const ApyText = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 19px;
   display: flex;
@@ -114,9 +112,7 @@ const ApyText = styled(Text)`
 `
 
 const ApyNumber = styled(Text)`
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 18px;
   line-height: 20px;
   margin-left: 4px;
@@ -171,7 +167,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
         />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontFamily="Titan One">
+        <StyledHeading fontWeight={800}>
           {farm?.stakeTokens?.token0?.symbol}-{farm?.stakeTokens?.token1?.symbol}
         </StyledHeading>
         <ApyWrapper>

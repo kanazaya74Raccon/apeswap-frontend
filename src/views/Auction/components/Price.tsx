@@ -32,9 +32,8 @@ const PriceText = styled(Text)`
   position: absolute;
   width: 52px;
   height: 24px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.05em;
@@ -68,9 +67,8 @@ const CurrentBidWrapper = styled(Text)`
   height: 41px;
   left: 100px;
   margin-bottom: 0px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 16px;
   line-height: 50px;
   display: flex;
@@ -87,6 +85,7 @@ const CurrentBidWrapper = styled(Text)`
 `
 
 const CurrentBidDollarWrapper = styled(Text)`
+  font-weight: 600;
   display: none;
   ${({ theme }) => theme.mediaQueries.lg} {
     position: absolute;
@@ -94,9 +93,8 @@ const CurrentBidDollarWrapper = styled(Text)`
     height: 15px;
     left: 155px;
     margin-top: 25px;
-    font-family: Poppins;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 10px;
     line-height: 15px;
     display: flex;

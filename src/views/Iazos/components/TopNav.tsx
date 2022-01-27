@@ -54,7 +54,6 @@ const BackArrow = styled.img`
 `
 
 const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;

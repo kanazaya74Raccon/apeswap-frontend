@@ -104,7 +104,7 @@ export const TokenImage = styled.img`
 export const TokenName = styled(Text)`
   font-size: 15px;
   padding-left: 15px;
-  font-family: Poppins;
+
   font-weight: 700;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 24px;
