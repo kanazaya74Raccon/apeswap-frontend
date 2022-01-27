@@ -35,10 +35,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.214/0484fc9e461b2375e180d8b42d1a74f9abaf52075bc94bed34da6058c56aa360#14f9e3f300292e12b8fece7ad3b7d32ea1a36e8d"
   integrity sha512-1t4NgQOK14JYi7JNKbVt/jDTcHQ4lY3vFGa0VkQ4j4YXJDTJDZ49k7OVBXewBsPky1QWSw6I2d1lLQSow/I2gg==
 
-"@apeswapfinance/uikit@0.10.5-4.2":
-  version "0.10.5-4.2"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-4.2/3ffeee47a73cd2704f1d5560dad4891d5bf06dce5196aaec910ed5e31eb6b606#7ff1a62fa807667a604b5f0cd4c76634e24b7cbf"
-  integrity sha512-sBQLNyd+F5wxq1XnCcQ8NjLwkHuTMvsKi6XFR4igE6lSeLa9XqTWB2sczvTginTxLrdyt5dl2DvCLseLUI9iAA==
+"@apeswapfinance/uikit@0.10.5-4.3":
+  version "0.10.5-4.3"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-4.3/f55124164aca88931d7b335a76dc28b127803bbfbc7cd81c4846cd87f73a8956#9b3b3f33f75e6e9a9a18c44f53808e96cbb1e9be"
+  integrity sha512-5WX/rOGKyxD8iIG1kubQel1WqmFnlzMFexP4FAZCYslExbvm/QXSs3h3YNLJyqP6cvJ+2cNQcpz7Kn9FewI9Ag==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -11595,9 +11595,9 @@ preact@10.4.1:
   integrity sha512-WKrRpCSwL2t3tpOOGhf2WfTpcmbpxaWtDbdJdKdjd0aEiTkvOmS4NBkG6kzlaAHI9AkQ3iVqbFWM3Ei7mZ4o1Q==
 
 preact@^10.5.9:
-  version "10.6.4"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.4.tgz#ad12c409ff1b4316158486e0a7b8d43636f7ced8"
-  integrity sha512-WyosM7pxGcndU8hY0OQlLd54tOU+qmG45QXj2dAYrL11HoyU/EzOSTlpJsirbBr1QW7lICxSsVJJmcmUglovHQ==
+  version "10.6.5"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.5.tgz#726d8bd12903a0d51cdd17e2e1b90cc539403e0c"
+  integrity sha512-i+LXM6JiVjQXSt2jG2vZZFapGpCuk1fl8o6ii3G84MA3xgj686FKjs4JFDkmUVhtxyq21+4ay74zqPykz9hU6w==
 
 precond@0.2:
   version "0.2.3"
