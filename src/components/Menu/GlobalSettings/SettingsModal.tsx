@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Modal, InjectedModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
-import {
-  useExpertModeManager,
-  useUserExpertModeAcknowledgementShow,
-  useUserSingleHopOnly,
-} from 'state/user/hooks'
+import { useExpertModeManager, useUserExpertModeAcknowledgementShow, useUserSingleHopOnly } from 'state/user/hooks'
 import { useSwapActionHandlers } from 'state/swap/hooks'
 import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'

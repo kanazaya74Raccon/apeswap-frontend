@@ -170,7 +170,7 @@ const StyledInput = styled(Input)`
     box-shadow: none !important;
   }
   ::placeholder {
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
   }
 `
 const SelectButton = styled.div<{ active: boolean }>`

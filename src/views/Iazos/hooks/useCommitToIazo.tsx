@@ -10,9 +10,7 @@ const useCommitToIazo = (iazoAddress: string, amount: string, isNative?: boolean
   const iazoContract = useIazoContract(iazoAddress)
   const handleCommitToIazo = useCallback(async () => {
     try {
-      const tx = isNative
-        ? await userDepositNative(iazoContract, amount)
-        : await userDeposit(iazoContract, amount)
+      const tx = isNative ? await userDepositNative(iazoContract, amount) : await userDeposit(iazoContract, amount)
 
       track({
         event: 'iazo',

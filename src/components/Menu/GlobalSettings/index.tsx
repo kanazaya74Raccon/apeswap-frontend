@@ -1,7 +1,6 @@
 import React from 'react'
-import {CogIcon, useModal, ButtonSquare } from '@apeswapfinance/uikit'
+import { CogIcon, useModal, ButtonSquare } from '@apeswapfinance/uikit'
 import SettingsModal from './SettingsModal'
-
 
 const GlobalSettings = () => {
   const [onPresentSettingsModal] = useModal(<SettingsModal />)

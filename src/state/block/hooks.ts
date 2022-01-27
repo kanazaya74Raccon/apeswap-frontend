@@ -7,7 +7,7 @@ import { useAppDispatch } from 'state'
 import { setBlock } from '.'
 import { State } from '../types'
 
-export const usePollBlockNumber = (refreshTime = 6000) => {
+export const usePollBlockNumber = (refreshTime = 10000) => {
   const dispatch = useAppDispatch()
   const isWindowVisible = useIsWindowVisible()
   const { library } = useActiveWeb3React()

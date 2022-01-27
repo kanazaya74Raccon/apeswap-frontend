@@ -48,7 +48,11 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
               />
             </td>
             <td>
-              <ContributeButton disabled={disabled || pendingTx || !isAmountValid(value)} variant="yellow" onClick={() => handleDeposit(value)}>
+              <ContributeButton
+                disabled={disabled || pendingTx || !isAmountValid(value)}
+                variant="yellow"
+                onClick={() => handleDeposit(value)}
+              >
                 CONTRIBUTE
               </ContributeButton>
             </td>

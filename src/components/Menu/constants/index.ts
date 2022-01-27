@@ -1,4 +1,3 @@
-
 export const HOME = {
   label: 'Home',
   icon: 'HomeIcon',

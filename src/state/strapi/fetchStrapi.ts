@@ -121,7 +121,6 @@ export const useFetchHeadersHome = () => {
   return state
 }
 
-
 export const useFetchSwapBanners = () => {
   const [state, setState] = useState({
     swapBannersData: [],

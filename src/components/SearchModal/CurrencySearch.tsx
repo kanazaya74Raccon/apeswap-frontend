@@ -25,7 +25,6 @@ interface CurrencySearchProps {
   setImportToken: (token: Token) => void
 }
 
-
 function CurrencySearch({
   selectedCurrency,
   onCurrencySelect,
@@ -61,14 +60,11 @@ function CurrencySearch({
     return filterTokens(Object.values(allTokens), debouncedQuery)
   }, [allTokens, debouncedQuery])
 
-
   const sortedTokens: Token[] = useMemo(() => {
     return filteredTokens.sort(tokenComparator)
   }, [filteredTokens, tokenComparator])
 
-
   const filteredSortedTokens = useSortedTokensByQuery(sortedTokens, debouncedQuery)
-
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
@@ -116,7 +112,7 @@ function CurrencySearch({
 
   return (
     <div>
-      <AutoColumn style={{margin: "20px 0 20px 0"}}>
+      <AutoColumn style={{ margin: '20px 0 20px 0' }}>
         <Row padding="0 15px 0 15px">
           <StyledInput
             id="token-search-input"
@@ -164,15 +160,15 @@ function CurrencySearch({
 }
 
 const StyledInput = styled(Input)`
-color: ${props => props.theme.colors.text};
-placeholder-color: black;
-::placeholder {
-  color: ${props => props.theme.colors.text};
-}
-:focus {
-  border: 1px solid #ffb300 !important;
-  box-shadow: none !important;
-}  
+  color: ${(props) => props.theme.colors.text};
+  placeholder-color: black;
+  ::placeholder {
+    color: ${(props) => props.theme.colors.text};
+  }
+  :focus {
+    border: 1px solid #ffb300 !important;
+    box-shadow: none !important;
+  }
 `
 
 export default CurrencySearch

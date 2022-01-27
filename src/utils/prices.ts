@@ -68,17 +68,17 @@ export function warningSeverity(priceImpact: Percent | undefined): 0 | 1 | 2 | 3
   return 0
 }
 
-export function formatExecutionPrice(chainId: number, trade?: Trade, inverted?: boolean, ): string {
+export function formatExecutionPrice(chainId: number, trade?: Trade, inverted?: boolean): string {
   if (!trade) {
     return ''
   }
   return inverted
-    ? `${trade.executionPrice
-        .invert()
-        .toSignificant(6)} ${trade.inputAmount.currency.getSymbol(chainId)} / ${trade.outputAmount.currency.getSymbol(chainId)}`
-    : `${trade.executionPrice.toSignificant(
-        6,
-      )} ${trade.outputAmount.currency.getSymbol(chainId)} / ${trade.inputAmount.currency.getSymbol(chainId)}`
+    ? `${trade.executionPrice.invert().toSignificant(6)} ${trade.inputAmount.currency.getSymbol(
+        chainId,
+      )} / ${trade.outputAmount.currency.getSymbol(chainId)}`
+    : `${trade.executionPrice.toSignificant(6)} ${trade.outputAmount.currency.getSymbol(
+        chainId,
+      )} / ${trade.inputAmount.currency.getSymbol(chainId)}`
 }
 
 /**

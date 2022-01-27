@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Text } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 
-import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles';
+import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container } from './styles'
 
 interface IconProps {
   name: string
@@ -34,7 +34,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
     if (isSwitching) {
       setTimeout(scroll, 500)
     } else {
-      scroll();
+      scroll()
     }
   }
 
@@ -79,7 +79,8 @@ const HowItWorks = ({ onParticipate }: Props) => {
           <div>
             <SectionHeading fontFamily="poppins">OVERFLOW MODEL</SectionHeading>
             <Text fontFamily="poppins">
-              Your token allocation is based on your percentage of the total raise. All overflow contributions will be returned post-raise.
+              Your token allocation is based on your percentage of the total raise. All overflow contributions will be
+              returned post-raise.
             </Text>
           </div>
         </FeatureBox>
