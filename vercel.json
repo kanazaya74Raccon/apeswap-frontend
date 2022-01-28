@@ -19,6 +19,6 @@
         { "source": "/admin-pool", "destination": "/admin-pools", "permanent": true },
         { "source": "/staff-pools", "destination": "/admin-pools", "permanent": true },
         { "source": "/info", "destination": "https://info.apeswap.finance/", "permanent": true },
-        { "source": "/lending", "destination": "https://lending.apeswap.finance/", "permanent": true },
+        { "source": "/lending", "destination": "https://lending.apeswap.finance/", "permanent": true }
     ]
 }
