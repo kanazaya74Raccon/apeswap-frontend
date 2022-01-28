@@ -49,7 +49,6 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
 }
 
 const BoldAfterText = styled(Text)<{ boldContent?: string; fontSize?: string; fontColor?: string }>`
-  font-family: poppins;
   font-weight: ${(props) => props.fontSize};
   color: ${(props) => props.fontColor};
   &:after {

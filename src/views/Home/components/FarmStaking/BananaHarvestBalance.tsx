@@ -22,7 +22,7 @@ const BananaHarvestBalance = () => {
     )
   }
 
-  return <CardValue value={earningsSum} fontSize="57px" fontFamily="Titan One" />
+  return <CardValue value={earningsSum} fontSize="57px" fontWeight={800} />
 }
 
 export default BananaHarvestBalance

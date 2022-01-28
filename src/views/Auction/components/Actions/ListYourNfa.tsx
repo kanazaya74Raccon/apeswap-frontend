@@ -11,7 +11,7 @@ const MoreInfo = styled.div`
   border-radius: 10px;
   font-size: 15px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 32.5px;
   letter-spacing: 0.05em;
   text-align: left;

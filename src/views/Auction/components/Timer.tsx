@@ -41,9 +41,8 @@ const TimerText = styled(Text)`
   width: 101px;
   height: 32px;
   margin-left: 42px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 18px;
   line-height: 31px;
   display: flex;

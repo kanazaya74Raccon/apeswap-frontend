@@ -93,13 +93,13 @@ const Nfa = () => {
         </NfaHolder>
         <DetailsHolder>
           <BoxShadow>
-            <Text fontSize="32px" color="primary" fontFamily="Titan One">
+            <Text fontSize="32px" color="primary" fontWeight={800}>
               {TranslateString(999, `${nfa.name} ${nfa.index}`)}
             </Text>
-            <Text fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+            <Text fontWeight={300} fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
               {TranslateString(999, nfa.attributes.rarityTierName)}
             </Text>
-            <Text fontFamily="poppins" fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+            <Text fontWeight={300} fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
               {TranslateString(
                 999,
                 `Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`,
@@ -111,7 +111,7 @@ const Nfa = () => {
               rel="noopener noreferrer"
             >
               <Text
-                fontFamily="poppins"
+                fontWeight={300}
                 fontSize="20px"
                 color="textSubtle"
                 style={{ textDecoration: 'underline', margin: '5px 0px 20px 0px' }}
@@ -122,7 +122,7 @@ const Nfa = () => {
           </BoxShadow>
           {sales && (
             <BoxShadow style={{ marginTop: '25px', padding: '5px 0px 10px 0px' }}>
-              <Text fontFamily="poppins" fontSize="23px" color="textSubtle" style={{ margin: '10px 0px 15px 0px' }}>
+              <Text fontWeight={300} fontSize="23px" color="textSubtle" style={{ margin: '10px 0px 15px 0px' }}>
                 {TranslateString(999, sales?.length > 0 ? 'Previous Sales' : 'No Sale History')}
               </Text>
               {sales?.length > 0 ? (

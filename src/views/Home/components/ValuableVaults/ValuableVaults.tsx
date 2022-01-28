@@ -78,7 +78,7 @@ const VauluableVaults = () => {
     <>
       <ValuableVaultsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontFamily="Titan One">Valuable Vaults</HotFarmsText>
+        <HotFarmsText fontWeight={800}>Valuable Vaults</HotFarmsText>
         <FarmWrapper>
           {vaultsToDisplay.map((vault: Vault) => (
             <a href="https://apeswap.finance/vaults" rel="noopener noreferrer" key={vault?.pid}>

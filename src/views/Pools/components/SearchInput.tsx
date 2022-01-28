@@ -7,7 +7,7 @@ const StyledInput = styled(Input)`
   background: ${({ theme }) => (theme.isDark ? '#353547' : '#f0f0f0')};
   margin-left: auto;
   height: 28px;
-  font-family: 'Titan One', sans-serif;
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 32px;

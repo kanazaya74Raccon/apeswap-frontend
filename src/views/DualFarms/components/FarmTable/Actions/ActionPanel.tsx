@@ -91,7 +91,7 @@ const StakedText = styled(Text)`
 
 const StakedValueText = styled(Text)`
   margin-left: 60px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left: 85px;
@@ -172,7 +172,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={blockExplorer} fontFamily="Titan One">
+      <StyledLinkExternal href={blockExplorer} fontWeight={800}>
         {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
       </StyledLinkExternal>
     </>

@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -53,11 +53,11 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -65,6 +65,7 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
@@ -134,19 +135,19 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledTextGreen fontSize="12px">{displayHarvestBalance}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
+        <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       {farm.projectLink && (
         <Flex justifyContent="center">
-          <StyledLink external href={farm.projectLink} bold={false} fontFamily="Titan One">
+          <StyledLink external href={farm.projectLink} bold={false}>
             {TranslateString(356, 'View Project Site')}
           </StyledLink>
         </Flex>
       )}
       <Flex justifyContent="center">
-        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)} fontFamily="Titan One">
+        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
           Add to Metamask
         </StyledLink>
       </Flex>

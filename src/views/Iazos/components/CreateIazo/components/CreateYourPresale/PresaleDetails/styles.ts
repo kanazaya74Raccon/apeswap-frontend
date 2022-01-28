@@ -24,7 +24,6 @@ export const CheckBoxStyled = styled(Checkbox)`
 `
 
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 18px;
   line-height: 27px;
   margin-top: 15px;
@@ -52,7 +51,6 @@ export const FooterContainer = styled.div`
 `
 
 export const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   font-weight: 400;
   margin-left: 15px;

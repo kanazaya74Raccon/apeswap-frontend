@@ -37,7 +37,7 @@ const DropDownContent = styled.div`
 const DropDownItem = styled.p`
   cursor: pointer;
   opacity: 0.8;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   &:hover {
     opacity: 1;
@@ -95,7 +95,7 @@ const SearchBox = styled.input`
   box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
   background-color: ${(props) => props.theme.colors};
   color: ${(props) => props.theme.colors.textSubtle};
-  font-family: 'Titan One';
+  font-weight: 800;
 
   &:focus {
     outline: none !important;
@@ -128,7 +128,7 @@ const BackToTop = styled.button`
 `
 
 const SortTitle = styled.p`
-  font-family: 'Titan One';
+  font-weight: 800;
   color: ${(props) => props.theme.colors.white};
 `
 

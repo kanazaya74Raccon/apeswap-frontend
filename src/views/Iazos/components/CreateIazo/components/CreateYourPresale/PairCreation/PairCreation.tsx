@@ -83,10 +83,8 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
       {tokenApproved && (
         <>
           <PairContainer>
-            <Text fontSize="18px" fontFamily="poppins">
-              Apeswap pair to be created
-            </Text>
-            <Text color="rgba(255, 179, 0, 1)" fontSize="20px" fontFamily="poppins" bold>
+            <Text fontSize="18px">Apeswap pair to be created</Text>
+            <Text color="rgba(255, 179, 0, 1)" fontSize="20px" fontWeight={600}>
               {selectedToken?.quoteToken} / {selectedToken?.tokenSymbol}
             </Text>
           </PairContainer>

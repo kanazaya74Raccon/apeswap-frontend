@@ -33,6 +33,7 @@ const Header = styled.div<{ banner: string }>`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -131,10 +132,10 @@ const BurningGames: React.FC = () => {
     <ContainerPrincipal isDark={!isDark}>
       <Header banner={banner}>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} color="white" fontFamily="TitanOne">
+          <StyledHeading as="h1" mb="12px" mt={0} color="white">
             BANANA Burns
           </StyledHeading>
-          <SubtitleHeading isMobile={!isDesktop} fontFamily="poppins" fontWeight={400} color="white">
+          <SubtitleHeading isMobile={!isDesktop} fontWeight={400} color="white">
             Partners Supporting The Jungle
           </SubtitleHeading>
         </HeadingContainer>

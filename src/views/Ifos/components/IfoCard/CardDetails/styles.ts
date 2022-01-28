@@ -33,5 +33,5 @@ export const Item = styled.div`
 export const Display = styled(Text)`
   flex: 1;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
 `

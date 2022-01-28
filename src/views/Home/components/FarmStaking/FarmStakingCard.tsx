@@ -75,11 +75,6 @@ const StyledButton = styled(Button)`
   height: 44px;
 `
 
-const StyledLabel = styled(Label)`
-  font-family: Poppins;
-  font-weight: 700;
-`
-
 const HarvestDiv = styled.div`
   padding-bottom: 50px;
 `
@@ -102,10 +97,8 @@ const CardHeaderImagePoly = styled(CardHeaderImage)`
 `
 
 const HeaderText = styled(Text)`
-  font-family: Titan One;
   font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 31px;
   letter-spacing: 0.05em;
   text-align: center;
@@ -168,20 +161,20 @@ const FarmedStakingCard = () => {
               <BananaHarvestBalance />
               <FlexRow>
                 <BananaHarvestUsdBalance />
-                <StyledLabel>{TranslateString(544, ' total harvest value')}</StyledLabel>
+                <Label>{TranslateString(544, ' total harvest value')}</Label>
               </FlexRow>
             </Block>
             <Block>
               <BananaWalletBalance />
               <FlexRow>
                 <BananaWalletUsdBalance />
-                <StyledLabel>{TranslateString(546, 'in BANANA in Wallet')}</StyledLabel>
+                <Label>{TranslateString(546, 'in BANANA in Wallet')}</Label>
               </FlexRow>
             </Block>
           </HarvestDiv>
         ) : (
           <FlexRow>
-            <StyledTextLock fontFamily="Titan One">LOCKED</StyledTextLock>
+            <StyledTextLock fontWeight={800}>LOCKED</StyledTextLock>
           </FlexRow>
         )}
         <Actions>

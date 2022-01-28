@@ -43,9 +43,8 @@ const HeadingText = styled(Text)`
   color: #fafafa;
   width: 366px;
   height: 125px;
-  font-family: Titan One;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 800;
   font-size: 28px;
   line-height: 57px;
   text-align: center;

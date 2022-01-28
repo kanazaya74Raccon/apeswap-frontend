@@ -13,6 +13,7 @@ interface CardValueProps {
   text?: string
   fontWeight?: number
   differentFontSize?: string
+  top?: string
 }
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -23,6 +24,7 @@ const CardValue: React.FC<CardValueProps> = ({
   color,
   fontFamily,
   fontWeight,
+  top,
   differentFontSize,
 }) => {
   const { countUp, update } = useCountUp({
@@ -36,6 +38,7 @@ const CardValue: React.FC<CardValueProps> = ({
   })
 
   const StyledText = styled(Text)`
+    margin-top: ${top || 0};
     font-weight: ${fontWeight || 400};
 
     ${({ theme }) => theme.mediaQueries.xl} {
@@ -50,7 +53,7 @@ const CardValue: React.FC<CardValueProps> = ({
   }, [value, updateValue])
 
   return (
-    <StyledText fontSize={fontSize} color={color} fontFamily={fontFamily}>
+    <StyledText fontSize={fontSize} color={color} fontWeight={fontWeight} fontFamily={fontFamily}>
       {prefix} {countUp}
     </StyledText>
   )

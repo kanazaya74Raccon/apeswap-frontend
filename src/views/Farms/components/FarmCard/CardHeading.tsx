@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import UnlockButton from 'components/UnlockButton'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
@@ -44,6 +44,8 @@ const StyledBackground = styled.div`
 
 const StyledHeading = styled(Heading)`
   font-size: 12px;
+  font-weight: 800;
+
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
   }
@@ -54,7 +56,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const StyledText1 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 15px;
@@ -62,7 +64,7 @@ const StyledText1 = styled(Text)`
 `
 
 const StyledText2 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   margin-top: 1px;
 `
@@ -70,7 +72,7 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
-  font-family: 'Titan One', sans-serif;
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
@@ -80,7 +82,7 @@ const StyledText3 = styled(Text)`
 
 const StyledText4 = styled(Text)`
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 1px;
   display: none;
 
@@ -175,12 +177,12 @@ const FlexSwitch = styled.div`
 `
 
 const StyledAPRText = styled.div`
+  font-weight: 800;
   font-size: 12px;
   line-height: 11px;
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
-  font-family: 'Titan One', sans-serif;
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
     line-height: 23px;
@@ -234,6 +236,11 @@ const Container = styled.div`
   align-items: center;
 `
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+  font-size: 11.5px;
+`
+
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   apr,
@@ -279,7 +286,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading fontFamily="Titan One">{lpLabel}</StyledHeading>
+          <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1>APR:</StyledText1>
@@ -323,7 +330,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           </StyledFlexEarned>
           <ButtonContainer>
             {!account ? (
-              <UnlockButton padding="8px" />
+              <StyledUnlockButton size="sm" />
             ) : (
               <HarvestAction earnings={earnings} pid={pid} lpSymbol={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
             )}

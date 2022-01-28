@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { Button, Text } from '@apeswapfinance/uikit'
-import BaseUnlockButton from 'components/UnlockButton'
+import { Button, Text, ButtonSquare } from '@apeswapfinance/uikit'
+// import BaseUnlockButton from 'components/UnlockButton'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 
 export const Container = styled.div`
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
@@ -38,17 +39,15 @@ export const VestingClaimButton = styled(Button)`
 `
 
 export const DisplayVestingTime = styled(Text)<{ label?: boolean }>`
-  font-family: Poppins;
   font-size: ${({ label }) => (label ? '12px' : '14px')};
-  font-weight: ${({ label }) => (label ? 'normal' : 'bold')};
+  font-weight: ${({ label }) => (label ? 'normal' : 600)};
   line-height: ${({ label }) => (label ? '18px' : '24px')};
 `
 
 export const Claim = styled(Text)`
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 24px;
   text-transform: uppercase;
 `
@@ -62,12 +61,12 @@ export const TextWrapRow = styled.div`
   flex-wrap: wrap;
 `
 
-export const ApproveButton = styled(Button)`
+export const ApproveButton = styled(ButtonSquare)`
   width: 220px;
   margin: 0 auto;
 `
 
-export const UnlockButton = styled(BaseUnlockButton)`
+export const UnlockButton = styled(UnlockButtonSquare)`
   width: 220px;
   margin: 0 auto;
   height: 44px;

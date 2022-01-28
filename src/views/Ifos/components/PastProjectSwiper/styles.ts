@@ -31,7 +31,7 @@ export const ArrowImage = styled.div`
 `
 
 export const StatusTitle = styled(Text)<{ isActive?: boolean }>`
-  font-family: Titan one;
+  font-weight: 800;
   text-align: center;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.sm} {

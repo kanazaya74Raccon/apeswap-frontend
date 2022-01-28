@@ -114,9 +114,8 @@ const HeadingText = styled(Text)`
   color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
   width: 366px;
   height: 125px;
-  font-family: Titan One;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 800;
   font-size: 40px;
   line-height: 57px;
   text-align: center;
@@ -138,7 +137,6 @@ const SecondaryText = styled(Text)`
   color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
   width: 366px;
   height: 125px;
-  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -189,7 +187,7 @@ const MoreInfo = styled.div`
   border-radius: 10px;
   font-size: 15px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 32.5px;
   letter-spacing: 0.05em;
   text-align: left;

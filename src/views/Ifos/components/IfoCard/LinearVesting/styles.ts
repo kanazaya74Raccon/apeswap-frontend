@@ -30,7 +30,6 @@ export const VestingClaimButton = styled(Button)`
 `
 
 export const Claim = styled(Text)`
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

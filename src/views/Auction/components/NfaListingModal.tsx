@@ -62,7 +62,6 @@ const NfaBackground = styled.div`
 `
 
 const TimeText = styled(Text)`
-  font-family: poppins;
   font-weight: 400;
   font-size: 16px;
   align-self: center;

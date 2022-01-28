@@ -27,7 +27,7 @@ const Stats = styled.div`
   border: 1px solid ${(props) => props.theme.colors.text};
   box-sizing: border-box;
   border-radius: 25px;
-  font-family: Poppins;
+
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -48,9 +48,8 @@ const AttributesWrapper = styled.div`
 `
 
 const Attribute = styled(Text)`
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.05em;

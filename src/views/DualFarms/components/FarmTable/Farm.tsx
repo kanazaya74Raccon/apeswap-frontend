@@ -74,7 +74,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ stakeTokens, rewardTokens, l
         />
       </StyledBackground>
       <div>
-        <Text fontSize="20px" fontFamily="Titan One">
+        <Text fontSize="20px" fontWeight={800}>
           {label}
         </Text>
       </div>

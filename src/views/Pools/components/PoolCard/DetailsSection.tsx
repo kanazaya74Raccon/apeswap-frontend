@@ -34,8 +34,8 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
+  font-weight: 600;
+
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -50,11 +50,11 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -99,10 +99,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <>
           <Flex justifyContent="space-between">
             <StyledText fontSize="12px">{TranslateString(410, 'Start')}</StyledText>
-            <StyledText
-              fontFamily="poppins"
-              fontSize="12px"
-            >{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
+            <StyledText fontSize="12px">{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
           </Flex>
         </>
       )}
@@ -133,12 +130,12 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
+        <StyledLink external href={bscScanAddress} bold={false} fontWeight={800}>
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={projectSite} bold={false} fontFamily="Titan One">
+        <StyledLink external href={projectSite} bold={false} fontWeight={800}>
           {TranslateString(356, 'View Project Site')}
         </StyledLink>
       </Flex>

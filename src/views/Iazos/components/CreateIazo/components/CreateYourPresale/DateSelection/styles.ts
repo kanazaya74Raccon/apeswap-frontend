@@ -14,7 +14,6 @@ export const DateContainer = styled.div`
   }
 `
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 24px;
   font-style: normal;
   line-height: 27px;
@@ -23,7 +22,6 @@ export const StyledHeader = styled(Text)`
 `
 
 export const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -36,7 +34,6 @@ export const StyledText = styled(Text)`
 `
 
 export const StyledSubText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   line-height: 24px;
   ${({ theme }) => theme.mediaQueries.md} {

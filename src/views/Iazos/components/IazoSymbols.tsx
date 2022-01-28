@@ -67,16 +67,14 @@ const IazoSymbols: React.FC<IazoSymbolProps> = ({ iconImage, title, description,
           </IazoSymbolSvg>
         </SvgContainer>
       )}
-      <Text fontFamily="poppins" fontSize={isMobile ? '18' : '24px'} bold>
+      <Text fontSize={isMobile ? '18' : '24px'} fontWeight={600}>
         {!link && (title === 'NaN' || !title || title.includes('null')) ? (
           <Skeleton width="80px" height="25px" margin="5px 0 5px 0" />
         ) : (
           title
         )}
       </Text>
-      <Text fontFamily="poppins" fontSize={isMobile ? '12' : '16px'}>
-        {description}
-      </Text>
+      <Text fontSize={isMobile ? '12' : '16px'}>{description}</Text>
       {link && (
         <StyledLink href={url} target="_blank" rel="noopener noreferrer">
           {iconImage}
@@ -136,7 +134,6 @@ const Icon = styled.div<{ iconImage: string }>`
 `
 
 const StyledLink = styled.a`
-  font-family: Poppins;
   color: rgba(255, 179, 0, 1);
   text-decoration: underline;
   margin-top: 5px;
