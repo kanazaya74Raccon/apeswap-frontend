@@ -29,6 +29,11 @@ const StyledInput = styled.input`
   padding: 0;
   outline: none;
   font-weight: 800;
+  font-size: 30px;
+
+  &::placeholder {
+    color: ${({ theme }) => !theme.isDark && '#bdc2c4'};
+  }
 `
 
 const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, startAdornment, value }) => {

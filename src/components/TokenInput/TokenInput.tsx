@@ -72,8 +72,8 @@ const StyledMaxText = styled.div`
 `
 
 const StyledTokenSymbol = styled.span`
-  color: ${(props) => props.theme.colors.primary};
-  font-weight: 450;
+  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  font-weight: 500;
 `
 
 export default TokenInput
