@@ -4,7 +4,6 @@ import { useNfaAllowance } from 'hooks/useAllowance'
 import { useAuctionApprove } from 'hooks/useApprove'
 import { useAuctionAddress } from 'hooks/useAddress'
 import styled from 'styled-components'
-import {Nfb, Nft} from 'config/constants/types'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
 import useI18n from '../../../hooks/useI18n'
@@ -18,7 +17,7 @@ interface NfaListingModalProps {
     minimumBid: string,
   ) => void
   onDismiss?: () => void
-  ownedNfas: Nft[] | Nfb[]
+  ownedNfas: Nft[]
 }
 
 const OwnedNfaWrapper = styled.div`
