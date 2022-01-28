@@ -38,7 +38,10 @@ const Nfa = styled.div<{ active: boolean }>`
 
 const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier }) => {
   const { profile } = useProfile()
-  const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => nfa.attributes.rarityTierNumber === tier)
+  // @ts-ignore
+  const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => {
+    return nfa.attributes.rarityTierNumber === tier
+  })
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
