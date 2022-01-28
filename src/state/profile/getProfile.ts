@@ -44,6 +44,8 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
       const nfbReturn = await (await Promise.all(promises)).map(Number)
       ownedNfts = nfbReturn.map((index) => nfbs[index])
       rarestNft = ownedNfts ? orderBy(ownedNfts, ['attributes.rarityOverallRank'])[0] : null
+
+      ownedNfts = null
       // Save the preview image to local storage for the exchange
       localStorage.setItem(
           `profile_${address}`,
@@ -53,7 +55,7 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
       )
     }
     return {
-      ownedNfts: null,
+      ownedNfts,
       rarestNft,
     } as Profile
   } catch (error) {
