@@ -59,17 +59,17 @@ export const HeaderContainer = styled.div`
   }
 `
 export const StyledHeading = styled(Heading)`
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 700;
   max-width: 240px !important;
   text-transform: uppercase;
 
   ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 42px;
     font-weight: 800;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 60px;
     max-width: 400px !important;
   }
 
