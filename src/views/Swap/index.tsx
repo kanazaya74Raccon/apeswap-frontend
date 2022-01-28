@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
 import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import SwapBanner from 'components/SwapBanner'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { RouteComponentProps } from 'react-router-dom'
@@ -32,7 +33,12 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from '../../state/swap/hooks'
-import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } from '../../state/user/hooks'
+import {
+  useExpertModeManager,
+  useUserSlippageTolerance,
+  useUserSingleHopOnly,
+  useUserRecentTransactions,
+} from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton, ExpertButton } from './styles'
@@ -162,6 +168,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
   const [singleHopOnly] = useUserSingleHopOnly()
+  const [recentTransactions] = useUserRecentTransactions()
 
   const handleSwap = useCallback(() => {
     if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
@@ -486,6 +493,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   </div>
                 </Wrapper>
               </AppBody>
+              {recentTransactions && <WalletTransactions />}
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
         </Flex>

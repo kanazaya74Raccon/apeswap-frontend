@@ -16,6 +16,7 @@ import { Wrapper } from 'views/Swap/components/styleds'
 import SwapBanner from 'components/SwapBanner'
 import { useDispatch } from 'react-redux'
 import { parseAddress } from 'hooks/useAddress'
+import { useSwapState } from 'state/swap/hooks'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -30,7 +31,6 @@ import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallbac
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { Field, resetMintState } from '../../state/mint/actions'
 import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../state/mint/hooks'
-
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
@@ -58,9 +58,13 @@ export default function AddLiquidity({
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
+  // Either use the url params or the user swap state for initial liquidity add
+  const { INPUT, OUTPUT } = useSwapState()
+  const swapCurrencyA = INPUT.currencyId
+  const swapCurrencyB = OUTPUT.currencyId
 
-  const currencyA = useCurrency(currencyIdA)
-  const currencyB = useCurrency(currencyIdB)
+  const currencyA = useCurrency(currencyIdA || swapCurrencyA)
+  const currencyB = useCurrency(currencyIdB || swapCurrencyB)
 
   useEffect(() => {
     if (!currencyIdA && !currencyIdB) {
