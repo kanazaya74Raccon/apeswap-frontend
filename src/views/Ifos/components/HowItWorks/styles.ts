@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Text, Heading } from '@apeswapfinance/uikit'
 
+export const StyledText = styled(Text)`
+  font-weight: 300;
+`
+
 export const FeatureBox = styled.div`
   display: flex;
   gap: 20px;
@@ -8,14 +12,13 @@ export const FeatureBox = styled.div`
 `
 
 export const B = styled(Text).attrs({
-  fontFamily: 'poppins',
   as: 'span',
 })`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 export const SectionHeading = styled(Heading)`
-  font-weight: 800;
+  font-weight: 600;
 `
 
 export const Frame = styled.div`

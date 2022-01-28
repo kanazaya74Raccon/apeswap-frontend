@@ -13,6 +13,6 @@ export const Stack = styled(Flex)`
 `
 
 export const Title = styled(Text)`
-  font-weight: 800;
+  font-weight: 600;
   font-size: 26px;
 `

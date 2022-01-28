@@ -37,7 +37,7 @@ const WhenNewsSer = () => {
   return (
     <>
       <WhenNewsSerWrapper>
-        <WhenNewsSerText fontFamily="Titan One">Wen News Ser?</WhenNewsSerText>
+        <WhenNewsSerText fontWeight={800}>Wen News Ser?</WhenNewsSerText>
         <NewsWrapper>
           <NewsFeed />
         </NewsWrapper>

@@ -121,7 +121,6 @@ const LaunchPadInfoWrapper = styled.div`
   }
 `
 const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 24px;
   font-weight: 700;
   font-style: normal;

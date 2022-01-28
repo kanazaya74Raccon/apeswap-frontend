@@ -109,7 +109,7 @@ const Input = styled.input<{ backgroundColor: string }>`
   width: 100%;
   border-radius: 10px;
   padding-left: 15px;
-  font-family: Poppins;
+
   font-weight: 700;
   font-size: 18px;
   line-height: 23px;
@@ -138,13 +138,12 @@ const InputTitle = styled(Text)`
   top: -30px;
   align-self: center;
   align-content: center;
-  font-family: Poppins;
+
   font-size: 16px;
   font-weight: 700;
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -169,8 +168,8 @@ const HeaderWrapper = styled.div`
 
 const UserBalanceWrapper = styled(Text)`
   height: 15px;
-  font-family: Poppins;
-  font-weight: bold;
+
+  font-weight: 600;
   font-size: 10px;
   opacity: 0.7;
 `

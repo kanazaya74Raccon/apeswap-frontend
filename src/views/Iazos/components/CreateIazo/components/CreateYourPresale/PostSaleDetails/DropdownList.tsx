@@ -52,7 +52,6 @@ const DropdownWrapper = styled.div`
   flex-direction: column;
 `
 const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 20px;
   font-weight: 700;
   margin-left: 20px;
@@ -60,7 +59,7 @@ const StyledHeader = styled(Text)`
 `
 const StyledText = styled(Text)`
   text-align: start;
-  font-family: Poppins;
+
   font-size: 18px;
   font-weight: 500;
   margin-left: 20px;
@@ -86,7 +85,7 @@ const InputTitle = styled(Text)`
   top: -30px;
   align-self: center;
   align-content: center;
-  font-family: Poppins;
+
   font-size: 16px;
   font-weight: 700;
 `

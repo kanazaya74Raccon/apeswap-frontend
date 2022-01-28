@@ -82,18 +82,16 @@ const useApproveTransaction = ({ onApprove, onRequiresApproval, onSuccess = noop
     isApproved: state.approvalState === 'success',
     approvalReceipt: state.approvalReceipt,
     approvalError: state.approvalError,
-    handleApprove: () => {
-      onApprove()
-        .on('sending', () => {
-          dispatch({ type: 'approve_sending' })
-        })
-        .on('receipt', (payload: Web3Payload) => {
-          dispatch({ type: 'approve_receipt', payload })
-          onSuccess(state)
-        })
-        .on('error', (error: Web3Payload) => {
-          dispatch({ type: 'approve_error', payload: error })
-        })
+    handleApprove: async () => {
+      const receipt = await onApprove()
+      if (receipt.status) {
+        let payload: Web3Payload
+        dispatch({ type: 'approve_receipt', payload })
+        onSuccess(state)
+      } else {
+        let error: Web3Payload
+        dispatch({ type: 'approve_error', payload: error })
+      }
     },
   }
 }

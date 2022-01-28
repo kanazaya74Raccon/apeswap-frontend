@@ -190,7 +190,7 @@ const MonkeyWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -232,6 +232,7 @@ const ButtonCheckWrapper = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -275,7 +276,6 @@ const FlexLayout = styled.div`
 `
 
 const AdminText = styled(Text)`
-  font-family: poppins;
   font-size: 18px;
   font-weight: 500;
   color: white;
@@ -331,7 +331,7 @@ const NfaStaking: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {TranslateString(999, 'NFA Staking')}
           </StyledHeading>
           {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}

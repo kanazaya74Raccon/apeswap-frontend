@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import { ButtonSquare } from '@apeswapfinance/uikit'
@@ -7,6 +8,10 @@ import useReward from 'hooks/useReward'
 import { useNfaStakingHarvest } from 'hooks/useHarvest'
 import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 interface HarvestActionsProps {
   earnings: BigNumber
@@ -28,7 +33,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals
 
   const renderButton = () => {
     return (
-      <ButtonSquare
+      <StyledButtonSquare
         disabled={earningTokenBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
@@ -41,7 +46,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals
         }}
       >
         {TranslateString(999, 'HARVEST')}
-      </ButtonSquare>
+      </StyledButtonSquare>
     )
   }
 

@@ -35,7 +35,6 @@ const HeaderWrapper = styled.div`
 `
 
 const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 45px;
   font-style: normal;

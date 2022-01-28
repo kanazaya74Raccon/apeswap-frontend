@@ -103,7 +103,7 @@ const Stats: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
@@ -111,10 +111,10 @@ const Stats: React.FC = () => {
 
       <Page>
         <PaddedCard>
-          <Heading size="lg" fontFamily="poppins" color="warning">
+          <Heading size="lg" color="warning">
             HEADS UP, APES!
           </Heading>
-          <Text fontFamily="poppins">
+          <Text>
             The data on this page is not always up to date. Please do not rely on it for an accurate representation of
             your holdings. For similar services, consider our partners such as{' '}
             <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">

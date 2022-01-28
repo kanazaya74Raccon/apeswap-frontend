@@ -5,8 +5,8 @@ import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import Tooltip from 'components/Tooltip/Tooltip'
-import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import ApprovalAction from './CardActions/ApprovalAction'
@@ -59,7 +59,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const StyledText1 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 15px;
@@ -67,7 +67,7 @@ const StyledText1 = styled(Text)`
 `
 
 const StyledText2 = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   margin-top: 1px;
 `
@@ -75,7 +75,7 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
@@ -164,7 +164,7 @@ const StyledAPRText = styled.div`
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -216,6 +216,10 @@ const IconArrow = styled(Image)`
 const TitleContainer = styled.div`
   display: flex;
 `
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+  font-size: 11.5px;
+`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   vault,
@@ -241,7 +245,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton padding="8px" />
+      return <StyledUnlockButton size="sm" />
     }
     if (needsApproval) {
       return <ApprovalAction stakingContractAddress={stakingTokenAddress} pid={pid} isLoading={isLoading} />
@@ -335,7 +339,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <StyledFlexContainer>
         <LabelContainer>
           <TitleContainer>
-            <StyledHeading fontSize="20px" fontFamily="Titan One">
+            <StyledHeading fontSize="20px" fontWeight={800}>
               {lpLabel}
             </StyledHeading>
             {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}

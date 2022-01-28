@@ -36,8 +36,7 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -52,11 +51,11 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -64,6 +63,7 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
@@ -123,7 +123,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={blockExplorer} bold={false} fontFamily="Titan One">
+        <StyledLink external href={blockExplorer} bold={false}>
           {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
         </StyledLink>
       </Flex>

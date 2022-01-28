@@ -59,7 +59,6 @@ const StyledButton = styled(Button)<{ active?: boolean }>`
 `
 
 const IconText = styled(Text)`
-  font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;

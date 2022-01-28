@@ -5,7 +5,7 @@ const StyledButton = styled(ButtonSquare)`
   height: 50px;
   width: 150px;
   font-size: 14px;
-  font-family: Poppins;
+
   font-weight: 700;
   margin-top: 20px;
   ${({ theme }) => theme.mediaQueries.md} {
@@ -23,7 +23,6 @@ export const Wrapper = styled.div`
 `
 
 export const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
   font-weight: 400;
   font-size: 13px;
   &:after {

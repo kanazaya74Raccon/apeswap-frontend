@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import { ButtonSquare } from '@apeswapfinance/uikit'
@@ -9,6 +10,10 @@ import { useSousStake } from 'hooks/useStake'
 import { useSousEmergencyWithdraw } from 'hooks/useUnstake'
 import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 interface HarvestActionsProps {
   earnings: BigNumber
@@ -41,7 +46,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const renderButton = () => {
     if (emergencyWithdraw) {
       return (
-        <ButtonSquare
+        <StyledButtonSquare
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -54,12 +59,12 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {TranslateString(999, 'WITHDRAW')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     if (compound) {
       return (
-        <ButtonSquare
+        <StyledButtonSquare
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -72,11 +77,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {TranslateString(999, 'APE HARDER')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     return (
-      <ButtonSquare
+      <StyledButtonSquare
         disabled={earningTokenBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
@@ -89,7 +94,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         }}
       >
         {TranslateString(999, 'HARVEST')}
-      </ButtonSquare>
+      </StyledButtonSquare>
     )
   }
 

@@ -22,10 +22,9 @@ const StyledButton = styled(Button)`
   left: 22px;
   background: #ffb300;
   border-radius: 10px;
-  font-family: Poppins;
   font-size: 24px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 36px;
   focus: none;
   letter-spacing: 0.05em;
