@@ -1,17 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Modal, Text, Button } from '@apeswapfinance/uikit'
+import { Modal, Button } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
+
+import { Description } from './styles'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
   amount: number
 }
-
-const Description = styled(Text)`
-  max-width: 320px;
-  margin-bottom: 28px;
-`
 
 const ConfirmModal: React.FC<ApyCalculatorModalProps> = ({ onDismiss, amount }) => {
   const TranslateString = useI18n()
