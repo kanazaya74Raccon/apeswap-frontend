@@ -13,6 +13,7 @@ import { Wrapper } from 'views/Swap/components/styleds'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { parseAddress } from 'hooks/useAddress'
 import { AutoColumn } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -34,7 +35,7 @@ import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallbac
 import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
 import { Field } from '../../state/burn/actions'
-import { useUserSlippageTolerance } from '../../state/user/hooks'
+import { useUserRecentTransactions, useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
@@ -78,6 +79,7 @@ export default function RemoveLiquidity({
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const [currencyAPrice, setCurrencyAPrice] = useState<number>(null)
   const [currencyBPrice, setCurrencyBPrice] = useState<number>(null)
+  const [recentTransactions] = useUserRecentTransactions()
 
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -608,6 +610,7 @@ export default function RemoveLiquidity({
             </>
           </Wrapper>
         </AppBody>
+        {recentTransactions && <WalletTransactions />}
       </Flex>
     </Page>
   )

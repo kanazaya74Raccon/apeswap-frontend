@@ -14,6 +14,7 @@ import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { LargeStyledButton } from 'views/Swap/styles'
 import { Wrapper } from 'views/Swap/components/styleds'
 import SwapBanner from 'components/SwapBanner'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { useDispatch } from 'react-redux'
 import { parseAddress } from 'hooks/useAddress'
 import { useSwapState } from 'state/swap/hooks'
@@ -32,7 +33,7 @@ import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { Field, resetMintState } from '../../state/mint/actions'
 import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../state/mint/hooks'
 import { useTransactionAdder } from '../../state/transactions/hooks'
-import { useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
+import { useIsExpertMode, useUserRecentTransactions, useUserSlippageTolerance } from '../../state/user/hooks'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
@@ -65,6 +66,7 @@ export default function AddLiquidity({
 
   const currencyA = useCurrency(currencyIdA || swapCurrencyA)
   const currencyB = useCurrency(currencyIdB || swapCurrencyB)
+  const [recentTransactions] = useUserRecentTransactions()
 
   useEffect(() => {
     if (!currencyIdA && !currencyIdB) {
@@ -482,6 +484,7 @@ export default function AddLiquidity({
         ) : (
           <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
         )}
+        {recentTransactions && <WalletTransactions />}
       </Flex>
     </Page>
   )
