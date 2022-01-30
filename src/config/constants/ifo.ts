@@ -2,9 +2,31 @@ import { Ifo } from './types'
 
 const ifos: Ifo[] = [
   {
+    id: 'trustnft',
+    address: '', // Leave empty for "Coming Soon!"
+    isActive: true,
+    isLinear: true,
+    name: 'TrustNFT',
+    subTitle: `Subtitle...`,
+    description: `Description`,
+    launchDate: 'February 3rd',
+    launchTime: '1:00 UTC',
+    saleAmount: '30,000,000 TRUSTNFT',
+    raiseAmount: '$525,000',
+    vestingTime: '3 Months',
+    projectSiteUrl: 'https://trustnft.org/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    offeringCurrency: 'TRUSTNFT',
+    tokenDecimals: 18,
+    releaseBlockNumber: 22364007, // block to start showing contract details
+    vesting: true,
+    // burnedTxUrl: '',
+  },
+  {
     id: 'stz',
     address: '0xa526477bBf22643bE96D02Ebf3934BA1721059f3', // Leave empty for "Coming Soon!"
-    isActive: true,
+    isActive: false,
     isLinear: false,
     name: '99Starz',
     subTitle: `The World's Biggest NFT Yield Ecosystem`,
