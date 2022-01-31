@@ -13,7 +13,7 @@ If you choose to take on a contribution (even more importantly a grant task or p
 - Please tag `obiedobo` in the reviewers of your PR.
 - Ensure your code is working locally before submitting a PR.
 - PRs with excessive changes to files like the `package-lock.json` will be automatically reverted. Please review before you submit.
-- Branch off of & merge into the latest `staging` to submit your pull requests.
+- Branch off of & submit your pull requests into the latest `staging` branch.
 - Use components in the [official ApeSwap UI Kit](https://github.com/ApeSwapFinance/apeswap-uikit) for contributions.
 
 
