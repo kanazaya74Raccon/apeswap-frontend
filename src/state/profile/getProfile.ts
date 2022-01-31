@@ -1,6 +1,5 @@
 import { Profile } from 'state/types'
 import nfts from 'config/constants/nfts'
-import nfbs from 'config/constants/nfbs'
 import nfaABI from 'config/abi/nonFungibleApes.json'
 import nfbABI from 'config/abi/nonFungibleBananas.json'
 import {getNonFungibleApesAddress, getNonFungibleBananasAddress} from 'utils/addressHelper'
@@ -42,8 +41,27 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
         promises.push(nfbContract.methods.tokenOfOwnerByIndex(address, i).call())
       }
       const nfbReturn = await (await Promise.all(promises)).map(Number)
-      ownedNfts = nfbReturn.map((index) => nfbs[index])
-      rarestNft = ownedNfts ? orderBy(ownedNfts, ['attributes.rarityOverallRank'])[0] : null
+      rarestNft = {
+        "contractAddress": "0x9f707a412302a3ad64028a9f73f354725c992081",
+        "tokenId": nfbReturn,
+        "attributes": [{"traitType": "Background", "value": "Ocean"}, {
+          "traitType": "Stem",
+          "value": "Gold"
+        }, {"traitType": "OuterPeel", "value": "Banana"}, {
+          "traitType": "InnerPeel",
+          "value": "Stone"
+        }, {"traitType": "Banana", "value": "Quartz"}, {
+          "traitType": "InnerPeelModifier",
+          "value": "None"
+        }, {"traitType": "OuterPeelModifier", "value": "None"}, {
+          "traitType": "Aura",
+          "value": "Yellow Aura"
+        }, {"traitType": "Accessory", "value": "Halo"}, {"traitType": "Lazer", "value": "None"}],
+        "externalUrl": "https://apeswap.finance/",
+        "image": `https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/${nfbReturn}.png`,
+        "name": `Non Fungible Banana #${nfbReturn}`,
+        "nftCollection": "61a9a2ea73ab026009ab01dc"
+      }
 
       ownedNfts = null
       // Save the preview image to local storage for the exchange
