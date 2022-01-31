@@ -1,24 +1,21 @@
 {
-    "redirects": [
-        { "source": "/home", "destination": "/", "permanent": true },
-        { "source": "/about", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
-        { "source": "/about-us", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
-        { "source": "/pool", "destination": "/pools", "permanent": true },
-        { "source": "/farm", "destination": "/farms", "permanent": true },
-        { "source": "/yield", "destination": "/farms", "permanent": true },
-        { "source": "/yields", "destination": "/farms", "permanent": true },
-        { "source": "/apezone", "destination": "/gnana"},
-        { "source": "/stat", "destination": "/stats", "permanent": true},
-        { "source": "/vault", "destination": "/vaults", "permanent": true},
-        { "source": "/apestats", "destination": "/stats", "permanent": true},
-        { "source": "/logos", "destination": "https://apeswap.click/logos", "permanent": true},
-        { "source": "/liquidity", "destination": "https://app.apeswap.finance/pool", "permanent": true },
-        { "source": "/swap", "destination": "https://app.apeswap.finance/swap"},
-        { "source": "/tokens", "destination": "https://app.apeswap.finance/tokens"},
-        { "source": "/admin", "destination": "/admin-pools", "permanent": true },
-        { "source": "/admin-pool", "destination": "/admin-pools", "permanent": true },
-        { "source": "/staff-pools", "destination": "/admin-pools", "permanent": true },
-        { "source": "/info", "destination": "https://info.apeswap.finance/", "permanent": true },
-        { "source": "/lending", "destination": "https://lending.apeswap.finance/", "permanent": true }
-    ]
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/about", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
+    { "source": "/about-us", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
+    { "source": "/pool", "destination": "/pools", "permanent": true },
+    { "source": "/farm", "destination": "/farms", "permanent": true },
+    { "source": "/yield", "destination": "/farms", "permanent": true },
+    { "source": "/yields", "destination": "/farms", "permanent": true },
+    { "source": "/apezone", "destination": "/gnana" },
+    { "source": "/stat", "destination": "/stats", "permanent": true },
+    { "source": "/vault", "destination": "/vaults", "permanent": true },
+    { "source": "/apestats", "destination": "/stats", "permanent": true },
+    { "source": "/logos", "destination": "https://apeswap.click/logos", "permanent": true },
+    { "source": "/admin", "destination": "/admin-pools", "permanent": true },
+    { "source": "/admin-pool", "destination": "/admin-pools", "permanent": true },
+    { "source": "/staff-pools", "destination": "/admin-pools", "permanent": true },
+    { "source": "/info", "destination": "https://info.apeswap.finance/", "permanent": true },
+    { "source": "/lending", "destination": "https://lending.apeswap.finance/", "permanent": true }
+  ]
 }

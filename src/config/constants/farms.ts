@@ -3021,6 +3021,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://nftytoken.io/ ',
   },
   {
+    pid: 185,
+    image: 'LUNR.svg',
+    lpSymbol: 'LUNR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xfB3F0a2ea0f675D715eE275ca79Dcd3f3457cD87',
+    },
+    tokenSymbol: 'LUNR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x37807D4fbEB84124347B8899Dd99616090D3e304',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lunarcrush.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

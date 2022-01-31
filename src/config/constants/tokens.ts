@@ -934,6 +934,13 @@ const tokens = {
     },
     decimals: 8,
   },
+  lunr: {
+    symbol: 'LUNR',
+    address: {
+      56: '0x37807D4fbEB84124347B8899Dd99616090D3e304',
+    },
+    decimals: 4,
+  },
 }
 
 export default tokens
