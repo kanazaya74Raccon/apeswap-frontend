@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0xF851627a070E3F16A4f50E7d83F7535B3830f560', // Leave empty for "Coming Soon!"
+    address: '0x724Ced2E5753092c5dA102B794808f653e9e9cD9', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: '99Starz Testnet',
@@ -11,15 +11,15 @@ const ifos: Ifo[] = [
     description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
     launchDate: 'January 31st',
     launchTime: '17:00 UTC',
-    saleAmount: '500,000 STZ',
-    raiseAmount: '$250,000',
+    saleAmount: '500,000 IAO',
+    raiseAmount: '$30',
     vestingTime: '3 Months',
     projectSiteUrl: 'https://99starz.io/',
     currency: 'BNB',
     currencyAddress: '0x0000000000000000000000000000000000000000',
-    offeringCurrency: 'STZ',
+    offeringCurrency: 'IAO',
     tokenDecimals: 18,
-    releaseBlockNumber: 16351827, // block to start showing contract details
+    releaseBlockNumber: 16354252, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
