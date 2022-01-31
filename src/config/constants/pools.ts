@@ -3397,6 +3397,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 178,
+    tokenName: 'LUNR',
+    image: 'LUNR.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.lunr,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xFdE855148B160F203761569A9c0A8a1aA7d565B3',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://lunarcrush.com/',
+    harvest: true,
+    tokenPerBlock: `0.0549`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 4,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
