@@ -9,7 +9,7 @@ const ApeZone: { ifos: Ifo[] } = {
       isLinear: true,
       name: 'Trust NFT',
       subTitle: `Decentralized NFT Loans & Marketplace`,
-      description: `TrustNFT technological solutions combine DeFi with NFTs in order to add much-needed utility and unlock the enormous potential of NFTs becoming a practical financial instruments. User can use their own or borrowed NFTs as a collateral to apply for a loan all around the globe. While investors can earn guaranteed gains by financing loans available in our marketplace.`,
+      description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
       launchDate: 'February 3rd',
       launchTime: '1:00 UTC',
       saleAmount: '30,000,000 TRUSTNFT',
