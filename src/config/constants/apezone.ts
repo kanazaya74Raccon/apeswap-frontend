@@ -20,7 +20,7 @@ const ApeZone: { ifos: Ifo[] } = {
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       offeringCurrency: 'STZ',
       tokenDecimals: 18,
-      releaseBlockNumber: 22364007, // block to start showing contract details
+      releaseBlockNumber: 16351827, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },

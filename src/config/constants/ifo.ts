@@ -9,8 +9,8 @@ const ifos: Ifo[] = [
     name: '99Starz Testnet',
     subTitle: `The World's Biggest NFT Yield Ecosystem`,
     description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
-    launchDate: 'December 11th',
-    launchTime: '5:00 UTC',
+    launchDate: 'January 31st',
+    launchTime: '17:00 UTC',
     saleAmount: '500,000 STZ',
     raiseAmount: '$250,000',
     vestingTime: '3 Months',
@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'STZ',
     tokenDecimals: 18,
-    releaseBlockNumber: 22364007, // block to start showing contract details
+    releaseBlockNumber: 16351827, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
