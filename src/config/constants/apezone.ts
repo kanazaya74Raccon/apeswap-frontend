@@ -4,6 +4,28 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
+      address: '0x09530c0a6efca4049de2Aea7E887629E3e8f0bbd', // Leave empty for "Coming Soon!"
+      isActive: true,
+      isLinear: true,
+      name: '99Starz Testnet',
+      subTitle: `The World's Biggest NFT Yield Ecosystem`,
+      description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
+      launchDate: 'December 11th',
+      launchTime: '5:00 UTC',
+      saleAmount: '500,000 STZ',
+      raiseAmount: '$250,000',
+      vestingTime: '3 Months',
+      projectSiteUrl: 'https://99starz.io/',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'STZ',
+      tokenDecimals: 18,
+      releaseBlockNumber: 22364007, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
+    {
+      id: 'stz',
       address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: false,
