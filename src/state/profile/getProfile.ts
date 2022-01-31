@@ -43,7 +43,7 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
       const nfbReturn = await (await Promise.all(promises)).map(Number)
       rarestNft = {
         "contractAddress": "0x9f707a412302a3ad64028a9f73f354725c992081",
-        "tokenId": nfbReturn,
+        "tokenId": nfbReturn[0],
         "attributes": [{"traitType": "Background", "value": "Ocean"}, {
           "traitType": "Stem",
           "value": "Gold"
@@ -58,8 +58,8 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
           "value": "Yellow Aura"
         }, {"traitType": "Accessory", "value": "Halo"}, {"traitType": "Lazer", "value": "None"}],
         "externalUrl": "https://apeswap.finance/",
-        "image": `https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/${nfbReturn}.png`,
-        "name": `Non Fungible Banana #${nfbReturn}`,
+        "image": `https://ipfs.io/ipfs/QmYhuJnr3GGUnDGtg6rmSXTgo7FzaWgrriqikfgn5SkXhZ/${nfbReturn[0]}.png`,
+        "name": `Non Fungible Banana #${nfbReturn[0]}`,
         "nftCollection": "61a9a2ea73ab026009ab01dc"
       }
 
