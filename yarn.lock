@@ -35,14 +35,16 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.214/0484fc9e461b2375e180d8b42d1a74f9abaf52075bc94bed34da6058c56aa360#14f9e3f300292e12b8fece7ad3b7d32ea1a36e8d"
   integrity sha512-1t4NgQOK14JYi7JNKbVt/jDTcHQ4lY3vFGa0VkQ4j4YXJDTJDZ49k7OVBXewBsPky1QWSw6I2d1lLQSow/I2gg==
 
-"@apeswapfinance/uikit@^0.10.5-2.5":
-  version "0.10.5-2.5"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-2.5/79e4a11fafc8b0829c421db93591fdd36477cf97d4ada42f0c29cf18318c08c0#dd9e33f3147fea4d443db057866bb65c3d2b8f04"
-  integrity sha512-PKTsXoSi9FYN+KeVxdZauF3RuJyKUnlRgWWEpz5mFI8QSySPr/ZSb+xH/X1ItgxliptkSbs2jH8KFTei1pMRNg==
+"@apeswapfinance/uikit@^0.10.5-2.6":
+  version "0.10.5-2.6"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.5-2.6/90d6af423db1ef384c371bafbecd583eeb09052bd15aaecd0be50f824f5bb786#11f39fae90caef344b8de897a2e770eed95a7a20"
+  integrity sha512-nhjzfxxZRZY/owrLwgsTFZw9TXzRfi0SfNt/B8MyuVoD7CmLyx6fZo+HhbHa2fYeEmVAzUHswtN1tG3goLf3Iw==
   dependencies:
+    "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
     lodash "^4.17.20"
+    lottie-react "^2.2.1"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
 
@@ -2034,6 +2036,13 @@
     redux "^4.1.2"
     redux-thunk "^2.4.1"
     reselect "^4.1.5"
+
+"@rollup/plugin-json@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
+  integrity sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
+  dependencies:
+    "@rollup/pluginutils" "^3.0.8"
 
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
@@ -9467,7 +9476,14 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-web@^5.5.7:
+lottie-react@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/lottie-react/-/lottie-react-2.2.1.tgz#27fbb85a11000557d7166c36a630fe1e5ce07028"
+  integrity sha512-lAdIUw+zeHLX3gtyLkisa4QM9NkTUUeZTsEL53laBEsjIH4JibgwkioZuza8CtwZ7/cpPZRbCRXWKfiuaDZWww==
+  dependencies:
+    lottie-web "^5.8.1"
+
+lottie-web@^5.5.7, lottie-web@^5.8.1:
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.8.1.tgz#807e0af0ad22b59bf867d964eb684cb3368da0ef"
   integrity sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q==

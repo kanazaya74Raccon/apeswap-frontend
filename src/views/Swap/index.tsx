@@ -5,6 +5,8 @@ import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card } from '@
 import Page from 'components/layout/Page'
 import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import SwapBanner from 'components/SwapBanner'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
+import track from 'utils/track'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { RouteComponentProps } from 'react-router-dom'
 import AddressInputPanel from './components/AddressInputPanel'
@@ -53,6 +55,7 @@ const Label = styled(Text)`
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { chainId } = useActiveWeb3React()
+  const [tradeValueUsd, setTradeValueUsd] = useState<number>(null)
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -146,6 +149,22 @@ export default function Swap({ history }: RouteComponentProps) {
   )
   const noRoute = !route
 
+  useEffect(() => {
+    const getTradeVal = async () => {
+      const isLp = false
+      const isNative = trade?.inputAmount?.currency?.symbol === 'ETH'
+      const usdVal = await getTokenUsdPrice(
+        chainId,
+        trade?.inputAmount?.currency instanceof Token ? trade?.inputAmount?.currency?.address : '',
+        trade?.inputAmount?.currency?.decimals,
+        isLp,
+        isNative,
+      )
+      setTradeValueUsd(Number(trade?.inputAmount.toSignificant(6)) * usdVal)
+    }
+    getTradeVal()
+  }, [setTradeValueUsd, chainId, trade])
+
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
 
@@ -179,8 +198,19 @@ export default function Swap({ history }: RouteComponentProps) {
     }
     setSwapState({ attemptingTxn: true, tradeToConfirm, swapErrorMessage: undefined, txHash: undefined })
     swapCallback()
-      .then((hash) => {
+      .then(async (hash) => {
         setSwapState({ attemptingTxn: false, tradeToConfirm, swapErrorMessage: undefined, txHash: hash })
+        track({
+          event: 'swap',
+          value: tradeValueUsd,
+          chain: chainId,
+          data: {
+            token1: trade?.inputAmount?.currency?.getSymbol(chainId),
+            token2: trade?.outputAmount?.currency?.getSymbol(chainId),
+            token1Amount: Number(trade?.inputAmount.toSignificant(6)),
+            token2Amount: Number(trade?.outputAmount.toSignificant(6)),
+          },
+        })
       })
       .catch((error) => {
         setSwapState({
@@ -190,7 +220,7 @@ export default function Swap({ history }: RouteComponentProps) {
           txHash: undefined,
         })
       })
-  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm])
+  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm, trade, chainId, tradeValueUsd])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)

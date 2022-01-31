@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
+import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, Token } from '@apeswapfinance/sdk'
 import { Text, Flex, AddIcon, useModal } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -10,7 +10,9 @@ import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import Page from 'components/layout/Page'
+import track from 'utils/track'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { LargeStyledButton } from 'views/Swap/styles'
 import { Wrapper } from 'views/Swap/components/styleds'
 import SwapBanner from 'components/SwapBanner'
@@ -67,6 +69,7 @@ export default function AddLiquidity({
   const currencyA = useCurrency(currencyIdA || swapCurrencyA)
   const currencyB = useCurrency(currencyIdB || swapCurrencyB)
   const [recentTransactions] = useUserRecentTransactions()
+  const [addValueUsd, setAddValueUsd] = useState<number>(null)
 
   useEffect(() => {
     if (!currencyIdA && !currencyIdB) {
@@ -141,6 +144,22 @@ export default function AddLiquidity({
     parseAddress(ROUTER_ADDRESS, chainId),
   )
 
+  useEffect(() => {
+    const getAddVal = async () => {
+      const isNative = currencyA?.symbol === 'ETH'
+      const isLp = false
+      const usdVal = await getTokenUsdPrice(
+        chainId,
+        currencyA instanceof Token ? currencyA?.address : '',
+        currencyA?.decimals,
+        isLp,
+        isNative,
+      )
+      setAddValueUsd(Number(parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)) * usdVal * 2)
+    }
+    getAddVal()
+  }, [setAddValueUsd, chainId, currencyA, parsedAmounts])
+
   const addTransaction = useTransactionAdder()
 
   const onAdd = async () => {
@@ -208,6 +227,19 @@ export default function AddLiquidity({
           })
 
           setTxHash(response.hash)
+
+          track({
+            event: 'liquidity',
+            chain: chainId,
+            value: addValueUsd,
+            data: {
+              token1: currencies[Field.CURRENCY_A]?.getSymbol(chainId),
+              token2: currencies[Field.CURRENCY_B]?.getSymbol(chainId),
+              token1Amount: parsedAmounts[Field.CURRENCY_A]?.toSignificant(3),
+              token2Amount: parsedAmounts[Field.CURRENCY_B]?.toSignificant(3),
+              cat: 'add',
+            },
+          })
         }),
       )
       .catch((err) => {
