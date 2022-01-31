@@ -321,7 +321,7 @@ const Farms: React.FC = () => {
       <MarketingModalCheck />
       <S.Header>
         <S.HeadingContainer>
-          <S.StyledHeading as="h1" mb="12px" mt={0} fontFamily="Titan One">
+          <S.StyledHeading as="h1" mb="12px" mt={0}  fontWeight={800}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
           </S.StyledHeading>
         </S.HeadingContainer>

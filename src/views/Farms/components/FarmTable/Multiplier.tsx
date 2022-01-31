@@ -10,8 +10,7 @@ const MultiplierWrapper = styled.div`
   width: 36px;
   text-align: right;
   margin-right: 2px;
-  font-weight: 700;
-  font-family: Poppins;
+  font-weight: 600;
   font-size: 12px;
 `
 

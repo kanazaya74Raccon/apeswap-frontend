@@ -27,7 +27,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
         <Image src={image} alt={name} originalLink={image} rarityTier={attributes.rarityTierNumber} />
         <CardBody>
           <Header>
-            <Heading fontFamily="Titan One">
+            <Heading fontWeight={800}>
               {name} - #{pad(`${index}`, '4')}
             </Heading>
           </Header>

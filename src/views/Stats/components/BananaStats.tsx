@@ -39,42 +39,42 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
   return (
     <StyledBananaStats>
       <CardBody>
-        <Heading size="xl" mb="24px" fontFamily="Titan One">
+        <Heading size="xl" mb="24px" fontWeight={800}>
           {TranslateString(534, 'Your Ape Stats')}
         </Heading>
         <Row>
-          <Text fontFamily="Titan One" fontSize="14px">
+          <Text fontWeight={800} fontSize="14px">
             {TranslateString(536, 'TVL All Pools')}
           </Text>
-          <CardValue fontFamily="Titan One" fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
+          <CardValue fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
         </Row>
         <Row>
-          <Text fontFamily="Titan One" fontSize="14px">
+          <Text fontWeight={800} fontSize="14px">
             {TranslateString(536, 'GNANA Holdings')}
           </Text>
-          <CardValue fontFamily="Titan One" fontSize="14px" value={parseFloat(fullBalance)} decimals={2} />
+          <CardValue fontWeight={800} fontSize="14px" value={parseFloat(fullBalance)} decimals={2} />
         </Row>
         <Row>
-          <Text fontFamily="Titan One" fontSize="14px">
+          <Text fontWeight={800} fontSize="14px">
             {TranslateString(536, 'BANANA Price')}
           </Text>
-          <CardValue fontFamily="Titan One" fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
+          <CardValue fontWeight={800} fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
-          <Text fontFamily="Titan One" fontSize="14px">
+          <Text fontWeight={800} fontSize="14px">
             {TranslateString(538, 'Your BANANA earnings ($)')}
           </Text>
-          <Text fontFamily="Titan One" fontSize="14px" style={{ textAlign: 'end' }}>
+          <Text fontWeight={800} fontSize="14px" style={{ textAlign: 'end' }}>
             <Divider />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.bananasEarnedPerDay}
               decimals={2}
               prefix="Daily: "
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="12px"
               value={stats.dollarsEarnedPerDay}
               decimals={2}
@@ -83,14 +83,14 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
             />
             <Divider />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.bananasEarnedPerWeek}
               decimals={2}
               prefix="Weekly: "
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="12px"
               value={stats.dollarsEarnedPerWeek}
               decimals={2}
@@ -99,14 +99,14 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
             />
             <Divider />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.bananasEarnedPerMonth}
               decimals={2}
               prefix="Monthly: "
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="12px"
               value={stats.dollarsEarnedPerMonth}
               decimals={2}
@@ -115,14 +115,14 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
             />
             <Divider />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.bananasEarnedPerYear}
               decimals={2}
               prefix="Yearly: "
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="12px"
               value={stats.dollarsEarnedPerYear}
               decimals={2}
@@ -133,12 +133,12 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
           </Text>
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
-          <Text fontFamily="Titan One" fontSize="14px">
+          <Text fontWeight={800} fontSize="14px">
             {TranslateString(538, 'Your APR (%)')}
           </Text>
-          <Text fontFamily="Titan One" fontSize="14px" style={{ textAlign: 'end' }}>
+          <Text fontWeight={800} fontSize="14px" style={{ textAlign: 'end' }}>
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.aggregateAprPerDay * 100}
               decimals={2}
@@ -146,7 +146,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               suffix="%"
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}
               decimals={2}
@@ -154,7 +154,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               suffix="%"
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.aggregateAprPerMonth * 100}
               decimals={2}
@@ -162,7 +162,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               suffix="%"
             />
             <CardValue
-              fontFamily="Titan One"
+              fontWeight={800}
               fontSize="14px"
               value={stats.aggregateApr * 100}
               decimals={2}

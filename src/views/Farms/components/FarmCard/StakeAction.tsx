@@ -34,7 +34,7 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
   color: #38a611;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -43,7 +43,7 @@ const StyledHeadingGreen = styled(Heading)`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
 `
 
@@ -126,7 +126,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start">
         <StyledText>{TranslateString(999, 'Staked')}</StyledText>
-        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'} fontFamily="Titan One">
+        <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>

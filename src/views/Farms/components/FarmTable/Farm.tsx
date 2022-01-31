@@ -60,7 +60,7 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label, image
         <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />
       </StyledBackground>
       <div>
-        <Text fontSize="20px" fontFamily="Titan One">
+        <Text fontSize="20px" fontWeight={800}>
           {label}
         </Text>
       </div>

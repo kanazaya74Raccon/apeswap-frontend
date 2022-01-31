@@ -15,7 +15,6 @@ export const LaunchPadInfoWrapper = styled.div`
   }
 `
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 24px;
   font-style: normal;
@@ -24,7 +23,6 @@ export const StyledHeader = styled(Text)`
 `
 
 export const DropdownHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -37,12 +35,11 @@ export const DropdownHeader = styled(Text)`
 export const StyledText = styled(Text)`
   padding: 20px 40px 0px 40px;
   text-align: center;
-  font-family: poppins;
+
   font-weight: 400;
   padding-bottom: 25px;
 `
 export const MoreInfo = styled.a`
-  font-family: poppins;
   font-size: 15px;
   font-weight: 700;
   line-height: 17px;
@@ -54,7 +51,6 @@ export const MoreInfo = styled.a`
 `
 
 export const FaqLink = styled.a`
-  font-family: poppins;
   font-size: 16px;
   font-weight: 700;
   text-decoration: underline;

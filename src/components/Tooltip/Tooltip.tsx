@@ -13,7 +13,6 @@ const TooltipContent = styled.div`
   width: max-content;
   display: none;
   padding: 16px;
-  font-family: Poppins;
   font-size: 17px;
   line-height: 25px;
   max-height: 500px;

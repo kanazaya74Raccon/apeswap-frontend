@@ -28,8 +28,7 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
-  font-family: 'Poppins';
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -51,7 +50,7 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledLink = styled(Link)`
@@ -75,53 +74,37 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidit
   return (
     <Wrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          Total Staked
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {displayLiquidity}
-        </StyledText>
+        <StyledText fontSize="12px">Total Staked</StyledText>
+        <StyledText fontSize="12px">{displayLiquidity}</StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          Reward Tokens
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
+        <StyledText fontSize="12px">Reward Tokens</StyledText>
+        <StyledText fontSize="12px">
           {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {farm?.rewardTokens?.token0?.symbol} Earned:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px" color="green">
+        <StyledText fontSize="12px">{farm?.rewardTokens?.token0?.symbol} Earned:</StyledText>
+        <StyledText fontSize="12px" color="green">
           {miniChefEarnings ? miniChefEarnings.toFixed(4) : '0'}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {farm?.rewardTokens?.token1?.symbol} Earned:
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px" color="green">
+        <StyledText fontSize="12px">{farm?.rewardTokens?.token1?.symbol} Earned:</StyledText>
+        <StyledText fontSize="12px" color="green">
           {rewarderEarnings ? rewarderEarnings.toFixed(4) : '0'}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          Staked Amount
-        </StyledText>
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}
-        </StyledText>
+        <StyledText fontSize="12px">Staked Amount</StyledText>
+        <StyledText fontSize="12px">{rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}</StyledText>
       </ValueWrapper>
       <Flex justifyContent="space-between">
-        <StyledText fontFamily="poppins" fontSize="12px">
-          {TranslateString(316, 'Stake')}:
-        </StyledText>
+        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={blockExplorer} bold={false} fontFamily="Titan One">
+        <StyledLink external href={blockExplorer} bold={false} fontWeight={800}>
           {TranslateString(356, `View on ${NETWORK_LABEL[chainId]}Scan`)}
         </StyledLink>
       </Flex>

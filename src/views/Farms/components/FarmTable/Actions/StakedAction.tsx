@@ -30,6 +30,9 @@ const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
 `
+const StyledButton = styled(Button)`
+  font-weight: 800;
+`
 
 const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, addLiquidityUrl }) => {
   const TranslateString = useI18n()
@@ -80,9 +83,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, a
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
-        <Button onClick={onPresentDeposit} fontFamily="Titan One">
-          {TranslateString(999, 'STAKE LP')}
-        </Button>
+        <StyledButton onClick={onPresentDeposit}>{TranslateString(999, 'STAKE LP')}</StyledButton>
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>

@@ -79,7 +79,7 @@ const DualHotFarms = () => {
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontFamily="Titan One">Hot Farms</HotFarmsText>
+        <HotFarmsText fontWeight={800}>Hot Farms</HotFarmsText>
         <FarmWrapper>
           {farmsToDisplay.map((farm: DualFarm) => (
             <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>

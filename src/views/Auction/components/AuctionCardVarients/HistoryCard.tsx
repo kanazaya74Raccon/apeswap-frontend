@@ -68,7 +68,7 @@ const BoughtText = styled(Text)`
   position: absolute;
   top: 36px;
   font-size: 25px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 30px;
@@ -80,7 +80,7 @@ const NameText = styled(Text)`
   position: absolute;
   top: 8px;
   font-size: 25px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 0px;
@@ -92,18 +92,16 @@ const BidAmount = styled(Text)`
   position: absolute;
   top: 70px;
   font-size: 20px;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 600;
   ${({ theme }) => theme.mediaQueries.lg} {
   }
 `
 
 const CurrentBidDollarWrapper = styled(Text)`
   position: absolute;
-  font-family: Poppins;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 10px;
   line-height: 15px;
   margin-top: 10px;

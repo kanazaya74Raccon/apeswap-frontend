@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo, useCallback } from 'react'
+import styled from 'styled-components'
 import Reward from 'react-rewards'
 import erc20 from 'config/abi/erc20.json'
 import rewards from 'config/constants/rewards'
@@ -14,6 +15,10 @@ import useStake from 'hooks/useStake'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 import DepositModal from '../DepositModal'
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 interface FarmCardActionsProps {
   earnings?: any
@@ -81,20 +86,20 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <ButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
           {TranslateString(999, 'ENABLE')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
       return (
-        <ButtonSquare className="noClick" onClick={onPresentDeposit}>
+        <StyledButtonSquare className="noClick" onClick={onPresentDeposit}>
           {TranslateString(999, 'STAKE LP')}
-        </ButtonSquare>
+        </StyledButtonSquare>
       )
     }
     return (
-      <ButtonSquare
+      <StyledButtonSquare
         className="noClick"
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
@@ -108,7 +113,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
         }}
       >
         {TranslateString(999, 'HARVEST')}
-      </ButtonSquare>
+      </StyledButtonSquare>
     )
   }
 

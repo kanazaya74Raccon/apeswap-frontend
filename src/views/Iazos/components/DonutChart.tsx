@@ -162,8 +162,7 @@ const IconAndTextWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-family: Poppins;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
@@ -174,8 +173,7 @@ const StyledHeader = styled(Text)`
   display: flex;
   position: absolute;
   top: 10px;
-  font-family: Poppins;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   line-height: 27px;
   margin-top: 15px;

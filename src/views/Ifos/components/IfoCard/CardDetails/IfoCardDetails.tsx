@@ -16,7 +16,7 @@ const IfoCardDetails: React.FC<Props> = ({ stats }) => {
       {stats.map((stat) => (
         <Item key={stat.label}>
           <Display>{stat.label}</Display>
-          <Text fontSize="14px" fontWeight={700}>
+          <Text fontSize="14px" fontWeight={600}>
             {stat.value}
           </Text>
         </Item>

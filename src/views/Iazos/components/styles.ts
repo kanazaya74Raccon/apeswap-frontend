@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 
 export const BoldAfterText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
   font-weight: 400;
   font-size: 11px;
   &:after {
@@ -15,7 +14,6 @@ export const BoldAfterText = styled(Text)<{ boldContent?: string }>`
 `
 
 export const BoldAfterTextLarge = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
   font-weight: 400;
   font-size: 13px;
   &:after {
@@ -32,7 +30,6 @@ export const BoldAfterTextLarge = styled(Text)<{ boldContent?: string }>`
 `
 
 export const Heading = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 25px;
   ${({ theme }) => theme.mediaQueries.md} {
@@ -41,7 +38,6 @@ export const Heading = styled(Text)`
 `
 
 export const StyledText = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;

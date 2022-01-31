@@ -53,7 +53,7 @@ const Input = styled.input<{
   width: 100%;
   border-radius: 10px;
   padding-left: 15px;
-  font-family: Poppins;
+
   font-size: ${(props) => (props.sizeText === 'sm' ? '13px' : '18px')};
   line-height: 23px;
   word-break: break-word;
@@ -73,7 +73,7 @@ const LargeInput = styled.textarea<{ backgroundColor: string; imgSrc: string; te
   width: 100%;
   border-radius: 10px;
   padding-left: 15px;
-  font-family: Poppins;
+
   font-size: 18px;
   line-height: 23px;
   word-break: break-word;
@@ -117,7 +117,7 @@ const Container = styled.div`
 const StyledText = styled(Text)<{ large?: boolean }>`
   position: absolute;
   height: ${(props) => (props.large ? '155px' : '90px')};
-  font-family: Poppins;
+
   font-weight: 500;
   width: 130px;
   font-size: 14px;

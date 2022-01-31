@@ -4,7 +4,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
-import UnlockButton from 'components/UnlockButton'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useNetworkChainId } from 'state/hooks'
@@ -102,7 +102,7 @@ const APRContainer = styled.div`
 const LiquidtyContainer = styled.div`
   position: absolute;
   left: 480px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 587px;
@@ -113,7 +113,7 @@ const EarnedContainer = styled.div`
   position: absolute;
   left: 660px;
   top: 19px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 803px;
@@ -128,6 +128,10 @@ const StyledFlex = styled(Flex)`
 const ArrowContainer = styled(Flex)`
   position: absolute;
   right: 23px;
+`
+
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
@@ -174,7 +178,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
                       {!account ? (
-                        <UnlockButton padding="8px" />
+                        <StyledUnlockButton size="sm" />
                       ) : (
                         <HarvestAction
                           {...props.earned}

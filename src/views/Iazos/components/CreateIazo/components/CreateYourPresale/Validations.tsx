@@ -228,8 +228,6 @@ const ValidationContainer = styled.div`
 `
 
 const ValidationText = styled(Text)<{ boldContent?: string }>`
-  font-family: poppins;
-  font-weight: 400;
   font-size: 10px;
   font-size: 10px;
   font-weight: 200;

@@ -13,7 +13,7 @@ const Tooltip: React.FC<TooltipProps> = ({ children, title, tagLinks }) => {
     <Container>
       {children}
       <TooltipContent>
-        <Text fontFamily="poppins" fontSize="19px" bold>
+        <Text fontWeight={600} fontSize="19px">
           {' '}
           {title}
         </Text>
@@ -45,7 +45,7 @@ const TooltipContent = styled.div`
   width: max-content;
   display: none;
   padding: 16px;
-  font-family: Poppins;
+
   font-size: 17px;
   line-height: 25px;
   max-height: 500px;
@@ -91,7 +91,7 @@ const StyledLink = styled.a`
   margin-top: 5px;
   position: relative;
   display: block;
-  font-family: Poppins;
+
   font-weight: 400;
   font-size: 15px;
   text-decoration: underline;
