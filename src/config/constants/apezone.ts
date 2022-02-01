@@ -39,7 +39,7 @@ const ApeZone: { ifos: Ifo[] } = {
       vestingTime: '3 Months',
       projectSiteUrl: 'https://99starz.io/',
       currency: 'GNANA',
-      currencyAddress: '0xf693bDA9D3C56D5F9165c8633d9098e3C4Ae495A',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       offeringCurrency: 'IAO',
       tokenDecimals: 18,
       releaseBlockNumber: 14882411, // block to start showing contract details
