@@ -14,7 +14,7 @@ interface Props {
   disabled?: boolean
 }
 
-const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, disabled }) => {
+const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currencyAddress, disabled }) => {
   const [value, setValue] = useState('')
   const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
@@ -63,4 +63,4 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   )
 }
 
-export default ContibuteInput
+export default ContributeInputComponent

@@ -4,12 +4,13 @@ import track from 'utils/track'
 import { Contract } from 'ethers'
 
 const useLinearIAOHarvest = (contract: Contract, setPendingTx: (f: boolean) => unknown) => {
-  const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
   const handleClaim = useCallback(async () => {
     try {
       setPendingTx(true)
-      const tx = await contract.harvest().send({ from: account })
+      const tx = await contract.harvest()
+      await tx.wait()
 
       track({
         event: 'iao',
@@ -24,7 +25,7 @@ const useLinearIAOHarvest = (contract: Contract, setPendingTx: (f: boolean) => u
     }
 
     setPendingTx(false)
-  }, [account, contract, setPendingTx, chainId])
+  }, [contract, setPendingTx, chainId])
 
   return handleClaim
 }
