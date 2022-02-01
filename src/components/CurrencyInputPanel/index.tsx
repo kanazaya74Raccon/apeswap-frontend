@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Currency, Pair, Token } from '@apeswapfinance/sdk'
 import {
   Button,
@@ -112,17 +112,19 @@ export default function CurrencyInputPanel({
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
 
-  const fetchTokenPrice = async () => {
-    const tokenPriceReturned = await getTokenUsdPrice(
-      chainId,
-      currency instanceof Token ? currency?.address : '',
-      currency?.decimals,
-      isLp,
-      isNative,
-    )
-    setTokenPrice(tokenPriceReturned)
-  }
-  fetchTokenPrice()
+  useEffect(() => {
+    const fetchTokenPrice = async () => {
+      const tokenPriceReturned = await getTokenUsdPrice(
+        chainId,
+        currency instanceof Token ? currency?.address : '',
+        currency?.decimals,
+        isLp,
+        isNative,
+      )
+      setTokenPrice(tokenPriceReturned)
+    }
+    fetchTokenPrice()
+  }, [currency, chainId, isLp, isNative])
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
