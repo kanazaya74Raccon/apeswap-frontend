@@ -55,8 +55,6 @@ const IfoCardContribute: React.FC<Props> = ({
     return null
   }
 
-  console.log({ allowance })
-
   if (
     isActive &&
     currencyAddress !== ZERO_ADDRESS &&
