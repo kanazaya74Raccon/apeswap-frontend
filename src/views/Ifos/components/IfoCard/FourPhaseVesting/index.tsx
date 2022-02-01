@@ -186,7 +186,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           label: 'Tokens available',
           value: tokensHarvestedAvailable.toFixed(4),
         },
-        { label: 'Tokens vested', value: tokensVested.toFixed(4) },
+        { label: 'Tokens vesting', value: tokensVested.toFixed(4) },
         { label: 'Tokens harvested', value: totalTokensHarvested.toFixed(4) },
         {
           label: 'Committed value',
