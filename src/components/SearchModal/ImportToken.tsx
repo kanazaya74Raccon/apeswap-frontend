@@ -36,7 +36,14 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
           <br />
           Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
           projects that can pass our DD.
-          <a href="apeswap.click/partners" target="_blank" rel="noopener noreferrer">
+          <br />
+          <br />
+          <a
+            href="apeswap.click/partners"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'underline' }}
+          >
             Apply to be listed today and join the Jungle family!
           </a>
         </Text>
@@ -55,9 +62,13 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
                   via {list.name}
                 </Tag>
               ) : (
-                <Tag variant="failure" outline startIcon={<ErrorIcon color="failure" />}>
-                  Unknown Source
-                </Tag>
+                <>
+                  <Tag variant="failure" outline startIcon={<ErrorIcon color="failure" />}>
+                    Unknown Source
+                  </Tag>
+                  <br />
+                  <br />
+                </>
               )}
               <Flex alignItems="center">
                 <Text mr="8px">{token.name}</Text>

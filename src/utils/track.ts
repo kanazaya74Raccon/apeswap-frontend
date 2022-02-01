@@ -9,7 +9,6 @@ function track({
   data: any
   value?: number | string
 }): void {
-  console.debug({ event, value, chain, ...data })
   dataLayer?.push({ event, value, chain, ...data })
 }
 

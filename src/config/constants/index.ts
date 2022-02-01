@@ -70,7 +70,7 @@ export const MATIC: { [key: string]: Token } = {
   USDT: new Token(ChainId.MATIC, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD'),
   TEL: new Token(ChainId.MATIC, '0xdF7837DE1F2Fa4631D716CF2502f8b230F1dcc32', 2, 'TEL', 'Telcoin'),
   SUSHI: new Token(ChainId.MATIC, '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a', 18, 'SUSHI', 'SushiToken'),
-  BANANA: new Token(ChainId.MATIC, '0x5d47baba0d66083c52009271faf3f50dcc01023c', 18, 'BANANA', 'BananaToken'),
+  BANANA: new Token(ChainId.MATIC, '0x5d47bAbA0d66083C52009271faF3F50DCc01023C', 18, 'BANANA', 'BananaToken'),
   AAVE: new Token(ChainId.MATIC, '0xD6DF932A45C0f255f85145f286eA0b292B21C90B', 18, 'AAVE', 'Aave'),
   FRAX: new Token(ChainId.MATIC, '0x104592a158490a9228070E0A8e5343B499e125D0', 18, 'FRAX', 'Frax'),
   FXS: new Token(ChainId.MATIC, '0x3e121107F6F22DA4911079845a470757aF4e1A1b', 18, 'FXS', 'Frax Share'),
