@@ -11,7 +11,7 @@ import {
   InjectedModalProps,
   ButtonSquare,
   MetamaskIcon,
-  Spinner
+  Spinner,
 } from '@apeswapfinance/uikit'
 import { registerToken } from 'utils/wallet'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -33,7 +33,7 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   return (
     <Wrapper>
       <ConfirmedIcon>
-        <Spinner size={200}/>
+        <Spinner size={200} />
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
         <Text fontSize="20px">Waiting For Confirmation</Text>
