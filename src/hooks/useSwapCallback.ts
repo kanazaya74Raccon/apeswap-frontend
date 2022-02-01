@@ -142,7 +142,8 @@ export function useSwapCallback(
                     console.error('Call threw error', call, callError)
                     const reason: string = callError.reason || callError.data?.message || callError.message
                     const errorMessage = `The transaction cannot succeed due to error: ${
-                      reason ?? 'Unknown error, check the logs'
+                      `${reason}. This is probably an issue with one of the tokens you are swapping` ??
+                      'Unknown error, check the logs'
                     }.`
 
                     return { call, error: new Error(errorMessage) }
@@ -176,8 +177,8 @@ export function useSwapCallback(
           ...(value && !isZero(value) ? { value, from: account } : { from: account }),
         })
           .then((response: any) => {
-            const inputSymbol = trade.inputAmount.currency.symbol
-            const outputSymbol = trade.outputAmount.currency.symbol
+            const inputSymbol = trade.inputAmount.currency.getSymbol(chainId)
+            const outputSymbol = trade.outputAmount.currency.getSymbol(chainId)
             const inputAmount = trade.inputAmount.toSignificant(3)
             const outputAmount = trade.outputAmount.toSignificant(3)
 

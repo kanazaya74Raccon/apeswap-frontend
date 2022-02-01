@@ -24,7 +24,7 @@ export function useApproveCallback(
   amountToApprove?: CurrencyAmount,
   spender?: string,
 ): [ApprovalState, () => Promise<void>] {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { callWithGasPrice } = useCallWithGasPrice()
   const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
   const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
@@ -92,7 +92,7 @@ export function useApproveCallback(
     )
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: `Approve ${amountToApprove.currency.symbol}`,
+          summary: `Approve ${amountToApprove.currency.getSymbol(chainId)}`,
           approval: { tokenAddress: token.address, spender },
         })
       })
@@ -100,7 +100,7 @@ export function useApproveCallback(
         console.error('Failed to approve token', error)
         throw error
       })
-  }, [approvalState, token, tokenContract, amountToApprove, spender, addTransaction, callWithGasPrice])
+  }, [approvalState, token, tokenContract, amountToApprove, spender, chainId, addTransaction, callWithGasPrice])
 
   return [approvalState, approve]
 }

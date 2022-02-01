@@ -17,6 +17,7 @@ import {
   unmuteAudio,
   updateUserDeadline,
   updateUserExpertMode,
+  updateUserRecentTransactions,
   updateUserFarmStakedOnly,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
@@ -122,6 +123,23 @@ export function useUserSingleHopOnly(): [boolean, (newSingleHopOnly: boolean) =>
   )
 
   return [singleHopOnly, setSingleHopOnly]
+}
+
+export function useUserRecentTransactions(): [boolean, (recentTransaction: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const recentTransactions = useSelector<AppState, AppState['user']['userRecentTransactions']>(
+    (state) => state.user.userRecentTransactions,
+  )
+
+  const setRecentTransactions = useCallback(
+    (newResentTransactions: boolean) => {
+      dispatch(updateUserRecentTransactions({ userRecentTransactions: newResentTransactions }))
+    },
+    [dispatch],
+  )
+
+  return [recentTransactions, setRecentTransactions]
 }
 
 export function useUserSlippageTolerance(): [number, (slippage: number) => void] {

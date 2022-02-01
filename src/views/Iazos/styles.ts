@@ -94,6 +94,5 @@ export const PresaleText = styled(Text)`
 `
 
 export const SpinnerHolder = styled.div`
-  margin-top: 90px;
-  margin-left: 50px;
+  margin-top: 60px;
 `
