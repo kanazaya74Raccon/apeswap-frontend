@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
 import useI18n from '../../../hooks/useI18n'
-import {Nft} from "../../../config/constants/types";
+import { Nft } from '../../../config/constants/types'
 
 interface NfaListingModalProps {
   onConfirm: (
@@ -62,7 +62,6 @@ const NfaBackground = styled.div`
 `
 
 const TimeText = styled(Text)`
-  font-family: poppins;
   font-weight: 400;
   font-size: 16px;
   align-self: center;

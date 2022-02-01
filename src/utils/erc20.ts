@@ -1,6 +1,7 @@
 import Web3 from 'web3'
 import { provider as ProviderType } from 'web3-core'
-import { Contract } from 'web3-eth-contract'
+import { Web3Provider } from '@ethersproject/providers'
+import { BigNumber, Contract } from 'ethers'
 import { AbiItem } from 'web3-utils'
 import erc20 from 'config/abi/erc20.json'
 import { ZERO_ADDRESS } from 'config'
@@ -17,7 +18,7 @@ export const getAllowance = async (
   account: string,
 ): Promise<string> => {
   try {
-    const allowance: string = await lpContract.methods.allowance(account, masterChefContract.options.address).call()
+    const allowance: string = await lpContract.allowance(account, masterChefContract.address)
     return allowance
   } catch (e) {
     return '0'
@@ -25,22 +26,22 @@ export const getAllowance = async (
 }
 
 export const getTokenBalance = async (
-  web3: Web3,
+  provider: Web3Provider,
   tokenAddress: string,
   userAddress: string,
   tokenContract?: Contract,
 ): Promise<string> => {
   if (tokenAddress === ZERO_ADDRESS) {
     try {
-      const balance: string = await web3.eth.getBalance(userAddress)
-      return balance
+      const balance: BigNumber = await provider.getBalance(userAddress)
+      return balance?.toString()
     } catch (e) {
       return '0'
     }
   }
   try {
-    const balance: string = await tokenContract.methods.balanceOf(userAddress).call()
-    return balance
+    const balance: string = await tokenContract.balanceOf(userAddress)
+    return balance?.toString()
   } catch (e) {
     return '0'
   }

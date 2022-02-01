@@ -65,13 +65,12 @@ export const TopNavWrapper = styled.div`
 `
 
 export const StyledHeader = styled(Text)`
-  font-family: Poppins;
   font-size: 30px;
   font-style: normal;
   line-height: 52px;
   text-align: center;
   width: 100%;
-  font-weight: 700;
+  font-weight: 600;
   ${({ theme }) => theme.mediaQueries.lg} {
     font-size: 45px;
   }
@@ -87,16 +86,13 @@ export const StyledButton = styled.button`
   margin-top: 20px;
   border: none;
   cursor: pointer;
-  font-family: Poppins;
-  font-weight: 700;
+  font-weight: 600;
 `
 export const PresaleText = styled(Text)`
-  font-family: Poppins;
   font-size: 20px;
   line-height: 30px;
 `
 
 export const SpinnerHolder = styled.div`
-  margin-top: 90px;
-  margin-left: 50px;
+  margin-top: 60px;
 `

@@ -1,15 +1,15 @@
-import { useEffect, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { kebabCase } from 'lodash'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
 import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
-import useBlock from 'hooks/useBlock'
+import { useAppDispatch } from 'state'
 import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
   fetchFarmsPublicDataAsync,
@@ -36,6 +36,7 @@ import {
   NfaStakingPool,
   DualFarm,
   HomepageData,
+  LpTokenPricesState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -48,6 +49,8 @@ import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
+import { fetchLpTokenPrices } from './lpPrices'
+import { useBlock } from './block/hooks'
 
 const ZERO = new BigNumber(0)
 
@@ -64,8 +67,8 @@ export const useNetworkChainIdFromUrl = (): boolean => {
 }
 
 export const useUpdateNetwork = () => {
-  const dispatch = useDispatch()
-  const { chainId, account } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const { chainId, account } = useActiveWeb3React()
   const appChainId = useNetworkChainId()
   const chainIdFromUrl = useNetworkChainIdFromUrl()
   const { switchNetwork } = useSwitchNetwork()
@@ -82,24 +85,33 @@ export const useUpdateNetwork = () => {
 
 // Fetch public pool and farm data
 
-export const useFetchPublicData = () => {
+export const usePollPools = () => {
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (chainId === CHAIN_ID.BSC) {
+      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
+    }
+  }, [dispatch, tokenPrices, chainId])
+}
+
+export const usePollFarms = () => {
+  const chainId = useNetworkChainId()
+  const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC) {
       dispatch(fetchFarmsPublicDataAsync(chainId))
-      dispatch(fetchPoolsPublicDataAsync(chainId, tokenPrices))
     }
-  }, [dispatch, slowRefresh, tokenPrices, chainId])
+  }, [dispatch, slowRefresh, chainId])
 }
 
 // Vault data
 export const usePollVaultsData = (includeArchive = false) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
@@ -115,8 +127,8 @@ export const usePollVaultsData = (includeArchive = false) => {
 
 export const usePollDualFarms = () => {
   const { slowRefresh } = useRefresh()
-  const { account } = useWeb3React()
-  const dispatch = useDispatch()
+  const { account } = useActiveWeb3React()
+  const dispatch = useAppDispatch()
   const { tokenPrices } = useTokenPrices()
   const chainId = useNetworkChainId()
   useEffect(() => {
@@ -141,8 +153,8 @@ export const useDualFarmsFromPid = (pid): DualFarm => {
 
 export const useFarms = (account): Farm[] => {
   const { slowRefresh } = useRefresh()
-  const dispatch = useDispatch()
-  const { chainId } = useWeb3React()
+  const dispatch = useAppDispatch()
+  const { chainId } = useActiveWeb3React()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
       dispatch(fetchFarmUserDataAsync(chainId, account))
@@ -199,14 +211,14 @@ export const useVaultUser = (pid) => {
 // Pools
 
 export const usePools = (account): Pool[] => {
-  const { fastRefresh } = useRefresh()
-  const dispatch = useDispatch()
-  const { chainId } = useWeb3React()
+  const { slowRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  const { chainId } = useActiveWeb3React()
   useEffect(() => {
     if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
       dispatch(fetchPoolsUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, fastRefresh, chainId])
+  }, [account, dispatch, slowRefresh, chainId])
 
   const pools = useSelector((state: State) => state.pools.data)
   return pools
@@ -231,8 +243,8 @@ export const useAllPools = (): Pool[] => {
 
 export const usePollNfaStakingData = () => {
   const { slowRefresh } = useRefresh()
-  const { account } = useWeb3React()
-  const dispatch = useDispatch()
+  const { account } = useActiveWeb3React()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { tokenPrices } = useTokenPrices()
   useEffect(() => {
@@ -304,6 +316,11 @@ export const usePriceBananaBusd = (): BigNumber => {
   return price || ZERO
 }
 
+export const usePriceGnanaBusd = (): BigNumber => {
+  const bananaPrice = usePriceBananaBusd()
+  return bananaPrice.times(1.3889)
+}
+
 /*
   // TODO Revisit this 
   const pid = BANANA_POOL_PID // BANANA-BNB LP
@@ -321,21 +338,21 @@ export const usePriceEthBusd = (): BigNumber => {
 
 // Toasts
 export const useToast = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const helpers = useMemo(() => {
     const push = (toast: Toast) => dispatch(pushToast(toast))
 
     return {
-      toastError: (title: string, description?: string) => {
+      toastError: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.DANGER, title, description })
       },
-      toastInfo: (title: string, description?: string) => {
+      toastInfo: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.INFO, title, description })
       },
-      toastSuccess: (title: string, description?: string) => {
+      toastSuccess: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.SUCCESS, title, description })
       },
-      toastWarning: (title: string, description?: string) => {
+      toastWarning: (title: string, description?: ReactNode) => {
         return push({ id: kebabCase(title), type: toastTypes.WARNING, title, description })
       },
       push,
@@ -350,13 +367,15 @@ export const useToast = () => {
 // Profile
 
 export const useFetchProfile = () => {
-  const { account } = useWeb3React()
-  const dispatch = useDispatch()
+  const { account } = useActiveWeb3React()
+  const dispatch = useAppDispatch()
   const chainId = CHAIN_ID.BSC
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchProfile(chainId, account))
+    if (account) {
+      dispatch(fetchProfile(chainId, account))
+    }
   }, [account, dispatch, slowRefresh, chainId])
 }
 
@@ -367,10 +386,10 @@ export const useProfile = () => {
 
 // Stats - individual stats
 export const useFetchStats = () => {
-  const { account } = useWeb3React()
-  const dispatch = useDispatch()
+  const { account } = useActiveWeb3React()
+  const dispatch = useAppDispatch()
   const { statsOverall } = useStatsOverall()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const farms = useFarms(account)
   const pools = usePools(account)
   const { slowRefresh } = useRefresh()
@@ -378,8 +397,8 @@ export const useFetchStats = () => {
   const [render, setRender] = useState(false)
 
   // Stats was rendering an insane amount so hot fix until its redone
-  if (account && farms && pools && statsOverall && render && block) {
-    dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, block))
+  if (account && farms && pools && statsOverall && render && currentBlock) {
+    dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, currentBlock))
     setRender(false)
   }
 
@@ -394,7 +413,7 @@ export const useStats = () => {
 }
 
 export const useFetchHomepageStats = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
@@ -408,7 +427,7 @@ export const useHomepageStats = (): HomepageData => {
 }
 
 export const useFetchAuctions = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
   const chainId = useNetworkChainId()
 
@@ -425,7 +444,7 @@ export const useAuctions = () => {
 }
 
 export const useFetchIazoSettings = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
@@ -434,7 +453,7 @@ export const useFetchIazoSettings = () => {
 }
 
 export const useFetchIazos = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
@@ -443,7 +462,7 @@ export const useFetchIazos = () => {
 }
 
 export const useFetchIazo = (address: string) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
@@ -467,7 +486,7 @@ export const useIazoFromAddress = (address): Iazo => {
 }
 
 export const useFetchTokenPrices = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
   const chainId = useNetworkChainId()
   useEffect(() => {
@@ -478,6 +497,20 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useFetchLpTokenPrices = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    dispatch(fetchLpTokenPrices(chainId))
+  }, [dispatch, slowRefresh, chainId])
+}
+
+export const useLpTokenPrices = () => {
+  const { isInitialized, isLoading, data }: LpTokenPricesState = useSelector((state: State) => state.lpTokenPrices)
+  return { lpTokenPrices: data, isInitialized, isLoading }
 }
 
 export const useTokenPriceFromSymbol = (symbol: string) => {
@@ -508,7 +541,7 @@ export const usePersonalTvl = () => {
 // Stats Overall- Total Banana Stats
 
 export const useFetchStatsOverall = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {

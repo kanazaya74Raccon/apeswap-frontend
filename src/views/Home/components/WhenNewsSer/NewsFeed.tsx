@@ -36,10 +36,9 @@ const TitleContainer = styled.div`
 `
 
 const Title = styled(Text)`
-  font-family: Poppins;
   font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.05em;
   text-align: center;
@@ -50,7 +49,6 @@ const DescriptionContainer = styled(TitleContainer)`
 `
 
 const Description = styled(Text)`
-  font-family: Poppins;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -76,8 +74,8 @@ const NewsFeed = () => {
         <></>
       ) : (
         newsData?.map((news, i) => (
-          <a href={news.link} target="_blank" rel="noopener noreferrer" key={news.title}>
-            <NewsContainer border={i !== 0} key={news.link}>
+          <a href={news.link} target="_blank" rel="noopener noreferrer" key={news.id}>
+            <NewsContainer border={i !== 0}>
               <ImageContainer image={news.image[0]?.url} />
               <TitleContainer>
                 <Title>{news.title}</Title>

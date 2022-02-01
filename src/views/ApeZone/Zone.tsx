@@ -1,76 +1,87 @@
-import React from 'react'
-import { BaseLayout, Card, Heading, Text } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+
 import { TranslateString } from 'utils/translateTextHelpers'
-import Divider from './components/Divider'
-import BuyCard from './components/BuyCard'
-import SellCard from './components/SellCard'
-import Iao from './components/IAO/CurrentIao'
-import Description from './components/Description/Description'
+import Page from 'components/layout/Page'
+import Spacer from 'components/Spacer'
+import GnanaUtility from './components/GnanaUtility/GnanaUtility'
+import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
+import ConvertCard from './components/ConvertCard'
+import ReturnCard from './components/ReturnCard'
 
-const StyledHeroSection = styled.div`
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const MarginContainer = styled.div`
-  margin: 53px 30px;
-`
-
-const Cards = styled(BaseLayout)`
-  align-items: stretch;
-  justify-content: stretch;
-  margin: 32px 0px;
-  & > div {
-    grid-column: span 6;
-    width: 100%;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    & > div {
-      grid-column: span 8;
-    }
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    & > div {
-      grid-column: span 6;
-    }
-  }
-`
-const PaddedCard = styled(Card)`
-  padding: 26px;
-`
+import {
+  Header,
+  HeaderContainer,
+  PaddedCard,
+  TopCon,
+  Warning,
+  CenterCard,
+  OuterContent,
+  OuterContentText,
+  InnerContent,
+  InnerContentText,
+  Cards,
+  StyledHeading,
+  ReadMore,
+  WarningHeader,
+} from './styles'
 
 const Zone = () => {
+  const [readingMore, setReadingMore] = useState(false)
+
+  const toggleReadMore = () => {
+    setReadingMore(!readingMore)
+  }
+
   return (
     <>
-      <Description />
-      <StyledHeroSection>
-        <MarginContainer>
-          <Heading size="xl" mb="26px" color="primary" fontFamily="Titan One">
-            {TranslateString(999, 'Buy Golden Banana')}
-          </Heading>
-          <PaddedCard>
-            <Heading size="lg" fontFamily="poppins" color="warning">
-              WARNING
-            </Heading>
-            <Text fontFamily="poppins">
-              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%.
-            </Text>
-            <Text fontFamily="poppins">
-              This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA
-            </Text>
-          </PaddedCard>
-          <Cards>
-            <BuyCard />
-            <SellCard />
-          </Cards>
-        </MarginContainer>
-      </StyledHeroSection>
-      <Iao />
-      <Divider />
+      <Header>
+        <HeaderContainer>
+          <StyledHeading as="h1" mt={0} color="white">
+            {TranslateString(999, 'Golden')}
+          </StyledHeading>
+          <StyledHeading as="h1" mb="8px" mt={1} color="white">
+            {TranslateString(999, 'Banana')}
+          </StyledHeading>
+        </HeaderContainer>
+      </Header>
+
+      <Page>
+        <PaddedCard>
+          <TopCon>
+            <Warning />
+            <CenterCard>
+              <WarningHeader>WARNING</WarningHeader>
+              {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
+
+              <InnerContent readingMore={readingMore}>
+                <InnerContentText>
+                  Converting GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This
+                  means that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+                </InnerContentText>
+              </InnerContent>
+            </CenterCard>
+            <Warning />
+          </TopCon>
+
+          <OuterContent readingMore={readingMore}>
+            <OuterContentText>
+              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that
+              for every 1 BANANA you trade in, you will receive 0.7 GNANA
+            </OuterContentText>
+          </OuterContent>
+        </PaddedCard>
+
+        <Cards id="convert">
+          <ConvertCard fromToken="BANANA" toToken="GNANA" />
+          <ReturnCard fromToken="GNANA" toToken="BANANA" />
+        </Cards>
+
+        <GnanaUtility />
+        <GnanaDisclaimers />
+
+        <Spacer size="lg" />
+        <Spacer size="md" />
+      </Page>
     </>
   )
 }

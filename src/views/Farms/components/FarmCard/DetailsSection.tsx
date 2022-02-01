@@ -4,11 +4,11 @@ import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Home/components/HotFarms/FarmCardForHome'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
-import { FarmPool } from 'state/types'
 import { useFarmUser, useNetworkChainId, usePriceBananaBusd } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import Multiplier from '../FarmTable/Multiplier'
+import { LpTokenPrices } from '../../../../state/types'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -16,7 +16,7 @@ export interface ExpandableSectionProps {
   totalValueFormated?: string
   lpLabel?: string
   addLiquidityUrl?: string
-  farmStats?: FarmPool
+  farmsPrices?: LpTokenPrices[]
   multiplier?: string
   liquidity?: BigNumber
   pid?: number
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
 const StyledLinkExternal = styled(LinkExternal)`
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.text};
   display: flex;
@@ -53,11 +53,11 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const StyledTextGreen = styled(Text)`
-  font-weight: bold;
+  font-weight: 600;
   color: #38a611;
 `
 
@@ -65,13 +65,14 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
+  font-weight: 800;
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   bscScanAddress,
   lpLabel,
   addLiquidityUrl,
-  farmStats,
+  farmsPrices,
   multiplier,
   pid,
   liquidity,
@@ -80,9 +81,15 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const chainId = useNetworkChainId()
-  const totalValuePersonalFormated = farmStats
-    ? `$${Number(farmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+
+  const { stakedBalance } = useFarmUser(pid)
+  const rawStakedBalance = getBalanceNumber(stakedBalance)
+  const lpPrice: LpTokenPrices = farmsPrices?.find((lp) => lp.pid === farm.pid)
+
+  const totalValuePersonalFormated =
+    lpPrice && rawStakedBalance > 0
+      ? `$${Number(lpPrice.price * rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+      : '-'
 
   const totalValueFormated = liquidity
     ? `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -102,8 +109,8 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
   const addTokenWallet = async (address) => {
     if (!address) return
-    const tokenInfo = await getTokenInfo(address, chainId)
-    registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
+    const { symbolToken, decimalsToken } = await getTokenInfo(address, chainId)
+    registerToken(address, symbolToken, decimalsToken, '')
   }
   return (
     <Wrapper>
@@ -128,19 +135,19 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         <StyledTextGreen fontSize="12px">{displayHarvestBalance}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
-        <StyledLink external href={bscScanAddress} bold={false} fontFamily="Titan One">
+        <StyledLink external href={bscScanAddress} bold={false}>
           {TranslateString(356, 'View on BscScan')}
         </StyledLink>
       </Flex>
       {farm.projectLink && (
         <Flex justifyContent="center">
-          <StyledLink external href={farm.projectLink} bold={false} fontFamily="Titan One">
+          <StyledLink external href={farm.projectLink} bold={false}>
             {TranslateString(356, 'View Project Site')}
           </StyledLink>
         </Flex>
       )}
       <Flex justifyContent="center">
-        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)} fontFamily="Titan One">
+        <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
           Add to Metamask
         </StyledLink>
       </Flex>

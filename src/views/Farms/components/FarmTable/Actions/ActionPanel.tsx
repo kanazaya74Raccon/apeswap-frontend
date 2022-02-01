@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { LinkExternal, Text, Flex, Link } from '@apeswapfinance/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useFarmUser, useStats, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
+import { useFarmUser, usePriceBananaBusd, useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getTokenInfo, registerToken } from 'utils/wallet'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import { LiquidityProps } from '../Liquidity'
+import { LpTokenPrices } from '../../../../../state/types'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -18,6 +19,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   account: string
   addLiquidityUrl: string
+  farmsPrices: LpTokenPrices[]
 }
 
 export interface InfoPropsContainer {
@@ -39,12 +41,13 @@ const Container = styled.div`
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
+  font-weight: 800;
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 10px;
 `
 const StyledLink = styled(Link)`
+  font-weight: 800;
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 14px;
@@ -88,20 +91,20 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 const StakedText = styled(Text)`
-  font-weight: 700;
-  margin-left 60px;
+  font-weight: 600;
+  margin-left: 60px;
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left 85px;
   }
 `
 
 const StakedValueText = styled(Text)`
-  margin-left 60px;
-  font-family: "Titan One";
+  margin-left: 60px;
+  font-weight: 800;
   
   ${({ theme }) => theme.mediaQueries.xl} {
     margin-left 85px;
@@ -114,6 +117,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   account,
   addLiquidityUrl,
   liquidity,
+  farmsPrices,
 }) => {
   const farm = details
 
@@ -138,12 +142,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const rawStakedBalance = getBalanceNumber(stakedBalance)
   const displayBalance = rawStakedBalance.toLocaleString()
 
-  const yourStats = useStats()
-  const farmStats = yourStats?.stats?.farms
-  const filteredFarmStats = farmStats?.find((item) => item.pid === farm.pid)
-  const totalValuePersonalFormated = filteredFarmStats
-    ? `$${Number(filteredFarmStats.stakedTvl).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-    : '-'
+  const lpPrice: LpTokenPrices = farmsPrices?.find((lp) => lp.pid === farm.pid)
+
+  const totalValuePersonalFormated =
+    lpPrice && rawStakedBalance > 0
+      ? `${(lpPrice.price * rawStakedBalance).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+      : '-'
 
   let liquidityDigits
   if (typeof liquidity.liquidity === 'string') {
@@ -165,36 +169,28 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <InfoContainer liquidityDigits={liquidityDigits}>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {TranslateString(999, 'Multiplier:')}
-                </StyledText>
+                <StyledText fontSize="12px">{TranslateString(999, 'Multiplier:')}</StyledText>
                 <Multiplier multiplier={apr.multiplier} />
               </ValueWrapper>
             </ValueContainer>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  {TranslateString(999, 'Stake:')}
-                </StyledText>
+                <StyledText fontSize="12px">{TranslateString(999, 'Stake:')}</StyledText>
                 <LinkExternal className="noClick" href={addLiquidityUrl}>
-                  <StyledText className="noClick" fontFamily="poppins" fontSize="12px">
+                  <StyledText className="noClick" fontSize="12px">
                     {farm.lpSymbol}
                   </StyledText>
                 </LinkExternal>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  Staked Value
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                <StyledText fontSize="12px">Staked Value</StyledText>
+                <StyledText fontSize="12px" color="green">
                   ~{totalValuePersonalFormated}USD
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontFamily="poppins" fontSize="12px">
-                  Earned Value
-                </StyledText>
-                <StyledText fontFamily="poppins" fontSize="12px" color="green">
+                <StyledText fontSize="12px">Earned Value</StyledText>
+                <StyledText fontSize="12px" color="green">
                   ~{displayHarvestBalance}USD
                 </StyledText>
               </ValueWrapper>
@@ -203,20 +199,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <Flex flexDirection="column">
             {account && rawStakedBalance !== 0 && (
               <>
-                <StakedText fontFamily="poppins" fontSize="12px">
-                  Staked
-                </StakedText>
-                <StakedValueText color="text" fontSize="20px">
-                  {displayBalance}
-                </StakedValueText>
+                <StakedText fontSize="12px">Staked</StakedText>
+                <StakedValueText fontSize="20px">{displayBalance}</StakedValueText>
               </>
             )}
           </Flex>
           <ValueContainerNoneLarge>
             <ValueWrapper>
-              <StyledText fontFamily="poppins" fontSize="12px">
-                {TranslateString(736, 'APR:')}
-              </StyledText>
+              <StyledText fontSize="12px">{TranslateString(736, 'APR:')}</StyledText>
               <Apr {...apr} addLiquidityUrl={addLiquidityUrl} />
             </ValueWrapper>
           </ValueContainerNoneLarge>
@@ -225,15 +215,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal className="noClick" href={bsc} fontFamily="Titan One">
+      <StyledLinkExternal className="noClick" href={bsc}>
         {TranslateString(999, 'View on BscScan')}
       </StyledLinkExternal>
       {farm.projectLink && (
-        <StyledLinkExternal className="noClick" href={farm.projectLink} fontFamily="Titan One">
+        <StyledLinkExternal className="noClick" href={farm.projectLink}>
           {TranslateString(356, 'View Project Site')}
         </StyledLinkExternal>
       )}
-      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)} fontFamily="Titan One">
+      <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
         Add to Metamask
       </StyledLink>
     </>

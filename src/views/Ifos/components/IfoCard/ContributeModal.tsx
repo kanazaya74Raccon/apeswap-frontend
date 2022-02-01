@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { Modal, Button, Flex, LinkExternal } from '@apeswapfinance/uikit'
 import BalanceInput from 'components/Input/BalanceInput'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
 import track from 'utils/track'
-import { CHAIN_ID } from 'config/constants'
 
 interface Props {
   currency: string
@@ -20,15 +19,15 @@ interface Props {
 const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress, onDismiss, notLp }) => {
   const [value, setValue] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const { account } = useWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const balance = getFullDisplayBalance(useTokenBalance(currencyAddress))
 
   const deposit = async () => {
     const depositValue = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
     if (currencyAddress === ZERO_ADDRESS) {
-      return contract.methods.depositNative().send({ from: account, value: depositValue })
+      return contract.depositNative().send({ from: account, value: depositValue })
     }
-    return contract.methods.deposit(depositValue).send({ from: account })
+    return contract.deposit(depositValue).send({ from: account })
   }
 
   return (
@@ -53,7 +52,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
             const amount = new BigNumber(value).times(new BigNumber(10).pow(18)).toString()
             track({
               event: 'iao',
-              chain: CHAIN_ID,
+              chain: chainId,
               data: {
                 amount,
                 cat: 'buy',

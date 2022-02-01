@@ -157,6 +157,34 @@ const dualFarms: DualFarmConfig[] = [
       token1: tokens.abr,
     },
   },
+  {
+    pid: 11,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x2735d319739edc6c47c3a20aa5402b931c3f1a1e',
+    rewarderAddress: '0x53074a829b27aebf8dfa892c715cb6f41fb2db6e',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.nfty2,
+    },
+    rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.nfty2,
+    },
+  },
+  {
+    pid: 12,
+    network: CHAIN_ID.MATIC,
+    stakeTokenAddress: '0x0806a407d6eea72788d91c36829a19d424446040',
+    rewarderAddress: '0xc4e3457D0039815CF839f2Cb9141FCb442A6200b',
+    stakeTokens: {
+      token0: tokens.wmatic,
+      token1: tokens.kom,
+    },
+    rewardTokens: {
+      token0: tokens.banana,
+      token1: tokens.kom,
+    },
+  },
 ]
 
 export default dualFarms

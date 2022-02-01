@@ -3,6 +3,7 @@ export type IfoStatus = 'coming_soon' | 'live' | 'finished'
 export interface Ifo {
   id: string
   isActive: boolean
+  isLinear: boolean
   address: string
   name: string
   subTitle?: string
@@ -16,12 +17,22 @@ export interface Ifo {
   projectSiteUrl: string
   currency: string
   currencyAddress: string
+  offeringCurrency: string
   tokenDecimals: number
   releaseBlockNumber: number
   vestingTime?: string
   vesting?: boolean
   startBlock?: number
   burnedTxUrl?: string
+}
+
+export interface SerializedToken {
+  chainId: number
+  address: string
+  decimals: number
+  symbol?: string
+  name?: string
+  projectLink?: string
 }
 
 export enum QuoteToken {
@@ -146,17 +157,17 @@ export type Nft = {
 }
 
 export type Nfb = {
-  contractAddress: string,
-  tokenId: number,
-  attributes: NfbAttribute[],
-  externalUrl: string,
-  image: string,
-  name: string,
+  contractAddress: string
+  tokenId: number
+  attributes: NfbAttribute[]
+  externalUrl: string
+  image: string
+  name: string
   nftCollection: string
 }
 
 export type NfbAttribute = {
-  traitType: string,
+  traitType: string
   value: string
 }
 

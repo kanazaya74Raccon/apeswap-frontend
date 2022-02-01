@@ -365,9 +365,8 @@ const StyledPage = styled(Page)`
 const StyledLabel = styled.div<LabelProps>`
   display: flex;
   color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
   padding: 4px 12px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
@@ -596,7 +595,7 @@ const DualFarms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontFamily="Titan One">
+          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
             {TranslateString(999, 'Stake LP tokens to earn Rewards')}
           </StyledHeading>
         </HeadingContainer>

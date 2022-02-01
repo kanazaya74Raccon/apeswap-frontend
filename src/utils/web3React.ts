@@ -1,10 +1,11 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { ConnectorNames } from '@apeswapfinance/uikit'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import getRpcUrl from 'utils/getRpcUrl'
 import { CHAIN_ID } from 'config/constants/chains'
-import Web3 from 'web3'
+import { Web3Provider } from '@ethersproject/providers'
 
 const POLLING_INTERVAL = 15000
 
@@ -23,12 +24,23 @@ const walletconnect = new WalletConnectConnector({
 
 const bscConnector = new BscConnector({ supportedChainIds: [CHAIN_ID.BSC] })
 
+export const walletlink = new WalletLinkConnector({
+  url: getRpcUrl(CHAIN_ID.BSC),
+  supportedChainIds: [CHAIN_ID.BSC],
+  appName: 'Apeswap',
+  darkMode: true,
+  appLogoUrl: 'https://apeswap.finance/logo.png',
+})
+
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
+  [ConnectorNames.Walletlink]: walletlink,
 }
 
-export const getLibrary = (provider): Web3 => {
-  return provider
+export const getLibrary = (provider: any): Web3Provider => {
+  const library = new Web3Provider(provider, 'any')
+  library.pollingInterval = 15000
+  return library
 }

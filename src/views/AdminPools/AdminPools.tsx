@@ -7,7 +7,7 @@ import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinanc
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
-import useBlock from 'hooks/useBlock'
+import { useBlock } from 'state/block/hooks'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePools } from 'state/hooks'
@@ -416,9 +416,9 @@ const StyledPage = styled(Page)`
 const StyledLabel = styled.div<LabelProps>`
   display: flex;
   color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
+
   padding: 4px 12px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
@@ -448,7 +448,6 @@ const FlexLayout = styled.div`
 `
 
 const AdminText = styled(Text)`
-  font-family: poppins;
   font-size: 18px;
   font-weight: 500;
   color: white;
@@ -467,7 +466,7 @@ const AdminPools: React.FC = () => {
   const size: Size = useWindowSize()
   const allPools = usePools(account)
   const TranslateString = useI18n()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -497,7 +496,7 @@ const AdminPools: React.FC = () => {
   const adminPools = allPools.filter((pool) => pool.forAdmins)
 
   const curPools = adminPools.map((pool) => {
-    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })
 
   const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)

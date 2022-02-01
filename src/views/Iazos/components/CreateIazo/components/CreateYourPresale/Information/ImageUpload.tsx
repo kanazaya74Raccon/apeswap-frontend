@@ -82,7 +82,6 @@ const DragImageWrapper = styled.div`
 `
 
 const DragAndDropText = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   color: rgba(255, 179, 0, 1);
   cursor: pointer;
@@ -104,7 +103,6 @@ const ImageCircle = styled.div<{ image?: string }>`
 `
 
 const StyledText = styled(Text)`
-  font-family: Poppins;
   font-weight: 500;
   width: 100%;
   font-size: 14px;

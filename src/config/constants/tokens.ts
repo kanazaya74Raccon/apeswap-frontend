@@ -835,6 +835,112 @@ const tokens = {
     },
     decimals: 18,
   },
+  ads: {
+    symbol: 'ADS',
+    address: {
+      56: '0xcfcEcFe2bD2FED07A9145222E8a7ad9Cf1Ccd22A',
+    },
+    decimals: 11,
+  },
+  kai: {
+    symbol: 'KAI',
+    address: {
+      56: '0x39Ae8EEFB05138f418Bb27659c21632Dc1DDAb10',
+    },
+    decimals: 18,
+  },
+  dose: {
+    symbol: 'DOSE',
+    address: {
+      56: '0x7837fd820bA38f95c54D6dAC4ca3751b81511357',
+    },
+    decimals: 18,
+  },
+  ore: {
+    symbol: 'ORE',
+    address: {
+      56: '0x91F006ee672F8f39C6E63cA75B1cA14067b3c366',
+    },
+    decimals: 8,
+  },
+  myra: {
+    symbol: 'MYRA',
+    address: {
+      56: '0x6ef238E9E8CD2A96740897761C18894Fc086B9d0',
+    },
+    decimals: 18,
+  },
+  godz: {
+    symbol: 'GODZ',
+    address: {
+      56: '0xF0A8EcBCE8caADB7A07d1FcD0f87Ae1Bd688dF43',
+    },
+    decimals: 18,
+  },
+  mnft: {
+    symbol: 'MNFT',
+    address: {
+      56: '0x36953b5ec00a13edceceb3af258d034913d2a79d',
+    },
+    decimals: 18,
+  },
+  gmr: {
+    symbol: 'GMR',
+    address: {
+      56: '0xADCa52302e0a6c2d5D68EDCdB4Ac75DeB5466884',
+    },
+    decimals: 18,
+  },
+  moonlight: {
+    symbol: 'MOONLIGHT',
+    address: {
+      56: '0xB1CeD2e320E3f4C8e3511B1DC59203303493F382',
+    },
+    decimals: 9,
+  },
+  space: {
+    symbol: 'SPACE',
+    address: {
+      56: '0xe486a69E432Fdc29622bF00315f6b34C99b45e80',
+    },
+    decimals: 18,
+  },
+  bcmc: {
+    symbol: 'BCMC',
+    address: {
+      56: '0xc10358f062663448a3489fC258139944534592ac',
+    },
+    decimals: 18,
+  },
+  ari: {
+    symbol: 'ARI',
+    address: {
+      56: '0xc80A0A55CAF6a7bfB4Ee22f9380C4077312c4a35',
+    },
+    decimals: 18,
+  },
+  nfty2: {
+    symbol: 'NFTY ',
+    address: {
+      56: '0x8623e66Bea0DCe41B6d47f9C44e806A115baBae0',
+      137: '0x8623e66bea0dce41b6d47f9c44e806a115babae0',
+    },
+    decimals: 18,
+  },
+  kom: {
+    symbol: 'KOM',
+    address: {
+      137: '0xC004e2318722EA2b15499D6375905d75Ee5390B8',
+    },
+    decimals: 8,
+  },
+  lunr: {
+    symbol: 'LUNR',
+    address: {
+      56: '0x37807D4fbEB84124347B8899Dd99616090D3e304',
+    },
+    decimals: 4,
+  },
 }
 
 export default tokens

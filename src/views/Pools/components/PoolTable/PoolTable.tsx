@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import UnlockButton from 'components/UnlockButton'
-import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useBlock } from 'state/block/hooks'
 import { Pool } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import PoolHeading from './PoolHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
@@ -94,6 +94,10 @@ const StakeContainer = styled.div`
   }
 `
 
+const StyledUnlockButton = styled(UnlockButtonSquare)`
+  font-weight: 600;
+`
+
 const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const {
     sousId,
@@ -113,7 +117,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   } = pool
 
   const { account } = useWeb3React()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
   const toggleActionPanel = (e) => {
     if (e.target?.classList.contains('noClick')) return
@@ -127,8 +131,8 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
   const earnings = new BigNumber(pool.userData?.pendingReward || 0)
   const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
 
-  const blocksUntilStart = Math.max(startBlock - block, 0)
-  const blocksRemaining = Math.max(endBlock - block, 0)
+  const blocksUntilStart = Math.max(startBlock - currentBlock, 0)
+  const blocksRemaining = Math.max(endBlock - currentBlock, 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const isApproved = account && allowance && allowance.isGreaterThan(0)
   const needsApproval = !allowance.gt(0)
@@ -139,7 +143,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <UnlockButton padding="8px" />
+      return <StyledUnlockButton size="sm" />
     }
     if (needsApproval) {
       return (
@@ -224,7 +228,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             pendingReward={userData?.pendingReward}
             lpLabel={stakingToken?.symbol}
             addLiquidityUrl={
-              stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://app.apeswap.finance/swap`
+              stakingToken.symbol === `GNANA` ? `https://apeswap.finance/gnana` : `https://apeswap.finance/swap`
             }
             projectLink={projectLink}
             bscScanAddress={`https://bscscan.com/address/${contractAddress[chainId]}`}

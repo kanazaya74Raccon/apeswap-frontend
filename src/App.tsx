@@ -1,18 +1,14 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
+import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
-import {
-  useFetchPublicData,
-  useFetchTokenPrices,
-  useFetchProfile,
-  useNetworkChainId,
-  useUpdateNetwork,
-} from 'state/hooks'
+import { useFetchTokenPrices, useFetchProfile, useUpdateNetwork } from 'state/hooks'
+import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
@@ -38,6 +34,41 @@ const IazoPage = lazy(() => import('./views/Iazos/components/IazoPage'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
+const Swap = lazy(() => import('./views/Swap'))
+const Pool = lazy(() => import('./views/Pool'))
+const PoolFinder = lazy(() => import('./views/PoolFinder'))
+const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
+const RedirectOldRemoveLiquidityPathStructure = lazy(() => import('./views/RemoveLiquidity/redirects'))
+
+const redirectSwap = () => import('./views/Swap/redirects')
+const RedirectPathToSwapOnly = lazy(async () =>
+  redirectSwap().then((r) => ({
+    default: r.RedirectPathToSwapOnly,
+  })),
+)
+const RedirectToSwap = lazy(async () =>
+  redirectSwap().then((r) => ({
+    default: r.RedirectToSwap,
+  })),
+)
+
+const redirectAddLiquidity = () => import('./views/AddLiquidity/redirects')
+const RedirectDuplicateTokenIds = lazy(async () =>
+  redirectAddLiquidity().then((r) => ({
+    default: r.RedirectDuplicateTokenIds,
+  })),
+)
+const RedirectOldAddLiquidityPathStructure = lazy(async () =>
+  redirectAddLiquidity().then((r) => ({
+    default: r.RedirectOldAddLiquidityPathStructure,
+  })),
+)
+const RedirectToAddLiquidity = lazy(async () =>
+  redirectAddLiquidity().then((r) => ({
+    default: r.RedirectToAddLiquidity,
+  })),
+)
 
 // This config is required for number formating
 BigNumber.config({
@@ -59,25 +90,17 @@ const StyledChevronUpIcon = styled(ChevronUpIcon)`
 `
 
 const App: React.FC = () => {
-  // Monkey patch warn() because of web3 flood
-  // To be removed when web3 1.3.5 is released
-  const { account } = useWeb3React()
+  useUpdateNetwork()
+  useEagerConnect()
+  useFetchTokenPrices()
+  usePollBlockNumber()
+  useFetchProfile()
 
-  useEffect(() => {
-    console.warn = () => null
-  }, [])
+  const { account, chainId } = useActiveWeb3React()
 
   useEffect(() => {
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
   }, [account])
-
-  const appChainId = useNetworkChainId()
-
-  useUpdateNetwork()
-  useEagerConnect()
-  useFetchTokenPrices()
-  useFetchPublicData()
-  useFetchProfile()
 
   const scrollToTop = (): void => {
     window.scrollTo({
@@ -86,9 +109,25 @@ const App: React.FC = () => {
     })
   }
 
+  const swapRoutes = (
+    <>
+      <Route path="/swap" component={Swap} />
+      <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+      <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+      <Route exact strict path="/find" component={PoolFinder} />
+      <Route exact strict path="/pool" component={Pool} />
+      <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+      <Route exact path="/add" component={AddLiquidity} />
+      <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+      <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+      <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+      <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+    </>
+  )
+
   const loadMenu = () => {
     // MATIC routes
-    if (appChainId === CHAIN_ID.MATIC || appChainId === CHAIN_ID.MATIC_TESTNET) {
+    if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
       return (
         <Menu>
           <Suspense fallback={<PageLoader />}>
@@ -107,9 +146,6 @@ const App: React.FC = () => {
               </Route>
               {/* Redirects */}
               <Route exact path="/nft">
-                <Redirect to="/" />
-              </Route>
-              <Route path="/farms">
                 <Redirect to="/" />
               </Route>
               <Route path="/pools">
@@ -145,6 +181,7 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
+              <Suspense fallback={<></>}>{swapRoutes}</Suspense>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
@@ -162,6 +199,7 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/swap" component={Swap} />
             <Route path="/farms">
               <Farms />
             </Route>
@@ -214,6 +252,7 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
+            <Suspense fallback={<></>}>{swapRoutes}</Suspense>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
@@ -226,6 +265,7 @@ const App: React.FC = () => {
     <Router>
       <ResetCSS />
       <GlobalStyle />
+      <MarketingModalCheck />
       {(window.location.pathname === '/farms' ||
         window.location.pathname === '/pools' ||
         window.location.pathname === '/vaults' ||

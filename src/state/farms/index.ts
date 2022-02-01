@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import { farmsConfig } from 'config/constants'
-import fetchFarms from './fetchFarms'
 import {
   fetchFarmUserEarnings,
   fetchFarmUserAllowances,
@@ -9,6 +8,7 @@ import {
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
 import { FarmsState, Farm } from '../types'
+import fetchFarms from './fetchFarms'
 
 const initialState: FarmsState = { data: [...farmsConfig] }
 

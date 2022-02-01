@@ -9,7 +9,7 @@ export const AboutWrapper = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   color: ${(props) => props.theme.colors.text};
-  font-family: Poppins;
+
   line-height: 25px;
   font-weight: 500;
   font-size: 14px;
@@ -50,7 +50,7 @@ export const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
   align-items: center;
   justify-content: center;
   width: 50%;
-  font-family: Poppins;
+
   height: 60px;
   font-size: 20px;
   color: white;
@@ -95,7 +95,6 @@ export const InfoFooterWrapper = styled.div`
   }
 `
 export const StyledText = styled(Text)`
-  font-family: Poppins;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 10px;

@@ -34,7 +34,6 @@ export const PresaleInfoContainer = styled.div`
 `
 
 export const StyledText = styled(Text)<{ wallet: string }>`
-  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
@@ -63,7 +62,6 @@ export const PairContainer = styled.div`
 `
 
 export const StyledDescription = styled(Text)`
-  font-family: Poppins;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;

@@ -8,10 +8,10 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
+import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePools } from 'state/hooks'
+import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
-import useBlock from 'hooks/useBlock'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
@@ -202,7 +202,7 @@ const MonkeyWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -418,9 +418,8 @@ const StyledPage = styled(Page)`
 const StyledLabel = styled.div<LabelProps>`
   display: flex;
   color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
   padding: 4px 12px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
@@ -485,6 +484,7 @@ const TableContainer = styled.div`
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
+  usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [gnanaOnly, setGnanaOnly] = useState(false)
   const [bananaOnly, setBananaOnly] = useState(false)
@@ -498,7 +498,7 @@ const Pools: React.FC = () => {
   const size: Size = useWindowSize()
   const allPools = usePools(account)
   const TranslateString = useI18n()
-  const block = useBlock()
+  const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -537,7 +537,7 @@ const Pools: React.FC = () => {
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
   const curPools = allNonAdminPools.map((pool) => {
-    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock }
+    return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })
 
   const [finishedPools, openPools] = partition(curPools, (pool) => pool.isFinished)
@@ -687,7 +687,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (

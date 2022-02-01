@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react'
+import styled from 'styled-components'
 import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
 import { useVaultApeApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
@@ -8,6 +9,10 @@ interface ApprovalActionProps {
   pid: number
   isLoading?: boolean
 }
+
+const StyledButtonSquare = styled(ButtonSquare)`
+  font-weight: 600;
+`
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress, pid, isLoading = false }) => {
   const stakingTokenContract = useERC20(stakingContractAddress)
@@ -36,9 +41,9 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <ButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButtonSquare disabled={requestedApproval} onClick={handleApprove}>
           ENABLE
-        </ButtonSquare>
+        </StyledButtonSquare>
       )}
     </>
   )

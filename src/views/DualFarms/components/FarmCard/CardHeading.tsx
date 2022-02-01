@@ -73,13 +73,11 @@ const StyledText2 = styled(Text)`
 const StyledText3 = styled(Text)`
   font-size: 12px;
   color: #38a611;
-  font-weight: 200;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 25px;
     line-height: 29px;
-    font-weight: 200;
   }
 `
 
@@ -175,7 +173,7 @@ const StyledAPRText = styled.div`
   letter-spacing: 1px;
   margin-left: 5px;
   margin-bottom: 2px;
-  font-family: 'Titan One';
+  font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 20px;
@@ -298,7 +296,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading fontFamily="Titan One">{lpLabel}</StyledHeading>
+          <StyledHeading fontWeight={800}>{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1>APR:</StyledText1>

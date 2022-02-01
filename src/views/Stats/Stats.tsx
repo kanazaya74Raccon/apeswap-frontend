@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, BaseLayout } from '@apeswapfinance/uikit'
+import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useFetchStats, useFetchStatsOverall, useStats } from 'state/hooks'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useFetchStats, useFetchStatsOverall, usePollFarms, usePollPools, useStats } from 'state/hooks'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
@@ -86,11 +86,18 @@ const StyledHeading = styled(Heading)`
   }
 `
 
+const PaddedCard = styled(Card)`
+  padding: 26px;
+  margin-bottom: 10px;
+`
+
 const Stats: React.FC = () => {
+  usePollPools()
+  usePollFarms()
   useFetchStatsOverall()
   useFetchStats()
   const TranslateString = useI18n()
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const yourStats = useStats()
   const stats = yourStats?.stats
 
@@ -98,13 +105,34 @@ const Stats: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontFamily="Titan One">
+          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
             {TranslateString(999, 'Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
 
       <Page>
+        <PaddedCard>
+          <Heading size="lg" color="warning">
+            HEADS UP, APES!
+          </Heading>
+          <Text>
+            The data on this page is not always up to date. Please do not rely on it for an accurate representation of
+            your holdings. For similar services, consider our partners such as{' '}
+            <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
+              yieldwatch
+            </a>
+            ,{' '}
+            <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">
+              JDI
+            </a>
+            , or{' '}
+            <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">
+              Pacoca
+            </a>{' '}
+            for alternative dashboards!
+          </Text>
+        </PaddedCard>
         {!account ? (
           <UnlockButton fullWidth fontSize="14px" />
         ) : (
