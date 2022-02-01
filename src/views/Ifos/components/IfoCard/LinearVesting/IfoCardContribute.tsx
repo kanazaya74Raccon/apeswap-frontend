@@ -5,7 +5,9 @@ import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
 import { Contract } from 'ethers'
+import BigNumber from 'bignumber.js'
 
+import useTokenBalance from 'hooks/useTokenBalance'
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
 import useLinearIAOHarvest from '../../../hooks/useLinearIAOHarvest'
@@ -46,13 +48,18 @@ const IfoCardContribute: React.FC<Props> = ({
   const contractRaisingToken = useERC20(currencyAddress)
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)
+  const tokenBalance = useTokenBalance(currencyAddress)
   const onClaim = useLinearIAOHarvest(contract, setPendingTx)
 
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
   }
 
-  if (isActive && currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
+  if (
+    isActive &&
+    currencyAddress !== ZERO_ADDRESS &&
+    (allowance.isLessThanOrEqualTo(new BigNumber('0')) || allowance.isLessThan(tokenBalance))
+  ) {
     return (
       <ApproveButton
         disabled={pendingTx}
@@ -79,6 +86,7 @@ const IfoCardContribute: React.FC<Props> = ({
           <ContributeInput
             currency={currency}
             contract={contract}
+            tokenBalance={tokenBalance}
             currencyAddress={currencyAddress}
             disabled={pendingTx}
           />

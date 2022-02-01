@@ -7,12 +7,9 @@ import track from 'utils/track'
 
 export const buy = async (contract, amount, account) => {
   try {
-    return contract
-      .buy(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-      .send({ from: account })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    return contract.buy(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()).then((tx) => {
+      return tx.hash
+    })
   } catch (err) {
     return console.warn(err)
   }
@@ -20,12 +17,9 @@ export const buy = async (contract, amount, account) => {
 
 export const sell = async (contract, amount, account) => {
   try {
-    return contract
-      .sell(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-      .send({ from: account })
-      .on('transactionHash', (tx) => {
-        return tx.transactionHash
-      })
+    return contract.sell(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString()).then((tx) => {
+      return tx.hash
+    })
   } catch (err) {
     return console.warn(err)
   }
