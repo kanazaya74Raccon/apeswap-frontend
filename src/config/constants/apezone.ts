@@ -3,9 +3,31 @@ import { Ifo } from './types'
 const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
+      id: 'trustnft',
+      address: '', // Leave empty for "Coming Soon!"
+      isActive: true,
+      isLinear: true,
+      name: 'Trust NFT',
+      subTitle: `Decentralized NFT Loans & Marketplace`,
+      description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+      launchDate: 'February 3rd',
+      launchTime: '1:00 UTC',
+      saleAmount: '30,000,000 TRUSTNFT',
+      raiseAmount: '$525,000',
+      vestingTime: '3 Months',
+      projectSiteUrl: 'https://trustnft.org/',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'TRUSTNFT',
+      tokenDecimals: 18,
+      releaseBlockNumber: 22364007, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
+    {
       id: 'stz',
       address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       isLinear: false,
       name: '99Starz',
       subTitle: `The World's Biggest NFT Yield Ecosystem`,
