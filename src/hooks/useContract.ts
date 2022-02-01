@@ -76,7 +76,7 @@ export function useContract(abi: any, address: string | undefined, withSignerIfP
   const { library, account } = useActiveWeb3React()
 
   return useMemo(() => {
-    if (!address || !abi || !library) return null
+    if (!address || address === '0x0000000000000000000000000000000000000000' || !abi || !library) return null
     try {
       return getContract(address, abi, library, withSignerIfPossible && account ? account : undefined)
     } catch (error) {
