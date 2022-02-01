@@ -5,7 +5,7 @@ const ifos: Ifo[] = [
   // TEST
   {
     id: 'trustnft',
-    address: '0x1027915F2A8E35efa96364fb90a75FEA4b36f55E', // Leave empty for "Coming Soon!"
+    address: '0xF2a0A19e63cD869550B074a1d435ebd52EDF2240', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: 'TrustNFT',
