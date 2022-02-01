@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'stz',
-    address: '0x2D3a581a46731C8FA52D912a2fBEf5B46e3ca035', // Leave empty for "Coming Soon!"
+    address: '0x8e80C2df5fe06B0902b160005e2684cdeDF838FD', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: '99Starz Testnet',
@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'IAO',
     tokenDecimals: 18,
-    releaseBlockNumber: 16354252, // block to start showing contract details
+    releaseBlockNumber: 16376991, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },

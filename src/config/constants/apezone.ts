@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0x21C2B2c16cc41aeDBd6d0b56A8AdB2E7B8630908', // Leave empty for "Coming Soon!"
+      address: '0xa1Df602657E3C35E242be43E64f57Ac2f70D4A07', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: '99Starz Testnet',
@@ -20,7 +20,7 @@ const ApeZone: { ifos: Ifo[] } = {
       currencyAddress: '0xf693bDA9D3C56D5F9165c8633d9098e3C4Ae495A',
       offeringCurrency: 'IAO',
       tokenDecimals: 18,
-      releaseBlockNumber: 16354252, // block to start showing contract details
+      releaseBlockNumber: 16376991, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },
