@@ -66,16 +66,24 @@ export default function AddLiquidity({
   const swapCurrencyA = INPUT.currencyId
   const swapCurrencyB = OUTPUT.currencyId
 
-  const currencyA = useCurrency(currencyIdA || swapCurrencyA)
-  const currencyB = useCurrency(currencyIdB || swapCurrencyB)
+  const loadCurrencyIdA = currencyIdA || swapCurrencyA
+  const loadCurrencyIdB = currencyIdB || swapCurrencyB
+
+  const currencyA = useCurrency(loadCurrencyIdA)
+  const currencyB = useCurrency(loadCurrencyIdB)
+
+  if (!currencyIdA && swapCurrencyA && !currencyB && swapCurrencyB) {
+    history.push(`/add/${swapCurrencyA}/${swapCurrencyB}`)
+  }
+
   const [recentTransactions] = useUserRecentTransactions()
   const [addValueUsd, setAddValueUsd] = useState<number>(null)
 
   useEffect(() => {
-    if (!currencyIdA && !currencyIdB) {
+    if (!loadCurrencyIdA && !loadCurrencyIdB) {
       dispatch(resetMintState())
     }
-  }, [dispatch, currencyIdA, currencyIdB])
+  }, [dispatch, loadCurrencyIdA, loadCurrencyIdB])
 
   const expertMode = useIsExpertMode()
 
@@ -313,30 +321,30 @@ export default function AddLiquidity({
   const handleCurrencyASelect = useCallback(
     (currencyA_: Currency) => {
       const newCurrencyIdA = currencyId(currencyA_)
-      if (newCurrencyIdA === currencyIdB) {
-        history.push(`/add/${currencyIdB}/${currencyIdA}`)
-      } else if (currencyIdB) {
-        history.push(`/add/${newCurrencyIdA}/${currencyIdB}`)
+      if (newCurrencyIdA === loadCurrencyIdB) {
+        history.push(`/add/${loadCurrencyIdB}/${loadCurrencyIdA}`)
+      } else if (loadCurrencyIdB) {
+        history.push(`/add/${newCurrencyIdA}/${loadCurrencyIdB}`)
       } else {
         history.push(`/add/${newCurrencyIdA}`)
       }
     },
-    [currencyIdB, history, currencyIdA],
+    [loadCurrencyIdB, history, loadCurrencyIdA],
   )
   const handleCurrencyBSelect = useCallback(
     (currencyB_: Currency) => {
       const newCurrencyIdB = currencyId(currencyB_)
-      if (currencyIdA === newCurrencyIdB) {
-        if (currencyIdB) {
-          history.push(`/add/${currencyIdB}/${newCurrencyIdB}`)
+      if (loadCurrencyIdA === newCurrencyIdB) {
+        if (loadCurrencyIdB) {
+          history.push(`/add/${loadCurrencyIdB}/${newCurrencyIdB}`)
         } else {
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`)
+        history.push(`/add/${loadCurrencyIdA || 'ETH'}/${newCurrencyIdB}`)
       }
     },
-    [currencyIdA, history, currencyIdB],
+    [loadCurrencyIdA, history, loadCurrencyIdB],
   )
 
   const handleDismissConfirmation = useCallback(() => {
