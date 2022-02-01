@@ -7,13 +7,13 @@ import { useNonFungibleApes } from './useContract'
 // Retrieve IFO allowance
 export const useIfoAllowance = (tokenContract: Contract, spenderAddress: string, dependency?: any) => {
   const { account } = useWeb3React()
-  const [allowance, setAllowance] = useState(null)
+  const [allowance, setAllowance] = useState<BigNumber | null>(null)
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const res = await tokenContract.allowance(account, spenderAddress)
-        setAllowance(new BigNumber(res))
+        setAllowance(new BigNumber(res.toString()))
       } catch (e) {
         setAllowance(null)
       }

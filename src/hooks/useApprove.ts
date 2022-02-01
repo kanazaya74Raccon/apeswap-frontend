@@ -69,15 +69,13 @@ export const useSousApprove = (lpContract, sousId) => {
 
 // Approve an IFO
 export const useIfoApprove = (tokenContract, spenderAddress: string) => {
-  const { account } = useActiveWeb3React()
   const onApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
-      return tx
+      return await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256).then((t) => t.wait())
     } catch {
       return false
     }
-  }, [account, spenderAddress, tokenContract])
+  }, [spenderAddress, tokenContract])
 
   return onApprove
 }

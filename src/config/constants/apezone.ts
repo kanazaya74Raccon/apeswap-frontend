@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'stz',
-      address: '0xEc9501b36FDb8A4c20B22dCC6c6451Ff191cE605', // Leave empty for "Coming Soon!"
+      address: '0x21C2B2c16cc41aeDBd6d0b56A8AdB2E7B8630908', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: '99Starz Testnet',
