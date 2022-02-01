@@ -43,7 +43,7 @@ const useIAODeposit = (contract: Contract, currencyAddress: string, tokenBalance
           event: 'iao',
           chain: chainId,
           data: {
-            amount: depositValue,
+            amount,
             cat: 'buy',
             contract: contract.address,
           },
