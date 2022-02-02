@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useERC20 } from 'hooks/useContract'
+import { useSafeIfoContract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
-import { Contract } from 'ethers'
 import BigNumber from 'bignumber.js'
 
 import useTokenBalance from 'hooks/useTokenBalance'
@@ -17,7 +16,6 @@ export interface Props {
   address: string
   currency: string
   currencyAddress: string
-  contract: Contract
   amountContributed: number
   userTokenStatus: {
     stakeTokenHarvest: number
@@ -37,17 +35,16 @@ const IfoCardContribute: React.FC<Props> = ({
   address,
   currency,
   currencyAddress,
-  contract,
   amountContributed,
   isFinished,
   isActive,
   userTokenStatus,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
+  const contract = useSafeIfoContract(address, true)
 
-  const contractRaisingToken = useERC20(currencyAddress)
-  const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
-  const onApprove = useIfoApprove(contractRaisingToken, address)
+  const allowance = useIfoAllowance(currencyAddress, address, pendingTx)
+  const onApprove = useIfoApprove(currencyAddress, address)
   const tokenBalance = useTokenBalance(currencyAddress)
   const onClaim = useLinearIAOHarvest(contract, setPendingTx)
 

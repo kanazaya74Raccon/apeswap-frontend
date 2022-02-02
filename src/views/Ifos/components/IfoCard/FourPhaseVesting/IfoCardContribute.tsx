@@ -3,7 +3,6 @@ import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -52,10 +51,9 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const { account } = useActiveWeb3React()
 
-  const contractRaisingToken = useERC20(currencyAddress)
-  const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
+  const allowance = useIfoAllowance(currencyAddress, address, pendingTx)
   const tokenBalance = useTokenBalance(currencyAddress)
-  const onApprove = useIfoApprove(contractRaisingToken, address)
+  const onApprove = useIfoApprove(currencyAddress, address)
 
   const { userTokenStatus, harvestBlockReleases, userInfo, userHarvestedFlags } = useUserInfo(
     contract,
