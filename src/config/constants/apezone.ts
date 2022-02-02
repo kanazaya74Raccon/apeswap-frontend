@@ -4,7 +4,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'trustnft',
-      address: '0x53387fBeff81f8E5527Fe23B7634fb41923Ee6EA', // Leave empty for "Coming Soon!"
+      address: '0x13A466725a67B10E74f953FC493Ead22f568dB21', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: 'Trust NFT test',
