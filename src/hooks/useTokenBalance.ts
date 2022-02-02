@@ -11,7 +11,7 @@ import useActiveWeb3React from './useActiveWeb3React'
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, library, chainId } = useActiveWeb3React()
-  const { slowRefresh } = useRefresh()
+  const { fastRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -23,7 +23,7 @@ const useTokenBalance = (tokenAddress: string) => {
     if (account && library) {
       fetchBalance()
     }
-  }, [account, library, tokenAddress, slowRefresh, chainId])
+  }, [account, library, tokenAddress, fastRefresh, chainId])
 
   return balance
 }
