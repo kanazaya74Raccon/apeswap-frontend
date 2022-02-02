@@ -21,7 +21,7 @@ export interface Props {
     stakeTokenHarvest: number
     offeringTokenTotalHarvest: number
     offeringTokenInitialHarvest: number
-    offeringTokensVested: number
+    offeringTokensVesting: number
     offeringTokenVestedHarvest: number
   }
   tokenDecimals: number

@@ -188,7 +188,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           label: 'Tokens available',
           value: Number(userTokenStatus.offeringTokenTotalHarvest).toFixed(4),
         },
-        { label: 'Tokens vesting', value: Number(userTokenStatus.offeringTokensVested).toFixed(4) },
+        { label: 'Tokens vesting', value: Number(userTokenStatus.offeringTokensVesting).toFixed(4) },
         { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
         {
           label: 'Committed value',
@@ -218,7 +218,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     refundingAmount,
     currencyPrice,
     userTokenStatus.offeringTokenTotalHarvest,
-    userTokenStatus.offeringTokensVested,
+    userTokenStatus.offeringTokensVesting,
     offeringTokensClaimed,
     currency,
     state.totalAmount,
