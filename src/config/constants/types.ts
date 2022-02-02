@@ -157,13 +157,7 @@ export type Nft = {
 }
 
 export type Nfb = {
-  contractAddress: string
-  tokenId: number
-  attributes: NfbAttribute[]
-  externalUrl: string
   image: string
-  name: string
-  nftCollection: string
 }
 
 export type NfbAttribute = {
