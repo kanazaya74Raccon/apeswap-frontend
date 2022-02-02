@@ -3,7 +3,6 @@
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/about", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
     { "source": "/about-us", "destination": "https://apeswap.gitbook.io/apeswap-finance/" },
-    { "source": "/pool", "destination": "/pools", "permanent": true },
     { "source": "/farm", "destination": "/farms", "permanent": true },
     { "source": "/yield", "destination": "/farms", "permanent": true },
     { "source": "/yields", "destination": "/farms", "permanent": true },
