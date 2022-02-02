@@ -100,7 +100,10 @@ const IfoCardContribute: React.FC<Props> = ({
         </>
       )}
       {isFinished && amountContributed > 0 && (
-        <VestingClaimButton disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx} onClick={onClaim}>
+        <VestingClaimButton
+          disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx}
+          onClick={async () => onClaim(userTokenStatus.offeringTokenTotalHarvest)}
+        >
           <Claim color="white">Claim</Claim>
         </VestingClaimButton>
       )}
