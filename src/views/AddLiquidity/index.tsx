@@ -72,10 +72,6 @@ export default function AddLiquidity({
   const currencyA = useCurrency(loadCurrencyIdA)
   const currencyB = useCurrency(loadCurrencyIdB)
 
-  if (!currencyIdA && swapCurrencyA && !currencyB && swapCurrencyB) {
-    history.push(`/add/${swapCurrencyA}/${swapCurrencyB}`)
-  }
-
   const [recentTransactions] = useUserRecentTransactions()
   const [addValueUsd, setAddValueUsd] = useState<number>(null)
 

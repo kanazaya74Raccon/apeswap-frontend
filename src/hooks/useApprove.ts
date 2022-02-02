@@ -10,7 +10,14 @@ import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
 import useActiveWeb3React from './useActiveWeb3React'
 import { useAuctionAddress } from './useAddress'
-import { useMasterchef, useSousChef, useNonFungibleApes, useVaultApe, useMiniChefContract } from './useContract'
+import {
+  useMasterchef,
+  useSousChef,
+  useNonFungibleApes,
+  useVaultApe,
+  useMiniChefContract,
+  useERC20,
+} from './useContract'
 
 // Approve a Farm
 export const useApprove = (lpContract, pid: number) => {
@@ -68,16 +75,15 @@ export const useSousApprove = (lpContract, sousId) => {
 }
 
 // Approve an IFO
-export const useIfoApprove = (tokenContract, spenderAddress: string) => {
-  const { account } = useActiveWeb3React()
+export const useIfoApprove = (tokenAddress: string, spenderAddress: string) => {
+  const tokenContract = useERC20(tokenAddress)
   const onApprove = useCallback(async () => {
     try {
-      const tx = await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
-      return tx
+      return await tokenContract.approve(spenderAddress, ethers.constants.MaxUint256).then((t) => t.wait())
     } catch {
       return false
     }
-  }, [account, spenderAddress, tokenContract])
+  }, [spenderAddress, tokenContract])
 
   return onApprove
 }

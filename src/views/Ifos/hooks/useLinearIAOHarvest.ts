@@ -4,27 +4,32 @@ import track from 'utils/track'
 import { Contract } from 'ethers'
 
 const useLinearIAOHarvest = (contract: Contract, setPendingTx: (f: boolean) => unknown) => {
-  const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
-  const handleClaim = useCallback(async () => {
-    try {
-      setPendingTx(true)
-      const tx = await contract.harvest().send({ from: account })
+  const handleClaim = useCallback(
+    async (amount) => {
+      try {
+        setPendingTx(true)
+        const tx = await contract.harvest()
+        await tx.wait()
 
-      track({
-        event: 'iao',
-        chain: chainId,
-        data: {
-          cat: 'claim',
-          contract: tx.to,
-        },
-      })
-    } catch (e) {
-      console.error('Claim error', e)
-    }
+        track({
+          event: 'iao',
+          chain: chainId,
+          data: {
+            cat: 'claim',
+            amount,
+            contract: contract.address,
+          },
+        })
+      } catch (e) {
+        console.error('Claim error', e)
+      }
 
-    setPendingTx(false)
-  }, [account, contract, setPendingTx, chainId])
+      setPendingTx(false)
+    },
+    [contract, setPendingTx, chainId],
+  )
 
   return handleClaim
 }
