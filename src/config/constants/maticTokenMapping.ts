@@ -7,7 +7,7 @@ export const getMaticTokenLogoURL = (address: string) => {
     address = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
   }
   if (address?.toLowerCase() === '0xc2132d05d31c914a87c6611c10748aeb04b58e8f') {
-    address = '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+    uri = 'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/USDT.svg'
   }
   if (address?.toLowerCase() === '0x2791bca1f2de4661ed88a30c99a7a9449aa84174') {
     address = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'

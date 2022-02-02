@@ -52,7 +52,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const {
     id,
     address,
-    isLinear,
     saleAmount,
     raiseAmount,
     currency,
@@ -76,7 +75,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     endBlockNum: 0,
   })
   const { account, chainId } = useActiveWeb3React()
-  const contract = useSafeIfoContract(address, isLinear)
+  const contract = useSafeIfoContract(address, false)
   const { currentBlock } = useBlock()
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
@@ -129,7 +128,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, address, chainId])
+  }, [currentBlock, contract, releaseBlockNumber, start, address, chainId])
 
   const { userTokenStatus, userInfo, offeringTokenBalance } = useUserInfo(contract, tokenDecimals, address)
 
@@ -186,7 +185,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           label: 'Tokens available',
           value: tokensHarvestedAvailable.toFixed(4),
         },
-        { label: 'Tokens vested', value: tokensVested.toFixed(4) },
+        { label: 'Tokens vesting', value: tokensVested.toFixed(4) },
         { label: 'Tokens harvested', value: totalTokensHarvested.toFixed(4) },
         {
           label: 'Committed value',

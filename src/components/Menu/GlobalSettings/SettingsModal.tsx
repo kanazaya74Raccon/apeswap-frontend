@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Modal, InjectedModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
-import { useExpertModeManager, useUserExpertModeAcknowledgementShow, useUserSingleHopOnly } from 'state/user/hooks'
+import {
+  useExpertModeManager,
+  useUserExpertModeAcknowledgementShow,
+  useUserSingleHopOnly,
+  useUserRecentTransactions,
+} from 'state/user/hooks'
 import { useSwapActionHandlers } from 'state/swap/hooks'
 import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
@@ -19,6 +24,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   const [showExpertModeAcknowledgement, setShowExpertModeAcknowledgement] = useUserExpertModeAcknowledgementShow()
   const [expertMode, toggleExpertMode] = useExpertModeManager()
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
+  const [recentTransactions, setRecentTransactions] = useUserRecentTransactions()
   const { onChangeRecipient } = useSwapActionHandlers()
 
   if (showConfirmExpertModal) {
@@ -44,24 +50,44 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <div style={{ zIndex: 101, maxWidth: '420px' }}>
+    <div style={{ zIndex: 101, width: '360px' }}>
       <Modal title="Transaction Settings" onDismiss={onDismiss}>
         <ScrollableContainer>
           <TransactionSettings />
-          <Flex justifyContent="space-between" alignItems="center" mb="24px">
+          <Flex justifyContent="space-between" alignItems="center" mb="24px" mt="5px">
             <Flex alignItems="center">
-              <Text>Expert Mode</Text>
+              <Text>Recent Transactions</Text>
             </Flex>
-            <ButtonMenu activeIndex={expertMode ? 0 : 1} size="sm" variant="yellow" onClick={handleExpertModeToggle}>
-              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="14px">
+            <ButtonMenu
+              activeIndex={recentTransactions ? 0 : 1}
+              size="sm"
+              variant="yellow"
+              onClick={() => {
+                setRecentTransactions(!recentTransactions)
+              }}
+            >
+              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
                 YES
               </ButtonMenuItem>
-              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="14px">
+              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
                 NO
               </ButtonMenuItem>
             </ButtonMenu>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center" mb="24px">
+            <Flex alignItems="center">
+              <Text>Expert Mode</Text>
+            </Flex>
+            <ButtonMenu activeIndex={expertMode ? 0 : 1} size="sm" variant="yellow" onClick={handleExpertModeToggle}>
+              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
+                YES
+              </ButtonMenuItem>
+              <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
+                NO
+              </ButtonMenuItem>
+            </ButtonMenu>
+          </Flex>
+          <Flex justifyContent="space-between" alignItems="center" mb="22px">
             <Flex alignItems="center">
               <Text>Disable Multihops</Text>
             </Flex>
@@ -73,10 +99,10 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
                 setSingleHopOnly(!singleHopOnly)
               }}
             >
-              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="14px">
+              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
                 YES
               </ButtonMenuItem>
-              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="14px">
+              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
                 NO
               </ButtonMenuItem>
             </ButtonMenu>

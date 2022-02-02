@@ -43,7 +43,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const {
     id,
     address,
-    isLinear,
     saleAmount,
     raiseAmount,
     currency,
@@ -68,7 +67,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     endBlockNum: 0,
   })
   const { account, chainId } = useActiveWeb3React()
-  const contract = useSafeIfoContract(address, isLinear)
+  const contract = useSafeIfoContract(address, true)
   const { currentBlock } = useBlock()
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
@@ -131,7 +130,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState, start, state, address, chainId])
+  }, [currentBlock, contract, releaseBlockNumber, start, address, chainId])
 
   const {
     userTokenStatus,
@@ -164,14 +163,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     progress = ((currentBlock - state.startBlockNum) / (state.endBlockNum - state.startBlockNum)) * 100
   } else if (isFinished) {
     const timeUntil = getTimePeriods((state.vestingEndBlock - currentBlock) * BSC_BLOCK_TIME)
-    const vestingPeriodInSec = (state.vestingEndBlock - state.endBlockNum) * BSC_BLOCK_TIME
+    const vestingPeriod = getTimePeriods((state.vestingEndBlock - state.endBlockNum) * BSC_BLOCK_TIME)
 
     progressBarAmountLabel = `${offeringTokensClaimed.toFixed(4)} ${offeringCurrency} / ${userOfferingAmount.toFixed(
       4,
     )} ${offeringCurrency}`
-    progressBarTimeLabel = `${timeUntil.days}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${Math.ceil(
-      vestingPeriodInSec / 60 / 60 / 24,
-    )}d`
+    progressBarTimeLabel = `${timeUntil.days}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${vestingPeriod.days}d ${vestingPeriod.hours}h ${vestingPeriod.minutes}m`
     progress = ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
   }
 
@@ -191,7 +188,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           label: 'Tokens available',
           value: Number(userTokenStatus.offeringTokenTotalHarvest).toFixed(4),
         },
-        { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVesting).toFixed(4) },
+        { label: 'Tokens vesting', value: Number(userTokenStatus.offeringTokensVesting).toFixed(4) },
         { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
         {
           label: 'Committed value',
@@ -252,7 +249,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
             address={address}
             currency={currency}
             currencyAddress={currencyAddress}
-            contract={contract}
             amountContributed={amount}
             tokenDecimals={tokenDecimals}
             refunded={refunded}

@@ -19,6 +19,9 @@ export enum ViewMode {
 
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
+export const updateUserRecentTransactions = createAction<{ userRecentTransactions: boolean }>(
+  'user/updateRecentTransactions',
+)
 export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
   'user/updateUserSlippageTolerance',
 )
