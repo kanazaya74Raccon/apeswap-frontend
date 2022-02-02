@@ -19,7 +19,7 @@ const useLinearIAOHarvest = (contract: Contract, setPendingTx: (f: boolean) => u
           data: {
             cat: 'claim',
             amount,
-            contract: tx.to,
+            contract: contract.address,
           },
         })
       } catch (e) {
