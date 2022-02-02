@@ -13,6 +13,7 @@ If you choose to take on a contribution (even more importantly a grant task or p
 - We review in first come first serve basis, so long as the PRs are high quality, meet requirements, and are relevant.
 - Please tag `obiedobo` in the reviewers of your PR.
 - Ensure your code is working locally before submitting a PR.
+- No debugging console logs, but error messages which do not loop may be helpful for debugging production code.
 - PRs with excessive changes to files like the `package-lock.json` will be automatically reverted. Please review before you submit.
 - Branch off of & submit your pull requests into the latest `staging` branch.
 - Use components in the [official ApeSwap UI Kit](https://github.com/ApeSwapFinance/apeswap-uikit) for contributions.
