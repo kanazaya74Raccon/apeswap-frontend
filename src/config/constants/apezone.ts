@@ -2,47 +2,25 @@ import { Ifo } from './types'
 
 const ApeZone: { ifos: Ifo[] } = {
   ifos: [
-    // {
-    //   id: 'trustnft',
-    //   address: '', // Leave empty for "Coming Soon!"
-    //   isActive: true,
-    //   isLinear: true,
-    //   name: 'Trust NFT',
-    //   subTitle: `Decentralized NFT Loans & Marketplace`,
-    //   description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
-    //   launchDate: 'February 3rd',
-    //   launchTime: '1:00 UTC',
-    //   saleAmount: '30,000,000 TRUSTNFT',
-    //   raiseAmount: '$525,000',
-    //   vestingTime: '3 Months',
-    //   projectSiteUrl: 'https://trustnft.org/',
-    //   currency: 'GNANA',
-    //   currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
-    //   offeringCurrency: 'TRUSTNFT',
-    //   tokenDecimals: 18,
-    //   releaseBlockNumber: 22364007, // block to start showing contract details
-    //   vesting: true,
-    //   // burnedTxUrl: '',
-    // },
     {
-      id: 'stz',
-      address: '0x2D606847c00da6eEf11a67cac9c3B271A632E4ab', // Leave empty for "Coming Soon!"
+      id: 'trustnft',
+      address: '', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
-      name: '99Starz Testnet',
-      subTitle: `The World's Biggest NFT Yield Ecosystem`,
-      description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
-      launchDate: 'Feb 1st',
-      launchTime: '19:10 UTC',
-      saleAmount: '100 IAO',
-      raiseAmount: '$7.1',
+      name: 'Trust NFT',
+      subTitle: `Decentralized NFT Loans & Marketplace`,
+      description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+      launchDate: 'February 3rd',
+      launchTime: '1:00 UTC',
+      saleAmount: '30,000,000 TRUSTNFT',
+      raiseAmount: '$525,000',
       vestingTime: '3 Months',
-      projectSiteUrl: 'https://99starz.io/',
+      projectSiteUrl: 'https://trustnft.org/',
       currency: 'GNANA',
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
-      offeringCurrency: 'IAO',
+      offeringCurrency: 'TRUSTNFT',
       tokenDecimals: 18,
-      releaseBlockNumber: 14882411, // block to start showing contract details
+      releaseBlockNumber: 22364007, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },
