@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'trustnft',
-    address: '', // Leave empty for "Coming Soon!"
+    address: '0x8F87424743074290a4682231B9e671C4b1c120a6', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: 'TrustNFT',
@@ -19,7 +19,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'TRUSTNFT',
     tokenDecimals: 18,
-    releaseBlockNumber: 22364007, // block to start showing contract details
+    releaseBlockNumber: 14911408, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },
