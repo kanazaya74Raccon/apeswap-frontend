@@ -3416,6 +3416,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 4,
   },
+  {
+    sousId: 179,
+    tokenName: 'TRUSTNFT',
+    image: 'TRUSTNFT.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.trustnft,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x7f3cece71e89137911da0b20bdd5cfe0e0c8b7f5',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://trustnft.org',
+    harvest: true,
+    tokenPerBlock: `2.20458545524691358`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
