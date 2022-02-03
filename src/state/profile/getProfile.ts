@@ -3,7 +3,7 @@ import nfts from 'config/constants/nfts'
 import nfaABI from 'config/abi/nonFungibleApes.json'
 import nfbABI from 'config/abi/nonFungibleBananas.json'
 import { getNonFungibleApesAddress, getNonFungibleBananasAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/web3'
+import { getContract } from 'utils/getContract'
 import orderBy from 'lodash/orderBy'
 
 const getProfile = async (chainId: number, address: string): Promise<Profile> => {
@@ -13,17 +13,17 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
   const nfbAddress = getNonFungibleBananasAddress(chainId)
   const nfbContract = getContract(nfbABI, nfbAddress, chainId)
   try {
-    const nfasOwned = address ? await nfaContract.methods.balanceOf(address).call() : '0'
-    const nfbsOwned = address ? await nfbContract.methods.balanceOf(address).call() : '0'
+    const nfasOwned = address ? await nfaContract.balanceOf(address) : '0'
+    const nfbsOwned = address ? await nfbContract.balanceOf(address) : '0'
     if (nfasOwned === '0' && nfbsOwned === '0') {
       return null
     }
     let ownedNfts = null
     let rarestNft = null
-    if (nfasOwned !== '0') {
+    if (nfasOwned !== '0' && !nfasOwned.eq(0)) {
       const promises = []
       for (let i = 0; i < nfasOwned; i++) {
-        promises.push(nfaContract.methods.tokenOfOwnerByIndex(address, i).call())
+        promises.push(nfaContract.tokenOfOwnerByIndex(address, i))
       }
       const nfaReturn = await (await Promise.all(promises)).map(Number)
       ownedNfts = nfaReturn.map((index) => nfts[index])
@@ -35,10 +35,10 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
           avatar: rarestNft.image,
         }),
       )
-    } else if (nfbsOwned !== '0') {
+    } else if (nfbsOwned !== '0' && !nfbsOwned.eq(0)) {
       const promises = []
       for (let i = 0; i < nfbsOwned; i++) {
-        promises.push(nfbContract.methods.tokenOfOwnerByIndex(address, i).call())
+        promises.push(nfbContract.tokenOfOwnerByIndex(address, i))
       }
       const nfbReturn = await (await Promise.all(promises)).map(Number)
       rarestNft = {

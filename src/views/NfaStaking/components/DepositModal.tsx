@@ -38,7 +38,6 @@ const Nfa = styled.div<{ active: boolean }>`
 
 const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier }) => {
   const { profile } = useProfile()
-  // @ts-ignore
   const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => {
     return nfa.attributes.rarityTierNumber === tier
   })
