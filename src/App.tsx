@@ -141,6 +141,7 @@ const App: React.FC = () => {
               <Route path="/farms">
                 <DualFarms />
               </Route>
+              <Route path="/swap" component={Swap} />
               <Route path="/vaults">
                 <Vaults />
               </Route>

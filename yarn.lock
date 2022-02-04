@@ -35,10 +35,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.218/5e921e66410e0a719f417305ecb9a9552d2ef2e71dbb4d7a2deae1efb1287ced#92c1a17250860e8730164066a5b80623f06842f7"
   integrity sha512-hJPz71vyOfQ3F2Ce4EtShIGDefVQwlnrDxLQz5l54WhEPZ1lYYehlFAlhwlsU3Macs1NGzFI1hWXOlLFsM0KgQ==
 
-"@apeswapfinance/uikit@^0.10.6-0":
-  version "0.10.6-0"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-0/30f7ae23d343fd32a1bff1ec410dea6f936b669bed8a8268c71b4a06d89e8ded#72889c174d19dc7b0f1330a78d2ba8cf31fab5fa"
-  integrity sha512-PJG9McrhcEBfEXgifpr/hFynK7nEJmW+SkEBJJwTV5P14xETp84zDJUS86QQlqJ6Ibx9IXYfxXbAz3b8aeIH9A==
+"@apeswapfinance/uikit@^0.10.6-0.1":
+  version "0.10.6-0.1"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-0.1/2d8fc3ddc21d2573375425b0605125b53ad1a6966daa70bc9ab1c43752396876#cc74716fdcfe9064f34cd2bdf2d1d4abecde7377"
+  integrity sha512-VkAYMCMsKeJLG5m1wtWEaS9esmhkBhnZyNkuWQMOZDa8yAHYBAPF9rMEcOzcnnOqwQdUhKbQtzo1E2jD6vIoTQ==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
@@ -12083,6 +12083,11 @@ react-feather@^2.0.9:
   integrity sha512-yMfCGRkZdXwIs23Zw/zIWCJO3m3tlaUvtHiXlW+3FH7cIT6fiK1iJ7RJWugXq7Fso8ZaQyUm92/GOOHXvkiVUw==
   dependencies:
     prop-types "^15.7.2"
+
+react-frame-component@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-5.2.1.tgz#6bd5ec73ef7d720f57ee8f259546ed926a941267"
+  integrity sha512-nrSh1OZuHlX69eWqJPiUkPT9S6/wxc4PpJV+vOQ4pHQQ8XmIsIT+utWT+nX32ZfANHZuKONA7JsWMUGT36CqaQ==
 
 react-helmet-async@^1.0.9:
   version "1.2.2"

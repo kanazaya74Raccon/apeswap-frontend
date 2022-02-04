@@ -31,7 +31,7 @@
   "dependencies": {
     "@apeswapfinance/sdk": "^2.0.0-alpha.14",
     "@apeswapfinance/token-lists": "1.0.218",
-    "@apeswapfinance/uikit": "^0.10.6-0",
+    "@apeswapfinance/uikit": "^0.10.6-0.1",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.10.1",
     "@ethersproject/abi": "^5.0.7",
@@ -61,6 +61,7 @@
     "react-datepicker": "^4.3.0",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
+    "react-frame-component": "^5.2.1",
     "react-helmet-async": "^1.0.9",
     "react-redux": "^7.2.2",
     "react-responsive-carousel": "^3.2.18",
