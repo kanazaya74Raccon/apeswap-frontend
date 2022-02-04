@@ -3,26 +3,32 @@ import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { HOME, EXCHANGE, MORE_INFO } from '../constants'
 
 const bscConfig: MenuEntry[] = [
-  HOME,
   EXCHANGE,
   {
-    label: 'Farms',
+    label: 'Stake',
     icon: 'FarmIcon',
-    href: '/farms',
+    items: [
+      {
+        label: 'Farms',
+        href: '/farms',
+      },
+      {
+        label: 'Pools',
+        href: '/pools',
+      },
+      {
+        label: 'Vaults',
+        href: '/vaults',
+      },
+      {
+        label: 'GNANA',
+        href: '/gnana',
+      },
+    ],
   },
   {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: '/pools',
-  },
-  {
-    label: 'Vaults',
-    icon: 'Vaults',
-    href: '/vaults',
-  },
-  {
-    label: 'IAO',
-    icon: 'IfoIcon',
+    label: 'Offerings',
+    icon: 'FarmIcon',
     items: [
       {
         label: 'Official',
@@ -53,37 +59,37 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'GNANA',
-    icon: 'ApeZone',
-    href: '/gnana',
+    label: 'Lending',
+    icon: 'lending',
+    href: 'https://app.ola.finance/apeswap/markets',
   },
-  {
-    label: 'Burn',
-    icon: 'GameBurnIcon',
-    href: '/burn',
-  },
-  {
-    label: 'Info',
-    icon: 'InfoIcon',
-    items: [
-      {
-        label: 'Overview',
-        href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
-      },
-      {
-        label: 'Tokens',
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/tokens`,
-      },
-      {
-        label: 'Pairs',
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/pairs`,
-      },
-      {
-        label: 'Accounts',
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/accounts`,
-      },
-    ],
-  },
+  // {
+  //   label: 'Burn',
+  //   icon: 'GameBurnIcon',
+  //   href: '/burn',
+  // },
+  // {
+  //   label: 'Info',
+  //   icon: 'InfoIcon',
+  //   items: [
+  //     {
+  //       label: 'Overview',
+  //       href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
+  //     },
+  //     {
+  //       label: 'Tokens',
+  //       href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/tokens`,
+  //     },
+  //     {
+  //       label: 'Pairs',
+  //       href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/pairs`,
+  //     },
+  //     {
+  //       label: 'Accounts',
+  //       href: `${NETWORK_INFO_LINK[CHAIN_ID.BSC]}/accounts`,
+  //     },
+  //   ],
+  // },
   MORE_INFO,
 ]
 

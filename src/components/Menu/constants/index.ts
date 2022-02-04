@@ -5,18 +5,9 @@ export const HOME = {
 }
 
 export const EXCHANGE = {
-  label: 'Trade',
+  label: 'Exchange',
   icon: 'TradeIcon',
-  items: [
-    {
-      label: 'Exchange',
-      href: '/swap',
-    },
-    {
-      label: 'Liquidity',
-      href: '/pool',
-    },
-  ],
+  href: '/swap',
 }
 
 export const MORE_INFO = {

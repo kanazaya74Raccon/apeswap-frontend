@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router'
 import { customMeta, DEFAULT_META } from 'config/constants/meta'
-import { usePriceBananaBusd } from 'state/hooks'
 import Container from './Container'
 
 interface SizeProps {
@@ -31,20 +30,12 @@ const StyledPage = styled(Container)<SizeProps>`
 
 const PageMeta = () => {
   const { pathname } = useLocation()
-  const bananaPriceUsd = usePriceBananaBusd()
-  const bananaPriceUsdDisplay = bananaPriceUsd.toNumber()
-    ? `$${bananaPriceUsd.toNumber().toLocaleString(undefined, {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 3,
-      })}`
-    : ''
   const pageMeta = customMeta[pathname] || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  const pageTitle = bananaPriceUsdDisplay ? [bananaPriceUsdDisplay, title].join(' - ') : title
 
   return (
     <Helmet>
-      <title>{pageTitle}</title>
+      <title>{title}</title>
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />

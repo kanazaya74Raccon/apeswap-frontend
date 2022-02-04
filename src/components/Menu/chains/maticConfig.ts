@@ -3,12 +3,6 @@ import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { HOME, EXCHANGE, MORE_INFO } from '../constants'
 
 const maticConfig: MenuEntry[] = [
-  HOME,
-  // {
-  //   label: 'Ape Stats',
-  //   icon: 'StatsIcon',
-  //   href: '/stats',
-  // },
   EXCHANGE,
   {
     label: 'Farms',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as UikitMenu } from '@apeswapfinance/uikit'
+import { Navbar as UikitMenu } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
