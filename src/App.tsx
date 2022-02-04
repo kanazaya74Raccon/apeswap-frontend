@@ -144,7 +144,6 @@ const App: React.FC = () => {
               <Route path="/vaults">
                 <Vaults />
               </Route>
-              {swapRoutes}
               {/* Redirects */}
               <Route exact path="/nft">
                 <Redirect to="/" />
@@ -182,6 +181,7 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
+              <Suspense fallback={<></>}>{swapRoutes}</Suspense>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
@@ -245,7 +245,6 @@ const App: React.FC = () => {
             <Route path="/burn">
               <BurningGames />
             </Route>
-            {swapRoutes}
             {/* Redirect */}
             <Route path="/staking">
               <Redirect to="/pools" />
@@ -253,6 +252,7 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
+            <Suspense fallback={<></>}>{swapRoutes}</Suspense>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>

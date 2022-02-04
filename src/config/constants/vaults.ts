@@ -595,6 +595,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
+    inactive: true,
   },
   {
     pid: 12,
@@ -615,6 +616,7 @@ const vaults: VaultConfig[] = [
     totalFees: 50,
     withdrawFee: 0.1,
     burning: true,
+    inactive: true,
   },
   {
     pid: 4,
@@ -635,6 +637,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
+    inactive: true,
   },
   {
     pid: 5,
@@ -655,6 +658,7 @@ const vaults: VaultConfig[] = [
     totalFees: 4,
     withdrawFee: 0.1,
     burning: false,
+    inactive: true,
   },
   {
     pid: 8,

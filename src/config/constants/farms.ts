@@ -3021,6 +3021,40 @@ const farms: FarmConfig[] = [
     projectLink: 'https://nftytoken.io/ ',
   },
   {
+    pid: 185,
+    image: 'LUNR.svg',
+    lpSymbol: 'LUNR-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xfB3F0a2ea0f675D715eE275ca79Dcd3f3457cD87',
+    },
+    tokenSymbol: 'LUNR',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x37807D4fbEB84124347B8899Dd99616090D3e304',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://lunarcrush.com/',
+  },
+  {
+    pid: 186,
+    image: 'TRUSTNFT.svg',
+    lpSymbol: 'TRUSTNFT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8ae242370358fd34eea29dd73f68e0be18f65393',
+    },
+    tokenSymbol: 'TRUSTNFT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x08F725D2809FdA409Bc23493F3615a4c85a22d7d',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://trustnft.org',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

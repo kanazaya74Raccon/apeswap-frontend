@@ -86,8 +86,6 @@ export const bid = async (auctionContract: Auction, amount, id) => {
     .then((trx) => {
       return trx.wait()
     })
-  // .bid(id, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-  // .send({ from: account, value: new BigNumber(amount).times(new BigNumber(10).pow(18)).toString() })
 }
 
 export const nextAuction = async (auctionContract: Auction, id) => {

@@ -1,65 +1,52 @@
-# Contributing to the ApeSwap ecosystem 🍌
+# 🐵 Contributing to the ApeSwap DAO
 
-Thanks for taking the time to contribute !
+Hello fellow ape! 🍌 Thanks so much for taking the time our to consider contributing to the ever-growing ApeSwap DAO.
 
+While all contributions are appreciated & welcome, we favor & prioritize tasks/grants on our [issues backlog](https://github.com/ApeSwapFinance/apeswap-frontend/issues). There are a range of opportunities for individuals and teams across all skill levels -- most with financial incentives attached to them!
 
-## Setup
+Additionally, if you have suggestions on contribution ideas, but don't see a grant for them, please don't hesistate to reach out to [Obie Dobo](https://t.me/obiedobo) with your ideas.
 
-Create a `.env.development.local` file at the root of the project. Add the following lines inside :
+## Contribution Details
+
+If you choose to take on a contribution (even more importantly a grant task or project), there are a few crucial considerations & rules to be aware of:
+
+- We review in first come first serve basis, so long as the PRs are high quality, meet requirements, and are relevant.
+- Please tag `obiedobo` in the reviewers of your PR.
+- Ensure your code is working locally before submitting a PR.
+- No debugging console logs, but error messages which do not loop may be helpful for debugging production code.
+- PRs with excessive changes to files like the `package-lock.json` will be automatically reverted. Please review before you submit.
+- Branch off of & submit your pull requests into the latest `staging` branch.
+- Use components in the [official ApeSwap UI Kit](https://github.com/ApeSwapFinance/apeswap-uikit) for contributions.
+
+## Getting Up & Running
+
+Getting up and running with the `apeswap-frontend` repo is a super simple, 2 step process:
+
+1. Clone the repo
+2. Install dependencies
+
+To do this, open a terminal and run the following commands:
 
 ```
-REACT_APP_CROWDIN_APIKEY = ""
-REACT_APP_CROWDIN_PROJECTID = ""
-```
-
-You'll need this in order to get the i18n system to work. Contact a dev if you need these values.
-
-Install the dependencies
-
-```shell
+git clone https://github.com/ApeSwapFinance/apeswap-frontend.git
+cd apeswap-frontend
 yarn
-yarn start
 ```
 
-Don't forget to setup your IDE with `eslint` and `prettier`.
- 
+Once everything is downloaded & installed, simply run `npm run start` to run the repo locally.
+
+and don't forget to setup your IDE with `eslint` and `prettier`!
+
 ## Project structure
 
 - **components** contains generic components used inside the application.
 - **views** contains building blocks for each page. The entry point of a view is used as the root component of each route.
 - **config** contains all the config files and ABIs.
 - **state** contains the redux files for the global state of the app.
-- **context** contains global contexts (separated from the redux store)
+- **contexst** contains global contexts (separated from the redux store)
 - **hooks** contains generic hooks.
 - **utils** contains generic utilities functions.
 
 ## Tests
 
 Run tests with `yarn test`.
-
-## Localisation
-
-_In order for the Crowdin API queries to work - you will need `REACT_APP_CROWDIN_APIKEY` & `REACT_APP_CROWDIN_PROJECTID` env variables set in your root `.env.development.local` file_
-
-### Adding translations
-
-A hook expose the function you need to translate content.
-
-```
-import useI18n from 'hooks/useI18n'
-...
-const TranslateString = useI18n()
-...
-TranslateString(id, 'fallback')
-```
-
-- **id** is the crowdin id of the string you want to translate.
-- **fallback** is a string fallback used if the id cannot be found.
-
-### Variables
-
-The translation component can handle variables being passed in from Crowdin, with no code changes.
-
-It will only work if there is only **one** variable passed in, and if that variable within Crowdin is wrapped in **%** signs, i.e.:
-
-
