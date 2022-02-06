@@ -8,7 +8,7 @@ import { AutoColumn } from 'components/layout/Column'
 import { CurrencyLogo } from 'components/Logo'
 import { RowBetween, RowFixed } from 'components/layout/Row'
 import truncateHash from 'utils/truncateHash'
-import { TruncatedText, SwapShowAcceptChanges } from './styleds'
+import { TruncatedText, SwapShowAcceptChanges } from './styled'
 
 export default function SwapModalHeader({
   trade,
@@ -81,7 +81,7 @@ export default function SwapModalHeader({
             fontSize="24px"
             color={
               priceImpactSeverity > 2
-                ? 'failure'
+                ? 'error'
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
                 ? 'primary'
                 : 'text'

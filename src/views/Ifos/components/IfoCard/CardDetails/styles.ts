@@ -11,7 +11,7 @@ export const StyledIfoCardDetails = styled.div`
 
 export const Item = styled.div`
   align-items: center;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.success};
   display: flex;
   padding: 4px 10px;
   gap: 16px;

@@ -26,7 +26,7 @@ const getBoxShadow = ({ isWarning = false, theme }) => {
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.input};
+  background-color: ${({ theme }) => theme.colors.inputBorder};
   border-radius: 16px;
   box-shadow: ${getBoxShadow};
   color: ${({ theme }) => theme.colors.text};
@@ -95,9 +95,9 @@ const ModalInput: React.FC<ModalInputProps> = ({
         </Flex>
       </StyledTokenInput>
       {isBalanceZero && (
-        <StyledErrorMessage fontSize="14px" color="failure">
+        <StyledErrorMessage fontSize="14px" color="error">
           No tokens to stake:{' '}
-          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="failure" fontWeight={800}>
+          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="error" fontWeight={800}>
             {TranslateString(999, 'get')} {symbol}
           </Link>
         </StyledErrorMessage>

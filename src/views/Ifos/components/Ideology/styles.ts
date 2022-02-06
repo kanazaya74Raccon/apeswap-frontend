@@ -43,7 +43,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.navbar};
   margin-bottom: 57px;
   padding: 30px 20px;
 

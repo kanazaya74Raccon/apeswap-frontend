@@ -11,7 +11,7 @@ export interface InputProps {
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.primaryBright)};
   border-radius: 10px;
   display: flex;
   height: 72px;
@@ -22,7 +22,7 @@ const StyledInput = styled.input`
   width: 100%;
   background: none;
   border: 0;
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
   flex: 1;
   height: 56px;
   margin: 0;

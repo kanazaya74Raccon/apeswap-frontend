@@ -114,7 +114,7 @@ const WelcomeCard = () => {
         <Heading as="h1" size="lg" mb="6px" color="contrast" fontWeight={800}>
           {TranslateString(576, 'Welcome all Apes!')}
         </Heading>
-        <StyledText color="textSubtle">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
+        <StyledText color="gray">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
         <a href="https://apeswap.gitbook.io/apeswap-finance" target="_blank" rel="noopener noreferrer">
           <StyledButton id="Beginner Ape" fullWidth>
             BEGINNER APE? START HERE

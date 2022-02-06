@@ -116,8 +116,8 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
   return (
     <Wrapper>
       <AutoColumn justify="center">
-        <ErrorIcon color="failure" width="64px" />
-        <Text color="failure" style={{ textAlign: 'center', width: '85%' }}>
+        <ErrorIcon color="error" width="64px" />
+        <Text color="error" style={{ textAlign: 'center', width: '85%' }}>
           {message}
         </Text>
       </AutoColumn>

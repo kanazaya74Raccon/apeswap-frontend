@@ -13,7 +13,7 @@ import {
 import { AutoColumn } from 'components/layout/Column'
 import { AutoRow, RowBetween, RowFixed } from 'components/layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
-import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import { StyledBalanceMaxMini, SwapCallbackError } from './styled'
 import { LargeStyledButton } from '../styles'
 
 const SwapModalFooterContainer = styled(AutoColumn)`

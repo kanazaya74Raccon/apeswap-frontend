@@ -4,7 +4,7 @@ import { Card, Heading, Text, Button, Checkbox, Flex } from '@apeswapfinance/uik
 export const StyledCard = styled(Card)`
   overflow: visible;
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.primaryBright)};
   padding: 10px;
   margin-top: 20px;
 
@@ -74,7 +74,7 @@ export const CheckBoxCon = styled.div`
   height: 50px;
 `
 export const NewCheckBox = styled(Checkbox)`
-  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.primaryBright)};
 `
 export const FlexSection = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -91,7 +91,7 @@ export const CBS = styled.div`
 export const StyledCard2 = styled(Card)`
   overflow: visible;
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   padding: 10px;
 `
 

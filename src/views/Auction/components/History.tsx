@@ -26,7 +26,7 @@ const PositinBox = styled.div`
 const HistoryWrapper = styled.div`
   width: 790px;
   height: 558px;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.navbar};
   mix-blend-mode: normal;
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1), inset 355px 4px 250px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);

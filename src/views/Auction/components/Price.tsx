@@ -16,7 +16,7 @@ const PriceWrapper = styled.div`
   align-items: center;
   text-align: center;
   z-index: 1;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.navbar};
   ${({ theme }) => theme.mediaQueries.lg} {
     width: 300px;
     height: 64px;

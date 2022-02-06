@@ -31,7 +31,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
             onChange={() => setIsRememberChecked(!isRememberChecked)}
             scale="sm"
           />
-          <Text ml="10px" color="textSubtle" style={{ userSelect: 'none' }}>
+          <Text ml="10px" color="gray" style={{ userSelect: 'none' }}>
             Don’t show this again
           </Text>
         </Flex>

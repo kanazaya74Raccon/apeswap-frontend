@@ -10,7 +10,7 @@ export const UtilityCon = styled.div`
 
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 1em;
-    background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+    background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   }
 `
 export const UtilityTitle = styled.div`
@@ -67,7 +67,7 @@ export const PlusIcon = styled(Text)`
 export const Section = styled(Card)`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   align-items: center;
   padding-left: 0.6em;
   padding-right: 0.6em;
@@ -78,7 +78,7 @@ export const Section = styled(Card)`
   }
 `
 export const Section2 = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   border-radius: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -105,7 +105,7 @@ export const OpCon = styled.div<OpConProps>`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   padding-top: 1em;
   padding-bottom: 1em;
   border-radius: 22px;
@@ -172,7 +172,7 @@ export const Option1 = styled.div`
 `
 
 export const HeadCard = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.primaryBright)};
   border-radius: 10px;
   margin-bottom: 0.5em;
 

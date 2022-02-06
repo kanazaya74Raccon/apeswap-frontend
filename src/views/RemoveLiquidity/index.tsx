@@ -9,7 +9,7 @@ import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare 
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Wrapper } from 'views/Swap/components/styleds'
+import { Wrapper } from 'views/Swap/components/styled'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'

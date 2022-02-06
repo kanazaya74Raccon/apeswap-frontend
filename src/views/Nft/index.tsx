@@ -8,7 +8,7 @@ import SortNfts from './components/SortNfts'
 import OwnedNfts from './components/OwnedNft'
 
 const StyledHero = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.textSubtle};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   margin-bottom: 24px;
   padding-bottom: 32px;
 `

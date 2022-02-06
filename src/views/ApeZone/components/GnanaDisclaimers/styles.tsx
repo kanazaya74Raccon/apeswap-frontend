@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Card, Heading, ButtonSquare, Text } from '@apeswapfinance/uikit'
 
 export const Container = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.primaryBright)};
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 20px;

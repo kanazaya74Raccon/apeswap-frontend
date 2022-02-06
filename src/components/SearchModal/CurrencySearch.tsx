@@ -150,7 +150,7 @@ function CurrencySearch({
         />
       ) : (
         <Column style={{ padding: '20px', height: '100%' }}>
-          <Text color="textSubtle" textAlign="center" mb="20px">
+          <Text color="gray" textAlign="center" mb="20px">
             No results found
           </Text>
         </Column>

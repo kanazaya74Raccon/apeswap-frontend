@@ -23,7 +23,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);
-    color: ${({ theme }) => theme.colors.input};
+    color: ${({ theme }) => theme.colors.inputBorder};
 
     &:hover,
     &:focus {
@@ -38,7 +38,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     background-color: #565a69;
     border-radius: 100%;
     border: none;
-    color: ${({ theme }) => theme.colors.input};
+    color: ${({ theme }) => theme.colors.inputBorder};
 
     &:hover,
     &:focus {
@@ -52,7 +52,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     width: ${({ size }) => size}px;
     background-color: #565a69;
     border-radius: 100%;
-    color: ${({ theme }) => theme.colors.input};
+    color: ${({ theme }) => theme.colors.inputBorder};
 
     &:hover,
     &:focus {
@@ -62,12 +62,20 @@ const StyledRangeInput = styled.input<{ size: number }>`
   }
 
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, ${({ theme }) => theme.colors.input}, ${({ theme }) => theme.colors.input});
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.inputBorder},
+      ${({ theme }) => theme.colors.inputBorder}
+    );
     height: 2px;
   }
 
   &::-moz-range-track {
-    background: linear-gradient(90deg, ${({ theme }) => theme.colors.input}, ${({ theme }) => theme.colors.input});
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.inputBorder},
+      ${({ theme }) => theme.colors.inputBorder}
+    );
     height: 2px;
   }
 
@@ -76,14 +84,14 @@ const StyledRangeInput = styled.input<{ size: number }>`
     border-color: transparent;
     color: transparent;
 
-    background: ${({ theme }) => theme.colors.input};
+    background: ${({ theme }) => theme.colors.inputBorder};
     height: 2px;
   }
   &::-ms-fill-lower {
-    background: ${({ theme }) => theme.colors.input};
+    background: ${({ theme }) => theme.colors.inputBorder};
   }
   &::-ms-fill-upper {
-    background: ${({ theme }) => theme.colors.input};
+    background: ${({ theme }) => theme.colors.inputBorder};
   }
 `
 
