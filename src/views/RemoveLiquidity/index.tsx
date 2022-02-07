@@ -4,6 +4,7 @@ import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { ETHER, JSBI, Percent, Token, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
 import { LargeStyledButton } from 'views/Swap/styles'
+import track from 'utils/track'
 import Page from 'components/layout/Page'
 import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare } from '@apeswapfinance/uikit'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
@@ -13,6 +14,7 @@ import { Wrapper } from 'views/Swap/components/styled'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { parseAddress } from 'hooks/useAddress'
 import { AutoColumn } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -34,7 +36,7 @@ import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallbac
 import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
 import { Field } from '../../state/burn/actions'
-import { useUserSlippageTolerance } from '../../state/user/hooks'
+import { useUserRecentTransactions, useUserSlippageTolerance } from '../../state/user/hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
@@ -78,6 +80,8 @@ export default function RemoveLiquidity({
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const [currencyAPrice, setCurrencyAPrice] = useState<number>(null)
   const [currencyBPrice, setCurrencyBPrice] = useState<number>(null)
+  const [recentTransactions] = useUserRecentTransactions()
+  const [removeValueUsd, setRemoveValueUsd] = useState<number>(null)
 
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
@@ -139,6 +143,22 @@ export default function RemoveLiquidity({
   const [txHash, setTxHash] = useState<string>('')
   const deadline = useTransactionDeadline()
   const [allowedSlippage] = useUserSlippageTolerance()
+
+  useEffect(() => {
+    const getRemoveVal = async () => {
+      const isNative = currencyA?.symbol === 'ETH'
+      const isLp = false
+      const usdVal = await getTokenUsdPrice(
+        chainId,
+        currencyA instanceof Token ? currencyA?.address : '',
+        currencyA?.decimals,
+        isLp,
+        isNative,
+      )
+      setRemoveValueUsd(Number(parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)) * usdVal * 2)
+    }
+    getRemoveVal()
+  }, [setRemoveValueUsd, chainId, currencyA, parsedAmounts])
 
   const formattedAmounts = {
     [Field.LIQUIDITY_PERCENT]: parsedAmounts[Field.LIQUIDITY_PERCENT].equalTo('0')
@@ -372,6 +392,19 @@ export default function RemoveLiquidity({
           })
 
           setTxHash(response.hash)
+
+          track({
+            event: 'liquidity',
+            chain: chainId,
+            value: removeValueUsd,
+            data: {
+              token1: currencyA?.getSymbol(chainId),
+              token2: currencyB?.getSymbol(chainId),
+              token1Amount: parsedAmounts[Field.CURRENCY_A]?.toSignificant(3),
+              token2Amount: parsedAmounts[Field.CURRENCY_B]?.toSignificant(3),
+              cat: 'remove',
+            },
+          })
         })
         .catch((err: Error) => {
           setAttemptingTxn(false)
@@ -608,6 +641,7 @@ export default function RemoveLiquidity({
             </>
           </Wrapper>
         </AppBody>
+        {recentTransactions && <WalletTransactions />}
       </Flex>
     </Page>
   )

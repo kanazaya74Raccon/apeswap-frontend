@@ -8,11 +8,12 @@ import { Link } from 'react-router-dom'
 import Page from 'components/layout/Page'
 import UnlockButton from 'components/UnlockButton'
 import SwapBanner from 'components/SwapBanner'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
-import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
+import { toV2LiquidityToken, useTrackedTokenPairs, useUserRecentTransactions } from '../../state/user/hooks'
 import Dots from '../../components/Loader/Dots'
 import { AppBody } from '../../components/App'
 
@@ -29,6 +30,7 @@ const StyledText = styled(Text)`
 
 export default function Pool() {
   const { account } = useActiveWeb3React()
+  const [recentTransactions] = useUserRecentTransactions()
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
@@ -141,6 +143,7 @@ export default function Pool() {
             </Flex>
           )}
         </AppBody>
+        {recentTransactions && <WalletTransactions />}
       </Flex>
     </Page>
   )

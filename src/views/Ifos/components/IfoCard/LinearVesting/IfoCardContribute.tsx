@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
-import { useERC20 } from 'hooks/useContract'
+import { useSafeIfoContract } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
-import { Contract } from 'ethers'
+import BigNumber from 'bignumber.js'
 
+import useTokenBalance from 'hooks/useTokenBalance'
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
 import useLinearIAOHarvest from '../../../hooks/useLinearIAOHarvest'
@@ -15,13 +16,12 @@ export interface Props {
   address: string
   currency: string
   currencyAddress: string
-  contract: Contract
   amountContributed: number
   userTokenStatus: {
     stakeTokenHarvest: number
     offeringTokenTotalHarvest: number
     offeringTokenInitialHarvest: number
-    offeringTokensVested: number
+    offeringTokensVesting: number
     offeringTokenVestedHarvest: number
   }
   tokenDecimals: number
@@ -35,24 +35,28 @@ const IfoCardContribute: React.FC<Props> = ({
   address,
   currency,
   currencyAddress,
-  contract,
   amountContributed,
   isFinished,
   isActive,
   userTokenStatus,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
+  const contract = useSafeIfoContract(address, true)
 
-  const contractRaisingToken = useERC20(currencyAddress)
-  const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
-  const onApprove = useIfoApprove(contractRaisingToken, address)
+  const allowance = useIfoAllowance(currencyAddress, address, pendingTx)
+  const onApprove = useIfoApprove(currencyAddress, address)
+  const tokenBalance = useTokenBalance(currencyAddress)
   const onClaim = useLinearIAOHarvest(contract, setPendingTx)
 
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
   }
 
-  if (isActive && currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
+  if (
+    isActive &&
+    currencyAddress !== ZERO_ADDRESS &&
+    (allowance.isLessThanOrEqualTo(new BigNumber('0')) || allowance.isLessThan(tokenBalance))
+  ) {
     return (
       <ApproveButton
         disabled={pendingTx}
@@ -79,6 +83,7 @@ const IfoCardContribute: React.FC<Props> = ({
           <ContributeInput
             currency={currency}
             contract={contract}
+            tokenBalance={tokenBalance}
             currencyAddress={currencyAddress}
             disabled={pendingTx}
           />
@@ -95,7 +100,10 @@ const IfoCardContribute: React.FC<Props> = ({
         </>
       )}
       {isFinished && amountContributed > 0 && (
-        <VestingClaimButton disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx} onClick={onClaim}>
+        <VestingClaimButton
+          disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx}
+          onClick={async () => onClaim(userTokenStatus.offeringTokenTotalHarvest)}
+        >
           <Claim color="white">Claim</Claim>
         </VestingClaimButton>
       )}

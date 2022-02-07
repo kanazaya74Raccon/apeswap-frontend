@@ -4,8 +4,8 @@ import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
-import { useFetchStats, useFetchStatsOverall, useStats } from 'state/hooks'
-import { useWeb3React } from '@web3-react/core'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useFetchStats, useFetchStatsOverall, usePollFarms, usePollPools, useStats } from 'state/hooks'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
@@ -92,10 +92,12 @@ const PaddedCard = styled(Card)`
 `
 
 const Stats: React.FC = () => {
+  usePollPools()
+  usePollFarms()
   useFetchStatsOverall()
   useFetchStats()
   const TranslateString = useI18n()
-  const { account } = useWeb3React()
+  const { account } = useActiveWeb3React()
   const yourStats = useStats()
   const stats = yourStats?.stats
 

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
+import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, Token } from '@apeswapfinance/sdk'
 import { Text, Flex, AddIcon, useModal } from '@apeswapfinance/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
@@ -10,12 +10,16 @@ import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import Page from 'components/layout/Page'
+import track from 'utils/track'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
+import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { LargeStyledButton } from 'views/Swap/styles'
 import { Wrapper } from 'views/Swap/components/styled'
 import SwapBanner from 'components/SwapBanner'
+import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { useDispatch } from 'react-redux'
 import { parseAddress } from 'hooks/useAddress'
+import { useSwapState } from 'state/swap/hooks'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -30,9 +34,8 @@ import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallbac
 import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { Field, resetMintState } from '../../state/mint/actions'
 import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../state/mint/hooks'
-
 import { useTransactionAdder } from '../../state/transactions/hooks'
-import { useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
+import { useIsExpertMode, useUserRecentTransactions, useUserSlippageTolerance } from '../../state/user/hooks'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
@@ -58,15 +61,25 @@ export default function AddLiquidity({
 }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
+  // Either use the url params or the user swap state for initial liquidity add
+  const { INPUT, OUTPUT } = useSwapState()
+  const swapCurrencyA = INPUT.currencyId
+  const swapCurrencyB = OUTPUT.currencyId
 
-  const currencyA = useCurrency(currencyIdA)
-  const currencyB = useCurrency(currencyIdB)
+  const loadCurrencyIdA = currencyIdA || swapCurrencyA
+  const loadCurrencyIdB = currencyIdB || swapCurrencyB
+
+  const currencyA = useCurrency(loadCurrencyIdA)
+  const currencyB = useCurrency(loadCurrencyIdB)
+
+  const [recentTransactions] = useUserRecentTransactions()
+  const [addValueUsd, setAddValueUsd] = useState<number>(null)
 
   useEffect(() => {
-    if (!currencyIdA && !currencyIdB) {
+    if (!loadCurrencyIdA && !loadCurrencyIdB) {
       dispatch(resetMintState())
     }
-  }, [dispatch, currencyIdA, currencyIdB])
+  }, [dispatch, loadCurrencyIdA, loadCurrencyIdB])
 
   const expertMode = useIsExpertMode()
 
@@ -135,6 +148,22 @@ export default function AddLiquidity({
     parseAddress(ROUTER_ADDRESS, chainId),
   )
 
+  useEffect(() => {
+    const getAddVal = async () => {
+      const isNative = currencyA?.symbol === 'ETH'
+      const isLp = false
+      const usdVal = await getTokenUsdPrice(
+        chainId,
+        currencyA instanceof Token ? currencyA?.address : '',
+        currencyA?.decimals,
+        isLp,
+        isNative,
+      )
+      setAddValueUsd(Number(parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)) * usdVal * 2)
+    }
+    getAddVal()
+  }, [setAddValueUsd, chainId, currencyA, parsedAmounts])
+
   const addTransaction = useTransactionAdder()
 
   const onAdd = async () => {
@@ -202,6 +231,19 @@ export default function AddLiquidity({
           })
 
           setTxHash(response.hash)
+
+          track({
+            event: 'liquidity',
+            chain: chainId,
+            value: addValueUsd,
+            data: {
+              token1: currencies[Field.CURRENCY_A]?.getSymbol(chainId),
+              token2: currencies[Field.CURRENCY_B]?.getSymbol(chainId),
+              token1Amount: parsedAmounts[Field.CURRENCY_A]?.toSignificant(3),
+              token2Amount: parsedAmounts[Field.CURRENCY_B]?.toSignificant(3),
+              cat: 'add',
+            },
+          })
         }),
       )
       .catch((err) => {
@@ -275,30 +317,30 @@ export default function AddLiquidity({
   const handleCurrencyASelect = useCallback(
     (currencyA_: Currency) => {
       const newCurrencyIdA = currencyId(currencyA_)
-      if (newCurrencyIdA === currencyIdB) {
-        history.push(`/add/${currencyIdB}/${currencyIdA}`)
-      } else if (currencyIdB) {
-        history.push(`/add/${newCurrencyIdA}/${currencyIdB}`)
+      if (newCurrencyIdA === loadCurrencyIdB) {
+        history.push(`/add/${loadCurrencyIdB}/${loadCurrencyIdA}`)
+      } else if (loadCurrencyIdB) {
+        history.push(`/add/${newCurrencyIdA}/${loadCurrencyIdB}`)
       } else {
         history.push(`/add/${newCurrencyIdA}`)
       }
     },
-    [currencyIdB, history, currencyIdA],
+    [loadCurrencyIdB, history, loadCurrencyIdA],
   )
   const handleCurrencyBSelect = useCallback(
     (currencyB_: Currency) => {
       const newCurrencyIdB = currencyId(currencyB_)
-      if (currencyIdA === newCurrencyIdB) {
-        if (currencyIdB) {
-          history.push(`/add/${currencyIdB}/${newCurrencyIdB}`)
+      if (loadCurrencyIdA === newCurrencyIdB) {
+        if (loadCurrencyIdB) {
+          history.push(`/add/${loadCurrencyIdB}/${newCurrencyIdB}`)
         } else {
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`)
+        history.push(`/add/${loadCurrencyIdA || 'ETH'}/${newCurrencyIdB}`)
       }
     },
-    [currencyIdA, history, currencyIdB],
+    [loadCurrencyIdA, history, loadCurrencyIdB],
   )
 
   const handleDismissConfirmation = useCallback(() => {
@@ -478,6 +520,7 @@ export default function AddLiquidity({
         ) : (
           <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
         )}
+        {recentTransactions && <WalletTransactions />}
       </Flex>
     </Page>
   )

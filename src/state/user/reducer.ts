@@ -17,6 +17,7 @@ import {
   updateGasPrice,
   updateUserDeadline,
   updateUserExpertMode,
+  updateUserRecentTransactions,
   updateUserFarmStakedOnly,
   updateUserFarmsViewMode,
   updateUserPoolStakedOnly,
@@ -49,6 +50,9 @@ export interface UserState {
 
   // deadline set by user in minutes, used in all txns
   userDeadline: number
+
+  // Show previous transactions
+  userRecentTransactions: boolean
 
   tokens: {
     [chainId: number]: {
@@ -88,6 +92,7 @@ function pairKey(token0Address: string, token1Address: string) {
 export const initialState: UserState = {
   userExpertMode: false,
   userSingleHopOnly: false,
+  userRecentTransactions: false,
   userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   tokens: {},
@@ -141,6 +146,9 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserSingleHopOnly, (state, action) => {
       state.userSingleHopOnly = action.payload.userSingleHopOnly
+    })
+    .addCase(updateUserRecentTransactions, (state, action) => {
+      state.userRecentTransactions = action.payload.userRecentTransactions
     })
     .addCase(addSerializedToken, (state, { payload: { serializedToken } }) => {
       if (!state.tokens) {
