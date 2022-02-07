@@ -22,13 +22,12 @@ import { Input as NumericalInput } from './NumericalInput'
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ removeLiquidity: boolean }>`
   display: flex;s
   justify-content: flex-start;
-  background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
+  background-color: ${({ theme }) => theme.colors.white4};
   height: 75px;
   width: 310px;
   padding: 0;
   ${({ theme }) => theme.mediaQueries.md} {
     width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '244px')}};
-  }
 `
 const InputPanel = styled.div`
   display: flex;
@@ -36,7 +35,6 @@ const InputPanel = styled.div`
   align-items: center;
   position: relative;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 `
 const Container = styled.div<{ removeLiquidity: boolean }>`
@@ -46,14 +44,15 @@ const Container = styled.div<{ removeLiquidity: boolean }>`
   border-radius: 16px;
   width: 310px;
   height: 75px;
-  background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
+  background-color: ${({ theme }) => theme.colors.white4};
+
   ${({ theme }) => theme.mediaQueries.md} {
-    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '340px')}};
-  }
+    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '340px')};
+  } ;
 `
 
 const CurrencyInputContainer = styled.div<{ removeLiquidity: boolean }>`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => theme.colors.white3};
   border-radius: 20px;
   display: flex;
   flex-direction: column;

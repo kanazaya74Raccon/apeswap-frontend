@@ -17,6 +17,7 @@ const CurrencyInputContainer = styled(Flex)`
   justify-content: space-between;
   padding: 20px 25px 0px 20px;
   width: 100%;
+  background: ${({ theme }) => theme.colors.navbar};
 `
 
 const CurrencyInputHeader: React.FC<Props> = () => {

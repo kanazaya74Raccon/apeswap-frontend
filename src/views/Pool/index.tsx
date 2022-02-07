@@ -28,6 +28,13 @@ const StyledText = styled(Text)`
   }
 `
 
+const StyledFlex = styled(Flex)`
+  background: ${({ theme }) => theme.colors.white2};
+`
+const InnerFlex = styled(Flex)`
+  background: ${({ theme }) => theme.colors.white3};
+`
+
 export default function Pool() {
   const { account } = useActiveWeb3React()
   const [recentTransactions] = useUserRecentTransactions()
@@ -100,7 +107,7 @@ export default function Pool() {
           <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
           <Wrapper>
             <StyledCard style={{ height: '160px', borderRadius: '20px' }} mb="25px">
-              <Flex
+              <InnerFlex
                 flexDirection="column"
                 paddingTop="25px"
                 paddingBottom="10px"
@@ -118,12 +125,12 @@ export default function Pool() {
                 >
                   Add Liquidity
                 </ButtonSquare>
-              </Flex>
+              </InnerFlex>
             </StyledCard>
             {renderBody()}
           </Wrapper>
           {account && !v2IsLoading && (
-            <Flex flexDirection="column" alignItems="center" pt="20px" pb="10px">
+            <StyledFlex flexDirection="column" alignItems="center" pt="20px" pb="10px">
               <Text mb="8px">Dont see a pool you joined?</Text>
               <ButtonSquare
                 id="import-pool-link"
@@ -140,7 +147,7 @@ export default function Pool() {
                   Find other LP tokens
                 </Text>
               </ButtonSquare>
-            </Flex>
+            </StyledFlex>
           )}
         </AppBody>
         {recentTransactions && <WalletTransactions />}

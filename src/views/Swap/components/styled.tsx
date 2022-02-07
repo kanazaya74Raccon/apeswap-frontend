@@ -4,6 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
+  background: ${({ theme }) => theme.colors.navbar};
   position: relative;
   padding: 1rem;
 `
