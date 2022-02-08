@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FadeIn } from 'views/NewHomepage/styles'
 
 export const ServiceWrapper = styled.div`
   display: flex;
@@ -48,10 +49,12 @@ export const YieldCard = styled.div<{ image?: string }>`
   justify-content: space-between;
   width: 338px;
   height: 442px;
+  opacity: 1;
   padding: 20px 10px 20px 10px;
   border-radius: 10px;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  animation: ${FadeIn} 0.5s linear;
 `
