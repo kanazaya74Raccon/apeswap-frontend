@@ -60,7 +60,7 @@ const bscConfig: MenuEntry[] = [
   {
     label: 'Lending',
     icon: 'LendingIcon',
-    href: 'https://app.ola.finance/apeswap/markets',
+    href: 'https://lending.apeswap.finance/markets',
   },
   {
     label: 'Info',
