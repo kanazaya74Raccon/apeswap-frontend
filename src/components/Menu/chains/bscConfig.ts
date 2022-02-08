@@ -58,9 +58,9 @@ const bscConfig: MenuEntry[] = [
     href: '/gnana',
   },
   {
-    label: 'Burn',
-    icon: 'GameBurnIcon',
-    href: '/burn',
+    label: 'Lending',
+    icon: 'LendingIcon',
+    href: 'https://lending.apeswap.finance/markets',
   },
   {
     label: 'Info',
