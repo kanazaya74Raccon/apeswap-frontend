@@ -96,7 +96,7 @@ export interface PoolConfig {
   bonusEndBlock?: number
   rewardToken: Token
   contractAddress: Address
-  poolCategory: PoolCategory
+  poolCategory?: PoolCategory
   projectLink: string
   tokenPerBlock: string
   sortOrder?: number

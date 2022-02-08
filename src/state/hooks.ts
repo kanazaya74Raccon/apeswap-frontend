@@ -51,6 +51,7 @@ import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { useBlock } from './block/hooks'
+import { fetchJunglePoolsPublicDataAsync, fetchJunglePoolsUserDataAsync } from './junglePools'
 
 const ZERO = new BigNumber(0)
 
@@ -237,6 +238,33 @@ export const useGnanaPools = (account): Pool[] => {
 export const useAllPools = (): Pool[] => {
   const pools = useSelector((state: State) => state.pools.data)
   return pools
+}
+
+// Jungle Pools
+
+export const usePollJunglePools = () => {
+  const chainId = useNetworkChainId()
+  const { tokenPrices } = useTokenPrices()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (chainId === CHAIN_ID.BSC) {
+      dispatch(fetchJunglePoolsPublicDataAsync(chainId, tokenPrices))
+    }
+  }, [dispatch, tokenPrices, chainId])
+}
+
+export const useJunglePools = (account): Pool[] => {
+  const { slowRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  const { chainId } = useActiveWeb3React()
+  useEffect(() => {
+    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
+      dispatch(fetchJunglePoolsUserDataAsync(chainId, account))
+    }
+  }, [account, dispatch, slowRefresh, chainId])
+
+  const junglePools = useSelector((state: State) => state.junglePools.data)
+  return junglePools
 }
 
 // NfaStakingPools
