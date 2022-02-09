@@ -11,7 +11,7 @@ export interface InputProps {
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.primaryBright)};
+  background: ${({ theme }) => theme.colors.white4};
   border-radius: 10px;
   display: flex;
   height: 72px;
@@ -32,7 +32,7 @@ const StyledInput = styled.input`
   font-size: 30px;
 
   &::placeholder {
-    color: ${({ theme }) => !theme.isDark && '#bdc2c4'};
+    color: ${({ theme }) => !theme.isDark && theme.colors.gray};
   }
 `
 

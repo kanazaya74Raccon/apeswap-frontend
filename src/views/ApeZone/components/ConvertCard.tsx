@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, Checkbox } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 
@@ -17,7 +17,6 @@ import CardValue from 'views/Home/components/CardValue'
 import {
   FlexSection,
   CheckBoxCon,
-  NewCheckBox,
   CBS,
   HeaderCard,
   Header,
@@ -25,7 +24,7 @@ import {
   ContentCard,
   StyledButton,
   StyledText,
-  StyledCard2,
+  StyledCard,
 } from './styles'
 
 interface ConvertCardType {
@@ -101,7 +100,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   }, [unlimited, setUnlimited])
 
   return (
-    <StyledCard2>
+    <StyledCard>
       <HeaderCard>
         <Header>CONVERT</Header>
         <TokensDisplay>
@@ -143,7 +142,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
 
           <CBS>
             <CheckBoxCon>
-              <NewCheckBox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
+              <Checkbox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited conversion.
@@ -151,7 +150,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           </CBS>
         </FlexSection>
       </ContentCard>
-    </StyledCard2>
+    </StyledCard>
   )
 }
 

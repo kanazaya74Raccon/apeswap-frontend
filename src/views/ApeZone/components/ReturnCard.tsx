@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, Checkbox } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -21,7 +21,6 @@ import {
   ContentCard,
   StyledButton,
   FlexSection,
-  NewCheckBox,
   CheckBoxCon,
   CheckBoxSection,
   StyledText,
@@ -84,7 +83,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
     }
   }, [handleSell, val])
 
-  const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
+  const disabled = processing || parseInt(val) > parseInt(fullBalance) || parseInt(val) === 0
 
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance)
@@ -133,7 +132,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
 
           <CheckBoxSection>
             <CheckBoxCon>
-              <NewCheckBox id="checkbox" scale="md" />
+              <Checkbox id="checkbox" scale="md" />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited conversion.

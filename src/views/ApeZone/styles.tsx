@@ -12,11 +12,12 @@ export const Cards = styled.div`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
+    background-color: ${({ theme }) => theme.colors.navbar};
+    padding: 15px;
+    border-radius: 20px;
   }
 `
+
 export const Header = styled.div`
   position: relative;
   overflow-y: hidden;
@@ -82,7 +83,7 @@ export const PaddedCard = styled(Card)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
+  background: ${({ theme }) => (theme.isDark ? `${theme.colors.yellow}26` : theme.colors.yellow)};
   padding: 10px;
   border-radius: 10px;
 `
