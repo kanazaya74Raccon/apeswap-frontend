@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
+import { PoolCategory } from 'config/constants/types'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
@@ -535,7 +536,7 @@ const Pools: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
+  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory !== PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {
     return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })

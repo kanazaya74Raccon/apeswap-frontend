@@ -7,10 +7,11 @@ import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinanc
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
+import { PoolCategory } from 'config/constants/types'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useJunglePools, usePollJunglePools } from 'state/hooks'
+import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from '../Pools/components/ToggleView/ToggleView'
@@ -484,7 +485,7 @@ const TableContainer = styled.div`
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const JunglePools: React.FC = () => {
-  usePollJunglePools()
+  usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [gnanaOnly, setGnanaOnly] = useState(false)
   const [bananaOnly, setBananaOnly] = useState(false)
@@ -496,7 +497,7 @@ const JunglePools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
-  const allPools = useJunglePools(account)
+  const allPools = usePools(account)
   const TranslateString = useI18n()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
@@ -535,7 +536,7 @@ const JunglePools: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins)
+  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory === PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {
     return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })

@@ -3435,6 +3435,50 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+
+  //
+  // JUNGLE POOLS
+  //
+
+  {
+    sousId: 180,
+    tokenName: 'BANANA',
+    image: 'BANANA.svg',
+    stakingToken: tokens.bananaBnb,
+    rewardToken: tokens.banana,
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x6860677aa7ae8fb74df8980dacbf2a52e2119a91',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: '',
+    harvest: true,
+    tokenPerBlock: '0.000173611111111111',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+  {
+    sousId: 181,
+    tokenName: 'NFTY',
+    image: 'NFTY.svg',
+    stakingToken: tokens.nftyBnb,
+    rewardToken: tokens.nfty,
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x040f75e501a491Bb9ea49a47325715DcEa9716bD',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: '',
+    harvest: true,
+    tokenPerBlock: '0.000173611111111111',
+    sortOrder: 2,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+  },
+
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

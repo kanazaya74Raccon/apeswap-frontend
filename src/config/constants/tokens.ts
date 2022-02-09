@@ -948,6 +948,22 @@ const tokens = {
     },
     decimals: 18,
   },
+  bananaBnb: {
+    symbol: 'BANANA-BNB',
+    address: {
+      56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  nftyBnb: {
+    symbol: 'NFTY-BNB',
+    address: {
+      56: '0x884be30e2c95b9cfed614ad2b5edf40af2a144ad',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
 }
 
 export default tokens
