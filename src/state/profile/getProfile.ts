@@ -54,10 +54,12 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
         }),
       )
     }
-    return {
-      ownedNfts,
-      rarestNft,
-    } as Profile
+    return ownedNfts || rarestNft
+      ? ({
+          ownedNfts,
+          rarestNft,
+        } as Profile)
+      : null
   } catch (error) {
     return null
   }
