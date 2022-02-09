@@ -8,7 +8,7 @@ export const IazoCardWrapper = styled.div`
   border-radius: 10px;
   margin-top: 12.5px;
   margin-bottom: 12.5px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+  background: ${(props) => props.theme.colors.white3};
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;

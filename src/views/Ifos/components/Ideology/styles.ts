@@ -56,7 +56,7 @@ export const IconBox = styled.div`
   border-radius: 5px;
   width: 144px;
   height: 98px;
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#E5E5E5')};
+  background-color: ${({ theme }) => theme.colors.white3};
   position: relative;
   flex-shrink: 0;
   margin-bottom: 8px;

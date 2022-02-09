@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
   border-radius: 20px;
-  background: ${({ theme }) => (theme.isDark ? '#353547' : '#f0f0f0')};
+  background: ${({ theme }) => theme.colors.background};
   margin-left: auto;
   height: 28px;
   font-weight: 800;
@@ -80,7 +80,7 @@ const SearchInput: React.FC<Props> = ({ value, onChange }) => {
     <Container toggled={toggled}>
       <InputWrapper>
         <StyledInput ref={inputEl} value={value} onChange={onChange} onBlur={() => setToggled(false)} />
-        <StyledSearchIcon color="primary" />
+        <StyledSearchIcon color="text" />
       </InputWrapper>
     </Container>
   )
