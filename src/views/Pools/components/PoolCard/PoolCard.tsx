@@ -24,7 +24,6 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 
 const PCard = styled.div`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
   display: flex;
   flex-direction: column;
   justify-content: space-around;

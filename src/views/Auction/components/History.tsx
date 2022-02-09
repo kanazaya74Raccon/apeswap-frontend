@@ -80,7 +80,7 @@ const BodyWrapper = styled.div`
 const Row = styled.div<RowProps>`
   height: 27px;
   width: 100%;
-  background: ${(props) => props.background && (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  background: ${(props) => props.background && props.theme.colors.white3};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,7 +110,7 @@ const ArrowsWrapper = styled.div`
 `
 
 const StyledBackArrow = styled(ArrowBackIcon)<ArrowProps>`
-  fill: #ffb300;
+  fill: ${({ theme }) => theme.colors.yellow};
   height: 50px;
   width: 50px;
   margin-right: 10px;
@@ -120,7 +120,7 @@ const StyledBackArrow = styled(ArrowBackIcon)<ArrowProps>`
 `
 
 const StyledForwardArrow = styled(ArrowForwardIcon)<ArrowProps>`
-  fill: #ffb300;
+  fill: ${({ theme }) => theme.colors.yellow};
   height: 50px;
   width: 50px;
   margin-left: 10px;
