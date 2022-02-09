@@ -455,7 +455,6 @@ const StyledTable = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
 `
 
 const Container = styled.div`

@@ -32,10 +32,14 @@ const PCard = styled.div`
   text-align: center;
   max-width: 530px;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
+  background-color: ${({ theme }) => theme.colors.navbar};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   overflow: hidden;
+`
+
+const StyledFlex = styled(Flex)`
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
@@ -90,7 +94,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
         rewardTokenPrice={rewardToken?.price}
       />
       <ExpandingWrapper expanded={showExpandableSection}>
-        <Flex>
+        <StyledFlex>
           <StakeAction
             pool={pool}
             stakingTokenBalance={stakingTokenBalance}
@@ -98,7 +102,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
             isApproved={isApproved}
             isStaked={accountHasStakedBalance}
           />
-        </Flex>
+        </StyledFlex>
         <ContainerDetail
           totalStaked={getBalanceNumber(totalStaked)}
           personalValueStaked={getBalanceNumber(stakedBalance)}
