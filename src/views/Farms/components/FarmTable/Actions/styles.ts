@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const ActionContainer = styled.div`
   padding: 24px;
   border: 2px solid ${({ theme }) => theme.colors.inputBorder};
+  /* background-color: ${({ theme }) => theme.colors.white3}; */
   border-radius: 16px;
   min-height: 150px;
   margin-bottom: 16px;
