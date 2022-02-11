@@ -157,6 +157,15 @@ export type Nft = {
   attributes: Attributes
 }
 
+export type Nfb = {
+  image: string
+}
+
+export type NfbAttribute = {
+  traitType: string
+  value: string
+}
+
 export type NfaAttribute = {
   id: string
   occurance: number
