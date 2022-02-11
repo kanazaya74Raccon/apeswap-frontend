@@ -6,6 +6,7 @@ import {
   Address,
   FarmConfig,
   Nft,
+  Nfb,
   PoolConfig,
   NfaStakingPoolConfig,
   Team,
@@ -106,7 +107,7 @@ export interface NfaStakingPool extends NfaStakingPoolConfig {
 
 export interface Profile {
   ownedNfts: Nft[]
-  rarestNft: Nft
+  rarestNft: Nft | Nfb
 }
 
 export interface Network {
