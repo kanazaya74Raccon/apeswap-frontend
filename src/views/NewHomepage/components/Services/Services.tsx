@@ -22,183 +22,223 @@ const Services: React.FC = () => {
           {loadServices ? (
             <>
               <YieldCard image="images/pool-background-day.svg">
-                <Flex flexDirection="column">
-                  <Flex>
-                    <Text color="white" fontSize="25px" bold>
-                      Staking Pools
+                <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                  <Flex flexDirection="column">
+                    <Flex>
+                      <Text color="white" fontSize="25px" bold>
+                        Staking Pools
+                      </Text>
+                    </Flex>
+                    <Flex>
+                      <Text color="white">Stake BANANA or GNANA</Text>
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="space-between"
+                    style={{ bottom: '40px', height: '250px' }}
+                  >
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+                    <Text color="white" fontSize="14px">
+                      See All {'>'}
                     </Text>
                   </Flex>
-                  <Flex>
-                    <Text color="white">Stake BANANA or GNANA</Text>
-                  </Flex>
-                </Flex>
-                <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-                </Flex>
-                <Flex alignItems="center" justifyContent="center">
-                  <Text color="white" fontSize="14px">
-                    See All {'>'}
-                  </Text>
                 </Flex>
               </YieldCard>
               <YieldCard image="images/pool-background-day.svg">
-                <Flex flexDirection="column">
-                  <Flex>
-                    <Text color="white" fontSize="25px" bold>
-                      Yield Farms
+                <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                  <Flex flexDirection="column">
+                    <Flex>
+                      <Text color="white" fontSize="25px" bold>
+                        Staking Pools
+                      </Text>
+                    </Flex>
+                    <Flex>
+                      <Text color="white">Stake BANANA or GNANA</Text>
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="space-between"
+                    style={{ bottom: '40px', height: '250px' }}
+                  >
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+                    <Text color="white" fontSize="14px">
+                      See All {'>'}
                     </Text>
                   </Flex>
-                  <Flex>
-                    <Text color="white">Stake BANANA or GNANA</Text>
-                  </Flex>
-                </Flex>
-                <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-                </Flex>
-                <Flex alignItems="center" justifyContent="center">
-                  <Text color="white" fontSize="14px">
-                    See All {'>'}
-                  </Text>
                 </Flex>
               </YieldCard>
               <YieldCard image="images/pool-background-day.svg">
-                <Flex flexDirection="column">
-                  <Flex>
-                    <Text color="white" fontSize="25px" bold>
-                      Lending
+                <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                  <Flex flexDirection="column">
+                    <Flex>
+                      <Text color="white" fontSize="25px" bold>
+                        Staking Pools
+                      </Text>
+                    </Flex>
+                    <Flex>
+                      <Text color="white">Stake BANANA or GNANA</Text>
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="space-between"
+                    style={{ bottom: '40px', height: '250px' }}
+                  >
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+                    <Text color="white" fontSize="14px">
+                      See All {'>'}
                     </Text>
                   </Flex>
-                  <Flex>
-                    <Text color="white">Stake BANANA or GNANA</Text>
-                  </Flex>
-                </Flex>
-                <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-                </Flex>
-                <Flex alignItems="center" justifyContent="center">
-                  <Text color="white" fontSize="14px">
-                    See All {'>'}
-                  </Text>
                 </Flex>
               </YieldCard>
               <YieldCard image="images/pool-background-day.svg">
-                <Flex flexDirection="column">
-                  <Flex>
-                    <Text color="white" fontSize="25px" bold>
-                      Treasury Bills
+                <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                  <Flex flexDirection="column">
+                    <Flex>
+                      <Text color="white" fontSize="25px" bold>
+                        Staking Pools
+                      </Text>
+                    </Flex>
+                    <Flex>
+                      <Text color="white">Stake BANANA or GNANA</Text>
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    flexDirection="column"
+                    justifyContent="space-between"
+                    style={{ bottom: '40px', height: '250px' }}
+                  >
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                    <Flex
+                      mt="5px"
+                      mb="5px"
+                      style={{
+                        width: '100%',
+                        height: '70px',
+                        background: 'rgba(250, 250, 250, .25)',
+                        borderRadius: '10px',
+                      }}
+                    />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+                    <Text color="white" fontSize="14px">
+                      See All {'>'}
                     </Text>
                   </Flex>
-                  <Flex>
-                    <Text color="white">Stake BANANA or GNANA</Text>
-                  </Flex>
-                </Flex>
-                <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-
-                  <Flex
-                    style={{
-                      width: '100%',
-                      height: '70px',
-                      background: 'rgba(250, 250, 250, .25)',
-                      borderRadius: '10px',
-                    }}
-                  />
-                </Flex>
-                <Flex alignItems="center" justifyContent="center">
-                  <Text color="white" fontSize="14px">
-                    See All {'>'}
-                  </Text>
                 </Flex>
               </YieldCard>
             </>
