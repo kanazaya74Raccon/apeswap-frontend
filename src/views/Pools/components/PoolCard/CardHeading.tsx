@@ -261,7 +261,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const { userData, tokenDecimals, stakingToken } = pool
-  const splitStakeToken = stakeToken.split('-')
+  const splitStakeToken = pool?.lpStaking && stakeToken.split('-')
+  const splitEarnToken = pool?.isEarnTokenLp && earnToken.split('-')
   const chainId = useNetworkChainId()
   const { isXl: isDesktop } = useMatchBreakpoints()
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
@@ -343,13 +344,33 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           </>
         )}
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
-        <IconImage
-          src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
-          alt={earnToken}
-          width={70}
-          height={70}
-          marginRight="7.5px"
-        />
+        {!pool?.isEarnTokenLp ? (
+          <IconImage
+            src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
+            alt={earnToken}
+            width={70}
+            height={70}
+            marginRight="7.5px"
+          />
+        ) : (
+          <>
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[0]}.svg`}
+              alt={splitEarnToken[0]}
+              width={60}
+              height={60}
+              marginLeft="7.5px"
+            />
+            <IconQuoteToken
+              src={`/images/tokens/${splitStakeToken[1]}.svg`}
+              alt={splitEarnToken[1]}
+              width={35}
+              height={35}
+              marginLeft={isDesktop ? '-20px' : '-13px'}
+              marginTop={isDesktop ? '45px' : '30px'}
+            />
+          </>
+        )}
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>

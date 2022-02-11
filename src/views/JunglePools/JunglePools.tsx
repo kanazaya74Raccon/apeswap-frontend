@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
@@ -24,17 +24,6 @@ import { ViewMode } from '../Pools/components/types'
 interface LabelProps {
   active?: boolean
 }
-
-const float = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(50px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
-const floatSM = keyframes`
-  0% {transform: translate3d(0px, 0px, 0px);}
-  50% {transform: translate3d(10px, 0px, 0px);}
-  100% {transform: translate3d(0px, 0px, 0px);}
-`
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -151,8 +140,7 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/pool-background-night.svg)' : 'url(/images/pool-background-day.svg)'};
+  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/jungle-dark.svg)' : 'url(/images/jungle-light.svg)')};
   background-repeat: no-repeat;
   background-size: cover;
   height: 250px;
@@ -168,37 +156,6 @@ const Header = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     height: 300px;
-  }
-`
-
-const PoolMonkey = styled.div`
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/pool-ape-night.svg)' : 'url(/images/pool-ape.svg)')};
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-`
-
-const MonkeyWrapper = styled.div`
-  position: absolute;
-  width: 225px;
-  height: 275px;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 0px;
-  right: 0px;
-  animation: 5s ${floatSM} linear infinite;
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 24px;
-    padding-right: 24px;
-    animation: 10s ${float} linear infinite;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    width: 575px;
-    height: 800px;
-    top: ${({ theme }) => (theme.isDark ? '-120px' : '-80px')};
-    right: 0;
-    animation: 10s ${float} linear infinite;
   }
 `
 
@@ -487,8 +444,8 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const JunglePools: React.FC = () => {
   usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly, setGnanaOnly] = useState(false)
-  const [bananaOnly, setBananaOnly] = useState(false)
+  const [gnanaOnly] = useState(false)
+  const [bananaOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -689,7 +646,7 @@ const JunglePools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
-            {TranslateString(999, 'Jungle Pools')}
+            {TranslateString(999, 'Jungle Farms')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
@@ -698,9 +655,6 @@ const JunglePools: React.FC = () => {
             </Text>
           )}
         </HeadingContainer>
-        <MonkeyWrapper>
-          <PoolMonkey />
-        </MonkeyWrapper>
       </Header>
       <StyledPage width="1130px">
         <ControlContainer>

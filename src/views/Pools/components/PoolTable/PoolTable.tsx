@@ -186,6 +186,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
             earnToken={tokenName}
             earnTokenImage={image}
             isLp={pool?.lpStaking}
+            isEarnTokenLp={pool?.isEarnTokenLp}
           />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">

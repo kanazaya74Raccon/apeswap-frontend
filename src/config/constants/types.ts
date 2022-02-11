@@ -109,6 +109,7 @@ export interface PoolConfig {
   lpStaking?: boolean
   forAdmins?: boolean
   emergencyWithdraw?: boolean
+  isEarnTokenLp?: boolean
 }
 
 export interface NfaStakingPoolConfig {

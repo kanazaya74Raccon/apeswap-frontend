@@ -152,6 +152,9 @@ const App: React.FC = () => {
               <Route path="/pools">
                 <Redirect to="/" />
               </Route>
+              <Route path="/jungle-farms">
+                <Redirect to="/" />
+              </Route>
               <Route path="/admin-pools">
                 <Redirect to="/" />
               </Route>
@@ -207,7 +210,7 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
-            <Route path="/jungle-pools">
+            <Route path="/jungle-farms">
               <JunglePools />
             </Route>
             <Route path="/vaults">

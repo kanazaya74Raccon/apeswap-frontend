@@ -3442,10 +3442,10 @@ const pools: PoolConfig[] = [
 
   {
     sousId: 180,
-    tokenName: 'BANANA',
+    tokenName: 'BANANA-BNB',
     image: 'BANANA.svg',
     stakingToken: tokens.bananaBnb,
-    rewardToken: tokens.banana,
+    rewardToken: tokens.bananaBnb,
     contractAddress: {
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
       56: '0x6860677aa7ae8fb74df8980dacbf2a52e2119a91',
@@ -3458,6 +3458,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     lpStaking: true,
+    isEarnTokenLp: true,
   },
   {
     sousId: 181,
@@ -3482,6 +3483,7 @@ const pools: PoolConfig[] = [
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //
+
   {
     sousId: 123,
     tokenName: 'CYT',

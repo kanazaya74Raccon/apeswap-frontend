@@ -8,7 +8,16 @@ const bscConfig: MenuEntry[] = [
   {
     label: 'Farms',
     icon: 'FarmIcon',
-    href: '/farms',
+    items: [
+      {
+        label: 'BANANA',
+        href: '/farms',
+      },
+      {
+        label: 'Jungle',
+        href: '/jungle-farms',
+      },
+    ],
   },
   {
     label: 'Pools',
