@@ -1,61 +1,55 @@
 import styled, { keyframes } from 'styled-components'
 import { FadeIn } from 'views/NewHomepage/styles'
 
-export const NewsCard = styled.div<{ image: string }>`
+export const NewsCard = styled.div<{ image: string; index: number; listLength: number }>`
   height: 348px;
-  width: 266px;
+  min-width: 266px;
+  max-width: 266px;
   opacity: 1;
+  flex-shrink: 1;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 10px;
-  animation: ${FadeIn} 0.5s linear;
+  transition: ease 1000ms;
 `
 
 export const NewsWrapper = styled.div`
   display: flex;
   height: 500px;
   align-items: center;
+  overflow: hidden;
   max-width: 1412px;
   width: 95vw;
   justify-content: center;
   padding-bottom: 50px;
-  & :nth-child(2),
-  & :nth-child(3),
-  & :nth-child(4),
-  & :nth-child(5) {
-    display: none;
-  }
+  // & :nth-child(-n + 1) {3
+  //   display: block;
+  // }
   @media screen and (min-width: 555px) and (max-width: 855px) {
     justify-content: space-around;
-    & :nth-child(2) {
-      display: block;
-    }
+    // & :nth-child(-n + 2) {
+    //   display: block;
+    // }
   }
   @media screen and (min-width: 855px) and (max-width: 1155px) {
     justify-content: space-around;
-    & :nth-child(2),
-    & :nth-child(3) {
-      display: block;
-    }
+    // & :nth-child(-n + 3) {
+    //   display: block;
+    // }
   }
   @media screen and (min-width: 1155px) and (max-width: 1405px) {
     justify-content: space-between;
-    & :nth-child(2),
-    & :nth-child(3),
-    & :nth-child(4) {
-      display: block;
-    }
+    // & :nth-child(-n + 4) {
+    //   display: block;
+    // }
   }
   @media screen and (min-width: 1405px) {
     justify-content: space-between;
-    & :nth-child(2),
-    & :nth-child(3),
-    & :nth-child(4),
-    & :nth-child(5) {
-      display: block;
-    }
+    // & :nth-child(-n + 5) {
+    //   display: block;
+    // }
   }
 `
 
@@ -66,4 +60,5 @@ export const Bubble = styled.div<{ isActive?: boolean }>`
   width: 14px;
   border-radius: 50px;
   margin: 0px 2.5px 0px 2.5px;
+  cursor: pointer;
 `

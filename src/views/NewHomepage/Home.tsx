@@ -1,3 +1,5 @@
+import { CHAIN_ID } from 'config/constants/chains'
+import SwiperProvider from 'contexts/SwiperProvider'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import React from 'react'
 import LaunchCalendar from './components/LaunchCalendar/LaunchCalendar'
@@ -13,16 +15,16 @@ const Home: React.FC = () => {
   const { chainId } = useActiveWeb3React()
 
   return (
-    <>
+    <SwiperProvider>
       <Banner />
       <WelcomeContent />
       <StatCards />
       <TrendingTokens />
       <News />
-      <Services />
+      {chainId === CHAIN_ID.BSC && <Services />}
       <Values />
       <LaunchCalendar />
-    </>
+    </SwiperProvider>
   )
 }
 

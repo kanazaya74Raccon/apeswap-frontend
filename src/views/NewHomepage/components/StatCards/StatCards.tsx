@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Flex, Text, PFarmingIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import CountUp from 'react-countup'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { StyledCard, CardWrapper } from './styles'
 
@@ -32,7 +33,7 @@ const StatCards: React.FC = () => {
                 </Flex>
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                    $300,000,000
+                    $<CountUp end={300000000} decimals={0} duration={1} separator="," />
                   </Text>
                 </Flex>
               </StyledCard>
@@ -47,7 +48,7 @@ const StatCards: React.FC = () => {
                 </Flex>
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                    $100,300,000,000
+                    $<CountUp end={100300000000} decimals={0} duration={1} separator="," />
                   </Text>
                 </Flex>
               </StyledCard>
@@ -62,7 +63,7 @@ const StatCards: React.FC = () => {
                 </Flex>
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                    $100,000,000
+                    $<CountUp end={100000000} decimals={0} duration={1} separator="," />
                   </Text>
                 </Flex>
               </StyledCard>
@@ -77,7 +78,7 @@ const StatCards: React.FC = () => {
                 </Flex>
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                    130
+                    <CountUp end={130} decimals={0} duration={1} />
                   </Text>
                 </Flex>
               </StyledCard>

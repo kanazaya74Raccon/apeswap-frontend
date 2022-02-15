@@ -24,13 +24,13 @@ export const TrendingTokensWrapper = styled.div`
   }
 `
 
-export const TokenContainer = styled.div`
+export const TokenContainer = styled.div<{ active?: boolean }>`
   display: flex;
-  opacity: 1;
   align-items: center;
   justify-content: center;
   height: 83px;
-  animation: ${FadeIn} 0.5s linear;
+  opacity: 1;
+  animation: ${FadeIn} 2s ease-in;
 `
 
 export const Title = styled(Text)`
@@ -39,6 +39,7 @@ export const Title = styled(Text)`
     left: 40px;
     width: 170px;
     position: absolute;
+    text-align: left;
   }
 `
 
