@@ -15,13 +15,16 @@ SwiperCore.use([Autoplay])
 const News: React.FC = () => {
   const [loadImages, setLodImages] = useState(false)
   const { swiper, setSwiper } = useSwiper()
-  const [activeSlide, setActiveSlide] = useState(-1)
+  const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
   const slideNewsNav = (index: number) => {
     setActiveSlide(index - 1)
     swiper.slideTo(newsStub.length + index)
-    swiper.autoplay.start()
+  }
+
+  const handleSlide = (event: SwiperCore) => {
+    setActiveSlide(event.activeIndex - newsStub.length === newsStub.length ? 0 : event.activeIndex - newsStub.length)
   }
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const News: React.FC = () => {
             <Swiper
               autoplay={{
                 delay: SLIDE_DELAY,
+                disableOnInteraction: false,
               }}
               loop
               onSwiper={setSwiper}
@@ -53,7 +57,7 @@ const News: React.FC = () => {
               resizeObserver
               lazy
               preloadImages={false}
-              onSlideChange={() => setActiveSlide((prev) => (prev === newsStub.length - 1 ? 0 : ++prev))}
+              onSlideChange={handleSlide}
             >
               {newsStub.map((news, i) => {
                 return (
