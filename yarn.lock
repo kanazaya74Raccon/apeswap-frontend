@@ -35,8 +35,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.218/5e921e66410e0a719f417305ecb9a9552d2ef2e71dbb4d7a2deae1efb1287ced#92c1a17250860e8730164066a5b80623f06842f7"
   integrity sha512-hJPz71vyOfQ3F2Ce4EtShIGDefVQwlnrDxLQz5l54WhEPZ1lYYehlFAlhwlsU3Macs1NGzFI1hWXOlLFsM0KgQ==
 
-"@apeswapfinance/uikit@file:.yalc/@apeswapfinance/uikit":
-  version "0.10.6-0.1"
+"@apeswapfinance/uikit@^0.10.6-0.1":
+  version "0.10.6-1.3"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-1.3/19bf3bc1426890574f23f2a8c4dd42b9bbee0d8ba71cf8979ac0941525d90f91#d96ecb2094f4de95dc2d47d7d4022d35ebc92f90"
+  integrity sha512-pHzx4Bdl/6zp8b17uPNVjB5Fbmq9l2Jh9LTcv4MHlHNdeJX37GhFy5Ad8Q0sM9C67atNPOdoy78yx12l5y9O5w==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
@@ -45,7 +47,6 @@
     lottie-react "^2.2.1"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
-    yalc "^1.0.0-pre.53"
 
 "@babel/code-frame@7.10.4":
   version "7.10.4"
