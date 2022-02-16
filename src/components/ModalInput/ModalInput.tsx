@@ -15,20 +15,19 @@ interface ModalInputProps {
   displayDecimals?: number
 }
 
-const getBoxShadow = ({ isWarning = false, theme }) => {
-  if (isWarning) {
-    return theme.shadows.warning
-  }
+// const getBoxShadow = ({ isWarning = false, theme }) => {
+//   if (isWarning) {
+//     return theme.shadows.warning
+//   }
 
-  return theme.shadows.inset
-}
+//   return theme.shadows.inset
+// }
 
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.inputBorder};
+  background-color: ${({ theme }) => theme.colors.white3};
   border-radius: 16px;
-  box-shadow: ${getBoxShadow};
   color: ${({ theme }) => theme.colors.text};
   padding: 8px 16px 8px 0;
   width: 100%;
@@ -40,6 +39,7 @@ const StyledInput = styled(Input)`
   margin: 0 8px;
   padding: 0 8px;
   font-weight: 800;
+  background-color: ${({ theme }) => theme.colors.white3};
 
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 80px;
@@ -48,6 +48,13 @@ const StyledInput = styled(Input)`
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
   }
+`
+
+const StyledButton = styled(Button)`
+  border-radius: 6px;
+  color: ${({ theme }) => theme.colors.primaryBright};
+  font-weight: 500;
+  font-size: 16px;
 `
 
 const StyledErrorMessage = styled(Text)`
@@ -80,16 +87,16 @@ const ModalInput: React.FC<ModalInputProps> = ({
           <Text fontSize="14px" fontWeight={800}>
             {inputTitle}
           </Text>
-          <Text fontSize="14px" fontWeight={800}>
+          <Text fontSize="16px" fontWeight={500}>
             {TranslateString(999, 'Balance')}: {displayBalance.toLocaleString()}
           </Text>
         </Flex>
         <Flex alignItems="flex-end" justifyContent="space-around">
           <StyledInput onChange={onChange} placeholder="0" value={value} />
-          <Button size="sm" onClick={onSelectMax} mr="8px">
-            {TranslateString(452, 'Max')}
-          </Button>
-          <Text fontSize="16px" fontWeight={800}>
+          <StyledButton size="sm" onClick={onSelectMax} mr="8px">
+            {TranslateString(452, 'Max'.toUpperCase())}
+          </StyledButton>
+          <Text fontSize="16px" fontWeight={600}>
             {symbol}
           </Text>
         </Flex>
@@ -97,7 +104,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
       {isBalanceZero && (
         <StyledErrorMessage fontSize="14px" color="error">
           No tokens to stake:{' '}
-          <Link fontSize="14px" bold={false} href={addLiquidityUrl} external color="error" fontWeight={800}>
+          <Link fontSize="14px" href={addLiquidityUrl} external color="error" fontWeight={600}>
             {TranslateString(999, 'get')} {symbol}
           </Link>
         </StyledErrorMessage>
