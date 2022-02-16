@@ -30,15 +30,15 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.218":
-  version "1.0.218"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.218/5e921e66410e0a719f417305ecb9a9552d2ef2e71dbb4d7a2deae1efb1287ced#92c1a17250860e8730164066a5b80623f06842f7"
-  integrity sha512-hJPz71vyOfQ3F2Ce4EtShIGDefVQwlnrDxLQz5l54WhEPZ1lYYehlFAlhwlsU3Macs1NGzFI1hWXOlLFsM0KgQ==
+"@apeswapfinance/token-lists@1.0.227":
+  version "1.0.227"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.227/3861f1ef042ad102953795eecd1925ecc1c14f3d08a584704aa020c5a6df994a#52abd9060e78b1fdcd2ad9c23935224615a9a4bb"
+  integrity sha512-mIhIHPtrGETqgsspKWvB1zwgwitXmlZ6ghJZjd2G7HD/V3V1lfITZvEMJVObpel4ZgmBA3bWdSf6QufOlMpS2w==
 
-"@apeswapfinance/uikit@^0.10.6-0.1":
-  version "0.10.6-1.3"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-1.3/19bf3bc1426890574f23f2a8c4dd42b9bbee0d8ba71cf8979ac0941525d90f91#d96ecb2094f4de95dc2d47d7d4022d35ebc92f90"
-  integrity sha512-pHzx4Bdl/6zp8b17uPNVjB5Fbmq9l2Jh9LTcv4MHlHNdeJX37GhFy5Ad8Q0sM9C67atNPOdoy78yx12l5y9O5w==
+"@apeswapfinance/uikit@^0.10.6-0.2":
+  version "0.10.6-0.2"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-0.2/8aa431d9121b0db23e0bad157fe0f911149c396103b519ffdd984d12b3a71090#2ea28950e93945cf1cb7d216ce8c4edd2fb2277d"
+  integrity sha512-r5loLjmGmPif/X4bGQLgYR/mdB7oO7O8EFEQMhpv1FlnJXVAvjce7KNZasZSn0YQqcqi2ehvWbpYTmkGBoGnBA==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
@@ -47,6 +47,7 @@
     lottie-react "^2.2.1"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
+    yalc "^1.0.0-pre.53"
 
 "@babel/code-frame@7.10.4":
   version "7.10.4"
@@ -12082,11 +12083,6 @@ react-feather@^2.0.9:
   integrity sha512-yMfCGRkZdXwIs23Zw/zIWCJO3m3tlaUvtHiXlW+3FH7cIT6fiK1iJ7RJWugXq7Fso8ZaQyUm92/GOOHXvkiVUw==
   dependencies:
     prop-types "^15.7.2"
-
-react-frame-component@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/react-frame-component/-/react-frame-component-5.2.1.tgz#6bd5ec73ef7d720f57ee8f259546ed926a941267"
-  integrity sha512-nrSh1OZuHlX69eWqJPiUkPT9S6/wxc4PpJV+vOQ4pHQQ8XmIsIT+utWT+nX32ZfANHZuKONA7JsWMUGT36CqaQ==
 
 react-helmet-async@^1.0.9:
   version "1.2.2"
