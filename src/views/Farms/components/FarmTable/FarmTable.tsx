@@ -60,6 +60,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
               {rows.map((row) => {
+                console.log(row)
                 return <Row {...row.original} key={row.id} farmsPrices={farmsPrices} />
               })}
             </StyledTable>

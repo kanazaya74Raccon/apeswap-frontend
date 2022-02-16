@@ -24,7 +24,7 @@ export const tokensToDisplayStub: TokenInfo[] = [
   },
   {
     tokenTicker: 'BNB',
-    tokenPrice: 43000,
+    tokenPrice: 430,
     percentChange: -0.1,
     contractAddress: '',
     logoUrl: 'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/BNB.svg',

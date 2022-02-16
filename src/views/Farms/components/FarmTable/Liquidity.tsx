@@ -33,7 +33,7 @@ const StyledText = styled(Text)`
   font-weight: 800;
 `
 
-const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
+const Liquidity: React.FC<LiquidityProps> = ({ liquidity }) => {
   const displayLiquidity = liquidity ? (
     `$${Number(liquidity).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
   ) : (

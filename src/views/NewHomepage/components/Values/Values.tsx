@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
-import { ValueCard, ValueImage, ValuesWrapper } from './styles'
+import { Bubble, ValueCard, ValueImage, ValuesWrapper } from './styles'
 import { defaultValues } from './defaultValues'
 
 const SLIDE_DELAY = 5000
@@ -71,6 +71,15 @@ const Values: React.FC = () => {
           )
         })
       )}
+      <Flex
+        justifyContent="center"
+        alignContent="center"
+        style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
+      >
+        {[...Array(defaultValues.length)].map((_, i) => {
+          return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
+        })}
+      </Flex>
     </ValuesWrapper>
   )
 }

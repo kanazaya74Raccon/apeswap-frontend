@@ -24,33 +24,6 @@ export const NewsWrapper = styled.div`
   width: 95vw;
   justify-content: center;
   padding-bottom: 50px;
-  // & :nth-child(-n + 1) {3
-  //   display: block;
-  // }
-  @media screen and (min-width: 555px) and (max-width: 855px) {
-    justify-content: space-around;
-    // & :nth-child(-n + 2) {
-    //   display: block;
-    // }
-  }
-  @media screen and (min-width: 855px) and (max-width: 1155px) {
-    justify-content: space-around;
-    // & :nth-child(-n + 3) {
-    //   display: block;
-    // }
-  }
-  @media screen and (min-width: 1155px) and (max-width: 1405px) {
-    justify-content: space-between;
-    // & :nth-child(-n + 4) {
-    //   display: block;
-    // }
-  }
-  @media screen and (min-width: 1405px) {
-    justify-content: space-between;
-    // & :nth-child(-n + 5) {
-    //   display: block;
-    // }
-  }
 `
 
 export const Bubble = styled.div<{ isActive?: boolean }>`

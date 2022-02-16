@@ -200,7 +200,7 @@ const Services: React.FC = () => {
           <Flex
             justifyContent="center"
             alignContent="center"
-            style={{ position: 'absolute', bottom: '35px', width: '100%' }}
+            style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
           >
             {[...Array(defaultServiceData.length)].map((_, i) => {
               return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
