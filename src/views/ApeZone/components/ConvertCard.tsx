@@ -117,7 +117,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           symbol={fromToken}
         />
         {isApproved ? (
-          <StyledButton disabled={disabled} variant="success" margin="10px" onClick={buy}>
+          <StyledButton disabled={disabled} variant="primary" margin="10px" onClick={buy}>
             CONVERT
           </StyledButton>
         ) : (

@@ -107,7 +107,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
           symbol={fromToken}
         />
         {isApproved ? (
-          <StyledButton disabled={disabled} variant="danger" margin="10px" onClick={sell}>
+          <StyledButton disabled={disabled} variant="primary" margin="10px" onClick={sell}>
             RETURN
           </StyledButton>
         ) : (
