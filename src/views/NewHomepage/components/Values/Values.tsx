@@ -3,7 +3,7 @@ import { Flex, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
-import { Bubble, ValueCard, ValueImage, ValuesWrapper } from './styles'
+import { Bubble, ValueCard, ValueImage, ValuesWrapper, ValueText } from './styles'
 import { defaultValues } from './defaultValues'
 
 const SLIDE_DELAY = 5000
@@ -29,6 +29,7 @@ const Values: React.FC = () => {
 
   return (
     <ValuesWrapper>
+      <ValueText bold> Our Values </ValueText>
       {swiperFlag ? (
         <Swiper
           initialSlide={defaultValues.length}

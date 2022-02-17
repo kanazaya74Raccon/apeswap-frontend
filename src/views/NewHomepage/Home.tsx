@@ -15,19 +15,17 @@ const Home: React.FC = () => {
   const { chainId } = useActiveWeb3React()
 
   return (
-    <div style={{ border: '1px solid red', width: '100%' }}>
-      <SwiperProvider>
-        <Banner />
-        <WelcomeContent />
-        <StatCards />
-        <TrendingTokens />
-        <News />
-        {chainId === CHAIN_ID.BSC && <Services />}
-        <Values />
-        <LaunchCalendar />
-      </SwiperProvider>
-    </div>
+    <SwiperProvider>
+      <Banner />
+      <WelcomeContent />
+      <StatCards />
+      <TrendingTokens />
+      <News />
+      {chainId === CHAIN_ID.BSC && <Services />}
+      <Values />
+      <LaunchCalendar />
+    </SwiperProvider>
   )
 }
 
-export default Home
+export default React.memo(Home)

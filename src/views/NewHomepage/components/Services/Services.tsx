@@ -4,6 +4,7 @@ import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
+import useWindowSize from 'hooks/useDimensions'
 import { ServiceWrapper, YieldCard, ColorWrap, Bubble } from './styles'
 import { defaultServiceData } from './defaultServiceData'
 
@@ -17,6 +18,7 @@ const Services: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const { isXxl } = useMatchBreakpoints()
+  const { width } = useWindowSize()
 
   const slideNewsNav = (index: number) => {
     setActiveSlide(index - 1)
@@ -43,7 +45,7 @@ const Services: React.FC = () => {
       <ColorWrap>
         <ServiceWrapper>
           {loadServices ? (
-            !isXxl ? (
+            width < 1488 ? (
               <Swiper
                 initialSlide={defaultServiceData.length}
                 autoplay={{
@@ -73,6 +75,74 @@ const Services: React.FC = () => {
                               <Text color="white">{service.description}</Text>
                             </Flex>
                           </Flex>
+                          {service.title !== 'Coming Soon' && (
+                            <>
+                              <Flex
+                                flexDirection="column"
+                                justifyContent="space-between"
+                                style={{ bottom: '40px', height: '250px' }}
+                              >
+                                <Flex
+                                  mt="5px"
+                                  mb="5px"
+                                  style={{
+                                    width: '100%',
+                                    height: '70px',
+                                    background: 'rgba(250, 250, 250, .25)',
+                                    borderRadius: '10px',
+                                  }}
+                                />
+                                <Flex
+                                  mt="5px"
+                                  mb="5px"
+                                  style={{
+                                    width: '100%',
+                                    height: '70px',
+                                    background: 'rgba(250, 250, 250, .25)',
+                                    borderRadius: '10px',
+                                  }}
+                                />
+                                <Flex
+                                  mt="5px"
+                                  mb="5px"
+                                  style={{
+                                    width: '100%',
+                                    height: '70px',
+                                    background: 'rgba(250, 250, 250, .25)',
+                                    borderRadius: '10px',
+                                  }}
+                                />
+                              </Flex>
+                              <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+                                <Text color="white" fontSize="14px">
+                                  See All {'>'}
+                                </Text>
+                              </Flex>
+                            </>
+                          )}
+                        </Flex>
+                      </YieldCard>
+                    </SwiperSlide>
+                  )
+                })}
+              </Swiper>
+            ) : (
+              defaultServiceData.map((service) => {
+                return (
+                  <YieldCard image={service.backgroundImg} key={service.title}>
+                    <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                      <Flex flexDirection="column">
+                        <Flex>
+                          <Text color="white" fontSize="25px" bold>
+                            {service.title}
+                          </Text>
+                        </Flex>
+                        <Flex>
+                          <Text color="white">{service.description}</Text>
+                        </Flex>
+                      </Flex>
+                      {service.title !== 'Coming Soon' && (
+                        <>
                           <Flex
                             flexDirection="column"
                             justifyContent="space-between"
@@ -114,88 +184,21 @@ const Services: React.FC = () => {
                               See All {'>'}
                             </Text>
                           </Flex>
-                        </Flex>
-                      </YieldCard>
-                    </SwiperSlide>
-                  )
-                })}
-              </Swiper>
-            ) : (
-              defaultServiceData.map((service) => {
-                return (
-                  <YieldCard image={service.backgroundImg} key={service.title}>
-                    <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
-                      <Flex flexDirection="column">
-                        <Flex>
-                          <Text color="white" fontSize="25px" bold>
-                            {service.title}
-                          </Text>
-                        </Flex>
-                        <Flex>
-                          <Text color="white">{service.description}</Text>
-                        </Flex>
-                      </Flex>
-                      <Flex
-                        flexDirection="column"
-                        justifyContent="space-between"
-                        style={{ bottom: '40px', height: '250px' }}
-                      >
-                        <Flex
-                          mt="5px"
-                          mb="5px"
-                          style={{
-                            width: '100%',
-                            height: '70px',
-                            background: 'rgba(250, 250, 250, .25)',
-                            borderRadius: '10px',
-                          }}
-                        />
-                        <Flex
-                          mt="5px"
-                          mb="5px"
-                          style={{
-                            width: '100%',
-                            height: '70px',
-                            background: 'rgba(250, 250, 250, .25)',
-                            borderRadius: '10px',
-                          }}
-                        />
-                        <Flex
-                          mt="5px"
-                          mb="5px"
-                          style={{
-                            width: '100%',
-                            height: '70px',
-                            background: 'rgba(250, 250, 250, .25)',
-                            borderRadius: '10px',
-                          }}
-                        />
-                      </Flex>
-                      <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
-                        <Text color="white" fontSize="14px">
-                          See All {'>'}
-                        </Text>
-                      </Flex>
+                        </>
+                      )}
                     </Flex>
                   </YieldCard>
                 )
               })
             )
           ) : (
-            <>
-              <YieldCard>
-                <Skeleton height="100%" width="100%" />
-              </YieldCard>
-              <YieldCard>
-                <Skeleton height="100%" width="100%" />
-              </YieldCard>
-              <YieldCard>
-                <Skeleton height="100%" width="100%" />
-              </YieldCard>
-              <YieldCard>
-                <Skeleton height="100%" width="100%" />
-              </YieldCard>
-            </>
+            [...Array(4)].map((_, i) => {
+              return (
+                <YieldCard>
+                  <Skeleton height="100%" width="100%" />
+                </YieldCard>
+              )
+            })
           )}
           <Flex
             justifyContent="center"

@@ -1,3 +1,4 @@
+import { Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 export const ValuesWrapper = styled.div`
@@ -40,4 +41,12 @@ export const Bubble = styled.div<{ isActive?: boolean }>`
   ${({ theme }) => theme.mediaQueries.md} {
     display: none;
   }
+`
+
+export const ValueText = styled(Text)`
+  position: absolute;
+  font-size: 22px;
+  top: 25px;
+  text-align: center;
+  width: 100%;
 `

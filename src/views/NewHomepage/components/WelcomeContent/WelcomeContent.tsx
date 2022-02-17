@@ -1,6 +1,5 @@
 import React from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { ButtonSquare, Flex, Spinner, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { ContentContainer, HeadingText } from './styles'
 
@@ -23,12 +22,27 @@ const WelcomeContent: React.FC = () => {
           <br />
           <br />
           <Flex>
-            <ButtonSquare mr="40px">Buy Banana</ButtonSquare>
-            <ButtonSquare
-              style={{ background: 'none', border: '2px solid rgb(244, 182, 66)', color: 'rgb(244, 182, 66)' }}
-            >
-              Learn More
-            </ButtonSquare>
+            {isMobile ? (
+              <Flex justifyContent="center" alignItems="center" flexDirection="column" style={{ width: '100%' }}>
+                <ButtonSquare fullWidth>Buy Banana</ButtonSquare>
+                <ButtonSquare
+                  mt="10px"
+                  fullWidth
+                  style={{ background: 'none', border: '2px solid rgb(244, 182, 66)', color: 'rgb(244, 182, 66)' }}
+                >
+                  Learn More
+                </ButtonSquare>
+              </Flex>
+            ) : (
+              <>
+                <ButtonSquare mr="40px">Buy Banana</ButtonSquare>
+                <ButtonSquare
+                  style={{ background: 'none', border: '2px solid rgb(244, 182, 66)', color: 'rgb(244, 182, 66)' }}
+                >
+                  Learn More
+                </ButtonSquare>
+              </>
+            )}
           </Flex>
         </Flex>
         {!isMobile && (

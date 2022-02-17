@@ -7,6 +7,7 @@ export const ColorWrap = styled.div`
   background: ${({ theme }) => theme.colors.card};
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 `
 
 export const YieldCard = styled.div<{ image?: string }>`
@@ -45,4 +46,5 @@ export const ServiceWrapper = styled.div`
   max-width: 1412px;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 `
