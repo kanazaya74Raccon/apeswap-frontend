@@ -4,7 +4,7 @@ import { Button, Text, ButtonSquare } from '@apeswapfinance/uikit'
 import UnlockButtonSquare from 'components/UnlockButtonSquare'
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => (theme.colors.white3)};
+  background-color: ${({ theme }) => theme.colors.white3};
   padding: 20px;
   border-radius: 20px;
   display: flex;
