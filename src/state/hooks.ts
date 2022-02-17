@@ -370,7 +370,7 @@ export const useToast = () => {
 
 export const useFetchProfile = () => {
   const { account } = useActiveWeb3React()
-  const getNfas = !!account 
+  const getNfas = !!account
   useFetchNfas(getNfas)
   const dispatch = useAppDispatch()
   const chainId = CHAIN_ID.BSC
@@ -417,13 +417,15 @@ export const useStats = () => {
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
-export const useFetchHomepageStats = () => {
+export const useFetchHomepageStats = (isFetching: boolean) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchHomepageData())
-  }, [slowRefresh, dispatch])
+    if (isFetching) {
+      dispatch(fetchHomepageData())
+    }
+  }, [slowRefresh, isFetching, dispatch])
 }
 
 export const useHomepageStats = (): HomepageData => {

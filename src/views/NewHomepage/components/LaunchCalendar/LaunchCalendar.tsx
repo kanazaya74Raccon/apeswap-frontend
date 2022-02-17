@@ -11,7 +11,7 @@ const LaunchCalendar: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState(0)
 
   const slideNewsNav = (index: number) => {
-    setActiveSlide(index - 1)
+    setActiveSlide(index)
     swiper.slideTo(launchStubData.length + index)
   }
 

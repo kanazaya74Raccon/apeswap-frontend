@@ -202,6 +202,8 @@ export interface HomepageData {
   circulatingSupply: number
   gnanaCirculatingSupply: number
   burntAmount: number
+  totalVolume: number
+  totalPartners?: number
 }
 
 export interface Nfa extends Nft {}
