@@ -369,8 +369,9 @@ export const useToast = () => {
 // Profile
 
 export const useFetchProfile = () => {
-  useFetchNfas()
   const { account } = useActiveWeb3React()
+  const getNfas = !!account 
+  useFetchNfas(getNfas)
   const dispatch = useAppDispatch()
   const chainId = CHAIN_ID.BSC
   const { slowRefresh } = useRefresh()
@@ -505,12 +506,14 @@ export const useTokenPrices = () => {
   return { tokenPrices: data, isInitialized, isLoading }
 }
 
-export const useFetchNfas = () => {
+export const useFetchNfas = (nafFlag = true) => {
   const dispatch = useAppDispatch()
   const chainId = useNetworkChainId()
   useEffect(() => {
-    dispatch(fetchAllNfas())
-  }, [dispatch, chainId])
+    if (nafFlag) {
+      dispatch(fetchAllNfas())
+    }
+  }, [dispatch, nafFlag, chainId])
 }
 
 export const useNfas = () => {
