@@ -1,10 +1,8 @@
 import React from 'react'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { ButtonSquare, Flex, Spinner, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { ContentContainer, HeadingText } from './styles'
 
 const WelcomeContent: React.FC = () => {
-  const { chainId } = useActiveWeb3React()
   const { isSm, isXs } = useMatchBreakpoints()
   const isMobile = isSm || isXs
 

@@ -37,6 +37,7 @@ import {
   DualFarm,
   HomepageData,
   LpTokenPricesState,
+  NfaState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -51,6 +52,7 @@ import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { useBlock } from './block/hooks'
+import { fetchAllNfas } from './nfas'
 
 const ZERO = new BigNumber(0)
 
@@ -367,16 +369,18 @@ export const useToast = () => {
 // Profile
 
 export const useFetchProfile = () => {
+  useFetchNfas()
   const { account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const chainId = CHAIN_ID.BSC
   const { slowRefresh } = useRefresh()
+  const { nfas } = useNfas()
 
   useEffect(() => {
     if (account) {
-      dispatch(fetchProfile(chainId, account))
+      dispatch(fetchProfile(nfas, chainId, account))
     }
-  }, [account, dispatch, slowRefresh, chainId])
+  }, [account, dispatch, nfas, slowRefresh, chainId])
 }
 
 export const useProfile = () => {
@@ -427,15 +431,17 @@ export const useHomepageStats = (): HomepageData => {
 }
 
 export const useFetchAuctions = () => {
+  useFetchNfas()
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
   const chainId = useNetworkChainId()
+  const { nfas } = useNfas()
 
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchAuctions(chainId))
+      dispatch(fetchAuctions(nfas, chainId))
     }
-  }, [dispatch, fastRefresh, chainId])
+  }, [dispatch, fastRefresh, nfas, chainId])
 }
 
 export const useAuctions = () => {
@@ -497,6 +503,19 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useFetchNfas = () => {
+  const dispatch = useAppDispatch()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    dispatch(fetchAllNfas())
+  }, [dispatch, chainId])
+}
+
+export const useNfas = () => {
+  const { isInitialized, isLoading, data }: NfaState = useSelector((state: State) => state.nfas)
+  return { nfas: data, isInitialized, isLoading }
 }
 
 export const useFetchLpTokenPrices = () => {

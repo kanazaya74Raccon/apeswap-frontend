@@ -204,6 +204,8 @@ export interface HomepageData {
   burntAmount: number
 }
 
+export interface Nfa extends Nft {}
+
 export interface PoolOverall {
   address: string
   lpSymbol: string
@@ -366,6 +368,12 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface NfaState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: Nfa[]
+}
+
 export interface DualFarmsState {
   data: DualFarm[]
 }
@@ -466,4 +474,5 @@ export interface State {
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
+  nfas: NfaState
 }
