@@ -55,6 +55,7 @@ const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.colors.primaryBright};
   font-weight: 500;
   font-size: 16px;
+  padding: 3px 10px;
 `
 
 const StyledErrorMessage = styled(Text)`

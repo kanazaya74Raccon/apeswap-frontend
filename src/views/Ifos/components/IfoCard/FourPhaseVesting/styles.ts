@@ -4,7 +4,7 @@ import { Button, Text, ButtonSquare } from '@apeswapfinance/uikit'
 import UnlockButtonSquare from 'components/UnlockButtonSquare'
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => (theme.colors.white3)};
   padding: 20px;
   border-radius: 20px;
   display: flex;
@@ -36,6 +36,7 @@ export const VestingClaimButton = styled(Button)`
   }
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
 `
 
 export const DisplayVestingTime = styled(Text)<{ label?: boolean }>`
