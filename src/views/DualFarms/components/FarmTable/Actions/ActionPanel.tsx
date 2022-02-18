@@ -23,6 +23,7 @@ const Container = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 12px;
+  background-color: ${({ theme }) => theme.colors.white3};
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 340px;
@@ -32,11 +33,20 @@ const Container = styled.div`
   }
 `
 
+const LinkCon = styled.div`
+  background-color: ${({ theme }) => theme.colors.white3};
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
+  font-weight: 800;
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 10px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const ActionContainer = styled.div`
@@ -78,7 +88,7 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 const StakedText = styled(Text)`
@@ -172,9 +182,11 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={blockExplorer} fontWeight={800}>
-        {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
-      </StyledLinkExternal>
+      <LinkCon>
+        <StyledLinkExternal href={blockExplorer}>
+          {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
+        </StyledLinkExternal>
+      </LinkCon>
     </>
   )
 }

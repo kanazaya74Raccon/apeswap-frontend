@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare, Button } from '@apeswapfinance/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
 
 interface ExpertModalProps extends InjectedModalProps {
@@ -53,20 +53,23 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
         >
           Turn On Expert Mode
         </ButtonSquare>
-        <ButtonSquare
-          fullWidth
+        <Button
+          // fullWidth
+          variant="text"
           style={{
+            display: 'flex',
+            alignSelf: 'center',
             fontSize: '16px',
-            fontWeight: 700,
-            backgroundColor: 'rgb(0,0,0,0)',
-            border: '1px solid rgba(255, 179, 0, 1)',
+            fontWeight: 500,
+            border: 'none',
+            textDecoration: 'underline',
           }}
           onClick={() => {
             setShowConfirmExpertModal(false)
           }}
         >
           Cancel
-        </ButtonSquare>
+        </Button>
       </Modal>
     </div>
   )

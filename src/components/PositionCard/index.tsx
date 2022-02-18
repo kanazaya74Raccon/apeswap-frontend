@@ -48,7 +48,7 @@ const Title = styled(Text)`
   }
 `
 const StyledCard = styled(Card)`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 interface PositionCardProps extends CardProps {

@@ -18,7 +18,8 @@ import Dots from '../../components/Loader/Dots'
 import { AppBody } from '../../components/App'
 
 const StyledCard = styled(Card)`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  /* background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')}; */
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const StyledText = styled(Text)`
