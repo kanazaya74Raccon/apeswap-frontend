@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Text, Checkbox } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -15,6 +15,7 @@ import CardValue from 'views/Home/components/CardValue'
 
 import {
   StyledCard,
+  StyledCheckbox,
   HeaderCard,
   Header,
   TokensDisplay,
@@ -132,7 +133,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
 
           <CheckBoxSection>
             <CheckBoxCon>
-              <Checkbox id="checkbox" scale="md" />
+              <StyledCheckbox id="checkbox" scale="md" />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited conversion.

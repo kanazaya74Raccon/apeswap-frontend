@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Heading, Text, Button, Flex } from '@apeswapfinance/uikit'
+import { Card, Heading, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
 
 export const StyledCard = styled(Card)`
   overflow: visible;
@@ -77,6 +77,11 @@ export const CheckBoxCon = styled.div`
   width: 50px;
   height: 50px;
 `
+
+export const StyledCheckbox = styled(Checkbox)`
+  background-color: ${({ theme }) => (theme.isDark ? theme.colors.white3 : theme.colors.primaryBright)};
+`
+
 export const FlexSection = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 120px;

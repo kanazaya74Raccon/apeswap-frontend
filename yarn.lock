@@ -42,10 +42,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.220/fab0233db8f057b40cfb4829d6f90c38c44dc14bf834eb40dcf7586ce5f39c06#d78f979e71ac8cc152dac3795fe56ae10e3b2d8a"
   integrity sha512-0litV4FXNG6UO2CpoDgEjv0q4gvJlfWZ1Yr/pspxx0CNlVIwrx7tQEWycgfXBWQgsIjJZMeo5nJFPMsA9G7dCw==
 
-"@apeswapfinance/uikit@0.10.6-1.3":
-  version "0.10.6-1.3"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-1.3/19bf3bc1426890574f23f2a8c4dd42b9bbee0d8ba71cf8979ac0941525d90f91#d96ecb2094f4de95dc2d47d7d4022d35ebc92f90"
-  integrity sha512-pHzx4Bdl/6zp8b17uPNVjB5Fbmq9l2Jh9LTcv4MHlHNdeJX37GhFy5Ad8Q0sM9C67atNPOdoy78yx12l5y9O5w==
+"@apeswapfinance/uikit@0.10.6-2.0":
+  version "0.10.6-2.0"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.10.6-2.0/8ae6dc69cefe72dfbf34a1e50161b951f41111b54cb8d109df3fb2abc0dd86da#d633310f237874270fbb7c81e69cb7f1dc5d9ceb"
+  integrity sha512-YH/r9lEndGDtLHxBNM1aJMP3VGIzdgo4w6Nr/20Y0oi/JOemcfDPqECsvYDapwbT7RjbZLt5UOcBMefXo6+BwQ==
   dependencies:
     "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
