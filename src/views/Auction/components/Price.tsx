@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceBnbBusd } from 'state/hooks'
+import { useTokenPriceFromSymbol } from 'state/hooks'
 
 const PriceWrapper = styled.div`
   position: absolute;
@@ -110,8 +110,8 @@ interface TimerProps {
 
 const Price: React.FC<TimerProps> = ({ currentBid }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
-  const bnbPrice = usePriceBnbBusd()
-  const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
+  const bnbPrice = useTokenPriceFromSymbol('BNB')
+  const dollarValue = (getBalanceNumber(new BigNumber(bnbPrice), 0) * rawBidAmount).toFixed(2)
 
   return (
     <PriceWrapper>

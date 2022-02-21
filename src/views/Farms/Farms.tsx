@@ -15,7 +15,6 @@ import {
   usePollFarms,
 } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
-import useWindowSize, { Size } from 'hooks/useDimensions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
 import { orderBy } from 'lodash'
@@ -26,16 +25,36 @@ import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from './components/types'
+import { DesktopColumnSchema } from './components/types'
 import * as S from './styles'
+import Select from './components/Select/Select'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
+// TODO: Sort
+const options = [
+  {
+    label: 'All', value: 'all'
+  },
+  {
+    label: 'New', value: 'new'
+  },
+  {
+    label: 'Blue Chips', value: 'top100'
+  },
+  {
+    label: 'Stables', value: 'stables'
+  },
+  {
+    label: 'APR', value: 'apr'
+  },
+  {
+    label: 'Liquidity', value: 'liquidity'
+  },
+]
+
 const Farms: React.FC = () => {
   usePollFarms()
-  const size: Size = useWindowSize()
-  const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const bananaPrice = usePriceBananaBusd()
@@ -45,7 +64,6 @@ const Farms: React.FC = () => {
   const { account } = useWeb3React()
   const farmsLP = useFarms(account)
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -55,15 +73,7 @@ const Farms: React.FC = () => {
 
   const ethPriceUsd = usePriceEthBusd()
 
-  useEffect(() => {
-    if (size.width !== undefined) {
-      if (size.width < 968) {
-        setViewMode(ViewMode.CARD)
-      } else {
-        setViewMode(ViewMode.TABLE)
-      }
-    }
-  }, [size])
+  console.log({ farmsLP, ethPriceUsd, lpTokenPrices })
 
   useEffect(() => {
     const showMoreFarms = (entries) => {
@@ -245,64 +255,31 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
+    const columnSchema = DesktopColumnSchema
 
-      const columns = columnSchema.map((column) => ({
-        id: column.id,
-        name: column.name,
-        label: column.label,
-        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-          switch (column.name) {
-            case 'farm':
-              return b.id - a.id
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-              return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
-            default:
-              return 1
-          }
-        },
-        sortable: column.sortable,
-      }))
+    const columns = columnSchema.map((column) => ({
+      id: column.id,
+      name: column.name,
+      label: column.label,
+      sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
+        switch (column.name) {
+          case 'farm':
+            return b.id - a.id
+          case 'apr':
+            if (a.original.apr.value && b.original.apr.value) {
+              return Number(a.original.apr.value) - Number(b.original.apr.value)
+            }
+            return 0
+          case 'earned':
+            return a.original.earned.earnings - b.original.earned.earnings
+          default:
+            return 1
+        }
+      },
+      sortable: column.sortable,
+    }))
 
-      return <Table data={rowData} columns={columns} farmsPrices={lpTokenPrices} />
-    }
-
-    return (
-      <S.CardContainer>
-        <S.FlexLayout>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed={false}
-                farmsPrices={lpTokenPrices}
-              />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed
-                farmsPrices={lpTokenPrices}
-              />
-            ))}
-          </Route>
-        </S.FlexLayout>
-      </S.CardContainer>
-    )
+    return <Table data={rowData} columns={columns} farmsPrices={lpTokenPrices} />
   }
 
   const handleSortOptionChange = (option): void => {
@@ -321,7 +298,7 @@ const Farms: React.FC = () => {
       <MarketingModalCheck />
       <S.Header>
         <S.HeadingContainer>
-          <S.StyledHeading as="h1" mb="12px" mt={0}  fontWeight={800}>
+          <S.StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
           </S.StyledHeading>
         </S.HeadingContainer>
@@ -330,13 +307,11 @@ const Farms: React.FC = () => {
       <S.StyledPage width="1130px">
         <S.ControlContainer>
           <S.ViewControls>
-            {size.width > 968 && viewMode !== null && (
-              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            )}
             <S.LabelWrapper>
               <S.StyledText mr="15px">Search</S.StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </S.LabelWrapper>
+            <Select options={options} />
             <S.ButtonCheckWrapper>
               <FarmTabButtons />
               <S.ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
@@ -351,41 +326,7 @@ const Farms: React.FC = () => {
             )}
           </S.ViewControls>
         </S.ControlContainer>
-        <S.ContainerLabels>
-          <S.StyledLabelContainerHot>
-            <S.StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
-            </S.StyledLabel>
-          </S.StyledLabelContainerHot>
-          <S.StyledLabelContainerLP>
-            <S.StyledLabel>LP</S.StyledLabel>
-          </S.StyledLabelContainerLP>
-          <S.StyledLabelContainerAPR>
-            <S.StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
-              {sortOption === 'apr' ? (
-                <S.StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </S.StyledLabel>
-          </S.StyledLabelContainerAPR>
-          <S.StyledLabelContainerLiquidity>
-            <S.StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-              Liquidity
-              {sortOption === 'liquidity' ? (
-                <S.StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </S.StyledLabel>
-          </S.StyledLabelContainerLiquidity>
-          <S.StyledLabelContainerEarned>
-            <S.StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
-              {sortOption === 'earned' ? (
-                <S.StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </S.StyledLabel>
-          </S.StyledLabelContainerEarned>
-        </S.ContainerLabels>
-        {viewMode === null ? null : renderContent()}
+        {renderContent()}
         <div ref={loadMoreRef} />
       </S.StyledPage>
     </>

@@ -18,6 +18,8 @@ import DepositModal from '../DepositModal'
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
+  font-size: 16px;
+  height: 44px;
 `
 
 interface FarmCardActionsProps {

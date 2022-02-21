@@ -53,6 +53,8 @@ const FarmTable: React.FC<ITableProps> = (props) => {
     sortable: true,
   })
 
+  console.log('FarmTable', farmsPrices);
+
   return (
     <>
       <Container>

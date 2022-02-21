@@ -20,6 +20,7 @@ const Container = styled.div`
 
 const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
   transform: ${({ toggled }) => (toggled ? 'rotate(180deg)' : 'rotate(0)')};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primary : theme.colors.white)};
   width: 12px;
   height: 14px;
 `
@@ -27,7 +28,7 @@ const ArrowIcon = styled(ArrowDropDownIcon)<{ toggled: boolean }>`
 const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
   return (
     <Container>
-      <ArrowIcon color="primary" toggled={actionPanelToggled} />
+      <ArrowIcon toggled={actionPanelToggled} />
     </Container>
   )
 }

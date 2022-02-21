@@ -1,17 +1,9 @@
 import styled from 'styled-components'
-import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Card, Text, Checkbox, Heading, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
-
-interface DropdownProps {
-  down?: boolean
-}
 
 interface LabelProps {
   active?: boolean
-}
-
-interface CheckboxProps {
-  checked?: boolean
 }
 
 export const ControlContainer = styled(Card)`
@@ -19,12 +11,12 @@ export const ControlContainer = styled(Card)`
   width: 100%;
   align-items: center;
   position: relative;
-
   justify-content: center;
   flex-direction: column;
   overflow: visible;
   padding-bottom: 10px;
   transform: translateY(-85px);
+  z-index: ${({ theme }) => theme.zIndices.dropdown};
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
@@ -114,7 +106,7 @@ export const Header = styled.div`
 `
 
 export const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
@@ -122,23 +114,9 @@ export const StyledText = styled(Text)`
   }
 `
 
-export const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
-  color: white;
-  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
-  margin-left: 7px;
-  margin-top: 2px;
-  /* 'rotate(180deg)' : 'rotate(0)'; */
-`
-
-export const FlexLayout = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  & > * {
-    width: 100%;
-    margin-bottom: 32px;
-  }
-`
+interface CheckboxProps {
+  checked?: boolean
+}
 
 export const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
   height: 21px;
@@ -151,13 +129,16 @@ export const StyledImage = styled.img`
   position: absolute;
   right: 0px;
   bottom: 51px;
+
   @media screen and (min-width: 340px) {
     right: 20px;
   }
+
   ${({ theme }) => theme.mediaQueries.xs} {
     bottom: 51px;
     right: 0px;
   }
+
   ${({ theme }) => theme.mediaQueries.md} {
     bottom: 0px;
     right: 0px;
@@ -175,9 +156,11 @@ export const ContainerLabels = styled.div`
   justify-content: center;
   align-items: center;
   transform: translateY(-85px);
+
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
   }
+
   ${({ theme }) => theme.mediaQueries.md} {
     transform: translateY(-60px);
   }
@@ -197,6 +180,7 @@ export const StyledLabelContainerHot = styled.div`
     margin-left: 35px;
     margin-right: 35px;
   }
+
   ${({ theme }) => theme.mediaQueries.lg} {
     position: absolute;
     top: 6px;
@@ -228,6 +212,7 @@ export const StyledLabelContainerLP = styled.div`
 
 export const StyledLabelContainerAPR = styled.div`
   cursor: pointer;
+
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-left: 5px;
     margin-right: 5px;
@@ -303,6 +288,7 @@ export const StyledLabelContainerEarned = styled.div`
 
 export const CardContainer = styled.div`
   margin-top: 17px;
+
   transform: translateY(-85px);
   ${({ theme }) => theme.mediaQueries.md} {
     transform: translateY(-60px);
@@ -315,6 +301,7 @@ export const ButtonCheckWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-right: 30px;
+
   ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
   }
@@ -323,14 +310,17 @@ export const ButtonCheckWrapper = styled.div`
 export const StyledHeading = styled(Heading)`
   font-size: 30px;
   max-width: 176px !important;
+
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 30px;
     max-width: 240px !important;
   }
+
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 44px;
     max-width: 400px !important;
   }
+
   ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 60px;
     max-width: 600px !important;
@@ -341,6 +331,7 @@ export const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
   width: 100vw;
+
   ${({ theme }) => theme.mediaQueries.xs} {
     padding-left: 10px;
     padding-right: 10px;
@@ -354,11 +345,32 @@ export const StyledPage = styled(Page)`
 export const StyledLabel = styled.div<LabelProps>`
   display: flex;
   color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  font-family: Poppins;
   padding: 4px 12px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 12px;
   line-height: 12px;
   border-radius: ${({ active }) => active && '50px'};
   background-color: ${({ active }) => active && '#FFB300'};
+`
+
+interface DropdownProps {
+  down?: boolean
+}
+
+export const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
+  color: white;
+  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
+  margin-left: 7px;
+  margin-top: 2px;
+  /* 'rotate(180deg)' : 'rotate(0)'; */
+`
+
+export const FlexLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  & > * {
+    width: 100%;
+    margin-bottom: 32px;
+  }
 `

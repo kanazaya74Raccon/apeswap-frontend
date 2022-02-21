@@ -948,6 +948,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  wgict: {
+    symbol: 'WGICT',
+    address: {
+      56: '0x27B2D695eF01d10EE96582a23db201B0Aa338639',
+    },
+    decimals: 8,
+  },
 }
 
 export default tokens

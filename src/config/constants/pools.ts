@@ -3435,6 +3435,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 180,
+    tokenName: 'WGICT',
+    image: 'WGICT.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.wgict,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x4853D276Bd747227E05698DB832b87d7B7C76079',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: ' https://gictrade.io/',
+    harvest: true,
+    tokenPerBlock: `0.01903044`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

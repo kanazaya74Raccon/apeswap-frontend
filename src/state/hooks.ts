@@ -515,8 +515,8 @@ export const useLpTokenPrices = () => {
 
 export const useTokenPriceFromSymbol = (symbol: string) => {
   const tokenPrice = useSelector((state: State) =>
-    state.tokenPrices.data.find((token) => token.symbol === symbol),
-  ).price
+    state.tokenPrices.data?.find((token) => token.symbol === symbol),
+  )?.price
   return tokenPrice
 }
 
