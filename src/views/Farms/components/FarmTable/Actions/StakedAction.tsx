@@ -23,7 +23,6 @@ const IconButtonWrapperStake = styled.div`
 const IconButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 67px;
 `
 
 const StyledIconButtonSquare = styled(IconButtonSquare)`
@@ -87,14 +86,14 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, a
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>
-        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
-            <MinusIcon color="white" width="12px" height="12px" />
+        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
+          <StyledIconButtonSquare onClick={onPresentDeposit} mr="10px">
+            <AddIcon color="white" width="16px" height="16px" />
           </StyledIconButtonSquare>
         </Reward>
-        <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
-            <AddIcon color="white" width="16px" height="16px" />
+        <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
+          <StyledIconButtonSquare onClick={onPresentWithdraw}>
+            <MinusIcon color="white" width="12px" height="12px" />
           </StyledIconButtonSquare>
         </Reward>
       </IconButtonWrapperStake>

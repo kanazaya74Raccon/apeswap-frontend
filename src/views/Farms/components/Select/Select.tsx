@@ -2,17 +2,19 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from '@apeswapfinance/uikit'
 
+const GREY = '#424242';
+const LIGHT_YELLOW = '#EADFC7';
+
 const DropDownHeader = styled.div`
   width: 100%;
-  height: 40px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 16px;
+  padding: 6px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid grey;
   border-radius: 16px;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
   transition: border-radius 0.15s;
 `
 
@@ -21,7 +23,7 @@ const DropDownListContainer = styled.div`
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);
@@ -37,9 +39,9 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   cursor: pointer;
   width: ${({ width }) => width}px;
   position: relative;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
   border-radius: 16px;
-  height: 40px;
+  height: 36px;
   min-width: 136px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -50,7 +52,6 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-bottom: 1px solid grey;
         border-radius: 16px 16px 0 0;
       }
 
@@ -58,7 +59,6 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid grey;
         border-top-width: 0;
         border-radius: 0 0 16px 16px;
       }
@@ -83,7 +83,7 @@ const ListItem = styled.li`
   list-style: none;
   padding: 8px 16px;
   &:hover {
-    background: grey;
+    background: ${({ theme }) => theme.isDark ? 'grey' : '#ffb300'};
   }
 `
 
@@ -126,16 +126,16 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
-          <Text>{selectedOption.label}</Text>
+          <Text fontSize="16px" fontWeight={500}>{selectedOption.label}</Text>
         </DropDownHeader>
       )}
-      <ArrowDropDownIcon color="text" width="24px" onClick={toggling} />
+      <ArrowDropDownIcon color="text" width="14px" onClick={toggling} />
       <DropDownListContainer>
         <DropDownList ref={dropdownRef}>
           {options.map((option) =>
             option.label !== selectedOption.label ? (
               <ListItem onClick={onOptionClicked(option)} key={option.label}>
-                <Text>{option.label}</Text>
+                <Text fontSize="16px" fontWeight={500}>{option.label}</Text>
               </ListItem>
             ) : null,
           )}

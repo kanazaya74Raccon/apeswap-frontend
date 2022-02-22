@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints, Flex, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useNetworkChainId } from 'state/hooks'
+import Tooltip from 'components/Tooltip/Tooltip'
 
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
@@ -20,7 +20,6 @@ import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
-import HarvestAction from '../FarmCard/HarvestAction'
 import { LpTokenPrices } from '../../../../state/types'
 
 export interface RowProps {
@@ -51,6 +50,13 @@ const CellInner = styled.div`
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-right: 0px;
   }
+`
+
+export const Caption = styled(Text)`
+  opacity: 0.5;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: -2px;
 `
 
 const StyledTr = styled.div`
@@ -92,7 +98,6 @@ const StyledTd2 = styled.div`
 const APRContainer = styled.div`
   position: absolute;
   left: 340px;
-  top: 19px;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     left: 401px;
@@ -112,7 +117,6 @@ const LiquidtyContainer = styled.div`
 const EarnedContainer = styled.div`
   position: absolute;
   left: 660px;
-  top: 19px;
   font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -128,10 +132,6 @@ const StyledFlex = styled(Flex)`
 const ArrowContainer = styled(Flex)`
   position: absolute;
   right: 23px;
-`
-
-const StyledUnlockButton = styled(UnlockButtonSquare)`
-  font-weight: 600;
 `
 
 const Row: React.FunctionComponent<RowProps> = (props) => {
@@ -177,19 +177,10 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'details':
                   return (
                     <ArrowContainer justifyContent="center" alignItems="center" key={key}>
-                      {!account ? (
-                        <StyledUnlockButton size="sm" />
-                      ) : (
-                        <HarvestAction
-                          {...props.earned}
-                          {...props.farm}
-                          lpSymbol={details.lpSymbol}
-                          addLiquidityUrl={addLiquidityUrl}
-                        />
-                      )}
                       <CellInner>
                         <CellLayout>
                           <Details actionPanelToggled={actionPanelToggled} />
+                          {/* <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip> */}
                         </CellLayout>
                       </CellInner>
                     </ArrowContainer>
@@ -197,18 +188,22 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
                 case 'apr':
                   return (
                     <APRContainer key={key}>
+                      <Caption>APR</Caption>
                       <Apr {...props.apr} hideButton={isMobile} addLiquidityUrl={addLiquidityUrl} />
                     </APRContainer>
                   )
                 case 'liquidity':
                   return (
                     <LiquidtyContainer key={key}>
+                      <Caption>Liquidity</Caption>
                       {React.createElement(cells[key], { ...props[key] })}
                     </LiquidtyContainer>
                   )
                 case 'earned':
                   return (
-                    <EarnedContainer key={key}>{React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
+                    <EarnedContainer key={key}>
+                      <Caption>Earned</Caption>
+                      {React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
                   )
                 default:
                   return (

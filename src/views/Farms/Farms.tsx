@@ -15,7 +15,6 @@ import {
   usePollFarms,
 } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
-import useWindowSize, { Size } from 'hooks/useDimensions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
 import { orderBy } from 'lodash'
@@ -26,40 +25,36 @@ import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from './components/types'
-
-import {
-  CardContainer,
-  FlexLayout,
-  StyledText,
-  Header,
-  StyledHeading,
-  ButtonCheckWrapper,
-  HeadingContainer,
-  StyledPage,
-  ControlContainer,
-  ContainerLabels,
-  ViewControls,
-  LabelWrapper,
-  ToggleWrapper,
-  StyledCheckbox,
-  StyledImage,
-  StyledLabelContainerAPR,
-  StyledLabelContainerEarned,
-  StyledLabel,
-  StyledArrowDropDownIcon,
-  StyledLabelContainerHot,
-  StyledLabelContainerLP,
-  StyledLabelContainerLiquidity,
-} from './styles'
+import { DesktopColumnSchema } from './components/types'
+import * as S from './styles'
+import Select from './components/Select/Select'
 
 const NUMBER_OF_FARMS_VISIBLE = 12
 
+// TODO: Sort
+const options = [
+  {
+    label: 'All', value: 'all'
+  },
+  {
+    label: 'New', value: 'new'
+  },
+  {
+    label: 'Blue Chips', value: 'top100'
+  },
+  {
+    label: 'Stables', value: 'stables'
+  },
+  {
+    label: 'APR', value: 'apr'
+  },
+  {
+    label: 'Liquidity', value: 'liquidity'
+  },
+]
+
 const Farms: React.FC = () => {
   usePollFarms()
-  const size: Size = useWindowSize()
-  const { path } = useRouteMatch()
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const bananaPrice = usePriceBananaBusd()
@@ -69,7 +64,6 @@ const Farms: React.FC = () => {
   const { account } = useWeb3React()
   const farmsLP = useFarms(account)
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = useState(null)
   const [sortOption, setSortOption] = useState('hot')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -79,15 +73,7 @@ const Farms: React.FC = () => {
 
   const ethPriceUsd = usePriceEthBusd()
 
-  useEffect(() => {
-    if (size.width !== undefined) {
-      if (size.width < 968) {
-        setViewMode(ViewMode.CARD)
-      } else {
-        setViewMode(ViewMode.TABLE)
-      }
-    }
-  }, [size])
+  console.log({ farmsLP, ethPriceUsd, lpTokenPrices })
 
   useEffect(() => {
     const showMoreFarms = (entries) => {
@@ -269,64 +255,31 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
+    const columnSchema = DesktopColumnSchema
 
-      const columns = columnSchema.map((column) => ({
-        id: column.id,
-        name: column.name,
-        label: column.label,
-        sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
-          switch (column.name) {
-            case 'farm':
-              return b.id - a.id
-            case 'apr':
-              if (a.original.apr.value && b.original.apr.value) {
-                return Number(a.original.apr.value) - Number(b.original.apr.value)
-              }
-              return 0
-            case 'earned':
-              return a.original.earned.earnings - b.original.earned.earnings
-            default:
-              return 1
-          }
-        },
-        sortable: column.sortable,
-      }))
+    const columns = columnSchema.map((column) => ({
+      id: column.id,
+      name: column.name,
+      label: column.label,
+      sort: (a: RowType<RowProps>, b: RowType<RowProps>) => {
+        switch (column.name) {
+          case 'farm':
+            return b.id - a.id
+          case 'apr':
+            if (a.original.apr.value && b.original.apr.value) {
+              return Number(a.original.apr.value) - Number(b.original.apr.value)
+            }
+            return 0
+          case 'earned':
+            return a.original.earned.earnings - b.original.earned.earnings
+          default:
+            return 1
+        }
+      },
+      sortable: column.sortable,
+    }))
 
-      return <Table data={rowData} columns={columns} farmsPrices={lpTokenPrices} />
-    }
-
-    return (
-      <CardContainer>
-        <FlexLayout>
-          <Route exact path={`${path}`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed={false}
-                farmsPrices={lpTokenPrices}
-              />
-            ))}
-          </Route>
-          <Route exact path={`${path}/history`}>
-            {farmsStakedMemoized.map((farm) => (
-              <FarmCard
-                key={farm.pid}
-                farm={farm}
-                bananaPrice={bananaPrice}
-                account={account}
-                removed
-                farmsPrices={lpTokenPrices}
-              />
-            ))}
-          </Route>
-        </FlexLayout>
-      </CardContainer>
-    )
+    return <Table data={rowData} columns={columns} farmsPrices={lpTokenPrices} />
   }
 
   const handleSortOptionChange = (option): void => {
@@ -343,75 +296,39 @@ const Farms: React.FC = () => {
   return (
     <>
       <MarketingModalCheck />
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
+      <S.Header>
+        <S.HeadingContainer>
+          <S.StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-          </StyledHeading>
-        </HeadingContainer>
-      </Header>
+          </S.StyledHeading>
+        </S.HeadingContainer>
+      </S.Header>
 
-      <StyledPage width="1130px">
-        <ControlContainer>
-          <ViewControls>
-            {size.width > 968 && viewMode !== null && (
-              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            )}
-            <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+      <S.StyledPage width="1130px">
+        <S.ControlContainer>
+          <S.ViewControls>
+            <S.LabelWrapper>
+              <S.StyledText mr="15px">Search</S.StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
-            </LabelWrapper>
-            <ButtonCheckWrapper>
+            </S.LabelWrapper>
+            <Select options={options} />
+            <S.ButtonCheckWrapper>
               <FarmTabButtons />
-              <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
-                <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
-              </ToggleWrapper>
-            </ButtonCheckWrapper>
+              <S.ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
+                <S.StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+                <S.StyledText> {TranslateString(1116, 'Staked')}</S.StyledText>
+              </S.ToggleWrapper>
+            </S.ButtonCheckWrapper>
             {isDark ? (
-              <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
+              <S.StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
             ) : (
-              <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
+              <S.StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
             )}
-          </ViewControls>
-        </ControlContainer>
-        <ContainerLabels>
-          <StyledLabelContainerHot>
-            <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
-            </StyledLabel>
-          </StyledLabelContainerHot>
-          <StyledLabelContainerLP>
-            <StyledLabel>LP</StyledLabel>
-          </StyledLabelContainerLP>
-          <StyledLabelContainerAPR>
-            <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
-              {sortOption === 'apr' ? (
-                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </StyledLabel>
-          </StyledLabelContainerAPR>
-          <StyledLabelContainerLiquidity>
-            <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-              Liquidity
-              {sortOption === 'liquidity' ? (
-                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </StyledLabel>
-          </StyledLabelContainerLiquidity>
-          <StyledLabelContainerEarned>
-            <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
-              {sortOption === 'earned' ? (
-                <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
-              ) : null}
-            </StyledLabel>
-          </StyledLabelContainerEarned>
-        </ContainerLabels>
-        {viewMode === null ? null : renderContent()}
+          </S.ViewControls>
+        </S.ControlContainer>
+        {renderContent()}
         <div ref={loadMoreRef} />
-      </StyledPage>
+      </S.StyledPage>
     </>
   )
 }

@@ -16,6 +16,7 @@ export const ControlContainer = styled(Card)`
   overflow: visible;
   padding-bottom: 10px;
   transform: translateY(-85px);
+  z-index: ${({ theme }) => theme.zIndices.dropdown};
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;

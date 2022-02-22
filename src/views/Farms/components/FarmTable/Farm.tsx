@@ -11,12 +11,17 @@ export interface FarmProps {
 }
 
 const IconImage = styled(Image)`
-  width: 24px;
-  height: 24px;
+  width: 31.5px;
+  height: 31.5px;
+  // TODO: Add white border
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 57px;
-    height: 57px;
+    width: 36px;
+    height: 36px;
   }
+`
+
+const PriorityIconImage = styled(IconImage)`
+  z-index: 5;
 `
 
 const Container = styled.div`
@@ -25,10 +30,8 @@ const Container = styled.div`
 `
 
 const StyledBackground = styled.div`
-  width: 150px;
-  height: 60px;
-  background: rgb(255, 179, 0, 0.4);
-  border-radius: 20px;
+  width: 130px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,20 +42,19 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token0, token1, label, image
   return (
     <Container>
       <StyledBackground>
-        <IconImage
+        <PriorityIconImage
           src={`/images/tokens/${image || `${token1}.svg`}`}
           alt={token1}
-          width={50}
-          height={50}
+          width={36}
+          height={36}
           marginLeft="7.5px"
         />
         <IconImage
           src={`/images/tokens/${token0}.svg`}
           alt={token0}
-          width={25}
-          height={25}
+          width={36}
+          height={36}
           marginLeft="-15px"
-          marginTop="30px"
         />
         <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginLeft="8px" marginRight="8px" />
         <IconImage src="/images/tokens/BANANA.svg" alt="banana" width={50} height={50} marginRight="7.5px" />

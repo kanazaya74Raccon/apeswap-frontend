@@ -97,7 +97,7 @@ export const DesktopColumnSchema: ColumnsDefTypes[] = [
   },
 ]
 
-export enum ViewMode {
-  'TABLE' = 'TABLE',
-  'CARD' = 'CARD',
-}
+// export enum ViewMode {
+//   'TABLE' = 'TABLE',
+//   'CARD' = 'CARD',
+// }
