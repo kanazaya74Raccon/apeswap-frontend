@@ -38,10 +38,12 @@ import {
   HomepageData,
   LpTokenPricesState,
   NfaState,
+  HomepageTokenStats,
+  NewsCardType,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
-import { fetchHomepageData, fetchStats } from './stats'
+import { fetchHomepageData, fetchHomepageNews, fetchHomepageTokenData, fetchStats } from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -431,6 +433,38 @@ export const useFetchHomepageStats = (isFetching: boolean) => {
 export const useHomepageStats = (): HomepageData => {
   const homepageStats = useSelector((state: State) => state.stats.HomepageData)
   return homepageStats
+}
+
+export const useFetchHomepageTokenStats = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageTokenData())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageTokenStats = (): HomepageTokenStats[] => {
+  const homepageTokenStats = useSelector((state: State) => state.stats.HomepageTokenStats)
+  return homepageTokenStats
+}
+
+export const useFetchHomepageNews = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageNews())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageNews = (): NewsCardType[] => {
+  const homepageNews = useSelector((state: State) => state.stats.HomepageNews)
+  return homepageNews
 }
 
 export const useFetchAuctions = () => {

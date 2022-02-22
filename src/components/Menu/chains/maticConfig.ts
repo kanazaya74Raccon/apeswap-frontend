@@ -6,12 +6,10 @@ const maticConfig: MenuEntry[] = [
   EXCHANGE,
   {
     label: 'Farms',
-    icon: 'FarmIcon',
     href: '/farms',
   },
   {
     label: 'Vaults',
-    icon: 'Vaults',
     href: '/vaults',
   },
   //   {
@@ -31,7 +29,6 @@ const maticConfig: MenuEntry[] = [
   //   },
   {
     label: 'Info',
-    icon: 'InfoIcon',
     items: [
       {
         label: 'Overview',

@@ -23,6 +23,6 @@ export const statsData: StatType[] = [
     logo: '',
     title: 'Partners',
     value: 130,
-    id: 'partners',
+    id: 'partnerCount',
   },
 ]

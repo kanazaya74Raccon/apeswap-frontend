@@ -1,18 +1,17 @@
 export const HOME = {
   label: 'Home',
-  icon: 'HomeIcon',
   href: '/',
 }
 
 export const EXCHANGE = {
   label: 'Exchange',
-  icon: 'TradeIcon',
   href: '/swap',
 }
 
 export const MORE_INFO = {
   label: 'More',
-  icon: 'MoreIcon',
+  lightIcon: 'MoreLightImage',
+  darkIcon: 'MoreDarkImage',
   items: [
     {
       label: 'Docs',

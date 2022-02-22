@@ -203,7 +203,20 @@ export interface HomepageData {
   gnanaCirculatingSupply: number
   burntAmount: number
   totalVolume: number
-  totalPartners?: number
+  partnerCount?: number
+}
+
+export interface HomepageTokenStats {
+  tokenTicker: string
+  tokenPrice: number
+  percentChange: number
+  contractAddress: string
+  logoUrl: string
+}
+
+export interface NewsCardType {
+  cardImageUrl: any
+  cardLink: string
 }
 
 export interface Nfa extends Nft {}
@@ -406,6 +419,8 @@ export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
   HomepageData: HomepageData
+  HomepageTokenStats: HomepageTokenStats[]
+  HomepageNews: NewsCardType[]
   data: Stats
 }
 

@@ -6,7 +6,8 @@ const bscConfig: MenuEntry[] = [
   EXCHANGE,
   {
     label: 'Stake',
-    icon: 'FarmIcon',
+    lightIcon: 'StakeLightImage',
+    darkIcon: 'StakeDarkImage',
     items: [
       {
         label: 'Farms',
@@ -28,7 +29,8 @@ const bscConfig: MenuEntry[] = [
   },
   {
     label: 'Offerings',
-    icon: 'FarmIcon',
+    lightIcon: 'OfferingsLightImage',
+    darkIcon: 'OfferingsDarkImage',
     items: [
       {
         label: 'Official',
@@ -42,7 +44,8 @@ const bscConfig: MenuEntry[] = [
   },
   {
     label: 'NFA',
-    icon: 'apeNFTIcon',
+    lightIcon: 'NfaLightImage',
+    darkIcon: 'NfaDarkImage',
     items: [
       {
         label: 'Collection',
@@ -60,7 +63,6 @@ const bscConfig: MenuEntry[] = [
   },
   {
     label: 'Lending',
-    icon: 'lending',
     href: 'https://app.ola.finance/apeswap/markets',
   },
   // {
