@@ -50,7 +50,7 @@ const LaunchCalendar: React.FC = () => {
               onSwiper={setSwiper}
               spaceBetween={20}
               slidesPerView="auto"
-              loopedSlides={-1}
+              loopedSlides={launchCalLength}
               loop
               centeredSlides
               resizeObserver

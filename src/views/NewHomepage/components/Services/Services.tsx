@@ -17,7 +17,6 @@ const Services: React.FC = () => {
   const [loadServices, setLoadServices] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
-  const { isXxl } = useMatchBreakpoints()
   const { width } = useWindowSize()
 
   const slideNewsNav = (index: number) => {

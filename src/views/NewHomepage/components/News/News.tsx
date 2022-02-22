@@ -57,7 +57,7 @@ const News: React.FC = () => {
                 onSwiper={setSwiper}
                 spaceBetween={20}
                 slidesPerView="auto"
-                loopedSlides={-1}
+                loopedSlides={newsLength}
                 centeredSlides
                 resizeObserver
                 lazy
