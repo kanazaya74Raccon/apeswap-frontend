@@ -6,7 +6,7 @@ const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
   position: relative;
-  ${({ theme }) => theme.mediaQueries.xl} {
+  ${({ theme }) => theme.mediaQueries.xxl} {
     min-height: 180vh;
   }
 `

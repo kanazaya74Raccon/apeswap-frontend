@@ -29,8 +29,11 @@ export const LaunchCard = styled.div`
 export const CalendarImg = styled.div<{ image: string }>`
   width: 84px;
   height: 84px;
-  background: grey;
   border-radius: 10px;
+  background: url(${({ image }) => image});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 `
 
 export const Bubble = styled.div<{ isActive?: boolean }>`
@@ -49,4 +52,54 @@ export const LaunchText = styled(Text)`
   top: 40px;
   text-align: center;
   width: 100%;
+`
+
+export const SkeletonWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  height: 500px;
+  align-items: center;
+  max-width: 1412px;
+  width: 95vw;
+  top: 0;
+  justify-content: center;
+  padding-bottom: 50px;
+  & :nth-child(2),
+  & :nth-child(3),
+  & :nth-child(4),
+  & :nth-child(5),
+  & :nth-child(6) {
+    display: none;
+  }
+  @media screen and (min-width: 555px) and (max-width: 855px) {
+    justify-content: space-around;
+    & :nth-child(2) {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 855px) and (max-width: 1155px) {
+    justify-content: space-around;
+    & :nth-child(2),
+    & :nth-child(3) {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1155px) and (max-width: 1405px) {
+    justify-content: space-between;
+    & :nth-child(2),
+    & :nth-child(3),
+    & :nth-child(4) {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1405px) {
+    justify-content: space-between;
+    & :nth-child(2),
+    & :nth-child(3),
+    & :nth-child(4),
+    & :nth-child(5),
+    & :nth-child(6) {
+      display: block;
+    }
+  }
 `

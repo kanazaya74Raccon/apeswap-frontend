@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Stats, StatsState } from 'state/types'
+import getHomepageLaunchCalendar from './getHomepageLaunchCalendar'
 import getHomepageNews from './getHomepageNews'
 import getHomepageStats from './getHomepageStats'
 import getHomepageTokenStats from './getHomepageTokenStats'
@@ -12,6 +13,7 @@ const initialState: StatsState = {
   HomepageData: null,
   HomepageTokenStats: null,
   HomepageNews: null,
+  HomepageLaunchCalendar: null,
   data: null,
 }
 
@@ -40,6 +42,9 @@ export const statsSlice = createSlice({
     setHomepageNews: (state, action) => {
       state.HomepageNews = action.payload
     },
+    setHomepageLaunchCalendar: (state, action) => {
+      state.HomepageLaunchCalendar = action.payload
+    },
   },
 })
 
@@ -51,6 +56,7 @@ export const {
   setHomepageStats,
   setHomepageTokenStats,
   setHomepageNews,
+  setHomepageLaunchCalendar,
 } = statsSlice.actions
 
 // Thunks
@@ -70,14 +76,19 @@ export const fetchHomepageData = () => async (dispatch) => {
   dispatch(setHomepageStats(homepageStats))
 }
 
-export const fetchHomepageTokenData = () => async (dispatch) => {
-  const homepageTokenStats = await getHomepageTokenStats()
+export const fetchHomepageTokenData = (category: string) => async (dispatch) => {
+  const homepageTokenStats = await getHomepageTokenStats(category)
   dispatch(setHomepageTokenStats(homepageTokenStats))
 }
 
 export const fetchHomepageNews = () => async (dispatch) => {
   const homepageNews = await getHomepageNews()
   dispatch(setHomepageNews(homepageNews))
+}
+
+export const fetchHomepageLaunchCalendar = () => async (dispatch) => {
+  const homepageLaunchCalendar = await getHomepageLaunchCalendar()
+  dispatch(setHomepageLaunchCalendar(homepageLaunchCalendar))
 }
 
 export default statsSlice.reducer

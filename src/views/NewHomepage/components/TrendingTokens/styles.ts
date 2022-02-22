@@ -29,6 +29,7 @@ export const TokenContainer = styled.div<{ active?: boolean }>`
   align-items: center;
   justify-content: center;
   height: 83px;
+  cursor: pointer;
   opacity: 1;
   animation: ${FadeIn} 2s ease-in;
 `

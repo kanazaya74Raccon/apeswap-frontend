@@ -40,10 +40,17 @@ import {
   NfaState,
   HomepageTokenStats,
   NewsCardType,
+  LaunchCalendarCard,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
-import { fetchHomepageData, fetchHomepageNews, fetchHomepageTokenData, fetchStats } from './stats'
+import {
+  fetchHomepageData,
+  fetchHomepageLaunchCalendar,
+  fetchHomepageNews,
+  fetchHomepageTokenData,
+  fetchStats,
+} from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -435,15 +442,15 @@ export const useHomepageStats = (): HomepageData => {
   return homepageStats
 }
 
-export const useFetchHomepageTokenStats = (isFetching: boolean) => {
+export const useFetchHomepageTokenStats = (isFetching: boolean, category: string) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
     if (isFetching) {
-      dispatch(fetchHomepageTokenData())
+      dispatch(fetchHomepageTokenData(category))
     }
-  }, [slowRefresh, isFetching, dispatch])
+  }, [slowRefresh, isFetching, category, dispatch])
 }
 
 export const useHomepageTokenStats = (): HomepageTokenStats[] => {
@@ -458,6 +465,22 @@ export const useFetchHomepageNews = (isFetching: boolean) => {
   useEffect(() => {
     if (isFetching) {
       dispatch(fetchHomepageNews())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageLaunchCalendar = (): LaunchCalendarCard[] => {
+  const homepageLaunchCalendar = useSelector((state: State) => state.stats.HomepageLaunchCalendar)
+  return homepageLaunchCalendar
+}
+
+export const useFetchHomepageLaunchCalendar = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageLaunchCalendar())
     }
   }, [slowRefresh, isFetching, dispatch])
 }

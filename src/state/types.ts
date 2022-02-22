@@ -219,6 +219,15 @@ export interface NewsCardType {
   cardLink: string
 }
 
+export interface LaunchCalendarCard {
+  image1: any
+  image2?: any
+  textLine1: string
+  textLine2?: string
+  textLine3?: string
+  launchTime: string
+}
+
 export interface Nfa extends Nft {}
 
 export interface PoolOverall {
@@ -421,6 +430,7 @@ export interface StatsState {
   HomepageData: HomepageData
   HomepageTokenStats: HomepageTokenStats[]
   HomepageNews: NewsCardType[]
+  HomepageLaunchCalendar: LaunchCalendarCard[]
   data: Stats
 }
 
