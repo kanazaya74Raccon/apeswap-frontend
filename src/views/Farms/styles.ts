@@ -374,3 +374,11 @@ export const FlexLayout = styled.div`
     margin-bottom: 32px;
   }
 `
+
+export const ContentContainer = styled.div`
+  display: flex;
+  border: 1px solid green;
+  & :nth-child(1) {
+    border: 1px solid red;
+  }
+`

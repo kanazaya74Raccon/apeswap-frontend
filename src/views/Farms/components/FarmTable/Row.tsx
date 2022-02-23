@@ -46,6 +46,7 @@ const CellInner = styled.div`
   display: flex;
   width: auto;
   align-items: center;
+  border: 1px solid red;
 
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-right: 0px;
@@ -60,12 +61,15 @@ export const Caption = styled(Text)`
 `
 
 const StyledTr = styled.div`
+  display: flex;
   cursor: pointer;
+  border: 1px solid yellow;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  margin-bottom: 10px;
-  display: flex;
+  height: 86px;
+  width: 1099px;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
 `
@@ -134,6 +138,14 @@ const ArrowContainer = styled(Flex)`
   right: 23px;
 `
 
+export const ContentContainer = styled.div`
+  display: flex;
+  border: 1px solid green;
+  & ${StyledTr}:first-child {
+    border: 1px solid blue;
+  }
+`
+
 const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details, liquidity, farmsPrices } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
@@ -165,95 +177,100 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const handleRenderRow = () => {
     if (!isXs) {
       return (
-        <StyledTr onClick={toggleActionPanel}>
-          <StyledFlex alignItems="center">
-            {Object.keys(props).map((key) => {
-              const columnIndex = columnNames.indexOf(key)
-              if (columnIndex === -1) {
-                return null
-              }
+        <ContentContainer>
+          <StyledTr onClick={toggleActionPanel}>
+            <StyledFlex alignItems="center">
+              {Object.keys(props).map((key) => {
+                const columnIndex = columnNames.indexOf(key)
+                if (columnIndex === -1) {
+                  return null
+                }
 
-              switch (key) {
-                case 'details':
-                  return (
-                    <ArrowContainer justifyContent="center" alignItems="center" key={key}>
-                      <CellInner>
-                        <CellLayout>
-                          <Details actionPanelToggled={actionPanelToggled} />
-                          {/* <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip> */}
-                        </CellLayout>
+                switch (key) {
+                  case 'details':
+                    return (
+                      <ArrowContainer justifyContent="center" alignItems="center" key={key}>
+                        <CellInner>
+                          <CellLayout>
+                            <Details actionPanelToggled={actionPanelToggled} />
+                            {/* <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip> */}
+                          </CellLayout>
+                        </CellInner>
+                      </ArrowContainer>
+                    )
+                  case 'apr':
+                    return (
+                      <APRContainer key={key}>
+                        <Caption>APR</Caption>
+                        <Apr {...props.apr} hideButton={isMobile} addLiquidityUrl={addLiquidityUrl} />
+                      </APRContainer>
+                    )
+                  case 'liquidity':
+                    return (
+                      <LiquidtyContainer key={key}>
+                        <Caption>Liquidity</Caption>
+                        {React.createElement(cells[key], { ...props[key] })}
+                      </LiquidtyContainer>
+                    )
+                  case 'earned':
+                    return (
+                      <EarnedContainer key={key}>
+                        <Caption>Earned</Caption>
+                        {React.createElement(cells[key], { ...props[key] })}
+                      </EarnedContainer>
+                    )
+                  default:
+                    return (
+                      <CellInner key={key}>
+                        <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
                       </CellInner>
-                    </ArrowContainer>
-                  )
-                case 'apr':
-                  return (
-                    <APRContainer key={key}>
-                      <Caption>APR</Caption>
-                      <Apr {...props.apr} hideButton={isMobile} addLiquidityUrl={addLiquidityUrl} />
-                    </APRContainer>
-                  )
-                case 'liquidity':
-                  return (
-                    <LiquidtyContainer key={key}>
-                      <Caption>Liquidity</Caption>
-                      {React.createElement(cells[key], { ...props[key] })}
-                    </LiquidtyContainer>
-                  )
-                case 'earned':
-                  return (
-                    <EarnedContainer key={key}>
-                      <Caption>Earned</Caption>
-                      {React.createElement(cells[key], { ...props[key] })}</EarnedContainer>
-                  )
-                default:
-                  return (
-                    <CellInner key={key}>
-                      <CellLayout>{React.createElement(cells[key], { ...props[key] })}</CellLayout>
-                    </CellInner>
-                  )
-              }
-            })}
-          </StyledFlex>
-          {actionPanelToggled && details && (
-            <ActionPanel
-              {...props}
-              account={account}
-              addLiquidityUrl={addLiquidityUrl}
-              liquidity={liquidity}
-              farmsPrices={farmsPrices}
-            />
-          )}
-        </StyledTr>
+                    )
+                }
+              })}
+            </StyledFlex>
+            {actionPanelToggled && details && (
+              <ActionPanel
+                {...props}
+                account={account}
+                addLiquidityUrl={addLiquidityUrl}
+                liquidity={liquidity}
+                farmsPrices={farmsPrices}
+              />
+            )}
+          </StyledTr>
+        </ContentContainer>
       )
     }
 
     return (
-      <StyledTr onClick={toggleActionPanel}>
-        <StyledTd1>
-          <FarmMobileCell>
-            <CellLayout>
-              <Farm {...props.farm} />
-            </CellLayout>
-          </FarmMobileCell>
-          <EarnedMobileCell>
-            <CellLayout label={TranslateString(1072, 'Earned')}>
-              <Earned {...props.earned} />
-            </CellLayout>
-          </EarnedMobileCell>
-          <AprMobileCell>
-            <CellLayout label={TranslateString(736, 'APR')}>
-              <Apr {...props.apr} hideButton addLiquidityUrl={addLiquidityUrl} />
-            </CellLayout>
-          </AprMobileCell>
-        </StyledTd1>
-        <StyledTd2>
-          <CellInner>
-            <CellLayout>
-              <Details actionPanelToggled={actionPanelToggled} />
-            </CellLayout>
-          </CellInner>
-        </StyledTd2>
-      </StyledTr>
+      <ContentContainer>
+        <StyledTr onClick={toggleActionPanel}>
+          <StyledTd1>
+            <FarmMobileCell>
+              <CellLayout>
+                <Farm {...props.farm} />
+              </CellLayout>
+            </FarmMobileCell>
+            <EarnedMobileCell>
+              <CellLayout label={TranslateString(1072, 'Earned')}>
+                <Earned {...props.earned} />
+              </CellLayout>
+            </EarnedMobileCell>
+            <AprMobileCell>
+              <CellLayout label={TranslateString(736, 'APR')}>
+                <Apr {...props.apr} hideButton addLiquidityUrl={addLiquidityUrl} />
+              </CellLayout>
+            </AprMobileCell>
+          </StyledTd1>
+          <StyledTd2>
+            <CellInner>
+              <CellLayout>
+                <Details actionPanelToggled={actionPanelToggled} />
+              </CellLayout>
+            </CellInner>
+          </StyledTd2>
+        </StyledTr>
+      </ContentContainer>
     )
   }
 

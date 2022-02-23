@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import { RowType } from '@apeswapfinance/uikit'
+import ListView from 'components/ListView'
 import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
 import {
   useFarms,
@@ -34,22 +35,28 @@ const NUMBER_OF_FARMS_VISIBLE = 12
 // TODO: Sort
 const options = [
   {
-    label: 'All', value: 'all'
+    label: 'All',
+    value: 'all',
   },
   {
-    label: 'New', value: 'new'
+    label: 'New',
+    value: 'new',
   },
   {
-    label: 'Blue Chips', value: 'top100'
+    label: 'Blue Chips',
+    value: 'top100',
   },
   {
-    label: 'Stables', value: 'stables'
+    label: 'Stables',
+    value: 'stables',
   },
   {
-    label: 'APR', value: 'apr'
+    label: 'APR',
+    value: 'apr',
   },
   {
-    label: 'Liquidity', value: 'liquidity'
+    label: 'Liquidity',
+    value: 'liquidity',
   },
 ]
 
@@ -326,7 +333,8 @@ const Farms: React.FC = () => {
             )}
           </S.ViewControls>
         </S.ControlContainer>
-        {renderContent()}
+        {/* {renderContent()} */}
+        <ListView />
         <div ref={loadMoreRef} />
       </S.StyledPage>
     </>
