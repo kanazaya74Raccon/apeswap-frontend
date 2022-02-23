@@ -955,6 +955,13 @@ const tokens = {
     },
     decimals: 8,
   },
+  buzz: {
+    symbol: 'BUZZ',
+    address: {
+      56: '0xa73C15620bfA79646E9A11d0D638d66588456462',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
