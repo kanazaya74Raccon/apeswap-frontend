@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
+import BigNumber from 'bignumber.js'
 import { farmsConfig } from 'config/constants'
 import {
   fetchFarmUserEarnings,
@@ -7,7 +8,7 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm } from '../types'
+import { FarmsState, Farm, LpTokenPrices } from '../types'
 import fetchFarms from './fetchFarms'
 
 const initialState: FarmsState = { data: [...farmsConfig] }
@@ -42,9 +43,9 @@ export const farmsSlice = createSlice({
 export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync = (chainId: number) => async (dispatch) => {
+export const fetchFarmsPublicDataAsync = (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber) => async (dispatch) => {
   try {
-    const farms = await fetchFarms(chainId)
+    const farms = await fetchFarms(chainId, lpPrices, bananaPrice)
     dispatch(setFarmsPublicData(farms))
   } catch (error) {
     console.warn(error)

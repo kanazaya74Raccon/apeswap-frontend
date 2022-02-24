@@ -97,14 +97,20 @@ export const usePollPools = () => {
 }
 
 export const usePollFarms = () => {
-  const chainId = useNetworkChainId()
+  const { chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
-  const { slowRefresh } = useRefresh()
+  const { lpTokenPrices } = useLpTokenPrices()
+  // Made a string because hooks will refresh bignumbers
+  const bananaPrice = usePriceBananaBusd().toString()
+
   useEffect(() => {
-    if (chainId === CHAIN_ID.BSC) {
-      dispatch(fetchFarmsPublicDataAsync(chainId))
+    const fetchFarms = () => {
+      if (chainId === CHAIN_ID.BSC) {
+        dispatch(fetchFarmsPublicDataAsync(chainId, lpTokenPrices, new BigNumber(bananaPrice)))
+      }
     }
-  }, [dispatch, slowRefresh, chainId])
+    fetchFarms()
+  }, [dispatch, chainId, lpTokenPrices, bananaPrice])
 }
 
 // Vault data
@@ -131,6 +137,7 @@ export const usePollDualFarms = () => {
   const dispatch = useAppDispatch()
   const { tokenPrices } = useTokenPrices()
   const chainId = useNetworkChainId()
+
   useEffect(() => {
     dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId))
     if (account) {
@@ -488,7 +495,7 @@ export const useIazoFromAddress = (address): Iazo => {
 export const useFetchTokenPrices = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const chainId = useNetworkChainId()
+  const { chainId } = useActiveWeb3React()
   useEffect(() => {
     dispatch(fetchTokenPrices(chainId))
   }, [dispatch, slowRefresh, chainId])
@@ -502,7 +509,7 @@ export const useTokenPrices = () => {
 export const useFetchLpTokenPrices = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
-  const chainId = useNetworkChainId()
+  const { chainId } = useActiveWeb3React()
   useEffect(() => {
     dispatch(fetchLpTokenPrices(chainId))
   }, [dispatch, slowRefresh, chainId])

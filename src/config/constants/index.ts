@@ -114,7 +114,17 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WRAPPED_NATIVE_ONLY,
   [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-  [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTC, BSC.BANANA, BSC.FRM, BSC.FRMX],
+  [ChainId.BSC]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.BSC],
+    BSC.DAI,
+    BSC.USD,
+    BSC.USDC,
+    BSC.USDT,
+    BSC.BTC,
+    BSC.BANANA,
+    BSC.FRM,
+    BSC.FRMX,
+  ],
 }
 
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {

@@ -5,7 +5,6 @@ import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
 
 export interface FarmWithStakedValue extends Farm {
-  apr?: BigNumber
   addLiquidityUrl?: string
   bananaPrice?: BigNumber
 }
@@ -127,7 +126,6 @@ const StyledHeading = styled(Heading)`
 
 const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
   const { tokenSymbol, apr, quoteTokenSymbol, image } = farm
-  const farmAPR = new BigNumber(apr && apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1))
 
   return (
     <PCard>
@@ -157,7 +155,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         <ApyWrapper>
           <ApyText>APR:</ApyText>
           <ApyNumber>
-            {farmAPR.toFixed(2) !== 'NaN' ? <ApyNumber>{farmAPR.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
+            {apr}
           </ApyNumber>
         </ApyWrapper>
       </DescriptionContainer>

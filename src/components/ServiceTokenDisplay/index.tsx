@@ -11,6 +11,15 @@ interface ServiceTokenDisplayProps {
   earnLp?: boolean
 }
 
+const setUrls = (tokenSymbol: string) => {
+  return [
+    `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toUpperCase()}.svg`,
+    `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toUpperCase()}.png`,
+    `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toLowerCase()}.svg`,
+    `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toLowerCase()}.png`,
+  ]
+}
+
 const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   token1,
   token2,
@@ -19,38 +28,42 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   stakeLp = false,
   earnLp = false,
 }) => {
-  console.log(token1)
+  const token1Urls = setUrls(token1)
+  const token2Urls = setUrls(token2)
+  const token3Urls = token3 ? setUrls(token3) : []
+  const token4Urls = token4 ? setUrls(token4) : []
+
   const StakeTokenEarnToken = (
     <Flex alignItems="center">
-      <TokenContainer image={token1} />
+      <TokenContainer srcs={token1Urls} />
       <EarnIcon />
-      <TokenContainer image={token2} />
+      <TokenContainer srcs={token2Urls} />
     </Flex>
   )
 
   const StakeLpEarnToken = (
     <Flex alignItems="center">
-      <TokenContainer zIndex={1} image={token1} />
-      <TokenContainer ml={-15} image={token2} />
+      <TokenContainer zIndex={1} srcs={token1Urls} />
+      <TokenContainer ml={-15} srcs={token2Urls} />
       <EarnIcon />
-      <TokenContainer image={token3} />
+      <TokenContainer srcs={token3Urls} />
     </Flex>
   )
   const StakeLpEarnLp = (
     <Flex alignItems="center">
-      <TokenContainer zIndex={1} image={token1} />
-      <TokenContainer ml={-15} image={token2} />
+      <TokenContainer zIndex={1} srcs={token1Urls} />
+      <TokenContainer ml={-15} srcs={token2Urls} />
       <EarnIcon />
-      <TokenContainer zIndex={1} image={token3} />
-      <TokenContainer ml={-15} image={token4} />
+      <TokenContainer zIndex={1} srcs={token3Urls} />
+      <TokenContainer ml={-15} srcs={token4Urls} />
     </Flex>
   )
   const StakeTokenEarnLp = (
     <Flex alignItems="center">
-      <TokenContainer image={token1} />
+      <TokenContainer srcs={token1Urls} />
       <EarnIcon />
-      <TokenContainer zIndex={1} image={token2} />
-      <TokenContainer ml={-15} image={token3} />
+      <TokenContainer zIndex={1} srcs={token2Urls} />
+      <TokenContainer ml={-15} srcs={token3Urls} />
     </Flex>
   )
 

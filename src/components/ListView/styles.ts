@@ -1,35 +1,50 @@
-import { ArrowDropDownIcon, Card, Flex } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, Card, Flex, Text } from '@apeswapfinance/uikit'
 import styled, { keyframes } from 'styled-components'
 
-const ExpandAnimation = keyframes`
+const ExpandLargeAnimation = keyframes`
     0%{height: 0;}
     100%{height: 100px;}
 `
 
+const ExpandSmallAnimation = keyframes`
+    0%{height: 0;}
+    100%{height: 243px;}
+`
+
 export const ListExpandedContainer = styled(Flex)`
-  width: 1099px;
-  height: 100px;
+  height: 243px;
   align-items: center;
-  animation: ${ExpandAnimation} 0.3s ease;
+  animation: ${ExpandSmallAnimation} 0.3s ease;
   overflow: hidden;
+  margin: 0px 10px 0px 10px;
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F1EADA')};
+  ${({ theme }) => theme.mediaQueries.lg} {
+    animation: ${ExpandLargeAnimation} 0.3s ease;
+    height: 100px;
+  }
 `
 //   ${({theme}) => theme.colors.dark3};
 
 export const ListCardContainer = styled(Card)`
   display: flex;
-  width: 1099px;
-  height: 86px;
+  height: 110px;
   border-radius: 0;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(226, 226, 226, 0.2);
   cursor: pointer;
-  padding: 0px 20px 0px 20px;
+  padding: 10px;
+  margin: 0px 10px 0px 10px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    flex-direction: row;
+    height: 86px;
+    padding: 0px 15px 0px 15px;
+  }
 `
 //   ${({theme}) => theme.colors.white2};
 export const ListViewContainer = styled.div`
+  width: 100%;
   & ${ListCardContainer}:first-child {
     border-radius: 10px 10px 0px 0px;
   }
@@ -59,10 +74,27 @@ export const TagContainer = styled(Flex)`
 `
 
 export const ContentContainer = styled(Flex)`
-  position: absolute;
-  width: 625px;
-  height: 60px;
-  left: 365px;
-  align-items: flex-start;
+  position: relative;
+  max-width: 650px;
+  width: 100%;
+  height: 50px;
+  align-items: flex-end;
   justify-content: space-between;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    height: 60px;
+  }
+`
+
+export const TitleContainer = styled(Flex)`
+  align-items: center;
+  height: 100%;
+  max-width: 290px;
+  width: 100%;
+`
+
+export const TitleText = styled(Text)`
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    font-size: 16px;
+  }
 `

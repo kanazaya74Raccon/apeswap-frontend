@@ -1,6 +1,6 @@
 import { Flex, Text } from '@apeswapfinance/uikit'
 import React from 'react'
-import { TitleText, ListViewContentContainer, IconImage } from './styles'
+import { TitleText, ListViewContentContainer, IconImage, ValueText } from './styles'
 
 interface ListViewContentProps {
   title: string
@@ -25,10 +25,10 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
     <ListViewContentContainer mb={mb} width={width}>
       <TitleText>{title}</TitleText>
       <Flex alignItems="center">
-        {valueIcon && <IconImage src={valueIcon} alt={valueIcon} />} <Text bold>{value}</Text>
+        {valueIcon && <IconImage src={valueIcon} alt={valueIcon} />} <ValueText bold>{value}</ValueText>
       </Flex>
       <Flex alignItems="center">
-        {value2Icon && <IconImage src={value2Icon} alt={value2Icon} />} {value2 && <Text bold>{value2}</Text>}
+        {value2Icon && <IconImage src={value2Icon} alt={value2Icon} />} {value2 && <ValueText bold>{value2}</ValueText>}
       </Flex>
     </ListViewContentContainer>
   )

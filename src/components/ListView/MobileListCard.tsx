@@ -7,29 +7,30 @@ import {
   ListExpandedContainer,
   TagContainer,
   TitleContainer,
-  TitleText,
+  TitleText
 } from './styles'
 import { ListCardProps } from './types'
 
-
-const ListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, cardContent, expandedContent }) => {
+const MobileListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, cardContent, expandedContent }) => {
   const [expanded, setExpanded] = useState(false)
   return (
     <>
       <ListCardContainer onClick={() => setExpanded((prev) => !prev)}>
-        <TitleContainer>
-          {serviceTokenDisplay}
-          {tag && <TagContainer ml="10px">{tag}</TagContainer>}
-          <TitleText bold ml="10px">
-            {title}
-          </TitleText>
-        </TitleContainer>
+        <Flex justifyContent="space-between" style={{ width: '100%' }}>
+          <TitleContainer>
+            {serviceTokenDisplay}
+            {tag && <TagContainer ml="10px">{tag}</TagContainer>}
+            <TitleText bold ml="10px">
+              {title}
+            </TitleText>
+          </TitleContainer>
+          <DropDownIcon open={expanded} />
+        </Flex>
         <ContentContainer>{cardContent}</ContentContainer>
-        <DropDownIcon open={expanded} />
       </ListCardContainer>
       {expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
     </>
   )
 }
 
-export default React.memo(ListCard)
+export default React.memo(MobileListCard)

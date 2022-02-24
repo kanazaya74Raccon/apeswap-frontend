@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from '@apeswapfinance/uikit'
 
-const GREY = '#424242';
-const LIGHT_YELLOW = '#EADFC7';
+const GREY = '#424242'
+const LIGHT_YELLOW = '#EADFC7'
 
 const DropDownHeader = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ const DropDownHeader = styled.div`
   padding: 6px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
   border-radius: 16px;
-  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
+  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
   transition: border-radius 0.15s;
 `
 
@@ -23,7 +23,7 @@ const DropDownListContainer = styled.div`
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
+  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);
@@ -39,7 +39,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   cursor: pointer;
   width: ${({ width }) => width}px;
   position: relative;
-  background: ${({ theme }) => theme.isDark ? GREY : LIGHT_YELLOW};
+  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
   border-radius: 16px;
   height: 36px;
   min-width: 136px;
@@ -83,7 +83,7 @@ const ListItem = styled.li`
   list-style: none;
   padding: 8px 16px;
   &:hover {
-    background: ${({ theme }) => theme.isDark ? 'grey' : '#ffb300'};
+    background: ${({ theme }) => (theme.isDark ? 'grey' : '#ffb300')};
   }
 `
 
@@ -126,7 +126,9 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
-          <Text fontSize="16px" fontWeight={500}>{selectedOption.label}</Text>
+          <Text fontSize="16px" fontWeight={500}>
+            {selectedOption.label}
+          </Text>
         </DropDownHeader>
       )}
       <ArrowDropDownIcon color="text" width="14px" onClick={toggling} />
@@ -135,7 +137,9 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
           {options.map((option) =>
             option.label !== selectedOption.label ? (
               <ListItem onClick={onOptionClicked(option)} key={option.label}>
-                <Text fontSize="16px" fontWeight={500}>{option.label}</Text>
+                <Text fontSize="16px" fontWeight={500}>
+                  {option.label}
+                </Text>
               </ListItem>
             ) : null,
           )}

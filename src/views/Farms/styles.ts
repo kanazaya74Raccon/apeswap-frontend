@@ -331,6 +331,7 @@ export const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
   width: 100vw;
+  max-width: 1130px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     padding-left: 10px;
@@ -375,10 +376,3 @@ export const FlexLayout = styled.div`
   }
 `
 
-export const ContentContainer = styled.div`
-  display: flex;
-  border: 1px solid green;
-  & :nth-child(1) {
-    border: 1px solid red;
-  }
-`
