@@ -175,7 +175,7 @@ export const HeadCard = styled(Card)`
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
   border-radius: 10px;
   margin-bottom: 0.5em;
-  
+
   ${({ theme }) => theme.mediaQueries.md} {
     background: ${({ theme }) => theme.colors.white3};
   }

@@ -6,6 +6,7 @@ import { Button, Input, Modal, Text } from '@apeswapfinance/uikit'
 import { Nft } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import { useNonFungibleApes } from 'hooks/useContract'
+import UnderlinedButton from 'components/UnderlinedButton'
 import InfoRow from './InfoRow'
 
 interface TransferNftModalProps {
@@ -96,12 +97,10 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
         />
       </ModalContent>
       <Actions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
-        </Button>
         <Button fullWidth onClick={handleConfirm} disabled={!account || isLoading || !value}>
           {TranslateString(464, 'Confirm')}
         </Button>
+        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </Actions>
     </Modal>
   )

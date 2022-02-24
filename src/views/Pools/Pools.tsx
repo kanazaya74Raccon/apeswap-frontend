@@ -121,6 +121,7 @@ const ViewControls = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
+  background-color: red;
 
   > div {
     padding: 8px 0px;

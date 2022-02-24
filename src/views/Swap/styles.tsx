@@ -24,6 +24,7 @@ export const LargeStyledButton = styled(ButtonSquare)`
   height: 60px;
   border-radius: 20px;
   margin-top: 10px;
+  text-transform: uppercase;
 `
 
 export const ExpertButton = styled(Button)`

@@ -24,7 +24,7 @@ const PriceWrapper = styled.div`
     margin-left: 25px;
     border-radius: 10px;
     margin-top: 0px;
-    background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+    background: ${({ theme }) => theme.colors.white3};
   }
 `
 

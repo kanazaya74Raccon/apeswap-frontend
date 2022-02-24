@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare, Button } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare } from '@apeswapfinance/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
+import UnderlinedButton from 'components/UnderlinedButton'
 
 interface ExpertModalProps extends InjectedModalProps {
   setShowConfirmExpertModal: (boolean) => void
@@ -53,23 +54,12 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
         >
           Turn On Expert Mode
         </ButtonSquare>
-        <Button
-          // fullWidth
-          variant="text"
-          style={{
-            display: 'flex',
-            alignSelf: 'center',
-            fontSize: '16px',
-            fontWeight: 500,
-            border: 'none',
-            textDecoration: 'underline',
-          }}
-          onClick={() => {
+        <UnderlinedButton
+          text="Cancel"
+          handleClick={() => {
             setShowConfirmExpertModal(false)
           }}
-        >
-          Cancel
-        </Button>
+        />
       </Modal>
     </div>
   )

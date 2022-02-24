@@ -103,7 +103,7 @@ export default function SwapModalHeader({
               <ErrorIcon mr="8px" />
               <Text bold>Price Updated</Text>
             </RowFixed>
-            <ButtonSquare style={{ fontSize: '16px' }} onClick={onAcceptChanges}>
+            <ButtonSquare style={{ fontSize: '16px', textTransform: 'uppercase' }} onClick={onAcceptChanges}>
               Accept
             </ButtonSquare>
           </RowBetween>

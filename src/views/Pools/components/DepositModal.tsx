@@ -3,6 +3,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
+import UnderlinedButton from 'components/UnderlinedButton'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
@@ -42,9 +43,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
       />
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
-        </Button>
         <Button
           fullWidth
           disabled={pendingTx}
@@ -55,9 +53,13 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
+        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )
