@@ -24,8 +24,10 @@ const MobileListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, tit
               {title}
             </TitleText>
           </TitleContainer>
-          <DropDownIcon open={expanded} />
-          <InfoIcon width="25px" />
+          <Flex>
+            <DropDownIcon open={expanded} mr="20px"/>
+            <InfoIcon width="25px" />
+          </Flex>
         </Flex>
         <ContentContainer>{cardContent}</ContentContainer>
       </ListCardContainer>

@@ -125,7 +125,6 @@ export interface BlockState {
   initialBlock: number
 }
 
-
 export interface Tag {
   pid: number
   text: string
