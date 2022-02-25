@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints, Checkbox } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import TokenInput from './TokenInput'
 import { TokenSaleDetails, ExtendedERC20Details } from '../types'
-import {
-  LaunchPadInfoWrapper,
-  CheckBoxStyled,
-  StyledHeader,
-  CheckboxContainer,
-  FooterContainer,
-  StyledText,
-} from './styles'
+import { LaunchPadInfoWrapper, StyledHeader, CheckboxContainer, FooterContainer, StyledText } from './styles'
 
 interface PresaleDataProps {
   pairTokenDetails: ExtendedERC20Details
@@ -24,7 +17,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
   const isMobile = isMd || isSm || isXs
   const { isDark } = useTheme()
   const marginRight = isMobile ? '0px' : '12.5px'
-  const bgColor = isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'
+  const bgColor = isDark ? '#383838' : '#F1EADA'
   const { tokenSymbol, quoteToken, userBalance, tokenDecimals } = pairTokenDetails
   const [tokenDetails, setTokenDetails] = useState<TokenSaleDetails>({
     tokensForSale: null,
@@ -92,7 +85,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <FooterContainer>
           <CheckboxContainer>
-            <CheckBoxStyled
+            <Checkbox
               checked={tokenDetails?.burnRemains}
               onChange={() => setTokenDetails({ ...tokenDetails, burnRemains: !tokenDetails?.burnRemains })}
             />

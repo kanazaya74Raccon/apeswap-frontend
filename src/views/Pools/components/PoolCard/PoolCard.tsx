@@ -35,6 +35,14 @@ const PCard = styled.div`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   overflow: hidden;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    max-width: 1024px;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    max-width: 530px;
+  }
 `
 
 const StyledFlex = styled(Flex)`

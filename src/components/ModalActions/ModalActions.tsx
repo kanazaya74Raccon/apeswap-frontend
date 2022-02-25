@@ -21,7 +21,7 @@ const StyledModalActions = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colors.primaryDark}00;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   margin-top: 40px;
 `
 
