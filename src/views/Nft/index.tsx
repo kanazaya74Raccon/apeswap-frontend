@@ -105,7 +105,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'Checkout the NFA aftermarket on NFTKEY!')}
+              {TranslateString(999, 'Check out the NFA aftermarket on NFTKEY!')}
             </StyledAnchor>
           </Text>
         </StyledHero>
