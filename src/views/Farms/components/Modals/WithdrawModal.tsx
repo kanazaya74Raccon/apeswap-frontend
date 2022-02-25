@@ -7,7 +7,7 @@ import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface WithdrawModalProps {
-  max: BigNumber
+  max: string
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
@@ -18,7 +18,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
+    return getFullDisplayBalance(new BigNumber(max))
   }, [max])
 
   const handleChange = useCallback(
@@ -50,9 +50,14 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onDismiss()
+            try {
+              await onConfirm(val)
+              onDismiss()
+            } catch (e) {
+              console.error('Transaction Failed')
+            } finally {
+              setPendingTx(false)
+            }
           }}
           fullWidth
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
@@ -64,4 +69,4 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   )
 }
 
-export default WithdrawModal
+export default React.memo(WithdrawModal)

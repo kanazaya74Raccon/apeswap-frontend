@@ -7,8 +7,8 @@ import MobileListCard from './MobileListCard'
 import { ExtendedListViewProps } from './types'
 
 const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews }) => {
-  const { isXl } = useMatchBreakpoints()
-  const isMobile = !isXl
+  const { isXl, isLg } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl
   return (
     <ListViewContainer>
       {listViews.map((view) => {
@@ -49,4 +49,3 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
 }
 
 export default React.memo(ListView)
-

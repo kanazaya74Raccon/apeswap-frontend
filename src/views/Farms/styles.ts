@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Text, Checkbox, Heading, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Card, Text, Checkbox, Heading, ArrowDropDownIcon, ButtonSquare, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 
 interface LabelProps {
@@ -8,14 +8,16 @@ interface LabelProps {
 
 export const ControlContainer = styled(Card)`
   display: flex;
-  width: 100%;
+  vw: 100%;
+  margin: 0px 10px 0px 10px;
   align-items: center;
   position: relative;
+  border-radius: 10px;
   justify-content: center;
   flex-direction: column;
   overflow: visible;
-  padding-bottom: 10px;
   transform: translateY(-85px);
+  padding-bottom: 10px;
   z-index: ${({ theme }) => theme.zIndices.dropdown};
 
   ${({ theme }) => theme.mediaQueries.md} {

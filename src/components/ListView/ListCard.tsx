@@ -1,4 +1,4 @@
-import { Flex, Text } from '@apeswapfinance/uikit'
+import { InfoIcon } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import {
   ContentContainer,
@@ -10,7 +10,6 @@ import {
   TitleText,
 } from './styles'
 import { ListCardProps } from './types'
-
 
 const ListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, cardContent, expandedContent }) => {
   const [expanded, setExpanded] = useState(false)
@@ -25,7 +24,8 @@ const ListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, ca
           </TitleText>
         </TitleContainer>
         <ContentContainer>{cardContent}</ContentContainer>
-        <DropDownIcon open={expanded} />
+        <DropDownIcon open={expanded} mr="10px" />
+        <InfoIcon width="25px" />
       </ListCardContainer>
       {expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
     </>

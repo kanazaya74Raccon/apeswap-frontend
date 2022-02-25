@@ -14,11 +14,15 @@ const ExpandSmallAnimation = keyframes`
 export const ListExpandedContainer = styled(Flex)`
   height: 243px;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   animation: ${ExpandSmallAnimation} 0.3s ease;
   overflow: hidden;
   margin: 0px 10px 0px 10px;
+  padding: 10px;
   background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F1EADA')};
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 0px 30px 0px 30px;
     animation: ${ExpandLargeAnimation} 0.3s ease;
     height: 100px;
   }
@@ -33,13 +37,12 @@ export const ListCardContainer = styled(Card)`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(226, 226, 226, 0.2);
-  cursor: pointer;
   padding: 10px;
   margin: 0px 10px 0px 10px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     height: 86px;
-    padding: 0px 15px 0px 15px;
+    padding: 0px 30px 0px 30px;
   }
 `
 //   ${({theme}) => theme.colors.white2};
@@ -59,6 +62,7 @@ export const DropDownIcon = styled(ArrowDropDownIcon)<{ open: boolean }>`
   transform: ${({ open }) => (open ? 'rotate(-180deg)' : '')};
   transition: transform 0.3s ease;
   right: 0;
+  cursor: pointer;
 `
 
 export const TagContainer = styled(Flex)`
@@ -80,7 +84,7 @@ export const ContentContainer = styled(Flex)`
   height: 50px;
   align-items: flex-end;
   justify-content: space-between;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     height: 60px;
   }
 `
@@ -94,7 +98,7 @@ export const TitleContainer = styled(Flex)`
 
 export const TitleText = styled(Text)`
   font-size: 12px;
-  ${({ theme }) => theme.mediaQueries.lg} {
+  ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
   }
 `

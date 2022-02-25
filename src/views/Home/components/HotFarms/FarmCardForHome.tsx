@@ -6,7 +6,6 @@ import { Farm } from 'state/types'
 
 export interface FarmWithStakedValue extends Farm {
   addLiquidityUrl?: string
-  bananaPrice?: BigNumber
 }
 
 interface HarvestProps {
@@ -154,9 +153,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
         </StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
-          <ApyNumber>
-            {apr}
-          </ApyNumber>
+          <ApyNumber>{apr}</ApyNumber>
         </ApyWrapper>
       </DescriptionContainer>
     </PCard>

@@ -7,7 +7,7 @@ import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface DepositModalProps {
-  max: BigNumber
+  max: string
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
@@ -19,7 +19,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
+    return getFullDisplayBalance(new BigNumber(max))
   }, [max])
 
   const handleChange = useCallback(
@@ -53,9 +53,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           disabled={pendingTx || fullBalance === '0' || val === '0'}
           onClick={async () => {
             setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onDismiss()
+            try {
+              await onConfirm(val)
+              onDismiss()
+            } catch (e) {
+              console.error('Transaction Failed')
+            } finally {
+              setPendingTx(false)
+            }
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
         >
@@ -69,4 +74,4 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   )
 }
 
-export default DepositModal
+export default React.memo(DepositModal)

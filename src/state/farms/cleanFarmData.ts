@@ -65,6 +65,8 @@ const cleanFarmData = (farmIds: number[], chunkedFarms: any[], lpPrices: LpToken
       totalLpStakedUsd: totalLpStakedUsd.toFixed(0),
       apr: apr.toFixed(2),
       apy: apy.toFixed(2),
+      lpValueUsd: filteredLpPrice.price,
+      bananaPrice: bananaPrice.toNumber(),
       poolWeight: alloc,
       multiplier,
     }

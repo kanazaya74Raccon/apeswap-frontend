@@ -43,14 +43,15 @@ export const farmsSlice = createSlice({
 export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync = (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber) => async (dispatch) => {
-  try {
-    const farms = await fetchFarms(chainId, lpPrices, bananaPrice)
-    dispatch(setFarmsPublicData(farms))
-  } catch (error) {
-    console.warn(error)
+export const fetchFarmsPublicDataAsync =
+  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber) => async (dispatch) => {
+    try {
+      const farms = await fetchFarms(chainId, lpPrices, bananaPrice)
+      dispatch(setFarmsPublicData(farms))
+    } catch (error) {
+      console.warn(error)
+    }
   }
-}
 export const fetchFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
   try {
     const userFarmAllowances = await fetchFarmUserAllowances(chainId, account)
@@ -85,6 +86,7 @@ export const updateFarmUserTokenBalances = (chainId: number, pid, account: strin
 
 export const updateFarmUserStakedBalances = (chainId: number, pid, account: string) => async (dispatch) => {
   const stakedBalances = await fetchFarmUserStakedBalances(chainId, account)
+  console.log('staked balance', stakedBalances[pid].toString())
   dispatch(updateFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
 }
 

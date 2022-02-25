@@ -26,6 +26,8 @@ export interface Farm extends FarmConfig {
   totalLpStakedUsd?: string
   apr?: string
   apy?: string
+  bananaPrice?: number
+  lpValueUsd?: number
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
