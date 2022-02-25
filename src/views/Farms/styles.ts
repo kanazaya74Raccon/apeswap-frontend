@@ -17,7 +17,6 @@ export const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   transform: translateY(-85px);
-  padding-bottom: 10px;
   z-index: ${({ theme }) => theme.zIndices.dropdown};
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -25,7 +24,7 @@ export const ControlContainer = styled(Card)`
     height: 59px;
     padding: 0px;
     justify-content: flex-start;
-    padding-left: 50px;
+    padding-left: 30px;
     transform: translateY(-60px);
   }
 `
@@ -108,11 +107,11 @@ export const Header = styled.div`
 `
 
 export const StyledText = styled(Text)`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 12px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 15px !important;
+    font-size: 16px !important;
   }
 `
 
@@ -377,4 +376,3 @@ export const FlexLayout = styled.div`
     margin-bottom: 32px;
   }
 `
-

@@ -125,6 +125,13 @@ export interface BlockState {
   initialBlock: number
 }
 
+
+export interface Tag {
+  pid: number
+  text: string
+  color: string
+}
+
 export interface Stats {
   aggregateApr: number
   aggregateAprPerDay: number
@@ -365,6 +372,7 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  tags: Tag[]
 }
 
 export interface PoolsState {

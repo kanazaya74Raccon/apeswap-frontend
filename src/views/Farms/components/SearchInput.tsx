@@ -3,7 +3,7 @@ import { Input, SearchIcon2 } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${({ theme }) => (theme.isDark ? '#424242' : '#EADFC7')};
   margin-left: auto;
   height: 36px;
@@ -57,7 +57,7 @@ const InputWrapper = styled.div`
   }
 
   @media screen and (min-width: 900px) {
-    width: 244px;
+    width: 200px;
   }
 `
 

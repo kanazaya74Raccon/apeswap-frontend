@@ -13,7 +13,7 @@ const DropDownHeader = styled.div`
   justify-content: space-between;
   padding: 6px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border-radius: 16px;
+  border-radius: 10px;
   background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
   transition: border-radius 0.15s;
 `
@@ -31,7 +31,7 @@ const DropDownListContainer = styled.div`
   opacity: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 168px;
+    min-width: 136px;
   }
 `
 
@@ -40,19 +40,19 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   width: ${({ width }) => width}px;
   position: relative;
   background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
-  border-radius: 16px;
+  border-radius: 10px;
   height: 36px;
   min-width: 136px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 168px;
+    min-width: 136px;
   }
 
   ${(props) =>
     props.isOpen &&
     css`
       ${DropDownHeader} {
-        border-radius: 16px 16px 0 0;
+        border-radius: 10px 10px 0 0;
       }
 
       ${DropDownListContainer} {
@@ -60,7 +60,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
         transform: scaleY(1);
         opacity: 1;
         border-top-width: 0;
-        border-radius: 0 0 16px 16px;
+        border-radius: 0 0 10px 10px;
       }
     `}
 

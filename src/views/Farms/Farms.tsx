@@ -9,8 +9,10 @@ import useI18n from 'hooks/useI18n'
 import SearchInput from './components/SearchInput'
 import * as S from './styles'
 import DisplayFarms from './components/DisplayFarms'
-
-const NUMBER_OF_FARMS_VISIBLE = 12
+import Select from './components/Select/Select'
+import FarmTabButtons from './components/FarmTabButtons'
+import { NUMBER_OF_FARMS_VISIBLE, OPTIONS } from './constants'
+import HarvestAllAction from './components/CardActions/HarvestAllAction'
 
 const Farms: React.FC = () => {
   usePollFarms()
@@ -54,6 +56,12 @@ const Farms: React.FC = () => {
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
+  const hasHarvestPids = farmsLP
+    .filter((farm) => farm.userData && new BigNumber(farm.userData.earnings).isGreaterThan(0))
+    .map((filteredFarm) => {
+      return filteredFarm.pid
+    })
+
   const stakedInactiveFarms = inactiveFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
@@ -76,11 +84,23 @@ const Farms: React.FC = () => {
   }
 
   const renderFarms = () => {
-    let farms = activeFarms
+    let farms = isActive ? activeFarms : inactiveFarms
 
     if (stakedOnly) {
       farms = stakedOnlyFarms
     }
+
+    //   switch (sort) {
+    //     case 'upcoming':
+    //       return upcomingIazos
+    //     case 'live':
+    //       return currentIazos
+    //     case 'done':
+    //       return pastIAzos
+    //     default:
+    //       return [...currentIazos, ...upcomingIazos]
+    //   }
+    // }
 
     if (query) {
       const filteredFarms = farms.filter((farm) => {
@@ -102,21 +122,26 @@ const Farms: React.FC = () => {
         </S.HeadingContainer>
       </S.Header>
 
-      <Flex justifyContent="center" style={{ position: 'relative', top:'30px', width: '100%' }}>
+      <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
           <S.ControlContainer>
             <S.ViewControls>
               <S.LabelWrapper>
-                <S.StyledText mr="15px">Search</S.StyledText>
+                <S.StyledText bold mr="15px">
+                  Search
+                </S.StyledText>
                 <SearchInput onChange={handleChangeQuery} value={query} />
               </S.LabelWrapper>
-              <S.ButtonCheckWrapper>
-                {/* <FarmTabButtons /> */}
+              <Select options={OPTIONS} />
+              <Flex justifyContent="space-around" flexWrap="wrap">
+                <FarmTabButtons />
                 <S.ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <S.StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <S.StyledText> {TranslateString(1116, 'Staked')}</S.StyledText>
                 </S.ToggleWrapper>
-              </S.ButtonCheckWrapper>
+                <HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />
+              </Flex>
+
               {isDark ? (
                 <S.StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
               ) : (

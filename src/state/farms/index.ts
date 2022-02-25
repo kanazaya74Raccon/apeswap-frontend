@@ -11,7 +11,10 @@ import {
 import { FarmsState, Farm, LpTokenPrices } from '../types'
 import fetchFarms from './fetchFarms'
 
-const initialState: FarmsState = { data: [...farmsConfig] }
+const initialState: FarmsState = {
+  data: [...farmsConfig],
+  tags: null,
+}
 
 export const farmsSlice = createSlice({
   name: 'Farms',
