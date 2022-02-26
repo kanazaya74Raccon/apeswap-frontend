@@ -28,10 +28,18 @@ const IconButtonWrapper = styled.div`
 const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
+
+  &:hover {
+    background-color: #ffd54fff !important;
+  }
 `
 
 const StyledButton = styled(Button)`
   font-weight: 800;
+
+  &:hover {
+    background-color: #ffd54fff !important;
+  }
 `
 
 const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData }) => {

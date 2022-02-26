@@ -26,8 +26,14 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
   height: 75px;
   width: 310px;
   padding: 0;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.white4} !important;
+  }
+
   ${({ theme }) => theme.mediaQueries.md} {
-    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '244px')}};
+    width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '244px')};
+  };
 `
 const InputPanel = styled.div`
   display: flex;

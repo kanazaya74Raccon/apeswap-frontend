@@ -21,9 +21,7 @@ const CurrencyInputContainer = styled(Flex)`
   margin-bottom: 20px;
 `
 
-const StyledFlex = styled(Flex)`
-  /* background-color: red; */
-`
+const StyledFlex = styled(Flex)``
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()

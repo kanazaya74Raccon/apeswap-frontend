@@ -9,6 +9,7 @@ const StyledButton = styled(Button)`
   border: none;
   text-decoration: underline;
   margin-top: 10px;
+  text-transform: capitalize;
 `
 
 const UnderlinedButton = ({ text, handleClick }) => {

@@ -49,7 +49,7 @@ const HeadingContainer = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 300px !important;
-  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.brown)};
+  color: ${({ theme }) => theme.colors.text};
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 36px;
