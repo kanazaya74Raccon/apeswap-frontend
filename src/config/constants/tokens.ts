@@ -979,10 +979,10 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
-  nftyBnb: {
-    symbol: 'NFTY-BNB',
+  wgictUsdt: {
+    symbol: 'WGICT-USDT',
     address: {
-      56: '0x884be30e2c95b9cfed614ad2b5edf40af2a144ad',
+      56: '0x4c64c44a6ed5f1fdce5263d9b512c2465ffe8256',
     },
     decimals: 18,
     lpToken: true,
