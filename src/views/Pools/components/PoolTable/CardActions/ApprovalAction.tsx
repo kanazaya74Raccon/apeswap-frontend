@@ -12,10 +12,6 @@ interface ApprovalActionProps {
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {

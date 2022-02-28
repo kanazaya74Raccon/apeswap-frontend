@@ -88,6 +88,7 @@ const StyledButton = styled(Button)`
   text-align: center;
   margin-top: 25px;
   focus: none;
+
   :focus {
     outline: none !important;
     box-shadow: none !important;

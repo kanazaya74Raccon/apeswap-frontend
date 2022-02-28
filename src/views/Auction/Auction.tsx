@@ -196,6 +196,10 @@ const MoreInfo = styled.div`
   cursor: pointer;
   margin-right: 10px;
   width: 100%;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.yellowHover};
+  }
 `
 
 const Auction: React.FC = () => {

@@ -60,7 +60,6 @@ const IfoCardContribute: React.FC<Props> = ({
     return (
       <ApproveButton
         disabled={pendingTx}
-        variant="yellow"
         onClick={async () => {
           try {
             setPendingTx(true)
