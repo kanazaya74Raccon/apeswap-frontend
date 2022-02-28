@@ -3437,7 +3437,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 180,
-    tokenName: 'WGICT',
+    tokenName: 'WGICT - Inactive',
     image: 'WGICT.svg',
     stakingToken: tokens.banana,
     rewardToken: tokens.wgict,
@@ -3448,10 +3448,10 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://gictrade.io/',
     harvest: true,
-    tokenPerBlock: `0.01903044`,
+    tokenPerBlock: `0`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 8,
   },
   {
@@ -3510,6 +3510,25 @@ const pools: PoolConfig[] = [
     reflect: false,
     isFinished: false,
     tokenDecimals: 18,
+  },
+  {
+    sousId: 185,
+    tokenName: 'WGICT',
+    image: 'WGICT.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.wgict,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x5011c848cf4f6ff10085466de76257ac2adc1381',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://gictrade.io/',
+    harvest: true,
+    tokenPerBlock: `0.01903009`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 8,
   },
 
   //
