@@ -948,6 +948,29 @@ const tokens = {
     },
     decimals: 18,
   },
+  wgict: {
+    symbol: 'WGICT',
+    address: {
+      56: '0x27B2D695eF01d10EE96582a23db201B0Aa338639',
+    },
+    decimals: 8,
+  },
+  buzz: {
+    symbol: 'BUZZ',
+    address: {
+      56: '0xa73C15620bfA79646E9A11d0D638d66588456462',
+    },
+    decimals: 18,
+  },
+  ranker: {
+    symbol: 'RANKER',
+    address: {
+      56: '0xdE4512Db1a7a7519818dA38DB86eC1363d70A711',
+    },
+    decimals: 18,
+  },
+
+  // LP Tokens
   bananaBnb: {
     symbol: 'BANANA-BNB',
     address: {

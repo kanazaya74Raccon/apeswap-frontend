@@ -3055,6 +3055,40 @@ const farms: FarmConfig[] = [
     projectLink: 'https://trustnft.org',
   },
   {
+    pid: 187,
+    image: 'BUZZ.svg',
+    lpSymbol: 'BUZZ-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xAC67c5108816E5DAB31376A0EE916D1Fa7e6d50a',
+    },
+    tokenSymbol: 'BUZZ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa73C15620bfA79646E9A11d0D638d66588456462',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cosmosium.finance/',
+  },
+  {
+    pid: 188,
+    image: 'RANKER.svg',
+    lpSymbol: 'RANKER-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x408bcca802006fa33fd469211e85ac5f66caea5f',
+    },
+    tokenSymbol: 'RANKER',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xdE4512Db1a7a7519818dA38DB86eC1363d70A711',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://rankerdao.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

@@ -252,6 +252,9 @@ const App: React.FC = () => {
             <Route path="/burn">
               <BurningGames />
             </Route>
+            <Route path="/spinner">
+              <PageLoader />
+            </Route>
             {/* Redirect */}
             <Route path="/staking">
               <Redirect to="/pools" />

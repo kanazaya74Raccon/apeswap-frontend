@@ -53,6 +53,8 @@ export const BSC: { [key: string]: Token } = {
   USDT: new Token(ChainId.BSC, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD'),
   BTCB: new Token(ChainId.BSC, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Bitcoin'),
   BANANA: new Token(ChainId.BSC, '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95', 18, 'BANANA', 'ApeSwapFinance BANANA'),
+  FRM: new Token(ChainId.BSC, '0xa719b8ab7ea7af0ddb4358719a34631bb79d15dc', 18, 'FRM', 'Ferrum Network Token'),
+  FRMX: new Token(ChainId.BSC, '0x8523518001ad5d24b2a04e8729743c0643a316c0', 18, 'FRMX', 'FRMx Token'),
 }
 
 export const FANTOM: { [key: string]: Token } = {
@@ -112,7 +114,17 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WRAPPED_NATIVE_ONLY,
   [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-  [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTC, BSC.BANANA],
+  [ChainId.BSC]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.BSC],
+    BSC.DAI,
+    BSC.USD,
+    BSC.USDC,
+    BSC.USDT,
+    BSC.BTC,
+    BSC.BANANA,
+    BSC.FRM,
+    BSC.FRMX,
+  ],
 }
 
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
