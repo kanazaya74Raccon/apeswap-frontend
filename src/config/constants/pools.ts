@@ -3492,6 +3492,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 183,
+    tokenName: 'RANKER',
+    image: 'RANKER.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.ranker,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xc5a313375D986Ee70FA51a4890aEB8EeB8A5D33B',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://rankerdao.com/',
+    harvest: true,
+    tokenPerBlock: `0.667348765432098765`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
   //
   // PUT ALL ADMIN POOLS UNDER HERE
   //

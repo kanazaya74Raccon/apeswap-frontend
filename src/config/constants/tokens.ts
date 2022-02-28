@@ -962,6 +962,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ranker: {
+    symbol: 'RANKER',
+    address: {
+      56: '0xdE4512Db1a7a7519818dA38DB86eC1363d70A711',
+    },
+    decimals: 18,
+  },
 }
 
 export default tokens
