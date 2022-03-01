@@ -181,7 +181,13 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
     <StyledTr onClick={toggleActionPanel}>
       <StyledFlex alignItems="center">
         <CellLayout>
-          <PoolHeading stakeToken={stakingToken?.symbol} earnToken={tokenName} earnTokenImage={image} />
+          <PoolHeading
+            stakeToken={stakingToken?.symbol}
+            earnToken={tokenName}
+            earnTokenImage={image}
+            isLp={pool?.lpStaking}
+            isEarnTokenLp={pool?.isEarnTokenLp}
+          />
         </CellLayout>
         <ArrowContainer justifyContent="center" alignItems="center">
           {cardHeaderButton()}

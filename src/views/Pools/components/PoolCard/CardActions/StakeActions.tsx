@@ -14,6 +14,8 @@ import {
   Text,
   ButtonSquare,
 } from '@apeswapfinance/uikit'
+import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useSousStake } from 'hooks/useStake'
@@ -86,6 +88,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const TranslateString = useI18n()
 
   const { stakingToken, tokenDecimals, stakingLimit, sousId } = pool
+  const { chainId } = useActiveWeb3React()
 
   const { symbol: stakingTokenName } = stakingToken
 
@@ -101,6 +104,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const onStake = useReward(rewardRefStake, useSousStake(sousId).onStake)
   const onUnstake = useReward(rewardRefUnstake, useSousUnstake(sousId).onUnstake)
 
+  const addLiquidityUrl = !pool?.lpStaking
+    ? pool.stakingToken.symbol === 'GNANA'
+      ? 'https://apeswap.finance/gnana'
+      : `https://apeswap.finance/swap?outputCurrency=${pool?.stakingToken.address[chainId]}`
+    : `${BASE_ADD_LIQUIDITY_URL}/${pool?.lpTokens?.token?.address[chainId]}/${pool?.lpTokens?.quoteToken?.address[chainId]}`
+
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
 
   const [onPresentDeposit] = useModal(
@@ -114,6 +123,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         })
       }}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
+      addLiquidityUrl={addLiquidityUrl}
     />,
   )
 
