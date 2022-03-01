@@ -5,6 +5,7 @@ import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import UnderlinedButton from 'components/UnderlinedButton'
 
 interface DepositModalProps {
   max: string
@@ -45,9 +46,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         inputTitle={TranslateString(999, 'Stake')}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} fullWidth>
-          {TranslateString(462, 'Cancel')}
-        </Button>
         <Button
           fullWidth
           disabled={pendingTx || fullBalance === '0' || val === '0'}
@@ -63,11 +61,15 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             }
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
+        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </ModalActions>
-      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }} fontWeight={800}>
+      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center', marginTop: '10px' }} fontWeight={800}>
         {TranslateString(999, 'Get')} {tokenName}
       </LinkExternal>
     </Modal>

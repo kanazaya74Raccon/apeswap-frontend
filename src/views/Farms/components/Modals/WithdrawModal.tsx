@@ -5,6 +5,7 @@ import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import UnderlinedButton from 'components/UnderlinedButton'
 
 interface WithdrawModalProps {
   max: string
@@ -43,9 +44,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         inputTitle={TranslateString(999, 'Unstake')}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss} fullWidth>
-          {TranslateString(462, 'Cancel')}
-        </Button>
         <Button
           disabled={pendingTx}
           onClick={async () => {
@@ -61,9 +59,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           }}
           fullWidth
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
+        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

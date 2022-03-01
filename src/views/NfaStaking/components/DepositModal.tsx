@@ -4,6 +4,7 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
 import { useProfile } from 'state/hooks'
+import UnderlinedButton from 'components/UnderlinedButton'
 import useI18n from '../../../hooks/useI18n'
 
 interface DepositModalProps {
@@ -75,9 +76,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
         )}
       </OwnedNfaWrapper>
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
-        </Button>
         <Button
           fullWidth
           disabled={pendingTx || selectedNfas?.length === 0}
@@ -88,9 +86,13 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
             onDismiss()
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
+        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

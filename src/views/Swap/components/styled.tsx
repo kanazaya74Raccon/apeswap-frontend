@@ -4,6 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
+  background: ${({ theme }) => theme.colors.navbar};
   position: relative;
   padding: 1rem;
 `
@@ -25,9 +26,9 @@ export const ArrowWrapper = styled.div<{ clickable: boolean }>`
 export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`
   color: ${({ theme, severity }) =>
     severity === 3 || severity === 4
-      ? theme.colors.failure
+      ? theme.colors.error
       : severity === 2
-      ? theme.colors.warning
+      ? theme.colors.yellow
       : severity === 1
       ? theme.colors.text
       : theme.colors.success};
@@ -64,7 +65,7 @@ export const TruncatedText = styled(Text).attrs({ ellipsis: true })`
 `
 
 const SwapCallbackErrorInner = styled.div`
-  background-color: ${({ theme }) => `${theme.colors.failure}33`};
+  background-color: ${({ theme }) => `${theme.colors.error}33`};
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -72,7 +73,7 @@ const SwapCallbackErrorInner = styled.div`
   width: 100%;
   padding: 3rem 1.25rem 1rem 1rem;
   margin-top: -2rem;
-  color: ${({ theme }) => theme.colors.failure};
+  color: ${({ theme }) => theme.colors.error};
   z-index: -1;
   p {
     padding: 0;
@@ -82,7 +83,7 @@ const SwapCallbackErrorInner = styled.div`
 `
 
 const SwapCallbackErrorInnerAlertTriangle = styled.div`
-  background-color: ${({ theme }) => `${theme.colors.failure}33`};
+  background-color: ${({ theme }) => `${theme.colors.error}33`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +105,7 @@ export function SwapCallbackError({ error }: { error: string }) {
 }
 
 export const SwapShowAcceptChanges = styled(AutoColumn)`
-  background-color: ${({ theme }) => `${theme.colors.warning}33`};
+  background-color: ${({ theme }) => `${theme.colors.yellow}33`};
   padding: 0.5rem;
   border-radius: 12px;
   margin-top: 8px;

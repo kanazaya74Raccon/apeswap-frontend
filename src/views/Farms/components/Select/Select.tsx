@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from '@apeswapfinance/uikit'
 
-const GREY = '#424242'
-const LIGHT_YELLOW = '#EADFC7'
 
 const DropDownHeader = styled.div`
   width: 100%;
@@ -14,16 +12,16 @@ const DropDownHeader = styled.div`
   padding: 6px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
+  background: ${({ theme }) => theme.colors.white3};
   transition: border-radius 0.15s;
 `
 
 const DropDownListContainer = styled.div`
-  min-width: 136px;
+  min-width: 146px;
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
+  background: ${({ theme }) => theme.colors.white3};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);
@@ -39,13 +37,14 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   cursor: pointer;
   width: ${({ width }) => width}px;
   position: relative;
-  background: ${({ theme }) => (theme.isDark ? GREY : LIGHT_YELLOW)};
+  background: ${({ theme }) => theme.colors.white3};
   border-radius: 10px;
   height: 36px;
-  min-width: 136px;
+  min-width: 146px;
+  margin-left: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 136px;
+    min-width: 146px;
   }
 
   ${(props) =>
@@ -126,7 +125,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
-          <Text fontSize="16px" fontWeight={500}>
+          <Text fontSize="16px"  fontWeight={500}>
             {selectedOption.label}
           </Text>
         </DropDownHeader>

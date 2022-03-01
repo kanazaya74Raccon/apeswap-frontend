@@ -17,7 +17,11 @@ const CurrencyInputContainer = styled(Flex)`
   justify-content: space-between;
   padding: 20px 25px 0px 20px;
   width: 100%;
+  background: ${({ theme }) => theme.colors.navbar};
+  margin-bottom: 20px;
 `
+
+const StyledFlex = styled(Flex)``
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
@@ -34,7 +38,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
           LIQUIDITY
         </ButtonMenuItem>
       </ButtonMenu>
-      <Flex>
+      <StyledFlex>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <ButtonSquare
             style={{
@@ -49,7 +53,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
           </ButtonSquare>
         </a>
         <GlobalSettings />
-      </Flex>
+      </StyledFlex>
     </CurrencyInputContainer>
   )
 }

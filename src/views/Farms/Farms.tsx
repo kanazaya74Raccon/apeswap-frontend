@@ -1,18 +1,30 @@
-import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-import { Route, useRouteMatch, useLocation } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFarms, useFarmUser, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
+import { useFarms, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
+import { orderBy } from 'lodash'
+import { Farm } from 'state/types'
 import useI18n from 'hooks/useI18n'
 import SearchInput from './components/SearchInput'
-import * as S from './styles'
 import DisplayFarms from './components/DisplayFarms'
 import Select from './components/Select/Select'
 import FarmTabButtons from './components/FarmTabButtons'
-import { NUMBER_OF_FARMS_VISIBLE, OPTIONS } from './constants'
+import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, OPTIONS, STABLES } from './constants'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
+import {
+  ControlContainer,
+  Header,
+  HeadingContainer,
+  LabelWrapper,
+  StyledCheckbox,
+  StyledHeading,
+  StyledImage,
+  StyledText,
+  ToggleWrapper,
+} from './styles'
 
 const Farms: React.FC = () => {
   usePollFarms()
@@ -25,7 +37,6 @@ const Farms: React.FC = () => {
   const farmsLP = useFarms(account)
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
-  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -62,25 +73,10 @@ const Farms: React.FC = () => {
       return filteredFarm.pid
     })
 
-  const stakedInactiveFarms = inactiveFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
-  )
-
   const { isDark } = useTheme()
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
-  }
-
-  const handleSortOptionChange = (option): void => {
-    if (option !== sortOption) {
-      setSortDirection('desc')
-    } else if (sortDirection === 'desc') {
-      setSortDirection('asc')
-    } else {
-      setSortDirection('desc')
-    }
-    setSortOption(option)
   }
 
   const renderFarms = () => {
@@ -90,66 +86,70 @@ const Farms: React.FC = () => {
       farms = stakedOnlyFarms
     }
 
-    //   switch (sort) {
-    //     case 'upcoming':
-    //       return upcomingIazos
-    //     case 'live':
-    //       return currentIazos
-    //     case 'done':
-    //       return pastIAzos
-    //     default:
-    //       return [...currentIazos, ...upcomingIazos]
-    //   }
-    // }
-
     if (query) {
-      const filteredFarms = farms.filter((farm) => {
+      farms = farms.filter((farm) => {
         return farm.lpSymbol.toUpperCase().includes(query.toUpperCase())
       })
-      return filteredFarms
     }
 
-    return farms.slice(0, numberOfFarmsVisible)
+    switch (sortOption) {
+      case 'all':
+        return farms
+      case 'stables':
+        return farms
+          .filter((farm) => STABLES.includes(farm.tokenSymbol) && STABLES.includes(farm.quoteTokenSymbol))
+          .slice(0, numberOfFarmsVisible)
+      case 'apr':
+        return orderBy(farms, (farm) => parseFloat(farm.apr), 'desc').slice(0, numberOfFarmsVisible)
+      case 'new':
+        return farms
+      case 'blueChips':
+        return farms
+          .filter((farm) => BLUE_CHIPS.includes(farm.tokenSymbol) || BLUE_CHIPS.includes(farm.quoteTokenSymbol))
+          .slice(0, numberOfFarmsVisible)
+      case 'liquidity':
+        return orderBy(farms, (farm: Farm) => parseFloat(farm.totalLpStakedUsd), 'desc').slice(0, numberOfFarmsVisible)
+      default:
+        return farms.slice(0, numberOfFarmsVisible)
+    }
   }
 
   return (
     <>
-      <S.Header>
-        <S.HeadingContainer>
-          <S.StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
+      <Header>
+        <HeadingContainer>
+          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
             {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-          </S.StyledHeading>
-        </S.HeadingContainer>
-      </S.Header>
+          </StyledHeading>
+        </HeadingContainer>
+      </Header>
 
       <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <S.ControlContainer>
-            <S.ViewControls>
-              <S.LabelWrapper>
-                <S.StyledText bold mr="15px">
+          <ControlContainer>
+            <Flex alignItems="flex-end" justifyContent="space-between" style={{ border: '1px solid red' }}>
+              <LabelWrapper>
+                <StyledText bold mr="15px">
                   Search
-                </S.StyledText>
+                </StyledText>
                 <SearchInput onChange={handleChangeQuery} value={query} />
-              </S.LabelWrapper>
-              <Select options={OPTIONS} />
-              <Flex justifyContent="space-around" flexWrap="wrap">
-                <FarmTabButtons />
-                <S.ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
-                  <S.StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <S.StyledText> {TranslateString(1116, 'Staked')}</S.StyledText>
-                </S.ToggleWrapper>
-                <HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />
-              </Flex>
-
-              {isDark ? (
-                <S.StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
-              ) : (
-                <S.StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
-              )}
-            </S.ViewControls>
-          </S.ControlContainer>
-          {/* {renderContent()} */}
+              </LabelWrapper>
+              <Select options={OPTIONS} onChange={(option) => setSortOption(option.value)} />
+            </Flex>
+            <Flex alignItems="center" style={{ border: '1px solid green' }}>
+              <FarmTabButtons />
+              <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
+                <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
+                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
+              </ToggleWrapper>
+            </Flex>
+            <HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />
+            {isDark ? (
+              <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
+            ) : (
+              <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
+            )}
+          </ControlContainer>
           <DisplayFarms farms={renderFarms()} />
           <div ref={loadMoreRef} />
         </Flex>

@@ -71,7 +71,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ items, title }) => {
             <GraphCard color={item.color} />
             <StyledText>
               {item.value.toString() === 'NaN' ? (
-                <Skeleton width="150px" height="35px" />
+                <StyledSkeleton width="150px" height="35px" />
               ) : (
                 `${item.label.toUpperCase()} - ${(getPercent(item.value) * 100).toFixed(1)}%`
               )}
@@ -167,6 +167,10 @@ const StyledText = styled(Text)`
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 16px;
   }
+`
+
+const StyledSkeleton = styled(Skeleton)`
+  background-color: ${({ theme }) => theme.colors.white4};
 `
 
 const StyledHeader = styled(Text)`

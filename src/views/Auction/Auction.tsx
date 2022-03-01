@@ -111,7 +111,7 @@ const HeadingText = styled(Text)`
   position: absolute;
   text-align: center;
   letter-spacing: 0.05em;
-  color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
+  color: ${({ theme }) => theme.colors.text};
   width: 366px;
   height: 125px;
   font-style: normal;
@@ -134,7 +134,7 @@ const SecondaryText = styled(Text)`
   position: absolute;
   text-align: center;
   letter-spacing: 0.05em;
-  color: ${({ theme }) => (theme.isDark ? '#fafafa' : 'rgba(161, 101, 82, 1)')};
+  color: ${({ theme }) => theme.colors.text};
   width: 366px;
   height: 125px;
   font-style: normal;

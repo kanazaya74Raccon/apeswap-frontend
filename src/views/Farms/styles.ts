@@ -1,39 +1,40 @@
 import styled from 'styled-components'
-import { Card, Text, Checkbox, Heading, ArrowDropDownIcon, ButtonSquare, ArrowDropUpIcon } from '@apeswapfinance/uikit'
-import Page from 'components/layout/Page'
-
-interface LabelProps {
-  active?: boolean
-}
+import { Card, Text, Checkbox, Heading, Flex } from '@apeswapfinance/uikit'
 
 export const ControlContainer = styled(Card)`
   display: flex;
-  vw: 100%;
-  margin: 0px 10px 0px 10px;
   align-items: center;
   position: relative;
+  flex-wrap: wrap;
   border-radius: 10px;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   overflow: visible;
   transform: translateY(-85px);
+  border: 1px solid yellow;
   z-index: ${({ theme }) => theme.zIndices.dropdown};
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-    height: 59px;
-    padding: 0px;
-    justify-content: flex-start;
+    min-height: 59px;
+    padding-right: 130px;
+    justify-content: space-between;
     padding-left: 30px;
     transform: translateY(-60px);
+    margin: 0px 10px;
   }
+`
+
+export const ControlWrapper = styled(Flex)`
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid red;
 `
 
 export const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
   cursor: pointer;
 
   ${Text} {
@@ -52,11 +53,8 @@ export const LabelWrapper = styled.div`
     font-size: 12px;
   }
 
-  margin-left: 30px;
-
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-    margin-left: 0px;
     align-items: center;
   }
 `
@@ -114,14 +112,10 @@ export const StyledText = styled(Text)`
     font-size: 16px !important;
   }
 `
-
-interface CheckboxProps {
-  checked?: boolean
-}
-
-export const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
+export const StyledCheckbox = styled(Checkbox)<{ checked?: boolean }>`
   height: 21px;
   width: 21px;
+  margin-left: 20px;
 `
 
 export const StyledImage = styled.img`
@@ -130,6 +124,7 @@ export const StyledImage = styled.img`
   position: absolute;
   right: 0px;
   bottom: 51px;
+  display: none;
 
   @media screen and (min-width: 340px) {
     right: 20px;
@@ -143,174 +138,14 @@ export const StyledImage = styled.img`
   ${({ theme }) => theme.mediaQueries.md} {
     bottom: 0px;
     right: 0px;
-  }
-`
-
-export const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
-  margin-top: 24px;
-  height: 32px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(-85px);
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-top: 34px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
-`
-
-export const StyledLabelContainerHot = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 38px;
-    margin: 0px;
-  }
-`
-
-export const StyledLabelContainerLP = styled.div`
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 169px;
-    margin: 0px;
-  }
-`
-
-export const StyledLabelContainerAPR = styled.div`
-  cursor: pointer;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 365px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 409px;
-  }
-`
-
-export const StyledLabelContainerLiquidity = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    position: absolute;
-    top: 6px;
-    left: 500px;
-    margin: 0px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 621px;
-  }
-`
-
-export const StyledLabelContainerEarned = styled.div`
-  cursor: pointer;
-  ${({ theme }) => theme.mediaQueries.xs} {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    margin-left: 35px;
-    margin-right: 35px;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    margin: 0px;
-    position: absolute;
-    top: 6px;
-    left: 651px;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    left: 801px;
-  }
-`
-
-export const CardContainer = styled.div`
-  margin-top: 17px;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
-`
-
-export const ButtonCheckWrapper = styled.div`
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  width: 100%;
-  margin-right: 30px;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    width: fit-content;
+    display: block;
   }
 `
 
 export const StyledHeading = styled(Heading)`
   font-size: 30px;
   max-width: 176px !important;
+  color: ${({ theme }) => theme.colors.text};
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 30px;
@@ -325,54 +160,5 @@ export const StyledHeading = styled(Heading)`
   ${({ theme }) => theme.mediaQueries.xl} {
     font-size: 60px;
     max-width: 600px !important;
-  }
-`
-
-export const StyledPage = styled(Page)`
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 100vw;
-  max-width: 1130px;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-`
-
-export const StyledLabel = styled.div<LabelProps>`
-  display: flex;
-  color: ${({ theme, active }) => (active ? '#FFFFFF' : theme.colors.primary)};
-  padding: 4px 12px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 12px;
-  border-radius: ${({ active }) => active && '50px'};
-  background-color: ${({ active }) => active && '#FFB300'};
-`
-
-interface DropdownProps {
-  down?: boolean
-}
-
-export const StyledArrowDropDownIcon = styled(ArrowDropDownIcon)<DropdownProps>`
-  color: white;
-  transform: ${({ down }) => (!down ? 'rotate(180deg)' : 'rotate(0)')};
-  margin-left: 7px;
-  margin-top: 2px;
-  /* 'rotate(180deg)' : 'rotate(0)'; */
-`
-
-export const FlexLayout = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  & > * {
-    width: 100%;
-    margin-bottom: 32px;
   }
 `

@@ -42,7 +42,7 @@ const Row = styled.div`
   }
 `
 const GreyRow = styled(Row)`
-  background: rgb(196, 196, 196, 0.2);
+  background: ${({ theme }) => theme.colors.white4};
 `
 
 const StyledCardBody = styled(CardBody)`
@@ -50,6 +50,7 @@ const StyledCardBody = styled(CardBody)`
   padding-right: 20px;
   padding-top: 8px;
   padding-bottom: 15px;
+  background: ${({ theme }) => theme.colors.white3};
   ${({ theme }) => theme.mediaQueries.xl} {
     padding-left: 10px;
     padding-right: 10px;

@@ -26,8 +26,7 @@ const BidWrapper = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  background: F7F8F9;
-  background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  background: ${({ theme }) => theme.colors.white3};
   ${({ theme }) => theme.mediaQueries.lg} {
     top: 355px;
     margin-left: 350px;

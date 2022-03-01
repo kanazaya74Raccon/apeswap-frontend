@@ -69,17 +69,17 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title="ROI" onDismiss={onDismiss}>
       <Grid>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {TranslateString(999, 'Timeframe')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {TranslateString(999, 'ROI')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {rewardTokenName}
             {TranslateString(999, ' per $1000')}
           </Text>
@@ -138,7 +138,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           <Text>{bananaEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
-      <Description fontSize="12px" color="textSubtle">
+      <Description fontSize="12px" color="gray">
         {TranslateString(
           999,
           'Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',

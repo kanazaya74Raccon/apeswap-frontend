@@ -26,7 +26,6 @@ const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => 
   return (
     <ActionContainer>
       <FarmButton
-        ml="20px"
         className="noClick"
         disabled={disabled || pendingTrx}
         onClick={async () => {

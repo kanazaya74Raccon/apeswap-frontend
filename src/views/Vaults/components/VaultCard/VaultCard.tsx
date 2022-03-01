@@ -24,11 +24,13 @@ interface HarvestProps {
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
   overflow: hidden;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const PCard = styled.div`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -36,7 +38,7 @@ const PCard = styled.div`
   text-align: center;
   max-width: 530px;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
+  background-color: ${({ theme }) => theme.colors.navbar};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 `

@@ -4,7 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 export const DateContainer = styled.div`
   width: 300px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
+  background: ${({ theme }) => theme.colors.white3};
   margin-bottom: 30px;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@ export const DateSelectionContainer = styled.div`
   position: relative;
   display: flex;
   height: 135px;
-  background: ${(props) => (props.theme.isDark ? '#444444' : 'white')};
+  background: ${({ theme }) => theme.colors.white4};
   width: 280px;
   border-radius: 10px;
   margin-top: 15px;

@@ -1,4 +1,4 @@
-import { Flex, InfoIcon, Text } from '@apeswapfinance/uikit'
+import { Flex, InfoIcon } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import {
   ContentContainer,
@@ -25,7 +25,7 @@ const MobileListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, tit
             </TitleText>
           </TitleContainer>
           <Flex>
-            <DropDownIcon open={expanded} mr="20px"/>
+            <DropDownIcon open={expanded} mr="20px" />
             <InfoIcon width="25px" />
           </Flex>
         </Flex>

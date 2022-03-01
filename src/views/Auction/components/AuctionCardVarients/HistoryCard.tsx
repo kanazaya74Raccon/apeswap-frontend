@@ -22,7 +22,7 @@ const Card = styled.div<CardProps>`
   height: 435px;
   border-radius: 10px;
   opacity: 0.7;
-  background-color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.navbar};
   display: flex;
   align-items: center;
   box-shadow: ${(props) => props.highestBidFlag && '0px 0px 20px #ffb300'};

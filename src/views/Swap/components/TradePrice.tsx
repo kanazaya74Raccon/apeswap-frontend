@@ -2,7 +2,7 @@ import React from 'react'
 import { Price } from '@apeswapfinance/sdk'
 import { Text, AutoRenewIcon } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { StyledBalanceMaxMini } from './styleds'
+import { StyledBalanceMaxMini } from './styled'
 
 interface TradePriceProps {
   price?: Price

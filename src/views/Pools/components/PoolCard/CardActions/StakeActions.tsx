@@ -45,6 +45,10 @@ const HarvestWrapper = styled.div`
 const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
+
+  &:hover {
+    background-color: #ffd54fff !important;
+  }
 `
 
 const StyledHeadingGreen = styled(Heading)`
@@ -67,6 +71,7 @@ const StyledFlex = styled(Flex)`
   width: 100%;
   margin-left: 117px;
   margin-right: 35px;
+
   ${({ theme }) => theme.mediaQueries.md} {
     margin-left: 217px;
   }
@@ -74,6 +79,10 @@ const StyledFlex = styled(Flex)`
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
+
+  &:hover {
+    background-color: #ffd54fff !important;
+  }
 `
 
 const StakeAction: React.FC<StakeActionsProps> = ({

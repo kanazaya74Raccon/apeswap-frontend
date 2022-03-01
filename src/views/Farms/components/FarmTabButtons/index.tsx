@@ -5,7 +5,6 @@ import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 
 const Wrapper = styled.div`
-  margin-left: 20px;
   ${({ theme }) => theme.mediaQueries.md} {
     display: flex;
     justify-content: center;

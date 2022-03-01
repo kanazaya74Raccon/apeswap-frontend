@@ -18,7 +18,7 @@ const PageWrapper = styled.div`
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: 50px;
-  background: ${(props) => (props.theme.isDark ? '#222222' : 'white')};
+  background: ${({ theme }) => theme.colors.navbar};
   display: flex;
   flex-direction: column;
   align-items: center;
