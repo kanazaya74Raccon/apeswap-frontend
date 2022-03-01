@@ -969,6 +969,40 @@ const tokens = {
     },
     decimals: 18,
   },
+  nft11: {
+    symbol: 'NFT11',
+    address: {
+      56: '0x73F67AE7f934FF15beaBf55A28C2Da1eEb9B56Ec',
+    },
+    decimals: 18,
+  },
+  
+
+  // LP Tokens
+  bananaBnb: {
+    symbol: 'BANANA-BNB',
+    address: {
+      56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  wgictUsdt: {
+    symbol: 'WGICT-USDT',
+    address: {
+      56: '0x4c64c44a6ed5f1fdce5263d9b512c2465ffe8256',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  nft11Busd: {
+    symbol: 'NFT11-BUSD',
+    address: {
+      56: '0xEf0A90fb728195F63C911f52ab4bde331089319f',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
 }
 
 export default tokens

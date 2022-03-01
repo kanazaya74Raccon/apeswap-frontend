@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Flex, Heading, Skeleton, Text, Image } from '@apeswapfinance/uikit'
+import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
@@ -226,6 +226,16 @@ const IconArrow = styled(Image)`
     height: 10px;
   }
 `
+const IconQuoteToken = styled(Image)`
+  align: center;
+  width: 20px;
+  height: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 35px;
+    height: 35px;
+  }
+`
 
 const Container = styled.div`
   display: flex;
@@ -251,7 +261,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 }) => {
   const TranslateString = useI18n()
   const { userData, tokenDecimals, stakingToken } = pool
+  const splitStakeToken = pool?.lpStaking && stakeToken.split('-')
+  const splitEarnToken = pool?.isEarnTokenLp && earnToken.split('-')
   const chainId = useNetworkChainId()
+  const { isXl: isDesktop } = useMatchBreakpoints()
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -303,21 +316,61 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   return (
     <Container>
       <StyledBackground>
-        <IconImage
-          src={`/images/tokens/${stakeToken}.svg`}
-          alt={stakeToken}
-          width={70}
-          height={70}
-          marginLeft="7.5px"
-        />
+        {!pool?.lpStaking ? (
+          <IconImage
+            src={`/images/tokens/${stakeToken}.svg`}
+            alt={stakeToken}
+            width={70}
+            height={70}
+            marginLeft="7.5px"
+          />
+        ) : (
+          <>
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[0]}.svg`}
+              alt={splitStakeToken[0]}
+              width={60}
+              height={60}
+              marginLeft="7.5px"
+            />
+            <IconQuoteToken
+              src={`/images/tokens/${splitStakeToken[1]}.svg`}
+              alt={splitStakeToken[1]}
+              width={35}
+              height={35}
+              marginLeft={isDesktop ? '-20px' : '-13px'}
+              marginTop={isDesktop ? '45px' : '30px'}
+            />
+          </>
+        )}
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} />
-        <IconImage
-          src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
-          alt={earnToken}
-          width={70}
-          height={70}
-          marginRight="7.5px"
-        />
+        {!pool?.isEarnTokenLp ? (
+          <IconImage
+            src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
+            alt={earnToken}
+            width={70}
+            height={70}
+            marginRight="7.5px"
+          />
+        ) : (
+          <>
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[0]}.svg`}
+              alt={splitEarnToken[0]}
+              width={60}
+              height={60}
+              marginLeft="7.5px"
+            />
+            <IconQuoteToken
+              src={`/images/tokens/${splitStakeToken[1]}.svg`}
+              alt={splitEarnToken[1]}
+              width={35}
+              height={35}
+              marginLeft={isDesktop ? '-20px' : '-13px'}
+              marginTop={isDesktop ? '45px' : '30px'}
+            />
+          </>
+        )}
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>

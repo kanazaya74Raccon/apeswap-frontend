@@ -11,9 +11,10 @@ interface DepositModalProps {
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
+  addLiquidityUrl?: string
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '' }) => {
+const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
@@ -40,6 +41,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         onChange={handleChange}
         max={fullBalance}
         symbol={tokenName}
+        addLiquidityUrl={addLiquidityUrl}
       />
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
