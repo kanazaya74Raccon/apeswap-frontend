@@ -1,13 +1,10 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
-import { BLOCKS_PER_YEAR, BANANA_PER_BLOCK, BANANA_POOL_PID } from 'config'
-import BigNumber from 'bignumber.js'
-import { QuoteToken } from 'config/constants/types'
 import farms from 'config/constants/farms'
 import { Farm } from 'state/types'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
-import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd, usePollFarms } from 'state/hooks'
+import { useFarmFromPid, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
 const HotFarmsWrapper = styled.div`
@@ -75,50 +72,8 @@ const DEFAULT_FARM = 1
 
 const HotFarms = () => {
   usePollFarms()
+  useFetchLpTokenPrices()
   const { farmsData, loading } = useFetchFarmsHome()
-  const bnbPrice = usePriceBnbBusd()
-  const ethPriceUsd = usePriceEthBusd()
-  const bananaPrice = usePriceBananaBusd()
-  let farmsFetched = []
-
-  const farmsList = useCallback(
-    (farmsToDisplay) => {
-      const bananaPriceVsBNB = new BigNumber(
-        farmsToDisplay.find((farm) => farm.pid === BANANA_POOL_PID)?.tokenPriceVsQuote || 0,
-      )
-      const farmsToDisplayWithAPR = farmsToDisplay.map((farm) => {
-        if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
-          return farm
-        }
-        const bananaRewardPerBlock = BANANA_PER_BLOCK.times(farm.poolWeight)
-        const bananaRewardPerYear = bananaRewardPerBlock.times(BLOCKS_PER_YEAR)
-
-        let apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
-
-        if (farm.quoteTokenSymbol === QuoteToken.BUSD || farm.quoteTokenSymbol === QuoteToken.UST) {
-          apr = bananaPriceVsBNB.times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
-        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-          apr = bananaPrice.div(ethPriceUsd).times(bananaRewardPerYear).div(farm.lpTotalInQuoteToken)
-        } else if (farm.quoteTokenSymbol === QuoteToken.BANANA) {
-          apr = bananaRewardPerYear.div(farm.lpTotalInQuoteToken)
-        } else if (farm.dual) {
-          const bananaApr =
-            farm && bananaPriceVsBNB.times(bananaRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
-          const dualApr =
-            farm.tokenPriceVsQuote &&
-            new BigNumber(farm.tokenPriceVsQuote)
-              .times(farm.dual.rewardPerBlock)
-              .times(BLOCKS_PER_YEAR)
-              .div(farm.lpTotalInQuoteToken)
-
-          apr = new BigNumber((bananaApr && dualApr && bananaApr.plus(dualApr)).times(100))
-        }
-        return { ...farm, apr, bananaPrice }
-      })
-      return farmsToDisplayWithAPR
-    },
-    [bnbPrice, ethPriceUsd, bananaPrice],
-  )
 
   const farmMustBeUnder = farms.reduce((prev, curr) => (prev.pid > curr.pid ? prev : curr)).pid
 
@@ -130,21 +85,23 @@ const HotFarms = () => {
   if (pid2 > farmMustBeUnder) {
     pid2 = DEFAULT_FARM
   }
-  const farmsToFetch = [useFarmFromPid(1), useFarmFromPid(pid1), useFarmFromPid(pid2)]
-  if (!loading) {
-    farmsFetched = farmsList(farmsToFetch)
-  }
+  const fetchedFarms = [useFarmFromPid(pid1), useFarmFromPid(pid2)]
+
   return (
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
         <HotFarmsText fontWeight={800}>Hot Farms</HotFarmsText>
         <FarmWrapper>
-          {farmsFetched.slice(1).map((farm: Farm) => (
-            <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>
-              <FarmCardForHome farm={farm} key={farm?.pid} />
-            </a>
-          ))}
+          {loading ? (
+            <></>
+          ) : (
+            fetchedFarms.map((farm: Farm) => (
+              <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>
+                <FarmCardForHome farm={farm} key={farm?.pid} />
+              </a>
+            ))
+          )}
         </FarmWrapper>
       </HotFarmsWrapper>
     </>

@@ -4,27 +4,14 @@ import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
 import { useFarms, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
-import useTheme from 'hooks/useTheme'
+import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import { Farm } from 'state/types'
 import useI18n from 'hooks/useI18n'
-import SearchInput from './components/SearchInput'
 import DisplayFarms from './components/DisplayFarms'
-import Select from './components/Select/Select'
-import FarmTabButtons from './components/FarmTabButtons'
-import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, OPTIONS, STABLES } from './constants'
+import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
+import { Header, HeadingContainer, StyledHeading } from './styles'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
-import {
-  ControlContainer,
-  Header,
-  HeadingContainer,
-  LabelWrapper,
-  StyledCheckbox,
-  StyledHeading,
-  StyledImage,
-  StyledText,
-  ToggleWrapper,
-} from './styles'
 
 const Farms: React.FC = () => {
   usePollFarms()
@@ -72,8 +59,6 @@ const Farms: React.FC = () => {
     .map((filteredFarm) => {
       return filteredFarm.pid
     })
-
-  const { isDark } = useTheme()
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
@@ -126,30 +111,15 @@ const Farms: React.FC = () => {
 
       <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <ControlContainer>
-            <Flex alignItems="flex-end" justifyContent="space-between" style={{ border: '1px solid red' }}>
-              <LabelWrapper>
-                <StyledText bold mr="15px">
-                  Search
-                </StyledText>
-                <SearchInput onChange={handleChangeQuery} value={query} />
-              </LabelWrapper>
-              <Select options={OPTIONS} onChange={(option) => setSortOption(option.value)} />
-            </Flex>
-            <Flex alignItems="center" style={{ border: '1px solid green' }}>
-              <FarmTabButtons />
-              <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
-                <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
-              </ToggleWrapper>
-            </Flex>
-            <HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />
-            {isDark ? (
-              <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
-            ) : (
-              <StyledImage src="/images/farm-day-farmer.svg" alt="day-monkey" />
-            )}
-          </ControlContainer>
+          <ListViewMenu
+            onHandleQueryChange={handleChangeQuery}
+            onSetSortOption={setSortOption}
+            onSetStake={setStakedOnly}
+            harvestAll={<HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />}
+            stakedOnly={stakedOnly}
+            query={query}
+            showMonkeyImage
+          />
           <DisplayFarms farms={renderFarms()} />
           <div ref={loadMoreRef} />
         </Flex>

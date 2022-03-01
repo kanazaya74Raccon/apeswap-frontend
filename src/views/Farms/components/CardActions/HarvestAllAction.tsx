@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useAllHarvest } from 'hooks/useHarvest'
-import { AutoRenewIcon, Flex, LinkExternal, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import { useToast } from 'state/hooks'
-import { getEtherscanLink } from 'utils'
+import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { updateFarmUserEarnings } from 'state/farms'
 import { useAppDispatch } from 'state'
@@ -19,10 +17,7 @@ const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => 
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onReward } = useAllHarvest(pids, chainId)
-  const { toastSuccess } = useToast()
-  //   const { isXl, isLg } = useMatchBreakpoints()
-  //   const isMobile = !isLg && !isXl
-
+  
   return (
     <ActionContainer>
       <FarmButton

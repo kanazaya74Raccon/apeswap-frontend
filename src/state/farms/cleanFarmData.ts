@@ -1,11 +1,8 @@
 import BigNumber from 'bignumber.js'
-import { BANANA_PER_BLOCK, BLOCKS_PER_YEAR } from 'config'
 import { farmsConfig } from 'config/constants'
-import { FarmConfig } from 'config/constants/types'
 import { LpTokenPrices } from 'state/types'
 import { getFarmApr } from 'utils/apr'
-import { apyModalRoi, getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
-import Apr from 'views/Vaults/components/VaultTable/Apr'
+import {getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 
 const cleanFarmData = (farmIds: number[], chunkedFarms: any[], lpPrices: LpTokenPrices[], bananaPrice: BigNumber) => {
   const data = chunkedFarms.map((chunk, index) => {

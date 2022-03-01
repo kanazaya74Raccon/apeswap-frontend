@@ -1,4 +1,4 @@
-import { ButtonSquare, Flex, Heading, IconButtonSquare, Text } from '@apeswapfinance/uikit'
+import { ButtonSquare, Flex } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import styled from 'styled-components'
 

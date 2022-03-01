@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon, LinkExternal } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import UnderlinedButton from 'components/UnderlinedButton'
@@ -12,9 +12,10 @@ interface DepositModalProps {
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
+  addLiquidityUrl?: string
 }
 
-const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '' }) => {
+const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
@@ -41,6 +42,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         onChange={handleChange}
         max={fullBalance}
         symbol={tokenName}
+        addLiquidityUrl={addLiquidityUrl}
       />
       <ModalActions>
         <Button
@@ -61,6 +63,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         </Button>
         <UnderlinedButton text="Cancel" handleClick={onDismiss} />
       </ModalActions>
+      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }} fontWeight={800}>
+        {TranslateString(999, 'Get')} {tokenName}
+      </LinkExternal>
     </Modal>
   )
 }

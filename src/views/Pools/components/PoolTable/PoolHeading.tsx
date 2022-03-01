@@ -6,6 +6,8 @@ export interface PoolProps {
   stakeToken?: string
   earnToken?: string
   earnTokenImage?: string
+  isLp?: boolean
+  isEarnTokenLp?: boolean
 }
 
 const IconImage = styled(Image)`
@@ -35,25 +37,73 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const PoolHeading: React.FunctionComponent<PoolProps> = ({ stakeToken, earnToken, earnTokenImage }) => {
+const PoolHeading: React.FunctionComponent<PoolProps> = ({
+  stakeToken,
+  earnToken,
+  earnTokenImage,
+  isLp = false,
+  isEarnTokenLp = false,
+}) => {
+  const splitStakeToken = isLp && stakeToken.split('-')
+  const splitEarnToken = isEarnTokenLp && earnToken.split('-')
   return (
     <Container>
       <StyledBackground>
-        <IconImage
-          src={`/images/tokens/${stakeToken}.svg`}
-          alt={stakeToken}
-          width={50}
-          height={50}
-          marginLeft="7.5px"
-        />
+        {!isLp ? (
+          <IconImage
+            src={`/images/tokens/${stakeToken}.svg`}
+            alt={stakeToken}
+            width={50}
+            height={50}
+            marginLeft="7.5px"
+          />
+        ) : (
+          <>
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[0]}.svg`}
+              alt={splitStakeToken[0]}
+              width={50}
+              height={50}
+              marginLeft="7.5px"
+            />
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[1]}.svg`}
+              alt={splitStakeToken[1]}
+              width={25}
+              height={25}
+              marginLeft="-15px"
+              marginTop="30px"
+            />
+          </>
+        )}
         <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} />
-        <IconImage
-          src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
-          alt={earnToken}
-          width={50}
-          height={50}
-          marginRight="7.5px"
-        />
+        {!isEarnTokenLp ? (
+          <IconImage
+            src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`}
+            alt={earnToken}
+            width={50}
+            height={50}
+            marginRight="7.5px"
+          />
+        ) : (
+          <>
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[0]}.svg`}
+              alt={splitEarnToken[0]}
+              width={50}
+              height={50}
+              marginLeft="7.5px"
+            />
+            <IconImage
+              src={`/images/tokens/${splitStakeToken[1]}.svg`}
+              alt={splitEarnToken[1]}
+              width={25}
+              height={25}
+              marginLeft="-15px"
+              marginTop="30px"
+            />
+          </>
+        )}
       </StyledBackground>
       <div>
         <Text fontSize="20px" fontWeight={800}>

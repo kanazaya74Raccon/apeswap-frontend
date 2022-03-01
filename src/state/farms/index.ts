@@ -89,7 +89,6 @@ export const updateFarmUserTokenBalances = (chainId: number, pid, account: strin
 
 export const updateFarmUserStakedBalances = (chainId: number, pid, account: string) => async (dispatch) => {
   const stakedBalances = await fetchFarmUserStakedBalances(chainId, account)
-  console.log('staked balance', stakedBalances[pid].toString())
   dispatch(updateFarmUserData({ pid, field: 'stakedBalance', value: stakedBalances[pid] }))
 }
 

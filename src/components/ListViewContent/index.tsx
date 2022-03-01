@@ -1,4 +1,4 @@
-import { Flex, HelpIcon, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon } from '@apeswapfinance/uikit'
 import React from 'react'
 import { TitleText, ListViewContentContainer, IconImage, ValueText, ValueSkeleton } from './styles'
 import { ListViewContentProps } from './types'

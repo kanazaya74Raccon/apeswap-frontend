@@ -1,7 +1,6 @@
 import React from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
-import { Flex } from '@apeswapfinance/uikit'
 import { CenterContainer, StyledUnlockButton } from './styles'
 import ApprovalAction from './ApprovalAction'
 import StakeAction from './StakeActions'

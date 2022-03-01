@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const StyledInput = styled(Input)`
   border-radius: 10px;
-  border: 1px solid green;
   background: ${({ theme }) => theme.colors.white3};
   height: 36px;
   font-weight: 800;
@@ -61,9 +60,7 @@ const InputWrapper = styled.div`
   }
 `
 
-const Container = styled.div<{ toggled: boolean }>`
-  border: 1px solid blue;
-`
+const Container = styled.div<{ toggled: boolean }>``
 
 interface Props {
   value: string
