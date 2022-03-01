@@ -3540,6 +3540,10 @@ const pools: PoolConfig[] = [
     tokenName: 'WGICT-USDT',
     image: 'WGICT.svg',
     stakingToken: tokens.wgictUsdt,
+    lpTokens: {
+      token: tokens.wgict,
+      quoteToken: tokens.usdt,
+    },
     rewardToken: tokens.wgict,
     contractAddress: {
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
@@ -3561,6 +3565,10 @@ const pools: PoolConfig[] = [
     image: 'NFT11.png',
     stakingToken: tokens.nft11Busd,
     rewardToken: tokens.nft11,
+    lpTokens: {
+      token: tokens.nft11,
+      quoteToken: tokens.busd,
+    },
     contractAddress: {
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
       56: '0x420B9baD20d43D561377615325E60d5B7CdB1B35',

@@ -107,6 +107,10 @@ export interface PoolConfig {
   tokenDecimals: number
   displayDecimals?: number
   lpStaking?: boolean
+  lpTokens?: {
+    token: Token
+    quoteToken: Token
+  }
   forAdmins?: boolean
   emergencyWithdraw?: boolean
   isEarnTokenLp?: boolean
