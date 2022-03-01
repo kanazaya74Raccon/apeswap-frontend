@@ -3530,6 +3530,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 8,
   },
+  {
+    sousId: 187,
+    tokenName: 'HOTCROSS',
+    image: 'HOTCROSS.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.hotcross,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x448B5c60baa2E7D85334706494845b71F07151EE',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://hotcross.com/',
+    harvest: true,
+    tokenPerBlock: `0.222087191358024691`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
