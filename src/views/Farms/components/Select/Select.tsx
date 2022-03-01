@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from '@apeswapfinance/uikit'
 
-
 const DropDownHeader = styled.div`
   width: 100%;
   height: 36px;
@@ -125,7 +124,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
     <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
       {containerSize.width !== 0 && (
         <DropDownHeader onClick={toggling}>
-          <Text fontSize="16px"  fontWeight={500}>
+          <Text fontSize="16px" fontWeight={500}>
             {selectedOption.label}
           </Text>
         </DropDownHeader>
