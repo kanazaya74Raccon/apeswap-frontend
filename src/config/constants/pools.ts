@@ -3563,7 +3563,7 @@ const pools: PoolConfig[] = [
     rewardToken: tokens.nft11,
     contractAddress: {
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0xe4417357b022224736ca845856917aaae912c0bd',
+      56: '0x420B9baD20d43D561377615325E60d5B7CdB1B35',
     },
     poolCategory: PoolCategory.JUNGLE,
     projectLink: 'https://nft11.io/',
