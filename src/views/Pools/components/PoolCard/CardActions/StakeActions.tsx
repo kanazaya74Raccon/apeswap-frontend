@@ -114,6 +114,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         })
       }}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
+      addLiquidityUrl={pool.stakingToken.address[56]}
     />,
   )
 
