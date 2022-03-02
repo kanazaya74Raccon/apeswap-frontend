@@ -49,22 +49,18 @@ export const useSousApprove = (lpContract, sousId) => {
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await approve(lpContract, sousChefContract)
-      dispatch(updateUserAllowance(chainId, sousId, account))
-      track({
-        event: 'pool',
-        chain: CHAIN_ID,
-        data: {
-          token: tx.to,
-          id: sousId,
-          cat: 'enable',
-        },
-      })
-      return tx
-    } catch (e) {
-      return false
-    }
+    const tx = await approve(lpContract, sousChefContract)
+    dispatch(updateUserAllowance(chainId, sousId, account))
+    track({
+      event: 'pool',
+      chain: CHAIN_ID,
+      data: {
+        token: tx.to,
+        id: sousId,
+        cat: 'enable',
+      },
+    })
+    return tx
   }, [account, dispatch, lpContract, sousChefContract, sousId, chainId])
 
   return { onApprove: handleApprove }

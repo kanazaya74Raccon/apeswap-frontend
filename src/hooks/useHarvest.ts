@@ -78,7 +78,7 @@ export const useSousHarvest = (sousId) => {
     return trxHash
   }, [account, dispatch, masterChefContract, sousChefContract, sousId, chainId])
 
-  return { onReward: handleHarvest }
+  return { onHarvest: handleHarvest }
 }
 
 export const useNfaStakingHarvest = (sousId) => {

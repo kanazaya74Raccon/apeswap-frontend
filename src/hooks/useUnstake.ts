@@ -65,15 +65,13 @@ export const useSousUnstake = (sousId) => {
 
   const handleUnstake = useCallback(
     async (amount: string) => {
+      let trxHash
       if (sousId === 0) {
-        const txHash = await unstake(masterChefContract, 0, amount)
-        console.info(txHash)
+        trxHash = await unstake(masterChefContract, 0, amount)
       } else if (isOldSyrup) {
-        const txHash = await sousEmegencyWithdraw(sousChefContract)
-        console.info(txHash)
+        trxHash = await sousEmegencyWithdraw(sousChefContract)
       } else {
-        const txHash = await sousUnstake(sousChefContract, amount)
-        console.info(txHash)
+        trxHash = await sousUnstake(sousChefContract, amount)
       }
       dispatch(updateUserStakedBalance(chainId, sousId, account))
       dispatch(updateUserBalance(chainId, sousId, account))
@@ -87,6 +85,7 @@ export const useSousUnstake = (sousId) => {
           sousId,
         },
       })
+      return trxHash
     },
     [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId, chainId],
   )

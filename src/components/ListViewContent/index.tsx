@@ -29,14 +29,18 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
       <Flex alignItems="center">
         {valueIcon && <IconImage src={valueIcon} alt={valueIcon} />}{' '}
         <ValueText bold lineHeight={lineHeight}>
-          {value.includes('NaN') || value.includes('undefined') ? <ValueSkeleton /> : value}
+          {value.includes('NaN') || value.includes('undefined') || value.includes('null') ? <ValueSkeleton /> : value}
         </ValueText>
       </Flex>
       <Flex alignItems="center">
         {value2Icon && <IconImage src={value2Icon} alt={value2Icon} />}{' '}
         {value2 && (
           <ValueText bold={!value2Secondary} value2Secondary={value2Secondary} lineHeight={lineHeight}>
-            {value2.includes('NaN') || value2.includes('undefined') ? <ValueSkeleton /> : value2}
+            {value2.includes('NaN') || value2.includes('undefined') || value.includes('null') ? (
+              <ValueSkeleton />
+            ) : (
+              value2
+            )}
           </ValueText>
         )}
       </Flex>
