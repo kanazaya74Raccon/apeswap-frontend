@@ -13,7 +13,7 @@ export const StyledIfoCardDescription = styled.div`
 export const ToggleButton = styled.button`
   background: transparent;
   border: none;
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
   cursor: pointer;
   display: block;
   font-weight: 600;
@@ -22,7 +22,7 @@ export const ToggleButton = styled.button`
 `
 
 export const Description = styled(Text).attrs({ fontFamily: 'poppins' })<{ isOpen: boolean }>`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   margin-top: 24px;
   font-weight: 300;
@@ -34,19 +34,19 @@ export const IconImage = styled(Image)`
 `
 
 export const Link = styled(LinkExternal)`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
 `
 
 export const UpArrowIcon = styled(UpArrow)`
   width: 14px;
   height: 9px;
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
   margin-left: 8px;
 `
 
 export const DownArrowIcon = styled(DownArrow)`
   width: 14px;
   height: 9px;
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
   margin-left: 8px;
 `

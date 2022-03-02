@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ActionContainer = styled.div`
   padding: 24px;
-  border: 2px solid ${({ theme }) => theme.colors.input};
+  border: 2px solid ${({ theme }) => theme.colors.inputBorder};
   border-radius: 16px;
   min-height: 150px;
   margin-bottom: 16px;
@@ -29,11 +29,11 @@ export const ActionTitles = styled.div`
 `
 
 export const Title = styled.span`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.success};
 `
 
 export const Subtle = styled.span`
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ theme }) => theme.colors.gray};
 `
 
 export const ActionContent = styled.div`
@@ -47,5 +47,5 @@ export const Earned = styled.div`
 
 export const StakedStyle = styled.div`
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ theme }) => theme.colors.gray};
 `

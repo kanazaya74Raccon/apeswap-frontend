@@ -309,6 +309,7 @@ export const ButtonCheckWrapper = styled.div`
 export const StyledHeading = styled(Heading)`
   font-size: 30px;
   max-width: 176px !important;
+  color: ${({ theme }) => theme.colors.text};
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 30px;

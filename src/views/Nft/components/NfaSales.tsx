@@ -21,7 +21,7 @@ const SalesItem = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 16px;
   }
-  color: ${(props) => props.theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.gray};
   font-family: ${(props) => props.theme.fontFamily.poppins};
 `
 

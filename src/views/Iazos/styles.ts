@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, Button } from '@apeswapfinance/uikit'
 
 export const PageWrapper = styled.div`
   display: none;
@@ -12,7 +12,7 @@ export const PageWrapper = styled.div`
 export const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: 50px;
-  background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
+  background: ${({ theme }) => theme.colors.navbar};
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -76,11 +76,10 @@ export const StyledHeader = styled(Text)`
   }
 `
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(Button)`
   width: 195px;
   height: 46px;
   color: #ffffff;
-  background-color: #ffb300;
   border-radius: 10px;
   font-size: 18px;
   margin-top: 20px;
