@@ -88,6 +88,7 @@ const StyledButton = styled(Button)`
   text-align: center;
   margin-top: 25px;
   focus: none;
+
   :focus {
     outline: none !important;
     box-shadow: none !important;
@@ -111,10 +112,10 @@ const WelcomeCard = () => {
             )}
           </CardBody>
         </StyledWelcomeCard>
-        <Heading as="h1" size="lg" mb="6px" color="contrast" fontWeight={800}>
+        <Heading as="h1" size="lg" mb="6px" color="text" fontWeight={800}>
           {TranslateString(576, 'Welcome all Apes!')}
         </Heading>
-        <StyledText color="textSubtle">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
+        <StyledText color="gray">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
         <a href="https://apeswap.gitbook.io/apeswap-finance" target="_blank" rel="noopener noreferrer">
           <StyledButton id="Beginner Ape" fullWidth>
             BEGINNER APE? START HERE

@@ -3,7 +3,7 @@ import { Button, Text } from '@apeswapfinance/uikit'
 import BaseUnlockButton from 'components/UnlockButton'
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => theme.colors.white3};
   padding: 20px;
   border-radius: 20px;
   display: flex;

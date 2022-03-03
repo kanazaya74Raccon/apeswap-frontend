@@ -62,13 +62,9 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
                   via {list.name}
                 </Tag>
               ) : (
-                <>
-                  <Tag variant="failure" outline startIcon={<ErrorIcon color="failure" />}>
-                    Unknown Source
-                  </Tag>
-                  <br />
-                  <br />
-                </>
+                <Tag variant="danger" outline startIcon={<ErrorIcon color="error" />}>
+                  Unknown Source
+                </Tag>
               )}
               <Flex alignItems="center">
                 <Text mr="8px">{token.name}</Text>

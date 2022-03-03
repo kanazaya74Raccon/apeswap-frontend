@@ -9,7 +9,7 @@ import HowItWorks from './components/HowItWorks'
 import NftPreview from './components/NftPreview'
 
 const StyledHero = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.textSubtle};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   padding-bottom: 32px;
   padding-top: 32px;
   margin-bottom: 24px;

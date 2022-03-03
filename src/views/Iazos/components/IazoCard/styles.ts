@@ -8,7 +8,7 @@ export const IazoCardWrapper = styled.div`
   border-radius: 10px;
   margin-top: 12.5px;
   margin-bottom: 12.5px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+  background: ${(props) => props.theme.colors.white3};
   cursor: pointer;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
@@ -46,7 +46,7 @@ export const HeadingWrapper = styled(CardWrapperTemplate)`
   height: 110px;
   width: 320px;
   border-radius: 10px 10px 0px 0px;
-  background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
+  background: ${({ theme }) => (theme.isDark ? '#414141' : theme.colors.primary)};
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
   }
@@ -117,6 +117,7 @@ export const ProgressBar = styled.div`
   border-radius: 20px;
   background: #c4c4c4;
   margin-bottom: 15px;
+  background-color: ${({ theme }) => theme.colors.white4};
 `
 
 export const Progress = styled(ProgressBar)<{ percentComplete: string }>`

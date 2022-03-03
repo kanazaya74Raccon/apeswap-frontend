@@ -977,7 +977,6 @@ const tokens = {
     },
     decimals: 18,
   },
-  
 
   // LP Tokens
   bananaBnb: {

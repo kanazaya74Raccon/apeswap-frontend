@@ -131,10 +131,15 @@ const ViewControls = styled.div`
     justify-content: center;
     align-items: center;
     width: auto;
+    /* flex-wrap: nowrap; */
 
     > div {
       padding: 0;
     }
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    flex-wrap: nowrap;
   }
 `
 
@@ -456,7 +461,6 @@ const StyledTable = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
 `
 
 const Container = styled.div`

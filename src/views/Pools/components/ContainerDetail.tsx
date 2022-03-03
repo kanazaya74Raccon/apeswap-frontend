@@ -38,15 +38,17 @@ export interface ExpandableSectionProps {
 }
 
 const WrapperCard = styled.div`
-  margin-top: 24px;
-  margin-left: 24px;
-  margin-right: 24px;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 const WrapperTable = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
   padding: 12px;
+  background-color: ${({ theme }) => theme.colors.white3};
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 340px;
