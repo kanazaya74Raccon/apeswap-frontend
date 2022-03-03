@@ -3372,10 +3372,10 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://www.manarium.com/',
     harvest: true,
-    tokenPerBlock: `1.154513888888888888`,
+    tokenPerBlock: `0`,
     sortOrder: 1,
     reflect: false,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
   },
   {
