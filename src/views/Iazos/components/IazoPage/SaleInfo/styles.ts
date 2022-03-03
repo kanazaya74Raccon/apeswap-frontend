@@ -14,7 +14,7 @@ export const AboutWrapper = styled.div`
   font-weight: 500;
   font-size: 14px;
   width: 300px;
-  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
+  background: ${({theme}) => theme.colors.white3};
   border-radius: 0px 0px 10px 10px;
   padding: 40px 10px 40px 10px;
   overflow-wrap: break-word;
@@ -38,7 +38,7 @@ export const SaleInfoWrapper = styled.div`
   height: 60px;
   width: 300px;
   margin-top: 25px;
-  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
+  background: ${({theme}) => theme.colors.white3};
   border-radius: 10px;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
@@ -56,7 +56,7 @@ export const Tab = styled.div<{ active: boolean; borderRadius?: string }>`
   color: white;
   cursor: pointer;
   border-bottom: ${(props) => props.active && '2.5px solid rgba(255, 179, 0, 1)'};
-  background-color: ${(props) => (props.theme.isDark ? 'rgba(65, 65, 65, 1)' : 'rgba(161, 101, 82, 1)')};
+  background: ${({theme}) => theme.isDark ? theme.colors.white4 : theme.colors.primary};
   border-radius: ${(props) => props.borderRadius};
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 24px;
@@ -67,7 +67,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   width: 300px;
   margin-bottom: 20px;
-  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
+  background: ${({theme}) => theme.colors.white3};
   border-radius: 0px 0px 10px 10px;
   align-items: center;
   justify-content: center;
