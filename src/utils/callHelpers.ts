@@ -1,6 +1,16 @@
 import BigNumber from 'bignumber.js'
 import { Contract, ethers } from 'ethers'
-import { VaultApe, Iazo, SousChef, Masterchef, Erc20, MiniApeV2, Auction, NfaStaking } from 'config/abi/types'
+import {
+  VaultApe,
+  Iazo,
+  SousChef,
+  Masterchef,
+  Erc20,
+  MiniApeV2,
+  Auction,
+  NfaStaking,
+  IazoFactory,
+} from 'config/abi/types'
 
 export const approve = async (lpContract: Erc20, masterChefContract: Contract) => {
   return lpContract.approve(masterChefContract.address, ethers.constants.MaxUint256).then((trx) => {
@@ -198,7 +208,7 @@ unitParams[9]
 8: listingPrice - number (if 0 same as tokenPrice)
 */
 export const createNewIazo = async (
-  iazoFactoryContract, // Contract
+  iazoFactoryContract: IazoFactory, // Contract
   iazoOwner, // Address
   iazoToken, // Address
   baseToken, // Address
