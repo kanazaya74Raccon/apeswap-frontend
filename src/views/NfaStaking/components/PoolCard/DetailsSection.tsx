@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Text, Flex, Link } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { BSC_BLOCK_TIME } from 'config'
+import getTimePeriods from 'utils/getTimePeriods'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -52,11 +54,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   rewardTokenPrice,
   pendingReward,
   tokenDecimals,
+  blocksRemaining,
 }) => {
   const TranslateString = useI18n()
 
   const earnings = new BigNumber(pendingReward || 0)
   const rawEarningsBalance = getBalanceNumber(earnings, tokenDecimals)
+  const timeUntilEnd = getTimePeriods(blocksRemaining * BSC_BLOCK_TIME)
 
   return (
     <Wrapper>
@@ -67,6 +71,12 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       <Flex justifyContent="space-between">
         <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <StyledText fontSize="12px">{TranslateString(23, 'End')}:</StyledText>
+        <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
+          timeUntilEnd.minutes
+        }m`}</StyledText>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>
