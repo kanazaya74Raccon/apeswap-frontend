@@ -1,14 +1,13 @@
 import React from 'react'
-import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { CalculateIcon, IconButton, useModal } from '@apeswapfinance/uikit'
+import { CalculateIcon, useModal } from '@apeswapfinance/uikit'
 import ApyCalculatorModal from './ApyCalculatorModal'
 
 export interface ApyButtonProps {
   lpLabel?: string
   rewardTokenName?: string
-  rewardTokenPrice?: BigNumber
-  apy?: BigNumber
+  rewardTokenPrice?: number
+  apy?: number
   addLiquidityUrl?: string
 }
 
@@ -20,12 +19,6 @@ const StyledCalculateIcon = styled(CalculateIcon)`
     width: 14px;
     height: 14px;
   }
-`
-
-const StyledIconButton = styled(IconButton)`
-  display: flex;
-  justify-content: flex-end;
-  width: 15px;
 `
 
 const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, addLiquidityUrl, rewardTokenName }) => {
@@ -40,9 +33,15 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, a
   )
 
   return (
-    <StyledIconButton className="noClick" onClick={onPresentApyModal} variant="text" size="sm">
-      <StyledCalculateIcon className="noClick" color="yellow" />
-    </StyledIconButton>
+    <>
+      <StyledCalculateIcon
+        onClick={onPresentApyModal}
+        color="yellow"
+        ml="3px"
+        mt=".8px"
+        style={{ cursor: 'pointer' }}
+      />
+    </>
   )
 }
 

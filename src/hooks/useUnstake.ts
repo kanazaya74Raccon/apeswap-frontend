@@ -20,7 +20,6 @@ import {
   vaultUnstakeAll,
   miniChefUnstake,
 } from 'utils/callHelpers'
-import { updateFarmUserStakedBalances, updateFarmUserTokenBalances, updateFarmUserEarnings } from 'state/farms'
 import {
   updateDualFarmUserEarnings,
   updateDualFarmUserStakedBalances,
@@ -28,18 +27,15 @@ import {
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
 import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
+import useActiveWeb3React from './useActiveWeb3React'
 
 const useUnstake = (pid: number) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      const txHash = await unstake(masterChefContract, pid, amount)
-      dispatch(updateFarmUserStakedBalances(chainId, pid, account))
-      dispatch(updateFarmUserTokenBalances(chainId, pid, account))
-      dispatch(updateFarmUserEarnings(chainId, pid, account))
+      const trxHash = await unstake(masterChefContract, pid, amount)
       track({
         event: 'farm',
         chain: chainId,
@@ -49,9 +45,9 @@ const useUnstake = (pid: number) => {
           pid,
         },
       })
-      console.info(txHash)
+      return trxHash
     },
-    [account, dispatch, masterChefContract, pid, chainId],
+    [masterChefContract, pid, chainId],
   )
 
   return { onUnstake: handleUnstake }

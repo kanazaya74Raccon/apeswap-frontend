@@ -26,21 +26,17 @@ export const useApprove = (lpContract, pid: number) => {
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await approve(lpContract, masterChefContract)
-      dispatch(updateFarmUserAllowances(chainId, pid, account))
-      track({
-        event: 'farm',
-        chain: CHAIN_ID,
-        data: {
-          token: tx.to,
-          cat: 'enable',
-        },
-      })
-      return tx
-    } catch (e) {
-      return false
-    }
+    const trx = await approve(lpContract, masterChefContract)
+    dispatch(updateFarmUserAllowances(chainId, pid, account))
+    track({
+      event: 'farm',
+      chain: CHAIN_ID,
+      data: {
+        token: trx?.to,
+        cat: 'enable',
+      },
+    })
+    return trx
   }, [account, dispatch, lpContract, masterChefContract, pid, chainId])
 
   return { onApprove: handleApprove }

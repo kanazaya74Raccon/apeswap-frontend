@@ -23,6 +23,11 @@ export interface Farm extends FarmConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  totalLpStakedUsd?: string
+  apr?: string
+  apy?: string
+  bananaPrice?: number
+  lpValueUsd?: number
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
@@ -132,6 +137,12 @@ export interface Network {
 export interface BlockState {
   currentBlock: number
   initialBlock: number
+}
+
+export interface Tag {
+  pid: number
+  text: string
+  color: string
 }
 
 export interface Stats {
@@ -374,6 +385,7 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  tags: Tag[]
 }
 
 export interface PoolsState {

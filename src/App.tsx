@@ -35,6 +35,7 @@ const IazoPage = lazy(() => import('./views/Iazos/components/IazoPage'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
+const Bills = lazy(() => import('./views/Bills'))
 const Swap = lazy(() => import('./views/Swap'))
 const Pool = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
@@ -215,6 +216,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/vaults">
               <Vaults />
+            </Route>
+            <Route path="/bills">
+              <Bills />
             </Route>
             <Route path="/admin-pools">
               <AdminPools />
