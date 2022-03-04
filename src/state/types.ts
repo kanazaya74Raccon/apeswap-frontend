@@ -108,7 +108,6 @@ export interface Vault extends VaultConfig {
 export interface NfaStakingPool extends NfaStakingPoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
-  endBlock?: number
   apr?: number
   userData?: {
     allowance: boolean
