@@ -3549,6 +3549,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 188,
+    tokenName: 'FRONT',
+    image: 'FRONT.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.front,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x1f875b9Be60b7bccac6555D5f9fc931Ae5Ff032B',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://frontier.xyz/',
+    harvest: true,
+    tokenPerBlock: `0.038387345679012345`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
