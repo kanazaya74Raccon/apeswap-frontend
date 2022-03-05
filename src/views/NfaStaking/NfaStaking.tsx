@@ -3,13 +3,14 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled, { keyframes } from 'styled-components'
 import { Heading, Text, Card, Checkbox } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+
 import { partition } from 'lodash'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
+import { useTranslation } from '../../contexts/Localization'
 
 const float = keyframes`
   0% {transform: translate3d(0px, 0px, 0px);}
@@ -289,7 +290,7 @@ const NfaStaking: React.FC = () => {
   const isActive = !pathname.includes('history')
   const size: Size = useWindowSize()
   const allNfaStakingPools = useNfaStakingPools()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -332,7 +333,7 @@ const NfaStaking: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'NFA Staking')}
+            {t('NFA Staking')}
           </StyledHeading>
           {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}
         </HeadingContainer>
@@ -351,7 +352,7 @@ const NfaStaking: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

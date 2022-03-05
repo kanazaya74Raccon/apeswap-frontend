@@ -5,7 +5,7 @@ import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -63,7 +63,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   addLiquidityUrl,
   isApproved,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
@@ -125,7 +125,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   return (
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start">
-        <StyledText>{TranslateString(999, 'Staked')}</StyledText>
+        <StyledText>{t('Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>

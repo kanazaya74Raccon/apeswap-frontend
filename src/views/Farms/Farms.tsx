@@ -19,7 +19,7 @@ import useWindowSize, { Size } from 'hooks/useDimensions'
 import { Farm } from 'state/types'
 import { QuoteToken } from 'config/constants/types'
 import { orderBy } from 'lodash'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import MarketingModalCheck from 'components/MarketingModalCheck'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
@@ -61,7 +61,7 @@ const Farms: React.FC = () => {
   const size: Size = useWindowSize()
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const bananaPrice = usePriceBananaBusd()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
@@ -346,7 +346,7 @@ const Farms: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {TranslateString(999, 'Stake LP tokens to earn BANANA')}
+            {t('Stake LP tokens to earn BANANA')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
@@ -365,7 +365,7 @@ const Farms: React.FC = () => {
               <FarmTabButtons />
               <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                 <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
+                <StyledText> {t('Staked')}</StyledText>
               </ToggleWrapper>
             </ButtonCheckWrapper>
             {isDark ? (

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { useWeb3React } from '@web3-react/core'
@@ -9,6 +9,7 @@ import { useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import StakedAction from './StakedAction'
+import { useTranslation } from '../../../../../contexts/Localization'
 
 export interface ActionPanelProps {
   farm: DualFarm
@@ -99,7 +100,7 @@ const StakedValueText = styled(Text)`
 `
 
 const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
   const { account } = useWeb3React()
 
@@ -141,7 +142,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
             </ValueContainer>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontSize="12px">{TranslateString(999, 'Stake:')}</StyledText>
+                <StyledText fontSize="12px">{t('Stake:')}</StyledText>
                 <LinkExternal href={BASE_ADD_LIQUIDITY_URL}>
                   <StyledText fontSize="12px">{farm.stakeTokens.token0.symbol}</StyledText>
                 </LinkExternal>
@@ -164,7 +165,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </Flex>
           <ValueContainerNoneLarge>
             <ValueWrapper>
-              <StyledText fontSize="12px">{TranslateString(736, 'APR:')}</StyledText>
+              <StyledText fontSize="12px">{t('APR:')}</StyledText>
             </ValueWrapper>
           </ValueContainerNoneLarge>
           <ActionContainer>
@@ -173,7 +174,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
         </Flex>
       </Container>
       <StyledLinkExternal href={blockExplorer} fontWeight={800}>
-        {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
+        {t(`View on ${NETWORK_LABEL[chainId]}Scan`)}
       </StyledLinkExternal>
     </>
   )

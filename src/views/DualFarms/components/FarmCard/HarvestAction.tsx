@@ -6,7 +6,7 @@ import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AutoRenewIcon, ButtonSquare, useModal } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useMiniChefHarvest } from 'hooks/useHarvest'
 import { useDualFarmApprove } from 'hooks/useApprove'
 import { useDualFarmStake } from 'hooks/useStake'
@@ -25,7 +25,7 @@ interface DualFarmProps {
 const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const { pid, stakeTokenAddress, stakeTokens } = dualFarm
   const { library, account } = useActiveWeb3React()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const rewardRef = useRef(null)
   const { onStake } = useDualFarmStake(pid)
   const [pendingTx, setPendingTx] = useState(false)
@@ -80,7 +80,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           onClick={handleApprove}
           endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
         >
-          {TranslateString(999, 'ENABLE')}
+          {t('ENABLE')}
         </StyledButtonSquare>
       )
     }
@@ -91,7 +91,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
           onClick={onPresentDeposit}
           endIcon={stakeTx && <AutoRenewIcon spin color="currentColor" />}
         >
-          {TranslateString(999, 'STAKE LP')}
+          {t('STAKE LP')}
         </StyledButtonSquare>
       )
     }
@@ -105,7 +105,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
         }}
         endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
       >
-        {TranslateString(999, 'HARVEST')}
+        {t('HARVEST')}
       </StyledButtonSquare>
     )
   }

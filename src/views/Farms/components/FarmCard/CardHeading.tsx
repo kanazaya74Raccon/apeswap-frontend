@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -10,6 +10,7 @@ import { useWeb3React } from '@web3-react/core'
 import HarvestAction from './HarvestAction'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
 import ExpandableSectionButton from './ExpandableSectionButton'
+import { useTranslation } from '../../../../contexts/Localization'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -255,7 +256,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpSymbol,
   showExpandableSection,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { earnings } = useFarmUser(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
@@ -308,10 +309,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           )}
           <StyledFlexEarnedSmall>
             <StyledText4 color="primary" pr="3px">
-              {TranslateString(999, 'Banana ')}
+              {t('Banana ')}
             </StyledText4>
             <StyledText2 color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
+              {t('Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
@@ -320,10 +321,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {TranslateString(999, 'Banana ')}
+                {t('Banana ')}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Earned')}
+                {t('Earned')}
               </StyledText2>
             </Flex>
             <StyledText3>{displayBalance}</StyledText3>

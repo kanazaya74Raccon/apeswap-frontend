@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
@@ -230,7 +230,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   stakingTokenAddress,
   image,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { userData, isPair, token0, token1, pid, burning } = vault
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -361,7 +361,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Staked')}
+                {t('Staked')}
               </StyledText2>
             </Flex>
             <StyledText3>

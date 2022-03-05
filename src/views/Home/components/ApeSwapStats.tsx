@@ -2,9 +2,10 @@ import React from 'react'
 import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { useFetchHomepageStats, useHomepageStats } from 'state/hooks'
-import useI18n from 'hooks/useI18n'
+
 import { BANANA_PER_BLOCK } from 'config'
 import CardValue from './CardValue'
+import { useTranslation } from '../../../contexts/Localization'
 
 const StyledBananaStats = styled(Card)`
   width: 336px;
@@ -67,7 +68,7 @@ const StyledText = styled(Text)`
 
 const ApeSwapStats = () => {
   useFetchHomepageStats()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const stats = useHomepageStats()
 
@@ -75,30 +76,30 @@ const ApeSwapStats = () => {
     <StyledBananaStats>
       <StyledCardBody>
         <Heading size="lg" mb="8px" textAlign="center" fontWeight={800}>
-          {TranslateString(534, 'ApeSwap Stats')}
+          {t('ApeSwap Stats')}
         </Heading>
         <GreyRow>
-          <StyledText fontSize="14px">{TranslateString(536, 'TOTAL VALUE LOCKED')}</StyledText>
+          <StyledText fontSize="14px">{t('TOTAL VALUE LOCKED')}</StyledText>
           {stats?.tvl && <CardValue fontSize="14px" value={stats?.tvl} prefix="$" fontWeight={600} />}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px">{TranslateString(536, 'USD MARKET CAP')}</StyledText>
+          <StyledText fontSize="14px">{t('USD MARKET CAP')}</StyledText>
           {stats?.marketCap && (
             <CardValue fontSize="14px" value={stats?.marketCap} decimals={0} prefix="$" fontWeight={600} />
           )}
         </Row>
         <GreyRow>
-          <StyledText fontSize="14px">{TranslateString(536, 'BANANA IN CIRCULATION')}</StyledText>
+          <StyledText fontSize="14px">{t('BANANA IN CIRCULATION')}</StyledText>
           {stats?.circulatingSupply && <CardValue fontSize="14px" value={stats?.circulatingSupply} fontWeight={600} />}
         </GreyRow>
         <Row>
-          <StyledText fontSize="14px">{TranslateString(536, 'GNANA IN CIRCULATION')}</StyledText>
+          <StyledText fontSize="14px">{t('GNANA IN CIRCULATION')}</StyledText>
           {stats?.gnanaCirculatingSupply && (
             <CardValue fontSize="14px" value={stats?.gnanaCirculatingSupply} decimals={0} fontWeight={600} />
           )}
         </Row>
         <GreyRow>
-          <StyledText fontSize="14px">{TranslateString(538, 'TOTAL BANANA BURNED')}</StyledText>
+          <StyledText fontSize="14px">{t('TOTAL BANANA BURNED')}</StyledText>
           {stats?.burntAmount && <CardValue fontSize="14px" decimals={0} value={stats?.burntAmount} fontWeight={600} />}
         </GreyRow>
         <Row>
@@ -108,7 +109,7 @@ const ApeSwapStats = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(540, 'DISTRIBUTED BANANA/BLOCK')}
+              {t('DISTRIBUTED BANANA/BLOCK')}
             </a>
           </StyledText>
           <CardValue fontSize="14px" decimals={0} value={bananaPerBlock} fontWeight={600} />

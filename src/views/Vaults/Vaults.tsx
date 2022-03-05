@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { CHAIN_ID } from 'config/constants/chains'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useVaults, useNetworkChainId, usePollVaultsData } from 'state/hooks'
@@ -457,7 +457,7 @@ const Vaults: React.FC = () => {
   const size: Size = useWindowSize()
   const { vaults: initVaults } = useVaults()
   const [allVaults, setAllVaults] = useState(initVaults)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
@@ -594,7 +594,7 @@ const Vaults: React.FC = () => {
     const headerContents = (
       <HeadingContainer>
         <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
-          {TranslateString(999, 'Burning Vaults')}
+          {t('Burning Vaults')}
         </StyledHeading>
       </HeadingContainer>
     )
@@ -622,11 +622,11 @@ const Vaults: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBurnOnly(!burnOnly)}>
                   <StyledCheckbox checked={burnOnly} onChange={() => setBurnOnly(!burnOnly)} />
-                  <StyledText> {TranslateString(1116, 'Burning')}</StyledText>
+                  <StyledText> {t('Burning')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

@@ -1,7 +1,7 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
@@ -294,7 +294,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   earnTokenImage,
   showExpandableSection,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { userData, tokenPerBlock, totalStaked } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -355,10 +355,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           )}
           <StyledFlexEarnedSmall>
             <StyledText4 color="primary" pr="3px">
-              {TranslateString(999, `${earnToken}`)}
+              {t(`${earnToken}`)}
             </StyledText4>
             <StyledText2 color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
+              {t('Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
@@ -367,10 +367,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {TranslateString(999, `${earnToken}`)}
+                {t(`${earnToken}`)}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Earned')}
+                {t('Earned')}
               </StyledText2>
             </Flex>
             <StyledText3>{displayBalance}</StyledText3>

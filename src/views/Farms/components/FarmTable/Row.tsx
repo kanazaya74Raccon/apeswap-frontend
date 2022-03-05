@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
@@ -137,7 +137,7 @@ const StyledUnlockButton = styled(UnlockButtonSquare)`
 const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details, liquidity, farmsPrices } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
 
   const toggleActionPanel = (e) => {
@@ -241,12 +241,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
             </CellLayout>
           </FarmMobileCell>
           <EarnedMobileCell>
-            <CellLayout label={TranslateString(1072, 'Earned')}>
+            <CellLayout label={t('Earned')}>
               <Earned {...props.earned} />
             </CellLayout>
           </EarnedMobileCell>
           <AprMobileCell>
-            <CellLayout label={TranslateString(736, 'APR')}>
+            <CellLayout label={t('APR')}>
               <Apr {...props.apr} hideButton addLiquidityUrl={addLiquidityUrl} />
             </CellLayout>
           </AprMobileCell>

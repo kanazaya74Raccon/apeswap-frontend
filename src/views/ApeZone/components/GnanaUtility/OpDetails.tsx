@@ -1,6 +1,6 @@
 import React from 'react'
 import { SvgProps } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 import { OpCon, OpDesc, OpDescCon, OpHeading, OpHeadingCon, AnchorTag, ActionButton } from './styles'
 
@@ -25,7 +25,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
   actionHref,
   ...props
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <OpCon style={{ ...OpStyle }} {...props}>
@@ -41,7 +41,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
 
       <AnchorTag href={actionHref}>
         <ActionButton onClick={onAction} fullWidth fontSize="14px">
-          {TranslateString(292, ActionTitle)}
+          {t(ActionTitle)}
         </ActionButton>
       </AnchorTag>
     </OpCon>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
 import ifos, { pastIfos } from 'config/constants/ifo'
@@ -159,7 +159,7 @@ const firstPastIfoId = pastIfos.length > 0 ? pastIfos[0].id : undefined
 const activeIfoId = ifos.find((ifo) => ifo.isActive).id
 
 const Ifos = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const [tabOption, setTabOption] = React.useState<TabOption>('current')
   const [projectId, setProjectId] = React.useState<string | undefined>(activeIfoId)
 
@@ -183,7 +183,7 @@ const Ifos = () => {
       <Header>
         <HeaderContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
-            {TranslateString(999, 'Initial Ape Offerings')}
+            {t('Initial Ape Offerings')}
           </StyledHeading>
         </HeaderContainer>
 

@@ -11,7 +11,7 @@ import useTheme from 'hooks/useTheme'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import FarmCard from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
@@ -400,7 +400,7 @@ const DualFarms: React.FC = () => {
   const size: Size = useWindowSize()
   const { path } = useRouteMatch()
   const { pathname } = useLocation()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const bananaPrice = usePriceBananaBusd()
   const { account } = useWeb3React()
   const farmsLP = useDualFarms()
@@ -596,7 +596,7 @@ const DualFarms: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {TranslateString(999, 'Stake LP tokens to earn Rewards')}
+            {t('Stake LP tokens to earn Rewards')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
@@ -615,7 +615,7 @@ const DualFarms: React.FC = () => {
               <FarmTabButtons />
               <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                 <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                <StyledText> {TranslateString(1116, 'Staked')}</StyledText>
+                <StyledText> {t('Staked')}</StyledText>
               </ToggleWrapper>
             </ButtonCheckWrapper>
             {isDark ? (

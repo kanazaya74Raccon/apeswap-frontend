@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Heading } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import nfts from 'config/constants/nfts'
 import SortNfts from './components/SortNfts'
@@ -72,17 +72,17 @@ const StyledAnchor = styled.a`
 `
 
 const Nft = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <>
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mt={0} color="white" fontWeight={800}>
-            {TranslateString(999, 'Non Fungible Apes')}
+            {t('Non Fungible Apes')}
           </StyledHeading>
           <StyledHeading as="h1" mb="8px" mt={1} color="white" fontWeight={800}>
-            {TranslateString(999, 'Collection')}
+            {t('Collection')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
@@ -95,7 +95,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'More Info')}
+              {t('More Info')}
             </StyledAnchor>
           </Text>
           <OwnedNfts />
@@ -105,7 +105,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'Checkout the NFA aftermarket on NFTKEY!')}
+              {t('Checkout the NFA aftermarket on NFTKEY!')}
             </StyledAnchor>
           </Text>
         </StyledHero>

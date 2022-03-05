@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useI18n from 'hooks/useI18n'
+
 import { usePriceBananaBusd } from 'state/hooks'
 import useAllEarnings from 'hooks/useAllEarnings'
 import BigNumber from 'bignumber.js'
 import CardValue from '../CardValue'
+import { useTranslation } from '../../../../contexts/Localization'
 
 const BananaHarvestUsdBalance = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const [pending, setPending] = useState(0)
   const { account } = useWeb3React()
   const allEarnings = useAllEarnings()
@@ -24,7 +25,7 @@ const BananaHarvestUsdBalance = () => {
   if (!account) {
     return (
       <Text color="textDisabled" style={{ lineHeight: '60px', fontWeight: 700 }}>
-        {TranslateString(298, 'Locked')}
+        {t('Locked')}
       </Text>
     )
   }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import UnlockButton from 'components/UnlockButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { DualFarm } from 'state/types'
@@ -124,7 +124,7 @@ const ArrowContainer = styled(Flex)`
 const Row: React.FunctionComponent<RowProps> = (props) => {
   const { details } = props
   const [actionPanelToggled, setActionPanelToggled] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const toggleActionPanel = () => {
     setActionPanelToggled(!actionPanelToggled)
@@ -201,12 +201,12 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
             </CellLayout>
           </FarmMobileCell>
           <EarnedMobileCell>
-            <CellLayout label={TranslateString(1072, 'Earned')}>
+            <CellLayout label={t('Earned')}>
               <Earned {...props.earned} />
             </CellLayout>
           </EarnedMobileCell>
           <AprMobileCell>
-            <CellLayout label={TranslateString(736, 'APR')}>
+            <CellLayout label={t('APR')}>
               <Apr {...props.apr} hideButton addLiquidityUrl={addLiquidityUrl} />
             </CellLayout>
           </AprMobileCell>

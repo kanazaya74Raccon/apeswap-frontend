@@ -2,19 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import { ButtonSquare, useWalletModal } from '@apeswapfinance/uikit'
 import useAuth from 'hooks/useAuth'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 const UnlockButton = (props) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
   const { large } = props
 
   return large ? (
-    <LargeButton onClick={onPresentConnectModal}>{TranslateString(292, 'UNLOCK WALLET')}</LargeButton>
+    <LargeButton onClick={onPresentConnectModal}>{t('UNLOCK WALLET')}</LargeButton>
   ) : (
     <ButtonSquare onClick={onPresentConnectModal} {...props}>
-      {TranslateString(292, 'UNLOCK WALLET')}
+      {t('UNLOCK WALLET')}
     </ButtonSquare>
   )
 }

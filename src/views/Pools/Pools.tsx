@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -497,7 +497,7 @@ const Pools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
@@ -688,7 +688,7 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
-            {TranslateString(999, 'Banana Pools')}
+            {t('Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
@@ -716,11 +716,11 @@ const Pools: React.FC = () => {
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                  <StyledText> {TranslateString(1116, 'GNANA')}</StyledText>
+                  <StyledText> {t('GNANA')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
                   <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />

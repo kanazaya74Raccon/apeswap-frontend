@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { NfaStakingPool } from 'state/types'
 import {
   Flex,
@@ -77,7 +77,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   tier,
   stakedNfas,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { sousId } = pool
 
@@ -122,13 +122,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return <StyledButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `STAKE NFA`)}</StyledButtonSquare>
+    return <StyledButtonSquare onClick={onPresentDeposit}>{t(`STAKE NFA`)}</StyledButtonSquare>
   }
 
   return (
     <StyledFlex justifyContent="space-between" alignItems="center" mt="5px">
       <Flex flexDirection="column" alignItems="flex-start" marginRight="6px">
-        <StyledText>{TranslateString(999, 'Staked')}</StyledText>
+        <StyledText>{t('Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>

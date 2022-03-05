@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
+
 import { useBlock } from 'state/block/hooks'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -16,6 +16,7 @@ import Page from 'components/layout/Page'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
+import { useTranslation } from '../../contexts/Localization'
 
 interface LabelProps {
   active?: boolean
@@ -465,7 +466,7 @@ const AdminPools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
@@ -575,7 +576,7 @@ const AdminPools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'Admin Pools')}
+            {t('Admin Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <AdminText>
@@ -600,7 +601,7 @@ const AdminPools: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

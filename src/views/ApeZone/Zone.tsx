@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-
-import { TranslateString } from 'utils/translateTextHelpers'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import Spacer from 'components/Spacer'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
@@ -27,6 +26,7 @@ import {
 
 const Zone = () => {
   const [readingMore, setReadingMore] = useState(false)
+  const { t } = useTranslation()
 
   const toggleReadMore = () => {
     setReadingMore(!readingMore)
@@ -37,10 +37,10 @@ const Zone = () => {
       <Header>
         <HeaderContainer>
           <StyledHeading as="h1" mt={0} color="white">
-            {TranslateString(999, 'Golden')}
+            {t('Golden')}
           </StyledHeading>
           <StyledHeading as="h1" mb="8px" mt={1} color="white">
-            {TranslateString(999, 'Banana')}
+            {t('Banana')}
           </StyledHeading>
         </HeaderContainer>
       </Header>

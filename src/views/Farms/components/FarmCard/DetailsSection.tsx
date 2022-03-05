@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Home/components/HotFarms/FarmCardForHome'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
@@ -79,7 +79,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   farmLp,
   farm,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
 
   const { stakedBalance } = useFarmUser(pid)
@@ -115,34 +115,34 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   return (
     <Wrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">{TranslateString(999, 'Multiplier:')}</StyledText>
+        <StyledText fontSize="12px">{t('Multiplier:')}</StyledText>
         <Multiplier multiplier={multiplier} />
       </ValueWrapper>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(316, 'Liquidity')}:</StyledText>
+        <StyledText fontSize="12px">{t('Liquidity')}:</StyledText>
         <StyledText fontSize="12px">{totalValueFormated}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
+        <StyledText fontSize="12px">{t('Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledText fontSize="12px">{t('Staked Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">{totalValuePersonalFormated}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledText fontSize="12px">{t('Earned Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">{displayHarvestBalance}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on BscScan')}
+          {t('View on BscScan')}
         </StyledLink>
       </Flex>
       {farm.projectLink && (
         <Flex justifyContent="center">
           <StyledLink external href={farm.projectLink} bold={false}>
-            {TranslateString(356, 'View Project Site')}
+            {t('View Project Site')}
           </StyledLink>
         </Flex>
       )}

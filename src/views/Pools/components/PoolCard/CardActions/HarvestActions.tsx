@@ -8,7 +8,7 @@ import useReward from 'hooks/useReward'
 import { useSousHarvest } from 'hooks/useHarvest'
 import { useSousStake } from 'hooks/useStake'
 import { useSousEmergencyWithdraw } from 'hooks/useUnstake'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const StyledButtonSquare = styled(ButtonSquare)`
@@ -33,7 +33,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   compound,
   emergencyWithdraw,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, tokenDecimals)
   const rewardRef = useRef(null)
   const rewardRefApeHarder = useRef(null)
@@ -59,7 +59,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             setPendingTx(false)
           }}
         >
-          {TranslateString(999, 'WITHDRAW')}
+          {t('WITHDRAW')}
         </StyledButtonSquare>
       )
     }
@@ -78,7 +78,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
             setPendingTx(false)
           }}
         >
-          {TranslateString(999, 'APE HARDER')}
+          {t('APE HARDER')}
         </StyledButtonSquare>
       )
     }
@@ -96,7 +96,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           setPendingTx(false)
         }}
       >
-        {TranslateString(999, 'HARVEST')}
+        {t('HARVEST')}
       </StyledButtonSquare>
     )
   }

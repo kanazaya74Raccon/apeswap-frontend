@@ -4,7 +4,7 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import Nfts from 'config/constants/nfts'
 import ModalActions from 'components/ModalActions'
-import useI18n from '../../../hooks/useI18n'
+import { useTranslation } from '../../../contexts/Localization'
 
 interface WithdrawModalProps {
   onConfirm: (amount: number[]) => void
@@ -37,10 +37,10 @@ const Nfa = styled.div<{ active: boolean }>`
 `
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, stakedNfas }) => {
-  const TranslateString = useI18n()
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
   const mappedNfas = Nfts.filter((nfa) => stakedNfas.includes(nfa.index))
+  const { t } = useTranslation()
 
   const handleNfaChange = (index) => {
     if (selectedNfas.includes(index)) {
@@ -53,7 +53,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
   return (
     <Modal title="Withdraw NFAs" onDismiss={onDismiss}>
       <Text marginBottom="20px">
-        NFAs Selected:
+        {t('NFAs Selected')}:
         {selectedNfas.map((index) => {
           return ` ${index},`
         })}
@@ -68,12 +68,12 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
             )
           })
         ) : (
-          <Text marginBottom="20px">You do not have any NFAs staked 😢</Text>
+          <Text marginBottom="20px">{t('You do not have any NFAs staked')} 😢</Text>
         )}
       </OwnedNfaWrapper>
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
+          {t('Cancel')}
         </Button>
         <Button
           fullWidth
@@ -86,7 +86,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalActions>
     </Modal>

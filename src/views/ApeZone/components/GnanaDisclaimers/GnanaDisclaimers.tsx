@@ -1,5 +1,5 @@
 import React from 'react'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 import {
   InfoSect1,
@@ -42,7 +42,7 @@ const Info: React.FC<InfoProps> = ({ content }) => {
 }
 
 export const GnanaDisclaimers: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const learnMore = () => {
     return window.open('https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/gnana', '_blank')
@@ -119,7 +119,7 @@ export const GnanaDisclaimers: React.FC = () => {
 
       <Footer>
         <LearnMoreBtn onClick={learnMore} size="md">
-          {TranslateString(292, 'LEARN MORE')}
+          {t('LEARN MORE')}
         </LearnMoreBtn>
       </Footer>
     </Container>

@@ -7,7 +7,7 @@ import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswap
 import { useWeb3React } from '@web3-react/core'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useDualFarmStake } from 'hooks/useStake'
 import { useMiniChefUnstake } from 'hooks/useUnstake'
@@ -35,7 +35,7 @@ const StyledButton = styled(Button)`
 `
 
 const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
@@ -85,7 +85,7 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
-        <StyledButton onClick={onPresentDeposit}>{TranslateString(999, 'STAKE LP')}</StyledButton>
+        <StyledButton onClick={onPresentDeposit}>{t('STAKE LP')}</StyledButton>
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>

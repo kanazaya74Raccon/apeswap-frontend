@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { CHAIN_ID } from 'config/constants/chains'
 import { Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useAllHarvest } from 'hooks/useHarvest'
 import { useNetworkChainId } from 'state/hooks'
 import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
@@ -112,7 +112,7 @@ const FarmedStakingCard = () => {
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
   const networkChainId = useNetworkChainId()
   const { account, chainId } = useWeb3React()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
 
@@ -149,9 +149,9 @@ const FarmedStakingCard = () => {
       <CardHeader>
         {renderHarvestHeader()}
         <HeaderText>
-          {TranslateString(542, 'BANANA')}
+          {t('BANANA')}
           <br />
-          {TranslateString(542, 'Earnings')}
+          {t('Earnings')}
         </HeaderText>
       </CardHeader>
       <CardBody>
@@ -161,14 +161,14 @@ const FarmedStakingCard = () => {
               <BananaHarvestBalance />
               <FlexRow>
                 <BananaHarvestUsdBalance />
-                <Label>{TranslateString(544, ' total harvest value')}</Label>
+                <Label>{t(' total harvest value')}</Label>
               </FlexRow>
             </Block>
             <Block>
               <BananaWalletBalance />
               <FlexRow>
                 <BananaWalletUsdBalance />
-                <Label>{TranslateString(546, 'in BANANA in Wallet')}</Label>
+                <Label>{t('in BANANA in Wallet')}</Label>
               </FlexRow>
             </Block>
           </HarvestDiv>
@@ -186,9 +186,7 @@ const FarmedStakingCard = () => {
                 onClick={harvestAllFarms}
                 fullWidth
               >
-                {pendingTx
-                  ? TranslateString(548, 'COLLECTING BANANA')
-                  : TranslateString(999, `HARVEST ALL (${balancesWithValue.length})`)}
+                {pendingTx ? t('COLLECTING BANANA') : t(`HARVEST ALL (%length%)`, { length: balancesWithValue.length })}
               </StyledButton>
             </Reward>
           ) : (

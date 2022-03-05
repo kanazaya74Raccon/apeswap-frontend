@@ -8,7 +8,7 @@ import { getContract } from 'utils'
 import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useHarvest } from 'hooks/useHarvest'
 import { useApprove } from 'hooks/useApprove'
 import useStake from 'hooks/useStake'
@@ -29,7 +29,7 @@ interface FarmCardActionsProps {
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol, addLiquidityUrl }) => {
   const { library, account } = useActiveWeb3React()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const rewardRef = useRef(null)
   const rewardRefPos = useRef(null)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
@@ -87,14 +87,14 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
     if (!isApproved) {
       return (
         <StyledButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
-          {TranslateString(999, 'ENABLE')}
+          {t('ENABLE')}
         </StyledButtonSquare>
       )
     }
     if (rawStakedBalance === 0) {
       return (
         <StyledButtonSquare className="noClick" onClick={onPresentDeposit}>
-          {TranslateString(999, 'STAKE LP')}
+          {t('STAKE LP')}
         </StyledButtonSquare>
       )
     }
@@ -112,7 +112,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
           setPendingTx(false)
         }}
       >
-        {TranslateString(999, 'HARVEST')}
+        {t('HARVEST')}
       </StyledButtonSquare>
     )
   }

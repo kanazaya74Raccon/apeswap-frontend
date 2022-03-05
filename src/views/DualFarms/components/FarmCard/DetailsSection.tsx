@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { BLOCK_EXPLORER, NETWORK_LABEL } from 'config/constants/chains'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
@@ -60,7 +60,7 @@ const StyledLink = styled(Link)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidityUrl, farm }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
 
   const blockExplorer = `${BLOCK_EXPLORER[chainId]}/address/${farm?.stakeTokenAddress}`
@@ -100,12 +100,12 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidit
         <StyledText fontSize="12px">{rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}</StyledText>
       </ValueWrapper>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
+        <StyledText fontSize="12px">{t('Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={blockExplorer} bold={false} fontWeight={800}>
-          {TranslateString(356, `View on ${NETWORK_LABEL[chainId]}Scan`)}
+          {t(`View on %chain% Scan`, { chain: NETWORK_LABEL[chainId] })}
         </StyledLink>
       </Flex>
     </Wrapper>

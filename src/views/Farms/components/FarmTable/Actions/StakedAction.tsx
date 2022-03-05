@@ -7,7 +7,7 @@ import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswap
 import { useWeb3React } from '@web3-react/core'
 import { useFarmUser } from 'state/hooks'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useStake from 'hooks/useStake'
 import useUnstake from 'hooks/useUnstake'
@@ -35,7 +35,7 @@ const StyledButton = styled(Button)`
 `
 
 const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, addLiquidityUrl }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const rewardRefPos = useRef(null)
   const rewardRefNeg = useRef(null)
@@ -83,7 +83,7 @@ const Staked: React.FunctionComponent<FarmWithStakedValue> = ({ pid, lpSymbol, a
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <IconButtonWrapper>
-        <StyledButton onClick={onPresentDeposit}>{TranslateString(999, 'STAKE LP')}</StyledButton>
+        <StyledButton onClick={onPresentDeposit}>{t('STAKE LP')}</StyledButton>
       </IconButtonWrapper>
     ) : (
       <IconButtonWrapperStake>

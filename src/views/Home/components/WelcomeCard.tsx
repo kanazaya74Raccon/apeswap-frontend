@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, CardBody, Heading, Text, Flex, Button } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useNetworkChainId } from 'state/hooks'
 import { CHAIN_ID } from 'config/constants/chains'
 
@@ -96,7 +96,7 @@ const StyledButton = styled(Button)`
 `
 
 const WelcomeCard = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const chainId = useNetworkChainId()
   return (
     <WalcomeWrapper>
@@ -112,9 +112,9 @@ const WelcomeCard = () => {
           </CardBody>
         </StyledWelcomeCard>
         <Heading as="h1" size="lg" mb="6px" color="contrast" fontWeight={800}>
-          {TranslateString(576, 'Welcome all Apes!')}
+          {t('Welcome all Apes!')}
         </Heading>
-        <StyledText color="textSubtle">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
+        <StyledText color="textSubtle">{t('Why be a human, when you can be an ape?')}</StyledText>
         <a href="https://apeswap.gitbook.io/apeswap-finance" target="_blank" rel="noopener noreferrer">
           <StyledButton id="Beginner Ape" fullWidth>
             BEGINNER APE? START HERE

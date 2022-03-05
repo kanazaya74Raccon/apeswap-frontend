@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Card, CardBody, Heading, Text, Flex } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { FarmPool } from 'state/types'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { farmsConfig } from 'config/constants'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { useAllPools } from 'state/hooks'
@@ -40,7 +40,7 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 `
 
 const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const pools = useAllPools()
   const bscScanAddress = `https://bscscan.com/address/${data.address}`
   let farmName = data.name
@@ -67,19 +67,19 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
             token1={filteredFarm?.tokenSymbol}
           />
           <Heading fontSize="16px" mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
-            {TranslateString(534, `${farmName}`)}
+            {t(`${farmName}`)}
           </Heading>
         </Flex>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Your TVL')}</Text>
+          <Text fontSize="14px">{t('Your TVL')}</Text>
           <CardValue fontSize="14px" decimals={2} value={data.stakedTvl} prefix="$" />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Your APR')}</Text>
+          <Text fontSize="14px">{t('Your APR')}</Text>
           <CardValue fontSize="14px" decimals={2} value={data.apr * 100} suffix="%" />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Your Pending Rewards')}</Text>
+          <Text fontSize="14px">{t('Your Pending Rewards')}</Text>
           <div>
             <CardValue fontSize="14px" decimals={2} value={data.pendingReward} />
             <CardValue fontSize="10px" decimals={2} value={data.pendingRewardUsd} prefix="($" suffix=")" />

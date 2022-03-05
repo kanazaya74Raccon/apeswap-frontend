@@ -4,7 +4,7 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
 import { useProfile } from 'state/hooks'
-import useI18n from '../../../hooks/useI18n'
+import { useTranslation } from '../../../contexts/Localization'
 
 interface DepositModalProps {
   tier: number
@@ -41,7 +41,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
   const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => nfa.attributes.rarityTierNumber === tier)
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const handleNfaChange = (index) => {
     if (selectedNfas.includes(index)) {
@@ -52,9 +52,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
   }
 
   return (
-    <Modal title={`${TranslateString(316, 'Deposit')} Tier ${tier} NFAs`} onDismiss={onDismiss}>
+    <Modal title={`${t('Deposit')} ${t('Tier')} ${tier} ${t('NFAs')}`} onDismiss={onDismiss}>
       <Text marginBottom="20px">
-        NFAs Selected:
+        {t('NFAs Selected')}:
         {selectedNfas?.map((index) => {
           return ` ${index},`
         })}
@@ -69,12 +69,12 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
             )
           })
         ) : (
-          <Text marginBottom="20px">You do not have any tier {tier} NFAs in your wallet 😢</Text>
+          <Text marginBottom="20px">{t('You do not have any tier %tier% NFAs in your wallet', { tier })} 😢</Text>
         )}
       </OwnedNfaWrapper>
       <ModalActions>
         <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {TranslateString(462, 'Cancel')}
+          {t('Cancel')}
         </Button>
         <Button
           fullWidth
@@ -87,7 +87,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalActions>
     </Modal>

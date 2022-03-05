@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import {
   Flex,
   Heading,
@@ -90,7 +90,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isApproved,
   firstStake,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { stakingToken, tokenDecimals, stakingLimit, sousId } = pool
 
@@ -169,17 +169,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return (
-      <StyledButtonSquare onClick={onPresentDeposit}>
-        {TranslateString(999, `STAKE ${stakingTokenName}`)}
-      </StyledButtonSquare>
-    )
+    return <StyledButtonSquare onClick={onPresentDeposit}>{t(`STAKE ${stakingTokenName}`)}</StyledButtonSquare>
   }
 
   return (
     <StyledFlex justifyContent="space-between">
       <Flex flexDirection="column" justifyContent="space-between" marginRight="6px">
-        <StyledText>{TranslateString(999, 'Staked')}</StyledText>
+        <StyledText>{t('Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {displayBalance}
         </StyledHeadingGreen>

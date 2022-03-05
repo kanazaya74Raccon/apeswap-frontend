@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import BananaStats from 'views/Stats/components/BananaStats'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -96,7 +96,7 @@ const Stats: React.FC = () => {
   usePollFarms()
   useFetchStatsOverall()
   useFetchStats()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useActiveWeb3React()
   const yourStats = useStats()
   const stats = yourStats?.stats
@@ -106,7 +106,7 @@ const Stats: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
-            {TranslateString(999, 'Ape Stats')}
+            {t('Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
