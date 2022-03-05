@@ -977,6 +977,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  front: {
+    symbol: 'FRONT',
+    address: {
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
