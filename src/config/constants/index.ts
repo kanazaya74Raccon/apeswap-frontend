@@ -166,9 +166,6 @@ export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(
 const communityFarms = farms.filter((farm) => farm.isCommunity).map((farm) => farm.tokenSymbol)
 const farmsConfig = farms
 
-const zoneIfo = ApeZone.ifos
-export { zoneIfo }
-
 export { farmsConfig, communityFarms }
 export { default as poolsConfig } from './pools'
 export { default as vaultsConfig } from './vaults'

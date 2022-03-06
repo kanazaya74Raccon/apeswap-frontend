@@ -1,15 +1,18 @@
 import { Ifo } from './types'
+import { ContextApi } from '../../contexts/Localization/types'
 
-const ApeZone: { ifos: Ifo[] } = {
+const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
   ifos: [
     {
       id: 'trustnft',
       address: '', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
-      name: 'Trust NFT',
+      name: t('Trust NFT'),
       subTitle: `Decentralized NFT Loans & Marketplace`,
-      description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+      description: t(
+        `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+      ),
       launchDate: 'February 3rd',
       launchTime: '1:00 UTC',
       saleAmount: '30,000,000 TRUSTNFT',
@@ -29,9 +32,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0x0B3A1f44c51eE2B540F60E48E8E802fDe2473455', // Leave empty for "Coming Soon!"
       isActive: false,
       isLinear: false,
-      name: '99Starz',
+      name: t('99Starz'),
       subTitle: `The World's Biggest NFT Yield Ecosystem`,
-      description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
+      description: t(
+        `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
+      ),
       launchDate: 'December 11th',
       launchTime: '5:00 UTC',
       saleAmount: '500,000 STZ',
@@ -51,9 +56,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0x11D8aB92837085eA0e410EA96eDd8D751894933d', // Leave empty for "Coming Soon!"
       isActive: false,
       isLinear: false,
-      name: 'Galactic Arena',
-      subTitle: 'Welcome to the Galactic Arena!',
-      description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
+      name: t('Galactic Arena'),
+      subTitle: t('Welcome to the Galactic Arena!'),
+      description: t(
+        `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
+      ),
       launchDate: 'November 4th',
       launchTime: '16:00 UTC',
       saleAmount: '80,000,000 GAN',
@@ -73,9 +80,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0xF04c0efc1aBF1c98076a8ecEd2a68009ee55A0A9', // Leave empty for "Coming Soon!"
       isActive: false,
       isLinear: false,
-      name: 'NFTY Network',
-      subTitle: 'Decentralized NFT Gating Ecosystem',
-      description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
+      name: t('NFTY Network'),
+      subTitle: t('Decentralized NFT Gating Ecosystem'),
+      description: t(
+        `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
+      ),
       launchDate: 'September 29th',
       launchTime: '17:00 UTC',
       saleAmount: '30,800,000 NFTY',
@@ -95,9 +104,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0x1D51e7e0cB6f181489c9F24E396e54cb02D1EF0e', // Leave empty for "Coming Soon!"
       isActive: false,
       isLinear: false,
-      name: 'Dragonary',
-      subTitle: 'Decentralized NFT Gaming',
-      description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+      name: t('Dragonary'),
+      subTitle: t('Decentralized NFT Gaming'),
+      description: t(
+        `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+      ),
       launchDate: 'August 7th',
       launchTime: '16:00 UTC',
       saleAmount: '50,000,000 CYT',
@@ -119,9 +130,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0xf6718973d21F72845300Ee2ded2e4624CF06b06e', // Leave empty for "Coming Soon!"
       isActive: false,
       isLinear: false,
-      name: 'BiShares',
-      subTitle: 'Decentralized Index Funds',
-      description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+      name: t('BiShares'),
+      subTitle: t('Decentralized Index Funds'),
+      description: t(
+        `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+      ),
       launchDate: 'July 9th',
       launchTime: '03:00 UTC',
       saleAmount: '71429 BISON',
@@ -142,10 +155,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0xe3528182889afEAEADE455841b6CFE9AC1e53a03', // IAO Aux contract
       isActive: false,
       isLinear: false,
-      name: 'Hifi',
-      subTitle: 'Decentralized retro gaming ecosystem.',
-      description:
+      name: t('Hifi'),
+      subTitle: t('Decentralized retro gaming ecosystem.'),
+      description: t(
         'HiFi is a decentralized retro gaming ecosystem driven by its community. It uses staking and gameplay mining participation rewards to create a completely new DeFi gaming experience.',
+      ),
       launchDate: 'June 11',
       launchTime: '03:00 UTC',
       saleAmount: '80,000,000 HIFI',
@@ -165,10 +179,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0xF5413C7033ED5dF58b0F6A942BAEA1548a9AD2F4',
       isActive: false,
       isLinear: false,
-      name: 'ApeRocket',
-      subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
-      description:
+      name: t('ApeRocket'),
+      subTitle: t('DeFi yield farming aggregator and optimizer for Binance Smart Chain.'),
+      description: t(
         'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
+      ),
       launchDate: 'May. 25',
       launchTime: '03:00 UTC',
       saleAmount: '27,778 SPACE',
@@ -188,10 +203,11 @@ const ApeZone: { ifos: Ifo[] } = {
       address: '0x0aA255267CBE1cC9366509056A24608385F07617',
       isActive: false,
       isLinear: false,
-      name: 'Bitfresh',
-      subTitle: 'The first community-driven iGaming platform where everyone wins.',
-      description:
+      name: t('Bitfresh'),
+      subTitle: t('The first community-driven iGaming platform where everyone wins.'),
+      description: t(
         'Bitfresh is a blockchain-based community driven social iGaming experience that pays dividends to players and token holders. The platform is filled with reward systems to give players many ways to win and earn over time.',
+      ),
       launchDate: 'Apr. 24',
       launchTime: '03:00 UTC',
       saleAmount: '10,000,000 BFT',
@@ -206,6 +222,6 @@ const ApeZone: { ifos: Ifo[] } = {
       releaseBlockNumber: 6565331,
     },
   ],
-}
+})
 
 export default ApeZone

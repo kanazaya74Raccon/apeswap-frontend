@@ -2,6 +2,7 @@ import React from 'react'
 import { Nft } from 'config/constants/types'
 import styled from 'styled-components'
 import nfaAttributes from 'config/constants/nfaAttributes'
+import { useTranslation } from 'contexts/Localization'
 
 const AttributesHolder = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -55,12 +56,13 @@ export interface Nfa {
 
 const NfaAttributes: React.FC<Nfa> = ({ nfa }) => {
   const { baseColor, faceColor, frames, mouths, eyes, hats } = nfa.attributes
-  const base = nfaAttributes.find((attrib) => attrib.id === baseColor)
-  const face = nfaAttributes.find((attrib) => attrib.id === faceColor)
-  const frame = nfaAttributes.find((attrib) => attrib.id === frames)
-  const mouth = nfaAttributes.find((attrib) => attrib.id === mouths)
-  const eye = nfaAttributes.find((attrib) => attrib.id === eyes)
-  const hat = nfaAttributes.find((attrib) => attrib.id === hats)
+  const { t } = useTranslation()
+  const base = nfaAttributes(t).find((attrib) => attrib.id === baseColor)
+  const face = nfaAttributes(t).find((attrib) => attrib.id === faceColor)
+  const frame = nfaAttributes(t).find((attrib) => attrib.id === frames)
+  const mouth = nfaAttributes(t).find((attrib) => attrib.id === mouths)
+  const eye = nfaAttributes(t).find((attrib) => attrib.id === eyes)
+  const hat = nfaAttributes(t).find((attrib) => attrib.id === hats)
 
   return (
     <AttributesHolder>

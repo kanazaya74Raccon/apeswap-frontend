@@ -1,6 +1,8 @@
 import React from 'react'
 import { Heading, Text } from '@apeswapfinance/uikit'
-import { zoneIfo, ifosConfig } from 'config/constants'
+import { ifosConfig } from 'config/constants'
+import ApeZone from 'config/constants/apezone'
+import { useTranslation } from 'contexts/Localization'
 import IfoCardDescription from '../CardDescription/IfoCardDescription'
 import LinearVestingCard from '../LinearVesting'
 import FourPhaseVestingCard from '../FourPhaseVesting'
@@ -13,7 +15,8 @@ interface IfoCardProps {
 
 const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
   const ifo = React.useMemo(() => ifosConfig.find((each) => each.id === ifoId), [ifoId])
-  const gnanaIfo = React.useMemo(() => zoneIfo.find((each) => each.id === ifoId), [ifoId]) // TODO: Double check if this is correct GNANA project info
+  const { t } = useTranslation()
+  const gnanaIfo = React.useMemo(() => ApeZone(t).ifos.find((each) => each.id === ifoId), [ifoId]) // TODO: Double check if this is correct GNANA project info
 
   if (!ifo) {
     console.warn(`For project:${ifoId}, ifo configuration is not found`, ifo)
