@@ -4,6 +4,8 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
+import { ContextApi } from 'contexts/Localization/types'
+import { useTranslation } from 'contexts/Localization'
 import { useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import bscConfig from './chains/bscConfig'
@@ -17,14 +19,15 @@ const Menu = (props) => {
   const { tokenPrices } = useTokenPrices()
   const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
-  const currentMenu = () => {
+  const { t } = useTranslation()
+  const currentMenu = (translate: ContextApi['t']) => {
     if (chainId === CHAIN_ID.BSC) {
-      return bscConfig
+      return bscConfig(translate)
     }
     if (chainId === CHAIN_ID.MATIC) {
-      return maticConfig
+      return maticConfig(translate)
     }
-    return bscConfig
+    return bscConfig(translate)
   }
 
   return (
@@ -35,7 +38,7 @@ const Menu = (props) => {
       isDark={isDark}
       toggleTheme={toggleTheme}
       bananaPriceUsd={bananaPriceUsd}
-      links={currentMenu()}
+      links={currentMenu(t)}
       chainId={chainId}
       switchNetwork={switchNetwork}
       profile={{

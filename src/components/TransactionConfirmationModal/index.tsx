@@ -17,6 +17,7 @@ import { registerToken } from 'utils/wallet'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { ArrowUpCircle } from 'react-feather'
+import { useTranslation } from 'contexts/Localization'
 import { getEtherscanLink } from 'utils'
 import { RowFixed } from '../layout/Row'
 import { AutoColumn, ColumnCenter } from '../layout/Column'
@@ -30,20 +31,21 @@ const ConfirmedIcon = styled(ColumnCenter)`
 `
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <ConfirmedIcon>
         <Spinner size={200} />
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
-        <Text fontSize="20px">Waiting For Confirmation</Text>
+        <Text fontSize="20px">{t('Waiting For Confirmation')}</Text>
         <AutoColumn gap="12px" justify="center">
           <Text bold small textAlign="center">
             {pendingText}
           </Text>
         </AutoColumn>
         <Text small textAlign="center">
-          Confirm this transaction in your wallet
+          {t('Confirm this transaction in your wallet')}
         </Text>
       </AutoColumn>
     </Wrapper>
@@ -64,6 +66,7 @@ function TransactionSubmittedContent({
   const { library } = useActiveWeb3React()
 
   const token: Token | undefined = wrappedCurrency(currencyToAdd, chainId)
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
@@ -71,10 +74,10 @@ function TransactionSubmittedContent({
         <ArrowUpCircle strokeWidth={1} size={97} color="rgba(255, 179, 0, 1)" />
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
-        <Text fontSize="20px">Transaction Submitted</Text>
+        <Text fontSize="20px">{t('Transaction Submitted')}</Text>
         {chainId && hash && (
           <Link color="text" external small href={getEtherscanLink(hash, 'transaction', chainId)}>
-            View on explorer
+            {t('View on explorer')}
           </Link>
         )}
         {currencyToAdd && library?.provider?.isMetaMask && (
@@ -84,13 +87,13 @@ function TransactionSubmittedContent({
             onClick={() => registerToken(token.address, token.symbol, token.decimals, '')}
           >
             <RowFixed>
-              <Text>{`Add ${currencyToAdd.getSymbol(chainId)} to Metamask`}</Text>
+              <Text>{t(`Add %symbol% to Metamask`, { symbol: currencyToAdd.getSymbol(chainId) })}</Text>
               <MetamaskIcon width="16px" ml="6px" />
             </RowFixed>{' '}
           </Button>
         )}
         <ButtonSquare fullWidth onClick={onDismiss} style={{ height: '50px', fontSize: '20px' }} mt="20px">
-          Close
+          {t('Close')}
         </ButtonSquare>
       </AutoColumn>
     </Wrapper>
@@ -113,6 +116,7 @@ export function ConfirmationModalContent({
 }
 
 export function TransactionErrorContent({ message, onDismiss }: { message: string; onDismiss: () => void }) {
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <AutoColumn justify="center">
@@ -123,7 +127,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
       </AutoColumn>
 
       <Flex justifyContent="center" pt="24px">
-        <Button onClick={onDismiss}>Dismiss</Button>
+        <Button onClick={onDismiss}>{t('Dismiss')}</Button>
       </Flex>
     </Wrapper>
   )

@@ -5,13 +5,14 @@ import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'
 import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
 import { parseENSAddress } from 'utils/ENS/parseENSAddress'
-import useFetchListCallback from '../../hooks/useFetchListCallback'
+import { useTranslation } from 'contexts/Localization'
 
+import useFetchListCallback from '../../hooks/useFetchListCallback'
 import { AppDispatch, AppState } from '../../state'
 import { disableList, enableList } from '../../state/lists/actions'
 import { useIsListActive, useAllLists, useActiveListUrls } from '../../state/lists/hooks'
-import uriToHttp from '../../utils/uriToHttp'
 
+import uriToHttp from '../../utils/uriToHttp'
 import Column, { AutoColumn } from '../layout/Column'
 import { ListLogo } from '../Logo'
 import Row, { RowFixed, RowBetween } from '../layout/Row'
@@ -42,6 +43,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   const { current: list } = listsByUrl[listUrl]
 
   const isActive = useIsListActive(listUrl)
+  const { t } = useTranslation()
 
   const handleEnableList = useCallback(() => {
     dispatch(enableList(listUrl))
@@ -66,7 +68,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         </Row>
         <RowFixed>
           <Text fontSize="12px" mr="6px" textTransform="lowercase">
-            {list.tokens.length} Tokens
+            {list.tokens.length} {t('Tokens')}
           </Text>
           <span>
             <CogIcon color="text" width="12px" />
@@ -109,6 +111,8 @@ function ManageLists({
   // sort by active but only if not visible
   const activeListUrls = useActiveListUrls()
   const [activeCopy, setActiveCopy] = useState<string[] | undefined>()
+
+  const { t } = useTranslation()
   useEffect(() => {
     if (!activeCopy && activeListUrls) {
       setActiveCopy(activeListUrls)
@@ -165,7 +169,7 @@ function ManageLists({
     async function fetchTempList() {
       fetchList(listUrlInput, false)
         .then((list) => setTempList(list))
-        .catch(() => setAddError('Error importing list'))
+        .catch(() => setAddError(t('Error importing list')))
     }
     // if valid url, fetch details for card
     if (validUrl) {
@@ -173,7 +177,7 @@ function ManageLists({
     } else {
       setTempList(undefined)
       if (listUrlInput !== '') {
-        setAddError('Enter valid list location')
+        setAddError(t('Enter valid list location'))
       }
     }
 
@@ -221,17 +225,17 @@ function ManageLists({
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
                   <Text bold>{tempList.name}</Text>
                   <Text color="textSubtle" small textTransform="lowercase">
-                    {tempList.tokens.length} Tokens
+                    {tempList.tokens.length} {t('Tokens')}
                   </Text>
                 </AutoColumn>
               </RowFixed>
               {isImported ? (
                 <RowFixed>
                   <CheckmarkIcon width="16px" mr="10px" />
-                  <Text>Loaded</Text>
+                  <Text>{t('Loaded')}</Text>
                 </RowFixed>
               ) : (
-                <Button onClick={handleImport}>Import</Button>
+                <Button onClick={handleImport}>{t('Import')}</Button>
               )}
             </RowBetween>
           </Card>

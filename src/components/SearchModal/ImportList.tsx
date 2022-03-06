@@ -11,6 +11,7 @@ import { AppDispatch } from 'state'
 import useFetchListCallback from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
 import { useAllLists } from 'state/lists/hooks'
+import { useTranslation } from 'contexts/Localization'
 
 interface ImportProps {
   listURL: string
@@ -43,6 +44,8 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
   // monitor is list is loading
   const adding = Boolean(lists[listURL]?.loadingRequestId)
   const [addError, setAddError] = useState<string | null>(null)
+
+  const { t } = useTranslation()
 
   const handleAddList = useCallback(() => {
     if (adding) return
@@ -86,15 +89,15 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
 
           <Flex flexDirection="column">
             <Text fontSize="20px" textAlign="center" color={theme.colors.failure} mb="16px">
-              Import at your own risk
+              {t('Import at your own risk')}
             </Text>
             <Text color={theme.colors.failure} mb="8px">
-              By adding this list you are implicitly trusting that the data is correct. Anyone can create a list,
-              including creating fake versions of existing lists and lists that claim to represent projects that do not
-              have one.
+              {t(`By adding this list you are implicitly trusting that the data is correct. Anyone can create a list,
+                including creating fake versions of existing lists and lists that claim to represent projects that do not
+                have one.`)}
             </Text>
             <Text bold color={theme.colors.failure} mb="16px">
-              {typeof 'If you purchase a token from this list, you may not be able to sell it back.'}
+              {typeof t('If you purchase a token from this list, you may not be able to sell it back.')}
             </Text>
             <Flex alignItems="center">
               <Checkbox
@@ -105,13 +108,13 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
                 scale="sm"
               />
               <Text ml="10px" style={{ userSelect: 'none' }}>
-                I understand
+                {t('I understand')}
               </Text>
             </Flex>
           </Flex>
 
           <Button disabled={!confirmed} onClick={handleAddList}>
-            Import
+            {t('Import')}
           </Button>
           {addError ? (
             <Text color="failure" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>

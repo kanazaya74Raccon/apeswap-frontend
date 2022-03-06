@@ -8,6 +8,7 @@ import truncateHash from 'utils/truncateHash'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import { ListLogo } from 'components/Logo'
+import { useTranslation } from 'contexts/Localization'
 
 interface ImportProps {
   tokens: Token[]
@@ -24,18 +25,20 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   // use for showing import source on inactive tokens
   const inactiveTokenList = useCombinedInactiveList()
 
+  const { t } = useTranslation()
+
   return (
     <div style={{ padding: '20px 20px 20px 20px' }}>
       <AutoColumn gap="lg">
         <Text textAlign="center">
-          <h1 style={{ fontSize: '26px' }}>Trade at your own risk!</h1>
+          <h1 style={{ fontSize: '26px' }}>{t('Trade at your own risk!')}</h1>
           <br />
-          ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity.
-          Unlisted tokens may unfortunately be a scam.
+          {t(`ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity.
+            Unlisted tokens may unfortunately be a scam.`)}
           <br />
           <br />
-          Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
-          projects that can pass our DD.
+          {t(`Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
+            projects that can pass our DD.`)}
           <br />
           <br />
           <a
@@ -44,7 +47,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             rel="noopener noreferrer"
             style={{ textDecoration: 'underline' }}
           >
-            Apply to be listed today and join the Jungle family!
+            {t('Apply to be listed today and join the Jungle family!')}
           </a>
         </Text>
 
@@ -64,7 +67,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
               ) : (
                 <>
                   <Tag variant="failure" outline startIcon={<ErrorIcon color="failure" />}>
-                    Unknown Source
+                    {t('Unknown Source')}
                   </Tag>
                   <br />
                   <br />
@@ -78,7 +81,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
                 <Flex>
                   <Text mr="10px">{address}</Text>
                   <Link href={getEtherscanLink(token.address, 'address', chainId)} external>
-                    <Text bold>View on explorer</Text>
+                    <Text bold>{t('View on explorer')}</Text>
                   </Link>
                 </Flex>
               )}
@@ -96,7 +99,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
               onChange={() => setConfirmed(!confirmed)}
             />
             <Text ml="8px" style={{ userSelect: 'none' }}>
-              I understand
+              {t('I understand')}
             </Text>
           </Flex>
           <Button
@@ -110,7 +113,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             }}
             className=".token-dismiss-button"
           >
-            Import
+            {t('Import')}
           </Button>
         </Flex>
       </AutoColumn>

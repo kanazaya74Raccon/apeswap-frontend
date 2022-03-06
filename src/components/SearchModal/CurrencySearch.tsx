@@ -5,6 +5,7 @@ import { Text, Input } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
 import { isAddress } from '../../utils'
 import Column, { AutoColumn } from '../layout/Column'
@@ -12,8 +13,8 @@ import Row from '../layout/Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens, useSortedTokensByQuery } from './filtering'
-import useTokenComparator from './sorting'
 
+import useTokenComparator from './sorting'
 import ImportRow from './ImportRow'
 
 interface CurrencySearchProps {
@@ -110,13 +111,14 @@ function CurrencySearch({
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
 
+  const { t } = useTranslation()
   return (
     <div>
       <AutoColumn style={{ margin: '20px 0 20px 0' }}>
         <Row padding="0 15px 0 15px">
           <StyledInput
             id="token-search-input"
-            placeholder="Search name or paste address"
+            placeholder={t('Search name or paste address')}
             scale="lg"
             autoComplete="off"
             value={searchQuery}
@@ -151,7 +153,7 @@ function CurrencySearch({
       ) : (
         <Column style={{ padding: '20px', height: '100%' }}>
           <Text color="textSubtle" textAlign="center" mb="20px">
-            No results found
+            {t('No results found')}
           </Text>
         </Column>
       )}

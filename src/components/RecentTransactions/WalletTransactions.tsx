@@ -9,6 +9,7 @@ import { clearAllTransactions } from 'state/transactions/actions'
 import { Wrapper } from 'views/Swap/components/styleds'
 import { orderBy } from 'lodash'
 import { AppBody } from 'components/App'
+import { useTranslation } from 'contexts/Localization'
 import TransactionRow from './TransactionRow'
 
 const Title = styled(Text)`
@@ -24,6 +25,7 @@ const WalletTransactions: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const allTransactions = useAllTransactions()
   const sortedTransactions = orderBy(Object.values(allTransactions).filter(isTransactionRecent), 'addedTime', 'desc')
+  const { t } = useTranslation()
 
   const handleClearAll = () => {
     if (chainId) {
@@ -37,18 +39,18 @@ const WalletTransactions: React.FC = () => {
         <Wrapper>
           <Flex alignItems="center" justifyContent="space-between" mb="24px">
             <Title textTransform="uppercase" bold>
-              Recent Transactions
+              {t('Recent Transactions')}
             </Title>
             {sortedTransactions.length > 0 && (
               <Button onClick={handleClearAll} variant="text" px="0" padding={10}>
-                <Text>Clear all</Text>
+                <Text>{t('Clear all')}</Text>
               </Button>
             )}
           </Flex>
           {sortedTransactions.length > 0 ? (
             sortedTransactions.map((txn) => <TransactionRow key={txn.hash} txn={txn} />)
           ) : (
-            <Text textAlign="center">No recent transactions</Text>
+            <Text textAlign="center">{t('No recent transactions')}</Text>
           )}
         </Wrapper>
       </AppBody>

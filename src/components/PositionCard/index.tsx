@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
+import { useTranslation } from 'contexts/Localization'
 import useTotalSupply from '../../hooks/useTotalSupply'
 
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -67,6 +68,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
   const totalPoolTokens = useTotalSupply(pair.liquidityToken)
 
+  const { t } = useTranslation()
+
   const poolTokenPercentage =
     !!userPoolBalance && !!totalPoolTokens && JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? new Percent(userPoolBalance.raw, totalPoolTokens.raw)
@@ -93,7 +96,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               <FixedHeightRow>
                 <RowFixed>
                   <StyledText color="secondary" bold>
-                    LP tokens in your wallet
+                    {t('LP tokens in your wallet')}
                   </StyledText>
                 </RowFixed>
               </FixedHeightRow>
@@ -111,13 +114,13 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               <AutoColumn gap="4px">
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    Share of Pool:
+                    {t('Share of Pool')}:
                   </Text>
                   <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {`Pooled ${currency0.getSymbol(chainId)}`}:
+                    {`${t('Pooled')} ${currency0.getSymbol(chainId)}`}:
                   </Text>
                   {token0Deposited ? (
                     <RowFixed>
@@ -129,7 +132,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text color="textSubtle" small>
-                    {`Pooled ${currency1.getSymbol(chainId)}`}:
+                    {`${t('Pooled')} ${currency1.getSymbol(chainId)}`}:
                   </Text>
                   {token1Deposited ? (
                     <RowFixed>
@@ -146,8 +149,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
       ) : (
         <Card>
           <Text fontSize="14px" style={{ textAlign: 'center' }}>
-            {`By adding liquidity you'll earn 0.2% of all trades on this pair proportional to your share of the pool.
-            Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`}
+            {t(`By adding liquidity you'll earn 0.2% of all trades on this pair proportional to your share of the pool.
+            Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`)}
           </Text>
         </Card>
       )}
@@ -164,6 +167,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
   const currency1 = unwrappedToken(pair.token1)
 
   const [showMore, setShowMore] = useState(false)
+  const { t } = useTranslation()
 
   const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
   const totalPoolTokens = useTotalSupply(pair.liquidityToken)
@@ -218,7 +222,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
         <AutoColumn gap="16px" style={{ padding: '16px' }}>
           <FixedHeightRow>
             <RowFixed>
-              <StyledText>Total pooled tokens</StyledText>
+              <StyledText>{t('Total pooled tokens')}</StyledText>
             </RowFixed>
             {userPoolBalance ? (
               <RowFixed>
@@ -230,7 +234,9 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
           <FixedHeightRow>
             <RowFixed>
-              <StyledText>Pooled {currency0.getSymbol(chainId)}</StyledText>
+              <StyledText>
+                {t('Pooled')} {currency0.getSymbol(chainId)}
+              </StyledText>
             </RowFixed>
             {token0Deposited ? (
               <RowFixed>
@@ -260,7 +266,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
 
           <FixedHeightRow>
-            <StyledText>Share of pool</StyledText>
+            <StyledText>{t('Share of pool')}</StyledText>
             <StyledText>
               {poolTokenPercentage
                 ? `${poolTokenPercentage.toFixed(2) === '0.00' ? '<0.01' : poolTokenPercentage.toFixed(2)}%`
@@ -276,7 +282,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 fullWidth
                 style={{ height: '40px', fontSize: '20px', marginRight: '8px' }}
               >
-                <Title color="white">Add</Title>
+                <Title color="white">{t('Add')}</Title>
               </ButtonSquare>
               <ButtonSquare
                 as={Link}
@@ -285,7 +291,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 fullWidth
                 style={{ height: '40px', marginLeft: '8px' }}
               >
-                <Title color="white">Remove</Title>
+                <Title color="white">{t('Remove')}</Title>
               </ButtonSquare>
             </Flex>
           )}

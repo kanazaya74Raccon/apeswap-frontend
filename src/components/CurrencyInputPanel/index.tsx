@@ -10,6 +10,7 @@ import {
   useMatchBreakpoints,
 } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
@@ -20,7 +21,7 @@ import { RowBetween } from '../layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
 
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ removeLiquidity: boolean }>`
-  display: flex;s
+  display: flex;
   justify-content: flex-start;
   background-color: ${({ theme }) => (theme.isDark ? '#424242' : 'rgba(230, 230, 230, 1)')};
   height: 75px;
@@ -105,6 +106,7 @@ export default function CurrencyInputPanel({
   removeLiquidity,
   addLiquidity,
 }: CurrencyInputPanelProps) {
+  const { t } = useTranslation()
   const { account, chainId } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const [tokenPrice, setTokenPrice] = useState<number>(null)
@@ -166,7 +168,7 @@ export default function CurrencyInputPanel({
                     )}`
                   : currency?.getSymbol(chainId)) || (
                   <div className="bg-transparent hover:bg-primary border border-low-emphesis rounded-full px-2 py-1 text-xs font-medium mt-1 whitespace-nowrap ">
-                    Select a token
+                    {t('Select a token')}
                   </div>
                 )}
               </Text>
@@ -182,7 +184,7 @@ export default function CurrencyInputPanel({
             fontSize="14px"
             style={{ display: 'inline', cursor: 'pointer', position: 'absolute', top: '-30px', marginLeft: '10px' }}
           >
-            {id === 'swap-currency-output' ? 'To:' : 'From:'}
+            {id === 'swap-currency-output' ? t('To:') : t('From:')}
           </Text>
         )}
         {account && (
@@ -193,8 +195,8 @@ export default function CurrencyInputPanel({
           >
             {!hideBalance && !!currency
               ? removeLiquidity
-                ? `LP Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}`
-                : `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? 'Loading'}`
+                ? t('LP Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? 'Loading' })
+                : t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? 'Loading' })
               : ' -'}
           </Text>
         )}
@@ -257,10 +259,10 @@ export default function CurrencyInputPanel({
               }}
             >
               {!hideBalance && !!currency && value
-                ? `LP to Remove: ${
+                ? `${t('LP to Remove')}: ${
                     selectedCurrencyBalance?.toSignificant(6)
                       ? (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100)).toFixed(6)
-                      : 'Loading'
+                      : t('Loading')
                   }`
                 : '-'}
             </Text>

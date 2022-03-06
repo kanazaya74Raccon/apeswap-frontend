@@ -1,159 +1,160 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
 import { BASE_EXCHANGE_URL } from 'config'
+import { ContextApi } from 'contexts/Localization/types'
 
-const config: MenuEntry[] = [
+const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
-    label: 'Home',
+    label: t('Home'),
     icon: 'HomeIcon',
     href: '/',
   },
   {
-    label: 'Ape Stats',
+    label: t('Ape Stats'),
     icon: 'StatsIcon',
     href: '/stats',
   },
   {
-    label: 'Trade',
+    label: t('Trade'),
     icon: 'TradeIcon',
     items: [
       {
-        label: 'Exchange',
+        label: t('Exchange'),
         href: '/swap',
       },
       {
-        label: 'Liquidity',
+        label: t('Liquidity'),
         href: '/pool',
       },
     ],
   },
   {
-    label: 'Vaults',
+    label: t('Vaults'),
     icon: 'Vaults',
     href: `${BASE_EXCHANGE_URL}/vaults`,
   },
   {
-    label: 'Farms',
+    label: t('Farms'),
     icon: 'FarmIcon',
     href: '/farms',
   },
   {
-    label: 'Pools',
+    label: t('Pools'),
     icon: 'PoolIcon',
     href: '/pools',
   },
   {
-    label: 'IAZOs',
+    label: t('IAZOs'),
     icon: 'IfoIcon',
     href: '/iazos',
   },
   {
-    label: 'IAO',
+    label: t('IAO'),
     icon: 'IfoIcon',
     href: '/iao',
   },
   {
-    label: 'NFA',
+    label: t('NFA'),
     icon: 'apeNFTIcon',
     items: [
       {
-        label: 'List',
+        label: t('List'),
         href: '/nft',
       },
       {
-        label: 'Auction',
+        label: t('Auction'),
         href: '/auction',
       },
       {
-        label: 'Staking',
+        label: t('Staking'),
         href: '/staking',
       },
     ],
   },
   {
-    label: 'GNANA',
+    label: t('GNANA'),
     icon: 'ApeZone',
     href: '/gnana',
   },
   // {
-  //   label: 'Lottery',
+  //   label: t('Lottery'),
   //   icon: 'TicketIcon',
   //   href: '/lottery',
   // },
   /* 
   {
-    label: 'Teams & Profile',
+    label: t('Teams & Profile'),
     icon: 'GroupsIcon',
     items: [
       {
-        label: 'Leaderboard',
+        label: t('Leaderboard'),
         href: '/teams',
       },
       {
-        label: 'Your Profile',
+        label: t('Your Profile'),
         href: '/profile',
       },
     ],
   }, */
   {
-    label: 'Info',
+    label: t('Info'),
     icon: 'InfoIcon',
     items: [
       {
-        label: 'Overview',
+        label: t('Overview'),
         href: 'https://info.apeswap.finance',
       },
       {
-        label: 'Tokens',
+        label: t('Tokens'),
         href: 'https://info.apeswap.finance/tokens',
       },
       {
-        label: 'Pairs',
+        label: t('Pairs'),
         href: 'https://info.apeswap.finance/pairs',
       },
       {
-        label: 'Accounts',
+        label: t('Accounts'),
         href: 'https://info.apeswap.finance/accounts',
       },
     ],
   },
   {
-    label: 'More',
+    label: t('More'),
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Governance',
+        label: t('Governance'),
         href: 'https://vote.apeswap.finance',
       },
       {
-        label: 'Github',
+        label: t('Github'),
         href: 'https://github.com/apeswapfinance',
       },
       {
-        label: 'Docs',
+        label: t('Docs'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
       },
       {
-        label: 'Blog',
+        label: t('Blog'),
         href: 'https://ape-swap.medium.com/',
       },
       {
-        label: 'Partnership Application',
+        label: t('Partnership Application'),
         href: 'https://docs.google.com/forms/d/e/1FAIpQLSdiC4jpKQAYD4iALGrm9ErmDIs1xtsOENu9GsvgdczVwe_uOw/viewform?usp=sf_link',
       },
       {
-        label: 'ApeTV',
+        label: t('ApeTV'),
         href: 'https://anchor.fm/apetv',
       },
       {
-        label: 'ApeLabs',
+        label: t('ApeLabs'),
         href: 'https://www.apelabs.education',
       },
       {
-        label: 'Bug Bounty Program',
+        label: t('Bug Bounty Program'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/security/bug-bounty-program',
       },
       {
-        label: 'Audits',
+        label: t('Audits'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/security/audits',
       },
     ],

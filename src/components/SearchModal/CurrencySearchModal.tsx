@@ -3,6 +3,7 @@ import { Currency, Token } from '@apeswapfinance/sdk'
 import { InjectedModalProps, Button, Modal } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'
+import { useTranslation } from 'contexts/Localization'
 import CurrencySearch from './CurrencySearch'
 import ImportToken from './ImportToken'
 import Manage from './Manage'
@@ -60,9 +61,10 @@ export default function CurrencySearchModal({
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
 
+  const { t } = useTranslation()
   return (
     <StyledModalContainer>
-      <StyledModalBody title="Tokens" onDismiss={onDismiss} bodyPadding="none">
+      <StyledModalBody title={t('Tokens')} onDismiss={onDismiss} bodyPadding="none">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
@@ -94,7 +96,7 @@ export default function CurrencySearchModal({
               className="list-token-manage-button"
               margin="10px 0 10px 0"
             >
-              Manage Tokens
+              {t('Manage Tokens')}
             </Button>
           </Footer>
         )}

@@ -9,6 +9,7 @@ import useUserAddedTokens from 'state/user/hooks/useUserAddedTokens'
 import { CurrencyLogo } from 'components/Logo'
 import { getEtherscanLink, isAddress } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import Column, { AutoColumn } from '../layout/Column'
 import ImportRow from './ImportRow'
 import { CurrencyModalView } from './types'
@@ -87,6 +88,8 @@ export default function ManageTokens({
 
   const isAddressValid = searchQuery === '' || isAddress(searchQuery)
 
+  const { t } = useTranslation()
+
   return (
     <Wrapper>
       <Column style={{ width: '100%', flex: '1 1' }}>
@@ -116,11 +119,11 @@ export default function ManageTokens({
         {tokenList}
         <Footer>
           <Text bold textAlign="center">
-            {userAddedTokens?.length} {userAddedTokens.length === 1 ? 'Custom Token' : 'Custom Tokens'}
+            {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('Custom Token') : t('Custom Tokens')}
           </Text>
           {userAddedTokens.length > 0 && (
             <Button variant="tertiary" onClick={handleRemoveAll}>
-              Clear all
+              {t('Clear all')}
             </Button>
           )}
         </Footer>

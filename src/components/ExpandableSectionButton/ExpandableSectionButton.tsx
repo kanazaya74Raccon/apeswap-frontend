@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 import { ArrowDropDownIcon, ArrowDropUpIcon, Text } from '@apeswapfinance/uikit'
 
 export interface ExpandableSectionButtonProps {
@@ -19,9 +20,10 @@ const Wrapper = styled.div`
 `
 
 const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onClick, expanded }) => {
+  const { t } = useTranslation()
   return (
-    <Wrapper aria-label="Hide or show expandable content" role="button" onClick={() => onClick()}>
-      <Text color="primary">{expanded ? 'Hide' : 'Details'}</Text>
+    <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={() => onClick()}>
+      <Text color="primary">{expanded ? t('Hide') : t('Details')}</Text>
       {expanded ? <ArrowDropUpIcon width="24px" /> : <ArrowDropDownIcon width="24px" />}
     </Wrapper>
   )
