@@ -6,6 +6,7 @@ import { useIfoApprove } from 'hooks/useApprove'
 import { ZERO_ADDRESS } from 'config'
 import { Contract } from 'ethers'
 
+import { useTranslation } from 'contexts/Localization'
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
 import useLinearIAOHarvest from '../../../hooks/useLinearIAOHarvest'
@@ -47,6 +48,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
   const onApprove = useIfoApprove(contractRaisingToken, address)
   const onClaim = useLinearIAOHarvest(contract, setPendingTx)
+  const { t } = useTranslation()
 
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
@@ -85,7 +87,7 @@ const IfoCardContribute: React.FC<Props> = ({
           {amountContributed > 0 && (
             <TextWrapRow>
               <Text fontSize="14px" color="textSubtle" fontWeight={700}>
-                Your contributions:
+                {t('Your contributions')}:
               </Text>
               <Text fontSize="14px" color="textSubtle" fontWeight={700}>
                 {amountContributed.toFixed(4)} {currency}
@@ -96,7 +98,7 @@ const IfoCardContribute: React.FC<Props> = ({
       )}
       {isFinished && amountContributed > 0 && (
         <VestingClaimButton disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx} onClick={onClaim}>
-          <Claim color="white">Claim</Claim>
+          <Claim color="white">{t('Claim')}</Claim>
         </VestingClaimButton>
       )}
     </>

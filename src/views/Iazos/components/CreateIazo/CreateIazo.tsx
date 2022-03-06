@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
 import Header from '../Header'
@@ -44,6 +45,7 @@ const StyledHeader = styled(Text)`
 export default function CreateIazo(): JSX.Element {
   useFetchIazoSettings()
   const settings = useIazoSettings()
+  const { t } = useTranslation()
   return (
     <>
       <Header />
@@ -51,7 +53,7 @@ export default function CreateIazo(): JSX.Element {
         <LaunchPadWrapper>
           <TopNav />
           <HeaderWrapper>
-            <StyledHeader>Create</StyledHeader>
+            <StyledHeader>{t('Create')}</StyledHeader>
           </HeaderWrapper>
           <LuanchpadInfo />
           <CreateYourPresale settings={settings} />

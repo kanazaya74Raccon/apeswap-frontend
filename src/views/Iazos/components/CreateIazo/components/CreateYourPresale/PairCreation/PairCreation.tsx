@@ -5,6 +5,7 @@ import TextInput from 'components/TextInput'
 import useERC20Details from 'hooks/useERC20Details'
 import { useToast } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
+import { useTranslation } from 'contexts/Localization'
 import TokenDropdown from './TokenDropdown'
 import { ExtendedERC20Details } from '../types'
 import { PairCreationWrapper, PresaleInfoContainer, StyledText, PairContainer, StyledDescription } from './styles'
@@ -32,6 +33,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
   const { onHandleERC20Details } = useERC20Details()
   const { toastError } = useToast()
   const { isDark } = useTheme()
+  const { t } = useTranslation()
 
   const handleAddressChange = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -45,7 +47,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
             setLoadingTokenData(false)
           })
           .catch((error) => {
-            toastError('Something went wrong')
+            toastError(t('Something went wrong'))
             setTokenApproved(false)
             setLoadingTokenData(false)
             console.error(error)
@@ -69,7 +71,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
     <>
       <PairCreationWrapper>
         <TextInput
-          placeholderText="Token Address..."
+          placeholderText={t('Token Address...')}
           onChange={handleAddressChange}
           size={isMobile ? 'sm' : 'lg'}
           backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
@@ -83,22 +85,22 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
       {tokenApproved && (
         <>
           <PairContainer>
-            <Text fontSize="18px">Apeswap pair to be created</Text>
+            <Text fontSize="18px">{t('Apeswap pair to be created')}</Text>
             <Text color="rgba(255, 179, 0, 1)" fontSize="20px" fontWeight={600}>
               {selectedToken?.quoteToken} / {selectedToken?.tokenSymbol}
             </Text>
           </PairContainer>
           <PresaleInfoContainer>
-            <StyledText wallet={accountFormated}>Presale Creator:</StyledText>
+            <StyledText wallet={accountFormated}>{t('Presale Creator')}:</StyledText>
             <StyledDescription fontSize="13px">
-              Please Note: This account will be the only account capable of retrieving funds raised from the SS-IAO. If
-              this account gets compromised in ANY capacity, ApeSwap has no ability to help. In addition, this is a
-              fully decentralized product, please make sure you understand the risks and procedures before you begin to
-              deploy your SS-IAO.
+              {t(`Please Note: This account will be the only account capable of retrieving funds raised from the SS-IAO. If
+                this account gets compromised in ANY capacity, ApeSwap has no ability to help. In addition, this is a
+                fully decentralized product, please make sure you understand the risks and procedures before you begin to
+                deploy your SS-IAO.`)}
             </StyledDescription>
             <StyledDescription fontSize="13px">
-              You cannot make any changes once you deploy your SS-IAO, and everything is final. All details are included
-              in our documentation and FAQ above.
+              {t(`You cannot make any changes once you deploy your SS-IAO, and everything is final. All details are included
+                in our documentation and FAQ above.`)}
             </StyledDescription>
           </PresaleInfoContainer>
         </>

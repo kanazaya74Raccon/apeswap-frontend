@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Vault } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 
 interface VaultProps {
   vault: Vault
@@ -120,6 +121,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
+  const { t } = useTranslation()
   return (
     <PCard>
       <StyledBackground>
@@ -183,7 +185,7 @@ const VaultCardForHome: React.FC<VaultProps> = ({ vault }) => {
           {vault?.isPair ? `${vault?.token1?.symbol}-${vault?.token0?.symbol}` : vault?.token0?.symbol}
         </StyledHeading>
         <ApyWrapper>
-          <ApyText>APY:</ApyText>
+          <ApyText>{t('APY')}:</ApyText>
           <ApyNumber>
             {vault?.apy?.yearly?.toFixed(2) !== 'NaN' ? (
               <ApyNumber>{vault?.apy?.yearly?.toFixed(2)}%</ApyNumber>

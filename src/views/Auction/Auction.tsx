@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
 import { useAuctions, useFetchAuctions } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
@@ -202,6 +203,7 @@ const Auction: React.FC = () => {
   useFetchAuctions()
   const { auctions } = useAuctions()
   const { isXl } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isDesktop = isXl
   return (
     <SwiperProvider>
@@ -210,8 +212,8 @@ const Auction: React.FC = () => {
           <AuctionFrame>
             <NfaHead />
           </AuctionFrame>
-          <HeadingText>NFA Auction</HeadingText>
-          <SecondaryText>Sell your Non-Fungible Ape to the highest bidder</SecondaryText>
+          <HeadingText>{t('NFA Auction')}</HeadingText>
+          <SecondaryText>{t('Sell your Non-Fungible Ape to the highest bidder')}</SecondaryText>
         </Header>
         <PageWrapper>
           <MoreInfoWrapper>
@@ -221,7 +223,7 @@ const Auction: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MoreInfo>HOW IT WORKS</MoreInfo>
+                <MoreInfo>{t('HOW IT WORKS')}</MoreInfo>
               </a>
               <ListYourNfa />
             </ButtonHolder>

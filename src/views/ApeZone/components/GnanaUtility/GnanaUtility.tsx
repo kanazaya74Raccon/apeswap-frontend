@@ -1,10 +1,11 @@
 import React from 'react'
 import { PFarmingIcon, XPoolsIcon, GovernanceIcon, IaoIcon } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'contexts/Localization'
 
 import OptionCard from './OptionCard'
-import OpDetails from './OpDetails'
 
+import OpDetails from './OpDetails'
 import {
   UtilityCon,
   UtilityTitle,
@@ -20,7 +21,7 @@ import {
 
 export const GnanaUtility: React.FC = () => {
   const theme = useTheme()
-
+  const { t } = useTranslation()
   const exploreGovernance = () => {
     return window.open('https://vote.apeswap.finance/', '_blank')
   }
@@ -49,9 +50,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FFF' : '#af6e5aff'}
                   />
                 }
-                Title="Passive Farming"
-                Desc="Collect a 2% Reflect Fee on all GNANA Transactions"
-                ActionTitle="CONVERT"
+                Title={t('Passive Farming')}
+                Desc={t('Collect a 2% Reflect Fee on all GNANA Transactions')}
+                ActionTitle={t('CONVERT')}
                 actionHref="#convert"
                 OpStyle={OtherOpStyle}
                 type="1"
@@ -66,9 +67,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FFF' : '#af6e5aff'}
                   />
                 }
-                Title="Governance"
-                Desc="Propose and Vote on platform decisions"
-                ActionTitle="EXPLORE"
+                Title={t('Governance')}
+                Desc={t('Propose and Vote on platform decisions')}
+                ActionTitle={t('EXPLORE')}
                 onAction={exploreGovernance}
                 OpStyle={OtherOpStyle}
                 type="1"
@@ -89,9 +90,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FFF' : '#af6e5aff'}
                   />
                 }
-                Title="Exclusive Pools"
-                Desc="Access unique pools with higher APRs"
-                ActionTitle="GO TO POOLS"
+                Title={t('Exclusive Pools')}
+                Desc={t('Access unique pools with higher APRs')}
+                ActionTitle={t('GO TO POOLS')}
                 onAction={goToPools}
                 OpStyle={OtherOpStyle}
                 type="2"
@@ -110,9 +111,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FFF' : '#af6e5aff'}
                   />
                 }
-                Title="Exclusive IAO Access"
-                Desc="Access to secondary offerings for a higher token allocation"
-                ActionTitle="GO TO IAOs"
+                Title={t('Exclusive IAO Access')}
+                Desc={t('Access to secondary offerings for a higher token allocation')}
+                ActionTitle={t('GO TO IAOs')}
                 onAction={goToIAOs}
                 OpStyle={OtherOpStyle}
                 type="3"

@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Spinner } from '@apeswapfinance/uikit'
 import { useFetchIazo, useIazos } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
@@ -21,6 +22,7 @@ const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
   useFetchIazo(id)
   const { iazos, isInitialized } = useIazos()
+  const { t } = useTranslation()
   const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
   const {
     iazoToken,
@@ -44,19 +46,19 @@ const IazoPage: React.FC = () => {
         <LaunchPadWrapper>
           <TopNav />
           <WarningWrapper>
-            <StyledHeader fontSize="10px"> Safety Alert</StyledHeader>
-            <StyledText>WARNING</StyledText>
+            <StyledHeader fontSize="10px"> {t('Safety Alert')}</StyledHeader>
+            <StyledText>{t('WARNING')}</StyledText>
             <br />
             <StyledText>
-              SS-IAOs are NOT ApeSwap endorsed or official ApeSwap partners. Always DYOR. Be sure to read our medium
-              article on DYOR best practices before aping in and always talk with your fellow Apes on the project Reddit
-              thread!
+              {t(`SS - IAOs are NOT ApeSwap endorsed or official ApeSwap partners. Always DYOR. Be sure to read our medium
+                article on DYOR best practices before aping in and always talk with your fellow Apes on the project Reddit
+                thread!`)}
             </StyledText>
             <br />
             <StyledText>
-              This is a fully decentralized and open launchpad, anyone can create an SS-IAO, under any token name, with
-              any capabilities. Also, there is no control of what happens post launch (projects could leave with your
-              money, have an unlimited mint function to extract all liquidity, and/or perform other malicious activity).
+              {t(`This is a fully decentralized and open launchpad, anyone can create an SS-IAO, under any token name, with
+                any capabilities. Also, there is no control of what happens post launch (projects could leave with your
+                money, have an unlimited mint function to extract all liquidity, and/or perform other malicious activity).`)}
             </StyledText>
           </WarningWrapper>
           <BeforeSaleWrapper>

@@ -4,6 +4,7 @@ import { Nft } from 'config/constants/types'
 import { Text, Button, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useRemoveAuction from 'hooks/useRemoveAuction'
+import { useTranslation } from 'contexts/Localization'
 import Image from '../../../Nft/components/Image'
 
 interface QueuedCardProps {
@@ -104,6 +105,7 @@ const QueuedCard: React.FC<QueuedCardProps> = ({ nfa, seller }) => {
   const { account } = useWeb3React()
   const { onRemoveAuction } = useRemoveAuction()
   const [pendingTx, setPendingTx] = useState(null)
+  const { t } = useTranslation()
 
   const handleRemoveAuction = useCallback(async () => {
     setPendingTx(true)
@@ -114,7 +116,7 @@ const QueuedCard: React.FC<QueuedCardProps> = ({ nfa, seller }) => {
   return (
     <Card>
       <TextHolder>
-        <ComingSoon>Coming Soon</ComingSoon>
+        <ComingSoon>{t('Coming Soon')}</ComingSoon>
         <NameText>#{nfa.index}</NameText>
         {account === seller && (
           <RemoveButton
@@ -122,7 +124,7 @@ const QueuedCard: React.FC<QueuedCardProps> = ({ nfa, seller }) => {
             onClick={handleRemoveAuction}
             endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
           >
-            Remove
+            {t('Remove')}
           </RemoveButton>
         )}
       </TextHolder>

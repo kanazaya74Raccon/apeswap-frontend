@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Nft } from 'config/constants/types'
 import { Text } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 interface DescriptionProps {
   nfa: Nft
@@ -70,24 +71,41 @@ const Attribute = styled(Text)`
 `
 
 const Description: React.FC<DescriptionProps> = ({ nfa }) => {
+  const { t } = useTranslation()
   return (
     <>
       <DescriptionWrapper>
         <StatsWrapper>
-          <Stats>Tier {nfa.attributes.rarityTierNumber}</Stats>
-          <Stats>Rarity {nfa.attributes.rarityOverallRank} / 1000</Stats>
+          <Stats>
+            {t('Tier')} {nfa.attributes.rarityTierNumber}
+          </Stats>
+          <Stats>
+            {t('Rarity')} {nfa.attributes.rarityOverallRank} / 1000
+          </Stats>
         </StatsWrapper>
         <NfaName>
           {nfa.name} #{nfa.index}
         </NfaName>
         <NfaTitle>{nfa.attributes.rarityTierName}</NfaTitle>
         <AttributesWrapper>
-          <Attribute>Base Color: {nfa.attributes.baseColor}</Attribute>
-          <Attribute>Face Color: {nfa.attributes.faceColor}</Attribute>
-          <Attribute>Frame: {nfa.attributes.frames}</Attribute>
-          <Attribute>Mouth: {nfa.attributes.mouths}</Attribute>
-          <Attribute>Eyes: {nfa.attributes.eyes}</Attribute>
-          <Attribute>Hat: {nfa.attributes.hats}</Attribute>
+          <Attribute>
+            {t('Base Color')}: {nfa.attributes.baseColor}
+          </Attribute>
+          <Attribute>
+            {t('Face Color')}: {nfa.attributes.faceColor}
+          </Attribute>
+          <Attribute>
+            {t('Frame')}: {nfa.attributes.frames}
+          </Attribute>
+          <Attribute>
+            {t('Mouth')}: {nfa.attributes.mouths}
+          </Attribute>
+          <Attribute>
+            {t('Eyes')}: {nfa.attributes.eyes}
+          </Attribute>
+          <Attribute>
+            {t('Hat')}: {nfa.attributes.hats}
+          </Attribute>
         </AttributesWrapper>
       </DescriptionWrapper>
     </>

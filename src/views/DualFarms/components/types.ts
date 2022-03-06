@@ -1,3 +1,6 @@
+import { ContextApi } from '../../../contexts/Localization/types'
+import { Ifo } from '../../../config/constants/types'
+
 export type TableProps = {
   data?: TableDataTypes[]
   selectedFilters?: string
@@ -28,72 +31,72 @@ export type TableDataTypes = {
   LINKS: string
 }
 
-export const MobileColumnSchema: ColumnsDefTypes[] = [
+export const MobileColumnSchema: (t: ContextApi['t']) => ColumnsDefTypes[] = (t) => [
   {
     id: 1,
     name: 'farm',
     translationId: 999,
     sortable: true,
-    label: '',
+    label: t(''),
   },
   {
     id: 2,
     name: 'earned',
     translationId: 1072,
     sortable: true,
-    label: 'Earned',
+    label: t('Earned'),
   },
   {
     id: 3,
     name: 'apr',
     translationId: 736,
     sortable: true,
-    label: 'APR',
+    label: t('APR'),
   },
   {
     id: 6,
     name: 'details',
     translationId: 999,
     sortable: true,
-    label: '',
+    label: t(''),
   },
 ]
 
-export const DesktopColumnSchema: ColumnsDefTypes[] = [
+export const DesktopColumnSchema: (t: ContextApi['t']) => ColumnsDefTypes[] = (t) => [
   {
     id: 1,
     name: 'farm',
     translationId: 999,
     sortable: true,
-    label: '',
+    label: t(''),
   },
   {
     id: 2,
     name: 'apr',
     translationId: 736,
     sortable: true,
-    label: 'APR',
+    label: t('APR'),
   },
   {
     id: 3,
     name: 'liquidity',
     translationId: 999,
     sortable: true,
-    label: 'Liquidity',
+    label: t('Liquidity'),
   },
   {
     id: 4,
     name: 'earned',
     translationId: 1072,
     sortable: true,
-    label: 'Earned',
+    label: t('Earned'),
   },
   {
     id: 5,
     name: 'details',
     translationId: 999,
     sortable: true,
-    label: '',
+    label: t(''),
   },
 ]
 

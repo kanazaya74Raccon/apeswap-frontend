@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { DualFarm } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 
 interface DualFarmProps {
   farm: DualFarm
@@ -130,6 +131,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
+  const { t } = useTranslation()
   return (
     <PCard>
       <StyledBackground>
@@ -171,7 +173,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
           {farm?.stakeTokens?.token0?.symbol}-{farm?.stakeTokens?.token1?.symbol}
         </StyledHeading>
         <ApyWrapper>
-          <ApyText>APR:</ApyText>
+          <ApyText>{t('APR')}:</ApyText>
           <ApyNumber>
             {farm?.apr?.toFixed(2) !== 'NaN' ? (
               <ApyNumber>{farm?.apr?.toFixed(2)}%</ApyNumber>

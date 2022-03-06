@@ -9,7 +9,9 @@ import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
 import { Contract } from 'ethers'
+import { useTranslation } from 'contexts/Localization'
 import useUserInfo from './useUserInfo'
+
 import {
   ApproveButton,
   VestingButtonWrapper,
@@ -18,7 +20,6 @@ import {
   DisplayVestingTime,
   TextWrapRow,
 } from './styles'
-
 import ContributeInput from '../ContributeInput/ContributeInput'
 import useFourPhaseIAOHarvest from '../../../hooks/useFourPhaseIAOHarvest'
 
@@ -66,6 +67,8 @@ const IfoCardContribute: React.FC<Props> = ({
   const harvestThreeTime = getTimePeriods(harvestBlockReleases.three, true)
   const harvestFourTime = getTimePeriods(harvestBlockReleases.four, true)
 
+  const { t } = useTranslation()
+
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
   }
@@ -86,7 +89,7 @@ const IfoCardContribute: React.FC<Props> = ({
           }
         }}
       >
-        APPROVE
+        {t('APPROVE')}
       </ApproveButton>
     )
   }
@@ -112,7 +115,7 @@ const IfoCardContribute: React.FC<Props> = ({
           {amountContributed > 0 && (
             <TextWrapRow>
               <Text fontSize="14px" color="textSubtle" fontWeight={600}>
-                Your contributions:
+                {t('Your contributions')}:
               </Text>
               <Text fontSize="14px" color="textSubtle" fontWeight={600}>
                 {amountContributed.toFixed(4)} {currency}
@@ -127,7 +130,7 @@ const IfoCardContribute: React.FC<Props> = ({
             {amountContributed > 0 && (
               <>
                 <VestingClaimButton disabled={userHarvestedFlags[0]} onClick={() => onClaim(0)}>
-                  {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">Claim</Claim>}
+                  {userHarvestedFlags[0] ? <Claim>Claimed</Claim> : <Claim color="white">{t('Claim')}</Claim>}
                 </VestingClaimButton>
                 {(tokensVested > 0 || tokensHarvestedAvailable > 0) && (
                   <>
@@ -135,11 +138,13 @@ const IfoCardContribute: React.FC<Props> = ({
                       disabled={harvestBlockReleases.two > 0 || userHarvestedFlags[1]}
                       onClick={() => onClaim(1)}
                     >
-                      {userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim color="white">Claim</Claim>}
+                      {userHarvestedFlags[1] && harvestBlockReleases.two < 0 && <Claim>{t('Claimed')}</Claim>}
+                      {!userHarvestedFlags[1] && harvestBlockReleases.two < 0 && (
+                        <Claim color="white">{t('Claim')}</Claim>
+                      )}
                       {harvestBlockReleases.two > 0 && (
                         <>
-                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
+                          <DisplayVestingTime label>{t('Vesting time')}</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestTwoTime)}</DisplayVestingTime>
                         </>
                       )}
@@ -148,11 +153,13 @@ const IfoCardContribute: React.FC<Props> = ({
                       disabled={harvestBlockReleases.three > 0 || userHarvestedFlags[2]}
                       onClick={() => onClaim(2)}
                     >
-                      {userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim color="white">Claim</Claim>}
+                      {userHarvestedFlags[2] && harvestBlockReleases.three < 0 && <Claim>{t('Claimed')}</Claim>}
+                      {!userHarvestedFlags[2] && harvestBlockReleases.three < 0 && (
+                        <Claim color="white">{t('Claim')}</Claim>
+                      )}
                       {harvestBlockReleases.three > 0 && (
                         <>
-                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
+                          <DisplayVestingTime label>{t('Vesting time')}</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestThreeTime)}</DisplayVestingTime>
                         </>
                       )}
@@ -161,11 +168,13 @@ const IfoCardContribute: React.FC<Props> = ({
                       disabled={harvestBlockReleases.four > 0 || userHarvestedFlags[3]}
                       onClick={() => onClaim(3)}
                     >
-                      {userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim>Claimed</Claim>}
-                      {!userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim color="white">Claim</Claim>}
+                      {userHarvestedFlags[3] && harvestBlockReleases.four < 0 && <Claim>{t('Claimed')}</Claim>}
+                      {!userHarvestedFlags[3] && harvestBlockReleases.four < 0 && (
+                        <Claim color="white">{t('Claim')}</Claim>
+                      )}
                       {harvestBlockReleases.four > 0 && (
                         <>
-                          <DisplayVestingTime label>Vesting time</DisplayVestingTime>
+                          <DisplayVestingTime label>{t('Vesting time')}</DisplayVestingTime>
                           <DisplayVestingTime>{formatTime(harvestFourTime)}</DisplayVestingTime>
                         </>
                       )}

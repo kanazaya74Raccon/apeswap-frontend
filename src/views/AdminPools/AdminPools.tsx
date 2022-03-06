@@ -13,10 +13,10 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
+import { useTranslation } from 'contexts/Localization'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
-import { useTranslation } from '../../contexts/Localization'
 
 interface LabelProps {
   active?: boolean
@@ -580,8 +580,9 @@ const AdminPools: React.FC = () => {
           </StyledHeading>
           {size.width > 968 && (
             <AdminText>
-              Stake OBIE to earn new tokens. <br /> Admins will be allocated OBIE tokens from grandpa Obie Dobo. <br />{' '}
-              Your own personal pools page to reward your hard work ❤️
+              {t('Stake OBIE to earn new tokens.')} <br />{' '}
+              {t('Admins will be allocated OBIE tokens from grandpa Obie Dobo.')} <br />{' '}
+              {t('Your own personal pools page to reward your hard work')} ❤️
             </AdminText>
           )}
         </HeadingContainer>
@@ -610,12 +611,12 @@ const AdminPools: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              Very Nice
+              {t('Very Nice')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -623,18 +624,18 @@ const AdminPools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Good Project
+              {t('Good Project')}
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
             </StyledLabel>
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

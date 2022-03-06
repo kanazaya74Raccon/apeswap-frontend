@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Flex } from '@apeswapfinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
+import { useTranslation } from 'contexts/Localization'
 
 import { Label, Box, ContributeButton, ContributeInput } from './styles'
 import useIAODeposit from '../../../hooks/useIAODeposit'
@@ -18,6 +19,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   const [value, setValue] = useState('')
   const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
+  const { t } = useTranslation()
 
   const { pendingTx, handleDeposit, isAmountValid } = useIAODeposit(contract, currencyAddress, tokenBalance)
 
@@ -27,7 +29,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
         <thead>
           <th>
             <Flex justifyContent="space-between" px="8px">
-              <Label>BALANCE: </Label>
+              <Label>{t('BALANCE')}: </Label>
               <Label>
                 {balance} {currency}
               </Label>
@@ -53,7 +55,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
                 variant="yellow"
                 onClick={() => handleDeposit(value)}
               >
-                CONTRIBUTE
+                {t('CONTRIBUTE')}
               </ContributeButton>
             </td>
           </tr>

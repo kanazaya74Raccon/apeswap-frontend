@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'contexts/Localization'
 import { StyledIfoCardDescription, Link, ToggleButton, Description, UpArrowIcon, DownArrowIcon } from './styles'
 
 export interface IfoCardDescriptionProps {
@@ -14,14 +15,15 @@ const IfoCardDescription: React.FC<IfoCardDescriptionProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
 
+  const { t } = useTranslation()
   const handleClick = () => setIsOpen(!isOpen)
 
   return (
     <StyledIfoCardDescription>
       {/* TODO: Update external link icon color based on dark/light theme */}
-      <Link href={projectSiteUrl}>View project site</Link>
+      <Link href={projectSiteUrl}>{t('View project site')}</Link>
       <ToggleButton onClick={handleClick}>
-        {isOpen ? 'Hide' : 'Show'}
+        {isOpen ? t('Hide') : t('Show')}
         {isOpen ? <UpArrowIcon /> : <DownArrowIcon />}
       </ToggleButton>
       <Description isOpen={isOpen}>{description}</Description>

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 interface FileProps {
   imageFile: File
@@ -15,6 +16,7 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ title, onChange }) => {
   const fileDrop = useRef(null)
   const [file, setFile] = useState<FileProps>(null)
+  const { t } = useTranslation()
 
   const onSetFile = (e) => {
     const imageFile = e.target.files[0]
@@ -31,7 +33,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ title, onChange }) => {
       <ImageCircle image={file?.displayUrl} />
       <DragImageWrapper>
         <HiddenInput type="file" ref={fileDrop} onChange={onSetFile} />
-        <DragAndDropText>{file?.imageFile?.name || 'Click here or Drop your PNG/SVG file here!'}</DragAndDropText>
+        <DragAndDropText>{file?.imageFile?.name || t('Click here or Drop your PNG/SVG file here!')}</DragAndDropText>
       </DragImageWrapper>
     </Container>
   )

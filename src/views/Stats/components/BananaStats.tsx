@@ -143,7 +143,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerDay * 100}
               decimals={2}
-              prefix="Daily"
+              prefix={t('Daily')}
               suffix="%"
             />
             <CardValue
@@ -151,7 +151,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}
               decimals={2}
-              prefix="Weekly"
+              prefix={t('Weekly')}
               suffix="%"
             />
             <CardValue
@@ -159,7 +159,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerMonth * 100}
               decimals={2}
-              prefix="Monthly"
+              prefix={t('Monthly')}
               suffix="%"
             />
             <CardValue
@@ -167,7 +167,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateApr * 100}
               decimals={2}
-              prefix="Yearly"
+              prefix={t('Yearly')}
               suffix="%"
             />
           </Text>

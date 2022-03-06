@@ -290,7 +290,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1>APR:</StyledText1>
+              <StyledText1>{t('APR')}:</StyledText1>
               {apr ? (
                 <FlexSwitch>
                   <ApyButton

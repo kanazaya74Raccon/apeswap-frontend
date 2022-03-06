@@ -342,11 +342,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
             <StyledHeading fontSize="20px" fontWeight={800}>
               {lpLabel}
             </StyledHeading>
-            {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
+            {burning && <Tooltip content={t('Burns at least 50% of every harvest in the form of $BANANA')}>🔥</Tooltip>}
           </TitleContainer>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1>APY:</StyledText1>
+              <StyledText1>{t('APY')}:</StyledText1>
               {apyDaily ? (
                 <FlexSwitch>
                   <StyledAPRText>{apyYearly}%</StyledAPRText>

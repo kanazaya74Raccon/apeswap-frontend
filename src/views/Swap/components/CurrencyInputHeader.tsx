@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Flex, ButtonSquare, ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 
 interface Props {
   title?: string
@@ -23,15 +24,16 @@ const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
+  const { t } = useTranslation()
   const swapActive = path.pathname.includes('swap')
   return (
     <CurrencyInputContainer>
       <ButtonMenu activeIndex={swapActive ? 0 : 1} size="mds" variant="yellow">
         <ButtonMenuItem as={Link} to="/swap" fontSize="14px" isMobile={isMobile}>
-          SWAP
+          {t('SWAP')}
         </ButtonMenuItem>
         <ButtonMenuItem as={Link} to="/pool" fontSize="14px" isMobile={isMobile}>
-          LIQUIDITY
+          {t('LIQUIDITY')}
         </ButtonMenuItem>
       </ButtonMenu>
       <Flex>
@@ -45,7 +47,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
               padding: 10,
             }}
           >
-            BRIDGE
+            {t('BRIDGE')}
           </ButtonSquare>
         </a>
         <GlobalSettings />

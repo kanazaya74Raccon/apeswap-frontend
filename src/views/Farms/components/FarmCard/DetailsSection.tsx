@@ -148,7 +148,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       )}
       <Flex justifyContent="center">
         <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(farmLp)}>
-          Add to Metamask
+          {t('Add to Metamask')}
         </StyledLink>
       </Flex>
     </Wrapper>

@@ -122,7 +122,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           <InfoContainer liquidityDigits={liquidityDigits}>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontSize="12px">Reward Tokens</StyledText>
+                <StyledText fontSize="12px">{t('Reward Tokens')}</StyledText>
                 <StyledText fontSize="12px">
                   {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
                 </StyledText>
@@ -148,7 +148,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
                 </LinkExternal>
               </ValueWrapper>
               <ValueWrapper>
-                <StyledText fontSize="12px">Staked Amount</StyledText>
+                <StyledText fontSize="12px">{t('Staked Amount')}</StyledText>
                 <StyledText fontSize="12px">{rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}</StyledText>
               </ValueWrapper>
             </ValueContainer>
@@ -156,7 +156,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           <Flex flexDirection="column">
             {account && rawStakedBalance !== 0 && (
               <>
-                <StakedText fontSize="12px">Staked</StakedText>
+                <StakedText fontSize="12px">{t('Staked')}</StakedText>
                 <StakedValueText color="green" fontSize="20px">
                   ${totalStakedValue.toFixed(2)}
                 </StakedValueText>

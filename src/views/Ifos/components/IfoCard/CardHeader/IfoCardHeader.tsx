@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { IfoStatus } from 'config/constants/types'
 import { Text } from '@apeswapfinance/uikit'
 
+import { useTranslation } from 'contexts/Localization'
 import { StyledIfoCardHeader, Stack, Title } from './styles'
 
 interface IfoCardHeaderProps {
@@ -31,6 +32,7 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
   secondsUntilEnd,
 }) => {
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
+  const { t } = useTranslation()
 
   const getStatus = () => {
     if (isComingSoon) {
@@ -55,8 +57,8 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
     <StyledIfoCardHeader mb="24px" alignItems="center">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />
       <Stack>
-        {isLP && <Title as="h2">LP OFFERING</Title>}
-        {!isLP && <Title as="h2">{`${gnana ? 'GNANA' : 'BNB'} OFFERING`}</Title>}
+        {isLP && <Title as="h2">{t('LP OFFERING')}</Title>}
+        {!isLP && <Title as="h2">{`${gnana ? 'GNANA' : 'BNB'} ${t('OFFERING')}`}</Title>}
         {getStatus()}
       </Stack>
     </StyledIfoCardHeader>

@@ -3,6 +3,7 @@ import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useWithdrawOfferTokens from 'views/Iazos/hooks/useWithdrawOfferTokens'
 import { IazoState } from 'state/types'
 import { useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { useTranslation } from 'contexts/Localization'
 import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
@@ -15,6 +16,7 @@ interface ApproveCreateIazoProps {
 
 const WithdrawTokens: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, onPendingClaim, tokenAddress }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
+  const { t } = useTranslation()
   const { onWithdraw } = useWithdrawOfferTokens(iazoAddress)
   const contractBalance = useAccountTokenBalance(iazoAddress, tokenAddress)?.toNumber()
 
@@ -29,10 +31,10 @@ const WithdrawTokens: React.FC<ApproveCreateIazoProps> = ({ iazoAddress, onPendi
       disabled={pendingTrx}
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
     >
-      Withdraw Tokens
+      {t('Withdraw Tokens')}
     </StyledButton>
   ) : (
-    <StyledButton disabled>Tokens Withdrawn</StyledButton>
+    <StyledButton disabled>{t('Tokens Withdrawn')}</StyledButton>
   )
 }
 

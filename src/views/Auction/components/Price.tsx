@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceBnbBusd } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 
 const PriceWrapper = styled.div`
   position: absolute;
@@ -112,10 +113,11 @@ const Price: React.FC<TimerProps> = ({ currentBid }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
   const bnbPrice = usePriceBnbBusd()
   const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
+  const { t } = useTranslation()
 
   return (
     <PriceWrapper>
-      <PriceText>Price:</PriceText>
+      <PriceText>{t('Price')}:</PriceText>
       <CurrentBidWrapper> {rawBidAmount.toFixed(3)} </CurrentBidWrapper>
       <CurrentBidDollarWrapper> ~${dollarValue} </CurrentBidDollarWrapper>
       <BnbLogo />

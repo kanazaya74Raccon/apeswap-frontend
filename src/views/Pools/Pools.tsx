@@ -733,15 +733,15 @@ const Pools: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              {t('APR')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -749,7 +749,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -757,7 +757,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

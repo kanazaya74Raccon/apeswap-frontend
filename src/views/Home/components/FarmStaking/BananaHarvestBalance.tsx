@@ -4,8 +4,8 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 
 import useAllEarnings from 'hooks/useAllEarnings'
+import { useTranslation } from 'contexts/Localization'
 import CardValue from '../CardValue'
-import { useTranslation } from '../../../../contexts/Localization'
 
 const BananaHarvestBalance = () => {
   const { t } = useTranslation()

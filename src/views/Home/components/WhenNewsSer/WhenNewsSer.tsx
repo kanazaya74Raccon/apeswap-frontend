@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Card, Text } from '@apeswapfinance/uikit'
 import NewsFeed from './NewsFeed'
+import { useTranslation } from 'contexts/Localization'
 
 const WhenNewsSerWrapper = styled(Card)`
   width: 336px;
@@ -34,10 +35,11 @@ const WhenNewsSerText = styled(Text)`
 `
 
 const WhenNewsSer = () => {
+  const { t } = useTranslation()
   return (
     <>
       <WhenNewsSerWrapper>
-        <WhenNewsSerText fontWeight={800}>Wen News Ser?</WhenNewsSerText>
+        <WhenNewsSerText fontWeight={800}>{t('When News Ser?')}</WhenNewsSerText>
         <NewsWrapper>
           <NewsFeed />
         </NewsWrapper>

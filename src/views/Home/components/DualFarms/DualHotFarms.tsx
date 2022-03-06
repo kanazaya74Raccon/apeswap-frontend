@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { DualFarm } from 'state/types'
 import { useDualFarmsFromPid, usePollDualFarms } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import FarmCardForHome from './FarmCardForHome'
 
 const HotFarmsWrapper = styled.div`
@@ -70,6 +71,7 @@ const DEFAULT_FARM_TWO = 6
 
 const DualHotFarms = () => {
   usePollDualFarms()
+  const { t } = useTranslation()
   const pid1 = DEFAULT_FARM
   const pid2 = DEFAULT_FARM_TWO
 
@@ -79,7 +81,7 @@ const DualHotFarms = () => {
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontWeight={800}>Hot Farms</HotFarmsText>
+        <HotFarmsText fontWeight={800}>{t('Hot Farms')}</HotFarmsText>
         <FarmWrapper>
           {farmsToDisplay.map((farm: DualFarm) => (
             <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>

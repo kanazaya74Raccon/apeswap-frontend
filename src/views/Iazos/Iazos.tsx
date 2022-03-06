@@ -5,6 +5,7 @@ import useCurrentTime from 'hooks/useTimer'
 import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
 import { Spinner, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import IconButton from './components/IconButton'
 import IazoCard from './components/IazoCard/IazoCard'
 import Header from './components/Header'
@@ -31,6 +32,7 @@ const Iazos: React.FC = () => {
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
   const [searchQuery, setSearchQuery] = useState(null)
+  const { t } = useTranslation()
   const currentIazos = registeredIazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
@@ -80,7 +82,7 @@ const Iazos: React.FC = () => {
         <LaunchPadWrapper>
           <TopNavWrapper />
           <HeaderWrapper>
-            <StyledHeader>Self-Serve Launchpad</StyledHeader>
+            <StyledHeader>{t('Self - Serve Launchpad')}</StyledHeader>
             <Link to="/ss-iao/create">
               <StyledButton> CREATE </StyledButton>
             </Link>

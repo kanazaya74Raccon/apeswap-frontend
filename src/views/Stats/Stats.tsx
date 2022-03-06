@@ -114,23 +114,23 @@ const Stats: React.FC = () => {
       <Page>
         <PaddedCard>
           <Heading size="lg" color="warning">
-            HEADS UP, APES!
+            {t('HEADS UP, APES!')}
           </Heading>
           <Text>
-            The data on this page is not always up to date. Please do not rely on it for an accurate representation of
-            your holdings. For similar services, consider our partners such as{' '}
+            {t(`The data on this page is not always up to date. Please do not rely on it for an accurate representation of
+              your holdings. For similar services, consider our partners such as`)}{' '}
             <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
               yieldwatch
             </a>
             ,{' '}
             <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">
-              JDI
+              {t('JDI')}
             </a>
             , or{' '}
             <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">
-              Pacoca
+              {t('Pacoca')}
             </a>{' '}
-            for alternative dashboards!
+            {t('for alternative dashboards!')}
           </Text>
         </PaddedCard>
         {!account ? (

@@ -12,6 +12,7 @@ import useTokenBalance from 'hooks/useTokenBalance'
 
 import TokenInput from 'components/TokenInput'
 import CardValue from 'views/Home/components/CardValue'
+import { useTranslation } from 'contexts/Localization'
 
 import {
   StyledCard,
@@ -41,6 +42,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
   const { handleSell } = useSellGoldenBanana()
   const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
   const goldenBananaContract = useGoldenBanana()
+  const { t } = useTranslation()
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
@@ -59,7 +61,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
         .then((trx) => trx.wait())
     },
     onSuccess: async () => {
-      toastSuccess('Approved!')
+      toastSuccess(t('Approved!'))
     },
   })
 
@@ -93,7 +95,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
   return (
     <StyledCard>
       <HeaderCard>
-        <Header>RETURN</Header>
+        <Header>{t('RETURN')}</Header>
         <TokensDisplay>
           {fromToken} &gt; {toToken}
         </TokensDisplay>
@@ -109,11 +111,11 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
         />
         {isApproved ? (
           <StyledButton disabled={disabled} variant="danger" margin="10px" onClick={sell}>
-            RETURN
+            {t('RETURN')}
           </StyledButton>
         ) : (
           <StyledButton margin="10px" disabled={isApproving} onClick={handleApprove}>
-            APPROVE CONTRACT
+            {t('APPROVE CONTRACT')}
           </StyledButton>
         )}
 
@@ -136,7 +138,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
               <NewCheckBox id="checkbox" scale="md" />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
-              I understand what I am doing and want to enable unlimited conversion.
+              {t('I understand what I am doing and want to enable unlimited conversion.')}
             </StyledText>
           </CheckBoxSection>
         </FlexSection>

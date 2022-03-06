@@ -5,6 +5,7 @@ import useReward from 'hooks/useReward'
 import useBid from 'hooks/useBid'
 import useNextAuction from 'hooks/useNextAuction'
 import { useToast } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 
 interface BidProps {
   currentBid: number
@@ -47,6 +48,7 @@ const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown,
   const rewardRef = useRef(null)
   const onBid = useReward(rewardRef, useBid().onBid)
   const { toastError } = useToast()
+  const { t } = useTranslation()
   const onNextAuction = useReward(rewardRef, useNextAuction().onNextAuction)
   return countdown.seconds > 0 ? (
     <StyledButton
@@ -54,12 +56,12 @@ const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown,
       onClick={async () => {
         setPendingTx(true)
         await onBid(currentBid, nfaId, auctionId).catch(() => {
-          toastError('Bidding Error', 'It is likely you were outbid')
+          toastError(t('Bidding Error'), t('It is likely you were outbid'))
         })
         setPendingTx(false)
       }}
     >
-      Bid
+      {t('Bid')}
     </StyledButton>
   ) : (
     <StyledButton
@@ -67,12 +69,12 @@ const SubmitBid: React.FC<BidProps> = ({ disabled, currentBid, nfaId, countdown,
       onClick={async () => {
         setPendingTx(true)
         await onNextAuction(nfaId).catch(() => {
-          toastError('Transaction Error', 'Something went wrong submitting transaction')
+          toastError(t('Transaction Error'), t('Something went wrong submitting transaction'))
         })
         setPendingTx(false)
       }}
     >
-      Next
+      {t('Next')}
     </StyledButton>
   )
 }

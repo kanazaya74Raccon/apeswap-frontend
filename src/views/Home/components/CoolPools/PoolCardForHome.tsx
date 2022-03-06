@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Pool } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 
 interface HarvestProps {
   pool: Pool
@@ -109,6 +110,7 @@ const StyledHeading = styled(Heading)`
 
 const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
   const { image, tokenName, stakingToken, apr } = pool
+  const { t } = useTranslation()
 
   return (
     <PCard>
@@ -132,7 +134,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
       <DescriptionContainer>
         <StyledHeading fontWeight={800}>{tokenName}</StyledHeading>
         <ApyWrapper>
-          <ApyText>APR:</ApyText>
+          <ApyText>{t('APR')}:</ApyText>
           {apr ? <ApyNumber>{apr?.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
         </ApyWrapper>
       </DescriptionContainer>

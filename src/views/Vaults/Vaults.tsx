@@ -614,7 +614,7 @@ const Vaults: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -635,15 +635,15 @@ const Vaults: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerDailyAPY>
             <StyledLabel active={sortOption === 'dailyapy'} onClick={() => handleSortOptionChange('dailyapy')}>
-              Daily APY
+              {t('Daily APY')}
               {sortOption === 'dailyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -651,7 +651,7 @@ const Vaults: React.FC = () => {
           </StyledLabelContainerDailyAPY>
           <StyledLabelContainerYearlyAPY>
             <StyledLabel active={sortOption === 'yearlyapy'} onClick={() => handleSortOptionChange('yearlyapy')}>
-              Yearly APY
+              {t('Yearly APY')}
               {sortOption === 'yearlyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -659,7 +659,7 @@ const Vaults: React.FC = () => {
           </StyledLabelContainerYearlyAPY>
           <StyledLabelContainerTotalStaked>
             <StyledLabel active={sortOption === 'totalstaked'} onClick={() => handleSortOptionChange('totalstaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalstaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

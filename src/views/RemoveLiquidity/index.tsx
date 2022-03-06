@@ -16,19 +16,20 @@ import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
 import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { parseAddress } from 'hooks/useAddress'
+import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AppBody } from '../../components/App'
 import { RowBetween, RowFixed, AutoRow } from '../../components/layout/Row'
-import UnlockButton from '../../components/UnlockButton'
 
+import UnlockButton from '../../components/UnlockButton'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../../components/Logo'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency } from '../../hooks/Tokens'
 import { usePairContract } from '../../hooks/useContract'
-import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 
+import useTransactionDeadline from '../../hooks/useTransactionDeadline'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
@@ -143,6 +144,7 @@ export default function RemoveLiquidity({
   const [txHash, setTxHash] = useState<string>('')
   const deadline = useTransactionDeadline()
   const [allowedSlippage] = useUserSlippageTolerance()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const getRemoveVal = async () => {
@@ -439,9 +441,10 @@ export default function RemoveLiquidity({
           </RowFixed>
         </RowBetween>
         <Text small textAlign="left" pt="12px" mb="25px" style={{ fontStyle: 'italic' }}>
-          {`Output is estimated. If the price changes by more than ${
-            allowedSlippage / 100
-          }% your transaction will revert.`}
+          {t(
+            'Output is estimated. If the price changes by more than %allowedSlippage%% your transaction will revert.',
+            { allowedSlippage: allowedSlippage / 100 },
+          )}
         </Text>
       </AutoColumn>
     )
@@ -451,7 +454,7 @@ export default function RemoveLiquidity({
     return (
       <>
         <RowBetween>
-          <Text>{`${currencyA?.getSymbol(chainId) ?? ''}/${currencyB?.getSymbol(chainId) ?? ''} Burned`}</Text>
+          <Text>{`${currencyA?.getSymbol(chainId) ?? ''}/${currencyB?.getSymbol(chainId) ?? ''} ${t('Burned')}`}</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
             <Text>{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
@@ -482,13 +485,13 @@ export default function RemoveLiquidity({
           disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
           onClick={onRemove}
         >
-          Confirm
+          {t('Confirm')}
         </ButtonSquare>
       </>
     )
   }
 
-  const pendingText = `Removing ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6) ?? ''} ${
+  const pendingText = `${t('Removing')} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6) ?? ''} ${
     currencyA?.getSymbol(chainId) ?? ''
   } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6) ?? ''} ${currencyB?.getSymbol(chainId) ?? ''}`
 
@@ -524,7 +527,7 @@ export default function RemoveLiquidity({
           <Flex flexWrap="wrap" alignItems="center" mt="15px" mb="5px">
             <LiquidityPositionLink />
             <Title bold fontSize="22px">
-              Remove Liquidity
+              {t('Remove Liquidity')}
             </Title>
           </Flex>
           <Wrapper>
@@ -564,7 +567,7 @@ export default function RemoveLiquidity({
                   <Text small>{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
                 </EvenRow>
                 <OddRow justify="space-around" style={{ borderRadius: '0px 0px 5px 5px' }}>
-                  <Text>Share of pool</Text>
+                  <Text>{t('Share of pool')}</Text>
                   <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </OddRow>
               </div>
@@ -603,7 +606,7 @@ export default function RemoveLiquidity({
                   </AutoRow>
                 </AutoColumn>
                 <RowBetween style={{ padding: '0px 15px 0px 10px' }}>
-                  <Text bold>Share of pool</Text>
+                  <Text bold>{t('Share of pool')}</Text>
                   <Text bold>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </RowBetween>
               </>
@@ -622,9 +625,9 @@ export default function RemoveLiquidity({
                     {approval === ApprovalState.PENDING ? (
                       <Dots>Enabling</Dots>
                     ) : approval === ApprovalState.APPROVED || signatureData !== null ? (
-                      'Enabled'
+                      t('Enabled')
                     ) : (
-                      'Enable'
+                      t('Enable')
                     )}
                   </LargeStyledButton>
                   <LargeStyledButton
@@ -634,7 +637,7 @@ export default function RemoveLiquidity({
                     disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
                     ml="8px"
                   >
-                    {error || 'Remove'}
+                    {error || t('Remove')}
                   </LargeStyledButton>
                 </RowBetween>
               )}

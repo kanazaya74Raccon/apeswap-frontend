@@ -535,7 +535,7 @@ const DualFarms: React.FC = () => {
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
+      const columnSchema = DesktopColumnSchema(t)
 
       const columns = columnSchema.map((column) => ({
         id: column.id,
@@ -608,7 +608,7 @@ const DualFarms: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -628,7 +628,7 @@ const DualFarms: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
@@ -636,7 +636,7 @@ const DualFarms: React.FC = () => {
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              {t('APR')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -644,7 +644,7 @@ const DualFarms: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'liquidity'} onClick={() => handleSortOptionChange('liquidity')}>
-              Liquidity
+              {t('Liquidity')}
               {sortOption === 'liquidity' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -652,7 +652,7 @@ const DualFarms: React.FC = () => {
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

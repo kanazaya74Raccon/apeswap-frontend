@@ -170,13 +170,13 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <InfoContainer liquidityDigits={liquidityDigits}>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontSize="12px">{t('Multiplier:')}</StyledText>
+                <StyledText fontSize="12px">{t('Multiplier')}:</StyledText>
                 <Multiplier multiplier={apr.multiplier} />
               </ValueWrapper>
             </ValueContainer>
             <ValueContainer>
               <ValueWrapper>
-                <StyledText fontSize="12px">{t('Stake:')}</StyledText>
+                <StyledText fontSize="12px">{t('Stake')}:</StyledText>
                 <LinkExternal className="noClick" href={addLiquidityUrl}>
                   <StyledText className="noClick" fontSize="12px">
                     {farm.lpSymbol}
@@ -186,13 +186,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
               <ValueWrapper>
                 <StyledText fontSize="12px">Staked Value</StyledText>
                 <StyledText fontSize="12px" color="green">
-                  ~{totalValuePersonalFormated}USD
+                  ~{totalValuePersonalFormated}
+                  {t('USD')}
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
                 <StyledText fontSize="12px">Earned Value</StyledText>
                 <StyledText fontSize="12px" color="green">
-                  ~{displayHarvestBalance}USD
+                  ~{displayHarvestBalance}
+                  {t('USD')}
                 </StyledText>
               </ValueWrapper>
             </ValueContainer>
@@ -200,14 +202,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <Flex flexDirection="column">
             {account && rawStakedBalance !== 0 && (
               <>
-                <StakedText fontSize="12px">Staked</StakedText>
+                <StakedText fontSize="12px">{t('Staked')}</StakedText>
                 <StakedValueText fontSize="20px">{displayBalance}</StakedValueText>
               </>
             )}
           </Flex>
           <ValueContainerNoneLarge>
             <ValueWrapper>
-              <StyledText fontSize="12px">{t('APR:')}</StyledText>
+              <StyledText fontSize="12px">{t('APR')}:</StyledText>
               <Apr {...apr} addLiquidityUrl={addLiquidityUrl} />
             </ValueWrapper>
           </ValueContainerNoneLarge>
@@ -225,7 +227,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         </StyledLinkExternal>
       )}
       <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
-        Add to Metamask
+        {t('Add to Metamask')}
       </StyledLink>
     </>
   )

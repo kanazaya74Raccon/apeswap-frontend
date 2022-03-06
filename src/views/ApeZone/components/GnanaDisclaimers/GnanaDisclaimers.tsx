@@ -51,55 +51,57 @@ export const GnanaDisclaimers: React.FC = () => {
     <Container>
       <Main>
         <FirstHeaderCon>
-          <FirstHeader>Please be informed</FirstHeader>
-          <FirstHeader2>Gnana Breakdown</FirstHeader2>
+          <FirstHeader>{t('Please be informed')}</FirstHeader>
+          <FirstHeader2>{t('Gnana Breakdown')}</FirstHeader2>
         </FirstHeaderCon>
 
         <Sect>
           <Sect1>
             <Sect1a>
-              <Text1>Fee1</Text1>
+              <Text1>{t('Fee1')}</Text1>
             </Sect1a>
             <Sect1b>
-              <Text2>Converting</Text2>
+              <Text2>{t('Converting')}</Text2>
             </Sect1b>
             <Sect1c>
-              <Text4>Staking/Committing</Text4>
+              <Text4>{t('Staking / Committing')}</Text4>
             </Sect1c>
             <Sect1d>
-              <Text4>Returning</Text4>
+              <Text4>{t('Returning')}</Text4>
             </Sect1d>
           </Sect1>
 
           <Sect1>
             <Sect2a>
-              <Text2>Fee</Text2>
+              <Text2>{t('Fee')}</Text2>
             </Sect2a>
             <Sect2b>
               <Text3>
-                28% Burn Fee <br /> 2% Reflect Fee
+                {t('28 % Burn Fee')} <br /> {t('2 % Reflect Fee')}
               </Text3>
             </Sect2b>
             <Sect2c>
-              <Text3>2% Reflect Fee (Both in and out)</Text3>
+              <Text3>
+                {t('2 % Reflect Fee')} ({t('Both in and out')})
+              </Text3>
             </Sect2c>
             <Sect2d>
-              <Text3>2% Reflect Fee</Text3>
+              <Text3>{t('2 % Reflect Fee')}</Text3>
             </Sect2d>
           </Sect1>
 
           <Sect1>
             <Sect2a>
-              <Text2>Value</Text2>
+              <Text2>{t('Value')}</Text2>
             </Sect2a>
             <Sect2b>
-              <Text3>.7 GNANA per BANANA</Text3>
+              <Text3>{t('.7 GNANA per BANANA')}</Text3>
             </Sect2b>
             <Sect2c>
-              <Text3>1 GNANA calculated as 1.389 BANANA</Text3>
+              <Text3>{t('1 GNANA calculated as 1.389 BANANA')}</Text3>
             </Sect2c>
             <Sect2d>
-              <Text3>.98 BANANA per GNANA</Text3>
+              <Text3>{t('.98 BANANA per GNANA')}</Text3>
             </Sect2d>
           </Sect1>
         </Sect>
@@ -107,13 +109,17 @@ export const GnanaDisclaimers: React.FC = () => {
 
       <Main2>
         <FirstHeaderCon>
-          <FirstHeader>Key Disclaimers</FirstHeader>
-          <FirstHeader2>Key Disclaimers</FirstHeader2>
+          <FirstHeader>{t('Key Disclaimers')}</FirstHeader>
+          <FirstHeader2>{t('Key Disclaimers')}</FirstHeader2>
         </FirstHeaderCon>
 
         <InfoSect1>
-          <Info content="The 2% reflect fee applies to all $GNANA transactions, including transfer, staking, unstaking, and participation in IAOs." />
-          <Info content="You do not accumulate reflect fees when your GNANA is staked in a pool" />
+          <Info
+            content={t(
+              'The 2% reflect fee applies to all $GNANA transactions, including transfer, staking, unstaking, and participation in IAOs.',
+            )}
+          />
+          <Info content={t('You do not accumulate reflect fees when your GNANA is staked in a pool')} />
         </InfoSect1>
       </Main2>
 

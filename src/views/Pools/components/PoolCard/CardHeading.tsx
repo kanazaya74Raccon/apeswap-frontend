@@ -343,7 +343,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           )}
           <StyledFlexEarnedSmall>
             <StyledText4 color="primary" pr="3px">
-              {t(`${earnToken}`)}
+              {earnToken}
             </StyledText4>
             <StyledText2 color="primary" pr="3px">
               {t('Earned')}
@@ -355,7 +355,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {t(`${earnToken}`)}
+                {earnToken}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
                 {t('Earned')}

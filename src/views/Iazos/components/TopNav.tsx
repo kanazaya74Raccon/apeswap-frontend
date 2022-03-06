@@ -2,15 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Text } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const TopNav: React.FC = () => {
+  const { t } = useTranslation()
   return (
     <TopNavWrapper>
       <TopNavMonkey />
       <Link to="/ss-iao">
         <BackWrapper>
           <BackArrow src="/images/left-arrow.svg" />
-          <StyledText color="white">Back to Self-Serve Launchpad</StyledText>
+          <StyledText color="white">{t('Back to Self-Serve Launchpad')}</StyledText>
         </BackWrapper>
       </Link>
     </TopNavWrapper>

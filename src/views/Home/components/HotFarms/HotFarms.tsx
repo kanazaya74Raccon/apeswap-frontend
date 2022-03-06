@@ -7,6 +7,7 @@ import { QuoteToken } from 'config/constants/types'
 import farms from 'config/constants/farms'
 import { Farm } from 'state/types'
 import { useFetchFarmsHome } from 'state/strapi/fetchStrapi'
+import { useTranslation } from 'contexts/Localization'
 import { useFarmFromPid, usePriceBnbBusd, usePriceEthBusd, usePriceBananaBusd, usePollFarms } from 'state/hooks'
 import FarmCardForHome from './FarmCardForHome'
 
@@ -79,6 +80,7 @@ const HotFarms = () => {
   const bnbPrice = usePriceBnbBusd()
   const ethPriceUsd = usePriceEthBusd()
   const bananaPrice = usePriceBananaBusd()
+  const { t } = useTranslation()
   let farmsFetched = []
 
   const farmsList = useCallback(
@@ -138,7 +140,7 @@ const HotFarms = () => {
     <>
       <HotFarmsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontWeight={800}>Hot Farms</HotFarmsText>
+        <HotFarmsText fontWeight={800}>{t('Hot Farms')}</HotFarmsText>
         <FarmWrapper>
           {farmsFetched.slice(1).map((farm: Farm) => (
             <a href="https://apeswap.finance/farms" rel="noopener noreferrer" key={farm?.pid}>

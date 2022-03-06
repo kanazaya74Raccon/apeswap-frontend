@@ -3,6 +3,7 @@ import { Button } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 import { useHistory } from 'react-router-dom'
 
+import { useTranslation } from 'contexts/Localization'
 import {
   FeatureBox,
   Motto,
@@ -31,6 +32,7 @@ const Icon = ({ name }: Props) => {
 
 const HowItWorks = () => {
   const history = useHistory()
+  const { t } = useTranslation()
 
   const handleDoOwnClick = () => {
     history.push('/ss-iao')
@@ -39,43 +41,43 @@ const HowItWorks = () => {
   return (
     <Container>
       <SectionHeading size="lg" textAlign="center">
-        OUR IAO IDEOLOGY
+        {t('OUR IAO IDEOLOGY')}
       </SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="investment" />
 
-          <SectionHeading textAlign="center">INVESTMENT</SectionHeading>
-          <Motto>BUILD</Motto>
+          <SectionHeading textAlign="center">{t('INVESTMENT')}</SectionHeading>
+          <Motto>{t('BUILD')}</Motto>
           <StyledText textAlign="center">
-            We highly vet applicants to choose projects we believe in as long term investments and partners
+            {t('We highly vet applicants to choose projects we believe in as long term investments and partners')}
           </StyledText>
         </FeatureBox>
         <FeatureBox>
           <Icon name="development" />
 
-          <SectionHeading textAlign="center">DEVELOPMENT</SectionHeading>
-          <Motto>HOLD</Motto>
+          <SectionHeading textAlign="center">{t('DEVELOPMENT')}</SectionHeading>
+          <Motto>{t('HOLD')}</Motto>
           <StyledText textAlign="center">
-            The funds raised are used to finalize development and launch the project
+            {t('The funds raised are used to finalize development and launch the project')}
           </StyledText>
         </FeatureBox>
         <FeatureBox>
           <Icon name="innovation" />
 
-          <SectionHeading textAlign="center">INNOVATION</SectionHeading>
-          <Motto>EXPERIMENT</Motto>
+          <SectionHeading textAlign="center">{t('INNOVATION')}</SectionHeading>
+          <Motto>{t('EXPERIMENT')}</Motto>
           <StyledText textAlign="center">
-            These projects are meant to be unique and push the boundaries of DeFi
+            {t('These projects are meant to be unique and push the boundaries of DeFi')}
           </StyledText>
         </FeatureBox>
       </Frame>
       <ButtonBox>
         <Button variant="yellow" external href="https://ApeSwap.Click/Partners" as="a">
-          BECOME A PARTNER
+          {t('BECOME A PARTNER')}
         </Button>
         <Button variant="yellow" onClick={handleDoOwnClick}>
-          LAUNCH YOUR OWN
+          {t('LAUNCH YOUR OWN')}
         </Button>
       </ButtonBox>
     </Container>

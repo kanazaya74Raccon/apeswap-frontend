@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import { TabOption } from '../types'
 
 const Wrapper = styled.div`
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const IfoTabButtons = ({ selectedTab = 'current', onSelect }: Props) => {
+  const { t } = useTranslation()
   return (
     <Wrapper>
       <ButtonMenu
@@ -23,8 +25,8 @@ const IfoTabButtons = ({ selectedTab = 'current', onSelect }: Props) => {
         onClick={(index) => onSelect(index === 0 ? 'current' : 'past')}
         variant="yellow"
       >
-        <ButtonMenuItem>Current</ButtonMenuItem>
-        <ButtonMenuItem>Past</ButtonMenuItem>
+        <ButtonMenuItem>{t('Current')}</ButtonMenuItem>
+        <ButtonMenuItem>{t('Past')}</ButtonMenuItem>
       </ButtonMenu>
     </Wrapper>
   )

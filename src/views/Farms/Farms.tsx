@@ -270,7 +270,7 @@ const Farms: React.FC = () => {
 
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
-      const columnSchema = DesktopColumnSchema
+      const columnSchema = DesktopColumnSchema(t)
 
       const columns = columnSchema.map((column) => ({
         id: column.id,

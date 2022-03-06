@@ -335,7 +335,7 @@ const NfaStaking: React.FC = () => {
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {t('NFA Staking')}
           </StyledHeading>
-          {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}
+          {size.width > 968 && <AdminText>{t('Stake your Non-Fungible Ape for profits from the auction')}</AdminText>}
         </HeadingContainer>
         <MonkeyWrapper>
           <PoolMonkey />
@@ -345,7 +345,7 @@ const NfaStaking: React.FC = () => {
         <ControlContainer>
           <ViewControls>
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>

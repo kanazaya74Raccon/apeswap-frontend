@@ -159,7 +159,7 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
   const isMobile = !isXl
-  const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
+  const tableSchema = isMobile ? MobileColumnSchema(t) : DesktopColumnSchema(t)
   const columnNames = tableSchema.map((column) => column.name)
 
   const handleRenderRow = () => {

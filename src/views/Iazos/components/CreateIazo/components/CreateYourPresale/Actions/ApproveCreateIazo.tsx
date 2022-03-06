@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useApproveIazoFactory from 'views/Iazos/hooks/useApproveIazoFactory'
 import { AutoRenewIcon } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
@@ -17,6 +18,7 @@ const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({
   onPendingApproved,
 }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
+  const { t } = useTranslation()
   const onApprovetokenAddress = useApproveIazoFactory(tokenAddress).onApprove
 
   return (
@@ -30,7 +32,7 @@ const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({
       disabled={pendingTrx || approved || disabled}
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
     >
-      {approved ? 'APPROVED' : 'APPROVE'}
+      {approved ? t('APPROVED') : t('APPROVE')}
     </StyledButton>
   )
 }

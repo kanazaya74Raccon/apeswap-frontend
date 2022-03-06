@@ -347,10 +347,14 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading>Tier {tier}</StyledHeading>
+          <StyledHeading>
+            {t('Tier')} {tier}
+          </StyledHeading>
           {!removed && (
             <Text fontWeight={600} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1>BPD: {bananaPerDay}</StyledText1>
+              <StyledText1>
+                {t('BPD')}: {bananaPerDay}
+              </StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
@@ -367,7 +371,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {t(`${earnToken}`)}
+                {earnToken}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
                 {t('Earned')}

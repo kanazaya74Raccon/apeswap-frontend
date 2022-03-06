@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { useFetchPoolsHome } from 'state/strapi/fetchStrapi'
 import { Pool } from 'state/types'
 import pools from 'config/constants/pools'
+import { useTranslation } from 'contexts/Localization'
 import { usePollPools, usePoolFromPid } from 'state/hooks'
 import PoolCardForHome from './PoolCardForHome'
 
@@ -57,6 +58,7 @@ const DEFAULT_POOL = 0
 const CoolPools = () => {
   usePollPools()
   const { poolsData, loading } = useFetchPoolsHome()
+  const { t } = useTranslation()
 
   const poolMustBeUnder = pools.reduce((prev, curr) => (prev.sousId > curr.sousId ? prev : curr)).sousId
 
@@ -74,7 +76,7 @@ const CoolPools = () => {
   return (
     <>
       <CoolPoolsWrapper>
-        <CoolPoolsText fontWeight={800}>Cool Pools</CoolPoolsText>
+        <CoolPoolsText fontWeight={800}>{t('Cool Pools')}</CoolPoolsText>
         <PoolWrapper>
           {loading ? (
             <></>

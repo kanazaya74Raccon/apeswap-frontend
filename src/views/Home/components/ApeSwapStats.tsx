@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { useFetchHomepageStats, useHomepageStats } from 'state/hooks'
 
 import { BANANA_PER_BLOCK } from 'config'
+import { useTranslation } from 'contexts/Localization'
 import CardValue from './CardValue'
-import { useTranslation } from '../../../contexts/Localization'
 
 const StyledBananaStats = styled(Card)`
   width: 336px;

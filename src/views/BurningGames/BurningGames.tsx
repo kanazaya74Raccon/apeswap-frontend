@@ -5,6 +5,7 @@ import Page from 'components/layout/Page'
 import useTheme from 'hooks/useTheme'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
 import CardBurningGame from './CardBurningGame'
+import { useTranslation } from 'contexts/Localization'
 
 const HeadingContainer = styled.div`
   max-width: 1024px;
@@ -120,6 +121,7 @@ const BurningGames: React.FC = () => {
 
   const { isXl: isDesktop } = useMatchBreakpoints()
   const { isDark } = useTheme()
+  const { t } = useTranslation()
 
   let banner = ''
 
@@ -133,10 +135,10 @@ const BurningGames: React.FC = () => {
       <Header banner={banner}>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} color="white">
-            BANANA Burns
+            {t('BANANA Burns')}
           </StyledHeading>
           <SubtitleHeading isMobile={!isDesktop} fontWeight={400} color="white">
-            Partners Supporting The Jungle
+            {t('Partners Supporting The Jungle')}
           </SubtitleHeading>
         </HeadingContainer>
       </Header>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import getTimePeriods from 'utils/getTimePeriods'
+import { useTranslation } from 'contexts/Localization'
 import DateSelectionButton from './DateSelectionButton'
 import { DateObject } from '../types'
 import {
@@ -22,16 +23,17 @@ const formatDate = (date: Date) => {
   return `${weekDay} ${dayNumber} ${month} ${year} ${time[0]}`
 }
 
-const formatCountdown = (startDate, endDate, duration?) => {
+const formatCountdown = (t, startDate, endDate, duration?) => {
   const timeUntil = getTimePeriods(Math.abs(endDate - startDate) / 1000)
-  return `${duration ? 'Last for' : 'Starts in'} ${timeUntil?.months} months ${timeUntil?.days} days ${
-    timeUntil?.hours
-  } hours`
+  return `${duration ? t('Last for') : t('Starts in')} ${timeUntil?.months} ${t('months')} ${timeUntil?.days} ${t(
+    'days',
+  )} ${timeUntil?.hours} ${t('hours')}`
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
   const delayedDate = new Date(new Date().setDate(new Date().getDate() + 10))
   const [dateState, setDateState] = useState<DateObject>({ start: delayedDate, end: delayedDate })
+  const { t } = useTranslation()
 
   useEffect(() => {
     onChange(dateState)
@@ -43,7 +45,7 @@ const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
       <DateSelectionContainer>
         <TextContainer>
           <StyledText>{formatDate(dateState.start)}</StyledText>
-          <StyledSubText>{formatCountdown(new Date(), dateState.start)}</StyledSubText>
+          <StyledSubText>{formatCountdown(t, new Date(), dateState.start)}</StyledSubText>
         </TextContainer>
         <DateButtonContainer>
           <DateSelectionButton onChange={(date) => setDateState({ ...dateState, start: date })} />

@@ -101,14 +101,14 @@ const Detail: React.FC<ExpandableSectionProps> = ({
             <StyledText fontSize="12px">{t('End')}</StyledText>
             <StyledText fontSize="12px">
               {rewardToken.symbol === 'BANANA'
-                ? 'Never'
+                ? t('Never')
                 : `${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${timeUntilEnd.minutes}m`}
             </StyledText>
           </Flex>
         </>
       )}
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{t(totalStakedTitle)}:</StyledText>
+        <StyledText fontSize="12px">{totalStakedTitle}:</StyledText>
         <StyledText fontSize="12px">{totalStakedFormated}</StyledText>
       </Flex>
       <Flex justifyContent="space-between">

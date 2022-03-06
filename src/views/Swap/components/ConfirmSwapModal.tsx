@@ -6,6 +6,7 @@ import TransactionConfirmationModal, {
   TransactionErrorContent,
 } from 'components/TransactionConfirmationModal'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
 
@@ -50,6 +51,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   txHash,
 }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const showAcceptChanges = useMemo(
     () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
     [originalTrade, trade],
@@ -80,7 +82,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
   }, [allowedSlippage, onConfirm, showAcceptChanges, swapErrorMessage, trade])
 
   // text to show while loading
-  const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
+  const pendingText = `${t('Swapping')} ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
     trade?.inputAmount?.currency?.getSymbol(chainId) ?? ''
   } for ${trade?.outputAmount?.toSignificant(6) ?? ''} ${trade?.outputAmount?.currency?.getSymbol(chainId) ?? ''}`
 
@@ -96,7 +98,7 @@ const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = (
 
   return (
     <TransactionConfirmationModal
-      title="Confirm Swap"
+      title={t('Confirm Swap')}
       onDismiss={onDismiss}
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}

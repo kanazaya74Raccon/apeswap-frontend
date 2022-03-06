@@ -5,6 +5,7 @@ import { Button, Heading, Text } from '@apeswapfinance/uikit'
 
 import Page from 'components/layout/Page'
 import Container from 'components/layout/Container'
+import { useTranslation } from 'contexts/Localization'
 import HowItWorks from './components/HowItWorks'
 import NftPreview from './components/NftPreview'
 

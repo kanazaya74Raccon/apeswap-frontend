@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Flex, Heading, Text, Skeleton, Image } from '@apeswapfinance/uikit'
 import { Farm } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 
 export interface FarmWithStakedValue extends Farm {
   apr?: BigNumber
@@ -128,6 +129,7 @@ const StyledHeading = styled(Heading)`
 const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
   const { tokenSymbol, apr, quoteTokenSymbol, image } = farm
   const farmAPR = new BigNumber(apr && apr.times(new BigNumber(100)).toNumber().toLocaleString('en-US').slice(0, -1))
+  const { t } = useTranslation()
 
   return (
     <PCard>
@@ -155,7 +157,7 @@ const FarmCardForHome: React.FC<HarvestProps> = ({ farm }) => {
           {tokenSymbol}-{quoteTokenSymbol}
         </StyledHeading>
         <ApyWrapper>
-          <ApyText>APR:</ApyText>
+          <ApyText>{t('APR')}:</ApyText>
           <ApyNumber>
             {farmAPR.toFixed(2) !== 'NaN' ? <ApyNumber>{farmAPR.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}
           </ApyNumber>

@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import { IazoDefaultSettings } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import { PresaleData } from './types'
 import PairCreation from './PairCreation/PairCreation'
 import DateSelection from './DateSelection/DateSelection'
@@ -28,6 +29,7 @@ interface CreateIazoProps {
 const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
   const { baseFee, iazoTokenFee } = settings !== null && settings
   const { account } = useWeb3React()
+  const { t } = useTranslation()
   const [presaleData, setPresaleData] = useState<PresaleData>()
   const [stepper, setStepper] = useState<Stepper>({
     pairCreated: false,
@@ -67,7 +69,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
 
   return (
     <LaunchPadInfoWrapper>
-      <StyledHeader>Create Your Presale</StyledHeader>
+      <StyledHeader>{t('Create Your Presale')}</StyledHeader>
       {account ? (
         <PairCreation onChange={onPairCreation} />
       ) : (

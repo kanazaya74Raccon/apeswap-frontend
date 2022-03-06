@@ -74,29 +74,33 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidit
   return (
     <Wrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">Total Staked</StyledText>
+        <StyledText fontSize="12px">{t('Total Staked')}</StyledText>
         <StyledText fontSize="12px">{displayLiquidity}</StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">Reward Tokens</StyledText>
+        <StyledText fontSize="12px">{t('Reward Tokens')}</StyledText>
         <StyledText fontSize="12px">
           {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">{farm?.rewardTokens?.token0?.symbol} Earned:</StyledText>
+        <StyledText fontSize="12px">
+          {farm?.rewardTokens?.token0?.symbol} {t('Earned')}:
+        </StyledText>
         <StyledText fontSize="12px" color="green">
           {miniChefEarnings ? miniChefEarnings.toFixed(4) : '0'}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">{farm?.rewardTokens?.token1?.symbol} Earned:</StyledText>
+        <StyledText fontSize="12px">
+          {farm?.rewardTokens?.token1?.symbol} {t('Earned')}:
+        </StyledText>
         <StyledText fontSize="12px" color="green">
           {rewarderEarnings ? rewarderEarnings.toFixed(4) : '0'}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>
-        <StyledText fontSize="12px">Staked Amount</StyledText>
+        <StyledText fontSize="12px">{t('Staked Amount')}</StyledText>
         <StyledText fontSize="12px">{rawStakedBalance ? rawStakedBalance.toFixed(10) : '0'}</StyledText>
       </ValueWrapper>
       <Flex justifyContent="space-between">

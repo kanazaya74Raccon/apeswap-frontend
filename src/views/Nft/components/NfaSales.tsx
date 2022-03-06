@@ -2,6 +2,7 @@ import React from 'react'
 import { usePriceBnbBusd } from 'state/hooks'
 import { SaleHistory } from 'hooks/api'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 
 const SalesContainer = styled.div`
   display: grid;
@@ -27,6 +28,7 @@ const SalesItem = styled.div`
 
 const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber }) => {
   const bnbPrice = usePriceBnbBusd()
+  const { t } = useTranslation()
 
   const bigNumber = (num) => {
     return num / 1e18
@@ -40,7 +42,9 @@ const NfaSales: React.FC<SaleHistory> = ({ tokenId, value, blockNumber }) => {
     <SalesContainer>
       <SalesItem key={tokenId}>${getUsd(value)} USD</SalesItem>
       <SalesItem key={value}>{bigNumber(value).toFixed(3)} BNB</SalesItem>
-      <SalesItem key={blockNumber}>{blockNumber} Block</SalesItem>
+      <SalesItem key={blockNumber}>
+        {blockNumber} {t('Block')}
+      </SalesItem>
     </SalesContainer>
   )
 }

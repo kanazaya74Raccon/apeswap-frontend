@@ -10,6 +10,7 @@ import { usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useTranslation } from 'contexts/Localization'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
 import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
@@ -72,6 +73,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const { currentBlock } = useBlock()
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
+  const { t } = useTranslation()
   const currencyPrice = gnana ? gnanaPrice : bnbPrice
 
   useEffect(() => {
@@ -177,8 +179,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
   const stats = React.useMemo(() => {
     let texts = [
-      { label: 'For Sale', value: saleAmount },
-      { label: 'To raise (USD)', value: raiseAmount },
+      { label: t('For Sale'), value: saleAmount },
+      { label: t('To raise (USD)'), value: raiseAmount },
     ]
 
     if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
@@ -188,13 +190,13 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
       const vestedValueDollar = (getBalanceNumber(currencyPrice, 0) * vestedValueAmount).toFixed(2)
       texts = [
         {
-          label: 'Tokens available',
+          label: t('Tokens available'),
           value: Number(userTokenStatus.offeringTokenTotalHarvest).toFixed(4),
         },
-        { label: 'Tokens vested', value: Number(userTokenStatus.offeringTokensVested).toFixed(4) },
-        { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
+        { label: t('Tokens vested'), value: Number(userTokenStatus.offeringTokensVested).toFixed(4) },
+        { label: t('Tokens harvested'), value: Number(offeringTokensClaimed).toFixed(4) },
         {
-          label: 'Committed value',
+          label: t('Committed value'),
           value: `${Number(vestedValueAmount).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
         },
       ]
@@ -204,7 +206,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
     if (hasStarted) {
       texts.splice(2, 0, {
-        label: 'Total raised (% of the target)',
+        label: t('Total raised (% of the target)'),
         value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
       })
       return texts

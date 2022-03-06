@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
 import { Nft } from 'config/constants/types'
+import { useTranslation } from 'contexts/Localization'
 import NftList from './NftList'
 
 interface NftSortProps {
@@ -139,6 +140,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
   const [nftToDisplay, setNftToDisplay] = useState(nftSet.slice(0, endPagination))
   const [currentFilterName, setCurrentFilterName] = useState('Filter')
   const [currentSortName, setCurrentSortName] = useState('Sort')
+  const { t } = useTranslation()
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
@@ -217,19 +219,19 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
         <DropDown>
           <SortTitle>{currentSortName}</SortTitle>
           <DropDownContent>
-            <DropDownItem onClick={() => sortBy('index')}>Ape #</DropDownItem>
-            <DropDownItem onClick={() => sortBy('rarity')}>Rarity</DropDownItem>
+            <DropDownItem onClick={() => sortBy('index')}>{t('Ape #')}</DropDownItem>
+            <DropDownItem onClick={() => sortBy('rarity')}>{t('Rarity')}</DropDownItem>
           </DropDownContent>
         </DropDown>
         <DropDown>
           <SortTitle>{currentFilterName}</SortTitle>
           <DropDownContent>
-            <DropDownItem onClick={() => nextSet()}>Next Sale</DropDownItem>
-            <DropDownItem onClick={() => filterBy(1)}>Tier 1</DropDownItem>
-            <DropDownItem onClick={() => filterBy(2)}>Tier 2</DropDownItem>
-            <DropDownItem onClick={() => filterBy(3)}>Tier 3</DropDownItem>
-            <DropDownItem onClick={() => filterBy(4)}>Tier 4</DropDownItem>
-            <DropDownItem onClick={() => filterBy(5)}>Tier 5</DropDownItem>
+            <DropDownItem onClick={() => nextSet()}>{t('Next Sale')}</DropDownItem>
+            <DropDownItem onClick={() => filterBy(1)}>{t('Tier 1')}</DropDownItem>
+            <DropDownItem onClick={() => filterBy(2)}>{t('Tier 2')}</DropDownItem>
+            <DropDownItem onClick={() => filterBy(3)}>{t('Tier 3')}</DropDownItem>
+            <DropDownItem onClick={() => filterBy(4)}>{t('Tier 4')}</DropDownItem>
+            <DropDownItem onClick={() => filterBy(5)}>{t('Tier 5')}</DropDownItem>
           </DropDownContent>
         </DropDown>
         {filterState && (
@@ -245,7 +247,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
           </ResetArrow>
         )}
         <SearchBoxHolder onChange={(e) => search(e)}>
-          <SearchBox type="text" placeholder="Search by ape name" />
+          <SearchBox type="text" placeholder={t('Search by ape name')} />
         </SearchBoxHolder>
       </SortHolder>
       <NftList nftSet={nftToDisplay} />

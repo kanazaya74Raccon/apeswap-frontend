@@ -69,37 +69,37 @@ const NfaAttributes: React.FC<Nfa> = ({ nfa }) => {
       <ToolTip>
         <Attribute>
           {base.category}: {base.id}
-          <ToolTipText>Occurance {base.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: base.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {face.category}: {face.id}
-          <ToolTipText>Occurance {face.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: face.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {frame.category}: {frame.id}
-          <ToolTipText>Occurance {frame.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: frame.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {mouth.category}: {mouth.id}
-          <ToolTipText>Occurance {mouth.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: mouth.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {eye.category}: {eye.id}
-          <ToolTipText>Occurance {eye.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: eye.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {hat.category}: {hat.id}
-          <ToolTipText>Occurance {hat.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: hat.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
     </AttributesHolder>

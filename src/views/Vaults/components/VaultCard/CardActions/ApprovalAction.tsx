@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
 import { useVaultApeApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
+import { useTranslation } from 'contexts/Localization'
 
 interface ApprovalActionProps {
   stakingContractAddress: string
@@ -19,6 +20,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
   const { onApprove } = useVaultApeApprove(stakingTokenContract, pid)
+  const { t } = useTranslation()
 
   const handleApprove = useCallback(async () => {
     try {
@@ -42,7 +44,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingContractAddress,
         <Skeleton width="100%" height="52px" />
       ) : (
         <StyledButtonSquare disabled={requestedApproval} onClick={handleApprove}>
-          ENABLE
+          {t('ENABLE')}
         </StyledButtonSquare>
       )}
     </>

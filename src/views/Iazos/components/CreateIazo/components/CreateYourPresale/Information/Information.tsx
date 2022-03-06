@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'contexts/Localization'
 import ImageUpload from './ImageUpload'
 import { SaleInformation } from '../types'
 import { InputWrapper, StyledHeader, HeaderWrapper } from './styles'
@@ -16,6 +17,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
   const { isDark } = useTheme()
   const inputSize = isMobile ? 'sm' : 'lg'
   const bgColor = isDark ? '#222222' : 'white'
+  const { t } = useTranslation()
   const [information, setInformation] = useState<SaleInformation>({
     website: '',
     whitepaper: '',
@@ -33,7 +35,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
   return (
     <>
       <HeaderWrapper>
-        <StyledHeader>Information</StyledHeader>
+        <StyledHeader>{t('Information')}</StyledHeader>
       </HeaderWrapper>
       <InputWrapper>
         <TextInput
@@ -100,7 +102,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           title="Description:"
         />
         <ImageUpload
-          title="Token Logo:*"
+          title={`${t('Token Logo')}:*`}
           onChange={(e) => setInformation({ ...information, tokenLogo: e.imageFile })}
         />
       </InputWrapper>

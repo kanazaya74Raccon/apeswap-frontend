@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { Vault } from 'state/types'
 import { usePollVaultsData, useVaultFromPid } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import VaultCardForHome from './VaultsCardForHome'
 
 const ValuableVaultsWrapper = styled.div`
@@ -69,6 +70,7 @@ const DEFAULT_FARM_TWO = 2
 
 const VauluableVaults = () => {
   usePollVaultsData()
+  const { t } = useTranslation()
   const pid1 = DEFAULT_FARM
   const pid2 = DEFAULT_FARM_TWO
 
@@ -78,7 +80,7 @@ const VauluableVaults = () => {
     <>
       <ValuableVaultsWrapper>
         <CardHeaderImage />
-        <HotFarmsText fontWeight={800}>Valuable Vaults</HotFarmsText>
+        <HotFarmsText fontWeight={800}>{t('Valuable Vaults')}</HotFarmsText>
         <FarmWrapper>
           {vaultsToDisplay.map((vault: Vault) => (
             <a href="https://apeswap.finance/vaults" rel="noopener noreferrer" key={vault?.pid}>

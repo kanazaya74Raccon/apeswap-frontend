@@ -4,6 +4,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
 import ClaimIazo from '../../Actions/ClaimIazo'
 import WithdrawTokens from '../../Actions/WithdrawTokens'
@@ -29,6 +30,8 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
   const tokensBoughtFormatted = getBalanceNumber(new BigNumber(tokensBought), parseInt(iazoToken.decimals))
   const hardcapFormatted = getBalanceNumber(new BigNumber(hardcap), parseInt(decimals))
 
+  const { t } = useTranslation()
+
   const { totalBaseCollected } = status
   const baseCollectedFormatted = getBalanceNumber(new BigNumber(totalBaseCollected), parseInt(decimals))
   const percentRaised = (baseCollectedFormatted / hardcapFormatted) * 100
@@ -49,10 +52,12 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
         </ProgressBar>
       </ProgressBarWrapper>
       {iazoFailed
-        ? parseInt(tokensBought) > 0 && <BoldAfterTextLarge>IAZO failed please claim your refund</BoldAfterTextLarge>
+        ? parseInt(tokensBought) > 0 && (
+            <BoldAfterTextLarge>{t('IAZO failed please claim your refund')}</BoldAfterTextLarge>
+          )
         : parseInt(deposited) > 0 && (
             <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-              Tokens bought:{' '}
+              {t('Tokens bought')}:{' '}
             </BoldAfterTextLarge>
           )}
       {account ? (

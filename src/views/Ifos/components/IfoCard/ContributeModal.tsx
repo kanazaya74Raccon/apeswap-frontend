@@ -7,6 +7,7 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
 import track from 'utils/track'
+import { useTranslation } from 'contexts/Localization'
 
 interface Props {
   currency: string
@@ -20,6 +21,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
   const [value, setValue] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const { account, chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const balance = getFullDisplayBalance(useTokenBalance(currencyAddress))
 
   const deposit = async () => {
@@ -31,7 +33,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
   }
 
   return (
-    <Modal title={`Contribute ${currency}`} onDismiss={onDismiss}>
+    <Modal title={`${t('Contribute')} ${currency}`} onDismiss={onDismiss}>
       <BalanceInput
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
@@ -41,7 +43,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
       />
       <Flex justifyContent="space-between" mb="24px">
         <Button fullWidth variant="secondary" onClick={onDismiss} mr="8px">
-          Cancel
+          {t('Cancel')}
         </Button>
         <Button
           fullWidth
@@ -63,7 +65,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
             onDismiss()
           }}
         >
-          Confirm
+          {t('Confirm')}
         </Button>
       </Flex>
       {!notLp && (
@@ -71,7 +73,7 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           href="https://dex.apeswap.finance/#/add/ETH/0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95"
           style={{ margin: 'auto' }}
         >
-          {`Get ${currency}`}
+          {`${t('Get')} ${currency}`}
         </LinkExternal>
       )}
     </Modal>
