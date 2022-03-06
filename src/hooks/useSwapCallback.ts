@@ -4,6 +4,7 @@ import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@apeswa
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import truncateHash from 'utils/truncateHash'
+import { useTranslation } from 'contexts/Localization'
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../config/constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
@@ -101,13 +102,15 @@ export function useSwapCallback(
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
 
+  const { t } = useTranslation()
+
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
-      return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
+      return { state: SwapCallbackState.INVALID, callback: null, error: t('Missing dependencies') }
     }
     if (!recipient) {
       if (recipientAddressOrName !== null) {
-        return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
+        return { state: SwapCallbackState.INVALID, callback: null, error: t('Invalid recipient') }
       }
       return { state: SwapCallbackState.LOADING, callback: null, error: null }
     }
@@ -136,15 +139,17 @@ export function useSwapCallback(
                 return contract.callStatic[methodName](...args, options)
                   .then((result) => {
                     console.error('Unexpected successful call after failed estimate gas', call, gasError, result)
-                    return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') }
+                    return { call, error: new Error(t('Unexpected issue with estimating the gas. Please try again.')) }
                   })
                   .catch((callError) => {
                     console.error('Call threw error', call, callError)
                     const reason: string = callError.reason || callError.data?.message || callError.message
-                    const errorMessage = `The transaction cannot succeed due to error: ${
-                      `${reason}. This is probably an issue with one of the tokens you are swapping` ??
-                      'Unknown error, check the logs'
-                    }.`
+                    const errorMessage = t(
+                      `The transaction cannot succeed due to error: ${
+                        `${reason}. This is probably an issue with one of the tokens you are swapping` ??
+                        'Unknown error, check the logs'
+                      }.`,
+                    )
 
                     return { call, error: new Error(errorMessage) }
                   })
@@ -161,7 +166,7 @@ export function useSwapCallback(
         if (!successfulEstimation) {
           const errorCalls = estimatedCalls.filter((call): call is FailedCall => 'error' in call)
           if (errorCalls.length > 0) throw errorCalls[errorCalls.length - 1].error
-          throw new Error('Unexpected error. Please contact support: none of the calls threw an error')
+          throw new Error(t('Unexpected error. Please contact support: none of the calls threw an error'))
         }
 
         const {
@@ -201,11 +206,11 @@ export function useSwapCallback(
           .catch((error: any) => {
             // if the user rejected the tx, pass this along
             if (error?.code === 4001) {
-              throw new Error('Transaction rejected.')
+              throw new Error(t('Transaction rejected.'))
             } else {
               // otherwise, the error was unexpected and we need to convey that
               console.error(`Swap failed`, error, methodName, args, value)
-              throw new Error(`Swap failed: ${error.message}`)
+              throw new Error(t(`Swap failed: ${error.message}`))
             }
           })
       },
