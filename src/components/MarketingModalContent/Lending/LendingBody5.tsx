@@ -1,6 +1,6 @@
 import React from 'react'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText, MiniHeaderText, MiniText, MiniButton } from '../styles'
+import { StyledImage, StyledText, MiddleHeaderText, MiddleText, MiddleButton } from '../styles'
 
 const LendingBody5: React.FC = () => {
   const learnMore = () => {
@@ -14,10 +14,10 @@ const LendingBody5: React.FC = () => {
           Users can pay back their borrowed assets and <br />
           withdraw their supplied assets at any time.
         </StyledText>
-        <MiniHeaderText>Happy Lending!</MiniHeaderText>
-        <MiniText>
-          You can learn more about Lending <MiniButton onClick={learnMore}>here.</MiniButton>
-        </MiniText>
+        <MiddleHeaderText>Happy Lending!</MiddleHeaderText>
+        <MiddleText>
+          You can learn more about Lending <MiddleButton onClick={learnMore}>here.</MiddleButton>
+        </MiddleText>
       </div>
     </ModalContent>
   )

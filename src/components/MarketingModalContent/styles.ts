@@ -32,15 +32,15 @@ export const StyledText = styled(Text)`
   font-size: 16px;
   line-height: 24px;
 `
-export const MiniHeaderText = styled(StyledText)`
+export const MiddleHeaderText = styled(StyledText)`
   font-size: 22px;
   line-height: 33px;
 `
-export const MiniText = styled(StyledText)`
+export const MiddleText = styled(StyledText)`
   font-size: 12px;
   line-height: 14px;
 `
-export const MiniButton = styled.button`
+export const MiddleButton = styled.button`
   color: ${({ theme }) => theme.colors.yellow};
   text-decoration: underline;
   font-size: 12px;
@@ -52,4 +52,20 @@ export const MiniButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+`
+
+// FARMS
+export const MiniHeaderText = styled(StyledText)`
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: ${({ theme }) => theme.colors.yellow};
+  text-transform: uppercase;
+`
+export const MainHeaderText = styled(MiddleHeaderText)`
+  font-weight: 700;
+`
+export const MiniButton = styled(MiddleButton)`
+  font-size: 16px;
+  line-height: 24px;
 `

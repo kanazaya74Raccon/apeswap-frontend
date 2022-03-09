@@ -1,20 +1,19 @@
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { MarketModal, useWalletModal } from '@apeswapfinance/uikit'
-import useAuth from 'hooks/useAuth'
+import { MarketModal } from '@apeswapfinance/uikit'
 import { LendingBodies } from 'components/MarketingModalContent/Lending/'
+import { FarmsBodies } from 'components/MarketingModalContent/Farms/'
 
 const MarketingModalCheck = () => {
   const location = useLocation()
   const history = useHistory()
-  const { login, logout } = useAuth()
 
-  const { onPresentConnectModal } = useWalletModal(login, logout)
   const lendingRoute = location.search.includes('modal=1')
   const farmsRoute = location.search.includes('modal=2')
   const poolsRoute = location.search.includes('modal=3')
 
   const { LendingBody1, LendingBody2, LendingBody3, LendingBody4, LendingBody5 } = LendingBodies
+  const { FarmsBody1, FarmsBody2, FarmsBody3, FarmsBody4 } = FarmsBodies
 
   const onDismiss = () => {
     history.push({
@@ -22,20 +21,8 @@ const MarketingModalCheck = () => {
     })
   }
 
-  const openFarmsLink = () => {
-    return window.open('https://apeswap.finance/farms', '_blank')
-  }
-
-  const openLiquidityLink = () => {
-    return window.open('https://apeswap.finance/add', '_blank')
-  }
-
-  const openConnectModal = () => {
-    onPresentConnectModal()
-  }
-
   const lending = [<LendingBody1 />, <LendingBody2 />, <LendingBody3 />, <LendingBody4 />, <LendingBody5 />]
-  const farms = [<p>Farms modal</p>, <p>body 2</p>, <p>body 3</p>]
+  const farms = [<FarmsBody1 />, <FarmsBody2 />, <FarmsBody3 />, <FarmsBody4 />]
   const pools = [<p>Pools modal</p>, <p>body 2</p>, <p>body 3</p>]
 
   return lendingRoute ? (
