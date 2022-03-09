@@ -8,6 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 const fetchPrices = async (chainId) => {
   const apePriceGetterAddress = getApePriceGetterAddress(chainId)
   const tokensToCall = Object.keys(tokens).filter((token) => tokens[token].address[chainId] !== undefined)
+  console.log(tokensToCall)
   const erc20Calls = tokensToCall.map((token) => {
     return {
       address: tokens[token].address[chainId],

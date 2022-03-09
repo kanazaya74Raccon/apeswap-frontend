@@ -355,15 +355,6 @@ const tokens = {
     },
     decimals: 18,
   },
-  bnbjdi: {
-    symbol: 'BNB-JDI',
-    address: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
-    },
-    decimals: 18,
-    lpToken: true,
-  },
   obie: {
     symbol: 'OBIE',
     address: {
@@ -983,6 +974,7 @@ const tokens = {
     symbol: 'BANANA-BNB',
     address: {
       56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+      97: '0x90Fc86A7570063a9eA971ec74f01F89569Ad6237',
     },
     decimals: 18,
     lpToken: true,
@@ -999,6 +991,15 @@ const tokens = {
     symbol: 'NFT11-BUSD',
     address: {
       56: '0xEf0A90fb728195F63C911f52ab4bde331089319f',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbjdi: {
+    symbol: 'BNB-JDI',
+    address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
     },
     decimals: 18,
     lpToken: true,

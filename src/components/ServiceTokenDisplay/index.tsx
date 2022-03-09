@@ -9,6 +9,7 @@ interface ServiceTokenDisplayProps {
   token4?: string
   stakeLp?: boolean
   earnLp?: boolean
+  noEarnToken?: boolean
 }
 
 const setUrls = (tokenSymbol: string) => {
@@ -25,11 +26,19 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   token4,
   stakeLp = false,
   earnLp = false,
+  noEarnToken = false,
 }) => {
   const token1Urls = setUrls(token1)
   const token2Urls = setUrls(token2)
   const token3Urls = token3 ? setUrls(token3) : []
   const token4Urls = token4 ? setUrls(token4) : []
+
+  const LpToken = (
+    <Flex alignItems="center">
+      <TokenContainer zIndex={1} srcs={token1Urls} />
+      <TokenContainer ml={-15} srcs={token2Urls} />
+    </Flex>
+  )
 
   const StakeTokenEarnToken = (
     <Flex alignItems="center">
@@ -66,6 +75,9 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   )
 
   const displayToReturn = () => {
+    if (noEarnToken) {
+      return LpToken
+    }
     if (!stakeLp && !earnLp) {
       return StakeTokenEarnToken
     }

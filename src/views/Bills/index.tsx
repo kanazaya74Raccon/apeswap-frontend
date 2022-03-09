@@ -1,11 +1,17 @@
 import { Flex } from '@apeswapfinance/uikit'
 import ListViewMenu from 'components/ListViewMenu'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import React from 'react'
+import { usePollBills, useBills } from 'state/bills/hooks'
 import BillsListView from './components/BillsListView'
 import CardView from './components/CardView'
 import { Header, HeadingContainer, StyledHeading } from './styles'
 
 const Bills: React.FC = () => {
+  usePollBills()
+  const { account } = useActiveWeb3React()
+  const bills = useBills(account)
+  console.log(bills)
   return (
     <>
       <Header>
@@ -25,7 +31,7 @@ const Bills: React.FC = () => {
             query=""
           />
           <CardView />
-          <BillsListView />
+          <BillsListView bills={bills} />
         </Flex>
       </Flex>
       <br /> <br />

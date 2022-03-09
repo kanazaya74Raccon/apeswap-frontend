@@ -62,6 +62,11 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
+    label: 'Bills',
+    icon: 'ApeZone',
+    href: '/bills',
+  },
+  {
     label: 'GNANA',
     icon: 'ApeZone',
     href: '/gnana',

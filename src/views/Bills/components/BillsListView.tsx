@@ -1,23 +1,26 @@
 import React from 'react'
 import { Flex, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
+import { Bills } from 'state/types'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
+import getTimePeriods from 'utils/getTimePeriods'
 import { billsStub } from '../stubData'
 import { Container, StyledButton } from './styles'
+import BillModal from './BillModal'
 
-const BillsListView: React.FC = () => {
+const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { isXl, isLg } = useMatchBreakpoints()
   const isMobile = !isLg && !isXl
-  const farmsListView = billsStub.map((bill) => {
+  const billsListView = bills.map((bill) => {
     const { token, quoteToken, earnToken } = bill
-
+    const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
     return {
       tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
       title: (
         <ListViewContent
           title={bill.billType}
-          value={`${token.symbol}-${quoteToken.symbol}`}
+          value={bill.lpToken.symbol}
           width={isMobile ? 90 : 120}
           height={45}
           ml={10}
@@ -41,13 +44,13 @@ const BillsListView: React.FC = () => {
           />
           <ListViewContent
             title="Vesting Time"
-            value={bill.vestingTime}
+            value={`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
             width={isMobile ? 100 : 180}
             height={52.5}
             toolTip="s"
           />
           <Flex alignItems="center" style={{ height: '100%' }}>
-            <StyledButton>Buy</StyledButton>
+            <BillModal bill={bill} buttonText="BUY" />
           </Flex>
         </>
       ),
@@ -57,7 +60,7 @@ const BillsListView: React.FC = () => {
   return (
     <Container>
       <Text margin="20px 10px">Available Treasury Bills</Text>
-      <ListView listViews={farmsListView} />
+      <ListView listViews={billsListView} />
     </Container>
   )
 }

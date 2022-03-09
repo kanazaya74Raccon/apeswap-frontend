@@ -17,7 +17,7 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
   lineHeight,
   toolTip,
   aprCalculator,
-  justifyContent
+  justifyContent,
 }) => {
   return (
     <ListViewContentContainer mb={mb} ml={ml} width={width} height={height}>

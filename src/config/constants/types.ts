@@ -241,3 +241,13 @@ export interface DualFarmConfig {
     token1?: Token
   }
 }
+
+export interface BillsConfig {
+  index: number
+  contractAddress: Address
+  billType: string
+  token: Token
+  quoteToken: Token
+  lpToken: Token
+  earnToken: Token
+}

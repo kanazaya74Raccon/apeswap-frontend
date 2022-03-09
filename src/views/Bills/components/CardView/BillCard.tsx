@@ -9,8 +9,13 @@ const BillCard: React.FC = () => {
     <>
       <CardContainer>
         <BillsImage />
-        <Flex padding="0px 20px" alignItems="center" justifyContent="space-around" style={{ height: '75px', width: '100%' }}>
-          <ListViewContent title="Banana Bill" value="BANANA-BNB" height={50} width={120}/>
+        <Flex
+          padding="0px 20px"
+          alignItems="center"
+          justifyContent="space-around"
+          style={{ height: '75px', width: '100%' }}
+        >
+          <ListViewContent title="Banana Bill" value="BANANA-BNB" height={50} width={120} />
           <ListViewContent title="Claimable" value="0.2929" height={50} justifyContent="flex-end" />
         </Flex>
         <StyledButton>Claim</StyledButton>
