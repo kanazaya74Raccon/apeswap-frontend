@@ -9,9 +9,9 @@ const MarketingModalCheck = () => {
   const location = useLocation()
   const history = useHistory()
 
-  const lendingRoute = location.search.includes('modal=1')
-  const farmsRoute = location.search.includes('modal=2')
-  const poolsRoute = location.search.includes('modal=3')
+  const farmsRoute = location.search.includes('modal=1')
+  const poolsRoute = location.search.includes('modal=2')
+  const lendingRoute = location.search.includes('modal=3')
 
   const { LendingBody1, LendingBody2, LendingBody3, LendingBody4, LendingBody5 } = LendingBodies
   const { FarmsBody1, FarmsBody2, FarmsBody3, FarmsBody4 } = FarmsBodies

@@ -4,7 +4,7 @@ import { StyledText, MiniHeaderText, MainHeaderText, MiniButton, RightContent, S
 
 const PoolsBody2: React.FC = () => {
   const openExchange = () => {
-    return window.open('https://apeswap.finance/add', '_blank')
+    return window.open('https://apeswap.finance/swap', '_blank')
   }
 
   const openGnana = () => {
