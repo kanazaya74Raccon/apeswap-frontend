@@ -16,9 +16,13 @@ export const TrendingTokensWrapper = styled.div`
   padding: 15px 20px 0px 20px;
   align-items: center;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 15px 100px 0px 100px;
+    display: grid;
+    grid-template-rows: 50px 150px 20px;
+    width: 580px;
   }
-  ${({ theme }) => theme.mediaQueries.md} {
+  @media screen and (min-width: 1200px) {
+    width: 95vw;
+    display: flex;
     flex-direction: row;
     padding: 0px 40px 0px 220px;
   }
@@ -36,7 +40,7 @@ export const TokenContainer = styled.div<{ active?: boolean }>`
 
 export const Title = styled(Text)`
   text-align: center;
-  ${({ theme }) => theme.mediaQueries.md} {
+  @media screen and (min-width: 1200px) {
     left: 40px;
     width: 170px;
     position: absolute;
@@ -50,7 +54,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  ${({ theme }) => theme.mediaQueries.md} {
+  @media screen and (min-width: 1200px) {
     flex-direction: row;
   }
 `
