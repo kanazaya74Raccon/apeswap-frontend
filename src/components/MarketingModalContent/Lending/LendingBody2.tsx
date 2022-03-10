@@ -1,18 +1,17 @@
 import React from 'react'
-import { LendingM2Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledText } from '../styles'
+import { StyledText, RightContent, StyledLendingM2Icon } from '../styles'
 
 const LendingBody2: React.FC = () => {
   return (
-    <ModalContent Icon={<LendingM2Icon width={240} height={120} />}>
-      <div>
+    <ModalContent Icon={<StyledLendingM2Icon />}>
+      <RightContent>
         <StyledText>
           Suppliers earn interest paid by borrowers. <br />
           When a supplied asset is enabled as collateral, suppliers can borrow from any of the available markets. <br />
           The borrow amount is limited to 70% of the value of supplied assets.
         </StyledText>
-      </div>
+      </RightContent>
     </ModalContent>
   )
 }

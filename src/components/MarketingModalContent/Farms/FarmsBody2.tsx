@@ -1,7 +1,6 @@
 import React from 'react'
-import { FarmsM2Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
+import { StyledText, MiniHeaderText, MainHeaderText, MiniButton, RightContent, StyledFarmsM2Icon } from '../styles'
 
 const FarmsBody2: React.FC = () => {
   const openLiquidityLink = () => {
@@ -9,15 +8,15 @@ const FarmsBody2: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<FarmsM2Icon width={240} height={120} />}>
-      <div>
+    <ModalContent Icon={<StyledFarmsM2Icon />}>
+      <RightContent>
         <MiniHeaderText>Step 2</MiniHeaderText>
         <MainHeaderText>Add Liquidity</MainHeaderText>
         <StyledText>
           Go to Trade &gt; <MiniButton onClick={openLiquidityLink}>Liquidity</MiniButton> and obtain the LP(s) you want
           to Stake.
         </StyledText>
-      </div>
+      </RightContent>
     </ModalContent>
   )
 }

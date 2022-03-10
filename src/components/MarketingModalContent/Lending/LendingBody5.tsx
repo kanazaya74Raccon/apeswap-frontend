@@ -1,7 +1,6 @@
 import React from 'react'
-import { LendingM5Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledText, MiddleHeaderText, MiddleText, MiddleButton } from '../styles'
+import { StyledText, MiddleHeaderText, MiddleText, MiddleButton, RightContent, StyledLendingM5Icon } from '../styles'
 
 const LendingBody5: React.FC = () => {
   const learnMore = () => {
@@ -9,8 +8,8 @@ const LendingBody5: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<LendingM5Icon width={240} height={120} />}>
-      <div>
+    <ModalContent Icon={<StyledLendingM5Icon />}>
+      <RightContent>
         <StyledText>
           Users can pay back their borrowed assets and <br />
           withdraw their supplied assets at any time.
@@ -19,7 +18,7 @@ const LendingBody5: React.FC = () => {
         <MiddleText>
           You can learn more about Lending <MiddleButton onClick={learnMore}>here.</MiddleButton>
         </MiddleText>
-      </div>
+      </RightContent>
     </ModalContent>
   )
 }

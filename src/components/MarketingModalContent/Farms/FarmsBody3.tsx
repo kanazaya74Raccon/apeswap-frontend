@@ -1,7 +1,6 @@
 import React from 'react'
-import { FarmsM3Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
+import { StyledText, MiniHeaderText, MainHeaderText, MiniButton, RightContent, StyledFarmsM3Icon } from '../styles'
 
 const FarmsBody3: React.FC = () => {
   const openFarmsLink = () => {
@@ -9,14 +8,14 @@ const FarmsBody3: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<FarmsM3Icon width={240} height={120} />}>
-      <div>
+    <ModalContent Icon={<StyledFarmsM3Icon />}>
+      <RightContent>
         <MiniHeaderText>Step 3</MiniHeaderText>
         <MainHeaderText>Stake</MainHeaderText>
         <StyledText>
           Head over to <MiniButton onClick={openFarmsLink}>Farms</MiniButton>, Enable your favorites and start Staking.
         </StyledText>
-      </div>
+      </RightContent>
     </ModalContent>
   )
 }

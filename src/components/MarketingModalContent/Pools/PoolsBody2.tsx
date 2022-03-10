@@ -1,7 +1,6 @@
 import React from 'react'
-import { PoolsM2Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
+import { StyledText, MiniHeaderText, MainHeaderText, MiniButton, RightContent, StyledPoolsM2Icon } from '../styles'
 
 const PoolsBody2: React.FC = () => {
   const openExchange = () => {
@@ -13,15 +12,15 @@ const PoolsBody2: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<PoolsM2Icon width={240} height={120} />}>
-      <div>
+    <ModalContent Icon={<StyledPoolsM2Icon />}>
+      <RightContent>
         <MiniHeaderText>Step 2</MiniHeaderText>
         <MainHeaderText>Get BANANA</MainHeaderText>
         <StyledText>
           If you don&apos;t own BANANA already, go to our <MiniButton onClick={openExchange}>Exchange</MiniButton> to
           acquire some! (or <MiniButton onClick={openGnana}>GNANA</MiniButton>)
         </StyledText>
-      </div>
+      </RightContent>
     </ModalContent>
   )
 }
