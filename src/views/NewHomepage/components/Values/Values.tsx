@@ -18,7 +18,7 @@ const Values: React.FC = () => {
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const swiperFlag = isMd || isSm || isXs
 
-  const slideNewsNav = (index: number) => {
+  const slideVal = (index: number) => {
     setActiveSlide(index - 1)
     swiper.slideTo(defaultValues.length + index)
     swiper.autoplay.start()
@@ -42,6 +42,7 @@ const Values: React.FC = () => {
       <Flex justifyContent="center" style={{ width: '100%' }} ref={observerRef}>
         {swiperFlag ? (
           <Swiper
+            id="valuesSwiper"
             initialSlide={defaultValues.length}
             autoplay={{
               delay: SLIDE_DELAY,
@@ -97,7 +98,7 @@ const Values: React.FC = () => {
         style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
       >
         {[...Array(defaultValues.length)].map((_, i) => {
-          return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
+          return <Bubble isActive={i === activeSlide} onClick={() => slideVal(i)} />
         })}
       </Flex>
     </ValuesWrapper>

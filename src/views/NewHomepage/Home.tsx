@@ -15,16 +15,26 @@ const Home: React.FC = () => {
   const { chainId } = useActiveWeb3React()
 
   return (
-    <SwiperProvider>
+    <>
       <Banner />
       <WelcomeContent />
       <StatCards />
       <TrendingTokens />
-      <News />
-      {chainId === CHAIN_ID.BSC && <Services />}
-      <Values />
-      <LaunchCalendar />
-    </SwiperProvider>
+      <SwiperProvider>
+        <News />
+      </SwiperProvider>
+      {chainId === CHAIN_ID.BSC && (
+        <SwiperProvider>
+          <Services />
+        </SwiperProvider>
+      )}
+      <SwiperProvider>
+        <Values />
+      </SwiperProvider>
+      <SwiperProvider>
+        <LaunchCalendar />
+      </SwiperProvider>
+    </>
   )
 }
 

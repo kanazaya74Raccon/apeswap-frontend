@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import SwiperProvider from 'contexts/SwiperProvider'
 import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
@@ -40,87 +41,90 @@ const LaunchCalendar: React.FC = () => {
   }, [isIntersecting])
 
   return (
-    <ColorWrap>
-      <LaunchCalendarWrapper>
-        <LaunchText bold>Launch Calendar</LaunchText>
-        <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }} ref={observerRef}>
-          {launchCal ? (
-            <Swiper
-              initialSlide={0}
-              onSwiper={setSwiper}
-              spaceBetween={20}
-              slidesPerView="auto"
-              loopedSlides={launchCalLength}
-              loop
-              centeredSlides
-              resizeObserver
-              lazy
-              preloadImages={false}
-              onSlideChange={handleSlide}
-              breakpoints={{
-                480: {
-                  centeredSlides: false,
-                },
-              }}
-            >
-              {launchCal?.map((launch) => {
-                const date = new Date(launch.launchTime)
-                return (
-                  <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }}>
-                    <LaunchCard>
-                      <Flex justifyContent="center" alignItems="center" flexDirection="column">
-                        <Text fontSize="30px" bold>
-                          {date.getDate()} {date.toDateString().split(' ')[1]}
-                        </Text>
-                        <Text fontSize="12px">
-                          {date.getUTCHours()}:{date.getUTCMinutes()} UTC
-                        </Text>
-                      </Flex>
-                      <Flex
-                        mt="10px"
-                        justifyContent="space-around"
-                        alignItems="center"
-                        flexDirection="row"
-                        style={{ display: 'flex' }}
-                      >
-                        <CalendarImg image={launch.image1?.url} />
-                        {launch?.image2 && <CalendarImg image={launch.image2?.url} />}
-                      </Flex>
-                      <Flex
-                        mt="10px"
-                        flexDirection="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        style={{ display: 'flex' }}
-                      >
-                        <Text>{launch.textLine1}</Text>
-                        {launch?.textLine2 && <Text>{launch.textLine2}</Text>}
-                        {launch?.textLine3 && <Text>{launch.textLine3}</Text>}
-                      </Flex>
-                    </LaunchCard>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
-          ) : (
-            <SkeletonWrapper>
-              {[...Array(6)].map(() => {
-                return <Skeleton width="219px" height="219px" />
-              })}
-            </SkeletonWrapper>
-          )}
-        </Flex>
-        <Flex
-          justifyContent="center"
-          alignContent="center"
-          style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
-        >
-          {[...Array(launchCalLength)].map((i) => {
-            return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
-          })}
-        </Flex>
-      </LaunchCalendarWrapper>
-    </ColorWrap>
+    <SwiperProvider>
+      <ColorWrap>
+        <LaunchCalendarWrapper>
+          <LaunchText bold>Launch Calendar</LaunchText>
+          <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }} ref={observerRef}>
+            {launchCal ? (
+              <Swiper
+                id="launchSwiper"
+                initialSlide={0}
+                onSwiper={setSwiper}
+                spaceBetween={20}
+                slidesPerView="auto"
+                loopedSlides={launchCalLength}
+                loop
+                centeredSlides
+                resizeObserver
+                lazy
+                preloadImages={false}
+                onSlideChange={handleSlide}
+                breakpoints={{
+                  480: {
+                    centeredSlides: false,
+                  },
+                }}
+              >
+                {launchCal?.map((launch) => {
+                  const date = new Date(launch.launchTime)
+                  return (
+                    <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }}>
+                      <LaunchCard>
+                        <Flex justifyContent="center" alignItems="center" flexDirection="column">
+                          <Text fontSize="30px" bold>
+                            {date.getDate()} {date.toDateString().split(' ')[1]}
+                          </Text>
+                          <Text fontSize="12px">
+                            {date.getUTCHours()}:{date.getUTCMinutes()} UTC
+                          </Text>
+                        </Flex>
+                        <Flex
+                          mt="10px"
+                          justifyContent="space-around"
+                          alignItems="center"
+                          flexDirection="row"
+                          style={{ display: 'flex' }}
+                        >
+                          <CalendarImg image={launch.image1?.url} />
+                          {launch?.image2 && <CalendarImg image={launch.image2?.url} />}
+                        </Flex>
+                        <Flex
+                          mt="10px"
+                          flexDirection="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          style={{ display: 'flex' }}
+                        >
+                          <Text>{launch.textLine1}</Text>
+                          {launch?.textLine2 && <Text>{launch.textLine2}</Text>}
+                          {launch?.textLine3 && <Text>{launch.textLine3}</Text>}
+                        </Flex>
+                      </LaunchCard>
+                    </SwiperSlide>
+                  )
+                })}
+              </Swiper>
+            ) : (
+              <SkeletonWrapper>
+                {[...Array(6)].map(() => {
+                  return <Skeleton width="219px" height="219px" />
+                })}
+              </SkeletonWrapper>
+            )}
+          </Flex>
+          <Flex
+            justifyContent="center"
+            alignContent="center"
+            style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
+          >
+            {[...Array(launchCalLength)].map((_, i) => {
+              return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
+            })}
+          </Flex>
+        </LaunchCalendarWrapper>
+      </ColorWrap>
+    </SwiperProvider>
   )
 }
 

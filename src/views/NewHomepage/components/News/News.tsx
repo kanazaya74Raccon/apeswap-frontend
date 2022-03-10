@@ -49,6 +49,7 @@ const News: React.FC = () => {
           <Flex justifyContent="space-between" style={{ width: '100%', overflow: 'hidden' }} ref={observerRef}>
             {fetchedNews ? (
               <Swiper
+                id="newsSwiper"
                 autoplay={{
                   delay: SLIDE_DELAY,
                   disableOnInteraction: false,

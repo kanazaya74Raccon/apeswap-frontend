@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
-import SwiperCore, { Autoplay } from 'swiper'
+import SwiperCore from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useWindowSize from 'hooks/useDimensions'
 import { ServiceWrapper, YieldCard, ColorWrap, Bubble } from './styles'
 import { defaultServiceData } from './defaultServiceData'
-
-const SLIDE_DELAY = 5000
-
-SwiperCore.use([Autoplay])
 
 const Services: React.FC = () => {
   const { swiper, setSwiper } = useSwiper()
@@ -46,18 +42,23 @@ const Services: React.FC = () => {
           {loadServices ? (
             width < 1488 ? (
               <Swiper
-                initialSlide={defaultServiceData.length}
-                autoplay={{
-                  delay: SLIDE_DELAY,
-                  disableOnInteraction: false,
-                }}
-                loop
+                id="serviceSwiper"
+                initialSlide={0}
                 onSwiper={setSwiper}
                 spaceBetween={20}
                 slidesPerView="auto"
                 loopedSlides={defaultServiceData.length}
+                loop
                 centeredSlides
+                resizeObserver
+                lazy
+                preloadImages={false}
                 onSlideChange={handleSlide}
+                breakpoints={{
+                  480: {
+                    centeredSlides: false,
+                  },
+                }}
               >
                 {defaultServiceData.map((service) => {
                   return (
@@ -204,7 +205,7 @@ const Services: React.FC = () => {
             alignContent="center"
             style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
           >
-            {[...Array(defaultServiceData.length)].map((i) => {
+            {[...Array(defaultServiceData.length)].map((_, i) => {
               return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
             })}
           </Flex>

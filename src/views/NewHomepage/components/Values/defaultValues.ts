@@ -16,7 +16,7 @@ export const defaultValues: Values[] = [
   {
     title: 'Accessibility',
     description:
-      'Take advantage of the unique financial opportunities DeFi has to offer, free of centralized influence or control.',
+      'We create tools for users to leverage DeFi opportunities, regardless of location, background, wealth, or experience.',
     logoImg: 'images/accessibility.png',
   },
 ]
