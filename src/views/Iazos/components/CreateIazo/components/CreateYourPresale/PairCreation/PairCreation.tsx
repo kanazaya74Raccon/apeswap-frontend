@@ -72,7 +72,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           placeholderText="Token Address..."
           onChange={handleAddressChange}
           size={isMobile ? 'sm' : 'lg'}
-          backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
+          backgroundColor={isDark ? '#424242' : '#EADFC7'}
           load={loadingTokenData}
         />
         <TokenDropdown

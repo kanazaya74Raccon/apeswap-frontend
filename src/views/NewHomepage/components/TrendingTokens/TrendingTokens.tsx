@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 import useInterval from 'hooks/useInterval'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { Flex, Text, Skeleton, Link } from '@apeswapfinance/uikit'
+// import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { Flex, Text, Skeleton } from '@apeswapfinance/uikit'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { useFetchHomepageTokenStats, useHomepageTokenStats } from 'state/hooks'
 import { Container, Title, TokenContainer, TrendingTokensWrapper } from './styles'
@@ -13,7 +13,7 @@ const TOKEN_DELAY = 10000
 const CATEGORIES = ['primary', 'trending', 'partner']
 
 const TrendingTokens: React.FC = () => {
-  const { chainId } = useActiveWeb3React()
+  // const { chainId } = useActiveWeb3React()
   const [loadTokens, setLoadTokens] = useState(false)
   const [selectedCat, setSelectedCat] = useState('')
   useFetchHomepageTokenStats(loadTokens, selectedCat)

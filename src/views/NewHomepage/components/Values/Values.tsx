@@ -60,7 +60,7 @@ const Values: React.FC = () => {
                 <SwiperSlide style={{ maxWidth: '338px', minWidth: '338px' }} key={value.title}>
                   <ValueCard key={value.title}>
                     {loadValues ? (
-                      <ValueImage />
+                      <ValueImage image={value.logoImg} />
                     ) : (
                       <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
                     )}
@@ -78,7 +78,7 @@ const Values: React.FC = () => {
             return (
               <ValueCard key={value.title}>
                 {loadValues ? (
-                  <ValueImage />
+                  <ValueImage image={value.logoImg} />
                 ) : (
                   <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
                 )}

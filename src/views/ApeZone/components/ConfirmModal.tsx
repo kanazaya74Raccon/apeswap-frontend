@@ -14,10 +14,10 @@ const ConfirmModal: React.FC<ApyCalculatorModalProps> = ({ onDismiss, amount }) 
 
   return (
     <Modal title="CONFIRM" onDismiss={onDismiss}>
-      <Description fontSize="12px" color="textSubtle">
+      <Description fontSize="12px" color="gray">
         {TranslateString(999, 'Buying Golden Banana has a 30% cost.')}
       </Description>
-      <Description fontSize="12px" color="textSubtle">
+      <Description fontSize="12px" color="gray">
         Pay {amount} for {amount * 0.7}
       </Description>
       <Button>Confirm</Button>

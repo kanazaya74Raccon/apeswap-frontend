@@ -12,12 +12,15 @@ export const Cards = styled.div`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
+    background-color: ${({ theme }) => theme.colors.navbar};
+    padding: 15px;
+    border-radius: 20px;
   }
 `
+
 export const Header = styled.div`
+  display: flex;
+  justify-content: flex-start;
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -33,6 +36,7 @@ export const Header = styled.div`
     background-image: ${({ theme }) =>
       theme.isDark ? 'url(/images/banners/gnana-dark-968.svg)' : 'url(/images/banners/gnana-light-968.svg)'};
     height: 300px;
+    justify-content: center;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
@@ -48,14 +52,15 @@ export const HeaderContainer = styled.div`
   position: absolute;
   z-index: 999;
   margin-left: 1em;
-
+  align-self: center;
   ${({ theme }) => theme.mediaQueries.sm} {
     position: relative;
     margin-left: 3em;
+    transform: translate(-200px);
   }
-
   ${({ theme }) => theme.mediaQueries.xl} {
     position: relative;
+    transform: translate(-300px);
   }
 `
 export const StyledHeading = styled(Heading)`
@@ -82,7 +87,7 @@ export const PaddedCard = styled(Card)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ theme }) => (theme.isDark ? 'rgba(255, 179, 0, 0.15)' : 'rgba(255, 179, 0, 0.7)')};
+  background: ${({ theme }) => (theme.isDark ? `${theme.colors.yellow}26` : theme.colors.yellow)};
   padding: 10px;
   border-radius: 10px;
 `
@@ -92,7 +97,7 @@ export const TopCon = styled.div`
   width: 100%;
 `
 export const WarningHeader = styled(Heading)`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.white)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.primaryBright)};
   font-size: 30px;
   font-weight: 700;
 `
@@ -107,7 +112,7 @@ export const ReadMore = styled(Button)`
   text-decoration-line: underline;
   font-size: 16px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.primaryBright};
   border-radius: 0;
   box-shadow: unset;
   height: 20px;
@@ -136,7 +141,7 @@ export const InnerContentText = styled(Text)`
   letter-spacing: 5%;
   font-size: 12px;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.primaryBright};
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.sm} {

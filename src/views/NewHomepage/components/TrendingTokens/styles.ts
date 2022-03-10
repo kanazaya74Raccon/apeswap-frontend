@@ -10,7 +10,7 @@ export const TrendingTokensWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.card.background};
   border-radius: 10px;
   z-index: 1;
   padding: 15px 20px 0px 20px;

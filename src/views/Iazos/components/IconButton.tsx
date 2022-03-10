@@ -15,7 +15,7 @@ interface IconButtonProps {
 
 const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) => {
   const { isDark } = useTheme()
-  const iconColor = isDark ? 'white' : '#A16552'
+  const iconColor = isDark ? '#FAFAFA' : '#4D4040'
   const renderIcon = () => {
     if (icon === 'check') {
       return <CheckMarkIcon fill={iconColor} />
@@ -40,7 +40,7 @@ const IconButton: React.FC<IconButtonProps> = ({ icon, text, onClick, active }) 
 const StyledButton = styled(Button)<{ active?: boolean }>`
   height: 44px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+  background: ${({ theme }) => theme.colors.white3};
   padding-left: 10px;
   padding-right: 10px;
   margin-right: 7.5px;
@@ -50,7 +50,7 @@ const StyledButton = styled(Button)<{ active?: boolean }>`
   justify-content: center;
   align-items: center;
   &:hover {
-    background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+    background-color: ${({ theme }) => theme.colors.white3};
   }
   margin-top: 25px;
   ${({ theme }) => theme.mediaQueries.md} {

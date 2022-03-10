@@ -1,16 +1,17 @@
 import styled from 'styled-components'
-import { Card, Heading, Text, Button, Checkbox, Flex } from '@apeswapfinance/uikit'
+import { Card, Heading, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
 
 export const StyledCard = styled(Card)`
   overflow: visible;
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => theme.colors.navbar};
   padding: 10px;
   margin-top: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 0px;
-    margin-left: 10px;
+    background: transparent;
+    box-shadow: none;
   }
 `
 export const HeaderCard = styled(Card)`
@@ -19,7 +20,7 @@ export const HeaderCard = styled(Card)`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  background: ${({ theme }) => theme.colors.white3};
   padding-top: 10px;
   padding-bottom: 5px;
 `
@@ -44,12 +45,15 @@ export const ContentCard = styled(Card)`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  background: ${({ theme }) => theme.colors.white3};
   margin-top: 10px;
   padding: 10px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding: 20px;
+  }
 `
 export const StyledButton = styled(Button)`
-  background: #ffb300;
   border-radius: 10px;
   box-shadow: none;
   text-transform: uppercase;
@@ -73,9 +77,11 @@ export const CheckBoxCon = styled.div`
   width: 50px;
   height: 50px;
 `
-export const NewCheckBox = styled(Checkbox)`
-  background: ${({ theme }) => (theme.isDark ? '#3D3D3D' : theme.colors.white)};
+
+export const StyledCheckbox = styled(Checkbox)`
+  background-color: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.primaryBright)};
 `
+
 export const FlexSection = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 120px;
@@ -87,12 +93,6 @@ export const CBS = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
-`
-export const StyledCard2 = styled(Card)`
-  overflow: visible;
-  border-radius: 10px;
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
-  padding: 10px;
 `
 
 // ConfirmModal

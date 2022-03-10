@@ -1,6 +1,5 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
-import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
-import { HOME, EXCHANGE, MORE_INFO } from '../constants'
+import { EXCHANGE, MORE_INFO } from '../constants'
 
 const bscConfig: MenuEntry[] = [
   EXCHANGE,
@@ -43,20 +42,20 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'NFA',
+    label: 'NFTs',
     lightIcon: 'NfaLightImage',
     darkIcon: 'NfaDarkImage',
     items: [
       {
-        label: 'Collection',
+        label: 'NFA Collection',
         href: '/nft',
       },
       {
-        label: 'Auction',
+        label: 'NFA Auction',
         href: '/auction',
       },
       {
-        label: 'Staking',
+        label: 'NFA Staking',
         href: '/staking',
       },
     ],

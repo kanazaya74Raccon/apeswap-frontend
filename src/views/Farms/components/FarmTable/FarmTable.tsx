@@ -38,7 +38,6 @@ const StyledTable = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
 `
 
 const TableContainer = styled.div`
@@ -60,7 +59,6 @@ const FarmTable: React.FC<ITableProps> = (props) => {
           <TableWrapper ref={tableWrapperEl}>
             <StyledTable>
               {rows.map((row) => {
-                console.log(row)
                 return <Row {...row.original} key={row.id} farmsPrices={farmsPrices} />
               })}
             </StyledTable>

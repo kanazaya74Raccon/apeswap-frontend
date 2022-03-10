@@ -1,5 +1,4 @@
-import styled, { keyframes } from 'styled-components'
-import { FadeIn } from 'views/NewHomepage/styles'
+import styled from 'styled-components'
 
 export const NewsCard = styled.div<{ image: string; index: number; listLength: number }>`
   height: 348px;

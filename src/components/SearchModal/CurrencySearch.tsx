@@ -150,7 +150,7 @@ function CurrencySearch({
         />
       ) : (
         <Column style={{ padding: '20px', height: '100%' }}>
-          <Text color="textSubtle" textAlign="center" mb="20px">
+          <Text color="gray" textAlign="center" mb="20px">
             No results found
           </Text>
         </Column>
@@ -160,13 +160,15 @@ function CurrencySearch({
 }
 
 const StyledInput = styled(Input)`
-  color: ${(props) => props.theme.colors.text};
-  placeholder-color: black;
+  background-color: ${({ theme }) => theme.colors.white3};
+  color: ${({ theme }) => theme.colors.text};
+  placeholder-color: ${({ theme }) => theme.colors.gray};
+
   ::placeholder {
     color: ${(props) => props.theme.colors.text};
   }
+
   :focus {
-    border: 1px solid #ffb300 !important;
     box-shadow: none !important;
   }
 `

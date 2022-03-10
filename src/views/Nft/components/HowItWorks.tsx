@@ -4,7 +4,7 @@ import { Button, Heading, Text as UIKitText, ArrowForwardIcon } from '@apeswapfi
 import useI18n from 'hooks/useI18n'
 
 const StyledHowItWorks = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.textSubtle};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray};
   padding: 24px 0;
 `
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, Skeleton, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import SwiperCore, { Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
@@ -191,7 +191,7 @@ const Services: React.FC = () => {
               })
             )
           ) : (
-            [...Array(4)].map((_, i) => {
+            [...Array(4)].map(() => {
               return (
                 <YieldCard>
                   <Skeleton height="100%" width="100%" />
@@ -204,7 +204,7 @@ const Services: React.FC = () => {
             alignContent="center"
             style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
           >
-            {[...Array(defaultServiceData.length)].map((_, i) => {
+            {[...Array(defaultServiceData.length)].map((i) => {
               return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
             })}
           </Flex>

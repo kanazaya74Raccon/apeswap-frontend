@@ -34,9 +34,11 @@ const StyledContainer = styled.div`
   width: 100%;
 `
 
-const Page: React.FC<
-  React.HTMLAttributes<HTMLDivElement> & { removePadding?: boolean; hideFooterOnDesktop?: boolean }
-> = ({ children, removePadding = false, hideFooterOnDesktop = false, ...props }) => {
+const Page: React.FC<React.HTMLAttributes<HTMLDivElement> & { removePadding?: boolean }> = ({
+  children,
+  removePadding = false,
+  ...props
+}) => {
   return (
     <>
       <StyledPage $removePadding={removePadding} {...props}>

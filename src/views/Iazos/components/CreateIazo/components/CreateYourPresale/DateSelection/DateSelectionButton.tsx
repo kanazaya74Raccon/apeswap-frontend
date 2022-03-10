@@ -17,7 +17,7 @@ const DateSelectionButton: React.FC<DateSelectionProps> = ({ onChange, minDate }
   const datePickerRef = useRef(null)
   const iconRef = useRef(null)
   const { isDark } = useTheme()
-  const iconColor = isDark ? 'white' : '#A16552'
+  const iconColor = isDark ? '#FAFAFA' : '#4D4040'
 
   useEffect(() => {
     function handler(event) {

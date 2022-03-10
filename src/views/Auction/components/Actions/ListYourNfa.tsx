@@ -19,6 +19,10 @@ const MoreInfo = styled.div`
   text-align: center;
   cursor: pointer;
   margin-right: 10px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.yellowHover};
+  }
 `
 
 const ListYourNfa: React.FC = () => {

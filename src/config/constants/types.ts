@@ -50,6 +50,7 @@ export enum PoolCategory {
   'COMMUNITY' = 'Community',
   'APEZONE' = 'ApeZone',
   'CORE' = 'Core',
+  'JUNGLE' = 'Jungle',
   'BINANCE' = 'Binance', // Pools using native BNB behave differently than pools using a token
 }
 
@@ -96,7 +97,7 @@ export interface PoolConfig {
   bonusEndBlock?: number
   rewardToken: Token
   contractAddress: Address
-  poolCategory: PoolCategory
+  poolCategory?: PoolCategory
   projectLink: string
   tokenPerBlock: string
   sortOrder?: number
@@ -106,8 +107,13 @@ export interface PoolConfig {
   tokenDecimals: number
   displayDecimals?: number
   lpStaking?: boolean
+  lpTokens?: {
+    token: Token
+    quoteToken: Token
+  }
   forAdmins?: boolean
   emergencyWithdraw?: boolean
+  isEarnTokenLp?: boolean
 }
 
 export interface NfaStakingPoolConfig {
@@ -117,6 +123,7 @@ export interface NfaStakingPoolConfig {
   contractAddress: Address
   tokenPerBlock: string
   isFinished: boolean
+  endBlock: number
 }
 
 export interface Token {

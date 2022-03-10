@@ -1,6 +1,6 @@
 import React from 'react'
-import { ButtonSquare, Flex, Spinner, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import { ContentContainer, HeadingText } from './styles'
+import { ApeSwapRoundIcon, Flex, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { BuyBanana, ContentContainer, HeadingText, LearnMore } from './styles'
 
 const WelcomeContent: React.FC = () => {
   const { isSm, isXs } = useMatchBreakpoints()
@@ -11,43 +11,63 @@ const WelcomeContent: React.FC = () => {
       <ContentContainer>
         <Flex flexDirection="column" style={{ maxWidth: '540px' }}>
           <HeadingText>Welcome to the Most Connected Defi Hub</HeadingText>
-          <br />
-          <br />
-          <Text color="white">
-            Whether youre new to crypto or youre a DeFi veteran, ApeSwap has the tools and the community to support your
-            decentralized finance needs.
-          </Text>
+          {!isMobile && (
+            <>
+              <br />
+              <br />
+              <Text>
+                Whether youre new to crypto or youre a DeFi veteran, ApeSwap has the tools and the community to support
+                your decentralized finance needs.
+              </Text>
+            </>
+          )}
           <br />
           <br />
           <Flex>
             {isMobile ? (
               <Flex justifyContent="center" alignItems="center" flexDirection="column" style={{ width: '100%' }}>
-                <ButtonSquare fullWidth>Buy Banana</ButtonSquare>
-                <ButtonSquare
-                  mt="10px"
-                  fullWidth
-                  style={{ background: 'none', border: '2px solid rgb(244, 182, 66)', color: 'rgb(244, 182, 66)' }}
+                <a href="/swap" rel="noopener noreferrer" style={{ width: '90%' }}>
+                  <BuyBanana fullWidth>
+                    Buy Banana
+                    <ApeSwapRoundIcon ml="10px" width="27px" height="27px" />
+                  </BuyBanana>
+                </a>
+                <a
+                  href="https://apeswap.gitbook.io/apeswap-finance/welcome/master"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ width: '90%' }}
                 >
-                  Learn More
-                </ButtonSquare>
+                  <LearnMore>Learn More</LearnMore>
+                </a>
               </Flex>
             ) : (
               <>
-                <ButtonSquare mr="40px">Buy Banana</ButtonSquare>
-                <ButtonSquare
-                  style={{ background: 'none', border: '2px solid rgb(244, 182, 66)', color: 'rgb(244, 182, 66)' }}
+                <a href="/swap" rel="noopener noreferrer">
+                  <BuyBanana mr="40px">
+                    Buy Banana
+                    <ApeSwapRoundIcon ml="10px" width="27px" height="27px" />
+                  </BuyBanana>
+                </a>
+                <a
+                  href="https://apeswap.gitbook.io/apeswap-finance/welcome/master"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Learn More
-                </ButtonSquare>
+                  <LearnMore>Learn More</LearnMore>
+                </a>
               </>
             )}
           </Flex>
         </Flex>
-        {!isMobile && (
+
+        {/*
+         Will be added later
+         {!isMobile && (
           <Flex alignItems="center" justifyContent="center" paddingBottom="100px">
             <Spinner size={400} />
           </Flex>
-        )}
+        )} */}
       </ContentContainer>
     </Flex>
   )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, Text, PFarmingIcon, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
+import { Flex, Text, useMatchBreakpoints, Skeleton } from '@apeswapfinance/uikit'
 import CountUp from 'react-countup'
+import { useTheme } from 'styled-components'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { useFetchHomepageStats, useHomepageStats } from 'state/hooks'
 import { StyledCard, CardWrapper } from './styles'
@@ -13,6 +14,7 @@ const StatCards: React.FC = () => {
   const { observerRef, isIntersecting } = useIntersectionObserver()
   useFetchHomepageStats(loadStats)
   const rawStats = useHomepageStats()
+  const theme = useTheme()
   const stats = statsData.map((stat) => {
     return { ...stat, value: rawStats ? rawStats[stat.id] : null }
   })
@@ -31,8 +33,8 @@ const StatCards: React.FC = () => {
             return (
               <StyledCard key={stat.id}>
                 {!isMobile && (
-                  <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
-                    <PFarmingIcon width="30px" />
+                  <Flex mb="20px" justifyContent="center" alignItems="center" style={{ height: '10px' }}>
+                    <stat.logo fill={theme.colors.text} color={theme.colors.background} />
                   </Flex>
                 )}
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>

@@ -29,7 +29,7 @@ const Card = styled.div<CardProps>`
   width: 354px;
   height: ${(props) => (props.expanded ? '825px' : '625px')};
   border-radius: 10px;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.navbar};
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1), inset 355px 4px 250px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
   margin-bottom: 100px;

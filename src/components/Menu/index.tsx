@@ -38,9 +38,11 @@ const Menu = (props) => {
       links={currentMenu()}
       chainId={chainId}
       switchNetwork={switchNetwork}
+      no
       profile={{
         image: profile ? profile?.rarestNft.image : null,
         noProfileLink: '/nft',
+        profileLink: '',
       }}
       {...props}
     />

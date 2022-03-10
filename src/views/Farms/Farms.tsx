@@ -176,7 +176,6 @@ const Farms: React.FC = () => {
           return farm.lpSymbol.toLowerCase().includes(lowercaseQuery)
         })
       }
-      console.log(farmsToDisplayWithAPR)
       return farmsToDisplayWithAPR
     },
     [farmsLP, bnbPrice, ethPriceUsd, bananaPrice, query],

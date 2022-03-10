@@ -60,6 +60,7 @@ const StyledFlex = styled(Flex)`
   width: 100%;
   margin-left: 117px;
   margin-right: 35px;
+
   ${({ theme }) => theme.mediaQueries.md} {
     margin-left: 217px;
   }

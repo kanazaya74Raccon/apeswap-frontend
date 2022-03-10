@@ -22,11 +22,13 @@ export const ValueCard = styled.div`
   }
 `
 
-export const ValueImage = styled.div`
+export const ValueImage = styled.div<{ image?: string }>`
   height: 200px;
   width: 200px;
   border-radius: 100px;
-  background-color: grey;
+  background-image: ${({ image }) => `url(${image})`};
+  background-size: cover;
+  background-repeat: no-repeat;
 `
 
 export const Bubble = styled.div<{ isActive?: boolean }>`

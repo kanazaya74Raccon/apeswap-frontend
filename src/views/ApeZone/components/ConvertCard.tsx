@@ -17,7 +17,7 @@ import CardValue from 'views/Home/components/CardValue'
 import {
   FlexSection,
   CheckBoxCon,
-  NewCheckBox,
+  StyledCheckbox,
   CBS,
   HeaderCard,
   Header,
@@ -25,7 +25,7 @@ import {
   ContentCard,
   StyledButton,
   StyledText,
-  StyledCard2,
+  StyledCard,
 } from './styles'
 
 interface ConvertCardType {
@@ -101,7 +101,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   }, [unlimited, setUnlimited])
 
   return (
-    <StyledCard2>
+    <StyledCard>
       <HeaderCard>
         <Header>CONVERT</Header>
         <TokensDisplay>
@@ -118,7 +118,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           symbol={fromToken}
         />
         {isApproved ? (
-          <StyledButton disabled={disabled} variant="success" margin="10px" onClick={buy}>
+          <StyledButton disabled={disabled} variant="primary" margin="10px" onClick={buy}>
             CONVERT
           </StyledButton>
         ) : (
@@ -143,7 +143,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
 
           <CBS>
             <CheckBoxCon>
-              <NewCheckBox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
+              <StyledCheckbox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               I understand what I am doing and want to enable unlimited conversion.
@@ -151,7 +151,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
           </CBS>
         </FlexSection>
       </ContentCard>
-    </StyledCard2>
+    </StyledCard>
   )
 }
 

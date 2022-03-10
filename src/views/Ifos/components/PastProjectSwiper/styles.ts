@@ -41,11 +41,11 @@ export const StatusTitle = styled(Text)<{ isActive?: boolean }>`
 `
 
 export const LeftArrowIcon = styled(LeftArrow)`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
 `
 
 export const RightArrowIcon = styled(RightArrow)`
-  color: ${({ theme }) => (theme.isDark ? theme.colors.white : theme.colors.primary)};
+  color: ${({ theme }) => (theme.isDark ? theme.colors.primaryBright : theme.colors.primary)};
 `
 
 export const ProjectSwiper = styled(Swiper)`

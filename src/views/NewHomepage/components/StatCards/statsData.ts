@@ -1,26 +1,27 @@
+import { Tvl, MarketCap, Partners, Trade } from 'components/Icons'
 import { StatType } from './types'
 
 export const statsData: StatType[] = [
   {
-    logo: '',
+    logo: Tvl,
     title: 'Total Value Locked',
     value: 300000000,
     id: 'tvl',
   },
   {
-    logo: '',
+    logo: Trade,
     title: 'Total Trade Volume',
     value: 100300000000,
     id: 'totalVolume',
   },
   {
-    logo: '',
+    logo: MarketCap,
     title: 'Market Cap',
     value: 100000000,
     id: 'marketCap',
   },
   {
-    logo: '',
+    logo: Partners,
     title: 'Partners',
     value: 130,
     id: 'partnerCount',

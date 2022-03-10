@@ -8,8 +8,9 @@ export const Banner = styled.div`
   justify-content: center;
   height: 788px;
   width: 100%;
-  background: ${({ theme }) =>
-    theme.isDark ? theme.colors.background : 'linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)'};
+  background-image: ${({ theme }) => (theme.isDark ? 'url(images/banner-night.svg)' : 'url(images/banner-day.svg)')};
+  background-size: cover;
+  background-repeat: no-repeat;
 `
 export const FadeIn = keyframes`
     0%{opacity: .5};

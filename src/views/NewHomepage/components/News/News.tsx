@@ -79,7 +79,7 @@ const News: React.FC = () => {
               </Swiper>
             ) : (
               <SkeletonWrapper>
-                {[...Array(5)].map((_, i) => {
+                {[...Array(5)].map(() => {
                   return <Skeleton width="266px" height="348px" />
                 })}
               </SkeletonWrapper>

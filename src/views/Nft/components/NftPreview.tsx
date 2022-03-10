@@ -2,10 +2,10 @@ import React from 'react'
 import orderBy from 'lodash/orderBy'
 import { Card, CardBody, Heading } from '@apeswapfinance/uikit'
 import Container from 'components/layout/Container'
+import { useFetchNfas, useNfas } from 'state/hooks'
 import NftGrid from './NftGrid'
 import PleaseWaitCard from './PleaseWaitCard'
 import Image from './Image'
-import { useFetchNfas, useNfas } from 'state/hooks'
 
 const NftPreview = () => {
   useFetchNfas()

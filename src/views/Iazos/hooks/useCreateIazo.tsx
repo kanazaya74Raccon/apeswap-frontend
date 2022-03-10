@@ -9,41 +9,36 @@ const useCreateIazo = (iazoToken: string, baseToken: string, burnRemains: boolea
   const { account, chainId } = useWeb3React()
   const iazoFactoryContract = useIazoFactoryContract()
   const handleCreateIazo = useCallback(async () => {
-    try {
-      const tx = await createNewIazo(
-        iazoFactoryContract,
+    const tx = await createNewIazo(
+      iazoFactoryContract,
+      account,
+      iazoToken,
+      baseToken,
+      burnRemains,
+      unitParams,
+      creationFee,
+    )
+
+    track({
+      event: 'iazo',
+      chain: chainId,
+      data: {
+        cat: 'create',
         account,
         iazoToken,
         baseToken,
-        burnRemains,
-        unitParams,
-        creationFee,
-      )
+        tokenPrice: unitParams[0],
+        amount: unitParams[1],
+        softcap: unitParams[2],
+        startDate: unitParams[3],
+        lockPeriod: unitParams[5],
+        duration: unitParams[4],
+        liquidityPercent: unitParams[7],
+        listingPrice: unitParams[8],
+      },
+    })
 
-      track({
-        event: 'iazo',
-        chain: chainId,
-        data: {
-          cat: 'create',
-          account,
-          iazoToken,
-          baseToken,
-          tokenPrice: unitParams[0],
-          amount: unitParams[1],
-          softcap: unitParams[2],
-          startDate: unitParams[3],
-          lockPeriod: unitParams[5],
-          duration: unitParams[4],
-          liquidityPercent: unitParams[7],
-          listingPrice: unitParams[8],
-        },
-      })
-
-      return tx
-    } catch (e) {
-      console.error(e)
-      return false
-    }
+    return tx
   }, [account, iazoFactoryContract, iazoToken, baseToken, burnRemains, unitParams, creationFee, chainId])
 
   return { onCreateIazo: handleCreateIazo }

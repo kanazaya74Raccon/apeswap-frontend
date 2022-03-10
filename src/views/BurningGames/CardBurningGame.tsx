@@ -14,6 +14,7 @@ const ColumnFull = styled(Card)<{ showDescription: boolean }>`
   display: grid;
   height: ${(props) => (props.showDescription ? '450px !important' : '235px')};
   padding: 16px;
+  background: ${({ theme }) => theme.colors.navbar};
 `
 const ContainerGeneral = styled.div`
   display: flex;
@@ -21,8 +22,9 @@ const ContainerGeneral = styled.div`
 `
 const ContainerDescription = styled.div`
   position: relative;
-  height: 225px;
-  padding-top: 25px;
+  height: inherit;
+  width: inherit;
+  margin-top: 25px;
   font-size: 22px;
   text-align: left;
 
@@ -35,7 +37,7 @@ const ContainerDescription = styled.div`
 
   .content-description {
     padding-top: 8px;
-    color: #af6e5aff;
+    color: ${({ theme }) => theme.colors.text};
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -50,7 +52,7 @@ const ButtonSocial = styled(Button)`
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background-color: #ffb300;
+  background-color: ${({ theme }) => theme.colors.yellow};
   margin-right: 10px;
   border-radius: 15px;
   padding-top: 12px;
@@ -77,7 +79,7 @@ const ContainerTitle = styled.div`
   text-align: left;
   line-height: 1.5;
   .partner-name {
-    color: #939393;
+    color: ${({ theme }) => theme.colors.gray};
     font-size: 15px;
   }
   .sub-name {
@@ -109,12 +111,12 @@ const ContainerResumeInfo = styled.div`
 const PlayButton = styled(Button)`
   width: 100%;
   height: 35px;
-  background: #ffb300;
+  background-color: ${({ theme }) => theme.colors.yellow};
   border-radius: 10px;
   :focus {
     outline: none !important;
     box-shadow: none !important;
-    background: #ffb300;
+    background-color: ${({ theme }) => theme.colors.yellow};
   }
 `
 const PlayText = styled(Text)`

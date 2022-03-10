@@ -6,7 +6,7 @@ export const PairCreationWrapper = styled.div`
   flex-direction: row;
   width: 285px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
+  background: ${({ theme }) => theme.colors.white3};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;

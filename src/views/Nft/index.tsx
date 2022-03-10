@@ -8,7 +8,7 @@ import SortNfts from './components/SortNfts'
 import OwnedNfts from './components/OwnedNft'
 
 const StyledHero = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.textSubtle};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   margin-bottom: 24px;
   padding-bottom: 32px;
 `
@@ -49,7 +49,7 @@ const HeadingContainer = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 300px !important;
-  color: ${({ theme }) => (theme.isDark ? 'white' : '#A16552')};
+  color: ${({ theme }) => theme.colors.text};
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 36px;
@@ -107,7 +107,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'Checkout the NFA aftermarket on NFTKEY!')}
+              {TranslateString(999, 'Check out the NFA aftermarket on NFTKEY!')}
             </StyledAnchor>
           </Text>
         </StyledHero>

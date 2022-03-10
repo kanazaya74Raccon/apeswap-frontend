@@ -4,7 +4,7 @@ import { FadeIn } from 'views/NewHomepage/styles'
 export const ColorWrap = styled.div`
   position: relative;
   display: flex;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.card.background};
   align-items: center;
   justify-content: center;
   overflow: hidden;

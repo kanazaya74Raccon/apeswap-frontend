@@ -104,7 +104,7 @@ const LaunchCalendar: React.FC = () => {
             </Swiper>
           ) : (
             <SkeletonWrapper>
-              {[...Array(6)].map((_, i) => {
+              {[...Array(6)].map(() => {
                 return <Skeleton width="219px" height="219px" />
               })}
             </SkeletonWrapper>
@@ -115,7 +115,7 @@ const LaunchCalendar: React.FC = () => {
           alignContent="center"
           style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
         >
-          {[...Array(launchCalLength)].map((_, i) => {
+          {[...Array(launchCalLength)].map((i) => {
             return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
           })}
         </Flex>
