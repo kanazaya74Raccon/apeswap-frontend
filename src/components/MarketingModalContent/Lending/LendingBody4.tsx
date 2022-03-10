@@ -1,10 +1,11 @@
 import React from 'react'
+import { LendingM4Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText } from '../styles'
+import { StyledText } from '../styles'
 
 const LendingBody4: React.FC = () => {
   return (
-    <ModalContent Icon={<StyledImage src="/images/lending-m4.svg" alt="night-monkey" />}>
+    <ModalContent Icon={<LendingM4Icon width={240} height={120} />}>
       <div>
         <StyledText>
           Be sure to always keep an eye on your liquidation limit! <br />

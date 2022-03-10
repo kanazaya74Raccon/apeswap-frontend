@@ -1,10 +1,11 @@
 import React from 'react'
+import { LendingM1Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText } from '../styles'
+import { StyledText } from '../styles'
 
 const LendingBody1: React.FC = () => {
   return (
-    <ModalContent Icon={<StyledImage src="/images/lending-m1.svg" alt="night-monkey" />}>
+    <ModalContent Icon={<LendingM1Icon width={240} height={120} />}>
       <div>
         <StyledText>
           Our network uses an &quot;overcollateral&quot; model. <br />

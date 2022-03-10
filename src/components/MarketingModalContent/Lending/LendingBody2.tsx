@@ -1,10 +1,11 @@
 import React from 'react'
+import { LendingM2Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText } from '../styles'
+import { StyledText } from '../styles'
 
 const LendingBody2: React.FC = () => {
   return (
-    <ModalContent Icon={<StyledImage src="/images/lending-m2.svg" alt="night-monkey" />}>
+    <ModalContent Icon={<LendingM2Icon width={240} height={120} />}>
       <div>
         <StyledText>
           Suppliers earn interest paid by borrowers. <br />

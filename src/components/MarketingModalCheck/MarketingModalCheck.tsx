@@ -3,6 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { MarketModal } from '@apeswapfinance/uikit'
 import { LendingBodies } from 'components/MarketingModalContent/Lending/'
 import { FarmsBodies } from 'components/MarketingModalContent/Farms/'
+import { PoolsBodies } from 'components/MarketingModalContent/Pools/'
 
 const MarketingModalCheck = () => {
   const location = useLocation()
@@ -14,6 +15,7 @@ const MarketingModalCheck = () => {
 
   const { LendingBody1, LendingBody2, LendingBody3, LendingBody4, LendingBody5 } = LendingBodies
   const { FarmsBody1, FarmsBody2, FarmsBody3, FarmsBody4 } = FarmsBodies
+  const { PoolsBody1, PoolsBody2, PoolsBody3, PoolsBody4 } = PoolsBodies
 
   const onDismiss = () => {
     history.push({
@@ -23,7 +25,7 @@ const MarketingModalCheck = () => {
 
   const lending = [<LendingBody1 />, <LendingBody2 />, <LendingBody3 />, <LendingBody4 />, <LendingBody5 />]
   const farms = [<FarmsBody1 />, <FarmsBody2 />, <FarmsBody3 />, <FarmsBody4 />]
-  const pools = [<p>Pools modal</p>, <p>body 2</p>, <p>body 3</p>]
+  const pools = [<PoolsBody1 />, <PoolsBody2 />, <PoolsBody3 />, <PoolsBody4 />]
 
   return lendingRoute ? (
     <MarketModal

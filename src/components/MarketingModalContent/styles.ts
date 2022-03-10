@@ -22,10 +22,6 @@ export const ModalBody = styled.div`
     display: none;
   }
 `
-export const StyledImage = styled.img`
-  width: 240px;
-  height: 120px;
-`
 export const StyledText = styled(Text)`
   text-align: center;
   font-weight: 500;

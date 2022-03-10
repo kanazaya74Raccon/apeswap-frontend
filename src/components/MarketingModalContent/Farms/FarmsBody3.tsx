@@ -1,6 +1,7 @@
 import React from 'react'
+import { FarmsM3Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
+import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
 
 const FarmsBody3: React.FC = () => {
   const openFarmsLink = () => {
@@ -8,7 +9,7 @@ const FarmsBody3: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<StyledImage src="/images/farms-m3.svg" alt="night-monkey" />}>
+    <ModalContent Icon={<FarmsM3Icon width={240} height={120} />}>
       <div>
         <MiniHeaderText>Step 3</MiniHeaderText>
         <MainHeaderText>Stake</MainHeaderText>

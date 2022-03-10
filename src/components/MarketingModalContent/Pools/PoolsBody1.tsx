@@ -1,10 +1,10 @@
 import React from 'react'
-import { useWalletModal, FarmsM1Icon } from '@apeswapfinance/uikit'
+import { useWalletModal, PoolsM1Icon } from '@apeswapfinance/uikit'
 import useAuth from 'hooks/useAuth'
 import ModalContent from '../MarketingModalContent'
 import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
 
-const FarmsBody1: React.FC = () => {
+const PoolsBody1: React.FC = () => {
   const { login, logout } = useAuth()
 
   const { onPresentConnectModal } = useWalletModal(login, logout)
@@ -14,7 +14,7 @@ const FarmsBody1: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<FarmsM1Icon width={240} height={120} />}>
+    <ModalContent Icon={<PoolsM1Icon width={240} height={120} />}>
       <div>
         <MiniHeaderText>Step 1</MiniHeaderText>
         <MainHeaderText>Connect Your Wallet</MainHeaderText>
@@ -26,4 +26,4 @@ const FarmsBody1: React.FC = () => {
   )
 }
 
-export default FarmsBody1
+export default PoolsBody1

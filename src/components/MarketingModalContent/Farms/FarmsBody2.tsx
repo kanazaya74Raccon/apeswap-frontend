@@ -1,6 +1,7 @@
 import React from 'react'
+import { FarmsM2Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
-import { StyledImage, StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
+import { StyledText, MiniHeaderText, MainHeaderText, MiniButton } from '../styles'
 
 const FarmsBody2: React.FC = () => {
   const openLiquidityLink = () => {
@@ -8,7 +9,7 @@ const FarmsBody2: React.FC = () => {
   }
 
   return (
-    <ModalContent Icon={<StyledImage src="/images/farms-m2.svg" alt="night-monkey" />}>
+    <ModalContent Icon={<FarmsM2Icon width={240} height={120} />}>
       <div>
         <MiniHeaderText>Step 2</MiniHeaderText>
         <MainHeaderText>Add Liquidity</MainHeaderText>

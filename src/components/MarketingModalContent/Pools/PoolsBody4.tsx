@@ -1,11 +1,11 @@
 import React from 'react'
-import { FarmsM4Icon } from '@apeswapfinance/uikit'
+import { PoolsM4Icon } from '@apeswapfinance/uikit'
 import ModalContent from '../MarketingModalContent'
 import { StyledText, MiniHeaderText, MainHeaderText } from '../styles'
 
-const FarmsBody4: React.FC = () => {
+const PoolsBody4: React.FC = () => {
   return (
-    <ModalContent Icon={<FarmsM4Icon width={240} height={120} />}>
+    <ModalContent Icon={<PoolsM4Icon width={240} height={120} />}>
       <div>
         <MiniHeaderText>Step 4</MiniHeaderText>
         <MainHeaderText>Collect</MainHeaderText>
@@ -17,4 +17,4 @@ const FarmsBody4: React.FC = () => {
   )
 }
 
-export default FarmsBody4
+export default PoolsBody4
