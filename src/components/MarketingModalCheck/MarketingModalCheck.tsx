@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { MarketModal } from '@apeswapfinance/uikit'
+import { MarketingModal } from '@apeswapfinance/uikit'
 import { LendingBodies } from 'components/MarketingModalContent/Lending/'
 import { FarmsBodies } from 'components/MarketingModalContent/Farms/'
 import { PoolsBodies } from 'components/MarketingModalContent/Pools/'
@@ -28,32 +28,32 @@ const MarketingModalCheck = () => {
   const pools = [<PoolsBody1 />, <PoolsBody2 />, <PoolsBody3 />, <PoolsBody4 />]
 
   return lendingRoute ? (
-    <MarketModal
+    <MarketingModal
       title="Welcome to ApeSwap's Lending Network"
       description="How does it work?"
       onDismiss={onDismiss}
       startEarning={onDismiss}
     >
       {lending}
-    </MarketModal>
+    </MarketingModal>
   ) : farmsRoute ? (
-    <MarketModal
+    <MarketingModal
       title="Welcome to ApeSwap's Farms"
       description="Start earning passive income with your cryptocurrency!"
       onDismiss={onDismiss}
       startEarning={onDismiss}
     >
       {farms}
-    </MarketModal>
+    </MarketingModal>
   ) : poolsRoute ? (
-    <MarketModal
+    <MarketingModal
       title="Welcome to ApeSwap's Pools"
       description="Earn tokens by staking BANANA or GNANA"
       onDismiss={onDismiss}
       startEarning={onDismiss}
     >
       {pools}
-    </MarketModal>
+    </MarketingModal>
   ) : null
 }
 
