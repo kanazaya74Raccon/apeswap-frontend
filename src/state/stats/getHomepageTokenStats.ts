@@ -10,7 +10,7 @@ const getHomepageTokenStats = async (category: string): Promise<HomepageTokenSta
     if (tokenRes.statusCode === 500) {
       return null
     }
-    return tokenRes?.tokens
+    return tokenRes
   } catch (error) {
     return null
   }

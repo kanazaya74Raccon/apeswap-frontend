@@ -49,6 +49,8 @@ const TrendingTokens: React.FC = () => {
   useEffect(() => {
     setSelectedCat(CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)])
   }, [])
+  console.log(tokens)
+  console.log(isIntersecting)
 
   return (
     <div ref={observerRef}>
