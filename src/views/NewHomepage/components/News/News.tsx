@@ -39,6 +39,7 @@ const News: React.FC = () => {
 
   return (
     <>
+      <div ref={observerRef} />
       <Flex
         flexDirection="column"
         alignItems="center"
@@ -46,7 +47,7 @@ const News: React.FC = () => {
         style={{ position: 'relative', width: '100%' }}
       >
         <NewsWrapper>
-          <Flex justifyContent="space-between" style={{ width: '100%', overflow: 'hidden' }} ref={observerRef}>
+          <Flex justifyContent="space-between" style={{ width: '100%', overflow: 'hidden' }}>
             {fetchedNews ? (
               <Swiper
                 id="newsSwiper"

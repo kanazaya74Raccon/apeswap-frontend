@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useWindowSize from 'hooks/useDimensions'
+import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { ServiceWrapper, YieldCard, ColorWrap, Bubble } from './styles'
 import { defaultServiceData } from './defaultServiceData'
 
@@ -36,7 +37,8 @@ const Services: React.FC = () => {
   }, [isIntersecting])
 
   return (
-    <div ref={observerRef}>
+    <>
+      <div ref={observerRef} />
       <ColorWrap>
         <ServiceWrapper>
           {loadServices ? (
@@ -85,33 +87,60 @@ const Services: React.FC = () => {
                                 <Flex
                                   mt="5px"
                                   mb="5px"
+                                  pl="20px"
                                   style={{
                                     width: '100%',
                                     height: '70px',
                                     background: 'rgba(250, 250, 250, .25)',
                                     borderRadius: '10px',
                                   }}
-                                />
+                                >
+                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                    <Text bold style={{ width: '100%', color: 'white' }}>
+                                      BANANA
+                                    </Text>
+                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                                  </Flex>
+                                </Flex>
                                 <Flex
                                   mt="5px"
                                   mb="5px"
+                                  pl="20px"
                                   style={{
                                     width: '100%',
                                     height: '70px',
                                     background: 'rgba(250, 250, 250, .25)',
                                     borderRadius: '10px',
                                   }}
-                                />
+                                >
+                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                    <Text bold style={{ width: '100%', color: 'white' }}>
+                                      BANANA
+                                    </Text>
+                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                                  </Flex>
+                                </Flex>
                                 <Flex
                                   mt="5px"
                                   mb="5px"
+                                  pl="20px"
                                   style={{
                                     width: '100%',
                                     height: '70px',
                                     background: 'rgba(250, 250, 250, .25)',
                                     borderRadius: '10px',
                                   }}
-                                />
+                                >
+                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                    <Text bold style={{ width: '100%', color: 'white' }}>
+                                      BANANA
+                                    </Text>
+                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                                  </Flex>
+                                </Flex>
                               </Flex>
                               <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
                                 <Text color="white" fontSize="14px">
@@ -151,33 +180,60 @@ const Services: React.FC = () => {
                             <Flex
                               mt="5px"
                               mb="5px"
+                              pl="20px"
                               style={{
                                 width: '100%',
                                 height: '70px',
                                 background: 'rgba(250, 250, 250, .25)',
                                 borderRadius: '10px',
                               }}
-                            />
+                            >
+                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                              <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                <Text bold style={{ width: '100%', color: 'white' }}>
+                                  BANANA
+                                </Text>
+                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                              </Flex>
+                            </Flex>
                             <Flex
                               mt="5px"
                               mb="5px"
+                              pl="20px"
                               style={{
                                 width: '100%',
                                 height: '70px',
                                 background: 'rgba(250, 250, 250, .25)',
                                 borderRadius: '10px',
                               }}
-                            />
+                            >
+                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                              <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                <Text bold style={{ width: '100%', color: 'white' }}>
+                                  BANANA
+                                </Text>
+                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                              </Flex>
+                            </Flex>
                             <Flex
                               mt="5px"
                               mb="5px"
+                              pl="20px"
                               style={{
                                 width: '100%',
                                 height: '70px',
                                 background: 'rgba(250, 250, 250, .25)',
                                 borderRadius: '10px',
                               }}
-                            />
+                            >
+                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
+                              <Flex pl="20px" justifyContent="center" flexDirection="column">
+                                <Text bold style={{ width: '100%', color: 'white' }}>
+                                  BANANA
+                                </Text>
+                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
+                              </Flex>
+                            </Flex>
                           </Flex>
                           <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
                             <Text color="white" fontSize="14px">
@@ -211,7 +267,7 @@ const Services: React.FC = () => {
           </Flex>
         </ServiceWrapper>
       </ColorWrap>
-    </div>
+    </>
   )
 }
 

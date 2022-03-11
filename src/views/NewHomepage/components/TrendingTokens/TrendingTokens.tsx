@@ -49,11 +49,10 @@ const TrendingTokens: React.FC = () => {
   useEffect(() => {
     setSelectedCat(CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)])
   }, [])
-  console.log(tokens)
-  console.log(isIntersecting)
 
   return (
-    <div ref={observerRef}>
+    <>
+      <div ref={observerRef} />
       <Container>
         <TrendingTokensWrapper>
           <Title>{selectedCat?.charAt(0)?.toUpperCase() + selectedCat?.slice(1)} Tokens</Title>
@@ -115,7 +114,7 @@ const TrendingTokens: React.FC = () => {
           </Flex>
         </TrendingTokensWrapper>
       </Container>
-    </div>
+    </>
   )
 }
 

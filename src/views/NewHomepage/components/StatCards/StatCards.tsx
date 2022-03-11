@@ -26,7 +26,8 @@ const StatCards: React.FC = () => {
   }, [isIntersecting])
 
   return (
-    <div ref={observerRef}>
+    <>
+      <div ref={observerRef} />
       <Flex alignItems="center" justifyContent="center" style={{ width: '100%' }}>
         <CardWrapper>
           {stats?.map((stat) => {
@@ -55,7 +56,7 @@ const StatCards: React.FC = () => {
           })}
         </CardWrapper>
       </Flex>
-    </div>
+    </>
   )
 }
 

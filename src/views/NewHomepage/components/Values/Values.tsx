@@ -37,71 +37,74 @@ const Values: React.FC = () => {
   }, [isIntersecting])
 
   return (
-    <ValuesWrapper>
-      <ValueText bold> Our Values </ValueText>
-      <Flex justifyContent="center" style={{ width: '100%' }} ref={observerRef}>
-        {swiperFlag ? (
-          <Swiper
-            id="valuesSwiper"
-            initialSlide={defaultValues.length}
-            autoplay={{
-              delay: SLIDE_DELAY,
-              disableOnInteraction: false,
-            }}
-            loop
-            onSwiper={setSwiper}
-            spaceBetween={30}
-            slidesPerView="auto"
-            loopedSlides={defaultValues.length}
-            centeredSlides
-            onSlideChange={handleSlide}
-          >
-            {defaultValues.map((value) => {
+    <>
+      <div ref={observerRef} />
+      <ValuesWrapper>
+        <ValueText bold> Our Values </ValueText>
+        <Flex justifyContent="center" style={{ width: '100%' }}>
+          {swiperFlag ? (
+            <Swiper
+              id="valuesSwiper"
+              initialSlide={defaultValues.length}
+              autoplay={{
+                delay: SLIDE_DELAY,
+                disableOnInteraction: false,
+              }}
+              loop
+              onSwiper={setSwiper}
+              spaceBetween={30}
+              slidesPerView="auto"
+              loopedSlides={defaultValues.length}
+              centeredSlides
+              onSlideChange={handleSlide}
+            >
+              {defaultValues.map((value) => {
+                return (
+                  <SwiperSlide style={{ maxWidth: '338px', minWidth: '338px' }} key={value.title}>
+                    <ValueCard key={value.title}>
+                      {loadValues ? (
+                        <ValueImage image={value.logoImg} />
+                      ) : (
+                        <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
+                      )}
+                      <Text fontSize="25px" bold>
+                        {value.title}
+                      </Text>
+                      <Text textAlign="center">{value.description}</Text>
+                    </ValueCard>
+                  </SwiperSlide>
+                )
+              })}
+            </Swiper>
+          ) : (
+            defaultValues.map((value) => {
               return (
-                <SwiperSlide style={{ maxWidth: '338px', minWidth: '338px' }} key={value.title}>
-                  <ValueCard key={value.title}>
-                    {loadValues ? (
-                      <ValueImage image={value.logoImg} />
-                    ) : (
-                      <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
-                    )}
-                    <Text fontSize="25px" bold>
-                      {value.title}
-                    </Text>
-                    <Text textAlign="center">{value.description}</Text>
-                  </ValueCard>
-                </SwiperSlide>
+                <ValueCard key={value.title}>
+                  {loadValues ? (
+                    <ValueImage image={value.logoImg} />
+                  ) : (
+                    <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
+                  )}
+                  <Text fontSize="25px" bold>
+                    {value.title}
+                  </Text>
+                  <Text textAlign="center">{value.description}</Text>
+                </ValueCard>
               )
-            })}
-          </Swiper>
-        ) : (
-          defaultValues.map((value) => {
-            return (
-              <ValueCard key={value.title}>
-                {loadValues ? (
-                  <ValueImage image={value.logoImg} />
-                ) : (
-                  <Skeleton animation="waves" variant="circle" height="200px" width="200px" />
-                )}
-                <Text fontSize="25px" bold>
-                  {value.title}
-                </Text>
-                <Text textAlign="center">{value.description}</Text>
-              </ValueCard>
-            )
-          })
-        )}
-      </Flex>
-      <Flex
-        justifyContent="center"
-        alignContent="center"
-        style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
-      >
-        {[...Array(defaultValues.length)].map((_, i) => {
-          return <Bubble isActive={i === activeSlide} onClick={() => slideVal(i)} />
-        })}
-      </Flex>
-    </ValuesWrapper>
+            })
+          )}
+        </Flex>
+        <Flex
+          justifyContent="center"
+          alignContent="center"
+          style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
+        >
+          {[...Array(defaultValues.length)].map((_, i) => {
+            return <Bubble isActive={i === activeSlide} onClick={() => slideVal(i)} />
+          })}
+        </Flex>
+      </ValuesWrapper>
+    </>
   )
 }
 

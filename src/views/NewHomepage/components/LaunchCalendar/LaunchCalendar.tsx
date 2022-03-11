@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import SwiperProvider from 'contexts/SwiperProvider'
 import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
@@ -41,11 +40,12 @@ const LaunchCalendar: React.FC = () => {
   }, [isIntersecting])
 
   return (
-    <SwiperProvider>
+    <>
+      <div ref={observerRef} />
       <ColorWrap>
         <LaunchCalendarWrapper>
           <LaunchText bold>Launch Calendar</LaunchText>
-          <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }} ref={observerRef}>
+          <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }}>
             {launchCal ? (
               <Swiper
                 id="launchSwiper"
@@ -124,7 +124,7 @@ const LaunchCalendar: React.FC = () => {
           </Flex>
         </LaunchCalendarWrapper>
       </ColorWrap>
-    </SwiperProvider>
+    </>
   )
 }
 
