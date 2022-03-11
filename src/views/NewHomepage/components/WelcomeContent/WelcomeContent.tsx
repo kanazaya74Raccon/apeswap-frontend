@@ -25,12 +25,7 @@ const WelcomeContent: React.FC = () => {
           <br />
           <Flex>
             {isMobile ? (
-              <Flex
-                justifyContent="center"
-                alignItems="center"
-                flexDirection="column"
-                style={{ width: '100%', border: '1px solid red' }}
-              >
+              <Flex justifyContent="center" alignItems="center" flexDirection="column" style={{ width: '100%' }}>
                 <a href="/swap" rel="noopener noreferrer" style={{ width: '90%' }}>
                   <BuyBanana fullWidth>
                     Buy Banana
