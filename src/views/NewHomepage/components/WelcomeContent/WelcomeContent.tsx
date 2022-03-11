@@ -25,7 +25,12 @@ const WelcomeContent: React.FC = () => {
           <br />
           <Flex>
             {isMobile ? (
-              <Flex justifyContent="center" alignItems="center" flexDirection="column" style={{ width: '100%' }}>
+              <Flex
+                justifyContent="center"
+                alignItems="center"
+                flexDirection="column"
+                style={{ width: '100%', border: '1px solid red' }}
+              >
                 <a href="/swap" rel="noopener noreferrer" style={{ width: '90%' }}>
                   <BuyBanana fullWidth>
                     Buy Banana
@@ -42,9 +47,9 @@ const WelcomeContent: React.FC = () => {
                 </a>
               </Flex>
             ) : (
-              <>
+              <Flex justifyContent="space-between" style={{ width: '435px' }}>
                 <a href="/swap" rel="noopener noreferrer">
-                  <BuyBanana mr="40px">
+                  <BuyBanana>
                     Buy Banana
                     <ApeSwapRoundIcon ml="10px" width="27px" height="27px" />
                   </BuyBanana>
@@ -56,7 +61,7 @@ const WelcomeContent: React.FC = () => {
                 >
                   <LearnMore>Learn More</LearnMore>
                 </a>
-              </>
+              </Flex>
             )}
           </Flex>
         </Flex>

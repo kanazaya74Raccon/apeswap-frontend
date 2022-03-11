@@ -1,4 +1,5 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
+import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { EXCHANGE, MORE_INFO } from '../constants'
 
 const bscConfig: MenuEntry[] = [
@@ -62,8 +63,36 @@ const bscConfig: MenuEntry[] = [
   },
   {
     label: 'Lending',
-    href: 'https://app.ola.finance/apeswap/markets',
+    href: 'https://lending.apeswap.finance/',
   },
+  {
+    label: 'More',
+    lightIcon: 'MoreLightImage',
+    darkIcon: 'MoreDarkImage',
+    items: [
+      {
+        label: 'Docs',
+        href: 'https://apeswap.gitbook.io/apeswap-finance/',
+      },
+      {
+        label: 'Charts',
+        href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
+      },
+      {
+        label: 'Leverage Trading',
+        href: 'https://apemex.exchange/margin',
+      },
+      {
+        label: 'Governance',
+        href: 'https://vote.apeswap.finance',
+      },
+      {
+        label: 'BANANA Burns',
+        href: '/burn',
+      },
+    ],
+  },
+
   // {
   //   label: 'Burn',
   //   icon: 'GameBurnIcon',
@@ -91,7 +120,6 @@ const bscConfig: MenuEntry[] = [
   //     },
   //   ],
   // },
-  MORE_INFO,
 ]
 
 export default bscConfig
