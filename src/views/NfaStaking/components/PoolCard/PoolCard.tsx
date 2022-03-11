@@ -42,7 +42,6 @@ const PCard = styled.div`
 
 const PoolCard: React.FC<HarvestProps> = ({ pool, removed }) => {
   const { sousId, tier, apr, totalStaked, startBlock, endBlock, userData, rewardToken, contractAddress } = pool
-  console.log(endBlock)
   const { account } = useWeb3React()
   const { currentBlock } = useBlock()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
