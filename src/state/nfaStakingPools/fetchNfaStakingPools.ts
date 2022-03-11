@@ -1,5 +1,4 @@
 import nfaStakingPoolsConfig from 'config/constants/nfaStakingPools'
-import nfaStakingAbi from 'config/abi/nfaStaking.json'
 import nonFungibleApesAbi from 'config/abi/nonFungibleApes.json'
 import { getPoolApr } from 'utils/apr'
 import { getNonFungibleApesAddress } from 'utils/addressHelper'
