@@ -20,7 +20,7 @@ interface BillModalProps {
 }
 
 const BillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
-  const { token, quoteToken, earnToken, billType, lpToken, price } = bill
+  const { token, quoteToken, earnToken, billType, lpToken, price, priceUsd } = bill
   const formatedLpPrice = getBalanceNumber(new BigNumber(price))
   return (
     <Modal title="" onDismiss={onDismiss} bodyPadding="5px 20px">
@@ -43,7 +43,7 @@ const BillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               <Text ml="10px" bold>
                 {formatedLpPrice}
               </Text>
-              <Text ml="10px">($.001)</Text>
+              <Text ml="10px">{`(${priceUsd})`}</Text>
             </Flex>
           </Flex>
           <Flex flexDirection="column">

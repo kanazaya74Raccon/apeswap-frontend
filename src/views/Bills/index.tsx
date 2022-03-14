@@ -9,8 +9,7 @@ import { Header, HeadingContainer, StyledHeading } from './styles'
 
 const Bills: React.FC = () => {
   usePollBills()
-  const { account } = useActiveWeb3React()
-  const bills = useBills(account)
+  const bills = useBills()
   console.log(bills)
   return (
     <>

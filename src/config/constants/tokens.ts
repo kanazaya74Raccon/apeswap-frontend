@@ -979,6 +979,38 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
+  bnbBusd: {
+    symbol: 'BNB-BUSD',
+    address: {
+      56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbEth: {
+    symbol: 'BNB-ETH',
+    address: {
+      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBtc: {
+    symbol: 'BNB-BTC',
+    address: {
+      56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  usdcBusd: {
+    symbol: 'USDC-BUSD',
+    address: {
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
   wgictUsdt: {
     symbol: 'WGICT-USDT',
     address: {

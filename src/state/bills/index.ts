@@ -53,7 +53,7 @@ export const fetchBillsPublicDataAsync =
     }
   }
 
-export const fetchPoolsUserDataAsync =
+export const fetchBillsUserDataAsync =
   (chainId: number, account): AppThunk =>
   async (dispatch) => {
     try {

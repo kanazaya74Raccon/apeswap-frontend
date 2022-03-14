@@ -23,10 +23,13 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       terms,
     ] = chunk
     const [controlVariable, vestingTerm, minimumPrice, maxPayout, maxDebt] = terms
-    const priceUsd = new BigNumber(billPrice).times(lpPrice).toString()
+    const priceUsd = (getBalanceNumber(trueBillPrice) * lpPrice).toFixed(2)
+    console.log(tokenPrices)
+    console.log(lpPrice)
+    console.log(priceUsd)
     return {
       ...billConfig,
-      price: billPrice.toString(),
+      price: trueBillPrice.toString(),
       priceUsd,
       vestingTime: vestingTerm.toString(),
       roi: '',

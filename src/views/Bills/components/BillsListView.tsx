@@ -30,7 +30,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
         <>
           <ListViewContent
             title="Price"
-            value={`$${bill?.price}`}
+            value={`$${bill?.priceUsd}`}
             width={isMobile ? 90 : 150}
             height={52.5}
             toolTip="s"
