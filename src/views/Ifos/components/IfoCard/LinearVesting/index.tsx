@@ -10,6 +10,7 @@ import { usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
 import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
@@ -72,6 +73,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
   const currencyPrice = gnana ? gnanaPrice : bnbPrice
+  const [statsType, setStatsType] = useState(0)
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -182,7 +184,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
     if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
 
-    if (isFinished && userOfferingAmount > 0) {
+    if (isFinished && statsType === 1) {
       const vestedValueAmount = amount - refundingAmount
       const vestedValueDollar = (getBalanceNumber(currencyPrice, 0) * vestedValueAmount).toFixed(2)
       texts = [
@@ -214,7 +216,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     raiseAmount,
     vestingTime,
     isFinished,
-    userOfferingAmount,
     hasStarted,
     amount,
     refundingAmount,
@@ -225,6 +226,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     currency,
     state.totalAmount,
     state.raisingAmount,
+    statsType,
   ])
 
   return (
@@ -259,6 +261,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
             userTokenStatus={userTokenStatus}
           />
         )
+      )}
+      {amount === 0 && (
+        <ButtonMenu
+          activeIndex={statsType}
+          size="sm"
+          variant="yellow"
+          onClick={() => {
+            setStatsType(statsType === 0 ? 1 : 0)
+          }}
+        >
+          <ButtonMenuItem>Overall Stats</ButtonMenuItem>
+          <ButtonMenuItem>My Stats</ButtonMenuItem>
+        </ButtonMenu>
       )}
       <IfoCardDetails stats={stats} />
     </Container>
