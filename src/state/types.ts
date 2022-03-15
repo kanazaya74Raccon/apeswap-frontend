@@ -329,6 +329,20 @@ export interface IazoStatus {
   numBuyers: string
 }
 
+export interface ServiceData {
+  pid: number
+  apr: number
+  link: string
+  stakeToken: {
+    name: string
+    address: string
+  }
+  rewardToken: {
+    name: string
+    address: string
+  }
+}
+
 export interface IazoSocialInfo {
   telegram: string
   twitter: string
@@ -448,6 +462,7 @@ export interface StatsState {
   HomepageTokenStats: HomepageTokenStats[]
   HomepageNews: NewsCardType[]
   HomepageLaunchCalendar: LaunchCalendarCard[]
+  HomepageServiceStats: ServiceData[]
   data: Stats
 }
 

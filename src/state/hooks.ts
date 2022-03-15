@@ -41,6 +41,7 @@ import {
   HomepageTokenStats,
   NewsCardType,
   LaunchCalendarCard,
+  ServiceData,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -48,6 +49,7 @@ import {
   fetchHomepageData,
   fetchHomepageLaunchCalendar,
   fetchHomepageNews,
+  fetchHomepageService,
   fetchHomepageTokenData,
   fetchStats,
 } from './stats'
@@ -440,6 +442,22 @@ export const useFetchHomepageStats = (isFetching: boolean) => {
 export const useHomepageStats = (): HomepageData => {
   const homepageStats = useSelector((state: State) => state.stats.HomepageData)
   return homepageStats
+}
+
+export const useFetchHomepageServiceStats = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageService())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageServiceStats = (): ServiceData[] => {
+  const homepageServiceStats = useSelector((state: State) => state.stats.HomepageServiceStats)
+  return homepageServiceStats
 }
 
 export const useFetchHomepageTokenStats = (isFetching: boolean, category: string) => {

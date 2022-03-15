@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Stats, StatsState } from 'state/types'
 import getHomepageLaunchCalendar from './getHomepageLaunchCalendar'
 import getHomepageNews from './getHomepageNews'
+import getHomepageServiceStats from './getHomepageService'
 import getHomepageStats from './getHomepageStats'
 import getHomepageTokenStats from './getHomepageTokenStats'
 import { computeStats } from './getStats'
@@ -14,6 +15,7 @@ const initialState: StatsState = {
   HomepageTokenStats: null,
   HomepageNews: null,
   HomepageLaunchCalendar: null,
+  HomepageServiceStats: null,
   data: null,
 }
 
@@ -45,6 +47,9 @@ export const statsSlice = createSlice({
     setHomepageLaunchCalendar: (state, action) => {
       state.HomepageLaunchCalendar = action.payload
     },
+    setHomepageServiceStats: (state, action) => {
+      state.HomepageServiceStats = action.payload
+    },
   },
 })
 
@@ -57,6 +62,7 @@ export const {
   setHomepageTokenStats,
   setHomepageNews,
   setHomepageLaunchCalendar,
+  setHomepageServiceStats,
 } = statsSlice.actions
 
 // Thunks
@@ -89,6 +95,11 @@ export const fetchHomepageNews = () => async (dispatch) => {
 export const fetchHomepageLaunchCalendar = () => async (dispatch) => {
   const homepageLaunchCalendar = await getHomepageLaunchCalendar()
   dispatch(setHomepageLaunchCalendar(homepageLaunchCalendar))
+}
+
+export const fetchHomepageService = () => async (dispatch) => {
+  const homepageServiceStats = await getHomepageServiceStats()
+  dispatch(setHomepageServiceStats(homepageServiceStats))
 }
 
 export default statsSlice.reducer

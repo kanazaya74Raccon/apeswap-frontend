@@ -1,6 +1,6 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
-import { EXCHANGE, MORE_INFO } from '../constants'
+import { EXCHANGE } from '../constants'
 
 const maticConfig: MenuEntry[] = [
   EXCHANGE,

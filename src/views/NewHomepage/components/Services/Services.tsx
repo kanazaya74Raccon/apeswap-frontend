@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useWindowSize from 'hooks/useDimensions'
+import { ServiceData } from 'state/types'
+import { useFetchHomepageServiceStats, useHomepageServiceStats } from 'state/hooks'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { ServiceWrapper, YieldCard, ColorWrap, Bubble } from './styles'
 import { defaultServiceData } from './defaultServiceData'
@@ -12,10 +14,16 @@ import { defaultServiceData } from './defaultServiceData'
 const Services: React.FC = () => {
   const { swiper, setSwiper } = useSwiper()
   const [loadServices, setLoadServices] = useState(false)
+  useFetchHomepageServiceStats(loadServices)
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const { width } = useWindowSize()
-
+  const serviceData = useHomepageServiceStats()
+  const displayData =
+    serviceData &&
+    defaultServiceData.map((service) => {
+      return { ...service, stats: serviceData[service.id] }
+    })
   const slideNewsNav = (index: number) => {
     setActiveSlide(index - 1)
     swiper.slideTo(defaultServiceData.length + index)
@@ -36,12 +44,58 @@ const Services: React.FC = () => {
     }
   }, [isIntersecting])
 
+  const displayStats = (id: string, link: string, stats: ServiceData[]) => {
+    return (
+      <>
+        <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
+          {stats?.map((stat) => {
+            const stakeImage = id === 'farmDetails' ? stat.stakeToken.name.split('-') : stat.stakeToken.name
+            return (
+              <a href={stat.link} rel="noopener noreferrer">
+                <Flex
+                  mt="5px"
+                  mb="5px"
+                  pl="20px"
+                  style={{
+                    width: '100%',
+                    height: '70px',
+                    background: 'rgba(250, 250, 250, .25)',
+                    borderRadius: '10px',
+                  }}
+                >
+                  {id === 'farmDetails' ? (
+                    <ServiceTokenDisplay token1={stakeImage[0]} token2={stakeImage[1]} token3={stat.rewardToken.name} />
+                  ) : (
+                    <ServiceTokenDisplay token1={stat.stakeToken.name} token2={stat.rewardToken.name} />
+                  )}
+                  <Flex pl="20px" justifyContent="center" flexDirection="column">
+                    <Text bold style={{ width: '100%', color: 'white' }}>
+                      {id === 'farmDetails' ? stat.stakeToken.name : stat.rewardToken.name}
+                    </Text>
+                    <Text style={{ width: '100%', color: 'white' }}>APR: {(stat.apr * 100).toFixed(2)}%</Text>
+                  </Flex>
+                </Flex>
+              </a>
+            )
+          })}
+        </Flex>
+        <a href={link} rel="noopener noreferrer">
+          <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
+            <Text color="white" fontSize="14px">
+              See All {'>'}
+            </Text>
+          </Flex>
+        </a>
+      </>
+    )
+  }
+
   return (
     <>
       <div ref={observerRef} />
       <ColorWrap>
         <ServiceWrapper>
-          {loadServices ? (
+          {displayData ? (
             width < 1488 ? (
               <Swiper
                 id="serviceSwiper"
@@ -62,7 +116,7 @@ const Services: React.FC = () => {
                   },
                 }}
               >
-                {defaultServiceData.map((service) => {
+                {displayData?.map((service) => {
                   return (
                     <SwiperSlide style={{ maxWidth: '338px', minWidth: '338px' }} key={service.title}>
                       <YieldCard image={service.backgroundImg}>
@@ -79,74 +133,7 @@ const Services: React.FC = () => {
                           </Flex>
                           {service.title !== 'Coming Soon' && (
                             <>
-                              <Flex
-                                flexDirection="column"
-                                justifyContent="space-between"
-                                style={{ bottom: '40px', height: '250px' }}
-                              >
-                                <Flex
-                                  mt="5px"
-                                  mb="5px"
-                                  pl="20px"
-                                  style={{
-                                    width: '100%',
-                                    height: '70px',
-                                    background: 'rgba(250, 250, 250, .25)',
-                                    borderRadius: '10px',
-                                  }}
-                                >
-                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                    <Text bold style={{ width: '100%', color: 'white' }}>
-                                      BANANA
-                                    </Text>
-                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                                  </Flex>
-                                </Flex>
-                                <Flex
-                                  mt="5px"
-                                  mb="5px"
-                                  pl="20px"
-                                  style={{
-                                    width: '100%',
-                                    height: '70px',
-                                    background: 'rgba(250, 250, 250, .25)',
-                                    borderRadius: '10px',
-                                  }}
-                                >
-                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                    <Text bold style={{ width: '100%', color: 'white' }}>
-                                      BANANA
-                                    </Text>
-                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                                  </Flex>
-                                </Flex>
-                                <Flex
-                                  mt="5px"
-                                  mb="5px"
-                                  pl="20px"
-                                  style={{
-                                    width: '100%',
-                                    height: '70px',
-                                    background: 'rgba(250, 250, 250, .25)',
-                                    borderRadius: '10px',
-                                  }}
-                                >
-                                  <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                                  <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                    <Text bold style={{ width: '100%', color: 'white' }}>
-                                      BANANA
-                                    </Text>
-                                    <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                                  </Flex>
-                                </Flex>
-                              </Flex>
-                              <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
-                                <Text color="white" fontSize="14px">
-                                  See All {'>'}
-                                </Text>
-                              </Flex>
+                              {service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}
                             </>
                           )}
                         </Flex>
@@ -156,7 +143,7 @@ const Services: React.FC = () => {
                 })}
               </Swiper>
             ) : (
-              defaultServiceData.map((service) => {
+              displayData?.map((service) => {
                 return (
                   <YieldCard image={service.backgroundImg} key={service.title}>
                     <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
@@ -170,78 +157,7 @@ const Services: React.FC = () => {
                           <Text color="white">{service.description}</Text>
                         </Flex>
                       </Flex>
-                      {service.title !== 'Coming Soon' && (
-                        <>
-                          <Flex
-                            flexDirection="column"
-                            justifyContent="space-between"
-                            style={{ bottom: '40px', height: '250px' }}
-                          >
-                            <Flex
-                              mt="5px"
-                              mb="5px"
-                              pl="20px"
-                              style={{
-                                width: '100%',
-                                height: '70px',
-                                background: 'rgba(250, 250, 250, .25)',
-                                borderRadius: '10px',
-                              }}
-                            >
-                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                              <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                <Text bold style={{ width: '100%', color: 'white' }}>
-                                  BANANA
-                                </Text>
-                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                              </Flex>
-                            </Flex>
-                            <Flex
-                              mt="5px"
-                              mb="5px"
-                              pl="20px"
-                              style={{
-                                width: '100%',
-                                height: '70px',
-                                background: 'rgba(250, 250, 250, .25)',
-                                borderRadius: '10px',
-                              }}
-                            >
-                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                              <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                <Text bold style={{ width: '100%', color: 'white' }}>
-                                  BANANA
-                                </Text>
-                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                              </Flex>
-                            </Flex>
-                            <Flex
-                              mt="5px"
-                              mb="5px"
-                              pl="20px"
-                              style={{
-                                width: '100%',
-                                height: '70px',
-                                background: 'rgba(250, 250, 250, .25)',
-                                borderRadius: '10px',
-                              }}
-                            >
-                              <ServiceTokenDisplay token1="BANANA" token2="BANANA" />
-                              <Flex pl="20px" justifyContent="center" flexDirection="column">
-                                <Text bold style={{ width: '100%', color: 'white' }}>
-                                  BANANA
-                                </Text>
-                                <Text style={{ width: '100%', color: 'white' }}>APR: 120.20%</Text>
-                              </Flex>
-                            </Flex>
-                          </Flex>
-                          <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
-                            <Text color="white" fontSize="14px">
-                              See All {'>'}
-                            </Text>
-                          </Flex>
-                        </>
-                      )}
+                      <>{service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}</>
                     </Flex>
                   </YieldCard>
                 )
