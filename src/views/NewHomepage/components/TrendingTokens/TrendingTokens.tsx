@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import CountUp from 'react-countup'
 import useInterval from 'hooks/useInterval'
-// import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex, Text, Skeleton } from '@apeswapfinance/uikit'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
+import { CHAIN_ID } from 'config/constants/chains'
 import { useFetchHomepageTokenStats, useHomepageTokenStats } from 'state/hooks'
 import { Container, Title, TokenContainer, TrendingTokensWrapper } from './styles'
 import { TokenDisplayAmount } from './types'
@@ -13,7 +14,7 @@ const TOKEN_DELAY = 10000
 const CATEGORIES = ['primary', 'trending', 'partner']
 
 const TrendingTokens: React.FC = () => {
-  // const { chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const [loadTokens, setLoadTokens] = useState(false)
   const [selectedCat, setSelectedCat] = useState('')
   useFetchHomepageTokenStats(loadTokens, selectedCat)
@@ -47,8 +48,12 @@ const TrendingTokens: React.FC = () => {
   }, [isIntersecting])
 
   useEffect(() => {
-    setSelectedCat(CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)])
-  }, [])
+    if (chainId === CHAIN_ID.MATIC) {
+      setSelectedCat('polygon')
+    } else {
+      setSelectedCat(CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)])
+    }
+  }, [chainId])
 
   return (
     <>
