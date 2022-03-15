@@ -56,6 +56,6 @@ export const CardWrapper = styled.div`
     ${StyledCard}:nth-child(3), ${StyledCard}:nth-child(4) {
       border-radius: 10px;
     }
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, minmax(260px, 339px));
   }
 `
