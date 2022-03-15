@@ -69,7 +69,7 @@ const LaunchCalendar: React.FC = () => {
                 {launchCal?.map((launch) => {
                   const date = new Date(launch.launchTime)
                   return (
-                    <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }}>
+                    <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }} key={launch?.textLine1}>
                       <LaunchCard>
                         <Flex justifyContent="center" alignItems="center" flexDirection="column">
                           <Text fontSize="30px" bold>
@@ -108,7 +108,7 @@ const LaunchCalendar: React.FC = () => {
             ) : (
               <SkeletonWrapper>
                 {[...Array(6)].map(() => {
-                  return <Skeleton width="219px" height="219px" />
+                  return <Skeleton width="219px" height="219px" key="id" />
                 })}
               </SkeletonWrapper>
             )}

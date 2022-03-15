@@ -82,7 +82,7 @@ const News: React.FC = () => {
             ) : (
               <SkeletonWrapper>
                 {[...Array(5)].map(() => {
-                  return <Skeleton width="266px" height="348px" />
+                  return <Skeleton width="266px" height="332.5px" />
                 })}
               </SkeletonWrapper>
             )}

@@ -6,6 +6,7 @@ import { Flex, Text, Skeleton } from '@apeswapfinance/uikit'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useFetchHomepageTokenStats, useHomepageTokenStats } from 'state/hooks'
+import track from 'utils/track'
 import { Container, Title, TokenContainer, TrendingTokensWrapper } from './styles'
 import { TokenDisplayAmount } from './types'
 
@@ -70,6 +71,17 @@ const TrendingTokens: React.FC = () => {
                       <TokenContainer
                         key={token?.tokenTicker}
                         active={i >= tokenDisplayRange.tokenStartIndex && i < tokenDisplayRange.tokenEndIndex}
+                        onClick={() =>
+                          track({
+                            event: 'tokenClick',
+                            chain: chainId,
+                            data: {
+                              token: token?.tokenTicker,
+                              variation: token?.percentChange,
+                              category: selectedCat,
+                            },
+                          })
+                        }
                       >
                         <Flex>
                           <img

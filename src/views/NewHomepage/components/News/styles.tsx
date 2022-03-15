@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const NewsCard = styled.div<{ image: string; index: number; listLength: number }>`
-  height: 348px;
+  height: 332.5px;
   min-width: 266px;
   max-width: 266px;
   opacity: 1;
@@ -74,8 +74,8 @@ export const SkeletonWrapper = styled.div`
 `
 
 export const Bubble = styled.div<{ isActive?: boolean }>`
-  background: ${({ isActive }) =>
-    isActive ? 'linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)' : 'rgba(66, 66, 66, .2)'};
+  background: ${({ isActive, theme }) =>
+    isActive ? 'linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)' : theme.colors.white4};
   height: 14px;
   width: 14px;
   border-radius: 50px;
