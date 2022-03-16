@@ -160,6 +160,10 @@ export default function Swap({ history }: RouteComponentProps) {
         isLp,
         isNative,
       )
+      console.log('tradeAmount', trade?.inputAmount)
+      console.log('tradeAmount sig6', trade?.inputAmount.toSignificant(6))
+      console.log('usdVal', usdVal)
+      console.log('tradeAmount sig6 * usdVal', Number(trade?.inputAmount.toSignificant(6)) * usdVal)
       setTradeValueUsd(Number(trade?.inputAmount.toSignificant(6)) * usdVal)
     }
     getTradeVal()
