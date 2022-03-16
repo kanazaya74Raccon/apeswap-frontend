@@ -41,7 +41,7 @@ export const CardWrapper = styled.div`
     display: grid;
     grid-template-columns: 325px 325px;
     margin: 0px 0px 0px 0px;
-    justify-content: space-around;
+    justify-content: space-between;
     ${StyledCard}:nth-child(1), ${StyledCard}:nth-child(2) {
       border-radius: 10px 10px 0px 0px;
     }

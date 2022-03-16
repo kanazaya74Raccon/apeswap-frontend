@@ -18,7 +18,8 @@ export const TrendingTokensWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     display: grid;
     grid-template-rows: 50px 150px 20px;
-    width: 580px;
+    width: 95vw;
+    padding: 20px calc(40% - 200px);
   }
   @media screen and (min-width: 1200px) {
     width: 95vw;
