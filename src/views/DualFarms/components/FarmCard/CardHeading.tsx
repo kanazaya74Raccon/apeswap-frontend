@@ -27,6 +27,7 @@ export interface ExpandableSectionProps {
   hideButton?: boolean
   pid?: number
   lpSymbol: string
+  dualImage?: boolean
   showExpandableSection?: boolean
   farm?: DualFarm
 }
@@ -243,6 +244,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   farmAPR,
   removed,
   showExpandableSection,
+  dualImage = true,
   hideButton = true,
   farm,
 }) => {
@@ -277,22 +279,34 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           marginTop={isDesktop ? '45px' : '30px'}
         />
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-        <IconRewardToken
-          src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
-          alt={rewardTokens?.token1?.symbol}
-          width={35}
-          height={35}
-          marginBottom={isDesktop ? '30px' : '25px'}
-          marginRight="-5px"
-        />
-        <IconRewardToken
-          src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
-          alt={rewardTokens?.token1?.symbol}
-          width={35}
-          height={35}
-          marginTop={isDesktop ? '30px' : '25px'}
-          marginRight="7.5px"
-        />
+        {dualImage ? (
+          <>
+            <IconRewardToken
+              src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+              alt={rewardTokens?.token1?.symbol}
+              width={35}
+              height={35}
+              marginBottom={isDesktop ? '30px' : '25px'}
+              marginRight="-5px"
+            />
+            <IconRewardToken
+              src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
+              alt={rewardTokens?.token1?.symbol}
+              width={35}
+              height={35}
+              marginTop={isDesktop ? '30px' : '25px'}
+              marginRight="7.5px"
+            />
+          </>
+        ) : (
+          <IconImage
+            src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+            alt={stakeTokens?.token1?.symbol}
+            width={60}
+            height={60}
+            marginLeft="7.5px"
+          />
+        )}
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
