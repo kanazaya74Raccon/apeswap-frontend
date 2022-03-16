@@ -6,6 +6,7 @@ import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
 import { useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
+import track from 'utils/track'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
 
@@ -27,13 +28,24 @@ const Menu = (props) => {
     return bscConfig
   }
 
+  const changeTheme = () => {
+    toggleTheme()
+    track({
+      event: 'themeSwitcher',
+      chain: chainId,
+      data: {
+        mode: isDark ? 'dark' : 'light',
+      },
+    })
+  }
+
   return (
     <UikitMenu
       account={account}
       login={login}
       logout={logout}
       isDark={isDark}
-      toggleTheme={toggleTheme}
+      toggleTheme={changeTheme}
       bananaPriceUsd={bananaPriceUsd}
       links={currentMenu()}
       chainId={chainId}
