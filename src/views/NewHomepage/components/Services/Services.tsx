@@ -63,7 +63,7 @@ const Services: React.FC = () => {
         <Flex
           flexDirection="column"
           justifyContent="space-between"
-          style={{ position: 'absolute', bottom: '60px', height: '250px', width: '318px' }}
+          style={{ position: 'absolute', bottom: '60px', height: '250px', width: '300px' }}
         >
           {stats?.map((stat) => {
             const { name, tokenImage } = handleEachService(id, stat)
@@ -81,7 +81,12 @@ const Services: React.FC = () => {
                   }}
                 >
                   {id === 'farmDetails' ? (
-                    <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} token3={stat.rewardToken.name} />
+                    <ServiceTokenDisplay
+                      token1={tokenImage[0]}
+                      token2={tokenImage[1]}
+                      token3={stat.rewardToken.name}
+                      stakeLp
+                    />
                   ) : id === 'poolDetails' ? (
                     <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} />
                   ) : (
@@ -104,7 +109,7 @@ const Services: React.FC = () => {
         </Flex>
         <a href={link} rel="noopener noreferrer">
           <Flex alignItems="center" justifyContent="center" style={{ textAlign: 'center' }}>
-            <Text color="white" fontSize="14px">
+            <Text color="white" fontSize="16px" bold>
               See All {'>'}
             </Text>
           </Flex>
@@ -150,8 +155,10 @@ const Services: React.FC = () => {
                                 {service.title}
                               </Text>
                             </Flex>
-                            <Flex>
-                              <Text color="white">{service.description}</Text>
+                            <Flex padding="0px 40px 0px 0px">
+                              <Text color="white" bold>
+                                {service.description}
+                              </Text>
                             </Flex>
                           </Flex>
                           {service.title !== 'Coming Soon' && (
@@ -176,8 +183,10 @@ const Services: React.FC = () => {
                             {service.title}
                           </Text>
                         </Flex>
-                        <Flex>
-                          <Text color="white">{service.description}</Text>
+                        <Flex padding="0px 40px 0px 0px">
+                          <Text color="white" bold>
+                            {service.description}
+                          </Text>
                         </Flex>
                       </Flex>
                       <>{service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}</>

@@ -16,7 +16,7 @@ export const YieldCard = styled.div<{ image?: string }>`
   max-width: 338px;
   height: 442px;
   opacity: 1;
-  padding: 20px 10px 20px 10px;
+  padding: 20px 20px;
   border-radius: 10px;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
