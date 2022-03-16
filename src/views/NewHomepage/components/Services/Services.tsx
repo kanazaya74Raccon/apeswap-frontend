@@ -44,14 +44,31 @@ const Services: React.FC = () => {
     }
   }, [isIntersecting])
 
+  const handleEachService = (id: string, service: ServiceData) => {
+    if (id === 'farmDetails' || id === 'poolDetails') {
+      const tokenImage =
+        id === 'farmDetails' ? service.stakeToken.name.split('-') : [service.stakeToken.name, service.rewardToken.name]
+      const name = id === 'farmDetails' ? service.stakeToken.name : service.rewardToken.name
+      return { name, tokenImage }
+    }
+    if (id === 'lendingDetails') {
+      return { name: service.marketName, tokenImage: [service.token.name] }
+    }
+    return {}
+  }
+
   const displayStats = (id: string, link: string, stats: ServiceData[]) => {
     return (
       <>
-        <Flex flexDirection="column" justifyContent="space-between" style={{ bottom: '40px', height: '250px' }}>
+        <Flex
+          flexDirection="column"
+          justifyContent="space-between"
+          style={{ position: 'absolute', bottom: '60px', height: '250px', width: '318px' }}
+        >
           {stats?.map((stat) => {
-            const stakeImage = id === 'farmDetails' ? stat.stakeToken.name.split('-') : stat.stakeToken.name
+            const { name, tokenImage } = handleEachService(id, stat)
             return (
-              <a href={stat.link} rel="noopener noreferrer">
+              <a href={stat.link} rel="noopener noreferrer" key={stat?.apr}>
                 <Flex
                   mt="5px"
                   mb="5px"
@@ -64,15 +81,21 @@ const Services: React.FC = () => {
                   }}
                 >
                   {id === 'farmDetails' ? (
-                    <ServiceTokenDisplay token1={stakeImage[0]} token2={stakeImage[1]} token3={stat.rewardToken.name} />
+                    <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} token3={stat.rewardToken.name} />
+                  ) : id === 'poolDetails' ? (
+                    <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} />
                   ) : (
-                    <ServiceTokenDisplay token1={stat.stakeToken.name} token2={stat.rewardToken.name} />
+                    <ServiceTokenDisplay token1={tokenImage[0]} />
                   )}
                   <Flex pl="20px" justifyContent="center" flexDirection="column">
                     <Text bold style={{ width: '100%', color: 'white' }}>
-                      {id === 'farmDetails' ? stat.stakeToken.name : stat.rewardToken.name}
+                      {name}
                     </Text>
-                    <Text style={{ width: '100%', color: 'white' }}>APR: {(stat.apr * 100).toFixed(2)}%</Text>
+                    {id === 'lendingDetails' ? (
+                      <Text style={{ width: '100%', color: 'white' }}>APY: {stat.apy.toFixed(2)}%</Text>
+                    ) : (
+                      <Text style={{ width: '100%', color: 'white' }}>APR: {(stat.apr * 100).toFixed(2)}%</Text>
+                    )}
                   </Flex>
                 </Flex>
               </a>

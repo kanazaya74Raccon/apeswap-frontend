@@ -330,14 +330,21 @@ export interface IazoStatus {
 }
 
 export interface ServiceData {
-  pid: number
-  apr: number
+  id: number
+  apr?: number
+  apy?: number
   link: string
-  stakeToken: {
+  marketName?: string
+  marketAddress?: string
+  stakeToken?: {
     name: string
     address: string
   }
-  rewardToken: {
+  rewardToken?: {
+    name: string
+    address: string
+  }
+  token?: {
     name: string
     address: string
   }

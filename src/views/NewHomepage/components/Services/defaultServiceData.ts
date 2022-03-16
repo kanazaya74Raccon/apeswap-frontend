@@ -4,7 +4,7 @@ export const defaultServiceData: DefaultServiceData[] = [
   {
     id: 'poolDetails',
     title: 'Staking Pools',
-    description: 'Stake BANANA or GNANA',
+    description: 'Earn new tokens by staking BANANA or GNANA',
     backgroundImg: 'images/pool-background-day.svg',
     link: '/pools',
     stats: [],
@@ -12,15 +12,15 @@ export const defaultServiceData: DefaultServiceData[] = [
   {
     id: 'farmDetails',
     title: 'Yield Farms',
-    description: 'Stake LP earn BANANA',
+    description: 'Earn BANANA by providing liquidity',
     backgroundImg: 'images/homepage-farms.svg',
     link: '/farms',
     stats: [],
   },
   {
-    id: '',
+    id: 'lendingDetails',
     title: 'Lending',
-    description: 'Get paid to burrow, or Earn while you HODL',
+    description: 'Earn interest by supplying and borrowing popular tokens',
     backgroundImg: 'images/homepage-lending.svg',
     link: 'https://lending.apeswap.finance/markets',
     stats: [],
