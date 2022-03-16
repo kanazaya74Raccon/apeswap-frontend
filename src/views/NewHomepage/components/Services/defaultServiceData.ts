@@ -5,7 +5,7 @@ export const defaultServiceData: DefaultServiceData[] = [
     id: 'poolDetails',
     title: 'Staking Pools',
     description: 'Earn new tokens by staking BANANA or GNANA',
-    backgroundImg: 'images/pool-background-day.svg',
+    backgroundImg: 'images/homepage-pools.svg',
     link: '/pools',
     stats: [],
   },

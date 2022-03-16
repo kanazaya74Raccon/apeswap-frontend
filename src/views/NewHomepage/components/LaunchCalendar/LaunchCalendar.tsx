@@ -4,7 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import SwiperCore from 'swiper'
 import { useFetchHomepageLaunchCalendar, useHomepageLaunchCalendar } from 'state/hooks'
+import { useTheme } from 'styled-components'
 import useSwiper from 'hooks/useSwiper'
+import { QuestionMark } from 'components/Icons'
 import {
   Bubble,
   CalendarImg,
@@ -20,17 +22,18 @@ const LaunchCalendar: React.FC = () => {
   useFetchHomepageLaunchCalendar(loadNews)
   const { swiper, setSwiper } = useSwiper()
   const [activeSlide, setActiveSlide] = useState(0)
+  const theme = useTheme()
   const launchCal = useHomepageLaunchCalendar()
   const launchCalLength = launchCal?.length || 0
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
   const slideNewsNav = (index: number) => {
     setActiveSlide(index)
-    swiper.slideTo(launchCalLength + index)
+    swiper.slideTo(index)
   }
 
   const handleSlide = (event: SwiperCore) => {
-    setActiveSlide(event.activeIndex - launchCalLength === launchCalLength ? 0 : event.activeIndex - launchCalLength)
+    setActiveSlide(event.activeIndex)
   }
 
   useEffect(() => {
@@ -53,10 +56,8 @@ const LaunchCalendar: React.FC = () => {
                 onSwiper={setSwiper}
                 spaceBetween={20}
                 slidesPerView="auto"
-                loopedSlides={launchCalLength}
-                loop
-                centeredSlides
                 resizeObserver
+                centeredSlides
                 lazy
                 preloadImages={false}
                 onSlideChange={handleSlide}
@@ -66,9 +67,9 @@ const LaunchCalendar: React.FC = () => {
                   },
                 }}
               >
-                {launchCal?.map((launch) => {
+                {launchCal?.map((launch, i) => {
                   const date = new Date(launch.launchTime)
-                  return (
+                  const slide = (
                     <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }} key={launch?.textLine1}>
                       <LaunchCard>
                         <Flex justifyContent="center" alignItems="center" flexDirection="column">
@@ -103,6 +104,22 @@ const LaunchCalendar: React.FC = () => {
                       </LaunchCard>
                     </SwiperSlide>
                   )
+
+                  if (i === launchCalLength - 1) {
+                    return (
+                      <>
+                        {slide}
+                        <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }} key={launch?.textLine1}>
+                          <LaunchCard>
+                            <Flex alignItems="center" justifyContent="center" style={{ height: '100%' }}>
+                              <QuestionMark fill={theme.colors.text} />
+                            </Flex>
+                          </LaunchCard>
+                        </SwiperSlide>
+                      </>
+                    )
+                  }
+                  return slide
                 })}
               </Swiper>
             ) : (
@@ -118,7 +135,7 @@ const LaunchCalendar: React.FC = () => {
             alignContent="center"
             style={{ position: 'absolute', bottom: '35px', left: '0', width: '100%' }}
           >
-            {[...Array(launchCalLength)].map((_, i) => {
+            {[...Array(launchCalLength + 1)].map((_, i) => {
               return <Bubble isActive={i === activeSlide} onClick={() => slideNewsNav(i)} />
             })}
           </Flex>
