@@ -10,14 +10,14 @@ const WelcomeContent: React.FC = () => {
     <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
       <ContentContainer>
         <Flex flexDirection="column" style={{ maxWidth: '540px' }}>
-          <HeadingText>Welcome to the Most Connected Defi Hub</HeadingText>
+          <HeadingText>Welcome to the Most Connected DeFi Hub</HeadingText>
           {!isMobile && (
             <>
               <br />
               <br />
               <Text>
-                Whether youre new to crypto or youre a DeFi veteran, ApeSwap has the tools and the community to support
-                your decentralized finance needs.
+                Whether you are new to crypto or youre a DeFi veteran, ApeSwap has the tools and the community to
+                support your decentralized finance needs.
               </Text>
             </>
           )}

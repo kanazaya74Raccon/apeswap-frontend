@@ -7,7 +7,7 @@ export const StyledCard = styled(Card)`
   align-items: center;
   justify-content: space-between;
   height: 100px;
-  max-width: 339px;
+  max-width: 325px;
   min-width: 260px;
   width: 100%;
   border-radius: 10px;
@@ -39,7 +39,7 @@ export const CardWrapper = styled.div`
   }
   @media screen and (min-width: 757px) and (max-width: 1200px) {
     display: grid;
-    grid-template-columns: 339px 339px;
+    grid-template-columns: 325px 325px;
     margin: 0px 0px 0px 0px;
     justify-content: space-around;
     ${StyledCard}:nth-child(1), ${StyledCard}:nth-child(2) {
@@ -56,6 +56,6 @@ export const CardWrapper = styled.div`
     ${StyledCard}:nth-child(3), ${StyledCard}:nth-child(4) {
       border-radius: 10px;
     }
-    grid-template-columns: repeat(4, minmax(260px, 339px));
+    grid-template-columns: repeat(4, minmax(260px, 325px));
   }
 `
