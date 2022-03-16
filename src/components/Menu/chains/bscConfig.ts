@@ -10,12 +10,16 @@ const bscConfig: MenuEntry[] = [
     darkIcon: 'StakeDarkImage',
     items: [
       {
-        label: 'Farms',
+        label: 'BANANA Farms',
         href: '/farms',
       },
       {
         label: 'Pools',
         href: '/pools',
+      },
+      {
+        label: 'Jungle Farms',
+        href: '/jungle-farms',
       },
       {
         label: 'Vaults',
@@ -59,6 +63,10 @@ const bscConfig: MenuEntry[] = [
         label: 'NFA Staking',
         href: '/staking',
       },
+      {
+        label: 'Liquid Collectibles',
+        href: 'https://liquidcollectibles.io/',
+      },
     ],
   },
   {
@@ -85,10 +93,6 @@ const bscConfig: MenuEntry[] = [
       {
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
-      },
-      {
-        label: 'BANANA Burns',
-        href: '/burn',
       },
     ],
   },
