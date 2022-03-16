@@ -12,6 +12,7 @@ export const NewsCard = styled.div<{ image: string; index: number; listLength: n
   background-size: cover;
   border-radius: 10px;
   transition: ease 1000ms;
+  cursor: pointer;
 `
 
 export const NewsWrapper = styled.div`

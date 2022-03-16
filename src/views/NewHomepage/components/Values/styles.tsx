@@ -32,8 +32,8 @@ export const ValueImage = styled.div<{ image?: string }>`
 `
 
 export const Bubble = styled.div<{ isActive?: boolean }>`
-  background: ${({ isActive }) =>
-    isActive ? 'linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)' : 'rgba(66, 66, 66, .2)'};
+  background: ${({ isActive, theme }) =>
+    isActive ? 'linear-gradient(53.53deg, #a16552 15.88%, #e1b242 92.56%)' : theme.colors.white4};
   height: 14px;
   width: 14px;
   border-radius: 50px;

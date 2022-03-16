@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
+import { orderBy } from 'lodash'
 import SwiperCore, { Autoplay } from 'swiper'
 import 'swiper/swiper.min.css'
 import { Flex, Skeleton } from '@apeswapfinance/uikit'
@@ -16,9 +17,10 @@ const News: React.FC = () => {
   const [loadImages, setLoadImages] = useState(false)
   useFetchHomepageNews(loadImages)
   const fetchedNews = useHomepageNews()
-  const sortedNews = fetchedNews
+  const sortedNews = orderBy(fetchedNews, 'CardPosition')
   const newsLength = fetchedNews?.length || 0
   const { swiper, setSwiper } = useSwiper()
+  console.log(sortedNews)
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
@@ -68,13 +70,15 @@ const News: React.FC = () => {
               >
                 {sortedNews?.map((news) => {
                   return (
-                    <SwiperSlide style={{ maxWidth: '266px', minWidth: '266px' }}>
-                      <NewsCard
-                        index={activeSlide}
-                        image={news?.cardImageUrl?.url}
-                        key={news?.cardImageUrl?.url}
-                        listLength={newsLength}
-                      />
+                    <SwiperSlide style={{ maxWidth: '266px', minWidth: '266px' }} key={news.id}>
+                      <a href={news?.CardLink} target="_blank" rel="noopener noreferrer">
+                        <NewsCard
+                          index={activeSlide}
+                          image={news?.cardImageUrl?.url}
+                          key={news?.cardImageUrl?.url}
+                          listLength={newsLength}
+                        />
+                      </a>
                     </SwiperSlide>
                   )
                 })}

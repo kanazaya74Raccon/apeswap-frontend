@@ -228,8 +228,10 @@ export interface HomepageTokenStats {
 }
 
 export interface NewsCardType {
+  id: number
+  cardPosition: number
   cardImageUrl: any
-  cardLink: string
+  CardLink: string
 }
 
 export interface LaunchCalendarCard {

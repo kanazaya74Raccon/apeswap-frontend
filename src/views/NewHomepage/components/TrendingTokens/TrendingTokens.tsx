@@ -67,7 +67,11 @@ const TrendingTokens: React.FC = () => {
               <>
                 {tokens?.slice(tokenDisplayRange.tokenStartIndex, tokenDisplayRange.tokenEndIndex)?.map((token, i) => {
                   return (
-                    <a href={`/swap/?outputCurrency=${token?.contractAddress}`} rel="noopener noreferrer">
+                    <a
+                      href={`/swap/?outputCurrency=${token?.contractAddress}`}
+                      rel="noopener noreferrer"
+                      key={token.contractAddress}
+                    >
                       <TokenContainer
                         key={token?.tokenTicker}
                         active={i >= tokenDisplayRange.tokenStartIndex && i < tokenDisplayRange.tokenEndIndex}
