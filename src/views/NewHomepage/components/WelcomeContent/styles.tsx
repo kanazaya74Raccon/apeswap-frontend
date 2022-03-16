@@ -21,8 +21,8 @@ export const ContentContainer = styled.div`
     margin-bottom: 175px;
   }
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding: 0px 100px 0px 100px;
-    width: 100vw;
+    width: 95vw;
+    padding-top: 50px;
   }
 `
 
