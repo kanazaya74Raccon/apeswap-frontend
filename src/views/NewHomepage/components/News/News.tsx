@@ -20,7 +20,6 @@ const News: React.FC = () => {
   const sortedNews = orderBy(fetchedNews, 'CardPosition')
   const newsLength = fetchedNews?.length || 0
   const { swiper, setSwiper } = useSwiper()
-  console.log(sortedNews)
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
