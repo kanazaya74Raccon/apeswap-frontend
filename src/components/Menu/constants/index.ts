@@ -22,16 +22,8 @@ export const MORE_INFO = {
       href: 'https://apeswap.gitbook.io/apeswap-finance/',
     },
     {
-      label: 'Leverage Trading',
-      href: 'https://apemex.exchange/margin',
-    },
-    {
       label: 'Governance',
       href: 'https://vote.apeswap.finance',
-    },
-    {
-      label: 'BANANA Burns',
-      href: '/burn',
     },
   ],
 }
