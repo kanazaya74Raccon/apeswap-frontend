@@ -16,15 +16,20 @@ SwiperCore.use([Autoplay])
 const News: React.FC = () => {
   const [loadImages, setLoadImages] = useState(false)
   useFetchHomepageNews(loadImages)
+  const today = new Date()
   const fetchedNews = useHomepageNews()
   const sortedNews = orderBy(fetchedNews, 'CardPosition')
-  const newsLength = fetchedNews?.length || 0
+  const filterNews = sortedNews?.filter(
+    (news) =>
+      (new Date(news.StartTime) <= today && new Date(news.EndTime) > today) || (!news.StartTime && !news.EndTime),
+  )
+  const newsLength = filterNews?.length || 0
   const { swiper, setSwiper } = useSwiper()
   const [activeSlide, setActiveSlide] = useState(0)
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
   const slideNewsNav = (index: number) => {
-    setActiveSlide(index - 1)
+    setActiveSlide(index)
     swiper.slideTo(newsLength + index)
   }
 
@@ -49,7 +54,7 @@ const News: React.FC = () => {
       >
         <NewsWrapper>
           <Flex justifyContent="space-between" style={{ width: '100%', overflow: 'hidden' }}>
-            {fetchedNews ? (
+            {filterNews?.length > 0 ? (
               <Swiper
                 id="newsSwiper"
                 autoplay={{
@@ -67,7 +72,7 @@ const News: React.FC = () => {
                 preloadImages={false}
                 onSlideChange={handleSlide}
               >
-                {sortedNews?.map((news) => {
+                {filterNews?.map((news) => {
                   return (
                     <SwiperSlide style={{ maxWidth: '266px', minWidth: '266px' }} key={news.id}>
                       <a href={news?.CardLink} target="_blank" rel="noopener noreferrer">

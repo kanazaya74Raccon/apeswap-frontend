@@ -232,6 +232,8 @@ export interface NewsCardType {
   cardPosition: number
   cardImageUrl: any
   CardLink: string
+  StartTime: string
+  EndTime: string
 }
 
 export interface LaunchCalendarCard {

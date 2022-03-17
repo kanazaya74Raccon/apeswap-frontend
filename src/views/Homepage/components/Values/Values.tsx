@@ -19,7 +19,7 @@ const Values: React.FC = () => {
   const swiperFlag = isMd || isSm || isXs
 
   const slideVal = (index: number) => {
-    setActiveSlide(index - 1)
+    setActiveSlide(index)
     swiper.slideTo(defaultValues.length + index)
     swiper.autoplay.start()
   }

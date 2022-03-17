@@ -3,7 +3,7 @@ import { LaunchCalendarCard } from 'state/types'
 
 const getHomepageLaunchCalendar = async (): Promise<LaunchCalendarCard[]> => {
   try {
-    const response = await fetch(`${baseUrlStrapi}/home-v-2-launch-calendars`)
+    const response = await fetch(`${baseUrlStrapi}/home-v-2-launch-calendars?_sort=launchTime:asc`)
     const launchRes = await response.json()
     if (launchRes.statusCode === 500) {
       return null

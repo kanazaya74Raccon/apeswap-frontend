@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FadeIn } from 'views/NewHomepage/styles'
+import { FadeIn } from '../../styles'
 
 export const ColorWrap = styled.div`
   position: relative;

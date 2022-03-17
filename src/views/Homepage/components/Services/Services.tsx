@@ -25,7 +25,7 @@ const Services: React.FC = () => {
       return { ...service, stats: serviceData[service.id] }
     })
   const slideNewsNav = (index: number) => {
-    setActiveSlide(index - 1)
+    setActiveSlide(index)
     swiper.slideTo(defaultServiceData.length + index)
     swiper.autoplay.start()
   }

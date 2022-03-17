@@ -19,12 +19,15 @@ import {
 
 const LaunchCalendar: React.FC = () => {
   const [loadNews, setLoadNews] = useState(false)
+  const today = new Date()
+  today.setHours(today.getHours() - 12)
   useFetchHomepageLaunchCalendar(loadNews)
   const { swiper, setSwiper } = useSwiper()
   const [activeSlide, setActiveSlide] = useState(0)
   const theme = useTheme()
   const launchCal = useHomepageLaunchCalendar()
-  const launchCalLength = launchCal?.length || 0
+  const sortLaunch = launchCal?.filter((launch) => new Date(launch.launchTime) > today)
+  const launchCalLength = sortLaunch?.length || 0
   const { observerRef, isIntersecting } = useIntersectionObserver()
 
   const slideNewsNav = (index: number) => {
@@ -49,7 +52,7 @@ const LaunchCalendar: React.FC = () => {
         <LaunchCalendarWrapper>
           <LaunchText bold>Launch Calendar</LaunchText>
           <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }}>
-            {launchCal ? (
+            {sortLaunch ? (
               <Swiper
                 id="launchSwiper"
                 initialSlide={0}
@@ -67,7 +70,7 @@ const LaunchCalendar: React.FC = () => {
                   },
                 }}
               >
-                {launchCal?.map((launch, i) => {
+                {sortLaunch?.map((launch, i) => {
                   const date = new Date(launch.launchTime)
                   const slide = (
                     <SwiperSlide style={{ maxWidth: '219px', minWidth: '219px' }} key={launch?.textLine1}>
@@ -77,7 +80,7 @@ const LaunchCalendar: React.FC = () => {
                             {date.getDate()} {date.toDateString().split(' ')[1]}
                           </Text>
                           <Text fontSize="12px">
-                            {date.getUTCHours()}:{date.getUTCMinutes()} UTC
+                            {date.getUTCHours()}:{date?.getUTCMinutes() === 0 ? '00' : date?.getUTCMinutes()} UTC
                           </Text>
                         </Flex>
                         <Flex

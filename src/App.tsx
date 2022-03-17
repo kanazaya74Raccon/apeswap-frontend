@@ -17,7 +17,7 @@ import PageLoader from './components/PageLoader'
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
 // const Home = lazy(() => import('./views/Home'))
-const Home = lazy(() => import('./views/NewHomepage'))
+const Home = lazy(() => import('./views/Homepage'))
 const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
 const JunglePools = lazy(() => import('./views/JunglePools'))

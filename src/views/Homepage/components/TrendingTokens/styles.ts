@@ -1,6 +1,6 @@
 import { Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
-import { FadeIn } from 'views/NewHomepage/styles'
+import { FadeIn } from '../../styles'
 
 export const TrendingTokensWrapper = styled.div`
   position: relative;
