@@ -16,7 +16,7 @@ const WelcomeContent: React.FC = () => {
               <br />
               <br />
               <Text>
-                Whether you are new to crypto or youre a DeFi veteran, ApeSwap has the tools and the community to
+                Whether you are new to crypto or you are a DeFi veteran, ApeSwap has the tools and the community to
                 support your decentralized finance needs.
               </Text>
             </>
