@@ -87,10 +87,6 @@ const bscConfig: MenuEntry[] = [
         href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
       },
       {
-        label: 'Leverage Trading',
-        href: 'https://apemex.exchange/margin',
-      },
-      {
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
       },
