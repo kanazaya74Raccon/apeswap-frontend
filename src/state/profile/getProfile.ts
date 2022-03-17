@@ -1,12 +1,11 @@
-import { Profile } from 'state/types'
-import nfts from 'config/constants/nfts'
+import { Nfa, Profile } from 'state/types'
 import nfaABI from 'config/abi/nonFungibleApes.json'
 import nfbABI from 'config/abi/nonFungibleBananas.json'
 import { getNonFungibleApesAddress, getNonFungibleBananasAddress } from 'utils/addressHelper'
 import { getContract } from 'utils/getContract'
 import orderBy from 'lodash/orderBy'
 
-const getProfile = async (chainId: number, address: string): Promise<Profile> => {
+const getProfile = async (nfas: Nfa[], chainId: number, address: string): Promise<Profile> => {
   const nfaAddress = getNonFungibleApesAddress(chainId)
   const nfaContract = getContract(nfaABI, nfaAddress, chainId)
 
@@ -26,7 +25,7 @@ const getProfile = async (chainId: number, address: string): Promise<Profile> =>
         promises.push(nfaContract.tokenOfOwnerByIndex(address, i))
       }
       const nfaReturn = await (await Promise.all(promises)).map(Number)
-      ownedNfts = nfaReturn.map((index) => nfts[index])
+      ownedNfts = nfaReturn.map((index) => nfas[index])
       rarestNft = ownedNfts ? orderBy(ownedNfts, ['attributes.rarityOverallRank'])[0] : null
       // Save the preview image to local storage for the exchange
       localStorage.setItem(

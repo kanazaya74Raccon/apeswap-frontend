@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppThunk, Profile, ProfileState } from 'state/types'
+import { AppThunk, Nfa, Profile, ProfileState } from 'state/types'
 import getProfile from './getProfile'
 
 const initialState: ProfileState = {
@@ -37,11 +37,11 @@ export const { profileFetchStart, profileFetchSucceeded, profileFetchFailed, pro
 
 // Thunks
 export const fetchProfile =
-  (chainId: number, address: string): AppThunk =>
+  (nfas: Nfa[], chainId: number, address: string): AppThunk =>
   async (dispatch) => {
     try {
       dispatch(profileFetchStart())
-      const profile = await getProfile(chainId, address)
+      const profile = await getProfile(nfas, chainId, address)
       dispatch(profileFetchSucceeded(profile))
     } catch (error) {
       dispatch(profileFetchFailed())

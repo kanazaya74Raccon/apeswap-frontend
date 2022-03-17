@@ -95,4 +95,4 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => 
   )
 }
 
-export default Image
+export default React.memo(Image)

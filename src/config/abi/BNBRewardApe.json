@@ -382,9 +382,7 @@
   "ast": {
     "absolutePath": "/Users/blitz/Development/Solidity/ApeSwapFinance/ApeSwapFinance/apeswap-banana-farm/contracts/BNBRewardApe.sol",
     "exportedSymbols": {
-      "BNBRewardApe": [
-        729
-      ]
+      "BNBRewardApe": [729]
     },
     "id": 730,
     "license": null,
@@ -392,11 +390,7 @@
     "nodes": [
       {
         "id": 10,
-        "literals": [
-          "solidity",
-          "0.6",
-          ".12"
-        ],
+        "literals": ["solidity", "0.6", ".12"],
         "nodeType": "PragmaDirective",
         "src": "0:23:1"
       },
@@ -466,19 +460,12 @@
             "src": "655:7:1"
           }
         ],
-        "contractDependencies": [
-          6928,
-          7048
-        ],
+        "contractDependencies": [6928, 7048],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
         "id": 729,
-        "linearizedBaseContracts": [
-          729,
-          7048,
-          6928
-        ],
+        "linearizedBaseContracts": [729, 7048, 6928],
         "name": "BNBRewardApe",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -1471,12 +1458,7 @@
                         "isPure": false,
                         "kind": "structConstructorCall",
                         "lValueRequested": false,
-                        "names": [
-                          "lpToken",
-                          "allocPoint",
-                          "lastRewardBlock",
-                          "accRewardTokenPerShare"
-                        ],
+                        "names": ["lpToken", "allocPoint", "lastRewardBlock", "accRewardTokenPerShare"],
                         "nodeType": "FunctionCall",
                         "src": "2359:164:1",
                         "tryCall": false,
@@ -1905,9 +1887,7 @@
               "src": "2889:696:1",
               "statements": [
                 {
-                  "assignments": [
-                    134
-                  ],
+                  "assignments": [134],
                   "declarations": [
                     {
                       "constant": false,
@@ -1990,9 +1970,7 @@
                   "src": "2899:35:1"
                 },
                 {
-                  "assignments": [
-                    140
-                  ],
+                  "assignments": [140],
                   "declarations": [
                     {
                       "constant": false,
@@ -2070,9 +2048,7 @@
                   "src": "2944:39:1"
                 },
                 {
-                  "assignments": [
-                    146
-                  ],
+                  "assignments": [146],
                   "declarations": [
                     {
                       "constant": false,
@@ -2137,9 +2113,7 @@
                   "src": "2993:60:1"
                 },
                 {
-                  "assignments": [
-                    151
-                  ],
+                  "assignments": [151],
                   "declarations": [
                     {
                       "constant": false,
@@ -2461,9 +2435,7 @@
                     "src": "3187:305:1",
                     "statements": [
                       {
-                        "assignments": [
-                          171
-                        ],
+                        "assignments": [171],
                         "declarations": [
                           {
                             "constant": false,
@@ -2598,9 +2570,7 @@
                         "src": "3201:70:1"
                       },
                       {
-                        "assignments": [
-                          180
-                        ],
+                        "assignments": [180],
                         "declarations": [
                           {
                             "constant": false,
@@ -3346,9 +3316,7 @@
               "src": "3699:672:1",
               "statements": [
                 {
-                  "assignments": [
-                    228
-                  ],
+                  "assignments": [228],
                   "declarations": [
                     {
                       "constant": false,
@@ -3523,9 +3491,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    242
-                  ],
+                  "assignments": [242],
                   "declarations": [
                     {
                       "constant": false,
@@ -3926,9 +3892,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    271
-                  ],
+                  "assignments": [271],
                   "declarations": [
                     {
                       "constant": false,
@@ -4063,9 +4027,7 @@
                   "src": "4037:70:1"
                 },
                 {
-                  "assignments": [
-                    280
-                  ],
+                  "assignments": [280],
                   "declarations": [
                     {
                       "constant": false,
@@ -4673,9 +4635,7 @@
               "src": "4485:141:1",
               "statements": [
                 {
-                  "assignments": [
-                    321
-                  ],
+                  "assignments": [321],
                   "declarations": [
                     {
                       "constant": false,
@@ -4849,9 +4809,7 @@
                   },
                   "id": 340,
                   "initializationExpression": {
-                    "assignments": [
-                      326
-                    ],
+                    "assignments": [326],
                     "declarations": [
                       {
                         "constant": false,
@@ -4977,9 +4935,7 @@
               "src": "4957:930:1",
               "statements": [
                 {
-                  "assignments": [
-                    349
-                  ],
+                  "assignments": [349],
                   "declarations": [
                     {
                       "constant": false,
@@ -5062,9 +5018,7 @@
                   "src": "4967:35:1"
                 },
                 {
-                  "assignments": [
-                    355
-                  ],
+                  "assignments": [355],
                   "declarations": [
                     {
                       "constant": false,
@@ -5294,9 +5248,7 @@
                     "src": "5110:469:1",
                     "statements": [
                       {
-                        "assignments": [
-                          370
-                        ],
+                        "assignments": [370],
                         "declarations": [
                           {
                             "constant": false,
@@ -5617,9 +5569,7 @@
                           "src": "5247:322:1",
                           "statements": [
                             {
-                              "assignments": [
-                                389
-                              ],
+                              "assignments": [389],
                               "declarations": [
                                 {
                                   "constant": false,
@@ -6817,9 +6767,7 @@
               "src": "6088:899:1",
               "statements": [
                 {
-                  "assignments": [
-                    481
-                  ],
+                  "assignments": [481],
                   "declarations": [
                     {
                       "constant": false,
@@ -6902,9 +6850,7 @@
                   "src": "6098:35:1"
                 },
                 {
-                  "assignments": [
-                    487
-                  ],
+                  "assignments": [487],
                   "declarations": [
                     {
                       "constant": false,
@@ -7095,10 +7041,7 @@
                       "id": 493,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "6197:7:1",
                       "typeDescriptions": {
@@ -7186,9 +7129,7 @@
                   "src": "6260:13:1"
                 },
                 {
-                  "assignments": [
-                    506
-                  ],
+                  "assignments": [506],
                   "declarations": [
                     {
                       "constant": false,
@@ -7509,9 +7450,7 @@
                     "src": "6402:294:1",
                     "statements": [
                       {
-                        "assignments": [
-                          525
-                        ],
+                        "assignments": [525],
                         "declarations": [
                           {
                             "constant": false,
@@ -8944,10 +8883,7 @@
                       "id": 623,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "7289:7:1",
                       "typeDescriptions": {
@@ -9081,10 +9017,7 @@
               "src": "7573:173:1",
               "statements": [
                 {
-                  "assignments": [
-                    646,
-                    null
-                  ],
+                  "assignments": [646, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -9185,10 +9118,7 @@
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "names": [
-                        "gas",
-                        "value"
-                      ],
+                      "names": ["gas", "value"],
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
@@ -9297,10 +9227,7 @@
                       "id": 655,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "7684:7:1",
                       "typeDescriptions": {
@@ -9425,9 +9352,7 @@
               "src": "7882:286:1",
               "statements": [
                 {
-                  "assignments": [
-                    665
-                  ],
+                  "assignments": [665],
                   "declarations": [
                     {
                       "constant": false,
@@ -9510,9 +9435,7 @@
                   "src": "7892:35:1"
                 },
                 {
-                  "assignments": [
-                    671
-                  ],
+                  "assignments": [671],
                   "declarations": [
                     {
                       "constant": false,
@@ -10287,20 +10210,14 @@
     "attributes": {
       "absolutePath": "/Users/blitz/Development/Solidity/ApeSwapFinance/ApeSwapFinance/apeswap-banana-farm/contracts/BNBRewardApe.sol",
       "exportedSymbols": {
-        "BNBRewardApe": [
-          729
-        ]
+        "BNBRewardApe": [729]
       },
       "license": null
     },
     "children": [
       {
         "attributes": {
-          "literals": [
-            "solidity",
-            "0.6",
-            ".12"
-          ]
+          "literals": ["solidity", "0.6", ".12"]
         },
         "id": 10,
         "name": "PragmaDirective",
@@ -10312,9 +10229,7 @@
           "absolutePath": "@pancakeswap/pancake-swap-lib/contracts/math/SafeMath.sol",
           "file": "@pancakeswap/pancake-swap-lib/contracts/math/SafeMath.sol",
           "scope": 730,
-          "symbolAliases": [
-            null
-          ],
+          "symbolAliases": [null],
           "unitAlias": ""
         },
         "id": 11,
@@ -10327,9 +10242,7 @@
           "absolutePath": "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/IBEP20.sol",
           "file": "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/IBEP20.sol",
           "scope": 730,
-          "symbolAliases": [
-            null
-          ],
+          "symbolAliases": [null],
           "unitAlias": ""
         },
         "id": 12,
@@ -10342,9 +10255,7 @@
           "absolutePath": "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/SafeBEP20.sol",
           "file": "@pancakeswap/pancake-swap-lib/contracts/token/BEP20/SafeBEP20.sol",
           "scope": 730,
-          "symbolAliases": [
-            null
-          ],
+          "symbolAliases": [null],
           "unitAlias": ""
         },
         "id": 13,
@@ -10357,9 +10268,7 @@
           "absolutePath": "@pancakeswap/pancake-swap-lib/contracts/access/Ownable.sol",
           "file": "@pancakeswap/pancake-swap-lib/contracts/access/Ownable.sol",
           "scope": 730,
-          "symbolAliases": [
-            null
-          ],
+          "symbolAliases": [null],
           "unitAlias": ""
         },
         "id": 14,
@@ -10369,18 +10278,11 @@
       {
         "attributes": {
           "abstract": false,
-          "contractDependencies": [
-            6928,
-            7048
-          ],
+          "contractDependencies": [6928, 7048],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            729,
-            7048,
-            6928
-          ],
+          "linearizedBaseContracts": [729, 7048, 6928],
           "name": "BNBRewardApe",
           "scope": 730
         },
@@ -11171,9 +11073,7 @@
               "implemented": true,
               "isConstructor": true,
               "kind": "constructor",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "",
               "overrides": null,
               "scope": 729,
@@ -11277,9 +11177,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 82,
@@ -11304,9 +11202,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 38,
                               "type": "contract IBEP20",
                               "value": "stakeToken"
@@ -11318,9 +11214,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 76,
                               "type": "contract IBEP20",
                               "value": "_stakeToken"
@@ -11355,9 +11249,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 40,
                               "type": "uint256",
                               "value": "rewardPerBlock"
@@ -11369,9 +11261,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 78,
                               "type": "uint256",
                               "value": "_rewardPerBlock"
@@ -11406,9 +11296,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 52,
                               "type": "uint256",
                               "value": "startBlock"
@@ -11420,9 +11308,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 80,
                               "type": "uint256",
                               "value": "_startBlock"
@@ -11451,9 +11337,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -11479,9 +11363,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 43,
                                   "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                                   "value": "poolInfo"
@@ -11503,12 +11385,7 @@
                               "isPure": false,
                               "isStructConstructorCall": true,
                               "lValueRequested": false,
-                              "names": [
-                                "lpToken",
-                                "allocPoint",
-                                "lastRewardBlock",
-                                "accRewardTokenPerShare"
-                              ],
+                              "names": ["lpToken", "allocPoint", "lastRewardBlock", "accRewardTokenPerShare"],
                               "tryCall": false,
                               "type": "struct BNBRewardApe.PoolInfo memory",
                               "type_conversion": false
@@ -11534,9 +11411,7 @@
                                       "typeString": "int_const 0"
                                     }
                                   ],
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 36,
                                   "type": "type(struct BNBRewardApe.PoolInfo storage pointer)",
                                   "value": "PoolInfo"
@@ -11548,9 +11423,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 76,
                                   "type": "contract IBEP20",
                                   "value": "_stakeToken"
@@ -11579,9 +11452,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 52,
                                   "type": "uint256",
                                   "value": "startBlock"
@@ -11638,9 +11509,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 50,
                               "type": "uint256",
                               "value": "totalAllocPoint"
@@ -11693,9 +11562,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "getMultiplier",
               "overrides": null,
               "scope": 729,
@@ -11817,9 +11684,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -11845,9 +11710,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 115,
                                   "type": "uint256",
                                   "value": "_to"
@@ -11864,9 +11727,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 113,
                               "type": "uint256",
                               "value": "_from"
@@ -11902,9 +11763,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "pendingReward",
               "overrides": null,
               "scope": 729,
@@ -11988,9 +11847,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        134
-                      ]
+                      "assignments": [134]
                     },
                     "children": [
                       {
@@ -12036,9 +11893,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -12076,9 +11931,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        140
-                      ]
+                      "assignments": [140]
                     },
                     "children": [
                       {
@@ -12124,9 +11977,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 47,
                               "type": "mapping(address => struct BNBRewardApe.UserInfo storage ref)",
                               "value": "userInfo"
@@ -12138,9 +11989,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 128,
                               "type": "address",
                               "value": "_user"
@@ -12161,9 +12010,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        146
-                      ]
+                      "assignments": [146]
                     },
                     "children": [
                       {
@@ -12209,9 +12056,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 134,
                               "type": "struct BNBRewardApe.PoolInfo storage pointer",
                               "value": "pool"
@@ -12232,9 +12077,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        151
-                      ]
+                      "assignments": [151]
                     },
                     "children": [
                       {
@@ -12273,9 +12116,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -12313,9 +12154,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 134,
                                       "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                       "value": "pool"
@@ -12342,9 +12181,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "address",
                               "type_conversion": true
@@ -12382,9 +12219,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -28,
                                   "type": "contract BNBRewardApe",
                                   "value": "this"
@@ -12458,9 +12293,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": -4,
                                       "type": "block",
                                       "value": "block"
@@ -12489,9 +12322,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 134,
                                       "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                       "value": "pool"
@@ -12528,9 +12359,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 151,
                                   "type": "uint256",
                                   "value": "lpSupply"
@@ -12570,9 +12399,7 @@
                         "children": [
                           {
                             "attributes": {
-                              "assignments": [
-                                171
-                              ]
+                              "assignments": [171]
                             },
                             "children": [
                               {
@@ -12611,9 +12438,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -12631,9 +12456,7 @@
                                           "typeString": "uint256"
                                         }
                                       ],
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 126,
                                       "type": "function (uint256,uint256) view returns (uint256)",
                                       "value": "getMultiplier"
@@ -12657,9 +12480,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 134,
                                           "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                           "value": "pool"
@@ -12688,9 +12509,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": -4,
                                           "type": "block",
                                           "value": "block"
@@ -12716,9 +12535,7 @@
                           },
                           {
                             "attributes": {
-                              "assignments": [
-                                180
-                              ]
+                              "assignments": [180]
                             },
                             "children": [
                               {
@@ -12757,9 +12574,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -12790,9 +12605,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -12823,9 +12636,7 @@
                                                   "isPure": false,
                                                   "isStructConstructorCall": false,
                                                   "lValueRequested": false,
-                                                  "names": [
-                                                    null
-                                                  ],
+                                                  "names": [null],
                                                   "tryCall": false,
                                                   "type": "uint256",
                                                   "type_conversion": false
@@ -12851,9 +12662,7 @@
                                                       {
                                                         "attributes": {
                                                           "argumentTypes": null,
-                                                          "overloadedDeclarations": [
-                                                            null
-                                                          ],
+                                                          "overloadedDeclarations": [null],
                                                           "referencedDeclaration": 171,
                                                           "type": "uint256",
                                                           "value": "multiplier"
@@ -12870,9 +12679,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 40,
                                                       "type": "uint256",
                                                       "value": "rewardPerBlock"
@@ -12906,9 +12713,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 134,
                                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                                   "value": "pool"
@@ -12935,9 +12740,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 50,
                                       "type": "uint256",
                                       "value": "totalAllocPoint"
@@ -12972,9 +12775,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 146,
                                       "type": "uint256",
                                       "value": "accRewardTokenPerShare"
@@ -12991,9 +12792,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "uint256",
                                       "type_conversion": false
@@ -13019,9 +12818,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 146,
                                               "type": "uint256",
                                               "value": "accRewardTokenPerShare"
@@ -13043,9 +12840,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -13076,9 +12871,7 @@
                                                   "isPure": false,
                                                   "isStructConstructorCall": false,
                                                   "lValueRequested": false,
-                                                  "names": [
-                                                    null
-                                                  ],
+                                                  "names": [null],
                                                   "tryCall": false,
                                                   "type": "uint256",
                                                   "type_conversion": false
@@ -13104,9 +12897,7 @@
                                                       {
                                                         "attributes": {
                                                           "argumentTypes": null,
-                                                          "overloadedDeclarations": [
-                                                            null
-                                                          ],
+                                                          "overloadedDeclarations": [null],
                                                           "referencedDeclaration": 180,
                                                           "type": "uint256",
                                                           "value": "tokenReward"
@@ -13150,9 +12941,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 151,
                                               "type": "uint256",
                                               "value": "lpSupply"
@@ -13204,9 +12993,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -13237,9 +13024,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -13270,9 +13055,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -13310,9 +13093,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 140,
                                                       "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                       "value": "user"
@@ -13334,9 +13115,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 146,
                                               "type": "uint256",
                                               "value": "accRewardTokenPerShare"
@@ -13397,9 +13176,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 140,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -13440,9 +13217,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "updatePool",
               "overrides": null,
               "scope": 729,
@@ -13488,9 +13263,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 226,
@@ -13501,9 +13274,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        228
-                      ]
+                      "assignments": [228]
                     },
                     "children": [
                       {
@@ -13549,9 +13320,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -13563,9 +13332,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 224,
                               "type": "uint256",
                               "value": "_pid"
@@ -13619,9 +13386,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -4,
                                   "type": "block",
                                   "value": "block"
@@ -13650,9 +13415,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 228,
                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                   "value": "pool"
@@ -13694,9 +13457,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        242
-                      ]
+                      "assignments": [242]
                     },
                     "children": [
                       {
@@ -13735,9 +13496,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -13775,9 +13534,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 228,
                                       "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                       "value": "pool"
@@ -13804,9 +13561,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "address",
                               "type_conversion": true
@@ -13844,9 +13599,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -28,
                                   "type": "contract BNBRewardApe",
                                   "value": "this"
@@ -13908,9 +13661,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 242,
                                   "type": "uint256",
                                   "value": "lpSupply"
@@ -13959,17 +13710,13 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "arguments": [
-                                    null
-                                  ],
+                                  "arguments": [null],
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -13977,12 +13724,8 @@
                                 "children": [
                                   {
                                     "attributes": {
-                                      "argumentTypes": [
-                                        null
-                                      ],
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "argumentTypes": [null],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 620,
                                       "type": "function () view returns (uint256)",
                                       "value": "rewardBalance"
@@ -14053,9 +13796,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 228,
                                           "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                           "value": "pool"
@@ -14084,9 +13825,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": -4,
                                           "type": "block",
                                           "value": "block"
@@ -14131,9 +13870,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        271
-                      ]
+                      "assignments": [271]
                     },
                     "children": [
                       {
@@ -14172,9 +13909,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -14192,9 +13927,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 126,
                               "type": "function (uint256,uint256) view returns (uint256)",
                               "value": "getMultiplier"
@@ -14218,9 +13951,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 228,
                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                   "value": "pool"
@@ -14249,9 +13980,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -4,
                                   "type": "block",
                                   "value": "block"
@@ -14277,9 +14006,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        280
-                      ]
+                      "assignments": [280]
                     },
                     "children": [
                       {
@@ -14318,9 +14045,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -14351,9 +14076,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -14384,9 +14107,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -14412,9 +14133,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 271,
                                                   "type": "uint256",
                                                   "value": "multiplier"
@@ -14431,9 +14150,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 40,
                                               "type": "uint256",
                                               "value": "rewardPerBlock"
@@ -14467,9 +14184,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 228,
                                           "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                           "value": "pool"
@@ -14496,9 +14211,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 50,
                               "type": "uint256",
                               "value": "totalAllocPoint"
@@ -14545,9 +14258,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 228,
                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                   "value": "pool"
@@ -14569,9 +14280,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "uint256",
                               "type_conversion": false
@@ -14609,9 +14318,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 228,
                                           "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                           "value": "pool"
@@ -14638,9 +14345,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -14671,9 +14376,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -14699,9 +14402,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 280,
                                                   "type": "uint256",
                                                   "value": "tokenReward"
@@ -14745,9 +14446,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 242,
                                       "type": "uint256",
                                       "value": "lpSupply"
@@ -14804,9 +14503,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 228,
                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                   "value": "pool"
@@ -14835,9 +14532,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -4,
                                   "type": "block",
                                   "value": "block"
@@ -14878,9 +14573,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "massUpdatePools",
               "overrides": null,
               "scope": 729,
@@ -14891,9 +14584,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 318,
@@ -14902,9 +14593,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 319,
@@ -14915,9 +14604,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        321
-                      ]
+                      "assignments": [321]
                     },
                     "children": [
                       {
@@ -14963,9 +14650,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -14988,9 +14673,7 @@
                     "children": [
                       {
                         "attributes": {
-                          "assignments": [
-                            326
-                          ]
+                          "assignments": [326]
                         },
                         "children": [
                           {
@@ -15061,9 +14744,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 326,
                               "type": "uint256",
                               "value": "pid"
@@ -15075,9 +14756,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 321,
                               "type": "uint256",
                               "value": "length"
@@ -15108,9 +14787,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 326,
                                   "type": "uint256",
                                   "value": "pid"
@@ -15141,9 +14818,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "tuple()",
                                   "type_conversion": false
@@ -15157,9 +14832,7 @@
                                           "typeString": "uint256"
                                         }
                                       ],
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 317,
                                       "type": "function (uint256)",
                                       "value": "updatePool"
@@ -15171,9 +14844,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 326,
                                       "type": "uint256",
                                       "value": "pid"
@@ -15218,9 +14889,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "deposit",
               "overrides": null,
               "scope": 729,
@@ -15274,9 +14943,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 347,
@@ -15287,9 +14954,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        349
-                      ]
+                      "assignments": [349]
                     },
                     "children": [
                       {
@@ -15335,9 +15000,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -15375,9 +15038,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        355
-                      ]
+                      "assignments": [355]
                     },
                     "children": [
                       {
@@ -15423,9 +15084,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 47,
                               "type": "mapping(address => struct BNBRewardApe.UserInfo storage ref)",
                               "value": "userInfo"
@@ -15449,9 +15108,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -15485,9 +15142,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -15501,9 +15156,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 317,
                               "type": "function (uint256)",
                               "value": "updatePool"
@@ -15574,9 +15227,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 355,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -15616,9 +15267,7 @@
                         "children": [
                           {
                             "attributes": {
-                              "assignments": [
-                                370
-                              ]
+                              "assignments": [370]
                             },
                             "children": [
                               {
@@ -15657,9 +15306,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -15690,9 +15337,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -15723,9 +15368,7 @@
                                                   "isPure": false,
                                                   "isStructConstructorCall": false,
                                                   "lValueRequested": false,
-                                                  "names": [
-                                                    null
-                                                  ],
+                                                  "names": [null],
                                                   "tryCall": false,
                                                   "type": "uint256",
                                                   "type_conversion": false
@@ -15763,9 +15406,7 @@
                                                           {
                                                             "attributes": {
                                                               "argumentTypes": null,
-                                                              "overloadedDeclarations": [
-                                                                null
-                                                              ],
+                                                              "overloadedDeclarations": [null],
                                                               "referencedDeclaration": 355,
                                                               "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                               "value": "user"
@@ -15799,9 +15440,7 @@
                                                       {
                                                         "attributes": {
                                                           "argumentTypes": null,
-                                                          "overloadedDeclarations": [
-                                                            null
-                                                          ],
+                                                          "overloadedDeclarations": [null],
                                                           "referencedDeclaration": 349,
                                                           "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                                           "value": "pool"
@@ -15867,9 +15506,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 355,
                                           "type": "struct BNBRewardApe.UserInfo storage pointer",
                                           "value": "user"
@@ -15916,9 +15553,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 370,
                                       "type": "uint256",
                                       "value": "pending"
@@ -15953,9 +15588,7 @@
                                 "children": [
                                   {
                                     "attributes": {
-                                      "assignments": [
-                                        389
-                                      ]
+                                      "assignments": [389]
                                     },
                                     "children": [
                                       {
@@ -15989,17 +15622,13 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "arguments": [
-                                            null
-                                          ],
+                                          "arguments": [null],
                                           "isConstant": false,
                                           "isLValue": false,
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -16007,12 +15636,8 @@
                                         "children": [
                                           {
                                             "attributes": {
-                                              "argumentTypes": [
-                                                null
-                                              ],
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "argumentTypes": [null],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 620,
                                               "type": "function () view returns (uint256)",
                                               "value": "rewardBalance"
@@ -16051,9 +15676,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 370,
                                               "type": "uint256",
                                               "value": "pending"
@@ -16065,9 +15688,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 389,
                                               "type": "uint256",
                                               "value": "currentRewardBalance"
@@ -16093,9 +15714,7 @@
                                                   "isPure": false,
                                                   "isStructConstructorCall": false,
                                                   "lValueRequested": false,
-                                                  "names": [
-                                                    null
-                                                  ],
+                                                  "names": [null],
                                                   "tryCall": false,
                                                   "type": "tuple()",
                                                   "type_conversion": false
@@ -16113,9 +15732,7 @@
                                                           "typeString": "uint256"
                                                         }
                                                       ],
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 661,
                                                       "type": "function (address,uint256)",
                                                       "value": "safeTransferBNB"
@@ -16132,9 +15749,7 @@
                                                       "isPure": false,
                                                       "isStructConstructorCall": false,
                                                       "lValueRequested": false,
-                                                      "names": [
-                                                        null
-                                                      ],
+                                                      "names": [null],
                                                       "tryCall": false,
                                                       "type": "address",
                                                       "type_conversion": true
@@ -16184,9 +15799,7 @@
                                                           {
                                                             "attributes": {
                                                               "argumentTypes": null,
-                                                              "overloadedDeclarations": [
-                                                                null
-                                                              ],
+                                                              "overloadedDeclarations": [null],
                                                               "referencedDeclaration": -15,
                                                               "type": "msg",
                                                               "value": "msg"
@@ -16208,9 +15821,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 389,
                                                       "type": "uint256",
                                                       "value": "currentRewardBalance"
@@ -16246,9 +15857,7 @@
                                                   "isPure": false,
                                                   "isStructConstructorCall": false,
                                                   "lValueRequested": false,
-                                                  "names": [
-                                                    null
-                                                  ],
+                                                  "names": [null],
                                                   "tryCall": false,
                                                   "type": "tuple()",
                                                   "type_conversion": false
@@ -16266,9 +15875,7 @@
                                                           "typeString": "uint256"
                                                         }
                                                       ],
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 661,
                                                       "type": "function (address,uint256)",
                                                       "value": "safeTransferBNB"
@@ -16285,9 +15892,7 @@
                                                       "isPure": false,
                                                       "isStructConstructorCall": false,
                                                       "lValueRequested": false,
-                                                      "names": [
-                                                        null
-                                                      ],
+                                                      "names": [null],
                                                       "tryCall": false,
                                                       "type": "address",
                                                       "type_conversion": true
@@ -16337,9 +15942,7 @@
                                                           {
                                                             "attributes": {
                                                               "argumentTypes": null,
-                                                              "overloadedDeclarations": [
-                                                                null
-                                                              ],
+                                                              "overloadedDeclarations": [null],
                                                               "referencedDeclaration": -15,
                                                               "type": "msg",
                                                               "value": "msg"
@@ -16361,9 +15964,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 370,
                                                       "type": "uint256",
                                                       "value": "pending"
@@ -16435,9 +16036,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 345,
                               "type": "uint256",
                               "value": "_amount"
@@ -16480,9 +16079,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "tuple()",
                                   "type_conversion": false
@@ -16528,9 +16125,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 349,
                                               "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                               "value": "pool"
@@ -16557,9 +16152,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "address",
                                       "type_conversion": true
@@ -16609,9 +16202,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": -15,
                                               "type": "msg",
                                               "value": "msg"
@@ -16638,9 +16229,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "address",
                                       "type_conversion": true
@@ -16678,9 +16267,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": -28,
                                           "type": "contract BNBRewardApe",
                                           "value": "this"
@@ -16697,9 +16284,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 345,
                                       "type": "uint256",
                                       "value": "_amount"
@@ -16746,9 +16331,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 355,
                                           "type": "struct BNBRewardApe.UserInfo storage pointer",
                                           "value": "user"
@@ -16770,9 +16353,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "uint256",
                                       "type_conversion": false
@@ -16810,9 +16391,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 355,
                                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                   "value": "user"
@@ -16834,9 +16413,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 345,
                                           "type": "uint256",
                                           "value": "_amount"
@@ -16898,9 +16475,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 355,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -16922,9 +16497,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "uint256",
                               "type_conversion": false
@@ -16955,9 +16528,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "uint256",
                                       "type_conversion": false
@@ -16995,9 +16566,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 355,
                                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                   "value": "user"
@@ -17031,9 +16600,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 349,
                                               "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                               "value": "pool"
@@ -17099,9 +16666,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -17119,9 +16684,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 58,
                               "type": "function (address,uint256)",
                               "value": "Deposit"
@@ -17145,9 +16708,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -17164,9 +16725,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 345,
                               "type": "uint256",
                               "value": "_amount"
@@ -17201,9 +16760,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "withdraw",
               "overrides": null,
               "scope": 729,
@@ -17257,9 +16814,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 479,
@@ -17270,9 +16825,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        481
-                      ]
+                      "assignments": [481]
                     },
                     "children": [
                       {
@@ -17318,9 +16871,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -17358,9 +16909,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        487
-                      ]
+                      "assignments": [487]
                     },
                     "children": [
                       {
@@ -17406,9 +16955,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 47,
                               "type": "mapping(address => struct BNBRewardApe.UserInfo storage ref)",
                               "value": "userInfo"
@@ -17432,9 +16979,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -17468,9 +17013,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -17488,10 +17031,7 @@
                                   "typeString": "literal_string \"withdraw: not good\""
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                -18,
-                                -18
-                              ],
+                              "overloadedDeclarations": [-18, -18],
                               "referencedDeclaration": -18,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
@@ -17530,9 +17070,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 487,
                                       "type": "struct BNBRewardApe.UserInfo storage pointer",
                                       "value": "user"
@@ -17549,9 +17087,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 477,
                                   "type": "uint256",
                                   "value": "_amount"
@@ -17602,9 +17138,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -17618,9 +17152,7 @@
                                   "typeString": "int_const 0"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 317,
                               "type": "function (uint256)",
                               "value": "updatePool"
@@ -17658,9 +17190,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        506
-                      ]
+                      "assignments": [506]
                     },
                     "children": [
                       {
@@ -17699,9 +17229,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "uint256",
                           "type_conversion": false
@@ -17732,9 +17260,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -17765,9 +17291,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "uint256",
                                           "type_conversion": false
@@ -17805,9 +17329,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": 487,
                                                       "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                       "value": "user"
@@ -17841,9 +17363,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 481,
                                                   "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                                   "value": "pool"
@@ -17909,9 +17429,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 487,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -17958,9 +17476,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 506,
                               "type": "uint256",
                               "value": "pending"
@@ -17995,9 +17511,7 @@
                         "children": [
                           {
                             "attributes": {
-                              "assignments": [
-                                525
-                              ]
+                              "assignments": [525]
                             },
                             "children": [
                               {
@@ -18031,17 +17545,13 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "arguments": [
-                                    null
-                                  ],
+                                  "arguments": [null],
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "uint256",
                                   "type_conversion": false
@@ -18049,12 +17559,8 @@
                                 "children": [
                                   {
                                     "attributes": {
-                                      "argumentTypes": [
-                                        null
-                                      ],
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "argumentTypes": [null],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 620,
                                       "type": "function () view returns (uint256)",
                                       "value": "rewardBalance"
@@ -18093,9 +17599,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 506,
                                       "type": "uint256",
                                       "value": "pending"
@@ -18107,9 +17611,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 525,
                                       "type": "uint256",
                                       "value": "currentRewardBalance"
@@ -18135,9 +17637,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "tuple()",
                                           "type_conversion": false
@@ -18155,9 +17655,7 @@
                                                   "typeString": "uint256"
                                                 }
                                               ],
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 661,
                                               "type": "function (address,uint256)",
                                               "value": "safeTransferBNB"
@@ -18174,9 +17672,7 @@
                                               "isPure": false,
                                               "isStructConstructorCall": false,
                                               "lValueRequested": false,
-                                              "names": [
-                                                null
-                                              ],
+                                              "names": [null],
                                               "tryCall": false,
                                               "type": "address",
                                               "type_conversion": true
@@ -18226,9 +17722,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": -15,
                                                       "type": "msg",
                                                       "value": "msg"
@@ -18250,9 +17744,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 525,
                                               "type": "uint256",
                                               "value": "currentRewardBalance"
@@ -18288,9 +17780,7 @@
                                           "isPure": false,
                                           "isStructConstructorCall": false,
                                           "lValueRequested": false,
-                                          "names": [
-                                            null
-                                          ],
+                                          "names": [null],
                                           "tryCall": false,
                                           "type": "tuple()",
                                           "type_conversion": false
@@ -18308,9 +17798,7 @@
                                                   "typeString": "uint256"
                                                 }
                                               ],
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 661,
                                               "type": "function (address,uint256)",
                                               "value": "safeTransferBNB"
@@ -18327,9 +17815,7 @@
                                               "isPure": false,
                                               "isStructConstructorCall": false,
                                               "lValueRequested": false,
-                                              "names": [
-                                                null
-                                              ],
+                                              "names": [null],
                                               "tryCall": false,
                                               "type": "address",
                                               "type_conversion": true
@@ -18379,9 +17865,7 @@
                                                   {
                                                     "attributes": {
                                                       "argumentTypes": null,
-                                                      "overloadedDeclarations": [
-                                                        null
-                                                      ],
+                                                      "overloadedDeclarations": [null],
                                                       "referencedDeclaration": -15,
                                                       "type": "msg",
                                                       "value": "msg"
@@ -18403,9 +17887,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 506,
                                               "type": "uint256",
                                               "value": "pending"
@@ -18467,9 +17949,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 477,
                               "type": "uint256",
                               "value": "_amount"
@@ -18530,9 +18010,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 487,
                                           "type": "struct BNBRewardApe.UserInfo storage pointer",
                                           "value": "user"
@@ -18554,9 +18032,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "uint256",
                                       "type_conversion": false
@@ -18594,9 +18070,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 487,
                                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                   "value": "user"
@@ -18618,9 +18092,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 477,
                                           "type": "uint256",
                                           "value": "_amount"
@@ -18654,9 +18126,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "tuple()",
                                   "type_conversion": false
@@ -18698,9 +18168,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 481,
                                               "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                               "value": "pool"
@@ -18727,9 +18195,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "address",
                                       "type_conversion": true
@@ -18779,9 +18245,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": -15,
                                               "type": "msg",
                                               "value": "msg"
@@ -18803,9 +18267,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 477,
                                       "type": "uint256",
                                       "value": "_amount"
@@ -18862,9 +18324,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 487,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -18886,9 +18346,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "uint256",
                               "type_conversion": false
@@ -18919,9 +18377,7 @@
                                       "isPure": false,
                                       "isStructConstructorCall": false,
                                       "lValueRequested": false,
-                                      "names": [
-                                        null
-                                      ],
+                                      "names": [null],
                                       "tryCall": false,
                                       "type": "uint256",
                                       "type_conversion": false
@@ -18959,9 +18415,7 @@
                                               {
                                                 "attributes": {
                                                   "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
+                                                  "overloadedDeclarations": [null],
                                                   "referencedDeclaration": 487,
                                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                                   "value": "user"
@@ -18995,9 +18449,7 @@
                                           {
                                             "attributes": {
                                               "argumentTypes": null,
-                                              "overloadedDeclarations": [
-                                                null
-                                              ],
+                                              "overloadedDeclarations": [null],
                                               "referencedDeclaration": 481,
                                               "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                               "value": "pool"
@@ -19063,9 +18515,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -19083,9 +18533,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 68,
                               "type": "function (address,uint256)",
                               "value": "Withdraw"
@@ -19109,9 +18557,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -19128,9 +18574,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 477,
                               "type": "uint256",
                               "value": "_amount"
@@ -19165,9 +18609,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "rewardBalance",
               "overrides": null,
               "scope": 729,
@@ -19186,9 +18628,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 606,
@@ -19257,9 +18697,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "address payable",
                               "type_conversion": true
@@ -19303,9 +18741,7 @@
                                   "isPure": false,
                                   "isStructConstructorCall": false,
                                   "lValueRequested": false,
-                                  "names": [
-                                    null
-                                  ],
+                                  "names": [null],
                                   "tryCall": false,
                                   "type": "address",
                                   "type_conversion": true
@@ -19343,9 +18779,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": -28,
                                       "type": "contract BNBRewardApe",
                                       "value": "this"
@@ -19391,9 +18825,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "depositBNBRewards",
               "overrides": null,
               "scope": 729,
@@ -19404,9 +18836,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 621,
@@ -19415,9 +18845,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 622,
@@ -19436,9 +18864,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -19456,10 +18882,7 @@
                                   "typeString": "literal_string \"Message has no BNB value to deposit into contract.\""
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                -18,
-                                -18
-                              ],
+                              "overloadedDeclarations": [-18, -18],
                               "referencedDeclaration": -18,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
@@ -19498,9 +18921,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": -15,
                                       "type": "msg",
                                       "value": "msg"
@@ -19573,9 +18994,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -19589,9 +19008,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 62,
                               "type": "function (uint256)",
                               "value": "DepositBNBRewards"
@@ -19615,9 +19032,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -19656,9 +19071,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "safeTransferBNB",
               "overrides": null,
               "scope": 729,
@@ -19741,9 +19154,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 644,
@@ -19754,10 +19165,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        646,
-                        null
-                      ]
+                      "assignments": [646, null]
                     },
                     "children": [
                       {
@@ -19796,9 +19204,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple(bool,bytes memory)",
                           "type_conversion": false
@@ -19816,10 +19222,7 @@
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
-                              "names": [
-                                "gas",
-                                "value"
-                              ],
+                              "names": ["gas", "value"],
                               "type": "function (bytes memory) payable returns (bool,bytes memory)"
                             },
                             "children": [
@@ -19843,9 +19246,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 640,
                                       "type": "address",
                                       "value": "to"
@@ -19879,9 +19280,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 642,
                                   "type": "uint256",
                                   "value": "value"
@@ -19932,9 +19331,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -19952,10 +19349,7 @@
                                   "typeString": "literal_string \"TransferHelper: BNB_TRANSFER_FAILED\""
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                -18,
-                                -18
-                              ],
+                              "overloadedDeclarations": [-18, -18],
                               "referencedDeclaration": -18,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
@@ -19967,9 +19361,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 646,
                               "type": "bool",
                               "value": "success"
@@ -20022,9 +19414,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "emergencyWithdraw",
               "overrides": null,
               "scope": 729,
@@ -20035,9 +19425,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 662,
@@ -20046,9 +19434,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 663,
@@ -20059,9 +19445,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        665
-                      ]
+                      "assignments": [665]
                     },
                     "children": [
                       {
@@ -20107,9 +19491,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 43,
                               "type": "struct BNBRewardApe.PoolInfo storage ref[] storage ref",
                               "value": "poolInfo"
@@ -20147,9 +19529,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        671
-                      ]
+                      "assignments": [671]
                     },
                     "children": [
                       {
@@ -20195,9 +19575,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 47,
                               "type": "mapping(address => struct BNBRewardApe.UserInfo storage ref)",
                               "value": "userInfo"
@@ -20221,9 +19599,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -20257,9 +19633,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -20301,9 +19675,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 665,
                                       "type": "struct BNBRewardApe.PoolInfo storage pointer",
                                       "value": "pool"
@@ -20330,9 +19702,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "address",
                               "type_conversion": true
@@ -20382,9 +19752,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": -15,
                                       "type": "msg",
                                       "value": "msg"
@@ -20418,9 +19786,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 671,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -20472,9 +19838,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 671,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -20543,9 +19907,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 671,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -20596,9 +19958,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -20616,9 +19976,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 74,
                               "type": "function (address,uint256)",
                               "value": "EmergencyWithdraw"
@@ -20642,9 +20000,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": -15,
                                   "type": "msg",
                                   "value": "msg"
@@ -20673,9 +20029,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 671,
                                   "type": "struct BNBRewardApe.UserInfo storage pointer",
                                   "value": "user"
@@ -20761,9 +20115,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 717,
@@ -20778,9 +20130,7 @@
                   {
                     "attributes": {
                       "argumentTypes": null,
-                      "overloadedDeclarations": [
-                        null
-                      ],
+                      "overloadedDeclarations": [null],
                       "referencedDeclaration": 6986,
                       "type": "modifier ()",
                       "value": "onlyOwner"
@@ -20806,9 +20156,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "tryCall": false,
                           "type": "tuple()",
                           "type_conversion": false
@@ -20826,9 +20174,7 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 661,
                               "type": "function (address,uint256)",
                               "value": "safeTransferBNB"
@@ -20845,9 +20191,7 @@
                               "isPure": false,
                               "isStructConstructorCall": false,
                               "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
+                              "names": [null],
                               "tryCall": false,
                               "type": "address",
                               "type_conversion": true
@@ -20897,9 +20241,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": -15,
                                       "type": "msg",
                                       "value": "msg"
@@ -20921,9 +20263,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 713,
                               "type": "uint256",
                               "value": "_amount"
