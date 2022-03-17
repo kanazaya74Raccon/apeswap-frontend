@@ -38,6 +38,7 @@ const Menu = (props) => {
       isDark={isDark}
       toggleTheme={toggleTheme}
       bananaPriceUsd={bananaPriceUsd}
+      t={t}
       links={currentMenu(t)}
       chainId={chainId}
       switchNetwork={switchNetwork}

@@ -10,7 +10,7 @@ const MarketingModalCheck = () => {
   const { login, logout } = useAuth()
   const { t } = useTranslation()
 
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
   const correctDisplayRoute = location.search.includes('modal=1')
 
   const onDismiss = () => {

@@ -128,7 +128,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
         <Text textAlign="center" marginTop="10px">
           {t('Proceeds')}
         </Text>
-        <TimeText>{t('95 % goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.')}</TimeText>
+        <TimeText>{t('95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.')}</TimeText>
         <Text textAlign="center" marginTop="10px">
           {t('Auction Order')}
         </Text>

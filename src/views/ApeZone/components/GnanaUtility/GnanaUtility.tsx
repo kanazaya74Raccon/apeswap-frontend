@@ -35,7 +35,7 @@ export const GnanaUtility: React.FC = () => {
   return (
     <UtilityCon>
       <UtilityTitle>
-        <UtilityHeading>Gnana Utility</UtilityHeading>
+        <UtilityHeading>{t('Gnana Utility')}</UtilityHeading>
       </UtilityTitle>
       <Options>
         <FirstOption>
