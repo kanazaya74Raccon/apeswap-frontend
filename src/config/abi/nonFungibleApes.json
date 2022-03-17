@@ -69,6 +69,15 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "string", "name": "previousBaseUri", "type": "string" },
+      { "indexed": true, "internalType": "string", "name": "newBaseUri", "type": "string" }
+    ],
+    "name": "UpdateBaseURI",
+    "type": "event"
+  },
+  {
     "inputs": [],
     "name": "DEFAULT_ADMIN_ROLE",
     "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
@@ -101,15 +110,25 @@
   },
   {
     "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
-    "name": "burn",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "name": "getApproved",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
-    "name": "getApproved",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "getNFADetailsById",
+    "outputs": [
+      { "internalType": "uint128", "name": "rarityTier", "type": "uint128" },
+      { "internalType": "uint128", "name": "rarityOverall", "type": "uint128" },
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "string", "name": "faceColor", "type": "string" },
+      { "internalType": "string", "name": "baseColor", "type": "string" },
+      { "internalType": "string", "name": "frame", "type": "string" },
+      { "internalType": "string", "name": "mouth", "type": "string" },
+      { "internalType": "string", "name": "eyes", "type": "string" },
+      { "internalType": "string", "name": "hat", "type": "string" }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
@@ -168,7 +187,22 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "to", "type": "address" }],
+    "inputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "rarityTier", "type": "uint256" }
+    ],
+    "name": "isNfaOfRarityTier",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "to", "type": "address" },
+      { "internalType": "string", "name": "name", "type": "string" },
+      { "internalType": "uint128[2]", "name": "rarities", "type": "uint128[2]" },
+      { "internalType": "string[6]", "name": "attributes", "type": "string[6]" }
+    ],
     "name": "mint",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -293,6 +327,13 @@
       { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
     ],
     "name": "transferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "string", "name": "baseTokenURI", "type": "string" }],
+    "name": "updateBaseTokenURI",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
