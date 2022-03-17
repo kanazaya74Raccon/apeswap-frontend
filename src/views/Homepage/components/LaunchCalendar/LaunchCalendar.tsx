@@ -20,7 +20,7 @@ import {
 const LaunchCalendar: React.FC = () => {
   const [loadNews, setLoadNews] = useState(false)
   const today = new Date()
-  today.setHours(today.getHours() - 12)
+  today.setHours(today.getHours() - 6)
   useFetchHomepageLaunchCalendar(loadNews)
   const { swiper, setSwiper } = useSwiper()
   const [activeSlide, setActiveSlide] = useState(0)
