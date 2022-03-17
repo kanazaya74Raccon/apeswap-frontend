@@ -10,6 +10,7 @@ import { useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
+import { languageList } from '../../config/localization/languages'
 
 const Menu = (props) => {
   const { account, chainId } = useActiveWeb3React()
@@ -19,7 +20,7 @@ const Menu = (props) => {
   const { tokenPrices } = useTokenPrices()
   const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
-  const { t } = useTranslation()
+  const { t, setLanguage, currentLanguage } = useTranslation()
   const currentMenu = (translate: ContextApi['t']) => {
     if (chainId === CHAIN_ID.BSC) {
       return bscConfig(translate)
@@ -39,6 +40,9 @@ const Menu = (props) => {
       toggleTheme={toggleTheme}
       bananaPriceUsd={bananaPriceUsd}
       t={t}
+      langs={languageList}
+      setLang={setLanguage}
+      currentLang={currentLanguage.code}
       links={currentMenu(t)}
       chainId={chainId}
       switchNetwork={switchNetwork}
