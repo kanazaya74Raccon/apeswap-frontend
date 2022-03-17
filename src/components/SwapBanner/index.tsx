@@ -12,14 +12,25 @@ const SwapBanner: React.FC = () => {
     }
     return null
   })
+  const defaultBanner = banners.swapBannersData.find((banner) => {
+    if (banner?.param === 'default') {
+      return banner
+    }
+    return null
+  })
 
   return (
     <>
-      {bannerToDisplay && (
-        <a href={bannerToDisplay?.link} target="_blank" rel="noopener noreferrer">
-          <StyledBanner image={bannerToDisplay?.desktop?.url} />
-        </a>
-      )}
+      {(bannerToDisplay || defaultBanner) &&
+        (bannerToDisplay ? (
+          <a href={bannerToDisplay?.link} target="_blank" rel="noopener noreferrer">
+            <StyledBanner image={bannerToDisplay?.desktop?.url} />
+          </a>
+        ) : (
+          <a href={defaultBanner?.link} target="_blank" rel="noopener noreferrer">
+            <StyledBanner image={defaultBanner?.desktop?.url} />
+          </a>
+        ))}
     </>
   )
 }

@@ -4,10 +4,11 @@ import { useNfaAllowance } from 'hooks/useAllowance'
 import { useAuctionApprove } from 'hooks/useApprove'
 import { useAuctionAddress } from 'hooks/useAddress'
 import styled from 'styled-components'
-import { Nft } from 'config/constants/types'
+import UnderlinedButton from 'components/UnderlinedButton'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
-import { useTranslation } from '../../../contexts/Localization'
+import { useTranslation } from 'contexts/Localization'
+import { Nft } from '../../../config/constants/types'
 
 interface NfaListingModalProps {
   onConfirm: (
@@ -180,9 +181,6 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
       
       */}
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {t('Cancel')}
-        </Button>
         {approved ? (
           <Button
             fullWidth
@@ -194,6 +192,9 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
               onDismiss()
             }}
             endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+            style={{
+              borderRadius: '10px',
+            }}
           >
             {pendingTx ? t('Pending Confirmation') : t('List NFA')}
           </Button>
@@ -207,10 +208,14 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
               setPendingApprove(false)
             }}
             endIcon={pendingApprove && <AutoRenewIcon spin color="currentColor" />}
+            style={{
+              borderRadius: '10px',
+            }}
           >
             {t('Approve')}
           </Button>
         )}
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

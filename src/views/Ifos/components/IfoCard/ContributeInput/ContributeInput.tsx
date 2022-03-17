@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Flex } from '@apeswapfinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import useTokenBalance from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
+import BigNumber from 'bignumber.js'
 
 import { Label, Box, ContributeButton, ContributeInput } from './styles'
 import useIAODeposit from '../../../hooks/useIAODeposit'
@@ -13,11 +13,11 @@ interface Props {
   notLp?: boolean
   currencyAddress: string
   disabled?: boolean
+  tokenBalance: BigNumber
 }
 
-const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, disabled }) => {
+const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currencyAddress, disabled, tokenBalance }) => {
   const [value, setValue] = useState('')
-  const tokenBalance = useTokenBalance(currencyAddress)
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
   const { t } = useTranslation()
 
@@ -52,8 +52,7 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
             <td>
               <ContributeButton
                 disabled={disabled || pendingTx || !isAmountValid(value)}
-                variant="yellow"
-                onClick={() => handleDeposit(value)}
+                onClick={() => handleDeposit(value, currency)}
               >
                 {t('CONTRIBUTE')}
               </ContributeButton>
@@ -65,4 +64,4 @@ const ContibuteInput: React.FC<Props> = ({ currency, contract, currencyAddress, 
   )
 }
 
-export default ContibuteInput
+export default ContributeInputComponent

@@ -11,11 +11,11 @@ export const StyledIfoCardDetails = styled.div`
 
 export const Item = styled.div`
   align-items: center;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.success};
   display: flex;
   padding: 4px 10px;
   gap: 16px;
-  background: #7c7c7d0f;
+  background: ${({ theme }) => theme.colors.white4};
 
   &:first-child {
     border-radius: 5px 5px 0px 0px;
@@ -26,7 +26,7 @@ export const Item = styled.div`
   }
 
   &:nth-child(even) {
-    background: #7c7c7d08;
+    background: ${({ theme }) => theme.colors.white3};
   }
 `
 

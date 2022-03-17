@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceBnbBusd } from 'state/hooks'
+import { useTokenPriceFromSymbol } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 
 const PriceWrapper = styled.div`
@@ -17,7 +17,7 @@ const PriceWrapper = styled.div`
   align-items: center;
   text-align: center;
   z-index: 1;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.navbar};
   ${({ theme }) => theme.mediaQueries.lg} {
     width: 300px;
     height: 64px;
@@ -25,7 +25,7 @@ const PriceWrapper = styled.div`
     margin-left: 25px;
     border-radius: 10px;
     margin-top: 0px;
-    background: ${(props) => (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+    background: ${({ theme }) => theme.colors.white3};
   }
 `
 
@@ -111,8 +111,8 @@ interface TimerProps {
 
 const Price: React.FC<TimerProps> = ({ currentBid }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(currentBid))
-  const bnbPrice = usePriceBnbBusd()
-  const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
+  const bnbPrice = useTokenPriceFromSymbol('BNB')
+  const dollarValue = (getBalanceNumber(new BigNumber(bnbPrice), 0) * rawBidAmount).toFixed(2)
   const { t } = useTranslation()
 
   return (

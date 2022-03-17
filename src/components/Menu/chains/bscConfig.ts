@@ -9,7 +9,16 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Farms'),
     icon: 'FarmIcon',
-    href: '/farms',
+    items: [
+      {
+        label: t('BANANA'),
+        href: '/farms',
+      },
+      {
+        label: t('Jungle'),
+        href: '/jungle-farms',
+      },
+    ],
   },
   {
     label: t('Pools'),
@@ -59,9 +68,9 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/gnana',
   },
   {
-    label: t('Burn'),
-    icon: 'GameBurnIcon',
-    href: '/burn',
+    label: t('Lending'),
+    icon: 'LendingIcon',
+    href: 'https://lending.apeswap.finance/markets',
   },
   {
     label: t('Info'),

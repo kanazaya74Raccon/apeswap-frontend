@@ -16,13 +16,13 @@ import { useTranslation } from 'contexts/Localization'
 
 import {
   StyledCard,
+  StyledCheckbox,
   HeaderCard,
   Header,
   TokensDisplay,
   ContentCard,
   StyledButton,
   FlexSection,
-  NewCheckBox,
   CheckBoxCon,
   CheckBoxSection,
   StyledText,
@@ -86,7 +86,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
     }
   }, [handleSell, val])
 
-  const disabled = processing || parseInt(val) === 0 || parseInt(val) > parseInt(fullBalance)
+  const disabled = processing || parseInt(val) > parseInt(fullBalance) || parseInt(val) === 0
 
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance)
@@ -110,7 +110,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
           symbol={fromToken}
         />
         {isApproved ? (
-          <StyledButton disabled={disabled} variant="danger" margin="10px" onClick={sell}>
+          <StyledButton disabled={disabled} variant="primary" margin="10px" onClick={sell}>
             {t('RETURN')}
           </StyledButton>
         ) : (
@@ -135,7 +135,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
 
           <CheckBoxSection>
             <CheckBoxCon>
-              <NewCheckBox id="checkbox" scale="md" />
+              <StyledCheckbox id="checkbox" scale="md" />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
               {t('I understand what I am doing and want to enable unlimited conversion.')}

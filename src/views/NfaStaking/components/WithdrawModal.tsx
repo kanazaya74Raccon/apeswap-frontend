@@ -4,7 +4,8 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import Nfts from 'config/constants/nfts'
 import ModalActions from 'components/ModalActions'
-import { useTranslation } from '../../../contexts/Localization'
+import { useTranslation } from 'contexts/Localization'
+import UnderlinedButton from 'components/UnderlinedButton'
 
 interface WithdrawModalProps {
   onConfirm: (amount: number[]) => void
@@ -72,9 +73,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
         )}
       </OwnedNfaWrapper>
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {t('Cancel')}
-        </Button>
         <Button
           fullWidth
           disabled={pendingTx || selectedNfas.length === 0}
@@ -85,9 +83,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
             onDismiss()
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

@@ -16,8 +16,9 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
   const isMobile = isMd || isSm || isXs
   const { isDark } = useTheme()
   const inputSize = isMobile ? 'sm' : 'lg'
-  const bgColor = isDark ? '#222222' : 'white'
+  const bgColor = isDark ? '#424242' : '#EADFC7'
   const { t } = useTranslation()
+
   const [information, setInformation] = useState<SaleInformation>({
     website: '',
     whitepaper: '',

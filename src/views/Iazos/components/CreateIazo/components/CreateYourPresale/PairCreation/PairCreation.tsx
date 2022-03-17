@@ -56,7 +56,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
         setTokenApproved(false)
       }
     },
-    [setSelectedToken, toastError, setTokenApproved, onHandleERC20Details, selectedToken],
+    [setSelectedToken, toastError, setTokenApproved, onHandleERC20Details, selectedToken, t],
   )
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           placeholderText={t('Token Address...')}
           onChange={handleAddressChange}
           size={isMobile ? 'sm' : 'lg'}
-          backgroundColor={isDark ? 'rgba(65, 65, 65, 1)' : 'white'}
+          backgroundColor={isDark ? '#424242' : '#EADFC7'}
           load={loadingTokenData}
         />
         <TokenDropdown

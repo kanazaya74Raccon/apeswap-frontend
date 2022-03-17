@@ -16,7 +16,7 @@ export interface FarmWithStakedValue extends Farm {
 
 const FCard = styled.div`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
+  background-color: ${({ theme }) => theme.colors.white2};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -24,15 +24,15 @@ const FCard = styled.div`
   text-align: center;
   max-width: 530px;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   overflow: hidden;
 `
 
 const StyledContainer = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const ExpandingWrapper = styled.div<{ expanded: boolean }>`
@@ -83,6 +83,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
         bananaPrice={bananaPrice}
         farmAPR={farmAPR?.toFixed(2)}
         removed={removed}
+        dualImage={farm?.dualImage}
         showExpandableSection={showExpandableSection}
         farm={farm}
       />

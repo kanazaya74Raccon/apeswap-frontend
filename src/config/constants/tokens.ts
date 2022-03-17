@@ -565,6 +565,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
+      56: '0x55d398326f99059ff775485246999027b3197955',
     },
     decimals: 18,
   },
@@ -940,6 +941,89 @@ const tokens = {
       56: '0x37807D4fbEB84124347B8899Dd99616090D3e304',
     },
     decimals: 4,
+  },
+  trustnft: {
+    symbol: 'TRUSTNFT',
+    address: {
+      56: '0x08F725D2809FdA409Bc23493F3615a4c85a22d7d',
+    },
+    decimals: 18,
+  },
+  wgict: {
+    symbol: 'WGICT',
+    address: {
+      56: '0x27B2D695eF01d10EE96582a23db201B0Aa338639',
+    },
+    decimals: 8,
+  },
+  buzz: {
+    symbol: 'BUZZ',
+    address: {
+      56: '0xa73C15620bfA79646E9A11d0D638d66588456462',
+    },
+    decimals: 18,
+  },
+  ranker: {
+    symbol: 'RANKER',
+    address: {
+      56: '0xdE4512Db1a7a7519818dA38DB86eC1363d70A711',
+    },
+    decimals: 18,
+  },
+  nft11: {
+    symbol: 'NFT11',
+    address: {
+      56: '0x73F67AE7f934FF15beaBf55A28C2Da1eEb9B56Ec',
+    },
+    decimals: 18,
+  },
+  front: {
+    symbol: 'FRONT',
+    address: {
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    decimals: 18,
+  },
+  ruby: {
+    symbol: 'RUBY',
+    address: {
+      56: '0xf7722aa0714096f1fb5ef83e6041cebb4d58a08e',
+    },
+    decimals: 18,
+  },
+
+  // LP Tokens
+  bananaBnb: {
+    symbol: 'BANANA-BNB',
+    address: {
+      56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  wgictUsdt: {
+    symbol: 'WGICT-USDT',
+    address: {
+      56: '0x4c64c44a6ed5f1fdce5263d9b512c2465ffe8256',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  nft11Busd: {
+    symbol: 'NFT11-BUSD',
+    address: {
+      56: '0xEf0A90fb728195F63C911f52ab4bde331089319f',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  rubyBnb: {
+    symbol: 'RUBY-BNB',
+    address: {
+      56: '0xec9f5a5e4690fa14025971f0d2dd91f5600e24c7',
+    },
+    decimals: 18,
+    lpToken: true,
   },
 }
 

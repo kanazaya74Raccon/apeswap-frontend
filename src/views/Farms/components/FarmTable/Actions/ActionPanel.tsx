@@ -27,6 +27,15 @@ export interface InfoPropsContainer {
   liquidityDigits: number
 }
 
+const StyledCon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.white3};
+`
+
 const Container = styled.div`
   display: flex;
   width: 100%;
@@ -164,7 +173,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     registerToken(address, tokenInfo.symbolToken, tokenInfo.decimalsToken, '')
   }
   return (
-    <>
+    <StyledCon>
       <Container>
         <Flex>
           <InfoContainer liquidityDigits={liquidityDigits}>
@@ -229,7 +238,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
       <StyledLink bold={false} className="noClick" onClick={() => addTokenWallet(lpAddress)}>
         {t('Add to Metamask')}
       </StyledLink>
-    </>
+    </StyledCon>
   )
 }
 

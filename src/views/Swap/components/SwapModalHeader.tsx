@@ -9,7 +9,7 @@ import { CurrencyLogo } from 'components/Logo'
 import { RowBetween, RowFixed } from 'components/layout/Row'
 import truncateHash from 'utils/truncateHash'
 import { useTranslation } from 'contexts/Localization'
-import { TruncatedText, SwapShowAcceptChanges } from './styleds'
+import { TruncatedText, SwapShowAcceptChanges } from './styled'
 
 export default function SwapModalHeader({
   trade,
@@ -89,7 +89,7 @@ export default function SwapModalHeader({
             fontSize="24px"
             color={
               priceImpactSeverity > 2
-                ? 'failure'
+                ? 'error'
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
                 ? 'primary'
                 : 'text'
@@ -111,7 +111,7 @@ export default function SwapModalHeader({
               <ErrorIcon mr="8px" />
               <Text bold>{t('Price Updated')}</Text>
             </RowFixed>
-            <ButtonSquare style={{ fontSize: '16px' }} onClick={onAcceptChanges}>
+            <ButtonSquare style={{ fontSize: '16px', textTransform: 'uppercase' }} onClick={onAcceptChanges}>
               {t('Accept')}
             </ButtonSquare>
           </RowBetween>

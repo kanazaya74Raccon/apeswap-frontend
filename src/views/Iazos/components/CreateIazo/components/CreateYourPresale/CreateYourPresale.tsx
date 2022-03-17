@@ -112,7 +112,7 @@ const CreateIazo: React.FC<CreateIazoProps> = ({ settings }) => {
 const LaunchPadInfoWrapper = styled.div`
   width: 300px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : '#E5E5E5')};
+  background: ${({ theme }) => theme.colors.white3};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;

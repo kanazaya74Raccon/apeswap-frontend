@@ -12,7 +12,7 @@ export const PageWrapper = styled.div`
 export const LaunchPadWrapper = styled.div`
   border-radius: 20px;
   margin-top: 50px;
-  background: ${(props) => (props.theme.isDark ? '#222222' : 'rgba(255, 255, 255, 1)')};
+  background: ${({ theme }) => theme.colors.white2};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,7 @@ export const WarningWrapper = styled.div`
 `
 
 export const BeforeSaleWrapper = styled.div`
-  background: ${(props) => (props.theme.isDark ? ' rgba(51, 51, 51, 1)' : 'rgba(240, 240, 240, 1)')};
+  background: ${({ theme }) => theme.colors.white3};
   border-radius: 10px;
   width: 300px;
   margin-top: 40px;
@@ -85,8 +85,9 @@ export const IazoCardWrapper = styled.div`
   height: 110px;
   width: 300px;
   border-radius: 10px;
+
   margin-bottom: 12.5px;
-  background: ${(props) => (props.theme.isDark ? ' rgba(65, 65, 65, 1)' : 'rgba(161, 101, 82, 1)')};
+  background: ${({ theme }) => (theme.isDark ? theme.colors.white4 : theme.colors.primary)};
   ${({ theme }) => theme.mediaQueries.md} {
     width: 796px;
   }

@@ -14,7 +14,7 @@ import track from 'utils/track'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { LargeStyledButton } from 'views/Swap/styles'
-import { Wrapper } from 'views/Swap/components/styleds'
+import { Wrapper } from 'views/Swap/components/styled'
 import SwapBanner from 'components/SwapBanner'
 import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { useDispatch } from 'react-redux'
@@ -72,12 +72,7 @@ export default function AddLiquidity({
 
   const currencyA = useCurrency(loadCurrencyIdA)
   const currencyB = useCurrency(loadCurrencyIdB)
-
   const { t } = useTranslation()
-
-  if (!currencyIdA && swapCurrencyA && !currencyB && swapCurrencyB) {
-    history.push(`/add/${swapCurrencyA}/${swapCurrencyB}`)
-  }
 
   const [recentTransactions] = useUserRecentTransactions()
   const [addValueUsd, setAddValueUsd] = useState<number>(null)

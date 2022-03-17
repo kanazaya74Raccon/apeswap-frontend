@@ -23,7 +23,7 @@ const ContainerRow = styled.div<{ error: boolean }>`
   justify-content: center;
   align-items: center;
   border-radius: 1.25rem;
-  border: 1px solid ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.background)};
+  border: 1px solid ${({ error, theme }) => (error ? theme.colors.error : theme.colors.background)};
   transition: border-color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')},
     color 500ms ${({ error }) => (error ? 'step-end' : 'step-start')};
   background-color: ${({ theme }) => theme.colors.background};
@@ -41,13 +41,13 @@ const Input = styled.input<{ error?: boolean }>`
   flex: 1 1 auto;
   background-color: ${({ theme }) => theme.colors.background};
   transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
-  color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.primary)};
+  color: ${({ error, theme }) => (error ? theme.colors.error : theme.colors.primary)};
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
   width: 100%;
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textDisabled};
+    color: ${({ theme }) => theme.colors.gray};
   }
   padding: 0px;
   -webkit-appearance: textfield;
@@ -62,7 +62,7 @@ const Input = styled.input<{ error?: boolean }>`
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.textDisabled};
+    color: ${({ theme }) => theme.colors.gray};
   }
 `
 

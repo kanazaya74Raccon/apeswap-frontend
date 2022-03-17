@@ -5,7 +5,7 @@ const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
   ifos: [
     {
       id: 'trustnft',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0x76DfA14DD1295A588eBBE8e03964a98fF15f02E2', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: t('Trust NFT'),
@@ -23,7 +23,7 @@ const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       offeringCurrency: 'TRUSTNFT',
       tokenDecimals: 18,
-      releaseBlockNumber: 22364007, // block to start showing contract details
+      releaseBlockNumber: 14911408, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },

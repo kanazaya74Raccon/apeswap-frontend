@@ -36,6 +36,7 @@ const Wrapper = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 12px;
+  background-color: ${({ theme }) => theme.colors.white3};
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 340px;
@@ -57,13 +58,13 @@ const StyledLinkExternal = styled(LinkExternal)`
     padding-left: 4px;
     height: 18px;
     width: auto;
-    fill: ${({ theme }) => theme.colors.primary};
+    fill: ${({ theme }) => theme.colors.text};
   }
 `
 
 const StyledTextGreen = styled(Text)`
   font-weight: 600;
-  color: #38a611;
+  color: ${({ theme }) => theme.colors.success};
 `
 
 const StyledLink = styled(Link)`

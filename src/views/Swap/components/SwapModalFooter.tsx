@@ -14,7 +14,7 @@ import { AutoColumn } from 'components/layout/Column'
 import { AutoRow, RowBetween, RowFixed } from 'components/layout/Row'
 import { useTranslation } from 'contexts/Localization'
 import FormattedPriceImpact from './FormattedPriceImpact'
-import { StyledBalanceMaxMini, SwapCallbackError } from './styleds'
+import { StyledBalanceMaxMini, SwapCallbackError } from './styled'
 import { LargeStyledButton } from '../styles'
 
 const SwapModalFooterContainer = styled(AutoColumn)`
@@ -22,7 +22,7 @@ const SwapModalFooterContainer = styled(AutoColumn)`
   padding: 16px;
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.background};
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 export default function SwapModalFooter({

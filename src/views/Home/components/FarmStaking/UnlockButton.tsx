@@ -1,5 +1,6 @@
 import React from 'react'
-import { ButtonSquare, useWalletModal } from '@apeswapfinance/uikit'
+import { useWalletModal } from '@apeswapfinance/uikit'
+import UnlockButtonSquare from 'components/UnlockButtonSquare'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
@@ -8,12 +9,12 @@ const UnlockButton = (props) => {
 
   const { login, logout } = useAuth()
 
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
 
   return (
-    <ButtonSquare onClick={onPresentConnectModal} {...props}>
+    <UnlockButtonSquare onClick={onPresentConnectModal} {...props}>
       {t('UNLOCK WALLET')}
-    </ButtonSquare>
+    </UnlockButtonSquare>
   )
 }
 

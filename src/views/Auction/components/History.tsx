@@ -27,7 +27,7 @@ const PositinBox = styled.div`
 const HistoryWrapper = styled.div`
   width: 790px;
   height: 558px;
-  background: ${({ theme }) => theme.colors.card};
+  background: ${({ theme }) => theme.colors.navbar};
   mix-blend-mode: normal;
   box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.1), inset 355px 4px 250px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(24px);
@@ -81,7 +81,7 @@ const BodyWrapper = styled.div`
 const Row = styled.div<RowProps>`
   height: 27px;
   width: 100%;
-  background: ${(props) => props.background && (props.theme.isDark ? 'rgb(250, 250, 250, 0.1)' : 'rgb(250, 250, 250)')};
+  background: ${(props) => props.background && props.theme.colors.white3};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,7 +111,7 @@ const ArrowsWrapper = styled.div`
 `
 
 const StyledBackArrow = styled(ArrowBackIcon)<ArrowProps>`
-  fill: #ffb300;
+  fill: ${({ theme }) => theme.colors.yellow};
   height: 50px;
   width: 50px;
   margin-right: 10px;
@@ -121,7 +121,7 @@ const StyledBackArrow = styled(ArrowBackIcon)<ArrowProps>`
 `
 
 const StyledForwardArrow = styled(ArrowForwardIcon)<ArrowProps>`
-  fill: #ffb300;
+  fill: ${({ theme }) => theme.colors.yellow};
   height: 50px;
   width: 50px;
   margin-left: 10px;

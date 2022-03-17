@@ -75,7 +75,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
                       {list.name}
                     </Text>
                     <TextDot />
-                    <Text small color="textSubtle" ml="6px">
+                    <Text small color="gray" ml="6px">
                       {list.tokens.length} tokens
                     </Text>
                   </RowFixed>
@@ -88,15 +88,15 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
           </Card>
 
           <Flex flexDirection="column">
-            <Text fontSize="20px" textAlign="center" color={theme.colors.failure} mb="16px">
+            <Text fontSize="20px" textAlign="center" color={theme.colors.error} mb="16px">
               {t('Import at your own risk')}
             </Text>
-            <Text color={theme.colors.failure} mb="8px">
+            <Text color={theme.colors.error} mb="8px">
               {t(`By adding this list you are implicitly trusting that the data is correct. Anyone can create a list,
                 including creating fake versions of existing lists and lists that claim to represent projects that do not
                 have one.`)}
             </Text>
-            <Text bold color={theme.colors.failure} mb="16px">
+            <Text bold color={theme.colors.error} mb="16px">
               {typeof t('If you purchase a token from this list, you may not be able to sell it back.')}
             </Text>
             <Flex alignItems="center">
@@ -117,7 +117,7 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
             {t('Import')}
           </Button>
           {addError ? (
-            <Text color="failure" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+            <Text color="error" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
               {addError}
             </Text>
           ) : null}

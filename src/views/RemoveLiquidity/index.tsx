@@ -10,7 +10,7 @@ import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare 
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
-import { Wrapper } from 'views/Swap/components/styleds'
+import { Wrapper } from 'views/Swap/components/styled'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
 import SwapBanner from 'components/SwapBanner'
@@ -45,7 +45,7 @@ const StyledCard = styled(Card)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => theme.colors.white3};
   height: 110px;
   width: 48.5%;
   margin-top: 15px;

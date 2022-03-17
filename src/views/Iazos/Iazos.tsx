@@ -98,7 +98,7 @@ const Iazos: React.FC = () => {
             <IconButton icon="check" text="Done" active={sort === 'done'} onClick={() => setSort('done')} />
             <TextInput
               placeholderText="Search token name or address...."
-              backgroundColor={isDark ? '#333333' : 'rgba(240, 240, 240, 1)'}
+              backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}
               onChange={handleChangeQuery}
               size={isMobile ? 'sm' : 'md'}
               margin={isMobile ? '30px 0px 0px 0px;' : ''}

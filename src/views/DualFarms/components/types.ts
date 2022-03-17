@@ -1,5 +1,4 @@
 import { ContextApi } from '../../../contexts/Localization/types'
-import { Ifo } from '../../../config/constants/types'
 
 export type TableProps = {
   data?: TableDataTypes[]

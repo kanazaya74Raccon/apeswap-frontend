@@ -8,9 +8,9 @@ import { partition } from 'lodash'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
+import { useTranslation } from 'contexts/Localization'
 import SearchInput from '../Pools/components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
-import { useTranslation } from '../../contexts/Localization'
 
 const float = keyframes`
   0% {transform: translate3d(0px, 0px, 0px);}
@@ -335,7 +335,7 @@ const NfaStaking: React.FC = () => {
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {t('NFA Staking')}
           </StyledHeading>
-          {size.width > 968 && <AdminText>{t('Stake your Non-Fungible Ape for profits from the auction')}</AdminText>}
+          {size.width > 968 && <AdminText>{t('Stake Non Fungible Apes to earn BANANA')}</AdminText>}
         </HeadingContainer>
         <MonkeyWrapper>
           <PoolMonkey />

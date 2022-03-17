@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Card, Heading, ButtonSquare, Text } from '@apeswapfinance/uikit'
 
 export const Container = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#212121' : theme.colors.white)};
+  background: ${({ theme }) => theme.colors.navbar};
   border-radius: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -50,7 +50,7 @@ export const FirstHeader2 = styled(FirstHeader)`
 `
 
 export const InfoCon = styled(Card)`
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  background: ${({ theme }) => theme.colors.white3};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +144,7 @@ export const Sect2d = styled(Sect1d)`
   }
 `
 export const Text1 = styled(Text)`
-  background: ${({ theme }) => (theme.isDark ? '#0B0B0B' : '#F0F0F0')};
+  background: ${({ theme }) => theme.colors.white3};
   color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : theme.colors.text)};
   font-size: 12px;
   font-weight: 400;

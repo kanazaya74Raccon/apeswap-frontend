@@ -26,7 +26,7 @@ const Wrapper = styled(Column)`
 const RowWrapper = styled(Row)<{ active: boolean }>`
   background-color: ${({ active, theme }) => (active ? `${theme.colors.success}19` : 'transparent')};
   border: solid 1px;
-  border-color: ${({ active, theme }) => (active ? theme.colors.success : theme.colors.tertiary)};
+  border-color: ${({ active, theme }) => (active ? theme.colors.success : theme.colors.white2)};
   transition: 200ms;
   align-items: center;
   padding: 1rem;
@@ -185,7 +185,7 @@ function ManageLists({
     if (listUrlInput === '') {
       setAddError(undefined)
     }
-  }, [fetchList, listUrlInput, validUrl])
+  }, [fetchList, listUrlInput, validUrl, t])
 
   // check if list is already imported
   const isImported = Object.keys(lists).includes(listUrlInput)
@@ -211,7 +211,7 @@ function ManageLists({
           />
         </Row>
         {addError ? (
-          <Text color="failure" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
+          <Text color="error" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
             {addError}
           </Text>
         ) : null}
@@ -224,7 +224,7 @@ function ManageLists({
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
                   <Text bold>{tempList.name}</Text>
-                  <Text color="textSubtle" small textTransform="lowercase">
+                  <Text color="gray" small textTransform="lowercase">
                     {tempList.tokens.length} {t('Tokens')}
                   </Text>
                 </AutoColumn>

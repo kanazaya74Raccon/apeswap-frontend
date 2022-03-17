@@ -179,7 +179,7 @@ const SelectButton = styled.div<{ active: boolean }>`
   display: flex;
   width: 56px;
   height: 28px;
-  background: ${(props) => (props.active ? 'rgba(255, 179, 0, 1)' : props.theme.colors.input)};
+  background: ${(props) => (props.active ? 'rgba(255, 179, 0, 1)' : props.theme.colors.inputBorder)};
   color: ${(props) => (props.active ? 'white' : props.theme.colors.primary)};
   border-radius: 20px;
   cursor: pointer;

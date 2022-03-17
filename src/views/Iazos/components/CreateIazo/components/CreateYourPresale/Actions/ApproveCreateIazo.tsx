@@ -19,13 +19,13 @@ const ApproveCreateIazo: React.FC<ApproveCreateIazoProps> = ({
 }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const { t } = useTranslation()
-  const onApprovetokenAddress = useApproveIazoFactory(tokenAddress).onApprove
+  const { onApprove } = useApproveIazoFactory(tokenAddress)
 
   return (
     <StyledButton
       onClick={async () => {
         setPendingTrx(true)
-        await onApprovetokenAddress()
+        await onApprove()
         setPendingTrx(false)
         onPendingApproved(false)
       }}

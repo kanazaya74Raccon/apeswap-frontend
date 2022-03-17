@@ -17,7 +17,7 @@ const Card = styled.div`
   height: 435px;
   border-radius: 10px;
   opacity: 0.7;
-  background-color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.navbar};
   display: flex;
   align-items: center;
   ${({ theme }) => theme.mediaQueries.lg} {

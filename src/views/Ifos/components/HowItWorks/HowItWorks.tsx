@@ -85,9 +85,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
           </div>
         </FeatureBox>
       </Frame>
-      <Button variant="yellow" onClick={handleParticipateClick}>
-        {t('PARTICIPATE NOW')}
-      </Button>
+      <Button onClick={handleParticipateClick}>{t('PARTICIPATE NOW')}</Button>
     </Container>
   )
 }

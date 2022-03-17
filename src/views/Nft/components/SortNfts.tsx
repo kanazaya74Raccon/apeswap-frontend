@@ -25,7 +25,7 @@ const DropDownContent = styled.div`
   display: none;
   position: absolute;
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.gray};
   min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -92,10 +92,10 @@ const SearchBox = styled.input`
   font-size: 20px;
   display: flex;
   border: none;
-  -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
-  box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.textSubtle};
+  -webkit-box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.gray};
+  box-shadow: 0px 0px 5px 0px ${(props) => props.theme.colors.gray};
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.gray};
   font-weight: 800;
 
   &:focus {
@@ -103,7 +103,7 @@ const SearchBox = styled.input`
     border-color: ${(props) => props.theme.colors};
   }
   &::placeholder {
-    color: ${(props) => props.theme.colors.textSubtle};
+    color: ${(props) => props.theme.colors.gray};
     text-align: center;
   }
 `
@@ -130,7 +130,7 @@ const BackToTop = styled.button`
 
 const SortTitle = styled.p`
   font-weight: 800;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.primaryBright};
 `
 
 const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {

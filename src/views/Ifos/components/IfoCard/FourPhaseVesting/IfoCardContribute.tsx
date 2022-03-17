@@ -3,13 +3,13 @@ import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useERC20 } from 'hooks/useContract'
 import { useIfoAllowance } from 'hooks/useAllowance'
 import { useIfoApprove } from 'hooks/useApprove'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ZERO_ADDRESS } from 'config'
 import { Contract } from 'ethers'
 import { useTranslation } from 'contexts/Localization'
+import useTokenBalance from 'hooks/useTokenBalance'
 import useUserInfo from './useUserInfo'
 
 import {
@@ -52,9 +52,9 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const { account } = useActiveWeb3React()
 
-  const contractRaisingToken = useERC20(currencyAddress)
-  const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
-  const onApprove = useIfoApprove(contractRaisingToken, address)
+  const allowance = useIfoAllowance(currencyAddress, address, pendingTx)
+  const tokenBalance = useTokenBalance(currencyAddress)
+  const onApprove = useIfoApprove(currencyAddress, address)
 
   const { userTokenStatus, harvestBlockReleases, userInfo, userHarvestedFlags } = useUserInfo(
     contract,
@@ -73,7 +73,11 @@ const IfoCardContribute: React.FC<Props> = ({
     return null
   }
 
-  if (isActive && currencyAddress !== ZERO_ADDRESS && allowance <= 0) {
+  if (
+    isActive &&
+    currencyAddress !== ZERO_ADDRESS &&
+    (allowance.isLessThanOrEqualTo(new BigNumber('0')) || allowance.isLessThan(tokenBalance))
+  ) {
     return (
       <ApproveButton
         disabled={pendingTx}
@@ -109,15 +113,16 @@ const IfoCardContribute: React.FC<Props> = ({
           <ContributeInput
             currency={currency}
             contract={contract}
+            tokenBalance={tokenBalance}
             currencyAddress={currencyAddress}
             disabled={pendingTx}
           />
           {amountContributed > 0 && (
             <TextWrapRow>
-              <Text fontSize="14px" color="textSubtle" fontWeight={600}>
+              <Text fontSize="14px" color="gray" fontWeight={600}>
                 {t('Your contributions')}:
               </Text>
-              <Text fontSize="14px" color="textSubtle" fontWeight={600}>
+              <Text fontSize="14px" color="gray" fontWeight={600}>
                 {amountContributed.toFixed(4)} {currency}
               </Text>
             </TextWrapRow>

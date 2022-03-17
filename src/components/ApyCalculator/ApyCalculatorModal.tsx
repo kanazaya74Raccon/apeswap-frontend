@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex } from '@apeswapfinance/uikit'
 
 import { calculateBananaEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
-import { useTranslation } from '../../contexts/Localization'
+import { useTranslation } from 'contexts/Localization'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
@@ -69,24 +69,24 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title="ROI" onDismiss={onDismiss}>
       <Grid>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {t('Timeframe')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {t('ROI')}
           </Text>
         </GridItem>
         <GridItem>
-          <Text fontSize="12px" color="textSubtle" textTransform="uppercase" mb="20px">
+          <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {rewardTokenName}
             {t(' per $1000')}
           </Text>
         </GridItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>{t('1d')}</Text>
+          <Text>{t('1d')}</Text>s
         </GridItem>
         <GridItem>
           <Text>
@@ -138,7 +138,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           <Text>{bananaEarnedPerThousand365D}</Text>
         </GridItem>
       </Grid>
-      <Description fontSize="12px" color="textSubtle">
+      <Description fontSize="12px" color="gray">
         {t(
           'Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',
         )}

@@ -49,7 +49,7 @@ const Title = styled(Text)`
   }
 `
 const StyledCard = styled(Card)`
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F0F0F0')};
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 interface PositionCardProps extends CardProps {
@@ -103,7 +103,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                 <RowFixed>
                   <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
-                  <StyledText small color="textSubtle">
+                  <StyledText small color="gray">
                     {currency0.getSymbol(chainId)}-{currency1.getSymbol(chainId)} LP
                   </StyledText>
                 </RowFixed>
@@ -113,13 +113,13 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               </FixedHeightRow>
               <AutoColumn gap="4px">
                 <FixedHeightRow>
-                  <Text color="textSubtle" small>
+                  <Text color="gray" small>
                     {t('Share of Pool')}:
                   </Text>
                   <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(6)}%` : '-'}</Text>
                 </FixedHeightRow>
                 <FixedHeightRow>
-                  <Text color="textSubtle" small>
+                  <Text color="gray" small>
                     {`${t('Pooled')} ${currency0.getSymbol(chainId)}`}:
                   </Text>
                   {token0Deposited ? (
@@ -131,7 +131,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                   )}
                 </FixedHeightRow>
                 <FixedHeightRow>
-                  <Text color="textSubtle" small>
+                  <Text color="gray" small>
                     {`${t('Pooled')} ${currency1.getSymbol(chainId)}`}:
                   </Text>
                   {token1Deposited ? (

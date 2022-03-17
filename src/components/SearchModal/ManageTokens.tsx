@@ -71,7 +71,7 @@ export default function ManageTokens({
         <RowBetween key={token.address} width="100%">
           <RowFixed>
             <CurrencyLogo currency={token} size="20px" />
-            <Link external href={getEtherscanLink(token.address, 'address', chainId)} color="textSubtle" ml="10px">
+            <Link external href={getEtherscanLink(token.address, 'address', chainId)} color="gray" ml="10px">
               {token.symbol}
             </Link>
           </RowFixed>
@@ -106,7 +106,7 @@ export default function ManageTokens({
               isWarning={!isAddressValid}
             />
           </Row>
-          {!isAddressValid && <Text color="failure">Enter valid token address</Text>}
+          {!isAddressValid && <Text color="error">Enter valid token address</Text>}
           {searchToken && (
             <ImportRow
               token={searchToken}

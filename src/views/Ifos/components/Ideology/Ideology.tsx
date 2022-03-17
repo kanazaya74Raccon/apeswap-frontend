@@ -73,12 +73,10 @@ const HowItWorks = () => {
         </FeatureBox>
       </Frame>
       <ButtonBox>
-        <Button variant="yellow" external href="https://ApeSwap.Click/Partners" as="a">
+        <Button external href="https://ApeSwap.Click/Partners" as="a">
           {t('BECOME A PARTNER')}
         </Button>
-        <Button variant="yellow" onClick={handleDoOwnClick}>
-          {t('LAUNCH YOUR OWN')}
-        </Button>
+        <Button onClick={handleDoOwnClick}>{t('LAUNCH YOUR OWN')}</Button>
       </ButtonBox>
     </Container>
   )

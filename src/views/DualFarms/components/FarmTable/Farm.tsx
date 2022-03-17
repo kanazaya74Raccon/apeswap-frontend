@@ -6,6 +6,7 @@ import { Token } from 'config/constants/types'
 export interface FarmProps {
   label: string
   pid: number
+  dualImage: boolean
   stakeTokens?: { token0: Token; token1?: Token }
   rewardTokens?: { token0: Token; token1?: Token }
 }
@@ -36,7 +37,7 @@ const StyledBackground = styled.div`
   margin-right: 20px;
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ stakeTokens, rewardTokens, label }) => {
+const Farm: React.FunctionComponent<FarmProps> = ({ stakeTokens, rewardTokens, label, dualImage = true }) => {
   return (
     <Container>
       <StyledBackground>
@@ -56,22 +57,34 @@ const Farm: React.FunctionComponent<FarmProps> = ({ stakeTokens, rewardTokens, l
           marginTop="30px"
         />
         <IconImage src="/images/arrow.svg" alt="arrow" width={10} height={10} marginLeft="8px" marginRight="8px" />
-        <IconImage
-          src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
-          alt={rewardTokens?.token0?.symbol}
-          width={27}
-          height={27}
-          marginRight="-5px"
-          marginBottom="22.5px"
-        />
-        <IconImage
-          src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
-          alt={rewardTokens?.token1?.symbol}
-          width={27}
-          height={27}
-          marginTop="22.5px"
-          marginRight="7.5px"
-        />
+        {dualImage ? (
+          <>
+            <IconImage
+              src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+              alt={rewardTokens?.token0?.symbol}
+              width={27}
+              height={27}
+              marginRight="-5px"
+              marginBottom="22.5px"
+            />
+            <IconImage
+              src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
+              alt={rewardTokens?.token1?.symbol}
+              width={27}
+              height={27}
+              marginTop="22.5px"
+              marginRight="7.5px"
+            />
+          </>
+        ) : (
+          <IconImage
+            src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+            alt={stakeTokens?.token1?.symbol}
+            width={50}
+            height={50}
+            marginLeft="7.5px"
+          />
+        )}
       </StyledBackground>
       <div>
         <Text fontSize="20px" fontWeight={800}>

@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import useTheme from 'hooks/useTheme'
 import useFetchBurningGames from 'state/strapi/useFetchBurningGames'
-import CardBurningGame from './CardBurningGame'
 import { useTranslation } from 'contexts/Localization'
+import CardBurningGame from './CardBurningGame'
 
 const HeadingContainer = styled.div`
   max-width: 1024px;
@@ -113,8 +113,8 @@ const SubtitleHeading = styled(Text)<{ isMobile: boolean }>`
   font-size: ${(props) => (props.isMobile ? '16px' : '22px')};
   width: ${(props) => (props.isMobile ? '50%' : '100%')};
 `
-const ContainerPrincipal = styled.div<{ isDark: boolean }>`
-  background-color: ${(props) => props.isDark && 'rgb(238,238,238)'};
+const ContainerPrincipal = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
 `
 const BurningGames: React.FC = () => {
   const { data } = useFetchBurningGames()
@@ -131,7 +131,7 @@ const BurningGames: React.FC = () => {
   if (isDark && !isDesktop) banner = 'burning-night-mobile.png'
 
   return (
-    <ContainerPrincipal isDark={!isDark}>
+    <ContainerPrincipal>
       <Header banner={banner}>
         <HeadingContainer>
           <StyledHeading as="h1" mb="12px" mt={0} color="white">

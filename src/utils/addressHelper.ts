@@ -34,6 +34,9 @@ export const getBananaProfileAddress = (chainId: number) => {
 export const getNonFungibleApesAddress = (chainId: number) => {
   return addresses.nonFungibleApes[chainId]
 }
+export const getNonFungibleBananasAddress = (chainId: number) => {
+  return addresses.nonFungibleBananas[chainId]
+}
 export const getRabbitMintingFarmAddress = (chainId: number) => {
   return addresses.rabbitMintingFarm[chainId]
 }

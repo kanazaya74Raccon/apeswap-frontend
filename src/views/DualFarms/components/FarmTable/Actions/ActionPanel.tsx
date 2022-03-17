@@ -8,8 +8,8 @@ import { LinkExternal, Text, Flex } from '@apeswapfinance/uikit'
 import { useNetworkChainId } from 'state/hooks'
 import { DualFarm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useTranslation } from 'contexts/Localization'
 import StakedAction from './StakedAction'
-import { useTranslation } from '../../../../../contexts/Localization'
 
 export interface ActionPanelProps {
   farm: DualFarm
@@ -24,6 +24,7 @@ const Container = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 12px;
+  background-color: ${({ theme }) => theme.colors.white3};
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 340px;
@@ -33,11 +34,20 @@ const Container = styled.div`
   }
 `
 
+const LinkCon = styled.div`
+  background-color: ${({ theme }) => theme.colors.white3};
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const StyledLinkExternal = styled(LinkExternal)`
-  font-weight: 400;
+  font-weight: 800;
   font-size: 12px;
   text-decoration-line: underline;
   margin-bottom: 10px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const ActionContainer = styled.div`
@@ -79,7 +89,7 @@ const ValueWrapper = styled.div`
 `
 
 const StyledText = styled(Text)`
-  font-weight: 700;
+  font-weight: 600;
 `
 
 const StakedText = styled(Text)`
@@ -124,7 +134,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
               <ValueWrapper>
                 <StyledText fontSize="12px">{t('Reward Tokens')}</StyledText>
                 <StyledText fontSize="12px">
-                  {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
+                  {`${farm?.rewardTokens?.token0?.symbol} & ${
+                    farm?.dualImage !== false ? farm?.rewardTokens?.token1?.symbol : ''
+                  }`}
                 </StyledText>
               </ValueWrapper>
               <ValueWrapper>
@@ -173,9 +185,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
           </ActionContainer>
         </Flex>
       </Container>
-      <StyledLinkExternal href={blockExplorer} fontWeight={800}>
-        {t(`View on ${NETWORK_LABEL[chainId]}Scan`)}
-      </StyledLinkExternal>
+      <LinkCon>
+        <StyledLinkExternal href={blockExplorer}>{t(`View on ${NETWORK_LABEL[chainId]}Scan`)}</StyledLinkExternal>
+      </LinkCon>
     </>
   )
 }

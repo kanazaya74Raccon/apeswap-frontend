@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
 import { Auction } from 'state/types'
-import { usePriceBnbBusd } from 'state/hooks'
+import { useTokenPriceFromSymbol } from 'state/hooks'
 import { ZERO_ADDRESS } from 'config'
 import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
@@ -23,7 +23,7 @@ const Card = styled.div<CardProps>`
   height: 435px;
   border-radius: 10px;
   opacity: 0.7;
-  background-color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.navbar};
   display: flex;
   align-items: center;
   box-shadow: ${(props) => props.highestBidFlag && '0px 0px 20px #ffb300'};
@@ -136,10 +136,9 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   const highestBidFlag = highestBidder === account
   const notSold = highestBidder === ZERO_ADDRESS
   const rawBidAmount = getBalanceNumber(new BigNumber(highestBid))
-  const bnbPrice = usePriceBnbBusd()
-  const dollarValue = (getBalanceNumber(bnbPrice, 0) * rawBidAmount).toFixed(2)
+  const bnbPrice = useTokenPriceFromSymbol('BNB')
+  const dollarValue = (getBalanceNumber(new BigNumber(bnbPrice), 0) * rawBidAmount).toFixed(2)
   const { t } = useTranslation()
-
   return (
     <Card highestBidFlag={highestBidFlag}>
       <TextHolder>

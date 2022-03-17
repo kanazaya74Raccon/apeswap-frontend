@@ -46,8 +46,8 @@ export const GnanaUtility: React.FC = () => {
                   <PFarmingIcon
                     width="90px"
                     height="90px"
-                    bgColor={theme.isDark ? '#212121' : '#FFF'}
-                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                    bgColor={theme.isDark ? '#383838' : '#F1EADA'}
+                    color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
                 Title={t('Passive Farming')}
@@ -63,8 +63,8 @@ export const GnanaUtility: React.FC = () => {
                   <GovernanceIcon
                     width="90px"
                     height="90px"
-                    bgColor={theme.isDark ? '#212121' : '#FFF'}
-                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                    bgColor={theme.isDark ? '#383838' : '#F1EADA'}
+                    color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
                 Title={t('Governance')}
@@ -86,8 +86,8 @@ export const GnanaUtility: React.FC = () => {
                   <XPoolsIcon
                     width="90px"
                     height="90px"
-                    bgColor={theme.isDark ? '#212121' : '#FFF'}
-                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                    bgColor={theme.isDark ? '#383838' : '#F1EADA'}
+                    color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
                 Title={t('Exclusive Pools')}
@@ -107,8 +107,8 @@ export const GnanaUtility: React.FC = () => {
                   <IaoIcon
                     width="90px"
                     height="90px"
-                    bgColor={theme.isDark ? '#212121' : '#FFF'}
-                    color={theme.isDark ? '#FFF' : '#af6e5aff'}
+                    bgColor={theme.isDark ? '#383838' : '#F1EADA'}
+                    color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
                 Title={t('Exclusive IAO Access')}

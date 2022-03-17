@@ -19,6 +19,7 @@ import PageLoader from './components/PageLoader'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
+const JunglePools = lazy(() => import('./views/JunglePools'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const DualFarms = lazy(() => import('./views/DualFarms'))
@@ -151,6 +152,9 @@ const App: React.FC = () => {
               <Route path="/pools">
                 <Redirect to="/" />
               </Route>
+              <Route path="/jungle-farms">
+                <Redirect to="/" />
+              </Route>
               <Route path="/admin-pools">
                 <Redirect to="/" />
               </Route>
@@ -206,6 +210,9 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
+            <Route path="/jungle-farms">
+              <JunglePools />
+            </Route>
             <Route path="/vaults">
               <Vaults />
             </Route>
@@ -244,6 +251,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/burn">
               <BurningGames />
+            </Route>
+            <Route path="/spinner">
+              <PageLoader />
             </Route>
             {/* Redirect */}
             <Route path="/staking">

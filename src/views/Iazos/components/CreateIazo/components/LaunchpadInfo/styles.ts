@@ -4,7 +4,7 @@ import { Text, ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 export const LaunchPadInfoWrapper = styled.div`
   width: 300px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#333333' : 'rgba(240, 240, 240, 1)')};
+  background: ${({ theme }) => theme.colors.white3};
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -60,7 +60,7 @@ export const FaqWrapper = styled.div`
   position: relative;
   width: 280px;
   border-radius: 10px;
-  background: ${(props) => (props.theme.isDark ? '#414141' : 'rgba(161, 101, 82, 1)')};
+  background: ${({ theme }) => (theme.isDark ? theme.colors.white4 : theme.colors.primary)};
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;

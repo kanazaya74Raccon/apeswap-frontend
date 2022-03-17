@@ -54,7 +54,7 @@ const StyledTr = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${({ theme }) => (theme.isDark ? '#27262c' : '#faf9fa')};
+  background-color: ${({ theme }) => theme.colors.white2};
 `
 
 const EarnedMobileCell = styled.div`

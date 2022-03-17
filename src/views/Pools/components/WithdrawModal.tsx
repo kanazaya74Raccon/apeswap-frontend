@@ -3,8 +3,9 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
+import UnderlinedButton from 'components/UnderlinedButton'
+import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
-import { useTranslation } from '../../../contexts/Localization'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -42,9 +43,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
       />
       <ModalActions>
-        <Button variant="secondary" onClick={onDismiss}>
-          {t('Cancel')}
-        </Button>
         <Button
           disabled={pendingTx}
           onClick={async () => {
@@ -54,9 +52,13 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
             onDismiss()
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

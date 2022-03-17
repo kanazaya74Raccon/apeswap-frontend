@@ -19,8 +19,8 @@ const AttributesHolder = styled.div`
 const Attribute = styled.div`
   height: 30px;
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.textSubtle};
-  box-shadow: 0px 0px 2px ${(props) => props.theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.text};
+  box-shadow: 0px 0px 2px ${(props) => props.theme.colors.text};
   margin: 7px;
   padding: 0px 5px 0 5px;
   font-size: 15px;
@@ -32,8 +32,8 @@ const ToolTipText = styled.span`
   visibility: hidden;
   width: 110px;
   background-color: ${(props) => props.theme.colors};
-  color: ${(props) => props.theme.colors.textSubtle};
-  box-shadow: 0px 0px 2px ${(props) => props.theme.colors.textSubtle};
+  color: ${(props) => props.theme.colors.gray};
+  box-shadow: 0px 0px 2px ${(props) => props.theme.colors.gray};
   font-family: ${(props) => props.theme.fontFamily.poppins};
   text-align: center;
   border-radius: 6px;

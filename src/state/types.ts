@@ -6,6 +6,7 @@ import {
   Address,
   FarmConfig,
   Nft,
+  Nfb,
   PoolConfig,
   NfaStakingPoolConfig,
   Team,
@@ -66,6 +67,20 @@ export interface Pool extends PoolConfig {
   lpData?: any
 }
 
+export interface JunglePool extends PoolConfig {
+  totalStaked?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+  }
+  lpData?: any
+}
+
 export interface Vault extends VaultConfig {
   totalStaked?: string
   totalAllocPoint?: string
@@ -93,7 +108,6 @@ export interface Vault extends VaultConfig {
 export interface NfaStakingPool extends NfaStakingPoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
-  endBlock?: number
   apr?: number
   userData?: {
     allowance: boolean
@@ -106,7 +120,7 @@ export interface NfaStakingPool extends NfaStakingPoolConfig {
 
 export interface Profile {
   ownedNfts: Nft[]
-  rarestNft: Nft
+  rarestNft: Nft | Nfb
 }
 
 export interface Network {
@@ -365,6 +379,10 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface JunglePoolsState {
+  data: JunglePool[]
+}
+
 export interface DualFarmsState {
   data: DualFarm[]
 }
@@ -453,6 +471,7 @@ export interface State {
   block: BlockState
   toasts: ToastsState
   pools: PoolsState
+  junglePools: JunglePoolsState
   profile: ProfileState
   stats: StatsState
   statsOverall: StatsOverallState

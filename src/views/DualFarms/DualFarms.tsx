@@ -515,6 +515,7 @@ const DualFarms: React.FC = () => {
       farm: {
         stakeTokens: farm?.stakeTokens,
         rewardTokens: farm?.rewardTokens,
+        dualImage: farm?.dualImage,
         label: `${farm?.stakeTokens?.token1?.symbol}-${farm?.stakeTokens?.token0?.symbol}`,
         pid: farm.pid,
       },

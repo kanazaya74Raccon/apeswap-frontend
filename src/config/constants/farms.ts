@@ -3038,6 +3038,74 @@ const farms: FarmConfig[] = [
     projectLink: 'https://lunarcrush.com/',
   },
   {
+    pid: 186,
+    image: 'TRUSTNFT.svg',
+    lpSymbol: 'TRUSTNFT-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8ae242370358fd34eea29dd73f68e0be18f65393',
+    },
+    tokenSymbol: 'TRUSTNFT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x08F725D2809FdA409Bc23493F3615a4c85a22d7d',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://trustnft.org',
+  },
+  {
+    pid: 187,
+    image: 'BUZZ.svg',
+    lpSymbol: 'BUZZ-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xAC67c5108816E5DAB31376A0EE916D1Fa7e6d50a',
+    },
+    tokenSymbol: 'BUZZ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa73C15620bfA79646E9A11d0D638d66588456462',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://cosmosium.finance/',
+  },
+  {
+    pid: 188,
+    image: 'RANKER.svg',
+    lpSymbol: 'RANKER-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x408bcca802006fa33fd469211e85ac5f66caea5f',
+    },
+    tokenSymbol: 'RANKER',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xdE4512Db1a7a7519818dA38DB86eC1363d70A711',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://rankerdao.com/',
+  },
+  {
+    pid: 189,
+    image: 'FRONT.svg',
+    lpSymbol: 'FRONT-BUSD LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x4039a3B74459d15Ea8023064aE18B48499FecC60',
+    },
+    tokenSymbol: 'FRONT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://frontier.xyz/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',

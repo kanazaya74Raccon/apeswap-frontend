@@ -5,11 +5,10 @@ import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
 import { Link, Redirect, useParams } from 'react-router-dom'
 import nfts from 'config/constants/nfts'
-
+import { useTranslation } from 'contexts/Localization'
 import NfaAttributes from './components/NfaAttributes'
 import NfaSales from './components/NfaSales'
 import Image from './components/Image'
-import { useTranslation } from '../../contexts/Localization'
 
 const NfaImageHolder = styled.div`
   overflow: hidden;
@@ -56,8 +55,8 @@ const DetailsHolder = styled.div`
 const BoxShadow = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.colors.card};
-  box-shadow: 0px 0px 10px ${(props) => props.theme.colors.textSubtle};
+  background-color: ${(props) => props.theme.colors.navbar};
+  box-shadow: 0px 0px 10px ${(props) => props.theme.colors.gray};
   ${({ theme }) => theme.mediaQueries.xs} {
     width: 350px;
   }
@@ -94,13 +93,13 @@ const Nfa = () => {
         </NfaHolder>
         <DetailsHolder>
           <BoxShadow>
-            <Text fontSize="32px" color="primary" fontWeight={800}>
+            <Text fontSize="32px" color="brown" fontWeight={800}>
               {t(`${nfa.name} ${nfa.index}`)}
             </Text>
-            <Text fontWeight={300} fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+            <Text fontWeight={300} fontSize="20px" style={{ margin: '5px 0px 5px 0px' }}>
               {t(nfa.attributes.rarityTierName)}
             </Text>
-            <Text fontWeight={300} fontSize="20px" color="textSubtle" style={{ margin: '5px 0px 5px 0px' }}>
+            <Text fontWeight={300} fontSize="20px" style={{ margin: '5px 0px 5px 0px' }}>
               {t(`Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`)}
             </Text>
             <a
@@ -111,7 +110,6 @@ const Nfa = () => {
               <Text
                 fontWeight={300}
                 fontSize="20px"
-                color="textSubtle"
                 style={{ textDecoration: 'underline', margin: '5px 0px 20px 0px' }}
               >
                 {t('Marketplace')}
@@ -120,7 +118,7 @@ const Nfa = () => {
           </BoxShadow>
           {sales && (
             <BoxShadow style={{ marginTop: '25px', padding: '5px 0px 10px 0px' }}>
-              <Text fontWeight={300} fontSize="23px" color="textSubtle" style={{ margin: '10px 0px 15px 0px' }}>
+              <Text fontWeight={300} fontSize="23px" style={{ margin: '10px 0px 15px 0px' }}>
                 {t(sales?.length > 0 ? 'Previous Sales' : 'No Sale History')}
               </Text>
               {sales?.length > 0 ? (

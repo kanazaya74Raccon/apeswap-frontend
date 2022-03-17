@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text, Checkbox } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 
 export const LaunchPadInfoWrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const LaunchPadInfoWrapper = styled.div`
   height: 800px;
   width: 280px;
   border-radius: 10px;
-  background-color: ${(props) => (props.theme.isDark ? '#414141' : 'white')};
+  background-color: ${({ theme }) => theme.colors.white4};
   margin-bottom: 30px;
   align-items: space-between;
   justify-content: center;
@@ -17,10 +17,6 @@ export const LaunchPadInfoWrapper = styled.div`
     width: 686px;
     height: 524px;
   }
-`
-
-export const CheckBoxStyled = styled(Checkbox)`
-  background: #e5e5e5;
 `
 
 export const StyledHeader = styled(Text)`

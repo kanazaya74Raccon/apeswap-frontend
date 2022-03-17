@@ -4,6 +4,7 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
 import { useProfile } from 'state/hooks'
+import UnderlinedButton from 'components/UnderlinedButton'
 import { useTranslation } from '../../../contexts/Localization'
 
 interface DepositModalProps {
@@ -38,7 +39,9 @@ const Nfa = styled.div<{ active: boolean }>`
 
 const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier }) => {
   const { profile } = useProfile()
-  const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => nfa.attributes.rarityTierNumber === tier)
+  const ownedFilteredNfas = profile?.ownedNfts?.filter((nfa) => {
+    return nfa.attributes.rarityTierNumber === tier
+  })
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -73,9 +76,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
         )}
       </OwnedNfaWrapper>
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
-          {t('Cancel')}
-        </Button>
         <Button
           fullWidth
           disabled={pendingTx || selectedNfas?.length === 0}
@@ -86,9 +86,13 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
             onDismiss()
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
+          style={{
+            borderRadius: '10px',
+          }}
         >
           {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

@@ -72,7 +72,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
             title="Listing Price"
             quoteTokenSymbol={quoteTokenSymbol}
             size="md"
-            backgroundColor={isDark ? 'rgba(51, 51, 51, 1)' : '#E5E5E5'}
+            backgroundColor={isDark ? '#383838' : '#F1EADA'}
             min={minListPrice}
             max={maxListPrice}
           />

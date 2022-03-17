@@ -16,7 +16,7 @@ interface IfoCardProps {
 const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
   const ifo = React.useMemo(() => ifosConfig.find((each) => each.id === ifoId), [ifoId])
   const { t } = useTranslation()
-  const gnanaIfo = React.useMemo(() => ApeZone(t).ifos.find((each) => each.id === ifoId), [ifoId]) // TODO: Double check if this is correct GNANA project info
+  const gnanaIfo = React.useMemo(() => ApeZone(t).ifos.find((each) => each.id === ifoId), [ifoId, t]) // TODO: Double check if this is correct GNANA project info
 
   if (!ifo) {
     console.warn(`For project:${ifoId}, ifo configuration is not found`, ifo)

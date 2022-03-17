@@ -32,6 +32,7 @@ const Wrapper = styled.div`
   margin-top: 24px;
   margin-left: 24px;
   margin-right: 24px;
+  background-color: ${({ theme }) => theme.colors.white3};
 `
 
 const StyledLinkExternal = styled(LinkExternal)`
@@ -46,7 +47,7 @@ const StyledLinkExternal = styled(LinkExternal)`
     padding-left: 4px;
     height: 18px;
     width: auto;
-    fill: ${({ theme }) => theme.colors.primary};
+    fill: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -56,7 +57,7 @@ const StyledText = styled(Text)`
 
 const StyledTextGreen = styled(Text)`
   font-weight: 600;
-  color: #38a611;
+  color: ${({ theme }) => theme.colors.success};
 `
 
 const StyledLink = styled(Link)`
