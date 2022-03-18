@@ -13,6 +13,7 @@ import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import Pool from './views/Pool'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -37,7 +38,6 @@ const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
 const Swap = lazy(() => import('./views/Swap'))
-const Pool = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
