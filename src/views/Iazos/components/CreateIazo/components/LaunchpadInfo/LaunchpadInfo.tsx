@@ -17,8 +17,9 @@ const listOfFaqs: (t: ContextApi['t']) => any[] = (t) => [
         >
           {t('documentation')}
         </FaqLink>{' '}
-        {t(`before you begin to make sure you understand how SS-IAOs work, what you should have in place before create your
-          presale, and the associated risks.`)}
+        {t(
+          'before you begin to make sure you understand how SS-IAOs work, what you should have in place before create your presale, and the associated risks.',
+        )}
       </>
     ),
   },
@@ -64,8 +65,9 @@ export default function LuanchpadInfo(): JSX.Element {
     <LaunchPadInfoWrapper>
       <StyledHeader>{t('Self-Serve Launchpad Info')}</StyledHeader>
       <StyledText>
-        {t(`Run your own decentralized Self-Serve Initial Ape Offering (SS-IAO) to raise funds and liquidity for your
-          project!`)}
+        {t(
+          'Run your own decentralized Self-Serve Initial Ape Offering (SS-IAO) to raise funds and liquidity for your project!',
+        )}
       </StyledText>
 
       {listOfFaqs(t).map((faq) => (

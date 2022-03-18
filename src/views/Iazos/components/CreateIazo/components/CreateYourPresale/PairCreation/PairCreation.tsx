@@ -93,14 +93,14 @@ const PairCreation: React.FC<PairCreationProps> = ({ onChange }) => {
           <PresaleInfoContainer>
             <StyledText wallet={accountFormated}>{t('Presale Creator')}:</StyledText>
             <StyledDescription fontSize="13px">
-              {t(`Please Note: This account will be the only account capable of retrieving funds raised from the SS-IAO. If
-                this account gets compromised in ANY capacity, ApeSwap has no ability to help. In addition, this is a
-                fully decentralized product, please make sure you understand the risks and procedures before you begin to
-                deploy your SS-IAO.`)}
+              {t(
+                'Please Note: This account will be the only account capable of retrieving funds raised from the SS-IAO. If this account gets compromised in ANY capacity, ApeSwap has no ability to help. In addition, this is a fully decentralized product, please make sure you understand the risks and procedures before you begin to deploy your SS-IAO.',
+              )}
             </StyledDescription>
             <StyledDescription fontSize="13px">
-              {t(`You cannot make any changes once you deploy your SS-IAO, and everything is final. All details are included
-                in our documentation and FAQ above.`)}
+              {t(
+                'You cannot make any changes once you deploy your SS-IAO, and everything is final. All details are included in our documentation and FAQ above.',
+              )}
             </StyledDescription>
           </PresaleInfoContainer>
         </>

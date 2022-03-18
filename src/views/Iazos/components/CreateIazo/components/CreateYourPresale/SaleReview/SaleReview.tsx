@@ -66,7 +66,7 @@ const SaleReview: React.FC<SaleReviewProps> = ({
           },
           { label: t('Dev/Other'), value: tokensForOther, color: 'rgba(161, 101, 82, 1)' },
         ]}
-        title={t(`SS-IAO's Tokenomics`)}
+        title={t("SS-IAO's Tokenomics")}
       />
       <DonutChart
         items={[

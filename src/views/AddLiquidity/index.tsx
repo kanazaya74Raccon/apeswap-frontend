@@ -290,7 +290,7 @@ export default function AddLiquidity({
         </Row>
         <Text small textAlign="left" my="24px" style={{ fontStyle: 'italic' }}>
           {t(
-            'Output is estimated. If the price changes by more than %allowedSlippage% % your transaction will revert.',
+            'Output is estimated. If the price changes by more than %allowedSlippage%% your transaction will revert.',
             { allowedSlippage: allowedSlippage / 100 },
           )}
         </Text>

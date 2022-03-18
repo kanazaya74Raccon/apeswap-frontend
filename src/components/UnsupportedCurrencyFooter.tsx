@@ -62,8 +62,9 @@ const UnsupportedModal: React.FC<Props> = ({ currencies, onDismiss }) => {
         })}
         <AutoColumn gap="lg">
           <Text>
-            {t(`Some assets are not available through this interface because they may not work well with our smart contract
-              or we are unable to allow trading for legal reasons.`)}
+            {t(
+              'Some assets are not available through this interface because they may not work well with our smart contract or we are unable to allow trading for legal reasons.',
+            )}
           </Text>
         </AutoColumn>
       </AutoColumn>

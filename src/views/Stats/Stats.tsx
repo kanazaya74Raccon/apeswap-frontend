@@ -117,8 +117,9 @@ const Stats: React.FC = () => {
             {t('HEADS UP, APES!')}
           </Heading>
           <Text>
-            {t(`The data on this page is not always up to date. Please do not rely on it for an accurate representation of
-              your holdings. For similar services, consider our partners such as`)}{' '}
+            {t(
+              'The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as',
+            )}{' '}
             <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
               yieldwatch
             </a>

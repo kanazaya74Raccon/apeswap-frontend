@@ -79,8 +79,9 @@ const HowItWorks = ({ onParticipate }: Props) => {
           <div>
             <SectionHeading>{t('OVERFLOW MODEL')}</SectionHeading>
             <StyledText>
-              {t(`Your token allocation is based on your percentage of the total raise. All overflow contributions will be
-                returned post-raise.`)}
+              {t(
+                'Your token allocation is based on your percentage of the total raise. All overflow contributions will be returned post-raise.',
+              )}
             </StyledText>
           </div>
         </FeatureBox>

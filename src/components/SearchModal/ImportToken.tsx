@@ -33,12 +33,14 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
         <Text textAlign="center">
           <h1 style={{ fontSize: '26px' }}>{t('Trade at your own risk!')}</h1>
           <br />
-          {t(`ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity.
-            Unlisted tokens may unfortunately be a scam.`)}
+          {t(
+            'ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity. Unlisted tokens may unfortunately be a scam.',
+          )}
           <br />
           <br />
-          {t(`Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
-            projects that can pass our DD.`)}
+          {t(
+            'Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all projects that can pass our DD.',
+          )}
           <br />
           <br />
           <a

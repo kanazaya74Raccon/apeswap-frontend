@@ -149,8 +149,9 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
       ) : (
         <Card>
           <Text fontSize="14px" style={{ textAlign: 'center' }}>
-            {t(`By adding liquidity you'll earn 0.2% of all trades on this pair proportional to your share of the pool.
-            Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`)}
+            {t(
+              "By adding liquidity you'll earn 0.2% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
+            )}
           </Text>
         </Card>
       )}

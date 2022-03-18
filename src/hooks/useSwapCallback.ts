@@ -210,7 +210,7 @@ export function useSwapCallback(
             } else {
               // otherwise, the error was unexpected and we need to convey that
               console.error(`Swap failed`, error, methodName, args, value)
-              throw new Error(t(`Swap failed: ${error.message}`))
+              throw new Error(t(`Swap failed: %message%`, { message: error.message }))
             }
           })
       },

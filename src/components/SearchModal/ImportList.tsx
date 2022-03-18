@@ -92,9 +92,9 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
               {t('Import at your own risk')}
             </Text>
             <Text color={theme.colors.error} mb="8px">
-              {t(`By adding this list you are implicitly trusting that the data is correct. Anyone can create a list,
-                including creating fake versions of existing lists and lists that claim to represent projects that do not
-                have one.`)}
+              {t(
+                'By adding this list you are implicitly trusting that the data is correct. Anyone can create a list, including creating fake versions of existing lists and lists that claim to represent projects that do not have one.',
+              )}
             </Text>
             <Text bold color={theme.colors.error} mb="16px">
               {typeof t('If you purchase a token from this list, you may not be able to sell it back.')}

@@ -100,7 +100,10 @@ const Nfa = () => {
               {t(nfa.attributes.rarityTierName)}
             </Text>
             <Text fontWeight={300} fontSize="20px" style={{ margin: '5px 0px 5px 0px' }}>
-              {t(`Level ${nfa.attributes.rarityTierNumber} | Rarity ${nfa.attributes.rarityOverallRank} / 1000`)}
+              {t('Level %rarityTierNumber% | Rarity %rarityOverallRank% / 1000', {
+                rarityTierNumber: nfa.attributes.rarityTierNumber,
+                rarityOverallRank: nfa.attributes.rarityOverallRank,
+              })}
             </Text>
             <a
               href={`https://nftkey.app/collections/nfas/token-details/?tokenId=${id}`}

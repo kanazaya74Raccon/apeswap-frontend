@@ -186,7 +186,9 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({ farm }) => {
         </Flex>
       </Container>
       <LinkCon>
-        <StyledLinkExternal href={blockExplorer}>{t(`View on ${NETWORK_LABEL[chainId]}Scan`)}</StyledLinkExternal>
+        <StyledLinkExternal href={blockExplorer}>
+          {t(`View on %chain% Scan`, { chain: NETWORK_LABEL[chainId] })}
+        </StyledLinkExternal>
       </LinkCon>
     </>
   )
