@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFarms, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
+import { useFarmLpAprs, useFarms, useFetchFarmLpAprs, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import { Farm } from 'state/types'
@@ -14,14 +14,28 @@ import { Header, HeadingContainer, StyledHeading } from './styles'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
 
 const Farms: React.FC = () => {
-  usePollFarms()
   useFetchLpTokenPrices()
+  useFetchFarmLpAprs()
+  usePollFarms()
   const { pathname } = useLocation()
+  const { chainId } = useActiveWeb3React()
   const TranslateString = useI18n()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const { account } = useActiveWeb3React()
   const farmsLP = useFarms(account)
+  const farmLpAprs = useFarmLpAprs()
+  const mergedFarms = farmsLP?.map((farm) => {
+    return {
+      ...farm,
+      lpApr: (
+        farmLpAprs?.find((farmLp) => farmLp.chainId === chainId)?.lpAprs?.find((lp) => lp.pid === farm.pid)?.lpApr * 100
+      )?.toFixed(2),
+    }
+  })
+  const finalFarms = mergedFarms?.map((farm) => {
+    return { ...farm, apy: (parseFloat(farm.apy) + parseFloat(farm.lpApr)).toFixed(2) }
+  })
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -47,8 +61,8 @@ const Farms: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
+  const activeFarms = finalFarms.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+  const inactiveFarms = finalFarms.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),

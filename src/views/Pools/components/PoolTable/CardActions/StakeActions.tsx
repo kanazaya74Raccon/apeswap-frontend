@@ -38,10 +38,6 @@ interface StakeActionsProps {
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const IconButtonWrapperStake = styled.div`
@@ -61,10 +57,6 @@ const IconButtonWrapper = styled.div`
 const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StyledHeadingGreen = styled(Heading)`

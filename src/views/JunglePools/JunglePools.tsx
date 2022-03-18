@@ -656,7 +656,7 @@ const JunglePools: React.FC = () => {
           )}
         </HeadingContainer>
       </Header>
-      <StyledPage width="1130px">
+      <StyledPage width="1140px">
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

@@ -46,7 +46,7 @@ export const { setNfaStakingPoolsPublicData, setNfaStakingPoolsUserData, updateN
 // Thunks
 export const fetchNfaStakingPoolsPublicDataAsync =
   (chainId: number, tokenPrices: TokenPrices[]) => async (dispatch) => {
-    const blockLimits = await fetchPoolsBlockLimits(chainId)
+    const blockLimits = await fetchPoolsBlockLimits()
     const totalStakings = await fetchPoolsTotalStatking(chainId)
     const tokenStatsAndAprs = await fetchPoolTokenStatsAndApr(tokenPrices, totalStakings)
     const liveData = await Promise.all(

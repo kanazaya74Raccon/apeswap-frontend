@@ -37,10 +37,6 @@ const IconButtonWrapper = styled.div`
 const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StyledFlex = styled(Flex)`

@@ -1,7 +1,6 @@
 import auctionAbi from 'config/abi/auction.json'
-import { AuctionsOverall, Auction } from 'state/types'
+import { AuctionsOverall, Auction, Nfa } from 'state/types'
 import { getAuctionAddress } from 'utils/addressHelper'
-import Nfts from 'config/constants/nfts'
 import BigNumber from 'bignumber.js'
 import { ZERO_ADDRESS } from 'config'
 import multicall from 'utils/multicall'
@@ -33,7 +32,7 @@ export const fetchAuctionDetails = async (auctionContractAddress: string, chainI
   return auctionDetails
 }
 
-export const fetchAllAuctions = async (chainId: number): Promise<AuctionsOverall> => {
+export const fetchAllAuctions = async (nfas: Nfa[], chainId: number): Promise<AuctionsOverall> => {
   const auctionContractAddress = getAuctionAddress(chainId)
   const [activeAuctionId, minIncrementAmount, minIncrementPercentage, auctionFeePercent, pushedAuctions] =
     await fetchAuctionDetails(auctionContractAddress, chainId)
@@ -56,7 +55,7 @@ export const fetchAllAuctions = async (chainId: number): Promise<AuctionsOverall
       .map((auction, i): Auction => {
         return {
           auctionId: i + 1,
-          nfa: Nfts.find((nft) => nft.index === auction.node.data.toNumber()),
+          nfa: nfas.find((nft) => nft.index === auction.node.data.toNumber()),
           seller: auction.auction.seller,
           highestBidder: auction.auction.highestBidder,
           highestBid: auction.auction.highestBid.toString(),

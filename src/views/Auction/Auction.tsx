@@ -196,13 +196,17 @@ const MoreInfo = styled.div`
   cursor: pointer;
   margin-right: 10px;
   width: 100%;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.yellowHover};
+  }
 `
 
 const Auction: React.FC = () => {
   useFetchAuctions()
   const { auctions } = useAuctions()
-  const { isXl } = useMatchBreakpoints()
-  const isDesktop = isXl
+  const { isXl, isXxl } = useMatchBreakpoints()
+  const isDesktop = isXxl || isXl
   return (
     <SwiperProvider>
       <Container>

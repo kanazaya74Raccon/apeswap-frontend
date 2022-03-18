@@ -6,10 +6,6 @@ import { useERC20 } from 'hooks/useContract'
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 interface ApprovalActionProps {

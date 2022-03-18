@@ -47,10 +47,6 @@ const HarvestWrapper = styled.div`
 const StyledIconButtonSquare = styled(IconButtonSquare)`
   width: 34px;
   height: 34px;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StyledHeadingGreen = styled(Heading)`
@@ -81,10 +77,6 @@ const StyledFlex = styled(Flex)`
 
 const StyledButtonSquare = styled(ButtonSquare)`
   font-weight: 600;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StakeAction: React.FC<StakeActionsProps> = ({

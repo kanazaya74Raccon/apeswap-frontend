@@ -977,6 +977,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  front: {
+    symbol: 'FRONT',
+    address: {
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    decimals: 18,
+  },
+  ruby: {
+    symbol: 'RUBY',
+    address: {
+      56: '0xf7722aa0714096f1fb5ef83e6041cebb4d58a08e',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -999,6 +1013,14 @@ const tokens = {
     symbol: 'NFT11-BUSD',
     address: {
       56: '0xEf0A90fb728195F63C911f52ab4bde331089319f',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  rubyBnb: {
+    symbol: 'RUBY-BNB',
+    address: {
+      56: '0xec9f5a5e4690fa14025971f0d2dd91f5600e24c7',
     },
     decimals: 18,
     lpToken: true,

@@ -4,7 +4,7 @@ import { EarnIcon, TokenContainer } from './styles'
 
 interface ServiceTokenDisplayProps {
   token1: string
-  token2: string
+  token2?: string
   token3?: string
   token4?: string
   stakeLp?: boolean
@@ -27,7 +27,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   earnLp = false,
 }) => {
   const token1Urls = setUrls(token1)
-  const token2Urls = setUrls(token2)
+  const token2Urls = token2 ? setUrls(token2) : []
   const token3Urls = token3 ? setUrls(token3) : []
   const token4Urls = token4 ? setUrls(token4) : []
 
@@ -66,6 +66,13 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   )
 
   const displayToReturn = () => {
+    if (token1 && !token2 && !token3 && !token4) {
+      return (
+        <Flex alignItems="center">
+          <TokenContainer srcs={token1Urls} />{' '}
+        </Flex>
+      )
+    }
     if (!stakeLp && !earnLp) {
       return StakeTokenEarnToken
     }

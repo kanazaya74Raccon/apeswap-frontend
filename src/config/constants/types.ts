@@ -123,6 +123,7 @@ export interface NfaStakingPoolConfig {
   contractAddress: Address
   tokenPerBlock: string
   isFinished: boolean
+  endBlock: number
 }
 
 export interface Token {
@@ -232,6 +233,7 @@ export interface DualFarmConfig {
   network: number
   stakeTokenAddress: string
   rewarderAddress: string
+  dualImage?: boolean
   stakeTokens: {
     token0: Token
     token1: Token

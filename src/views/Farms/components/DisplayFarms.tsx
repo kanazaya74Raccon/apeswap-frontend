@@ -15,8 +15,8 @@ import { ActionContainer } from './CardActions/styles'
 
 const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
 
   const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
@@ -42,7 +42,7 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
           <ListViewContent
             title="APR"
             value={`${farm?.apr}%`}
-            value2="23.12%"
+            value2={`${farm?.lpApr}%`}
             value2Icon="/images/swap-icon.svg"
             valueIcon="/images/tokens/banana.svg"
             width={isMobile ? 100 : 200}

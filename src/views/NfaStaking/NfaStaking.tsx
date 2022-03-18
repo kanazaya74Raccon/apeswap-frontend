@@ -334,7 +334,7 @@ const NfaStaking: React.FC = () => {
           <StyledHeading as="h1" mb="8px" mt={0} color="white">
             {TranslateString(999, 'NFA Staking')}
           </StyledHeading>
-          {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}
+          {size.width > 968 && <AdminText>Stake Non Fungible Apes to earn BANANA</AdminText>}
         </HeadingContainer>
         <MonkeyWrapper>
           <PoolMonkey />

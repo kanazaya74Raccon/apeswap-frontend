@@ -37,10 +37,24 @@ import {
   DualFarm,
   HomepageData,
   LpTokenPricesState,
+  NfaState,
+  HomepageTokenStats,
+  NewsCardType,
+  LaunchCalendarCard,
+  ServiceData,
+  FarmLpAprsType,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
-import { fetchHomepageData, fetchStats } from './stats'
+import {
+  fetchFarmLpAprs,
+  fetchHomepageData,
+  fetchHomepageLaunchCalendar,
+  fetchHomepageNews,
+  fetchHomepageService,
+  fetchHomepageTokenData,
+  fetchStats,
+} from './stats'
 import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -51,6 +65,7 @@ import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { useBlock } from './block/hooks'
+import { fetchAllNfas } from './nfas'
 
 const ZERO = new BigNumber(0)
 
@@ -375,15 +390,18 @@ export const useToast = () => {
 
 export const useFetchProfile = () => {
   const { account } = useActiveWeb3React()
+  const getNfas = !!account
+  useFetchNfas(getNfas)
   const dispatch = useAppDispatch()
   const chainId = CHAIN_ID.BSC
   const { slowRefresh } = useRefresh()
+  const { nfas } = useNfas()
 
   useEffect(() => {
     if (account) {
-      dispatch(fetchProfile(chainId, account))
+      dispatch(fetchProfile(nfas, chainId, account))
     }
-  }, [account, dispatch, slowRefresh, chainId])
+  }, [account, dispatch, nfas, slowRefresh, chainId])
 }
 
 export const useProfile = () => {
@@ -419,13 +437,15 @@ export const useStats = () => {
   return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
-export const useFetchHomepageStats = () => {
+export const useFetchHomepageStats = (isFetching: boolean) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchHomepageData())
-  }, [slowRefresh, dispatch])
+    if (isFetching) {
+      dispatch(fetchHomepageData())
+    }
+  }, [slowRefresh, isFetching, dispatch])
 }
 
 export const useHomepageStats = (): HomepageData => {
@@ -433,16 +453,96 @@ export const useHomepageStats = (): HomepageData => {
   return homepageStats
 }
 
+export const useFetchHomepageServiceStats = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageService())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageServiceStats = (): ServiceData[] => {
+  const homepageServiceStats = useSelector((state: State) => state.stats.HomepageServiceStats)
+  return homepageServiceStats
+}
+
+export const useFetchHomepageTokenStats = (isFetching: boolean, category: string) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageTokenData(category))
+    }
+  }, [slowRefresh, isFetching, category, dispatch])
+}
+
+export const useHomepageTokenStats = (): HomepageTokenStats[] => {
+  const homepageTokenStats = useSelector((state: State) => state.stats.HomepageTokenStats)
+  return homepageTokenStats
+}
+
+export const useFetchFarmLpAprs = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    dispatch(fetchFarmLpAprs())
+  }, [slowRefresh, dispatch])
+}
+
+export const useFarmLpAprs = (): FarmLpAprsType[] => {
+  const farmLpAprs = useSelector((state: State) => state.stats.FarmLpAprs)
+  return farmLpAprs
+}
+
+export const useFetchHomepageNews = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageNews())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageLaunchCalendar = (): LaunchCalendarCard[] => {
+  const homepageLaunchCalendar = useSelector((state: State) => state.stats.HomepageLaunchCalendar)
+  return homepageLaunchCalendar
+}
+
+export const useFetchHomepageLaunchCalendar = (isFetching: boolean) => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    if (isFetching) {
+      dispatch(fetchHomepageLaunchCalendar())
+    }
+  }, [slowRefresh, isFetching, dispatch])
+}
+
+export const useHomepageNews = (): NewsCardType[] => {
+  const homepageNews = useSelector((state: State) => state.stats.HomepageNews)
+  return homepageNews
+}
+
 export const useFetchAuctions = () => {
+  useFetchNfas()
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
   const chainId = useNetworkChainId()
+  const { nfas } = useNfas()
 
   useEffect(() => {
     if (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) {
-      dispatch(fetchAuctions(chainId))
+      dispatch(fetchAuctions(nfas, chainId))
     }
-  }, [dispatch, fastRefresh, chainId])
+  }, [dispatch, fastRefresh, nfas, chainId])
 }
 
 export const useAuctions = () => {
@@ -504,6 +604,21 @@ export const useFetchTokenPrices = () => {
 export const useTokenPrices = () => {
   const { isInitialized, isLoading, data }: TokenPricesState = useSelector((state: State) => state.tokenPrices)
   return { tokenPrices: data, isInitialized, isLoading }
+}
+
+export const useFetchNfas = (nafFlag = true) => {
+  const dispatch = useAppDispatch()
+  const chainId = useNetworkChainId()
+  useEffect(() => {
+    if (nafFlag) {
+      dispatch(fetchAllNfas())
+    }
+  }, [dispatch, nafFlag, chainId])
+}
+
+export const useNfas = () => {
+  const { isInitialized, isLoading, data }: NfaState = useSelector((state: State) => state.nfas)
+  return { nfas: data, isInitialized, isLoading }
 }
 
 export const useFetchLpTokenPrices = () => {

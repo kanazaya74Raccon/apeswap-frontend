@@ -50,7 +50,6 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
             <td>
               <ContributeButton
                 disabled={disabled || pendingTx || !isAmountValid(value)}
-                variant="yellow"
                 onClick={() => handleDeposit(value, currency)}
               >
                 CONTRIBUTE

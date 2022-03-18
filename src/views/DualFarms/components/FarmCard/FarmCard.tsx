@@ -82,6 +82,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
         bananaPrice={bananaPrice}
         farmAPR={farmAPR?.toFixed(2)}
         removed={removed}
+        dualImage={farm?.dualImage}
         showExpandableSection={showExpandableSection}
         farm={farm}
       />

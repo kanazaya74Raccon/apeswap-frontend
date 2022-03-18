@@ -3,7 +3,7 @@ import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Text, Flex, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
-import CardValue from 'views/Home/components/CardValue'
+import CardValue from 'components/CardValue'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
