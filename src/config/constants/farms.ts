@@ -3106,6 +3106,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://frontier.xyz/',
   },
   {
+    pid: 191,
+    image: 'APE.svg',
+    lpSymbol: 'APE-BNB LP',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
+    },
+    tokenSymbol: 'APE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://apecoin.com/',
+  },
+  {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',
     lpSymbol: 'BAKE-BANANA',
