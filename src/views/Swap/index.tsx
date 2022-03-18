@@ -140,7 +140,7 @@ export default function Swap({ history }: RouteComponentProps) {
     [independentField]: typedValue,
     [dependentField]: showWrap
       ? parsedAmounts[independentField]?.toExact() ?? ''
-      : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
+      : parsedAmounts[dependentField]?.toSignificant() ?? '',
   }
 
   const route = trade?.route
@@ -160,14 +160,15 @@ export default function Swap({ history }: RouteComponentProps) {
         isLp,
         isNative,
       )
-      console.log('tradeAmount', trade?.inputAmount)
-      console.log('tradeAmount sig6', trade?.inputAmount.toSignificant(6))
-      console.log('usdVal', usdVal)
-      console.log('tradeAmount sig6 * usdVal', Number(trade?.inputAmount.toSignificant(6)) * usdVal)
+      // console.log('tradeAmount', trade?.inputAmount)
+      // console.log('tradeAmount sig6', trade?.inputAmount.toSignificant(6))
+      // console.log('usdVal', usdVal)
+      // console.log('tradeAmount sig6 * usdVal', Number(trade?.inputAmount.toSignificant(6)) * usdVal)
       setTradeValueUsd(Number(trade?.inputAmount.toSignificant(6)) * usdVal)
     }
     getTradeVal()
   }, [setTradeValueUsd, chainId, trade])
+  // console.log('tradeValueUsd', tradeValueUsd)
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
@@ -376,6 +377,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         </ExpertButton>
                       ) : null}
                     </AutoColumn>
+
                     <CurrencyInputPanel
                       value={formattedAmounts[Field.OUTPUT]}
                       onUserInput={handleTypeOutput}
