@@ -1,4 +1,5 @@
-import { apiBaseUrl } from 'hooks/api'
+// import { apiBaseUrl } from 'hooks/api'
+const apiBaseUrl = 'https://apeswap-api-development.herokuapp.com'
 
 const getFarmLpAprs = async () => {
   try {
