@@ -29,8 +29,7 @@ const Menu = (props) => {
   }
 
   useEffect(() => {
-    const theme = !isDark
-    const mode = !theme ? 'light' : 'dark'
+    const mode = isDark ? 'dark' : 'light'
     track({
       event: 'themeSwitcher',
       chain: chainId,
