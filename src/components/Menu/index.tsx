@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Menu as UikitMenu } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
@@ -28,18 +28,28 @@ const Menu = (props) => {
     return bscConfig
   }
 
-  const changeTheme = () => {
-    toggleTheme()
+  useEffect(() => {
     const theme = !isDark
     const mode = !theme ? 'light' : 'dark'
     track({
       event: 'themeSwitcher',
       chain: chainId,
-      data: {
-        mode,
-      },
+      data: { mode },
     })
-  }
+  }, [isDark, chainId])
+
+  // const changeTheme = () => {
+  //   toggleTheme()
+  //   const theme = !isDark
+  //   const mode = !theme ? 'light' : 'dark'
+  //   track({
+  //     event: 'themeSwitcher',
+  //     chain: chainId,
+  //     data: {
+  //       mode,
+  //     },
+  //   })
+  // }
 
   return (
     <UikitMenu
@@ -47,7 +57,7 @@ const Menu = (props) => {
       login={login}
       logout={logout}
       isDark={isDark}
-      toggleTheme={changeTheme}
+      toggleTheme={toggleTheme}
       bananaPriceUsd={bananaPriceUsd}
       links={currentMenu()}
       chainId={chainId}
