@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HelpIcon } from '@apeswapfinance/uikit'
+import { Skeleton } from '@apeswapfinance/uikit'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 
@@ -29,7 +29,7 @@ const Logo: React.FC<LogoProps> = ({ srcs, alt, ...rest }) => {
     )
   }
 
-  return <HelpIcon {...rest} />
+  return <Skeleton animation="waves" variant="circle" {...rest} />
 }
 
 export default Logo

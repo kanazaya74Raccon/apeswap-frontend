@@ -67,7 +67,7 @@ const StyledText = styled(Text)`
 `
 
 const ApeSwapStats = () => {
-  useFetchHomepageStats()
+  useFetchHomepageStats(true)
   const TranslateString = useI18n()
   const bananaPerBlock = BANANA_PER_BLOCK.toNumber()
   const stats = useHomepageStats()
