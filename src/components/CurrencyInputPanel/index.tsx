@@ -140,14 +140,6 @@ export default function CurrencyInputPanel({
     />,
   )
 
-  // const tokenDest = id === 'swap-currency-output' ? 'To:' : 'From:'
-  // console.log('tokenDest', tokenDest)
-  // console.log(
-  //   'isLP - ',
-  //   `$${(tokenPrice * (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100)))?.toFixed(2)}`,
-  // )
-  // console.log('isNotLP - ', `$${(tokenPrice * parseFloat(value))?.toFixed(2)}`)
-
   return (
     <CurrencyInputContainer removeLiquidity={removeLiquidity}>
       <Flex style={{ position: 'relative' }}>
