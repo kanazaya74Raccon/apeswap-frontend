@@ -37,19 +37,6 @@ const Menu = (props) => {
     })
   }, [isDark, chainId])
 
-  // const changeTheme = () => {
-  //   toggleTheme()
-  //   const theme = !isDark
-  //   const mode = !theme ? 'light' : 'dark'
-  //   track({
-  //     event: 'themeSwitcher',
-  //     chain: chainId,
-  //     data: {
-  //       mode,
-  //     },
-  //   })
-  // }
-
   return (
     <UikitMenu
       account={account}
