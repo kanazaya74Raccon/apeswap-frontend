@@ -15,22 +15,19 @@ import HarvestAllAction from './components/CardActions/HarvestAllAction'
 
 const Farms: React.FC = () => {
   useFetchLpTokenPrices()
-  useFetchFarmLpAprs()
   usePollFarms()
   const { pathname } = useLocation()
-  const { chainId } = useActiveWeb3React()
   const TranslateString = useI18n()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
+  useFetchFarmLpAprs(chainId)
   const farmsLP = useFarms(account)
   const farmLpAprs = useFarmLpAprs()
   const mergedFarms = farmsLP?.map((farm) => {
     return {
       ...farm,
-      lpApr: (
-        farmLpAprs?.find((farmLp) => farmLp.chainId === chainId)?.lpAprs?.find((lp) => lp.pid === farm.pid)?.lpApr * 100
-      )?.toFixed(2),
+      lpApr: (farmLpAprs?.lpAprs?.find((lp) => lp.pid === farm.pid)?.lpApr * 100)?.toFixed(2),
     }
   })
   const finalFarms = mergedFarms?.map((farm) => {

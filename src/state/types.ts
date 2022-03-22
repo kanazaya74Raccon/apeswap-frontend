@@ -495,7 +495,7 @@ export interface StatsState {
   HomepageNews: NewsCardType[]
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
-  FarmLpAprs: FarmLpAprsType[]
+  FarmLpAprs: FarmLpAprsType
   data: Stats
 }
 

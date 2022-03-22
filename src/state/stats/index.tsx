@@ -108,8 +108,8 @@ export const fetchHomepageService = () => async (dispatch) => {
   dispatch(setHomepageServiceStats(homepageServiceStats))
 }
 
-export const fetchFarmLpAprs = () => async (dispatch) => {
-  const farmLpAprs = await getFarmLpAprs()
+export const fetchFarmLpAprs = (chainId) => async (dispatch) => {
+  const farmLpAprs = await getFarmLpAprs(chainId)
   dispatch(setFarmLpAprs(farmLpAprs))
 }
 

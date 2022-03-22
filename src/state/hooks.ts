@@ -485,16 +485,16 @@ export const useHomepageTokenStats = (): HomepageTokenStats[] => {
   return homepageTokenStats
 }
 
-export const useFetchFarmLpAprs = () => {
+export const useFetchFarmLpAprs = (chainId) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmLpAprs())
-  }, [slowRefresh, dispatch])
+    dispatch(fetchFarmLpAprs(chainId))
+  }, [slowRefresh, chainId, dispatch])
 }
 
-export const useFarmLpAprs = (): FarmLpAprsType[] => {
+export const useFarmLpAprs = (): FarmLpAprsType => {
   const farmLpAprs = useSelector((state: State) => state.stats.FarmLpAprs)
   return farmLpAprs
 }
