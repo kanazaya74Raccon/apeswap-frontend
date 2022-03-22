@@ -9,7 +9,6 @@ import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 
 export interface FarmWithStakedValue extends Farm {
-  apr?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
 }

@@ -321,8 +321,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                       lpLabel={lpLabel}
                       rewardTokenName="BANANA"
                       addLiquidityUrl={addLiquidityUrl}
-                      rewardTokenPrice={bananaPrice}
-                      apy={apr}
+                      rewardTokenPrice={bananaPrice?.toNumber()}
+                      apy={apr?.toNumber()}
                     />
                   )}
                   <StyledAPRText>{farmAPR}%</StyledAPRText>

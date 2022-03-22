@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Stats, StatsState } from 'state/types'
+import getFarmLpAprs from './getFarmLpAprs'
 import getHomepageLaunchCalendar from './getHomepageLaunchCalendar'
 import getHomepageNews from './getHomepageNews'
 import getHomepageServiceStats from './getHomepageService'
@@ -16,6 +17,7 @@ const initialState: StatsState = {
   HomepageNews: null,
   HomepageLaunchCalendar: null,
   HomepageServiceStats: null,
+  FarmLpAprs: null,
   data: null,
 }
 
@@ -50,6 +52,9 @@ export const statsSlice = createSlice({
     setHomepageServiceStats: (state, action) => {
       state.HomepageServiceStats = action.payload
     },
+    setFarmLpAprs: (state, action) => {
+      state.FarmLpAprs = action.payload
+    },
   },
 })
 
@@ -63,6 +68,7 @@ export const {
   setHomepageNews,
   setHomepageLaunchCalendar,
   setHomepageServiceStats,
+  setFarmLpAprs,
 } = statsSlice.actions
 
 // Thunks
@@ -100,6 +106,11 @@ export const fetchHomepageLaunchCalendar = () => async (dispatch) => {
 export const fetchHomepageService = () => async (dispatch) => {
   const homepageServiceStats = await getHomepageServiceStats()
   dispatch(setHomepageServiceStats(homepageServiceStats))
+}
+
+export const fetchFarmLpAprs = (chainId) => async (dispatch) => {
+  const farmLpAprs = await getFarmLpAprs(chainId)
+  dispatch(setFarmLpAprs(farmLpAprs))
 }
 
 export default statsSlice.reducer

@@ -384,8 +384,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                     lpLabel={stakeToken}
                     rewardTokenName={earnToken}
                     addLiquidityUrl="https://apeswap.finance/swap"
-                    rewardTokenPrice={new BigNumber(rewardTokenPrice)}
-                    apy={apr.div(100)}
+                    rewardTokenPrice={rewardTokenPrice}
+                    apy={apr.div(100)?.toNumber()}
                   />
                   <StyledAPRText>{poolAPR}%</StyledAPRText>
                 </FlexSwitch>
