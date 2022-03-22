@@ -129,7 +129,7 @@ const PoolCardForHome: React.FC<HarvestProps> = ({ pool }) => {
         />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontWeight={800}>{tokenName}</StyledHeading>
+        <StyledHeading>{tokenName}</StyledHeading>
         <ApyWrapper>
           <ApyText>APR:</ApyText>
           {apr ? <ApyNumber>{apr?.toFixed(2)}%</ApyNumber> : <Skeleton width="80px" />}

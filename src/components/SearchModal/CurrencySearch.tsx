@@ -73,12 +73,12 @@ function CurrencySearch({
     [onCurrencySelect],
   )
 
-  // manage focus on modal show
-  const inputRef = useRef<HTMLInputElement>()
+  // // manage focus on modal show
+  // const inputRef = useRef<HTMLInputElement>()
 
-  useEffect(() => {
-    inputRef.current.focus()
-  }, [])
+  // useEffect(() => {
+  //   inputRef.current.focus()
+  // }, [])
 
   const handleInput = useCallback((event) => {
     const input = event.target.value
@@ -117,10 +117,9 @@ function CurrencySearch({
           <StyledInput
             id="token-search-input"
             placeholder="Search name or paste address"
-            scale="lg"
             autoComplete="off"
             value={searchQuery}
-            ref={inputRef as RefObject<HTMLInputElement>}
+            // ref={inputRef as RefObject<HTMLInputElement>}
             onChange={handleInput}
             onKeyDown={handleEnter}
           />

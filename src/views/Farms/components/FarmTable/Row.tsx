@@ -4,7 +4,7 @@ import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { useMatchBreakpoints, Flex } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { useNetworkChainId } from 'state/hooks'
@@ -130,7 +130,7 @@ const ArrowContainer = styled(Flex)`
   right: 23px;
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
 `
 

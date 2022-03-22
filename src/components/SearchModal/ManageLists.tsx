@@ -74,6 +74,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         </RowFixed>
       </Column>
       <Toggle
+        labels={['Yes', 'No']}
         checked={isActive}
         onChange={() => {
           if (isActive) {
@@ -200,7 +201,6 @@ function ManageLists({
         <Row>
           <Input
             id="list-add-input"
-            scale="lg"
             placeholder="https:// or ipfs:// or ENS name"
             value={listUrlInput}
             onChange={handleInput}

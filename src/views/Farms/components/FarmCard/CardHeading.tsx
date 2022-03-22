@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarmUser } from 'state/hooks'
 import { useWeb3React } from '@web3-react/core'
@@ -236,7 +236,7 @@ const Container = styled.div`
   align-items: center;
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
   font-size: 11.5px;
 `

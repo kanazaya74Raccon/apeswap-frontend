@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { Heading, Text, Card, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Text, Card, WarningIcon, Button } from '@apeswapfinance/uikit'
+import { Box } from 'theme-ui'
 
 interface ContentProps {
   readingMore: boolean
@@ -128,7 +129,7 @@ export const CenterCard = styled.div`
   align-items: center;
   width: 100%;
 `
-export const InnerContent = styled(CardBody)<ContentProps>`
+export const InnerContent = styled(Box)<ContentProps>`
   padding: 0px 20px;
   display: none;
 

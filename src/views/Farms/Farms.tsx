@@ -343,9 +343,7 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-          </StyledHeading>
+          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
         </HeadingContainer>
       </Header>
 

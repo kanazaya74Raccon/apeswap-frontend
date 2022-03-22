@@ -1,6 +1,6 @@
 import React from 'react'
 import { Currency, Token } from '@apeswapfinance/sdk'
-import { Button, Text, Modal, useModal, InjectedModalProps, Link } from '@apeswapfinance/uikit'
+import { Button, Text, Modal, useModal, ModalProps, Link } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { AutoRow } from 'components/layout/Row'
 import { AutoColumn } from 'components/layout/Column'
@@ -10,7 +10,7 @@ import { getEtherscanLink } from 'utils'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { useUnsupportedTokens } from '../hooks/Tokens'
 
-interface Props extends InjectedModalProps {
+interface Props extends ModalProps {
   currencies: (Currency | undefined)[]
 }
 

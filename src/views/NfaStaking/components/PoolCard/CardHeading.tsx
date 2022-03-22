@@ -6,7 +6,7 @@ import { BLOCKS_PER_DAY } from 'config'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
@@ -279,7 +279,7 @@ const StyledNumber = styled.div`
   }
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
   font-size: 11.5px;
 `

@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import { CHAIN_ID } from 'config/constants/chains'
-import { Button, Card, CardBody, Text } from '@apeswapfinance/uikit'
+import { Button, Card, Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
@@ -157,7 +157,7 @@ const FarmedStakingCard = () => {
           {TranslateString(542, 'Earnings')}
         </HeaderText>
       </CardHeader>
-      <CardBody>
+      <div>
         {account ? (
           <HarvestDiv>
             <Block>
@@ -198,7 +198,7 @@ const FarmedStakingCard = () => {
             <UnlockButton fontSize="14px" />
           )}
         </Actions>
-      </CardBody>
+      </div>
     </StyledFarmStakingCard>
   )
 }

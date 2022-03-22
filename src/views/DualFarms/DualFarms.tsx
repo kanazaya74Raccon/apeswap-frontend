@@ -165,7 +165,7 @@ const StyledImage = styled.img`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -596,9 +596,7 @@ const DualFarms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {TranslateString(999, 'Stake LP tokens to earn Rewards')}
-          </StyledHeading>
+          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn Rewards')}</StyledHeading>
         </HeadingContainer>
       </Header>
 

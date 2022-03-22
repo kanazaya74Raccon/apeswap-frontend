@@ -13,7 +13,7 @@ const IfoCardProgress: React.FC<IfoCardProgressProps> = ({ progress, amountLabel
     <StyledProgress>
       {!!amountLabel && <Label fontSize="16px">{amountLabel}</Label>}
       <ProgressBar>
-        <Progress primaryStep={progress} />
+        <Progress to={progress} />
       </ProgressBar>
       {!!timeLabel && <Label fontSize="12px">{timeLabel}</Label>}
     </StyledProgress>

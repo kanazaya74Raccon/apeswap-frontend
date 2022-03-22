@@ -40,7 +40,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
 
   return (
     <Container>
-      <SectionHeading size="lg">HOW IT WORKS</SectionHeading>
+      <SectionHeading>HOW IT WORKS</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="time-circle" />

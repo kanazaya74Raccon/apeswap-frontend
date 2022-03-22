@@ -7,7 +7,7 @@ import useReward from 'hooks/useReward'
 import { getContract } from 'utils'
 import { useFarmUser, useFarmFromSymbol, useNetworkChainId } from 'state/hooks'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ButtonSquare, useModal } from '@apeswapfinance/uikit'
+import { Button, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useHarvest } from 'hooks/useHarvest'
 import { useApprove } from 'hooks/useApprove'
@@ -16,7 +16,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 
 import DepositModal from '../DepositModal'
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
 `
 
@@ -86,20 +86,20 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <StyledButtonSquare className="noClick" disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButton className="noClick" disabled={requestedApproval} onClick={handleApprove}>
           {TranslateString(999, 'ENABLE')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     if (rawStakedBalance === 0) {
       return (
-        <StyledButtonSquare className="noClick" onClick={onPresentDeposit}>
+        <StyledButton className="noClick" onClick={onPresentDeposit}>
           {TranslateString(999, 'STAKE LP')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     return (
-      <StyledButtonSquare
+      <StyledButton
         className="noClick"
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
@@ -113,7 +113,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, lpSymbol
         }}
       >
         {TranslateString(999, 'HARVEST')}
-      </StyledButtonSquare>
+      </StyledButton>
     )
   }
 

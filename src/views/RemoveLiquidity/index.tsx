@@ -6,7 +6,7 @@ import { ETHER, JSBI, Percent, Token, ROUTER_ADDRESS } from '@apeswapfinance/sdk
 import { LargeStyledButton } from 'views/Swap/styles'
 import track from 'utils/track'
 import Page from 'components/layout/Page'
-import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, Button } from '@apeswapfinance/uikit'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
@@ -475,7 +475,7 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <ButtonSquare
+        <Button
           fullWidth
           mt="25px"
           style={{ fontSize: '20px', height: '50px' }}
@@ -483,7 +483,7 @@ export default function RemoveLiquidity({
           onClick={onRemove}
         >
           Confirm
-        </ButtonSquare>
+        </Button>
       </>
     )
   }

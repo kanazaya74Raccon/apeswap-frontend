@@ -22,6 +22,8 @@ export const Motto = styled(Text).attrs({
 
 export const SectionHeading = styled(Heading)`
   font-weight: 600;
+  align-text: center;
+  text-align: center;
 `
 
 export const Frame = styled.div`

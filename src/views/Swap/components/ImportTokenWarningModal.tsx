@@ -1,9 +1,9 @@
 import React from 'react'
 import { Token } from '@apeswapfinance/sdk'
-import { Modal, InjectedModalProps } from '@apeswapfinance/uikit'
+import { Modal, ModalProps } from '@apeswapfinance/uikit'
 import ImportToken from 'components/SearchModal/ImportToken'
 
-interface Props extends InjectedModalProps {
+interface Props extends ModalProps {
   tokens: Token[]
   onCancel: () => void
 }

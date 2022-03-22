@@ -145,7 +145,7 @@ export const StyledImage = styled.img`
 `
 
 export const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -309,6 +309,7 @@ export const ButtonCheckWrapper = styled.div`
 export const StyledHeading = styled(Heading)`
   font-size: 30px;
   max-width: 176px !important;
+  margin-bottom: 12px;
   color: ${({ theme }) => theme.colors.text};
 
   ${({ theme }) => theme.mediaQueries.xs} {

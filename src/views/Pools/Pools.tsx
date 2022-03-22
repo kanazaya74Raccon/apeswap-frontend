@@ -226,7 +226,7 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -464,7 +464,7 @@ const StyledTable = styled.div`
 `
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
@@ -692,7 +692,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (

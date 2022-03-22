@@ -1,6 +1,7 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
+import { Box } from 'theme-ui'
 import { useFetchHomepageStats, useHomepageStats } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import { BANANA_PER_BLOCK } from 'config'
@@ -45,7 +46,7 @@ const GreyRow = styled(Row)`
   background: ${({ theme }) => theme.colors.white4};
 `
 
-const StyledCardBody = styled(CardBody)`
+const StyledCardBody = styled(Box)`
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 8px;
@@ -75,9 +76,7 @@ const ApeSwapStats = () => {
   return (
     <StyledBananaStats>
       <StyledCardBody>
-        <Heading size="lg" mb="8px" textAlign="center" fontWeight={800}>
-          {TranslateString(534, 'ApeSwap Stats')}
-        </Heading>
+        <Heading>{TranslateString(534, 'ApeSwap Stats')}</Heading>
         <GreyRow>
           <StyledText fontSize="14px">{TranslateString(536, 'TOTAL VALUE LOCKED')}</StyledText>
           {stats?.tvl && <CardValue fontSize="14px" value={stats?.tvl} prefix="$" fontWeight={600} />}

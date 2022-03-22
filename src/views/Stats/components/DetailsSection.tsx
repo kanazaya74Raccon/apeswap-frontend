@@ -56,9 +56,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ farmStats, bscScanAd
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerYear} prefix="$" />
       </Flex>
       <Flex justifyContent="center">
-        <StyledLinkExternal external href={bscScanAddress} bold={false}>
-          {TranslateString(356, 'View on BscScan')}
-        </StyledLinkExternal>
+        <StyledLinkExternal href={bscScanAddress}>{TranslateString(356, 'View on BscScan')}</StyledLinkExternal>
       </Flex>
     </Wrapper>
   )

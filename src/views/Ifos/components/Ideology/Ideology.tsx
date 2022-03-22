@@ -38,14 +38,12 @@ const HowItWorks = () => {
 
   return (
     <Container>
-      <SectionHeading size="lg" textAlign="center">
-        OUR IAO IDEOLOGY
-      </SectionHeading>
+      <SectionHeading>OUR IAO IDEOLOGY</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="investment" />
-
-          <SectionHeading textAlign="center">INVESTMENT</SectionHeading>
+          ``
+          <SectionHeading>INVESTMENT</SectionHeading>
           <Motto>BUILD</Motto>
           <StyledText textAlign="center">
             We highly vet applicants to choose projects we believe in as long term investments and partners
@@ -54,7 +52,7 @@ const HowItWorks = () => {
         <FeatureBox>
           <Icon name="development" />
 
-          <SectionHeading textAlign="center">DEVELOPMENT</SectionHeading>
+          <SectionHeading>DEVELOPMENT</SectionHeading>
           <Motto>HOLD</Motto>
           <StyledText textAlign="center">
             The funds raised are used to finalize development and launch the project
@@ -63,7 +61,7 @@ const HowItWorks = () => {
         <FeatureBox>
           <Icon name="innovation" />
 
-          <SectionHeading textAlign="center">INNOVATION</SectionHeading>
+          <SectionHeading>INNOVATION</SectionHeading>
           <Motto>EXPERIMENT</Motto>
           <StyledText textAlign="center">
             These projects are meant to be unique and push the boundaries of DeFi

@@ -36,12 +36,8 @@ const Zone = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mt={0} color="white">
-            {TranslateString(999, 'Golden')}
-          </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white">
-            {TranslateString(999, 'Banana')}
-          </StyledHeading>
+          <StyledHeading as="h1">{TranslateString(999, 'Golden')}</StyledHeading>
+          <StyledHeading as="h1">{TranslateString(999, 'Banana')}</StyledHeading>
         </HeaderContainer>
       </Header>
 

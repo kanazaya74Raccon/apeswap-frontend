@@ -79,7 +79,7 @@ const styles: FarmStyles = {
 
 const FCard = styled.div`
   align-self: baseline;
-  background: ${(props) => props.theme.card.background};
+  background: ${(props) => props.theme.colors.white2};
   display: flex;
   flex-direction: column;
   justify-content: space-around;

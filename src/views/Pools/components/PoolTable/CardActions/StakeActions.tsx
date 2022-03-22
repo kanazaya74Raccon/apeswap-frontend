@@ -4,16 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import {
-  Flex,
-  Heading,
-  IconButtonSquare,
-  AddIcon,
-  MinusIcon,
-  useModal,
-  Text,
-  ButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, Text, Button } from '@apeswapfinance/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
@@ -36,7 +27,7 @@ interface StakeActionsProps {
   firstStake?: boolean
 }
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
 `
 
@@ -54,7 +45,7 @@ const IconButtonWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
+const StyledIconButton = styled(IconButton)`
   width: 34px;
   height: 34px;
 `
@@ -164,14 +155,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({
             </HarvestWrapper>
           )}
           <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare className="noClick" onClick={onPresentWithdraw} mr="6px">
+            <StyledIconButton className="noClick" onClick={onPresentWithdraw} mr="6px">
               <MinusIcon className="noClick" color="white" width="12px" height="12px" />
-            </StyledIconButtonSquare>
+            </StyledIconButton>
           </Reward>
           <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare className="noClick" onClick={onPresentDeposit}>
+            <StyledIconButton className="noClick" onClick={onPresentDeposit}>
               <AddIcon className="noClick" color="white" width="16px" height="16px" />
-            </StyledIconButtonSquare>
+            </StyledIconButton>
           </Reward>
         </IconButtonWrapperStake>
       )
@@ -179,11 +170,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return (
-      <StyledButtonSquare onClick={onPresentDeposit}>
-        {TranslateString(999, `STAKE ${stakingTokenName}`)}
-      </StyledButtonSquare>
-    )
+    return <StyledButton onClick={onPresentDeposit}>{TranslateString(999, `STAKE ${stakingTokenName}`)}</StyledButton>
   }
 
   return (

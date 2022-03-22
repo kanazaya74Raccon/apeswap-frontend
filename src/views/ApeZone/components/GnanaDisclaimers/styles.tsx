@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Heading, ButtonSquare, Text } from '@apeswapfinance/uikit'
+import { Card, Heading, Button, Text } from '@apeswapfinance/uikit'
 
 export const Container = styled(Card)`
   background: ${({ theme }) => theme.colors.navbar};
@@ -225,7 +225,7 @@ export const Footer = styled.div`
 
 export const InfoSect1 = styled.div``
 
-export const LearnMoreBtn = styled(ButtonSquare)`
+export const LearnMoreBtn = styled(Button)`
   font-size: 12px;
   font-weight: 700;
 

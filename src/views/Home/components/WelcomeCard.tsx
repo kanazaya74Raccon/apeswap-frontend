@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Text, Flex, Button } from '@apeswapfinance/uikit'
+import { Card, Heading, Text, Flex, Button } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useNetworkChainId } from 'state/hooks'
 import { CHAIN_ID } from 'config/constants/chains'
@@ -103,18 +103,16 @@ const WelcomeCard = () => {
     <WalcomeWrapper>
       <StyledFlex flexDirection="column" alignItems="center">
         <StyledWelcomeCard>
-          <CardBody>
+          <div>
             {(chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET) && (
               <StyledImg src="/images/ape-home.svg" alt="banana frenzy" />
             )}
             {(chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) && (
               <StyledImg src="/images/ape-home-polygon.svg" alt="banana frenzy" />
             )}
-          </CardBody>
+          </div>
         </StyledWelcomeCard>
-        <Heading as="h1" size="lg" mb="6px" color="text" fontWeight={800}>
-          {TranslateString(576, 'Welcome all Apes!')}
-        </Heading>
+        <Heading as="h1">{TranslateString(576, 'Welcome all Apes!')}</Heading>
         <StyledText color="gray">{TranslateString(578, 'Why be a human, when you can be an ape?')}</StyledText>
         <a href="https://apeswap.gitbook.io/apeswap-finance" target="_blank" rel="noopener noreferrer">
           <StyledButton id="Beginner Ape" fullWidth>

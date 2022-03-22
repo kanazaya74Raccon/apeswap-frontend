@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { Button } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useReward from 'hooks/useReward'
 import { useSousHarvest } from 'hooks/useHarvest'
@@ -11,7 +11,7 @@ import { useSousEmergencyWithdraw } from 'hooks/useUnstake'
 import useI18n from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
 `
 
@@ -46,7 +46,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const renderButton = () => {
     if (emergencyWithdraw) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -59,12 +59,12 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {TranslateString(999, 'WITHDRAW')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     if (compound) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -77,11 +77,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {TranslateString(999, 'APE HARDER')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     return (
-      <StyledButtonSquare
+      <StyledButton
         disabled={earningTokenBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
@@ -94,7 +94,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         }}
       >
         {TranslateString(999, 'HARVEST')}
-      </StyledButtonSquare>
+      </StyledButton>
     )
   }
 

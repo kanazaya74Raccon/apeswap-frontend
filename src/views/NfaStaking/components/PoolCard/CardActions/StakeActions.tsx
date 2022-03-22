@@ -2,16 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { NfaStakingPool } from 'state/types'
-import {
-  Flex,
-  Heading,
-  useModal,
-  Text,
-  ButtonSquare,
-  MinusIcon,
-  AddIcon,
-  IconButtonSquare,
-} from '@apeswapfinance/uikit'
+import { Flex, Heading, useModal, Text, Button, MinusIcon, AddIcon, IconButton } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useNfaStake } from 'hooks/useStake'
@@ -36,7 +27,7 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
+const StyledIconButton = styled(IconButton)`
   width: 34px;
   height: 34px;
 `
@@ -66,7 +57,7 @@ const StyledFlex = styled(Flex)`
   }
 `
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
 `
 
@@ -110,12 +101,12 @@ const StakeAction: React.FC<StakeActionsProps> = ({
     return (
       rawStakedBalance !== 0 && (
         <IconButtonWrapper>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+          <StyledIconButton onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
-          </StyledIconButtonSquare>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
+          </StyledIconButton>
+          <StyledIconButton onClick={onPresentDeposit}>
             <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
+          </StyledIconButton>
           <></>
         </IconButtonWrapper>
       )
@@ -123,7 +114,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return <StyledButtonSquare onClick={onPresentDeposit}>{TranslateString(999, `STAKE NFA`)}</StyledButtonSquare>
+    return <StyledButton onClick={onPresentDeposit}>{TranslateString(999, `STAKE NFA`)}</StyledButton>
   }
 
   return (

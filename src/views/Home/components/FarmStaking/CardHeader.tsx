@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { CardHeader as UIKitCardHeader } from '@apeswapfinance/uikit'
 
-const CardHeader = styled(UIKitCardHeader)`
+const CardHeader = styled.div`
   background-image: url(/images/ape-home-earnings.png);
   position: relative;
   text-align: center;

@@ -166,7 +166,7 @@ const FarmCardForHome: React.FC<DualFarmProps> = ({ farm }) => {
         />
       </StyledBackground>
       <DescriptionContainer>
-        <StyledHeading fontWeight={800}>
+        <StyledHeading>
           {farm?.stakeTokens?.token0?.symbol}-{farm?.stakeTokens?.token1?.symbol}
         </StyledHeading>
         <ApyWrapper>
