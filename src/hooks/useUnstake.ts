@@ -174,20 +174,24 @@ export const useVaultUnstakeAll = (pid: number) => {
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
 
-  const handleUnstake = useCallback(async () => {
-    const txHash = await vaultUnstakeAll(vaultApeContract, pid)
-    track({
-      event: 'vault',
-      chain: chainId,
-      data: {
-        cat: 'unstakeAll',
-        pid,
-      },
-    })
-    dispatch(updateVaultUserBalance(account, chainId, pid))
-    dispatch(updateVaultUserStakedBalance(account, chainId, pid))
-    console.info(txHash)
-  }, [account, vaultApeContract, chainId, dispatch, pid])
+  const handleUnstake = useCallback(
+    async (amount: string) => {
+      const txHash = await vaultUnstakeAll(vaultApeContract, pid)
+      track({
+        event: 'vault',
+        chain: chainId,
+        data: {
+          cat: 'unstakeAll',
+          amount,
+          pid,
+        },
+      })
+      dispatch(updateVaultUserBalance(account, chainId, pid))
+      dispatch(updateVaultUserStakedBalance(account, chainId, pid))
+      console.info(txHash)
+    },
+    [account, vaultApeContract, chainId, dispatch, pid],
+  )
 
   return { onUnstakeAll: handleUnstake }
 }
