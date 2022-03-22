@@ -6,7 +6,9 @@ import { orderBy } from 'lodash'
 import SwiperCore, { Autoplay } from 'swiper'
 import 'swiper/swiper.min.css'
 import { Flex, Skeleton } from '@apeswapfinance/uikit'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useFetchHomepageNews, useHomepageNews } from 'state/hooks'
+import track from 'utils/track'
 import { Bubble, NewsCard, NewsWrapper, SkeletonWrapper } from './styles'
 
 const SLIDE_DELAY = 5000
@@ -14,6 +16,7 @@ const SLIDE_DELAY = 5000
 SwiperCore.use([Autoplay])
 
 const News: React.FC = () => {
+  const { chainId } = useActiveWeb3React()
   const [loadImages, setLoadImages] = useState(false)
   useFetchHomepageNews(loadImages)
   const today = new Date()
@@ -42,6 +45,17 @@ const News: React.FC = () => {
       setLoadImages(true)
     }
   }, [isIntersecting])
+
+  const trackBannersClick = (bannerId: number, clickUrl: string, chainIdentifier: string | number) => {
+    track({
+      event: 'newsClick',
+      chain: chainIdentifier,
+      data: {
+        banner: bannerId,
+        clickUrl,
+      },
+    })
+  }
 
   return (
     <>
@@ -81,6 +95,7 @@ const News: React.FC = () => {
                           image={news?.cardImageUrl?.url}
                           key={news?.cardImageUrl?.url}
                           listLength={newsLength}
+                          onClick={() => trackBannersClick(news?.id, news?.CardLink, chainId)}
                         />
                       </a>
                     </SwiperSlide>
