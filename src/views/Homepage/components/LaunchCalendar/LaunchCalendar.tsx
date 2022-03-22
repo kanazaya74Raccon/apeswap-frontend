@@ -77,7 +77,7 @@ const LaunchCalendar: React.FC = () => {
                       <LaunchCard>
                         <Flex justifyContent="center" alignItems="center" flexDirection="column">
                           <Text fontSize="30px" bold>
-                            {date.getUTCDate()} {date.toDateString().split(' ')[1]}
+                            {date.getUTCDate()} {date.toUTCString().split(' ')[2]}
                           </Text>
                           <Text fontSize="12px">
                             {date.getUTCHours()}:{date?.getUTCMinutes() === 0 ? '00' : date?.getUTCMinutes()} UTC
