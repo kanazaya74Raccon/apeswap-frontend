@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useRouteMatch, Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useRouteMatch, useHistory } from 'react-router-dom'
+import { Toggle } from '@apeswapfinance/uikit'
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
@@ -22,22 +21,23 @@ const Wrapper = styled.div`
   }
 `
 
-const FarmTabButtons = () => {
+const FarmTabButtons: React.FC = () => {
   const { url, isExact } = useRouteMatch()
-  const TranslateString = useI18n()
+  const history = useHistory()
+
+  const handleClick = () => {
+    if (isExact) {
+      history.push(`${url}/history`)
+    } else {
+      history.push(url)
+    }
+  }
 
   return (
     <Wrapper>
-      <ButtonMenu activeIndex={!isExact ? 1 : 0} variant="yellow" size="mds">
-        <ButtonMenuItem as={Link} to={`${url}`} fontSize="12px">
-          {TranslateString(999, 'LIVE')}
-        </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to={`${url}/history`} fontSize="12px">
-          {TranslateString(999, 'DONE')}
-        </ButtonMenuItem>
-      </ButtonMenu>
+      <Toggle labels={['LIVE', 'DONE']} onClick={handleClick} checked={!isExact} />
     </Wrapper>
   )
 }
 
-export default FarmTabButtons
+export default React.memo(FarmTabButtons)

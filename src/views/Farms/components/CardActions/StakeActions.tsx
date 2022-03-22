@@ -21,7 +21,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ListViewContent from 'components/ListViewContent'
 import DepositModal from '../Modals/DepositModal'
 import WithdrawModal from '../Modals/WithdrawModal'
-import { ActionContainer, CenterContainer, SmallButtonSquare, StyledButtonSquare } from './styles'
+import { ActionContainer, CenterContainer, SmallButton, StyledButton } from './styles'
 
 interface StakeActionsProps {
   stakingTokenBalance: string
@@ -101,13 +101,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
     if (firstStake) {
       return (
         <CenterContainer>
-          <StyledButtonSquare
+          <StyledButton
             onClick={onPresentDeposit}
             endIcon={pendingDepositTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingDepositTrx}
           >
             DEPOSIT
-          </StyledButtonSquare>
+          </StyledButton>
         </CenterContainer>
       )
     }
@@ -126,21 +126,21 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
           />
         )}
         <Flex>
-          <SmallButtonSquare
+          <SmallButton
             onClick={onPresentWithdraw}
             endIcon={pendingWithdrawTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingWithdrawTrx}
             mr="6px"
           >
             <MinusIcon color="white" width="16px" height="20px" fontWeight={700} />
-          </SmallButtonSquare>
-          <SmallButtonSquare
+          </SmallButton>
+          <SmallButton
             onClick={onPresentDeposit}
             endIcon={pendingDepositTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingDepositTrx || !new BigNumber(stakingTokenBalance)?.gt(0)}
           >
             <AddIcon color="white" width="20px" height="20px" fontWeight={700} />
-          </SmallButtonSquare>
+          </SmallButton>
         </Flex>
         {!isMobile && (
           <ListViewContent

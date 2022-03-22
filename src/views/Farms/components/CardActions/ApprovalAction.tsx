@@ -5,7 +5,7 @@ import { useERC20 } from 'hooks/useContract'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useToast } from 'state/hooks'
-import { StyledButtonSquare } from './styles'
+import { StyledButton } from './styles'
 
 interface ApprovalActionProps {
   stakingTokenContractAddress: string
@@ -25,7 +25,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <StyledButtonSquare
+        <StyledButton
           className="noClick"
           disabled={pendingTrx}
           onClick={async () => {
@@ -49,7 +49,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
           endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
         >
           ENABLE
-        </StyledButtonSquare>
+        </StyledButton>
       )}
     </>
   )

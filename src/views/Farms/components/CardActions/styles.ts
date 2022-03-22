@@ -1,8 +1,8 @@
-import { ButtonSquare, Flex } from '@apeswapfinance/uikit'
+import { Button, Flex } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import styled from 'styled-components'
 
-export const StyledButtonSquare = styled(ButtonSquare)`
+export const StyledButton = styled(Button)`
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
@@ -20,7 +20,7 @@ export const StyledUnlockButton = styled(UnlockButton)`
   height: 44px;
 `
 
-export const SmallButtonSquare = styled(ButtonSquare)`
+export const SmallButton = styled(Button)`
   max-width: 44px;
   height: 44px;
 `

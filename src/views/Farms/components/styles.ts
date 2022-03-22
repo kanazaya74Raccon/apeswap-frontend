@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { ButtonSquare, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
+import { Button, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
 
-export const FarmButton = styled(ButtonSquare)`
+export const FarmButton = styled(Button)`
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
