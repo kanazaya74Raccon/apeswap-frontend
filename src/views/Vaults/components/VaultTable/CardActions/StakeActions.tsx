@@ -102,7 +102,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         const maxWithdraw = val === getFullDisplayBalance(stakedBalance)
         setTypeOfReward('removed')
         if (maxWithdraw) {
-          await onUnstakeAll().catch(() => {
+          await onUnstakeAll(val).catch(() => {
             setTypeOfReward('error')
             rewardRefUnstakeAll.current?.rewardMe()
           })

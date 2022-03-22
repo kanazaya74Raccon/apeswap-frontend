@@ -372,6 +372,7 @@ export default function Swap({ history }: RouteComponentProps) {
                         </ExpertButton>
                       ) : null}
                     </AutoColumn>
+
                     <CurrencyInputPanel
                       value={formattedAmounts[Field.OUTPUT]}
                       onUserInput={handleTypeOutput}
