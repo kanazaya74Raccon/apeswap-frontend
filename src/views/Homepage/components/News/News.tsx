@@ -47,9 +47,6 @@ const News: React.FC = () => {
   }, [isIntersecting])
 
   const trackBannersClick = (bannerId: number, clickUrl: string, chainIdentifier: string | number) => {
-    console.log('bannerId', bannerId)
-    console.log('clickUrl', clickUrl)
-    console.log('chainId', chainIdentifier)
     track({
       event: 'newsClick',
       chain: chainIdentifier,
@@ -89,7 +86,7 @@ const News: React.FC = () => {
                 preloadImages={false}
                 onSlideChange={handleSlide}
               >
-                {filterNews?.map((news) => {
+                {filterNews?.map((news, index) => {
                   return (
                     <SwiperSlide style={{ maxWidth: '266px', minWidth: '266px' }} key={news.id}>
                       <a href={news?.CardLink} target="_blank" rel="noopener noreferrer">
@@ -98,7 +95,7 @@ const News: React.FC = () => {
                           image={news?.cardImageUrl?.url}
                           key={news?.cardImageUrl?.url}
                           listLength={newsLength}
-                          onClick={() => trackBannersClick(news?.id, news?.CardLink, chainId)}
+                          onClick={() => trackBannersClick(index + 1, news?.CardLink, chainId)}
                         />
                       </a>
                     </SwiperSlide>
