@@ -55,7 +55,9 @@ const HowItWorks = ({ onParticipate }: Props) => {
           <Icon name="calendar" />
           <div>
             <SectionHeading>VESTING SCHEDULE</SectionHeading>
-            <StyledText>25% of tokens unlock immediately and the remaining 75% vest linearly over 90 days.</StyledText>
+            <StyledText>
+              25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.
+            </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>

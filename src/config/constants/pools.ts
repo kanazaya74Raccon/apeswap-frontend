@@ -3621,6 +3621,30 @@ const pools: PoolConfig[] = [
     lpStaking: true,
     isEarnTokenLp: false,
   },
+  {
+    sousId: 189,
+    tokenName: 'RUBY-BNB',
+    image: 'RUBY.svg',
+    stakingToken: tokens.rubyBnb,
+    rewardToken: tokens.ruby,
+    lpTokens: {
+      token: tokens.ruby,
+      quoteToken: tokens.wbnb,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xbc3f5571fc3338d0b9216a2c5c2e6f338531e3f8',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: 'https://www.rubyplaynet.com/',
+    harvest: true,
+    tokenPerBlock: '2.864583333333',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 12,
+    lpStaking: true,
+    isEarnTokenLp: false,
+  },
 
   //
   // PUT ALL ADMIN POOLS UNDER HERE
