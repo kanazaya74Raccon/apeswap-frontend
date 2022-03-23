@@ -47,6 +47,9 @@ const News: React.FC = () => {
   }, [isIntersecting])
 
   const trackBannersClick = (bannerId: number, clickUrl: string, chainIdentifier: string | number) => {
+    console.log('bannerId', bannerId)
+    console.log('clickUrl', clickUrl)
+    console.log('chainId', chainIdentifier)
     track({
       event: 'newsClick',
       chain: chainIdentifier,
