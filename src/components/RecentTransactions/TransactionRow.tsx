@@ -1,6 +1,6 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import { BlockIcon, CheckmarkCircleIcon, Flex, Link, OpenNewIcon, AutoRenewIcon } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
 import { TransactionDetails } from 'state/transactions/reducer'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getEtherscanLink } from 'utils'
@@ -59,13 +59,15 @@ const TransactionRow: React.FC<TransactionRowProps> = ({ txn }) => {
   }
 
   return (
-    <TxnLink href={getEtherscanLink(txn.hash, 'transaction', chainId)} external>
+    <Flex alignItems="center" mb='10px'>
       <TxnIcon color="white">{renderIcon(txn)}</TxnIcon>
       <Summary>{txn.summary ?? txn.hash}</Summary>
-      <TxnIcon>
-        <OpenNewIcon width="24px" color="#FFB300" />
-      </TxnIcon>
-    </TxnLink>
+      <a href={getEtherscanLink(txn.hash, 'transaction', chainId)} target="_blank" rel="noopener noreferrer">
+        <TxnIcon>
+          <OpenNewIcon width="24px" color="#FFB300" />
+        </TxnIcon>
+      </a>
+    </Flex>
   )
 }
 

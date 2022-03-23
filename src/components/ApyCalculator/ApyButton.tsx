@@ -12,12 +12,12 @@ export interface ApyButtonProps {
 }
 
 const StyledCalculateIcon = styled(CalculateIcon)`
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
   }
 `
 
@@ -38,7 +38,6 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, a
         onClick={onPresentApyModal}
         color="yellow"
         ml="3px"
-        mt=".8px"
         style={{ cursor: 'pointer' }}
       />
     </>

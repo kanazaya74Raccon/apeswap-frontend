@@ -1,4 +1,4 @@
-import { Flex, InfoIcon } from '@apeswapfinance/uikit'
+import { Flex, InfoIcon, TooltipBubble } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import {
   ContentContainer,
@@ -11,7 +11,14 @@ import {
 } from './styles'
 import { ListCardProps } from './types'
 
-const MobileListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, cardContent, expandedContent }) => {
+const MobileListCard: React.FC<ListCardProps> = ({
+  serviceTokenDisplay,
+  tag,
+  title,
+  cardContent,
+  expandedContent,
+  infoContent,
+}) => {
   const [expanded, setExpanded] = useState(false)
   return (
     <>
@@ -26,7 +33,13 @@ const MobileListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, tit
           </TitleContainer>
           <Flex>
             <DropDownIcon open={expanded} mr="20px" />
-            <InfoIcon width="25px" />
+            {infoContent && (
+              <div style={{ display: 'inline-block' }}>
+                <TooltipBubble body={infoContent} transformTip="translate(-82%, 50%)">
+                  <InfoIcon width="25px" />
+                </TooltipBubble>
+              </div>
+            )}
           </Flex>
         </Flex>
         <ContentContainer>{cardContent}</ContentContainer>

@@ -118,7 +118,7 @@ export const GnanaDisclaimers: React.FC = () => {
       </Main2>
 
       <Footer>
-        <LearnMoreBtn onClick={learnMore} size="md">
+        <LearnMoreBtn onClick={learnMore} size="md" mb='20px'>
           {TranslateString(292, 'LEARN MORE')}
         </LearnMoreBtn>
       </Footer>

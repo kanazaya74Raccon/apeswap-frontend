@@ -33,12 +33,10 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
             await onApprove()
               .then((resp) => {
                 const trxHash = resp.transactionHash
-                toastSuccess(
-                  'Approve Successful',
-                  <LinkExternal href={getEtherscanLink(trxHash, 'transaction', chainId)}>
-                    <Text> View Transaction </Text>
-                  </LinkExternal>,
-                )
+                toastSuccess('Approve Successful', {
+                  text: 'View Transaction',
+                  url: getEtherscanLink(trxHash, 'transaction', chainId),
+                })
               })
               .catch((e) => {
                 console.error(e)

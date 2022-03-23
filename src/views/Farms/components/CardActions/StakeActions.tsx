@@ -55,12 +55,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
         await onStake(val)
           .then((resp) => {
             const trxHash = resp.transactionHash
-            toastSuccess(
-              'Deposit Successful',
-              <LinkExternal href={getEtherscanLink(trxHash, 'transaction', chainId)}>
-                <Text> View Transaction </Text>
-              </LinkExternal>,
-            )
+            toastSuccess('Deposit Successful', {
+              text: 'View Transaction',
+              url: getEtherscanLink(trxHash, 'transaction', chainId),
+            })
           })
           .catch((e) => {
             console.error(e)

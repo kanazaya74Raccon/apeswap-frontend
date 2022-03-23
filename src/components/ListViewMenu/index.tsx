@@ -1,9 +1,9 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
+import { Flex, Select, SelectItem } from '@apeswapfinance/uikit'
 import { ListViewProps } from './types'
 import FarmTabButtons from './FarmTabButtons'
 import SearchInput from './SearchInput'
-import Select from './Select/Select'
 import {
   ControlContainer,
   HarvestAllWrapper,
@@ -25,6 +25,7 @@ const ListViewMenu: React.FC<ListViewProps> = ({
   stakedOnly,
   query,
   showMonkeyImage,
+  activeOption,
 }) => {
   const { isDark } = useTheme()
   return (
@@ -36,7 +37,17 @@ const ListViewMenu: React.FC<ListViewProps> = ({
           </StyledText>
           <SearchInput onChange={onHandleQueryChange} value={query} />
         </LabelWrapper>
-        <Select options={OPTIONS} onChange={(option) => onSetSortOption(option.value)} />
+        <Flex>
+          <Select size="sm" width="126px" onChange={(e) => onSetSortOption(e.target.value)} active={activeOption}>
+            {OPTIONS.map((option) => {
+              return (
+                <SelectItem size="sm" value={option.value}>
+                  {option.label}
+                </SelectItem>
+              )
+            })}
+          </Select>
+        </Flex>
       </SectionOneWrapper>
       <SectionTwoWrapper>
         <FarmTabButtons />

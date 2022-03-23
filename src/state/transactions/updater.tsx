@@ -71,9 +71,6 @@ export default function Updater(): null {
               const toast = receipt.status === 1 ? toastSuccess : toastError
               toast(
                 'Transaction receipt',
-                <LinkExternal href={getEtherscanLink(receipt.transactionHash, 'transaction', chainId)}>
-                  <Text> View on explorer </Text>
-                </LinkExternal>,
               )
             } else {
               dispatch(checkedTransaction({ chainId, hash, blockNumber: currentBlock }))

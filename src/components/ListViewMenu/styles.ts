@@ -1,8 +1,7 @@
 import styled from 'styled-components'
-import { Card, Text, Checkbox, Heading, Flex } from '@apeswapfinance/uikit'
+import { Text, Checkbox, Heading, Flex } from '@apeswapfinance/uikit'
 
-export const ControlContainer = styled(Card)`
-  display: flex;
+export const ControlContainer = styled(Flex)`
   align-items: center;
   position: relative;
   flex-wrap: wrap;
@@ -11,19 +10,22 @@ export const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   transform: translateY(-85px);
-  width: 100vw;
   padding: 15px;
-  z-index: ${({ theme }) => theme.zIndices.dropdown};
+  z-index: 1;
+  background-color: ${({ theme }) => theme.colors.white2};
+  min-width: 300px;
+  max-width: 500px;
+  width: 100%;
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     min-height: 59px;
+    height: 100%;
     padding: 0px 130px 0px 30px;
     justify-content: space-between;
     align-items: center;
     transform: translateY(-60px);
-    margin: 0px 10px;
-    width: auto;
+    max-width: 100%;
   }
 `
 
@@ -168,20 +170,22 @@ export const StyledHeading = styled(Heading)`
 export const SectionOneWrapper = styled(Flex)`
   justify-content: space-between;
   align-items: flex-end;
+  z-index: 1;
   width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 440px;
+    width: 430px;
   }
 `
 
 export const SectionTwoWrapper = styled(Flex)`
   justify-content: space-between;
-  width: 50%;
+  width: 100%;
   align-items: center;
   margin-top: 15px;
   align-self: flex-start;
+  z-index: 0;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 265px;
+    width: 275px;
     margin-top: 0px;
     align-self: center;
   }
@@ -193,7 +197,7 @@ export const HarvestAllWrapper = styled(Flex)`
   justify-content: center;
   align-items: center;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 210px;
+    width: 180px;
     margin-top: 0px;
   }
 `

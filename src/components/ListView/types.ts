@@ -1,6 +1,7 @@
 export interface ListViewProps {
   tag?: string
   title: string
+  infoContent?: React.ReactNode
   cardContent: React.ReactNode
   expandedContent: React.ReactNode
 }

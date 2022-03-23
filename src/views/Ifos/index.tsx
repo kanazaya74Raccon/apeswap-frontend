@@ -183,7 +183,9 @@ const Ifos = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1">{TranslateString(999, 'Initial Ape Offerings')}</StyledHeading>
+          <StyledHeading as="h1" style={{ color: 'white' }}>
+            {TranslateString(999, 'Initial Ape Offerings')}
+          </StyledHeading>
         </HeaderContainer>
 
         <RightDiv>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
@@ -15,10 +15,10 @@ import { ActionContainer } from './CardActions/styles'
 
 const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const { isXl, isLg, isXxl, isMd } = useMatchBreakpoints()
   const isMobile = !isLg && !isXl && !isXxl
 
-  const farmsListView = farms.map((farm) => {
+  const farmsListView = farms.map((farm, i) => {
     const [token1, token2] = farm.lpSymbol.split('-')
     const liquidityUrl = `https://apeswap.finance/add/${
       farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId]
@@ -36,9 +36,33 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
     return {
       tokens: { token1, token2, token3: 'BANANA' },
       title: farm.lpSymbol,
+      infoContent: (
+        <>
+          <Flex flexDirection="column">
+            <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
+              <Text style={{ fontSize: '12px' }}>Multiplier</Text>
+              <Text bold style={{ fontSize: '12px' }}>
+                {farm.multiplier}
+              </Text>
+            </Flex>
+            <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
+              <Text style={{ fontSize: '12px' }}>Stake</Text>
+              <Text bold style={{ fontSize: '12px' }}>
+                {farm.lpSymbol} LP
+              </Text>
+            </Flex>
+          </Flex>
+        </>
+      ),
       cardContent: (
         <>
-          <ListViewContent title="APY" value={`${farm?.apy}%`} width={isMobile ? 90 : 160} toolTip="s" />
+          <ListViewContent
+            title="APY"
+            value={`${farm?.apy}%`}
+            width={isMobile ? 90 : 160}
+            toolTip="APY does stuff"
+            toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
+          />
           <ListViewContent
             title="APR"
             value={`${farm?.apr}%`}
@@ -47,6 +71,8 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
             valueIcon="/images/tokens/banana.svg"
             width={isMobile ? 100 : 200}
             toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
+            toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
+            toolTipTransform="translate(0, 65%)"
             aprCalculator={
               <ApyButton
                 lpLabel={farm.lpSymbol}
@@ -61,7 +87,9 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
             title="Liquidity"
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 200}
-            toolTip="s"
+            toolTip="The total value of the LP tokens currently staked in this farm."
+            toolTipPlacement={i === farms.length - 1 ? 'topLeft' : isMobile ? 'bottomRight' : 'bottomLeft'}
+            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0, 75%)'}
           />
           <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
         </>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Card, Heading, Button, Text } from '@apeswapfinance/uikit'
+import { Heading, Button, Text } from '@apeswapfinance/uikit'
 
-export const Container = styled(Card)`
+export const Container = styled.div`
   background: ${({ theme }) => theme.colors.navbar};
   border-radius: 10px;
   padding-top: 20px;
@@ -49,7 +49,7 @@ export const FirstHeader2 = styled(FirstHeader)`
   }
 `
 
-export const InfoCon = styled(Card)`
+export const InfoCon = styled.div`
   background: ${({ theme }) => theme.colors.white3};
   display: flex;
   justify-content: center;

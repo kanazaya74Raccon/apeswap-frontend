@@ -36,12 +36,10 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
           await onHarvest()
             .then((resp) => {
               const trxHash = resp.transactionHash
-              toastSuccess(
-                'Harvest Successful',
-                <LinkExternal href={getEtherscanLink(trxHash, 'transaction', chainId)}>
-                  <Text> View Transaction </Text>
-                </LinkExternal>,
-              )
+              toastSuccess('Harvest Successful', {
+                text: 'View Transaction',
+                url: getEtherscanLink(trxHash, 'transaction', chainId),
+              })
             })
             .catch((e) => {
               console.error(e)

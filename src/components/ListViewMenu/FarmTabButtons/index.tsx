@@ -35,7 +35,7 @@ const FarmTabButtons: React.FC = () => {
 
   return (
     <Wrapper>
-      <Toggle labels={['LIVE', 'DONE']} onClick={handleClick} checked={!isExact} />
+      <Toggle size='md' labels={['CURRENT', 'PAST']} onClick={handleClick} checked={!isExact} />
     </Wrapper>
   )
 }

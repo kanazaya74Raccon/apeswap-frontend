@@ -12,4 +12,6 @@ export interface ListViewContentProps {
   lineHeight?: number
   toolTip?: string
   aprCalculator?: React.ReactNode
+  toolTipPlacement?: 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft'
+  toolTipTransform?: string
 }

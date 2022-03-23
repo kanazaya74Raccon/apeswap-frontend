@@ -28,7 +28,7 @@ const Providers: React.FC = ({ children }) => {
           </HelmetProvider>
         </Provider>
       </Web3ProviderNetwork>
-    </Web3ReactProvider>
+    </Web3ReactProvider> 
   )
 }
 

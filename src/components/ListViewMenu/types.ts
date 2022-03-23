@@ -8,4 +8,5 @@ export interface ListViewProps {
   query: string
   showMonkeyImage?: boolean
   harvestAll?: React.ReactNode
+  activeOption?: string
 }

@@ -55,7 +55,7 @@ const farms: FarmConfig[] = [
   {
     pid: 191,
     image: 'APE.svg',
-    lpSymbol: 'APE-BNB LP',
+    lpSymbol: 'APE-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',

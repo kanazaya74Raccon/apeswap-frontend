@@ -365,17 +365,41 @@ export const useToast = () => {
     const push = (toast: Toast) => dispatch(pushToast(toast))
 
     return {
-      toastError: (title: string, description?: ReactNode) => {
-        return push({ id: kebabCase(title), type: toastTypes.DANGER, title, description })
+      toastError: (description: string, action?: any) => {
+        return push({
+          id: description,
+          title: description,
+          description,
+          action,
+          type: toastTypes.ERROR,
+        })
       },
-      toastInfo: (title: string, description?: ReactNode) => {
-        return push({ id: kebabCase(title), type: toastTypes.INFO, title, description })
+      toastInfo: (description: string, action?: any) => {
+        return push({
+          id: description,
+          title: description,
+          description,
+          action,
+          type: toastTypes.INFO,
+        })
       },
-      toastSuccess: (title: string, description?: ReactNode) => {
-        return push({ id: kebabCase(title), type: toastTypes.SUCCESS, title, description })
+      toastSuccess: (description: string, action?: any) => {
+        return push({
+          id: description,
+          title: description,
+          description,
+          action,
+          type: toastTypes.SUCCESS,
+        })
       },
-      toastWarning: (title: string, description?: ReactNode) => {
-        return push({ id: kebabCase(title), type: toastTypes.DANGER, title, description })
+      toastWarning: (description: string, action?: any) => {
+        return push({
+          id: description,
+          title: description,
+          description,
+          action,
+          type: toastTypes.DANGER,
+        })
       },
       push,
       remove: (id: string) => dispatch(removeToast(id)),

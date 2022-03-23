@@ -34,7 +34,7 @@ const Farms: React.FC = () => {
     return { ...farm, apy: (parseFloat(farm.apy) + parseFloat(farm.lpApr)).toFixed(2) }
   })
   const [query, setQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const Farms: React.FC = () => {
 
     switch (sortOption) {
       case 'all':
-        return farms
+        return farms.slice(0, numberOfFarmsVisible)
       case 'stables':
         return farms
           .filter((farm) => STABLES.includes(farm.tokenSymbol) && STABLES.includes(farm.quoteTokenSymbol))
@@ -117,22 +117,24 @@ const Farms: React.FC = () => {
           <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
         </HeadingContainer>
       </Header>
-
       <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <ListViewMenu
-            onHandleQueryChange={handleChangeQuery}
-            onSetSortOption={setSortOption}
-            onSetStake={setStakedOnly}
-            harvestAll={<HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />}
-            stakedOnly={stakedOnly}
-            query={query}
-            showMonkeyImage
-          />
+          <Flex alignItems='center' justifyContent='center' margin='0px 10px'>
+            <ListViewMenu
+              onHandleQueryChange={handleChangeQuery}
+              onSetSortOption={setSortOption}
+              onSetStake={setStakedOnly}
+              harvestAll={<HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />}
+              stakedOnly={stakedOnly}
+              query={query}
+              activeOption={sortOption}
+              showMonkeyImage
+            />
+          </Flex>
           <DisplayFarms farms={renderFarms()} />
-          <div ref={loadMoreRef} />
         </Flex>
       </Flex>
+      <div ref={loadMoreRef} />
     </>
   )
 }

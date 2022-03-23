@@ -1,4 +1,4 @@
-import { InfoIcon } from '@apeswapfinance/uikit'
+import { Flex, InfoIcon, TooltipBody, TooltipBubble } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import {
   ContentContainer,
@@ -11,7 +11,14 @@ import {
 } from './styles'
 import { ListCardProps } from './types'
 
-const ListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, cardContent, expandedContent }) => {
+const ListCard: React.FC<ListCardProps> = ({
+  serviceTokenDisplay,
+  tag,
+  title,
+  cardContent,
+  expandedContent,
+  infoContent,
+}) => {
   const [expanded, setExpanded] = useState(false)
   return (
     <>
@@ -25,7 +32,13 @@ const ListCard: React.FC<ListCardProps> = ({ serviceTokenDisplay, tag, title, ca
         </TitleContainer>
         <ContentContainer>{cardContent}</ContentContainer>
         <DropDownIcon open={expanded} mr="10px" />
-        <InfoIcon width="25px" />
+        {infoContent && (
+          <div style={{ display: 'inline-block' }}>
+            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 50%)">
+              <InfoIcon width="25px" />
+            </TooltipBubble>
+          </div>
+        )}
       </ListCardContainer>
       {expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
     </>

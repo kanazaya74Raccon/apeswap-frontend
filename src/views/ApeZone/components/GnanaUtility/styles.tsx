@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Heading, Card, Text, Button } from '@apeswapfinance/uikit'
+import { Heading, Text, Button } from '@apeswapfinance/uikit'
 import { Box } from 'theme-ui'
 
 export const UtilityCon = styled.div`
@@ -65,7 +65,7 @@ export const PlusIcon = styled(Text)`
   font-weight: 400;
   margin-top: -50px;
 `
-export const Section = styled(Card)`
+export const Section = styled.div`
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
@@ -78,7 +78,7 @@ export const Section = styled(Card)`
     background: ${({ theme }) => theme.colors.white3};
   }
 `
-export const Section2 = styled(Card)`
+export const Section2 = styled.div`
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
   border-radius: 10px;
 
@@ -172,7 +172,7 @@ export const Option1 = styled.div`
   }
 `
 
-export const HeadCard = styled(Card)`
+export const HeadCard = styled.div`
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
   border-radius: 10px;
   margin-bottom: 0.5em;

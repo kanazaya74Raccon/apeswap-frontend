@@ -15,6 +15,9 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 `
 
 export const Container = styled(Flex)`
+  flex-direction: row;
   position: relative;
   transform: translateY(-40px);
+  align-items: center;
+  justify-content: center;
 `
