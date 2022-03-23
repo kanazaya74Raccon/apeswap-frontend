@@ -224,6 +224,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     state.totalAmount,
     currencyPrice,
     currency,
+    statsType,
   ])
 
   return (
