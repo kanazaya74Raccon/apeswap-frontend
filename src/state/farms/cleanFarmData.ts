@@ -49,7 +49,7 @@ const cleanFarmData = (
     const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
     alloc = poolWeight.toJSON()
     multiplier = `${allocPoint.div(100).toString()}X`
-    const totalLpStakedUsd = totalLpStaked.times(filteredLpPrice.price)
+    const totalLpStakedUsd = totalLpStaked.times(filteredLpPrice?.price)
     const apr = getFarmApr(poolWeight, bananaPrice, totalLpStakedUsd)
     const lpApr = farmLpAprs?.lpAprs?.find((lp) => lp.pid === farmConfig.pid)?.lpApr * 100
     const amountEarned = tokenEarnedPerThousandDollarsCompounding({
@@ -71,7 +71,7 @@ const cleanFarmData = (
       apr: apr?.toFixed(2),
       apy: apy?.toFixed(2),
       lpApr: lpApr?.toFixed(2),
-      lpValueUsd: filteredLpPrice.price,
+      lpValueUsd: filteredLpPrice?.price,
       bananaPrice: bananaPrice?.toNumber(),
       poolWeight: alloc,
       multiplier,
