@@ -34,12 +34,7 @@ const ApyButton: React.FC<ApyButtonProps> = ({ lpLabel, rewardTokenPrice, apy, a
 
   return (
     <>
-      <StyledCalculateIcon
-        onClick={onPresentApyModal}
-        color="yellow"
-        ml="3px"
-        style={{ cursor: 'pointer' }}
-      />
+      <StyledCalculateIcon onClick={onPresentApyModal} color="yellow" ml="3px" style={{ cursor: 'pointer' }} />
     </>
   )
 }

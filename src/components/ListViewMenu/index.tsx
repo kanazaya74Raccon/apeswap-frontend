@@ -2,7 +2,7 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import { Flex, Select, SelectItem } from '@apeswapfinance/uikit'
 import { ListViewProps } from './types'
-import FarmTabButtons from './FarmTabButtons'
+import MenuTabButtons from './MenuTabButtons'
 import SearchInput from './SearchInput'
 import {
   ControlContainer,
@@ -50,7 +50,7 @@ const ListViewMenu: React.FC<ListViewProps> = ({
         </Flex>
       </SectionOneWrapper>
       <SectionTwoWrapper>
-        <FarmTabButtons />
+        <MenuTabButtons />
         <ToggleWrapper onClick={() => onSetStake(!stakedOnly)}>
           <StyledCheckbox checked={stakedOnly} onChange={() => onSetStake(!stakedOnly)} />
           <StyledText> Staked </StyledText>

@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react'
 import { Input } from '@apeswapfinance/uikit'
 import styled from '@emotion/styled'
 
-
 const StyledInput = styled(Input)`
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.white3};
@@ -13,7 +12,6 @@ const StyledInput = styled(Input)`
     box-shadow: 0px 0px 0px 1px #ffb300, 0px 0px 0px 4px rgb(255 179 0 / 40%) !important;
   }
 `
-
 
 const InputWrapper = styled.div`
   position: relative;

@@ -1,8 +1,6 @@
-import React, { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Text, LinkExternal } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getEtherscanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
 import { useToast } from 'state/hooks'
 import { AppDispatch, AppState } from '../index'
@@ -69,9 +67,7 @@ export default function Updater(): null {
               )
 
               const toast = receipt.status === 1 ? toastSuccess : toastError
-              toast(
-                'Transaction receipt',
-              )
+              toast('Transaction receipt')
             } else {
               dispatch(checkedTransaction({ chainId, hash, blockNumber: currentBlock }))
             }

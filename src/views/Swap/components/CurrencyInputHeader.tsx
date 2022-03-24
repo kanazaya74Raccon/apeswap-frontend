@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Button, ButtonMenu, ButtonMenuItem, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
+import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 interface Props {
   title?: string

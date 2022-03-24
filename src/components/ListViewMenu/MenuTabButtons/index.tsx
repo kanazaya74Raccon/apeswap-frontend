@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   }
 `
 
-const FarmTabButtons: React.FC = () => {
+const MenuTabButton: React.FC = () => {
   const { url, isExact } = useRouteMatch()
   const history = useHistory()
 
@@ -35,9 +35,9 @@ const FarmTabButtons: React.FC = () => {
 
   return (
     <Wrapper>
-      <Toggle size='md' labels={['CURRENT', 'PAST']} onClick={handleClick} checked={!isExact} />
+      <Toggle size="md" labels={['CURRENT', 'PAST']} onClick={handleClick} checked={!isExact} />
     </Wrapper>
   )
 }
 
-export default React.memo(FarmTabButtons)
+export default React.memo(MenuTabButton)

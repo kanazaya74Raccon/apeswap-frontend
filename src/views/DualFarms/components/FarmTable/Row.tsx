@@ -130,13 +130,14 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
     setActionPanelToggled(!actionPanelToggled)
   }
 
-  const { isXl, isXs } = useMatchBreakpoints()
+  const { isXl, isXs, isXxl } = useMatchBreakpoints()
+  
 
   const { account } = useWeb3React()
 
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}`
 
-  const isMobile = !isXl
+  const isMobile = !isXl && !isXxl
   const tableSchema = isMobile ? MobileColumnSchema : DesktopColumnSchema
   const columnNames = tableSchema.map((column) => column.name)
 

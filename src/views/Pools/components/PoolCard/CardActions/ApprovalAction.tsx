@@ -6,6 +6,8 @@ import { useERC20 } from 'hooks/useContract'
 
 const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 interface ApprovalActionProps {

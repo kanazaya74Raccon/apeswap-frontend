@@ -32,7 +32,7 @@ export const OpDetails: React.FC<OpDetailsProps> = ({
       {Icon}
 
       <OpHeadingCon>
-        <OpHeading as='h1'>{Title}</OpHeading>
+        <OpHeading as="h1">{Title}</OpHeading>
       </OpHeadingCon>
 
       <OpDescCon>

@@ -12,6 +12,8 @@ interface ApprovalActionProps {
 
 const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
@@ -41,7 +43,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <StyledButton disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButton size='md' disabled={requestedApproval} onClick={handleApprove}>
           ENABLE
         </StyledButton>
       )}

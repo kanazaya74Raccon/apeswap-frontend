@@ -16,16 +16,18 @@ export const ControlContainer = styled(Flex)`
   min-width: 300px;
   max-width: 500px;
   width: 100%;
-
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     min-height: 59px;
     height: 100%;
-    padding: 0px 130px 0px 30px;
-    justify-content: space-between;
+    padding: 20px 150px 20px 20px;
     align-items: center;
     transform: translateY(-60px);
     max-width: 100%;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    padding: 0px 130px 0px 30px;
+
   }
 `
 
@@ -173,6 +175,9 @@ export const SectionOneWrapper = styled(Flex)`
   z-index: 1;
   width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
+    width: 410px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     width: 430px;
   }
 `
@@ -185,9 +190,12 @@ export const SectionTwoWrapper = styled(Flex)`
   align-self: flex-start;
   z-index: 0;
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 275px;
+    width: 245px;
     margin-top: 0px;
     align-self: center;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    width: 275px;
   }
 `
 
@@ -197,6 +205,10 @@ export const HarvestAllWrapper = styled(Flex)`
   justify-content: center;
   align-items: center;
   ${({ theme }) => theme.mediaQueries.md} {
+    width: 250px;
+    margin-top: 20px;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
     width: 180px;
     margin-top: 0px;
   }

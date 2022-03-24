@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
+import React, { KeyboardEvent, useCallback, useMemo, useRef, useState } from 'react'
 import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
 import { Text, Input, Flex } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
@@ -113,7 +113,7 @@ function CurrencySearch({
     <div>
       <AutoColumn style={{ margin: '20px 0 20px 0' }}>
         <Row padding="0 15px 0 15px">
-          <Flex alignItems='center' justifyContent='center' mb='10px' style={{width: '100%'}}>
+          <Flex alignItems="center" justifyContent="center" mb="10px" style={{ width: '100%' }}>
             <StyledInput
               id="token-search-input"
               placeholder="Search name or paste address"
@@ -122,7 +122,7 @@ function CurrencySearch({
               // ref={inputRef as RefObject<HTMLInputElement>}
               onChange={handleInput}
               onKeyDown={handleEnter}
-              icon='search'
+              icon="search"
             />
           </Flex>
         </Row>

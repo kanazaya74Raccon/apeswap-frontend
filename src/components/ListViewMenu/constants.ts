@@ -5,10 +5,10 @@ export const OPTIONS = [
     label: 'All',
     value: 'all',
   },
-  {
-    label: 'New',
-    value: 'new',
-  },
+  // {
+  //   label: 'New',
+  //   value: 'new',
+  // },
   {
     label: 'Blue Chips',
     value: 'blueChips',

@@ -114,7 +114,7 @@ export const StyledButton = styled(Button)`
   line-height: 24px;
   color: #a16552;
 `
-export const StyledMonkey = styled.img` 
+export const StyledMonkey = styled.img`
   width: 800px;
   opacity: 0.05;
   position: absolute;

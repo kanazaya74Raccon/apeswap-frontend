@@ -13,6 +13,8 @@ import { getBalanceNumber } from 'utils/formatBalance'
 
 const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 interface HarvestActionsProps {

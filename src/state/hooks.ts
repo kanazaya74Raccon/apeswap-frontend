@@ -1,18 +1,16 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import BigNumber from 'bignumber.js'
-import { kebabCase } from 'lodash'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Toast, toastTypes } from '@apeswapfinance/uikit'
 import { useSelector } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useLiquidityData } from 'hooks/api'
-import useTokenBalance, { useAccountTokenBalance } from 'hooks/useTokenBalance'
+import { useAccountTokenBalance } from 'hooks/useTokenBalance'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useBananaAddress, useTreasuryAddress } from 'hooks/useAddress'
 import { useAppDispatch } from 'state'
 import useSwitchNetwork from 'hooks/useSelectNetwork'
 import {
-  fetchFarmsPublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
   push as pushToast,
@@ -21,7 +19,6 @@ import {
 } from './actions'
 import {
   State,
-  Farm,
   Pool,
   ProfileState,
   StatsState,
@@ -53,18 +50,14 @@ import {
   fetchHomepageNews,
   fetchHomepageService,
   fetchHomepageTokenData,
-  fetchStats,
 } from './stats'
-import { fetchStatsOverall } from './statsOverall'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
-import { fetchFarmUserDataAsync } from './farms'
 import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
-import { useBlock } from './block/hooks'
 import { fetchAllNfas } from './nfas'
 
 const ZERO = new BigNumber(0)
@@ -111,23 +104,6 @@ export const usePollPools = () => {
   }, [dispatch, tokenPrices, chainId])
 }
 
-export const usePollFarms = () => {
-  const { chainId } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
-  const { lpTokenPrices } = useLpTokenPrices()
-  // Made a string because hooks will refresh bignumbers
-  const bananaPrice = usePriceBananaBusd().toString()
-
-  useEffect(() => {
-    const fetchFarms = () => {
-      if (chainId === CHAIN_ID.BSC) {
-        dispatch(fetchFarmsPublicDataAsync(chainId, lpTokenPrices, new BigNumber(bananaPrice)))
-      }
-    }
-    fetchFarms()
-  }, [dispatch, chainId, lpTokenPrices, bananaPrice])
-}
-
 // Vault data
 export const usePollVaultsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -169,42 +145,6 @@ export const useDualFarms = (): DualFarm[] => {
 export const useDualFarmsFromPid = (pid): DualFarm => {
   const farm = useSelector((state: State) => state.dualFarms.data.find((f) => f.pid === pid))
   return farm
-}
-
-// Farms
-
-export const useFarms = (account): Farm[] => {
-  const { slowRefresh } = useRefresh()
-  const dispatch = useAppDispatch()
-  const { chainId } = useActiveWeb3React()
-  useEffect(() => {
-    if (account && (chainId === CHAIN_ID.BSC || chainId === CHAIN_ID.BSC_TESTNET)) {
-      dispatch(fetchFarmUserDataAsync(chainId, account))
-    }
-  }, [account, dispatch, slowRefresh, chainId])
-  const farms = useSelector((state: State) => state.farms.data)
-  return farms
-}
-
-export const useFarmFromPid = (pid): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
-  return farm
-}
-
-export const useFarmFromSymbol = (lpSymbol: string): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
-  return farm
-}
-
-export const useFarmUser = (pid) => {
-  const farm = useFarmFromPid(pid)
-
-  return {
-    allowance: farm?.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
-    tokenBalance: farm?.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
-    stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
-    earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
-  }
 }
 
 // Vaults
@@ -326,15 +266,15 @@ export const useTvl = (): BigNumber => {
 
 // Prices
 
-export const usePriceBnbBusd = (): BigNumber => {
-  const pid = 3 // BUSD-BNB LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(1).div(farm.tokenPriceVsQuote) : ZERO
-}
-
 export const usePriceBananaBusd = (): BigNumber => {
   const tokenPrices = useTokenPrices()
   const price = new BigNumber(tokenPrices?.tokenPrices?.find((token) => token.symbol === 'BANANA')?.price)
+  return price || ZERO
+}
+
+export const usePriceBnbBusd = (): BigNumber => {
+  const tokenPrices = useTokenPrices()
+  const price = new BigNumber(tokenPrices?.tokenPrices?.find((token) => token.symbol === 'BNB')?.price)
   return price || ZERO
 }
 
@@ -350,13 +290,6 @@ export const usePriceGnanaBusd = (): BigNumber => {
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
   */
-
-export const usePriceEthBusd = (): BigNumber => {
-  const pid = 5 // ETH-BNB LP
-  const bnbPriceUSD = usePriceBnbBusd()
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
-}
 
 // Toasts
 export const useToast = () => {
@@ -431,34 +364,6 @@ export const useFetchProfile = () => {
 export const useProfile = () => {
   const { isInitialized, isLoading, data }: ProfileState = useSelector((state: State) => state.profile)
   return { profile: data, hasProfile: isInitialized && data !== null, isInitialized, isLoading }
-}
-
-// Stats - individual stats
-export const useFetchStats = () => {
-  const { account } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
-  const { statsOverall } = useStatsOverall()
-  const { currentBlock } = useBlock()
-  const farms = useFarms(account)
-  const pools = usePools(account)
-  const { slowRefresh } = useRefresh()
-  const bananaBalance = useTokenBalance(useBananaAddress())
-  const [render, setRender] = useState(false)
-
-  // Stats was rendering an insane amount so hot fix until its redone
-  if (account && farms && pools && statsOverall && render && currentBlock) {
-    dispatch(fetchStats(pools, farms, statsOverall, bananaBalance, currentBlock))
-    setRender(false)
-  }
-
-  useEffect(() => {
-    setRender((prev) => !prev)
-  }, [slowRefresh])
-}
-
-export const useStats = () => {
-  const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
-  return { stats: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 export const useFetchHomepageStats = (isFetching: boolean) => {
@@ -682,22 +587,6 @@ export const usePendingUsd = () => {
 export const usePersonalTvl = () => {
   const { isInitialized, isLoading, data }: StatsState = useSelector((state: State) => state.stats)
   return { tvl: data?.tvl || 0, hasStats: isInitialized && data !== null, isInitialized, isLoading }
-}
-
-// Stats Overall- Total Banana Stats
-
-export const useFetchStatsOverall = () => {
-  const dispatch = useAppDispatch()
-  const { slowRefresh } = useRefresh()
-
-  useEffect(() => {
-    dispatch(fetchStatsOverall())
-  }, [dispatch, slowRefresh])
-}
-
-export const useStatsOverall = () => {
-  const { isInitialized, isLoading, data }: StatsOverallState = useSelector((state: State) => state.statsOverall)
-  return { statsOverall: data, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
 export const useGetPoolStats = (pid) => {

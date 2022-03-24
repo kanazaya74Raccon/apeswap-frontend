@@ -42,11 +42,11 @@ const Zone = () => {
       </Header>
 
       <Page>
-        <PaddedCard >
+        <PaddedCard>
           <TopCon>
             <Warning />
             <CenterCard>
-              <WarningHeader as='h1'>WARNING</WarningHeader>
+              <WarningHeader as="h1">WARNING</WarningHeader>
               {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
 
               <InnerContent readingMore={readingMore}>

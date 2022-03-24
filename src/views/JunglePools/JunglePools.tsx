@@ -9,6 +9,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import { PoolCategory } from 'config/constants/types'
 import useWindowSize, { Size } from 'hooks/useDimensions'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
@@ -16,7 +17,6 @@ import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from '../Pools/components/ToggleView/ToggleView'
 import SearchInput from '../Pools/components/SearchInput'
-import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
 import PoolTable from '../Pools/components/PoolTable/PoolTable'
 import { ViewMode } from '../Pools/components/types'
@@ -646,7 +646,7 @@ const JunglePools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1">{TranslateString(999, 'Jungle Farms')}</StyledHeading>
+          <StyledHeading style={{color: 'white'}} as="h1">{TranslateString(999, 'Jungle Farms')}</StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
               Stake APE-LPs to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
@@ -666,7 +666,9 @@ const JunglePools: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <PoolTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />{' '}
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

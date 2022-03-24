@@ -1,6 +1,6 @@
-import { Flex, HelpIcon, TooltipBubble, TooltipBody } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon, TooltipBubble } from '@apeswapfinance/uikit'
 import React from 'react'
-import { TitleText, ListViewContentContainer, IconImage, ValueText, ValueSkeleton } from './styles'
+import { TitleText, ListViewContentContainer, ValueText, ValueSkeleton } from './styles'
 import { ListViewContentProps } from './types'
 
 const ListViewContent: React.FC<ListViewContentProps> = ({
@@ -24,7 +24,7 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
     <ListViewContentContainer mb={mb} ml={ml} width={width} height={height}>
       <Flex alignItems="center">
         {toolTip ? (
-          <Flex alignItems='flex-start'>
+          <Flex alignItems="flex-start">
             <div style={{ display: 'inline-block' }}>
               <TooltipBubble
                 placement={toolTipPlacement || 'topLeft'}
@@ -48,13 +48,13 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
         )}
       </Flex>
       <Flex alignItems="center">
-        {valueIcon && <IconImage src={valueIcon} alt={valueIcon} />}
+        {valueIcon && valueIcon}
         <ValueText bold lineHeight={lineHeight}>
           {value.includes('NaN') || value.includes('undefined') ? <ValueSkeleton /> : value}
         </ValueText>
       </Flex>
       <Flex alignItems="center">
-        {value2Icon && <IconImage src={value2Icon} alt={value2Icon} />}{' '}
+        {value2Icon && value2Icon}{' '}
         {value2 && (
           <ValueText bold={!value2Secondary} value2Secondary={value2Secondary} lineHeight={lineHeight}>
             {value2.includes('NaN') || value2.includes('undefined') ? <ValueSkeleton /> : value2}

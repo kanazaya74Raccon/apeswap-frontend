@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, useMatchBreakpoints, Text } from '@apeswapfinance/uikit'
+import { Flex, useMatchBreakpoints, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
@@ -13,13 +13,14 @@ import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
 import { ActionContainer } from './CardActions/styles'
 
-const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
+const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg, isXxl, isMd } = useMatchBreakpoints()
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
   const isMobile = !isLg && !isXl && !isXxl
 
   const farmsListView = farms.map((farm, i) => {
     const [token1, token2] = farm.lpSymbol.split('-')
+    const bscScanUrl = `https://bscscan.com/address/${farm.lpAddresses[chainId]}`
     const liquidityUrl = `https://apeswap.finance/add/${
       farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId]
     }/${farm.tokenAddresses[chainId]}`
@@ -36,6 +37,7 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
     return {
       tokens: { token1, token2, token3: 'BANANA' },
       title: farm.lpSymbol,
+      open: farm.pid === openPid,
       infoContent: (
         <>
           <Flex flexDirection="column">
@@ -50,6 +52,11 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
               <Text bold style={{ fontSize: '12px' }}>
                 {farm.lpSymbol} LP
               </Text>
+            </Flex>
+            <Flex alignItems="center" justifyContent="center" mt="15px">
+              <LinkExternal href={bscScanUrl} style={{ fontSize: '14px' }}>
+                View on BscScan
+              </LinkExternal>
             </Flex>
           </Flex>
         </>
@@ -67,8 +74,16 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
             title="APR"
             value={`${farm?.apr}%`}
             value2={`${farm?.lpApr}%`}
-            value2Icon="/images/swap-icon.svg"
-            valueIcon="/images/tokens/banana.svg"
+            value2Icon={
+              <Flex mr="8px">
+                <Svg icon="swap" width="13px" />
+              </Flex>
+            }
+            valueIcon={
+              <Flex mr="5px">
+                <Svg icon="banana_token" width="15px" />
+              </Flex>
+            }
             width={isMobile ? 100 : 200}
             toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
             toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
@@ -78,7 +93,7 @@ const DisplayFarms: React.FC<{ farms: Farm[] }> = ({ farms }) => {
                 lpLabel={farm.lpSymbol}
                 rewardTokenName="BANANA"
                 rewardTokenPrice={farm.bananaPrice}
-                apy={parseFloat(farm.apr) / 100}
+                apy={parseFloat(farm?.apr) / 100 + parseFloat(farm?.lpApr) / 100}
                 addLiquidityUrl={liquidityUrl}
               />
             }

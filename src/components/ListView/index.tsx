@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import ListCard from './ListCard'
 import { ListViewContainer } from './styles'
@@ -28,6 +28,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
             expandedContent={view.expandedContent}
             infoContent={view.infoContent}
             key={view.title}
+            open={view?.open}
           />
         ) : (
           <ListCard
@@ -45,6 +46,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
             expandedContent={view.expandedContent}
             infoContent={view.infoContent}
             key={view.title}
+            open={view?.open}
           />
         )
       })}

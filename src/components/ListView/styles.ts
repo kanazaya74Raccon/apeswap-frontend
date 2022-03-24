@@ -1,4 +1,4 @@
-import { ArrowDropDownIcon, Card, Flex, Text } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, Flex, Text } from '@apeswapfinance/uikit'
 import styled, { keyframes } from 'styled-components'
 
 const ExpandLargeAnimation = keyframes`

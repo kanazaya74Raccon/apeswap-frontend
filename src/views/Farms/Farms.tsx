@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFarmLpAprs, useFarms, useFetchFarmLpAprs, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
+import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import { Farm } from 'state/types'
+import { useFarms, usePollFarms } from 'state/farms/hooks'
 import useI18n from 'hooks/useI18n'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
@@ -16,23 +17,16 @@ import HarvestAllAction from './components/CardActions/HarvestAllAction'
 const Farms: React.FC = () => {
   useFetchLpTokenPrices()
   usePollFarms()
+  const { account, chainId } = useActiveWeb3React()
+  useFetchFarmLpAprs(chainId)
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
-  const { account, chainId } = useActiveWeb3React()
-  useFetchFarmLpAprs(chainId)
   const farmsLP = useFarms(account)
-  const farmLpAprs = useFarmLpAprs()
-  const mergedFarms = farmsLP?.map((farm) => {
-    return {
-      ...farm,
-      lpApr: (farmLpAprs?.lpAprs?.find((lp) => lp.pid === farm.pid)?.lpApr * 100)?.toFixed(2),
-    }
-  })
-  const finalFarms = mergedFarms?.map((farm) => {
-    return { ...farm, apy: (parseFloat(farm.apy) + parseFloat(farm.lpApr)).toFixed(2) }
-  })
+  const { search } = window.location
+  const params = new URLSearchParams(search)
+  const urlSearchedFarm = parseInt(params.get('pid'))
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -58,14 +52,14 @@ const Farms: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
 
-  const activeFarms = finalFarms.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
-  const inactiveFarms = finalFarms.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
+  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X')
+  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X')
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
-  const hasHarvestPids = farmsLP
+  const hasHarvestPids = [...activeFarms, ...inactiveFarms]
     .filter((farm) => farm.userData && new BigNumber(farm.userData.earnings).isGreaterThan(0))
     .map((filteredFarm) => {
       return filteredFarm.pid
@@ -77,6 +71,23 @@ const Farms: React.FC = () => {
 
   const renderFarms = () => {
     let farms = isActive ? activeFarms : inactiveFarms
+
+    if (urlSearchedFarm) {
+      const farmCheck =
+        activeFarms?.find((farm) => {
+          return farm.pid === urlSearchedFarm
+        }) !== undefined
+      if (farmCheck) {
+        farms = [
+          activeFarms?.find((farm) => {
+            return farm.pid === urlSearchedFarm
+          }),
+          ...activeFarms?.filter((farm) => {
+            return farm.pid !== urlSearchedFarm
+          }),
+        ]
+      }
+    }
 
     if (stakedOnly) {
       farms = stakedOnlyFarms
@@ -96,7 +107,7 @@ const Farms: React.FC = () => {
           .filter((farm) => STABLES.includes(farm.tokenSymbol) && STABLES.includes(farm.quoteTokenSymbol))
           .slice(0, numberOfFarmsVisible)
       case 'apr':
-        return orderBy(farms, (farm) => parseFloat(farm.apr), 'desc').slice(0, numberOfFarmsVisible)
+        return orderBy(farms, (farm) => parseFloat(farm.apy), 'desc').slice(0, numberOfFarmsVisible)
       case 'new':
         return farms
       case 'blueChips':
@@ -119,7 +130,7 @@ const Farms: React.FC = () => {
       </Header>
       <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <Flex alignItems='center' justifyContent='center' margin='0px 10px'>
+          <Flex alignItems="center" justifyContent="center" margin="0px 10px">
             <ListViewMenu
               onHandleQueryChange={handleChangeQuery}
               onSetSortOption={setSortOption}
@@ -131,7 +142,7 @@ const Farms: React.FC = () => {
               showMonkeyImage
             />
           </Flex>
-          <DisplayFarms farms={renderFarms()} />
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
         </Flex>
       </Flex>
       <div ref={loadMoreRef} />

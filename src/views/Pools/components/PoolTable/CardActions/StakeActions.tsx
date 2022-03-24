@@ -29,6 +29,8 @@ interface StakeActionsProps {
 
 const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 const IconButtonWrapperStake = styled.div`

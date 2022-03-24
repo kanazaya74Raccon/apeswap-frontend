@@ -1,4 +1,4 @@
-import { Flex, InfoIcon, TooltipBody, TooltipBubble } from '@apeswapfinance/uikit'
+import { InfoIcon, TooltipBubble } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import {
   ContentContainer,
@@ -18,8 +18,9 @@ const ListCard: React.FC<ListCardProps> = ({
   cardContent,
   expandedContent,
   infoContent,
+  open,
 }) => {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(open)
   return (
     <>
       <ListCardContainer onClick={() => setExpanded((prev) => !prev)}>
@@ -34,7 +35,7 @@ const ListCard: React.FC<ListCardProps> = ({
         <DropDownIcon open={expanded} mr="10px" />
         {infoContent && (
           <div style={{ display: 'inline-block' }}>
-            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 50%)">
+            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 40%)">
               <InfoIcon width="25px" />
             </TooltipBubble>
           </div>

@@ -7,6 +7,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
@@ -16,7 +17,6 @@ import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
-import PoolTabButtons from './components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
 import PoolTable from './components/PoolTable/PoolTable'
 import { ViewMode } from './components/types'
@@ -692,7 +692,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
+          <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
@@ -717,7 +717,9 @@ const Pools: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <PoolTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

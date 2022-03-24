@@ -1,5 +1,5 @@
 import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
-import { BinanceIcon} from '@apeswapfinance/uikit'
+import { BinanceIcon } from '@apeswapfinance/uikit'
 import { CHAIN_ID } from 'config/constants/chains'
 import { getMaticTokenLogoURL } from 'config/constants/maticTokenMapping'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'

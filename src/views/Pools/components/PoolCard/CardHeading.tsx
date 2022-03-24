@@ -279,7 +279,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <StyledUnlockButton size="sm" />
+      return <StyledUnlockButton size="md" />
     }
     if (needsApproval) {
       return (

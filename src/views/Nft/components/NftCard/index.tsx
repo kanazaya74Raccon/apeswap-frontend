@@ -24,11 +24,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft }) => {
 
   return (
     <Link to={`/nft/${index}`}>
-      <Card>
+      <Card sx={{ borderRadius: '10px', overflow: 'hidden' }}>
         <Image src={image} alt={name} originalLink={image} rarityTier={attributes.rarityTierNumber} />
-        <Box>
+        <Box sx={{ height: '80px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Header>
-            <Heading>
+            <Heading as="h5" sx={{ textAlign: 'center' }}>
               {name} - #{pad(`${index}`, '4')}
             </Heading>
           </Header>

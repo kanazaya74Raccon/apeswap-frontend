@@ -96,6 +96,7 @@ const StakeContainer = styled.div`
 
 const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
+  font-size: 12px;
 `
 
 const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
@@ -143,7 +144,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <StyledUnlockButton size="sm" />
+      return <StyledUnlockButton size="md" />
     }
     if (needsApproval) {
       return (

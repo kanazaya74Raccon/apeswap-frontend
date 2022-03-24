@@ -68,6 +68,8 @@ const StyledFlex = styled(Flex)`
 
 const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 const StakeAction: React.FC<StakeActionsProps> = ({
@@ -164,7 +166,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 
   if (firstStake) {
     return (
-      <StyledButton size="sm" className="noClick" onClick={onPresentDeposit}>
+      <StyledButton size="md" className="noClick" onClick={onPresentDeposit}>
         {TranslateString(999, `STAKE ${stakingTokenName}`)}
       </StyledButton>
     )

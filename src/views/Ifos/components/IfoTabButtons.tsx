@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, Toggle } from '@apeswapfinance/uikit'
+import { Toggle } from '@apeswapfinance/uikit'
 import { TabOption } from '../types'
 
 const Wrapper = styled.div`

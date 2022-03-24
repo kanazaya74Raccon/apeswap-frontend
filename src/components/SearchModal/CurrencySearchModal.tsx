@@ -9,7 +9,6 @@ import Manage from './Manage'
 import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
 
-
 const StyledModalContainer = styled.div`
   max-width: 420px;
   width: 100%;
