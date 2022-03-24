@@ -45,7 +45,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
               <Text style={{ fontSize: '12px' }}>Multiplier</Text>
               <Text bold style={{ fontSize: '12px' }}>
-                {(parseFloat(farm.multiplier) * 100).toFixed(0)}X
+                {parseFloat(farm.multiplier) * 10}X
               </Text>
             </Flex>
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
@@ -70,7 +70,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             width={isMobile ? 90 : 160}
             toolTip="APY is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA, compounded daily over the span of a year."
             toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform="translate(0, 38%)"
+            toolTipTransform={i === farms.length - 1 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
           />
           <ListViewContent
             title="APR"
@@ -90,7 +90,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             toolTip="The BANANA reward APR is calculated real-time. The DEX swap fee APR is calculated from the previous 24 hours of trading volume. 
             Note: APRs are provided for your convenience. These APRs not always sustained, nor represent guaranteed returns."
             toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform="translate(0, 38%)"
+            toolTipTransform={i === farms.length - 1 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
             aprCalculator={
               <ApyButton
                 lpLabel={farm.lpSymbol}
@@ -106,8 +106,24 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 200}
             toolTip="The total value of the LP tokens currently staked in this farm."
-            toolTipPlacement={i === farms.length - 1 ? 'topLeft' : isMobile ? 'bottomRight' : 'bottomLeft'}
-            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0, 75%)'}
+            toolTipPlacement={
+              isMobile
+                ? i === farms.length - 1
+                  ? 'topRight'
+                  : 'bottomRight'
+                : i === farms.length - 1
+                ? 'topRight'
+                : 'bottomLeft'
+            }
+            toolTipTransform={
+              isMobile
+                ? i === farms.length - 1
+                  ? 'translate(-60%, -110%)'
+                  : 'translate(-75%, 75%)'
+                : i === farms.length - 1
+                ? 'translate(-60%, -110%)'
+                : 'translate(0%, 75%)'
+            }
           />
           <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
         </>
