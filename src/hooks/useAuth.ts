@@ -35,7 +35,7 @@ const useAuth = () => {
         } else {
           window.localStorage.removeItem(localStorageKey)
           if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-            toastError('Provider Error, To connect you need a web3 enabled browser.')
+            toastError('Wallet Browser Required! To connect you need a web3 enabled browser.')
           } else if (
             error instanceof UserRejectedRequestErrorInjected ||
             error instanceof UserRejectedRequestErrorWalletConnect
