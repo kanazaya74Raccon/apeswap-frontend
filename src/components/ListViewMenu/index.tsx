@@ -37,7 +37,7 @@ const ListViewMenu: React.FC<ListViewProps> = ({
           </StyledText>
           <SearchInput onChange={onHandleQueryChange} value={query} />
         </LabelWrapper>
-        <Flex style={{overflow: 'hidden'}}>
+        <Flex>
           <Select size="sm" width="126px" onChange={(e) => onSetSortOption(e.target.value)} active={activeOption}>
             {OPTIONS.map((option) => {
               return (
