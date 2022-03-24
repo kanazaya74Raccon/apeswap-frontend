@@ -54,7 +54,7 @@ const cleanFarmData = (
     const lpApr = farmLpAprs?.lpAprs?.find((lp) => lp.pid === farmConfig.pid)?.lpApr * 100
     const amountEarned = tokenEarnedPerThousandDollarsCompounding({
       numberOfDays: 365,
-      farmApr: apr + lpApr,
+      farmApr: lpApr ? apr + lpApr : apr,
       tokenPrice: bananaPrice,
     })
 
