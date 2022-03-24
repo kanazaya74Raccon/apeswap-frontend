@@ -75,14 +75,14 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             value={`${farm?.apr}%`}
             value2={`${farm?.lpApr}%`}
             value2Icon={
-              <Flex mr="8px">
-                <Svg icon="swap" width="13px" />
-              </Flex>
+              <span style={{marginRight: '7px'}}>
+                <Svg icon="swap" width={13} color="text" />
+              </span>
             }
             valueIcon={
-              <Flex mr="5px">
-                <Svg icon="banana_token" width="15px" />
-              </Flex>
+              <span style={{marginRight: '5px'}}>
+                <Svg icon="banana_token" width={15} color="text" />
+              </span>
             }
             width={isMobile ? 100 : 200}
             toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
