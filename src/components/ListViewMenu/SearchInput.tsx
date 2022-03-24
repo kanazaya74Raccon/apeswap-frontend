@@ -8,9 +8,7 @@ const StyledInput = styled(Input)`
   height: 36px;
   width: 100%;
   font-weight: 800;
-  :focus {
-    box-shadow: 0px 0px 0px 1px #ffb300, 0px 0px 0px 4px rgb(255 179 0 / 40%) !important;
-  }
+  border: none;
 `
 
 const InputWrapper = styled.div`
