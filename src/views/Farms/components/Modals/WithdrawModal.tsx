@@ -43,7 +43,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
       />
       <ModalFooter>
         <Button
-          disabled={pendingTx}
+          disabled={pendingTx || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {
             setPendingTx(true)
             try {

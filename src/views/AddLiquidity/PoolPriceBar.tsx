@@ -7,7 +7,6 @@ import { AutoRow } from '../../components/layout/Row'
 import { ONE_BIPS } from '../../config/constants'
 import { Field } from '../../state/mint/actions'
 
-
 function PoolPriceBar({
   currencies,
   noLiquidity,

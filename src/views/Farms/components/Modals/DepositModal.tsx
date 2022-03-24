@@ -46,7 +46,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
       <ModalFooter onDismiss={onDismiss}>
         <Button
           fullWidth
-          disabled={pendingTx || fullBalance === '0' || val === '0'}
+          disabled={pendingTx || fullBalance === '0' || val === '0' || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {
             setPendingTx(true)
             try {
