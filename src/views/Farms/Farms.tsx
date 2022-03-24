@@ -148,8 +148,8 @@ const Farms: React.FC = () => {
           </Flex>
           <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
         </Flex>
-        <div ref={loadMoreRef} />
       </Flex>
+      <div ref={loadMoreRef} />
     </>
   )
 }
