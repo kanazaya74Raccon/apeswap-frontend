@@ -35,7 +35,10 @@ const useAuth = () => {
         } else {
           window.localStorage.removeItem(localStorageKey)
           if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-            toastError('Wallet Browser Required! To connect you need a web3 enabled browser.')
+            toastError('Use a crypto wallet app’s browser to connect to ApeSwap.', {
+              text: 'Learn More',
+              url: 'https://apeswap.gitbook.io/apeswap-finance/product-and-features/wallets/how-to-use-apeswap-on-mobile-devices',
+            })
           } else if (
             error instanceof UserRejectedRequestErrorInjected ||
             error instanceof UserRejectedRequestErrorWalletConnect
