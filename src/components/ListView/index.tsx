@@ -27,7 +27,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
             cardContent={view.cardContent}
             expandedContent={view.expandedContent}
             infoContent={view.infoContent}
-            key={view.title}
+            key={view.id}
             open={view?.open}
           />
         ) : (
@@ -45,7 +45,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
             cardContent={view.cardContent}
             expandedContent={view.expandedContent}
             infoContent={view.infoContent}
-            key={view.title}
+            key={view.id}
             open={view?.open}
           />
         )

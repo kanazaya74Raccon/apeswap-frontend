@@ -35,16 +35,17 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     ).toFixed(2)}`
 
     return {
-      tokens: { token1, token2, token3: 'BANANA' },
+      tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
       title: farm.lpSymbol,
       open: farm.pid === openPid,
+      id: farm.pid,
       infoContent: (
         <>
           <Flex flexDirection="column">
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
               <Text style={{ fontSize: '12px' }}>Multiplier</Text>
               <Text bold style={{ fontSize: '12px' }}>
-                {farm.multiplier}
+                {(parseFloat(farm.multiplier) * 100).toFixed(0)}X
               </Text>
             </Flex>
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
@@ -67,7 +68,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             title="APY"
             value={`${farm?.apy}%`}
             width={isMobile ? 90 : 160}
-            toolTip="APY does stuff"
+            toolTip="APY is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA, compounded daily over the span of a year."
             toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
           />
           <ListViewContent
@@ -85,7 +86,8 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
               </span>
             }
             width={isMobile ? 100 : 200}
-            toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
+            toolTip="The BANANA reward APR is calculated real-time. The DEX swap fee APR is calculated from the previous 24 hours of trading volume.
+            Note: APRs are provided for your convenience. These APRs not always sustained, nor represent guaranteed returns."
             toolTipPlacement={i === farms.length - 1 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform="translate(0, 65%)"
             aprCalculator={

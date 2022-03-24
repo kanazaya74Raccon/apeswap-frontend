@@ -13,4 +13,5 @@ export interface ListCardProps extends ListViewProps {
 
 export interface ExtendedListViewProps extends ListViewProps {
   tokens: { token1: string; token2: string; token3?: string; token4?: string }
+  id: string | number
 }

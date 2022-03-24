@@ -18,7 +18,7 @@ export const OPTIONS = [
     value: 'stables',
   },
   {
-    label: 'APR',
+    label: 'APY',
     value: 'apr',
   },
   {
