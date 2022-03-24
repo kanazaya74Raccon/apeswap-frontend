@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from 'styled-components'
-import { Flex, Select, SelectItem } from '@apeswapfinance/uikit'
+import { Flex, Select, SelectItem, Text } from '@apeswapfinance/uikit'
 import { ListViewProps } from './types'
 import MenuTabButtons from './MenuTabButtons'
 import SearchInput from './SearchInput'
@@ -42,7 +42,7 @@ const ListViewMenu: React.FC<ListViewProps> = ({
             {OPTIONS.map((option) => {
               return (
                 <SelectItem size="sm" value={option.value}>
-                  {option.label}
+                  <Text>{option.label}</Text>
                 </SelectItem>
               )
             })}

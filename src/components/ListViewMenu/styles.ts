@@ -8,7 +8,6 @@ export const ControlContainer = styled(Flex)`
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: column;
-  overflow: visible;
   transform: translateY(-85px);
   padding: 15px;
   z-index: 1;
@@ -170,7 +169,7 @@ export const StyledHeading = styled(Heading)`
 
 export const SectionOneWrapper = styled(Flex)`
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   z-index: 1;
   width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
