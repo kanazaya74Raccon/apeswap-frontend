@@ -40,8 +40,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
   const [pendingDepositTrx, setPendingDepositTrx] = useState(false)
   const [pendingWithdrawTrx, setPendingWithdrawTrx] = useState(false)
   const { toastSuccess } = useToast()
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
   const firstStake = !new BigNumber(stakedBalance)?.gt(0)
 
   const { onStake } = useStake(pid)

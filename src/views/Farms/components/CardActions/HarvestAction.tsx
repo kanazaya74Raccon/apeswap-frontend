@@ -22,8 +22,8 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onHarvest } = useHarvest(pid)
   const { toastSuccess } = useToast()
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
 
   return (
     <ActionContainer>
