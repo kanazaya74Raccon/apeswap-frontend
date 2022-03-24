@@ -47,7 +47,8 @@ export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farms
 
 // Thunks
 export const fetchFarmsPublicDataAsync =
-  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) => async (dispatch) => {
+  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) =>
+  async (dispatch) => {
     try {
       const farms = await fetchFarms(chainId, lpPrices, bananaPrice, farmLpAprs)
       dispatch(setFarmsPublicData(farms))

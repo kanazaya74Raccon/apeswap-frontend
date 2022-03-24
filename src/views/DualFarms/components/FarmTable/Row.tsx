@@ -131,7 +131,6 @@ const Row: React.FunctionComponent<RowProps> = (props) => {
   }
 
   const { isXl, isXs, isXxl } = useMatchBreakpoints()
-  
 
   const { account } = useWeb3React()
 

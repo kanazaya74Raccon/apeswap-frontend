@@ -51,7 +51,6 @@ const StyledButton = styled(Button)`
   padding: 3px 10px;
 `
 
-
 const ModalInput: React.FC<ModalInputProps> = ({
   max,
   symbol,

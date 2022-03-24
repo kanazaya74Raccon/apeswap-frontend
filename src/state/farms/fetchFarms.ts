@@ -8,7 +8,12 @@ import multicall from 'utils/multicall'
 import fetchFarmCalls from './fetchFarmCalls'
 import cleanFarmData from './cleanFarmData'
 
-const fetchFarms = async (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) => {
+const fetchFarms = async (
+  chainId: number,
+  lpPrices: LpTokenPrices[],
+  bananaPrice: BigNumber,
+  farmLpAprs: FarmLpAprsType,
+) => {
   const farmIds = []
   const farmCalls = farmsConfig.flatMap((farm) => {
     farmIds.push(farm.pid)

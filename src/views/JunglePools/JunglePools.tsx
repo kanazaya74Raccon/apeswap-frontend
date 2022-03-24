@@ -646,7 +646,9 @@ const JunglePools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading style={{color: 'white'}} as="h1">{TranslateString(999, 'Jungle Farms')}</StyledHeading>
+          <StyledHeading style={{ color: 'white' }} as="h1">
+            {TranslateString(999, 'Jungle Farms')}
+          </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
               Stake APE-LPs to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per

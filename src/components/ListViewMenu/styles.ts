@@ -27,7 +27,6 @@ export const ControlContainer = styled(Flex)`
   }
   ${({ theme }) => theme.mediaQueries.xl} {
     padding: 0px 130px 0px 30px;
-
   }
 `
 

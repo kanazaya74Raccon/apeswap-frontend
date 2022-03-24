@@ -43,7 +43,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <StyledButton size='md' disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButton size="md" disabled={requestedApproval} onClick={handleApprove}>
           ENABLE
         </StyledButton>
       )}
