@@ -70,7 +70,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             title="APY"
             value={`${farm?.apy}%`}
             width={isMobile ? 90 : 160}
-            toolTip="APY is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA, compounded daily over the span of a year."
+            toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
           />
@@ -89,8 +89,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
               </span>
             }
             width={isMobile ? 100 : 200}
-            toolTip="The BANANA reward APR is calculated real-time. The DEX swap fee APR is calculated from the previous 24 hours of trading volume. 
-            Note: APRs are provided for your convenience. These APRs not always sustained, nor represent guaranteed returns."
+            toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
             aprCalculator={
