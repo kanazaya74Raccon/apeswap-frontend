@@ -35,7 +35,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
   const dispatch = useAppDispatch()
   const { chainId, account } = useActiveWeb3React()
   const userStakedBalanceUsd = `$${(
-    getBalanceNumber(new BigNumber(stakingTokenBalance) || new BigNumber(0)) * lpValueUsd
+    getBalanceNumber(new BigNumber(stakedBalance) || new BigNumber(0)) * lpValueUsd
   ).toFixed(2)}`
   const [pendingDepositTrx, setPendingDepositTrx] = useState(false)
   const [pendingWithdrawTrx, setPendingWithdrawTrx] = useState(false)
