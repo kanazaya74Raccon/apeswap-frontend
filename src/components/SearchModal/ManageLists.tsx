@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react'
 import { Button, Text, CheckmarkIcon, CogIcon, Input, Toggle, Card } from '@apeswapfinance/uikit'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { TokenList } from '@uniswap/token-lists'
 import { UNSUPPORTED_LIST_URLS } from 'config/constants/lists'
 import { parseENSAddress } from 'utils/ENS/parseENSAddress'
@@ -30,6 +30,10 @@ const RowWrapper = styled(Row)<{ active: boolean }>`
   align-items: center;
   padding: 1rem;
   border-radius: 20px;
+`
+
+const StyledInput = styled(Input)`
+  width: 300px;
 `
 
 function listUrlRowHTMLId(listUrl: string) {
@@ -74,7 +78,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         </RowFixed>
       </Column>
       <Toggle
-        labels={['Yes', 'No']}
+        labels={['NO', 'YES']}
         checked={isActive}
         onChange={() => {
           if (isActive) {
@@ -199,11 +203,12 @@ function ManageLists({
     <Wrapper>
       <AutoColumn gap="14px">
         <Row>
-          <Input
+          <StyledInput
             id="list-add-input"
             placeholder="https:// or ipfs:// or ENS name"
             value={listUrlInput}
             onChange={handleInput}
+            icon="search"
           />
         </Row>
         {addError ? (

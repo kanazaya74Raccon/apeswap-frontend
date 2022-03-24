@@ -59,6 +59,10 @@ const Farms: React.FC = () => {
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
+  const stakedOnlyInactiveFarms = inactiveFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+  )
+
   const hasHarvestPids = [...activeFarms, ...inactiveFarms]
     .filter((farm) => farm.userData && new BigNumber(farm.userData.earnings).isGreaterThan(0))
     .map((filteredFarm) => {
@@ -90,7 +94,7 @@ const Farms: React.FC = () => {
     }
 
     if (stakedOnly) {
-      farms = stakedOnlyFarms
+      farms = isActive ? stakedOnlyFarms : stakedOnlyInactiveFarms
     }
 
     if (query) {

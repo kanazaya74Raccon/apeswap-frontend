@@ -169,14 +169,16 @@ export const StyledHeading = styled(Heading)`
 
 export const SectionOneWrapper = styled(Flex)`
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   z-index: 1;
   width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
     width: 410px;
+    align-items: center;
   }
   ${({ theme }) => theme.mediaQueries.xl} {
     width: 430px;
+    align-items: center;
   }
 `
 

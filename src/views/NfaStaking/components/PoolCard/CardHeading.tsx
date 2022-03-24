@@ -1,8 +1,8 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { BLOCKS_PER_DAY } from 'config'
+import styled from '@emotion/styled'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
@@ -340,7 +340,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <NumberHolder>
             <StyledNumber>{tier}</StyledNumber>
           </NumberHolder>
-          <Image rarityTier={tier} borderRadius="50%" />
+          <Image rarityTier={tier} borderRadius="50%" hideTier />
         </StyledImageHolder>
         <StyledArrow src="/images/arrow.svg" alt="arrow" />
         <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />

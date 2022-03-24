@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { Heading, Button, Text } from '@apeswapfinance/uikit'
+import styled from '@emotion/styled'
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.navbar};
