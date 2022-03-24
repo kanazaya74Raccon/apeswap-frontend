@@ -198,7 +198,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 `${currency0.getSymbol(chainId)}/${currency1.getSymbol(chainId)}`
               )}
             </Title>
-            <Text small style={{ position: 'absolute', right: '40px' }} mt="5px">
+            <Text small style={{ position: 'absolute', right: '40px' }} mt="5px" mr="20px">
               {currencyPrice ? `~ $${(currencyPrice * parseFloat(userPoolBalance?.toSignificant(4))).toFixed(2)}` : '-'}
             </Text>
           </Flex>
