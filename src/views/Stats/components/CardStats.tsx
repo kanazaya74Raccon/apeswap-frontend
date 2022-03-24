@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Card, CardBody, Heading, Text, Flex } from '@apeswapfinance/uikit'
+import { Card, Heading, Text, Flex } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { FarmPool } from 'state/types'
 import useI18n from 'hooks/useI18n'
+import { Box } from 'theme-ui'
 import { farmsConfig } from 'config/constants'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { useAllPools } from 'state/hooks'
@@ -58,7 +59,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
 
   return (
     <StyledPoolStats key={farmName} isActive={type === 'pool'} isSuccess={type === 'farm'}>
-      <CardBody>
+      <Box>
         <Flex justifyContent="flex-start" alignItems="center" marginBottom="12px">
           <StatsImageCard
             type={type}
@@ -66,7 +67,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
             token0={filteredFarm?.quoteTokenSymbol}
             token1={filteredFarm?.tokenSymbol}
           />
-          <Heading fontSize="16px" mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
+          <Heading mb="24px" style={{ textAlign: 'center', marginLeft: 20 }}>
             {TranslateString(534, `${farmName}`)}
           </Heading>
         </Flex>
@@ -94,7 +95,7 @@ const CardStats: React.FC<PoolStatsProps> = ({ data, type, forceDetails = false 
         <ExpandingWrapper expanded={showExpandableSection || forceDetails}>
           <DetailsSection farmStats={data} bscScanAddress={bscScanAddress} />
         </ExpandingWrapper>
-      </CardBody>
+      </Box>
     </StyledPoolStats>
   )
 }

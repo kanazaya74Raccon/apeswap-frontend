@@ -5,7 +5,6 @@ import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/action
 import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
-import { updateFarmUserAllowances } from 'state/farms'
 import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
 import useActiveWeb3React from './useActiveWeb3React'
@@ -20,28 +19,21 @@ import {
 } from './useContract'
 
 // Approve a Farm
-export const useApprove = (lpContract, pid: number) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
+export const useApprove = (lpContract) => {
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await approve(lpContract, masterChefContract)
-      dispatch(updateFarmUserAllowances(chainId, pid, account))
-      track({
-        event: 'farm',
-        chain: CHAIN_ID,
-        data: {
-          token: tx.to,
-          cat: 'enable',
-        },
-      })
-      return tx
-    } catch (e) {
-      return false
-    }
-  }, [account, dispatch, lpContract, masterChefContract, pid, chainId])
+    const trx = await approve(lpContract, masterChefContract)
+    track({
+      event: 'farm',
+      chain: CHAIN_ID,
+      data: {
+        token: trx?.to,
+        cat: 'enable',
+      },
+    })
+    return trx
+  }, [lpContract, masterChefContract])
 
   return { onApprove: handleApprove }
 }

@@ -86,9 +86,10 @@ const Services: React.FC = () => {
                       token2={tokenImage[1]}
                       token3={stat.rewardToken.name}
                       stakeLp
+                      iconFill="white"
                     />
                   ) : id === 'poolDetails' ? (
-                    <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} />
+                    <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} iconFill="white" />
                   ) : (
                     <ServiceTokenDisplay token1={tokenImage[0]} />
                   )}

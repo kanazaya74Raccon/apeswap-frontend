@@ -1,6 +1,7 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, Heading, Text } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
+import { Box } from 'theme-ui'
 import CardContent from './CardContent'
 
 const NftInWalletCard = () => {
@@ -8,12 +9,12 @@ const NftInWalletCard = () => {
 
   return (
     <Card>
-      <CardBody>
+      <Box>
         <CardContent imgSrc="/images/present.svg">
           <Heading mb="8px">{TranslateString(999, 'NFT in wallet')}</Heading>
           <Text>{TranslateString(999, 'Trade in your NFT for BANANA, or just keep it for your collection.')}</Text>
         </CardContent>
-      </CardBody>
+      </Box>
     </Card>
   )
 }

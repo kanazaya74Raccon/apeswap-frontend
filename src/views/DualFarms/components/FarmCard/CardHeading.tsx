@@ -310,7 +310,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading fontWeight={800}>{lpLabel}</StyledHeading>
+          <StyledHeading>{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1>APR:</StyledText1>
@@ -321,8 +321,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                       lpLabel={lpLabel}
                       rewardTokenName="BANANA"
                       addLiquidityUrl={addLiquidityUrl}
-                      rewardTokenPrice={bananaPrice}
-                      apy={apr}
+                      rewardTokenPrice={bananaPrice?.toNumber()}
+                      apy={apr?.toNumber()}
                     />
                   )}
                   <StyledAPRText>{farmAPR}%</StyledAPRText>

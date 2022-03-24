@@ -5,7 +5,7 @@ import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apes
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
@@ -242,7 +242,7 @@ const Container = styled.div`
   align-items: center;
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
   font-size: 11.5px;
 `
@@ -279,7 +279,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <StyledUnlockButton size="sm" />
+      return <StyledUnlockButton size="md" />
     }
     if (needsApproval) {
       return (
@@ -384,8 +384,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
                     lpLabel={stakeToken}
                     rewardTokenName={earnToken}
                     addLiquidityUrl="https://apeswap.finance/swap"
-                    rewardTokenPrice={new BigNumber(rewardTokenPrice)}
-                    apy={apr.div(100)}
+                    rewardTokenPrice={rewardTokenPrice}
+                    apy={apr.div(100)?.toNumber()}
                   />
                   <StyledAPRText>{poolAPR}%</StyledAPRText>
                 </FlexSwitch>

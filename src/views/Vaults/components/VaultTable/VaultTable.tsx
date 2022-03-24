@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { Vault } from 'state/types'
 import VaultHeading from './VaultHeading'
 import CellLayout from './CellLayout'
@@ -124,7 +124,7 @@ const StakeContainer = styled.div`
   }
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
 `
 

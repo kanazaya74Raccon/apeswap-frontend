@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Currency, Token } from '@apeswapfinance/sdk'
-import { InjectedModalProps, Button, Modal } from '@apeswapfinance/uikit'
+import { ModalProps, Button, Modal, ModalFooter } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'
 import CurrencySearch from './CurrencySearch'
@@ -8,11 +8,6 @@ import ImportToken from './ImportToken'
 import Manage from './Manage'
 import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
-
-const Footer = styled.div`
-  width: 100%;
-  text-align: center;
-`
 
 const StyledModalContainer = styled.div`
   max-width: 420px;
@@ -22,6 +17,7 @@ const StyledModalContainer = styled.div`
 
 const StyledModalBody = styled(Modal)`
   overflow-y: auto;
+  width: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -29,7 +25,7 @@ const StyledModalBody = styled(Modal)`
   }
 `
 
-interface CurrencySearchModalProps extends InjectedModalProps {
+interface CurrencySearchModalProps extends ModalProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
@@ -62,7 +58,7 @@ export default function CurrencySearchModal({
 
   return (
     <StyledModalContainer>
-      <StyledModalBody title="Tokens" onDismiss={onDismiss} bodyPadding="none">
+      <StyledModalBody title="Tokens" onDismiss={onDismiss} maxWidth="480px">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
@@ -87,7 +83,7 @@ export default function CurrencySearchModal({
           ''
         )}
         {modalView === CurrencyModalView.search && (
-          <Footer>
+          <ModalFooter onDismiss={onDismiss}>
             <Button
               variant="text"
               onClick={() => setModalView(CurrencyModalView.manage)}
@@ -96,7 +92,7 @@ export default function CurrencySearchModal({
             >
               Manage Tokens
             </Button>
-          </Footer>
+          </ModalFooter>
         )}
       </StyledModalBody>
     </StyledModalContainer>

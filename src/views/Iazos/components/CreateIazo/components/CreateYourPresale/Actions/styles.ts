@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { Button } from '@apeswapfinance/uikit'
 
-const StyledButton = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.white4} !important;
   height: 40px;
   width: 135px;

@@ -80,10 +80,10 @@ const Nft = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white">
             {TranslateString(999, 'Non Fungible Apes')}
           </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
             {TranslateString(999, 'Collection')}
           </StyledHeading>
         </HeadingContainer>

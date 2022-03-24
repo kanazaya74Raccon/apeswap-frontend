@@ -10,7 +10,6 @@ import {
 import { stake, sousStake, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
-import { updateFarmUserStakedBalances, updateFarmUserTokenBalances, updateFarmUserEarnings } from 'state/farms'
 import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
 import {
   updateDualFarmUserEarnings,
@@ -19,18 +18,15 @@ import {
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
 import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
+import useActiveWeb3React from './useActiveWeb3React'
 
 const useStake = (pid: number) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { chainId } = useActiveWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleStake = useCallback(
     async (amount: string) => {
-      const txHash = await stake(masterChefContract, pid, amount)
-      dispatch(updateFarmUserStakedBalances(chainId, pid, account))
-      dispatch(updateFarmUserTokenBalances(chainId, pid, account))
-      dispatch(updateFarmUserEarnings(chainId, pid, account))
+      const trxHash = await stake(masterChefContract, pid, amount)
       track({
         event: 'farm',
         chain: chainId,
@@ -40,9 +36,9 @@ const useStake = (pid: number) => {
           pid,
         },
       })
-      console.info(txHash)
+      return trxHash
     },
-    [account, dispatch, masterChefContract, pid, chainId],
+    [masterChefContract, pid, chainId],
   )
 
   return { onStake: handleStake }
