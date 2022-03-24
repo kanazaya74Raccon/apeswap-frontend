@@ -40,7 +40,6 @@ export const BLUE_CHIPS = [
   'ADA',
   'AVAX',
   'DOT',
-  'BUSD',
   'DOGE',
   'SHIB',
   'MATIC',
