@@ -1,16 +1,17 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
-import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import styled from '@emotion/styled'
+import { Flex, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import Tooltip from 'components/Tooltip/Tooltip'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
+
 
 export interface ExpandableSectionProps {
   lpLabel?: string
@@ -47,7 +48,7 @@ const StyledBackground = styled.div`
   }
 `
 
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled(Text)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
@@ -339,7 +340,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <StyledFlexContainer>
         <LabelContainer>
           <TitleContainer>
-            <StyledHeading>{lpLabel}</StyledHeading>
+            <StyledHeading bold>{lpLabel}</StyledHeading>
             {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
           </TitleContainer>
           {!removed && (
