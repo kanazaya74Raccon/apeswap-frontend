@@ -12,7 +12,6 @@ import ExpandableSectionButton from './ExpandableSectionButton'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   apyDaily?: string

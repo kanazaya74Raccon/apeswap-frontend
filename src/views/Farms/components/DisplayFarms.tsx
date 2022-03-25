@@ -47,7 +47,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
               <Text style={{ fontSize: '12px' }}>Multiplier</Text>
               <Text bold style={{ fontSize: '12px' }}>
-                {parseFloat(farm.multiplier) * 10}X
+                {Math.round(parseFloat(farm.multiplier) * 1000) / 100}X
               </Text>
             </Flex>
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>

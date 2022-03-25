@@ -14,7 +14,6 @@ import HarvestActions from './CardActions/HarvestActions'
 import ApprovalAction from './CardActions/ApprovalAction'
 import StakeAction from './CardActions/StakeActions'
 
-
 export interface ExpandableSectionProps {
   lpLabel?: string
   apr?: BigNumber
