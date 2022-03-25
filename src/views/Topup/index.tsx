@@ -1,5 +1,5 @@
 import React from 'react'
-import Torus, { PAYMENT_PROVIDER_TYPE } from '@toruslabs/torus-embed'
+import Torus, { PaymentParams, PAYMENT_PROVIDER_TYPE } from '@toruslabs/torus-embed'
 import { Button, Flex } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import { useToast } from 'state/hooks'
@@ -16,11 +16,11 @@ export default function Topup() {
       showTorusButton: false,
       network: { host: 'bsc_mainnet' },
     })
-    const paymentParams = {
-      selectedAddress: account,
+    const paymentParams: PaymentParams = {
       selectedCryptoCurrency: provider === 'moonpay' ? 'BNB_BSC' : 'BSC_BNB',
       fiatValue: 100,
     }
+    if (account) paymentParams.selectedAddress = account
     try {
       const paymentStatus = await torus.initiateTopup(provider, paymentParams)
       toastSuccess('Succesful topup')
