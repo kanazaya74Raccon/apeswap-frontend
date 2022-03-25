@@ -23,6 +23,12 @@ export interface Farm extends FarmConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  totalLpStakedUsd?: string
+  apr?: string
+  apy?: string
+  lpApr?: string
+  bananaPrice?: number
+  lpValueUsd?: number
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
@@ -133,6 +139,12 @@ export interface BlockState {
   initialBlock: number
 }
 
+export interface Tag {
+  pid: number
+  text: string
+  color: string
+}
+
 export interface Stats {
   aggregateApr: number
   aggregateAprPerDay: number
@@ -234,6 +246,14 @@ export interface NewsCardType {
   CardLink: string
   StartTime: string
   EndTime: string
+}
+
+export interface FarmLpAprsType {
+  chainId: number
+  lpAprs: {
+    pid: number
+    lpApr: number
+  }[]
 }
 
 export interface LaunchCalendarCard {
@@ -424,6 +444,7 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  tags: Tag[]
 }
 
 export interface PoolsState {
@@ -474,6 +495,7 @@ export interface StatsState {
   HomepageNews: NewsCardType[]
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
+  FarmLpAprs: FarmLpAprsType
   data: Stats
 }
 

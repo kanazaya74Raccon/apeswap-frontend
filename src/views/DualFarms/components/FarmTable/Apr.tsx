@@ -62,8 +62,8 @@ const Apr: React.FC<AprProps> = ({
           {hideButton && (
             <ApyButton
               lpLabel={lpLabel}
-              rewardTokenPrice={bananaPrice}
-              apy={new BigNumber(originalValue)}
+              rewardTokenPrice={bananaPrice?.toNumber()}
+              apy={originalValue}
               addLiquidityUrl={addLiquidityUrl}
             />
           )}

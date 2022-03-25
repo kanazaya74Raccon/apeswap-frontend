@@ -1,5 +1,5 @@
-import { Flex, ButtonSquare, Button } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import { Flex, Button } from '@apeswapfinance/uikit'
+import styled from '@emotion/styled'
 
 export const StyledSwapContainer = styled(Flex)`
   flex-shrink: 0;
@@ -17,7 +17,7 @@ export const StyledInputCurrencyWrapper = styled.div`
   }
 `
 
-export const LargeStyledButton = styled(ButtonSquare)`
+export const LargeStyledButton = styled(Button)`
   font-weight: 700;
   font-size: 20px;
   width: 100%;

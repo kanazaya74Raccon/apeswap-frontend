@@ -1,4 +1,4 @@
-import { ButtonSquare, Text } from '@apeswapfinance/uikit'
+import { Button, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 
 export const ContentContainer = styled.div`
@@ -40,7 +40,7 @@ export const HeadingText = styled(Text)`
   }
 `
 
-export const BuyBanana = styled(ButtonSquare)`
+export const BuyBanana = styled(Button)`
   font-size: 16px;
   font-weight: 700;
   height: 44px;
@@ -56,7 +56,7 @@ export const BuyBanana = styled(ButtonSquare)`
   }
 `
 
-export const LearnMore = styled(ButtonSquare)`
+export const LearnMore = styled(Button)`
   font-size: 16px;
   font-weight: 700;
   height: 44px;

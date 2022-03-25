@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { Card, Heading, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
+import styled from '@emotion/styled'
+import { Heading, Text, Button, Flex, Checkbox } from '@apeswapfinance/uikit'
 
-export const StyledCard = styled(Card)`
+export const StyledCard = styled.div`
   overflow: visible;
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.navbar};
@@ -14,7 +14,7 @@ export const StyledCard = styled(Card)`
     box-shadow: none;
   }
 `
-export const HeaderCard = styled(Card)`
+export const HeaderCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ export const TokensDisplay = styled(Text)`
   color: ${({ theme }) => theme.colors.yellow};
   text-transform: uppercase;
 `
-export const ContentCard = styled(Card)`
+export const ContentCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,7 @@ export const CheckBoxCon = styled.div`
 `
 
 export const StyledCheckbox = styled(Checkbox)`
-  background-color: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.primaryBright)};
+  background-color: ${({ theme }) => theme.colors.white2};
 `
 
 export const FlexSection = styled(Flex)`

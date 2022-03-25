@@ -1,6 +1,7 @@
 import React from 'react'
 import orderBy from 'lodash/orderBy'
-import { Card, CardBody, Heading } from '@apeswapfinance/uikit'
+import { Card, Heading } from '@apeswapfinance/uikit'
+import { Box } from 'theme-ui'
 import Container from 'components/layout/Container'
 import { useFetchNfas, useNfas } from 'state/hooks'
 import NftGrid from './NftGrid'
@@ -18,9 +19,9 @@ const NftPreview = () => {
           <div key={nft.name}>
             <Card>
               <Image src={nft.image} alt={nft.name} rarityTier={nft.attributes.rarityTierNumber} />
-              <CardBody>
+              <Box>
                 <Heading>{nft.name}</Heading>
-              </CardBody>
+              </Box>
             </Card>
           </div>
         ))}

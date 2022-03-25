@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
+import BigNumber from 'bignumber.js'
 import { farmsConfig } from 'config/constants'
 import {
   fetchFarmUserEarnings,
@@ -7,10 +8,13 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm } from '../types'
+import { FarmsState, Farm, LpTokenPrices, FarmLpAprsType } from '../types'
 import fetchFarms from './fetchFarms'
 
-const initialState: FarmsState = { data: [...farmsConfig] }
+const initialState: FarmsState = {
+  data: [...farmsConfig],
+  tags: null,
+}
 
 export const farmsSlice = createSlice({
   name: 'Farms',
@@ -42,14 +46,16 @@ export const farmsSlice = createSlice({
 export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
-export const fetchFarmsPublicDataAsync = (chainId: number) => async (dispatch) => {
-  try {
-    const farms = await fetchFarms(chainId)
-    dispatch(setFarmsPublicData(farms))
-  } catch (error) {
-    console.warn(error)
+export const fetchFarmsPublicDataAsync =
+  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) =>
+  async (dispatch) => {
+    try {
+      const farms = await fetchFarms(chainId, lpPrices, bananaPrice, farmLpAprs)
+      dispatch(setFarmsPublicData(farms))
+    } catch (error) {
+      console.warn(error)
+    }
   }
-}
 export const fetchFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
   try {
     const userFarmAllowances = await fetchFarmUserAllowances(chainId, account)

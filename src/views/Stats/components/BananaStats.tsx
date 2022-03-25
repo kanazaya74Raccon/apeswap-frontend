@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { Card, CardBody, Heading, Text } from '@apeswapfinance/uikit'
+import { Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { Stats } from 'state/types'
+import { Box } from 'theme-ui'
 import useI18n from 'hooks/useI18n'
 import { usePriceBananaBusd } from 'state/hooks'
 import useTokenBalance from 'hooks/useTokenBalance'
@@ -38,10 +39,8 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
 
   return (
     <StyledBananaStats>
-      <CardBody>
-        <Heading size="xl" mb="24px" fontWeight={800}>
-          {TranslateString(534, 'Your Ape Stats')}
-        </Heading>
+      <Box>
+        <Heading>{TranslateString(534, 'Your Ape Stats')}</Heading>
         <Row>
           <Text fontWeight={800} fontSize="14px">
             {TranslateString(536, 'TVL All Pools')}
@@ -171,7 +170,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
             />
           </Text>
         </Row>
-      </CardBody>
+      </Box>
     </StyledBananaStats>
   )
 }

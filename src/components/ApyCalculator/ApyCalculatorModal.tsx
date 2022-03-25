@@ -9,8 +9,8 @@ interface ApyCalculatorModalProps {
   onDismiss?: () => void
   lpLabel?: string
   rewardTokenName?: string
-  rewardTokenPrice?: BigNumber
-  apy?: BigNumber
+  rewardTokenPrice?: number
+  apy?: number
   addLiquidityUrl?: string
 }
 
@@ -39,8 +39,9 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   addLiquidityUrl,
 }) => {
   const TranslateString = useI18n()
-  const farmApy = apy.times(new BigNumber(100)).toNumber()
-  const tokenPrice = typeof rewardTokenPrice === 'number' ? rewardTokenPrice : rewardTokenPrice.toNumber()
+  const farmApy = new BigNumber(apy).times(new BigNumber(100)).toNumber()
+  const tokenPrice =
+    typeof rewardTokenPrice === 'number' ? rewardTokenPrice : new BigNumber(rewardTokenPrice).toNumber()
   const oneThousandDollarsWorthOfBanana = 1000 / tokenPrice
 
   const bananaEarnedPerThousand1D = calculateBananaEarnedPerThousandDollars({
@@ -65,7 +66,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal title="ROI" onDismiss={onDismiss}>
+    <Modal onDismiss={onDismiss} title="ROI">
       <Grid>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
