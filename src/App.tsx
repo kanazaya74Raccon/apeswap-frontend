@@ -44,6 +44,7 @@ const NfaStaking = lazy(() => import('./views/NfaStaking'))
 const Swap = lazy(() => import('./views/Swap'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const Topup = lazy(() => import('./views/Topup'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const RedirectOldRemoveLiquidityPathStructure = lazy(() => import('./views/RemoveLiquidity/redirects'))
 
@@ -118,6 +119,7 @@ const App: React.FC = () => {
   const swapRoutes = (
     <>
       <Route path="/swap" component={Swap} />
+      <Route path="/topup" component={Topup} />
       <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
       <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
       <Route exact strict path="/find" component={PoolFinder} />
