@@ -42,10 +42,10 @@
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.250/c8ce3cb29bb13274d905f45d7d438d45142c374a027a7ed5a3d5e7ded3668b2f#dae397fd8a62b8b53dc38577b0f433ce0236f245"
   integrity sha512-t4o2nEkQzriWxkdvSvg0EGz/IQoR2FdRgrJPRrtEoOpSiSzzqAf238jOdqLoCotJ82D+5ywT3iByynFakvhBxQ==
 
-"@apeswapfinance/uikit@0.11.2-alpha.0":
-  version "0.11.2-alpha.0"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-alpha.0/ba068525e95738acece8049fcbb26550b6c6d464fe6efb93a3b9cfa23d700b6e#12b4fed65a9bb5fac9532a40f5b9ac3cca77139e"
-  integrity sha512-i8Z1j3KHoX/RhNGA6UOMNHLDt2DniUObu35c/D71M35P5gd41E+TkYdqj4fmQZSTwhmDhoSAURV6yRZVpwf+rQ==
+"@apeswapfinance/uikit@0.11.2-0.1":
+  version "0.11.2-0.1"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-0.1/58d1fe9d1ad2a44cec17e0ee196d6d7c5c3d27927fd04461f6fc6377c409ffb6#d5f81b2410e34ce4a8c35b475a3abbf5da381206"
+  integrity sha512-EkO31NEq1unPnVRUWzveZiIYXAOFg7fJYrkSRvZDbU8Dx+FeFbCAoVDc/OhtfgwPJZ7uiv5cdHg3Hv8I2PTP3g==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@rollup/plugin-json" "^4.1.0"
