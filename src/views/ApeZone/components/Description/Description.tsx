@@ -22,13 +22,9 @@ const Description = () => {
     <StyledContainer>
       <StyledFlex>
         <StyledTextContainer>
-          <Heading size="xxl" color="white" fontWeight={800}>
-            {t('GOLDEN BANANA')}
-          </Heading>
-          <Title as="h2" mt="15px" mb="15px" color="white" size="lg" fontWeight={700}>
-            {t('What is it good for?')}
-          </Title>
-          <Title color="white" size="md" mb="12px" fontWeight={500}>
+          <Heading color="white">{t('GOLDEN BANANA')}</Heading>
+          <Title as="h2">{t('What is it good for?')}</Title>
+          <Title color="white" mb="15px" mt="15px">
             {t('Passive Farming')}
           </Title>
           <List>
@@ -39,14 +35,14 @@ const Description = () => {
               )}
             </Text>
           </List>
-          <Title color="white" size="md" mb="12px" mt="12px" fontWeight={500}>
+          <Title color="white" mb="12px" mt="12px" fontWeight={500}>
             {t('Exclusive perks')}
           </Title>
           <List>
             <Text color="white">{t('Gain access to GNANA only IAO allocation')}</Text>
             <Text color="white">{t('A new array of pools will be made available only to GNANA holders')}</Text>
           </List>
-          <Title color="white" size="md" mb="12px" mt="12px" fontWeight={500}>
+          <Title color="white" mb="12px" mt="12px" fontWeight={500}>
             {t('Governance')}
           </Title>
           <List>

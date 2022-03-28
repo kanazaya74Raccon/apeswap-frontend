@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react'
 import styled from 'styled-components'
-import { Skeleton, ButtonSquare } from '@apeswapfinance/uikit'
+import { Skeleton, Button } from '@apeswapfinance/uikit'
 import { useSousApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 import { useTranslation } from 'contexts/Localization'
@@ -11,8 +11,10 @@ interface ApprovalActionProps {
   isLoading?: boolean
 }
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
@@ -43,9 +45,9 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <StyledButtonSquare disabled={requestedApproval} onClick={handleApprove}>
+        <StyledButton size="md" disabled={requestedApproval} onClick={handleApprove}>
           {t('ENABLE')}
-        </StyledButtonSquare>
+        </StyledButton>
       )}
     </>
   )

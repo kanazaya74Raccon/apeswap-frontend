@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { Toggle } from '@apeswapfinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { TabOption } from '../types'
 
@@ -17,19 +17,17 @@ interface Props {
 }
 
 const IfoTabButtons = ({ selectedTab = 'current', onSelect }: Props) => {
+  const [index, setIndex] = useState(1)
+  const handleClick = () => {
+    onSelect(index === 0 ? 'current' : 'past')
+    setIndex((prev) => (prev === 0 ? 1 : 0))
+  }
   const { t } = useTranslation()
   return (
-    <Wrapper>
-      <ButtonMenu
-        activeIndex={selectedTab === 'current' ? 0 : 1}
-        onClick={(index) => onSelect(index === 0 ? 'current' : 'past')}
-        variant="yellow"
-      >
-        <ButtonMenuItem>{t('Current')}</ButtonMenuItem>
-        <ButtonMenuItem>{t('Past')}</ButtonMenuItem>
-      </ButtonMenu>
+    <Wrapper style={{ marginTop: '20px' }}>
+      <Toggle size="lg" labels={[t('CURRENT'), t('PAST')]} checked={selectedTab !== 'current'} onClick={handleClick} />
     </Wrapper>
   )
 }
 
-export default IfoTabButtons
+export default React.memo(IfoTabButtons)

@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 import { BSC_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { useBlock } from 'state/block/hooks'
 import { usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
@@ -20,7 +20,7 @@ import IfoCardContribute from './IfoCardContribute'
 import useUserInfo from './useUserInfo'
 import { Container } from './styles'
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   padding: 25px 35px;
   display: flex;
   align-self: center;

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Trade, TradeType } from '@apeswapfinance/sdk'
-import { Text, ErrorIcon, ArrowDownIcon, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, ErrorIcon, ArrowDownIcon, Button } from '@apeswapfinance/uikit'
 import { Field } from 'state/swap/actions'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -111,9 +111,9 @@ export default function SwapModalHeader({
               <ErrorIcon mr="8px" />
               <Text bold>{t('Price Updated')}</Text>
             </RowFixed>
-            <ButtonSquare style={{ fontSize: '16px', textTransform: 'uppercase' }} onClick={onAcceptChanges}>
+            <Button style={{ fontSize: '16px', textTransform: 'uppercase' }} onClick={onAcceptChanges}>
               {t('Accept')}
-            </ButtonSquare>
+            </Button>
           </RowBetween>
         </SwapShowAcceptChanges>
       ) : null}

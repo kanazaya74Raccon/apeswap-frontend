@@ -206,9 +206,9 @@ const MoreInfo = styled.div`
 const Auction: React.FC = () => {
   useFetchAuctions()
   const { auctions } = useAuctions()
-  const { isXl } = useMatchBreakpoints()
   const { t } = useTranslation()
-  const isDesktop = isXl
+  const { isXl, isXxl } = useMatchBreakpoints()
+  const isDesktop = isXxl || isXl
   return (
     <SwiperProvider>
       <Container>

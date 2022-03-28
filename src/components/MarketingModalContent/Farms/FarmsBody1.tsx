@@ -9,7 +9,7 @@ const FarmsBody1: React.FC = () => {
   const { login, logout } = useAuth()
   const { t } = useTranslation()
 
-  const { onPresentConnectModal } = useWalletModal(login, logout, t)
+  const { onPresentConnectModal } = useWalletModal(login, logout)
 
   const openConnectModal = () => {
     onPresentConnectModal()
@@ -18,10 +18,10 @@ const FarmsBody1: React.FC = () => {
   return (
     <ModalContent Icon={<StyledFarmsM1Icon />}>
       <RightContent>
-        <MiniHeaderText>Step 1</MiniHeaderText>
-        <MainHeaderText>Connect Your Wallet</MainHeaderText>
+        <MiniHeaderText>{t('Step 1')}</MiniHeaderText>
+        <MainHeaderText>{t('Connect Your Wallet')}</MainHeaderText>
         <StyledText>
-          <MiniButton onClick={openConnectModal}>Click here </MiniButton> to connect your wallet to ApeSwap.
+          <MiniButton onClick={openConnectModal}>{t('Click here')} </MiniButton> {t('to connect your wallet to ApeSwap.')}
         </StyledText>
       </RightContent>
     </ModalContent>

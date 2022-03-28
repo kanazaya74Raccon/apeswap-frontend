@@ -8,6 +8,7 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { PoolCategory } from 'config/constants/types'
 import useWindowSize, { Size } from 'hooks/useDimensions'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
@@ -16,7 +17,6 @@ import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import ToggleView from '../Pools/components/ToggleView/ToggleView'
 import SearchInput from '../Pools/components/SearchInput'
-import PoolTabButtons from '../Pools/components/PoolTabButtons'
 import PoolCard from '../Pools/components/PoolCard/PoolCard'
 import PoolTable from '../Pools/components/PoolTable/PoolTable'
 import { ViewMode } from '../Pools/components/types'
@@ -178,7 +178,7 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -341,6 +341,7 @@ const ButtonCheckWrapper = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
+  margin-bottom: 8px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -417,7 +418,7 @@ const StyledTable = styled.div`
 `
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
@@ -645,7 +646,7 @@ const JunglePools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading style={{ color: 'white' }} as="h1">
             {t('Jungle Farms')}
           </StyledHeading>
           {size.width > 968 && (
@@ -667,7 +668,9 @@ const JunglePools: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <PoolTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />{' '}
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

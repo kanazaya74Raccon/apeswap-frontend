@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { escapeRegExp } from 'utils'
-import styled from 'styled-components'
 import { Text, Input, Flex } from '@apeswapfinance/uikit'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
+import styled from '@emotion/styled'
 
 enum SlippageError {
   InvalidInput = 'InvalidInput',

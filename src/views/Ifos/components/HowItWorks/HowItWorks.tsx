@@ -42,7 +42,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
 
   return (
     <Container>
-      <SectionHeading size="lg">{t('HOW IT WORKS')}</SectionHeading>
+      <SectionHeading>{t('HOW IT WORKS')}</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="time-circle" />
@@ -58,7 +58,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
           <div>
             <SectionHeading>{t('VESTING SCHEDULE')}</SectionHeading>
             <StyledText>
-              {t('25 % of tokens unlock immediately and the remaining 75% vest linearly over 90 days.')}
+              {t('25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.')}
             </StyledText>
           </div>
         </FeatureBox>

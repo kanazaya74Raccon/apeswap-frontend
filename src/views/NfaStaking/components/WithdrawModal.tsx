@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Modal, AutoRenewIcon, Text } from '@apeswapfinance/uikit'
 import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
-import Nfts from 'config/constants/nfts'
+import { useFetchNfas, useNfas } from 'state/hooks'
 import ModalActions from 'components/ModalActions'
 import { useTranslation } from 'contexts/Localization'
 import UnderlinedButton from 'components/UnderlinedButton'
@@ -38,10 +38,12 @@ const Nfa = styled.div<{ active: boolean }>`
 `
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, stakedNfas }) => {
+  useFetchNfas()
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
-  const mappedNfas = Nfts.filter((nfa) => stakedNfas.includes(nfa.index))
   const { t } = useTranslation()
+  const { nfas } = useNfas()
+  const mappedNfas = nfas?.filter((nfa) => stakedNfas.includes(nfa.index))
 
   const handleNfaChange = (index) => {
     if (selectedNfas.includes(index)) {

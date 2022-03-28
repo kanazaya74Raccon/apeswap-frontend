@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
-import { ButtonSquare } from '@apeswapfinance/uikit'
+import { Button } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useReward from 'hooks/useReward'
 import { useSousHarvest } from 'hooks/useHarvest'
@@ -11,8 +11,10 @@ import { useSousEmergencyWithdraw } from 'hooks/useUnstake'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
+  font-size: 14px;
+  padding: 0px 10px;
 `
 
 interface HarvestActionsProps {
@@ -46,7 +48,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const renderButton = () => {
     if (emergencyWithdraw) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           className="noClick"
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
@@ -60,12 +62,12 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {t('WITHDRAW')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     if (compound) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           className="noClick"
           disabled={earningTokenBalance === 0 || pendingTx}
           onClick={async () => {
@@ -79,11 +81,11 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           }}
         >
           {t('APE HARDER')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     return (
-      <StyledButtonSquare
+      <StyledButton
         className="noClick"
         disabled={earningTokenBalance === 0 || pendingTx}
         onClick={async () => {
@@ -97,7 +99,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         }}
       >
         {t('HARVEST')}
-      </StyledButtonSquare>
+      </StyledButton>
     )
   }
 

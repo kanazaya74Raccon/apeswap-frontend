@@ -11,9 +11,9 @@ import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useVaults, useNetworkChainId, usePollVaultsData } from 'state/hooks'
 import { Vault } from 'state/types'
 import Page from 'components/layout/Page'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
-import VaultTabButtons from './components/VaultTabButtons'
 import VaultCard from './components/VaultCard/VaultCard'
 import VaultTable from './components/VaultTable/VaultTable'
 import { ViewMode } from './components/types'
@@ -179,7 +179,7 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -419,7 +419,7 @@ const StyledTable = styled.div`
 `
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
@@ -592,7 +592,7 @@ const Vaults: React.FC = () => {
   const renderHeader = () => {
     const headerContents = (
       <HeadingContainer>
-        <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+        <StyledHeading as="h1" color="white" style={{ marginBottom: '8px', color: 'white' }}>
           {t('Burning Vaults')}
         </StyledHeading>
       </HeadingContainer>
@@ -617,7 +617,9 @@ const Vaults: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <VaultTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />{' '}
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

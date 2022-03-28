@@ -36,12 +36,8 @@ const Zone = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mt={0} color="white">
-            {t('Golden')}
-          </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white">
-            {t('Banana')}
-          </StyledHeading>
+          <StyledHeading as="h1">{t('Golden')}</StyledHeading>
+          <StyledHeading as="h1">{t('Banana')}</StyledHeading>
         </HeaderContainer>
       </Header>
 
@@ -50,7 +46,7 @@ const Zone = () => {
           <TopCon>
             <Warning />
             <CenterCard>
-              <WarningHeader>{t('WARNING')}</WarningHeader>
+              <WarningHeader as="h1">{t('WARNING')}</WarningHeader>
               {!readingMore && <ReadMore onClick={toggleReadMore}>{t('Read More')}</ReadMore>}
 
               <InnerContent readingMore={readingMore}>

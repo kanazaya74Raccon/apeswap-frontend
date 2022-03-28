@@ -42,7 +42,6 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
             <td>
               <ContributeInput
                 value={value}
-                scale="lg"
                 type="number"
                 min="0"
                 step="0.01"

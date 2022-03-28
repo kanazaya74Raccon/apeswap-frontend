@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { Heading, Card, Text, ButtonSquare, CardBody } from '@apeswapfinance/uikit'
+import { Heading, Text, Button } from '@apeswapfinance/uikit'
+import { Box } from 'theme-ui'
 
 export const UtilityCon = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ export const PlusIcon = styled(Text)`
   font-weight: 400;
   margin-top: -50px;
 `
-export const Section = styled(Card)`
+export const Section = styled.div`
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
@@ -77,7 +78,7 @@ export const Section = styled(Card)`
     background: ${({ theme }) => theme.colors.white3};
   }
 `
-export const Section2 = styled(Card)`
+export const Section2 = styled.div`
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
   border-radius: 10px;
 
@@ -155,7 +156,7 @@ export const OpDesc = styled(Text)`
 export const AnchorTag = styled.a`
   width: 90%;
 `
-export const ActionButton = styled(ButtonSquare)`
+export const ActionButton = styled(Button)`
   padding-right: 0.1em;
   padding-left: 0.1em;
   font-weight: 700;
@@ -171,7 +172,7 @@ export const Option1 = styled.div`
   }
 `
 
-export const HeadCard = styled(Card)`
+export const HeadCard = styled.div`
   background: ${({ theme }) => (theme.isDark ? theme.colors.white2 : theme.colors.white3)};
   border-radius: 10px;
   margin-bottom: 0.5em;
@@ -180,7 +181,7 @@ export const HeadCard = styled(Card)`
     background: ${({ theme }) => theme.colors.white3};
   }
 `
-export const HeadBody = styled(CardBody)`
+export const HeadBody = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;

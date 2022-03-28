@@ -33,7 +33,7 @@ const HowItWorks = () => {
   return (
     <StyledHowItWorks>
       <Section>
-        <Heading id="how-it-works" color="secondary" size="lg" mb="16px">
+        <Heading id="how-it-works" color="secondary" mb="16px">
           {t('How it works')}
         </Heading>
         <Row>
@@ -60,7 +60,7 @@ const HowItWorks = () => {
         </Row>
       </Section>
       <Section>
-        <Heading color="secondary" size="lg" mb="16px">
+        <Heading color="secondary" mb="16px">
           {t('How are winners selected?')}
         </Heading>
         <Row>

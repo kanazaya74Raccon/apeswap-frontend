@@ -4,9 +4,31 @@ import { ContextApi } from '../../contexts/Localization/types'
 const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
   ifos: [
     {
+      id: 'animalconcerts',
+      address: '', // Leave empty for "Coming Soon!"
+      isActive: true,
+      isLinear: true,
+      name: t('Animal Concerts'),
+      subTitle: t(`The Next Generation for Live Events in the Metaverse`),
+      description: t(`Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.`),
+      launchDate: 'March 29th',
+      launchTime: '2:00 UTC',
+      saleAmount: '111,111,111 ANML',
+      raiseAmount: '$500,000',
+      vestingTime: '6 Months',
+      projectSiteUrl: 'https://animalconcerts.com/',
+      currency: 'GNANA',
+      currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
+      offeringCurrency: 'ANML',
+      tokenDecimals: 18,
+      releaseBlockNumber: 24911408, // block to start showing contract details
+      vesting: true,
+      // burnedTxUrl: '',
+    },
+    {
       id: 'trustnft',
       address: '0x76DfA14DD1295A588eBBE8e03964a98fF15f02E2', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       isLinear: true,
       name: t('Trust NFT'),
       subTitle: `Decentralized NFT Loans & Marketplace`,

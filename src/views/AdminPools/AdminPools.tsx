@@ -218,7 +218,7 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white3};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -382,7 +382,7 @@ const ButtonCheckWrapper = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
-
+  margin-bottom: 8px;
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
     max-width: 240px !important;
@@ -575,7 +575,7 @@ const AdminPools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
+          <StyledHeading as="h1">
             {t('Admin Pools')}
           </StyledHeading>
           {size.width > 968 && (

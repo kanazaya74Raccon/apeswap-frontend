@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Flex, Modal, InjectedModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, ModalProps, ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import {
   useExpertModeManager,
   useUserExpertModeAcknowledgementShow,
@@ -20,7 +20,7 @@ const ScrollableContainer = styled(Flex)`
   }
 `
 
-const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
+const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
   const [showExpertModeAcknowledgement, setShowExpertModeAcknowledgement] = useUserExpertModeAcknowledgementShow()
   const [expertMode, toggleExpertMode] = useExpertModeManager()

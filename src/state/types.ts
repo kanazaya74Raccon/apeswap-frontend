@@ -23,6 +23,12 @@ export interface Farm extends FarmConfig {
   lpTotalInQuoteToken?: BigNumber
   tokenPriceVsQuote?: BigNumber
   poolWeight?: BigNumber
+  totalLpStakedUsd?: string
+  apr?: string
+  apy?: string
+  lpApr?: string
+  bananaPrice?: number
+  lpValueUsd?: number
   userData?: {
     allowance: BigNumber
     tokenBalance: BigNumber
@@ -133,6 +139,12 @@ export interface BlockState {
   initialBlock: number
 }
 
+export interface Tag {
+  pid: number
+  text: string
+  color: string
+}
+
 export interface Stats {
   aggregateApr: number
   aggregateAprPerDay: number
@@ -215,7 +227,45 @@ export interface HomepageData {
   circulatingSupply: number
   gnanaCirculatingSupply: number
   burntAmount: number
+  totalVolume: number
+  partnerCount?: number
 }
+
+export interface HomepageTokenStats {
+  tokenTicker: string
+  tokenPrice: number
+  percentChange: number
+  contractAddress: string
+  logoUrl: string
+}
+
+export interface NewsCardType {
+  id: number
+  cardPosition: number
+  cardImageUrl: any
+  CardLink: string
+  StartTime: string
+  EndTime: string
+}
+
+export interface FarmLpAprsType {
+  chainId: number
+  lpAprs: {
+    pid: number
+    lpApr: number
+  }[]
+}
+
+export interface LaunchCalendarCard {
+  image1: any
+  image2?: any
+  textLine1: string
+  textLine2?: string
+  textLine3?: string
+  launchTime: string
+}
+
+export type Nfa = Nft
 
 export interface PoolOverall {
   address: string
@@ -303,6 +353,27 @@ export interface IazoStatus {
   numBuyers: string
 }
 
+export interface ServiceData {
+  id: number
+  apr?: number
+  apy?: number
+  link: string
+  marketName?: string
+  marketAddress?: string
+  stakeToken?: {
+    name: string
+    address: string
+  }
+  rewardToken?: {
+    name: string
+    address: string
+  }
+  token?: {
+    name: string
+    address: string
+  }
+}
+
 export interface IazoSocialInfo {
   telegram: string
   twitter: string
@@ -373,10 +444,17 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
+  tags: Tag[]
 }
 
 export interface PoolsState {
   data: Pool[]
+}
+
+export interface NfaState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: Nfa[]
 }
 
 export interface JunglePoolsState {
@@ -413,6 +491,11 @@ export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
   HomepageData: HomepageData
+  HomepageTokenStats: HomepageTokenStats[]
+  HomepageNews: NewsCardType[]
+  HomepageLaunchCalendar: LaunchCalendarCard[]
+  HomepageServiceStats: ServiceData[]
+  FarmLpAprs: FarmLpAprsType
   data: Stats
 }
 
@@ -484,4 +567,5 @@ export interface State {
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
+  nfas: NfaState
 }

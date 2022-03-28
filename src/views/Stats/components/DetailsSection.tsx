@@ -3,7 +3,7 @@ import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { Text, Flex, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
-import CardValue from 'views/Home/components/CardValue'
+import CardValue from 'components/CardValue'
 
 export interface ExpandableSectionProps {
   bscScanAddress?: string
@@ -56,9 +56,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ farmStats, bscScanAd
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerYear} prefix="$" />
       </Flex>
       <Flex justifyContent="center">
-        <StyledLinkExternal external href={bscScanAddress} bold={false}>
-          {t('View on BscScan')}
-        </StyledLinkExternal>
+        <StyledLinkExternal href={bscScanAddress}>{t('View on BscScan')}</StyledLinkExternal>
       </Flex>
     </Wrapper>
   )

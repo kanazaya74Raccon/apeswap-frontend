@@ -7,7 +7,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useBlock } from 'state/block/hooks'
 import { Pool } from 'state/types'
 import { useNetworkChainId } from 'state/hooks'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import PoolHeading from './PoolHeading'
 import CellLayout from './CellLayout'
 import Details from './Details'
@@ -94,8 +94,9 @@ const StakeContainer = styled.div`
   }
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
+  font-size: 12px;
 `
 
 const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
@@ -143,7 +144,7 @@ const PoolTable: React.FC<HarvestProps> = ({ pool, removed }) => {
 
   const cardHeaderButton = () => {
     if (!account) {
-      return <StyledUnlockButton size="sm" />
+      return <StyledUnlockButton size="md" />
     }
     if (needsApproval) {
       return (

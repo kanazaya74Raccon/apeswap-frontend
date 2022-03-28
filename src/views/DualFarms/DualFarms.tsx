@@ -8,12 +8,12 @@ import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import { usePriceBananaBusd, useDualFarms, usePollDualFarms } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
 import { useTranslation } from 'contexts/Localization'
 import FarmCard from './components/FarmCard/FarmCard'
-import FarmTabButtons from './components/FarmTabButtons'
 import Table from './components/FarmTable/FarmTable'
 import SearchInput from './components/SearchInput'
 import { RowProps } from './components/FarmTable/Row'
@@ -165,7 +165,7 @@ const StyledImage = styled.img`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -596,9 +596,7 @@ const DualFarms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {t('Stake LP tokens to earn Rewards')}
-          </StyledHeading>
+          <StyledHeading as="h1">{t('Stake LP tokens to earn Rewards')}</StyledHeading>
         </HeadingContainer>
       </Header>
 
@@ -613,7 +611,9 @@ const DualFarms: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={query} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <FarmTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />{' '}
               <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                 <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                 <StyledText> {t('Staked')}</StyledText>

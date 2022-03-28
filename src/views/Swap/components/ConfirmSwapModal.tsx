@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { currencyEquals, Trade } from '@apeswapfinance/sdk'
-import { InjectedModalProps } from '@apeswapfinance/uikit'
+import { ModalProps } from '@apeswapfinance/uikit'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,
   TransactionErrorContent,
@@ -37,7 +37,7 @@ interface ConfirmSwapModalProps {
   customOnDismiss?: () => void
 }
 
-const ConfirmSwapModal: React.FC<InjectedModalProps & ConfirmSwapModalProps> = ({
+const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
   trade,
   originalTrade,
   onAcceptChanges,

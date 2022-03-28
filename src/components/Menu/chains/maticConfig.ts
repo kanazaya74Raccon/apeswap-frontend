@@ -1,25 +1,36 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
-import { HOME, EXCHANGE, MORE_INFO } from '../constants'
+import { EXCHANGE } from '../constants'
 import { ContextApi } from '../../../contexts/Localization/types'
 
 const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
-  HOME(t),
-  // {
-  //   label: t('Ape Stats'),
-  //   icon: 'StatsIcon',
-  //   href: '/stats',
-  // },
   EXCHANGE(t),
   {
     label: t('Farms'),
-    icon: 'FarmIcon',
     href: '/farms',
   },
   {
     label: t('Vaults'),
-    icon: 'Vaults',
     href: '/vaults',
+  },
+  {
+    label: 'More',
+    lightIcon: 'MoreLightImage',
+    darkIcon: 'MoreDarkImage',
+    items: [
+      {
+        label: 'Docs',
+        href: 'https://apeswap.gitbook.io/apeswap-finance/',
+      },
+      {
+        label: 'Charts',
+        href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
+      },
+      {
+        label: 'Governance',
+        href: 'https://vote.apeswap.finance',
+      },
+    ],
   },
   //   {
   //     label: t('Pools'),
@@ -36,29 +47,6 @@ const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //     icon: 'ApeZone',
   //     href: '/gnana',
   //   },
-  {
-    label: t('Info'),
-    icon: 'InfoIcon',
-    items: [
-      {
-        label: t('Overview'),
-        href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
-      },
-      {
-        label: t('Tokens'),
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.MATIC]}/tokens`,
-      },
-      {
-        label: t('Pairs'),
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.MATIC]}/pairs`,
-      },
-      {
-        label: t('Accounts'),
-        href: `${NETWORK_INFO_LINK[CHAIN_ID.MATIC]}/accounts`,
-      },
-    ],
-  },
-  MORE_INFO(t),
 ]
 
 export default maticConfig

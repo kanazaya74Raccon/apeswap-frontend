@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Text, Flex, Modal, InjectedModalProps, Checkbox, ButtonSquare } from '@apeswapfinance/uikit'
+import { Text, Flex, Modal, ModalProps, Checkbox, Button } from '@apeswapfinance/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import UnderlinedButton from 'components/UnderlinedButton'
 
-interface ExpertModalProps extends InjectedModalProps {
+interface ExpertModalProps extends ModalProps {
   setShowConfirmExpertModal: (boolean) => void
   setShowExpertModeAcknowledgement: (boolean) => void
 }
@@ -16,11 +16,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
 
   return (
     <div style={{ zIndex: 101, maxWidth: '360px' }}>
-      <Modal
-        title={t('Expert Mode')}
-        onBack={() => setShowConfirmExpertModal(false)}
-        onDismiss={() => setShowConfirmExpertModal(false)}
-      >
+      <Modal title={t("Expert Mode")} onDismiss={() => setShowConfirmExpertModal(false)} maxWidth="360px">
         <Text>
           {t(
             'Expert mode turns off the Confirm transaction prompt, and allows high slippage trades that often result in bad rates and lost funds',
@@ -39,7 +35,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
             {t('Don’t show this again')}
           </Text>
         </Flex>
-        <ButtonSquare
+        <Button
           mb="10px"
           fullWidth
           id="confirm-expert-mode"
@@ -56,7 +52,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
           }}
         >
           {t('Turn On Expert Mode')}
-        </ButtonSquare>
+        </Button>
         <UnderlinedButton
           text={t('Cancel')}
           handleClick={() => {

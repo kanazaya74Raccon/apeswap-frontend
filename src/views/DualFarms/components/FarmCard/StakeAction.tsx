@@ -4,7 +4,7 @@ import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Flex, Heading, IconButtonSquare, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
+import { Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, Text } from '@apeswapfinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useDualFarmStake } from 'hooks/useStake'
 import { useMiniChefUnstake } from 'hooks/useUnstake'
@@ -26,7 +26,7 @@ const IconButtonWrapper = styled.div`
   display: flex;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
+const StyledIconButton = styled(IconButton)`
   width: 34px;
   height: 34px;
 `
@@ -109,14 +109,14 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       stakedBalanceUsd !== 0 && (
         <IconButtonWrapper>
           <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+            <StyledIconButton onClick={onPresentWithdraw} mr="6px">
               <MinusIcon color="white" width="12px" height="12px" />
-            </StyledIconButtonSquare>
+            </StyledIconButton>
           </Reward>
           <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-            <StyledIconButtonSquare onClick={onPresentDeposit}>
+            <StyledIconButton onClick={onPresentDeposit}>
               <AddIcon color="white" width="16px" height="16px" />
-            </StyledIconButtonSquare>
+            </StyledIconButton>
           </Reward>
         </IconButtonWrapper>
       )

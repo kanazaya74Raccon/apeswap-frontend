@@ -8,6 +8,7 @@ import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinanc
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
+import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -16,7 +17,6 @@ import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import ToggleView from './components/ToggleView/ToggleView'
 import SearchInput from './components/SearchInput'
-import PoolTabButtons from './components/PoolTabButtons'
 import PoolCard from './components/PoolCard/PoolCard'
 import PoolTable from './components/PoolTable/PoolTable'
 import { ViewMode } from './components/types'
@@ -226,7 +226,7 @@ const StyledCheckbox = styled(Checkbox)<CheckboxProps>`
 `
 
 const ContainerLabels = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin-top: 24px;
   height: 32px;
@@ -464,7 +464,7 @@ const StyledTable = styled.div`
 `
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
@@ -692,7 +692,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
             {t('Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
@@ -717,7 +717,9 @@ const Pools: React.FC = () => {
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
-              <PoolTabButtons />
+              <div />
+              <MenuTabButtons />
+              <div style={{ marginRight: '70px' }} />
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />

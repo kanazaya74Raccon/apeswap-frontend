@@ -40,15 +40,14 @@ const HowItWorks = () => {
 
   return (
     <Container>
-      <SectionHeading size="lg" textAlign="center">
-        {t('OUR IAO IDEOLOGY')}
-      </SectionHeading>
+      <SectionHeading>{t('OUR IAO IDEOLOGY')}</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="investment" />
-
-          <SectionHeading textAlign="center">{t('INVESTMENT')}</SectionHeading>
+          ``
+          <SectionHeading>{t('INVESTMENT')}</SectionHeading>
           <Motto>{t('BUILD')}</Motto>
+
           <StyledText textAlign="center">
             {t('We highly vet applicants to choose projects we believe in as long term investments and partners')}
           </StyledText>
@@ -56,7 +55,7 @@ const HowItWorks = () => {
         <FeatureBox>
           <Icon name="development" />
 
-          <SectionHeading textAlign="center">{t('DEVELOPMENT')}</SectionHeading>
+          <SectionHeading>{t('DEVELOPMENT')}</SectionHeading>
           <Motto>{t('HOLD')}</Motto>
           <StyledText textAlign="center">
             {t('The funds raised are used to finalize development and launch the project')}
@@ -65,7 +64,7 @@ const HowItWorks = () => {
         <FeatureBox>
           <Icon name="innovation" />
 
-          <SectionHeading textAlign="center">{t('INNOVATION')}</SectionHeading>
+          <SectionHeading>{t('INNOVATION')}</SectionHeading>
           <Motto>{t('EXPERIMENT')}</Motto>
           <StyledText textAlign="center">
             {t('These projects are meant to be unique and push the boundaries of DeFi')}

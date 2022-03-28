@@ -3,8 +3,8 @@ import Page from 'components/layout/Page'
 import { useGetNfaSales } from 'hooks/api'
 import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
+import { useFetchNfas, useNfas } from 'state/hooks'
 import { Link, Redirect, useParams } from 'react-router-dom'
-import nfts from 'config/constants/nfts'
 import { useTranslation } from 'contexts/Localization'
 import NfaAttributes from './components/NfaAttributes'
 import NfaSales from './components/NfaSales'
@@ -67,10 +67,12 @@ const BoxShadow = styled.div`
 `
 
 const Nfa = () => {
+  useFetchNfas()
   const { id: idStr }: { id: string } = useParams()
   const id = Number(idStr)
+  const { nfas } = useNfas()
+  const nfa = nfas?.find((nft) => nft.index === id)
   const { t } = useTranslation()
-  const nfa = nfts.find((nft) => nft.index === id)
   const sales = useGetNfaSales(id)
 
   if (!nfa) {

@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
+import { useFetchStats, useFetchStatsOverall, useStats } from 'state/statsOverall/hooks'
 import BananaStats from 'views/Stats/components/BananaStats'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useFetchStats, useFetchStatsOverall, usePollFarms, usePollPools, useStats } from 'state/hooks'
+import { usePollFarms } from 'state/farms/hooks'
+import { usePollPools } from 'state/hooks'
 import UnlockButton from 'components/UnlockButton'
 import CardStats from './components/CardStats'
 import PageLoader from '../../components/PageLoader'
@@ -105,7 +107,7 @@ const Stats: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
             {t('Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
@@ -113,9 +115,7 @@ const Stats: React.FC = () => {
 
       <Page>
         <PaddedCard>
-          <Heading size="lg" color="warning">
-            {t('HEADS UP, APES!')}
-          </Heading>
+          <Heading color="warning">{t('HEADS UP, APES!')}</Heading>
           <Text>
             {t(
               'The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as',

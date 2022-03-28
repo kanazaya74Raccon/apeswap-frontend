@@ -8,7 +8,6 @@ import {
   Container,
   Main,
   FirstHeader,
-  FirstHeader2,
   FirstHeaderCon,
   Sect,
   Sect1,
@@ -51,8 +50,7 @@ export const GnanaDisclaimers: React.FC = () => {
     <Container>
       <Main>
         <FirstHeaderCon>
-          <FirstHeader>{t('Please be informed')}</FirstHeader>
-          <FirstHeader2>{t('Gnana Breakdown')}</FirstHeader2>
+          <FirstHeader as="h1">{t('GNANA BREAKDOWN')}</FirstHeader>
         </FirstHeaderCon>
 
         <Sect>
@@ -105,8 +103,7 @@ export const GnanaDisclaimers: React.FC = () => {
 
       <Main2>
         <FirstHeaderCon>
-          <FirstHeader>{t('Key Disclaimers')}</FirstHeader>
-          <FirstHeader2>{t('Key Disclaimers')}</FirstHeader2>
+          <FirstHeader as="h2">{t('KEY DISCLAIMERS')}</FirstHeader>
         </FirstHeaderCon>
 
         <InfoSect1>
@@ -120,7 +117,7 @@ export const GnanaDisclaimers: React.FC = () => {
       </Main2>
 
       <Footer>
-        <LearnMoreBtn onClick={learnMore} size="md">
+        <LearnMoreBtn onClick={learnMore} size="md" mb="20px">
           {t('LEARN MORE')}
         </LearnMoreBtn>
       </Footer>

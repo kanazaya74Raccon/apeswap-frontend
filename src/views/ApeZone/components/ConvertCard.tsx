@@ -13,8 +13,7 @@ import useTokenBalance from 'hooks/useTokenBalance'
 
 import { useTranslation } from 'contexts/Localization'
 import TokenInput from 'components/TokenInput'
-
-import CardValue from 'views/Home/components/CardValue'
+import CardValue from 'components/CardValue'
 import {
   FlexSection,
   CheckBoxCon,

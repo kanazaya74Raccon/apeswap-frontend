@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Text, Button, Input, InputProps, Flex, Link } from '@apeswapfinance/uikit'
+import styled from '@emotion/styled'
+import { Text, Button, Input, InputProps, Flex } from '@apeswapfinance/uikit'
 import { useTranslation } from '../../contexts/Localization'
 
 interface ModalInputProps {
@@ -15,14 +15,6 @@ interface ModalInputProps {
   displayDecimals?: number
 }
 
-// const getBoxShadow = ({ isWarning = false, theme }) => {
-//   if (isWarning) {
-//     return theme.shadows.warning
-//   }
-
-//   return theme.shadows.inset
-// }
-
 const StyledTokenInput = styled.div<InputProps>`
   display: flex;
   flex-direction: column;
@@ -35,6 +27,7 @@ const StyledTokenInput = styled.div<InputProps>`
 
 const StyledInput = styled(Input)`
   box-shadow: none;
+  border: none;
   width: 60px;
   margin: 0 8px;
   padding: 0 8px;
@@ -58,21 +51,12 @@ const StyledButton = styled(Button)`
   padding: 3px 10px;
 `
 
-const StyledErrorMessage = styled(Text)`
-  position: absolute;
-  bottom: -22px;
-  a {
-    display: inline;
-  }
-`
-
 const ModalInput: React.FC<ModalInputProps> = ({
   max,
   symbol,
   onChange,
   onSelectMax,
   value,
-  addLiquidityUrl,
   inputTitle,
   displayDecimals,
 }) => {
@@ -102,14 +86,6 @@ const ModalInput: React.FC<ModalInputProps> = ({
           </Text>
         </Flex>
       </StyledTokenInput>
-      {isBalanceZero && (
-        <StyledErrorMessage fontSize="14px" color="error">
-          No tokens to stake:{' '}
-          <Link fontSize="14px" href={addLiquidityUrl} external color="error" fontWeight={600}>
-            {t('get')} {symbol}
-          </Link>
-        </StyledErrorMessage>
-      )}
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
-import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import styled from '@emotion/styled'
+import { Flex, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import UnlockButton from 'components/UnlockButton'
 import Tooltip from 'components/Tooltip/Tooltip'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
@@ -47,7 +47,7 @@ const StyledBackground = styled.div`
   }
 `
 
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled(Text)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
@@ -216,7 +216,7 @@ const IconArrow = styled(Image)`
 const TitleContainer = styled.div`
   display: flex;
 `
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
   font-size: 11.5px;
 `
@@ -339,9 +339,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <StyledFlexContainer>
         <LabelContainer>
           <TitleContainer>
-            <StyledHeading fontSize="20px" fontWeight={800}>
-              {lpLabel}
-            </StyledHeading>
+            <StyledHeading bold>{lpLabel}</StyledHeading>
             {burning && <Tooltip content={t('Burns at least 50% of every harvest in the form of $BANANA')}>🔥</Tooltip>}
           </TitleContainer>
           {!removed && (
