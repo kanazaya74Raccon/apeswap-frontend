@@ -3568,6 +3568,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 190,
+    tokenName: 'ANML',
+    image: 'ANML.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.anml,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x363f3b8471223f66a09f65f1253cd41be916fb51',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://animalconcerts.com/',
+    harvest: true,
+    tokenPerBlock: `8.573388117283950617`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS

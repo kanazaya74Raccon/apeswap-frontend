@@ -53,6 +53,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
+    pid: 192,
+    image: 'ANML.svg',
+    lpSymbol: 'ANML-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+    },
+    tokenSymbol: 'ANML',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://animalconcerts.com/',
+  },
+  {
     pid: 191,
     image: 'APE.svg',
     lpSymbol: 'APE-BNB',
@@ -3122,6 +3139,26 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://frontier.xyz/',
   },
+  {
+    pid: 189,
+    image: 'FRONT.svg',
+    lpSymbol: 'FRONT-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x4039a3B74459d15Ea8023064aE18B48499FecC60',
+    },
+    tokenSymbol: 'FRONT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://frontier.xyz/',
+  },
+
+  // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
+
   {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',

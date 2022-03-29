@@ -991,6 +991,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  anml: {
+    symbol: 'ANML',
+    address: {
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
