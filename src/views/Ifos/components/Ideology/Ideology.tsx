@@ -42,7 +42,7 @@ const HowItWorks = () => {
       <Frame>
         <FeatureBox>
           <Icon name="investment" />
-          ``
+
           <SectionHeading>INVESTMENT</SectionHeading>
           <Motto>BUILD</Motto>
           <StyledText textAlign="center">
