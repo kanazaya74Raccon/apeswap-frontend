@@ -12,13 +12,13 @@ import { usePriceBnbBusd, usePriceGnanaBusd } from 'state/hooks'
 import { useSafeIfoContract } from 'hooks/useContract'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { ButtonMenu, ButtonMenuItem, Toggle } from '@apeswapfinance/uikit'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
 import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import useUserInfo from './useUserInfo'
-import { Container } from './styles'
+import { Container, Wrapper } from './styles'
 
 const StyledUnlockButton = styled(UnlockButton)`
   padding: 25px 35px;
@@ -168,7 +168,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
     if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
 
-    if (isFinished && statsType === 1) {
+    if (isFinished && statsType === 0 && getBalanceNumber(userInfo.amount, 18) > 0) {
       const tokensHarvestedAvailable = getBalanceNumber(
         new BigNumber(userTokenStatus?.offeringTokenHarvest.toString()),
         tokenDecimals,
@@ -261,18 +261,16 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           />
         )
       )}
-      {getBalanceNumber(userInfo.amount, 18) !== 0 && (
-        <ButtonMenu
-          activeIndex={statsType}
-          size="sm"
-          variant="yellow"
-          onClick={() => {
-            setStatsType(statsType === 0 ? 1 : 0)
-          }}
-        >
-          <ButtonMenuItem>Overall Stats</ButtonMenuItem>
-          <ButtonMenuItem>My Stats</ButtonMenuItem>
-        </ButtonMenu>
+      {getBalanceNumber(userInfo.amount, 18) !== 0 && isFinished && (
+        <Wrapper>
+          <Toggle
+            size="md"
+            labels={['MY STATS', 'OVERALL STATS']}
+            onClick={() => {
+              setStatsType(statsType === 0 ? 1 : 0)
+            }}
+          />
+        </Wrapper>
       )}
       <IfoCardDetails stats={stats} />
     </Container>

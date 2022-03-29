@@ -3,7 +3,7 @@ import { ButtonSquare, Flex } from '@apeswapfinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 
-import { Label, Box, ContributeButton, ContributeInput, Container } from './styles'
+import { Label, Box, ContributeButton, ContributeInput, Container, MaxButton } from './styles'
 import useIAODeposit from '../../../hooks/useIAODeposit'
 
 interface Props {
@@ -50,19 +50,23 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
               <Container>
                 <ContributeInput
                   value={value}
-                  scale="lg"
+                  size="lg"
                   type="number"
                   min="0"
                   step="0.01"
                   onChange={(e) => setValue(e.currentTarget.value)}
                   style={{
-                    width: 'inherit',
+                    minWidth: '260px',
+                    border: 'none',
+                    borderRadius: '10px',
+                    backgroundColor: 'transparent',
                   }}
                 />
-                <ButtonSquare
+                <MaxButton
                   onClick={useMax}
                   style={{
-                    margin: 'auto 10px auto 10px',
+                    width: '60px',
+                    margin: 'auto 0px auto auto',
                     padding: '0px 10px 0px 10px',
                     fontSize: '15px',
                     borderRadius: '10px',
@@ -71,7 +75,7 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
                   }}
                 >
                   MAX
-                </ButtonSquare>
+                </MaxButton>
               </Container>
               <ContributeButton
                 disabled={disabled || pendingTx || !isAmountValid(value)}

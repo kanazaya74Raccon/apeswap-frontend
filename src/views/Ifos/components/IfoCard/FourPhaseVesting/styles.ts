@@ -26,7 +26,7 @@ export const VestingClaimButton = styled(Button)`
   width: 130px;
   height: 44px;
   background-color: secondary;
-  margin: 10px;
+  margin: 0 auto 12px auto;
   flex-shrink: 0;
   background: #ffb300;
   padding: 0;
@@ -73,4 +73,21 @@ export const UnlockButton = styled(UnlockButtonSquare)`
   margin: 0 auto 12px auto;
   height: 44px;
   font-size: 16px;
+`
+export const Wrapper = styled.div`
+  ${({ theme }) => theme.mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  ${({ theme }) => theme.mediaQueries.xl} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `

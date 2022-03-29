@@ -21,7 +21,6 @@ export const ContributeInput = styled(Input)`
   background: rgba(0, 0, 0, 0);
   border: none;
   box-shadow: none;
-  flex-grow: 1;
 `
 
 export const Container = styled.div`
@@ -30,3 +29,4 @@ export const Container = styled.div`
   height: 48px;
   background-color: ${({ theme }) => (theme.isDark ? '#424242' : '#e5e5e5')};
 `
+export const MaxButton = styled(Button)``
