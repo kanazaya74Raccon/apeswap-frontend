@@ -3,7 +3,7 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'trustnft',
-    address: '0x8F87424743074290a4682231B9e671C4b1c120a6', // Leave empty for "Coming Soon!"
+    address: '0xe8FbfceC8412febc383488B57921758F26EB1f8C', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: 'TrustNFT',
