@@ -261,7 +261,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           />
         )
       )}
-      {getBalanceNumber(userInfo.amount, 18) === 0 && (
+      {getBalanceNumber(userInfo.amount, 18) !== 0 && (
         <ButtonMenu
           activeIndex={statsType}
           size="sm"

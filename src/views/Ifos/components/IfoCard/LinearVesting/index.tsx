@@ -262,7 +262,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
           />
         )
       )}
-      {amount === 0 && (
+      {amount !== 0 && (
         <ButtonMenu
           activeIndex={statsType}
           size="sm"
