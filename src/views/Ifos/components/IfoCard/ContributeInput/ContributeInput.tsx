@@ -22,7 +22,13 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
   const { pendingTx, handleDeposit, isAmountValid } = useIAODeposit(contract, currencyAddress, tokenBalance)
 
   const useMax = () => {
-    setValue(currency === 'BNB' ? (parseFloat(balance) > 0.01 ? parseFloat(balance) - 0.01 : 0).toString() : balance)
+    const bnbReduction = new BigNumber(0.01)
+    const bigBalance = new BigNumber(balance)
+    setValue(
+      currency === 'BNB'
+        ? (bigBalance > bnbReduction ? bigBalance.minus(bnbReduction).toFixed() : 0).toString()
+        : balance,
+    )
   }
 
   return (
