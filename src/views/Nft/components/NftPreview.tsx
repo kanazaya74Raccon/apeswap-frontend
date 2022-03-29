@@ -1,24 +1,27 @@
 import React from 'react'
 import orderBy from 'lodash/orderBy'
-import { Card, CardBody, Heading } from '@apeswapfinance/uikit'
+import { Card, Heading } from '@apeswapfinance/uikit'
+import { Box } from 'theme-ui'
 import Container from 'components/layout/Container'
-import nfts from 'config/constants/nfts'
+import { useFetchNfas, useNfas } from 'state/hooks'
 import NftGrid from './NftGrid'
 import PleaseWaitCard from './PleaseWaitCard'
 import Image from './Image'
 
 const NftPreview = () => {
+  useFetchNfas()
+  const { nfas } = useNfas()
   return (
     <Container>
       <PleaseWaitCard />
       <NftGrid>
-        {orderBy(nfts, 'index').map((nft) => (
+        {orderBy(nfas, 'index').map((nft) => (
           <div key={nft.name}>
             <Card>
               <Image src={nft.image} alt={nft.name} rarityTier={nft.attributes.rarityTierNumber} />
-              <CardBody>
+              <Box>
                 <Heading>{nft.name}</Heading>
-              </CardBody>
+              </Box>
             </Card>
           </div>
         ))}

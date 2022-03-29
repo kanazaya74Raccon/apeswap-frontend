@@ -1,6 +1,6 @@
 import React from 'react'
-import { BlockIcon, CheckmarkCircleIcon, Flex, Link, OpenNewIcon, AutoRenewIcon } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
+import { BlockIcon, CheckmarkCircleIcon, Flex, OpenNewIcon, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { TransactionDetails } from 'state/transactions/reducer'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getEtherscanLink } from 'utils'
@@ -27,18 +27,6 @@ const Summary = styled.div`
   }
 `
 
-const TxnLink = styled(Link)`
-  align-items: center;
-  color: ${({ theme }) => theme.colors.text};
-  display: flex;
-  margin-bottom: 16px;
-  width: 100%;
-
-  &:hover {
-    text-decoration: none;
-  }
-`
-
 const renderIcon = (txn: TransactionDetails) => {
   if (!txn.receipt) {
     return <AutoRenewIcon spin width="24px" />
@@ -59,13 +47,15 @@ const TransactionRow: React.FC<TransactionRowProps> = ({ txn }) => {
   }
 
   return (
-    <TxnLink href={getEtherscanLink(txn.hash, 'transaction', chainId)} external>
+    <Flex alignItems="center" mb="10px">
       <TxnIcon color="white">{renderIcon(txn)}</TxnIcon>
       <Summary>{txn.summary ?? txn.hash}</Summary>
-      <TxnIcon>
-        <OpenNewIcon width="24px" color="#FFB300" />
-      </TxnIcon>
-    </TxnLink>
+      <a href={getEtherscanLink(txn.hash, 'transaction', chainId)} target="_blank" rel="noopener noreferrer">
+        <TxnIcon>
+          <OpenNewIcon width="24px" color="#FFB300" />
+        </TxnIcon>
+      </a>
+    </Flex>
   )
 }
 

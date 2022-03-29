@@ -1,18 +1,7 @@
 import React, { useCallback } from 'react'
 import { ChainId, Currency, Token } from '@apeswapfinance/sdk'
 import styled from 'styled-components'
-import {
-  Button,
-  Text,
-  ErrorIcon,
-  Flex,
-  Link,
-  Modal,
-  InjectedModalProps,
-  ButtonSquare,
-  MetamaskIcon,
-  Spinner,
-} from '@apeswapfinance/uikit'
+import { Button, Text, ErrorIcon, Flex, Link, Modal, ModalProps, MetamaskIcon, Spinner } from '@apeswapfinance/uikit'
 import { registerToken } from 'utils/wallet'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
@@ -89,9 +78,9 @@ function TransactionSubmittedContent({
             </RowFixed>{' '}
           </Button>
         )}
-        <ButtonSquare fullWidth onClick={onDismiss} style={{ height: '50px', fontSize: '20px' }} mt="20px">
+        <Button fullWidth onClick={onDismiss} style={{ height: '50px', fontSize: '20px' }} mt="20px">
           Close
-        </ButtonSquare>
+        </Button>
       </AutoColumn>
     </Wrapper>
   )
@@ -139,7 +128,7 @@ interface ConfirmationModalProps {
   currencyToAdd?: Currency | undefined
 }
 
-const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationModalProps> = ({
+const TransactionConfirmationModal: React.FC<ModalProps & ConfirmationModalProps> = ({
   title,
   onDismiss,
   customOnDismiss,

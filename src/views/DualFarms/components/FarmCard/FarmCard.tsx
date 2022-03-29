@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { useStats } from 'state/hooks'
+import { useStats } from 'state/statsOverall/hooks'
 import { DualFarm, Farm } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import DetailsSection from './DetailsSection'
@@ -9,7 +9,6 @@ import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 
 export interface FarmWithStakedValue extends Farm {
-  apr?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
 }

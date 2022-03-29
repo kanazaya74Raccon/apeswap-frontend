@@ -1,10 +1,34 @@
 import { Ifo } from './types'
 
+// Used for configuring BNB IAOs
+
 const ifos: Ifo[] = [
+  {
+    id: 'animalconcerts',
+    address: '0x4bcfC7571D650e707e9C6506e1ED0E3e434E9bb4', // Leave empty for "Coming Soon!"
+    isActive: true,
+    isLinear: true,
+    name: 'Animal Concerts',
+    subTitle: `The Next Generation for Live Events in the Metaverse`,
+    description: `Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.`,
+    launchDate: 'March 29th',
+    launchTime: '2:00 UTC',
+    saleAmount: '111,111,111 ANML',
+    raiseAmount: '$500,000',
+    vestingTime: '6 Months',
+    projectSiteUrl: 'https://animalconcerts.com/',
+    currency: 'BNB',
+    currencyAddress: '0x0000000000000000000000000000000000000000',
+    offeringCurrency: 'ANML',
+    tokenDecimals: 18,
+    releaseBlockNumber: 16465651, // block to start showing contract details
+    vesting: true,
+    // burnedTxUrl: '',
+  },
   {
     id: 'trustnft',
     address: '0x8F87424743074290a4682231B9e671C4b1c120a6', // Leave empty for "Coming Soon!"
-    isActive: true,
+    isActive: false,
     isLinear: true,
     name: 'TrustNFT',
     subTitle: `Decentralized NFT Loans & Marketplace`,

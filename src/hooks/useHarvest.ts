@@ -5,15 +5,13 @@ import { updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { soushHarvest, harvest, nfaStakeHarvest, miniChefHarvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants/chains'
 import track from 'utils/track'
-import { updateFarmUserEarnings } from 'state/farms'
 import { useNetworkChainId } from 'state/hooks'
 import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
 import { useMasterchef, useMiniChefContract, useSousChef, useNfaStakingChef } from './useContract'
 
 export const useHarvest = (farmPid: number) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
+  const { chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
 
   const handleHarvest = useCallback(async () => {
@@ -26,11 +24,10 @@ export const useHarvest = (farmPid: number) => {
         pid: farmPid,
       },
     })
-    dispatch(updateFarmUserEarnings(chainId, farmPid, account))
     return txHash
-  }, [account, dispatch, farmPid, masterChefContract, chainId])
+  }, [farmPid, masterChefContract, chainId])
 
-  return { onReward: handleHarvest }
+  return { onHarvest: handleHarvest }
 }
 
 export const useAllHarvest = (farmPids: number[], chainId: number) => {

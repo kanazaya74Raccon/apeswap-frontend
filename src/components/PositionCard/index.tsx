@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { JSBI, Pair, Percent } from '@apeswapfinance/sdk'
-import {
-  Text,
-  Card,
-  CardBody,
-  Flex,
-  CardProps,
-  ButtonSquare,
-  ArrowDropDownIcon,
-  ArrowDropUpIcon,
-} from '@apeswapfinance/uikit'
+import { Text, Card, Flex, CardProps, Button, ArrowDropDownIcon, ArrowDropUpIcon } from '@apeswapfinance/uikit'
 import { Link } from 'react-router-dom'
+import { Box } from 'theme-ui'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
@@ -88,7 +80,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
     <>
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
         <Card>
-          <CardBody>
+          <Box>
             <AutoColumn gap="16px">
               <FixedHeightRow>
                 <RowFixed>
@@ -141,7 +133,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                 </FixedHeightRow>
               </AutoColumn>
             </AutoColumn>
-          </CardBody>
+          </Box>
         </Card>
       ) : (
         <Card>
@@ -206,7 +198,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 `${currency0.getSymbol(chainId)}/${currency1.getSymbol(chainId)}`
               )}
             </Title>
-            <Text small style={{ position: 'absolute', right: '40px' }} mt="5px">
+            <Text small style={{ position: 'absolute', right: '40px' }} mt="5px" mr="20px">
               {currencyPrice ? `~ $${(currencyPrice * parseFloat(userPoolBalance?.toSignificant(4))).toFixed(2)}` : '-'}
             </Text>
           </Flex>
@@ -270,15 +262,15 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
 
           {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, BIG_INT_ZERO) && (
             <Flex flexDirection="row" mt="10px">
-              <ButtonSquare
+              <Button
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                 fullWidth
                 style={{ height: '40px', fontSize: '20px', marginRight: '8px' }}
               >
                 <Title color="white">Add</Title>
-              </ButtonSquare>
-              <ButtonSquare
+              </Button>
+              <Button
                 as={Link}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
                 mb="8px"
@@ -286,7 +278,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 style={{ height: '40px', marginLeft: '8px' }}
               >
                 <Title color="white">Remove</Title>
-              </ButtonSquare>
+              </Button>
             </Flex>
           )}
         </AutoColumn>

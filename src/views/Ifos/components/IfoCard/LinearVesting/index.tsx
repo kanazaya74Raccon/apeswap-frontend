@@ -169,7 +169,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
       4,
     )} ${offeringCurrency}`
     progressBarTimeLabel = `${timeUntil.days + timeUntil.months * 30}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${
-      vestingPeriod.days + timeUntil.months * 30
+      vestingPeriod.days + vestingPeriod.months * 30
     }d ${vestingPeriod.hours}h ${vestingPeriod.minutes}m`
     progress = ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
   }
