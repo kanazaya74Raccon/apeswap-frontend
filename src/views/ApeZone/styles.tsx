@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { Heading, Text, Card, WarningIcon, CardBody, Button } from '@apeswapfinance/uikit'
+import { Heading, Text, WarningIcon, Button } from '@apeswapfinance/uikit'
+import { Box } from 'theme-ui'
 
 interface ContentProps {
   readingMore: boolean
@@ -24,6 +25,7 @@ export const Header = styled.div`
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
+  color: white;
   background-image: ${({ theme }) =>
     theme.isDark ? 'url(/images/banners/gnana-mobile-dark.svg)' : 'url(/images/banners/gnana-mobile-light.svg)'};
   height: 278px;
@@ -83,11 +85,11 @@ export const StyledHeading = styled(Heading)`
     max-width: 600px !important;
   }
 `
-export const PaddedCard = styled(Card)`
+export const PaddedCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${({ theme }) => (theme.isDark ? `${theme.colors.yellow}26` : theme.colors.yellow)};
+  background-color: ${({ theme }) => (theme.isDark ? `${theme.colors.yellow}26` : theme.colors.yellow)};
   padding: 10px;
   border-radius: 10px;
 `
@@ -128,7 +130,7 @@ export const CenterCard = styled.div`
   align-items: center;
   width: 100%;
 `
-export const InnerContent = styled(CardBody)<ContentProps>`
+export const InnerContent = styled(Box)<ContentProps>`
   padding: 0px 20px;
   display: none;
 

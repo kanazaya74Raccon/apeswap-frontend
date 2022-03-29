@@ -26,9 +26,7 @@ const IfoProjectCard: React.FC<IfoCardProps> = ({ ifoId }) => {
     <StyledIfoCard ifoId={id}>
       <Banner src={`/images/ifos/${ifoId}-bg.svg`} alt={ifoId} />
       <Content>
-        <Heading as="h3" fontWeight={400}>
-          {subTitle}
-        </Heading>
+        <Heading as="h3">{subTitle}</Heading>
 
         {/* // TODO: Cannot use block number for the countdown link, as this is the card for the project, not specific to each offering (IAOLinearVesting contract), so `startBlock` is not available */}
         <Text fontSize="14px" color="yellow" fontWeight={600}>

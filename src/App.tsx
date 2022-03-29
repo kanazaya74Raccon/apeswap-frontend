@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
+import { ResetCSS, ChevronUpIcon, ApeSwapTheme } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
@@ -14,6 +14,10 @@ import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pool from './views/Pool'
+
+declare module '@emotion/react' {
+  export interface Theme extends ApeSwapTheme {}
+}
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'

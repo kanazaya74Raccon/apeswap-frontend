@@ -10,7 +10,7 @@ export interface ITableProps {
 }
 
 const Container = styled.div`
-  background: ${({ theme }) => theme.card.background};
+  background: ${({ theme }) => theme.colors.white2};
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;

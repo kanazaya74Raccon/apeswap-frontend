@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
+import { Toggle } from '@apeswapfinance/uikit'
 import { TabOption } from '../types'
 
 const Wrapper = styled.div`
@@ -16,18 +16,16 @@ interface Props {
 }
 
 const IfoTabButtons = ({ selectedTab = 'current', onSelect }: Props) => {
+  const [index, setIndex] = useState(1)
+  const handleClick = () => {
+    onSelect(index === 0 ? 'current' : 'past')
+    setIndex((prev) => (prev === 0 ? 1 : 0))
+  }
   return (
-    <Wrapper>
-      <ButtonMenu
-        activeIndex={selectedTab === 'current' ? 0 : 1}
-        onClick={(index) => onSelect(index === 0 ? 'current' : 'past')}
-        variant="yellow"
-      >
-        <ButtonMenuItem>Current</ButtonMenuItem>
-        <ButtonMenuItem>Past</ButtonMenuItem>
-      </ButtonMenu>
+    <Wrapper style={{ marginTop: '20px' }}>
+      <Toggle size="lg" labels={['CURRENT', 'PAST']} checked={selectedTab !== 'current'} onClick={handleClick} />
     </Wrapper>
   )
 }
 
-export default IfoTabButtons
+export default React.memo(IfoTabButtons)

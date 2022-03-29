@@ -32,8 +32,8 @@ export const getDualFarmApr = (
 }
 
 export const getFarmApr = (poolWeight: BigNumber, bananaPriceUsd: BigNumber, poolLiquidityUsd: BigNumber): number => {
-  const yearlyBananaRewardAllocation = BANANA_PER_YEAR.times(poolWeight)
-  const apr = yearlyBananaRewardAllocation.times(bananaPriceUsd).div(poolLiquidityUsd).times(100)
+  const yearlyBananaRewardAllocation = BANANA_PER_YEAR.times(poolWeight).times(bananaPriceUsd)
+  const apr = yearlyBananaRewardAllocation.div(poolLiquidityUsd).times(100)
   return apr.isNaN() || !apr.isFinite() ? null : apr.toNumber()
 }
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Button, Text, ButtonSquare } from '@apeswapfinance/uikit'
+import { Button, Text } from '@apeswapfinance/uikit'
 // import BaseUnlockButton from 'components/UnlockButton'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButtonSquare from 'components/UnlockButton'
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white3};
@@ -63,7 +63,7 @@ export const TextWrapRow = styled.div`
   flex-wrap: wrap;
 `
 
-export const ApproveButton = styled(ButtonSquare)`
+export const ApproveButton = styled(Button)`
   width: 220px;
   margin: 0 auto;
 `

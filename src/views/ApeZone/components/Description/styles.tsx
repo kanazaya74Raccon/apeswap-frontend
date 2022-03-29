@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Card, Button } from '@apeswapfinance/uikit'
+import { Flex, Button } from '@apeswapfinance/uikit'
 
 // DESCRIPTION
 export const List = styled.ul`
@@ -79,7 +79,7 @@ export const StyledCircle = styled.circle`
     height: 174px;
   }
 `
-export const StyledCard = styled(Card)`
+export const StyledCard = styled.div`
   display: none;
 
   ${({ theme }) => theme.mediaQueries.sm} {

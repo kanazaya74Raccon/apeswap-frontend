@@ -6,7 +6,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import StakeAction from './StakeAction'
 
 export interface FarmWithStakedValue extends Farm {
-  apy?: BigNumber
   liquidity?: BigNumber
   addLiquidityUrl?: string
 }
