@@ -27,8 +27,8 @@ const ApeZone: { ifos: Ifo[] } = {
     },
     {
       id: 'trustnft',
-      address: '0x76DfA14DD1295A588eBBE8e03964a98fF15f02E2', // Leave empty for "Coming Soon!"
-      isActive: false,
+      address: '0xf7028ca30dedf44dc9534316c9a66042d45846d0', // Leave empty for "Coming Soon!"
+      isActive: true,
       isLinear: true,
       name: 'Trust NFT',
       subTitle: `Decentralized NFT Loans & Marketplace`,
