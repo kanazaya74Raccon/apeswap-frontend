@@ -70,7 +70,7 @@ export const ApproveButton = styled(ButtonSquare)`
 
 export const UnlockButton = styled(UnlockButtonSquare)`
   width: 220px;
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
   height: 44px;
   font-size: 16px;
 `
