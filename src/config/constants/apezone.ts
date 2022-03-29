@@ -5,7 +5,7 @@ const ApeZone: { ifos: Ifo[] } = {
   ifos: [
     {
       id: 'animalconcerts',
-      address: '0x8C32C05243CDBEEa9632eAAa30e9471D7Ab78215', // Leave empty for "Coming Soon!"
+      address: '0x65dA064db25c6DA35Ae661A2C48bb18c0b2e7739', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: 'Animal Concerts',
@@ -28,7 +28,7 @@ const ApeZone: { ifos: Ifo[] } = {
     {
       id: 'trustnft',
       address: '0xf7028ca30dedf44dc9534316c9a66042d45846d0', // Leave empty for "Coming Soon!"
-      isActive: true,
+      isActive: false,
       isLinear: true,
       name: 'Trust NFT',
       subTitle: `Decentralized NFT Loans & Marketplace`,
