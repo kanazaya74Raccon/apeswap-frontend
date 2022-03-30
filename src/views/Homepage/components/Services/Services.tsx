@@ -162,7 +162,7 @@ const Services: React.FC = () => {
                               </Text>
                             </Flex>
                           </Flex>
-                          {service.title !== 'Coming Soon' && (
+                          {service.title !== '' && (
                             <>
                               {service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}
                             </>
