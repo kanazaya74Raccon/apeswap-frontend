@@ -164,7 +164,7 @@ const Services: React.FC = () => {
                           </Flex>
                           {service.title !== '' && (
                             <>
-                              {service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}
+                              {service.title !== '' && displayStats(service.id, service.link, service.stats)}
                             </>
                           )}
                         </Flex>
@@ -190,7 +190,7 @@ const Services: React.FC = () => {
                           </Text>
                         </Flex>
                       </Flex>
-                      <>{service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}</>
+                      <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
                     </Flex>
                   </YieldCard>
                 )
