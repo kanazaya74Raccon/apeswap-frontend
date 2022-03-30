@@ -61,19 +61,7 @@ export const UnlockButton = styled(BaseUnlockButton)`
   font-size: 16px;
 `
 export const Wrapper = styled.div`
-  ${({ theme }) => theme.mediaQueries.md} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  ${({ theme }) => theme.mediaQueries.lg} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  ${({ theme }) => theme.mediaQueries.xl} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
