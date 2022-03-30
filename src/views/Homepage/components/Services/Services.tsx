@@ -163,9 +163,7 @@ const Services: React.FC = () => {
                             </Flex>
                           </Flex>
                           {service.title !== '' && (
-                            <>
-                              {service.title !== '' && displayStats(service.id, service.link, service.stats)}
-                            </>
+                            <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
                           )}
                         </Flex>
                       </YieldCard>
