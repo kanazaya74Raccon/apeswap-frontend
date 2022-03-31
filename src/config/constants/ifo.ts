@@ -6,7 +6,7 @@ import { ContextApi } from '../../contexts/Localization/types'
 const ifos: (t: ContextApi['t']) => Ifo[] = (t) => [
   {
     id: 'animalconcerts',
-    address: '', // Leave empty for "Coming Soon!"
+    address: '0x4bcfC7571D650e707e9C6506e1ED0E3e434E9bb4', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
     name: t('Animal Concerts'),
@@ -24,7 +24,7 @@ const ifos: (t: ContextApi['t']) => Ifo[] = (t) => [
     currencyAddress: '0x0000000000000000000000000000000000000000',
     offeringCurrency: 'ANML',
     tokenDecimals: 18,
-    releaseBlockNumber: 24911408, // block to start showing contract details
+    releaseBlockNumber: 16465651, // block to start showing contract details
     vesting: true,
     // burnedTxUrl: '',
   },

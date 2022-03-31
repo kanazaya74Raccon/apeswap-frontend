@@ -44,7 +44,7 @@ const HowItWorks = () => {
       <Frame>
         <FeatureBox>
           <Icon name="investment" />
-          ``
+
           <SectionHeading>{t('INVESTMENT')}</SectionHeading>
           <Motto>{t('BUILD')}</Motto>
           <StyledText textAlign="center">

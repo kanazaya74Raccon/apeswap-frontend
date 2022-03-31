@@ -28,7 +28,7 @@ export const defaultServiceData: (t: ContextApi['t']) => DefaultServiceData[] = 
   },
   {
     id: '',
-    title: t('Coming Soon'),
+    title: '',
     description: '',
     backgroundImg: 'images/homepage-coming-soon.svg',
     link: '',

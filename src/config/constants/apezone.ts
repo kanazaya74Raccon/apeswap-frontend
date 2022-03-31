@@ -5,7 +5,7 @@ const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
   ifos: [
     {
       id: 'animalconcerts',
-      address: '', // Leave empty for "Coming Soon!"
+      address: '0x8C32C05243CDBEEa9632eAAa30e9471D7Ab78215', // Leave empty for "Coming Soon!"
       isActive: true,
       isLinear: true,
       name: t('Animal Concerts'),
@@ -23,7 +23,7 @@ const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
       currencyAddress: '0xdDb3Bd8645775F59496c821E4F55A7eA6A6dc299',
       offeringCurrency: 'ANML',
       tokenDecimals: 18,
-      releaseBlockNumber: 24911408, // block to start showing contract details
+      releaseBlockNumber: 16465651, // block to start showing contract details
       vesting: true,
       // burnedTxUrl: '',
     },
