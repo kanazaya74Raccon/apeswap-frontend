@@ -43,7 +43,7 @@ const Menu = (props) => {
       t={t}
       langs={languageList}
       setLang={setLanguage}
-      currentLang={currentLanguage.code}
+      currentLang={currentLanguage.language}
       links={currentMenu(t)}
       chainId={chainId}
       switchNetwork={switchNetwork}
