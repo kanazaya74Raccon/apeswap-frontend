@@ -47,7 +47,6 @@ const HowItWorks = () => {
           ``
           <SectionHeading>{t('INVESTMENT')}</SectionHeading>
           <Motto>{t('BUILD')}</Motto>
-
           <StyledText textAlign="center">
             {t('We highly vet applicants to choose projects we believe in as long term investments and partners')}
           </StyledText>

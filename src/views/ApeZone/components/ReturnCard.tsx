@@ -126,7 +126,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
             fontSize="16px"
             decimals={4}
             value={valBanana}
-            prefix={`OUTPUT ${toToken}`}
+            prefix={`${t('OUTPUT')} ${toToken}`}
           />
 
           <Text fontSize="12px" fontWeight={500}>

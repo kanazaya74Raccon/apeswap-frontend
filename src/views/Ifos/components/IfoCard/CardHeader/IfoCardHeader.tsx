@@ -36,19 +36,19 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
 
   const getStatus = () => {
     if (isComingSoon) {
-      return <Text>Coming Soon!</Text>
+      return <Text>{t('Coming Soon!')}</Text>
     }
 
     if (isLoading) {
-      return <Text>Loading...</Text>
+      return <Text>{t('Loading')}...</Text>
     }
 
     if (countdownToUse <= 0) {
-      return <StyledText>Finished</StyledText>
+      return <StyledText>{t('Finished')}</StyledText>
     }
 
     if (status === 'live') {
-      return <Text>LIVE NOW!</Text>
+      return <Text>{t('LIVE NOW!')}</Text>
     }
     return null
   }

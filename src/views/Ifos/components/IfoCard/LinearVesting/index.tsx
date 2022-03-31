@@ -182,7 +182,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
       { label: t('To raise (USD)'), value: raiseAmount },
     ]
 
-    if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
+    if (vestingTime) texts.push({ label: t('Total vesting time'), value: vestingTime })
 
     if (isFinished && userOfferingAmount > 0) {
       const vestedValueAmount = amount - refundingAmount

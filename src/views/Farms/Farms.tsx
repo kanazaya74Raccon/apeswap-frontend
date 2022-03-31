@@ -8,7 +8,7 @@ import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
-import {useTranslation} from "contexts/Localization"
+import { useTranslation } from 'contexts/Localization'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
 import { Header, HeadingContainer, StyledHeading } from './styles'

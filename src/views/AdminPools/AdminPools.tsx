@@ -575,9 +575,7 @@ const AdminPools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1">
-            {t('Admin Pools')}
-          </StyledHeading>
+          <StyledHeading as="h1">{t('Admin Pools')}</StyledHeading>
           {size.width > 968 && (
             <AdminText>
               {t('Stake OBIE to earn new tokens.')} <br />{' '}

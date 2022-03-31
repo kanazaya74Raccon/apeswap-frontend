@@ -182,7 +182,7 @@ export default function CurrencyInputPanel({
             fontSize="14px"
             style={{ display: 'inline', cursor: 'pointer', position: 'absolute', top: '-30px', marginLeft: '10px' }}
           >
-            {id === 'swap-currency-output' ? t('To:') : t('From:')}
+            {id === 'swap-currency-output' ? `${t('To')}:` : `${t('From')}:`}
           </Text>
         )}
         {account && (
@@ -234,7 +234,7 @@ export default function CurrencyInputPanel({
                 lineHeight: 0,
               }}
             >
-              MAX
+              {t('MAX')}
             </Button>
           )}
           <RowBetween>

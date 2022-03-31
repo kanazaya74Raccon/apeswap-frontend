@@ -180,7 +180,7 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
     setFilterNftSet(tempFilter)
     setFilterState(true)
     setEndPagination(50)
-    setCurrentSortName('Sort')
+    setCurrentSortName(t('Sort'))
     setCurrentFilterName(`Tier ${tier}`)
   }
 
@@ -188,14 +188,14 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
     const tempFilter = nftSet.slice(851, 954)
     setFilterNftSet(tempFilter)
     setFilterState(true)
-    setCurrentFilterName('Next Sale')
+    setCurrentFilterName(t('Next Sale'))
   }
 
   const resetFilter = () => {
     setFilterState(false)
     setFilterNftSet(nftSet)
     setEndPagination(50)
-    setCurrentFilterName('Filter')
+    setCurrentFilterName(t('Filter'))
     setCurrentSortName('Sort')
     setNftToDisplay(orderBy(nftSet, 'index').slice(0, 50))
   }
@@ -217,14 +217,14 @@ const SortNfts: React.FC<NftSortProps> = ({ nftSet }) => {
     <>
       <SortHolder>
         <DropDown>
-          <SortTitle>{currentSortName}</SortTitle>
+          <SortTitle>{t(currentSortName)}</SortTitle>
           <DropDownContent>
             <DropDownItem onClick={() => sortBy('index')}>{t('Ape #')}</DropDownItem>
             <DropDownItem onClick={() => sortBy('rarity')}>{t('Rarity')}</DropDownItem>
           </DropDownContent>
         </DropDown>
         <DropDown>
-          <SortTitle>{currentFilterName}</SortTitle>
+          <SortTitle>{t(currentFilterName)}</SortTitle>
           <DropDownContent>
             <DropDownItem onClick={() => nextSet()}>{t('Next Sale')}</DropDownItem>
             <DropDownItem onClick={() => filterBy(1)}>{t('Tier 1')}</DropDownItem>

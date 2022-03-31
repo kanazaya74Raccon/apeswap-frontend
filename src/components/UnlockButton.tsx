@@ -7,7 +7,7 @@ import { useTranslation } from 'contexts/Localization'
 const UnlockButton = (props) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
   const { large } = props
 
   return large ? (

@@ -58,7 +58,9 @@ const HowItWorks = ({ onParticipate }: Props) => {
           <div>
             <SectionHeading>{t('VESTING SCHEDULE')}</SectionHeading>
             <StyledText>
-              {t('25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.')}
+              {t(
+                '25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.',
+              )}
             </StyledText>
           </div>
         </FeatureBox>

@@ -10,7 +10,9 @@ const ApeZone: (t: ContextApi['t']) => { ifos: Ifo[] } = (t) => ({
       isLinear: true,
       name: t('Animal Concerts'),
       subTitle: t(`The Next Generation for Live Events in the Metaverse`),
-      description: t(`Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.`),
+      description: t(
+        `Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.`,
+      ),
       launchDate: 'March 29th',
       launchTime: '2:00 UTC',
       saleAmount: '111,111,111 ANML',

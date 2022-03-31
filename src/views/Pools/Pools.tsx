@@ -697,8 +697,9 @@ const Pools: React.FC = () => {
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
-              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
+              {t('Stake BANANA to earn new tokens.')}
+              <br /> {t('You can unstake at any time.')}
+              <br /> {t('Rewards are calculated per block.')}
             </Text>
           )}
         </HeadingContainer>
@@ -713,7 +714,7 @@ const Pools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -731,7 +732,7 @@ const Pools: React.FC = () => {
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
                   <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />
-                  <StyledText> BANANA</StyledText>
+                  <StyledText> {t('BANANA')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

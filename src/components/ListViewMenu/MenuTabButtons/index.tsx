@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, useHistory } from 'react-router-dom'
 import { Toggle } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
@@ -24,6 +25,7 @@ const Wrapper = styled.div`
 const MenuTabButton: React.FC = () => {
   const { url, isExact } = useRouteMatch()
   const history = useHistory()
+  const { t } = useTranslation()
 
   const handleClick = () => {
     if (isExact) {
@@ -35,7 +37,7 @@ const MenuTabButton: React.FC = () => {
 
   return (
     <Wrapper>
-      <Toggle size="md" labels={['CURRENT', 'PAST']} onClick={handleClick} checked={!isExact} />
+      <Toggle size="md" labels={[t('CURRENT'), t('PAST')]} onClick={handleClick} checked={!isExact} />
     </Wrapper>
   )
 }

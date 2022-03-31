@@ -80,7 +80,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         </RowFixed>
       </Column>
       <Toggle
-        labels={['NO', 'YES']}
+        labels={[t('NO'), t('YES')]}
         checked={isActive}
         onChange={() => {
           if (isActive) {
@@ -209,7 +209,7 @@ function ManageLists({
         <Row>
           <StyledInput
             id="list-add-input"
-            placeholder="https:// or ipfs:// or ENS name"
+            placeholder={t('https:// or ipfs:// or ENS name')}
             value={listUrlInput}
             onChange={handleInput}
             icon="search"

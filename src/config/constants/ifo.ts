@@ -1,16 +1,19 @@
 import { Ifo } from './types'
+import { ContextApi } from '../../contexts/Localization/types'
 
 // Used for configuring BNB IAOs
 
-const ifos: Ifo[] = [
+const ifos: (t: ContextApi['t']) => Ifo[] = (t) => [
   {
     id: 'animalconcerts',
     address: '', // Leave empty for "Coming Soon!"
     isActive: true,
     isLinear: true,
-    name: 'Animal Concerts',
-    subTitle: `The Next Generation for Live Events in the Metaverse`,
-    description: `Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.`,
+    name: t('Animal Concerts'),
+    subTitle: t('The Next Generation for Live Events in the Metaverse'),
+    description: t(
+      'Animal Concerts streams interactive metaverse concerts, enabling both established and emerging artists to deliver amazing next-generation fan experiences. The protocol welcomes a new paradigm for music distribution, working closely with artists to design and mint  unique NFTs to personalize and enhance the fan experience while generating new and direct revenue for the artists involved.',
+    ),
     launchDate: 'March 29th',
     launchTime: '2:00 UTC',
     saleAmount: '111,111,111 ANML',
@@ -30,9 +33,11 @@ const ifos: Ifo[] = [
     address: '0x8F87424743074290a4682231B9e671C4b1c120a6', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: true,
-    name: 'TrustNFT',
-    subTitle: `Decentralized NFT Loans & Marketplace`,
-    description: `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+    name: t('TrustNFT'),
+    subTitle: t('Decentralized NFT Loans & Marketplace'),
+    description: t(
+      `TrustNFT's platform uses AI and big data to accurately evaluate NFTs and unlock their potential for use as loan collateral. Users can combine DeFi with NFTs to earn yield on selected NFT-backed loans. TrustNFT addresses major problems in the NFT ecosystem, including low liquidity, investment risk, and monetization of assets.`,
+    ),
     launchDate: 'February 3rd',
     launchTime: '1:00 UTC',
     saleAmount: '30,000,000 TRUSTNFT',
@@ -52,9 +57,11 @@ const ifos: Ifo[] = [
     address: '0xa526477bBf22643bE96D02Ebf3934BA1721059f3', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: false,
-    name: '99Starz',
-    subTitle: `The World's Biggest NFT Yield Ecosystem`,
-    description: `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
+    name: t('99Starz'),
+    subTitle: t(`The World's Biggest NFT Yield Ecosystem`),
+    description: t(
+      `99Starz is creating a results-driven, cross-chain GameFi ecosystem that will allow game studios, gamers, and collectors alike to participate and win in different ways together. Through their unique GameFi guild model and NFT leasing marketplace, 99Starz will cater to all aspects of the most popular blockchain gaming economies, including Axie Infinity, F1 Delta, and Sorare, just to name a few.`,
+    ),
     launchDate: 'December 11th',
     launchTime: '5:00 UTC',
     saleAmount: '500,000 STZ',
@@ -74,9 +81,11 @@ const ifos: Ifo[] = [
     address: '0xdDb35EE8d3B54216B114190a1Bc14eB11408BE23', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: false,
-    name: 'Galactic Arena',
-    subTitle: 'Welcome to the Galactic Arena!',
-    description: `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
+    name: t('Galactic Arena'),
+    subTitle: t('Welcome to the Galactic Arena!'),
+    description: t(
+      `Galactic Arena is the battlefield that everyone has been waiting for! It doesn't matter where your NFT comes from, In this NTFverse, you can bring your favorite heroes along with you! Take part in THE CARNIVAL, then make wagers on PvP battles in REAL TIME! Prizes include BNB, BUSD, GAN! Get on top of the Leaderboard and earn extra rewards!`,
+    ),
     launchDate: 'November 4th',
     launchTime: '16:00 UTC',
     saleAmount: '80,000,000 GAN',
@@ -96,9 +105,11 @@ const ifos: Ifo[] = [
     address: '0xc55114204b5fA30b34c360De0E938eB3B3d4c0f6', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: false,
-    name: 'NFTY Network',
-    subTitle: 'Decentralized NFT Gating Ecosystem',
-    description: `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
+    name: t('NFTY Network'),
+    subTitle: t('Decentralized NFT Gating Ecosystem'),
+    description: t(
+      `NFTY Network is a decentralized NFT ecosystem built to facilitate various innovations in the NFT space, unlocking the true potential of NFTs through gated experiences that connect Web2 and Web3 infrastructures like never before!`,
+    ),
     launchDate: 'September 29th',
     launchTime: '17:00 UTC',
     saleAmount: '57,200,000 NFTY',
@@ -118,9 +129,11 @@ const ifos: Ifo[] = [
     address: '0x9BC1bC6C4010A2b0384C59b9513d841AA8b5BDF4', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: false,
-    name: 'Dragonary',
-    subTitle: 'Decentralized NFT Gaming',
-    description: `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+    name: t('Dragonary'),
+    subTitle: t('Decentralized NFT Gaming'),
+    description: t(
+      `Dragonary is a brand new game being developed by CoinaryTV for Desktop, iPhone, and Android, where users can play to earn in-game currency. You can collect, trade, and breed various dragon NFTs and battle against the game or other players to win!`,
+    ),
     launchDate: 'August 7th',
     launchTime: '16:00 UTC',
     saleAmount: '60,000,000 CYT',
@@ -140,9 +153,11 @@ const ifos: Ifo[] = [
     address: '0x5B31A7124A4Abf8CA9B4090532A669783d8E11eE', // Leave empty for "Coming Soon!"
     isActive: false,
     isLinear: false,
-    name: 'BiShares',
-    subTitle: 'Decentralized Index Funds',
-    description: `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+    name: t('BiShares'),
+    subTitle: t('Decentralized Index Funds'),
+    description: t(
+      `BiShares is BSC's first Index Funds for safely diversifying across crypto assets. Use BNB to purchase a wide basket of assets and gain exposure to the broader crypto market. Never miss out on another moon again!`,
+    ),
     launchDate: 'July 9th',
     launchTime: '03:00 UTC',
     saleAmount: '128571 BISON',
@@ -162,10 +177,11 @@ const ifos: Ifo[] = [
     address: '0x4D5e1E722e9280d44C564ef3FC14E0B03a50ad47', // IAO Aux contract!"
     isActive: false,
     isLinear: false,
-    name: 'Hifi',
-    subTitle: 'Decentralized retro gaming ecosystem.',
-    description:
+    name: t('Hifi'),
+    subTitle: t('Decentralized retro gaming ecosystem.'),
+    description: t(
       'HiFi is a decentralized retro gaming ecosystem driven by its community. It uses staking and gameplay mining participation rewards to create a completely new DeFi gaming experience.',
+    ),
     launchDate: 'June 11',
     launchTime: '03:00 UTC',
     saleAmount: '120,000,000 HIFI',
@@ -184,10 +200,11 @@ const ifos: Ifo[] = [
     address: '0x8AC93DC2F83cEf4032FbC71070Dc5Af06fd9D105',
     isActive: false,
     isLinear: false,
-    name: 'ApeRocket',
-    subTitle: 'DeFi yield farming aggregator and optimizer for Binance Smart Chain.',
-    description:
+    name: t('ApeRocket'),
+    subTitle: t('DeFi yield farming aggregator and optimizer for Binance Smart Chain.'),
+    description: t(
       'ApeRocket Finance is a suite of products in Decentralized Finance (DeFi) that provides yield optimization strategies through the Binance Smart Chain, using ApeSwap liquidity.',
+    ),
     launchDate: 'May. 25',
     launchTime: '03:00 UTC',
     saleAmount: ' 55,556 SPACE',
@@ -206,10 +223,11 @@ const ifos: Ifo[] = [
     address: '0x898aaD14CBebA249D4eEdC9bd22D9B533F0DDf73',
     isActive: false,
     isLinear: false,
-    name: 'Bitfresh',
-    subTitle: 'The first community-driven iGaming platform where everyone wins.',
-    description:
+    name: t('Bitfresh'),
+    subTitle: t('The first community-driven iGaming platform where everyone wins.'),
+    description: t(
       'Bitfresh is a blockchain-based community driven social iGaming experience that pays dividends to players and token holders. The platform is filled with reward systems to give players many ways to win and earn over time.',
+    ),
     launchDate: 'Apr. 24',
     launchTime: '03:00 UTC',
     saleAmount: '100,000,000 BFT',
@@ -229,10 +247,11 @@ const ifos: Ifo[] = [
     address: '0xCBe256573185d767EfD4a797CB360880728B8fD8',
     isActive: false,
     isLinear: false,
-    name: 'Jedi Yield',
-    subTitle: 'The only app you need for all your yield farming needs',
-    description:
+    name: t('Jedi Yield'),
+    subTitle: t('The only app you need for all your yield farming needs'),
+    description: t(
       'Smart portal built to increase convenience and security for BSC yield farmers. Users can freely stake and/or unstake their funds regardless of the accessibility to their favorite yield farming websites. Moreover, users can monitor their portfolios, look at token graphs, and harvest their farms all in one page',
+    ),
     launchDate: 'Apr. 2',
     launchTime: '03:00 UTC',
     saleAmount: '7,000,000 JDI',
@@ -252,10 +271,11 @@ const ifos: Ifo[] = [
     address: '0xd7e98ca54e6202fb6237b98c881817ed3e54d2ed',
     isActive: false,
     isLinear: false,
-    name: 'Astronaut',
-    subTitle: 'Decentralized hybrid yield token platform. Built on the Binance Smart Chain',
-    description:
+    name: t('Astronaut'),
+    subTitle: t('Decentralized hybrid yield token platform. Built on the Binance Smart Chain'),
+    description: t(
       'Protocol built for token pools and auctions enabling projects to raise capital on a decentralized and interoperable environment. Enabling the way your ideas raise capital.',
+    ),
     launchDate: 'Mar. 15',
     launchTime: '11PM EDT',
     saleAmount: '2,000,000 NAUT',
@@ -272,6 +292,6 @@ const ifos: Ifo[] = [
   },
 ]
 
-export const pastIfos: Ifo[] = ifos.filter((ifo) => !ifo.isActive)
+export const pastIfos: (t: ContextApi['t']) => Ifo[] = (t) => ifos(t).filter((ifo) => !ifo.isActive)
 
 export default ifos

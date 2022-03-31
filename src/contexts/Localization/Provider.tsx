@@ -56,7 +56,8 @@ export const LanguageProvider: React.FC = ({ children }) => {
       const enLocale = languageMap.get(EN.locale)
 
       // Merge the EN locale to ensure that any locale fetched has all the keys
-      languageMap.set(language.locale, { ...enLocale, ...locale })
+      // languageMap.set(language.locale, { ...enLocale, ...locale })
+      languageMap.set(language.locale, { ...locale })
       localStorage.setItem(LS_KEY, language.locale)
 
       setState((prevState) => ({
@@ -79,7 +80,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
       const translationSet = languageMap.has(currentLanguage.locale)
         ? languageMap.get(currentLanguage.locale)
         : languageMap.get(EN.locale)
-      const translatedText = translationSet[key] || key
+      const translatedText = translationSet[key] ? translationSet[key].concat('🐵🐵') : key
 
       // Check the existence of at least one combination of %%, separated by 1 or more non space characters
       const includesVariable = translatedText.match(/%\S+?%/gm)

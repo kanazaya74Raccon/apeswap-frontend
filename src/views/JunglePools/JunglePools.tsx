@@ -651,8 +651,9 @@ const JunglePools: React.FC = () => {
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
-              Stake APE-LPs to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
+              {t('Stake APE-LPs to earn new tokens.')}
+              <br /> {t('You can unstake at any time.')}
+              <br /> {t('Rewards are calculated per block.')}
             </Text>
           )}
         </HeadingContainer>
@@ -664,7 +665,7 @@ const JunglePools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -687,7 +688,7 @@ const JunglePools: React.FC = () => {
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>

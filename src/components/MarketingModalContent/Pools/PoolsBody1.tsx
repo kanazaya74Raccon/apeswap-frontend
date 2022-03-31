@@ -9,7 +9,7 @@ const PoolsBody1: React.FC = () => {
   const { login, logout } = useAuth()
   const { t } = useTranslation()
 
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
 
   const openConnectModal = () => {
     onPresentConnectModal()
@@ -21,7 +21,8 @@ const PoolsBody1: React.FC = () => {
         <MiniHeaderText>{t('Step 1')}</MiniHeaderText>
         <MainHeaderText>{t('Connect Your Wallet')}</MainHeaderText>
         <StyledText>
-          <MiniButton onClick={openConnectModal}>{t('Click here')} </MiniButton> {t('to connect your wallet to ApeSwap.')}
+          <MiniButton onClick={openConnectModal}>{t('Click here')} </MiniButton>{' '}
+          {t('to connect your wallet to ApeSwap.')}
         </StyledText>
       </RightContent>
     </ModalContent>

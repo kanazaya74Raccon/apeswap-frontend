@@ -16,7 +16,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
 
   return (
     <div style={{ zIndex: 101, maxWidth: '360px' }}>
-      <Modal title={t("Expert Mode")} onDismiss={() => setShowConfirmExpertModal(false)} maxWidth="360px">
+      <Modal title={t('Expert Mode')} onDismiss={() => setShowConfirmExpertModal(false)} maxWidth="360px">
         <Text>
           {t(
             'Expert mode turns off the Confirm transaction prompt, and allows high slippage trades that often result in bad rates and lost funds',

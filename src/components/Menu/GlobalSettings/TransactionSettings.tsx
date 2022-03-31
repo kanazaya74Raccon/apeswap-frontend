@@ -78,7 +78,7 @@ const SlippageTabs = () => {
     <Flex flexDirection="column">
       <Flex flexDirection="column" mb="24px">
         <Flex mb="12px">
-          <Text>Slippage Tolerance</Text>
+          <Text>{t('Slippage Tolerance')}</Text>
         </Flex>
         <Flex flexWrap="wrap">
           <SelectButton
