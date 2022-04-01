@@ -25,6 +25,7 @@ import transactions from './transactions/reducer'
 import burn from './burn/reducer'
 import mint from './mint/reducer'
 import lpPricesReducer from './lpPrices'
+import nfasReducer from './nfas'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -46,6 +47,7 @@ const store = configureStore({
     nfaStakingPools: nfaStakingPoolsReducer,
     dualFarms: dualFarmsReducer,
     bills: billsReducer,
+    nfas: nfasReducer,
     multicall,
     swap,
     user,

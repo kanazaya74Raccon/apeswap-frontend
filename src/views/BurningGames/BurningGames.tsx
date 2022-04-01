@@ -21,7 +21,7 @@ const Header = styled.div<{ banner: string }>`
   background-image: ${(props) =>
     props.banner ? `url(/images/burning-games/${props.banner})` : 'url(/images/burning-games/burning.png)'};
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   height: 300px;
   background-position: center;
 
@@ -132,9 +132,7 @@ const BurningGames: React.FC = () => {
     <ContainerPrincipal>
       <Header banner={banner}>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} color="white">
-            BANANA Burns
-          </StyledHeading>
+          <StyledHeading as="h1">BANANA Burns</StyledHeading>
           <SubtitleHeading isMobile={!isDesktop} fontWeight={400} color="white">
             Partners Supporting The Jungle
           </SubtitleHeading>

@@ -22,8 +22,9 @@ export const TokenContainer = styled(Logo)<{
   }
 `
 
-export const EarnIcon = styled(ArrowDropUpSmallIcon)`
+export const EarnIcon = styled(ArrowDropUpSmallIcon)<{ color?: string }>`
   transform: rotate(90deg);
+  fill: ${({ theme, color }) => color || theme.colors.text};
 `
 
 export const IconSkeleton = styled(Skeleton)<{ size?: number; ml?: number; mr?: number; zIndex?: number }>`

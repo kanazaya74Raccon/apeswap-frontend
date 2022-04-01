@@ -4,12 +4,13 @@ import { EarnIcon, TokenContainer } from './styles'
 
 interface ServiceTokenDisplayProps {
   token1: string
-  token2: string
+  token2?: string
   token3?: string
   token4?: string
   stakeLp?: boolean
   earnLp?: boolean
   noEarnToken?: boolean
+  iconFill?: string
 }
 
 const setUrls = (tokenSymbol: string) => {
@@ -24,12 +25,13 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   token2,
   token3,
   token4,
+  iconFill,
   stakeLp = false,
   earnLp = false,
   noEarnToken = false,
 }) => {
   const token1Urls = setUrls(token1)
-  const token2Urls = setUrls(token2)
+  const token2Urls = token2 ? setUrls(token2) : []
   const token3Urls = token3 ? setUrls(token3) : []
   const token4Urls = token4 ? setUrls(token4) : []
 
@@ -43,7 +45,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   const StakeTokenEarnToken = (
     <Flex alignItems="center">
       <TokenContainer srcs={token1Urls} />
-      <EarnIcon />
+      <EarnIcon color={iconFill} />
       <TokenContainer srcs={token2Urls} />
     </Flex>
   )
@@ -52,7 +54,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
     <Flex alignItems="center">
       <TokenContainer zIndex={1} srcs={token1Urls} />
       <TokenContainer ml={-15} srcs={token2Urls} />
-      <EarnIcon />
+      <EarnIcon color={iconFill} />
       <TokenContainer srcs={token3Urls} />
     </Flex>
   )
@@ -60,7 +62,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
     <Flex alignItems="center">
       <TokenContainer zIndex={1} srcs={token1Urls} />
       <TokenContainer ml={-15} srcs={token2Urls} />
-      <EarnIcon />
+      <EarnIcon color={iconFill} />
       <TokenContainer zIndex={1} srcs={token3Urls} />
       <TokenContainer ml={-15} srcs={token4Urls} />
     </Flex>
@@ -68,7 +70,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   const StakeTokenEarnLp = (
     <Flex alignItems="center">
       <TokenContainer srcs={token1Urls} />
-      <EarnIcon />
+      <EarnIcon color={iconFill} />
       <TokenContainer zIndex={1} srcs={token2Urls} />
       <TokenContainer ml={-15} srcs={token3Urls} />
     </Flex>
@@ -77,6 +79,13 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   const displayToReturn = () => {
     if (noEarnToken) {
       return LpToken
+    }
+    if (token1 && !token2 && !token3 && !token4) {
+      return (
+        <Flex alignItems="center">
+          <TokenContainer srcs={token1Urls} />
+        </Flex>
+      )
     }
     if (!stakeLp && !earnLp) {
       return StakeTokenEarnToken

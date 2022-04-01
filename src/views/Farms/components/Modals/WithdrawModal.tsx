@@ -1,11 +1,9 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
-import ModalActions from 'components/ModalActions'
+import { Button, Modal, AutoRenewIcon, ModalFooter } from '@apeswapfinance/uikit'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import UnderlinedButton from 'components/UnderlinedButton'
 
 interface WithdrawModalProps {
   max: string
@@ -43,9 +41,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
         inputTitle={TranslateString(999, 'Unstake')}
       />
-      <ModalActions>
+      <ModalFooter onDismiss={onDismiss}>
         <Button
-          disabled={pendingTx}
+          disabled={pendingTx || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {
             setPendingTx(true)
             try {
@@ -65,8 +63,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
-      </ModalActions>
+      </ModalFooter>
     </Modal>
   )
 }

@@ -233,6 +233,7 @@ const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
   font-weight: 800;
+  margin-bottom: 8px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -331,10 +332,8 @@ const NfaStaking: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white">
-            {TranslateString(999, 'NFA Staking')}
-          </StyledHeading>
-          {size.width > 968 && <AdminText>Stake your Non-Fungible Ape for profits from the auction</AdminText>}
+          <StyledHeading as="h1">{TranslateString(999, 'NFA Staking')}</StyledHeading>
+          {size.width > 968 && <AdminText>Stake Non Fungible Apes to earn BANANA</AdminText>}
         </HeadingContainer>
         <MonkeyWrapper>
           <PoolMonkey />

@@ -6,12 +6,8 @@ import { useERC20 } from 'hooks/useContract'
 const useApproveBill = (tokenAddress: string, billAddress: string) => {
   const tokenContract = useERC20(tokenAddress)
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await tokenContract.approve(billAddress, ethers.constants.MaxUint256)
-      return tx
-    } catch {
-      return false
-    }
+    const tx = await tokenContract.approve(billAddress, ethers.constants.MaxUint256).then((trx) => trx.wait())
+    return tx
   }, [billAddress, tokenContract])
   return { onApprove: handleApprove }
 }

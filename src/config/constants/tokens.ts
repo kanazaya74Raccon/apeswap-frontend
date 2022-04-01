@@ -968,6 +968,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  front: {
+    symbol: 'FRONT',
+    address: {
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    decimals: 18,
+  },
+  ruby: {
+    symbol: 'RUBY',
+    address: {
+      56: '0xf7722aa0714096f1fb5ef83e6041cebb4d58a08e',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1032,6 +1046,12 @@ const tokens = {
     address: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
+    }
+  },
+  rubyBnb: {
+    symbol: 'RUBY-BNB',
+    address: {
+      56: '0xec9f5a5e4690fa14025971f0d2dd91f5600e24c7',
     },
     decimals: 18,
     lpToken: true,

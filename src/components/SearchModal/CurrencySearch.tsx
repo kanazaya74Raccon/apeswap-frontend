@@ -1,8 +1,8 @@
-import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
+import React, { KeyboardEvent, useCallback, useMemo, useRef, useState } from 'react'
 import { Currency, ETHER, Token } from '@apeswapfinance/sdk'
-import styled from 'styled-components'
-import { Text, Input } from '@apeswapfinance/uikit'
+import { Text, Input, Flex } from '@apeswapfinance/uikit'
 import { FixedSizeList } from 'react-window'
+import styled from '@emotion/styled'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
@@ -13,7 +13,6 @@ import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens, useSortedTokensByQuery } from './filtering'
 import useTokenComparator from './sorting'
-
 import ImportRow from './ImportRow'
 
 interface CurrencySearchProps {
@@ -73,12 +72,12 @@ function CurrencySearch({
     [onCurrencySelect],
   )
 
-  // manage focus on modal show
-  const inputRef = useRef<HTMLInputElement>()
+  // // manage focus on modal show
+  // const inputRef = useRef<HTMLInputElement>()
 
-  useEffect(() => {
-    inputRef.current.focus()
-  }, [])
+  // useEffect(() => {
+  //   inputRef.current.focus()
+  // }, [])
 
   const handleInput = useCallback((event) => {
     const input = event.target.value
@@ -114,16 +113,18 @@ function CurrencySearch({
     <div>
       <AutoColumn style={{ margin: '20px 0 20px 0' }}>
         <Row padding="0 15px 0 15px">
-          <StyledInput
-            id="token-search-input"
-            placeholder="Search name or paste address"
-            scale="lg"
-            autoComplete="off"
-            value={searchQuery}
-            ref={inputRef as RefObject<HTMLInputElement>}
-            onChange={handleInput}
-            onKeyDown={handleEnter}
-          />
+          <Flex alignItems="center" justifyContent="center" mb="10px" style={{ width: '100%' }}>
+            <StyledInput
+              id="token-search-input"
+              placeholder="Search name or paste address"
+              autoComplete="off"
+              value={searchQuery}
+              // ref={inputRef as RefObject<HTMLInputElement>}
+              onChange={handleInput}
+              onKeyDown={handleEnter}
+              icon="search"
+            />
+          </Flex>
         </Row>
         {showCommonBases && (
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
@@ -163,7 +164,7 @@ const StyledInput = styled(Input)`
   background-color: ${({ theme }) => theme.colors.white3};
   color: ${({ theme }) => theme.colors.text};
   placeholder-color: ${({ theme }) => theme.colors.gray};
-
+  width: 325px;
   ::placeholder {
     color: ${(props) => props.theme.colors.text};
   }

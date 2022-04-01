@@ -8,7 +8,7 @@ import {
   fetchFarmUserTokenBalances,
   fetchFarmUserStakedBalances,
 } from './fetchFarmUser'
-import { FarmsState, Farm, LpTokenPrices } from '../types'
+import { FarmsState, Farm, LpTokenPrices, FarmLpAprsType } from '../types'
 import fetchFarms from './fetchFarms'
 
 const initialState: FarmsState = {
@@ -47,9 +47,10 @@ export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farms
 
 // Thunks
 export const fetchFarmsPublicDataAsync =
-  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber) => async (dispatch) => {
+  (chainId: number, lpPrices: LpTokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) =>
+  async (dispatch) => {
     try {
-      const farms = await fetchFarms(chainId, lpPrices, bananaPrice)
+      const farms = await fetchFarms(chainId, lpPrices, bananaPrice, farmLpAprs)
       dispatch(setFarmsPublicData(farms))
     } catch (error) {
       console.warn(error)

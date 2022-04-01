@@ -1,15 +1,15 @@
 import styled from 'styled-components'
-import { ButtonSquare, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
+import { Button, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
 
-export const StyledButton = styled(ButtonSquare)`
+export const StyledButton = styled(Button)<{buttonSize?: number}>`
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
   padding: 10px 20px;
-  min-width: 100px;
+  min-width: 200px;
   height: 44px;
   ${({ theme }) => theme.mediaQueries.md} {
-    min-width: 190px;
+    min-width: ${({buttonSize}) => buttonSize || 190}px;
   }
 `
 

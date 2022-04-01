@@ -1,5 +1,4 @@
 import nfaStakingPoolsConfig from 'config/constants/nfaStakingPools'
-import nfaStakingAbi from 'config/abi/nfaStaking.json'
 import nonFungibleApesAbi from 'config/abi/nonFungibleApes.json'
 import { getPoolApr } from 'utils/apr'
 import { getNonFungibleApesAddress } from 'utils/addressHelper'
@@ -10,30 +9,11 @@ import { TokenPrices } from 'state/types'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
-export const fetchPoolsBlockLimits = async (chainId) => {
-  const callsStartBlock = nfaStakingPoolsConfig.map((nfaStakingPool) => {
-    return {
-      address: nfaStakingPool.contractAddress[CHAIN_ID],
-      name: 'startBlock',
-    }
-  })
-  const callsEndBlock = nfaStakingPoolsConfig.map((nfaStakingPool) => {
-    return {
-      address: nfaStakingPool.contractAddress[CHAIN_ID],
-      name: 'bonusEndBlock',
-    }
-  })
-
-  const starts = await multicall(chainId, nfaStakingAbi, callsStartBlock)
-  const ends = await multicall(chainId, nfaStakingAbi, callsEndBlock)
-
-  return nfaStakingPoolsConfig.map((nfaStakingPool, index) => {
-    const startBlock = starts[index]
-    const endBlock = ends[index]
+export const fetchPoolsBlockLimits = async () => {
+  return nfaStakingPoolsConfig.map((nfaStakingPool) => {
     return {
       sousId: nfaStakingPool.sousId,
-      startBlock: new BigNumber(startBlock).toJSON(),
-      endBlock: new BigNumber(endBlock).toJSON(),
+      startBlock: 0,
     }
   })
 }

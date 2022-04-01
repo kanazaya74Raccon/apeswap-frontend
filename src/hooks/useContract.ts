@@ -5,6 +5,7 @@ import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
+import billAbi from 'config/abi/bill.json'
 import ifoLinear from 'config/abi/ifoLinear.json'
 import erc20 from 'config/abi/erc20.json'
 import erc20Bytes from 'config/abi/erc20_bytes32.json'
@@ -52,6 +53,7 @@ import {
   NonFungibleApes,
   IfoLinear,
   Ifo,
+  Bill,
 } from 'config/abi/types'
 import {
   useApePriceGetterAddress,
@@ -169,6 +171,11 @@ export const useIazoContract = (address: string) => {
   return useContract(iazoAbi, address) as Iazo
 }
 
+export const useBillContract = (address: string) => {
+  return useContract(billAbi, address) as Bill
+}
+
+
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
   let address: string | undefined
@@ -203,5 +210,7 @@ export function useWETHContract(withSignerIfPossible?: boolean): Contract | null
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(IUniswapV2PairABI, pairAddress, withSignerIfPossible)
 }
+
+
 
 export default useContract

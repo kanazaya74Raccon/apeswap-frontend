@@ -17,8 +17,6 @@ const fetchBills = async (chainId: number, tokenPrices: TokenPrices[]) => {
   const vals = await multicall(chainId, billsABI, billCalls)
   const chunkSize = vals.length / bills.length
   const chunkedBills = chunk(vals, chunkSize)
-  console.log('Thats here')
-  console.log(tokenPrices)
   return cleanBillsData(billIds, chunkedBills, tokenPrices, chainId)
 }
 

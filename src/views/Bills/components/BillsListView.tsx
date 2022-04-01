@@ -5,23 +5,23 @@ import { Bills } from 'state/types'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
 import getTimePeriods from 'utils/getTimePeriods'
-import { billsStub } from '../stubData'
-import { Container, StyledButton } from './styles'
+import { Container } from './styles'
 import BillModal from './BillModal'
 
 const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
   const billsListView = bills.map((bill) => {
     const { token, quoteToken, earnToken } = bill
     const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
     return {
       tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
+      id: bill.index,
       title: (
         <ListViewContent
           title={bill.billType}
           value={bill.lpToken.symbol}
-          width={isMobile ? 90 : 120}
+          width={isMobile ? 120 : 150}
           height={45}
           ml={10}
         />
@@ -32,27 +32,35 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             title="Price"
             value={`$${bill?.priceUsd}`}
             width={isMobile ? 90 : 150}
+            ml={20}
             height={52.5}
-            toolTip="s"
+            toolTip="Stuff"
           />
           <ListViewContent
-            title="ROI"
-            value={`${bill?.roi}%`}
-            width={isMobile ? 100 : 200}
+            title="Discount"
+            value={`${bill?.discount}%`}
+            width={isMobile ? 100 : 140}
             height={52.5}
-            toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
+            toolTip="Stuff"
           />
           <ListViewContent
             title="Vesting Time"
             value={`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
-            width={isMobile ? 100 : 180}
+            width={isMobile ? 120 : 180}
             height={52.5}
-            toolTip="s"
+            toolTip="Stuff"
           />
-          <Flex alignItems="center" style={{ height: '100%' }}>
-            <BillModal bill={bill} buttonText="BUY" />
-          </Flex>
+          {!isMobile && (
+            <Flex alignItems="center" style={{ height: '100%' }}>
+              <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag />
+            </Flex>
+          )}
         </>
+      ),
+      expandedContent: isMobile && (
+        <Flex alignItems="center" justifyContent="center" style={{ height: '100%', width: '100%' }}>
+          <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag />
+        </Flex>
       ),
     } as ExtendedListViewProps
   })

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { useStats } from 'state/hooks'
+import { useStats } from 'state/statsOverall/hooks'
 import { DualFarm, Farm } from 'state/types'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import DetailsSection from './DetailsSection'
@@ -82,6 +82,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, bananaPrice, account
         bananaPrice={bananaPrice}
         farmAPR={farmAPR?.toFixed(2)}
         removed={removed}
+        dualImage={farm?.dualImage}
         showExpandableSection={showExpandableSection}
         farm={farm}
       />

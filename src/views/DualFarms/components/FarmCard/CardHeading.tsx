@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
-import { Flex, Heading, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
@@ -27,6 +27,7 @@ export interface ExpandableSectionProps {
   hideButton?: boolean
   pid?: number
   lpSymbol: string
+  dualImage?: boolean
   showExpandableSection?: boolean
   farm?: DualFarm
 }
@@ -45,7 +46,7 @@ const StyledBackground = styled.div`
     width: 180px;
   }
 `
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled(Text)`
   font-size: 12px;
   ${({ theme }) => theme.mediaQueries.xs} {
     text-align: start;
@@ -243,6 +244,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   farmAPR,
   removed,
   showExpandableSection,
+  dualImage = true,
   hideButton = true,
   farm,
 }) => {
@@ -277,26 +279,38 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           marginTop={isDesktop ? '45px' : '30px'}
         />
         <IconArrow src="/images/arrow.svg" alt="arrow" width={10} height={10} marginRight="8px" marginLeft="8px" />
-        <IconRewardToken
-          src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
-          alt={rewardTokens?.token1?.symbol}
-          width={35}
-          height={35}
-          marginBottom={isDesktop ? '30px' : '25px'}
-          marginRight="-5px"
-        />
-        <IconRewardToken
-          src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
-          alt={rewardTokens?.token1?.symbol}
-          width={35}
-          height={35}
-          marginTop={isDesktop ? '30px' : '25px'}
-          marginRight="7.5px"
-        />
+        {dualImage ? (
+          <>
+            <IconRewardToken
+              src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+              alt={rewardTokens?.token1?.symbol}
+              width={35}
+              height={35}
+              marginBottom={isDesktop ? '30px' : '25px'}
+              marginRight="-5px"
+            />
+            <IconRewardToken
+              src={`/images/tokens/${rewardTokens?.token1?.symbol}.svg`}
+              alt={rewardTokens?.token1?.symbol}
+              width={35}
+              height={35}
+              marginTop={isDesktop ? '30px' : '25px'}
+              marginRight="7.5px"
+            />
+          </>
+        ) : (
+          <IconImage
+            src={`/images/tokens/${rewardTokens?.token0?.symbol}.svg`}
+            alt={stakeTokens?.token1?.symbol}
+            width={60}
+            height={60}
+            marginLeft="7.5px"
+          />
+        )}
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading fontWeight={800}>{lpLabel}</StyledHeading>
+          <StyledHeading bold>{lpLabel}</StyledHeading>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
               <StyledText1>APR:</StyledText1>

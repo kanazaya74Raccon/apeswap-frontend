@@ -2,10 +2,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import bills from 'config/constants/bills'
 import {
-  fetchPoolsAllowance,
+  fetchBillsAllowance,
   fetchUserBalances,
-  fetchUserStakeBalances,
-  fetchUserPendingRewards,
+  fetchUserOwnedBills,
+  // fetchUserPendingRewards,
 } from './fetchBillsUser'
 import { TokenPrices, AppThunk, BillsState, Bills } from '../types'
 import fetchBills from './fetchBills'
@@ -26,7 +26,7 @@ export const billsSlice = createSlice({
     setBillsUserData: (state, action) => {
       const userData = action.payload
       state.data = state.data.map((bill) => {
-        const userBillData = userData.find((entry) => entry.sousId === bill.index)
+        const userBillData = userData.find((entry) => entry.index === bill.index)
         return { ...bill, userData: userBillData }
       })
     },
@@ -57,17 +57,23 @@ export const fetchBillsUserDataAsync =
   (chainId: number, account): AppThunk =>
   async (dispatch) => {
     try {
-      const allowances = await fetchPoolsAllowance(chainId, account)
+      const allowances = await fetchBillsAllowance(chainId, account)
       const stakingTokenBalances = await fetchUserBalances(chainId, account)
-      const stakedBalances = await fetchUserStakeBalances(chainId, account)
-      const pendingRewards = await fetchUserPendingRewards(chainId, account)
+      const userOwnedBills = await fetchUserOwnedBills(chainId, account)
+      const mapUserOwnedBills = bills.map((bill) =>
+        userOwnedBills.filter((b) => b.address === bill.contractAddress[chainId]),
+      )
+      console.log(mapUserOwnedBills)
+      // const stakedBalances = await fetchUserStakeBalances(chainId, account)
+      // const pendingRewards = await fetchUserPendingRewards(chainId, account)
 
       const userData = bills.map((bill) => ({
-        sousId: bill.index,
+        index: bill.index,
         allowance: allowances[bill.index],
         stakingTokenBalance: stakingTokenBalances[bill.index],
-        stakedBalance: stakedBalances[bill.index],
-        pendingReward: pendingRewards[bill.index],
+        bills: mapUserOwnedBills[bill.index],
+        // stakedBalance: stakedBalances[bill.index],
+        // pendingReward: pendingRewards[bill.index],
       }))
       dispatch(setBillsUserData(userData))
     } catch (error) {
@@ -76,10 +82,10 @@ export const fetchBillsUserDataAsync =
   }
 
 export const updateUserAllowance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, index: number, account: string): AppThunk =>
   async (dispatch) => {
-    const allowances = await fetchPoolsAllowance(chainId, account)
-    dispatch(updateBillsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+    const allowances = await fetchBillsAllowance(chainId, account)
+    dispatch(updateBillsUserData({ index, field: 'allowance', value: allowances[index] }))
   }
 
 export const updateUserBalance =
@@ -89,18 +95,18 @@ export const updateUserBalance =
     dispatch(updateBillsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
   }
 
-export const updateUserStakedBalance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
-  async (dispatch) => {
-    const stakedBalances = await fetchUserStakeBalances(chainId, account)
-    dispatch(updateBillsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
-  }
+// export const updateUserStakedBalance =
+//   (chainId: number, sousId: string, account: string): AppThunk =>
+//   async (dispatch) => {
+//     const stakedBalances = await fetchUserStakeBalances(chainId, account)
+//     dispatch(updateBillsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
+//   }
 
-export const updateUserPendingReward =
-  (chainId: number, sousId: string, account: string): AppThunk =>
-  async (dispatch) => {
-    const pendingRewards = await fetchUserPendingRewards(chainId, account)
-    dispatch(updateBillsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
-  }
+// export const updateUserPendingReward =
+//   (chainId: number, sousId: string, account: string): AppThunk =>
+//   async (dispatch) => {
+//     const pendingRewards = await fetchUserPendingRewards(chainId, account)
+//     dispatch(updateBillsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+//   }
 
 export default billsSlice.reducer

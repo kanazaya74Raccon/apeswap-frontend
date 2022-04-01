@@ -10,6 +10,9 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
   const data = chunkedBills.map((chunk, index) => {
     const billConfig = bills.find((bill) => bill.index === billIds[index])
     const lpPrice = tokenPrices?.find((token) => token.address[chainId] === billConfig.lpToken.address[chainId])?.price
+    const earnTokenPrice = tokenPrices?.find(
+      (token) => token.address[chainId] === billConfig.earnToken.address[chainId],
+    )?.price
     const [
       billPrice,
       trueBillPrice,
@@ -23,16 +26,14 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       terms,
     ] = chunk
     const [controlVariable, vestingTerm, minimumPrice, maxPayout, maxDebt] = terms
-    const priceUsd = (getBalanceNumber(trueBillPrice) * lpPrice).toFixed(2)
-    console.log(tokenPrices)
-    console.log(lpPrice)
-    console.log(priceUsd)
+    const priceUsd = getBalanceNumber(trueBillPrice) * lpPrice
+    const discount = ((earnTokenPrice - priceUsd) / earnTokenPrice) * 100
     return {
       ...billConfig,
       price: trueBillPrice.toString(),
-      priceUsd,
+      priceUsd: priceUsd?.toFixed(3),
       vestingTime: vestingTerm.toString(),
-      roi: '',
+      discount: discount.toFixed(2),
       trueBillPrice: trueBillPrice.toString(),
       currentDebt: currentDebt.toString(),
       currentFee: currentFee.toString(),
@@ -45,6 +46,7 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       minimumPrice: minimumPrice.toString(),
       maxPayout: maxPayout.toString(),
       maxDebt: maxDebt.toString(),
+      earnTokenPrice,
       lpPrice,
     }
   })

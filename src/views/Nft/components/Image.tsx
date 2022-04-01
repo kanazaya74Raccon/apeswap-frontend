@@ -7,6 +7,7 @@ interface ImageProps {
   originalLink?: string
   rarityTier: number
   borderRadius?: string
+  hideTier?: boolean
 }
 
 interface ContainerProps {
@@ -61,7 +62,7 @@ const TierNumber = styled.p`
   font-weight: 800;
 `
 
-const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius, hideTier }) => {
   let gradientStyle = ''
   let backgroundSize = ''
   if (rarityTier === 1) {
@@ -87,12 +88,14 @@ const Image: React.FC<ImageProps> = ({ src, alt, rarityTier, borderRadius }) => 
 
   return (
     <Container gradient={gradientStyle} backgroundSize={backgroundSize} borderRadius={borderRadius}>
-      <TierSvg>
-        <TierNumber>{rarityTier}</TierNumber>
-      </TierSvg>
+      {!hideTier && (
+        <TierSvg>
+          <TierNumber>{rarityTier}</TierNumber>
+        </TierSvg>
+      )}
       {src && <StyledImage src={src} alt={alt} />}
     </Container>
   )
 }
 
-export default Image
+export default React.memo(Image)

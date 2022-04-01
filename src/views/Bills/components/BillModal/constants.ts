@@ -1,9 +1,1 @@
-export const buyBillGridText = [
-  'Your Balance',
-  'You Will Get',
-  'Max You Can Buy',
-  'ROI',
-  'Debt Ratio',
-  'Vesting Term',
-  'Available Treasury Bills',
-]
+export const buyBillGridText = ['The Legend', 'The Location', 'The Moment', 'The Innovation', 'The Object']
