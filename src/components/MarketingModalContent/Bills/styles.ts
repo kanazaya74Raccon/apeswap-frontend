@@ -83,7 +83,8 @@ export const Surround = styled.div`
   display: flex;
   align-self: center;
   flex-direction: column;
-  background-image: url(/images/banners/line-bg.svg);
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/banners/line-bg-white.svg)' : 'url(/images/banners/line-bg.svg)'};
   background-repeat: no-repeat;
   background-position: 7%;
   width: 100%;
