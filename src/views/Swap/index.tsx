@@ -353,7 +353,7 @@ export default function Swap({ history }: RouteComponentProps) {
                       }}
                     >
                       <IconButton
-                        style={{ backgroundColor: '#FFB300', borderRadius: '50px', width: '50px', height: '50px' }}
+                        style={{ borderRadius: '50px', width: '50px', height: '50px' }}
                         onClick={() => {
                           setApprovalSubmitted(false) // reset 2 step UI for approvals
                           onSwitchTokens()

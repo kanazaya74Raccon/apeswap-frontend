@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Skeleton } from '@apeswapfinance/uikit'
+import { HelpIcon } from '@apeswapfinance/uikit'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 
@@ -33,7 +33,7 @@ const Logo: React.FC<LogoProps> = ({ srcs, alt, width, height, ...rest }) => {
     )
   }
 
-  return <Skeleton {...rest} variant="circle" animation="waves" />
+  return <HelpIcon {...rest} width={`${width}px`} height={`${height}px`} color="white" />
 }
 
 export default React.memo(Logo)

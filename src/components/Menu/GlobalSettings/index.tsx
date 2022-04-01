@@ -6,7 +6,7 @@ const GlobalSettings = () => {
   const [onPresentSettingsModal] = useModal(<SettingsModal />)
 
   return (
-    <Button onClick={onPresentSettingsModal} style={{ fontSize: '25px', padding: 8 }}>
+    <Button onClick={onPresentSettingsModal} style={{ fontSize: '25px', padding: 8, height: 44 }}>
       <CogIcon width="28px" color="white" />
     </Button>
   )
