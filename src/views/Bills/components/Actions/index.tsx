@@ -1,5 +1,4 @@
 import React from 'react'
-import { Flex, Modal, Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import Buy from './Buy'
 import { ActionProps } from './types'

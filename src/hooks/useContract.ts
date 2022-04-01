@@ -175,7 +175,6 @@ export const useBillContract = (address: string) => {
   return useContract(billAbi, address) as Bill
 }
 
-
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
   let address: string | undefined
@@ -210,7 +209,5 @@ export function useWETHContract(withSignerIfPossible?: boolean): Contract | null
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(IUniswapV2PairABI, pairAddress, withSignerIfPossible)
 }
-
-
 
 export default useContract

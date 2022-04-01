@@ -1,7 +1,6 @@
-import { Bills } from "state/types";
-
+import { Bills } from 'state/types'
 
 export interface BillCardProps {
-    bill: Bills
-    ml?: string
+  bill: Bills
+  ml?: string
 }

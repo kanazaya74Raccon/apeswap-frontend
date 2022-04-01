@@ -71,13 +71,13 @@ export const StyledExit = styled(Text)`
 `
 
 export const ActionButtonsContainer = styled(Flex)`
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   flex-direction: column;
   height: 215px;
   @media screen and (min-width: 1180px) {
     flex-direction: row;
     height: auto;
-    transform: translate(0, 15px)
   }
 `
 

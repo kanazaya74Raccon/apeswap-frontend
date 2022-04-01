@@ -45,7 +45,11 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
 
   return (
     <>
-      <a href={`https://apeswap.finance/add/${token.address[chainId]}/${quoteToken.address[chainId]}`}>
+      <a
+        href={`https://apeswap.finance/add/${token.address[chainId]}/${quoteToken.address[chainId]}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <GetLPButton variant="secondary">Get LP</GetLPButton>
       </a>
       <Flex style={{ position: 'relative' }}>

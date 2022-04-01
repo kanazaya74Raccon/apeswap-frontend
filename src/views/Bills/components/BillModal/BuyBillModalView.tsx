@@ -96,14 +96,22 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               onValueChange={onHandleValueChange}
             />
           </ActionButtonsContainer>
-          <Flex flexDirection="column" justifyContent="center" alignItems="center" mr="70px" style={{ height: '10px' }}>
-            <Text fontSize="14px">
-              Bill Value:{' '}
-              <span style={{ fontWeight: 700 }}>
-                {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
-              </span>
-            </Text>
-          </Flex>
+          {new BigNumber(userData?.allowance).gt(0) && (
+            <Flex
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              mr="70px"
+              style={{ height: '10px' }}
+            >
+              <Text fontSize="14px">
+                Bill Value:{' '}
+                <span style={{ fontWeight: 700 }}>
+                  {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
+                </span>
+              </Text>
+            </Flex>
+          )}
         </BillDescriptionContainer>
       </ModalBodyContainer>
     </Modal>
