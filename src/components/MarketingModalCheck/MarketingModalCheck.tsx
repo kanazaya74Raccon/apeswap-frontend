@@ -37,6 +37,7 @@ const MarketingModalCheck = () => {
       description="How does it work?"
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      startEarningText="Start Earning"
     >
       {lending}
     </MarketingModal>
@@ -46,6 +47,7 @@ const MarketingModalCheck = () => {
       description="Start earning passive income with your cryptocurrency!"
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      startEarningText="Start Earning"
     >
       {farms}
     </MarketingModal>
@@ -55,11 +57,17 @@ const MarketingModalCheck = () => {
       description="Earn tokens by staking BANANA or GNANA"
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      startEarningText="Start Earning"
     >
       {pools}
     </MarketingModal>
   ) : billsRoute ? (
-    <MarketingModal title="Welcome to ApeSwap Treasury Bills" onDismiss={onDismiss} startEarning={onDismiss}>
+    <MarketingModal
+      title="Welcome to ApeSwap Treasury Bills"
+      onDismiss={onDismiss}
+      startEarning={onDismiss}
+      startEarningText="Buy A Bill"
+    >
       {bills}
     </MarketingModal>
   ) : null

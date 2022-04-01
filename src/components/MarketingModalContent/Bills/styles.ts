@@ -1,18 +1,19 @@
 import styled from 'styled-components'
-import { Text, LendingM1Icon } from '@apeswapfinance/uikit'
+import { Text } from '@apeswapfinance/uikit'
 
+export const MainBody = styled.div`
+  height: 100%;
+  /* background: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`
 export const Description = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 0em 1.5em;
-  line-height: 14px;
-`
-export const ModalBody = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0em 1.5em;
 `
 export const StyledText = styled(Text)`
   font-size: 12px;
@@ -35,9 +36,37 @@ export const TextButton = styled.button`
     cursor: pointer;
   }
 `
-export const RightContent = styled.div``
-
-export const StyledLendingM1Icon = styled(LendingM1Icon)`
-  ${({ theme }) => theme.mediaQueries.md} {
-  }
+export const Hiw = styled(StyledText)`
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+  text-transform: uppercase;
+  margin-top: 1em;
 `
+export const MainContentBody = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  /* background: yellow; */
+  margin-top: 1em;
+`
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 1em 2.5em;
+  /* background: green; */
+  width: 80%;
+`
+export const RightText = styled(StyledText)`
+  margin: 0 0 0 1em;
+  text-align: left;
+  width: 70%;
+`
+
+export const ModalBody = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+export const RightContent = styled.div``

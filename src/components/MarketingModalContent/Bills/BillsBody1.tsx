@@ -1,10 +1,13 @@
 import React from 'react'
-import ModalContent from './BillsModalContent'
-import { StyledText, RightContent, StyledLendingM1Icon, Description, TextButton } from './styles'
+import { BillsM1, BillsM2, BillsM3 } from '@apeswapfinance/uikit'
+import useTheme from 'hooks/useTheme'
+import { StyledText, Content, RightText, Description, TextButton, Hiw, MainContentBody, MainBody } from './styles'
 
 const BillsBody1: React.FC = () => {
+  const theme = useTheme()
+
   return (
-    <div style={{ background: 'red', height: '100%' }}>
+    <MainBody>
       <Description>
         <StyledText>
           Treasury Bills allow users to purchase tokens at a discount in exchange for their liquidity provider (LP)
@@ -15,24 +18,27 @@ const BillsBody1: React.FC = () => {
           time.
         </StyledText>
         <TextButton>For more info, visit the Treasury Bills page in our Documentation.</TextButton>
+
+        <Hiw>How It Works:</Hiw>
       </Description>
 
-      <ModalContent Icon={<StyledLendingM1Icon width={100} height={100} />}>
-        <RightContent>
-          <StyledText>Click here to go the liquidity provider. Select bill tokens and add liquidity.</StyledText>
-        </RightContent>
-      </ModalContent>
-      <ModalContent Icon={<StyledLendingM1Icon width={100} height={100} />}>
-        <RightContent>
-          <StyledText>Select your preferenced bill, and click the buy button.</StyledText>
-        </RightContent>
-      </ModalContent>
-      <ModalContent Icon={<StyledLendingM1Icon width={100} height={100} />}>
-        <RightContent>
-          <StyledText>Receive your NFT, claim vested tokens or trade the NFT.</StyledText>
-        </RightContent>
-      </ModalContent>
-    </div>
+      <MainContentBody>
+        <Content>
+          <BillsM1 width={48} bgColor={theme.theme.colors.white4} color={theme.theme.colors.text} />
+          <RightText>Click here to go to the liquidity provider. Select bill tokens and add liquidity.</RightText>
+        </Content>
+
+        <Content>
+          <BillsM2 width={48} bgColor={theme.theme.colors.white4} color={theme.theme.colors.text} />
+          <RightText>Select your preferenced bill, and click the buy button.</RightText>
+        </Content>
+
+        <Content>
+          <BillsM3 width={48} bgColor={theme.theme.colors.white4} color={theme.theme.colors.text} />
+          <RightText>Receive your NFT, claim vested tokens or trade the NFT.</RightText>
+        </Content>
+      </MainContentBody>
+    </MainBody>
   )
 }
 
