@@ -85,7 +85,6 @@ export default function CurrencySearchModal({
         {modalView === CurrencyModalView.search && (
           <ModalFooter onDismiss={onDismiss}>
             <Button
-              variant="text"
               onClick={() => setModalView(CurrencyModalView.manage)}
               className="list-token-manage-button"
               margin="10px 0 10px 0"

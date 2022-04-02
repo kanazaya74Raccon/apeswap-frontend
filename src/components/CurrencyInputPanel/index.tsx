@@ -20,7 +20,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
   padding: 0;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.white4} !important;
+    background-color: ${({ theme }) => theme.colors.white2} !important;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
