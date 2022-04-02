@@ -6,7 +6,7 @@ import { ETHER, JSBI, Percent, Token, ROUTER_ADDRESS } from '@apeswapfinance/sdk
 import { LargeStyledButton } from 'views/Swap/styles'
 import track from 'utils/track'
 import Page from 'components/layout/Page'
-import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, Button } from '@apeswapfinance/uikit'
+import { Text, AddIcon, Flex, Card, useModal, useMatchBreakpoints, Button, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
@@ -620,7 +620,9 @@ export default function RemoveLiquidity({
                     mr="8px"
                   >
                     {approval === ApprovalState.PENDING ? (
-                      <Dots>Enabling</Dots>
+                      <>
+                        Enabling <AutoRenewIcon spin color="currentColor" style={{ marginLeft: '2px' }} />
+                      </>
                     ) : approval === ApprovalState.APPROVED || signatureData !== null ? (
                       'Enabled'
                     ) : (
