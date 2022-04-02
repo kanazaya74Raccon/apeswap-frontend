@@ -33,7 +33,7 @@ const Logo: React.FC<LogoProps> = ({ srcs, alt, width, height, ...rest }) => {
     )
   }
 
-  return <HelpIcon {...rest} width={`${width}px`} height={`${height}px`} color="white" />
+  return <HelpIcon {...rest} color="white" />
 }
 
 export default React.memo(Logo)

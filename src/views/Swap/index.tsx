@@ -123,6 +123,13 @@ export default function Swap({ history }: RouteComponentProps) {
     [onUserInput],
   )
 
+  const updateParams = useCallback(
+    (direction: string, currency: string) => {
+      history.push(`${history.location.search === '' ? '?' : `${history.location.search}&`}${direction}=${currency}`)
+    },
+    [history],
+  )
+
   // modal and loading
   const [{ tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
     tradeToConfirm: Trade | undefined
@@ -259,6 +266,7 @@ export default function Swap({ history }: RouteComponentProps) {
     (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
+      updateParams('inputCurrency', inputCurrency.address)
       const showSwapWarning = shouldShowSwapWarning(inputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(inputCurrency)
@@ -266,7 +274,7 @@ export default function Swap({ history }: RouteComponentProps) {
         setSwapWarningCurrency(null)
       }
     },
-    [onCurrencySelection],
+    [onCurrencySelection, updateParams],
   )
 
   const handleMaxInput = useCallback(() => {
@@ -278,6 +286,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
+      updateParams('outputCurrency', outputCurrency.address)
       const showSwapWarning = shouldShowSwapWarning(outputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(outputCurrency)
@@ -286,7 +295,7 @@ export default function Swap({ history }: RouteComponentProps) {
       }
     },
 
-    [onCurrencySelection],
+    [onCurrencySelection, updateParams],
   )
 
   const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
