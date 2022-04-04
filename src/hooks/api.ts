@@ -343,6 +343,9 @@ export const getHeadersHome = async () => {
 }
 
 export const getSwapBanners = async () => {
+  if (window.sessionStorage.getItem('banners')) {
+    return JSON.parse(window.sessionStorage.getItem('banners'))
+  }
   const url = `${baseUrlStrapi}/swapbanners`
   const resp = await fetch(url)
   const data = await resp.json()
@@ -354,6 +357,7 @@ export const getSwapBanners = async () => {
       param: banner.param,
     }
   })
+  window.sessionStorage.setItem('banners', JSON.stringify(banners))
 
   return banners
 }

@@ -14,6 +14,7 @@ import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pool from './views/Pool'
+import ResetScroll from './utils/resetScroll'
 
 declare module '@emotion/react' {
   export interface Theme extends ApeSwapTheme {}
@@ -279,6 +280,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <ResetScroll />
       <ResetCSS />
       <GlobalStyle />
       <MarketingModalCheck />

@@ -7,12 +7,14 @@ import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
+import { registerToken } from '../../utils/wallet'
 
 import { RowBetween } from '../layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
+import { WrappedTokenInfo } from '../../state/lists/hooks'
 
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ removeLiquidity: boolean }>`
-  display: flex;s
+  display: flex;
   justify-content: flex-start;
   background-color: ${({ theme }) => theme.colors.white4};
   height: 75px;
@@ -25,7 +27,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: ${({ removeLiquidity }) => (removeLiquidity ? '300px' : '244px')};
-  };
+  } ;
 `
 const InputPanel = styled.div`
   display: flex;
@@ -66,6 +68,16 @@ const CurrencyInputContainer = styled.div<{ removeLiquidity: boolean }>`
     padding: 0px 15px 0px 15px;
   }
 `
+
+const MetaMaskLogo = styled.img`
+  display: inline;
+  cursor: pointer;
+  position: absolute;
+  bottom: -32px;
+  marginleft: 10px;
+  width: 25px;
+`
+
 interface CurrencyInputPanelProps {
   value: string
   onUserInput: (value: string) => void
@@ -122,6 +134,15 @@ export default function CurrencyInputPanel({
     }
     fetchTokenPrice()
   }, [currency, chainId, isLp, isNative])
+
+  const addToMetaMask = () => {
+    registerToken(
+      currency instanceof Token ? currency?.address : '',
+      currency?.symbol,
+      currency?.decimals,
+      currency instanceof WrappedTokenInfo ? currency?.tokenInfo.logoURI : '',
+    ).then(() => '')
+  }
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -183,11 +204,14 @@ export default function CurrencyInputPanel({
             {id === 'swap-currency-output' ? 'To:' : 'From:'}
           </Text>
         )}
+
+        {account && <MetaMaskLogo onClick={addToMetaMask} src="images/metamask-fox.svg" alt="Add to MetaMask" />}
+
         {account && (
           <Text
             onClick={onMax}
             fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '10px' }}
+            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '30px' }}
           >
             {!hideBalance && !!currency
               ? removeLiquidity
