@@ -3665,7 +3665,7 @@ const pools: PoolConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 190,
+    sousId: 191,
     tokenName: 'DRF-BUSD',
     image: 'DRF.svg',
     stakingToken: tokens.drfBusd,
