@@ -3676,7 +3676,7 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x5FFc5b392Fcc33357c6a8240bda1C9374A55E6B8',
+      56: '0xc8519d981a99c9a56364895c6d37eea686d70540',
     },
     poolCategory: PoolCategory.JUNGLE,
     projectLink: 'https://derify.finance/',
