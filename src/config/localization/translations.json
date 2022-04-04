@@ -759,5 +759,9 @@
   "Deposited": "Deposited",
   "Rates": "Rates",
   "Confirm Supply": "Confirm Supply",
-  "IAZO Failed. Please withdraw all tokens.": "IAZO Failed. Please withdraw all tokens."
+  "IAZO Failed. Please withdraw all tokens.": "IAZO Failed. Please withdraw all tokens.",
+  "MY STATS": "MY STATS",
+  "OVERALL STATS": "OVERALL STATS",
+  "Official IAO": "Official IAO",
+  "Self-Serve IAO": "Self-Serve IAO"
 }

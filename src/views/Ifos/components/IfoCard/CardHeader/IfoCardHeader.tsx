@@ -54,7 +54,7 @@ const IfoCardHeader: React.FC<IfoCardHeaderProps> = ({
   }
 
   return (
-    <StyledIfoCardHeader mb="24px" alignItems="center">
+    <StyledIfoCardHeader mb="24px" alignItems="top">
       <img src={`/images/ifos/${ifoId}.svg`} alt={ifoId} width="64px" height="64px" />
       <Stack>
         {isLP && <Title as="h2">{t('LP OFFERING')}</Title>}

@@ -38,11 +38,11 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     darkIcon: 'OfferingsDarkImage',
     items: [
       {
-        label: t('Official'),
+        label: t('Official IAO'),
         href: '/iao',
       },
       {
-        label: t('Self-Serve'),
+        label: t('Self-Serve IAO'),
         href: '/ss-iao',
       },
     ],
