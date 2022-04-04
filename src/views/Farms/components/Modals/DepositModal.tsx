@@ -43,7 +43,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={t('Stake')}
       />
-      <ModalFooter onDismiss={onDismiss}>
+      <ModalFooter onDismiss={onDismiss} t={t}>
         <Button
           fullWidth
           disabled={pendingTx || fullBalance === '0' || val === '0' || parseFloat(fullBalance) < parseFloat(val)}

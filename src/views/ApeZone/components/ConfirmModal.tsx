@@ -13,7 +13,7 @@ const ConfirmModal: React.FC<ApyCalculatorModalProps> = ({ onDismiss, amount }) 
   const { t } = useTranslation()
 
   return (
-    <Modal title="CONFIRM" onDismiss={onDismiss}>
+    <Modal title={t('CONFIRM')} onDismiss={onDismiss}>
       <Description fontSize="12px" color="gray">
         {t('Buying Golden Banana has a 30% cost.')}
       </Description>

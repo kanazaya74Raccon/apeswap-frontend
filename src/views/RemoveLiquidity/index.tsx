@@ -463,7 +463,7 @@ export default function RemoveLiquidity({
         {pair && (
           <>
             <RowBetween>
-              <Text>Price</Text>
+              <Text>{t('Price')}</Text>
               <Text>
                 1 {currencyA?.getSymbol(chainId)} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'}{' '}
                 {currencyB?.getSymbol(chainId)}
@@ -506,7 +506,7 @@ export default function RemoveLiquidity({
 
   const [onPresentRemoveLiquidity] = useModal(
     <TransactionConfirmationModal
-      title="You will receive"
+      title={t('You will receive')}
       customOnDismiss={handleDismissConfirmation}
       attemptingTxn={attemptingTxn}
       hash={txHash || ''}

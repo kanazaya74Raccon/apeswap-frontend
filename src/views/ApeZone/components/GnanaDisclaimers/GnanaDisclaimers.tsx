@@ -74,7 +74,11 @@ export const GnanaDisclaimers: React.FC = () => {
               <Text2>{t('Fee')}</Text2>
             </Sect2a>
             <Sect2b>
-              <Text3>{`28% ${t('Burn Fee')} <br /> 2% ${t('Reflect Fee')}`}</Text3>
+              <Text3>
+                {`28% ${t('Burn Fee')}`}
+                <br />
+                {`2% ${t('Reflect Fee')}`}
+              </Text3>
             </Sect2b>
             <Sect2c>
               <Text3>{`2% ${t('Reflect Fee')} (${t('Both in and out')})`}</Text3>

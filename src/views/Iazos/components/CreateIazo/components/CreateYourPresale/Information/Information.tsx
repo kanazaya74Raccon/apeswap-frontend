@@ -45,8 +45,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Website..."
-          title="Website:*"
+          placeholderText={`${t('Website')}...`}
+          title={`${t('Website')}:*`}
           url
           mandatory
         />
@@ -56,8 +56,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Docs..."
-          title="Docs:"
+          placeholderText={`${t('Docs')}...`}
+          title={`${t('Docs')}:`}
           url
         />
         <TextInput
@@ -66,8 +66,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Twitter..."
-          title="Twitter:*"
+          placeholderText={`${t('Twitter')}...`}
+          title={`${t('Twitter')}:*`}
           url
           mandatory
         />
@@ -77,8 +77,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Telegram..."
-          title="Telegram:*"
+          placeholderText={`${t('Telegram')}...`}
+          title={`${t('Telegram')}:*`}
           url
           mandatory
         />
@@ -88,8 +88,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Medium..."
-          title="Medium:*"
+          placeholderText={`${t('Medium')}...`}
+          title={`${t('Medium')}:*`}
           url
           mandatory
         />
@@ -99,8 +99,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="lg"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Description..."
-          title="Description:"
+          placeholderText={`${t('Description')}...`}
+          title={`${t('Description')}:`}
         />
         <ImageUpload
           title={`${t('Token Logo')}:*`}

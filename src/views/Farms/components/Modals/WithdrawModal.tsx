@@ -41,7 +41,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
         inputTitle={t('Unstake')}
       />
-      <ModalFooter onDismiss={onDismiss}>
+      <ModalFooter onDismiss={onDismiss} t={t}>
         <Button
           disabled={pendingTx || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {

@@ -107,7 +107,7 @@ export default function Pool() {
       <Flex alignItems="center" flexDirection="column" flexWrap="nowrap" mb="20px">
         <SwapBanner />
         <AppBody>
-          <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
+          <CurrencyInputHeader title={t('Swap')} subtitle={t('Trade tokens in an instant')} />
           <Wrapper>
             <StyledCard style={{ height: '160px', borderRadius: '20px' }} mb="25px">
               <InnerFlex

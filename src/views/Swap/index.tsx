@@ -330,7 +330,7 @@ export default function Swap({ history }: RouteComponentProps) {
           <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
-                <CurrencyInputHeader title="Swap" subtitle="Trade tokens in an instant" />
+                <CurrencyInputHeader title={t('Swap')} subtitle={t('Trade tokens in an instant')} />
                 <Wrapper id="swap-page">
                   <AutoColumn gap="10px">
                     <CurrencyInputPanel

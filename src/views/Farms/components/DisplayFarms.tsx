@@ -8,6 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
+import { useTranslation } from 'contexts/Localization'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
@@ -16,6 +17,7 @@ import { ActionContainer } from './CardActions/styles'
 const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = !isLg && !isXl && !isXxl
 
   const farmsListView = farms.map((farm, i) => {
@@ -46,26 +48,26 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
         <>
           <Flex flexDirection="column">
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
-              <Text style={{ fontSize: '12px' }}>Multiplier</Text>
+              <Text style={{ fontSize: '12px' }}>{t('Multiplier')}</Text>
               <Text bold style={{ fontSize: '12px' }}>
                 {Math.round(parseFloat(farm.multiplier) * 1000) / 100}X
               </Text>
             </Flex>
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
-              <Text style={{ fontSize: '12px' }}>Stake</Text>
+              <Text style={{ fontSize: '12px' }}>{t('Stake')}</Text>
               <Text bold style={{ fontSize: '12px' }}>
-                {farm.lpSymbol} LP
+                {farm.lpSymbol} {t('LP')}
               </Text>
             </Flex>
             <Flex alignItems="center" justifyContent="center" mt="15px">
               <LinkExternal href={bscScanUrl} style={{ fontSize: '14px' }}>
-                View on BscScan
+                {t('View on BscScan')}
               </LinkExternal>
             </Flex>
             {projectLink && (
               <Flex alignItems="center" justifyContent="center" mt="15px">
                 <LinkExternal href={projectLink} style={{ fontSize: '14px' }}>
-                  Learn More
+                  {t('Learn More')}
                 </LinkExternal>
               </Flex>
             )}
@@ -75,15 +77,17 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
       cardContent: (
         <>
           <ListViewContent
-            title="APY"
+            title={t('APY')}
             value={`${farm?.apy}%`}
             width={isMobile ? 90 : 160}
-            toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
+            toolTip={t(
+              'APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily.',
+            )}
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
           />
           <ListViewContent
-            title="APR"
+            title={t('APR')}
             value={`${farm?.apr}%`}
             value2={`${farm?.lpApr}%`}
             value2Icon={
@@ -97,7 +101,9 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
               </span>
             }
             width={isMobile ? 100 : 200}
-            toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
+            toolTip={t(
+              'BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns.',
+            )}
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
             aprCalculator={
@@ -111,10 +117,10 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             }
           />
           <ListViewContent
-            title="Liquidity"
+            title={t('Liquidity')}
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 200}
-            toolTip="The total value of the LP tokens currently staked in this farm."
+            toolTip={t('The total value of the LP tokens currently staked in this farm.')}
             toolTipPlacement={
               isMobile
                 ? i === farms.length - 1 && i !== 0
@@ -134,7 +140,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 : 'translate(0%, 75%)'
             }
           />
-          <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
+          <ListViewContent title={t('Earned')} value={userEarnings} width={isMobile ? 65 : 100} />
         </>
       ),
       expandedContent: (
@@ -142,7 +148,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
           <ActionContainer>
             {isMobile && (
               <ListViewContent
-                title="Available LP"
+                title={t('Available LP')}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary
@@ -153,11 +159,11 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
               />
             )}
             <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <FarmButton>GET LP</FarmButton>
+              <FarmButton>{t('GET LP')}</FarmButton>
             </a>
             {!isMobile && (
               <ListViewContent
-                title="Available LP"
+                title={t('Available LP')}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary

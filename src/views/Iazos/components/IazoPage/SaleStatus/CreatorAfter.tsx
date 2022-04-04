@@ -73,7 +73,7 @@ const CreatorAfter: React.FC<BeforeSaleProps> = ({ hardcap, baseToken, iazoToken
           <br />
           {iazoFailed && (
             <>
-              <BoldAfterTextLarge>IAZO Failed. Please withdraw all tokens. </BoldAfterTextLarge>
+              <BoldAfterTextLarge>{t('IAZO Failed. Please withdraw all tokens.')} </BoldAfterTextLarge>
               <WithdrawTokens
                 iazoAddress={iazoAddress}
                 tokensToClaim={tokensBoughtFormatted}

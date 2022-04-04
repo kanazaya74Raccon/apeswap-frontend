@@ -67,7 +67,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal onDismiss={onDismiss} title="ROI">
+    <Modal onDismiss={onDismiss} title={t('ROI')}>
       <Grid>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">

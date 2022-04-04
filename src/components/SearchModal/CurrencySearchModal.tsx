@@ -85,7 +85,7 @@ export default function CurrencySearchModal({
           ''
         )}
         {modalView === CurrencyModalView.search && (
-          <ModalFooter onDismiss={onDismiss}>
+          <ModalFooter onDismiss={onDismiss} t={t}>
             <Button
               variant="text"
               onClick={() => setModalView(CurrencyModalView.manage)}

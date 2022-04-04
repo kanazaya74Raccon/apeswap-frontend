@@ -69,7 +69,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
         <InputsWrapper>
           <TokenInput
             onChange={(e) => setLiquidityDetails({ ...liquidityDetails, listingPrice: e.currentTarget.value })}
-            title="Listing Price"
+            title={t('Listing Price')}
             quoteTokenSymbol={quoteTokenSymbol}
             size="md"
             backgroundColor={isDark ? '#383838' : '#F1EADA'}

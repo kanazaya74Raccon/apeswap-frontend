@@ -83,7 +83,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
   imageToken,
 }) => {
   const { t } = useTranslation()
-  const totalStakedTitle = type === 'card' ? 'Total Staked Value' : 'Total Staked'
+  const totalStakedTitle = type === 'card' ? t('Total Staked Value') : t('Total Staked')
   const chainId = process.env.REACT_APP_CHAIN_ID
   const URLactual = window.location
 
@@ -148,7 +148,7 @@ const Detail: React.FC<ExpandableSectionProps> = ({
             )
           }
         >
-          Add to Metamask
+          {t('Add to Metamask')}
         </StyledLink>
       </Flex>
     </>

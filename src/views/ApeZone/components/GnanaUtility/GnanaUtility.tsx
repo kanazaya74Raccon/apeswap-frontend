@@ -39,7 +39,7 @@ export const GnanaUtility: React.FC = () => {
       </UtilityTitle>
       <Options>
         <FirstOption>
-          <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
+          <OptionCard type="1" title={t('Option 1')} desc={t('Hold in Wallet')}>
             <Section>
               <OpDetails
                 Icon={
@@ -79,7 +79,7 @@ export const GnanaUtility: React.FC = () => {
         </FirstOption>
 
         <OtherOptions>
-          <OptionCard type="2" title="Option 2" desc="Stake">
+          <OptionCard type="2" title={t('Option 2')} desc={t('Stake')}>
             <Section2>
               <OpDetails
                 Icon={
@@ -100,7 +100,7 @@ export const GnanaUtility: React.FC = () => {
             </Section2>
           </OptionCard>
 
-          <OptionCard type="3" title="Option 3" desc="Commit">
+          <OptionCard type="3" title={t('Option 3')} desc={t('Commit')}>
             <Section2>
               <OpDetails
                 Icon={

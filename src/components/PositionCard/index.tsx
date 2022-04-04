@@ -244,7 +244,9 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
           <FixedHeightRow>
             <RowFixed>
-              <StyledText fontSize="20px">Pooled {currency1.getSymbol(chainId)}</StyledText>
+              <StyledText fontSize="20px">
+                {t('Pooled')} {currency1.getSymbol(chainId)}
+              </StyledText>
             </RowFixed>
             {token1Deposited ? (
               <RowFixed>

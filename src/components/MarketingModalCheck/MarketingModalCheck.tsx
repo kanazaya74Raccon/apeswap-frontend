@@ -35,6 +35,7 @@ const MarketingModalCheck = () => {
       description={t('How does it work?')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      t={t}
     >
       {lending}
     </MarketingModal>
@@ -44,6 +45,7 @@ const MarketingModalCheck = () => {
       description={t('Start earning passive income with your cryptocurrency!')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      t={t}
     >
       {farms}
     </MarketingModal>
@@ -53,6 +55,7 @@ const MarketingModalCheck = () => {
       description={t('Earn tokens by staking BANANA or GNANA')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
+      t={t}
     >
       {pools}
     </MarketingModal>

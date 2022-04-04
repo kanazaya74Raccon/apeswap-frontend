@@ -53,9 +53,9 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
     <InfoWrapper>
       <DonutChart items={items} title={`${name} ${t('Tokenomics')}`} />
       <div>
-        <BoldAfterText boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterText>
-        <BoldAfterText boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterText>
-        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}> Total Tokens For Liquidity: </BoldAfterText>
+        <BoldAfterText boldContent={tokenTotalSupply.toString()}> {t('Total Token Supply')}: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForSale.toString()}> {t('Total Tokens For Sale')}: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}> {t('Total Tokens For Liquidity')}: </BoldAfterText>
       </div>
       <br />
       <br />
