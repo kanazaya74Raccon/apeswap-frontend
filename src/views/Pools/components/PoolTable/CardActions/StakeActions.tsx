@@ -54,7 +54,7 @@ const StyledIconButton = styled(IconButton)`
 
 const StyledHeadingGreen = styled(Heading)`
   font-size: 14px;
-  color: #38a611;
+  color: #38a611 !important;
   font-weight: 800;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -180,6 +180,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       <Flex flexDirection="column" justifyContent="space-between" marginRight="6px">
         <StyledText>{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
+          {rawStakedBalance > 0 && '>'}
           {displayBalance}
         </StyledHeadingGreen>
       </Flex>
