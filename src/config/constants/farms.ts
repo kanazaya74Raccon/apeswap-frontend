@@ -54,7 +54,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 192,
-    image: 'ANML.svg',
+    image: 'ANML.png',
     lpSymbol: 'ANML-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
