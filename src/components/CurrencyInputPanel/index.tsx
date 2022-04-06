@@ -205,7 +205,7 @@ export default function CurrencyInputPanel({
           </Text>
         )}
 
-        {account && <MetaMaskLogo onClick={addToMetaMask} src="images/metamask-fox.svg" alt="Add to MetaMask" />}
+        {account && <MetaMaskLogo onClick={addToMetaMask} src="/images/metamask-fox.svg" alt="Add to MetaMask" />}
 
         {account && (
           <Text

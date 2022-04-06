@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
-import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card } from '@apeswapfinance/uikit'
+import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card, AutoRenewIcon } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import SwapBanner from 'components/SwapBanner'
@@ -459,9 +459,9 @@ export default function Swap({ history }: RouteComponentProps) {
                           disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                         >
                           {approval === ApprovalState.PENDING ? (
-                            <AutoRow gap="6px" justify="center">
-                              <></>
-                            </AutoRow>
+                            <>
+                              Enabling <AutoRenewIcon spin color="currentColor" style={{ marginLeft: '2px' }} />
+                            </>
                           ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                             'Enabled'
                           ) : (

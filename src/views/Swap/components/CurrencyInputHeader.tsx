@@ -18,7 +18,6 @@ const CurrencyInputContainer = styled(Flex)`
   padding: 20px 25px 0px 20px;
   width: 100%;
   background: ${({ theme }) => theme.colors.navbar};
-  margin-bottom: 20px;
 `
 
 const CurrencyInputHeader: React.FC<Props> = () => {
@@ -56,6 +55,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
               marginRight: isMobile ? '15px ' : '25px',
               marginLeft: '15px',
               padding: 10,
+              height: isMobile ? '36px ' : '40px',
             }}
           >
             BRIDGE
