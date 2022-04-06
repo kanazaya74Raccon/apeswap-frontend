@@ -27,7 +27,7 @@ export const defaultServiceData: DefaultServiceData[] = [
   },
   {
     id: '',
-    title: 'Coming Soon',
+    title: '',
     description: '',
     backgroundImg: 'images/homepage-coming-soon.svg',
     link: '',

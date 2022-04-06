@@ -24,6 +24,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     const liquidityUrl = `https://apeswap.finance/add/${
       farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId]
     }/${farm.tokenAddresses[chainId]}`
+    const projectLink = farm.projectLink
     const userAllowance = farm?.userData?.allowance
     const userEarnings = getBalanceNumber(farm?.userData?.earnings || new BigNumber(0))?.toFixed(2)
     const userEarningsUsd = `$${(
@@ -65,6 +66,13 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 View on BscScan
               </LinkExternal>
             </Flex>
+            {projectLink && (
+              <Flex alignItems="center" justifyContent="center" mt="15px">
+                <LinkExternal href={projectLink} style={{ fontSize: '14px' }}>
+                  Learn More
+                </LinkExternal>
+              </Flex>
+            )}
           </Flex>
         </>
       ),

@@ -6,6 +6,7 @@ export const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   margin-right: auto;
   border-radius: 50px;
   width: 100%;
+  min-height: 830px;
   margin-bottom: 26px;
 `
 

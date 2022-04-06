@@ -28,15 +28,12 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
     <div style={{ padding: '20px 20px 20px 20px' }}>
       <AutoColumn gap="lg">
         <Text textAlign="center">
-          <h1 style={{ fontSize: '26px' }}>Trade at your own risk!</h1>
-          <br />
+          <h1 style={{ fontSize: '20px' }}>Trade at your own risk!</h1>
           ApeSwap is a Decentralized Exchange. By nature, this means anyone can create a token and add liquidity.
           Unlisted tokens may unfortunately be a scam.
           <br />
           <br />
-          Are you a project owner? ApeSwap has the largest partner network compared to any other DEX and we welcome all
-          projects that can pass our DD.
-          <br />
+          Are you a project owner?
           <br />
           <a
             href="apeswap.click/partners"
@@ -44,7 +41,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
             rel="noopener noreferrer"
             style={{ textDecoration: 'underline' }}
           >
-            Apply to be listed today and join the Jungle family!
+            Apply to be listed today!
           </a>
         </Text>
 

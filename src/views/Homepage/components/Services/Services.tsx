@@ -162,10 +162,8 @@ const Services: React.FC = () => {
                               </Text>
                             </Flex>
                           </Flex>
-                          {service.title !== 'Coming Soon' && (
-                            <>
-                              {service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}
-                            </>
+                          {service.title !== '' && (
+                            <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
                           )}
                         </Flex>
                       </YieldCard>
@@ -190,7 +188,7 @@ const Services: React.FC = () => {
                           </Text>
                         </Flex>
                       </Flex>
-                      <>{service.title !== 'Coming Soon' && displayStats(service.id, service.link, service.stats)}</>
+                      <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
                     </Flex>
                   </YieldCard>
                 )
