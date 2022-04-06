@@ -10,7 +10,7 @@ export const ControlContainer = styled(Flex)`
   flex-direction: column;
   transform: translateY(-85px);
   padding: 15px;
-  z-index: 1;
+  z-index: 0;
   background-color: ${({ theme }) => theme.colors.white2};
   min-width: 300px;
   max-width: 500px;
