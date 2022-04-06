@@ -125,7 +125,9 @@ export default function Swap({ history }: RouteComponentProps) {
 
   const updateParams = useCallback(
     (direction: string, currency: string) => {
-      history.push(`${history.location.search === '' ? '?' : `${history.location.search}&`}${direction}=${currency}`)
+      const searchParams = new URLSearchParams(history.location.search)
+      searchParams.set(direction, currency)
+      history.push(`?${searchParams.toString()}`)
     },
     [history],
   )
