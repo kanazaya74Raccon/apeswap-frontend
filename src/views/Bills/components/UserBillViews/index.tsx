@@ -7,6 +7,7 @@ import BillCard from './BillCard'
 import { Container } from '../styles'
 import UserBillListView from './UserBillListView'
 import FirstTimeCard from './FirstTimeCard'
+import { HeadingContainer } from './styles'
 
 const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { account } = useActiveWeb3React()
@@ -33,16 +34,22 @@ const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
         </>
       ) : (
         <Flex flexDirection="column" mb="50px">
-          <Flex justifyContent="space-between" margin="15px 10px">
-            <Text onClick={() => setShowAll((prev) => !prev)} bold style={{ cursor: 'pointer' }}>
+          <HeadingContainer>
+            <Text
+              onClick={() => setShowAll((prev) => !prev)}
+              bold
+              style={{ cursor: 'pointer', minWidth: '70px', gridArea: 'back' }}
+            >
               <ArrowDropLeftIcon width="8px" mr="5px" /> Back
             </Text>
-            <Text>All Your Treasury Bills</Text>
-            <Flex>
+            <Text textAlign="center" style={{ width: '100%', gridArea: 'all-bills' }}>
+              All Your Treasury Bills
+            </Text>
+            <Flex style={{ minWidth: '140px', gridArea: 'expired' }}>
               <Text mr="12.5px">Show expired</Text>
               <Checkbox />
             </Flex>
-          </Flex>
+          </HeadingContainer>
           <UserBillListView bills={userOwnedBills} />
         </Flex>
       )}

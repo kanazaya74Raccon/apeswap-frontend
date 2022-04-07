@@ -5,22 +5,22 @@ import { useBillContract } from 'hooks/useContract'
 import track from 'utils/track'
 
 // Claim a Bill
-const useClaimBill = (billAddress: string, billId: string) => {
+const useClaimBill = (billAddress: string, billIds: string[]) => {
   const { chainId } = useActiveWeb3React()
   const billContract = useBillContract(billAddress)
   const handleClaimBill = useCallback(async () => {
-    const tx = await userClaimBill(billContract, billId)
+    const tx = await userClaimBill(billContract, billIds)
     track({
       event: 'bill',
       chain: chainId,
       data: {
         cat: 'claim',
         address: billContract.address,
-        id: billId,
+        id: billIds,
       },
     })
     return tx
-  }, [billContract, billId, chainId])
+  }, [billContract, billIds, chainId])
 
   return { onClaimBill: handleClaimBill }
 }

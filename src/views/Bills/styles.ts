@@ -12,11 +12,11 @@ export const Header = styled.div`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background: ${({ theme }) => theme.colors.white2};
-  background-repeat: no-repeat;
-  background-size: cover;
   height: 250px;
   background-position: center;
+  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/bills_night.svg)' : 'url(/images/bills_day.svg)')};
+  background-repeat: no-repeat;
+  background-size: cover;
 
   ${({ theme }) => theme.mediaQueries.md} {
     padding-left: 24px;
@@ -28,7 +28,7 @@ export const Header = styled.div`
 export const StyledHeading = styled(Heading)`
   font-size: 30px;
   max-width: 176px !important;
-  color: ${({ theme }) => theme.colors.text};
+  color: white;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 30px;

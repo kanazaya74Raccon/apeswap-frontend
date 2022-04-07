@@ -11,6 +11,7 @@ import {
   NfaStaking,
   IazoFactory,
   Bill,
+  BillNft,
 } from 'config/abi/types'
 
 export const approve = async (lpContract: Erc20, masterChefContract: Contract) => {
@@ -262,8 +263,14 @@ export const userBuyBill = async (billContract: Bill, user: string, lpAmount: st
     })
 }
 
-export const userClaimBill = async (billContract: Bill, billId: string) => {
-  return billContract.batchRedeem([billId]).then((trx) => {
+export const userClaimBill = async (billContract: Bill, billIds: string[]) => {
+  return billContract.batchRedeem(billIds).then((trx) => {
+    return trx.wait()
+  })
+}
+
+export const userTransferBillNft = async (billNft: BillNft, billId: string, fromAddress: string, toAddress: string) => {
+  return billNft['safeTransferFrom(address,address,uint256)'](fromAddress, toAddress, billId).then((trx) => {
     return trx.wait()
   })
 }

@@ -5,51 +5,8 @@ export const OPTIONS = [
     label: 'All',
     value: 'all',
   },
-  // {
-  //   label: 'New',
-  //   value: 'new',
-  // },
   {
-    label: 'Blue Chips',
-    value: 'blueChips',
+    label: 'BANANA Bill',
+    value: 'bananaBill',
   },
-  {
-    label: 'Stables',
-    value: 'stables',
-  },
-  {
-    label: 'APY',
-    value: 'apr',
-  },
-  {
-    label: 'Liquidity',
-    value: 'liquidity',
-  },
-]
-
-export const STABLES = ['DAI', 'USDT', 'BUSD', 'USDC', 'MOR', 'FRAX']
-
-export const BLUE_CHIPS = [
-  'BTC',
-  'ETH',
-  'USDT',
-  'USDC',
-  'XRP',
-  'LUNA',
-  'SOL',
-  'ADA',
-  'AVAX',
-  'DOT',
-  'BUSD',
-  'DOGE',
-  'SHIB',
-  'MATIC',
-  'CRO',
-  'DAI',
-  'ATOM',
-  'LTC',
-  'LINK',
-  'TRX',
-  'BCH',
-  'BANANA',
 ]

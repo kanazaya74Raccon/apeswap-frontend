@@ -63,17 +63,11 @@ export const fetchBillsUserDataAsync =
       const mapUserOwnedBills = bills.map((bill) =>
         userOwnedBills.filter((b) => b.address === bill.contractAddress[chainId]),
       )
-      console.log(mapUserOwnedBills)
-      // const stakedBalances = await fetchUserStakeBalances(chainId, account)
-      // const pendingRewards = await fetchUserPendingRewards(chainId, account)
-
       const userData = bills.map((bill) => ({
         index: bill.index,
         allowance: allowances[bill.index],
         stakingTokenBalance: stakingTokenBalances[bill.index],
         bills: mapUserOwnedBills[bill.index],
-        // stakedBalance: stakedBalances[bill.index],
-        // pendingReward: pendingRewards[bill.index],
       }))
       dispatch(setBillsUserData(userData))
     } catch (error) {

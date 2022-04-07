@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AutoRenewIcon, Flex, Text } from '@apeswapfinance/uikit'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useBuyBill from 'views/Bills/hooks/useBuyBill'
 import BigNumber from 'bignumber.js'
@@ -12,7 +12,7 @@ import { BuyProps } from './types'
 import { BuyButton, GetLPButton, MaxButton, StyledInput } from './styles'
 
 const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, onValueChange }) => {
-  const formatUserLpValue = getBalanceNumber(new BigNumber(userLpValue))
+  const formatUserLpValue = getFullDisplayBalance(new BigNumber(userLpValue))
   const [amount, setAmount] = useState('')
   const { chainId, account } = useActiveWeb3React()
   const { onBuyBill } = useBuyBill(billAddress, amount)
@@ -53,10 +53,10 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
         <GetLPButton variant="secondary">Get LP</GetLPButton>
       </a>
       <Flex style={{ position: 'relative' }}>
-        <Text fontSize="12px" style={{ position: 'absolute', top: 15, left: 10, zIndex: 1 }} bold>
+        <Text fontSize="12px" style={{ position: 'absolute', top: 14, left: 10, zIndex: 1 }} bold>
           Amount:
         </Text>
-        <MaxButton size="sm" onClick={() => handleInput(formatUserLpValue.toString())}>
+        <MaxButton size="sm" onClick={() => handleInput(formatUserLpValue)}>
           Max
         </MaxButton>
         <StyledInput onChange={(e) => handleInput(e.target.value)} value={amount} />
@@ -64,7 +64,7 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
           Balance:
         </Text>
         <Text fontSize="12px" style={{ position: 'absolute', bottom: 5, right: 10, zIndex: 1, opacity: 0.8 }}>
-          {formatUserLpValue.toFixed(6)} LP
+          {formatUserLpValue?.slice(0, 15)} LP
         </Text>
       </Flex>
       <BuyButton

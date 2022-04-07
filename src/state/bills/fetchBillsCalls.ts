@@ -3,17 +3,6 @@ import { Call } from 'utils/multicall'
 
 const fetchBillsCalls = (bill: BillsConfig, chainId: number): Call[] => {
   const standardCalls = [
-    // Get bill info
-    // (1) payout (2) vesting (3) lastBlockTimestamp (4) truePricePaid
-    // {
-    //   address: bill.contractAddress[chainId],
-    //   name: 'billInfo',
-    // },
-    // Get bill price
-    {
-      address: bill.contractAddress[chainId],
-      name: 'billPrice',
-    },
     // Get bill price with LP fees
     {
       address: bill.contractAddress[chainId],
@@ -53,6 +42,11 @@ const fetchBillsCalls = (bill: BillsConfig, chainId: number): Call[] => {
     {
       address: bill.contractAddress[chainId],
       name: 'totalPrincipalBilled',
+    },
+    // Get bill nft address
+    {
+      address: bill.contractAddress[chainId],
+      name: 'billNft',
     },
     // Terms
     // (1) controlVariable (2) vestingTerm (3) minimumPrice (4) maxPayout (5) maxDebt

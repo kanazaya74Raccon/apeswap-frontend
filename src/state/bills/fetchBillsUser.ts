@@ -1,15 +1,9 @@
-import poolsConfig from 'config/constants/pools'
-import sousChefABI from 'config/abi/sousChef.json'
-import masterChefABI from 'config/abi/masterchef.json'
 import bills from 'config/constants/bills'
 import erc20ABI from 'config/abi/erc20.json'
 import billAbi from 'config/abi/bill.json'
-import { QuoteToken } from 'config/constants/types'
-import { getMasterChefAddress } from 'utils/addressHelper'
-import { getContract } from 'utils/getContract'
 import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
-import getProvider from 'utils/getProvider'
+import getBillNftData from './getBillNftData'
 
 export const fetchBillsAllowance = async (chainId: number, account) => {
   const calls = bills.map((b) => ({
@@ -36,6 +30,13 @@ export const fetchUserBalances = async (chainId: number, account) => {
   return tokenBalances
 }
 
+export const fetchUserOwnedBillNftData = async (ids: string[]) => {
+  const billNftData = ids?.map(async (id) => {
+    return { id, data: await getBillNftData(id) }
+  })
+  return Promise.all(billNftData)
+}
+
 export const fetchUserOwnedBills = async (chainId: number, account: string) => {
   const billIdCalls = bills.map((b) => ({
     address: b.contractAddress[chainId],
@@ -57,11 +58,13 @@ export const fetchUserOwnedBills = async (chainId: number, account: string) => {
         })),
     ),
   )
-
   const billData = await multicall(chainId, billAbi, billDataCalls)
-  console.log(billData)
   const pendingRewardsCall = await multicall(chainId, billAbi, billsPendingRewardCall)
-  console.log(pendingRewardsCall)
+  const ids = billDataCalls.map((b) => {
+    return b.params[0].toString()
+  })
+  const billNftData = await fetchUserOwnedBillNftData(ids)
+  console.log(billNftData)
 
   return billDataCalls.map((b, index) => {
     return {
@@ -75,47 +78,3 @@ export const fetchUserOwnedBills = async (chainId: number, account: string) => {
     }
   })
 }
-
-// export const fetchUserStakeBalances = async (chainId: number, account) => {
-//   const masterChefAddress = getMasterChefAddress(chainId)
-//   const masterChefContract = getContract(masterChefABI, masterChefAddress, chainId)
-//   const calls = nonMasterPools.map((p) => ({
-//     address: p.contractAddress[chainId],
-//     name: 'userInfo',
-//     params: [account],
-//   }))
-//   const userInfo = await multicall(chainId, sousChefABI, calls)
-//   const stakedBalances = nonMasterPools.reduce(
-//     (acc, pool, index) => ({
-//       ...acc,
-//       [pool.sousId]: new BigNumber(userInfo[index].amount._hex).toJSON(),
-//     }),
-//     {},
-//   )
-
-//   const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
-
-//   return { ...stakedBalances, 0: new BigNumber(masterPoolAmount.toString()).toJSON() }
-// }
-
-// export const fetchUserPendingRewards = async (chainId: number, account) => {
-//   const masterChefAddress = getMasterChefAddress(chainId)
-//   const masterChefContract = getContract(masterChefABI, masterChefAddress, chainId)
-//   const calls = nonMasterPools.map((p) => ({
-//     address: p.contractAddress[chainId],
-//     name: 'pendingReward',
-//     params: [account],
-//   }))
-//   const res = await multicall(chainId, sousChefABI, calls)
-//   const pendingRewards = nonMasterPools.reduce(
-//     (acc, pool, index) => ({
-//       ...acc,
-//       [pool.sousId]: new BigNumber(res[index]).toJSON(),
-//     }),
-//     {},
-//   )
-
-//   const pendingReward = await masterChefContract.pendingCake('0', account)
-
-//   return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
-// }

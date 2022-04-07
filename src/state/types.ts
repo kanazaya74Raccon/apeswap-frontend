@@ -92,16 +92,25 @@ export interface Bills extends BillsConfig {
   maxDebt?: string
   lpPriceUsd?: number
   earnTokenPrice?: number
+  billNftAddress?: string
   userData?: {
     allowance: string
     stakingTokenBalance: string
     bills?: {
+      address: string
       id: string
       vesting: string
       payout: string
       truePricePaid: string
       lastBlockTimestamp: string
       pendingRewards: string
+      nftData?: {
+        image: string
+        attributes: {
+          trait_type: string
+          value: string
+        }[]
+      }
     }[]
   }
 }

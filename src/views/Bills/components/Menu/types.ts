@@ -1,4 +1,5 @@
 import React from 'react'
+import { Bills } from 'state/types'
 
 export interface ListViewProps {
   onHandleQueryChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -6,4 +7,5 @@ export interface ListViewProps {
   activeOption?: string
   query: string
   harvestAll?: React.ReactNode
+  bills?: Bills[]
 }

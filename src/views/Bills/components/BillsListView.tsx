@@ -8,7 +8,7 @@ import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
 import getTimePeriods from 'utils/getTimePeriods'
 import { Container } from './styles'
-import BillModal from './BillModal'
+import BillModal from './Modals'
 
 const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { account } = useActiveWeb3React()

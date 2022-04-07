@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useClaimBill from 'views/Bills/hooks/useClaimBill'
+import useClaimAll from 'views/Bills/hooks/useClaimAll'
 import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useToast } from 'state/hooks'
@@ -9,8 +9,12 @@ import { fetchBillsUserDataAsync } from 'state/bills'
 import { ClaimProps } from './types'
 import { StyledButton } from '../styles'
 
-const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
-  const { onClaimBill } = useClaimBill(billAddress, billIds)
+const ClaimAll: React.FC<{ userOwnedBills: { billAddress: string; billIds: string[] }[]; ownedBillsAmount: number, buttonSize?: number }> = ({
+  userOwnedBills,
+  ownedBillsAmount,
+  buttonSize,
+}) => {
+  const { onClaimBill } = useClaimAll(userOwnedBills)
   const { chainId, account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
@@ -20,11 +24,12 @@ const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
     setPendingTrx(true)
     await onClaimBill()
       .then((resp) => {
-        const trxHash = resp.transactionHash
-        toastSuccess('Claim Successful', {
-          text: 'View Transaction',
-          url: getEtherscanLink(trxHash, 'transaction', chainId),
-        })
+        resp.map((trx) =>
+          toastSuccess('Claim Successful', {
+            text: 'View Transaction',
+            url: getEtherscanLink(trx.transactionHash, 'transaction', chainId),
+          }),
+        )
       })
       .catch((e) => {
         console.error(e)
@@ -39,10 +44,11 @@ const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       disabled={pendingTrx}
       buttonSize={buttonSize}
+      style={{height:'36px'}}
     >
-      Claim
+      Claim All ({ownedBillsAmount})
     </StyledButton>
   )
 }
 
-export default React.memo(Claim)
+export default React.memo(ClaimAll)

@@ -2,29 +2,27 @@ import { Flex } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import ListViewContent from 'components/ListViewContent'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import useSwiper from 'hooks/useSwiper'
 import React from 'react'
 import { Bills } from 'state/types'
+import 'swiper/swiper.min.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Claim from '../Actions/Claim'
 import { BillCardsContainer, BillsImage, CardContainer } from './styles'
 
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
-  const { swiper, setSwiper } = useSwiper()
   const { chainId } = useActiveWeb3React()
   const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userData?.bills ? bill?.userData?.bills : [])).length
-  const billsCardView = bills
-    .flatMap((bill) => {
-      const ownedBills = bill?.userData?.bills
-      return ownedBills?.map((ownedBill) => {
-        const pendingRewards = getBalanceNumber(
-          new BigNumber(ownedBill.pendingRewards),
-          bill?.earnToken?.decimals,
-        )?.toFixed(4)
-        return (
-          // <SwiperSlide style={{ border: '1px solid red', maxWidth: '270px' }} key={ownedBill.id}>
-          <CardContainer ml={ml}>
+  const billsCardView = bills.flatMap((bill) => {
+    const ownedBills = bill?.userData?.bills
+    return ownedBills?.map((ownedBill) => {
+      const pendingRewards = getBalanceNumber(
+        new BigNumber(ownedBill.pendingRewards),
+        bill?.earnToken?.decimals,
+      )?.toFixed(4)
+      return (
+        <SwiperSlide style={{ maxWidth: '270px', height: '307px' }} key={ownedBill.id}>
+          <CardContainer ml={ml} key={ownedBill.id}>
             <BillsImage />
             <Flex
               padding="0px 15px"
@@ -41,24 +39,22 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
                 justifyContent="flex-end"
               />
             </Flex>
-            <Claim billAddress={bill.contractAddress[chainId]} billId={ownedBill.id} />
+            <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} />
           </CardContainer>
-
-          // {/* </SwiperSlide> */}
-        )
-      })
+        </SwiperSlide>
+      )
     })
-    ?.slice(0, 4)
+  })
+
   return (
     <BillCardsContainer>
-      {/* <Swiper
+      <Swiper
         id="serviceSwiper"
         initialSlide={0}
-        onSwiper={setSwiper}
-        spaceBetween={0}
+        spaceBetween={15.5}
         slidesPerView="auto"
         loopedSlides={4}
-        loop
+        loop={ownedBillsAmount > 4}
         centeredSlides
         resizeObserver
         lazy
@@ -67,10 +63,14 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
             centeredSlides: false,
           },
         }}
-      > */}
-      {billsCardView}
-      {ownedBillsAmount < 4 && <CardContainer />}
-      {/* </Swiper> */}
+      >
+        {billsCardView}
+        {ownedBillsAmount < 4 && (
+          <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
+            <CardContainer />
+          </SwiperSlide>
+        )}
+      </Swiper>
     </BillCardsContainer>
   )
 }

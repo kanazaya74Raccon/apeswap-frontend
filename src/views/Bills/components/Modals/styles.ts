@@ -8,6 +8,19 @@ export const ModalBodyContainer = styled(Flex)`
   }
 `
 
+export const Container = styled.div`
+  max-height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+::-webkit-scrollbar {
+  width: 0; 
+  background: transparent;  
+}
+`
+
 export const BillsImage = styled.div<{ image?: string }>`
   width: 250px;
   align-self: center;
@@ -79,6 +92,10 @@ export const ActionButtonsContainer = styled(Flex)`
     flex-direction: row;
     height: auto;
   }
+`
+
+export const UserActionButtonsContainer = styled(ActionButtonsContainer)`
+  height: 110px;
 `
 
 export const StyledHeadingText = styled(Text)`

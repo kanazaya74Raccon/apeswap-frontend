@@ -9,7 +9,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
-import BillModal from '../BillModal'
+import BillModal from '../Modals'
 
 const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
@@ -57,7 +57,7 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             {!isMobile && (
               <>
                 <Flex alignItems="center" style={{ height: '100%' }}>
-                  <Claim billAddress={bill.contractAddress[chainId]} billId={ownedBill.id} buttonSize={100} />
+                  <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} buttonSize={100} />
                 </Flex>
                 <Flex alignItems="center" style={{ height: '100%' }}>
                   <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={100} />
@@ -67,8 +67,13 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           </>
         ),
         expandedContent: isMobile && (
-          <Flex alignItems="center" justifyContent="center" style={{ height: '100%', width: '100%' }}>
-            <Claim billAddress={bill.contractAddress[chainId]} billId={ownedBill.id} />
+          <Flex flexDirection="column" alignItems="center" style={{ height: '150px', width: '100%' }}>
+            <Flex alignItems="center" justifyContent="center">
+              <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} />
+            </Flex>
+            <Flex alignItems="center" style={{ height: '100%' }}>
+              <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={100} />
+            </Flex>
           </Flex>
         ),
       } as ExtendedListViewProps

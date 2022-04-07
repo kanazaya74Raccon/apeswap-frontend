@@ -14,7 +14,6 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       (token) => token.address[chainId] === billConfig.earnToken.address[chainId],
     )?.price
     const [
-      billPrice,
       trueBillPrice,
       currentDebt,
       currentFee,
@@ -23,6 +22,7 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       totalDebt,
       totalPayoutGiven,
       totalPrincipalBilled,
+      billNft,
       terms,
     ] = chunk
     const [controlVariable, vestingTerm, minimumPrice, maxPayout, maxDebt] = terms
@@ -46,6 +46,7 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
       minimumPrice: minimumPrice.toString(),
       maxPayout: maxPayout.toString(),
       maxDebt: maxDebt.toString(),
+      billNftAddress: billNft.toString(),
       earnTokenPrice,
       lpPrice,
     }

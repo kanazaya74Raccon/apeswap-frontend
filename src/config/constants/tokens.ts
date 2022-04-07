@@ -1063,6 +1063,14 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
+  nftyBnb: {
+    symbol: 'NFTY-BNB',
+    address: {
+      56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
 }
 
 export default tokens

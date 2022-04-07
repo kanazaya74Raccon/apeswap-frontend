@@ -1,33 +1,26 @@
-import { Flex, Text } from '@apeswapfinance/uikit'
-import BigNumber from 'bignumber.js'
-import ListViewContent from 'components/ListViewContent'
+import { Text } from '@apeswapfinance/uikit'
+import BillsDiagram from 'components/MarketingModalContent/Bills/BillsDiagram'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import React from 'react'
-import { Bills } from 'state/types'
-import { getBalanceNumber } from 'utils/formatBalance'
-import useClaimBill from 'views/Bills/hooks/useClaimBill'
-import { StyledButton } from '../styles'
 import {
+  BillDiagramContainer,
   BillGifContainer,
   BillGifImage,
-  BillsImage,
-  CardContainer,
   DescriptionContainer,
   FirstTimeCardContainer,
 } from './styles'
 
 const FirstTimeCard: React.FC = () => {
-  const { chainId } = useActiveWeb3React()
   return (
     <FirstTimeCardContainer>
       <BillGifContainer>
         <BillGifImage />
       </BillGifContainer>
       <DescriptionContainer>
-        <Text bold mb="10px" fontSize="22px">
+        <Text bold mb="0px" fontSize="22px">
           Information
         </Text>
-        <Text fontSize="12px">
+        <Text fontSize="12px" style={{ lineHeight: '15px' }}>
           Treasury Bills allow users to purchase tokens at a discount in exchange for their liquidity provider (LP)
           tokens. Each Treasury Bill is a unique NFT that represents the purchased tokens, which vest over a certain
           amount of time.
@@ -37,6 +30,9 @@ const FirstTimeCard: React.FC = () => {
             HOW IT WORKS:
           </Text>
         </Text>
+        <BillDiagramContainer>
+          <BillsDiagram />
+        </BillDiagramContainer>
       </DescriptionContainer>
     </FirstTimeCardContainer>
   )

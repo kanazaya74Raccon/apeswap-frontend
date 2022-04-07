@@ -33,7 +33,7 @@ export const StyledInput = styled(Input)`
   font-size: 14px;
   font-weight: 700;
   @media screen and (min-width: 1180px) {
-    width: 197px;
+    width: 230px;
     height: 69px;
     padding: 0px 50px 22.5px 67px;
   }

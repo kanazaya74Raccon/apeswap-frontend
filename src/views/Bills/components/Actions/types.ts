@@ -16,8 +16,15 @@ export interface ApproveProps {
 
 export interface ClaimProps {
   billAddress: string
-  billId: string
+  billIds: string[]
   buttonSize?: number
+}
+
+export interface TransferProps {
+  billNftAddress: string
+  billId: string
+  toAddress: string
+  disabled?: boolean
 }
 
 export interface ActionProps extends BuyProps, ApproveProps {

@@ -3,19 +3,24 @@ import ListViewContent from 'components/ListViewContent'
 import useCurrentTime from 'hooks/useTimer'
 import React from 'react'
 import getTimePeriods from 'utils/getTimePeriods'
-import { StyledHeadingText } from './BillModal/styles'
+import { StyledHeadingText } from './Modals/styles'
 
-const VestedTimer: React.FC<{ lastBlockTimestamp: string; vesting: string; userModalFlag?: boolean }> = ({
-  lastBlockTimestamp,
-  vesting,
-  userModalFlag,
-}) => {
+const VestedTimer: React.FC<{
+  lastBlockTimestamp: string
+  vesting: string
+  userModalFlag?: boolean
+  transferModalFlag?: boolean
+}> = ({ lastBlockTimestamp, vesting, userModalFlag, transferModalFlag }) => {
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
   const isMobile = !isLg && !isXl && !isXxl
   const currentTime = useCurrentTime() / 1000
   const vestingTime = getTimePeriods(parseInt(lastBlockTimestamp) + parseInt(vesting) - currentTime, true)
 
-  return userModalFlag ? (
+  return transferModalFlag ? (
+    <Text bold>
+      {vestingTime.days}d, {vestingTime.hours}h, {vestingTime.minutes}m
+    </Text>
+  ) : userModalFlag ? (
     <StyledHeadingText bold>
       {vestingTime.days}d, {vestingTime.hours}h, {vestingTime.minutes}m
     </StyledHeadingText>
