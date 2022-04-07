@@ -211,6 +211,8 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
+            <Route path="/add" component={AddLiquidity} />
+            <Route path="/pool" component={Pool} />
             <Route path="/farms">
               <Farms />
             </Route>
