@@ -32,7 +32,7 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'Offerings',
+    label: 'Raise',
     lightIcon: 'OfferingsLightImage',
     darkIcon: 'OfferingsDarkImage',
     items: [
@@ -47,7 +47,7 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'NFTs',
+    label: 'Collect',
     lightIcon: 'NfaLightImage',
     darkIcon: 'NfaDarkImage',
     items: [
@@ -70,7 +70,7 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'Lending',
+    label: 'Lend',
     href: 'https://lending.apeswap.finance/',
   },
   {
