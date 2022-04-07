@@ -79,8 +79,8 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             value={`${farm?.apy}%`}
             width={isMobile ? 90 : 160}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
-            toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 38%)"
           />
           <ListViewContent
             title="APR"
@@ -98,8 +98,8 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             }
             width={isMobile ? 100 : 200}
             toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
-            toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 38%)"
             aprCalculator={
               <ApyButton
                 lpLabel={farm.lpSymbol}
@@ -115,24 +115,8 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 200}
             toolTip="The total value of the LP tokens currently staked in this farm."
-            toolTipPlacement={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'topRight'
-                  : 'bottomRight'
-                : i === farms.length - 1 && i !== 0
-                ? 'topRight'
-                : 'bottomLeft'
-            }
-            toolTipTransform={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'translate(-60%, -110%)'
-                  : 'translate(-75%, 75%)'
-                : i === farms.length - 1 && i !== 0
-                ? 'translate(-60%, -110%)'
-                : 'translate(0%, 75%)'
-            }
+            toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
+            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 75%)'}
           />
           <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
         </>
