@@ -192,7 +192,7 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
-              <Suspense fallback={<></>}>{swapRoutes}</Suspense>
+              <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
@@ -211,8 +211,6 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
-            <Route path="/add" component={AddLiquidity} />
-            <Route path="/pool" component={Pool} />
             <Route path="/farms">
               <Farms />
             </Route>
@@ -271,7 +269,7 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
-            <Suspense fallback={<></>}>{swapRoutes}</Suspense>
+            <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
