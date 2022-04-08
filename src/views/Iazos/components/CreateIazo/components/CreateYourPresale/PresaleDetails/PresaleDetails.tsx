@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useMatchBreakpoints, Checkbox, TooltipBubble, InfoIcon } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints, Checkbox } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
