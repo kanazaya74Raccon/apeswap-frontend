@@ -11,7 +11,7 @@ import { fetchBillsUserDataAsync } from 'state/bills'
 import { BuyProps } from './types'
 import { BuyButton, GetLPButton, MaxButton, StyledInput } from './styles'
 
-const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, onValueChange }) => {
+const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, onValueChange, onBillId }) => {
   const formatUserLpValue = getFullDisplayBalance(new BigNumber(userLpValue))
   const [amount, setAmount] = useState('')
   const { chainId, account } = useActiveWeb3React()
@@ -25,11 +25,17 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
     onValueChange(val)
   }
 
+  const searchForBillId = (resp) => {
+    const billId = resp.events[6]?.args?.billId?.toString()
+    onBillId(billId)
+  }
+
   const handleBuy = async () => {
     setPendingTrx(true)
     await onBuyBill()
       .then((resp) => {
         const trxHash = resp.transactionHash
+        searchForBillId(resp)
         toastSuccess('Buy Successful', {
           text: 'View Transaction',
           url: getEtherscanLink(trxHash, 'transaction', chainId),

@@ -4,12 +4,15 @@ import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import getBillNftData from 'state/bills/getBillNftData'
 import BigNumber from 'bignumber.js'
 import {
   ActionButtonsContainer,
   BillDescriptionContainer,
   BillsImage,
   BillTitleContainer,
+  BillValueTextWrapper,
+  ImageSkeleton,
   ModalBodyContainer,
   StyledExit,
   StyledHeadingText,
@@ -39,18 +42,23 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
     earnTokenPrice,
   } = bill
   const discountEarnTokenPrice = earnTokenPrice - earnTokenPrice * (parseFloat(discount) / 100)
+  const [value, setValue] = useState('')
+  const [billImage, setBillImage] = useState('')
+  const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
+  const billValue = bigValue.div(new BigNumber(price))?.toFixed(3)
   const onHandleValueChange = (val: string) => {
     setValue(val)
   }
-  const [value, setValue] = useState('')
-  const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
-  const billValue = bigValue.div(new BigNumber(price))?.toFixed(3)
+  const onHandleReturnedBillId = async (id: string) => {
+    const billData = await getBillNftData(id)
+    setBillImage(billData?.image)
+  }
   return (
     <Modal onDismiss={onDismiss} maxWidth="1200px">
       <ModalBodyContainer>
         <StyledExit onClick={onDismiss}>x</StyledExit>
-        <BillsImage />
-        <BillDescriptionContainer>
+        {billImage ? <BillsImage image={billImage} /> : <ImageSkeleton />}
+        <BillDescriptionContainer p="20px 0px">
           <Flex flexDirection="column">
             <BillTitleContainer>
               <TopDescriptionText>{billType}</TopDescriptionText>
@@ -94,23 +102,18 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               billAddress={contractAddress[chainId]}
               billIndex={index}
               onValueChange={onHandleValueChange}
+              onBillId={onHandleReturnedBillId}
             />
           </ActionButtonsContainer>
           {new BigNumber(userData?.allowance).gt(0) && (
-            <Flex
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              mr="70px"
-              style={{ height: '10px' }}
-            >
+            <BillValueTextWrapper>
               <Text fontSize="14px">
                 Bill Value:{' '}
                 <span style={{ fontWeight: 700 }}>
                   {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
                 </span>
               </Text>
-            </Flex>
+            </BillValueTextWrapper>
           )}
         </BillDescriptionContainer>
       </ModalBodyContainer>

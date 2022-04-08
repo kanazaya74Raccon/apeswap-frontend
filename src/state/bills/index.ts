@@ -5,9 +5,9 @@ import {
   fetchBillsAllowance,
   fetchUserBalances,
   fetchUserOwnedBills,
-  // fetchUserPendingRewards,
+  fetchUserOwnedBillNftData,
 } from './fetchBillsUser'
-import { TokenPrices, AppThunk, BillsState, Bills } from '../types'
+import { TokenPrices, AppThunk, BillsState, Bills, UserBill } from '../types'
 import fetchBills from './fetchBills'
 
 const initialState: BillsState = { data: [...bills] }
@@ -34,6 +34,21 @@ export const billsSlice = createSlice({
       const { field, value, index } = action.payload
       const i = state.data.findIndex((bill) => bill.index === index)
       state.data[i] = { ...state.data[i], userData: { ...state.data[i].userData, [field]: value } }
+    },
+    setBillsUserNftData: (state, action) => {
+      const userNftData = action.payload
+      state.data = state.data.map((bill) => {
+        const userBillData = userNftData.find((entry) => entry.address === bill.index)
+        return { ...bill, userData: userBillData }
+      })
+    },
+    updateUserOwnedBillData: (state, action) => {
+      const { id, value } = action.payload
+      const i = state.data.findIndex((bill) => bill?.userData?.bills?.findIndex((b) => b.id === id))
+      state.data[i].userData = {
+        ...state.data[i].userData,
+        bills: value,
+      }
     },
   },
 })
@@ -70,6 +85,24 @@ export const fetchBillsUserDataAsync =
         bills: mapUserOwnedBills[bill.index],
       }))
       dispatch(setBillsUserData(userData))
+      const ownedBillIds = mapUserOwnedBills.flatMap((bs) => {
+        return bs.map((b) => {
+          return b.id
+        })
+      })
+      const userBillNftData = await fetchUserOwnedBillNftData(ownedBillIds)
+      const ownedBillsWithNftData = mapUserOwnedBills.map((bs) => {
+        return bs.map((b) => {
+          return { ...b, nftData: userBillNftData.find((nftB) => parseInt(nftB.id) === parseInt(b.id))?.data }
+        })
+      })
+      const userDataWithNftData = bills.map((bill) => ({
+        index: bill.index,
+        allowance: allowances[bill.index],
+        stakingTokenBalance: stakingTokenBalances[bill.index],
+        bills: ownedBillsWithNftData[bill.index],
+      }))
+      dispatch(setBillsUserData(userDataWithNftData))
     } catch (error) {
       console.warn(error)
     }
@@ -83,24 +116,10 @@ export const updateUserAllowance =
   }
 
 export const updateUserBalance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, index: string, account: string): AppThunk =>
   async (dispatch) => {
     const tokenBalances = await fetchUserBalances(chainId, account)
-    dispatch(updateBillsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+    dispatch(updateBillsUserData({ index, field: 'stakingTokenBalance', value: tokenBalances[index] }))
   }
-
-// export const updateUserStakedBalance =
-//   (chainId: number, sousId: string, account: string): AppThunk =>
-//   async (dispatch) => {
-//     const stakedBalances = await fetchUserStakeBalances(chainId, account)
-//     dispatch(updateBillsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
-//   }
-
-// export const updateUserPendingReward =
-//   (chainId: number, sousId: string, account: string): AppThunk =>
-//   async (dispatch) => {
-//     const pendingRewards = await fetchUserPendingRewards(chainId, account)
-//     dispatch(updateBillsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
-//   }
 
 export default billsSlice.reducer

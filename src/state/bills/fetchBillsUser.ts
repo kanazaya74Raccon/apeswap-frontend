@@ -3,6 +3,7 @@ import erc20ABI from 'config/abi/erc20.json'
 import billAbi from 'config/abi/bill.json'
 import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
+import { UserBill } from 'state/types'
 import getBillNftData from './getBillNftData'
 
 export const fetchBillsAllowance = async (chainId: number, account) => {
@@ -37,7 +38,7 @@ export const fetchUserOwnedBillNftData = async (ids: string[]) => {
   return Promise.all(billNftData)
 }
 
-export const fetchUserOwnedBills = async (chainId: number, account: string) => {
+export const fetchUserOwnedBills = async (chainId: number, account: string): Promise<UserBill[]> => {
   const billIdCalls = bills.map((b) => ({
     address: b.contractAddress[chainId],
     name: 'getBillIds',
@@ -60,11 +61,6 @@ export const fetchUserOwnedBills = async (chainId: number, account: string) => {
   )
   const billData = await multicall(chainId, billAbi, billDataCalls)
   const pendingRewardsCall = await multicall(chainId, billAbi, billsPendingRewardCall)
-  const ids = billDataCalls.map((b) => {
-    return b.params[0].toString()
-  })
-  const billNftData = await fetchUserOwnedBillNftData(ids)
-  console.log(billNftData)
 
   return billDataCalls.map((b, index) => {
     return {
@@ -75,6 +71,10 @@ export const fetchUserOwnedBills = async (chainId: number, account: string) => {
       lastBlockTimestamp: billData[index][2].toString(),
       truePricePaid: billData[index][3].toString(),
       pendingRewards: pendingRewardsCall[index][0].toString(),
+      nftData: {
+        image: null,
+        attributes: null,
+      },
     }
   })
 }

@@ -14,9 +14,9 @@ export const CardContainer = styled(Card)`
 export const BillsImage = styled.div<{ image?: string }>`
   width: 270px;
   height: 159px;
-  background-image: url(/images/bills-nft.svg);
+  background-image: ${({ image }) => `url(${image});`}
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
 `
 
 export const BillCardsContainer = styled(Flex)`

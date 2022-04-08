@@ -74,6 +74,25 @@ export interface Pool extends PoolConfig {
   lpData?: any
 }
 
+export interface UserBillNft {
+  image: string
+  attributes: {
+    trait_type: string
+    value: string
+  }[]
+}
+
+export interface UserBill {
+  address: string
+  id: string
+  vesting: string
+  payout: string
+  truePricePaid: string
+  lastBlockTimestamp: string
+  pendingRewards: string
+  nftData?: UserBillNft
+}
+
 export interface Bills extends BillsConfig {
   price?: string
   priceUsd?: string
@@ -96,22 +115,7 @@ export interface Bills extends BillsConfig {
   userData?: {
     allowance: string
     stakingTokenBalance: string
-    bills?: {
-      address: string
-      id: string
-      vesting: string
-      payout: string
-      truePricePaid: string
-      lastBlockTimestamp: string
-      pendingRewards: string
-      nftData?: {
-        image: string
-        attributes: {
-          trait_type: string
-          value: string
-        }[]
-      }
-    }[]
+    bills?: UserBill[]
   }
 }
 

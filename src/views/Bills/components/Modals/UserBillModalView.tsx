@@ -19,6 +19,7 @@ import {
   TopDescriptionText,
   Container,
   UserActionButtonsContainer,
+  ImageSkeleton,
 } from './styles'
 import Actions from '../Actions'
 import { buyBillGridText } from './constants'
@@ -54,7 +55,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
       <Container>
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
-          <BillsImage />
+          {userOwnedBill?.nftData?.image ? <BillsImage image={userOwnedBill?.nftData?.image} /> : <ImageSkeleton />}
           <BillDescriptionContainer>
             <Flex flexDirection="column">
               <BillTitleContainer>
@@ -74,20 +75,22 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
               </BillTitleContainer>
             </Flex>
             <Flex flexDirection="column">
-              {buyBillGridText.map((text, i) => {
+              {userOwnedBill?.nftData?.attributes?.map((attrib) => {
                 return (
                   <GridTextValContainer>
-                    <Text fontSize="12px">{text}</Text>
+                    <Text fontSize="12px">{attrib?.trait_type}</Text>
                     <Text fontSize="12px" bold>
-                      0
+                      {attrib?.value}
                     </Text>
                   </GridTextValContainer>
                 )
               })}
             </Flex>
             <UserActionButtonsContainer>
-              <Claim billAddress={bill.contractAddress[chainId]} billIds={[billId]} />
-              <StyledButton onClick={onPresentTransferBillModal}>Transfer</StyledButton>
+              <Claim billAddress={bill.contractAddress[chainId]} billIds={[billId]} buttonSize={218} />
+              <StyledButton onClick={onPresentTransferBillModal} style={{ width: '218px' }}>
+                Transfer
+              </StyledButton>
             </UserActionButtonsContainer>
           </BillDescriptionContainer>
         </ModalBodyContainer>
@@ -118,7 +121,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
             >
               <TopDescriptionText width="auto">Claimable</TopDescriptionText>
               <Flex>
-                <ServiceTokenDisplay token1={earnToken.symbol} />
+                <ServiceTokenDisplay token1={earnToken.symbol} size={25} />
                 <StyledHeadingText ml="10px" bold>
                   {claimable} (${claimableUsd})
                 </StyledHeadingText>
@@ -134,7 +137,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
             >
               <TopDescriptionText width="auto">Pending</TopDescriptionText>
               <Flex>
-                <ServiceTokenDisplay token1={earnToken.symbol} />
+                <ServiceTokenDisplay token1={earnToken.symbol} size={25} />
                 <StyledHeadingText ml="10px" bold>
                   {pending} (${pendingUsd})
                 </StyledHeadingText>

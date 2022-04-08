@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from '@apeswapfinance/uikit'
+import { Button, Flex, Input, Skeleton, Text } from '@apeswapfinance/uikit'
 import styled from '@emotion/styled'
 
 export const ModalBodyContainer = styled(Flex)`
@@ -25,9 +25,9 @@ export const BillsImage = styled.div<{ image?: string }>`
   width: 250px;
   align-self: center;
   height: 141px;
-  background-image: url(/images/test-bill.png);
+  background-image: ${({ image }) => `url(${image});`}
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   margin-top: 50px;
   @media screen and (min-width: 1180px) {
     min-width: 606px;
@@ -37,10 +37,22 @@ export const BillsImage = styled.div<{ image?: string }>`
   }
 `
 
-export const BillDescriptionContainer = styled(Flex)`
+export const ImageSkeleton = styled(Skeleton)`
+  width: 250px;
+  height: 141px;
+  margin-top: 30px;
+  align-self: center;
+  @media screen and (min-width: 1180px) {
+    min-width: 606px;
+    height: 341px;
+    margin-top: 0px;
+  }
+`
+
+export const BillDescriptionContainer = styled(Flex)<{ p?: string }>`
   position: relative;
   width: 310px;
-  height: 400px;
+  height: 450px;
   flex-direction: column;
   justify-content: space-around;
   @media screen and (min-width: 1180px) {
@@ -48,7 +60,7 @@ export const BillDescriptionContainer = styled(Flex)`
     width: 540px;
     height: auto;
     justify-content: space-between;
-    padding: 20px 0px;
+    padding: ${({ p }) => p || '20px 30px'};
     margin-left: 20px;
   }
 `
@@ -96,6 +108,7 @@ export const ActionButtonsContainer = styled(Flex)`
 
 export const UserActionButtonsContainer = styled(ActionButtonsContainer)`
   height: 110px;
+  justify-content: space-between;
 `
 
 export const StyledHeadingText = styled(Text)`
@@ -127,5 +140,15 @@ export const BillFooterContentContainer = styled(Flex)`
   @media screen and (min-width: 1180px) {
     width: 351px;
     height: 82px;
+  }
+`
+
+export const BillValueTextWrapper = styled(Flex)`
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 0px;
+  @media screen and (min-width: 1180px) {
+    padding-right: 70px;
   }
 `

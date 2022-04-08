@@ -6,6 +6,7 @@ export interface BuyProps {
   quoteToken: Token
   billAddress: string
   onValueChange: (val: string) => void
+  onBillId: (billId: string) => void
 }
 
 export interface ApproveProps {

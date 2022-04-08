@@ -25,7 +25,7 @@ const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize,
     <UserBillModalView bill={bill} billId={billId} onDismiss={() => console.log('')} />,
     true,
     true,
-    `billsModal${billId}`,
+    `billsModal${bill.billNftAddress}-${billId}`,
   )
   return (
     <StyledButton onClick={buyFlag ? onPresentBuyBillsModal : onPresentUserBillModal} buttonSize={buttonSize}>

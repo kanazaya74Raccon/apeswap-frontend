@@ -27,6 +27,8 @@ const Bills: React.FC = () => {
     return billsToReturn
   }
 
+  console.log(renderBills())
+
   return (
     <>
       <Header>
