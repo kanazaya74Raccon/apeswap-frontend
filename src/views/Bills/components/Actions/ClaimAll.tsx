@@ -9,11 +9,11 @@ import { fetchBillsUserDataAsync } from 'state/bills'
 import { ClaimProps } from './types'
 import { StyledButton } from '../styles'
 
-const ClaimAll: React.FC<{ userOwnedBills: { billAddress: string; billIds: string[] }[]; ownedBillsAmount: number, buttonSize?: number }> = ({
-  userOwnedBills,
-  ownedBillsAmount,
-  buttonSize,
-}) => {
+const ClaimAll: React.FC<{
+  userOwnedBills: { billAddress: string; billIds: string[] }[]
+  ownedBillsAmount: number
+  buttonSize?: number
+}> = ({ userOwnedBills, ownedBillsAmount, buttonSize }) => {
   const { onClaimBill } = useClaimAll(userOwnedBills)
   const { chainId, account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
@@ -44,7 +44,7 @@ const ClaimAll: React.FC<{ userOwnedBills: { billAddress: string; billIds: strin
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       disabled={pendingTrx}
       buttonSize={buttonSize}
-      style={{height:'36px'}}
+      style={{ height: '36px' }}
     >
       Claim All ({ownedBillsAmount})
     </StyledButton>

@@ -71,10 +71,6 @@ export const fetchUserOwnedBills = async (chainId: number, account: string): Pro
       lastBlockTimestamp: billData[index][2].toString(),
       truePricePaid: billData[index][3].toString(),
       pendingRewards: pendingRewardsCall[index][0].toString(),
-      nftData: {
-        image: null,
-        attributes: null,
-      },
     }
   })
 }

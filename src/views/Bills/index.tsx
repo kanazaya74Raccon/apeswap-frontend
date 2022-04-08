@@ -36,7 +36,13 @@ const Bills: React.FC = () => {
           <StyledHeading as="h1">Treasury Bills</StyledHeading>
         </HeadingContainer>
       </Header>
-      <Flex justifyContent="center" alignItems='center' mb="80px" padding='0px 10px' style={{ position: 'relative', top: '30px', width: '100%' }}>
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        mb="80px"
+        padding="0px 10px"
+        style={{ position: 'relative', top: '30px', width: '100%' }}
+      >
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
           <BillMenu
             bills={bills}
