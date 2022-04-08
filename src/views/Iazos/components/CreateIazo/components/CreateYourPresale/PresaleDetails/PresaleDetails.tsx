@@ -30,7 +30,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
   const getSoftMax = (hardcap: number) => {
     if (quoteToken === 'WBNB') {
       return hardcap > 250 ? 250 : hardcap
-    } 
+    }
     return hardcap > 100000 ? 100000 : hardcap
   }
 

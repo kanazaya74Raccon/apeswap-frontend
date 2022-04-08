@@ -44,7 +44,7 @@ const TokenInput: React.FC<TextInputProps> = ({
   defaultVal,
   min,
   max,
-  tooltipContent
+  tooltipContent,
 }) => {
   const { toastError } = useToast()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
@@ -68,14 +68,14 @@ const TokenInput: React.FC<TextInputProps> = ({
   return (
     <InputContainer size={size} ml={ml} mr={mr}>
       <InputTitle>
-      {tooltipContent && (
-        <div style={{ display: 'inline-block' }}>
-        <TooltipBubble placement="bottomLeft" body={tooltipContent} transformTip="translate(-10%, 40%)">
-          <InfoIcon width="15px" />
-        </TooltipBubble>
-        </div>
-      )}
-      {title}
+        {tooltipContent && (
+          <div style={{ display: 'inline-block' }}>
+            <TooltipBubble placement="bottomLeft" body={tooltipContent} transformTip="translate(-10%, 40%)">
+              <InfoIcon width="15px" />
+            </TooltipBubble>
+          </div>
+        )}
+        {title}
       </InputTitle>
       <Input
         value={defaultVal === 'NaN' ? '' : defaultVal}

@@ -7,12 +7,7 @@ import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
 import Header from '../Header'
 import TopNav from '../TopNav'
-import {
-  PageWrapper,
-  LaunchPadWrapper,
-  BeforeSaleWrapper,
-  SpinnerHolder,
-} from './styles'
+import { PageWrapper, LaunchPadWrapper, BeforeSaleWrapper, SpinnerHolder } from './styles'
 
 const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
