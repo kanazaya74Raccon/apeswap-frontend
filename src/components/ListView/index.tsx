@@ -29,6 +29,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
             infoContent={view.infoContent}
             key={view.id}
             open={view?.open}
+            expandedContentSize={view?.expandedContentSize}
           />
         ) : (
           <ListCard

@@ -96,7 +96,7 @@ export const Surround = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0;
   margin-top: 1em;
 
@@ -105,8 +105,6 @@ export const Content = styled.div`
   }
 `
 export const RightContent = styled.div`
-  margin: 0 0 0 1em;
-
   ${({ theme }) => theme.mediaQueries.sm} {
     margin: 0;
     width: 80%;

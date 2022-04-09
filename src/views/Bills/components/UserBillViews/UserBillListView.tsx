@@ -66,6 +66,7 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             )}
           </>
         ),
+        expandedContentSize: 150,
         expandedContent: isMobile && (
           <Flex flexDirection="column" alignItems="center" style={{ height: '150px', width: '100%' }}>
             <Flex alignItems="center" justifyContent="center">

@@ -60,6 +60,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           )}
         </>
       ),
+      expandedContentSize: 100,
       expandedContent: isMobile && (
         <Flex alignItems="center" justifyContent="center" style={{ height: '100%', width: '100%' }}>
           {account ? <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag /> : <UnlockButton />}
