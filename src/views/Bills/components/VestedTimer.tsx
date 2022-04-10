@@ -1,4 +1,4 @@
-import { Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Skeleton, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import ListViewContent from 'components/ListViewContent'
 import useCurrentTime from 'hooks/useTimer'
 import React from 'react'
@@ -22,7 +22,11 @@ const VestedTimer: React.FC<{
     </Text>
   ) : userModalFlag ? (
     <StyledHeadingText bold>
-      {vestingTime.days}d, {vestingTime.hours}h, {vestingTime.minutes}m
+      {vestingTime ? (
+        `${vestingTime.days}d, ${vestingTime.hours}h, ${vestingTime.minutes}m`
+      ) : (
+        <Skeleton width="150px" height="32.5px" animation="waves" />
+      )}
     </StyledHeadingText>
   ) : (
     <ListViewContent

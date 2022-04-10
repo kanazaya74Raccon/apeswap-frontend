@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Skeleton, Text } from '@apeswapfinance/uikit'
+import { Flex, Skeleton, Text } from '@apeswapfinance/uikit'
 import styled from '@emotion/styled'
 
 export const ModalBodyContainer = styled(Flex)`
@@ -28,7 +28,8 @@ export const BillsImage = styled.div<{ image?: string }>`
   background-image: ${({ image }) => `url(${image});`}
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   @media screen and (min-width: 1180px) {
     min-width: 606px;
     height: 341px;
@@ -49,10 +50,10 @@ export const ImageSkeleton = styled(Skeleton)`
   }
 `
 
-export const BillDescriptionContainer = styled(Flex)<{ p?: string }>`
+export const BillDescriptionContainer = styled(Flex)<{ p?: string; minHeight?: number }>`
   position: relative;
   width: 310px;
-  max-height: 450px;
+  min-height: ${({ minHeight }) => minHeight}px;
   height: fit-content;
   flex-direction: column;
   justify-content: space-around;
@@ -62,6 +63,7 @@ export const BillDescriptionContainer = styled(Flex)<{ p?: string }>`
     justify-content: space-between;
     padding: ${({ p }) => p || '20px 30px'};
     margin-left: 20px;
+    min-height: auto;
   }
 `
 
@@ -125,6 +127,7 @@ export const BillsFooterContainer = styled(Flex)`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
   @media screen and (min-width: 1180px) {
     flex-direction: row;
     height: 100px;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Modal, Text, useModal } from '@apeswapfinance/uikit'
+import { Flex, Modal, Skeleton, Text, useModal } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -57,7 +57,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
           {userOwnedBillNftData?.image ? <BillsImage image={userOwnedBillNftData?.image} /> : <ImageSkeleton />}
-          <BillDescriptionContainer>
+          <BillDescriptionContainer minHeight={360}>
             <Flex flexDirection="column">
               <BillTitleContainer>
                 <TopDescriptionText>{billType}</TopDescriptionText>
@@ -125,7 +125,11 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
               <Flex>
                 <ServiceTokenDisplay token1={earnToken.symbol} size={25} />
                 <StyledHeadingText ml="10px" bold>
-                  {claimable} (${claimableUsd})
+                  {claimable && claimable !== 'NaN' ? (
+                    `${claimable} ($${claimableUsd})`
+                  ) : (
+                    <Skeleton width="150px" height="32.5px" animation="waves" />
+                  )}
                 </StyledHeadingText>
               </Flex>
             </Flex>
@@ -141,7 +145,11 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
               <Flex>
                 <ServiceTokenDisplay token1={earnToken.symbol} size={25} />
                 <StyledHeadingText ml="10px" bold>
-                  {pending} (${pendingUsd})
+                  {pending && pending !== 'NaN' ? (
+                    `${pending} ($${pendingUsd})`
+                  ) : (
+                    <Skeleton width="150px" height="32.5px" animation="waves" />
+                  )}
                 </StyledHeadingText>
               </Flex>
             </Flex>
