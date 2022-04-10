@@ -5,7 +5,7 @@ import useTransferBill from 'views/Bills/hooks/useTransferBill'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
-import { fetchBillsUserDataAsync } from 'state/bills'
+import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
 import { StyledButton } from '../styles'
 import { TransferProps } from './types'
 
@@ -30,6 +30,7 @@ const Transfer: React.FC<TransferProps> = ({ billNftAddress, billId, toAddress, 
         console.error(e)
         setPendingTrx(false)
       })
+    dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     dispatch(fetchBillsUserDataAsync(chainId, account))
     setPendingTrx(false)
   }

@@ -52,11 +52,11 @@ export const ImageSkeleton = styled(Skeleton)`
 export const BillDescriptionContainer = styled(Flex)<{ p?: string }>`
   position: relative;
   width: 310px;
-  height: 450px;
+  max-height: 450px;
+  height: fit-content;
   flex-direction: column;
   justify-content: space-around;
   @media screen and (min-width: 1180px) {
-    width: 240px;
     width: 540px;
     height: auto;
     justify-content: space-between;
@@ -147,7 +147,8 @@ export const BillValueTextWrapper = styled(Flex)`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 0px;
+  height: 20px;
+  padding-top: 20px;
   @media screen and (min-width: 1180px) {
     padding-right: 70px;
   }

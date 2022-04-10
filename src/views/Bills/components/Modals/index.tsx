@@ -16,13 +16,13 @@ interface BillModalProps {
 
 const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize, buyFlag, billId }) => {
   const [onPresentBuyBillsModal] = useModal(
-    <BuyBillModalView bill={bill} onDismiss={() => console.log('')} />,
+    <BuyBillModalView bill={bill} onDismiss={null} />,
     true,
     true,
     `billsModal${id}`,
   )
   const [onPresentUserBillModal] = useModal(
-    <UserBillModalView bill={bill} billId={billId} onDismiss={() => console.log('')} />,
+    <UserBillModalView bill={bill} billId={billId} onDismiss={null} />,
     true,
     true,
     `billsModal${bill.billNftAddress}-${billId}`,

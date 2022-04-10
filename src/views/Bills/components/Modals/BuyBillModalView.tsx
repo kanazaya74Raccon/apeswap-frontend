@@ -91,29 +91,32 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               </Flex>
             </Flex>
           </Flex>
-          <ActionButtonsContainer>
-            <Actions
-              token={token}
-              quoteToken={quoteToken}
-              lpToken={lpToken}
-              userLpValue={userData?.stakingTokenBalance}
-              allowance={userData?.allowance}
-              billAddress={contractAddress[chainId]}
-              billIndex={index}
-              onValueChange={onHandleValueChange}
-              onBillId={onHandleReturnedBillId}
-            />
-          </ActionButtonsContainer>
-          {new BigNumber(userData?.allowance).gt(0) && (
-            <BillValueTextWrapper>
-              <Text fontSize="14px">
-                Bill Value:{' '}
-                <span style={{ fontWeight: 700 }}>
-                  {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
-                </span>
-              </Text>
-            </BillValueTextWrapper>
-          )}
+          <Flex flexDirection='column'>
+            <ActionButtonsContainer>
+              <Actions
+                token={token}
+                quoteToken={quoteToken}
+                lpToken={lpToken}
+                userLpValue={userData?.stakingTokenBalance}
+                allowance={userData?.allowance}
+                billAddress={contractAddress[chainId]}
+                billIndex={index}
+                disabled={billValue === 'NaN' || parseFloat(billValue) < 0.01}
+                onValueChange={onHandleValueChange}
+                onBillId={onHandleReturnedBillId}
+              />
+            </ActionButtonsContainer>
+            {new BigNumber(userData?.allowance).gt(0) && (
+              <BillValueTextWrapper>
+                <Text fontSize="14px">
+                  Bill Value:{' '}
+                  <span style={{ fontWeight: 700 }}>
+                    {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
+                  </span>
+                </Text>
+              </BillValueTextWrapper>
+            )}
+          </Flex>
         </BillDescriptionContainer>
       </ModalBodyContainer>
     </Modal>

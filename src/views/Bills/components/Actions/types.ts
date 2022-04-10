@@ -5,6 +5,7 @@ export interface BuyProps {
   token: Token
   quoteToken: Token
   billAddress: string
+  disabled?: boolean
   onValueChange: (val: string) => void
   onBillId: (billId: string, transactionHash: string) => void
 }

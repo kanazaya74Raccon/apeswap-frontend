@@ -7,11 +7,19 @@ import BigNumber from 'bignumber.js'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
-import { fetchBillsUserDataAsync } from 'state/bills'
+import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
 import { BuyProps } from './types'
 import { BuyButton, GetLPButton, MaxButton, StyledInput } from './styles'
 
-const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, onValueChange, onBillId }) => {
+const Buy: React.FC<BuyProps> = ({
+  userLpValue,
+  token,
+  quoteToken,
+  billAddress,
+  disabled,
+  onValueChange,
+  onBillId,
+}) => {
   const formatUserLpValue = getFullDisplayBalance(new BigNumber(userLpValue))
   const [amount, setAmount] = useState('')
   const { chainId, account } = useActiveWeb3React()
@@ -46,6 +54,7 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
         console.error(e)
         setPendingTrx(false)
       })
+    dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     dispatch(fetchBillsUserDataAsync(chainId, account))
     setPendingTrx(false)
   }
@@ -77,7 +86,7 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
       <BuyButton
         onClick={handleBuy}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
-        disabled={pendingTrx}
+        disabled={disabled || parseFloat(formatUserLpValue) < parseFloat(amount) || pendingTrx}
       >
         Buy
       </BuyButton>

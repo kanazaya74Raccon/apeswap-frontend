@@ -5,7 +5,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
-import { fetchBillsUserDataAsync } from 'state/bills'
+import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
 import { ClaimProps } from './types'
 import { StyledButton } from '../styles'
 
@@ -35,6 +35,7 @@ const ClaimAll: React.FC<{
         console.error(e)
         setPendingTrx(false)
       })
+    dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     dispatch(fetchBillsUserDataAsync(chainId, account))
     setPendingTrx(false)
   }

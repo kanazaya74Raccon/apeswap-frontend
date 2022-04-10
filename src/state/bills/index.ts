@@ -99,7 +99,6 @@ export const fetchBillsUserDataAsync =
         index: bill.index,
         allowance: allowances[bill.index],
         stakingTokenBalance: stakingTokenBalances[bill.index],
-        bills: [],
       }))
       dispatch(setBillsUserData(userData))
     } catch (error) {
