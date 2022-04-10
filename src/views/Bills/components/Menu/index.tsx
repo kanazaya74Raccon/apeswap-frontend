@@ -9,10 +9,9 @@ import { OPTIONS } from './constants'
 import ClaimAll from '../Actions/ClaimAll'
 
 const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOption, query, activeOption, bills }) => {
-  const { isDark } = useTheme()
   const { chainId } = useActiveWeb3React()
-  const userOwnedBills = bills?.filter((bill) => bill?.userData?.bills.length > 0)
-  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userData?.bills ? bill?.userData?.bills : [])).length
+  const userOwnedBills = bills?.filter((bill) => bill?.userOwnedBillsData?.length > 0)
+  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill.userOwnedBillsData : [])).length
   const ownedBills = userOwnedBills?.map((bill) => {
     return (
       bill?.userData?.bills && {

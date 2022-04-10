@@ -3,7 +3,8 @@ import { Flex, HelpIcon, Modal, Text, TooltipBubble } from '@apeswapfinance/uiki
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import getBillNftData, { getNewBillNftData } from 'state/bills/getBillNftData'
+import getTimePeriods from 'utils/getTimePeriods'
+import { getNewBillNftData } from 'state/bills/getBillNftData'
 import BigNumber from 'bignumber.js'
 import {
   ActionButtonsContainer,
@@ -43,6 +44,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const [value, setValue] = useState('')
   const [billImage, setBillImage] = useState('')
   const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
+  const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
   const billValue = bigValue.div(new BigNumber(price))?.toFixed(3)
   const onHandleValueChange = (val: string) => {
     setValue(val)
@@ -68,9 +70,14 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
                   billArrow
                   stakeLp
                 />
-                <StyledHeadingText ml="10px" bold>
-                  {lpToken.symbol}
-                </StyledHeadingText>
+                <Flex flexDirection="column">
+                  <StyledHeadingText ml="10px" bold>
+                    {lpToken.symbol}
+                  </StyledHeadingText>
+                  <TopDescriptionText ml="12px">
+                    Vesting Term: {`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
+                  </TopDescriptionText>
+                </Flex>
               </Flex>
             </BillTitleContainer>
             <Flex flexDirection="column" mt={25}>
@@ -91,7 +98,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               </Flex>
             </Flex>
           </Flex>
-          <Flex flexDirection='column'>
+          <Flex flexDirection="column">
             <ActionButtonsContainer>
               <Actions
                 token={token}
