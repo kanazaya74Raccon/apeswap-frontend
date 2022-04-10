@@ -20,6 +20,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
     return {
       tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
       id: bill.index,
+      billArrow: true,
       title: (
         <ListViewContent
           title={bill.billType}

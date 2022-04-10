@@ -6,6 +6,7 @@ export interface ListViewProps {
   cardContent: React.ReactNode
   expandedContent?: React.ReactNode
   expandedContentSize?: number
+  billArrow?: boolean
 }
 
 export interface ListCardProps extends ListViewProps {

@@ -19,7 +19,7 @@ const MobileListCard: React.FC<ListCardProps> = ({
   expandedContent,
   infoContent,
   open,
-  expandedContentSize
+  expandedContentSize,
 }) => {
   const [expanded, setExpanded] = useState(open)
   return (
@@ -44,7 +44,9 @@ const MobileListCard: React.FC<ListCardProps> = ({
         </Flex>
         <ContentContainer>{cardContent}</ContentContainer>
       </ListCardContainer>
-      {expandedContent && expanded && <ListExpandedContainer size={expandedContentSize}>{expandedContent}</ListExpandedContainer>}
+      {expandedContent && expanded && (
+        <ListExpandedContainer size={expandedContentSize}>{expandedContent}</ListExpandedContainer>
+      )}
     </>
   )
 }

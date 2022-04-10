@@ -18,10 +18,6 @@ const bscConfig: MenuEntry[] = [
         href: '/pools',
       },
       {
-        label: 'Bills',
-        href: '/bills',
-      },
-      {
         label: 'Jungle Farms',
         href: '/jungle-farms',
       },
@@ -40,6 +36,10 @@ const bscConfig: MenuEntry[] = [
     lightIcon: 'OfferingsLightImage',
     darkIcon: 'OfferingsDarkImage',
     items: [
+      {
+        label: 'Bills',
+        href: '/bills',
+      },
       {
         label: 'Official',
         href: '/iao',

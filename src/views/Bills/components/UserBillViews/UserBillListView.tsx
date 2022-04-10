@@ -27,6 +27,7 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
       return {
         tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
         id: ownedBill.id,
+        billArrow: true,
         title: (
           <ListViewContent
             title={bill.billType}

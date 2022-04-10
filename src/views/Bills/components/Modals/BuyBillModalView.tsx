@@ -67,6 +67,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
                   token1={token.symbol}
                   token2={quoteToken.symbol}
                   token3={earnToken.symbol}
+                  billArrow
                   stakeLp
                 />
                 <StyledHeadingText ml="10px" bold>

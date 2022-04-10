@@ -22,7 +22,7 @@ import {
   ImageSkeleton,
 } from './styles'
 import Actions from '../Actions'
-import { buyBillGridText } from './constants'
+import { BILL_ATTRIBUTES } from './constants'
 import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
 import TransferBillModal from './TransferBillModal'
@@ -43,6 +43,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
   const claimable = getBalanceNumber(new BigNumber(userOwnedBill?.pendingRewards), bill?.earnToken?.decimals)?.toFixed(
     4,
   )
+  const attributes = userOwnedBill?.nftData?.attributes?.filter((attrib) => BILL_ATTRIBUTES.includes(attrib.trait_type))
   const claimableUsd = (parseFloat(claimable) * bill?.earnTokenPrice)?.toFixed(2)
   const [onPresentTransferBillModal] = useModal(
     <TransferBillModal bill={bill} billId={billId} onDismiss={() => console.log('')} />,
@@ -65,6 +66,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
                     token1={token.symbol}
                     token2={quoteToken.symbol}
                     token3={earnToken.symbol}
+                    billArrow
                     stakeLp
                   />
                   <StyledHeadingText ml="10px" bold>
@@ -75,7 +77,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
               </BillTitleContainer>
             </Flex>
             <Flex flexDirection="column">
-              {userOwnedBill?.nftData?.attributes?.map((attrib) => {
+              {attributes?.map((attrib) => {
                 return (
                   <GridTextValContainer>
                     <Text fontSize="12px">{attrib?.trait_type}</Text>

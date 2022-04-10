@@ -1,4 +1,5 @@
 import { Flex } from '@apeswapfinance/uikit'
+import { BillsArrow } from 'components/Icons'
 import React from 'react'
 import { EarnIcon, TokenContainer } from './styles'
 
@@ -12,6 +13,7 @@ interface ServiceTokenDisplayProps {
   noEarnToken?: boolean
   iconFill?: string
   size?: number
+  billArrow?: boolean
 }
 
 const setUrls = (tokenSymbol: string) => {
@@ -28,6 +30,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   token4,
   iconFill,
   size,
+  billArrow,
   stakeLp = false,
   earnLp = false,
   noEarnToken = false,
@@ -56,7 +59,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
     <Flex alignItems="center">
       <TokenContainer zIndex={1} srcs={token1Urls} size={size} />
       <TokenContainer ml={-15} srcs={token2Urls} size={size} />
-      <EarnIcon color={iconFill} />
+      {billArrow ? <BillsArrow /> : <EarnIcon color={iconFill} />}
       <TokenContainer srcs={token3Urls} size={size} />
     </Flex>
   )
