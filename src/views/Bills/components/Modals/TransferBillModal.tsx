@@ -17,20 +17,8 @@ interface TransferBillModalProps {
 const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, billId }) => {
   const [confirmSend, setConfirmSend] = useState(false)
   const [toAddress, setToAddress] = useState('')
-  const {
-    token,
-    quoteToken,
-    earnToken,
-    billType,
-    lpToken,
-    price,
-    priceUsd,
-    userData,
-    contractAddress,
-    index,
-    billNftAddress,
-  } = bill
-  const userOwnedBill = userData?.bills?.find((b) => parseInt(b.id) === parseInt(billId))
+  const { earnToken, lpToken, billNftAddress, userOwnedBillsData } = bill
+  const userOwnedBill = userOwnedBillsData?.find((b) => parseInt(b.id) === parseInt(billId))
   const pending = getBalanceNumber(new BigNumber(userOwnedBill?.payout), bill?.earnToken?.decimals)?.toFixed(4)
   return (
     <Modal onDismiss={onDismiss} maxWidth="385px" title="Transfer Bill">

@@ -12,19 +12,20 @@ import { BillCardsContainer, BillsImage, CardContainer } from './styles'
 
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
-  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userData?.bills ? bill?.userData?.bills : [])).length
+  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))?.length
   const billsCardView = bills.flatMap((bill) => {
-    const ownedBills = bill?.userData?.bills
-    return ownedBills?.map((ownedBill) => {
+    const ownedBills = bill?.userOwnedBillsData
+    return ownedBills?.map((ownedBill, i) => {
       const pendingRewards = getBalanceNumber(
         new BigNumber(ownedBill.pendingRewards),
         bill?.earnToken?.decimals,
       )?.toFixed(4)
+      const ownedBillNftData = bill?.userOwnedBillsNftData ? bill?.userOwnedBillsNftData[i] : null
       return (
         <SwiperSlide style={{ maxWidth: '270px', height: '307px' }} key={ownedBill.id}>
           <CardContainer ml={ml} key={ownedBill.id}>
-            {ownedBill?.nftData?.image ? (
-              <BillsImage image={ownedBill?.nftData?.image} />
+            {ownedBillNftData?.image ? (
+              <BillsImage image={ownedBillNftData.image} />
             ) : (
               <Skeleton width="270px" height="159px" />
             )}

@@ -16,7 +16,7 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { chainId } = useActiveWeb3React()
   const isMobile = !isLg && !isXl && !isXxl
   const billsListView = bills.flatMap((bill) => {
-    const ownedBills = bill?.userData?.bills
+    const ownedBills = bill?.userOwnedBillsData
     const { token, quoteToken, earnToken } = bill
     return ownedBills.map((ownedBill) => {
       const pending = getBalanceNumber(new BigNumber(ownedBill.payout), bill?.earnToken?.decimals)?.toFixed(4)

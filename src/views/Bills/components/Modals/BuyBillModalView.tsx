@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Flex, HelpIcon, LinkExternal, Modal, Text, TooltipBubble } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon, Modal, Text, TooltipBubble } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
-import { getBalanceNumber } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import getBillNftData from 'state/bills/getBillNftData'
+import getBillNftData, { getNewBillNftData } from 'state/bills/getBillNftData'
 import BigNumber from 'bignumber.js'
 import {
   ActionButtonsContainer,
@@ -34,7 +33,6 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
     billType,
     lpToken,
     price,
-    priceUsd,
     userData,
     contractAddress,
     index,
@@ -49,8 +47,8 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const onHandleValueChange = (val: string) => {
     setValue(val)
   }
-  const onHandleReturnedBillId = async (id: string) => {
-    const billData = await getBillNftData(id)
+  const onHandleReturnedBillId = async (id: string, transactionHash: string) => {
+    const billData = await getNewBillNftData(id, transactionHash)
     setBillImage(billData?.image)
   }
   return (

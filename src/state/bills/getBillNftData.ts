@@ -14,4 +14,17 @@ const getBillNftData = async (billNftId: string) => {
   }
 }
 
+export const getNewBillNftData = async (billNftId: string, transactionHash: string) => {
+  try {
+    const response = await fetch(`${apiBaseUrl}/bills/bsc/${billNftId}/${transactionHash}`)
+    const billNftDataResp = await response.json()
+    if (billNftDataResp.statusCode === 500) {
+      return null
+    }
+    return billNftDataResp
+  } catch (error) {
+    return null
+  }
+}
+
 export default getBillNftData

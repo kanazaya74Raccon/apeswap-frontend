@@ -76,6 +76,7 @@ export interface Pool extends PoolConfig {
 
 export interface UserBillNft {
   image: string
+  tokenId: string
   attributes: {
     trait_type: string
     value: string
@@ -117,6 +118,8 @@ export interface Bills extends BillsConfig {
     stakingTokenBalance: string
     bills?: UserBill[]
   }
+  userOwnedBillsData?: UserBill[]
+  userOwnedBillsNftData?: UserBillNft[]
 }
 
 export interface JunglePool extends PoolConfig {

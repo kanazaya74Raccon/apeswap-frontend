@@ -27,7 +27,8 @@ const Buy: React.FC<BuyProps> = ({ userLpValue, token, quoteToken, billAddress, 
 
   const searchForBillId = (resp) => {
     const billId = resp.events[6]?.args?.billId?.toString()
-    onBillId(billId)
+    const transactionHash = resp.transactionHash
+    onBillId(billId, transactionHash)
   }
 
   const handleBuy = async () => {

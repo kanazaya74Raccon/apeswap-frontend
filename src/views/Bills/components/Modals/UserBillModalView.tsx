@@ -1,12 +1,11 @@
 import React from 'react'
-import { Button, Flex, HelpIcon, LinkExternal, Modal, Text, TooltipBubble, useModal } from '@apeswapfinance/uikit'
+import { Flex, Modal, Text, useModal } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import BigNumber from 'bignumber.js'
 import {
-  ActionButtonsContainer,
   BillDescriptionContainer,
   BillFooterContentContainer,
   BillsFooterContainer,
@@ -36,27 +35,28 @@ interface BillModalProps {
 
 const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId }) => {
   const { chainId } = useActiveWeb3React()
-  const { token, quoteToken, earnToken, billType, lpToken, price, priceUsd, userData, contractAddress, index } = bill
-  const userOwnedBill = userData?.bills?.find((b) => parseInt(b.id) === parseInt(billId))
+  const { token, quoteToken, earnToken, billType, lpToken, index, userOwnedBillsData, userOwnedBillsNftData } = bill
+  const userOwnedBill = userOwnedBillsData?.find((b) => parseInt(b.id) === parseInt(billId))
+  const userOwnedBillNftData = userOwnedBillsNftData?.find((b) => parseInt(b.tokenId) === parseInt(billId))
   const pending = getBalanceNumber(new BigNumber(userOwnedBill?.payout), bill?.earnToken?.decimals)?.toFixed(4)
   const pendingUsd = (parseFloat(pending) * bill?.earnTokenPrice)?.toFixed(2)
   const claimable = getBalanceNumber(new BigNumber(userOwnedBill?.pendingRewards), bill?.earnToken?.decimals)?.toFixed(
     4,
   )
-  const attributes = userOwnedBill?.nftData?.attributes?.filter((attrib) => BILL_ATTRIBUTES.includes(attrib.trait_type))
+  const attributes = userOwnedBillNftData?.attributes?.filter((attrib) => BILL_ATTRIBUTES.includes(attrib.trait_type))
   const claimableUsd = (parseFloat(claimable) * bill?.earnTokenPrice)?.toFixed(2)
   const [onPresentTransferBillModal] = useModal(
     <TransferBillModal bill={bill} billId={billId} onDismiss={() => console.log('')} />,
     true,
     true,
-    `transferModal${billId}`,
+    `transferModal${billId}-${index}`,
   )
   return (
     <Modal onDismiss={onDismiss} maxWidth="1200px">
       <Container>
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
-          {userOwnedBill?.nftData?.image ? <BillsImage image={userOwnedBill?.nftData?.image} /> : <ImageSkeleton />}
+          {userOwnedBillNftData?.image ? <BillsImage image={userOwnedBillNftData?.image} /> : <ImageSkeleton />}
           <BillDescriptionContainer>
             <Flex flexDirection="column">
               <BillTitleContainer>

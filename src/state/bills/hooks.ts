@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useTokenPrices } from 'state/hooks'
 import { Bills, State } from 'state/types'
-import { fetchBillsPublicDataAsync, fetchBillsUserDataAsync } from '.'
+import { fetchBillsPublicDataAsync, fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from '.'
 
 export const usePollBills = () => {
   const { chainId } = useActiveWeb3React()
@@ -27,6 +27,7 @@ export const useBills = (): Bills[] => {
     fetchBillsPublicDataAsync(0, [])
     if (account) {
       dispatch(fetchBillsUserDataAsync(chainId, account))
+      dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     }
   }, [account, dispatch, slowRefresh, chainId])
   const bills = useSelector((state: State) => state.bills.data)
