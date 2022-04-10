@@ -27,12 +27,6 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
     burnRemains: false,
   })
   const balance = getBalanceNumber(new BigNumber(userBalance), tokenDecimals)
-  const getSoftMax = (hardcap: number) => {
-    if (quoteToken === 'WBNB') {
-      return hardcap > 250 ? 250 : hardcap
-    }
-    return hardcap > 100000 ? 100000 : hardcap
-  }
 
   useEffect(() => {
     onChange(tokenDetails)
@@ -77,7 +71,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           size="md"
           backgroundColor={bgColor}
           min={0}
-          max={getSoftMax(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken))}
+          max={parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)}
           tooltipContent="If the soft cap is not met, Investors will be reimbursed and you will not raise any funds."
         />
         <TokenInput
