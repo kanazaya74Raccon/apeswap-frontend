@@ -14,7 +14,7 @@ const Approve: React.FC<ApproveProps> = ({ lpToken, billAddress, billIndex }) =>
   const { onApprove } = useApproveBill(lpToken.address[chainId], billAddress)
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const { toastSuccess } = useToast()
+  const { toastSuccess, toastError } = useToast()
 
   const handleApprove = async () => {
     setPendingTrx(true)
@@ -28,6 +28,7 @@ const Approve: React.FC<ApproveProps> = ({ lpToken, billAddress, billIndex }) =>
       })
       .catch((e) => {
         console.error(e)
+        toastError(e?.data?.message || 'Something went wrong please try again')
         setPendingTrx(false)
       })
     dispatch(updateUserAllowance(chainId, billIndex, account))

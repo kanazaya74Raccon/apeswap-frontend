@@ -19,6 +19,7 @@ const Buy: React.FC<BuyProps> = ({
   disabled,
   onValueChange,
   onBillId,
+  onTransactionSubmited,
 }) => {
   const formatUserLpValue = getFullDisplayBalance(new BigNumber(userLpValue))
   const [amount, setAmount] = useState('')
@@ -26,7 +27,7 @@ const Buy: React.FC<BuyProps> = ({
   const { onBuyBill } = useBuyBill(billAddress, amount)
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const { toastSuccess } = useToast()
+  const { toastSuccess, toastError } = useToast()
 
   const handleInput = (val: string) => {
     setAmount(val)
@@ -41,6 +42,7 @@ const Buy: React.FC<BuyProps> = ({
 
   const handleBuy = async () => {
     setPendingTrx(true)
+    onTransactionSubmited(true)
     await onBuyBill()
       .then((resp) => {
         const trxHash = resp.transactionHash
@@ -52,11 +54,14 @@ const Buy: React.FC<BuyProps> = ({
       })
       .catch((e) => {
         console.error(e)
+        toastError(e?.data?.message || 'Something went wrong please try again')
         setPendingTrx(false)
+        onTransactionSubmited(false)
       })
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     dispatch(fetchBillsUserDataAsync(chainId, account))
     setPendingTrx(false)
+    onTransactionSubmited(false)
   }
 
   return (

@@ -9,10 +9,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Claim from '../Actions/Claim'
 import { BillCardsContainer, BillsImage, CardContainer } from './styles'
+import { StyledButton } from '../styles'
 
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
-  const ownedBillsAmount = 2 // bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))?.length
+  const scrollDown = () => window.scrollBy({ top: 500, behavior: 'smooth' })
+  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))?.length
   const billsCardView = bills
     .flatMap((bill) => {
       const ownedBills = bill?.userOwnedBillsData
@@ -28,7 +30,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
               {ownedBillNftData?.image ? (
                 <BillsImage image={ownedBillNftData.image} />
               ) : (
-                <Skeleton width="270px" height="159px" />
+                <BillsImage image="image/hidden-bill.png" />
               )}
               <Flex
                 padding="0px 15px"
@@ -51,7 +53,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
         )
       })
     })
-    ?.slice(0, 2)
+    ?.slice(0, 4)
 
   return (
     <BillCardsContainer>
@@ -74,7 +76,24 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
         {billsCardView}
         {ownedBillsAmount < 4 && (
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
-            <CardContainer />
+            <CardContainer>
+              <BillsImage image="images/bills-placeholder.png" />
+              <Flex
+                padding="0px 15px"
+                alignItems="center"
+                justifyContent="space-between"
+                style={{ height: '75px', width: '100%' }}
+              >
+                <ListViewContent
+                  title="Treasury Bill"
+                  value="Want more?"
+                  height={50}
+                  width={150}
+                  justifyContent="flex-start"
+                />
+              </Flex>
+              <StyledButton onClick={scrollDown}>BUY BELOW</StyledButton>
+            </CardContainer>
           </SwiperSlide>
         )}
       </Swiper>

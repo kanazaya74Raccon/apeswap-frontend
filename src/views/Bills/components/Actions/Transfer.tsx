@@ -14,7 +14,7 @@ const Transfer: React.FC<TransferProps> = ({ billNftAddress, billId, toAddress, 
   const { chainId, account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const { toastSuccess } = useToast()
+  const { toastSuccess, toastError } = useToast()
 
   const handleTransfer = async () => {
     setPendingTrx(true)
@@ -28,6 +28,7 @@ const Transfer: React.FC<TransferProps> = ({ billNftAddress, billId, toAddress, 
       })
       .catch((e) => {
         console.error(e)
+        toastError(e?.data?.message || 'Something went wrong please try again')
         setPendingTrx(false)
       })
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))

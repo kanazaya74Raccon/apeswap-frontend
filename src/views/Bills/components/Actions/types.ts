@@ -8,6 +8,7 @@ export interface BuyProps {
   disabled?: boolean
   onValueChange: (val: string) => void
   onBillId: (billId: string, transactionHash: string) => void
+  onTransactionSubmited: (trxSent: boolean) => void
 }
 
 export interface ApproveProps {

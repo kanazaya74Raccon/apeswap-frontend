@@ -69,7 +69,7 @@ export const DescriptionContainer = styled(Flex)`
 export const BillGifImage = styled.div<{ image?: string }>`
   width: 270px;
   height: 150px;
-  background-image: url(/images/test-bill.png);
+  background-image: url(/images/bills-placeholder.png);
   background-repeat: no-repeat;
   background-size: contain;
   ${({ theme }) => theme.mediaQueries.md} {

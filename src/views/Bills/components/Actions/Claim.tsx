@@ -41,7 +41,7 @@ const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
       disabled={pendingTrx}
       buttonSize={buttonSize}
     >
-      Claim
+      CLAIM
     </StyledButton>
   )
 }

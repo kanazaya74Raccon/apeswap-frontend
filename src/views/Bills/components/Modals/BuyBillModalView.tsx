@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, HelpIcon, Modal, Text, TooltipBubble, useModal } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon, Modal, Spinner, Text, TooltipBubble, useModal } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -45,6 +45,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const [value, setValue] = useState('')
   const [billImage, setBillImage] = useState('')
   const [billId, setBillId] = useState('')
+  const [loading, setLoading] = useState(false)
   const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
   const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
   const billValue = bigValue.div(new BigNumber(price))?.toFixed(3)
@@ -63,7 +64,18 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
       ) : (
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
-          {billImage ? <BillsImage image={billImage} /> : <ImageSkeleton />}
+          {billImage ? (
+            <BillsImage image={billImage} />
+          ) : (
+            <Flex alignItems="center" justifyContent="center">
+              <BillsImage image="images/hidden-bill.png" />
+              {loading && (
+                <div style={{ position: 'absolute' }}>
+                  <Spinner />
+                </div>
+              )}
+            </Flex>
+          )}
           <BillDescriptionContainer p="20px 0px" minHeight={450}>
             <Flex flexDirection="column">
               <BillTitleContainer>
@@ -117,6 +129,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
                   disabled={billValue === 'NaN' || parseFloat(billValue) < 0.01}
                   onValueChange={onHandleValueChange}
                   onBillId={onHandleReturnedBillId}
+                  onTransactionSubmited={(trxSent) => setLoading(trxSent)}
                 />
               </ActionButtonsContainer>
               {new BigNumber(userData?.allowance).gt(0) && (

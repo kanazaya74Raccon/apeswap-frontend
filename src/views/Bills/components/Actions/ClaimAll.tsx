@@ -18,7 +18,7 @@ const ClaimAll: React.FC<{
   const { chainId, account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const { toastSuccess } = useToast()
+  const { toastSuccess, toastError } = useToast()
 
   const handleClaim = async () => {
     setPendingTrx(true)
@@ -33,6 +33,7 @@ const ClaimAll: React.FC<{
       })
       .catch((e) => {
         console.error(e)
+        toastError(e?.data?.message || 'Something went wrong please try again')
         setPendingTrx(false)
       })
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))

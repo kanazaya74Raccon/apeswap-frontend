@@ -5,8 +5,8 @@ export const OPTIONS = [
     label: 'All',
     value: 'all',
   },
-  {
-    label: 'BANANA Bill',
-    value: 'bananaBill',
-  },
+  // {
+  //   label: 'BANANA Bill',
+  //   value: 'bananaBill',
+  // },
 ]
