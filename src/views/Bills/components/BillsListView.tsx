@@ -44,7 +44,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           />
           <ListViewContent
             title="Discount"
-            value={`${bill?.discount}%`}
+            value={`${parseFloat(bill?.discount) < 0 ? '0.00' : bill?.discount}%`}
             width={isMobile ? 100 : 140}
             height={52.5}
             toolTip="This is the discount percentage of your bill."
@@ -62,7 +62,17 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           />
           {!isMobile && (
             <Flex alignItems="center" style={{ height: '100%' }}>
-              {account ? <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag /> : <UnlockButton />}
+              {account ? (
+                <BillModal
+                  bill={bill}
+                  buttonText="BUY"
+                  id={bill.index}
+                  buyFlag
+                  disabled={parseFloat(bill?.discount) < 0}
+                />
+              ) : (
+                <UnlockButton />
+              )}
             </Flex>
           )}
         </>
@@ -70,7 +80,11 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
       expandedContentSize: 100,
       expandedContent: isMobile && (
         <Flex alignItems="center" justifyContent="center" style={{ height: '100%', width: '100%' }}>
-          {account ? <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag /> : <UnlockButton />}
+          {account ? (
+            <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag disabled={parseFloat(bill?.discount) < 0} />
+          ) : (
+            <UnlockButton />
+          )}
         </Flex>
       ),
     } as ExtendedListViewProps

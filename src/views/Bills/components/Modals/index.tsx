@@ -14,9 +14,19 @@ interface BillModalProps {
   buttonSize?: number
   buyFlag?: boolean
   billCardImage?: string
+  disabled?: boolean
 }
 
-const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize, buyFlag, billId, billCardImage }) => {
+const BillModal: React.FC<BillModalProps> = ({
+  buttonText,
+  bill,
+  id,
+  buttonSize,
+  buyFlag,
+  billId,
+  billCardImage,
+  disabled,
+}) => {
   const [onPresentBuyBillsModal] = useModal(
     <BuyBillModalView bill={bill} onDismiss={null} />,
     true,
@@ -30,7 +40,11 @@ const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize,
     `billsModal${bill.billNftAddress}-${billId}`,
   )
   return !billCardImage ? (
-    <StyledButton onClick={buyFlag ? onPresentBuyBillsModal : onPresentUserBillModal} buttonSize={buttonSize}>
+    <StyledButton
+      onClick={buyFlag ? onPresentBuyBillsModal : onPresentUserBillModal}
+      buttonSize={buttonSize}
+      disabled={disabled}
+    >
       {buttonText}
     </StyledButton>
   ) : (
