@@ -1005,6 +1005,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  bountie: {
+    symbol: 'BOUNTIE',
+    address: {
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
