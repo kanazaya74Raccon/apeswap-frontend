@@ -80,10 +80,12 @@ export const BillTitleContainer = styled(Flex)`
 
 export const GridTextValContainer = styled(Flex)`
   justify-content: space-between;
+  align-items: center;
+  height: 15px;
   width: 100%;
   margin: 5px 0px;
   @media screen and (min-width: 1180px) {
-    margin: 5px 0px;
+    margin: 8px 0px;
   }
 `
 

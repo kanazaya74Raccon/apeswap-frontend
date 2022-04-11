@@ -45,14 +45,18 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               width={isMobile ? 120 : 165}
               ml={20}
               height={52.5}
-              toolTip="s"
+              toolTip="This is the amount of tokens you can claim."
+              toolTipPlacement="bottomLeft"
+              toolTipTransform="translate(0, 80%)"
             />
             <ListViewContent
               title="Pending"
               value={pending}
               width={isMobile ? 120 : 160}
               height={52.5}
-              toolTip="APR is calculated by summing up the rewards from providing liquidity (e.g., DEX swap fees) and the rewards in BANANA."
+              toolTip="This is the amount of tokens vested."
+              toolTipPlacement="bottomLeft"
+              toolTipTransform="translate(0, 80%)"
             />
             <VestedTimer lastBlockTimestamp={ownedBill.lastBlockTimestamp} vesting={ownedBill.vesting} />
             {!isMobile && (

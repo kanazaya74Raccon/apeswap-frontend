@@ -61,7 +61,6 @@ const Buy: React.FC<BuyProps> = ({
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
     dispatch(fetchBillsUserDataAsync(chainId, account))
     setPendingTrx(false)
-    onTransactionSubmited(false)
   }
 
   return (

@@ -4,6 +4,7 @@ import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import BillsSpinner from 'components/BillsSpinner'
 import BigNumber from 'bignumber.js'
 import {
   BillDescriptionContainer,
@@ -18,7 +19,6 @@ import {
   TopDescriptionText,
   Container,
   UserActionButtonsContainer,
-  ImageSkeleton,
 } from './styles'
 import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
@@ -31,7 +31,7 @@ interface BillModalProps {
   billId: string
 }
 
-const BILL_ATTRIBUTES = ['The Legend', 'The Location', 'The Moment', 'The Innovation', 'The Object']
+const BILL_ATTRIBUTES = ['The Legend', 'The Location', 'The Moment', 'The Innovation']
 
 const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId }) => {
   const { chainId } = useActiveWeb3React()
@@ -56,7 +56,16 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
       <Container>
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
-          {userOwnedBillNftData?.image ? <BillsImage image={userOwnedBillNftData?.image} /> : <ImageSkeleton />}
+          {userOwnedBillNftData?.image ? (
+            <BillsImage image={userOwnedBillNftData?.image} />
+          ) : (
+            <Flex alignItems="center" justifyContent="center">
+              <BillsImage image="images/hidden-bill.png" />
+              <div style={{ position: 'absolute' }}>
+                <BillsSpinner />
+              </div>
+            </Flex>
+          )}
           <BillDescriptionContainer minHeight={360}>
             <Flex flexDirection="column">
               <BillTitleContainer>
@@ -77,16 +86,25 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
               </BillTitleContainer>
             </Flex>
             <Flex flexDirection="column">
-              {attributes?.map((attrib) => {
-                return (
-                  <GridTextValContainer>
-                    <Text fontSize="12px">{attrib?.trait_type}</Text>
-                    <Text fontSize="12px" bold>
-                      {attrib?.value}
-                    </Text>
-                  </GridTextValContainer>
-                )
-              })}
+              {attributes
+                ? attributes.map((attrib) => {
+                    return (
+                      <GridTextValContainer>
+                        <Text fontSize="12px">{attrib?.trait_type}</Text>
+                        <Text fontSize="12px" bold>
+                          {attrib?.value}
+                        </Text>
+                      </GridTextValContainer>
+                    )
+                  })
+                : BILL_ATTRIBUTES.map((attrib) => {
+                    return (
+                      <GridTextValContainer>
+                        <Text fontSize="12px">{attrib}</Text>
+                        <Skeleton width="150px" />
+                      </GridTextValContainer>
+                    )
+                  })}
             </Flex>
             <UserActionButtonsContainer>
               <Claim billAddress={bill.contractAddress[chainId]} billIds={[billId]} buttonSize={218} />

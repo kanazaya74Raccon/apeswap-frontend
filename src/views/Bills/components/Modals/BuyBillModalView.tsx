@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Flex, HelpIcon, Modal, Spinner, Text, TooltipBubble } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon, Modal, Text, TooltipBubble } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getTimePeriods from 'utils/getTimePeriods'
-import { getNewBillNftData } from 'state/bills/getBillNftData'
 import BigNumber from 'bignumber.js'
+import BillsSpinner from 'components/BillsSpinner'
 import {
   ActionButtonsContainer,
   BillDescriptionContainer,
@@ -42,7 +42,6 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   } = bill
   const discountEarnTokenPrice = earnTokenPrice - earnTokenPrice * (parseFloat(discount) / 100)
   const [value, setValue] = useState('')
-  const [billImage, setBillImage] = useState('')
   const [billId, setBillId] = useState('')
   const [loading, setLoading] = useState(false)
   const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
@@ -51,30 +50,24 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const onHandleValueChange = (val: string) => {
     setValue(val)
   }
-  const onHandleReturnedBillId = async (id: string, transactionHash: string) => {
-    const billData = await getNewBillNftData(id, transactionHash)
-    setBillImage(billData?.image)
+  const onHandleReturnedBillId = async (id: string) => {
     setBillId(id)
   }
   return (
     <Modal onDismiss={onDismiss} maxWidth="1200px">
-      {billImage ? (
+      {billId ? (
         <UserBillModalView bill={bill} billId={billId} onDismiss={onDismiss} />
       ) : (
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
-          {billImage ? (
-            <BillsImage image={billImage} />
-          ) : (
-            <Flex alignItems="center" justifyContent="center">
-              <BillsImage image="images/hidden-bill.png" />
-              {loading && (
-                <div style={{ position: 'absolute' }}>
-                  <Spinner />
-                </div>
-              )}
-            </Flex>
-          )}
+          <Flex alignItems="center" justifyContent="center">
+            <BillsImage image="images/hidden-bill.png" />
+            {!loading && !billId && (
+              <div style={{position:'absolute'}}>
+                <BillsSpinner />
+              </div>
+            )}
+          </Flex>
           <BillDescriptionContainer p="20px 0px" minHeight={450}>
             <Flex flexDirection="column">
               <BillTitleContainer>
@@ -103,7 +96,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
                     {earnToken.symbol} Price{' '}
                     <span style={{ textDecoration: 'line-through' }}>${earnTokenPrice?.toFixed(3)}</span>
                   </TopDescriptionText>
-                  <TooltipBubble body={<Text>saaskdkasdasd</Text>}>
+                  <TooltipBubble body={<Text>This is the discounted price</Text>}>
                     <HelpIcon width="12px" color="grey" />
                   </TooltipBubble>
                 </Flex>

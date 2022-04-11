@@ -34,7 +34,9 @@ const VestedTimer: React.FC<{
       value={`${vestingTime.days}d, ${vestingTime.hours}h, ${vestingTime.minutes}m`}
       width={isMobile ? 200 : 180}
       height={52.5}
-      toolTip="s"
+      toolTip="This is the amount of time your bill is vested for"
+      toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
+      toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 80%)'}
     />
   )
 }

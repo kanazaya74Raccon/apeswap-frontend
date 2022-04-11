@@ -38,21 +38,27 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             width={isMobile ? 90 : 150}
             ml={20}
             height={52.5}
-            toolTip="Stuff"
+            toolTip="This is the price of one bill."
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 100%)"
           />
           <ListViewContent
             title="Discount"
             value={`${bill?.discount}%`}
             width={isMobile ? 100 : 140}
             height={52.5}
-            toolTip="Stuff"
+            toolTip="This is the discount percentage of your bill."
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 80%)"
           />
           <ListViewContent
             title="Vesting Time"
             value={`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
             width={isMobile ? 120 : 180}
             height={52.5}
-            toolTip="Stuff"
+            toolTip="This is the amount of time your bill if vested."
+            toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
+            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 80%)'}
           />
           {!isMobile && (
             <Flex alignItems="center" style={{ height: '100%' }}>

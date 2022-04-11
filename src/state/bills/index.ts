@@ -9,6 +9,7 @@ import {
 } from './fetchBillsUser'
 import { TokenPrices, AppThunk, BillsState, Bills } from '../types'
 import fetchBills from './fetchBills'
+import { getNewBillNftData } from './getBillNftData'
 
 const initialState: BillsState = { data: [...bills] }
 
@@ -49,19 +50,12 @@ export const billsSlice = createSlice({
       const i = state.data.findIndex((bill) => bill.index === index)
       state.data[i] = { ...state.data[i], userData: { ...state.data[i].userData, [field]: value } }
     },
-    setBillsUserNftData: (state, action) => {
-      const userNftData = action.payload
-      state.data = state.data.map((bill) => {
-        const userBillData = userNftData.find((entry) => entry.address === bill.index)
-        return { ...bill, userData: userBillData }
-      })
-    },
-    updateUserOwnedBillData: (state, action) => {
-      const { id, value } = action.payload
-      const i = state.data.findIndex((bill) => bill?.userData?.bills?.findIndex((b) => b.id === id))
-      state.data[i].userData = {
-        ...state.data[i].userData,
-        bills: value,
+    updateBillsUserNftData: (state, action) => {
+      const { value, index } = action.payload
+      const i = state.data.findIndex((bill) => bill.index === index)
+      state.data[i] = {
+        ...state.data[i],
+        userOwnedBillsNftData: { ...state.data[i].userOwnedBillsNftData, ...value },
       }
     },
   },
@@ -156,6 +150,13 @@ export const updateUserBalance =
   async (dispatch) => {
     const tokenBalances = await fetchUserBalances(chainId, account)
     dispatch(updateBillsUserData({ index, field: 'stakingTokenBalance', value: tokenBalances[index] }))
+  }
+
+export const updateUserNftData =
+  (index: number, billNftId: string, transactionHash: string): AppThunk =>
+  async (dispatch) => {
+    const fetchedBillNftData = await getNewBillNftData(billNftId, transactionHash)
+    dispatch(updateBillsUserData({ index, value: fetchedBillNftData }))
   }
 
 export default billsSlice.reducer
