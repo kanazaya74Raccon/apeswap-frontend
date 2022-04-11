@@ -133,6 +133,7 @@ export const BillsFooterContainer = styled(Flex)`
   @media screen and (min-width: 1180px) {
     flex-direction: row;
     height: 100px;
+    margin-bottom: 0px;
   }
 `
 
