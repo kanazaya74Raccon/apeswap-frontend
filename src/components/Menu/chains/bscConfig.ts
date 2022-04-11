@@ -41,11 +41,11 @@ const bscConfig: MenuEntry[] = [
         href: '/bills',
       },
       {
-        label: 'Official',
+        label: 'Official IAO',
         href: '/iao',
       },
       {
-        label: 'Self-Serve',
+        label: 'Self-Serve IAO',
         href: '/ss-iao',
       },
     ],

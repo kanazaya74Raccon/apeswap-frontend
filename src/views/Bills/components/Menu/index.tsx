@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTheme } from 'styled-components'
 import { Flex, Select, SelectItem, Text } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Link } from 'react-router-dom'
@@ -15,9 +14,9 @@ const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOptio
   const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill.userOwnedBillsData : [])).length
   const ownedBills = userOwnedBills?.map((bill) => {
     return (
-      bill?.userData?.bills && {
+      bill?.userOwnedBillsData && {
         billAddress: bill.contractAddress[chainId],
-        billIds: bill.userData.bills.map((b) => {
+        billIds: bill.userOwnedBillsData.map((b) => {
           return b.id
         }),
       }

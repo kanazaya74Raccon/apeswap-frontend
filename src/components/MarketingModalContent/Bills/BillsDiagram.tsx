@@ -16,7 +16,8 @@ const BillsDiagram: React.FC = () => {
             <InnerTextButton href="https://apeswap.finance/add" target="_blank" rel="noopener noreferrer">
               Click here
             </InnerTextButton>{' '}
-            to go to the liquidity provider. Select bill tokens and add liquidity.
+            to go to the liquidity provider page. Select the desired bill tokens (i.e. BANANA & BNB) and add
+            liquidity.
           </RightText>
         </RightContent>
       </Content>
@@ -25,7 +26,7 @@ const BillsDiagram: React.FC = () => {
         <BillsM2 width={50} bgColor={theme.theme.colors.white4} color={theme.theme.colors.text} mr={15} />
         <RightContent>
           <RightHeader>Select and Buy</RightHeader>
-          <RightText>Select your preferenced bill, and click the buy button.</RightText>
+          <RightText>Select the Bill of your preference, and click the buy button.</RightText>
         </RightContent>
       </Content>
 

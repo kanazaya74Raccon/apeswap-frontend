@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useMulticallAddress, useNonFungibleApesAddress } from 'hooks/useAddress'
+import { useMulticallAddress } from 'hooks/useAddress'
 import useGetWalletNfts, { NftMap } from 'hooks/useGetWalletNfts'
 import { useBlock } from 'state/block/hooks'
 import { useNonFungibleApes } from 'hooks/useContract'

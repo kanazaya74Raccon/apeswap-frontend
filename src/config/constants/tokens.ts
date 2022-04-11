@@ -989,6 +989,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  drf: {
+    symbol: 'DRF',
+    address: {
+      56: '0x89C1Af791d7B4cf046Dca8Fa10a41Dd2298A6a3F',
+    },
+    decimals: 18,
+  },
+  bountie: {
+    symbol: 'BOUNTIE',
+    address: {
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1067,6 +1081,12 @@ const tokens = {
     symbol: 'NFTY-BNB',
     address: {
       56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
+    }
+  },
+  drfBusd: {
+    symbol: 'DRF-BUSD',
+    address: {
+      56: '0x5FFc5b392Fcc33357c6a8240bda1C9374A55E6B8',
     },
     decimals: 18,
     lpToken: true,

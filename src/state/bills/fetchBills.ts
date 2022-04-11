@@ -1,5 +1,3 @@
-import sousChefABI from 'config/abi/sousChef.json'
-import bananaABI from 'config/abi/banana.json'
 import billsABI from 'config/abi/bill.json'
 import { TokenPrices } from 'state/types'
 import { chunk } from 'lodash'

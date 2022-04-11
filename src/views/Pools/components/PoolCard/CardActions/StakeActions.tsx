@@ -177,7 +177,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       <Flex flexDirection="column" alignItems="flex-start" marginRight="6px" marginLeft="-70px">
         <StyledText>{TranslateString(999, 'Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
-          {displayBalance}
+          {rawStakedBalance > 0 && displayBalance === '0' ? <>&gt;{displayBalance}</> : displayBalance}
         </StyledHeadingGreen>
       </Flex>
       {isApproved && renderStakingButtons()}

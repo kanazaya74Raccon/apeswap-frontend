@@ -1,6 +1,5 @@
 import { Text } from '@apeswapfinance/uikit'
 import BillsDiagram from 'components/MarketingModalContent/Bills/BillsDiagram'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import React from 'react'
 import {
   BillDiagramContainer,

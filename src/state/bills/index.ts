@@ -7,7 +7,7 @@ import {
   fetchUserOwnedBills,
   fetchUserOwnedBillNftData,
 } from './fetchBillsUser'
-import { TokenPrices, AppThunk, BillsState, Bills, UserBill } from '../types'
+import { TokenPrices, AppThunk, BillsState, Bills } from '../types'
 import fetchBills from './fetchBills'
 
 const initialState: BillsState = { data: [...bills] }

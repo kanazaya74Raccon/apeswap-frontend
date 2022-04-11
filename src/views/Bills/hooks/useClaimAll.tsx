@@ -3,7 +3,6 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import billAbi from 'config/abi/bill.json'
 import { userClaimBill } from 'utils/callHelpers'
 import { getContract } from 'utils'
-import getProvider from 'utils/getProvider'
 import { Bill } from 'config/abi/types'
 
 // Claim a Bill

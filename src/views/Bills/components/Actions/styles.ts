@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from '@apeswapfinance/uikit'
+import { Button, Input } from '@apeswapfinance/uikit'
 import styled from '@emotion/styled'
 
 export const GetLPButton = styled(Button)`

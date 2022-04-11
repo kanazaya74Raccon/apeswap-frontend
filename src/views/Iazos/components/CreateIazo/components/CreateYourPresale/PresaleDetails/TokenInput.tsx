@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Image } from '@apeswapfinance/uikit'
+import { Text, Image, TooltipBubble, InfoIcon } from '@apeswapfinance/uikit'
 import { useToast } from 'state/hooks'
 
 interface TextInputProps {
@@ -18,6 +18,7 @@ interface TextInputProps {
   tokenSymbol?: string
   min?: number
   max?: number
+  tooltipContent?: string
 }
 
 const sizes = {
@@ -43,6 +44,7 @@ const TokenInput: React.FC<TextInputProps> = ({
   defaultVal,
   min,
   max,
+  tooltipContent,
 }) => {
   const { toastError } = useToast()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
@@ -65,7 +67,16 @@ const TokenInput: React.FC<TextInputProps> = ({
 
   return (
     <InputContainer size={size} ml={ml} mr={mr}>
-      <InputTitle>{title}</InputTitle>
+      <InputTitle>
+        {tooltipContent && (
+          <div style={{ display: 'inline-block' }}>
+            <TooltipBubble placement="bottomLeft" body={tooltipContent} transformTip="translate(-10%, 40%)">
+              <InfoIcon width="15px" />
+            </TooltipBubble>
+          </div>
+        )}
+        {title}
+      </InputTitle>
       <Input
         value={defaultVal === 'NaN' ? '' : defaultVal}
         onChange={onChange}

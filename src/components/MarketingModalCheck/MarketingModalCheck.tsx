@@ -66,7 +66,7 @@ const MarketingModalCheck = () => {
       title="Welcome to ApeSwap Treasury Bills"
       onDismiss={onDismiss}
       startEarning={onDismiss}
-      startEarningText="Buy A Bill"
+      startEarningText="I'M READY"
     >
       {bills}
     </MarketingModal>

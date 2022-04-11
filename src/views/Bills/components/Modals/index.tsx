@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Modal, Text, useModal } from '@apeswapfinance/uikit'
+import { useModal } from '@apeswapfinance/uikit'
 import { Bills } from 'state/types'
 import BuyBillModalView from './BuyBillModalView'
 import { StyledButton } from '../styles'

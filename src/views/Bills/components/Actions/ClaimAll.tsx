@@ -6,7 +6,6 @@ import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
 import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
-import { ClaimProps } from './types'
 import { StyledButton } from '../styles'
 
 const ClaimAll: React.FC<{

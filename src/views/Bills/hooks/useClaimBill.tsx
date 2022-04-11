@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { userBuyBill, userClaimBill } from 'utils/callHelpers'
+import { userClaimBill } from 'utils/callHelpers'
 import { useBillContract } from 'hooks/useContract'
 import track from 'utils/track'
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AutoRenewIcon, Flex, Text } from '@apeswapfinance/uikit'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useBuyBill from 'views/Bills/hooks/useBuyBill'
 import BigNumber from 'bignumber.js'
@@ -36,7 +36,7 @@ const Buy: React.FC<BuyProps> = ({
 
   const searchForBillId = (resp) => {
     const billId = resp.events[6]?.args?.billId?.toString()
-    const transactionHash = resp.transactionHash
+    const { transactionHash } = resp
     onBillId(billId, transactionHash)
   }
 

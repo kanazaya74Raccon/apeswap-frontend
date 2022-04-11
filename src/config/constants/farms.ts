@@ -54,7 +54,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 192,
-    image: 'ANML.svg',
+    image: 'ANML.png',
     lpSymbol: 'ANML-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
@@ -1101,7 +1101,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://fegtoken.com/',
   },
-
   {
     pid: 67,
     image: 'ATA.png',
@@ -3138,6 +3137,23 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://frontier.xyz/',
+  },
+  {
+    pid: 193,
+    image: 'BOUNTIE.png',
+    lpSymbol: 'BOUNTIE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1eE428e29AE776EEB9ADEf13d0bCeb6825c2b93b',
+    },
+    tokenSymbol: 'BOUNTIE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bountiehunter.io/',
   },
 
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING

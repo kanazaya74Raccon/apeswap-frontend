@@ -1,9 +1,5 @@
-import BigNumber from 'bignumber.js'
-import { poolsConfig } from 'config/constants'
 import bills from 'config/constants/bills'
-import { PoolConfig } from 'config/constants/types'
 import { TokenPrices } from 'state/types'
-import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: TokenPrices[], chainId: number) => {
@@ -53,19 +49,5 @@ const cleanBillsData = (billIds: number[], chunkedBills: any[], tokenPrices: Tok
   })
   return data
 }
-
-// const fetchPoolTokenStatsAndApr = (pool: PoolConfig, tokenPrices: TokenPrices[], totalStaked, chainId: number) => {
-//   // Get values needed to calculate apr
-//   const curPool = pool
-//   const rewardToken = tokenPrices
-//     ? tokenPrices.find((token) => pool?.rewardToken && token?.address[chainId] === pool?.rewardToken.address[chainId])
-//     : pool.rewardToken
-//   const stakingToken = tokenPrices
-//     ? tokenPrices.find((token) => token?.address[chainId] === pool?.stakingToken.address[chainId])
-//     : pool.stakingToken
-//   // Calculate apr
-//   const apr = getPoolApr(stakingToken?.price, rewardToken?.price, getBalanceNumber(totalStaked), curPool?.tokenPerBlock)
-//   return [stakingToken, rewardToken, apr]
-// }
 
 export default cleanBillsData

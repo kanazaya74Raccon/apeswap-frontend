@@ -1,5 +1,4 @@
 import { Flex } from '@apeswapfinance/uikit'
-import ListViewMenu from 'components/ListViewMenu'
 import React, { useState } from 'react'
 import { usePollBills, useBills } from 'state/bills/hooks'
 import { Bills as BillType } from 'state/types'
@@ -26,8 +25,6 @@ const Bills: React.FC = () => {
     }
     return billsToReturn
   }
-
-  console.log(renderBills())
 
   return (
     <>

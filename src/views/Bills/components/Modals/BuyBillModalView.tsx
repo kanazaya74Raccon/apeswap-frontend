@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, HelpIcon, Modal, Spinner, Text, TooltipBubble, useModal } from '@apeswapfinance/uikit'
+import { Flex, HelpIcon, Modal, Spinner, Text, TooltipBubble } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -12,7 +12,6 @@ import {
   BillsImage,
   BillTitleContainer,
   BillValueTextWrapper,
-  ImageSkeleton,
   ModalBodyContainer,
   StyledExit,
   StyledHeadingText,

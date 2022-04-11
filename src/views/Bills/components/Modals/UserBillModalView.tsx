@@ -20,7 +20,6 @@ import {
   UserActionButtonsContainer,
   ImageSkeleton,
 } from './styles'
-import Actions from '../Actions'
 import { BILL_ATTRIBUTES } from './constants'
 import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
@@ -46,7 +45,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
   const attributes = userOwnedBillNftData?.attributes?.filter((attrib) => BILL_ATTRIBUTES.includes(attrib.trait_type))
   const claimableUsd = (parseFloat(claimable) * bill?.earnTokenPrice)?.toFixed(2)
   const [onPresentTransferBillModal] = useModal(
-    <TransferBillModal bill={bill} billId={billId} onDismiss={() => console.log('')} />,
+    <TransferBillModal bill={bill} billId={billId} onDismiss={onDismiss} />,
     true,
     true,
     `transferModal${billId}-${index}`,

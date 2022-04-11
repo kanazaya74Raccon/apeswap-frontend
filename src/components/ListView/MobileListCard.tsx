@@ -7,7 +7,6 @@ import {
   ListExpandedContainer,
   TagContainer,
   TitleContainer,
-  TitleText,
 } from './styles'
 import { ListCardProps } from './types'
 

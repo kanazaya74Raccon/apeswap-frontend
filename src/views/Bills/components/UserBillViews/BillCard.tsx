@@ -1,4 +1,4 @@
-import { Flex, Skeleton } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import ListViewContent from 'components/ListViewContent'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
