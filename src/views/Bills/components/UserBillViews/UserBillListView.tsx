@@ -71,14 +71,14 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             )}
           </>
         ),
-        expandedContentSize: 150,
+        expandedContentSize: 135,
         expandedContent: isMobile && (
-          <Flex flexDirection="column" alignItems="center" style={{ height: '150px', width: '100%' }}>
+          <Flex flexDirection="column" alignItems="center" style={{ height: '110px', width: '100%' }}>
             <Flex alignItems="center" justifyContent="center">
               <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} />
             </Flex>
-            <Flex alignItems="center" style={{ height: '100%' }}>
-              <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={100} />
+            <Flex alignItems="center" mt="20px">
+              <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={200} />
             </Flex>
           </Flex>
         ),
