@@ -20,7 +20,6 @@ import {
   UserActionButtonsContainer,
   ImageSkeleton,
 } from './styles'
-import { BILL_ATTRIBUTES } from './constants'
 import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
 import TransferBillModal from './TransferBillModal'
@@ -31,6 +30,8 @@ interface BillModalProps {
   bill: Bills
   billId: string
 }
+
+const BILL_ATTRIBUTES = ['The Legend', 'The Location', 'The Moment', 'The Innovation', 'The Object']
 
 const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId }) => {
   const { chainId } = useActiveWeb3React()

@@ -10,6 +10,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import Claim from '../Actions/Claim'
 import { BillCardsContainer, BillsImage, CardContainer } from './styles'
 import { StyledButton } from '../styles'
+import BillModal from '../Modals'
 
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
@@ -28,7 +29,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }} key={ownedBill.id}>
             <CardContainer ml={ml} key={ownedBill.id}>
               {ownedBillNftData?.image ? (
-                <BillsImage image={ownedBillNftData.image} />
+                <BillModal bill={bill} billId={ownedBill.id} billCardImage={ownedBillNftData.image} />
               ) : (
                 <BillsImage image="image/hidden-bill.png" />
               )}

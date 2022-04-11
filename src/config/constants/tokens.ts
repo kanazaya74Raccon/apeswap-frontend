@@ -1081,7 +1081,7 @@ const tokens = {
     symbol: 'NFTY-BNB',
     address: {
       56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
-    }
+    },
   },
   drfBusd: {
     symbol: 'DRF-BUSD',

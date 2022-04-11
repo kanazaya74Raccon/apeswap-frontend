@@ -4,17 +4,19 @@ import { Bills } from 'state/types'
 import BuyBillModalView from './BuyBillModalView'
 import { StyledButton } from '../styles'
 import UserBillModalView from './UserBillModalView'
+import { BillsImage } from '../UserBillViews/styles'
 
 interface BillModalProps {
-  buttonText: string
   bill: Bills
+  buttonText?: string
   id?: number
   billId?: string
   buttonSize?: number
   buyFlag?: boolean
+  billCardImage?: string
 }
 
-const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize, buyFlag, billId }) => {
+const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize, buyFlag, billId, billCardImage }) => {
   const [onPresentBuyBillsModal] = useModal(
     <BuyBillModalView bill={bill} onDismiss={null} />,
     true,
@@ -27,10 +29,12 @@ const BillModal: React.FC<BillModalProps> = ({ buttonText, bill, id, buttonSize,
     true,
     `billsModal${bill.billNftAddress}-${billId}`,
   )
-  return (
+  return !billCardImage ? (
     <StyledButton onClick={buyFlag ? onPresentBuyBillsModal : onPresentUserBillModal} buttonSize={buttonSize}>
       {buttonText}
     </StyledButton>
+  ) : (
+    <BillsImage image={billCardImage} onClick={onPresentUserBillModal} style={{ cursor: 'pointer' }} />
   )
 }
 
