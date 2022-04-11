@@ -1101,7 +1101,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://fegtoken.com/',
   },
-
   {
     pid: 67,
     image: 'ATA.png',
