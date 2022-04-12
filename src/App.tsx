@@ -153,6 +153,9 @@ const App: React.FC = () => {
                 <Vaults />
               </Route>
               {/* Redirects */}
+              <Route path="/treasury-bills">
+                <Redirect to="/" />
+              </Route>
               <Route exact path="/nft">
                 <Redirect to="/" />
               </Route>
@@ -223,7 +226,7 @@ const App: React.FC = () => {
             <Route path="/vaults">
               <Vaults />
             </Route>
-            <Route path="/bills">
+            <Route path="/treasury-bills">
               <Bills />
             </Route>
             <Route path="/admin-pools">
