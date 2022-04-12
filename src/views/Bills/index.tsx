@@ -1,6 +1,6 @@
 import { Flex } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
-import { usePollBills, useBills } from 'state/bills/hooks'
+import { usePollBills, useBills, usePollUserBills } from 'state/bills/hooks'
 import { Bills as BillType } from 'state/types'
 import BillsListView from './components/BillsListView'
 import UserBillViews from './components/UserBillViews'
@@ -9,6 +9,7 @@ import { Header, HeadingContainer, StyledHeading } from './styles'
 
 const Bills: React.FC = () => {
   usePollBills()
+  usePollUserBills()
   const bills = useBills()
   const [query, setQuery] = useState('')
 
