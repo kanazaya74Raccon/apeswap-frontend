@@ -29,6 +29,10 @@ const Buy: React.FC<BuyProps> = ({
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
 
+  const liquidityUrl = `https://apeswap.finance/add/${token.symbol === 'BNB' ? 'ETH' : token.address[chainId]}/${
+    quoteToken.symbol === 'BNB' ? 'ETH' : quoteToken.address[chainId]
+  }`
+
   const handleInput = (val: string) => {
     setAmount(val)
     onValueChange(val)
@@ -65,11 +69,7 @@ const Buy: React.FC<BuyProps> = ({
 
   return (
     <>
-      <a
-        href={`https://apeswap.finance/add/${token.address[chainId]}/${quoteToken.address[chainId]}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
         <GetLPButton variant="secondary">Get LP</GetLPButton>
       </a>
       <Flex style={{ position: 'relative' }}>

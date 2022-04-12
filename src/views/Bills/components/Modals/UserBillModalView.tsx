@@ -31,7 +31,7 @@ interface BillModalProps {
   billId: string
 }
 
-const BILL_ATTRIBUTES = ['The Legend', 'The Location', 'The Moment', 'The Innovation']
+const BILL_ATTRIBUTES = ['The Trend', 'The Legend', 'The Location', 'The Moment', 'The Innovation']
 
 const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId }) => {
   const { chainId } = useActiveWeb3React()

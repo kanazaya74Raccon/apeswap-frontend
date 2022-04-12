@@ -76,7 +76,6 @@ export const fetchBillsPublicDataAsync =
   async (dispatch) => {
     try {
       const returnedBills = await fetchBills(chainId, tokenPrices)
-      console.log(returnedBills)
       dispatch(setBillsPublicData(returnedBills))
     } catch (error) {
       console.warn(error)

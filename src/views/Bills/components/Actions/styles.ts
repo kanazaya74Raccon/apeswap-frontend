@@ -35,7 +35,7 @@ export const StyledInput = styled(Input)`
   @media screen and (min-width: 1180px) {
     width: 230px;
     height: 69px;
-    padding: 0px 50px 22.5px 67px;
+    padding: 0px 71px 22.5px 67px;
   }
 `
 

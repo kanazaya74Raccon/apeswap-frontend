@@ -35,8 +35,6 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
 
-    // Changing tooltip placement conditionaly until zindex solution
-
     return {
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
       title: (

@@ -47,6 +47,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const bigValue = new BigNumber(value).times(new BigNumber(10).pow(18))
   const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
   const billValue = bigValue.div(new BigNumber(price))?.toFixed(3)
+
   const onHandleValueChange = (val: string) => {
     setValue(val)
   }

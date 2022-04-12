@@ -1,4 +1,4 @@
-import { Flex } from '@apeswapfinance/uikit'
+import { Flex, Skeleton } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import ListViewContent from 'components/ListViewContent'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -29,9 +29,9 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }} key={ownedBill.id}>
             <CardContainer ml={ml} key={ownedBill.id}>
               {ownedBillNftData?.image ? (
-                <BillModal bill={bill} billId={ownedBill.id} billCardImage={ownedBillNftData.image} />
+                <BillModal bill={bill} billId={ownedBill.id} billCardImage={ownedBillNftData?.image} />
               ) : (
-                <BillsImage image="image/hidden-bill.png" />
+                <Skeleton width="270px" height="159px" />
               )}
               <Flex
                 padding="0px 15px"
@@ -78,7 +78,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
         {ownedBillsAmount < 4 && (
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
             <CardContainer>
-              <BillsImage image="images/bills-placeholder.png" />
+              <BillsImage image="images/hidden-bill.png" />
               <Flex
                 padding="0px 15px"
                 alignItems="center"
