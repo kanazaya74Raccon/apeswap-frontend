@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Flex, HelpIcon, Modal, Text, TooltipBubble } from '@apeswapfinance/uikit'
+import { Flex, Modal, Text } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -94,12 +94,9 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               <Flex flexDirection="column" mt={25}>
                 <Flex style={{ width: '250px' }}>
                   <TopDescriptionText>
-                    {earnToken.symbol} Price{' '}
+                    {earnToken.symbol} Market Price{' '}
                     <span style={{ textDecoration: 'line-through' }}>${earnTokenPrice?.toFixed(3)}</span>
                   </TopDescriptionText>
-                  <TooltipBubble body={<Text>This is the discounted price</Text>}>
-                    <HelpIcon width="12px" color="grey" />
-                  </TooltipBubble>
                 </Flex>
                 <Flex alignItems="center">
                   <ServiceTokenDisplay token1={earnToken.symbol} />

@@ -45,18 +45,18 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               width={isMobile ? 120 : 165}
               ml={20}
               height={52.5}
-              toolTip="This is the amount of tokens you can claim."
+              toolTip="This is the amount of tokens that have vested and available to claim."
               toolTipPlacement="bottomLeft"
-              toolTipTransform="translate(0, 80%)"
+              toolTipTransform="translate(0, 65%)"
             />
             <ListViewContent
               title="Pending"
               value={pending}
               width={isMobile ? 120 : 160}
               height={52.5}
-              toolTip="This is the amount of tokens vested."
+              toolTip="This is the amount of unvested tokens that cannot be claimed yet."
               toolTipPlacement="bottomLeft"
-              toolTipTransform="translate(0, 80%)"
+              toolTipTransform="translate(0, 65%)"
             />
             <VestedTimer lastBlockTimestamp={ownedBill.lastBlockTimestamp} vesting={ownedBill.vesting} />
             {!isMobile && (

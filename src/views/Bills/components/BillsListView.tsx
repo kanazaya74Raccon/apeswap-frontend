@@ -38,25 +38,25 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             width={isMobile ? 90 : 150}
             ml={20}
             height={52.5}
-            toolTip="This is the price of one bill."
+            toolTip="This is the current discounted price of the tokens."
             toolTipPlacement="bottomLeft"
-            toolTipTransform="translate(0, 100%)"
+            toolTipTransform="translate(0, 80%)"
           />
           <ListViewContent
             title="Discount"
             value={`${parseFloat(bill?.discount) < 0 ? '0.00' : bill?.discount}%`}
             width={isMobile ? 100 : 140}
             height={52.5}
-            toolTip="This is the discount percentage of your bill."
+            toolTip="This is the percentage discount relative to the token's current market price."
             toolTipPlacement="bottomLeft"
-            toolTipTransform="translate(0, 80%)"
+            toolTipTransform="translate(0, 65%)"
           />
           <ListViewContent
-            title="Vesting Time"
+            title="Vesting Term"
             value={`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
             width={isMobile ? 120 : 180}
             height={52.5}
-            toolTip="This is the amount of time your bill if vested."
+            toolTip="This is how long it will take for all tokens in the Bill to fully vest."
             toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
             toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 80%)'}
           />
