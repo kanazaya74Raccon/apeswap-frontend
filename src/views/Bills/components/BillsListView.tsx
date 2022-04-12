@@ -65,7 +65,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               {account ? (
                 <BillModal
                   bill={bill}
-                  buttonText="BUY"
+                  buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
                   id={bill.index}
                   buyFlag
                   disabled={parseFloat(bill?.discount) < 0}
@@ -81,7 +81,13 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
       expandedContent: isMobile && (
         <Flex alignItems="center" justifyContent="center" style={{ height: '100%', width: '100%' }}>
           {account ? (
-            <BillModal bill={bill} buttonText="BUY" id={bill.index} buyFlag disabled={parseFloat(bill?.discount) < 0} />
+            <BillModal
+              bill={bill}
+              buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
+              id={bill.index}
+              buyFlag
+              disabled={parseFloat(bill?.discount) < 0}
+            />
           ) : (
             <UnlockButton />
           )}
