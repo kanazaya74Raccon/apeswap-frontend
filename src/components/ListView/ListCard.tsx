@@ -7,7 +7,6 @@ import {
   ListExpandedContainer,
   TagContainer,
   TitleContainer,
-  TitleText,
 } from './styles'
 import { ListCardProps } from './types'
 
@@ -27,12 +26,10 @@ const ListCard: React.FC<ListCardProps> = ({
         <TitleContainer>
           {serviceTokenDisplay}
           {tag && <TagContainer ml="10px">{tag}</TagContainer>}
-          <TitleText bold ml="10px">
-            {title}
-          </TitleText>
+          {title}
         </TitleContainer>
         <ContentContainer>{cardContent}</ContentContainer>
-        <DropDownIcon open={expanded} mr="10px" />
+        {expandedContent && <DropDownIcon open={expanded} mr="30px" />}
         {infoContent && (
           <div style={{ display: 'inline-block' }}>
             <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 40%)">
@@ -41,7 +38,7 @@ const ListCard: React.FC<ListCardProps> = ({
           </div>
         )}
       </ListCardContainer>
-      {expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
+      {expandedContent && expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
     </>
   )
 }

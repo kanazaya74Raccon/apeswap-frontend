@@ -6,17 +6,17 @@ const ExpandLargeAnimation = keyframes`
     100%{height: 100px;}
 `
 
-const ExpandSmallAnimation = keyframes`
+const ExpandSmallAnimation = (size?: number) => keyframes`
     0%{height: 0;}
-    100%{height: 243px;}
+    100%{height: ${size || 234}px;}
 `
 
-export const ListExpandedContainer = styled(Flex)`
-  height: 243px;
+export const ListExpandedContainer = styled(Flex)<{ size?: number }>`
+  height: ${({ size }) => size || 234}px;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  animation: ${ExpandSmallAnimation} 0.3s ease;
+  animation: ${({ size }) => ExpandSmallAnimation(size)} 0.3s ease;
   overflow: hidden;
   margin: 0px 10px 0px 10px;
   padding: 10px;
@@ -57,7 +57,6 @@ export const ListViewContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0px 10px;
   & ${ListCardContainer}:first-child {
     border-radius: 10px 10px 0px 0px;
   }
@@ -89,7 +88,6 @@ export const TagContainer = styled(Flex)`
 
 export const ContentContainer = styled(Flex)`
   position: relative;
-  max-width: 650px;
   width: 100%;
   height: 62.5px;
   align-items: flex-end;

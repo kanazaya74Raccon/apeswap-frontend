@@ -32,10 +32,14 @@ const bscConfig: MenuEntry[] = [
     ],
   },
   {
-    label: 'Offerings',
+    label: 'Raise',
     lightIcon: 'OfferingsLightImage',
     darkIcon: 'OfferingsDarkImage',
     items: [
+      {
+        label: 'Treasury Bills',
+        href: '/treasury-bills',
+      },
       {
         label: 'Official IAO',
         href: '/iao',

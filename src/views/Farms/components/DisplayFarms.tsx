@@ -18,7 +18,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
   const isMobile = !isLg && !isXl && !isXxl
 
-  const farmsListView = farms.map((farm, i) => {
+  const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
     const bscScanUrl = `https://bscscan.com/address/${farm.lpAddresses[chainId]}`
     const liquidityUrl = `https://apeswap.finance/add/${
@@ -35,11 +35,13 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
 
-    // Changing tooltip placement conditionaly until zindex solution
-
     return {
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
-      title: farm.lpSymbol,
+      title: (
+        <Text ml={10} bold>
+          {farm.lpSymbol}
+        </Text>
+      ),
       open: farm.pid === openPid,
       id: farm.pid,
       infoContent: (
@@ -77,7 +79,8 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
           <ListViewContent
             title="APY"
             value={`${farm?.apy}%`}
-            width={isMobile ? 90 : 160}
+            width={isMobile ? 90 : 150}
+            ml={20}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 38%)"
@@ -96,7 +99,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 <Svg icon="banana_token" width={15} color="text" />
               </span>
             }
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 38%)"
@@ -113,12 +116,12 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
           <ListViewContent
             title="Liquidity"
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="The total value of the LP tokens currently staked in this farm."
             toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
             toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 75%)'}
           />
-          <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
+          <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 120} />
         </>
       ),
       expandedContent: (

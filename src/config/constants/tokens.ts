@@ -355,15 +355,6 @@ const tokens = {
     },
     decimals: 18,
   },
-  bnbjdi: {
-    symbol: 'BNB-JDI',
-    address: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
-    },
-    decimals: 18,
-    lpToken: true,
-  },
   obie: {
     symbol: 'OBIE',
     address: {
@@ -1018,6 +1009,39 @@ const tokens = {
     symbol: 'BANANA-BNB',
     address: {
       56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+      97: '0x90Fc86A7570063a9eA971ec74f01F89569Ad6237',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBusd: {
+    symbol: 'BNB-BUSD',
+    address: {
+      56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbEth: {
+    symbol: 'BNB-ETH',
+    address: {
+      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBtc: {
+    symbol: 'BNB-BTC',
+    address: {
+      56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  usdcBusd: {
+    symbol: 'USDC-BUSD',
+    address: {
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
     },
     decimals: 18,
     lpToken: true,
@@ -1038,10 +1062,25 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
+  bnbjdi: {
+    symbol: 'BNB-JDI',
+    address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
+    },
+  },
   rubyBnb: {
     symbol: 'RUBY-BNB',
     address: {
       56: '0xec9f5a5e4690fa14025971f0d2dd91f5600e24c7',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  nftyBnb: {
+    symbol: 'NFTY-BNB',
+    address: {
+      56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
     },
     decimals: 18,
     lpToken: true,

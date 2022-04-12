@@ -1,10 +1,12 @@
 export interface ListViewProps {
   tag?: string
-  title: string
+  title: React.ReactNode
   infoContent?: React.ReactNode
   open?: boolean
   cardContent: React.ReactNode
-  expandedContent: React.ReactNode
+  expandedContent?: React.ReactNode
+  expandedContentSize?: number
+  billArrow?: boolean
 }
 
 export interface ListCardProps extends ListViewProps {
