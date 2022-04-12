@@ -14,8 +14,13 @@ const BillsBody1: React.FC = () => {
           Each Treasury Bill is a unique NFT that represents the contract and its respective reward tokens, which vest
           over a certain amount of time.
         </StyledText>
-        <TextButton>For more info, visit the Treasury Bills page in our Documentation.</TextButton>
-
+        <a
+          href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/treasury-bills"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TextButton>For more info, visit the Treasury Bills page in our Documentation.</TextButton>
+        </a>
         <Hiw>How It Works:</Hiw>
       </Description>
       <MainContentBody>
