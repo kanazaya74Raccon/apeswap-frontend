@@ -8,13 +8,11 @@ const maticConfig: MenuEntry[] = [
     label: 'Farms',
     href: '/farms',
     isNew: false,
-    isLive: false,
   },
   {
     label: 'Vaults',
     href: '/vaults',
     isNew: false,
-    isLive: false,
   },
   {
     label: 'More',
@@ -25,19 +23,16 @@ const maticConfig: MenuEntry[] = [
         label: 'Docs',
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
         isNew: false,
-        isLive: false,
       },
       {
         label: 'Charts',
         href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
         isNew: false,
-        isLive: false,
       },
       {
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
         isNew: false,
-        isLive: false,
       },
     ],
   },
