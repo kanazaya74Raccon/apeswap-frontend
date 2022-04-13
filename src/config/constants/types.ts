@@ -243,3 +243,14 @@ export interface DualFarmConfig {
     token1?: Token
   }
 }
+
+// Types used to check for live IAOs
+export type LiveIfo = {
+  id: number
+  label: string
+  settings: {
+    id: number
+    tag: string
+    navItem: string
+  }[]
+}

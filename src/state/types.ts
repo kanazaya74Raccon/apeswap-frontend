@@ -12,6 +12,7 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
+  LiveIfo,
 } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
@@ -547,6 +548,12 @@ export interface TeamsState {
   data: TeamsById
 }
 
+export interface LiveIfoState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: LiveIfo[]
+}
+
 // Global state
 
 export interface State {
@@ -568,4 +575,5 @@ export interface State {
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
   nfas: NfaState
+  liveIfo: LiveIfoState
 }

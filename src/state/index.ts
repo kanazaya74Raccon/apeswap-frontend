@@ -25,6 +25,7 @@ import burn from './burn/reducer'
 import mint from './mint/reducer'
 import lpPricesReducer from './lpPrices'
 import nfasReducer from './nfas'
+import liveIfo from './liveIfo'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 
@@ -53,6 +54,7 @@ const store = configureStore({
     transactions,
     burn,
     mint,
+    liveIfo,
   },
   middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   preloadedState: load({ states: PERSISTED_KEYS }),
