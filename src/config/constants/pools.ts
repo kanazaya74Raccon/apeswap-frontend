@@ -3587,6 +3587,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 194,
+    tokenName: 'DEP',
+    image: 'DEP.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.dep,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x75768Ea1A1C3c84121063f7A281ee3081dB1D8Ef',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://dea.sg/',
+    harvest: true,
+    tokenPerBlock: `0.526796875`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
