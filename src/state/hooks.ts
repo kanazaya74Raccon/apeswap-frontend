@@ -40,6 +40,7 @@ import {
   LaunchCalendarCard,
   ServiceData,
   FarmLpAprsType,
+  LiveIfoState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -59,6 +60,7 @@ import { fetchUserNetwork } from './network'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { fetchAllNfas } from './nfas'
+import { fetchLiveIfoStatus } from './liveIfo'
 
 const ZERO = new BigNumber(0)
 
@@ -597,4 +599,18 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useFetchLiveIfoStatus = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchLiveIfoStatus())
+  }, [dispatch, slowRefresh])
+}
+
+export const useLiveIfoStatus = () => {
+  const { data }: LiveIfoState = useSelector((state: State) => state.liveIfo)
+
+  return { liveIfos: data }
 }

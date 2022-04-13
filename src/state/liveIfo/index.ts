@@ -2,6 +2,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { LiveIfo } from 'config/constants/types'
 import { LiveIfoState } from 'state/types'
+import fetchIfoStatus from './fetchIfoStatus'
 
 const initialState: LiveIfoState = {
   isInitialized: false,
@@ -29,5 +30,15 @@ export const liveIfoStatus = createSlice({
 })
 
 export const { fetchLiveIfoStart, fetchLiveIfoSuccess, fetchLiveIfoFailure } = liveIfoStatus.actions
+
+export const fetchLiveIfoStatus = () => async (dispatch) => {
+  try {
+    dispatch(fetchLiveIfoStart())
+    const liveStatus = await fetchIfoStatus()
+    dispatch(fetchLiveIfoSuccess(liveStatus))
+  } catch (error) {
+    dispatch(fetchLiveIfoFailure())
+  }
+}
 
 export default liveIfoStatus.reducer
