@@ -1,7 +1,7 @@
 // import { apiBaseUrl } from 'hooks/api'
 import { ServiceData } from 'state/types'
 
-export const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://api.apeswap.finance'
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://api.apeswap.finance'
 
 const getHomepageServiceStats = async (): Promise<ServiceData[]> => {
   try {
