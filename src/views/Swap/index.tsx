@@ -126,6 +126,21 @@ export default function Swap({ history }: RouteComponentProps) {
   const updateParams = useCallback(
     (direction: string, currency: string) => {
       const searchParams = new URLSearchParams(history.location.search)
+
+      if (direction === 'inputCurrency' && currency === searchParams.get('outputCurrency')) {
+        if (searchParams.get('inputCurrency') !== null) {
+          searchParams.set('outputCurrency', searchParams.get('inputCurrency'))
+        } else {
+          searchParams.delete('outputCurrency')
+        }
+      } else if (direction === 'outputCurrency' && currency === searchParams.get('inputCurrency')) {
+        if (searchParams.get('outputCurrency') !== null) {
+          searchParams.set('inputCurrency', searchParams.get('outputCurrency'))
+        } else {
+          searchParams.delete('inputCurrency')
+        }
+      }
+
       searchParams.set(direction, currency)
       history.push(`?${searchParams.toString()}`)
     },
@@ -268,7 +283,7 @@ export default function Swap({ history }: RouteComponentProps) {
     (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
-      updateParams('inputCurrency', inputCurrency.address)
+      updateParams('inputCurrency', inputCurrency.symbol !== 'ETH' ? inputCurrency.address : 'ETH')
       const showSwapWarning = shouldShowSwapWarning(inputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(inputCurrency)
@@ -288,7 +303,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
-      updateParams('outputCurrency', outputCurrency.address)
+      updateParams('outputCurrency', outputCurrency.symbol !== 'ETH' ? outputCurrency.address : 'ETH')
       const showSwapWarning = shouldShowSwapWarning(outputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(outputCurrency)
