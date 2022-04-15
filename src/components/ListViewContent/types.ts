@@ -3,8 +3,8 @@ export interface ListViewContentProps {
   value: string
   value2?: string
   value2Secondary?: boolean
-  valueIcon?: string
-  value2Icon?: string
+  valueIcon?: React.ReactNode
+  value2Icon?: React.ReactNode
   mb?: number
   ml?: number
   width?: number
@@ -12,4 +12,7 @@ export interface ListViewContentProps {
   lineHeight?: number
   toolTip?: string
   aprCalculator?: React.ReactNode
+  justifyContent?: string
+  toolTipPlacement?: 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft'
+  toolTipTransform?: string
 }

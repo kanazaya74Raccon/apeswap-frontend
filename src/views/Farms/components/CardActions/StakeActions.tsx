@@ -21,7 +21,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ListViewContent from 'components/ListViewContent'
 import DepositModal from '../Modals/DepositModal'
 import WithdrawModal from '../Modals/WithdrawModal'
-import { ActionContainer, CenterContainer, SmallButtonSquare, StyledButtonSquare } from './styles'
+import { ActionContainer, CenterContainer, SmallButton, StyledButton } from './styles'
 
 interface StakeActionsProps {
   stakingTokenBalance: string
@@ -35,13 +35,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
   const dispatch = useAppDispatch()
   const { chainId, account } = useActiveWeb3React()
   const userStakedBalanceUsd = `$${(
-    getBalanceNumber(new BigNumber(stakingTokenBalance) || new BigNumber(0)) * lpValueUsd
+    getBalanceNumber(new BigNumber(stakedBalance) || new BigNumber(0)) * lpValueUsd
   ).toFixed(2)}`
   const [pendingDepositTrx, setPendingDepositTrx] = useState(false)
   const [pendingWithdrawTrx, setPendingWithdrawTrx] = useState(false)
   const { toastSuccess } = useToast()
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
   const firstStake = !new BigNumber(stakedBalance)?.gt(0)
 
   const { onStake } = useStake(pid)
@@ -55,12 +55,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
         await onStake(val)
           .then((resp) => {
             const trxHash = resp.transactionHash
-            toastSuccess(
-              'Deposit Successful',
-              <LinkExternal href={getEtherscanLink(trxHash, 'transaction', chainId)}>
-                <Text> View Transaction </Text>
-              </LinkExternal>,
-            )
+            toastSuccess('Deposit Successful', {
+              text: 'View Transaction',
+              url: getEtherscanLink(trxHash, 'transaction', chainId),
+            })
           })
           .catch((e) => {
             console.error(e)
@@ -101,13 +99,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
     if (firstStake) {
       return (
         <CenterContainer>
-          <StyledButtonSquare
+          <StyledButton
             onClick={onPresentDeposit}
             endIcon={pendingDepositTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingDepositTrx}
           >
             DEPOSIT
-          </StyledButtonSquare>
+          </StyledButton>
         </CenterContainer>
       )
     }
@@ -126,21 +124,21 @@ const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedB
           />
         )}
         <Flex>
-          <SmallButtonSquare
+          <SmallButton
             onClick={onPresentWithdraw}
             endIcon={pendingWithdrawTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingWithdrawTrx}
             mr="6px"
           >
             <MinusIcon color="white" width="16px" height="20px" fontWeight={700} />
-          </SmallButtonSquare>
-          <SmallButtonSquare
+          </SmallButton>
+          <SmallButton
             onClick={onPresentDeposit}
             endIcon={pendingDepositTrx && <AutoRenewIcon spin color="currentColor" />}
             disabled={pendingDepositTrx || !new BigNumber(stakingTokenBalance)?.gt(0)}
           >
             <AddIcon color="white" width="20px" height="20px" fontWeight={700} />
-          </SmallButtonSquare>
+          </SmallButton>
         </Flex>
         {!isMobile && (
           <ListViewContent

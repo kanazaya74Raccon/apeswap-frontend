@@ -80,7 +80,9 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({ lpLabel, addLiquidit
       <ValueWrapper>
         <StyledText fontSize="12px">Reward Tokens</StyledText>
         <StyledText fontSize="12px">
-          {`${farm?.rewardTokens?.token0?.symbol} & ${farm?.rewardTokens?.token1?.symbol}`}
+          {`${farm?.rewardTokens?.token0?.symbol} & ${
+            farm?.dualImage !== false ? farm?.rewardTokens?.token1?.symbol : ''
+          }`}
         </StyledText>
       </ValueWrapper>
       <ValueWrapper>

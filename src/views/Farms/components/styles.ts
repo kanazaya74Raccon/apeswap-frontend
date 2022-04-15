@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { ButtonSquare, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
+import { Button, ArrowDropUpIcon, Flex, Text } from '@apeswapfinance/uikit'
 
-export const FarmButton = styled(ButtonSquare)`
+export const FarmButton = styled(Button)`
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
@@ -15,6 +15,16 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 `
 
 export const Container = styled(Flex)`
+  flex-direction: row;
   position: relative;
   transform: translateY(-40px);
+  align-items: center;
+  justify-content: center;
+`
+
+export const TitleText = styled(Text)`
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
 `

@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading } from '@apeswapfinance/uikit'
+import { Text, Heading, Spinner, Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
-import nfts from 'config/constants/nfts'
+import { useFetchNfas, useNfas } from 'state/hooks'
 import SortNfts from './components/SortNfts'
 import OwnedNfts from './components/OwnedNft'
 
@@ -72,16 +72,18 @@ const StyledAnchor = styled.a`
 `
 
 const Nft = () => {
+  useFetchNfas()
+  const { nfas, isInitialized } = useNfas()
   const TranslateString = useI18n()
 
   return (
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white">
             {TranslateString(999, 'Non Fungible Apes')}
           </StyledHeading>
-          <StyledHeading as="h1" mb="8px" mt={1} color="white" fontWeight={800}>
+          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
             {TranslateString(999, 'Collection')}
           </StyledHeading>
         </HeadingContainer>
@@ -109,7 +111,13 @@ const Nft = () => {
             </StyledAnchor>
           </Text>
         </StyledHero>
-        <SortNfts nftSet={nfts} />
+        {isInitialized ? (
+          <SortNfts nftSet={nfas} />
+        ) : (
+          <Flex alignItems="center" justifyContent="center">
+            <Spinner />
+          </Flex>
+        )}
       </Page>
     </>
   )

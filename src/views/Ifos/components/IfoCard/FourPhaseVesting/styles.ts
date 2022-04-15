@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Button, Text, ButtonSquare } from '@apeswapfinance/uikit'
+import { Button, Text } from '@apeswapfinance/uikit'
 // import BaseUnlockButton from 'components/UnlockButton'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButtonSquare from 'components/UnlockButton'
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white3};
@@ -10,6 +10,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 272px;
 `
 
 export const VestingButtonWrapper = styled.div`
@@ -25,7 +26,7 @@ export const VestingClaimButton = styled(Button)`
   width: 130px;
   height: 44px;
   background-color: secondary;
-  margin: 10px;
+  margin: 0 auto 12px auto;
   flex-shrink: 0;
   background: #ffb300;
   padding: 0;
@@ -62,14 +63,19 @@ export const TextWrapRow = styled.div`
   flex-wrap: wrap;
 `
 
-export const ApproveButton = styled(ButtonSquare)`
+export const ApproveButton = styled(Button)`
   width: 220px;
   margin: 0 auto;
 `
 
 export const UnlockButton = styled(UnlockButtonSquare)`
   width: 220px;
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
   height: 44px;
   font-size: 16px;
+`
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

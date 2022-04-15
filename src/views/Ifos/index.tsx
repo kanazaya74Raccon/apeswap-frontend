@@ -60,6 +60,7 @@ const HeaderContainer = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 36px;
   max-width: 240px !important;
+  margin-bottom: 8px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: 44px;
@@ -182,7 +183,7 @@ const Ifos = () => {
     <>
       <Header>
         <HeaderContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" style={{ color: 'white' }}>
             {TranslateString(999, 'Initial Ape Offerings')}
           </StyledHeading>
         </HeaderContainer>

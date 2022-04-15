@@ -1,7 +1,8 @@
-import styled from 'styled-components'
-import { ButtonSquare, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
+import { ButtonSquare, ArrowDropUpIcon } from '@apeswapfinance/uikit'
+import { Button, Flex, IconButton } from '@ape.swap/uikit'
+import styled from '@emotion/styled'
 
-export const StyledButton = styled(ButtonSquare)`
+export const StyledButton = styled(Button)`
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
@@ -17,4 +18,12 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 export const Container = styled(Flex)`
   position: relative;
   transform: translateY(-40px);
+`
+
+export const ActionContainer = styled(Flex)`
+  width: 100%;
+  justify-content: space-between;
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: fit-content;
+  }
 `

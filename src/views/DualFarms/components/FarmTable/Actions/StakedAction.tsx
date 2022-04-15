@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Button, useModal, IconButtonSquare, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
+import { Button, useModal, IconButton, AddIcon, MinusIcon } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
@@ -25,21 +25,13 @@ const IconButtonWrapper = styled.div`
   margin-right: 67px;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
+const StyledIconButton = styled(IconButton)`
   width: 34px;
   height: 34px;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StyledButton = styled(Button)`
   font-weight: 800;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData }) => {
@@ -98,14 +90,14 @@ const Staked: React.FunctionComponent<DualFarm> = ({ pid, stakeTokens, userData 
     ) : (
       <IconButtonWrapperStake>
         <Reward ref={rewardRefNeg} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+          <StyledIconButton onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
-          </StyledIconButtonSquare>
+          </StyledIconButton>
         </Reward>
         <Reward ref={rewardRefPos} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
+          <StyledIconButton onClick={onPresentDeposit}>
             <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
+          </StyledIconButton>
         </Reward>
       </IconButtonWrapperStake>
     )

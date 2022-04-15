@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, ButtonSquare, ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 interface Props {
   title?: string
@@ -21,26 +21,35 @@ const CurrencyInputContainer = styled(Flex)`
   margin-bottom: 20px;
 `
 
-const StyledFlex = styled(Flex)``
-
 const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const history = useHistory()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
   const swapActive = path.pathname.includes('swap')
   return (
     <CurrencyInputContainer>
-      <ButtonMenu activeIndex={swapActive ? 0 : 1} size="mds" variant="yellow">
-        <ButtonMenuItem as={Link} to="/swap" fontSize="14px" isMobile={isMobile}>
-          SWAP
-        </ButtonMenuItem>
-        <ButtonMenuItem as={Link} to="/pool" fontSize="14px" isMobile={isMobile}>
-          LIQUIDITY
-        </ButtonMenuItem>
-      </ButtonMenu>
-      <StyledFlex>
+      <Tabs activeTab={swapActive ? 0 : 1} size="md">
+        <Tab
+          index={0}
+          label="SWAP"
+          onClick={() => history.push('/swap')}
+          size={isMobile ? 'xsm' : 'md'}
+          variant="centered"
+          activeTab={swapActive ? 0 : 1}
+        />
+        <Tab
+          index={1}
+          label="LIQUIDITY"
+          onClick={() => history.push('/pool')}
+          size={isMobile ? 'xsm' : 'md'}
+          variant="centered"
+          activeTab={swapActive ? 0 : 1}
+        />
+      </Tabs>
+      <Flex>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
-          <ButtonSquare
+          <Button
             style={{
               fontSize: '15px',
               fontWeight: 700,
@@ -50,10 +59,10 @@ const CurrencyInputHeader: React.FC<Props> = () => {
             }}
           >
             BRIDGE
-          </ButtonSquare>
+          </Button>
         </a>
         <GlobalSettings />
-      </StyledFlex>
+      </Flex>
     </CurrencyInputContainer>
   )
 }

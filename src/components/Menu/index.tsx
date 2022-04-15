@@ -1,11 +1,12 @@
 import React from 'react'
-import { Menu as UikitMenu } from '@apeswapfinance/uikit'
+import { Navbar as UikitMenu } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
 import { useProfile, useTokenPrices } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
+import track from 'utils/track'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
 
@@ -38,10 +39,13 @@ const Menu = (props) => {
       links={currentMenu()}
       chainId={chainId}
       switchNetwork={switchNetwork}
+      no
       profile={{
         image: profile ? profile?.rarestNft.image : null,
         noProfileLink: '/nft',
+        profileLink: '',
       }}
+      track={track}
       {...props}
     />
   )

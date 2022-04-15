@@ -4,7 +4,6 @@ import styled from 'styled-components'
 export const ListViewContentContainer = styled(Flex)<{ width?: number; height?: number }>`
     flex-direction: column;
     align-items: flex-start:
-    border: 1px solid green;
     justify-content: flex-start;
     height: ${({ height }) => (height ? `${height}px` : '100%')};
     max-width: ${({ width }) => width || 100}px;

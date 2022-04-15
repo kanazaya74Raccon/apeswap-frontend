@@ -355,15 +355,6 @@ const tokens = {
     },
     decimals: 18,
   },
-  bnbjdi: {
-    symbol: 'BNB-JDI',
-    address: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
-    },
-    decimals: 18,
-    lpToken: true,
-  },
   obie: {
     symbol: 'OBIE',
     address: {
@@ -977,12 +968,80 @@ const tokens = {
     },
     decimals: 18,
   },
+  front: {
+    symbol: 'FRONT',
+    address: {
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    decimals: 18,
+  },
+  ruby: {
+    symbol: 'RUBY',
+    address: {
+      56: '0xf7722aa0714096f1fb5ef83e6041cebb4d58a08e',
+    },
+    decimals: 18,
+  },
+  anml: {
+    symbol: 'ANML',
+    address: {
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    decimals: 18,
+  },
+  drf: {
+    symbol: 'DRF',
+    address: {
+      56: '0x89C1Af791d7B4cf046Dca8Fa10a41Dd2298A6a3F',
+    },
+    decimals: 18,
+  },
+  bountie: {
+    symbol: 'BOUNTIE',
+    address: {
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
     symbol: 'BANANA-BNB',
     address: {
       56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+      97: '0x90Fc86A7570063a9eA971ec74f01F89569Ad6237',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBusd: {
+    symbol: 'BNB-BUSD',
+    address: {
+      56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbEth: {
+    symbol: 'BNB-ETH',
+    address: {
+      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBtc: {
+    symbol: 'BNB-BTC',
+    address: {
+      56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  usdcBusd: {
+    symbol: 'USDC-BUSD',
+    address: {
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
     },
     decimals: 18,
     lpToken: true,
@@ -999,6 +1058,37 @@ const tokens = {
     symbol: 'NFT11-BUSD',
     address: {
       56: '0xEf0A90fb728195F63C911f52ab4bde331089319f',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbjdi: {
+    symbol: 'BNB-JDI',
+    address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
+    },
+  },
+  rubyBnb: {
+    symbol: 'RUBY-BNB',
+    address: {
+      56: '0xec9f5a5e4690fa14025971f0d2dd91f5600e24c7',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  nftyBnb: {
+    symbol: 'NFTY-BNB',
+    address: {
+      56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  drfBusd: {
+    symbol: 'DRF-BUSD',
+    address: {
+      56: '0x5FFc5b392Fcc33357c6a8240bda1C9374A55E6B8',
     },
     decimals: 18,
     lpToken: true,

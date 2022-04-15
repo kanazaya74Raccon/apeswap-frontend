@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import { Flex, IconButtonSquare, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
+import { Flex, IconButton, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useVaultStake } from 'hooks/useStake'
@@ -34,13 +34,9 @@ const IconButtonWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const StyledIconButtonSquare = styled(IconButtonSquare)`
+const StyledIconButton = styled(IconButton)`
   width: 34px;
   height: 34px;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 const StyledFlex = styled(Flex)`
@@ -91,7 +87,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({ vault, stakingTokenBalance, 
         const maxWithdraw = val === getFullDisplayBalance(stakedBalance)
         setTypeOfReward('removed')
         if (maxWithdraw) {
-          await onUnstakeAll().catch(() => {
+          await onUnstakeAll(val).catch(() => {
             setTypeOfReward('error')
             rewardRefUnstakeAll.current?.rewardMe()
           })
@@ -110,14 +106,14 @@ const StakeAction: React.FC<StakeActionsProps> = ({ vault, stakingTokenBalance, 
     return (
       <IconButtonWrapperStake>
         <Reward ref={rewardRefUnstake} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentWithdraw} mr="6px">
+          <StyledIconButton onClick={onPresentWithdraw} mr="6px">
             <MinusIcon color="white" width="12px" height="12px" />
-          </StyledIconButtonSquare>
+          </StyledIconButton>
         </Reward>
         <Reward ref={rewardRefStake} type="emoji" config={rewards[typeOfReward]}>
-          <StyledIconButtonSquare onClick={onPresentDeposit}>
+          <StyledIconButton onClick={onPresentDeposit}>
             <AddIcon color="white" width="16px" height="16px" />
-          </StyledIconButtonSquare>
+          </StyledIconButton>
         </Reward>
       </IconButtonWrapperStake>
     )

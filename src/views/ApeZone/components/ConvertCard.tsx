@@ -12,7 +12,7 @@ import { useBananaAddress } from 'hooks/useAddress'
 import useTokenBalance from 'hooks/useTokenBalance'
 
 import TokenInput from 'components/TokenInput'
-import CardValue from 'views/Home/components/CardValue'
+import CardValue from 'components/CardValue'
 
 import {
   FlexSection,

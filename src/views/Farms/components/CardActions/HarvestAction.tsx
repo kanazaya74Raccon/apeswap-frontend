@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHarvest } from 'hooks/useHarvest'
-import { AutoRenewIcon, LinkExternal, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -22,8 +22,8 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onHarvest } = useHarvest(pid)
   const { toastSuccess } = useToast()
-  const { isXl, isLg } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl
+  const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const isMobile = !isLg && !isXl && !isXxl
 
   return (
     <ActionContainer>
@@ -36,12 +36,10 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
           await onHarvest()
             .then((resp) => {
               const trxHash = resp.transactionHash
-              toastSuccess(
-                'Harvest Successful',
-                <LinkExternal href={getEtherscanLink(trxHash, 'transaction', chainId)}>
-                  <Text> View Transaction </Text>
-                </LinkExternal>,
-              )
+              toastSuccess('Harvest Successful', {
+                text: 'View Transaction',
+                url: getEtherscanLink(trxHash, 'transaction', chainId),
+              })
             })
             .catch((e) => {
               console.error(e)

@@ -14,10 +14,13 @@ export const customMeta: { [key: string]: PageMeta } = {
     title: 'Ape Stats | ApeSwap',
   },
   '/nft': {
-    title: 'Collectibles | ApeSwap',
+    title: 'NFA Collectibles | ApeSwap',
   },
   '/farms': {
-    title: 'Farms | ApeSwap',
+    title: 'BANANA Farms | ApeSwap',
+  },
+  '/jungle-farms': {
+    title: 'Jungle Farms | ApeSwap',
   },
   '/pools': {
     title: 'Pools | ApeSwap',
@@ -38,6 +41,9 @@ export const customMeta: { [key: string]: PageMeta } = {
     title: 'Auction | ApeSwap',
   },
   '/staking': {
-    title: 'Staking | ApeSwap',
+    title: 'NFA Staking | ApeSwap',
+  },
+  '/treasury-bills': {
+    title: 'Treasury Bills | ApeSwap',
   },
 }

@@ -5,10 +5,10 @@ export const OPTIONS = [
     label: 'All',
     value: 'all',
   },
-  {
-    label: 'New',
-    value: 'new',
-  },
+  // {
+  //   label: 'New',
+  //   value: 'new',
+  // },
   {
     label: 'Blue Chips',
     value: 'blueChips',
@@ -18,7 +18,7 @@ export const OPTIONS = [
     value: 'stables',
   },
   {
-    label: 'APR',
+    label: 'APY',
     value: 'apr',
   },
   {

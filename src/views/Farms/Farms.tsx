@@ -3,10 +3,11 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFarms, useFetchLpTokenPrices, usePollFarms } from 'state/hooks'
+import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import { Farm } from 'state/types'
+import { useFarms, usePollFarms } from 'state/farms/hooks'
 import useI18n from 'hooks/useI18n'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
@@ -14,16 +15,20 @@ import { Header, HeadingContainer, StyledHeading } from './styles'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
 
 const Farms: React.FC = () => {
-  usePollFarms()
   useFetchLpTokenPrices()
+  usePollFarms()
+  const { account, chainId } = useActiveWeb3React()
+  useFetchFarmLpAprs(chainId)
   const { pathname } = useLocation()
   const TranslateString = useI18n()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
-  const { account } = useActiveWeb3React()
   const farmsLP = useFarms(account)
+  const { search } = window.location
+  const params = new URLSearchParams(search)
+  const urlSearchedFarm = parseInt(params.get('pid'))
   const [query, setQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -54,7 +59,11 @@ const Farms: React.FC = () => {
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
 
-  const hasHarvestPids = farmsLP
+  const stakedOnlyInactiveFarms = inactiveFarms.filter(
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+  )
+
+  const hasHarvestPids = [...activeFarms, ...inactiveFarms]
     .filter((farm) => farm.userData && new BigNumber(farm.userData.earnings).isGreaterThan(0))
     .map((filteredFarm) => {
       return filteredFarm.pid
@@ -67,8 +76,25 @@ const Farms: React.FC = () => {
   const renderFarms = () => {
     let farms = isActive ? activeFarms : inactiveFarms
 
+    if (urlSearchedFarm) {
+      const farmCheck =
+        activeFarms?.find((farm) => {
+          return farm.pid === urlSearchedFarm
+        }) !== undefined
+      if (farmCheck) {
+        farms = [
+          activeFarms?.find((farm) => {
+            return farm.pid === urlSearchedFarm
+          }),
+          ...activeFarms?.filter((farm) => {
+            return farm.pid !== urlSearchedFarm
+          }),
+        ]
+      }
+    }
+
     if (stakedOnly) {
-      farms = stakedOnlyFarms
+      farms = isActive ? stakedOnlyFarms : stakedOnlyInactiveFarms
     }
 
     if (query) {
@@ -79,13 +105,13 @@ const Farms: React.FC = () => {
 
     switch (sortOption) {
       case 'all':
-        return farms
+        return farms.slice(0, numberOfFarmsVisible)
       case 'stables':
         return farms
           .filter((farm) => STABLES.includes(farm.tokenSymbol) && STABLES.includes(farm.quoteTokenSymbol))
           .slice(0, numberOfFarmsVisible)
       case 'apr':
-        return orderBy(farms, (farm) => parseFloat(farm.apr), 'desc').slice(0, numberOfFarmsVisible)
+        return orderBy(farms, (farm) => parseFloat(farm.apy), 'desc').slice(0, numberOfFarmsVisible)
       case 'new':
         return farms
       case 'blueChips':
@@ -103,27 +129,31 @@ const Farms: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="12px" mt={0} fontWeight={800}>
-            {TranslateString(999, 'Stake LP tokens to earn BANANA')}
-          </StyledHeading>
+          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
         </HeadingContainer>
       </Header>
-
-      <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
+      <Flex
+        justifyContent="center"
+        mb="100px"
+        style={{ position: 'relative', top: '30px', width: '100%', padding: '0px 10px' }}
+      >
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <ListViewMenu
-            onHandleQueryChange={handleChangeQuery}
-            onSetSortOption={setSortOption}
-            onSetStake={setStakedOnly}
-            harvestAll={<HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />}
-            stakedOnly={stakedOnly}
-            query={query}
-            showMonkeyImage
-          />
-          <DisplayFarms farms={renderFarms()} />
-          <div ref={loadMoreRef} />
+          <Flex alignItems="center" justifyContent="center">
+            <ListViewMenu
+              onHandleQueryChange={handleChangeQuery}
+              onSetSortOption={setSortOption}
+              onSetStake={setStakedOnly}
+              harvestAll={<HarvestAllAction pids={hasHarvestPids} disabled={hasHarvestPids.length === 0} />}
+              stakedOnly={stakedOnly}
+              query={query}
+              activeOption={sortOption}
+              showMonkeyImage
+            />
+          </Flex>
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
         </Flex>
       </Flex>
+      <div ref={loadMoreRef} />
     </>
   )
 }

@@ -5,7 +5,6 @@ import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/action
 import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
-import { updateFarmUserAllowances } from 'state/farms'
 import { updateDualFarmUserAllowances } from 'state/dualFarms'
 import { updateVaultUserAllowance } from 'state/vaults'
 import useActiveWeb3React from './useActiveWeb3React'
@@ -20,14 +19,11 @@ import {
 } from './useContract'
 
 // Approve a Farm
-export const useApprove = (lpContract, pid: number) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
+export const useApprove = (lpContract) => {
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
     const trx = await approve(lpContract, masterChefContract)
-    dispatch(updateFarmUserAllowances(chainId, pid, account))
     track({
       event: 'farm',
       chain: CHAIN_ID,
@@ -37,23 +33,21 @@ export const useApprove = (lpContract, pid: number) => {
       },
     })
     return trx
-  }, [account, dispatch, lpContract, masterChefContract, pid, chainId])
+  }, [lpContract, masterChefContract])
 
   return { onApprove: handleApprove }
 }
 
 // Approve a Pool
 export const useSousApprove = (lpContract, sousId) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
     const tx = await approve(lpContract, sousChefContract)
-    dispatch(updateUserAllowance(chainId, sousId, account))
     track({
       event: 'pool',
-      chain: CHAIN_ID,
+      chain: chainId,
       data: {
         token: tx.to,
         id: sousId,
@@ -61,7 +55,7 @@ export const useSousApprove = (lpContract, sousId) => {
       },
     })
     return tx
-  }, [account, dispatch, lpContract, sousChefContract, sousId, chainId])
+  }, [lpContract, sousChefContract, sousId, chainId])
 
   return { onApprove: handleApprove }
 }

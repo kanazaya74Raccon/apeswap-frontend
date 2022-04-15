@@ -1,6 +1,6 @@
 import React from 'react'
 import { Currency, CurrencyAmount, Fraction, Percent } from '@apeswapfinance/sdk'
-import { ButtonSquare, Text } from '@apeswapfinance/uikit'
+import { Button, Text } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { RowBetween, RowFixed } from '../../components/layout/Row'
 import { CurrencyLogo } from '../../components/Logo'
@@ -58,9 +58,9 @@ function ConfirmAddModalBottom({
         <Text>Share of Pool:</Text>
         <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
-      <ButtonSquare fullWidth onClick={onAdd} mt="25px" style={{ height: '50px', fontSize: '20px' }}>
+      <Button fullWidth onClick={onAdd} mt="25px" style={{ height: '50px', fontSize: '20px' }}>
         {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
-      </ButtonSquare>
+      </Button>
     </>
   )
 }

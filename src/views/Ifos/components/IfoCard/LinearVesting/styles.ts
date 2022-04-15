@@ -9,13 +9,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 272px;
 `
 
 export const VestingClaimButton = styled(Button)`
   width: 220px;
   height: 44px;
   background-color: secondary;
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
   flex-shrink: 0;
   background: #ffb300;
   padding: 0;
@@ -55,7 +56,12 @@ export const ApproveButton = styled(Button)`
 
 export const UnlockButton = styled(BaseUnlockButton)`
   width: 220px;
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
   height: 44px;
   font-size: 16px;
+`
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

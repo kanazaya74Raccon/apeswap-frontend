@@ -16,6 +16,7 @@
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
+    "camelcase": ["error", {"allow": ["trait_type", "user_id"]}],
     "no-underscore-dangle": 0,
     "import/prefer-default-export": 0,
     // Start temporary rules
@@ -25,6 +26,7 @@
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-empty-interface": 0,
     "radix": 0,
     "import/no-extraneous-dependencies": 0,
     "react/require-default-props": 0,

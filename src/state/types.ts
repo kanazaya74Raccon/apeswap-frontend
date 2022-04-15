@@ -12,6 +12,7 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
+  BillsConfig,
 } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
@@ -26,6 +27,7 @@ export interface Farm extends FarmConfig {
   totalLpStakedUsd?: string
   apr?: string
   apy?: string
+  lpApr?: string
   bananaPrice?: number
   lpValueUsd?: number
   userData?: {
@@ -72,6 +74,54 @@ export interface Pool extends PoolConfig {
   lpData?: any
 }
 
+export interface UserBillNft {
+  image: string
+  tokenId: string
+  attributes: {
+    trait_type: string
+    value: string
+  }[]
+}
+
+export interface UserBill {
+  address: string
+  id: string
+  vesting: string
+  payout: string
+  truePricePaid: string
+  lastBlockTimestamp: string
+  pendingRewards: string
+  nftData?: UserBillNft
+}
+
+export interface Bills extends BillsConfig {
+  price?: string
+  priceUsd?: string
+  vestingTime?: string
+  discount?: string
+  currentDebt?: string
+  currentFee?: string
+  debtDecay?: string
+  debtRatio?: string
+  totalDebt?: string
+  totalPayoutGiven?: string
+  totalPrincipleBilled?: string
+  controlVariable?: string
+  minimumPrice?: string
+  maxPayout?: string
+  maxDebt?: string
+  lpPriceUsd?: number
+  earnTokenPrice?: number
+  billNftAddress?: string
+  userData?: {
+    allowance: string
+    stakingTokenBalance: string
+    bills?: UserBill[]
+  }
+  userOwnedBillsData?: UserBill[]
+  userOwnedBillsNftData?: UserBillNft[]
+}
+
 export interface JunglePool extends PoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
@@ -113,7 +163,6 @@ export interface Vault extends VaultConfig {
 export interface NfaStakingPool extends NfaStakingPoolConfig {
   totalStaked?: BigNumber
   startBlock?: number
-  endBlock?: number
   apr?: number
   userData?: {
     allowance: boolean
@@ -227,7 +276,45 @@ export interface HomepageData {
   circulatingSupply: number
   gnanaCirculatingSupply: number
   burntAmount: number
+  totalVolume: number
+  partnerCount?: number
 }
+
+export interface HomepageTokenStats {
+  tokenTicker: string
+  tokenPrice: number
+  percentChange: number
+  contractAddress: string
+  logoUrl: string
+}
+
+export interface NewsCardType {
+  id: number
+  cardPosition: number
+  cardImageUrl: any
+  CardLink: string
+  StartTime: string
+  EndTime: string
+}
+
+export interface FarmLpAprsType {
+  chainId: number
+  lpAprs: {
+    pid: number
+    lpApr: number
+  }[]
+}
+
+export interface LaunchCalendarCard {
+  image1: any
+  image2?: any
+  textLine1: string
+  textLine2?: string
+  textLine3?: string
+  launchTime: string
+}
+
+export type Nfa = Nft
 
 export interface PoolOverall {
   address: string
@@ -315,6 +402,27 @@ export interface IazoStatus {
   numBuyers: string
 }
 
+export interface ServiceData {
+  id: number
+  apr?: number
+  apy?: number
+  link: string
+  marketName?: string
+  marketAddress?: string
+  stakeToken?: {
+    name: string
+    address: string
+  }
+  rewardToken?: {
+    name: string
+    address: string
+  }
+  token?: {
+    name: string
+    address: string
+  }
+}
+
 export interface IazoSocialInfo {
   telegram: string
   twitter: string
@@ -392,12 +500,22 @@ export interface PoolsState {
   data: Pool[]
 }
 
+export interface NfaState {
+  isInitialized: boolean
+  isLoading: boolean
+  data: Nfa[]
+}
+
 export interface JunglePoolsState {
   data: JunglePool[]
 }
 
 export interface DualFarmsState {
   data: DualFarm[]
+}
+
+export interface BillsState {
+  data: Bills[]
 }
 
 export interface NetworkState {
@@ -426,6 +544,11 @@ export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
   HomepageData: HomepageData
+  HomepageTokenStats: HomepageTokenStats[]
+  HomepageNews: NewsCardType[]
+  HomepageLaunchCalendar: LaunchCalendarCard[]
+  HomepageServiceStats: ServiceData[]
+  FarmLpAprs: FarmLpAprsType
   data: Stats
 }
 
@@ -497,4 +620,6 @@ export interface State {
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
+  bills: BillsState
+  nfas: NfaState
 }

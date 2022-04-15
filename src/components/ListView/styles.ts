@@ -1,4 +1,4 @@
-import { ArrowDropDownIcon, Card, Flex, Text } from '@apeswapfinance/uikit'
+import { ArrowDropDownIcon, Flex, Text } from '@apeswapfinance/uikit'
 import styled, { keyframes } from 'styled-components'
 
 const ExpandLargeAnimation = keyframes`
@@ -6,47 +6,57 @@ const ExpandLargeAnimation = keyframes`
     100%{height: 100px;}
 `
 
-const ExpandSmallAnimation = keyframes`
+const ExpandSmallAnimation = (size?: number) => keyframes`
     0%{height: 0;}
-    100%{height: 243px;}
+    100%{height: ${size || 234}px;}
 `
 
-export const ListExpandedContainer = styled(Flex)`
-  height: 243px;
+export const ListExpandedContainer = styled(Flex)<{ size?: number }>`
+  height: ${({ size }) => size || 234}px;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  animation: ${ExpandSmallAnimation} 0.3s ease;
+  animation: ${({ size }) => ExpandSmallAnimation(size)} 0.3s ease;
   overflow: hidden;
   margin: 0px 10px 0px 10px;
   padding: 10px;
-  background-color: ${({ theme }) => (theme.isDark ? '#383838' : '#F1EADA')};
+  background: ${({ theme }) => theme.colors.white3};
+  max-width: 500px;
+  min-width: 300px;
+  width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 0px 30px 0px 30px;
     animation: ${ExpandLargeAnimation} 0.3s ease;
     height: 100px;
+    max-width: 100%;
+    flex-wrap: no-wrap;
   }
 `
-//   ${({theme}) => theme.colors.dark3};
 
-export const ListCardContainer = styled(Card)`
-  display: flex;
-  height: 110px;
+export const ListCardContainer = styled(Flex)`
+  height: 130px;
   border-radius: 0;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  background: ${({ theme }) => theme.colors.white2};
   border-bottom: 1px solid rgba(226, 226, 226, 0.2);
   padding: 10px;
   margin: 0px 10px 0px 10px;
+  max-width: 500px;
+  min-width: 300px;
+  width: 100%;
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
     height: 86px;
     padding: 0px 30px 0px 30px;
+    max-width: 100%;
   }
 `
-//   ${({theme}) => theme.colors.white2};
 export const ListViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   & ${ListCardContainer}:first-child {
     border-radius: 10px 10px 0px 0px;
@@ -79,9 +89,8 @@ export const TagContainer = styled(Flex)`
 
 export const ContentContainer = styled(Flex)`
   position: relative;
-  max-width: 650px;
   width: 100%;
-  height: 50px;
+  height: 62.5px;
   align-items: flex-end;
   justify-content: space-between;
   ${({ theme }) => theme.mediaQueries.md} {

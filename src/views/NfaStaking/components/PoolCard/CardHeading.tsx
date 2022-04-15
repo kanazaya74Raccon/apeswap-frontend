@@ -1,12 +1,12 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { BLOCKS_PER_DAY } from 'config'
+import styled from '@emotion/styled'
 import { useWeb3React } from '@web3-react/core'
 import { NfaStakingPool } from 'state/types'
 import { Flex, Heading, Text } from '@apeswapfinance/uikit'
-import UnlockButtonSquare from 'components/UnlockButtonSquare'
+import UnlockButton from 'components/UnlockButton'
 import { getBalanceNumber } from 'utils/formatBalance'
 import ExpandableSectionButton from './ExpandableSectionButton'
 import HarvestActions from './CardActions/HarvestActions'
@@ -279,7 +279,7 @@ const StyledNumber = styled.div`
   }
 `
 
-const StyledUnlockButton = styled(UnlockButtonSquare)`
+const StyledUnlockButton = styled(UnlockButton)`
   font-weight: 600;
   font-size: 11.5px;
 `
@@ -340,7 +340,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <NumberHolder>
             <StyledNumber>{tier}</StyledNumber>
           </NumberHolder>
-          <Image rarityTier={tier} borderRadius="50%" />
+          <Image rarityTier={tier} borderRadius="50%" hideTier />
         </StyledImageHolder>
         <StyledArrow src="/images/arrow.svg" alt="arrow" />
         <StyledImage src={`/images/tokens/${earnTokenImage || `${earnToken}.svg`}`} alt={earnToken} />

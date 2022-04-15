@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Text, Button } from '@apeswapfinance/uikit'
 
 export const PageWrapper = styled.div`
   display: none;
@@ -76,11 +76,10 @@ export const StyledHeader = styled(Text)`
   }
 `
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(Button)`
   width: 195px;
   height: 46px;
   color: #ffffff;
-  background-color: #ffb300;
   border-radius: 10px;
   font-size: 18px;
   margin-top: 20px;

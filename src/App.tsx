@@ -2,7 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { ResetCSS, ChevronUpIcon } from '@apeswapfinance/uikit'
+import { ResetCSS, ChevronUpIcon, ApeSwapTheme } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
@@ -13,10 +13,16 @@ import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
+import Pool from './views/Pool'
+
+declare module '@emotion/react' {
+  export interface Theme extends ApeSwapTheme {}
+}
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
-const Home = lazy(() => import('./views/Home'))
+// const Home = lazy(() => import('./views/Home'))
+const Home = lazy(() => import('./views/Homepage'))
 const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
 const JunglePools = lazy(() => import('./views/JunglePools'))
@@ -35,8 +41,8 @@ const IazoPage = lazy(() => import('./views/Iazos/components/IazoPage'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
+const Bills = lazy(() => import('./views/Bills'))
 const Swap = lazy(() => import('./views/Swap'))
-const Pool = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -142,10 +148,14 @@ const App: React.FC = () => {
               <Route path="/farms">
                 <DualFarms />
               </Route>
+              <Route path="/swap" component={Swap} />
               <Route path="/vaults">
                 <Vaults />
               </Route>
               {/* Redirects */}
+              <Route path="/treasury-bills">
+                <Redirect to="/" />
+              </Route>
               <Route exact path="/nft">
                 <Redirect to="/" />
               </Route>
@@ -215,6 +225,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/vaults">
               <Vaults />
+            </Route>
+            <Route path="/treasury-bills">
+              <Bills />
             </Route>
             <Route path="/admin-pools">
               <AdminPools />

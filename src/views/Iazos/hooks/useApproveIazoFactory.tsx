@@ -8,13 +8,8 @@ const useApproveIazoFactory = (tokenAddress: string) => {
   const iazoFactoryAddress = useIazoFactoryAddress()
   const tokenContract = useERC20(tokenAddress)
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await tokenContract.approve(iazoFactoryAddress, ethers.constants.MaxUint256)
-      return tx
-    } catch (e) {
-      console.error(e)
-      return false
-    }
+    const tx = await (await tokenContract.approve(iazoFactoryAddress, ethers.constants.MaxUint256)).wait()
+    return tx
   }, [iazoFactoryAddress, tokenContract])
 
   return { onApprove: handleApprove }

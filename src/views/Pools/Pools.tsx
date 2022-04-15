@@ -12,26 +12,19 @@ import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
-import ListViewMenu from 'components/ListViewMenu'
-import { ViewMode } from './components/types'
+import PoolMenu from './components/Menu'
 import DisplayPools from './components/DisplayPools'
 import { Header, HeadingContainer, MonkeyWrapper, PoolMonkey, StyledHeading } from './styles'
-
-interface LabelProps {
-  active?: boolean
-}
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
   usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly, setGnanaOnly] = useState(false)
-  const [bananaOnly, setBananaOnly] = useState(false)
+  const [tokenOption, setTokenOption] = useState('allTokens')
   const [observerIsSet, setObserverIsSet] = useState(false)
-  const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
+  const [sortOption, setSortOption] = useState('all')
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { account } = useWeb3React()
   const { pathname } = useLocation()
@@ -40,22 +33,11 @@ const Pools: React.FC = () => {
   const TranslateString = useI18n()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
-  const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
-
-  useEffect(() => {
-    if (size.width !== undefined) {
-      if (size.width < 968) {
-        setViewMode(ViewMode.CARD)
-      } else {
-        setViewMode(ViewMode.TABLE)
-      }
-    }
-  }, [size])
 
   useEffect(() => {
     const showMorePools = (entries) => {
@@ -89,68 +71,10 @@ const Pools: React.FC = () => {
     (pool) => pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0),
   )
 
-  const gnanaOnlyPools = openPools.filter((pool) => pool.stakingToken?.symbol === 'GNANA')
-  const bananaOnlyPools = openPools.filter((pool) => pool.stakingToken?.symbol === 'BANANA')
-
-  const gnanaInactivePools = finishedPools.filter((pool) => pool.stakingToken?.symbol === 'GNANA')
-  const bananaInactivePools = finishedPools.filter((pool) => pool.stakingToken?.symbol === 'BANANA')
-  const gnanaStakedOnlyPools = openPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      pool.stakingToken?.symbol === 'GNANA',
-  )
-  const bananaStakedOnlyPools = openPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      pool.stakingToken?.symbol === 'BANANA',
-  )
-
-  const allStakedOnlyPools = openPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      (pool.stakingToken?.symbol === 'BANANA' || pool.stakingToken?.symbol === 'GNANA'),
-  )
-
-  const gnanaStakedInactivePools = finishedPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      pool.stakingToken?.symbol === 'GNANA',
-  )
-
-  const bananaStakedInactivePools = finishedPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      pool.stakingToken?.symbol === 'BANANA',
-  )
-
-  const allStakedInactivePools = finishedPools.filter(
-    (pool) =>
-      pool.userData &&
-      new BigNumber(pool.userData.stakedBalance).isGreaterThan(0) &&
-      (pool.stakingToken?.symbol === 'BANANA' || pool.stakingToken?.symbol === 'GNANA'),
-  )
-
-  const handleSortOptionChange = (option): void => {
-    if (option !== sortOption) {
-      setSortDirection('desc')
-    } else if (sortDirection === 'desc') {
-      setSortDirection('asc')
-    } else {
-      setSortDirection('desc')
-    }
-    setSortOption(option)
-  }
-
   const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
       case 'apr':
-        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(poolsToSort, (pool: Pool) => pool.apr, sortDirection)
+        return orderBy(poolsToSort, (pool: Pool) => pool.apr, 'desc')
       case 'earned':
         return orderBy(
           poolsToSort,
@@ -160,42 +84,32 @@ const Pools: React.FC = () => {
             }
             return getBalanceNumber(pool.userData.pendingReward) * pool.rewardToken?.price
           },
-          sortDirection,
+          'desc',
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
           (pool: Pool) => getBalanceNumber(pool.totalStaked) * pool.stakingToken?.price,
-          sortDirection,
+          'desc',
         )
       default:
         return orderBy(poolsToSort, (pool: Pool) => pool.sortOrder, 'asc')
     }
   }
 
-  const poolsToShow = () => {
-    let chosenPools = []
-
-    if (stakedOnly && gnanaOnly && !bananaOnly) {
-      chosenPools = isActive ? gnanaStakedOnlyPools : gnanaStakedInactivePools
-    } else if (stakedOnly && bananaOnly && !gnanaOnly) {
-      chosenPools = isActive ? bananaStakedOnlyPools : bananaStakedInactivePools
-    } else if (stakedOnly && !gnanaOnly && !bananaOnly) {
+  const renderPools = () => {
+    let chosenPools = isActive ? openPools : finishedPools
+    if (stakedOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
-    } else if (!stakedOnly && gnanaOnly && !bananaOnly) {
-      chosenPools = isActive ? gnanaOnlyPools : gnanaInactivePools
-    } else if (!stakedOnly && bananaOnly && !gnanaOnly) {
-      chosenPools = isActive ? bananaOnlyPools : bananaInactivePools
-    } else if (stakedOnly && (bananaOnly || gnanaOnly)) {
-      chosenPools = isActive ? allStakedOnlyPools : allStakedInactivePools
-    } else {
-      chosenPools = isActive ? openPools : finishedPools
     }
-
     if (searchQuery) {
       const lowercaseQuery = searchQuery.toLowerCase()
       chosenPools = chosenPools.filter((pool) => pool.tokenName.toLowerCase().includes(lowercaseQuery))
     }
+    if (tokenOption !== 'allTokens') {
+      chosenPools = chosenPools.filter((pool) => pool.stakingToken.symbol === tokenOption.toUpperCase())
+    }
+
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   }
 
@@ -203,7 +117,7 @@ const Pools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading as="h1" mb="8px" mt={0} color="white" fontWeight={800}>
+          <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
             {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
@@ -217,16 +131,20 @@ const Pools: React.FC = () => {
           <PoolMonkey />
         </MonkeyWrapper>
       </Header>
-      <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%' }}>
+      <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%', padding: '0px 10px' }}>
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <ListViewMenu
+          <PoolMenu
             onHandleQueryChange={handleChangeQuery}
             onSetSortOption={setSortOption}
             onSetStake={setStakedOnly}
+            onSetTokenOption={setTokenOption}
+            pools={[...stakedOnlyPools, ...stakedInactivePools]}
+            activeOption={sortOption}
+            activeTokenOption={tokenOption}
             stakedOnly={stakedOnly}
             query={searchQuery}
           />
-          <DisplayPools pools={poolsToShow()} />
+          <DisplayPools pools={renderPools()} />
           <div ref={loadMoreRef} />
         </Flex>
       </Flex>

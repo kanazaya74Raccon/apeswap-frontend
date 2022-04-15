@@ -53,6 +53,40 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
+    pid: 192,
+    image: 'ANML.png',
+    lpSymbol: 'ANML-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+    },
+    tokenSymbol: 'ANML',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://animalconcerts.com/',
+  },
+  {
+    pid: 191,
+    image: 'APE.svg',
+    lpSymbol: 'APE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
+    },
+    tokenSymbol: 'APE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://apecoin.com/',
+  },
+  {
     pid: 3,
     image: '',
     lpSymbol: 'BUSD-BNB',
@@ -1067,7 +1101,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://fegtoken.com/',
   },
-
   {
     pid: 67,
     image: 'ATA.png',
@@ -3057,7 +3090,7 @@ const farms: FarmConfig[] = [
   {
     pid: 187,
     image: 'BUZZ.svg',
-    lpSymbol: 'BUZZ-BNB LP',
+    lpSymbol: 'BUZZ-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0xAC67c5108816E5DAB31376A0EE916D1Fa7e6d50a',
@@ -3074,7 +3107,7 @@ const farms: FarmConfig[] = [
   {
     pid: 188,
     image: 'RANKER.svg',
-    lpSymbol: 'RANKER-BUSD LP',
+    lpSymbol: 'RANKER-BUSD',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
       56: '0x408bcca802006fa33fd469211e85ac5f66caea5f',
@@ -3088,6 +3121,43 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://rankerdao.com/',
   },
+  {
+    pid: 189,
+    image: 'FRONT.svg',
+    lpSymbol: 'FRONT-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x4039a3B74459d15Ea8023064aE18B48499FecC60',
+    },
+    tokenSymbol: 'FRONT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://frontier.xyz/',
+  },
+  {
+    pid: 193,
+    image: 'BOUNTIE.png',
+    lpSymbol: 'BOUNTIE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1eE428e29AE776EEB9ADEf13d0bCeb6825c2b93b',
+    },
+    tokenSymbol: 'BOUNTIE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bountiehunter.io/',
+  },
+
+  // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
+
   {
     pid: 7, // NOTE: Inactive Farm
     image: 'BAKE.svg',

@@ -5,7 +5,7 @@ import erc20 from 'config/abi/erc20.json'
 import { DualFarm } from 'state/types'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { AutoRenewIcon, ButtonSquare, useModal } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, Button, useModal } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import { useMiniChefHarvest } from 'hooks/useHarvest'
 import { useDualFarmApprove } from 'hooks/useApprove'
@@ -14,12 +14,8 @@ import { getBalanceNumber } from 'utils/formatBalance'
 
 import DepositModal from '../DepositModal'
 
-const StyledButtonSquare = styled(ButtonSquare)`
+const StyledButton = styled(Button)`
   font-weight: 600;
-
-  &:hover {
-    background-color: #ffd54fff !important;
-  }
 `
 
 interface DualFarmProps {
@@ -79,28 +75,28 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
   const renderButton = () => {
     if (!isApproved) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           disabled={requestedApproval}
           onClick={handleApprove}
           endIcon={requestedApproval && <AutoRenewIcon spin color="currentColor" />}
         >
           {TranslateString(999, 'ENABLE')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     if (rawStakedBalance === 0) {
       return (
-        <StyledButtonSquare
+        <StyledButton
           disabled={stakeTx}
           onClick={onPresentDeposit}
           endIcon={stakeTx && <AutoRenewIcon spin color="currentColor" />}
         >
           {TranslateString(999, 'STAKE LP')}
-        </StyledButtonSquare>
+        </StyledButton>
       )
     }
     return (
-      <StyledButtonSquare
+      <StyledButton
         disabled={rawEarningsBalance === 0 || pendingTx}
         onClick={async () => {
           setPendingTx(true)
@@ -110,7 +106,7 @@ const HarvestAction: React.FC<DualFarmProps> = ({ dualFarm }) => {
         endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
       >
         {TranslateString(999, 'HARVEST')}
-      </StyledButtonSquare>
+      </StyledButton>
     )
   }
 
