@@ -44,12 +44,17 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           />
           <ListViewContent
             title="Discount"
-            value={`${parseFloat(bill?.discount) < 0 ? '0.00' : bill?.discount}%`}
+            valueColor={parseFloat(bill?.discount) < 0 ? '#DF4141' : null}
+            value={`${bill?.discount}%`}
             width={isMobile ? 100 : 140}
             height={52.5}
-            toolTip="This is the percentage discount relative to the token's current market price."
+            toolTip={
+              parseFloat(bill?.discount) < 0
+                ? 'Buying this Bill is disabled at the moment as the discount is 0% or less. Buying will be available again once the discount surpasses 0%. This will happen automatically over time.'
+                : "This is the percentage discount relative to the token's current market price."
+            }
             toolTipPlacement="bottomLeft"
-            toolTipTransform="translate(0, 65%)"
+            toolTipTransform={parseFloat(bill?.discount) < 0 ? 'translate(0, 30%)' : 'translate(0, 65%)'}
           />
           <ListViewContent
             title="Vesting Term"
