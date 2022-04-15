@@ -19,9 +19,9 @@ export const TitleText = styled(Text)<{ lineHeight?: number }>`
   }
 `
 
-export const ValueText = styled(Text)<{ lineHeight?: number; value2Secondary?: boolean; color?: string }>`
+export const ValueText = styled(Text)<{ lineHeight?: number; value2Secondary?: boolean; valueColor?: string }>`
   font-size: 12px;
-  color: ${({ color, theme }) => color || theme.colors.text};
+  color: ${({ valueColor, theme }) => valueColor || theme.colors.text};
   line-height: ${({ lineHeight }) => lineHeight || 20}px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: ${({ value2Secondary }) => (value2Secondary ? '12px' : '16px')};
