@@ -15,4 +15,5 @@ export interface ListViewContentProps {
   justifyContent?: string
   toolTipPlacement?: 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft'
   toolTipTransform?: string
+  valueColor?: string
 }
