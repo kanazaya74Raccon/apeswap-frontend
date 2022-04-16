@@ -34,7 +34,7 @@ const MobileListCard: React.FC<ListCardProps> = ({
             {expandedContent && <DropDownIcon open={expanded} mr="20px" />}
             {infoContent && (
               <div style={{ display: 'inline-block' }}>
-                <TooltipBubble body={infoContent} transformTip="translate(-82%, 50%)">
+                <TooltipBubble body={infoContent} transformTip="translate(-82%, 30%)">
                   <InfoIcon width="25px" />
                 </TooltipBubble>
               </div>

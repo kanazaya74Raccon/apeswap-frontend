@@ -32,7 +32,7 @@ const ListCard: React.FC<ListCardProps> = ({
         {expandedContent && <DropDownIcon open={expanded} mr="30px" />}
         {infoContent && (
           <div style={{ display: 'inline-block' }}>
-            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 40%)">
+            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 30%)">
               <InfoIcon width="25px" />
             </TooltipBubble>
           </div>
