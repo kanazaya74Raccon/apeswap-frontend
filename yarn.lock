@@ -55,15 +55,15 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.257":
-  version "1.0.257"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.257/80fb9fbc7c34451c6e602db07d5bb20b731300853a2e785287fbb7b952a641a0#10013c17606503e2024cbfb72432db8e0b32a79d"
-  integrity sha512-M2iNlbjsei1woQ1dcLUFuWHuD62KzrG+pWw5L0CWNkGHH6PQYmFYypYnvbAQ9sPJYigNIl5VRnbdxuRYyM9Saw==
+"@apeswapfinance/token-lists@1.0.259":
+  version "1.0.259"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.259/f61251ad78982b9cd51b7c07482e93de42eb4a83399a54a3436f68d3599350d2#b97d952b5fdc42f3d97ae2d5f8ea3db5cd17ab5e"
+  integrity sha512-yuJA1d7Ie7lbCJZo5VIM1RCuc0rJ/lzovBhaPvYHWgd9VBKijL+cgBvQI2F6Rtmbb9ZhWpCb1fms8vEPyLRmqw==
 
-"@apeswapfinance/uikit@^0.11.2-1.4":
-  version "0.11.2-1.4"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-1.4/9bdafc36b4be414f1f2847dfa14597b1bf6cedf5cd90d7f280a32f9d1af83dc3#fcc233bda13365add3e85a34db23ba6856cc92ee"
-  integrity sha512-DTg3u7uRJBhn2tpnX6E2p5uh3IJxzahgQgqsh+dopQSFuZE6Gvjq7AtDu85tyvE4fbBYIm1+pZHkruPvwpYYpQ==
+"@apeswapfinance/uikit@0.11.2-1.6":
+  version "0.11.2-1.6"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-1.6/b4850bb6fce794fd571ea0dfc63c9f892d3d3ec7a588080dd18c4a0299fc0b85#7b04aec5a831d241e82dc3ed9df524c71d5c29b9"
+  integrity sha512-pSikeIwLdbCdMc5lst0IQbFWdeBABT5Sg1i5hpUhl3C02j5RKyYH/+NxHU8r/UV8iHrQHucCralnyzWMv8qkhA==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@rollup/plugin-json" "^4.1.0"
