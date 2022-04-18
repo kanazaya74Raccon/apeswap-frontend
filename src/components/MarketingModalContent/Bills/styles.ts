@@ -31,6 +31,9 @@ export const StyledText = styled(Text)`
   text-align: center;
   margin: 0.5em 0;
 `
+export const StyledAnchor = styled.a`
+  text-align: center;
+`
 export const TextButton = styled.a`
   border: none;
   background: none;
@@ -115,9 +118,6 @@ export const RightHeader = styled(StyledText)`
   color: ${({ theme }) => theme.colors.text};
   text-align: left;
   margin: 0;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-  } ;
 `
 export const RightText = styled(StyledText)`
   margin: 0;
