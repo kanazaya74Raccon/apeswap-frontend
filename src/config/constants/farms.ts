@@ -53,38 +53,21 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 192,
-    image: 'ANML.png',
-    lpSymbol: 'ANML-BNB',
+    pid: 194,
+    image: 'ABNBC.svg',
+    lpSymbol: 'aBNBc-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+      56: '0x1C3BFdA8d788689ab2Fb935a9499c67e098A9E84',
     },
-    tokenSymbol: 'ANML',
+    tokenSymbol: 'aBNBc',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+      56: '0xE85aFCcDaFBE7F2B096f268e31ccE3da8dA2990A',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://animalconcerts.com/',
-  },
-  {
-    pid: 191,
-    image: 'APE.svg',
-    lpSymbol: 'APE-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
-    },
-    tokenSymbol: 'APE',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://apecoin.com/',
+    projectLink: 'https://www.ankr.com',
   },
   {
     pid: 3,
@@ -3139,6 +3122,40 @@ const farms: FarmConfig[] = [
     projectLink: 'https://frontier.xyz/',
   },
   {
+    pid: 192,
+    image: 'ANML.png',
+    lpSymbol: 'ANML-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+    },
+    tokenSymbol: 'ANML',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://animalconcerts.com/',
+  },
+  {
+    pid: 191,
+    image: 'APE.svg',
+    lpSymbol: 'APE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
+    },
+    tokenSymbol: 'APE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://apecoin.com/',
+  },
+  {
     pid: 193,
     image: 'BOUNTIE.png',
     lpSymbol: 'BOUNTIE-BNB',
@@ -3154,23 +3171,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://bountiehunter.io/',
-  },
-  {
-    pid: 194,
-    image: 'ABNBC.svg',
-    lpSymbol: 'aBNBc-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x1C3BFdA8d788689ab2Fb935a9499c67e098A9E84',
-    },
-    tokenSymbol: 'aBNBc',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xE85aFCcDaFBE7F2B096f268e31ccE3da8dA2990A',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://www.ankr.com',
   },
 
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
