@@ -1,18 +1,13 @@
 import React from 'react'
 import { Flex, Select, SelectItem, Text } from '@apeswapfinance/uikit'
 import { Checkbox } from '@ape.swap/uikit'
-
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { ToggleWrapper } from 'components/ListViewMenu/styles'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
-import { Link } from 'react-router-dom'
 import { ListViewProps } from './types'
 import SearchInput from './SearchInput'
-import { ClaimAllWrapper, ControlContainer, LabelWrapper, LearnMoreButton, StyledText } from './styles'
+import { ClaimAllWrapper, ControlContainer, LabelWrapper, StyledText } from './styles'
 import { OPTIONS, TOKEN_OPTIONS } from './constants'
 import HarvestAll from '../Actions/HarvestAll'
-import { StyledButton } from '../styles'
-// import ClaimAll from '../Actions/ClaimAll'
 
 const PoolMenu: React.FC<ListViewProps> = ({
   onHandleQueryChange,

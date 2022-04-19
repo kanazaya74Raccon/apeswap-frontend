@@ -49,6 +49,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const [onPresentDeposit] = useModal(
     <DepositModal
       max={stakingTokenBalance}
+      tokenName={stakedTokenSymbol}
       onConfirm={async (val) => {
         setPendingDepositTrx(true)
         await onStake(val)
@@ -72,6 +73,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const [onPresentWithdraw] = useModal(
     <WithdrawModal
       max={stakedBalance}
+      tokenName={stakedTokenSymbol}
       onConfirm={async (val) => {
         setPendingWithdrawTrx(true)
         await onUnstake(val)
@@ -103,7 +105,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
       )
     }
     return (
-      <ActionContainer>
+      <ActionContainer style={{ minWidth: 'auto' }}>
         {isMobile && (
           <ListViewContent
             title={`Staked ${stakedTokenSymbol}`}

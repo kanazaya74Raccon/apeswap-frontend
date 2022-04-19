@@ -17,8 +17,8 @@ export const TOKEN_OPTIONS = [
 
 export const OPTIONS = [
   {
-    label: 'All',
-    value: 'all',
+    label: 'HOT',
+    value: 'hot',
   },
   {
     label: 'APR',

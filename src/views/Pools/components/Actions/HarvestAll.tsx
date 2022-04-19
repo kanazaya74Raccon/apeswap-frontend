@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useSousHarvestAll } from 'hooks/useHarvest'
-import useIsMobile from 'hooks/useIsMobile'
 import { useToast } from 'state/hooks'
 import { fetchPoolsUserDataAsync } from 'state/pools'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useAppDispatch } from 'state'
-import { StyledButton } from '../styles'
-import { ActionContainer } from './styles'
+import { StyledButtonSquare } from './styles'
 
 interface HarvestActionsProps {
   sousIds: number[]
@@ -20,7 +18,6 @@ const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onHarvestAll } = useSousHarvestAll(sousIds)
   const { toastSuccess } = useToast()
-  const isMobile = useIsMobile()
 
   const handleHarvestAll = async () => {
     setPendingTrx(true)
@@ -42,11 +39,15 @@ const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
   }
 
   return (
-    <ActionContainer>
-      <StyledButton disabled={disabled || pendingTrx} onClick={handleHarvestAll} load={pendingTrx}>
-        HARVEST ALL
-      </StyledButton>
-    </ActionContainer>
+    <StyledButtonSquare
+      height={36}
+      minWidth={100}
+      disabled={disabled || pendingTrx || sousIds.length <= 0}
+      onClick={handleHarvestAll}
+      load={pendingTrx}
+    >
+      HARVEST ALL
+    </StyledButtonSquare>
   )
 }
 

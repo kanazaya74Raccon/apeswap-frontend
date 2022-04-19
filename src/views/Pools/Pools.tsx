@@ -24,7 +24,7 @@ const Pools: React.FC = () => {
   const [tokenOption, setTokenOption] = useState('allTokens')
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('all')
+  const [sortOption, setSortOption] = useState('hot')
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { account } = useWeb3React()
   const { pathname } = useLocation()
@@ -32,8 +32,10 @@ const Pools: React.FC = () => {
   const allPools = usePools(account)
   const TranslateString = useI18n()
   const { currentBlock } = useBlock()
+  const { search } = window.location
+  const params = new URLSearchParams(search)
+  const urlSearchedPool = parseInt(params.get('id'))
   const isActive = !pathname.includes('history')
-  const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
@@ -99,6 +101,23 @@ const Pools: React.FC = () => {
 
   const renderPools = () => {
     let chosenPools = isActive ? openPools : finishedPools
+    if (urlSearchedPool) {
+      const poolCheck =
+        openPools?.find((pool) => {
+          return pool.sousId === urlSearchedPool
+        }) !== undefined
+      if (poolCheck) {
+        chosenPools = [
+          openPools?.find((pool) => {
+            return pool.sousId === urlSearchedPool
+          }),
+          ...openPools?.filter((pool) => {
+            return pool.sousId !== urlSearchedPool
+          }),
+        ]
+      }
+    }
+
     if (stakedOnly) {
       chosenPools = isActive ? stakedOnlyPools : stakedInactivePools
     }
@@ -144,7 +163,7 @@ const Pools: React.FC = () => {
             stakedOnly={stakedOnly}
             query={searchQuery}
           />
-          <DisplayPools pools={renderPools()} />
+          <DisplayPools pools={renderPools()} openId={urlSearchedPool} />
           <div ref={loadMoreRef} />
         </Flex>
       </Flex>

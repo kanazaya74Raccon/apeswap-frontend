@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal, AutoRenewIcon } from '@apeswapfinance/uikit'
+import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
@@ -35,7 +35,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(999, 'Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={`Stake ${tokenName}`} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}

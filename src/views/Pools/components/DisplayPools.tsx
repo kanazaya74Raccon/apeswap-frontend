@@ -4,6 +4,7 @@ import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
+import { useLocation } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useIsMobile from 'hooks/useIsMobile'
 import React from 'react'
@@ -15,9 +16,11 @@ import HarvestAction from './Actions/HarvestAction'
 import InfoContent from '../InfoContent'
 import { Container, StyledButton, ActionContainer } from './styles'
 
-const DisplayPools: React.FC<{ pools: Pool[] }> = ({ pools }) => {
+const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, openId }) => {
   const { chainId } = useActiveWeb3React()
   const isMobile = useIsMobile()
+  const { pathname } = useLocation()
+  const isActive = !pathname.includes('history')
 
   const poolsListView = pools.map((pool) => {
     const token1 = pool?.stakingToken?.symbol
@@ -38,17 +41,19 @@ const DisplayPools: React.FC<{ pools: Pool[] }> = ({ pools }) => {
       getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0)) * pool?.stakingToken?.price
     ).toFixed(2)}`
 
+    // Token symbol logic is here temporarily for nfty
     return {
-      tokens: { token1, token2 },
+      tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
       title: (
         <Text ml={10} weight="bold">
-          {pool?.rewardToken?.symbol}
+          {pool?.rewardToken?.symbol || pool?.tokenName}
         </Text>
       ),
       stakeLp: false,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',
+      open: openId === pool.sousId,
       cardContent: (
         <>
           <Flex sx={{ width: '90px', height: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -57,7 +62,7 @@ const DisplayPools: React.FC<{ pools: Pool[] }> = ({ pools }) => {
                 <a href={pool.projectLink} target="_blank" rel="noreferrer">
                   <IconButton icon="website" color="primaryBright" width={20} style={{ padding: '8.5px 10px' }} />
                 </a>
-                <a href={pool.projectLink} target="_blank" rel="noreferrer">
+                <a href={pool?.twitter} target="_blank" rel="noreferrer">
                   <IconButton icon="twitter" color="primaryBright" width={20} />
                 </a>
               </>
@@ -65,15 +70,15 @@ const DisplayPools: React.FC<{ pools: Pool[] }> = ({ pools }) => {
           </Flex>
           <ListViewContent
             title="APR"
-            value={`${pool?.apr?.toFixed(2)}%`}
-            width={isMobile ? 110 : 60}
+            value={`${isActive ? pool?.apr?.toFixed(2) : '0.00'}%`}
+            width={isMobile ? 95 : 80}
             height={50}
             toolTip="APR is calculated based on current value of of the token, reward rate and pool % owned."
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 60%)"
           />
           <ListViewContent
-            title="Liquidity"
+            title="Total Staked"
             value={`$${totalDollarAmountStaked.toLocaleString(undefined)}`}
             width={isMobile ? 160 : 110}
             height={50}
@@ -115,22 +120,24 @@ const DisplayPools: React.FC<{ pools: Pool[] }> = ({ pools }) => {
               />
             )}
           </ActionContainer>
-          {!isMobile && <NextArrow />}
-          <Actions
-            allowance={userAllowance?.toString()}
-            stakedBalance={pool?.userData?.stakedBalance?.toString()}
-            stakedTokenSymbol={pool?.stakingToken?.symbol}
-            stakingTokenBalance={pool?.userData?.stakingTokenBalance?.toString()}
-            stakeTokenAddress={pool?.stakingToken?.address[chainId]}
-            stakeTokenValueUsd={pool?.stakingToken?.price}
-            sousId={pool?.sousId}
-          />
-          {!isMobile && <NextArrow />}
+          <Flex sx={{ width: `${isMobile ? '100%' : '450px'}`, justifyContent: 'space-between' }}>
+            {!isMobile && <NextArrow />}
+            <Actions
+              allowance={userAllowance?.toString()}
+              stakedBalance={pool?.userData?.stakedBalance?.toString()}
+              stakedTokenSymbol={pool?.stakingToken?.symbol}
+              stakingTokenBalance={pool?.userData?.stakingTokenBalance?.toString()}
+              stakeTokenAddress={pool?.stakingToken?.address[chainId]}
+              stakeTokenValueUsd={pool?.stakingToken?.price}
+              sousId={pool?.sousId}
+            />
+            {!isMobile && <NextArrow />}
+          </Flex>
           <HarvestAction
             sousId={pool?.sousId}
             disabled={userEarnings <= 0}
-            userEarningsUsd={userEarningsUsd}
-            earnTokenSymbol={pool?.rewardToken?.symbol}
+            userEarnings={userEarnings}
+            earnTokenSymbol={pool?.rewardToken?.symbol || pool?.tokenName}
           />
         </>
       ),

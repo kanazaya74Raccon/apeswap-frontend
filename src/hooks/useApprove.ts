@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/actions'
+import { updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'

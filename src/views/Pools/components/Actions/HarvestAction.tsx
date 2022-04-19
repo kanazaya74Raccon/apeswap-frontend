@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSousHarvest } from 'hooks/useHarvest'
-import { AutoRenewIcon, LinkExternal, Text } from '@apeswapfinance/uikit'
 import useIsMobile from 'hooks/useIsMobile'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
@@ -13,12 +12,12 @@ import { ActionContainer } from './styles'
 
 interface HarvestActionsProps {
   sousId: number
-  userEarningsUsd: string
+  userEarnings: number
   earnTokenSymbol: string
   disabled: boolean
 }
 
-const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol, disabled, userEarningsUsd }) => {
+const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol, disabled, userEarnings }) => {
   const { account, chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
@@ -47,13 +46,25 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
   return (
     <ActionContainer>
       {isMobile && (
-        <ListViewContent title={`Earned ${earnTokenSymbol}`} value={userEarningsUsd} width={100} height={50} ml={10} />
+        <ListViewContent
+          title={`Earned ${earnTokenSymbol}`}
+          value={userEarnings?.toFixed(4)}
+          width={100}
+          height={50}
+          ml={10}
+        />
       )}
       <StyledButton disabled={disabled || pendingTrx} onClick={handleHarvest} load={pendingTrx}>
         HARVEST
       </StyledButton>
       {!isMobile && (
-        <ListViewContent title={`Earned ${earnTokenSymbol}`} value={userEarningsUsd} width={100} height={50} ml={10} />
+        <ListViewContent
+          title={`Earned ${earnTokenSymbol}`}
+          value={userEarnings?.toFixed(4)}
+          width={150}
+          height={50}
+          ml={10}
+        />
       )}
     </ActionContainer>
   )

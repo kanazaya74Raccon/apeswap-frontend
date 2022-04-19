@@ -36,7 +36,7 @@ const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
           </LinkExternal>
         </Flex>
         <Flex alignItems="center" justifyContent="center" mt="10px">
-          <LinkExternal href={pool?.projectLink} style={{ fontSize: '14px' }}>
+          <LinkExternal href={pool?.twitter} style={{ fontSize: '14px' }}>
             Twitter
           </LinkExternal>
         </Flex>
