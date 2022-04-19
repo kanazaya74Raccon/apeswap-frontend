@@ -17,7 +17,7 @@ export const TOKEN_OPTIONS = [
 
 export const OPTIONS = [
   {
-    label: 'HOT',
+    label: 'Hot',
     value: 'hot',
   },
   {
