@@ -1003,6 +1003,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  ankr: {
+    symbol: 'ANKR',
+    address: {
+      56: '0xf307910A4c7bbc79691fD374889b36d8531B08e3',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {

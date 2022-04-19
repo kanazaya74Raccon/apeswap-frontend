@@ -3606,6 +3606,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 195,
+    tokenName: 'ANKR',
+    image: 'ANKR.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.ankr,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x57dDbdC52e402d7F2Fffef9FEEC82CBBCD361f87',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.ankr.com',
+    harvest: true,
+    tokenPerBlock: `0.496031746031746031`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
