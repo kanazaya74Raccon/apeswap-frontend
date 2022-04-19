@@ -20,9 +20,9 @@ const FirstTimeCard: React.FC = () => {
           Information
         </Text>
         <Text fontSize="12px" style={{ lineHeight: '15px' }}>
-          Treasury Bills allow users to purchase tokens at a discount in exchange for their liquidity provider (LP)
-          tokens. Each Treasury Bill is a unique NFT that represents the purchased tokens, which vest over a certain
-          amount of time.
+          Treasury Bills allows users to access tokens at a discount in exchange for their liquidity provider (LP)
+          tokens. Each Treasury Bill is a unique NFT that represents the contract and its respective reward tokens,
+          which vest over a certain amount of time.
           <br /> <br />
           For more info, visit the Treasury Bills page in our Documentation. <br /> <br />
           <Text fontSize="12px" bold>

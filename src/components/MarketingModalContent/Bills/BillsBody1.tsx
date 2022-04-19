@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledText, Description, TextButton, Hiw, MainBody, MainContentBody } from './styles'
+import { StyledText, Description, TextButton, Hiw, MainBody, MainContentBody, StyledAnchor } from './styles'
 import BillsDiagram from './BillsDiagram'
 
 const BillsBody1: React.FC = () => {
@@ -14,13 +14,13 @@ const BillsBody1: React.FC = () => {
           Each Treasury Bill is a unique NFT that represents the contract and its respective reward tokens, which vest
           over a certain amount of time.
         </StyledText>
-        <a
+        <StyledAnchor
           href="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/treasury-bills"
           target="_blank"
           rel="noopener noreferrer"
         >
           <TextButton>For more info, visit the Treasury Bills page in our Documentation.</TextButton>
-        </a>
+        </StyledAnchor>
         <Hiw>How It Works:</Hiw>
       </Description>
       <MainContentBody>

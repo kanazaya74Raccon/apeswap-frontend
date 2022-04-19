@@ -14,6 +14,7 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
   ml,
   width,
   height,
+  valueColor,
   lineHeight,
   toolTip,
   aprCalculator,
