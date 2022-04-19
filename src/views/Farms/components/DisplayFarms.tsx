@@ -78,7 +78,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
         <>
           <ListViewContent
             title="APY"
-            value={`${farm?.apy}%`}
+            value={parseFloat(farm?.apy) < 1000000 ? `${farm?.apy}%` : `>1,000,000%`}
             width={isMobile ? 90 : 150}
             ml={20}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
