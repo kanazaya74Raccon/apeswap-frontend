@@ -3155,6 +3155,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://bountiehunter.io/',
   },
+  {
+    pid: 194,
+    image: 'ABNBC.svg',
+    lpSymbol: 'aBNBc-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1C3BFdA8d788689ab2Fb935a9499c67e098A9E84',
+    },
+    tokenSymbol: 'aBNBc',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xE85aFCcDaFBE7F2B096f268e31ccE3da8dA2990A',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.ankr.com',
+  },
 
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 
