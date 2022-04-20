@@ -203,7 +203,7 @@ export const useMiniChefUnstake = (pid: number) => {
       dispatch(updateDualFarmUserEarnings(chainId, pid, account))
       dispatch(updateDualFarmUserStakedBalances(chainId, pid, account))
       dispatch(updateDualFarmUserTokenBalances(chainId, pid, account))
-      console.info(txHash)
+      return txHash
     },
     [account, dispatch, miniChefContract, pid, chainId],
   )

@@ -5,11 +5,12 @@ import miniChefABI from 'config/abi/miniApeV2.json'
 import miniComplexRewarderABI from 'config/abi/miniComplexRewarder.json'
 import { getMiniChefAddress } from 'utils/addressHelper'
 import { dualFarmsConfig } from 'config/constants'
-import { TokenPrices } from 'state/types'
+import { FarmLpAprsType, TokenPrices } from 'state/types'
 import { getDualFarmApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { getRoi, tokenEarnedPerThousandDollarsCompounding } from '../../utils/compoundApyHelpers'
 
-const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
+const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number, farmLpAprs: FarmLpAprsType) => {
   const miniChefAddress = getMiniChefAddress(chainId)
   const filteredDualFarms = dualFarmsConfig.filter((dualFarm) => dualFarm.network === chainId)
   const data = await Promise.all(
@@ -27,6 +28,8 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
       const rewarderToken = tokenPrices?.find(
         (token) => token.address[chainId] === dualFarmConfig.rewardTokens.token1.address[chainId],
       )
+
+      const lpApr = farmLpAprs?.lpAprs?.find((lp) => lp.pid === dualFarmConfig.pid)?.lpApr * 100
 
       const calls = [
         // Balance of token in the LP contract
@@ -174,6 +177,15 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
         rewarderPoolRewardPerSecond?.toString(),
       )
 
+      const bananaPrice = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
+      const amountEarned = tokenEarnedPerThousandDollarsCompounding({
+        numberOfDays: 365,
+        farmApr: lpApr ? apr + lpApr : apr,
+        tokenPrice: bananaPrice,
+      })
+
+      const apy = getRoi({ amountEarned, amountInvested: 1000 / bananaPrice }).toFixed(2)
+
       return {
         ...dualFarmConfig,
         tokenAmount: tokenAmount.toJSON(),
@@ -185,10 +197,12 @@ const fetchDualFarms = async (tokenPrices: TokenPrices[], chainId: number) => {
         stakeTokenPrice,
         rewardToken0Price: miniChefRewarderToken?.price,
         rewardToken1Price: rewarderToken?.price,
+        lpApr,
         poolWeight: alloc,
         // TODO Remove - HIDE MATIC/CRYTL farm with 1 alloc point while SINGULAR Vault withdraws
         multiplier,
         apr,
+        apy,
       }
     }),
   )

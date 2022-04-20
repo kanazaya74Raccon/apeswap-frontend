@@ -9,7 +9,7 @@ import {
   fetchDualFarmUserStakedBalances,
   fetchDualFarmRewarderEarnings,
 } from './fetchDualFarmUser'
-import { TokenPrices, DualFarm, DualFarmsState } from '../types'
+import { TokenPrices, DualFarm, DualFarmsState, FarmLpAprsType } from '../types'
 
 const initialState: DualFarmsState = { data: [...dualFarmsConfig] }
 
@@ -43,14 +43,15 @@ export const dualFarmsSlice = createSlice({
 export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserData } = dualFarmsSlice.actions
 
 // Thunks
-export const fetchDualFarmsPublicDataAsync = (tokenPrices: TokenPrices[], chainId: number) => async (dispatch) => {
-  try {
-    const dualFarms = await fetchDualFarms(tokenPrices, chainId)
-    dispatch(setDualFarmsPublicData(dualFarms))
-  } catch (error) {
-    console.warn(error)
+export const fetchDualFarmsPublicDataAsync =
+  (tokenPrices: TokenPrices[], chainId: number, farmLpAprs: FarmLpAprsType) => async (dispatch) => {
+    try {
+      const dualFarms = await fetchDualFarms(tokenPrices, chainId, farmLpAprs)
+      dispatch(setDualFarmsPublicData(dualFarms))
+    } catch (error) {
+      console.warn(error)
+    }
   }
-}
 export const fetchDualFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
   try {
     const userFarmAllowances = await fetchDualFarmUserAllowances(chainId, account)

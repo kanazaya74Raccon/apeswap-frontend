@@ -128,13 +128,14 @@ export const usePollDualFarms = () => {
   const dispatch = useAppDispatch()
   const { tokenPrices } = useTokenPrices()
   const chainId = useNetworkChainId()
+  const farmLpAprs = useFarmLpAprs()
 
   useEffect(() => {
-    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId))
+    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId, farmLpAprs))
     if (account) {
       dispatch(fetchDualFarmUserDataAsync(chainId, account))
     }
-  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
+  }, [account, dispatch, chainId, tokenPrices, slowRefresh, farmLpAprs])
 }
 
 export const useDualFarms = (): DualFarm[] => {

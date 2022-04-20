@@ -55,7 +55,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
       <TokenContainer ml={-15} srcs={token2Urls} />
       <EarnIcon color={iconFill} />
       <TokenContainer zIndex={1} srcs={token3Urls} />
-      <TokenContainer ml={-15} srcs={token4Urls} />
+      {token4 !== undefined && <TokenContainer ml={-15} srcs={token4Urls} />}
     </Flex>
   )
   const StakeTokenEarnLp = (

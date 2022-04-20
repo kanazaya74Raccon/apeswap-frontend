@@ -49,6 +49,8 @@ export interface DualFarm extends DualFarmConfig {
   poolWeight?: BigNumber
   multiplier?: string
   apr?: number
+  apy?: string
+  lpApr?: string
   totalStaked?: string
   userData?: {
     allowance: BigNumber
