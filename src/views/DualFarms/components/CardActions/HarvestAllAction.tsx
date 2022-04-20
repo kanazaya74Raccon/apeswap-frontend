@@ -12,8 +12,7 @@ interface HarvestActionsProps {
 }
 
 const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => {
-  const { account, chainId } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
+  const { chainId } = useActiveWeb3React()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onReward } = useAllHarvest(pids, chainId)
 
@@ -28,9 +27,6 @@ const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => 
           await onReward().catch((e) => {
             console.error(e)
             setPendingTrx(false)
-          })
-          pids.map((pid) => {
-            return dispatch(updateFarmUserEarnings(chainId, pid, account))
           })
           setPendingTrx(false)
         }}

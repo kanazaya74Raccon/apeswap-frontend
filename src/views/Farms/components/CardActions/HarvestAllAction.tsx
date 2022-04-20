@@ -29,6 +29,9 @@ const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => 
             console.error(e)
             setPendingTrx(false)
           })
+          pids.map((pid) => {
+            return dispatch(updateFarmUserEarnings(chainId, pid, account))
+          })
           setPendingTrx(false)
         }}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}

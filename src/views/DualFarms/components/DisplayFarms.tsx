@@ -52,7 +52,11 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
         token3: farm?.rewardTokens?.token0?.symbol,
         token4: farm?.dualImage !== false ? farm?.rewardTokens?.token1?.symbol : null,
       },
-      title: `${farm?.stakeTokens?.token1?.symbol}-${farm?.stakeTokens?.token0?.symbol}`,
+      title: (
+        <Text ml={10} bold>
+          {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol}
+        </Text>
+      ),
       viewType: 'stakeLP',
       open: farm.pid === openPid,
       id: farm.pid,
