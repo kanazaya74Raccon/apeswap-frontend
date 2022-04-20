@@ -7,7 +7,6 @@ import {
   ListExpandedContainer,
   TagContainer,
   TitleContainer,
-  TitleText,
 } from './styles'
 import { ListCardProps } from './types'
 
@@ -19,6 +18,7 @@ const MobileListCard: React.FC<ListCardProps> = ({
   expandedContent,
   infoContent,
   open,
+  expandedContentSize,
 }) => {
   const [expanded, setExpanded] = useState(open)
   return (
@@ -28,15 +28,13 @@ const MobileListCard: React.FC<ListCardProps> = ({
           <TitleContainer>
             {serviceTokenDisplay}
             {tag && <TagContainer ml="10px">{tag}</TagContainer>}
-            <TitleText bold ml="10px">
-              {title}
-            </TitleText>
+            {title}
           </TitleContainer>
           <Flex>
-            <DropDownIcon open={expanded} mr="20px" />
+            {expandedContent && <DropDownIcon open={expanded} mr="20px" />}
             {infoContent && (
               <div style={{ display: 'inline-block' }}>
-                <TooltipBubble body={infoContent} transformTip="translate(-82%, 50%)">
+                <TooltipBubble body={infoContent} transformTip="translate(-82%, 30%)">
                   <InfoIcon width="25px" />
                 </TooltipBubble>
               </div>
@@ -45,7 +43,9 @@ const MobileListCard: React.FC<ListCardProps> = ({
         </Flex>
         <ContentContainer>{cardContent}</ContentContainer>
       </ListCardContainer>
-      {expanded && <ListExpandedContainer>{expandedContent}</ListExpandedContainer>}
+      {expandedContent && expanded && (
+        <ListExpandedContainer size={expandedContentSize}>{expandedContent}</ListExpandedContainer>
+      )}
     </>
   )
 }

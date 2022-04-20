@@ -14,11 +14,13 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
   ml,
   width,
   height,
+  valueColor,
   lineHeight,
   toolTip,
   aprCalculator,
   toolTipPlacement,
   toolTipTransform,
+  justifyContent,
 }) => {
   return (
     <ListViewContentContainer mb={mb} ml={ml} width={width} height={height}>
@@ -47,14 +49,14 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
           </Flex>
         )}
       </Flex>
-      <Flex alignItems="center">
+      <Flex alignItems="center" justifyContent={justifyContent}>
         {valueIcon && valueIcon}
-        <ValueText bold lineHeight={lineHeight}>
+        <ValueText valueColor={valueColor} bold lineHeight={lineHeight}>
           {value.includes('NaN') || value.includes('undefined') ? <ValueSkeleton /> : value}
         </ValueText>
       </Flex>
-      <Flex alignItems="center">
-        {value2Icon && value2Icon}{' '}
+      <Flex alignItems="center" justifyContent={justifyContent}>
+        {value2Icon && value2Icon}
         {value2 && (
           <ValueText bold={!value2Secondary} value2Secondary={value2Secondary} lineHeight={lineHeight}>
             {value2.includes('NaN') || value2.includes('undefined') ? <ValueSkeleton /> : value2}
