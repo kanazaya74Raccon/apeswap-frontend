@@ -39,18 +39,18 @@ const bills: BillsConfig[] = [
     lpToken: tokens.usdcBusd,
     earnToken: tokens.banana,
   },
-  // {
-  //   index: 2,
-  //   contractAddress: {
-  //     [CHAIN_ID.BSC_TESTNET]: '',
-  //     [CHAIN_ID.BSC]: '0xc9dc58b2d1c2e38fe1e7c2c2a5694759d4e298e6',
-  //   },
-  //   billType: 'BANANA Bill',
-  //   token: tokens.wbnb,
-  //   quoteToken: tokens.eth,
-  //   lpToken: tokens.bnbEth,
-  //   earnToken: tokens.banana,
-  // },
+  {
+    index: 3,
+    contractAddress: {
+      [CHAIN_ID.BSC_TESTNET]: '',
+      [CHAIN_ID.BSC]: '0xb2d516086BFc978950e40D2739c72125415441a8',
+    },
+    billType: 'BANANA Bill',
+    token: tokens.wbnb,
+    quoteToken: tokens.eth,
+    lpToken: tokens.bnbEth,
+    earnToken: tokens.banana,
+  },
   // {
   //   index: 3,
   //   contractAddress: {
