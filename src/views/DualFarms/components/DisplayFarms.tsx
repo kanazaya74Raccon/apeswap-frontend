@@ -21,7 +21,10 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
 
   const farmsListView = farms.map((farm, i) => {
     const polygonScanUrl = `https://polygonscan.com/address/${farm.stakeTokenAddress}`
-    const liquidityUrl = `https://apeswap.finance/add/${farm?.stakeTokens?.token1?.address[chainId]}/${farm?.stakeTokens?.token0?.address[chainId]}`
+
+    const liquidityUrl = `https://apeswap.finance/add/${
+      farm?.stakeTokens?.token0?.symbol === 'MATIC' ? 'ETH' : farm?.stakeTokens?.token0?.address[chainId]
+    }/${farm?.stakeTokens?.token1?.address[chainId]}`
     const userAllowance = farm?.userData?.allowance
 
     const setUrls = (tokenSymbol: string) => {
