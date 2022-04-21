@@ -76,7 +76,7 @@ const bscConfig: MenuEntry[] = [
         href: 'https://nftkey.app/collections/nfbs/',
       },
       {
-        label: 'NFA Liquidity',
+        label: 'NFB Liquidity',
         href: 'https://liquidcollectibles.io/collection/0x9f707a412302a3ad64028a9f73f354725c992081',
       },
     ],
