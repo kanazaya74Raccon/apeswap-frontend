@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Skeleton, AutoRenewIcon } from '@apeswapfinance/uikit'
 import { useDualFarmApprove } from 'hooks/useApprove'
-import { updateFarmUserAllowances } from 'state/farms'
-import { useAppDispatch } from 'state'
 import { useERC20 } from 'hooks/useContract'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -16,8 +14,7 @@ interface ApprovalActionProps {
 }
 
 const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, pid, isLoading = false }) => {
-  const { chainId, account } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
+  const { chainId } = useActiveWeb3React()
   const stakingTokenContract = useERC20(stakingTokenContractAddress)
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onApprove } = useDualFarmApprove(stakingTokenContract, pid)

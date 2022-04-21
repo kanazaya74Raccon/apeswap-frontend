@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import {
   Flex,
   AddIcon,
@@ -14,7 +14,6 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { useDualFarmStake } from 'hooks/useStake'
 import { useMiniChefUnstake } from 'hooks/useUnstake'
 import { useToast } from 'state/hooks'
-import { useAppDispatch } from 'state'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ListViewContent from 'components/ListViewContent'
@@ -31,8 +30,7 @@ interface StakeActionsProps {
 
 const StakeAction: React.FC<StakeActionsProps> = ({ stakingTokenBalance, stakedBalance, lpValueUsd, pid }) => {
   const rawStakedBalance = getBalanceNumber(new BigNumber(stakedBalance))
-  const dispatch = useAppDispatch()
-  const { chainId, account } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const userStakedBalanceUsd = `$${(
     getBalanceNumber(new BigNumber(stakedBalance) || new BigNumber(0)) * lpValueUsd
   ).toFixed(2)}`

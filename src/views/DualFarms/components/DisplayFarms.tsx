@@ -3,7 +3,7 @@ import { Flex, useMatchBreakpoints, Text, LinkExternal, Svg } from '@apeswapfina
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
-import { DualFarm, Farm } from 'state/types'
+import { DualFarm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -75,7 +75,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
               <Text style={{ fontSize: '12px' }}>Stake</Text>
               <Text bold style={{ fontSize: '12px' }}>
-                LP
+                {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol} LP
               </Text>
             </Flex>
             <Flex alignItems="center" justifyContent="center" mt="15px">
@@ -90,8 +90,9 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
         <>
           <ListViewContent
             title="APY"
-            value={`${farm?.apy}%`}
-            width={isMobile ? 90 : 160}
+            value={parseFloat(farm?.apy) > 1000000 ? `>1,000,000%` : `${farm?.apy}%`}
+            width={isMobile ? 90 : 150}
+            ml={20}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
@@ -110,7 +111,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
                 <Svg icon="banana_token" width={15} color="text" />
               </span>
             }
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
@@ -127,7 +128,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
           <ListViewContent
             title="Liquidity"
             value={`$${Number(farm?.totalStaked).toLocaleString(undefined)}`}
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="The total value of the LP tokens currently staked in this farm."
             toolTipPlacement={
               isMobile
@@ -158,7 +159,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
                 <TokenContainer size={15} ml={-2} mr={5} srcs={setUrls(farm?.rewardTokens.token1.symbol)} />
               ) : null
             }
-            width={isMobile ? 65 : 100}
+            width={isMobile ? 65 : 120}
           />
         </>
       ),
