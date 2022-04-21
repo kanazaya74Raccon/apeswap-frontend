@@ -1029,7 +1029,7 @@ const tokens = {
     lpToken: true,
   },
   bnbBusd: {
-    symbol: 'BNB-BUSD',
+    symbol: 'BUSD-BNB',
     address: {
       56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
     },
@@ -1037,7 +1037,7 @@ const tokens = {
     lpToken: true,
   },
   bnbEth: {
-    symbol: 'BNB-ETH',
+    symbol: 'ETH-BNB',
     address: {
       56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
     },
@@ -1045,7 +1045,7 @@ const tokens = {
     lpToken: true,
   },
   bnbBtc: {
-    symbol: 'BNB-BTC',
+    symbol: 'BTC-BNB',
     address: {
       56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
     },
@@ -1053,7 +1053,7 @@ const tokens = {
     lpToken: true,
   },
   usdcBusd: {
-    symbol: 'USDC-BUSD',
+    symbol: 'BUSD-USDC',
     address: {
       56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
     },
