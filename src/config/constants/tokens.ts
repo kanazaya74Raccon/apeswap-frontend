@@ -1010,6 +1010,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  kte: {
+    symbol: 'KTE',
+    address: {
+      56: '0x61fA01129aC0bB124D1C60Dc9f735C6C579A858B',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
