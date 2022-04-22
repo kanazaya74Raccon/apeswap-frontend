@@ -3189,6 +3189,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://www.kyte.one/',
   },
+  {
+    pid: 196,
+    image: 'GQ.png',
+    lpSymbol: 'GQ-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xcC3A3Bc1d76Df321f94716E88224638C439267aa',
+    },
+    tokenSymbol: 'GQ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xF700D4c708C2be1463E355F337603183D20E0808',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://outerringmmo.com/',
+  },
 
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 
