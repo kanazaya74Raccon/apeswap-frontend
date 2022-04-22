@@ -1,10 +1,10 @@
 import { WALLCHAIN_PARAMS } from 'config/constants/chains'
-import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { getWeb3 } from './web3'
+import { Contract } from 'ethers'
 
 type SearchSummary = {
-  expectedProfit: number
-  firstTokenAddress: string
+  expectedProfit?: number
+  firstTokenAddress?: string
+  firstTokenAmount?: number
 }
 
 type TransactionArgs = {
@@ -14,9 +14,9 @@ type TransactionArgs = {
   value: string
 }
 
-export type DataResponse = {
+type DataResponse = {
   pathFound: boolean
-  summary: { searchSummary: SearchSummary }
+  summary?: { searchSummary?: SearchSummary }
   transactionArgs: TransactionArgs
 }
 
@@ -37,11 +37,20 @@ const wallchainResponseIsValid = (
   )
 }
 
-const getTransactionOpporunity = (dataResonse: DataResponse): SearchSummary => {
-  if (dataResonse.pathFound) {
-    return dataResonse.summary.searchSummary
-  }
-  return { expectedProfit: 0, firstTokenAddress: null }
+const recordTransactionSummary = (dataResponse: DataResponse, chainId: number) => {
+  return fetch('https://apeswap-strapi.sherokuapp.com/arbitrage-testings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      firstTokenAddress: dataResponse.summary?.searchSummary?.firstTokenAddress || '',
+      expectedProfit: dataResponse.summary?.searchSummary?.expectedProfit || 0,
+      firstTokenAmount: dataResponse.summary?.searchSummary?.firstTokenAmount || 0,
+      chainId,
+      sender: dataResponse.transactionArgs.sender,
+    }),
+  }).catch((error) => {
+    console.error('Wallchain Txn Summary Recording Error', error)
+  })
 }
 
 /**
@@ -51,7 +60,7 @@ const getTransactionOpporunity = (dataResonse: DataResponse): SearchSummary => {
  * @param value value parameter for the transaction
  * @param chainId chainId of the blockchain
  * @param account account address from sender
- * @param contractAddress ApeSwap Router contract address
+ * @param contract ApeSwap Router contract
  */
 export default function callWallchainAPI(
   methodName: string,
@@ -59,11 +68,9 @@ export default function callWallchainAPI(
   value: string,
   chainId: number,
   account: string,
-  contractAddress: string,
+  contract: Contract,
 ): Promise<any> {
-  const functionJsonInterface = IUniswapV2Router02ABI.find((el) => el.name === methodName)
-  const web3 = getWeb3(chainId)
-  const encodedData = web3.eth.abi.encodeFunctionCall(functionJsonInterface, args)
+  const encodedData = contract.interface.encodeFunctionData(methodName, args)
 
   return fetch(`${WALLCHAIN_PARAMS[chainId].apiUrl}?key=${WALLCHAIN_PARAMS[chainId].apiKey}`, {
     method: 'POST',
@@ -72,23 +79,26 @@ export default function callWallchainAPI(
       value,
       sender: account,
       data: encodedData,
-      destination: contractAddress,
+      destination: contract.address,
     }),
   })
     .then((response) => {
       if (response.ok) {
         return response.json()
       }
+      console.error('Wallchain Error', response.status, response.statusText)
       return null
     })
     .then((responseJson) => {
       if (responseJson) {
         const dataResonse: DataResponse = responseJson
-        if (wallchainResponseIsValid(dataResonse, value, account, contractAddress)) {
-          // eslint-disable-next-line
-          const transactionOpportunity: SearchSummary = getTransactionOpporunity(dataResonse)
-          // transactionOpportunity could be tracked for analysis.
+        if (wallchainResponseIsValid(dataResonse, value, account, contract.address)) {
+          return recordTransactionSummary(dataResonse, chainId)
         }
       }
+      return null
+    })
+    .catch((error) => {
+      console.error('Wallchain Error', error)
     })
 }
