@@ -120,23 +120,6 @@ const farms: FarmConfig[] = [
     projectLink: 'https://squirrel.finance/',
   },
   {
-    pid: 41,
-    image: 'AUTO.png',
-    lpSymbol: 'AUTO-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x649a5ad5135b4bd287e5aca8d41f4d5e1b52af5c', // AUTO-BNB BananaPair
-    },
-    tokenSymbol: 'AUTO',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xa184088a740c695e156f91f5cc086a06bb78b827', // AUTO Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://autofarm.network/',
-  },
-  {
     pid: 42,
     image: 'bxBTC.png',
     lpSymbol: 'BXBTC-BNB',
@@ -192,23 +175,6 @@ const farms: FarmConfig[] = [
     projectLink: 'https://valuedefi.io/',
   },
   {
-    pid: 44,
-    image: '',
-    lpSymbol: 'WATCH-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
-    },
-    tokenSymbol: 'WATCH',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://www.yieldwatch.net/',
-  },
-  {
     pid: 30,
     image: 'KEYFI.png',
     lpSymbol: 'KEYFI-BNB',
@@ -225,23 +191,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://keyfi.com/',
-  },
-  {
-    pid: 31,
-    image: '',
-    lpSymbol: 'ONT-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
-    },
-    tokenSymbol: 'ONT',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://ont.io',
   },
   {
     pid: 27,
@@ -841,6 +790,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://moonlighttoken.com/',
   },
   {
+    pid: 41,
+    image: 'AUTO.png',
+    lpSymbol: 'AUTO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x649a5ad5135b4bd287e5aca8d41f4d5e1b52af5c', // AUTO-BNB BananaPair
+    },
+    tokenSymbol: 'AUTO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa184088a740c695e156f91f5cc086a06bb78b827', // AUTO Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://autofarm.network/',
+  },
+  {
     pid: 24,
     image: 'NAUT.png',
     lpSymbol: 'NAUT-BNB',
@@ -1265,6 +1231,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://www.fruitsadventures.com/',
   },
   {
+    pid: 44,
+    image: '',
+    lpSymbol: 'WATCH-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
+    },
+    tokenSymbol: 'WATCH',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.yieldwatch.net/',
+  },
+  {
     pid: 81,
     image: '',
     lpSymbol: 'SKILL-BNB',
@@ -1434,6 +1417,23 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://yearn.finance/',
+  },
+  {
+    pid: 31,
+    image: '',
+    lpSymbol: 'ONT-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
+    },
+    tokenSymbol: 'ONT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ont.io',
   },
   {
     pid: 91,
