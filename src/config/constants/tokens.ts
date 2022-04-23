@@ -1017,6 +1017,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  gq: {
+    symbol: 'GQ',
+    address: {
+      56: '0xF700D4c708C2be1463E355F337603183D20E0808',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {

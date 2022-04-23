@@ -3644,6 +3644,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 197,
+    tokenName: 'GQ',
+    image: 'GQ.png',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.gq,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xA6B0f91e3eda93Db4266416CC43Ea4E35149D0dF',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://outerringmmo.com/',
+    harvest: true,
+    tokenPerBlock: `0.689409722222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
