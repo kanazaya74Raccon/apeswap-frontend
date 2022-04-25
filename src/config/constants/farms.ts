@@ -3206,6 +3206,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://outerringmmo.com/',
   },
+  {
+    pid: 197,
+    image: 'ASPO.png',
+    lpSymbol: 'ASPO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE4b870875BCDa11Fa02E53F8Dea3821cf74Cbad1',
+    },
+    tokenSymbol: 'ASPO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1a9b49E9f075c37Fe5f86C916bac9DEb33556D7E',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://aspo.world/',
+  },
 
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 
