@@ -1024,6 +1024,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  aspo: {
+    symbol: 'ASPO',
+    address: {
+      56: '0x1a9b49E9f075c37Fe5f86C916bac9DEb33556D7E',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {

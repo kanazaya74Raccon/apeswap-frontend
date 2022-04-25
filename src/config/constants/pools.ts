@@ -3663,6 +3663,25 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 198,
+    tokenName: 'ASPO',
+    image: 'ASPO.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.aspo,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xf2f96bb2850Ea1125Cf5f2c930A4aC51abE37fd4',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://aspo.world/',
+    harvest: true,
+    tokenPerBlock: `0.642746527777777777`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
