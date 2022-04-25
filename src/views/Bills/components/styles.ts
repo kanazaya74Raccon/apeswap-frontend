@@ -19,6 +19,6 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 
 export const Container = styled(Flex)`
   position: relative;
-  transform: translateY(-40px);
   flex-direction: column;
+  margin-top: 20px;
 `

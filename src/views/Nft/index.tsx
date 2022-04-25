@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text, Heading, Spinner, Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
+import Banner from 'components/Banner'
 import Page from 'components/layout/Page'
 import { useFetchNfas, useNfas } from 'state/hooks'
 import SortNfts from './components/SortNfts'
@@ -78,18 +79,8 @@ const Nft = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1" color="white">
-            {TranslateString(999, 'Non Fungible Apes')}
-          </StyledHeading>
-          <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
-            {TranslateString(999, 'Collection')}
-          </StyledHeading>
-        </HeadingContainer>
-      </Header>
-
       <Page>
+        <Banner banner="nfa-collection" />
         <StyledHero>
           <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
             <StyledAnchor

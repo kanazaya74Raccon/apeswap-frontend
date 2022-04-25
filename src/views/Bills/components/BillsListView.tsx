@@ -35,7 +35,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           <ListViewContent
             title="Price"
             value={`$${bill?.priceUsd}`}
-            width={isMobile ? 90 : 150}
+            width={isMobile ? 90 : 160}
             ml={20}
             height={52.5}
             toolTip="This is the current discounted price of the tokens."

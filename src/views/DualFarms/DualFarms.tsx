@@ -7,6 +7,7 @@ import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apes
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import { usePriceBananaBusd, useDualFarms, usePollDualFarms } from 'state/hooks'
+import Banner from 'components/Banner'
 import useTheme from 'hooks/useTheme'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import useWindowSize, { Size } from 'hooks/useDimensions'
@@ -34,7 +35,6 @@ const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   padding-bottom: 10px;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
@@ -42,7 +42,6 @@ const ControlContainer = styled(Card)`
     padding: 0px;
     justify-content: flex-start;
     padding-left: 50px;
-    transform: translateY(-60px);
   }
 `
 
@@ -174,14 +173,9 @@ const ContainerLabels = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
   }
 `
 
@@ -307,11 +301,6 @@ const StyledLabelContainerEarned = styled.div`
 
 const CardContainer = styled.div`
   margin-top: 17px;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const ButtonCheckWrapper = styled.div`
@@ -348,18 +337,7 @@ const StyledHeading = styled(Heading)`
 `
 
 const StyledPage = styled(Page)`
-  padding-left: 5px;
-  padding-right: 5px;
   width: 100vw;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 `
 
 const StyledLabel = styled.div<LabelProps>`
@@ -594,13 +572,8 @@ const DualFarms: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn Rewards')}</StyledHeading>
-        </HeadingContainer>
-      </Header>
-
-      <StyledPage width="1130px">
+      <StyledPage width="1200px">
+        <Banner banner="polygon-farms" title="Stake LP tokens to earn Rewards" />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

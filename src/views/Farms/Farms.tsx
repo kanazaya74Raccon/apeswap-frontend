@@ -6,6 +6,7 @@ import { Flex } from '@apeswapfinance/uikit'
 import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
+import Banner from 'components/Banner'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
 import useI18n from 'hooks/useI18n'
@@ -127,14 +128,15 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
-        </HeadingContainer>
-      </Header>
-      <Flex justifyContent="center" mb="100px" style={{ position: 'relative', top: '30px', width: '100%' }}>
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        mb="100px"
+        style={{ position: 'relative', top: '30px', width: '100%' }}
+      >
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <Flex alignItems="center" justifyContent="center">
+          <Banner banner="banana-farms" title="Stake LP tokens to earn BANANA" />
+          <Flex alignItems="center" justifyContent="center" mt="20px">
             <ListViewMenu
               onHandleQueryChange={handleChangeQuery}
               onSetSortOption={setSortOption}

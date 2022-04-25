@@ -62,7 +62,7 @@ export const DescriptionContainer = styled(Flex)`
   padding-left: 20px;
   padding: 20px 0px 20px 20px;
   ${({ theme }) => theme.mediaQueries.md} {
-    max-width: 480px;
+    max-width: 530px;
   }
 `
 

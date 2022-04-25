@@ -2,10 +2,10 @@ import { Flex } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import { usePollBills, useBills, usePollUserBills } from 'state/bills/hooks'
 import { Bills as BillType } from 'state/types'
+import Banner from 'components/Banner'
 import BillsListView from './components/BillsListView'
 import UserBillViews from './components/UserBillViews'
 import BillMenu from './components/Menu'
-import { Header, HeadingContainer, StyledHeading } from './styles'
 
 const Bills: React.FC = () => {
   usePollBills()
@@ -29,12 +29,8 @@ const Bills: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1">Treasury Bills</StyledHeading>
-        </HeadingContainer>
-      </Header>
       <Flex
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         mb="80px"
@@ -42,6 +38,7 @@ const Bills: React.FC = () => {
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
+          <Banner banner="treasury-bills" title="Treasury Bills" />
           <BillMenu
             bills={bills}
             onHandleQueryChange={handleChangeQuery}

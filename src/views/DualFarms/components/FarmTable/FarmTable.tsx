@@ -14,11 +14,6 @@ const Container = styled.div`
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const TableWrapper = styled.div`
