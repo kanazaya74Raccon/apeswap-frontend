@@ -4,6 +4,7 @@ import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@apeswa
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import truncateHash from 'utils/truncateHash'
+import callWallchainAPI from 'utils/wallchainService'
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../config/constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress } from '../utils'
@@ -171,6 +172,8 @@ export function useSwapCallback(
           },
           gasEstimate,
         } = successfulEstimation
+
+        callWallchainAPI(methodName, args, value, chainId, account, contract)
 
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),

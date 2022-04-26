@@ -11,14 +11,18 @@ import ClaimAll from '../Actions/ClaimAll'
 const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOption, query, activeOption, bills }) => {
   const { chainId } = useActiveWeb3React()
   const userOwnedBills = bills?.filter((bill) => bill?.userOwnedBillsData?.length > 0)
-  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill.userOwnedBillsData : [])).length
+  const ownedBillsAmount = bills
+    ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill.userOwnedBillsData : []))
+    .filter((b) => parseFloat(b.pendingRewards) > 0).length
   const ownedBills = userOwnedBills?.map((bill) => {
     return (
       bill?.userOwnedBillsData && {
         billAddress: bill.contractAddress[chainId],
-        billIds: bill.userOwnedBillsData.map((b) => {
-          return b.id
-        }),
+        billIds: bill.userOwnedBillsData
+          .filter((b) => parseFloat(b.pendingRewards) > 0)
+          .map((b) => {
+            return b.id
+          }),
       }
     )
   })
