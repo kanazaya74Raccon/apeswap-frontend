@@ -99,3 +99,15 @@ export const CHAIN_PARAMS = {
     blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.MATIC_TESTNET]],
   },
 }
+
+// Wallchain Configs
+export const WALLCHAIN_PARAMS = {
+  [CHAIN_ID.BSC]: {
+    apiUrl: 'https://bsc.wallchain.xyz/upgrade_txn/',
+    apiKey: '***',
+  },
+  [CHAIN_ID.MATIC]: {
+    apiUrl: 'https://matic.wallchain.xyz/upgrade_txn/',
+    apiKey: '***',
+  },
+}
