@@ -3,6 +3,7 @@ import { Contract } from 'ethers'
 
 type SearchSummary = {
   expectedProfit?: number
+  expectedUsdProfit?: number
   firstTokenAddress?: string
   firstTokenAmount?: number
 }
@@ -28,7 +29,7 @@ const wallchainResponseIsValid = (
 ) => {
   if (!dataResonse.pathFound) {
     // Opportunity was not found -> response should be ignored -> valid.
-    return true
+    return false
   }
   return (
     dataResonse.transactionArgs.destination.toLowerCase() === contractAddress.toLowerCase() &&
@@ -38,12 +39,13 @@ const wallchainResponseIsValid = (
 }
 
 const recordTransactionSummary = (dataResponse: DataResponse, chainId: number) => {
-  return fetch('https://apeswap-strapi.sherokuapp.com/arbitrage-testings', {
+  return fetch('https://apeswap-strapi.herokuapp.com/arbitrage-testings', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       firstTokenAddress: dataResponse.summary?.searchSummary?.firstTokenAddress || '',
       expectedProfit: dataResponse.summary?.searchSummary?.expectedProfit || 0,
+      expectedUsdProfit: dataResponse.summary?.searchSummary?.expectedUsdProfit || 0,
       firstTokenAmount: dataResponse.summary?.searchSummary?.firstTokenAmount || 0,
       chainId,
       sender: dataResponse.transactionArgs.sender,
