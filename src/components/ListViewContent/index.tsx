@@ -51,7 +51,7 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
       </Flex>
       <Flex alignItems="center" justifyContent={justifyContent}>
         {valueIcon && valueIcon}
-        <ValueText bold lineHeight={lineHeight}>
+        <ValueText bold lineHeight={lineHeight} valueColor={valueColor}>
           {value.includes('NaN') || value.includes('undefined') || value.includes('null') ? <ValueSkeleton /> : value}
         </ValueText>
       </Flex>
