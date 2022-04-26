@@ -455,7 +455,7 @@ const tokens = {
     decimals: 18,
   },
   sx: {
-    symbol: 'sx',
+    symbol: 'SX',
     address: {
       56: '0x6f26e8a40c8daae8c4358ce557c10226527cebce',
     },

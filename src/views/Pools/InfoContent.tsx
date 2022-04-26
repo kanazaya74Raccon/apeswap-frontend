@@ -43,12 +43,12 @@ const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
       </Flex>
       <Flex alignItems="center" justifyContent="center" mt="20px">
         <LinkExternal href={tokenContractLink} style={{ fontSize: '14px' }}>
-          View token contract
+          View Token Contract
         </LinkExternal>
       </Flex>
       <Flex alignItems="center" justifyContent="center" mt="15px">
         <LinkExternal href={contractLink} style={{ fontSize: '14px' }}>
-          View pool contract
+          View Pool Contract
         </LinkExternal>
       </Flex>
     </>
