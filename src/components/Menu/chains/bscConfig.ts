@@ -68,8 +68,16 @@ const bscConfig: MenuEntry[] = [
         href: '/staking',
       },
       {
-        label: 'Liquid Collectibles',
-        href: 'https://liquidcollectibles.io/',
+        label: 'NFA Liquidity',
+        href: 'https://liquidcollectibles.io/collection/0x6afc012783e3a6ef8c5f05f8eee2edef6a052ec4',
+      },
+      {
+        label: 'NFB Collection',
+        href: 'https://nftkey.app/collections/nfbs/',
+      },
+      {
+        label: 'NFB Liquidity',
+        href: 'https://liquidcollectibles.io/collection/0x9f707a412302a3ad64028a9f73f354725c992081',
       },
     ],
   },

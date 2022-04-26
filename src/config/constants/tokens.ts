@@ -1003,6 +1003,34 @@ const tokens = {
     },
     decimals: 18,
   },
+  ankr: {
+    symbol: 'ANKR',
+    address: {
+      56: '0xf307910A4c7bbc79691fD374889b36d8531B08e3',
+    },
+    decimals: 18,
+  },
+  kte: {
+    symbol: 'KTE',
+    address: {
+      56: '0x61fA01129aC0bB124D1C60Dc9f735C6C579A858B',
+    },
+    decimals: 18,
+  },
+  gq: {
+    symbol: 'GQ',
+    address: {
+      56: '0xF700D4c708C2be1463E355F337603183D20E0808',
+    },
+    decimals: 18,
+  },
+  aspo: {
+    symbol: 'ASPO',
+    address: {
+      56: '0x1a9b49E9f075c37Fe5f86C916bac9DEb33556D7E',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1015,7 +1043,7 @@ const tokens = {
     lpToken: true,
   },
   bnbBusd: {
-    symbol: 'BNB-BUSD',
+    symbol: 'BUSD-BNB',
     address: {
       56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
     },
@@ -1023,7 +1051,7 @@ const tokens = {
     lpToken: true,
   },
   bnbEth: {
-    symbol: 'BNB-ETH',
+    symbol: 'ETH-BNB',
     address: {
       56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
     },
@@ -1031,7 +1059,7 @@ const tokens = {
     lpToken: true,
   },
   bnbBtc: {
-    symbol: 'BNB-BTC',
+    symbol: 'BTC-BNB',
     address: {
       56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
     },
@@ -1039,7 +1067,7 @@ const tokens = {
     lpToken: true,
   },
   usdcBusd: {
-    symbol: 'USDC-BUSD',
+    symbol: 'BUSD-USDC',
     address: {
       56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
     },
