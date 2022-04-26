@@ -43,7 +43,7 @@ const ClaimAll: React.FC<{
     <StyledButton
       onClick={handleClaim}
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
-      disabled={pendingTrx}
+      disabled={pendingTrx || ownedBillsAmount === 0}
       buttonSize={buttonSize}
       style={{ height: '36px' }}
     >
