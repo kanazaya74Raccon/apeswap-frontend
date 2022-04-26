@@ -11,14 +11,17 @@ import Claim from '../Actions/Claim'
 import VestedTimer from '../VestedTimer'
 import BillModal from '../Modals'
 
-const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
+const UserBillListView: React.FC<{ bills: Bills[]; showAll?: boolean }> = ({ bills, showAll }) => {
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
   const { chainId } = useActiveWeb3React()
   const isMobile = !isLg && !isXl && !isXxl
   const billsListView = bills.flatMap((bill) => {
     const ownedBills = bill?.userOwnedBillsData
     const { token, quoteToken, earnToken } = bill
-    return ownedBills.map((ownedBill) => {
+    return ownedBills.flatMap((ownedBill) => {
+      if (!showAll && parseFloat(ownedBill.pendingRewards) === 0 && parseFloat(ownedBill.payout) === 0) {
+        return []
+      }
       const pending = getBalanceNumber(new BigNumber(ownedBill.payout), bill?.earnToken?.decimals)?.toFixed(4)
       const pendingRewards = getBalanceNumber(
         new BigNumber(ownedBill.pendingRewards),
@@ -62,7 +65,12 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             {!isMobile && (
               <>
                 <Flex alignItems="center" style={{ height: '100%' }}>
-                  <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} buttonSize={100} />
+                  <Claim
+                    billAddress={bill.contractAddress[chainId]}
+                    billIds={[ownedBill.id]}
+                    buttonSize={100}
+                    pendingRewards={ownedBill?.pendingRewards}
+                  />
                 </Flex>
                 <Flex alignItems="center" style={{ height: '100%' }}>
                   <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={100} />
@@ -75,7 +83,11 @@ const UserBillListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
         expandedContent: isMobile && (
           <Flex flexDirection="column" alignItems="center" style={{ height: '110px', width: '100%' }}>
             <Flex alignItems="center" justifyContent="center">
-              <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} />
+              <Claim
+                billAddress={bill.contractAddress[chainId]}
+                billIds={[ownedBill.id]}
+                pendingRewards={ownedBill?.pendingRewards}
+              />
             </Flex>
             <Flex alignItems="center" mt="20px">
               <BillModal buttonText="VIEW" bill={bill} billId={ownedBill.id} buttonSize={200} />

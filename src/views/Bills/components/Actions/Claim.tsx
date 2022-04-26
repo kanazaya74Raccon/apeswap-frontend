@@ -9,7 +9,7 @@ import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bil
 import { ClaimProps } from './types'
 import { StyledButton } from '../styles'
 
-const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
+const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize, pendingRewards }) => {
   const { onClaimBill } = useClaimBill(billAddress, billIds)
   const { chainId, account } = useActiveWeb3React()
   const dispatch = useAppDispatch()
@@ -38,7 +38,7 @@ const Claim: React.FC<ClaimProps> = ({ billAddress, billIds, buttonSize }) => {
     <StyledButton
       onClick={handleClaim}
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
-      disabled={pendingTrx}
+      disabled={pendingTrx || parseFloat(pendingRewards) === 0}
       buttonSize={buttonSize}
     >
       CLAIM

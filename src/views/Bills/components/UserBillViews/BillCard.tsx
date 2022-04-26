@@ -15,11 +15,16 @@ import BillModal from '../Modals'
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
   const scrollDown = () => window.scrollBy({ top: 500, behavior: 'smooth' })
-  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))?.length
+  const ownedBillsAmount = bills
+    ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))
+    .filter((b) => parseFloat(b.pendingRewards) > 0)?.length
   const billsCardView = bills
     .flatMap((bill) => {
       const ownedBills = bill?.userOwnedBillsData
-      return ownedBills?.map((ownedBill, i) => {
+      return ownedBills?.flatMap((ownedBill, i) => {
+        if (parseFloat(ownedBill.pendingRewards) === 0 && parseFloat(ownedBill.payout) === 0) {
+          return []
+        }
         const pendingRewards = getBalanceNumber(
           new BigNumber(ownedBill.pendingRewards),
           bill?.earnToken?.decimals,
@@ -48,7 +53,11 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
                   justifyContent="flex-end"
                 />
               </Flex>
-              <Claim billAddress={bill.contractAddress[chainId]} billIds={[ownedBill.id]} />
+              <Claim
+                billAddress={bill.contractAddress[chainId]}
+                billIds={[ownedBill.id]}
+                pendingRewards={ownedBill?.pendingRewards}
+              />
             </CardContainer>
           </SwiperSlide>
         )

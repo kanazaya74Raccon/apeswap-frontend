@@ -12,8 +12,11 @@ import { HeadingContainer } from './styles'
 const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { account } = useActiveWeb3React()
   const userOwnedBills = bills?.filter((bill) => bill?.userOwnedBillsData?.length > 0)
-  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))?.length
+  const ownedBillsAmount = bills
+    ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))
+    .filter((b) => parseFloat(b.pendingRewards) > 0)?.length
   const [showAll, setShowAll] = useState(false)
+  const [showExpired, setShowExpired] = useState(false)
   return (
     <Container>
       {!account || ownedBillsAmount === 0 ? (
@@ -47,10 +50,10 @@ const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             </Text>
             <Flex style={{ minWidth: '140px', gridArea: 'expired' }}>
               <Text mr="12.5px">Show expired</Text>
-              <Checkbox />
+              <Checkbox checked={showExpired} onClick={() => setShowExpired((prev) => !prev)} />
             </Flex>
           </HeadingContainer>
-          <UserBillListView bills={userOwnedBills} />
+          <UserBillListView bills={userOwnedBills} showAll={showExpired}/>
         </Flex>
       )}
     </Container>
