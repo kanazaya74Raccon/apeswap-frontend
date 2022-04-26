@@ -104,10 +104,10 @@ export const CHAIN_PARAMS = {
 export const WALLCHAIN_PARAMS = {
   [CHAIN_ID.BSC]: {
     apiUrl: 'https://bsc.wallchain.xyz/upgrade_txn/',
-    apiKey: process.env.REACT_APP_WALLCHAIN_BNB_API_KEY,
+    apiKey: '85c578a5-ecb0-445c-8a95-4c0eba2f33b6',
   },
   [CHAIN_ID.MATIC]: {
     apiUrl: 'https://matic.wallchain.xyz/upgrade_txn/',
-    apiKey: process.env.REACT_APP_WALLCHAIN_MATIC_API_KEY,
+    apiKey: '5cf2b177-5fa5-477a-8cea-f2b54859af2a',
   },
 }
