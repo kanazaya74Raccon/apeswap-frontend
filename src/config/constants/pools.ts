@@ -553,27 +553,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 9,
   },
 
-  {
-    sousId: 15,
-    tokenName: 'Inactive - FOXY',
-    stakingToken: tokens.banana,
-    rewardToken: null,
-    image: 'FOXY.png',
-    contractAddress: {
-      // BEP20RewardApe
-      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
-      56: '0x4cb75836d3254f7454d1bf6d95448c496cbc16b1',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://foxynft.org',
-    twitter: 'https://twitter.com/foxyequilibrium',
-    harvest: true,
-    tokenPerBlock: '0.05787037037037',
-    sortOrder: 999,
-    isFinished: true,
-    tokenDecimals: 9,
-    lpStaking: false,
-  },
   // {
   //   sousId: 43,
   //   tokenName: 'HIFI',
@@ -1217,7 +1196,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 107,
     tokenName: 'FRMx',
-    image: 'FRMx.svg',
+    image: 'FRMX.svg',
     stakingToken: tokens.gnana,
     rewardToken: tokens.frmx,
     contractAddress: {
@@ -1257,7 +1236,7 @@ const pools: PoolConfig[] = [
   {
     sousId: 111,
     tokenName: 'ROCKI',
-    image: 'ROCKS.svg',
+    image: 'ROCKI.svg',
     stakingToken: tokens.gnana,
     rewardToken: tokens.rocks,
     contractAddress: {
