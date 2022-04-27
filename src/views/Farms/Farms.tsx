@@ -6,6 +6,7 @@ import { Flex } from '@apeswapfinance/uikit'
 import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
+import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
@@ -134,8 +135,8 @@ const Farms: React.FC = () => {
         mb="100px"
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
-        <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <Banner banner="banana-farms" title="Stake LP tokens to earn BANANA" />
+        <ListViewLayout>
+          <Banner banner="banana-farms" title="Banana Farms" />
           <Flex alignItems="center" justifyContent="center" mt="20px">
             <ListViewMenu
               onHandleQueryChange={handleChangeQuery}
@@ -149,7 +150,7 @@ const Farms: React.FC = () => {
             />
           </Flex>
           <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
-        </Flex>
+        </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />
     </>

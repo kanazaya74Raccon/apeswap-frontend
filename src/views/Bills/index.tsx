@@ -2,6 +2,7 @@ import { Flex } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import { usePollBills, useBills, usePollUserBills } from 'state/bills/hooks'
 import { Bills as BillType } from 'state/types'
+import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import BillsListView from './components/BillsListView'
 import UserBillViews from './components/UserBillViews'
@@ -34,11 +35,10 @@ const Bills: React.FC = () => {
         justifyContent="center"
         alignItems="center"
         mb="80px"
-        padding="0px 10px"
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
-        <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <Banner banner="treasury-bills" title="Treasury Bills" />
+        <ListViewLayout>
+          <Banner banner="treasury-bills" title="Treasury Bills" listViewBreak />
           <BillMenu
             bills={bills}
             onHandleQueryChange={handleChangeQuery}
@@ -48,7 +48,7 @@ const Bills: React.FC = () => {
           />
           <UserBillViews bills={renderBills()} />
           <BillsListView bills={renderBills()} />
-        </Flex>
+        </ListViewLayout>
       </Flex>
     </>
   )

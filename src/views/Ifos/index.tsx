@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Heading } from '@apeswapfinance/uikit'
+import Banner from 'components/Banner'
 import Container from 'components/layout/Container'
 import ifos, { pastIfos } from 'config/constants/ifo'
 import IfoTabButtons from './components/IfoTabButtons'
@@ -181,21 +182,8 @@ const Ifos = () => {
 
   return (
     <>
-      <Header>
-        <HeaderContainer>
-          <StyledHeading as="h1" style={{ color: 'white' }}>
-            {TranslateString(999, 'Initial Ape Offerings')}
-          </StyledHeading>
-        </HeaderContainer>
-
-        <RightDiv>
-          <Ape src="/images/banners/iao-ape.svg" className="ape" />
-          <WindowDiv className="window" />
-          <Banana src="/images/banners/iao-banana.svg" className="banana" />
-        </RightDiv>
-      </Header>
-
       <Container>
+        <Banner banner="iao" title="Initial Ape Offerings" margin="30px 0px 20px 0px" />
         <IfoProjectCard ifoId={projectId} />
         {tabOption === 'past' && <IfoPastProjectSwiper onSelectProject={setProjectId} />}
         <IfoTabButtons onSelect={handleTabSelectionChange} selectedTab={tabOption} />
