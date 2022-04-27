@@ -17,6 +17,7 @@ const ListCard: React.FC<ListCardProps> = ({
   cardContent,
   expandedContent,
   infoContent,
+  infoContentPosition,
   open,
 }) => {
   const [expanded, setExpanded] = useState(open)
@@ -32,7 +33,11 @@ const ListCard: React.FC<ListCardProps> = ({
         {expandedContent && <DropDownIcon open={expanded} mr="30px" />}
         {infoContent && (
           <div style={{ display: 'inline-block' }}>
-            <TooltipBubble placement="bottomRight" body={infoContent} transformTip="translate(-82%, 30%)">
+            <TooltipBubble
+              placement="bottomRight"
+              body={infoContent}
+              transformTip={infoContentPosition || 'translate(-82%, 40%)'}
+            >
               <InfoIcon width="25px" />
             </TooltipBubble>
           </div>

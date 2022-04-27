@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Spinner, Flex } from '@apeswapfinance/uikit'
+import { Text, Spinner, Flex } from '@apeswapfinance/uikit'
 import useI18n from 'hooks/useI18n'
 import Banner from 'components/Banner'
 import Page from 'components/layout/Page'
@@ -14,59 +14,6 @@ const StyledHero = styled.div`
   padding-bottom: 32px;
 `
 
-const Header = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/banners/list-night.svg)' : 'url(/images/banners/list.svg)'};
-  height: 250px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 300px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    height: 300px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-`
-
-const HeadingContainer = styled.div`
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const StyledHeading = styled(Heading)`
-  font-size: 32px;
-  max-width: 300px !important;
-  color: ${({ theme }) => theme.colors.text};
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 36px;
-    max-width: 400px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    font-size: 44px;
-    max-width: 500px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 60px;
-    max-width: 600px !important;
-  }
-`
 
 const StyledAnchor = styled.a`
   font-weight: 800;
@@ -80,7 +27,7 @@ const Nft = () => {
   return (
     <>
       <Page>
-        <Banner banner="nfa-collection" />
+        <Banner banner="nfa-collection" title="Nfa Collection" margin="0 0 20px 0"/>
         <StyledHero>
           <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
             <StyledAnchor

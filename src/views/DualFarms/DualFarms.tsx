@@ -3,7 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { RowType, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import Page from 'components/layout/Page'
 import { usePriceBananaBusd, useDualFarms, usePollDualFarms } from 'state/hooks'
@@ -99,29 +99,6 @@ const ViewControls = styled.div`
   }
 `
 
-const HeadingContainer = styled.div`
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const Header = styled.div`
-  padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/farm-polygon-night.svg)' : 'url(/images/farm-polygon-day.svg)'};
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 250px;
-  background-position: center;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 24px;
-    padding-right: 24px;
-    height: 300px;
-  }
-`
 
 const StyledText = styled(Text)`
   font-weight: 700;
@@ -314,28 +291,6 @@ const ButtonCheckWrapper = styled.div`
     width: fit-content;
   }
 `
-
-const StyledHeading = styled(Heading)`
-  font-size: 30px;
-  max-width: 176px !important;
-  color: white;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 30px;
-    max-width: 240px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 44px;
-    max-width: 400px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 60px;
-    max-width: 600px !important;
-  }
-`
-
 const StyledPage = styled(Page)`
   width: 100vw;
 `
@@ -572,8 +527,8 @@ const DualFarms: React.FC = () => {
 
   return (
     <>
-      <StyledPage width="1200px">
-        <Banner banner="polygon-farms" title="Stake LP tokens to earn Rewards" />
+      <StyledPage width="1130px">
+        <Banner banner="polygon-farms" title="Dual Farms" margin="0px 0px 20px 0px"/>
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

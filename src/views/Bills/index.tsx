@@ -38,7 +38,7 @@ const Bills: React.FC = () => {
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
         <ListViewLayout>
-          <Banner banner="treasury-bills" title="Treasury Bills" listViewBreak />
+          <Banner banner="treasury-bills" title="Treasury Bills" listViewBreak titleColor="primaryBright" />
           <BillMenu
             bills={bills}
             onHandleQueryChange={handleChangeQuery}

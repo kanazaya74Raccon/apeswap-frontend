@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
-import { CHAIN_ID } from 'config/constants/chains'
 import useWindowSize, { Size } from 'hooks/useDimensions'
-import { useVaults, useNetworkChainId, usePollVaultsData } from 'state/hooks'
+import Banner from 'components/Banner'
+import { useVaults, usePollVaultsData } from 'state/hooks'
 import { Vault } from 'state/types'
 import Page from 'components/layout/Page'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
@@ -31,7 +31,6 @@ const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   padding-bottom: 10px;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
@@ -39,7 +38,6 @@ const ControlContainer = styled(Card)`
     padding: 0px;
     justify-content: flex-start;
     padding-left: 50px;
-    transform: translateY(-60px);
   }
 `
 
@@ -123,43 +121,6 @@ const ViewControls = styled.div`
     }
   }
 `
-
-const HeadingContainer = styled.div`
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const Header = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-image: url(/images/burning-vaults-bsc.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 250px;
-  background-position: center;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: 24px;
-    padding-right: 24px;
-    height: 300px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-`
-
-const HeaderPolygon = styled(Header)`
-  background-image: ${({ theme }) =>
-    theme.isDark ? 'url(/images/burning-vaults-polygon-dark.svg)' : 'url(/images/burning-vaults-polygon-light.svg)'};
-`
-
 const StyledText = styled(Text)`
   font-weight: 600;
   font-size: 12px;
@@ -188,15 +149,11 @@ const ContainerLabels = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
   }
 
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const StyledLabelContainerHot = styled.div`
@@ -295,11 +252,6 @@ const StyledLabelContainerTotalStaked = styled.div`
 
 const CardContainer = styled.div`
   margin-top: 17px;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const ButtonCheckWrapper = styled.div`
@@ -313,27 +265,6 @@ const ButtonCheckWrapper = styled.div`
     width: fit-content;
   }
 `
-
-const StyledHeading = styled(Heading)`
-  font-size: 32px;
-  max-width: 176px !important;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
-    max-width: 240px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 44px;
-    max-width: 400px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 60px;
-    max-width: 600px !important;
-  }
-`
-
 const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
@@ -423,11 +354,6 @@ const Container = styled.div`
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const TableWrapper = styled.div`
@@ -457,7 +383,6 @@ const Vaults: React.FC = () => {
   const { vaults: initVaults } = useVaults()
   const [allVaults, setAllVaults] = useState(initVaults)
   const TranslateString = useI18n()
-  const chainId = useNetworkChainId()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -589,24 +514,11 @@ const Vaults: React.FC = () => {
     </Container>
   )
 
-  const renderHeader = () => {
-    const headerContents = (
-      <HeadingContainer>
-        <StyledHeading as="h1" color="white" style={{ marginBottom: '8px', color: 'white' }}>
-          {TranslateString(999, 'Burning Vaults')}
-        </StyledHeading>
-      </HeadingContainer>
-    )
-    if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
-      return <HeaderPolygon>{headerContents}</HeaderPolygon>
-    }
-    return <Header>{headerContents}</Header>
-  }
 
   return (
     <>
-      {renderHeader()}
       <StyledPage width="1130px">
+        <Banner banner="burning" title="Burning Vaults" margin='0 0 20px 0'/>
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

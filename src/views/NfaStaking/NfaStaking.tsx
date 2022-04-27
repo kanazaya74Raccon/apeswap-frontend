@@ -8,7 +8,7 @@ import { partition } from 'lodash'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
-import SearchInput from '../Pools/components/SearchInput'
+import SearchInput from '../PoolsLegacy/components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
 
 const float = keyframes`

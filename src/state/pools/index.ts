@@ -76,28 +76,28 @@ export const fetchPoolsUserDataAsync =
   }
 
 export const updateUserAllowance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, sousId: number, account: string): AppThunk =>
   async (dispatch) => {
     const allowances = await fetchPoolsAllowance(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
   }
 
 export const updateUserBalance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, sousId: number, account: string): AppThunk =>
   async (dispatch) => {
     const tokenBalances = await fetchUserBalances(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
   }
 
 export const updateUserStakedBalance =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, sousId: number, account: string): AppThunk =>
   async (dispatch) => {
     const stakedBalances = await fetchUserStakeBalances(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
   }
 
 export const updateUserPendingReward =
-  (chainId: number, sousId: string, account: string): AppThunk =>
+  (chainId: number, sousId: number, account: string): AppThunk =>
   async (dispatch) => {
     const pendingRewards = await fetchUserPendingRewards(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))

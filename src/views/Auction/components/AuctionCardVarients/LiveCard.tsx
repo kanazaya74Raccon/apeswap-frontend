@@ -78,9 +78,9 @@ const HighestBidder = styled.div`
 `
 
 const LiveCard: React.FC<LiveCardProps> = ({ auction, minIncrementAmount, minIncrementPercentage }) => {
-  const { isXxl } = useMatchBreakpoints()
+  const { isXxl , isXl} = useMatchBreakpoints()
   const [expanded, setExpanded] = useState(false)
-  const isDesktop = isXxl
+  const isDesktop = isXxl || isXl
   const { nfa, highestBid, highestBidder } = auction
   const { account } = useWeb3React()
   const highestBidFlag = highestBidder === account

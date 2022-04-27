@@ -17,6 +17,7 @@ export const styles: Record<string, ThemeUIStyleObject> = {
   // Style for title container
   titleContainer: {
     position: 'absolute',
+    flexDirection: 'column',
     top: '20%',
     left: '5%',
     width: '37%',
@@ -24,11 +25,20 @@ export const styles: Record<string, ThemeUIStyleObject> = {
   // Style for the banner text
   titleText: {
     fontWeight: 700,
-    lineHeight: '5vw',
+    lineHeight: '3.75vw',
     fontSize: '4vw',
     '@media screen and (min-width: 1130px)': {
-      lineHeight: '60px',
+      lineHeight: '45px',
       fontSize: '45px',
+    },
+  },
+  // Style for learn more text
+  learnText: {
+    mt: '5%',
+    fontSize: '1.65vw',
+    textDecoration: 'underline',
+    '@media screen and (min-width: 1130px)': {
+      fontSize: '18px',
     },
   },
 }
