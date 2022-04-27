@@ -77,7 +77,7 @@ const Iazos: React.FC = () => {
     <>
       <PageWrapper>
         <Flex flexDirection="column">
-          <Banner banner="ssiao" title="Self-Serve Iao" margin="30px 0 0 0" />
+          <Banner banner="ssiao" title="Self-Serve Iao" maxWidth={856} listViewBreak margin="30px 0 0 0" />
           <LaunchPadWrapper>
             <TopNavWrapper />
             <HeaderWrapper>

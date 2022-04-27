@@ -1,17 +1,11 @@
+import { Flex } from '@ape.swap/uikit'
+import styled from '@emotion/styled'
 import { ThemeUIStyleObject } from 'theme-ui'
 
 export const styles: Record<string, ThemeUIStyleObject> = {
   // Style for the banner flex
   flexPrimary: {
     position: 'relative',
-    width: '100%',
-  },
-  // Style for banner image
-  imagePrimary: {
-    position: 'relative',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    borderRadius: '10px',
     width: '100%',
   },
   // Style for title container
@@ -42,3 +36,15 @@ export const styles: Record<string, ThemeUIStyleObject> = {
     },
   },
 }
+
+export const FlexImage = styled(Flex)<{ maxWidth?: number }>`
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 24vw;
+  @media screen and (min-width: ${({ maxWidth }) => maxWidth}px) {
+    height: ${({ maxWidth }) => maxWidth / 4}px;
+    width: ${({ maxWidth }) => maxWidth}px;
+  }
+`

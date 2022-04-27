@@ -99,7 +99,6 @@ const ViewControls = styled.div`
   }
 `
 
-
 const StyledText = styled(Text)`
   font-weight: 700;
   font-size: 12px;
@@ -528,7 +527,7 @@ const DualFarms: React.FC = () => {
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner="polygon-farms" title="Dual Farms" margin="0px 0px 20px 0px"/>
+        <Banner banner="polygon-farms" title="Dual Farms" maxWidth={1130} margin="0px 0px 20px 0px" />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

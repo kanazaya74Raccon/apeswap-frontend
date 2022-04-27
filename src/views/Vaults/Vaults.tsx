@@ -153,7 +153,6 @@ const ContainerLabels = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
   }
-
 `
 
 const StyledLabelContainerHot = styled.div`
@@ -514,11 +513,10 @@ const Vaults: React.FC = () => {
     </Container>
   )
 
-
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner="burning" title="Burning Vaults" margin='0 0 20px 0'/>
+        <Banner banner="burning" title="Burning Vaults" maxWidth={1130} margin="0 0 20px 0" />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

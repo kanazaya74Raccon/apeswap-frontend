@@ -32,7 +32,10 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
         : `https://apeswap.finance/swap?outputCurrency=${pool?.stakingToken.address[chainId]}`
       : `${BASE_ADD_LIQUIDITY_URL}/${pool?.lpTokens?.token?.address[chainId]}/${pool?.lpTokens?.quoteToken?.address[chainId]}`
     const userAllowance = pool?.userData?.allowance
-    const userEarnings = getBalanceNumber(pool?.userData?.pendingReward || new BigNumber(0), pool?.rewardToken?.decimals)
+    const userEarnings = getBalanceNumber(
+      pool?.userData?.pendingReward || new BigNumber(0),
+      pool?.rewardToken?.decimals,
+    )
     const userEarningsUsd = `$${(userEarnings * pool.rewardToken?.price).toFixed(2)}`
     const userTokenBalance = `${getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0))?.toFixed(6)}`
     const userTokenBalanceUsd = `$${(

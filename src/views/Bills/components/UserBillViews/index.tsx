@@ -53,7 +53,7 @@ const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               <Checkbox checked={showExpired} onClick={() => setShowExpired((prev) => !prev)} />
             </Flex>
           </HeadingContainer>
-          <UserBillListView bills={userOwnedBills} showAll={showExpired}/>
+          <UserBillListView bills={userOwnedBills} showAll={showExpired} />
         </Flex>
       )}
     </Container>

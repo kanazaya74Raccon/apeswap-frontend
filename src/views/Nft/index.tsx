@@ -14,7 +14,6 @@ const StyledHero = styled.div`
   padding-bottom: 32px;
 `
 
-
 const StyledAnchor = styled.a`
   font-weight: 800;
 `
@@ -27,7 +26,7 @@ const Nft = () => {
   return (
     <>
       <Page>
-        <Banner banner="nfa-collection" title="Nfa Collection" margin="0 0 20px 0"/>
+        <Banner banner="nfa-collection" title="Nfa Collection" margin="0 0 20px 0" />
         <StyledHero>
           <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
             <StyledAnchor

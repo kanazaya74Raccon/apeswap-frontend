@@ -300,7 +300,6 @@ const ButtonCheckWrapper = styled.div`
   }
 `
 
-
 const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
@@ -364,7 +363,6 @@ const Container = styled.div`
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
-
 `
 
 const TableWrapper = styled.div`
@@ -583,7 +581,7 @@ const JunglePools: React.FC = () => {
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner='jungle-farms' title="Jungle Farms" margin="0 0 20px 0px" />
+        <Banner banner="jungle-farms" title="Jungle Farms" maxWidth={1130} margin="0 0 20px 0px" />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

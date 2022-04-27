@@ -9,7 +9,6 @@ import IfoPastProjectSwiper from './components/PastProjectSwiper/IfoPastProjectS
 import { TabOption } from './types'
 import IfoProjectCard from './components/IfoCard/ProjectCard/IfoProjectCard'
 
-
 const firstPastIfoId = pastIfos.length > 0 ? pastIfos[0].id : undefined
 const activeIfoId = ifos.find((ifo) => ifo.isActive).id
 
@@ -35,7 +34,7 @@ const Ifos = () => {
   return (
     <>
       <Container>
-        <Banner banner="iao" title="Initial Ape Offerings" margin="30px 0px 20px 0px" />
+        <Banner banner="iao" title="Initial Ape Offerings" maxWidth={992} margin="30px 0px 20px 0px" />
         <IfoProjectCard ifoId={projectId} />
         {tabOption === 'past' && <IfoPastProjectSwiper onSelectProject={setProjectId} />}
         <IfoTabButtons onSelect={handleTabSelectionChange} selectedTab={tabOption} />

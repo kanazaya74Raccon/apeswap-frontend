@@ -1,5 +1,5 @@
 import React from 'react'
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { Flex, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
 import Banner from 'components/Banner'
@@ -8,7 +8,6 @@ import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
 import ListYourNfa from './components/Actions/ListYourNfa'
-
 
 const PageWrapper = styled.div`
   display: none;
@@ -94,7 +93,7 @@ const Auction: React.FC = () => {
       <Container>
         <Flex alignItems="center" justifyContent="center">
           <Flex alignSelf="center" style={{ width: '1200px' }}>
-            <Banner banner="auction" title="Nfa Auction" margin="30px 0 20px 0"/>
+            <Banner banner="auction" title="Nfa Auction" margin="30px 0 20px 0" />
           </Flex>
         </Flex>
         <PageWrapper>
