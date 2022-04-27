@@ -1,29 +1,40 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { PoolCategory } from 'config/constants/types'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
-import { PoolCategory } from 'config/constants/types'
-import useWindowSize, { Size } from 'hooks/useDimensions'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
+import useI18n from 'hooks/useI18n'
+import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
-import ToggleView from '../PoolsLegacy/components/ToggleView/ToggleView'
-import SearchInput from '../PoolsLegacy/components/SearchInput'
-import PoolCard from '../PoolsLegacy/components/PoolCard/PoolCard'
-import PoolTable from '../PoolsLegacy/components/PoolTable/PoolTable'
-import { ViewMode } from '../PoolsLegacy/components/types'
+import ToggleView from './components/ToggleView/ToggleView'
+import SearchInput from './components/SearchInput'
+import PoolCard from './components/PoolCard/PoolCard'
+import PoolTable from './components/PoolTable/PoolTable'
+import { ViewMode } from './components/types'
 
 interface LabelProps {
   active?: boolean
 }
+
+const float = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(50px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
+const floatSM = keyframes`
+  0% {transform: translate3d(0px, 0px, 0px);}
+  50% {transform: translate3d(10px, 0px, 0px);}
+  100% {transform: translate3d(0px, 0px, 0px);}
+`
 
 const ControlContainer = styled(Card)`
   display: flex;
@@ -120,10 +131,15 @@ const ViewControls = styled.div`
     justify-content: center;
     align-items: center;
     width: auto;
+    /* flex-wrap: nowrap; */
 
     > div {
       padding: 0;
     }
+  }
+
+  ${({ theme }) => theme.mediaQueries.xl} {
+    flex-wrap: nowrap;
   }
 `
 
@@ -140,7 +156,8 @@ const Header = styled.div`
   padding-top: 36px;
   padding-left: 10px;
   padding-right: 10px;
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/jungle-dark.svg)' : 'url(/images/jungle-light.svg)')};
+  background-image: ${({ theme }) =>
+    theme.isDark ? 'url(/images/pool-background-night.svg)' : 'url(/images/pool-background-day.svg)'};
   background-repeat: no-repeat;
   background-size: cover;
   height: 250px;
@@ -156,6 +173,37 @@ const Header = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     height: 300px;
+  }
+`
+
+const PoolMonkey = styled.div`
+  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/pool-ape-night.svg)' : 'url(/images/pool-ape.svg)')};
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+`
+
+const MonkeyWrapper = styled.div`
+  position: absolute;
+  width: 225px;
+  height: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0px;
+  right: 0px;
+  animation: 5s ${floatSM} linear infinite;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: 24px;
+    padding-right: 24px;
+    animation: 10s ${float} linear infinite;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 575px;
+    height: 800px;
+    top: ${({ theme }) => (theme.isDark ? '-120px' : '-80px')};
+    right: 0;
+    animation: 10s ${float} linear infinite;
   }
 `
 
@@ -341,7 +389,6 @@ const ButtonCheckWrapper = styled.div`
 const StyledHeading = styled(Heading)`
   font-size: 32px;
   max-width: 176px !important;
-  margin-bottom: 8px;
 
   ${({ theme }) => theme.mediaQueries.xs} {
     font-size: 36px;
@@ -414,7 +461,6 @@ const StyledTable = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background-color: ${({ theme }) => (theme.isDark ? 'black' : '#faf9fa')};
 `
 
 const Container = styled.div`
@@ -442,11 +488,11 @@ const TableContainer = styled.div`
 `
 const NUMBER_OF_POOLS_VISIBLE = 12
 
-const JunglePools: React.FC = () => {
+const Pools: React.FC = () => {
   usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
-  const [gnanaOnly] = useState(false)
-  const [bananaOnly] = useState(false)
+  const [gnanaOnly, setGnanaOnly] = useState(false)
+  const [bananaOnly, setBananaOnly] = useState(false)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [viewMode, setViewMode] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -494,7 +540,7 @@ const JunglePools: React.FC = () => {
     }
   }, [observerIsSet])
 
-  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory === PoolCategory.JUNGLE)
+  const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory !== PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {
     return { ...pool, isFinished: pool.sousId === 0 ? false : pool.isFinished || currentBlock > pool.endBlock }
   })
@@ -646,18 +692,21 @@ const JunglePools: React.FC = () => {
     <>
       <Header>
         <HeadingContainer>
-          <StyledHeading style={{ color: 'white' }} as="h1">
-            {TranslateString(999, 'Jungle Farms')}
+          <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
+            {TranslateString(999, 'Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
-              Stake APE-LPs to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
+              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
               block.
             </Text>
           )}
         </HeadingContainer>
+        <MonkeyWrapper>
+          <PoolMonkey />
+        </MonkeyWrapper>
       </Header>
-      <StyledPage width="1140px">
+      <StyledPage width="1130px">
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (
@@ -670,11 +719,19 @@ const JunglePools: React.FC = () => {
             <ButtonCheckWrapper>
               <div />
               <MenuTabButtons />
-              <div style={{ marginRight: '70px' }} />{' '}
+              <div style={{ marginRight: '70px' }} />
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
                   <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                </ToggleWrapper>
+                <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
+                  <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
+                  <StyledText> {TranslateString(1116, 'GNANA')}</StyledText>
+                </ToggleWrapper>
+                <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
+                  <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />
+                  <StyledText> BANANA</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -721,4 +778,4 @@ const JunglePools: React.FC = () => {
   )
 }
 
-export default JunglePools
+export default Pools

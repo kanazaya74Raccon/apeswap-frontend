@@ -99,6 +99,7 @@ export interface PoolConfig {
   contractAddress: Address
   poolCategory?: PoolCategory
   projectLink: string
+  twitter?: string
   tokenPerBlock: string
   sortOrder?: number
   harvest?: boolean

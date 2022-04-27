@@ -41,7 +41,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const rewardRefApeHarder = useRef(null)
   const [pendingTx, setPendingTx] = useState(false)
   const [typeOfReward, setTypeOfReward] = useState('rewardBanana')
-  const onReward = useReward(rewardRef, useSousHarvest(sousId).onReward)
+  const { onHarvest } = useSousHarvest(sousId)
   const onApeHarder = useReward(rewardRefApeHarder, useSousStake(sousId).onStake)
   const onEmergencyWithdraw = useReward(rewardRef, useSousEmergencyWithdraw(sousId).onEmergencyWithdraw)
 
@@ -88,7 +88,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
         onClick={async () => {
           setPendingTx(true)
           setTypeOfReward('rewardBanana')
-          await onReward().catch(() => {
+          await onHarvest().catch(() => {
             setTypeOfReward('error')
             rewardRef.current?.rewardMe()
           })

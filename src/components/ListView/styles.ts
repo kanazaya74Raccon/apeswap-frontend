@@ -29,6 +29,7 @@ export const ListExpandedContainer = styled(Flex)<{ size?: number }>`
     animation: ${ExpandLargeAnimation} 0.3s ease;
     height: 100px;
     max-width: 100%;
+    flex-wrap: no-wrap;
   }
 `
 

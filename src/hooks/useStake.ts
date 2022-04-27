@@ -52,10 +52,11 @@ export const useSousStake = (sousId) => {
 
   const handleStake = useCallback(
     async (amount: string) => {
+      let trxHash
       if (sousId === 0) {
-        await stake(masterChefContract, 0, amount)
+        trxHash = await stake(masterChefContract, 0, amount)
       } else {
-        await sousStake(sousChefContract, amount)
+        trxHash = await sousStake(sousChefContract, amount)
       }
 
       track({
@@ -70,6 +71,7 @@ export const useSousStake = (sousId) => {
 
       dispatch(updateUserStakedBalance(chainId, sousId, account))
       dispatch(updateUserBalance(chainId, sousId, account))
+      return trxHash
     },
     [account, dispatch, masterChefContract, sousChefContract, sousId, chainId],
   )

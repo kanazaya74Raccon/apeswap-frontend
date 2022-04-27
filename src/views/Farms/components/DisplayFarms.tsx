@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, useMatchBreakpoints, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
+import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
@@ -8,6 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
+import useIsMobile from 'hooks/useIsMobile'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
@@ -15,8 +16,7 @@ import { ActionContainer } from './CardActions/styles'
 
 const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg, isXxl } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl && !isXxl
+  const isMobile = useIsMobile()
 
   const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')

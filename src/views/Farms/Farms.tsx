@@ -132,7 +132,11 @@ const Farms: React.FC = () => {
           <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
         </HeadingContainer>
       </Header>
-      <Flex justifyContent="center" mb="100px" style={{ position: 'relative', top: '30px', width: '100%' }}>
+      <Flex
+        justifyContent="center"
+        mb="100px"
+        style={{ position: 'relative', top: '30px', width: '100%', padding: '0px 10px' }}
+      >
         <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
           <Flex alignItems="center" justifyContent="center">
             <ListViewMenu
