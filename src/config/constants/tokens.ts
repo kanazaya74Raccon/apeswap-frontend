@@ -1031,6 +1031,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  bico: {
+    symbol: 'BICO',
+    address: {
+      56: '0x06250a4962558F0F3E69FC07F4c67BB9c9eAc739',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {

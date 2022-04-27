@@ -53,6 +53,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
+    pid: 198,
+    image: 'BICO.svg',
+    lpSymbol: 'BICO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x34d77c41e4df435c91b67d238bb75080ce4e3c24',
+    },
+    tokenSymbol: 'BICO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06250a4962558F0F3E69FC07F4c67BB9c9eAc739',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.biconomy.io',
+  },
+  {
     pid: 3,
     image: '',
     lpSymbol: 'BUSD-BNB',

@@ -2833,6 +2833,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 199,
+    tokenName: 'BICO',
+    image: 'BICO.svg',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.bico,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x623eb348969ed6512005efbf3716e5e1919562aa',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.biconomy.io',
+    twitter: 'https://twitter.com/biconomy',
+    harvest: true,
+    tokenPerBlock: `0.01546875`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE POOLS
