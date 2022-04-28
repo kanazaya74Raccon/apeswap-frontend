@@ -452,10 +452,6 @@ export default function Orders({ history }: RouteComponentProps) {
                               </Label>
                               <Text color="#FFB300">{orderMarketStatus.toFixed(2)}%</Text>
                             </RowBetween>
-                            <RowBetween align="center">
-                              <Label>Fee:</Label>
-                              <Text color="#FFB300">~10% - ~30% of the gas fee</Text>
-                            </RowBetween>
                           </AutoColumn>
                         </OrderInfoPanel>
                       )}

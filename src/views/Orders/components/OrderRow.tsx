@@ -42,6 +42,10 @@ const OrderCol = styled(Flex)`
   }
 `
 
+const TokenText = styled(Text)`
+  color: ${({ theme }) => theme.colors.text};
+`
+
 const TooltipIcon = styled('div')`
   display: 'inline-block';
   position: absolute;
@@ -119,9 +123,9 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
           </Text>
           <AutoRow gap="5px" align="center">
             <CurrencyLogo currency={tokenPair.input} size="12px" />
-            <Text fontSize="12px" color="#ffb300" style={{ opacity: 0.6 }}>
+            <TokenText fontSize="12px" color="#ffb300" style={{ opacity: 0.8 }}>
               {tokenPair.input?.symbol}
-            </Text>
+            </TokenText>
           </AutoRow>
         </OrderCol>
         <OrderCol flexDirection="column">
@@ -133,9 +137,9 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
           </Text>
           <AutoRow gap="5px" align="center">
             <CurrencyLogo currency={tokenPair.output} size="12px" />
-            <Text fontSize="12px" color="#ffb300" style={{ opacity: 0.6 }}>
+            <TokenText fontSize="12px" color="#ffb300" style={{ opacity: 0.8 }}>
               {tokenPair.output?.symbol}
-            </Text>
+            </TokenText>
           </AutoRow>
         </OrderCol>
       </OrderColWrapper>
@@ -147,9 +151,9 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
           <Text fontSize="16px" bold>
             {(+outputAmount / +inputAmount).toFixed(6)}
           </Text>
-          <Text fontSize="12px" color="#ffb300" style={{ opacity: 0.6 }}>
+          <TokenText fontSize="12px" style={{ opacity: 0.8 }}>
             {tokenPair.output?.symbol} / {tokenPair.input?.symbol}
-          </Text>
+          </TokenText>
         </OrderCol>
         {order.status === 'open' && <Button onClick={handleCancel}>Cancel</Button>}
       </OrderColWrapper>
