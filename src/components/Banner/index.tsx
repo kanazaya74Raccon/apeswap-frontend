@@ -1,8 +1,9 @@
 import { Flex } from '@ape.swap/uikit'
 import useTheme from 'hooks/useTheme'
 import { Link, Text } from 'theme-ui'
+import useProgressiveImage from 'hooks/useProgressiveImage'
 import React from 'react'
-import { styles, FlexImage, LearnMoreArrow } from './styles'
+import { styles, FlexImage, LearnMoreArrow, FlexSkeleton } from './styles'
 import { BannerTypes, ColorProps } from './types'
 
 const Banner: React.FC<{
@@ -15,19 +16,16 @@ const Banner: React.FC<{
   maxWidth?: number
 }> = ({ banner, children, title, listViewBreak, margin, titleColor, maxWidth = 1200 }) => {
   const { isDark } = useTheme()
+  const loaded = useProgressiveImage(`images/new-banners/${banner}-${isDark ? 'night' : 'day'}.svg`)
 
   // Media breaks are used until tablet mode on list view is designed
   return (
     <Flex sx={{ ...styles.flexPrimary, margin }}>
-      <FlexImage
-        sx={{
-          backgroundImage: `url(images/new-banners/${banner}-${isDark ? 'night' : 'day'}.svg)`,
-          '@media screen and (min-width: 500px) and (max-width: 851px)': {
-            height: listViewBreak ? '120px' : '24vw',
-          },
-        }}
-        maxWidth={maxWidth}
-      />
+      {loaded ? (
+        <FlexImage sx={{ backgroundImage: `url(${loaded})` }} maxWidth={maxWidth} listViewBreak={listViewBreak} />
+      ) : (
+        <FlexSkeleton maxWidth={maxWidth} listViewBreak={listViewBreak} />
+      )}
       <Flex sx={{ ...styles.titleContainer }}>
         <Text
           sx={{

@@ -13,6 +13,8 @@ const StyledPage = styled(Container)<SizeProps>`
   min-height: calc(100vh - 64px);
   padding-top: 16px;
   padding-bottom: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 24px;

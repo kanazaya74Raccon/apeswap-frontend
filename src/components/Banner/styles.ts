@@ -1,4 +1,4 @@
-import { ArrowDropDownIcon, Flex } from '@ape.swap/uikit'
+import { ArrowDropDownIcon, Flex, Skeleton } from '@ape.swap/uikit'
 import styled from '@emotion/styled'
 import { ThemeUIStyleObject } from 'theme-ui'
 
@@ -36,12 +36,28 @@ export const styles: Record<string, ThemeUIStyleObject> = {
   },
 }
 
-export const FlexImage = styled(Flex)<{ maxWidth?: number }>`
+export const FlexImage = styled(Flex)<{ maxWidth?: number; listViewBreak?: boolean }>`
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
   width: 100%;
   height: 24vw;
+  @media screen and (min-width: 500px) and (max-width: 851px) {
+    height: ${({ listViewBreak }) => (listViewBreak ? '120px' : '24vw')};
+  }
+  @media screen and (min-width: ${({ maxWidth }) => maxWidth}px) {
+    height: ${({ maxWidth }) => maxWidth / 4}px;
+    width: ${({ maxWidth }) => maxWidth}px;
+  }
+`
+
+export const FlexSkeleton = styled(Skeleton)<{ maxWidth?: number; listViewBreak?: boolean }>`
+  border-radius: 10px;
+  width: 100%;
+  height: 24vw;
+  @media screen and (min-width: 500px) and (max-width: 851px) {
+    height: ${({ listViewBreak }) => (listViewBreak ? '120px' : '24vw')};
+  }
   @media screen and (min-width: ${({ maxWidth }) => maxWidth}px) {
     height: ${({ maxWidth }) => maxWidth / 4}px;
     width: ${({ maxWidth }) => maxWidth}px;
