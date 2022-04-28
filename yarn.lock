@@ -76,7 +76,7 @@
     theme-ui "^0.13.1"
     yalc "^1.0.0-pre.53"
 
-"@autonomylabs/limit-stop-orders@^0.0.4":
+"@autonomylabs/limit-stop-orders@0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@autonomylabs/limit-stop-orders/-/limit-stop-orders-0.0.4.tgz#515a093ba2ec69be045720fb12d5ee5fb5251dfc"
   integrity sha512-HTxyJBMTA0OGjRt4v3yt/Zb/J+ML54GHVonIL3dJKtg9+xwrYy+EcVGotvdQuYsFX0MhhIqnP1wnRoXrLEFcGg==
