@@ -2,7 +2,7 @@ import { Flex } from '@ape.swap/uikit'
 import useTheme from 'hooks/useTheme'
 import { Link, Text } from 'theme-ui'
 import React from 'react'
-import { styles, FlexImage } from './styles'
+import { styles, FlexImage, LearnMoreArrow } from './styles'
 import { BannerTypes, ColorProps } from './types'
 
 const Banner: React.FC<{
@@ -34,15 +34,18 @@ const Banner: React.FC<{
             ...styles.titleText,
             color: titleColor || 'text',
             '@media screen and (min-width: 500px) and (max-width: 851px)': {
-              fontSize: listViewBreak ? '20px' : '4vw',
-              lineHeight: listViewBreak ? '20px' : '5vw',
+              fontSize: listViewBreak ? '25px' : '5vw',
+              lineHeight: listViewBreak ? '25px' : '5vw',
             },
           }}
         >
           {title.toUpperCase()}
         </Text>
-        <Link sx={{ ...styles.learnText, color: titleColor || 'text' }} href="/spinner">
-          Learn More
+        <Link
+          sx={{ ...styles.learnText, color: titleColor || 'text', ':hover': { textDecoration: 'none' } }}
+          href="/spinner"
+        >
+          <span style={{ textDecoration: 'underline' }}>Learn More</span> <LearnMoreArrow />
         </Link>
       </Flex>
       {children}

@@ -8,6 +8,7 @@ export enum banners {
   BANANA_MAXIMIZERS = 'banana-maximizers',
   NFB_COLLECTION = 'nfb-collection',
   NFA_COLLECTION = 'nfa-collection',
+  NFA_STAKING = 'nfa-staking',
   BURNING = 'burning',
   TREASURY_BILL = 'treasury-bills',
   SSIAO = 'ssiao',

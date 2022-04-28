@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Flex, Text } from '@apeswapfinance/uikit'
+import Banner from 'components/Banner'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
-import Header from '../Header'
 import TopNav from '../TopNav'
 
 const PageWrapper = styled.div`
@@ -17,7 +17,7 @@ const PageWrapper = styled.div`
 
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: ${({ theme }) => theme.colors.navbar};
   display: flex;
   flex-direction: column;
@@ -46,16 +46,18 @@ export default function CreateIazo(): JSX.Element {
   const settings = useIazoSettings()
   return (
     <>
-      <Header />
       <PageWrapper>
-        <LaunchPadWrapper>
-          <TopNav />
-          <HeaderWrapper>
-            <StyledHeader>Create</StyledHeader>
-          </HeaderWrapper>
-          <LuanchpadInfo />
-          <CreateYourPresale settings={settings} />
-        </LaunchPadWrapper>
+        <Flex flexDirection="column">
+          <Banner banner="ssiao" title="Self-Serve Iao" maxWidth={856} listViewBreak margin="30px 0 0 0" />
+          <LaunchPadWrapper>
+            <TopNav />
+            <HeaderWrapper>
+              <StyledHeader>Create</StyledHeader>
+            </HeaderWrapper>
+            <LuanchpadInfo />
+            <CreateYourPresale settings={settings} />
+          </LaunchPadWrapper>
+        </Flex>
       </PageWrapper>
     </>
   )

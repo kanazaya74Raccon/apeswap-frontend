@@ -11,7 +11,7 @@ export const PageWrapper = styled.div`
 
 export const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: ${({ theme }) => theme.colors.white2};
   display: flex;
   flex-direction: column;
