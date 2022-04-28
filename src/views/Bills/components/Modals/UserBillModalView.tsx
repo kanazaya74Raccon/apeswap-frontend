@@ -107,7 +107,12 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
                   })}
             </Flex>
             <UserActionButtonsContainer>
-              <Claim billAddress={bill.contractAddress[chainId]} billIds={[billId]} buttonSize={218} pendingRewards={userOwnedBill?.payout} />
+              <Claim
+                billAddress={bill.contractAddress[chainId]}
+                billIds={[billId]}
+                buttonSize={218}
+                pendingRewards={userOwnedBill?.payout}
+              />
               <StyledButton onClick={onPresentTransferBillModal} style={{ width: '218px' }}>
                 Transfer
               </StyledButton>

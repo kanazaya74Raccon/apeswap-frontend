@@ -2734,6 +2734,26 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
   },
   {
+    sousId: 193,
+    tokenName: 'BOUNTIE',
+    image: 'BOUNTIE.png',
+    stakingToken: tokens.banana,
+    rewardToken: tokens.bountie,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x59A4B153D080E3066236e57f6Bd66Ad241eb0269',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://bountiehunter.io/',
+    twitter: 'https://twitter.com/bountie_hunter',
+    harvest: true,
+    tokenPerBlock: `0.990789351851851851`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
     sousId: 194,
     tokenName: 'DEP',
     image: 'DEP.png',
@@ -2853,11 +2873,55 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 200,
+    tokenName: 'CPO',
+    image: 'CPO.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.cpo,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x0ADBa369180802282C921F18879Bc40305D92dA4',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://cryptopolisgame.com/',
+    twitter: 'https://twitter.com/cryptopolisgame',
+    harvest: true,
+    tokenPerBlock: `0.540142746913580246`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
-  // JUNGLE POOLS
+  // JUNGLE FARMS
   //
 
+  {
+    sousId: 201,
+    tokenName: 'COC-BNB',
+    image: 'COC.svg',
+    stakingToken: tokens.cocBnb,
+    rewardToken: tokens.coc,
+    lpTokens: {
+      token: tokens.coc,
+      quoteToken: tokens.wbnb,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xf4195c4ddb10db3df27816bb70dc342d861a7561',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: 'https://www.coinofchampions.com/',
+    harvest: true,
+    tokenPerBlock: '62715.1860896991',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+    isEarnTokenLp: false,
+  },
   {
     sousId: 184,
     tokenName: 'WGICT-USDT',
@@ -2953,26 +3017,6 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
     isEarnTokenLp: false,
-  },
-  {
-    sousId: 193,
-    tokenName: 'BOUNTIE',
-    image: 'BOUNTIE.png',
-    stakingToken: tokens.banana,
-    rewardToken: tokens.bountie,
-    contractAddress: {
-      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
-      56: '0x59A4B153D080E3066236e57f6Bd66Ad241eb0269',
-    },
-    poolCategory: PoolCategory.APEZONE,
-    projectLink: 'https://bountiehunter.io/',
-    twitter: 'https://twitter.com/bountie_hunter',
-    harvest: true,
-    tokenPerBlock: `0.990789351851851851`,
-    sortOrder: 1,
-    reflect: false,
-    isFinished: false,
-    tokenDecimals: 18,
   },
 
   //
