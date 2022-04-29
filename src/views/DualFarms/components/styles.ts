@@ -21,3 +21,8 @@ export const Container = styled(Flex)`
   align-items: center;
   justify-content: center;
 `
+
+export const ServiceTokenDisplayContainer = styled.div`
+  margin-left: -2px;
+  margin-right: 5px;
+`

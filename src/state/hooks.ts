@@ -31,7 +31,6 @@ import {
   IazosState,
   Iazo,
   NfaStakingPool,
-  DualFarm,
   HomepageData,
   LpTokenPricesState,
   NfaState,
@@ -56,7 +55,6 @@ import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults,
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchUserNetwork } from './network'
-import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { fetchAllNfas } from './nfas'
 
@@ -118,34 +116,6 @@ export const usePollVaultsData = (includeArchive = false) => {
       dispatch(fetchVaultUserDataAsync(account, chainId))
     }
   }, [includeArchive, dispatch, slowRefresh, account, chainId, tokenPrices])
-}
-
-// Dual Farms
-
-export const usePollDualFarms = () => {
-  const { slowRefresh } = useRefresh()
-  const { account } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
-  const { tokenPrices } = useTokenPrices()
-  const chainId = useNetworkChainId()
-  const farmLpAprs = useFarmLpAprs()
-
-  useEffect(() => {
-    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId, farmLpAprs))
-    if (account) {
-      dispatch(fetchDualFarmUserDataAsync(chainId, account))
-    }
-  }, [account, dispatch, chainId, tokenPrices, slowRefresh, farmLpAprs])
-}
-
-export const useDualFarms = (): DualFarm[] => {
-  const dualFarms = useSelector((state: State) => state.dualFarms.data)
-  return dualFarms
-}
-
-export const useDualFarmsFromPid = (pid): DualFarm => {
-  const farm = useSelector((state: State) => state.dualFarms.data.find((f) => f.pid === pid))
-  return farm
 }
 
 // Vaults

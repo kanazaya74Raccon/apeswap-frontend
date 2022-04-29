@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { useAllHarvest } from 'hooks/useHarvest'
 import { AutoRenewIcon, Button } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { updateFarmUserEarnings } from 'state/farms'
-import { useAppDispatch } from 'state'
 import { ActionContainer } from './styles'
 
 interface HarvestActionsProps {

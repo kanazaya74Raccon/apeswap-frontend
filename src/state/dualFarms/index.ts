@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import { dualFarmsConfig } from 'config/constants'
+import BigNumber from 'bignumber.js'
 import fetchDualFarms from './fetchDualFarms'
 import {
   fetchDualMiniChefEarnings,
@@ -44,10 +45,11 @@ export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserDa
 
 // Thunks
 export const fetchDualFarmsPublicDataAsync =
-  (tokenPrices: TokenPrices[], chainId: number, farmLpAprs: FarmLpAprsType) => async (dispatch) => {
+  (chainId: number, tokenPrices: TokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) =>
+  async (dispatch) => {
     try {
-      const dualFarms = await fetchDualFarms(tokenPrices, chainId, farmLpAprs)
-      dispatch(setDualFarmsPublicData(dualFarms))
+      const farms = await fetchDualFarms(chainId, tokenPrices, bananaPrice, farmLpAprs)
+      dispatch(setDualFarmsPublicData(farms))
     } catch (error) {
       console.warn(error)
     }

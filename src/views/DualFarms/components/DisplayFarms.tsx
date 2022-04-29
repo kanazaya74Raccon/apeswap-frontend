@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, useMatchBreakpoints, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
+import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
@@ -9,15 +9,15 @@ import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
 import CardActions from './CardActions'
-import { Container, FarmButton, NextArrow } from './styles'
+import { Container, FarmButton, NextArrow, ServiceTokenDisplayContainer } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
 import { ActionContainer } from './CardActions/styles'
-import { TokenContainer } from '../../../components/ServiceTokenDisplay/styles'
+import useIsMobile from '../../../hooks/useIsMobile'
+import ServiceTokenDisplay from '../../../components/ServiceTokenDisplay'
 
 const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg, isXxl } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl && !isXxl
+  const isMobile = useIsMobile()
 
   const farmsListView = farms.map((farm, i) => {
     const polygonScanUrl = `https://polygonscan.com/address/${farm.stakeTokenAddress}`
@@ -26,14 +26,6 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
       farm?.stakeTokens?.token0?.symbol === 'MATIC' ? 'ETH' : farm?.stakeTokens?.token0?.address[chainId]
     }/${farm?.stakeTokens?.token1?.address[chainId]}`
     const userAllowance = farm?.userData?.allowance
-
-    const setUrls = (tokenSymbol: string) => {
-      return [
-        `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toUpperCase()}.svg`,
-        `https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/${tokenSymbol.toUpperCase()}.png`,
-      ]
-    }
-
     const userEarningsMiniChef = getBalanceNumber(farm?.userData?.miniChefEarnings || new BigNumber(0)).toFixed(2)
     const userEarningsRewarder = getBalanceNumber(farm?.userData?.rewarderEarnings || new BigNumber(0)).toFixed(2)
     const userEarningsUsd = `$${(
@@ -152,11 +144,17 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
           <ListViewContent
             title="Earned"
             value={`${userEarningsMiniChef}`}
-            valueIcon={<TokenContainer size={15} ml={-2} mr={5} srcs={setUrls(farm?.rewardTokens.token0.symbol)} />}
+            valueIcon={
+              <ServiceTokenDisplayContainer>
+                <ServiceTokenDisplay token1={farm?.rewardTokens.token0.symbol} size={15} />
+              </ServiceTokenDisplayContainer>
+            }
             value2={farm?.dualImage !== false ? `${userEarningsRewarder}` : ''}
             value2Icon={
               farm?.dualImage !== false ? (
-                <TokenContainer size={15} ml={-2} mr={5} srcs={setUrls(farm?.rewardTokens.token1.symbol)} />
+                <ServiceTokenDisplayContainer>
+                  <ServiceTokenDisplay token1={farm?.rewardTokens.token1.symbol} size={15} />
+                </ServiceTokenDisplayContainer>
               ) : null
             }
             width={isMobile ? 65 : 120}

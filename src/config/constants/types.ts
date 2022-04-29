@@ -88,6 +88,22 @@ export interface FarmConfig {
   projectLink?: string
 }
 
+export interface DualFarmConfig {
+  pid: number
+  network: number
+  stakeTokenAddress: string
+  rewarderAddress: string
+  dualImage?: boolean
+  stakeTokens: {
+    token0: Token
+    token1: Token
+  }
+  rewardTokens: {
+    token0: Token
+    token1?: Token
+  }
+}
+
 export interface PoolConfig {
   sousId: number
   image?: string
@@ -226,22 +242,6 @@ export interface VaultConfig {
   inactive?: boolean
   depositFee?: number
   rewardsInSeconds?: boolean
-}
-
-export interface DualFarmConfig {
-  pid: number
-  network: number
-  stakeTokenAddress: string
-  rewarderAddress: string
-  dualImage?: boolean
-  stakeTokens: {
-    token0: Token
-    token1: Token
-  }
-  rewardTokens: {
-    token0: Token
-    token1?: Token
-  }
 }
 
 export interface BillsConfig {

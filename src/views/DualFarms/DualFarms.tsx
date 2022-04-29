@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
-import { useDualFarms, usePollDualFarms, useFetchFarmLpAprs } from 'state/hooks'
+import { useFetchFarmLpAprs } from 'state/hooks'
+import { useDualFarms, usePollDualFarms } from 'state/dualFarms/hooks'
 import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
 import useI18n from 'hooks/useI18n'
-
 import { Header, HeadingContainer, StyledHeading } from './styles'
 import ListViewMenu from '../../components/ListViewMenu'
-import HarvestAllAction from '../Farms/components/CardActions/HarvestAllAction'
+import HarvestAllAction from './components/CardActions/HarvestAllAction'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from '../Farms/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -21,12 +21,12 @@ const urlSearchedFarm = parseInt(params.get('pid'))
 
 const DualFarms: React.FC = () => {
   usePollDualFarms()
-  const { chainId } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
 
   const { pathname } = useLocation()
   const TranslateString = useI18n()
-  const farmsLP = useDualFarms()
+  const farmsLP = useDualFarms(account)
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
 
