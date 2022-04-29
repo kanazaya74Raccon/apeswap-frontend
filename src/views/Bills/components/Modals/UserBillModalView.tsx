@@ -60,10 +60,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
             <BillsImage image={userOwnedBillNftData?.image} />
           ) : (
             <Flex alignItems="center" justifyContent="center">
-              <BillsImage image="images/hidden-bill.png" />
-              <div style={{ position: 'absolute' }}>
-                <BillsSpinner />
-              </div>
+              <BillsImage image="images/bills-gif.gif" />
             </Flex>
           )}
           <BillDescriptionContainer minHeight={360}>

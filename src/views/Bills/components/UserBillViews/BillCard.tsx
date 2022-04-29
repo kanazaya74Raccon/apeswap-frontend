@@ -87,7 +87,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
         {ownedBillsAmount < 4 && (
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
             <CardContainer>
-              <BillsImage image="images/hidden-bill.png" />
+              <BillsImage image="images/bills-gif.gif" />
               <Flex
                 padding="0px 15px"
                 alignItems="center"

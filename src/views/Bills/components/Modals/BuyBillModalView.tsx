@@ -62,11 +62,10 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
           <Flex alignItems="center" justifyContent="center">
-            <BillsImage image="images/hidden-bill.png" />
-            {loading && !billId && (
-              <div style={{ position: 'absolute' }}>
-                <BillsSpinner />
-              </div>
+            {loading && !billId ? (
+              <BillsImage image="images/bills-gif.gif" />
+            ) : (
+              <BillsImage image="images/hidden-bill.png" />
             )}
           </Flex>
           <BillDescriptionContainer p="20px 0px" minHeight={450}>
