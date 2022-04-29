@@ -50,7 +50,7 @@ const BillModal: React.FC<BillModalProps> = ({
     <StyledButton
       onClick={
         buyFlag
-          ? parseFloat(bill?.discount) <= 0
+          ? parseFloat(bill?.discount) < 0
             ? onPresentBuyWarning
             : onPresentBuyBillsModal
           : onPresentUserBillModal
