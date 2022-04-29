@@ -62,7 +62,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
   }, [allowedSlippage, onConfirm, swapErrorMessage, trade, realSwapPrice])
 
   // text to show while loading
-  const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
+  const pendingText = `Placing order of ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
     trade?.inputAmount?.currency?.getSymbol(chainId) ?? ''
   } for ${realOutputAmount || (trade?.outputAmount?.toSignificant(6) ?? '')} ${
     trade?.outputAmount?.currency?.getSymbol(chainId) ?? ''

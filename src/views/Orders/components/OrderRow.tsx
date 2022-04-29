@@ -12,7 +12,7 @@ const OrderRowWrapper = styled(Flex)`
   position: relative;
   padding: 16px 20px;
   background: ${({ theme }) => theme.colors.white4};
-  border-bottom: ${({ theme }) => `1px solid ${theme.colors.dividerColor}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.white2}`};
   justify-content: space-between;
   align-items: center;
   &:first-child {
