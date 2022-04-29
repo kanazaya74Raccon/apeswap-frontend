@@ -5,6 +5,7 @@ import BuyBillModalView from './BuyBillModalView'
 import { StyledButton } from '../styles'
 import UserBillModalView from './UserBillModalView'
 import { BillsImage } from '../UserBillViews/styles'
+import WarningModal from './WarningModal'
 
 interface BillModalProps {
   bill: Bills
@@ -39,9 +40,21 @@ const BillModal: React.FC<BillModalProps> = ({
     true,
     `billsModal${bill.billNftAddress}-${billId}`,
   )
+  const [onPresentBuyWarning] = useModal(
+    <WarningModal bill={bill} onDismiss={null} />,
+    true,
+    true,
+    `billsWarningModal${id}`,
+  )
   return !billCardImage ? (
     <StyledButton
-      onClick={buyFlag ? onPresentBuyBillsModal : onPresentUserBillModal}
+      onClick={
+        buyFlag
+          ? parseFloat(bill?.discount) <= 0
+            ? onPresentBuyWarning
+            : onPresentBuyBillsModal
+          : onPresentUserBillModal
+      }
       buttonSize={buttonSize}
       disabled={disabled}
     >
