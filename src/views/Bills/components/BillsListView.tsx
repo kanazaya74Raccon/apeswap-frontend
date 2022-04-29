@@ -70,10 +70,10 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               {account ? (
                 <BillModal
                   bill={bill}
-                  buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
+                  buttonText="BUY"
                   id={bill.index}
                   buyFlag
-                  disabled={parseFloat(bill?.discount) < 0}
+                  disabled={!bill.discount || bill.discount.includes('NaN')}
                 />
               ) : (
                 <UnlockButton />
@@ -88,10 +88,10 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           {account ? (
             <BillModal
               bill={bill}
-              buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
+              buttonText="BUY"
               id={bill.index}
               buyFlag
-              disabled={parseFloat(bill?.discount) < 0}
+              disabled={!bill.discount || bill.discount.includes('NaN')}
             />
           ) : (
             <UnlockButton />

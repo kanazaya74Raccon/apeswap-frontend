@@ -8,7 +8,7 @@ const FirstTimeCard: React.FC = () => {
   return (
     <FirstTimeCardContainer>
       <BillGifContainer>
-        <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" />
+        <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" playsInline />
       </BillGifContainer>
       <DescriptionContainer>
         <Text bold mb="0px" fontSize="22px">
