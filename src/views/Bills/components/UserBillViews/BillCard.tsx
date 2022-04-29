@@ -89,7 +89,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
             <CardContainer>
               <BillsImage>
-                <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" />
+                <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" playsInline />
               </BillsImage>
               <Flex
                 padding="0px 15px"
