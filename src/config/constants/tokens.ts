@@ -1053,7 +1053,7 @@ const tokens = {
     decimals: 18,
   },
   froyo: {
-    symbol: 'Froyo',
+    symbol: 'FROYO',
     address: {
       56: '0xe369fec23380f9F14ffD07a1DC4b7c1a9fdD81c9',
     },

@@ -54,7 +54,6 @@ const farms: FarmConfig[] = [
   },
 
   // Optional: Place latest farm here
-
   {
     pid: 199,
     image: 'CPO.svg',
@@ -71,6 +70,40 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://cryptopolisgame.com/',
+  },
+  {
+    pid: 200,
+    image: 'FROYO.png',
+    lpSymbol: 'FROYO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x58ceF3eeDB9A4adc6B5a2Ee5c85Aea07D72787f0',
+    },
+    tokenSymbol: 'FROYO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xe369fec23380f9F14ffD07a1DC4b7c1a9fdD81c9',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://froyo.games/home',
+  },
+  {
+    pid: 201,
+    image: 'PRIMATE.png',
+    lpSymbol: 'PRIMATE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x6acabA892562719085C8418EbA49b8B3475D995a',
+    },
+    tokenSymbol: 'PRIMATE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xA19863E302FD1B41276fCe5A48D9C511DBeEf34c',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.benjibananas.com/',
   },
   {
     pid: 3,
@@ -3259,40 +3292,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://www.biconomy.io',
-  },
-  {
-    pid: 199,
-    image: 'FROYO.png',
-    lpSymbol: 'FROYO-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x58ceF3eeDB9A4adc6B5a2Ee5c85Aea07D72787f0',
-    },
-    tokenSymbol: 'FROYO',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xe369fec23380f9F14ffD07a1DC4b7c1a9fdD81c9',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://froyo.games/home',
-  },
-  {
-    pid: 200,
-    image: 'PRIMATE.png',
-    lpSymbol: 'PRIMATE-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x6acabA892562719085C8418EbA49b8B3475D995a',
-    },
-    tokenSymbol: 'PRIMATE',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xA19863E302FD1B41276fCe5A48D9C511DBeEf34c',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://www.benjibananas.com/',
   },
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 ]
