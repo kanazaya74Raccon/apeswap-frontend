@@ -43,4 +43,7 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/staking': {
     title: 'NFA Staking | ApeSwap',
   },
+  '/treasury-bills': {
+    title: 'Treasury Bills | ApeSwap',
+  },
 }

@@ -52,39 +52,25 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
   },
+
+  // Optional: Place latest farm here
+
   {
-    pid: 192,
-    image: 'ANML.png',
-    lpSymbol: 'ANML-BNB',
+    pid: 199,
+    image: 'CPO.svg',
+    lpSymbol: 'CPO-BNB',
     lpAddresses: {
       97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+      56: '0x56def80e01dfd3ff1bfcb41bbdc380887d56d946',
     },
-    tokenSymbol: 'ANML',
+    tokenSymbol: 'CPO',
     tokenAddresses: {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+      56: '0xea395DFaFEd39924988b475f2Ca7f4C72655203A',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://animalconcerts.com/',
-  },
-  {
-    pid: 191,
-    image: 'APE.svg',
-    lpSymbol: 'APE-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
-    },
-    tokenSymbol: 'APE',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://apecoin.com/',
+    projectLink: 'https://cryptopolisgame.com/',
   },
   {
     pid: 3,
@@ -154,23 +140,6 @@ const farms: FarmConfig[] = [
     projectLink: 'https://squirrel.finance/',
   },
   {
-    pid: 41,
-    image: 'AUTO.png',
-    lpSymbol: 'AUTO-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x649a5ad5135b4bd287e5aca8d41f4d5e1b52af5c', // AUTO-BNB BananaPair
-    },
-    tokenSymbol: 'AUTO',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xa184088a740c695e156f91f5cc086a06bb78b827', // AUTO Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://autofarm.network/',
-  },
-  {
     pid: 42,
     image: 'bxBTC.png',
     lpSymbol: 'BXBTC-BNB',
@@ -226,23 +195,6 @@ const farms: FarmConfig[] = [
     projectLink: 'https://valuedefi.io/',
   },
   {
-    pid: 44,
-    image: '',
-    lpSymbol: 'WATCH-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
-    },
-    tokenSymbol: 'WATCH',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://www.yieldwatch.net/',
-  },
-  {
     pid: 30,
     image: 'KEYFI.png',
     lpSymbol: 'KEYFI-BNB',
@@ -259,23 +211,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://keyfi.com/',
-  },
-  {
-    pid: 31,
-    image: '',
-    lpSymbol: 'ONT-BNB',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
-    },
-    tokenSymbol: 'ONT',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
-    },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
-    projectLink: 'https://ont.io',
   },
   {
     pid: 27,
@@ -875,6 +810,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://moonlighttoken.com/',
   },
   {
+    pid: 41,
+    image: 'AUTO.png',
+    lpSymbol: 'AUTO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x649a5ad5135b4bd287e5aca8d41f4d5e1b52af5c', // AUTO-BNB BananaPair
+    },
+    tokenSymbol: 'AUTO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xa184088a740c695e156f91f5cc086a06bb78b827', // AUTO Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://autofarm.network/',
+  },
+  {
     pid: 24,
     image: 'NAUT.png',
     lpSymbol: 'NAUT-BNB',
@@ -1101,7 +1053,6 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://fegtoken.com/',
   },
-
   {
     pid: 67,
     image: 'ATA.png',
@@ -1300,6 +1251,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://www.fruitsadventures.com/',
   },
   {
+    pid: 44,
+    image: '',
+    lpSymbol: 'WATCH-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xa00A91fBB39051e2a6368424A93895c3f1F2290b', // WATCH-BNB BananaPair
+    },
+    tokenSymbol: 'WATCH',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x7a9f28eb62c791422aa23ceae1da9c847cbec9b0', // WATCH Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.yieldwatch.net/',
+  },
+  {
     pid: 81,
     image: '',
     lpSymbol: 'SKILL-BNB',
@@ -1469,6 +1437,23 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://yearn.finance/',
+  },
+  {
+    pid: 31,
+    image: '',
+    lpSymbol: 'ONT-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x924D3f2F94618e8Ee837d4C2b8d703F0de12a57e', // ONT-BNB BananaPair
+    },
+    tokenSymbol: 'ONT',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfd7b3a77848f1c2d67e05e54d78d174a0c850335', // ONT Token
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://ont.io',
   },
   {
     pid: 91,
@@ -3139,111 +3124,143 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
     projectLink: 'https://frontier.xyz/',
   },
-
+  {
+    pid: 192,
+    image: 'ANML.png',
+    lpSymbol: 'ANML-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x0ab82ec81c80f75b02a117fba9b414c17379ae8c',
+    },
+    tokenSymbol: 'ANML',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06fda0758c17416726f77cb11305eac94c074ec0',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://animalconcerts.com/',
+  },
+  {
+    pid: 191,
+    image: 'APE.svg',
+    lpSymbol: 'APE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x8b3ebe3422aabea9920ca820fe43679e3e2e78d3',
+    },
+    tokenSymbol: 'APE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x0b079b33b6e72311c6be245f9f660cc385029fc3',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://apecoin.com/',
+  },
+  {
+    pid: 193,
+    image: 'BOUNTIE.png',
+    lpSymbol: 'BOUNTIE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1eE428e29AE776EEB9ADEf13d0bCeb6825c2b93b',
+    },
+    tokenSymbol: 'BOUNTIE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://bountiehunter.io/',
+  },
+  {
+    pid: 194,
+    image: 'ABNBC.svg',
+    lpSymbol: 'aBNBc-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x1C3BFdA8d788689ab2Fb935a9499c67e098A9E84',
+    },
+    tokenSymbol: 'aBNBc',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xE85aFCcDaFBE7F2B096f268e31ccE3da8dA2990A',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.ankr.com',
+  },
+  {
+    pid: 195,
+    image: 'KTE.svg',
+    lpSymbol: 'KTE-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x58342f60a54f9e8560af6d7cb434ce54a094a834',
+    },
+    tokenSymbol: 'KTE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x61fa01129ac0bb124d1c60dc9f735c6c579a858b',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://www.kyte.one/',
+  },
+  {
+    pid: 196,
+    image: 'GQ.png',
+    lpSymbol: 'GQ-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xcC3A3Bc1d76Df321f94716E88224638C439267aa',
+    },
+    tokenSymbol: 'GQ',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xF700D4c708C2be1463E355F337603183D20E0808',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://outerringmmo.com/',
+  },
+  {
+    pid: 197,
+    image: 'ASPO.png',
+    lpSymbol: 'ASPO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xE4b870875BCDa11Fa02E53F8Dea3821cf74Cbad1',
+    },
+    tokenSymbol: 'ASPO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x1a9b49E9f075c37Fe5f86C916bac9DEb33556D7E',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://aspo.world/',
+  },
+  {
+    pid: 198,
+    image: 'BICO.svg',
+    lpSymbol: 'BICO-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x34d77c41e4df435c91b67d238bb75080ce4e3c24',
+    },
+    tokenSymbol: 'BICO',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x06250a4962558F0F3E69FC07F4c67BB9c9eAc739',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://www.biconomy.io',
+  },
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
-
-  {
-    pid: 7, // NOTE: Inactive Farm
-    image: 'BAKE.svg',
-    lpSymbol: 'BAKE-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-BAKE BananaPair
-      56: '0x51bb531a5253837a23ce8de478a4941a71a4202c',
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5', // BAKE Token address
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
-    pid: 15, // NOTE: Inactive Farm
-    image: 'GFCE.png',
-    lpSymbol: 'GFCE-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-GFCE BananaPair
-      56: '0x9C87cae57f0962997d9bd66C24f3425d20543e3d',
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x94BaBBE728D9411612Ee41b20241a6FA251b26Ce',
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
-    pid: 6, // NOTE: Inactive Farm
-    image: 'CAKE.png',
-    lpSymbol: 'CAKE-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663', // BANANA-CAKE BananaPair
-      56: '0x9949e1db416a8a05a0cac0ba6ea152ba8729e893',
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
-    pid: 10, // NOTE: Inactive Farm
-    image: 'BIFI.png',
-    lpSymbol: 'BIFI-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x2ce820319047c407cb952060df5f7fb3d9a9a688', // BANANA-BIFI BananaPair
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xCa3F508B8e4Dd382eE878A314789373D80A5190A', // BIFI Token
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
-    pid: 19, // NOTE: Inactive Farm
-    image: 'NAUT.png',
-    lpSymbol: 'NAUT-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0xf579A6196d6CC8c2C40952Ece57345AbbD589c91', // BANANA-NAUT BananaPair
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x05b339b0a346bf01f851dde47a5d485c34fe220c', // NAUT Token
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
-  {
-    pid: 9, // NOTE: Inactive Farm
-    image: 'BREW.svg',
-    lpSymbol: 'BREW-BANANA',
-    lpAddresses: {
-      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
-      56: '0x5514E0E1DA40A38E19d58e8B6E16226E16e183fA', // BANANA-BREW BananaPair
-    },
-    tokenSymbol: 'BANANA',
-    tokenAddresses: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0x790Be81C3cA0e53974bE2688cDb954732C9862e1', // BREW Token
-    },
-    style: 'deprecated',
-    quoteTokenSymbol: QuoteToken.BANANA,
-    quoteTokenAdresses: contracts.banana,
-  },
 ]
 
 export default farms

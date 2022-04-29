@@ -9,6 +9,24 @@
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
+"@ape.swap/uikit@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ape.swap/uikit/-/uikit-1.0.3.tgz#0dc63c989fe56b737f567c2eae44ff542dc98d23"
+  integrity sha512-/WauZbzeu2z8usW6qnExx4linA6rhwXM/3BZBtjFGKcVrwrDhjoDHyl+xXnMoTvh5Iy4xpmVbYSOE/iQx4T0Fg==
+  dependencies:
+    "@emotion/react" "^11.7.1"
+    "@emotion/styled" "^11.8.1"
+    "@mdx-js/react" "1.6.22"
+    "@types/lodash" "^4.14.162"
+    "@types/styled-system" "^5.1.10"
+    framer-motion "^4.1.17"
+    lodash "^4.17.20"
+    lottie-react "^2.2.1"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
+    theme-ui "^0.13.1"
+    yalc "^1.0.0-pre.53"
+
 "@apeswapfinance/eslint-config-apeswap@1.0.0":
   version "1.0.0"
   resolved "https://npm.pkg.github.com/download/@apeswapfinance/eslint-config-apeswap/1.0.0/cf301984e97808b8032e2cd4118a181b03c1559a5c7c14dd9bff955e4f7c2edc#d095386c092f2d98964a05e7b8dd90bb1909e47a"
@@ -37,15 +55,15 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.257":
-  version "1.0.257"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.257/80fb9fbc7c34451c6e602db07d5bb20b731300853a2e785287fbb7b952a641a0#10013c17606503e2024cbfb72432db8e0b32a79d"
-  integrity sha512-M2iNlbjsei1woQ1dcLUFuWHuD62KzrG+pWw5L0CWNkGHH6PQYmFYypYnvbAQ9sPJYigNIl5VRnbdxuRYyM9Saw==
+"@apeswapfinance/token-lists@1.0.269":
+  version "1.0.269"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.269/74e5d2e446bd9c7a9f8d6e69d76cb7970d0435724ad7117b74c015a04b585761#a6b01f42c85904ed318f203be2f6a48ff98f254a"
+  integrity sha512-V34ir7AqBppkJKnvFAtmR76+VgP8AErQ6+PCpiwL46pUd/Y/Ss36tf884Tni7ZhIaUBIdjBN0hiT9Va0uo52/A==
 
-"@apeswapfinance/uikit@0.11.2-1.5-alpha":
-  version "0.11.2-1.5-alpha"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-1.5-alpha/0636117e1340e0e2f86896a1d511a6a94439e1800ac7ec9a817d27d2b20923dd#f1b9b7b46a4fdbb9fa13e8deb423326f8c9781bd"
-  integrity sha512-h3fiSVUMoWynfvk9MEzQEUsEdFUERNoNe5sQK76r6NJCsoVaCow0QfSxUDOD68CH6IlyNvKWLgrsxXq39HZ45w==
+"@apeswapfinance/uikit@0.11.2-1.6":
+  version "0.11.2-1.6"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.2-1.6/b4850bb6fce794fd571ea0dfc63c9f892d3d3ec7a588080dd18c4a0299fc0b85#7b04aec5a831d241e82dc3ed9df524c71d5c29b9"
+  integrity sha512-pSikeIwLdbCdMc5lst0IQbFWdeBABT5Sg1i5hpUhl3C02j5RKyYH/+NxHU8r/UV8iHrQHucCralnyzWMv8qkhA==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@rollup/plugin-json" "^4.1.0"
@@ -2077,6 +2095,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
+
+"@mdx-js/react@1.6.22":
+  version "1.6.22"
+  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.22.tgz#ae09b4744fddc74714ee9f9d6f17a66e77c43573"
+  integrity sha512-TDoPum4SHdfPiGSAaRBw7ECyI8VaHpK8GJugbJIJuqyh6kzw9ZLJZW3HGL3NNrJGxcAixUvqROm+YuQOo5eXtg==
 
 "@mdx-js/react@^2.1.0":
   version "2.1.0"

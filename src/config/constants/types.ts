@@ -99,6 +99,7 @@ export interface PoolConfig {
   contractAddress: Address
   poolCategory?: PoolCategory
   projectLink: string
+  twitter?: string
   tokenPerBlock: string
   sortOrder?: number
   harvest?: boolean
@@ -253,4 +254,14 @@ export type LiveIfo = {
     tag: string
     navItem: string
   }[]
+}
+
+export interface BillsConfig {
+  index: number
+  contractAddress: Address
+  billType: string
+  token: Token
+  quoteToken: Token
+  lpToken: Token
+  earnToken: Token
 }

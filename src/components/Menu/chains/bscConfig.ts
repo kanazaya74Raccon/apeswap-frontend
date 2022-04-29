@@ -12,27 +12,27 @@ const bscConfig: MenuEntry[] = [
       {
         label: 'BANANA Farms',
         href: '/farms',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'Pools',
         href: '/pools',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'Jungle Farms',
         href: '/jungle-farms',
-        isNew: true,
+        // isNew: true,
       },
       {
         label: 'Vaults',
         href: '/vaults',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'GNANA',
         href: '/gnana',
-        isNew: false,
+        // isNew: false,
       },
     ],
   },
@@ -42,14 +42,18 @@ const bscConfig: MenuEntry[] = [
     darkIcon: 'OfferingsDarkImage',
     items: [
       {
+        label: 'Treasury Bills',
+        href: '/treasury-bills',
+      },
+      {
         label: 'Official IAO',
         href: '/iao',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'Self-Serve IAO',
         href: '/ss-iao',
-        isNew: false,
+        // isNew: false,
       },
     ],
   },
@@ -61,22 +65,29 @@ const bscConfig: MenuEntry[] = [
       {
         label: 'NFA Collection',
         href: '/nft',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'NFA Auction',
         href: '/auction',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'NFA Staking',
         href: '/staking',
-        isNew: false,
+        // isNew: false,
       },
       {
-        label: 'Liquid Collectibles',
-        href: 'https://liquidcollectibles.io/',
-        isNew: false,
+        label: 'NFA Liquidity',
+        href: 'https://liquidcollectibles.io/collection/0x6afc012783e3a6ef8c5f05f8eee2edef6a052ec4',
+      },
+      {
+        label: 'NFB Collection',
+        href: 'https://nftkey.app/collections/nfbs/',
+      },
+      {
+        label: 'NFB Liquidity',
+        href: 'https://liquidcollectibles.io/collection/0x9f707a412302a3ad64028a9f73f354725c992081',
       },
     ],
   },
@@ -92,17 +103,17 @@ const bscConfig: MenuEntry[] = [
       {
         label: 'Docs',
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'Charts',
         href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
-        isNew: false,
+        // isNew: false,
       },
       {
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
-        isNew: false,
+        // isNew: false,
       },
     ],
   },
