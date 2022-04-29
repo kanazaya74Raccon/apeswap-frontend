@@ -4,7 +4,7 @@ import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import BillsSpinner from 'components/BillsSpinner'
+import ReactPlayer from 'react-player'
 import BigNumber from 'bignumber.js'
 import {
   BillDescriptionContainer,
@@ -60,7 +60,9 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill, billId })
             <BillsImage image={userOwnedBillNftData?.image} />
           ) : (
             <Flex alignItems="center" justifyContent="center">
-              <BillsImage image="images/bills-gif.gif" />
+              <BillsImage>
+                <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" />
+              </BillsImage>
             </Flex>
           )}
           <BillDescriptionContainer minHeight={360}>

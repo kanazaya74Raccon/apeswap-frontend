@@ -1,19 +1,14 @@
 import { Text } from '@apeswapfinance/uikit'
 import BillsDiagram from 'components/MarketingModalContent/Bills/BillsDiagram'
+import ReactPlayer from 'react-player'
 import React from 'react'
-import {
-  BillDiagramContainer,
-  BillGifContainer,
-  BillGifImage,
-  DescriptionContainer,
-  FirstTimeCardContainer,
-} from './styles'
+import { BillDiagramContainer, BillGifContainer, DescriptionContainer, FirstTimeCardContainer } from './styles'
 
 const FirstTimeCard: React.FC = () => {
   return (
     <FirstTimeCardContainer>
       <BillGifContainer>
-        <BillGifImage />
+        <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" />
       </BillGifContainer>
       <DescriptionContainer>
         <Text bold mb="0px" fontSize="22px">
