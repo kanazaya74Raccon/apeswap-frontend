@@ -1052,6 +1052,20 @@ const tokens = {
     },
     decimals: 18,
   },
+  froyo: {
+    symbol: 'FROYO',
+    address: {
+      56: '0xe369fec23380f9F14ffD07a1DC4b7c1a9fdD81c9',
+    },
+    decimals: 18,
+  },
+  primate: {
+    symbol: 'PRIMATE',
+    address: {
+      56: '0xA19863E302FD1B41276fCe5A48D9C511DBeEf34c',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
