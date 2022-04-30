@@ -50,7 +50,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             height={52.5}
             toolTip={
               parseFloat(bill?.discount) < 0
-                ? 'Since the discount for this Bill is negative, buying has been disabled. Once the discount increases to 0% or above, buying will be enabled.'
+                ? "This is the percentage discount relative to the token's current market price."
                 : "This is the percentage discount relative to the token's current market price."
             }
             toolTipPlacement="bottomLeft"
@@ -70,10 +70,10 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
               {account ? (
                 <BillModal
                   bill={bill}
-                  buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
+                  buttonText="BUY"
                   id={bill.index}
                   buyFlag
-                  disabled={parseFloat(bill?.discount) < 0}
+                  disabled={!bill.discount || bill.discount.includes('NaN')}
                 />
               ) : (
                 <UnlockButton />
@@ -88,10 +88,10 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           {account ? (
             <BillModal
               bill={bill}
-              buttonText={parseFloat(bill?.discount) < 0 ? 'AVAILABLE SOON' : 'BUY'}
+              buttonText="BUY"
               id={bill.index}
               buyFlag
-              disabled={parseFloat(bill?.discount) < 0}
+              disabled={!bill.discount || bill.discount.includes('NaN')}
             />
           ) : (
             <UnlockButton />
