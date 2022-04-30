@@ -1,5 +1,6 @@
 import React from 'react'
-import { ModalProvider } from '@apeswapfinance/uikit'
+import { ModalProvider } from '@ape.swap/uikit'
+import { ModalProvider as OldModalProvider } from '@apeswapfinance/uikit'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
@@ -21,7 +22,9 @@ const Providers: React.FC = ({ children }) => {
             <ThemeContextProvider>
               <NftProvider>
                 <RefreshContextProvider>
-                  <ModalProvider>{children}</ModalProvider>
+                  <ModalProvider>
+                    <OldModalProvider>{children}</OldModalProvider>
+                  </ModalProvider>
                 </RefreshContextProvider>
               </NftProvider>
             </ThemeContextProvider>
