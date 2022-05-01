@@ -19,6 +19,7 @@ export enum ViewMode {
 
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
+export const updateUserAutonomyPrepay = createAction<{ userAutonomyPrepay: boolean }>('user/updateUserAutonomyPrepay')
 export const updateUserRecentTransactions = createAction<{ userRecentTransactions: boolean }>(
   'user/updateRecentTransactions',
 )

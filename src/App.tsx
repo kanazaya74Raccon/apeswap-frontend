@@ -43,6 +43,7 @@ const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
 const Bills = lazy(() => import('./views/Bills'))
 const Swap = lazy(() => import('./views/Swap'))
+const Orders = lazy(() => import('./views/Orders'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -149,6 +150,7 @@ const App: React.FC = () => {
                 <DualFarms />
               </Route>
               <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               <Route path="/vaults">
                 <Vaults />
               </Route>
@@ -214,6 +216,7 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
+            <Route exact strict path="/orders" component={Orders} />
             <Route path="/farms">
               <Farms />
             </Route>
