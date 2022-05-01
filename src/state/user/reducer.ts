@@ -23,6 +23,7 @@ import {
   updateUserPoolStakedOnly,
   updateUserPoolsViewMode,
   updateUserSingleHopOnly,
+  updateUserAutonomyPrepay,
   updateUserSlippageTolerance,
   ViewMode,
   updateUserPredictionAcceptedRisk,
@@ -53,6 +54,9 @@ export interface UserState {
 
   // Show previous transactions
   userRecentTransactions: boolean
+
+  // Autonomy prepay
+  userAutonomyPrepay: boolean
 
   tokens: {
     [chainId: number]: {
@@ -95,6 +99,7 @@ export const initialState: UserState = {
   userRecentTransactions: true,
   userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
+  userAutonomyPrepay: false,
   tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
@@ -146,6 +151,9 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserSingleHopOnly, (state, action) => {
       state.userSingleHopOnly = action.payload.userSingleHopOnly
+    })
+    .addCase(updateUserAutonomyPrepay, (state, action) => {
+      state.userAutonomyPrepay = action.payload.userAutonomyPrepay
     })
     .addCase(updateUserRecentTransactions, (state, action) => {
       state.userRecentTransactions = action.payload.userRecentTransactions

@@ -42,7 +42,9 @@ const IazoPage = lazy(() => import('./views/Iazos/components/IazoPage'))
 const AdminPools = lazy(() => import('./views/AdminPools'))
 const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
+const Bills = lazy(() => import('./views/Bills'))
 const Swap = lazy(() => import('./views/Swap'))
+const Orders = lazy(() => import('./views/Orders'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -149,10 +151,14 @@ const App: React.FC = () => {
                 <DualFarms />
               </Route>
               <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               <Route path="/vaults">
                 <Vaults />
               </Route>
               {/* Redirects */}
+              <Route path="/treasury-bills">
+                <Redirect to="/" />
+              </Route>
               <Route exact path="/nft">
                 <Redirect to="/" />
               </Route>
@@ -211,6 +217,7 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
+            <Route exact strict path="/orders" component={Orders} />
             <Route path="/farms">
               <Farms />
             </Route>
@@ -222,6 +229,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/vaults">
               <Vaults />
+            </Route>
+            <Route path="/treasury-bills">
+              <Bills />
             </Route>
             <Route path="/admin-pools">
               <AdminPools />

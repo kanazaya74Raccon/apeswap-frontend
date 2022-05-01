@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
+import { CHAIN_ID } from 'config/constants/chains'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useLocation, useHistory } from 'react-router-dom'
 
 interface Props {
@@ -22,28 +24,48 @@ const CurrencyInputContainer = styled(Flex)`
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const { chainId } = useActiveWeb3React()
   const history = useHistory()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
-  const swapActive = path.pathname.includes('swap')
+
+  const getActiveTab = () => {
+    const { pathname } = path
+    if (pathname.includes('swap')) return 0
+    if (pathname.includes('orders')) return 1
+    return 2
+  }
+
   return (
     <CurrencyInputContainer>
-      <Tabs activeTab={swapActive ? 0 : 1} size="md">
+      <Tabs activeTab={getActiveTab()} size="md">
         <Tab
           index={0}
           label="SWAP"
           onClick={() => history.push('/swap')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
-          activeTab={swapActive ? 0 : 1}
+          activeTab={getActiveTab()}
         />
+        {chainId === CHAIN_ID.BSC ? (
+          <Tab
+            index={1}
+            label="ORDERS"
+            onClick={() => history.push('/orders')}
+            size={isMobile ? 'xsm' : 'md'}
+            variant="centered"
+            activeTab={getActiveTab()}
+          />
+        ) : (
+          <></>
+        )}
         <Tab
-          index={1}
+          index={2}
           label="LIQUIDITY"
           onClick={() => history.push('/pool')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
-          activeTab={swapActive ? 0 : 1}
+          activeTab={getActiveTab()}
         />
       </Tabs>
       <Flex>
@@ -52,9 +74,10 @@ const CurrencyInputHeader: React.FC<Props> = () => {
             style={{
               fontSize: '15px',
               fontWeight: 700,
-              marginRight: isMobile ? '15px ' : '25px',
+              marginRight: '25px',
               marginLeft: '15px',
               padding: 10,
+              display: isMobile ? 'none' : 'block',
               height: isMobile ? '36px ' : '40px',
             }}
           >

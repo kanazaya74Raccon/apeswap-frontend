@@ -2,6 +2,7 @@ import React from 'react'
 import { ModalProvider } from '@apeswapfinance/uikit'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { getLibrary } from 'utils/web3React'
 import { ThemeContextProvider } from 'contexts/ThemeContext'
@@ -12,6 +13,8 @@ import { NetworkContextName } from 'config/constants'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
+const queryClient = new QueryClient()
+
 const Providers: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
@@ -21,7 +24,9 @@ const Providers: React.FC = ({ children }) => {
             <ThemeContextProvider>
               <NftProvider>
                 <RefreshContextProvider>
-                  <ModalProvider>{children}</ModalProvider>
+                  <ModalProvider>
+                    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                  </ModalProvider>
                 </RefreshContextProvider>
               </NftProvider>
             </ThemeContextProvider>

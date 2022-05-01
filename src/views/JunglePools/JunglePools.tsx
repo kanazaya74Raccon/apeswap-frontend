@@ -15,11 +15,11 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
-import ToggleView from '../Pools/components/ToggleView/ToggleView'
-import SearchInput from '../Pools/components/SearchInput'
-import PoolCard from '../Pools/components/PoolCard/PoolCard'
-import PoolTable from '../Pools/components/PoolTable/PoolTable'
-import { ViewMode } from '../Pools/components/types'
+import ToggleView from '../PoolsLegacy/components/ToggleView/ToggleView'
+import SearchInput from '../PoolsLegacy/components/SearchInput'
+import PoolCard from '../PoolsLegacy/components/PoolCard/PoolCard'
+import PoolTable from '../PoolsLegacy/components/PoolTable/PoolTable'
+import { ViewMode } from '../PoolsLegacy/components/types'
 
 interface LabelProps {
   active?: boolean
