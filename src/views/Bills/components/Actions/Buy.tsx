@@ -31,10 +31,6 @@ const Buy: React.FC<BuyProps> = ({
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
 
-  const liquidityUrl = `https://apeswap.finance/add/${token.symbol === 'BNB' ? 'ETH' : token.address[chainId]}/${
-    quoteToken.symbol === 'BNB' ? 'ETH' : quoteToken.address[chainId]
-  }`
-
   const handleInput = (val: string) => {
     setAmount(val)
     onValueChange(val)
@@ -72,7 +68,7 @@ const Buy: React.FC<BuyProps> = ({
   // TODO: clean up this code
   // Hack to get the close modal function from the provider
   // Need to export ModalContext from uikit to clean up the code
-  const [_, closeModal] = useModal(<></>)
+  const [, closeModal] = useModal(<></>)
   const [onPresentAddLiquidityWidgetModal] = useModal(
     <LiquidityModal handleClose={closeModal} />,
     true,
@@ -84,7 +80,7 @@ const Buy: React.FC<BuyProps> = ({
     dispatch(
       selectCurrency({
         field: Field.INPUT,
-        currencyId: quoteToken.symbol === 'BNB' ? 'ETH' : quoteToken.address[chainId],
+        currencyId: token.symbol === 'BNB' ? 'ETH' : token.address[chainId],
       }),
     )
     dispatch(

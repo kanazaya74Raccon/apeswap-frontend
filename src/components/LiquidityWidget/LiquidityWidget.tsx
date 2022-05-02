@@ -3,7 +3,6 @@ import { AddIcon, Button } from '@ape.swap/uikit'
 import { Box, Flex, Text } from 'theme-ui'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, CurrencyAmount } from '@apeswapfinance/sdk'
-import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import { TransactionResponse } from '@ethersproject/providers'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import track from 'utils/track'
@@ -14,7 +13,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { parseAddress } from 'hooks/useAddress'
 import useTheme from 'hooks/useTheme'
 import { useCurrencyBalance } from 'state/wallet/hooks'
-import { useIsExpertMode, useUserRecentTransactions, useUserSlippageTolerance } from 'state/user/hooks'
+import { useIsExpertMode, useUserSlippageTolerance } from 'state/user/hooks'
 import { useModal } from '@apeswapfinance/uikit'
 import TransactionConfirmationModal, { ConfirmationModalContent } from 'components/TransactionConfirmationModal'
 import ConfirmAddModalBottom from 'views/AddLiquidity/ConfirmAddModalBottom'
@@ -45,8 +44,6 @@ interface ILiquidityWidgetProps {
 
 const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
   const { isDark } = useTheme()
-  const [recentTransactions] = useUserRecentTransactions()
-  const [addValueUsd, setAddValueUsd] = useState<number>(null)
 
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -124,7 +121,6 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
     max-width: 5rem;
     text-overflow: ellipsis;
   `
-  const ModelStyle = styled.div``
   function Balance({ balance }: { balance: CurrencyAmount }) {
     return <StyledBalanceText title={balance?.toExact()}>{balance?.toSignificant(4)}</StyledBalanceText>
   }
@@ -218,7 +214,6 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
           track({
             event: 'liquidity',
             chain: chainId,
-            value: addValueUsd,
             data: {
               token1: currencies[Field.CURRENCY_A]?.getSymbol(chainId),
               token2: currencies[Field.CURRENCY_B]?.getSymbol(chainId),
@@ -538,7 +533,6 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
         ) : (
           <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
         )}
-        {recentTransactions && <WalletTransactions />}
       </Flex>
       <Flex sx={{ justifyContent: 'center', margin: '10px 0 0' }}>
         <UnderlinedButton text="cancel" handleClick={onCancel} />
