@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance, updateNfaStakingUserAllowance } from 'state/actions'
+import { updateNfaStakingUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
@@ -40,28 +40,22 @@ export const useApprove = (lpContract) => {
 
 // Approve a Pool
 export const useSousApprove = (lpContract, sousId) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const sousChefContract = useSousChef(sousId)
 
   const handleApprove = useCallback(async () => {
-    try {
-      const tx = await approve(lpContract, sousChefContract)
-      dispatch(updateUserAllowance(chainId, sousId, account))
-      track({
-        event: 'pool',
-        chain: CHAIN_ID,
-        data: {
-          token: tx.to,
-          id: sousId,
-          cat: 'enable',
-        },
-      })
-      return tx
-    } catch (e) {
-      return false
-    }
-  }, [account, dispatch, lpContract, sousChefContract, sousId, chainId])
+    const tx = await approve(lpContract, sousChefContract)
+    track({
+      event: 'pool',
+      chain: chainId,
+      data: {
+        token: tx.to,
+        id: sousId,
+        cat: 'enable',
+      },
+    })
+    return tx
+  }, [lpContract, sousChefContract, sousId, chainId])
 
   return { onApprove: handleApprove }
 }

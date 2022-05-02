@@ -27,11 +27,11 @@ export const defaultServiceData: (t: ContextApi['t']) => DefaultServiceData[] = 
     stats: [],
   },
   {
-    id: '',
+    id: 'treasuryBills',
     title: '',
     description: '',
     backgroundImg: 'images/homepage-coming-soon.svg',
-    link: '',
+    link: '/treasury-bills',
     stats: [],
   },
 ]

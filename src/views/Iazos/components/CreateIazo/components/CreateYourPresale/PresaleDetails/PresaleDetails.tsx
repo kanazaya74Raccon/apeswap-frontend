@@ -74,6 +74,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
           backgroundColor={bgColor}
           min={0}
           max={parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)}
+          tooltipContent="If the soft cap is not met, Investors will be reimbursed and you will not raise any funds."
         />
         <TokenInput
           defaultVal={(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)).toString()}

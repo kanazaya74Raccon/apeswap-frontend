@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ButtonSquare, Flex } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'

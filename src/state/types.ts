@@ -12,6 +12,7 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
+  BillsConfig,
 } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
@@ -71,6 +72,54 @@ export interface Pool extends PoolConfig {
     pendingReward: BigNumber
   }
   lpData?: any
+}
+
+export interface UserBillNft {
+  image: string
+  tokenId: string
+  attributes: {
+    trait_type: string
+    value: string
+  }[]
+}
+
+export interface UserBill {
+  address: string
+  id: string
+  vesting: string
+  payout: string
+  truePricePaid: string
+  lastBlockTimestamp: string
+  pendingRewards: string
+  nftData?: UserBillNft
+}
+
+export interface Bills extends BillsConfig {
+  price?: string
+  priceUsd?: string
+  vestingTime?: string
+  discount?: string
+  currentDebt?: string
+  currentFee?: string
+  debtDecay?: string
+  debtRatio?: string
+  totalDebt?: string
+  totalPayoutGiven?: string
+  totalPrincipleBilled?: string
+  controlVariable?: string
+  minimumPrice?: string
+  maxPayout?: string
+  maxDebt?: string
+  lpPriceUsd?: number
+  earnTokenPrice?: number
+  billNftAddress?: string
+  userData?: {
+    allowance: string
+    stakingTokenBalance: string
+    bills?: UserBill[]
+  }
+  userOwnedBillsData?: UserBill[]
+  userOwnedBillsNftData?: UserBillNft[]
 }
 
 export interface JunglePool extends PoolConfig {
@@ -465,6 +514,10 @@ export interface DualFarmsState {
   data: DualFarm[]
 }
 
+export interface BillsState {
+  data: Bills[]
+}
+
 export interface NetworkState {
   isInitialized: boolean
   isLoading: boolean
@@ -567,5 +620,6 @@ export interface State {
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
+  bills: BillsState
   nfas: NfaState
 }

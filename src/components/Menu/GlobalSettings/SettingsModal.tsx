@@ -6,6 +6,7 @@ import {
   useUserExpertModeAcknowledgementShow,
   useUserSingleHopOnly,
   useUserRecentTransactions,
+  useUserAutonomyPrepay,
 } from 'state/user/hooks'
 import { useSwapActionHandlers } from 'state/swap/hooks'
 import { useTranslation } from 'contexts/Localization'
@@ -26,6 +27,7 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const [expertMode, toggleExpertMode] = useExpertModeManager()
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
   const [recentTransactions, setRecentTransactions] = useUserRecentTransactions()
+  const [autonomyPrepay, setAutonomyPrepay] = useUserAutonomyPrepay()
   const { onChangeRecipient } = useSwapActionHandlers()
   const { t } = useTranslation()
 
@@ -99,6 +101,26 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
               variant="yellow"
               onClick={() => {
                 setSingleHopOnly(!singleHopOnly)
+              }}
+            >
+              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
+                {t('YES')}
+              </ButtonMenuItem>
+              <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
+                {t('NO')}
+              </ButtonMenuItem>
+            </ButtonMenu>
+          </Flex>
+          <Flex justifyContent="space-between" alignItems="center" mb="22px">
+            <Flex alignItems="center">
+              <Text>{t('Autonomy Prepay')}</Text>
+            </Flex>
+            <ButtonMenu
+              activeIndex={autonomyPrepay ? 0 : 1}
+              size="sm"
+              variant="yellow"
+              onClick={() => {
+                setAutonomyPrepay(!autonomyPrepay)
               }}
             >
               <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">

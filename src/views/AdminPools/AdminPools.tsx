@@ -14,9 +14,9 @@ import { usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
-import SearchInput from '../Pools/components/SearchInput'
-import PoolTabButtons from '../Pools/components/PoolTabButtons'
-import PoolCard from '../Pools/components/PoolCard/PoolCard'
+import SearchInput from '../PoolsLegacy/components/SearchInput'
+import PoolTabButtons from '../PoolsLegacy/components/PoolTabButtons'
+import PoolCard from '../PoolsLegacy/components/PoolCard/PoolCard'
 
 interface LabelProps {
   active?: boolean

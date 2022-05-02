@@ -37,7 +37,7 @@ const MenuTabButton: React.FC = () => {
 
   return (
     <Wrapper>
-      <Toggle size="md" labels={[t('CURRENT'), t('PAST')]} onClick={handleClick} checked={!isExact} />
+      <Toggle size="md" labels={[t('ACTIVE'), t('INACTIVE')]} onClick={handleClick} checked={!isExact} />
     </Wrapper>
   )
 }

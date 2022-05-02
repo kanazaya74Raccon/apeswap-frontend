@@ -99,6 +99,7 @@ export interface PoolConfig {
   contractAddress: Address
   poolCategory?: PoolCategory
   projectLink: string
+  twitter?: string
   tokenPerBlock: string
   sortOrder?: number
   harvest?: boolean
@@ -242,4 +243,14 @@ export interface DualFarmConfig {
     token0: Token
     token1?: Token
   }
+}
+
+export interface BillsConfig {
+  index: number
+  contractAddress: Address
+  billType: string
+  token: Token
+  quoteToken: Token
+  lpToken: Token
+  earnToken: Token
 }

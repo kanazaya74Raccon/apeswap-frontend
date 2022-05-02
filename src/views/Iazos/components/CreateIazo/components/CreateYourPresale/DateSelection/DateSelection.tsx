@@ -31,8 +31,9 @@ const formatCountdown = (t, startDate, endDate, duration?) => {
 }
 
 const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
-  const delayedDate = new Date(new Date().setDate(new Date().getDate() + 10))
-  const [dateState, setDateState] = useState<DateObject>({ start: delayedDate, end: delayedDate })
+  const delayedStartDate = new Date(new Date().setDate(new Date().getDate() + 3.001))
+  const delayedEndDate = new Date(new Date().setDate(new Date().getDate() + 5.001))
+  const [dateState, setDateState] = useState<DateObject>({ start: delayedStartDate, end: delayedEndDate })
   const { t } = useTranslation()
 
   useEffect(() => {

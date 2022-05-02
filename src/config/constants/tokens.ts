@@ -355,15 +355,6 @@ const tokens = {
     },
     decimals: 18,
   },
-  bnbjdi: {
-    symbol: 'BNB-JDI',
-    address: {
-      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
-      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
-    },
-    decimals: 18,
-    lpToken: true,
-  },
   obie: {
     symbol: 'OBIE',
     address: {
@@ -464,7 +455,7 @@ const tokens = {
     decimals: 18,
   },
   sx: {
-    symbol: 'sx',
+    symbol: 'SX',
     address: {
       56: '0x6f26e8a40c8daae8c4358ce557c10226527cebce',
     },
@@ -1005,12 +996,115 @@ const tokens = {
     },
     decimals: 18,
   },
+  bountie: {
+    symbol: 'BOUNTIE',
+    address: {
+      56: '0x00f80a8f39bb4D04a3038C497E3642bf1B0A304e',
+    },
+    decimals: 18,
+  },
+  ankr: {
+    symbol: 'ANKR',
+    address: {
+      56: '0xf307910A4c7bbc79691fD374889b36d8531B08e3',
+    },
+    decimals: 18,
+  },
+  kte: {
+    symbol: 'KTE',
+    address: {
+      56: '0x61fA01129aC0bB124D1C60Dc9f735C6C579A858B',
+    },
+    decimals: 18,
+  },
+  gq: {
+    symbol: 'GQ',
+    address: {
+      56: '0xF700D4c708C2be1463E355F337603183D20E0808',
+    },
+    decimals: 18,
+  },
+  aspo: {
+    symbol: 'ASPO',
+    address: {
+      56: '0x1a9b49E9f075c37Fe5f86C916bac9DEb33556D7E',
+    },
+    decimals: 18,
+  },
+  bico: {
+    symbol: 'BICO',
+    address: {
+      56: '0x06250a4962558F0F3E69FC07F4c67BB9c9eAc739',
+    },
+    decimals: 18,
+  },
+  cpo: {
+    symbol: 'CPO',
+    address: {
+      56: '0xea395DFaFEd39924988b475f2Ca7f4C72655203A',
+    },
+    decimals: 18,
+  },
+  coc: {
+    symbol: 'COC',
+    address: {
+      56: '0xbDC3b3639f7AA19e623A4d603A3Fb7Ab20115A91',
+    },
+    decimals: 18,
+  },
+  froyo: {
+    symbol: 'FROYO',
+    address: {
+      56: '0xe369fec23380f9F14ffD07a1DC4b7c1a9fdD81c9',
+    },
+    decimals: 18,
+  },
+  primate: {
+    symbol: 'PRIMATE',
+    address: {
+      56: '0xA19863E302FD1B41276fCe5A48D9C511DBeEf34c',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
     symbol: 'BANANA-BNB',
     address: {
       56: '0xf65c1c0478efde3c19b49ecbe7acc57bb6b1d713',
+      97: '0x90Fc86A7570063a9eA971ec74f01F89569Ad6237',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBusd: {
+    symbol: 'BUSD-BNB',
+    address: {
+      56: '0x51e6D27FA57373d8d4C256231241053a70Cb1d93',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbEth: {
+    symbol: 'ETH-BNB',
+    address: {
+      56: '0xA0C3Ef24414ED9C9B456740128d8E63D016A9e11',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bnbBtc: {
+    symbol: 'BTC-BNB',
+    address: {
+      56: '0x1E1aFE9D9c5f290d8F6996dDB190bd111908A43D',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  usdcBusd: {
+    symbol: 'BUSD-USDC',
+    address: {
+      56: '0xC087C78AbaC4A0E900a327444193dBF9BA69058E',
     },
     decimals: 18,
     lpToken: true,
@@ -1031,6 +1125,13 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
+  bnbjdi: {
+    symbol: 'BNB-JDI',
+    address: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xfb6063f29af6dcd1fc03a8e221c6d91deabbe764',
+    },
+  },
   rubyBnb: {
     symbol: 'RUBY-BNB',
     address: {
@@ -1039,10 +1140,26 @@ const tokens = {
     decimals: 18,
     lpToken: true,
   },
+  nftyBnb: {
+    symbol: 'NFTY-BNB',
+    address: {
+      56: '0x884BE30e2c95b9cFed614aD2B5Edf40AF2A144ad',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
   drfBusd: {
     symbol: 'DRF-BUSD',
     address: {
       56: '0x5FFc5b392Fcc33357c6a8240bda1C9374A55E6B8',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  cocBnb: {
+    symbol: 'COC-BNB',
+    address: {
+      56: '0x5467dD00ca4d91010Ab2A3aEF8a0162DC218801A',
     },
     decimals: 18,
     lpToken: true,
