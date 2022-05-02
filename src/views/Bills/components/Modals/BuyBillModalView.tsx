@@ -4,8 +4,8 @@ import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getTimePeriods from 'utils/getTimePeriods'
+import ReactPlayer from 'react-player'
 import BigNumber from 'bignumber.js'
-import BillsSpinner from 'components/BillsSpinner'
 import {
   ActionButtonsContainer,
   BillDescriptionContainer,
@@ -62,11 +62,12 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
         <ModalBodyContainer>
           <StyledExit onClick={onDismiss}>x</StyledExit>
           <Flex alignItems="center" justifyContent="center">
-            <BillsImage image="images/hidden-bill.png" />
-            {loading && !billId && (
-              <div style={{ position: 'absolute' }}>
-                <BillsSpinner />
-              </div>
+            {loading && !billId ? (
+              <BillsImage>
+                <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" playsInline />
+              </BillsImage>
+            ) : (
+              <BillsImage image="images/hidden-bill.png" />
             )}
           </Flex>
           <BillDescriptionContainer p="20px 0px" minHeight={450}>

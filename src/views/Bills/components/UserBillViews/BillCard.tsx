@@ -1,6 +1,7 @@
 import { Flex, Skeleton } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import ListViewContent from 'components/ListViewContent'
+import ReactPlayer from 'react-player'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import React from 'react'
 import { Bills } from 'state/types'
@@ -87,7 +88,9 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
         {ownedBillsAmount < 4 && (
           <SwiperSlide style={{ maxWidth: '270px', height: '307px' }}>
             <CardContainer>
-              <BillsImage image="images/hidden-bill.png" />
+              <BillsImage>
+                <ReactPlayer playing muted loop url="videos/bills-video.mp4" height="100%" width="100%" playsInline />
+              </BillsImage>
               <Flex
                 padding="0px 15px"
                 alignItems="center"

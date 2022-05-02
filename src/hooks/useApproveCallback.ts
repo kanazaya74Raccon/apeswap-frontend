@@ -1,6 +1,7 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Trade, TokenAmount, CurrencyAmount, ETHER, ROUTER_ADDRESS } from '@apeswapfinance/sdk'
+import { AUTONOMY_MIDROUTER_ADDRESS } from '@autonomylabs/limit-stop-orders'
 import { useCallback, useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTokenAllowance from './useTokenAllowance'
@@ -106,12 +107,15 @@ export function useApproveCallback(
 }
 
 // wraps useApproveCallback in the context of a swap
-export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) {
+export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0, useAutonomy?: boolean) {
   const { chainId } = useActiveWeb3React()
   const amountToApprove = useMemo(
     () => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined),
     [trade, allowedSlippage],
   )
 
-  return useApproveCallback(amountToApprove, parseAddress(ROUTER_ADDRESS, chainId))
+  return useApproveCallback(
+    amountToApprove,
+    parseAddress(useAutonomy ? AUTONOMY_MIDROUTER_ADDRESS : ROUTER_ADDRESS, chainId),
+  )
 }

@@ -13,11 +13,13 @@ export const CardContainer = styled(Card)`
 
 export const BillsImage = styled.div<{ image?: string }>`
   width: 270px;
-  height: 159px;
+  height: 150px;
   background-image: ${({ image }) => `url(${image});`}
+  overflow: hidden;
   border-radius: 10px 10px 0px 0px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  margin-bottom: 8px;
 `
 
 export const BillCardsContainer = styled(Flex)`
@@ -60,7 +62,7 @@ export const BillGifContainer = styled(Flex)`
 export const DescriptionContainer = styled(Flex)`
   flex-direction: column;
   padding-left: 20px;
-  padding: 20px 0px 20px 20px;
+  padding: 13px 0px 20px 20px;
   ${({ theme }) => theme.mediaQueries.md} {
     max-width: 480px;
   }
@@ -69,7 +71,7 @@ export const DescriptionContainer = styled(Flex)`
 export const BillGifImage = styled.div<{ image?: string }>`
   width: 270px;
   height: 150px;
-  background-image: url(/images/bills-placeholder.png);
+  background-image: url(/images/bills-gif.gif);
   background-repeat: no-repeat;
   background-size: contain;
   ${({ theme }) => theme.mediaQueries.md} {
