@@ -1,26 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
+import Iframe from 'react-iframe'
 
-export const StyledIframe = styled.iframe`
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  border: 0;
-  min-height: 660px;
+const StyledIframe = styled(Iframe)`
+  width: 100%;
+  max-width: 398px;
+  height: 560px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 32px;
+  border-radius: 1rem;
+
+  & > div {
+    grid-column: span 12;
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    & > div {
+      height: 1200px;
+    }
+  }
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    & > div {
+      height: 860px;
+    }
+  }
 `
 
-export default function MoonPayIframe({ currencyCode = 'BNB_BSC' }) {
-  const src = `https://buy-staging.moonpay.io?apiKey=pk_test_ofxbUiq0BDNvCBwRbO5mHjG7gKBKLWY2&colorCode=%23ffb300&currencyCode=${currencyCode}`
+export default function MoonPayIframe() {
+  const baseUrl = 'https://buy-staging.moonpay.io?apiKey=pk_test_ofxbUiq0BDNvCBwRbO5mHjG7gKBKLWY2&colorCode=%23ffb300'
 
   return (
     <StyledIframe
       title="Moonpay topup"
-      src={src}
+      url={baseUrl}
+      scrolling="no"
       allow="accelerometer; autoplay; camera; gyroscope; payment"
-      frameBorder="0"
-      height="100%"
-      width="100%"
     />
   )
 }
