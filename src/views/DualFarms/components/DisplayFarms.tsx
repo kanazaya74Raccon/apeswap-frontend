@@ -42,10 +42,10 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
     // Changing tooltip placement conditionaly until zindex solution
     return {
       tokens: {
-        token1: farm?.stakeTokens?.token1?.symbol,
+        token1: farm.pid === 11 ? 'NFTY2' : farm?.stakeTokens?.token1?.symbol,
         token2: farm?.stakeTokens?.token0?.symbol,
         token3: farm?.rewardTokens?.token0?.symbol,
-        token4: farm?.dualImage !== false ? farm?.rewardTokens?.token1?.symbol : null,
+        token4: farm?.dualImage !== false ? (farm.pid === 11 ? 'NFTY2' : farm?.rewardTokens?.token1?.symbol) : null,
       },
       title: (
         <Text ml={10} bold>
@@ -86,8 +86,8 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             width={isMobile ? 90 : 150}
             ml={20}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
-            toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 38%)"
           />
           <ListViewContent
             title="APR"
@@ -122,24 +122,8 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             value={`$${Number(farm?.totalStaked).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 180}
             toolTip="The total value of the LP tokens currently staked in this farm."
-            toolTipPlacement={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'topRight'
-                  : 'bottomRight'
-                : i === farms.length - 1 && i !== 0
-                ? 'topRight'
-                : 'bottomLeft'
-            }
-            toolTipTransform={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'translate(-60%, -110%)'
-                  : 'translate(-75%, 75%)'
-                : i === farms.length - 1 && i !== 0
-                ? 'translate(-60%, -110%)'
-                : 'translate(0%, 75%)'
-            }
+            toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
+            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 75%)'}
           />
           <ListViewContent
             title="Earned"
@@ -153,7 +137,10 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             value2Icon={
               farm?.dualImage !== false ? (
                 <ServiceTokenDisplayContainer>
-                  <ServiceTokenDisplay token1={farm?.rewardTokens.token1.symbol} size={15} />
+                  <ServiceTokenDisplay
+                    token1={farm.pid === 11 ? 'NFTY2' : farm?.rewardTokens.token1.symbol}
+                    size={15}
+                  />
                 </ServiceTokenDisplayContainer>
               ) : null
             }

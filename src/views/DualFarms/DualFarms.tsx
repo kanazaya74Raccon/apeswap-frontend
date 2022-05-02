@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
@@ -26,6 +26,7 @@ const DualFarms: React.FC = () => {
 
   const { pathname } = useLocation()
   const TranslateString = useI18n()
+  const [observerIsSet, setObserverIsSet] = useState(false)
   const farmsLP = useDualFarms(account)
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
@@ -62,6 +63,24 @@ const DualFarms: React.FC = () => {
 
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const loadMoreRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const showMoreFarms = (entries) => {
+      const [entry] = entries
+      if (entry.isIntersecting) {
+        setNumberOfFarmsVisible((farmsCurrentlyVisible) => farmsCurrentlyVisible + NUMBER_OF_FARMS_VISIBLE)
+      }
+    }
+
+    if (!observerIsSet) {
+      const loadMoreObserver = new IntersectionObserver(showMoreFarms, {
+        rootMargin: '0px',
+        threshold: 1,
+      })
+      loadMoreObserver.observe(loadMoreRef.current)
+      setObserverIsSet(true)
+    }
+  }, [observerIsSet])
 
   const renderFarms = () => {
     let farms = isActive ? activeFarms : inactiveFarms

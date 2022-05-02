@@ -1,14 +1,13 @@
 import React from 'react'
-import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import ListCard from './ListCard'
 import { ListViewContainer } from './styles'
 import MobileListCard from './MobileListCard'
 import { ExtendedListViewProps } from './types'
+import useIsMobile from '../../hooks/useIsMobile'
 
 const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews }) => {
-  const { isXl, isLg, isXxl } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl && !isXxl
+  const isMobile = useIsMobile()
   return (
     <ListViewContainer>
       {listViews.map((view) => {
@@ -22,7 +21,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
                 token4={view.tokens?.token4}
                 billArrow={view?.billArrow}
                 stakeLp
-                dualEarn={view.tokens?.token4 !== null}
+                dualEarn={view.tokens?.token4 != null}
               />
             }
             tag={view?.tag}
@@ -44,7 +43,7 @@ const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews 
                 token4={view.tokens?.token4}
                 billArrow={view?.billArrow}
                 stakeLp
-                dualEarn={view.tokens?.token4 !== null}
+                dualEarn={view.tokens?.token4 != null}
               />
             }
             tag={view?.tag}
