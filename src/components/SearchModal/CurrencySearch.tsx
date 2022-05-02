@@ -123,6 +123,7 @@ function CurrencySearch({
               onChange={handleInput}
               onKeyDown={handleEnter}
               icon="search"
+              autoFocus
             />
           </Flex>
         </Row>
