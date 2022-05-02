@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Currency, Pair, Token } from '@apeswapfinance/sdk'
+import React from 'react'
+import { Currency, Pair } from '@apeswapfinance/sdk'
 import { Button, Text, useModal, Flex, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
-import { useCurrencyBalance } from '../../../state/wallet/hooks'
 import CurrencySearchModal from '../../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../../Logo'
 import { RowBetween } from '../../layout/Row'
@@ -66,13 +64,9 @@ export default function CurrencyInputPanelLiquidity({
   value,
   onUserInput,
   onMax,
-  showMaxButton,
-  label,
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
-  isLp = false,
-  hideBalance = false,
   pair = null, // used for double token logo
   otherCurrency,
   id,
@@ -80,24 +74,7 @@ export default function CurrencyInputPanelLiquidity({
   removeLiquidity,
   addLiquidity,
 }: CurrencyInputPanelProps) {
-  const { account, chainId } = useActiveWeb3React()
-  const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
-  const [tokenPrice, setTokenPrice] = useState<number>(null)
-  const isNative = currency?.symbol === 'ETH'
-
-  useEffect(() => {
-    const fetchTokenPrice = async () => {
-      const tokenPriceReturned = await getTokenUsdPrice(
-        chainId,
-        currency instanceof Token ? currency?.address : '',
-        currency?.decimals,
-        isLp,
-        isNative,
-      )
-      setTokenPrice(tokenPriceReturned)
-    }
-    fetchTokenPrice()
-  }, [currency, chainId, isLp, isNative])
+  const { chainId } = useActiveWeb3React()
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
