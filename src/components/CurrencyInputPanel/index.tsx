@@ -63,7 +63,7 @@ const CurrencyInputContainer = styled.div<{ removeLiquidity: boolean; orders: bo
   width: 330px;
   ${({ theme }) => theme.mediaQueries.md} {
     height: ${({ orders }) => (orders ? '125px' : '155px')};
-    width: 640px;
+    width: 100%;
     flex-direction: row;
     padding: 0px 15px 0px 15px;
     align-items: ${({ orders }) => (orders ? 'flex-end' : 'center')};
@@ -225,13 +225,21 @@ export default function CurrencyInputPanel({
           </Text>
         )}
 
-        {account && <MetaMaskLogo onClick={addToMetaMask} src="/images/metamask-fox.svg" alt="Add to MetaMask" />}
+        {account && !isNative && (
+          <MetaMaskLogo onClick={addToMetaMask} src="/images/metamask-fox.svg" alt="Add to MetaMask" />
+        )}
 
         {account && (
           <Text
             onClick={onMax}
             fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '30px' }}
+            style={{
+              display: 'inline',
+              cursor: 'pointer',
+              position: 'absolute',
+              bottom: '-30px',
+              marginLeft: `${!isNative ? '30px' : '0px'}`,
+            }}
           >
             {!hideBalance && !!currency
               ? removeLiquidity
