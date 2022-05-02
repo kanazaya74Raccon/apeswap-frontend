@@ -12,9 +12,7 @@ import { HeadingContainer } from './styles'
 const UserBillViews: React.FC<{ bills: Bills[] }> = ({ bills }) => {
   const { account } = useActiveWeb3React()
   const userOwnedBills = bills?.filter((bill) => bill?.userOwnedBillsData?.length > 0)
-  const ownedBillsAmount = bills
-    ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))
-    .filter((b) => parseFloat(b.pendingRewards) >= 0)?.length
+  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : [])).length
   const [showAll, setShowAll] = useState(false)
   const [showExpired, setShowExpired] = useState(true)
   return (
