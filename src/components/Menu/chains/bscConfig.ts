@@ -103,6 +103,10 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         label: t('Governance'),
         href: 'https://vote.apeswap.finance',
       },
+      {
+        label: t('Education'),
+        href: 'https://www.apelabs.education/',
+      },
     ],
   },
 

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
+import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
+import { LiquidityModal } from 'components/LiquidityWidget'
 import ListViewContent from 'components/ListViewContent'
 import { Farm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -10,6 +11,8 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
 import { useTranslation } from 'contexts/Localization'
 import useIsMobile from 'hooks/useIsMobile'
+import { Field, selectCurrency } from 'state/swap/actions'
+import { useAppDispatch } from 'state'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
@@ -19,6 +22,34 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const isMobile = useIsMobile()
+  const dispatch = useAppDispatch()
+
+  // TODO: clean up this code
+  // Hack to get the close modal function from the provider
+  // Need to export ModalContext from uikit to clean up the code
+  const [, closeModal] = useModal(<></>)
+  const [onPresentAddLiquidityWidgetModal] = useModal(
+    <LiquidityModal handleClose={closeModal} />,
+    true,
+    true,
+    'liquidityWidgetModal',
+  )
+
+  const showLiquidity = (token, quoteToken) => {
+    dispatch(
+      selectCurrency({
+        field: Field.INPUT,
+        currencyId: token,
+      }),
+    )
+    dispatch(
+      selectCurrency({
+        field: Field.OUTPUT,
+        currencyId: quoteToken,
+      }),
+    )
+    onPresentAddLiquidityWidgetModal()
+  }
 
   const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
@@ -145,9 +176,17 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 ml={10}
               />
             )}
-            <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <FarmButton>{t('GET LP')}</FarmButton>
-            </a>
+
+            <FarmButton
+              onClick={() =>
+                showLiquidity(
+                  farm.tokenAddresses[chainId],
+                  farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId],
+                )
+              }
+            >
+              {t("GET LP")}
+            </FarmButton>
             {!isMobile && (
               <ListViewContent
                 title={t('Available LP')}

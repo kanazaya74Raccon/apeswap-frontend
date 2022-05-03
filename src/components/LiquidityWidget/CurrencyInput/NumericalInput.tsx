@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { escapeRegExp } from '../../utils'
+import { escapeRegExp } from '../../../utils'
 
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
   color: ${({ error, theme }) => (error ? theme.colors.error : theme.colors.text)};
-  width: 0;
+  width: inherit;
   height: 100%;
   position: relative;
-  font-weight: 500;
+  font-weight: 700;
   outline: none;
   border: none;
   flex: 1 1 auto;
@@ -19,8 +19,8 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0px;
-  margin-left: ${({ align }) => (align === 'left' ? '20px' : '0px')};
+  padding: 0 0 0 15px;
+  text-align: right;
   -webkit-appearance: textfield;
 
   ::-webkit-search-decoration {
@@ -39,15 +39,11 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   ::placeholder {
     color: ${({ theme }) => theme.colors.text};
   }
-
-  :disabled {
-    opacity: 0.5;
-  }
 `
 
 const inputRegex = RegExp(`^\\d*(?:\\\\[.])?\\d*$`) // match escaped "." characters via in a non-capturing group
 
-export const Input = React.memo(function InnerInput({
+const NumericalInput = React.memo(function InnerInput({
   value,
   onUserInput,
   placeholder,
@@ -79,7 +75,7 @@ export const Input = React.memo(function InnerInput({
         }}
         // universal input options
         inputMode="decimal"
-        title={t('Token Amount')}
+        title={t("Token Amount")}
         autoComplete="off"
         autoCorrect="off"
         // text-specific options
@@ -103,4 +99,4 @@ export const Input = React.memo(function InnerInput({
   )
 })
 
-export default Input
+export default NumericalInput

@@ -8,9 +8,11 @@ import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
+import { registerToken } from '../../utils/wallet'
 
 import { RowBetween } from '../layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
+import { WrappedTokenInfo } from '../../state/lists/hooks'
 
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ removeLiquidity: boolean }>`
   display: flex;
@@ -21,7 +23,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
   padding: 0;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.white4} !important;
+    background-color: ${({ theme }) => theme.colors.white2} !important;
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
@@ -63,7 +65,7 @@ const CurrencyInputContainer = styled.div<{ removeLiquidity: boolean; orders: bo
   width: 330px;
   ${({ theme }) => theme.mediaQueries.md} {
     height: ${({ orders }) => (orders ? '125px' : '155px')};
-    width: 640px;
+    width: 100%;
     flex-direction: row;
     padding: 0px 15px 0px 15px;
     align-items: ${({ orders }) => (orders ? 'flex-end' : 'center')};
@@ -74,6 +76,15 @@ const CurrencySymbol = styled.div`
   opacity: 0.5;
   line-height: 24px;
   margin-right: 20px;
+`
+
+const MetaMaskLogo = styled.img`
+  display: inline;
+  cursor: pointer;
+  position: absolute;
+  bottom: -30px;
+  marginleft: 10px;
+  width: 20px;
 `
 
 interface CurrencyInputPanelProps {
@@ -137,6 +148,15 @@ export default function CurrencyInputPanel({
     }
     fetchTokenPrice()
   }, [currency, chainId, isLp, isNative])
+
+  const addToMetaMask = () => {
+    registerToken(
+      currency instanceof Token ? currency?.address : '',
+      currency?.symbol,
+      currency?.decimals,
+      currency instanceof WrappedTokenInfo ? currency?.tokenInfo.logoURI : '',
+    ).then(() => '')
+  }
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -207,11 +227,22 @@ export default function CurrencyInputPanel({
             {id === 'orders-currency-output' && `${t('For')}:`}
           </Text>
         )}
+
+        {account && !isNative && (
+          <MetaMaskLogo onClick={addToMetaMask} src="/images/metamask-fox.svg" alt="Add to MetaMask" />
+        )}
+
         {account && (
           <Text
             onClick={onMax}
             fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer', position: 'absolute', bottom: '-30px', marginLeft: '10px' }}
+            style={{
+              display: 'inline',
+              cursor: 'pointer',
+              position: 'absolute',
+              bottom: '-30px',
+              marginLeft: `${!isNative ? '30px' : '0px'}`,
+            }}
           >
             {!hideBalance && !!currency
               ? removeLiquidity

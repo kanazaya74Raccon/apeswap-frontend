@@ -14,21 +14,25 @@ const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/vaults',
   },
   {
-    label: 'More',
+    label: t('More'),
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',
     items: [
       {
-        label: 'Docs',
+        label: t('Docs'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
       },
       {
-        label: 'Charts',
+        label: t('Charts'),
         href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
       },
       {
-        label: 'Governance',
+        label: t('Governance'),
         href: 'https://vote.apeswap.finance',
+      },
+      {
+        label: t('Education'),
+        href: 'https://www.apelabs.education/',
       },
     ],
   },

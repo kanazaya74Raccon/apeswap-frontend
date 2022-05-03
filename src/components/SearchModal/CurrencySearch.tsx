@@ -119,13 +119,14 @@ function CurrencySearch({
           <Flex alignItems="center" justifyContent="center" mb="10px" style={{ width: '100%' }}>
             <StyledInput
               id="token-search-input"
-              placeholder={t('Search name or paste address')}
+              placeholder={t("Name or Address")}
               autoComplete="off"
               value={searchQuery}
               // ref={inputRef as RefObject<HTMLInputElement>}
               onChange={handleInput}
               onKeyDown={handleEnter}
               icon="search"
+              autoFocus
             />
           </Flex>
         </Row>
@@ -139,7 +140,7 @@ function CurrencySearch({
         </Column>
       ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
         <CurrencyList
-          height={380}
+          height={250}
           showETH={showETH}
           currencies={
             filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
@@ -167,7 +168,7 @@ const StyledInput = styled(Input)`
   background-color: ${({ theme }) => theme.colors.white3};
   color: ${({ theme }) => theme.colors.text};
   placeholder-color: ${({ theme }) => theme.colors.gray};
-  width: 325px;
+  width: 100% !important;
   ::placeholder {
     color: ${(props) => props.theme.colors.text};
   }

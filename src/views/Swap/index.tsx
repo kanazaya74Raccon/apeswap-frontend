@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
-import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card } from '@apeswapfinance/uikit'
+import { Button, Text, ArrowDownIcon, useModal, Flex, IconButton, Card, AutoRenewIcon } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import SwapBanner from 'components/SwapBanner'
@@ -123,6 +123,30 @@ export default function Swap({ history }: RouteComponentProps) {
       onUserInput(Field.OUTPUT, value)
     },
     [onUserInput],
+  )
+
+  const updateParams = useCallback(
+    (direction: string, currency: string) => {
+      const searchParams = new URLSearchParams(history.location.search)
+
+      if (direction === 'inputCurrency' && currency === searchParams.get('outputCurrency')) {
+        if (searchParams.get('inputCurrency') !== null) {
+          searchParams.set('outputCurrency', searchParams.get('inputCurrency'))
+        } else {
+          searchParams.delete('outputCurrency')
+        }
+      } else if (direction === 'outputCurrency' && currency === searchParams.get('inputCurrency')) {
+        if (searchParams.get('outputCurrency') !== null) {
+          searchParams.set('inputCurrency', searchParams.get('outputCurrency'))
+        } else {
+          searchParams.delete('inputCurrency')
+        }
+      }
+
+      searchParams.set(direction, currency)
+      history.push(`?${searchParams.toString()}`)
+    },
+    [history],
   )
 
   // modal and loading
@@ -261,6 +285,7 @@ export default function Swap({ history }: RouteComponentProps) {
     (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
+      updateParams('inputCurrency', inputCurrency.symbol !== 'ETH' ? inputCurrency.address : 'ETH')
       const showSwapWarning = shouldShowSwapWarning(inputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(inputCurrency)
@@ -268,7 +293,7 @@ export default function Swap({ history }: RouteComponentProps) {
         setSwapWarningCurrency(null)
       }
     },
-    [onCurrencySelection],
+    [onCurrencySelection, updateParams],
   )
 
   const handleMaxInput = useCallback(() => {
@@ -280,6 +305,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
+      updateParams('outputCurrency', outputCurrency.symbol !== 'ETH' ? outputCurrency.address : 'ETH')
       const showSwapWarning = shouldShowSwapWarning(outputCurrency)
       if (showSwapWarning) {
         setSwapWarningCurrency(outputCurrency)
@@ -288,7 +314,7 @@ export default function Swap({ history }: RouteComponentProps) {
       }
     },
 
-    [onCurrencySelection],
+    [onCurrencySelection, updateParams],
   )
 
   const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
@@ -357,7 +383,7 @@ export default function Swap({ history }: RouteComponentProps) {
                       }}
                     >
                       <IconButton
-                        style={{ backgroundColor: '#FFB300', borderRadius: '50px', width: '50px', height: '50px' }}
+                        style={{ borderRadius: '50px', width: '50px', height: '50px' }}
                         onClick={() => {
                           setApprovalSubmitted(false) // reset 2 step UI for approvals
                           onSwitchTokens()
@@ -454,9 +480,9 @@ export default function Swap({ history }: RouteComponentProps) {
                           disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                         >
                           {approval === ApprovalState.PENDING ? (
-                            <AutoRow gap="6px" justify="center">
-                              <></>
-                            </AutoRow>
+                            <>
+                              Enabling <AutoRenewIcon spin color="currentColor" style={{ marginLeft: '2px' }} />
+                            </>
                           ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                             t('Enabled')
                           ) : (

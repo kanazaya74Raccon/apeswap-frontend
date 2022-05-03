@@ -18,9 +18,7 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const scrollDown = () => window.scrollBy({ top: 500, behavior: 'smooth' })
-  const ownedBillsAmount = bills
-    ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : []))
-    .filter((b) => parseFloat(b.pendingRewards) > 0)?.length
+  const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : [])).length
   const billsCardView = bills
     .flatMap((bill) => {
       const ownedBills = bill?.userOwnedBillsData
