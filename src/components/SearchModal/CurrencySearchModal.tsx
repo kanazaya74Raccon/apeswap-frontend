@@ -98,7 +98,7 @@ export default function CurrencySearchModal({
             className="list-token-manage-button"
             margin="10px 0 10px 0"
           >
-            {t("Manage Tokens")}
+            {t('Manage Tokens')}
           </Button>
         </ModalFooter>
       )}

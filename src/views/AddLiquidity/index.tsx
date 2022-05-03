@@ -381,7 +381,7 @@ export default function AddLiquidity({
             <Flex flexWrap="wrap" alignItems="center" mt="15px" mb="5px">
               <LiquidityPositionLink />
               <Title bold fontSize="22px">
-                {t("Add Liquidity")}
+                {t('Add Liquidity')}
               </Title>
             </Flex>
             <Wrapper>
@@ -486,9 +486,9 @@ export default function AddLiquidity({
                               disabled={approvalA === ApprovalState.PENDING}
                             >
                               {approvalA === ApprovalState.PENDING ? (
-                                <Dots>{`${t("Enabling")} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
+                                <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
                               ) : (
-                                `${t("Enable")} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
+                                `${t('Enable')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
                               )}
                             </LargeStyledButton>
                           )}
@@ -498,9 +498,9 @@ export default function AddLiquidity({
                               disabled={approvalB === ApprovalState.PENDING}
                             >
                               {approvalB === ApprovalState.PENDING ? (
-                                <Dots>{`${t("Enabling")} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
+                                <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
                               ) : (
-                                `${t("Enable")} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
+                                `${t('Enable')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
                               )}
                             </LargeStyledButton>
                           )}

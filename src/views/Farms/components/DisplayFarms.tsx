@@ -185,7 +185,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 )
               }
             >
-              {t("GET LP")}
+              {t('GET LP')}
             </FarmButton>
             {!isMobile && (
               <ListViewContent

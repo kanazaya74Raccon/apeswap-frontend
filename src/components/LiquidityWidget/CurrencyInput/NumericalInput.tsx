@@ -75,7 +75,7 @@ const NumericalInput = React.memo(function InnerInput({
         }}
         // universal input options
         inputMode="decimal"
-        title={t("Token Amount")}
+        title={t('Token Amount')}
         autoComplete="off"
         autoCorrect="off"
         // text-specific options

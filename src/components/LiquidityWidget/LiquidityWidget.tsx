@@ -19,7 +19,7 @@ import TransactionConfirmationModal, { ConfirmationModalContent } from 'componen
 import ConfirmAddModalBottom from 'views/AddLiquidity/ConfirmAddModalBottom'
 import DoubleCurrencyLogo from 'components/Logo/DoubleLogo'
 import { useSwapState } from 'state/swap/hooks'
-import {useTranslation} from "contexts/Localization"
+import { useTranslation } from 'contexts/Localization'
 import { PairState } from '../../hooks/usePairs'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import Row, { RowBetween } from '../layout/Row'
@@ -354,7 +354,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
             }}
           >
             <Box>
-              {t("Balance")}:&nbsp;&nbsp;
+              {t('Balance')}:&nbsp;&nbsp;
               <Balance balance={balanceA} />
             </Box>
           </Text>
@@ -411,7 +411,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
               color: isDark ? 'primaryBright' : 'brown',
             }}
           >
-            {t("Token 2")}
+            {t('Token 2')}
           </Text>
         </Flex>
         <Flex sx={{ alignItems: 'center' }}>
@@ -424,7 +424,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
               color: isDark ? 'primaryBright' : 'brown',
             }}
           >
-            {t("Balance")}:&nbsp;&nbsp;
+            {t('Balance')}:&nbsp;&nbsp;
             <Balance balance={balanceB} />
           </Text>
           <Button
@@ -491,9 +491,9 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                         disabled={approvalA === ApprovalState.PENDING}
                       >
                         {approvalA === ApprovalState.PENDING ? (
-                          <Dots>{`${t("Enabling")} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
+                          <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
                         ) : (
-                          `${t("Enable")} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
+                          `${t('Enable')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
                         )}
                       </Button>
                     )}
@@ -506,9 +506,9 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                           disabled={approvalB === ApprovalState.PENDING}
                         >
                           {approvalB === ApprovalState.PENDING ? (
-                            <Dots>{`${t("Enabling")} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
+                            <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
                           ) : (
-                            `${t("Enable")} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
+                            `${t('Enable')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
                           )}
                         </Button>
                       </Box>

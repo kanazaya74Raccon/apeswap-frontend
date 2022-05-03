@@ -97,7 +97,7 @@ const Buy: React.FC<BuyProps> = ({
   return (
     <>
       <GetLPButton variant="secondary" onClick={showLiquidity}>
-        {t("Get LP")}
+        {t('Get LP')}
       </GetLPButton>
       <Flex style={{ position: 'relative' }}>
         <Text fontSize="12px" style={{ position: 'absolute', top: 14, left: 10, zIndex: 1 }} bold>

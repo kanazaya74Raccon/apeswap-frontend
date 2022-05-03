@@ -45,7 +45,7 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, handleClos
               <HelpIcon width="20px" style={{ marginLeft: '10px' }} />
             </Link>
             <Heading sx={{ fontSize: '22px', lineHeight: '33px' }} as="h4">
-              {t("Add Liquidity")}
+              {t('Add Liquidity')}
             </Heading>
           </Flex>
         </ModalHeader>

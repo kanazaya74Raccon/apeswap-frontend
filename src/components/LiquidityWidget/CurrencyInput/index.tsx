@@ -3,7 +3,7 @@ import { Currency, Pair } from '@apeswapfinance/sdk'
 import { Button, Text, useModal, Flex, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import {useTranslation} from "contexts/Localization"
+import { useTranslation } from 'contexts/Localization'
 import CurrencySearchModal from '../../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../../Logo'
 import { RowBetween } from '../../layout/Row'
@@ -119,7 +119,7 @@ export default function CurrencyInputPanelLiquidity({
                     )}`
                   : currency?.getSymbol(chainId)) || (
                   <div className="bg-transparent hover:bg-primary border border-low-emphesis rounded-full px-2 py-1 text-xs font-medium mt-1 whitespace-nowrap ">
-                    {t("Select a token")}
+                    {t('Select a token')}
                   </div>
                 )}
               </Text>
