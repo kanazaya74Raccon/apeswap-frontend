@@ -12,6 +12,7 @@ export enum banners {
   BURNING = 'burning',
   TREASURY_BILL = 'treasury-bills',
   SSIAO = 'ssiao',
+  GNANA = 'gnana',
 }
 
 export type BannerTypes = `${banners}`

@@ -1,14 +1,12 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal, AutoRenewIcon } from '@apeswapfinance/uikit'
-import ModalActions from 'components/ModalActions'
+import { Button, Modal, AutoRenewIcon, ModalFooter } from '@apeswapfinance/uikit'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import UnderlinedButton from 'components/UnderlinedButton'
 
 interface DepositModalProps {
-  max: BigNumber
+  max: string
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
@@ -20,7 +18,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
+    return getFullDisplayBalance(new BigNumber(max))
   }, [max])
 
   const handleChange = useCallback(
@@ -41,20 +39,24 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         onSelectMax={handleSelectMax}
         onChange={handleChange}
         max={fullBalance}
-        displayDecimals={10}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
         inputTitle={TranslateString(999, 'Stake')}
       />
-      <ModalActions>
+      <ModalFooter onDismiss={onDismiss}>
         <Button
           fullWidth
-          disabled={pendingTx || fullBalance === '0' || val === '0'}
+          disabled={pendingTx || fullBalance === '0' || val === '0' || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {
             setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onDismiss()
+            try {
+              await onConfirm(val)
+              onDismiss()
+            } catch (e) {
+              console.error('Transaction Failed')
+            } finally {
+              setPendingTx(false)
+            }
           }}
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
           style={{
@@ -63,13 +65,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
-      </ModalActions>
-      <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {TranslateString(999, `Get ${tokenName}`)}
-      </LinkExternal>
+      </ModalFooter>
     </Modal>
   )
 }
 
-export default DepositModal
+export default React.memo(DepositModal)

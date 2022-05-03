@@ -19,6 +19,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
     const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
     return {
       tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
+      stakeLp: true,
       id: bill.index,
       billArrow: true,
       title: (

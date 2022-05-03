@@ -218,7 +218,7 @@ const NfaStaking: React.FC = () => {
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner="nfa-staking" title="Nfa Staking" maxWidth={1130} margin="0 0 20px 0px" />
+        <Banner banner="nfa-staking" title="Nfa Staking" maxWidth={1130} margin="0 0 20px 0px" titleColor='primaryBright' />
         <ControlContainer>
           <ViewControls>
             <LabelWrapper>

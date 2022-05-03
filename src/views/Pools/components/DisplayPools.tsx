@@ -51,7 +51,6 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
           {pool?.rewardToken?.symbol || pool?.tokenName}
         </Text>
       ),
-      stakeLp: false,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',

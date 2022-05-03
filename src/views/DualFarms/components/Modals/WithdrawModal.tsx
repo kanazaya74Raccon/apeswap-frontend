@@ -1,14 +1,12 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
-import ModalActions from 'components/ModalActions'
+import { Button, Modal, AutoRenewIcon, ModalFooter } from '@apeswapfinance/uikit'
 import ModalInput from 'components/ModalInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import UnderlinedButton from 'components/UnderlinedButton'
 
 interface WithdrawModalProps {
-  max: BigNumber
+  max: string
   onConfirm: (amount: string) => void
   onDismiss?: () => void
   tokenName?: string
@@ -19,7 +17,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
   const fullBalance = useMemo(() => {
-    return getFullDisplayBalance(max)
+    return getFullDisplayBalance(new BigNumber(max))
   }, [max])
 
   const handleChange = useCallback(
@@ -40,18 +38,22 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         onChange={handleChange}
         value={val}
         max={fullBalance}
-        displayDecimals={10}
         symbol={tokenName}
         inputTitle={TranslateString(999, 'Unstake')}
       />
-      <ModalActions>
+      <ModalFooter onDismiss={onDismiss}>
         <Button
-          disabled={pendingTx}
+          disabled={pendingTx || parseFloat(fullBalance) < parseFloat(val)}
           onClick={async () => {
             setPendingTx(true)
-            await onConfirm(val)
-            setPendingTx(false)
-            onDismiss()
+            try {
+              await onConfirm(val)
+              onDismiss()
+            } catch (e) {
+              console.error('Transaction Failed')
+            } finally {
+              setPendingTx(false)
+            }
           }}
           fullWidth
           endIcon={pendingTx && <AutoRenewIcon spin color="currentColor" />}
@@ -61,10 +63,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         >
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
-      </ModalActions>
+      </ModalFooter>
     </Modal>
   )
 }
 
-export default WithdrawModal
+export default React.memo(WithdrawModal)

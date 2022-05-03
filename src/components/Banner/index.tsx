@@ -43,7 +43,8 @@ const Banner: React.FC<{
           sx={{ ...styles.learnText, color: titleColor || 'text', ':hover': { textDecoration: 'none' } }}
           href="/spinner"
         >
-          <span style={{ textDecoration: 'underline' }}>Learn More</span> <LearnMoreArrow />
+          <span style={{ textDecoration: 'underline' }}>Learn More</span>{' '}
+          <LearnMoreArrow color={titleColor || 'text'} />
         </Link>
       </Flex>
       {children}
