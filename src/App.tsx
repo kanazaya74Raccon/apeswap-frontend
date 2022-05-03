@@ -14,6 +14,7 @@ import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pool from './views/Pool'
+import ResetScroll from './utils/resetScroll'
 
 declare module '@emotion/react' {
   export interface Theme extends ApeSwapTheme {}
@@ -43,6 +44,7 @@ const Vaults = lazy(() => import('./views/Vaults'))
 const NfaStaking = lazy(() => import('./views/NfaStaking'))
 const Bills = lazy(() => import('./views/Bills'))
 const Swap = lazy(() => import('./views/Swap'))
+const Orders = lazy(() => import('./views/Orders'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -149,6 +151,7 @@ const App: React.FC = () => {
                 <DualFarms />
               </Route>
               <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               <Route path="/vaults">
                 <Vaults />
               </Route>
@@ -195,7 +198,7 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
-              <Suspense fallback={<></>}>{swapRoutes}</Suspense>
+              <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
@@ -214,6 +217,7 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
+            <Route exact strict path="/orders" component={Orders} />
             <Route path="/farms">
               <Farms />
             </Route>
@@ -275,7 +279,7 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
-            <Suspense fallback={<></>}>{swapRoutes}</Suspense>
+            <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
             {/* 404 */}
             <Route component={NotFound} />
           </Switch>
@@ -286,6 +290,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
+      <ResetScroll />
       <ResetCSS />
       <GlobalStyle />
       <MarketingModalCheck />

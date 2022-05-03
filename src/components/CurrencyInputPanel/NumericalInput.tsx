@@ -19,7 +19,7 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0px;
-  text-align: right;
+  margin-left: ${({ align }) => (align === 'left' ? '20px' : '0px')};
   -webkit-appearance: textfield;
 
   ::-webkit-search-decoration {
@@ -37,6 +37,10 @@ const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: s
 
   ::placeholder {
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  :disabled {
+    opacity: 0.5;
   }
 `
 

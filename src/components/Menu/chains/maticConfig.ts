@@ -29,6 +29,10 @@ const maticConfig: MenuEntry[] = [
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
       },
+      {
+        label: 'Education',
+        href: 'https://www.apelabs.education/',
+      },
     ],
   },
   //   {

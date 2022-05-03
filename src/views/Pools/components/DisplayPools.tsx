@@ -6,6 +6,7 @@ import ListViewContent from 'components/ListViewContent'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { useLocation } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import ApyButton from 'components/ApyCalculator/ApyButton'
 import useIsMobile from 'hooks/useIsMobile'
 import React from 'react'
 import { Pool } from 'state/types'
@@ -77,6 +78,15 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
             toolTip="APR is calculated based on current value of of the token, reward rate and pool % owned."
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 60%)"
+            aprCalculator={
+              <ApyButton
+                lpLabel={pool?.stakingToken?.symbol}
+                rewardTokenName={pool?.rewardToken?.symbol}
+                rewardTokenPrice={pool?.rewardToken?.price}
+                apy={pool?.apr / 100}
+                addLiquidityUrl={liquidityUrl}
+              />
+            }
           />
           <ListViewContent
             title="Total Staked"

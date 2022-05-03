@@ -33,6 +33,7 @@ import {
   updateUserExpertModeAcknowledgementShow,
   hidePhishingWarningBanner,
   setIsExchangeChartDisplayed,
+  updateUserAutonomyPrepay,
 } from '../actions'
 import { deserializeToken, serializeToken } from './helpers'
 
@@ -123,6 +124,23 @@ export function useUserSingleHopOnly(): [boolean, (newSingleHopOnly: boolean) =>
   )
 
   return [singleHopOnly, setSingleHopOnly]
+}
+
+export function useUserAutonomyPrepay(): [boolean, (newAutonomyPrepay: boolean) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const autonomyPrepay = useSelector<AppState, AppState['user']['userAutonomyPrepay']>(
+    (state) => state.user.userAutonomyPrepay,
+  )
+
+  const setAutonomyPrepay = useCallback(
+    (newAutonomyPrepay: boolean) => {
+      dispatch(updateUserAutonomyPrepay({ userAutonomyPrepay: newAutonomyPrepay }))
+    },
+    [dispatch],
+  )
+
+  return [autonomyPrepay, setAutonomyPrepay]
 }
 
 export function useUserRecentTransactions(): [boolean, (recentTransaction: boolean) => void] {

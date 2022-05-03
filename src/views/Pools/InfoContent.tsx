@@ -18,13 +18,13 @@ const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
   return (
     <>
       <Flex flexDirection="column">
-        {pool?.endBlock > 0 && (
+        {pool?.endBlock > 0 && pool?.rewardToken?.symbol !== 'BANANA' && (
           <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
             <Text style={{ fontSize: '14px' }}>{pool?.startBlock > currentBlock ? 'Starts in' : 'Ends in'}</Text>
             <Text style={{ fontSize: '16px' }} bold>
               {pool?.startBlock > currentBlock
-                ? `${timeUntilStart.days}d, ${timeUntilStart.hours}h`
-                : `${timeUntilEnd.days}d, ${timeUntilEnd.hours}h`}
+                ? `${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`
+                : `${timeUntilEnd.days}d, ${timeUntilEnd.hours}h, ${timeUntilEnd.minutes}m`}
             </Text>
           </Flex>
         )}
