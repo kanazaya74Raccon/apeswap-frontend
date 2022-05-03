@@ -44,6 +44,7 @@ const Menu = (props) => {
         noProfileLink: '/nft',
         profileLink: '',
       }}
+      runFiat={() => console.log('runFiat clicked!')}
       {...props}
     />
   )

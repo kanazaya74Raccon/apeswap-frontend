@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
+import { Flex, Button, useMatchBreakpoints, Tabs, Tab, RunFiatButton } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { useLocation, useHistory } from 'react-router-dom'
 
@@ -19,6 +19,17 @@ const CurrencyInputContainer = styled(Flex)`
   width: 100%;
   background: ${({ theme }) => theme.colors.navbar};
   margin-bottom: 20px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    flex-direction: column-reverse !important;
+  }
+`
+
+export const StyledDiv = styled.div`
+  ${({ theme }) => theme.mediaQueries.xs} {
+    margin-top: 16px;
+    width: 100%;
+  }
 `
 
 const CurrencyInputHeader: React.FC<Props> = () => {
@@ -29,25 +40,28 @@ const CurrencyInputHeader: React.FC<Props> = () => {
   const swapActive = path.pathname.includes('swap')
   return (
     <CurrencyInputContainer>
-      <Tabs activeTab={swapActive ? 0 : 1} size="md">
-        <Tab
-          index={0}
-          label="SWAP"
-          onClick={() => history.push('/swap')}
-          size={isMobile ? 'xsm' : 'md'}
-          variant="centered"
-          activeTab={swapActive ? 0 : 1}
-        />
-        <Tab
-          index={1}
-          label="LIQUIDITY"
-          onClick={() => history.push('/pool')}
-          size={isMobile ? 'xsm' : 'md'}
-          variant="centered"
-          activeTab={swapActive ? 0 : 1}
-        />
-      </Tabs>
+      <StyledDiv>
+        <Tabs activeTab={swapActive ? 0 : 1} size="md">
+          <Tab
+            index={0}
+            label="SWAP"
+            onClick={() => history.push('/swap')}
+            size={isMobile ? 'xsm' : 'md'}
+            variant="centered"
+            activeTab={swapActive ? 0 : 1}
+          />
+          <Tab
+            index={1}
+            label="LIQUIDITY"
+            onClick={() => history.push('/pool')}
+            size={isMobile ? 'xsm' : 'md'}
+            variant="centered"
+            activeTab={swapActive ? 0 : 1}
+          />
+        </Tabs>
+      </StyledDiv>
       <Flex>
+        <RunFiatButton runFiat={() => console.log('runFiat Clicked!!!')} />
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
             style={{
