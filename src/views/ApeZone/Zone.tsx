@@ -29,8 +29,8 @@ const Zone = () => {
 
   return (
     <>
-      <Page width='1130px'>
-        <Banner banner="gnana" title='Golden Banana' margin="0px 0px 20px 0px" maxWidth={1130}/>
+      <Page width="1130px">
+        <Banner banner="gnana" title="Golden Banana" margin="0px 0px 20px 0px" maxWidth={1130} />
         <PaddedCard>
           <TopCon>
             <Warning />

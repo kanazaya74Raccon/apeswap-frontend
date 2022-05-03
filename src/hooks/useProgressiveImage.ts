@@ -7,7 +7,7 @@ const useProgressiveImage = (src: string) => {
     img.src = src
     img.onload = () => setSourceLoaded(src)
   }, [src])
-  
+
   return sourceLoaded
 }
 
