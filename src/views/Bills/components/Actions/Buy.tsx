@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { AutoRenewIcon, Flex, Text } from '@apeswapfinance/uikit'
+import { AutoRenewIcon, Flex, Text, useModal } from '@apeswapfinance/uikit'
+import { LiquidityModal } from 'components/LiquidityWidget'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useBuyBill from 'views/Bills/hooks/useBuyBill'
@@ -8,6 +9,7 @@ import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
 import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
+import { Field, selectCurrency } from 'state/swap/actions'
 import { BuyProps } from './types'
 import { BuyButton, GetLPButton, MaxButton, StyledInput } from './styles'
 
@@ -28,10 +30,6 @@ const Buy: React.FC<BuyProps> = ({
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
-
-  const liquidityUrl = `https://apeswap.finance/add/${token.symbol === 'BNB' ? 'ETH' : token.address[chainId]}/${
-    quoteToken.symbol === 'BNB' ? 'ETH' : quoteToken.address[chainId]
-  }`
 
   const handleInput = (val: string) => {
     setAmount(val)
@@ -67,11 +65,38 @@ const Buy: React.FC<BuyProps> = ({
     setPendingTrx(false)
   }
 
+  // TODO: clean up this code
+  // Hack to get the close modal function from the provider
+  // Need to export ModalContext from uikit to clean up the code
+  const [, closeModal] = useModal(<></>)
+  const [onPresentAddLiquidityWidgetModal] = useModal(
+    <LiquidityModal handleClose={closeModal} />,
+    true,
+    true,
+    'liquidityWidgetModal',
+  )
+
+  const showLiquidity = () => {
+    dispatch(
+      selectCurrency({
+        field: Field.INPUT,
+        currencyId: token.symbol === 'BNB' ? 'ETH' : token.address[chainId],
+      }),
+    )
+    dispatch(
+      selectCurrency({
+        field: Field.OUTPUT,
+        currencyId: quoteToken.symbol === 'BNB' ? 'ETH' : quoteToken.address[chainId],
+      }),
+    )
+    onPresentAddLiquidityWidgetModal()
+  }
+
   return (
     <>
-      <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-        <GetLPButton variant="secondary">Get LP</GetLPButton>
-      </a>
+      <GetLPButton variant="secondary" onClick={showLiquidity}>
+        Get LP
+      </GetLPButton>
       <Flex style={{ position: 'relative' }}>
         <Text fontSize="12px" style={{ position: 'absolute', top: 14, left: 10, zIndex: 1 }} bold>
           Amount:

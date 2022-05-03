@@ -137,7 +137,7 @@ function CurrencySearch({
         </Column>
       ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
         <CurrencyList
-          height={380}
+          height={250}
           showETH={showETH}
           currencies={
             filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens
@@ -165,7 +165,7 @@ const StyledInput = styled(Input)`
   background-color: ${({ theme }) => theme.colors.white3};
   color: ${({ theme }) => theme.colors.text};
   placeholder-color: ${({ theme }) => theme.colors.gray};
-  width: 325px;
+  width: 100% !important;
   ::placeholder {
     color: ${(props) => props.theme.colors.text};
   }
