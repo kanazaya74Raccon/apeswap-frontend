@@ -80,9 +80,9 @@ const MetaMaskLogo = styled.img`
   display: inline;
   cursor: pointer;
   position: absolute;
-  bottom: -32px;
+  bottom: -30px;
   marginleft: 10px;
-  width: 25px;
+  width: 20px;
 `
 
 interface CurrencyInputPanelProps {
