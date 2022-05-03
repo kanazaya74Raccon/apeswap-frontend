@@ -116,7 +116,7 @@ function CurrencySearch({
           <Flex alignItems="center" justifyContent="center" mb="10px" style={{ width: '100%' }}>
             <StyledInput
               id="token-search-input"
-              placeholder="Search name or paste address"
+              placeholder="Name or Address"
               autoComplete="off"
               value={searchQuery}
               // ref={inputRef as RefObject<HTMLInputElement>}
