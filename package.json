@@ -32,7 +32,7 @@
     "@ape.swap/uikit": "^1.0.3",
     "@apeswapfinance/sdk": "^2.0.0-alpha.14",
     "@apeswapfinance/token-lists": "1.0.270",
-    "@apeswapfinance/uikit": "0.11.3-alpha.0",
+    "@apeswapfinance/uikit": "0.11.3-alpha.1",
     "@autonomylabs/limit-stop-orders": "0.0.4",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.10.1",
