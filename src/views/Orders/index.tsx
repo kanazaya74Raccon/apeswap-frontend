@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
-import { Button, Text, ArrowDownIcon, useModal, Flex, Card } from '@apeswapfinance/uikit'
+import { Button, Text, ArrowDownIcon, useModal, Flex, Card, Link } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import SwapBanner from 'components/SwapBanner'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
@@ -558,6 +558,11 @@ export default function Orders({ history }: RouteComponentProps) {
                     )}
                     {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
                   </div>
+                  <Flex justifyContent="center" mt="8px">
+                    <Link external href="https://autonomynetwork.io">
+                      <Text fontSize="12px">Powered by Autonomy Network</Text>
+                    </Link>
+                  </Flex>
                 </Wrapper>
               </AppBody>
               <OrderHistoryPanel />
