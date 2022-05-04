@@ -30,7 +30,13 @@ const Zone = () => {
   return (
     <>
       <Page width="1130px">
-        <Banner banner="gnana" title="Golden Banana" margin="0px 0px 20px 0px" maxWidth={1130} />
+        <Banner
+          banner="gnana"
+          link="https://apeswap.gitbook.io/apeswap-finance/welcome/apeswap-tokens/gnana"
+          title="Golden Banana"
+          margin="0px 0px 20px 0px"
+          maxWidth={1130}
+        />
         <PaddedCard>
           <TopCon>
             <Warning />

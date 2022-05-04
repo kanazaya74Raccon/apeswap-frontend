@@ -34,7 +34,13 @@ const Ifos = () => {
   return (
     <>
       <Container>
-        <Banner banner="iao" title="Initial Ape Offerings" maxWidth={992} margin="30px 0px 20px 0px" />
+        <Banner
+          banner="iao"
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/initial-ape-offerings-iaos"
+          title="Initial Ape Offerings"
+          maxWidth={992}
+          margin="30px 0px 20px 0px"
+        />
         <IfoProjectCard ifoId={projectId} />
         {tabOption === 'past' && <IfoPastProjectSwiper onSelectProject={setProjectId} />}
         <IfoTabButtons onSelect={handleTabSelectionChange} selectedTab={tabOption} />

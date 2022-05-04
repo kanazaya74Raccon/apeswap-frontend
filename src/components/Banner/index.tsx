@@ -8,6 +8,7 @@ import { BannerTypes, ColorProps } from './types'
 
 const Banner: React.FC<{
   banner: BannerTypes
+  link?: string
   title?: string
   children?: React.FC
   listViewBreak?: boolean
@@ -42,9 +43,9 @@ const Banner: React.FC<{
         <Link
           sx={{ ...styles.learnText, color: titleColor || 'text', ':hover': { textDecoration: 'none' } }}
           href="/spinner"
+          target="_blank"
         >
-          <span style={{ textDecoration: 'underline' }}>Learn More</span>{' '}
-          <LearnMoreArrow color={titleColor || 'text'} />
+          Learn More <LearnMoreArrow color={titleColor || 'text'} />
         </Link>
       </Flex>
       {children}

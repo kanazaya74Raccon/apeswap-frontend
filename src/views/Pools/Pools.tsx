@@ -138,7 +138,13 @@ const Pools: React.FC = () => {
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
         <ListViewLayout>
-          <Banner banner="pools" title="Staking Pools" listViewBreak maxWidth={1130} />
+          <Banner
+            banner="pools"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/pools"
+            title="Staking Pools"
+            listViewBreak
+            maxWidth={1130}
+          />
           <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
             <PoolMenu
               onHandleQueryChange={handleChangeQuery}

@@ -516,7 +516,13 @@ const Vaults: React.FC = () => {
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner="burning" title="Burning Vaults" maxWidth={1130} margin="0 0 20px 0" />
+        <Banner
+          banner="burning"
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/vaults"
+          title="Burning Vaults"
+          maxWidth={1130}
+          margin="0 0 20px 0"
+        />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

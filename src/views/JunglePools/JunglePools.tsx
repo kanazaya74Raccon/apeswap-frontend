@@ -581,7 +581,13 @@ const JunglePools: React.FC = () => {
   return (
     <>
       <StyledPage width="1130px">
-        <Banner banner="jungle-farms" title="Jungle Farms" maxWidth={1130} margin="0 0 20px 0px" />
+        <Banner
+          banner="jungle-farms"
+          title="Jungle Farms"
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
+          maxWidth={1130}
+          margin="0 0 20px 0px"
+        />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (

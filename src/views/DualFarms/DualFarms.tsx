@@ -151,7 +151,13 @@ const DualFarms: React.FC = () => {
         style={{ position: 'relative', top: '30px', width: '100%' }}
       >
         <ListViewLayout>
-          <Banner banner="polygon-farms" title="Polygon Farms" listViewBreak maxWidth={1130} />
+          <Banner
+            banner="polygon-farms"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
+            title="Polygon Farms"
+            listViewBreak
+            maxWidth={1130}
+          />
           <Flex alignItems="center" justifyContent="center" mt="20px">
             <ListViewMenu
               onHandleQueryChange={handleChangeQuery}
