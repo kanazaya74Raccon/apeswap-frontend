@@ -68,6 +68,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
 
     return {
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
+      stakeLp: true,
       title: (
         <Text ml={10} bold>
           {farm.lpSymbol}

@@ -9,10 +9,6 @@ const maticConfig: MenuEntry[] = [
     href: '/farms',
   },
   {
-    label: 'Vaults',
-    href: '/vaults',
-  },
-  {
     label: 'More',
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',

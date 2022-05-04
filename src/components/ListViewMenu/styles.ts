@@ -8,7 +8,6 @@ export const ControlContainer = styled(Flex)`
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: column;
-  transform: translateY(-85px);
   padding: 15px;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white2};
@@ -21,7 +20,6 @@ export const ControlContainer = styled(Flex)`
     height: 100%;
     padding: 20px 150px 20px 20px;
     align-items: center;
-    transform: translateY(-60px);
     max-width: 100%;
   }
   ${({ theme }) => theme.mediaQueries.xl} {

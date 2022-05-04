@@ -17,7 +17,6 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 
 export const Container = styled(Flex)`
   position: relative;
-  transform: translateY(-40px);
 `
 
 export const ActionContainer = styled(Flex)`
