@@ -26,7 +26,12 @@ const Nft = () => {
   return (
     <>
       <Page>
-        <Banner banner="nfa-collection" title="Nfa Collection" margin="0 0 20px 0" />
+        <Banner
+          banner="nfa-collection"
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/non-fungible-apes-nfas"
+          title="Nfa Collection"
+          margin="0 0 20px 0"
+        />
         <StyledHero>
           <Text style={{ color: 'subtle', paddingTop: '10px', textDecoration: 'underline' }}>
             <StyledAnchor

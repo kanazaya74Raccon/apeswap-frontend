@@ -220,6 +220,7 @@ const NfaStaking: React.FC = () => {
       <StyledPage width="1130px">
         <Banner
           banner="nfa-staking"
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake"
           title="Nfa Staking"
           maxWidth={1130}
           margin="0 0 20px 0px"

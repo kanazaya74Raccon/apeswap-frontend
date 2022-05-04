@@ -33,7 +33,14 @@ const IazoPage: React.FC = () => {
     <>
       <PageWrapper>
         <Flex flexDirection="column">
-          <Banner banner="ssiao" title="Self-Serve Iao" maxWidth={856} listViewBreak margin="30px 0 0 0" />
+          <Banner
+            banner="ssiao"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
+            title="Self-Serve Iao"
+            maxWidth={856}
+            listViewBreak
+            margin="30px 0 0 0"
+          />
           <LaunchPadWrapper>
             <TopNav />
             <BeforeSaleWrapper>

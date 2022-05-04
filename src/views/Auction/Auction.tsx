@@ -93,7 +93,12 @@ const Auction: React.FC = () => {
       <Container>
         <Flex alignItems="center" justifyContent="center">
           <Flex alignSelf="center" style={{ width: '1200px' }}>
-            <Banner banner="auction" title="Nfa Auction" margin="30px 10px 20px 10px" />
+            <Banner
+              banner="auction"
+              link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/nfa-auction-house"
+              title="Nfa Auction"
+              margin="30px 10px 20px 10px"
+            />
           </Flex>
         </Flex>
         <PageWrapper>
