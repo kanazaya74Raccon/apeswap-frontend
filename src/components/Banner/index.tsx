@@ -44,6 +44,7 @@ const Banner: React.FC<{
           sx={{ ...styles.learnText, color: titleColor || 'text', ':hover': { textDecoration: 'none' } }}
           href={link}
           target="_blank"
+          rel="noopener noreferrer"
         >
           Learn More <LearnMoreArrow color={titleColor || 'text'} />
         </Link>
