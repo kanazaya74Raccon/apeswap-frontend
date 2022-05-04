@@ -66,7 +66,7 @@ export const FlexSkeleton = styled(Skeleton)<{ maxWidth?: number; listViewBreak?
 
 export const LearnMoreArrow = styled(ArrowDropDownIcon)`
   transform: rotate(270deg);
-  margin-left: 10px;
+  margin-left: 5px;
   width: calc(4px + 0.9vw);
   @media screen and (min-width: 1130px) {
     width: 14px;
