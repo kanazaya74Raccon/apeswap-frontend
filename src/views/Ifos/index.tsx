@@ -10,11 +10,10 @@ import IfoPastProjectSwiper from './components/PastProjectSwiper/IfoPastProjectS
 import { TabOption } from './types'
 import IfoProjectCard from './components/IfoCard/ProjectCard/IfoProjectCard'
 
-const firstPastIfoId = pastIfos.length > 0 ? pastIfos[0].id : undefined
-const activeIfoId = ifos.find((ifo) => ifo.isActive).id
-
 const Ifos = () => {
   const { t } = useTranslation()
+  const firstPastIfoId = pastIfos.length > 0 ? pastIfos(t)[0].id : undefined
+  const activeIfoId = ifos(t).find((ifo) => ifo.isActive).id
   const [tabOption, setTabOption] = React.useState<TabOption>('current')
   const [projectId, setProjectId] = React.useState<string | undefined>(activeIfoId)
 
@@ -39,7 +38,7 @@ const Ifos = () => {
         <Banner
           banner="iao"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/initial-ape-offerings-iaos"
-          title={t("Initial Ape Offerings")}
+          title={t('Initial Ape Offerings')}
           maxWidth={992}
           margin="30px 0px 20px 0px"
         />

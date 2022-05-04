@@ -81,7 +81,7 @@ const Iazos: React.FC = () => {
         <Flex flexDirection="column">
           <Banner
             banner="ssiao"
-            title={t("Self Serve Offerings")}
+            title={t('Self Serve Offerings')}
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
             maxWidth={856}
             listViewBreak
@@ -90,9 +90,9 @@ const Iazos: React.FC = () => {
           <LaunchPadWrapper>
             <TopNavWrapper />
             <HeaderWrapper>
-              <StyledHeader>{t("Self - Serve Launchpad")}</StyledHeader>
+              <StyledHeader>{t('Self - Serve Launchpad')}</StyledHeader>
               <Link to="/ss-iao/create">
-                <StyledButton> {t("CREATE")} </StyledButton>
+                <StyledButton> {t('CREATE')} </StyledButton>
               </Link>
             </HeaderWrapper>
             <SettingsWrapper>
@@ -102,10 +102,10 @@ const Iazos: React.FC = () => {
                 active={sort === 'upcoming'}
                 onClick={() => setSort('upcoming')}
               />
-              <IconButton icon="graph" text={t("Live")} active={sort === 'live'} onClick={() => setSort('live')} />
-              <IconButton icon="check" text={t("Done")} active={sort === 'done'} onClick={() => setSort('done')} />
+              <IconButton icon="graph" text={t('Live')} active={sort === 'live'} onClick={() => setSort('live')} />
+              <IconButton icon="check" text={t('Done')} active={sort === 'done'} onClick={() => setSort('done')} />
               <TextInput
-                placeholderText={t("Search token name or address....")}
+                placeholderText={t('Search token name or address....')}
                 backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}
                 onChange={handleChangeQuery}
                 size={isMobile ? 'sm' : 'md'}

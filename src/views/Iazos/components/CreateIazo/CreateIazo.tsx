@@ -54,7 +54,7 @@ export default function CreateIazo(): JSX.Element {
           <Banner
             banner="ssiao"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
-            title={t("Self-Serve Iao")}
+            title={t('Self-Serve Iao')}
             maxWidth={856}
             listViewBreak
             margin="30px 0 0 0"
@@ -62,7 +62,7 @@ export default function CreateIazo(): JSX.Element {
           <LaunchPadWrapper>
             <TopNav />
             <HeaderWrapper>
-              <StyledHeader>{t("Create")}</StyledHeader>
+              <StyledHeader>{t('Create')}</StyledHeader>
             </HeaderWrapper>
             <LuanchpadInfo />
             <CreateYourPresale settings={settings} />

@@ -8,6 +8,7 @@ import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
 import DisplayFarms from './components/DisplayFarms'
@@ -20,6 +21,7 @@ const Farms: React.FC = () => {
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
   const { pathname } = useLocation()
+  const { t } = useTranslation()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const farmsLP = useFarms(account)
@@ -136,7 +138,7 @@ const Farms: React.FC = () => {
           <Banner
             banner="banana-farms"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
-            title="Banana Farms"
+            title={t('Banana Farms')}
             listViewBreak
             maxWidth={1130}
           />

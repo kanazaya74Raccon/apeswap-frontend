@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Text, Card, Checkbox } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
 import { partition } from 'lodash'
 import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
@@ -222,7 +221,7 @@ const NfaStaking: React.FC = () => {
         <Banner
           banner="nfa-staking"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake"
-          title={t("Nfa Staking")}
+          title={t('Nfa Staking')}
           maxWidth={1130}
           margin="0 0 20px 0px"
           titleColor="primaryBright"

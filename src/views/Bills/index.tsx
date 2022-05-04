@@ -42,7 +42,7 @@ const Bills: React.FC = () => {
         <ListViewLayout>
           <Banner
             banner="treasury-bills"
-            title={t("Treasury Bills")}
+            title={t('Treasury Bills')}
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/treasury-bills"
             listViewBreak
             maxWidth={1130}

@@ -134,7 +134,7 @@ export default function Pool() {
           </Wrapper>
           {account && !v2IsLoading && (
             <StyledFlex flexDirection="column" alignItems="center" pt="20px" pb="10px">
-              <Text mb="8px">Dont see a pool you joined?</Text>
+              <Text mb="8px">{t('Dont see a pool you joined?')}</Text>
               <Button
                 id="import-pool-link"
                 as={Link}

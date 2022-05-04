@@ -583,7 +583,7 @@ const JunglePools: React.FC = () => {
       <StyledPage width="1130px">
         <Banner
           banner="jungle-farms"
-          title={t("Jungle Farms")}
+          title={t('Jungle Farms')}
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
           maxWidth={1130}
           margin="0 0 20px 0px"

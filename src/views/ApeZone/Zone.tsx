@@ -35,7 +35,7 @@ const Zone = () => {
         <Banner
           banner="gnana"
           link="https://apeswap.gitbook.io/apeswap-finance/welcome/apeswap-tokens/gnana"
-          title={t("Golden Banana")}
+          title={t('Golden Banana')}
           margin="0px 0px 20px 0px"
           maxWidth={1130}
         />

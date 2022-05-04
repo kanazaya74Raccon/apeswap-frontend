@@ -143,7 +143,7 @@ const Pools: React.FC = () => {
           <Banner
             banner="pools"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/pools"
-            title={t("Staking Pools")}
+            title={t('Staking Pools')}
             listViewBreak
             maxWidth={1130}
           />

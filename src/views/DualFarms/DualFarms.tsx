@@ -8,6 +8,7 @@ import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import ListViewMenu from '../../components/ListViewMenu'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
 import DisplayFarms from './components/DisplayFarms'
@@ -24,6 +25,7 @@ const DualFarms: React.FC = () => {
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
 
+  const { t } = useTranslation()
   const { pathname } = useLocation()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const farmsLP = useDualFarms(account)
@@ -154,7 +156,7 @@ const DualFarms: React.FC = () => {
           <Banner
             banner="polygon-farms"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
-            title="Polygon Farms"
+            title={t('Polygon Farms')}
             listViewBreak
             maxWidth={1130}
           />

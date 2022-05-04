@@ -98,7 +98,7 @@ const Auction: React.FC = () => {
             <Banner
               banner="auction"
               link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/nfa-auction-house"
-              title={t("Nfa Auction")}
+              title={t('Nfa Auction')}
               margin="30px 10px 20px 10px"
             />
           </Flex>

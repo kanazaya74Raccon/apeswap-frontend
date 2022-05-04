@@ -29,7 +29,7 @@ const Nft = () => {
         <Banner
           banner="nfa-collection"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/non-fungible-apes-nfas"
-          title={t("Nfa Collection")}
+          title={t('Nfa Collection')}
           margin="0 0 20px 0"
         />
         <StyledHero>

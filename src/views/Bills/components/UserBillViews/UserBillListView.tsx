@@ -55,7 +55,7 @@ const UserBillListView: React.FC<{ bills: Bills[]; showAll?: boolean }> = ({ bil
               toolTipTransform="translate(0, 65%)"
             />
             <ListViewContent
-              title="Pending"
+              title={t('Pending')}
               value={pending}
               width={isMobile ? 120 : 160}
               height={52.5}

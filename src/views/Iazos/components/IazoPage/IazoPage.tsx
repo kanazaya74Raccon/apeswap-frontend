@@ -38,7 +38,7 @@ const IazoPage: React.FC = () => {
           <Banner
             banner="ssiao"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
-            title="Self-Serve Iao"
+            title={t('Self-Serve Iao')}
             maxWidth={856}
             listViewBreak
             margin="30px 0 0 0"

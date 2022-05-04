@@ -65,7 +65,7 @@ const MarketingModalCheck = () => {
     </MarketingModal>
   ) : billsRoute ? (
     <MarketingModal
-      title="Welcome to ApeSwap Treasury Bills"
+      title={t('Welcome to ApeSwap Treasury Bills')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
       startEarningText={t("I'M READY")}

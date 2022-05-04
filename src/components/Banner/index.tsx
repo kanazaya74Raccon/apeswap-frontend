@@ -3,6 +3,7 @@ import useTheme from 'hooks/useTheme'
 import { Link, Text } from 'theme-ui'
 import useProgressiveImage from 'hooks/useProgressiveImage'
 import React from 'react'
+import { useTranslation } from 'contexts/Localization'
 import { styles, FlexImage, LearnMoreArrow, FlexSkeleton } from './styles'
 import { BannerTypes, ColorProps } from './types'
 
@@ -17,6 +18,7 @@ const Banner: React.FC<{
   maxWidth?: number
 }> = ({ banner, children, title, listViewBreak, margin, titleColor, link, maxWidth = 1200 }) => {
   const { isDark } = useTheme()
+  const { t } = useTranslation()
   const loaded = useProgressiveImage(`images/new-banners/${banner}-${isDark ? 'night' : 'day'}.svg`)
 
   // Media breaks are used until tablet mode on list view is designed
@@ -46,7 +48,7 @@ const Banner: React.FC<{
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn More <LearnMoreArrow color={titleColor || 'text'} />
+          {t('Learn More')} <LearnMoreArrow color={titleColor || 'text'} />
         </Link>
       </Flex>
       {children}

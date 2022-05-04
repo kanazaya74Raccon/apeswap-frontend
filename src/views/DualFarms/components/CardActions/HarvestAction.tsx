@@ -5,6 +5,7 @@ import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ListViewContent from 'components/ListViewContent'
+import { useTranslation } from 'contexts/Localization'
 import { FarmButton } from '../styles'
 import { ActionContainer } from './styles'
 
@@ -16,6 +17,7 @@ interface HarvestActionsProps {
 
 const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarningsUsd }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onReward } = useMiniChefHarvest(pid)
   const { toastSuccess } = useToast()
@@ -24,7 +26,7 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
 
   return (
     <ActionContainer>
-      {isMobile && <ListViewContent title="Earned" value={userEarningsUsd} width={100} height={50} ml={10} />}
+      {isMobile && <ListViewContent title={t('Earned')} value={userEarningsUsd} width={100} height={50} ml={10} />}
       <FarmButton
         className="noClick"
         disabled={disabled || pendingTrx}
@@ -33,8 +35,8 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
           await onReward()
             .then((resp) => {
               const trxHash = resp.transactionHash
-              toastSuccess('Harvest Successful', {
-                text: 'View Transaction',
+              toastSuccess(t('Harvest Successful'), {
+                text: t('View Transaction'),
                 url: getEtherscanLink(trxHash, 'transaction', chainId),
               })
             })
@@ -46,9 +48,9 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ pid, disabled, userEarni
         }}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
-        HARVEST
+        {t('HARVEST')}
       </FarmButton>
-      {!isMobile && <ListViewContent title="Earned" value={userEarningsUsd} width={100} height={50} ml={10} />}
+      {!isMobile && <ListViewContent title={t('Earned')} value={userEarningsUsd} width={100} height={50} ml={10} />}
     </ActionContainer>
   )
 }
