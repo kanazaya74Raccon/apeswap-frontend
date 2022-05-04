@@ -10,10 +10,6 @@ const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('Vaults'),
-    href: '/vaults',
-  },
-  {
     label: t('More'),
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',

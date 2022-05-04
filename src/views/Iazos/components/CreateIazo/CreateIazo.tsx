@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@apeswapfinance/uikit'
+import { Flex, Text } from '@apeswapfinance/uikit'
+import Banner from 'components/Banner'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
 import { useTranslation } from 'contexts/Localization'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
-import Header from '../Header'
 import TopNav from '../TopNav'
 
 const PageWrapper = styled.div`
@@ -13,12 +13,13 @@ const PageWrapper = styled.div`
   display: flex;
   padding-bottom: 200px;
   margin-bottom: 100px;
+  padding: 0px 10px;
   justify-content: center;
 `
 
 const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: ${({ theme }) => theme.colors.navbar};
   display: flex;
   flex-direction: column;
@@ -48,16 +49,25 @@ export default function CreateIazo(): JSX.Element {
   const { t } = useTranslation()
   return (
     <>
-      <Header />
       <PageWrapper>
-        <LaunchPadWrapper>
-          <TopNav />
-          <HeaderWrapper>
-            <StyledHeader>{t('Create')}</StyledHeader>
-          </HeaderWrapper>
-          <LuanchpadInfo />
-          <CreateYourPresale settings={settings} />
-        </LaunchPadWrapper>
+        <Flex flexDirection="column">
+          <Banner
+            banner="ssiao"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
+            title={t("Self-Serve Iao")}
+            maxWidth={856}
+            listViewBreak
+            margin="30px 0 0 0"
+          />
+          <LaunchPadWrapper>
+            <TopNav />
+            <HeaderWrapper>
+              <StyledHeader>{t("Create")}</StyledHeader>
+            </HeaderWrapper>
+            <LuanchpadInfo />
+            <CreateYourPresale settings={settings} />
+          </LaunchPadWrapper>
+        </Flex>
       </PageWrapper>
     </>
   )

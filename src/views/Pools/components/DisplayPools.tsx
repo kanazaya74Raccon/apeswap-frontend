@@ -53,7 +53,6 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
           {pool?.rewardToken?.symbol || pool?.tokenName}
         </Text>
       ),
-      stakeLp: false,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',
@@ -77,7 +76,7 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
             value={`${isActive ? pool?.apr?.toFixed(2) : '0.00'}%`}
             width={isMobile ? 95 : 80}
             height={50}
-            toolTip={t('APR is calculated based on current value of of the token, reward rate and pool % owned.')}
+            toolTip={t("APR is calculated based on current value of the token, reward rate and pool % owned.")}
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 60%)"
             aprCalculator={

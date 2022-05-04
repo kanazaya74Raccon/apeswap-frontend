@@ -49,4 +49,4 @@ const StyledBanner = styled.div<{ image: string }>`
   background-size: 100%;
 `
 
-export default SwapBanner
+export default React.memo(SwapBanner)

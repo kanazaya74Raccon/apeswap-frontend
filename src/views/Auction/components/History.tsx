@@ -18,7 +18,7 @@ const PositinBox = styled.div`
   position: absolute;
   width: 100%;
   height: 600px;
-  top: 870px;
+  top: 910px;
   display: flex;
   align-items: center;
   justify-content: center;

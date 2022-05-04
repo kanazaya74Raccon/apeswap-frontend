@@ -21,6 +21,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
     const vestingTime = getTimePeriods(parseInt(bill.vestingTime), true)
     return {
       tokens: { token1: token.symbol, token2: quoteToken.symbol, token3: earnToken.symbol },
+      stakeLp: true,
       id: bill.index,
       billArrow: true,
       title: (
@@ -37,7 +38,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           <ListViewContent
             title={t('Price')}
             value={`$${bill?.priceUsd}`}
-            width={isMobile ? 90 : 150}
+            width={isMobile ? 90 : 160}
             ml={20}
             height={52.5}
             toolTip={t('This is the current discounted price of the tokens.')}

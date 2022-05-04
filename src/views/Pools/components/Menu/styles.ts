@@ -9,13 +9,13 @@ export const ControlContainer = styled(Flex)`
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: row;
-  transform: translateY(-85px);
   padding: 15px;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white2};
   min-width: 300px;
   max-width: 500px;
   width: 100%;
+  margin: 20px 0px;
   align-self: center;
   height: 250px;
   padding: 10px 30px;
@@ -28,7 +28,6 @@ export const ControlContainer = styled(Flex)`
     height: 100%;
     padding: 0px 50px 0px 30px;
     align-items: center;
-    transform: translateY(-60px);
     max-width: 100%;
     height: auto;
   }

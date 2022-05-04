@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import Spacer from 'components/Spacer'
+import Banner from 'components/Banner'
 import GnanaUtility from './components/GnanaUtility/GnanaUtility'
 import GnanaDisclaimers from './components/GnanaDisclaimers/GnanaDisclaimers'
 import ConvertCard from './components/ConvertCard'
 import ReturnCard from './components/ReturnCard'
-
 import {
-  Header,
-  HeaderContainer,
   PaddedCard,
   TopCon,
   Warning,
@@ -19,7 +17,6 @@ import {
   InnerContent,
   InnerContentText,
   Cards,
-  StyledHeading,
   ReadMore,
   WarningHeader,
 } from './styles'
@@ -34,14 +31,14 @@ const Zone = () => {
 
   return (
     <>
-      <Header>
-        <HeaderContainer>
-          <StyledHeading as="h1">{t('Golden')}</StyledHeading>
-          <StyledHeading as="h1">{t('Banana')}</StyledHeading>
-        </HeaderContainer>
-      </Header>
-
-      <Page>
+      <Page width="1130px">
+        <Banner
+          banner="gnana"
+          link="https://apeswap.gitbook.io/apeswap-finance/welcome/apeswap-tokens/gnana"
+          title={t("Golden Banana")}
+          margin="0px 0px 20px 0px"
+          maxWidth={1130}
+        />
         <PaddedCard>
           <TopCon>
             <Warning />

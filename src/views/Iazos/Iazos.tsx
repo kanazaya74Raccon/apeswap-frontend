@@ -4,11 +4,11 @@ import { useFetchIazos, useIazos } from 'state/hooks'
 import useCurrentTime from 'hooks/useTimer'
 import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
-import { Spinner, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { Flex, Spinner, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import Banner from 'components/Banner'
 import { useTranslation } from 'contexts/Localization'
 import IconButton from './components/IconButton'
 import IazoCard from './components/IazoCard/IazoCard'
-import Header from './components/Header'
 import {
   PageWrapper,
   LaunchPadWrapper,
@@ -77,50 +77,59 @@ const Iazos: React.FC = () => {
 
   return (
     <>
-      <Header />
       <PageWrapper>
-        <LaunchPadWrapper>
-          <TopNavWrapper />
-          <HeaderWrapper>
-            <StyledHeader>{t('Self - Serve Launchpad')}</StyledHeader>
-            <Link to="/ss-iao/create">
-              <StyledButton> {t('CREATE')} </StyledButton>
-            </Link>
-          </HeaderWrapper>
-          <SettingsWrapper>
-            <IconButton
-              icon="calendar"
-              text={t('Upcoming')}
-              active={sort === 'upcoming'}
-              onClick={() => setSort('upcoming')}
-            />
-            <IconButton icon="graph" text={t('Live')} active={sort === 'live'} onClick={() => setSort('live')} />
-            <IconButton icon="check" text={t('Done')} active={sort === 'done'} onClick={() => setSort('done')} />
-            <TextInput
-              placeholderText={t('Search token name or address....')}
-              backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}
-              onChange={handleChangeQuery}
-              size={isMobile ? 'sm' : 'md'}
-              margin={isMobile ? '30px 0px 0px 0px;' : ''}
-            />
-          </SettingsWrapper>
-          <IlosWrapper>
-            <PresaleText>{(isInitialized || iazos) && `${renderIazos()?.length} ${t('Presales')}`}</PresaleText>
-            {isInitialized || iazos ? (
-              renderIazos()?.map((iazo) => {
-                return (
-                  <Link to={`/ss-iao/${iazo.iazoContractAddress}`} key={iazo.iazoContractAddress}>
-                    <IazoCard iazo={iazo} key={iazo.iazoContractAddress} />
-                  </Link>
-                )
-              })
-            ) : (
-              <SpinnerHolder>
-                <Spinner />
-              </SpinnerHolder>
-            )}
-          </IlosWrapper>
-        </LaunchPadWrapper>
+        <Flex flexDirection="column">
+          <Banner
+            banner="ssiao"
+            title={t("Self Serve Offerings")}
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
+            maxWidth={856}
+            listViewBreak
+            margin="30px 0 0 0"
+          />
+          <LaunchPadWrapper>
+            <TopNavWrapper />
+            <HeaderWrapper>
+              <StyledHeader>{t("Self - Serve Launchpad")}</StyledHeader>
+              <Link to="/ss-iao/create">
+                <StyledButton> {t("CREATE")} </StyledButton>
+              </Link>
+            </HeaderWrapper>
+            <SettingsWrapper>
+              <IconButton
+                icon="calendar"
+                text="Upcoming"
+                active={sort === 'upcoming'}
+                onClick={() => setSort('upcoming')}
+              />
+              <IconButton icon="graph" text={t("Live")} active={sort === 'live'} onClick={() => setSort('live')} />
+              <IconButton icon="check" text={t("Done")} active={sort === 'done'} onClick={() => setSort('done')} />
+              <TextInput
+                placeholderText={t("Search token name or address....")}
+                backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}
+                onChange={handleChangeQuery}
+                size={isMobile ? 'sm' : 'md'}
+                margin={isMobile ? '30px 0px 0px 0px;' : ''}
+              />
+            </SettingsWrapper>
+            <IlosWrapper>
+              <PresaleText>{(isInitialized || iazos) && `${renderIazos()?.length} Presales`}</PresaleText>
+              {isInitialized || iazos ? (
+                renderIazos()?.map((iazo) => {
+                  return (
+                    <Link to={`/ss-iao/${iazo.iazoContractAddress}`} key={iazo.iazoContractAddress}>
+                      <IazoCard iazo={iazo} key={iazo.iazoContractAddress} />
+                    </Link>
+                  )
+                })
+              ) : (
+                <SpinnerHolder>
+                  <Spinner />
+                </SpinnerHolder>
+              )}
+            </IlosWrapper>
+          </LaunchPadWrapper>
+        </Flex>
       </PageWrapper>
     </>
   )

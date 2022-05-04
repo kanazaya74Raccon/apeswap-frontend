@@ -152,10 +152,10 @@ const App: React.FC = () => {
               </Route>
               <Route path="/swap" component={Swap} />
               <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
-              <Route path="/vaults">
-                <Vaults />
-              </Route>
               {/* Redirects */}
+              <Route path="/vaults">
+                <Redirect to="/" />
+              </Route>
               <Route path="/treasury-bills">
                 <Redirect to="/" />
               </Route>
