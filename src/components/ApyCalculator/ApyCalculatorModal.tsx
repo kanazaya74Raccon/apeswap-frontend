@@ -87,7 +87,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>{t('1d')}</Text>s
+          <Text>{t('1d')}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -124,7 +124,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem>
-          <Text>{`${t('365d')}(${t('APY')})}`}</Text>
+          <Text>{`${t('365d')}(${t('APY')})`}</Text>
         </GridItem>
         <GridItem>
           <Text>
