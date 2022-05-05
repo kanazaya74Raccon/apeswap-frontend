@@ -18,9 +18,7 @@ export const defaultValues: (t: ContextApi['t']) => Values[] = (t) => [
   },
   {
     title: t('Security'),
-    description: t(
-      'Our highest priority is to ensure the safety of the funds of our users, of our partner projects, and of our community.',
-    ),
+    description: t('We ensure that the safety of the funds of our users and partners is our highest priority.'),
     logoImg: 'images/security.png',
   },
 ]
