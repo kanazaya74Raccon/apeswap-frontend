@@ -6,7 +6,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
 import { PoolCategory } from 'config/constants/types'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
@@ -16,6 +15,7 @@ import Banner from 'components/Banner'
 import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
+import { useTranslation } from 'contexts/Localization'
 import ToggleView from '../PoolsLegacy/components/ToggleView/ToggleView'
 import SearchInput from '../PoolsLegacy/components/SearchInput'
 import PoolCard from '../PoolsLegacy/components/PoolCard/PoolCard'
@@ -392,12 +392,12 @@ const JunglePools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation()
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
@@ -583,7 +583,7 @@ const JunglePools: React.FC = () => {
       <StyledPage width="1130px">
         <Banner
           banner="jungle-farms"
-          title="Jungle Farms"
+          title={t('Jungle Farms')}
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
           maxWidth={1130}
           margin="0 0 20px 0px"
@@ -594,7 +594,7 @@ const JunglePools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -604,7 +604,7 @@ const JunglePools: React.FC = () => {
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -613,15 +613,15 @@ const JunglePools: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              {t('APR')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -629,7 +629,7 @@ const JunglePools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -637,7 +637,7 @@ const JunglePools: React.FC = () => {
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

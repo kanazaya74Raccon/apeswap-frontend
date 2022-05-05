@@ -8,6 +8,7 @@ import { Bills } from 'state/types'
 import 'swiper/swiper.min.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useTranslation } from 'contexts/Localization'
 import Claim from '../Actions/Claim'
 import { BillCardsContainer, BillsImage, CardContainer } from './styles'
 import { StyledButton } from '../styles'
@@ -15,6 +16,7 @@ import BillModal from '../Modals'
 
 const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const scrollDown = () => window.scrollBy({ top: 500, behavior: 'smooth' })
   const ownedBillsAmount = bills?.flatMap((bill) => (bill?.userOwnedBillsData ? bill?.userOwnedBillsData : [])).length
   const billsCardView = bills
@@ -43,9 +45,9 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
                 justifyContent="space-between"
                 style={{ height: '75px', width: '100%' }}
               >
-                <ListViewContent title="Banana Bill" value={bill.lpToken.symbol} height={50} width={120} />
+                <ListViewContent title={t('Banana Bill')} value={bill.lpToken.symbol} height={50} width={120} />
                 <ListViewContent
-                  title="Claimable"
+                  title={t('Claimable')}
                   value={pendingRewards}
                   height={50}
                   width={60}
@@ -96,14 +98,14 @@ const BillCard: React.FC<{ bills: Bills[]; ml?: string }> = ({ bills, ml }) => {
                 style={{ height: '75px', width: '100%' }}
               >
                 <ListViewContent
-                  title="Treasury Bill"
+                  title={t('Treasury Bill')}
                   value="Want more?"
                   height={50}
                   width={150}
                   justifyContent="flex-start"
                 />
               </Flex>
-              <StyledButton onClick={scrollDown}>BUY BELOW</StyledButton>
+              <StyledButton onClick={scrollDown}>{t('BUY BELOW')}</StyledButton>
             </CardContainer>
           </SwiperSlide>
         )}

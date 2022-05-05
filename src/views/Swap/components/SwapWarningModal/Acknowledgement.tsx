@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Text, Flex, Checkbox, Button } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 interface AcknowledgementProps {
   handleContinueClick: () => void
@@ -7,6 +8,7 @@ interface AcknowledgementProps {
 
 const Acknowledgement: React.FC<AcknowledgementProps> = ({ handleContinueClick }) => {
   const [isConfirmed, setIsConfirmed] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <>
@@ -20,12 +22,12 @@ const Acknowledgement: React.FC<AcknowledgementProps> = ({ handleContinueClick }
             scale="sm"
           />
           <Text ml="10px" style={{ userSelect: 'none' }}>
-            I understand
+            {t('I understand')}
           </Text>
         </Flex>
 
         <Button disabled={!isConfirmed} onClick={handleContinueClick}>
-          Continue
+          {t('Continue')}
         </Button>
       </Flex>
     </>

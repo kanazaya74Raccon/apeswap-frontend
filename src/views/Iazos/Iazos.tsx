@@ -6,6 +6,7 @@ import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
 import { Flex, Spinner, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import IconButton from './components/IconButton'
 import IazoCard from './components/IazoCard/IazoCard'
 import {
@@ -31,6 +32,7 @@ const Iazos: React.FC = () => {
   const currentTime = useCurrentTime() / 1000
   const [sort, setSort] = useState(null)
   const [searchQuery, setSearchQuery] = useState(null)
+  const { t } = useTranslation()
   const currentIazos = registeredIazos?.filter(
     (iazo) =>
       parseInt(iazo.timeInfo.startTime) < currentTime &&
@@ -79,7 +81,7 @@ const Iazos: React.FC = () => {
         <Flex flexDirection="column">
           <Banner
             banner="ssiao"
-            title="Self Serve Offerings"
+            title={t('Self Serve Offerings')}
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
             maxWidth={856}
             listViewBreak
@@ -88,9 +90,9 @@ const Iazos: React.FC = () => {
           <LaunchPadWrapper>
             <TopNavWrapper />
             <HeaderWrapper>
-              <StyledHeader>Self-Serve Launchpad</StyledHeader>
+              <StyledHeader>{t('Self - Serve Launchpad')}</StyledHeader>
               <Link to="/ss-iao/create">
-                <StyledButton> CREATE </StyledButton>
+                <StyledButton> {t('CREATE')} </StyledButton>
               </Link>
             </HeaderWrapper>
             <SettingsWrapper>
@@ -100,10 +102,10 @@ const Iazos: React.FC = () => {
                 active={sort === 'upcoming'}
                 onClick={() => setSort('upcoming')}
               />
-              <IconButton icon="graph" text="Live" active={sort === 'live'} onClick={() => setSort('live')} />
-              <IconButton icon="check" text="Done" active={sort === 'done'} onClick={() => setSort('done')} />
+              <IconButton icon="graph" text={t('Live')} active={sort === 'live'} onClick={() => setSort('live')} />
+              <IconButton icon="check" text={t('Done')} active={sort === 'done'} onClick={() => setSort('done')} />
               <TextInput
-                placeholderText="Search token name or address...."
+                placeholderText={t('Search token name or address....')}
                 backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}
                 onChange={handleChangeQuery}
                 size={isMobile ? 'sm' : 'md'}

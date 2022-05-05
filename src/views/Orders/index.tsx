@@ -8,6 +8,7 @@ import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import track from 'utils/track'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { RouteComponentProps } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 import AddressInputPanel from './components/AddressInputPanel'
 import Column, { AutoColumn } from '../../components/layout/Column'
 import ConfirmSwapModal from './components/ConfirmSwapModal'
@@ -20,8 +21,8 @@ import TradePrice from './components/TradePrice'
 import ImportTokenWarningModal from './components/ImportTokenWarningModal'
 import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
-import UnlockButton from '../../components/UnlockButton'
 
+import UnlockButton from '../../components/UnlockButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
@@ -66,6 +67,7 @@ export default function Orders({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { chainId } = useActiveWeb3React()
   const [tradeValueUsd, setTradeValueUsd] = useState<number>(null)
+  const { t } = useTranslation()
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -233,7 +235,7 @@ export default function Orders({ history }: RouteComponentProps) {
   const [singleHopOnly] = useUserSingleHopOnly()
 
   const handleSwap = useCallback(() => {
-    if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
+    if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee, t)) {
       return
     }
     if (!swapCallback) {
@@ -263,7 +265,7 @@ export default function Orders({ history }: RouteComponentProps) {
           txHash: undefined,
         })
       })
-  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm, trade, chainId, tradeValueUsd])
+  }, [priceImpactWithoutFee, swapCallback, tradeToConfirm, trade, chainId, tradeValueUsd, t])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
@@ -380,11 +382,13 @@ export default function Orders({ history }: RouteComponentProps) {
           <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
-                <CurrencyInputHeader title="Orders" subtitle="Trade tokens in an instant" />
+                <CurrencyInputHeader title={t('Orders')} subtitle={t('Trade tokens in an instant')} />
                 <Wrapper id="orders-page">
                   <OrderPanel>
                     <CurrencyInputPanel
-                      label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
+                      label={
+                        independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')
+                      }
                       value={formattedAmounts[Field.INPUT]}
                       showMaxButton={!atMaxAmountInput}
                       currency={currencies[Field.INPUT]}
@@ -407,7 +411,7 @@ export default function Orders({ history }: RouteComponentProps) {
                     <CurrencyInputPanel
                       value={realOutputValue}
                       onUserInput={handleTypeOutput}
-                      label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
+                      label={independentField === Field.INPUT && !showWrap && trade ? t('To (estimated)') : t('To')}
                       showMaxButton={false}
                       currency={currencies[Field.OUTPUT]}
                       onCurrencySelect={handleOutputSelect}
@@ -424,7 +428,7 @@ export default function Orders({ history }: RouteComponentProps) {
                           <ArrowDownIcon width="16px" />
                         </ArrowWrapper>
                         <Button variant="text" id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                          - Remove send
+                          - {t('Remove send')}
                         </Button>
                       </AutoRow>
                       <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
@@ -447,8 +451,11 @@ export default function Orders({ history }: RouteComponentProps) {
                             </RowBetween>
                             <RowBetween align="center">
                               <Label>
-                                Required {currencies[Field.INPUT]?.getSymbol(chainId) ?? ''}/
-                                {currencies[Field.OUTPUT]?.getSymbol(chainId) ?? ''} change:
+                                {t('Required %symbol1%/%symbol2% change', {
+                                  symbol1: currencies[Field.INPUT]?.getSymbol(chainId) ?? '',
+                                  symbol2: currencies[Field.OUTPUT]?.getSymbol(chainId) ?? '',
+                                })}
+                                :
                               </Label>
                               <Text color="#FFB300">{orderMarketStatus.toFixed(2)}%</Text>
                             </RowBetween>
@@ -458,19 +465,19 @@ export default function Orders({ history }: RouteComponentProps) {
                   <div>
                     {swapIsUnsupported ? (
                       <Button disabled mb="4px">
-                        Unsupported Asset
+                        {t('Unsupported Asset')}
                       </Button>
                     ) : !account ? (
                       <UnlockButton large />
                     ) : showWrap ? (
                       <LargeStyledButton disabled={Boolean(wrapInputError)} onClick={onWrap}>
                         {wrapInputError ??
-                          (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
+                          (wrapType === WrapType.WRAP ? t('Wrap') : wrapType === WrapType.UNWRAP ? t('Unwrap') : null)}
                       </LargeStyledButton>
                     ) : noRoute && userHasSpecifiedInputOutput ? (
                       <Card style={{ textAlign: 'center' }}>
-                        <Text mb="4px">Insufficient liquidity for this trade</Text>
-                        {singleHopOnly && <Text mb="4px">Try enabling multi-hop trades.</Text>}
+                        <Text mb="4px">{t('Insufficient liquidity for this trade')}</Text>
+                        {singleHopOnly && <Text mb="4px">{t('Try enabling multi-hop trades.')}</Text>}
                       </Card>
                     ) : showApproveFlow ? (
                       <RowBetween>
@@ -484,9 +491,9 @@ export default function Orders({ history }: RouteComponentProps) {
                               <></>
                             </AutoRow>
                           ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                            'Enabled'
+                            t('Enabled')
                           ) : (
-                            `Enable ${currencies[Field.INPUT]?.getSymbol(chainId) ?? ''}`
+                            `${t('Enable')} ${currencies[Field.INPUT]?.getSymbol(chainId) ?? ''}`
                           )}
                         </LargeStyledButton>
                         <LargeStyledButton
@@ -513,10 +520,10 @@ export default function Orders({ history }: RouteComponentProps) {
                           }
                         >
                           {priceImpactSeverity > 3 && !isExpertMode
-                            ? 'Price Impact High'
+                            ? t('Price Impact High')
                             : priceImpactSeverity > 2
-                            ? 'Place Order Anyway'
-                            : 'Place Order'}
+                            ? t('Place Order Anyway')
+                            : t('Place Order')}
                         </LargeStyledButton>
                       </RowBetween>
                     ) : (
@@ -545,10 +552,10 @@ export default function Orders({ history }: RouteComponentProps) {
                       >
                         {swapInputError ||
                           (priceImpactSeverity > 3 && !isExpertMode
-                            ? 'Price Impact Too High'
+                            ? t('Price Impact Too High')
                             : priceImpactSeverity > 2
-                            ? 'Place Order Anyway'
-                            : 'Place Order')}
+                            ? t('Place Order Anyway')
+                            : t('Place Order'))}
                       </LargeStyledButton>
                     )}
                     {showApproveFlow && (

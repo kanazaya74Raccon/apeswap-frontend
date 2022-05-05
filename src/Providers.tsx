@@ -10,6 +10,7 @@ import { RefreshContextProvider } from 'contexts/RefreshContext'
 import store from 'state'
 import NftProvider from 'views/Nft/contexts/NftProvider'
 import { NetworkContextName } from 'config/constants'
+import { LanguageProvider } from './contexts/Localization'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
@@ -23,11 +24,13 @@ const Providers: React.FC = ({ children }) => {
           <HelmetProvider>
             <ThemeContextProvider>
               <NftProvider>
-                <RefreshContextProvider>
-                  <ModalProvider>
-                    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-                  </ModalProvider>
-                </RefreshContextProvider>
+                <LanguageProvider>
+                  <RefreshContextProvider>
+                    <ModalProvider>
+                      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                    </ModalProvider>
+                  </RefreshContextProvider>
+                </LanguageProvider>
               </NftProvider>
             </ThemeContextProvider>
           </HelmetProvider>

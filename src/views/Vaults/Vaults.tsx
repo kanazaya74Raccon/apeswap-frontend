@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import Banner from 'components/Banner'
 import { useVaults, usePollVaultsData } from 'state/hooks'
@@ -381,7 +381,7 @@ const Vaults: React.FC = () => {
   const size: Size = useWindowSize()
   const { vaults: initVaults } = useVaults()
   const [allVaults, setAllVaults] = useState(initVaults)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
@@ -519,7 +519,7 @@ const Vaults: React.FC = () => {
         <Banner
           banner="burning"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/vaults"
-          title="Burning Vaults"
+          title={t('Burning Vaults')}
           maxWidth={1130}
           margin="0 0 20px 0"
         />
@@ -529,7 +529,7 @@ const Vaults: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -539,11 +539,11 @@ const Vaults: React.FC = () => {
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBurnOnly(!burnOnly)}>
                   <StyledCheckbox checked={burnOnly} onChange={() => setBurnOnly(!burnOnly)} />
-                  <StyledText> {TranslateString(1116, 'Burning')}</StyledText>
+                  <StyledText> {t('Burning')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -552,15 +552,15 @@ const Vaults: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerDailyAPY>
             <StyledLabel active={sortOption === 'dailyapy'} onClick={() => handleSortOptionChange('dailyapy')}>
-              Daily APY
+              {t('Daily APY')}
               {sortOption === 'dailyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -568,7 +568,7 @@ const Vaults: React.FC = () => {
           </StyledLabelContainerDailyAPY>
           <StyledLabelContainerYearlyAPY>
             <StyledLabel active={sortOption === 'yearlyapy'} onClick={() => handleSortOptionChange('yearlyapy')}>
-              Yearly APY
+              {t('Yearly APY')}
               {sortOption === 'yearlyapy' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -576,7 +576,7 @@ const Vaults: React.FC = () => {
           </StyledLabelContainerYearlyAPY>
           <StyledLabelContainerTotalStaked>
             <StyledLabel active={sortOption === 'totalstaked'} onClick={() => handleSortOptionChange('totalstaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalstaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

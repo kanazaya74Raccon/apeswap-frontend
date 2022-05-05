@@ -4,6 +4,7 @@ import { Text } from '@apeswapfinance/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import { ZERO_ADDRESS } from 'config'
 import SubmitBid from './SubmitBid'
 
@@ -163,6 +164,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
   const [bidAmount, setBidAmount] = useState(rawBidAmount + rawMinBidRaise)
   const bnbBalance = useTokenBalance(ZERO_ADDRESS)
   const rawBnbBalance = getBalanceNumber(bnbBalance).toFixed(6)
+  const { t } = useTranslation()
 
   const minBid = () => {
     setBidAmount(rawMinBidRaise)
@@ -192,7 +194,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
       <BidWrapper>
         <BidInput type="number" value={bidAmount} onChange={updateBid} />
         <MinButton>
-          <ButtonText onClick={minBid}>Min</ButtonText>
+          <ButtonText onClick={minBid}>{t('Min')}</ButtonText>
         </MinButton>
         <PlusButton>
           <SubText onClick={addBid}>+</SubText>
@@ -200,7 +202,7 @@ const Bid: React.FC<BidProps> = ({ currentBid, minBidRaise, minBidPercentage, nf
         <SubButton>
           <SubText onClick={subBid}>-</SubText>
         </SubButton>
-        <UserBalanceWrapper>Balance: {rawBnbBalance} </UserBalanceWrapper>
+        <UserBalanceWrapper>{t('Balance: %balance%', { balance: rawBnbBalance })} </UserBalanceWrapper>
       </BidWrapper>
       <SubmitBid
         disabled={bidAmount < rawMinBidRaise}

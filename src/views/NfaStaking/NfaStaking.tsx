@@ -3,11 +3,11 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Text, Card, Checkbox } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
 import { partition } from 'lodash'
 import { useNfaStakingPools, usePollNfaStakingData } from 'state/hooks'
 import Page from 'components/layout/Page'
 import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import SearchInput from '../PoolsLegacy/components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
 
@@ -177,7 +177,7 @@ const NfaStaking: React.FC = () => {
   const { pathname } = useLocation()
   const isActive = !pathname.includes('history')
   const allNfaStakingPools = useNfaStakingPools()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -221,7 +221,7 @@ const NfaStaking: React.FC = () => {
         <Banner
           banner="nfa-staking"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake"
-          title="Nfa Staking"
+          title={t('Nfa Staking')}
           maxWidth={1130}
           margin="0 0 20px 0px"
           titleColor="primaryBright"
@@ -229,14 +229,14 @@ const NfaStaking: React.FC = () => {
         <ControlContainer>
           <ViewControls>
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
               <ToggleContainer>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>

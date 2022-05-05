@@ -4,6 +4,7 @@ import { ModalProps, Button, Modal, ModalFooter } from '@apeswapfinance/uikit'
 import useIsMobile from 'hooks/useIsMobile'
 import styled from 'styled-components'
 import { TokenList } from '@uniswap/token-lists'
+import { useTranslation } from 'contexts/Localization'
 import CurrencySearch from './CurrencySearch'
 import ImportToken from './ImportToken'
 import Manage from './Manage'
@@ -50,9 +51,10 @@ export default function CurrencySearchModal({
   // used for import list
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
+  const { t } = useTranslation()
 
   const modalProps = {
-    title: 'Tokens',
+    title: t('Tokens'),
     maxWidth: isMobile ? '320px' : '480px',
     ...(isMobile
       ? {
@@ -63,7 +65,6 @@ export default function CurrencySearchModal({
         }
       : {}),
   }
-
   return (
     <StyledModalBody onDismiss={onDismiss} {...modalProps}>
       {modalView === CurrencyModalView.search ? (
@@ -97,7 +98,7 @@ export default function CurrencySearchModal({
             className="list-token-manage-button"
             margin="10px 0 10px 0"
           >
-            Manage Tokens
+            {t('Manage Tokens')}
           </Button>
         </ModalFooter>
       )}

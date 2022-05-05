@@ -6,6 +6,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { formatExecutionPrice, warningSeverity, computeTradePriceBreakdown } from 'utils/prices'
 import { AutoColumn } from 'components/layout/Column'
 import { AutoRow, RowBetween } from 'components/layout/Row'
+import { useTranslation } from 'contexts/Localization'
 import { SwapCallbackError } from './styled'
 import { LargeStyledButton } from '../styles'
 
@@ -32,12 +33,13 @@ export default function SwapModalFooter({
   const { chainId } = useActiveWeb3React()
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
+  const { t } = useTranslation()
 
   return (
     <>
       <SwapModalFooterContainer>
         <RowBetween align="center">
-          <Text fontSize="14px">Target Order Price</Text>
+          <Text fontSize="14px">{t('Target Order Price')}</Text>
           <Text
             fontSize="14px"
             style={{
@@ -59,7 +61,7 @@ export default function SwapModalFooter({
 
       <AutoRow>
         <LargeStyledButton onClick={onConfirm} mt="12px" id="confirm-swap-or-send">
-          {severity > 2 ? 'Place Order Anyway' : 'Confirm Order'}
+          {severity > 2 ? t('Place Order Anyway') : t('Confirm Order')}
         </LargeStyledButton>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

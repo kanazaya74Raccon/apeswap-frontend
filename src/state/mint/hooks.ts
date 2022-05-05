@@ -3,6 +3,7 @@ import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { PairState, usePair } from 'hooks/usePairs'
+import { useTranslation } from 'contexts/Localization'
 import useTotalSupply from 'hooks/useTotalSupply'
 
 import { wrappedCurrency, wrappedCurrencyAmount } from 'utils/wrappedCurrency'
@@ -61,6 +62,7 @@ export function useDerivedMintInfo(
   const { account, chainId } = useActiveWeb3React()
 
   const { independentField, typedValue, otherTypedValue } = useMintState()
+  const { t } = useTranslation()
 
   const dependentField = independentField === Field.CURRENCY_A ? Field.CURRENCY_B : Field.CURRENCY_A
 
@@ -159,25 +161,25 @@ export function useDerivedMintInfo(
 
   let error: string | undefined
   if (!account) {
-    error = 'Connect Wallet'
+    error = t('Connect Wallet')
   }
 
   if (pairState === PairState.INVALID) {
-    error = error ?? 'Invalid pair'
+    error = error ?? t('Invalid pair')
   }
 
   if (!parsedAmounts[Field.CURRENCY_A] || !parsedAmounts[Field.CURRENCY_B]) {
-    error = error ?? 'Enter an amount'
+    error = error ?? t('Enter an amount')
   }
 
   const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
 
   if (currencyAAmount && currencyBalances?.[Field.CURRENCY_A]?.lessThan(currencyAAmount)) {
-    error = `Insufficient ${currencies[Field.CURRENCY_A]?.symbol} balance`
+    error = `${t('Insufficient')} ${currencies[Field.CURRENCY_A]?.symbol} ${t('balance')}`
   }
 
   if (currencyBAmount && currencyBalances?.[Field.CURRENCY_B]?.lessThan(currencyBAmount)) {
-    error = `Insufficient ${currencies[Field.CURRENCY_B]?.symbol} balance`
+    error = `${t('Insufficient')} ${currencies[Field.CURRENCY_B]?.symbol} ${t('balance')}`
   }
 
   return {

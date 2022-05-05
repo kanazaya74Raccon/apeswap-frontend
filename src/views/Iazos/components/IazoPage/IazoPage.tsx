@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Flex, Spinner } from '@apeswapfinance/uikit'
 import Banner from 'components/Banner'
 import { useFetchIazo, useIazos } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import TokenInfoCard from './TokenInfoCard'
 import SaleStatus from './SaleStatus/SaleStatus'
 import SaleInfo from './SaleInfo/SaleInfo'
@@ -13,6 +14,7 @@ const IazoPage: React.FC = () => {
   const { id }: { id: string } = useParams()
   useFetchIazo(id)
   const { iazos, isInitialized } = useIazos()
+  const { t } = useTranslation()
   const iazo = isInitialized && iazos.find((i) => i.iazoContractAddress === id)
   const {
     iazoToken,
@@ -36,7 +38,7 @@ const IazoPage: React.FC = () => {
           <Banner
             banner="ssiao"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
-            title="Self-Serve Iao"
+            title={t('Self-Serve Iao')}
             maxWidth={856}
             listViewBreak
             margin="30px 0 0 0"

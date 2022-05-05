@@ -4,8 +4,8 @@ import { Button, Modal, AutoRenewIcon, LinkExternal } from '@apeswapfinance/uiki
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import UnderlinedButton from 'components/UnderlinedButton'
-import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
+import { useTranslation } from '../../../contexts/Localization'
 
 interface DepositModalProps {
   max: BigNumber
@@ -18,7 +18,7 @@ interface DepositModalProps {
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -35,7 +35,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`${TranslateString(316, 'Deposit')} ${tokenName} Tokens`} onDismiss={onDismiss}>
+    <Modal title={`${t('Deposit')} ${tokenName} ${t('Tokens')}`} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -59,12 +59,12 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             borderRadius: '10px',
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
       <LinkExternal href={addLiquidityUrl} style={{ alignSelf: 'center' }}>
-        {TranslateString(999, 'Get')} {tokenName}
+        {t('Get')} {tokenName}
       </LinkExternal>
     </Modal>
   )

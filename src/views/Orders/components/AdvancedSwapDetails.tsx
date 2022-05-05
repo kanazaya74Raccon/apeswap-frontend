@@ -7,6 +7,7 @@ import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'util
 import { AutoColumn } from 'components/layout/Column'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { RowBetween, RowFixed } from 'components/layout/Row'
+import { useTranslation } from 'contexts/Localization'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 
@@ -15,12 +16,13 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const { chainId } = useActiveWeb3React()
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
+  const { t } = useTranslation()
 
   return (
     <AutoColumn style={{ padding: '0 16px' }}>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px">{isExactIn ? 'Minimum received' : 'Maximum sold'}</Text>
+          <Text fontSize="14px">{isExactIn ? t('Minimum received') : t('Maximum sold')}</Text>
         </RowFixed>
         <RowFixed>
           <Text fontSize="14px">
@@ -36,14 +38,14 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
       </RowBetween>
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px">Price Impact</Text>
+          <Text fontSize="14px">{t('Price Impact')}</Text>
         </RowFixed>
         <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
       </RowBetween>
 
       <RowBetween>
         <RowFixed>
-          <Text fontSize="14px">Liquidity Provider Fee</Text>
+          <Text fontSize="14px">{t('Liquidity Provider Fee')}</Text>
         </RowFixed>
         <Text fontSize="14px">
           {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.getSymbol(chainId)}` : '-'}
@@ -59,6 +61,7 @@ export interface AdvancedSwapDetailsProps {
 
 export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const [allowedSlippage] = useUserSlippageTolerance()
+  const { t } = useTranslation()
 
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
@@ -71,7 +74,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
               <RowBetween style={{ padding: '0 16px' }}>
                 <span style={{ display: 'flex', alignItems: 'center' }}>
-                  <Text fontSize="14px">Route</Text>
+                  <Text fontSize="14px">{t('Route')}</Text>
                 </span>
                 <SwapRoute trade={trade} />
               </RowBetween>

@@ -4,6 +4,7 @@ import { Flex, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import SwiperProvider from 'contexts/SwiperProvider'
 import Banner from 'components/Banner'
 import { useAuctions, useFetchAuctions } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import Positions from './components/Positions'
 import Container from './components/Container'
 import History from './components/History'
@@ -86,6 +87,7 @@ const MoreInfo = styled.div`
 const Auction: React.FC = () => {
   useFetchAuctions()
   const { auctions } = useAuctions()
+  const { t } = useTranslation()
   const { isXl, isXxl } = useMatchBreakpoints()
   const isDesktop = isXxl || isXl
   return (
@@ -96,7 +98,7 @@ const Auction: React.FC = () => {
             <Banner
               banner="auction"
               link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/nfa-auction-house"
-              title="Nfa Auction"
+              title={t('Nfa Auction')}
               margin="30px 10px 20px 10px"
             />
           </Flex>
@@ -109,7 +111,7 @@ const Auction: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MoreInfo>HOW IT WORKS</MoreInfo>
+                <MoreInfo>{t('HOW IT WORKS')}</MoreInfo>
               </a>
               <ListYourNfa />
             </ButtonHolder>

@@ -7,6 +7,7 @@ import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { CHAIN_ID } from 'config/constants/chains'
 import { Link } from 'react-router-dom'
 import { useFetchHomepageTokenStats, useHomepageTokenStats } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import track from 'utils/track'
 import { Container, Title, TokenContainer, TrendingTokensWrapper } from './styles'
 import { TokenDisplayAmount } from './types'
@@ -25,6 +26,7 @@ const TrendingTokens: React.FC = () => {
     tokenStartIndex: 0,
     tokenEndIndex: NUMBER_OF_TOKENS_TO_DISPLAY,
   })
+  const { t } = useTranslation()
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const swapTokens = () => {
     const tokenListLength = tokens?.length
@@ -62,7 +64,9 @@ const TrendingTokens: React.FC = () => {
       <div ref={observerRef} />
       <Container>
         <TrendingTokensWrapper>
-          <Title>{selectedCat?.charAt(0)?.toUpperCase() + selectedCat?.slice(1)} Tokens</Title>
+          <Title>
+            {t(selectedCat?.charAt(0)?.toUpperCase() + selectedCat?.slice(1))} {t('Tokens')}
+          </Title>
           <Flex flexWrap="wrap" justifyContent="space-between" alignItems="space-between" style={{ width: '100%' }}>
             {tokens ? (
               <>

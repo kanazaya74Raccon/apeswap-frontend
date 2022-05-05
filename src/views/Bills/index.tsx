@@ -4,6 +4,7 @@ import { usePollBills, useBills, usePollUserBills } from 'state/bills/hooks'
 import { Bills as BillType } from 'state/types'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import BillsListView from './components/BillsListView'
 import UserBillViews from './components/UserBillViews'
 import BillMenu from './components/Menu'
@@ -12,6 +13,7 @@ const Bills: React.FC = () => {
   usePollBills()
   usePollUserBills()
   const bills = useBills()
+  const { t } = useTranslation()
   const [query, setQuery] = useState('')
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +42,7 @@ const Bills: React.FC = () => {
         <ListViewLayout>
           <Banner
             banner="treasury-bills"
-            title="Treasury Bills"
+            title={t('Treasury Bills')}
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/treasury-bills"
             listViewBreak
             maxWidth={1130}

@@ -6,7 +6,7 @@ import { Button } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import useReward from 'hooks/useReward'
 import { useNfaStakingHarvest } from 'hooks/useHarvest'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 
 const StyledButton = styled(Button)`
@@ -24,7 +24,7 @@ interface HarvestActionsProps {
 }
 
 const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals, sousId }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, tokenDecimals)
   const rewardRef = useRef(null)
   const [pendingTx, setPendingTx] = useState(false)
@@ -45,7 +45,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({ earnings, tokenDecimals
           setPendingTx(false)
         }}
       >
-        {TranslateString(999, 'HARVEST')}
+        {t('HARVEST')}
       </StyledButton>
     )
   }

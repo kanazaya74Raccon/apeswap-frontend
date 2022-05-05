@@ -1,43 +1,44 @@
 import { MenuEntry } from '@apeswapfinance/uikit'
+import { ContextApi } from 'contexts/Localization/types'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { EXCHANGE } from '../constants'
 
-const bscConfig: MenuEntry[] = [
-  EXCHANGE,
+const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+  EXCHANGE(t),
   {
-    label: 'Stake',
+    label: t('Stake'),
     lightIcon: 'StakeLightImage',
     darkIcon: 'StakeDarkImage',
     items: [
       {
-        label: 'BANANA Farms',
+        label: t('BANANA Farms'),
         href: '/farms',
       },
       {
-        label: 'Pools',
+        label: t('Pools'),
         href: '/pools',
       },
       {
-        label: 'Jungle Farms',
+        label: t('Jungle Farms'),
         href: '/jungle-farms',
       },
       {
-        label: 'Vaults',
+        label: t('Vaults'),
         href: '/vaults',
       },
       {
-        label: 'GNANA',
+        label: t('GNANA'),
         href: '/gnana',
       },
     ],
   },
   {
-    label: 'Raise',
+    label: t('Raise'),
     lightIcon: 'OfferingsLightImage',
     darkIcon: 'OfferingsDarkImage',
     items: [
       {
-        label: 'Treasury Bills',
+        label: t('Treasury Bills'),
         href: '/treasury-bills',
       },
       {
@@ -45,65 +46,65 @@ const bscConfig: MenuEntry[] = [
         href: '/iao',
       },
       {
-        label: 'Self-Serve IAO',
+        label: t('Self-Serve IAO'),
         href: '/ss-iao',
       },
     ],
   },
   {
-    label: 'NFTs',
+    label: t('NFTs'),
     lightIcon: 'NfaLightImage',
     darkIcon: 'NfaDarkImage',
     items: [
       {
-        label: 'NFA Collection',
+        label: t('NFA Collection'),
         href: '/nft',
       },
       {
-        label: 'NFA Auction',
+        label: t('NFA Auction'),
         href: '/auction',
       },
       {
-        label: 'NFA Staking',
+        label: t('NFA Staking'),
         href: '/staking',
       },
       {
-        label: 'NFA Liquidity',
+        label: t('NFA Liquidity'),
         href: 'https://liquidcollectibles.io/collection/0x6afc012783e3a6ef8c5f05f8eee2edef6a052ec4',
       },
       {
-        label: 'NFB Collection',
+        label: t('NFB Collection'),
         href: 'https://nftkey.app/collections/nfbs/',
       },
       {
-        label: 'NFB Liquidity',
+        label: t('NFB Liquidity'),
         href: 'https://liquidcollectibles.io/collection/0x9f707a412302a3ad64028a9f73f354725c992081',
       },
     ],
   },
   {
-    label: 'Lending',
+    label: t('Lending'),
     href: 'https://lending.apeswap.finance/',
   },
   {
-    label: 'More',
+    label: t('More'),
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',
     items: [
       {
-        label: 'Docs',
+        label: t('Docs'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
       },
       {
-        label: 'Charts',
+        label: t('Charts'),
         href: NETWORK_INFO_LINK[CHAIN_ID.BSC],
       },
       {
-        label: 'Governance',
+        label: t('Governance'),
         href: 'https://vote.apeswap.finance',
       },
       {
-        label: 'Education',
+        label: t('Education'),
         href: 'https://www.apelabs.education/',
       },
     ],

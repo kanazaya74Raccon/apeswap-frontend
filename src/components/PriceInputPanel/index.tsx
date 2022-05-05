@@ -3,6 +3,7 @@ import { Currency } from '@apeswapfinance/sdk'
 import { Text, Flex } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 
 import { RowBetween } from '../layout/Row'
 import { Input as NumericalInput } from './NumericalInput'
@@ -108,6 +109,7 @@ export default function PriceInputPanel({
   id,
 }: PriceInputPanelProps) {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
 
   const currencySymbol = useCallback(
     (currency: Currency | null) => {
@@ -150,7 +152,7 @@ export default function PriceInputPanel({
             marginLeft: '10px',
           }}
         >
-          Price: <CurrentPrice onClick={() => onUserInput(currentPrice)}>CURRENT</CurrentPrice>
+          {t('Price')}: <CurrentPrice onClick={() => onUserInput(currentPrice)}>{t('CURRENT')}</CurrentPrice>
         </Text>
       </Flex>
       <MessageContainer>

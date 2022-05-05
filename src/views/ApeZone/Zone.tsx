@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import Spacer from 'components/Spacer'
 import Banner from 'components/Banner'
@@ -22,6 +23,7 @@ import {
 
 const Zone = () => {
   const [readingMore, setReadingMore] = useState(false)
+  const { t } = useTranslation()
 
   const toggleReadMore = () => {
     setReadingMore(!readingMore)
@@ -33,7 +35,7 @@ const Zone = () => {
         <Banner
           banner="gnana"
           link="https://apeswap.gitbook.io/apeswap-finance/welcome/apeswap-tokens/gnana"
-          title="Golden Banana"
+          title={t('Golden Banana')}
           margin="0px 0px 20px 0px"
           maxWidth={1130}
         />
@@ -41,13 +43,14 @@ const Zone = () => {
           <TopCon>
             <Warning />
             <CenterCard>
-              <WarningHeader as="h1">WARNING</WarningHeader>
-              {!readingMore && <ReadMore onClick={toggleReadMore}>Read More</ReadMore>}
+              <WarningHeader as="h1">{t('WARNING')}</WarningHeader>
+              {!readingMore && <ReadMore onClick={toggleReadMore}>{t('Read More')}</ReadMore>}
 
               <InnerContent readingMore={readingMore}>
                 <InnerContentText>
-                  Converting GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This
-                  means that for every 1 BANANA you trade in, you will receive 0.7 GNANA
+                  {t(
+                    'Converting GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA',
+                  )}
                 </InnerContentText>
               </InnerContent>
             </CenterCard>
@@ -56,8 +59,9 @@ const Zone = () => {
 
           <OuterContent readingMore={readingMore}>
             <OuterContentText>
-              Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that
-              for every 1 BANANA you trade in, you will receive 0.7 GNANA
+              {t(
+                'Buying GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA',
+              )}
             </OuterContentText>
           </OuterContent>
         </PaddedCard>

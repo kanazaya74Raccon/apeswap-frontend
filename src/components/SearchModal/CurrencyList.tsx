@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { useCombinedActiveList } from '../../state/lists/hooks'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { useIsUserAddedToken, useAllInactiveTokens } from '../../hooks/Tokens'
@@ -70,6 +71,7 @@ function CurrencyRow({
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
   const customAdded = useIsUserAddedToken(currency)
   const balance = useCurrencyBalance(account ?? undefined, currency)
+  const { t } = useTranslation()
 
   // only show add or remove buttons if not on selected list
   return (
@@ -86,7 +88,7 @@ function CurrencyRow({
           {currency.getSymbol(chainId)}
         </Text>
         <Text fontSize="13px">
-          {!isOnSelectedList && customAdded && 'Added by user •'} {currency.getName(chainId)}
+          {!isOnSelectedList && customAdded && t('Added by user •')} {currency.getName(chainId)}
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>
@@ -121,6 +123,8 @@ export default function CurrencyList({
 }) {
   const { chainId } = useActiveWeb3React()
 
+  const { t } = useTranslation()
+
   const itemData: (Currency | undefined)[] = useMemo(() => {
     let formatted: (Currency | undefined)[] = showETH ? [Currency.ETHER, ...currencies] : currencies
     if (breakIndex !== undefined) {
@@ -149,7 +153,7 @@ export default function CurrencyList({
           <FixedContentRow style={style}>
             <Card padding="8px 12px">
               <RowBetween>
-                <Text small>Expanded results from inactive Token Lists</Text>
+                <Text small>{t('Expanded results from inactive Token Lists')}</Text>
               </RowBetween>
             </Card>
           </FixedContentRow>
@@ -180,6 +184,7 @@ export default function CurrencyList({
       setImportToken,
       showImportView,
       breakIndex,
+      t,
     ],
   )
 

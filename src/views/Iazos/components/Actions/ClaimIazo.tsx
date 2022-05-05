@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AutoRenewIcon } from '@apeswapfinance/uikit'
 import useClaimIazo from 'views/Iazos/hooks/useClaimIazo'
 import { IazoState } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import StyledButton from './styles'
 
 interface ApproveCreateIazoProps {
@@ -23,6 +24,7 @@ const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onClaim } = useClaimIazo(iazoAddress)
   const iazoFailed = iazoState === 'FAILED'
+  const { t } = useTranslation()
 
   const renderButton = () => {
     if (iazoFailed && tokensToClaim > 0) {
@@ -37,10 +39,10 @@ const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
           disabled={pendingTrx}
           endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
         >
-          REFUND
+          {t('REFUND')}
         </StyledButton>
       ) : (
-        <StyledButton disabled> REFUNDED</StyledButton>
+        <StyledButton disabled> {t('REFUNDED')}</StyledButton>
       )
     }
     if (baseTokensToClaim > 0) {
@@ -55,10 +57,10 @@ const ClaimIazo: React.FC<ApproveCreateIazoProps> = ({
           disabled={pendingTrx}
           endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
         >
-          CLAIM
+          {t('CLAIM')}
         </StyledButton>
       ) : (
-        <StyledButton disabled> CLAIMED</StyledButton>
+        <StyledButton disabled> {t('CLAIMED')}</StyledButton>
       )
     }
     return <></>

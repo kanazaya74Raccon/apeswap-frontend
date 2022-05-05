@@ -2,20 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 const VaultTabButtons = () => {
   const { url, isExact } = useRouteMatch()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
       <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="yellow">
         <ButtonMenuItem as={Link} to={`${url}`} fontSize="12px">
-          {TranslateString(999, 'Active')}
+          {t('Active')}
         </ButtonMenuItem>
         <ButtonMenuItem as={Link} to={`${url}/history`} fontSize="12px">
-          {TranslateString(999, 'Inactive')}
+          {t('Inactive')}
         </ButtonMenuItem>
       </ButtonMenu>
     </Wrapper>

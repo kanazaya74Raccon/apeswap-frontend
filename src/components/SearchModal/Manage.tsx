@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Token } from '@apeswapfinance/sdk'
 import { ButtonMenu, ButtonMenuItem } from '@apeswapfinance/uikit'
 import { TokenList } from '@uniswap/token-lists'
+import { useTranslation } from 'contexts/Localization'
 import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'
 import { CurrencyModalView } from './types'
@@ -18,6 +19,7 @@ export default function Manage({
   setListUrl: (url: string) => void
 }) {
   const [showLists, setShowLists] = useState(true)
+  const { t } = useTranslation()
   return (
     <div style={{ padding: '0px 10px 20px 10px' }}>
       <div style={{ margin: '10px 0px 20px 0px' }}>
@@ -27,8 +29,8 @@ export default function Manage({
           size="sm"
           variant="yellow"
         >
-          <ButtonMenuItem>Lists</ButtonMenuItem>
-          <ButtonMenuItem>Tokens</ButtonMenuItem>
+          <ButtonMenuItem>{t('Lists')}</ButtonMenuItem>
+          <ButtonMenuItem>{t('Tokens')}</ButtonMenuItem>
         </ButtonMenu>
       </div>
       {showLists ? (

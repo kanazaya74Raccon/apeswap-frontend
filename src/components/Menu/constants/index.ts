@@ -1,29 +1,32 @@
-export const HOME = {
-  label: 'Home',
+import { ContextApi } from 'contexts/Localization/types'
+import { MenuEntry } from '@apeswapfinance/uikit'
+
+export const HOME: (t: ContextApi['t']) => MenuEntry = (t) => ({
+  label: t('Home'),
   href: '/',
-}
+})
 
-export const EXCHANGE = {
-  label: 'Exchange',
+export const EXCHANGE: (t: ContextApi['t']) => MenuEntry = (t) => ({
+  label: t('Exchange'),
   href: '/swap',
-}
+})
 
-export const MORE_INFO = {
-  label: 'More',
+export const MORE_INFO: (t: ContextApi['t']) => MenuEntry = (t) => ({
+  label: t('More'),
   lightIcon: 'MoreLightImage',
   darkIcon: 'MoreDarkImage',
   items: [
     {
-      label: 'Docs',
+      label: t('Docs'),
       href: 'https://apeswap.gitbook.io/apeswap-finance/',
     },
     {
-      label: 'Charts',
+      label: t('Charts'),
       href: 'https://apeswap.gitbook.io/apeswap-finance/',
     },
     {
-      label: 'Governance',
+      label: t('Governance'),
       href: 'https://vote.apeswap.finance',
     },
   ],
-}
+})

@@ -5,6 +5,7 @@ import { FixedSizeList } from 'react-window'
 import styled from '@emotion/styled'
 import useDebounce from 'hooks/useDebounce'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { useAllTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from '../../hooks/Tokens'
 import { isAddress } from '../../utils'
 import Column, { AutoColumn } from '../layout/Column'
@@ -12,6 +13,7 @@ import Row from '../layout/Row'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens, useSortedTokensByQuery } from './filtering'
+
 import useTokenComparator from './sorting'
 import ImportRow from './ImportRow'
 
@@ -109,6 +111,7 @@ function CurrencySearch({
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
 
+  const { t } = useTranslation()
   return (
     <div>
       <AutoColumn style={{ margin: '20px 0 20px 0' }}>
@@ -116,7 +119,7 @@ function CurrencySearch({
           <Flex alignItems="center" justifyContent="center" mb="10px" style={{ width: '100%' }}>
             <StyledInput
               id="token-search-input"
-              placeholder="Name or Address"
+              placeholder={t('Name or Address')}
               autoComplete="off"
               value={searchQuery}
               // ref={inputRef as RefObject<HTMLInputElement>}
@@ -153,7 +156,7 @@ function CurrencySearch({
       ) : (
         <Column style={{ padding: '20px', height: '100%' }}>
           <Text color="gray" textAlign="center" mb="20px">
-            No results found
+            {t('No results found')}
           </Text>
         </Column>
       )}

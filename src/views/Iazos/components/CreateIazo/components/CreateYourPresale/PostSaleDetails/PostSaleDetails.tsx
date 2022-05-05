@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { SECONDS_PER_YEAR } from 'config'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'contexts/Localization'
 import TokenInput from '../PresaleDetails/TokenInput'
 import DropdownList from './DropdownList'
 import { LiquidityLockDetails } from '../types'
@@ -27,6 +28,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
   }
 
   const { isDark } = useTheme()
+  const { t } = useTranslation()
 
   const [liquidityDetails, setLiquidityDetails] = useState<LiquidityLockDetails>({
     liquidityPercent: null,
@@ -48,9 +50,9 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
   return (
     <>
       <LaunchPadInfoWrapper>
-        <StyledHeader>Post sale liquidity</StyledHeader>
+        <StyledHeader>{t('Post sale liquidity')}</StyledHeader>
         <PercentageToRaiseWrapper>
-          <InputTitle>Percentage of raise to lock in liquidity</InputTitle>
+          <InputTitle>{t('Percentage of raise to lock in liquidity')}</InputTitle>
           <LiquidityButton active={liquidityDetails?.liquidityPercent === 0.3} onClick={() => onLiquidityClick(0.3)}>
             30%
           </LiquidityButton>
@@ -67,7 +69,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
         <InputsWrapper>
           <TokenInput
             onChange={(e) => setLiquidityDetails({ ...liquidityDetails, listingPrice: e.currentTarget.value })}
-            title="Listing Price"
+            title={t('Listing Price')}
             quoteTokenSymbol={quoteTokenSymbol}
             size="md"
             backgroundColor={isDark ? '#383838' : '#F1EADA'}
@@ -79,7 +81,7 @@ const PostSaleDetails: React.FC<PostSaleDetailsProp> = ({ quoteTokenSymbol, pres
               setLiquidityDetails({ ...liquidityDetails, lockLiquidity: lockedLiquidityValues[item] })
             }
             dropdownList={['2 Years', '1 Year', '6 Months']}
-            title="Lock Liquidity for"
+            title={t('Lock Liquidity for')}
             defaultIndex={1}
           />
         </InputsWrapper>

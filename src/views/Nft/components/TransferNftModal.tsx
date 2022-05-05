@@ -4,7 +4,7 @@ import Web3 from 'web3'
 import { useWeb3React } from '@web3-react/core'
 import { Button, Input, Modal, Text } from '@apeswapfinance/uikit'
 import { Nft } from 'config/constants/types'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useNonFungibleApes } from 'hooks/useContract'
 import UnderlinedButton from 'components/UnderlinedButton'
 import InfoRow from './InfoRow'
@@ -41,7 +41,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
   const [isLoading, setIsLoading] = useState(false)
   const [value, setValue] = useState('')
   const [error, setError] = useState(null)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const nonFungibleApesContract = useNonFungibleApes()
 
@@ -50,7 +50,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
       const isValidAddress = Web3.utils.isAddress(value)
 
       if (!isValidAddress) {
-        setError(TranslateString(999, 'Please enter a valid wallet address'))
+        setError(t('Please enter a valid wallet address'))
       } else {
         setIsLoading(true)
         await nonFungibleApesContract['safeTransferFrom(address,address,uint256)'](account, value, tokenId).then(
@@ -73,7 +73,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
   }
 
   return (
-    <Modal title={TranslateString(999, 'Transfer NFT')} onDismiss={onDismiss}>
+    <Modal title={t('Transfer NFT')} onDismiss={onDismiss}>
       <ModalContent>
         {error && (
           <Text color="error" mb="8px">
@@ -81,15 +81,15 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
           </Text>
         )}
         <InfoRow>
-          <Text>{TranslateString(999, 'Transferring')}:</Text>
+          <Text>{t('Transferring')}:</Text>
           <Value>{`1x "${nft.name}" NFT`}</Value>
         </InfoRow>
-        <Label htmlFor="transferAddress">{TranslateString(999, 'Receiving address')}:</Label>
+        <Label htmlFor="transferAddress">{t('Receiving address')}:</Label>
         <Input
           id="transferAddress"
           name="address"
           type="text"
-          placeholder={TranslateString(999, 'Paste address')}
+          placeholder={t('Paste address')}
           value={value}
           onChange={handleChange}
           isWarning={error}
@@ -98,9 +98,9 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenId, onDis
       </ModalContent>
       <Actions>
         <Button fullWidth onClick={handleConfirm} disabled={!account || isLoading || !value}>
-          {TranslateString(464, 'Confirm')}
+          {t('Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </Actions>
     </Modal>
   )

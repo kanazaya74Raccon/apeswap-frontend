@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 const StyledButton = styled(Button)`
   display: flex;
@@ -13,11 +13,11 @@ const StyledButton = styled(Button)`
 `
 
 const UnderlinedButton = ({ text, handleClick }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <StyledButton variant="text" onClick={handleClick}>
-      {TranslateString(462, text)}
+      {t(text)}
     </StyledButton>
   )
 }

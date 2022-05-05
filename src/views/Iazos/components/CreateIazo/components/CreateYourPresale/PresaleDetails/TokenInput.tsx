@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Image, TooltipBubble, InfoIcon } from '@apeswapfinance/uikit'
 import { useToast } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 
 interface TextInputProps {
   placeholderText?: string
@@ -47,17 +48,18 @@ const TokenInput: React.FC<TextInputProps> = ({
   tooltipContent,
 }) => {
   const { toastError } = useToast()
+  const { t } = useTranslation()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(null)
 
   const onValidate = (e) => {
     const val = parseFloat(e.currentTarget.value)
     if (val < min) {
-      toastError(`Value must be greater than ${min}`)
+      toastError(`${t('Value must be greater than')} ${min}`)
       setBackgroundColorForInput('rgb(255,0,0, .3)')
       return val
     }
     if (val > max) {
-      toastError(`Value must be less than ${max}`)
+      toastError(`${t('Value must be less than')} ${max}`)
       setBackgroundColorForInput('rgb(255,0,0, .3)')
       return val
     }
@@ -95,7 +97,10 @@ const TokenInput: React.FC<TextInputProps> = ({
       ) : (
         <TokenWrapper>
           <StyledHeader>{tokenSymbol}</StyledHeader>
-          <UserBalanceWrapper> Balance: {userBalance?.toFixed(6)} </UserBalanceWrapper>
+          <UserBalanceWrapper>
+            {' '}
+            {t('Balance')}: {userBalance?.toFixed(6)}{' '}
+          </UserBalanceWrapper>
         </TokenWrapper>
       )}
     </InputContainer>

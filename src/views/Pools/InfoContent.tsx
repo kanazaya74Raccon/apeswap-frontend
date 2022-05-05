@@ -6,10 +6,12 @@ import getTimePeriods from 'utils/getTimePeriods'
 import { BSC_BLOCK_TIME } from 'config'
 import { BLOCK_EXPLORER } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 
 const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
   const { chainId } = useActiveWeb3React()
   const { currentBlock } = useBlock()
+  const { t } = useTranslation()
   const timeUntilStart = getTimePeriods(Math.max(pool?.startBlock - currentBlock, 0) * BSC_BLOCK_TIME, true)
   const timeUntilEnd = getTimePeriods(Math.max(pool?.endBlock - currentBlock, 0) * BSC_BLOCK_TIME, true)
   const explorerLink = BLOCK_EXPLORER[chainId]
@@ -32,23 +34,23 @@ const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
       <Flex justifyContent="space-between">
         <Flex alignItems="center" justifyContent="center" mt="10px">
           <LinkExternal href={pool?.projectLink} style={{ fontSize: '14px' }}>
-            Website
+            {t('Website')}
           </LinkExternal>
         </Flex>
         <Flex alignItems="center" justifyContent="center" mt="10px">
           <LinkExternal href={pool?.twitter} style={{ fontSize: '14px' }}>
-            Twitter
+            {t('Twitter')}
           </LinkExternal>
         </Flex>
       </Flex>
       <Flex alignItems="center" justifyContent="center" mt="20px">
         <LinkExternal href={tokenContractLink} style={{ fontSize: '14px' }}>
-          View Token Contract
+          {t('View Token Contract')}
         </LinkExternal>
       </Flex>
       <Flex alignItems="center" justifyContent="center" mt="15px">
         <LinkExternal href={contractLink} style={{ fontSize: '14px' }}>
-          View Pool Contract
+          {t('View Pool Contract')}
         </LinkExternal>
       </Flex>
     </>

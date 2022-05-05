@@ -2,6 +2,7 @@ import React from 'react'
 import { Currency, Percent, Price } from '@apeswapfinance/sdk'
 import styled from '@emotion/styled'
 import { Text, Card, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../../components/layout/Column'
 import { AutoRow } from '../../components/layout/Row'
 import { ONE_BIPS } from '../../config/constants'
@@ -21,6 +22,7 @@ function PoolPriceBar({
   chainId?: number
 }) {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = isMd || isSm || isXs
 
   return (
@@ -59,7 +61,7 @@ function PoolPriceBar({
             <StyledCard>
               <AutoColumn justify="center">
                 <Text bold fontSize="17px" pt={1}>
-                  {`${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''} per ${
+                  {`${currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''} ${t('per')} ${
                     currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''
                   }`}
                 </Text>
@@ -69,7 +71,7 @@ function PoolPriceBar({
             <StyledCard>
               <AutoColumn justify="center">
                 <Text bold fontSize="17px" pt={1}>
-                  Share of Pool
+                  {t('Share of Pool')}
                 </Text>
                 <Text>
                   {noLiquidity && price
@@ -82,7 +84,7 @@ function PoolPriceBar({
             <StyledCard>
               <AutoColumn justify="center">
                 <Text bold fontSize="17px" pt={1}>
-                  {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''} per ${
+                  {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId) ?? ''} ${t('per')} ${
                     currencies[Field.CURRENCY_B]?.getSymbol(chainId) ?? ''
                   }`}
                 </Text>

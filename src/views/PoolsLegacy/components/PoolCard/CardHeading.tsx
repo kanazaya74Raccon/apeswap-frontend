@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from '@emotion/styled'
 import { Flex, Skeleton, Text, Image, useMatchBreakpoints } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { Pool } from 'state/types'
 import UnlockButton from 'components/UnlockButton'
@@ -259,7 +259,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   showExpandableSection,
   rewardTokenPrice,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { userData, tokenDecimals, stakingToken } = pool
   const splitStakeToken = pool?.lpStaking && stakeToken.split('-')
   const splitEarnToken = pool?.isEarnTokenLp && earnToken.split('-')
@@ -396,10 +396,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           )}
           <StyledFlexEarnedSmall>
             <StyledText4 color="primary" pr="3px">
-              {TranslateString(999, `${earnToken}`)}
+              {earnToken}
             </StyledText4>
             <StyledText2 color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
+              {t('Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
@@ -408,10 +408,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {TranslateString(999, `${earnToken}`)}
+                {earnToken}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Earned')}
+                {t('Earned')}
               </StyledText2>
             </Flex>
             <StyledText3>{displayBalance}</StyledText3>

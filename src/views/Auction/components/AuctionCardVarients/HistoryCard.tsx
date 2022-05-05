@@ -7,6 +7,7 @@ import { useTokenPriceFromSymbol } from 'state/hooks'
 import { ZERO_ADDRESS } from 'config'
 import { Text } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import Image from '../../../Nft/components/Image'
 
 interface HistoryCardProps {
@@ -137,20 +138,20 @@ const HistoryCard: React.FC<HistoryCardProps> = ({ auction }) => {
   const rawBidAmount = getBalanceNumber(new BigNumber(highestBid))
   const bnbPrice = useTokenPriceFromSymbol('BNB')
   const dollarValue = (getBalanceNumber(new BigNumber(bnbPrice), 0) * rawBidAmount).toFixed(2)
-
+  const { t } = useTranslation()
   return (
     <Card highestBidFlag={highestBidFlag}>
       <TextHolder>
         <NameText>#{nfa.index}</NameText>
         {notSold ? (
           <>
-            <BoughtText>Did Not Sell</BoughtText>
-            <BidAmount>Ask {rawBidAmount.toFixed(3)} BNB</BidAmount>
+            <BoughtText>{t('Did Not Sell')}</BoughtText>
+            <BidAmount>{t('Ask %amount% BNB', { amount: rawBidAmount.toFixed(3) })}</BidAmount>
             <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
           </>
         ) : (
           <>
-            <BoughtText>Bought For</BoughtText>
+            <BoughtText>{t('Bought For')}</BoughtText>
             <BidAmount> {rawBidAmount.toFixed(3)} BNB</BidAmount>
             <CurrentBidDollarWrapper>~${dollarValue}</CurrentBidDollarWrapper>
           </>

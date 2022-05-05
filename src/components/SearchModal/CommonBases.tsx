@@ -2,6 +2,7 @@ import React from 'react'
 import { ChainId, Currency, currencyEquals, ETHER, Token } from '@apeswapfinance/sdk'
 import { Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 import { SUGGESTED_BASES } from '../../config/constants'
 import { AutoColumn } from '../layout/Column'
 import { AutoRow } from '../layout/Row'
@@ -31,11 +32,12 @@ export default function CommonBases({
   selectedCurrency?: Currency | null
   onSelect: (currency: Currency) => void
 }) {
+  const { t } = useTranslation()
   return (
     <AutoColumn gap="md">
       <AutoRow>
         <Text margin="20px 0px 0px 20px" fontSize="16px">
-          Common bases
+          {t('Common bases')}
         </Text>
       </AutoRow>
       <AutoRow style={{ padding: '0px 10px 0px 10px' }}>

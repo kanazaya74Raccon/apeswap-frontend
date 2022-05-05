@@ -1,16 +1,16 @@
 import React from 'react'
 import { Button, useWalletModal } from '@apeswapfinance/uikit'
 import useAuth from 'hooks/useAuth'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 const UnlockButton = (props) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
 
   return (
     <Button onClick={onPresentConnectModal} variant="primary" {...props}>
-      {TranslateString(292, 'UNLOCK WALLET')}
+      {t('UNLOCK WALLET')}
     </Button>
   )
 }

@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const Header: React.FC = () => {
+  const { t } = useTranslation()
   return (
     <HeaderWrapper>
-      <HeadingText>Self-Serve IAO</HeadingText>
+      <HeadingText>{t('Self - Serve IAO')}</HeadingText>
     </HeaderWrapper>
   )
 }

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import ModalActions from 'components/ModalActions'
 import { useProfile } from 'state/hooks'
 import UnderlinedButton from 'components/UnderlinedButton'
-import useI18n from '../../../hooks/useI18n'
+import { useTranslation } from '../../../contexts/Localization'
 
 interface DepositModalProps {
   tier: number
@@ -44,7 +44,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
   })
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const handleNfaChange = (index) => {
     if (selectedNfas.includes(index)) {
@@ -55,9 +55,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
   }
 
   return (
-    <Modal title={`${TranslateString(316, 'Deposit')} Tier ${tier} NFAs`} onDismiss={onDismiss}>
+    <Modal title={`${t('Deposit')} ${t('Tier')} ${tier} ${t('NFAs')}`} onDismiss={onDismiss}>
       <Text marginBottom="20px">
-        NFAs Selected:
+        {t('NFAs Selected')}:
         {selectedNfas?.map((index) => {
           return ` ${index},`
         })}
@@ -72,7 +72,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
             )
           })
         ) : (
-          <Text marginBottom="20px">You do not have any tier {tier} NFAs in your wallet 😢</Text>
+          <Text marginBottom="20px">{t('You do not have any tier %tier% NFAs in your wallet', { tier })} 😢</Text>
         )}
       </OwnedNfaWrapper>
       <ModalActions>
@@ -90,9 +90,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ onConfirm, onDismiss, tier 
             borderRadius: '10px',
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

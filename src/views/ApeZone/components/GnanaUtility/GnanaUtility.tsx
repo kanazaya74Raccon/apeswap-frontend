@@ -1,10 +1,11 @@
 import React from 'react'
 import { PFarmingIcon, XPoolsIcon, GovernanceIcon, IaoIcon } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'contexts/Localization'
 
 import OptionCard from './OptionCard'
-import OpDetails from './OpDetails'
 
+import OpDetails from './OpDetails'
 import {
   UtilityCon,
   UtilityTitle,
@@ -20,7 +21,7 @@ import {
 
 export const GnanaUtility: React.FC = () => {
   const theme = useTheme()
-
+  const { t } = useTranslation()
   const exploreGovernance = () => {
     return window.open('https://vote.apeswap.finance/', '_blank')
   }
@@ -34,11 +35,11 @@ export const GnanaUtility: React.FC = () => {
   return (
     <UtilityCon>
       <UtilityTitle>
-        <UtilityHeading>Gnana Utility</UtilityHeading>
+        <UtilityHeading>{t('Gnana Utility')}</UtilityHeading>
       </UtilityTitle>
       <Options>
         <FirstOption>
-          <OptionCard type="1" title="Option 1" desc="Hold in Wallet">
+          <OptionCard type="1" title={t('Option 1')} desc={t('Hold in Wallet')}>
             <Section>
               <OpDetails
                 Icon={
@@ -49,9 +50,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title="Passive Farming"
-                Desc="Collect a 2% Reflect Fee on all GNANA Transactions"
-                ActionTitle="CONVERT"
+                Title={t('Passive Farming')}
+                Desc={t('Collect a 2% Reflect Fee on all GNANA Transactions')}
+                ActionTitle={t('CONVERT')}
                 actionHref="#convert"
                 OpStyle={OtherOpStyle}
                 type="1"
@@ -66,9 +67,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title="Governance"
-                Desc="Propose and Vote on platform decisions"
-                ActionTitle="EXPLORE"
+                Title={t('Governance')}
+                Desc={t('Propose and Vote on platform decisions')}
+                ActionTitle={t('EXPLORE')}
                 onAction={exploreGovernance}
                 OpStyle={OtherOpStyle}
                 type="1"
@@ -78,7 +79,7 @@ export const GnanaUtility: React.FC = () => {
         </FirstOption>
 
         <OtherOptions>
-          <OptionCard type="2" title="Option 2" desc="Stake">
+          <OptionCard type="2" title={t('Option 2')} desc={t('Stake')}>
             <Section2>
               <OpDetails
                 Icon={
@@ -89,9 +90,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title="Exclusive Pools"
-                Desc="Access unique pools with higher APRs"
-                ActionTitle="GO TO POOLS"
+                Title={t('Exclusive Pools')}
+                Desc={t('Access unique pools with higher APRs')}
+                ActionTitle={t('GO TO POOLS')}
                 onAction={goToPools}
                 OpStyle={OtherOpStyle}
                 type="2"
@@ -99,7 +100,7 @@ export const GnanaUtility: React.FC = () => {
             </Section2>
           </OptionCard>
 
-          <OptionCard type="3" title="Option 3" desc="Commit">
+          <OptionCard type="3" title={t('Option 3')} desc={t('Commit')}>
             <Section2>
               <OpDetails
                 Icon={
@@ -110,9 +111,9 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title="Exclusive IAO Access"
-                Desc="Access to secondary offerings for a higher token allocation"
-                ActionTitle="GO TO IAOs"
+                Title={t('Exclusive IAO Access')}
+                Desc={t('Access to secondary offerings for a higher token allocation')}
+                ActionTitle={t('GO TO IAOs')}
                 onAction={goToIAOs}
                 OpStyle={OtherOpStyle}
                 type="3"

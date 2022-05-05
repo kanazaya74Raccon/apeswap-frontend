@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import UnderlinedButton from 'components/UnderlinedButton'
 import Image from 'views/Nft/components/Image'
 import ModalActions from 'components/ModalActions'
-import useI18n from '../../../hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { Nft } from '../../../config/constants/types'
 
 interface NfaListingModalProps {
@@ -81,7 +81,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
   const minimumBid = '.9'
   const [pendingTx, setPendingTx] = useState(false)
   const [pendingApprove, setPendingApprove] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (allowance !== null) {
@@ -104,38 +104,42 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
   }, [onApprove, setApproved])
 
   return (
-    <Modal title={`${TranslateString(316, 'Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
+    <Modal title={`${t('Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
       <DescriptionWrapper>
-        <Text textAlign="center"> Welcome to the Self-Serve Auction House! </Text>
-        <TimeText> (The Rules are the Same) </TimeText>
+        <Text textAlign="center"> {t('Welcome to the Self-Serve Auction House!')} </Text>
+        <TimeText> ({t('The Rules are the Same')}) </TimeText>
         <Text textAlign="center" marginTop="10px">
-          Auction Start Length
+          {t('Auction Start Length')}
         </Text>
         <TimeText> 24 Hours </TimeText>
         <Text textAlign="center" marginTop="10px">
-          How the Clock Works
+          {t('How the Clock Works')}
         </Text>
         <TimeText>
-          During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.
+          {t(
+            'During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.',
+          )}
         </TimeText>
         <Text textAlign="center" marginTop="10px">
-          All Sales are Final
+          {t('All Sales are Final')}
         </Text>
-        <TimeText>When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!</TimeText>
+        <TimeText>
+          {t('When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!')}
+        </TimeText>
         <Text textAlign="center" marginTop="10px">
-          Proceeds
+          {t('Proceeds')}
         </Text>
-        <TimeText>95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.</TimeText>
+        <TimeText>{t('95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.')}</TimeText>
         <Text textAlign="center" marginTop="10px">
-          Auction Order
+          {t('Auction Order')}
         </Text>
-        <TimeText>NFAs will be auctioned in the order they are submitted.</TimeText>
+        <TimeText>{t('NFAs will be auctioned in the order they are submitted.')}</TimeText>
         <Text textAlign="center" marginTop="10px">
-          Cancel Your Listing
+          {t('Cancel Your Listing')}
         </Text>
-        <TimeText>You may cancel your entry any time before your auction begins.</TimeText>
+        <TimeText>{t('You may cancel your entry any time before your auction begins.')}</TimeText>
         <Text textAlign="center" marginTop="10px">
-          NFA selected: {nfaIndex}
+          {t('NFA selected')}: {nfaIndex}
         </Text>
         {ownedNfas ? (
           <NfaBackground>
@@ -155,7 +159,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
             </OwnedNfaWrapper>
           </NfaBackground>
         ) : (
-          <TimeText marginBottom="20px">You do not have any NFAs in your wallet 😢</TimeText>
+          <TimeText marginBottom="20px">{t('You do not have any NFAs in your wallet')} 😢</TimeText>
         )}
       </DescriptionWrapper>
 
@@ -192,7 +196,7 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
               borderRadius: '10px',
             }}
           >
-            {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'List NFA')}
+            {pendingTx ? t('Pending Confirmation') : t('List NFA')}
           </Button>
         ) : (
           <Button
@@ -208,10 +212,10 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
               borderRadius: '10px',
             }}
           >
-            {TranslateString(462, 'Approve')}
+            {t('Approve')}
           </Button>
         )}
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

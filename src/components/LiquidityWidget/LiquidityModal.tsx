@@ -4,6 +4,7 @@ import { Modal, ModalHeader, Heading, Link } from '@ape.swap/uikit'
 import { HelpIcon, ModalProvider } from '@apeswapfinance/uikit'
 import { Flex } from 'theme-ui'
 import { merge } from 'lodash'
+import { useTranslation } from 'contexts/Localization'
 
 interface LiquidityModalProps {
   widgetProps?: Record<string, any>
@@ -12,6 +13,7 @@ interface LiquidityModalProps {
 }
 
 const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, handleClose, modalProps: newModalProps }) => {
+  const { t } = useTranslation()
   const modalProps = {
     minWidth: '385px',
     maxWidth: '385px',
@@ -43,7 +45,7 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, handleClos
               <HelpIcon width="20px" style={{ marginLeft: '10px' }} />
             </Link>
             <Heading sx={{ fontSize: '22px', lineHeight: '33px' }} as="h4">
-              Add Liquidity
+              {t('Add Liquidity')}
             </Heading>
           </Flex>
         </ModalHeader>

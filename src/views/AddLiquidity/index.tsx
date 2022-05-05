@@ -20,6 +20,7 @@ import WalletTransactions from 'components/RecentTransactions/WalletTransactions
 import { useDispatch } from 'react-redux'
 import { parseAddress } from 'hooks/useAddress'
 import { useSwapState } from 'state/swap/hooks'
+import { useTranslation } from 'contexts/Localization'
 import { AppDispatch } from '../../state'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -71,6 +72,7 @@ export default function AddLiquidity({
 
   const currencyA = useCurrency(loadCurrencyIdA)
   const currencyB = useCurrency(loadCurrencyIdB)
+  const { t } = useTranslation()
 
   const [recentTransactions] = useUserRecentTransactions()
   const [addValueUsd, setAddValueUsd] = useState<number>(null)
@@ -283,13 +285,14 @@ export default function AddLiquidity({
           <Text fontSize="20px">
             {`${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}/${currencies[Field.CURRENCY_B]?.getSymbol(
               chainId,
-            )} Pool Tokens`}
+            )} ${t('Pool Tokens')}`}
           </Text>
         </Row>
         <Text small textAlign="left" my="24px" style={{ fontStyle: 'italic' }}>
-          {`Output is estimated. If the price changes by more than ${
-            allowedSlippage / 100
-          }% your transaction will revert.`}
+          {t(
+            'Output is estimated. If the price changes by more than %allowedSlippage%% your transaction will revert.',
+            { allowedSlippage: allowedSlippage / 100 },
+          )}
         </Text>
       </AutoColumn>
     )
@@ -355,7 +358,7 @@ export default function AddLiquidity({
 
   const [onPresentAddLiquidityModal] = useModal(
     <TransactionConfirmationModal
-      title={noLiquidity ? 'You are creating a pool' : 'You will receive'}
+      title={noLiquidity ? t('You are creating a pool') : t('You will receive')}
       customOnDismiss={handleDismissConfirmation}
       attemptingTxn={attemptingTxn}
       hash={txHash}
@@ -378,7 +381,7 @@ export default function AddLiquidity({
             <Flex flexWrap="wrap" alignItems="center" mt="15px" mb="5px">
               <LiquidityPositionLink />
               <Title bold fontSize="22px">
-                Add Liquidity
+                {t('Add Liquidity')}
               </Title>
             </Flex>
             <Wrapper>
@@ -396,10 +399,10 @@ export default function AddLiquidity({
                       >
                         <Flex flexDirection="column" justifyContent="center" alignItems="center">
                           <Text bold mb="8px">
-                            You are the first liquidity provider.
+                            {t('You are the first liquidity provider.')}
                           </Text>
-                          <Text mb="8px">The ratio of tokens you add will set the price of this pool.</Text>
-                          <Text>Once you are happy with the rate click supply to review.</Text>
+                          <Text mb="8px">{t('The ratio of tokens you add will set the price of this pool.')}</Text>
+                          <Text>{t('Once you are happy with the rate click supply to review.')}</Text>
                         </Flex>
                       </div>
                     </>
@@ -483,9 +486,9 @@ export default function AddLiquidity({
                               disabled={approvalA === ApprovalState.PENDING}
                             >
                               {approvalA === ApprovalState.PENDING ? (
-                                <Dots>{`Enabling ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
+                                <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}</Dots>
                               ) : (
-                                `Enable ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
+                                `${t('Enable')} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`
                               )}
                             </LargeStyledButton>
                           )}
@@ -495,9 +498,9 @@ export default function AddLiquidity({
                               disabled={approvalB === ApprovalState.PENDING}
                             >
                               {approvalB === ApprovalState.PENDING ? (
-                                <Dots>{`Enabling ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
+                                <Dots>{`${t('Enabling')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`}</Dots>
                               ) : (
-                                `Enable ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
+                                `${t('Enable')} ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)}`
                               )}
                             </LargeStyledButton>
                           )}
@@ -515,7 +518,7 @@ export default function AddLiquidity({
                         !isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED
                       }
                     >
-                      {error ?? 'Supply'}
+                      {error ?? t('Supply')}
                     </LargeStyledButton>
                   </AutoColumn>
                 )}

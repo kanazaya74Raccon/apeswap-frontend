@@ -6,6 +6,7 @@ import Page from 'components/layout/Page'
 import CurrencyInputHeader from 'views/Swap/components/CurrencyInputHeader'
 import SwapBanner from 'components/SwapBanner'
 import LiquidityPositionLink from 'components/Links/LiquidityPositons'
+import { useTranslation } from 'contexts/Localization'
 import { AutoColumn, ColumnCenter } from '../../components/layout/Column'
 import { CurrencyLogo } from '../../components/Logo'
 import { MinimalPositionCard } from '../../components/PositionCard'
@@ -41,6 +42,7 @@ export default function PoolFinder() {
 
   const [pairState, pair] = usePair(currency0 ?? undefined, currency1 ?? undefined)
   const addPair = usePairAdder()
+  const { t } = useTranslation()
   useEffect(() => {
     if (pair) {
       addPair(pair)
@@ -72,7 +74,7 @@ export default function PoolFinder() {
 
   const prerequisiteMessage = (
     <Text textAlign="center">
-      {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
+      {!account ? t('Connect to a wallet to find pools') : t('Select a token to find your liquidity.')}
     </Text>
   )
 
@@ -109,7 +111,7 @@ export default function PoolFinder() {
                   <Text ml="8px">{currency0.getSymbol(chainId)}</Text>
                 </Row>
               ) : (
-                <Text ml="8px">Select a Token</Text>
+                <Text ml="8px">{t('Select a Token')}</Text>
               )}
             </StyledButton>
 
@@ -131,7 +133,7 @@ export default function PoolFinder() {
                   <Text ml="8px">{currency1.getSymbol(chainId)}</Text>
                 </Row>
               ) : (
-                <Text as={Row}>Select a Token</Text>
+                <Text as={Row}>{t('Select a Token')}</Text>
               )}
             </StyledButton>
 
@@ -139,10 +141,10 @@ export default function PoolFinder() {
               <ColumnCenter
                 style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
               >
-                <Text textAlign="center">Pool Found!</Text>
+                <Text textAlign="center">{t('Pool Found!')}</Text>
                 <StyledInternalLink to="/pool">
                   <Text textAlign="center" style={{ textDecoration: 'underline' }}>
-                    Manage this pool.
+                    {t('Manage this pool.')}
                   </Text>
                 </StyledInternalLink>
               </ColumnCenter>
@@ -154,10 +156,10 @@ export default function PoolFinder() {
                   <MinimalPositionCard pair={pair} />
                 ) : (
                   <AutoColumn gap="sm" justify="center">
-                    <Text textAlign="center">You don’t have liquidity in this pool yet.</Text>
+                    <Text textAlign="center">{t('You don’t have liquidity in this pool yet.')}</Text>
                     <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                       <Text style={{ textDecoration: 'underline' }} textAlign="center">
-                        Add Liquidity
+                        {t('Add Liquidity')}
                       </Text>
                     </StyledInternalLink>
                   </AutoColumn>
@@ -166,19 +168,19 @@ export default function PoolFinder() {
                 <AutoColumn gap="sm" justify="center">
                   <Text textAlign="center">No pool found.</Text>
                   <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                    Create pool.
+                    {t('Create pool.')}
                   </StyledInternalLink>
                 </AutoColumn>
               ) : pairState === PairState.INVALID ? (
                 <AutoColumn gap="sm" justify="center">
                   <Text textAlign="center" fontWeight={500}>
-                    Invalid pair.
+                    {t('Invalid pair.')}
                   </Text>
                 </AutoColumn>
               ) : pairState === PairState.LOADING ? (
                 <AutoColumn gap="sm" justify="center">
                   <Text textAlign="center">
-                    Loading
+                    {t('Loading')}
                     <Dots />
                   </Text>
                 </AutoColumn>
