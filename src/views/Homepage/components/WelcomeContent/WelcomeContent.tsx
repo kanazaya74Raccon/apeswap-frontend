@@ -12,7 +12,7 @@ const WelcomeContent: React.FC = () => {
     <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
       <ContentContainer>
         <Flex flexDirection="column" style={{ maxWidth: '650px' }}>
-          <HeadingText>{t('Welcome to Your DeFi Hub')}</HeadingText>
+          <HeadingText>{t('Welcome to the Most Connected DeFi Hub')}</HeadingText>
           {!isMobile && (
             <>
               <br />
