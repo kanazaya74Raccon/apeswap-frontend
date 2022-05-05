@@ -24,7 +24,7 @@ const walletconnect = new WalletConnectConnector({
 })
 
 const bscConnector = new BscConnector({ supportedChainIds: [CHAIN_ID.BSC] })
-const torus = new TorusConnector({ chainId: CHAIN_ID.BSC })
+const torus = new TorusConnector({ chainId: CHAIN_ID.BSC, initOptions: { network: { host: 'bsc_mainnet' } } })
 
 export const walletlink = new WalletLinkConnector({
   url: getRpcUrl(CHAIN_ID.BSC),
