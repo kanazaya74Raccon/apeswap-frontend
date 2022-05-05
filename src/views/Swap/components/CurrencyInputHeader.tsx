@@ -4,6 +4,7 @@ import { Flex, Button, useMatchBreakpoints, Tabs, Tab, RunFiatButton } from '@ap
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { CHAIN_ID } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useTopup from 'hooks/useTopup'
 import { useLocation, useHistory } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 
@@ -46,6 +47,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
   const { t } = useTranslation()
+  const { onTopup } = useTopup()
   const getActiveTab = () => {
     const { pathname } = path
     if (pathname.includes('swap')) return 0
@@ -89,7 +91,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
       </StyledDiv>
       <Flex>
         <div style={{ marginRight: '25px' }}>
-          <RunFiatButton runFiat={() => console.log('runFiat Clicked!!!')} />
+          <RunFiatButton runFiat={onTopup} />
         </div>
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
