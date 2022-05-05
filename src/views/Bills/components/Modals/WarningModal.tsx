@@ -48,7 +48,8 @@ const WarningModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill }) => 
         <Checkbox onClick={() => setConfirmBuy((prev) => !prev)} />
         <Text ml="10px" fontSize="12px" bold>
           {t(
-            'I understand that I am purchasing {bill.earnToken.symbol} at a price above the current market rate, and would like to continue.',
+            'I understand that I am purchasing %billToken% at a price above the current market rate, and would like to continue.',
+            { billToken: bill.earnToken.symbol },
           )}
         </Text>
       </Flex>
