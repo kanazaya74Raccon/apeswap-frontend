@@ -1,7 +1,5 @@
-// import { apiBaseUrl } from 'hooks/api'
+import { apiBaseUrl } from 'hooks/api'
 import { ServiceData } from 'state/types'
-
-const apiBaseUrl = ' https://apeswap-api-development.herokuapp.com'
 
 const getHomepageServiceStats = async (): Promise<ServiceData[]> => {
   try {

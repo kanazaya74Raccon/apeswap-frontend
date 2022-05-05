@@ -5,6 +5,8 @@ import { poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
+import billAbi from 'config/abi/bill.json'
+import billNftAbi from 'config/abi/billNft.json'
 import ifoLinear from 'config/abi/ifoLinear.json'
 import erc20 from 'config/abi/erc20.json'
 import erc20Bytes from 'config/abi/erc20_bytes32.json'
@@ -52,6 +54,8 @@ import {
   NonFungibleApes,
   IfoLinear,
   Ifo,
+  Bill,
+  BillNft,
 } from 'config/abi/types'
 import {
   useApePriceGetterAddress,
@@ -167,6 +171,14 @@ export const useIazoFactoryContract = () => {
 
 export const useIazoContract = (address: string) => {
   return useContract(iazoAbi, address) as Iazo
+}
+
+export const useBillContract = (address: string) => {
+  return useContract(billAbi, address) as Bill
+}
+
+export const useBillNftContract = (address: string) => {
+  return useContract(billNftAbi, address) as BillNft
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {

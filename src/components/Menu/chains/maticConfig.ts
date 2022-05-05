@@ -9,10 +9,6 @@ const maticConfig: MenuEntry[] = [
     href: '/farms',
   },
   {
-    label: 'Vaults',
-    href: '/vaults',
-  },
-  {
     label: 'More',
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',
@@ -28,6 +24,10 @@ const maticConfig: MenuEntry[] = [
       {
         label: 'Governance',
         href: 'https://vote.apeswap.finance',
+      },
+      {
+        label: 'Education',
+        href: 'https://www.apelabs.education/',
       },
     ],
   },

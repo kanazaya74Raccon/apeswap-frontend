@@ -35,10 +35,11 @@ const SwapBanner: React.FC = () => {
 }
 
 const StyledBanner = styled.div<{ image: string }>`
-  height: 120px;
   width: 360px;
+  height: 64px;
   border-radius: 20px;
   ${({ theme }) => theme.mediaQueries.md} {
+    height: 120px;
     width: 680px;
   }
   margin-bottom: 20px;
@@ -48,4 +49,4 @@ const StyledBanner = styled.div<{ image: string }>`
   background-size: 100%;
 `
 
-export default SwapBanner
+export default React.memo(SwapBanner)

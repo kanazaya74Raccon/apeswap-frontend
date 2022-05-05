@@ -4,7 +4,6 @@ import styled from 'styled-components'
 export const ListViewContentContainer = styled(Flex)<{ width?: number; height?: number }>`
     flex-direction: column;
     align-items: flex-start:
-    border: 1px solid green;
     justify-content: flex-start;
     height: ${({ height }) => (height ? `${height}px` : '100%')};
     max-width: ${({ width }) => width || 100}px;
@@ -19,8 +18,9 @@ export const TitleText = styled(Text)<{ lineHeight?: number }>`
   }
 `
 
-export const ValueText = styled(Text)<{ lineHeight?: number; value2Secondary?: boolean }>`
+export const ValueText = styled(Text)<{ lineHeight?: number; value2Secondary?: boolean; valueColor?: string }>`
   font-size: 12px;
+  color: ${({ valueColor, theme }) => valueColor || theme.colors.text};
   line-height: ${({ lineHeight }) => lineHeight || 20}px;
   ${({ theme }) => theme.mediaQueries.md} {
     font-size: ${({ value2Secondary }) => (value2Secondary ? '12px' : '16px')};

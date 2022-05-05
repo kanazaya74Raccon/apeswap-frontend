@@ -19,12 +19,15 @@ export const StyledInputCurrencyWrapper = styled.div`
 
 export const LargeStyledButton = styled(Button)`
   font-weight: 700;
-  font-size: 20px;
+  font-size: 17px;
   width: 100%;
   height: 60px;
   border-radius: 20px;
   margin-top: 10px;
   text-transform: uppercase;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 20px;
+  }
 `
 
 export const ExpertButton = styled(Button)`

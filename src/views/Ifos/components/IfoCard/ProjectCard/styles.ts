@@ -6,12 +6,13 @@ export const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   margin-right: auto;
   border-radius: 50px;
   width: 100%;
+  min-height: 830px;
   margin-bottom: 26px;
 `
 
 export const Banner = styled.img`
   width: 100%;
-  max-height: 135px;
+  max-height: auto;
   border-radius: 10px 10px 0px 0px;
 `
 

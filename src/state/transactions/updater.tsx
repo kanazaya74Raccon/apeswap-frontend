@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useBlock } from 'state/block/hooks'
 import { useToast } from 'state/hooks'
@@ -66,8 +67,13 @@ export default function Updater(): null {
                 }),
               )
 
-              const toast = receipt.status === 1 ? toastSuccess : toastError
-              toast('Transaction receipt')
+              // eslint-disable-next-line no-unused-expressions
+              receipt.status === 1
+                ? toastSuccess('Transaction Successful', {
+                    text: 'View Transaction',
+                    url: getEtherscanLink(receipt.transactionHash, 'transaction', chainId),
+                  })
+                : toastError('Transaction Failed')
             } else {
               dispatch(checkedTransaction({ chainId, hash, blockNumber: currentBlock }))
             }

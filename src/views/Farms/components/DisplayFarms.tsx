@@ -1,13 +1,17 @@
 import React from 'react'
-import { Flex, useMatchBreakpoints, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
+import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
+import { LiquidityModal } from 'components/LiquidityWidget'
 import ListViewContent from 'components/ListViewContent'
 import { Farm } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
+import useIsMobile from 'hooks/useIsMobile'
+import { Field, selectCurrency } from 'state/swap/actions'
+import { useAppDispatch } from 'state'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
@@ -15,15 +19,43 @@ import { ActionContainer } from './CardActions/styles'
 
 const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
-  const { isXl, isLg, isXxl } = useMatchBreakpoints()
-  const isMobile = !isLg && !isXl && !isXxl
+  const isMobile = useIsMobile()
+  const dispatch = useAppDispatch()
 
-  const farmsListView = farms.map((farm, i) => {
+  // TODO: clean up this code
+  // Hack to get the close modal function from the provider
+  // Need to export ModalContext from uikit to clean up the code
+  const [, closeModal] = useModal(<></>)
+  const [onPresentAddLiquidityWidgetModal] = useModal(
+    <LiquidityModal handleClose={closeModal} />,
+    true,
+    true,
+    'liquidityWidgetModal',
+  )
+
+  const showLiquidity = (token, quoteToken) => {
+    dispatch(
+      selectCurrency({
+        field: Field.INPUT,
+        currencyId: token,
+      }),
+    )
+    dispatch(
+      selectCurrency({
+        field: Field.OUTPUT,
+        currencyId: quoteToken,
+      }),
+    )
+    onPresentAddLiquidityWidgetModal()
+  }
+
+  const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
     const bscScanUrl = `https://bscscan.com/address/${farm.lpAddresses[chainId]}`
     const liquidityUrl = `https://apeswap.finance/add/${
       farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId]
     }/${farm.tokenAddresses[chainId]}`
+    const { projectLink } = farm
     const userAllowance = farm?.userData?.allowance
     const userEarnings = getBalanceNumber(farm?.userData?.earnings || new BigNumber(0))?.toFixed(2)
     const userEarningsUsd = `$${(
@@ -34,11 +66,14 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
 
-    // Changing tooltip placement conditionaly until zindex solution
-
     return {
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
-      title: farm.lpSymbol,
+      stakeLp: true,
+      title: (
+        <Text ml={10} bold>
+          {farm.lpSymbol}
+        </Text>
+      ),
       open: farm.pid === openPid,
       id: farm.pid,
       infoContent: (
@@ -61,6 +96,13 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 View on BscScan
               </LinkExternal>
             </Flex>
+            {projectLink && (
+              <Flex alignItems="center" justifyContent="center" mt="15px">
+                <LinkExternal href={projectLink} style={{ fontSize: '14px' }}>
+                  Learn More
+                </LinkExternal>
+              </Flex>
+            )}
           </Flex>
         </>
       ),
@@ -68,11 +110,12 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
         <>
           <ListViewContent
             title="APY"
-            value={`${farm?.apy}%`}
-            width={isMobile ? 90 : 160}
+            value={parseFloat(farm?.apy) > 1000000 ? `>1,000,000%` : `${farm?.apy}%`}
+            width={isMobile ? 90 : 150}
+            ml={20}
             toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
-            toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 38%)"
           />
           <ListViewContent
             title="APR"
@@ -88,10 +131,10 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 <Svg icon="banana_token" width={15} color="text" />
               </span>
             }
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
-            toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
-            toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
+            toolTipPlacement="bottomLeft"
+            toolTipTransform="translate(0, 38%)"
             aprCalculator={
               <ApyButton
                 lpLabel={farm.lpSymbol}
@@ -105,28 +148,12 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
           <ListViewContent
             title="Liquidity"
             value={`$${Number(farm?.totalLpStakedUsd).toLocaleString(undefined)}`}
-            width={isMobile ? 100 : 200}
+            width={isMobile ? 100 : 180}
             toolTip="The total value of the LP tokens currently staked in this farm."
-            toolTipPlacement={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'topRight'
-                  : 'bottomRight'
-                : i === farms.length - 1 && i !== 0
-                ? 'topRight'
-                : 'bottomLeft'
-            }
-            toolTipTransform={
-              isMobile
-                ? i === farms.length - 1 && i !== 0
-                  ? 'translate(-60%, -110%)'
-                  : 'translate(-75%, 75%)'
-                : i === farms.length - 1 && i !== 0
-                ? 'translate(-60%, -110%)'
-                : 'translate(0%, 75%)'
-            }
+            toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
+            toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 75%)'}
           />
-          <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 100} />
+          <ListViewContent title="Earned" value={userEarnings} width={isMobile ? 65 : 120} />
         </>
       ),
       expandedContent: (
@@ -144,9 +171,17 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
                 ml={10}
               />
             )}
-            <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <FarmButton>GET LP</FarmButton>
-            </a>
+
+            <FarmButton
+              onClick={() =>
+                showLiquidity(
+                  farm.tokenAddresses[chainId],
+                  farm.quoteTokenSymbol === 'BNB' ? 'ETH' : farm.quoteTokenAdresses[chainId],
+                )
+              }
+            >
+              GET LP
+            </FarmButton>
             {!isMobile && (
               <ListViewContent
                 title="Available LP"

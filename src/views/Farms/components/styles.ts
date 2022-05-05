@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
+import { Button, ArrowDropUpIcon, Flex, Text } from '@apeswapfinance/uikit'
 
 export const FarmButton = styled(Button)`
   border-radius: 10px;
@@ -17,7 +17,14 @@ export const NextArrow = styled(ArrowDropUpIcon)`
 export const Container = styled(Flex)`
   flex-direction: row;
   position: relative;
-  transform: translateY(-40px);
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
+`
+
+export const TitleText = styled(Text)`
+  font-size: 12px;
+  ${({ theme }) => theme.mediaQueries.md} {
+    font-size: 16px;
+  }
 `

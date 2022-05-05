@@ -17,6 +17,7 @@ import nfaStakingPoolsReducer from './nfaStakingPools'
 import dualFarmsReducer from './dualFarms'
 import blockReducer from './block'
 import multicall from './multicall/reducer'
+import billsReducer from './bills'
 import swap from './swap/reducer'
 import user from './user/reducer'
 import lists from './lists/reducer'
@@ -45,6 +46,7 @@ const store = configureStore({
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,
     dualFarms: dualFarmsReducer,
+    bills: billsReducer,
     nfas: nfasReducer,
     multicall,
     swap,

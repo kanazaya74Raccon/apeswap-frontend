@@ -26,11 +26,11 @@ export const defaultServiceData: DefaultServiceData[] = [
     stats: [],
   },
   {
-    id: '',
-    title: 'Coming Soon',
+    id: 'treasuryBills',
+    title: '',
     description: '',
     backgroundImg: 'images/homepage-coming-soon.svg',
-    link: '',
+    link: '/treasury-bills',
     stats: [],
   },
 ]

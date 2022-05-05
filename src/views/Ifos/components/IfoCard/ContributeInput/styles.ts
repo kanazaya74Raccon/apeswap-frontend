@@ -13,9 +13,20 @@ export const Box = styled(Flex)`
 `
 
 export const ContributeButton = styled(Button)`
-  margin-left: 16px;
+  width: 100%;
+  margin-top: 10px;
 `
 
 export const ContributeInput = styled(Input)`
-  background-color: ${({ theme }) => (theme.isDark ? '#424242' : '#e5e5e5')};
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: none;
 `
+
+export const Container = styled.div`
+  display: flex;
+  border-radius: 10px;
+  height: 48px;
+  background-color: ${({ theme }) => theme.colors.white2};
+`
+export const MaxButton = styled(Button)``
