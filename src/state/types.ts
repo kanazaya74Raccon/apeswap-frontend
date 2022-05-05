@@ -408,9 +408,12 @@ export interface ServiceData {
   id: number
   apr?: number
   apy?: number
+  discount?: number
   link: string
   marketName?: string
   marketAddress?: string
+  lpTokenName?: string
+  earnTokenName?: string
   stakeToken?: {
     name: string
     address: string
