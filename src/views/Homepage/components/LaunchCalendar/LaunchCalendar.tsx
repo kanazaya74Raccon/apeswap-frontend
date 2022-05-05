@@ -7,6 +7,7 @@ import { useFetchHomepageLaunchCalendar, useHomepageLaunchCalendar } from 'state
 import { useTheme } from 'styled-components'
 import useSwiper from 'hooks/useSwiper'
 import { QuestionMark } from 'components/Icons'
+import { useTranslation } from 'contexts/Localization'
 import {
   Bubble,
   CalendarImg,
@@ -29,6 +30,7 @@ const LaunchCalendar: React.FC = () => {
   const sortLaunch = launchCal?.filter((launch) => new Date(launch.launchTime) > today)
   const launchCalLength = sortLaunch?.length || 0
   const { observerRef, isIntersecting } = useIntersectionObserver()
+  const { t } = useTranslation()
 
   const slideNewsNav = (index: number) => {
     setActiveSlide(index)
@@ -50,7 +52,7 @@ const LaunchCalendar: React.FC = () => {
       <div ref={observerRef} />
       <ColorWrap>
         <LaunchCalendarWrapper>
-          <LaunchText bold>Launch Calendar</LaunchText>
+          <LaunchText bold>{t('Launch Calendar')}</LaunchText>
           <Flex justifyContent="space-around" style={{ width: '100%', overflow: 'hidden' }}>
             {sortLaunch ? (
               <Swiper

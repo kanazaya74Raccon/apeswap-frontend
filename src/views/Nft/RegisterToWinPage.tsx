@@ -2,9 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button, Heading, Text } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+
 import Page from 'components/layout/Page'
 import Container from 'components/layout/Container'
+import { useTranslation } from 'contexts/Localization'
 import HowItWorks from './components/HowItWorks'
 import NftPreview from './components/NftPreview'
 
@@ -25,7 +26,7 @@ const Cta = styled.div`
 `
 
 const RegisterToWinPage = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Page>
@@ -35,9 +36,9 @@ const RegisterToWinPage = () => {
             NFTs
           </Heading>
           <Heading as="h2" size="lg" color="secondary" mb="16px">
-            {TranslateString(614, 'Trade in for BANANA, or keep for your collection!')}
+            {t('Trade in for BANANA, or keep for your collection!')}
           </Heading>
-          <Text mb="24px">{TranslateString(616, 'Register your interest in winning an NFT below.')}</Text>
+          <Text mb="24px">{t('Register your interest in winning an NFT below.')}</Text>
           <Cta>
             <Button
               as="a"
@@ -45,10 +46,10 @@ const RegisterToWinPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(618, 'Register for a chance to win')}
+              {t('Register for a chance to win')}
             </Button>
             <Button as="a" href="#how-it-works" variant="secondary">
-              {TranslateString(620, 'Learn more')}
+              {t('Learn more')}
             </Button>
           </Cta>
         </StyledHero>

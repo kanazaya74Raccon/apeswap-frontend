@@ -7,6 +7,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import styled from 'styled-components'
 import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
+import { useTranslation } from 'contexts/Localization'
 import { AutoRow, RowFixed } from '../layout/Row'
 import { AutoColumn } from '../layout/Column'
 
@@ -59,6 +60,7 @@ export default function ImportRow({
   // check if already active on list or local storage tokens
   const isAdded = useIsUserAddedToken(token)
   const isActive = useIsTokenActive(token)
+  const { t } = useTranslation()
 
   return (
     <TokenSection style={style}>
@@ -88,12 +90,12 @@ export default function ImportRow({
             showImportView()
           }}
         >
-          Import
+          {t('Import')}
         </Button>
       ) : (
         <RowFixed style={{ minWidth: 'fit-content' }}>
           <CheckIcon />
-          <Text color="success">Active</Text>
+          <Text color="success">{t('Active')}</Text>
         </RowFixed>
       )}
     </TokenSection>

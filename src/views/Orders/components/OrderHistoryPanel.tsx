@@ -12,6 +12,7 @@ import useAutonomyOrdersLib from '../../../hooks/useAutonomyOrdersLib'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from '../styles'
 import OrderRow from './OrderRow'
+import { useTranslation } from '../../../contexts/Localization'
 
 const OrderHistoryContainer = styled(StyledSwapContainer)`
   margin-top: -40px;
@@ -104,7 +105,8 @@ export default function OrderHistoryPanel() {
   const [orderOffset, setOrderOffset] = useState(0)
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
-  const orderStatusLabels = ['Open', 'Closed', 'Cancelled']
+  const { t } = useTranslation()
+  const orderStatusLabels = [t('Open'), t('Closed'), t('Cancelled')]
 
   const autonomyOrdersLib = useAutonomyOrdersLib()
   const { account } = useActiveWeb3React()
@@ -153,7 +155,7 @@ export default function OrderHistoryPanel() {
             <Tabs activeTab={activeTab} size="md" variant="fullWidth">
               <Tab
                 index={0}
-                label="OPEN"
+                label={t('OPEN')}
                 size={isMobile ? 'xsm' : 'md'}
                 activeTab={activeTab}
                 variant="fullWidth"
@@ -161,7 +163,7 @@ export default function OrderHistoryPanel() {
               />
               <Tab
                 index={1}
-                label="CLOSED"
+                label={t('CLOSED')}
                 size={isMobile ? 'xsm' : 'md'}
                 variant="fullWidth"
                 activeTab={activeTab}
@@ -169,7 +171,7 @@ export default function OrderHistoryPanel() {
               />
               <Tab
                 index={2}
-                label="CANCELLED"
+                label={t('CANCELLED')}
                 size={isMobile ? 'xsm' : 'md'}
                 variant="fullWidth"
                 activeTab={activeTab}
@@ -182,7 +184,11 @@ export default function OrderHistoryPanel() {
               {currentOrders.length > 0 ? (
                 <OrderRows orders={currentOrders} />
               ) : (
-                <Text textAlign="center">No {orderStatusLabels[activeTab]} orders</Text>
+                <Text textAlign="center">
+                  {t('No %orderLabel% orders', {
+                    orderLabel: orderStatusLabels[activeTab],
+                  })}
+                </Text>
               )}
             </div>
             <Pagination

@@ -6,6 +6,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import getTimePeriods from 'utils/getTimePeriods'
 import ReactPlayer from 'react-player'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import {
   ActionButtonsContainer,
   BillDescriptionContainer,
@@ -27,6 +28,7 @@ interface BillModalProps {
 
 const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const {
     token,
     quoteToken,
@@ -87,7 +89,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
                       {lpToken.symbol}
                     </StyledHeadingText>
                     <TopDescriptionText ml="12px">
-                      Vesting Term: {`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
+                      {t('Vesting Term')}: {`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
                     </TopDescriptionText>
                   </Flex>
                 </Flex>
@@ -95,7 +97,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               <Flex flexDirection="column" mt={25}>
                 <Flex style={{ width: '250px' }}>
                   <TopDescriptionText>
-                    {earnToken.symbol} Market Price{' '}
+                    {earnToken.symbol} {t('Market Price')}{' '}
                     <span style={{ textDecoration: 'line-through' }}>${earnTokenPrice?.toFixed(3)}</span>
                   </TopDescriptionText>
                 </Flex>
@@ -126,7 +128,7 @@ const BuyBillModalView: React.FC<BillModalProps> = ({ onDismiss, bill }) => {
               {new BigNumber(userData?.allowance).gt(0) && (
                 <BillValueTextWrapper>
                   <Text fontSize="14px">
-                    Bill Value:{' '}
+                    {t('Bill Value')}:{' '}
                     <span style={{ fontWeight: 700 }}>
                       {billValue === 'NaN' ? '0' : billValue} {earnToken?.symbol}
                     </span>

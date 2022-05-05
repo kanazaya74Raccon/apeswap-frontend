@@ -3,6 +3,7 @@ import { Iazo } from 'state/types'
 import DonutChart from 'views/Iazos/components/DonutChart'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import InfoFooter from './InfoFooter'
 import { BoldAfterText } from '../../styles'
 import { InfoWrapper } from './styles'
@@ -19,6 +20,7 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const tokenFee = parseInt(iazoTokenFee) / 1000
   const liquidityPercentParsed = parseFloat(liquidityPercent) / 1000
   const priceDifference = Math.abs(parseFloat(tokenPrice) / parseFloat(listingPrice))
+  const { t } = useTranslation()
 
   // Inputs
   const tokensForSale = getBalanceNumber(new BigNumber(amount), parseInt(decimals))
@@ -27,33 +29,33 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
   const items = [
     {
-      label: 'For Sale',
+      label: t('For Sale'),
       value: tokensForSale,
       color: 'rgba(255, 179, 0, 1)',
     },
     {
-      label: 'Liquidity',
+      label: t('Liquidity'),
       value: tokensForLiquidity,
       color: 'rgba(56, 166, 17, 1)',
     },
     {
-      label: 'Fees',
+      label: t('Fees'),
       value: tokensForFees,
       color: 'rgba(161, 101, 82, 1)',
     },
     {
-      label: 'Dev/Other',
+      label: t('Dev/Other'),
       value: tokensForOther,
       color: 'rgba(122, 122, 122, 1)',
     },
   ]
   return (
     <InfoWrapper>
-      <DonutChart items={items} title={`${name} Tokenomics`} />
+      <DonutChart items={items} title={`${name} ${t('Tokenomics')}`} />
       <div>
-        <BoldAfterText boldContent={tokenTotalSupply.toString()}> Total Token Supply: </BoldAfterText>
-        <BoldAfterText boldContent={tokensForSale.toString()}> Total Tokens For Sale: </BoldAfterText>
-        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}> Total Tokens For Liquidity: </BoldAfterText>
+        <BoldAfterText boldContent={tokenTotalSupply.toString()}> {t('Total Token Supply')}: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForSale.toString()}> {t('Total Tokens For Sale')}: </BoldAfterText>
+        <BoldAfterText boldContent={tokensForLiquidity.toFixed(2)}> {t('Total Tokens For Liquidity')}: </BoldAfterText>
       </div>
       <br />
       <br />

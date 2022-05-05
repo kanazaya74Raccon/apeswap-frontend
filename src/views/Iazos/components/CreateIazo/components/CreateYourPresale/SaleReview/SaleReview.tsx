@@ -1,6 +1,7 @@
 import React from 'react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import DonutChart from '../../../../DonutChart'
 import { TokenSaleDetails, LiquidityLockDetails, ExtendedERC20Details } from '../types'
 
@@ -22,6 +23,7 @@ const SaleReview: React.FC<SaleReviewProps> = ({
   const { tokensForSale, pricePerToken } = presaleDetails
   const { liquidityPercent, listingPrice } = postsaleDetails
   const { totalSupply, tokenDecimals, quoteToken } = pairDetails
+  const { t } = useTranslation()
 
   const baseFeeFormatted = parseFloat(baseFee) / 1000
   const iazoTokenFeeFormatted = parseFloat(iazoTokenFee) / 1000
@@ -48,39 +50,39 @@ const SaleReview: React.FC<SaleReviewProps> = ({
       <DonutChart
         items={[
           {
-            label: 'For Sale',
+            label: t('For Sale'),
             value: parseFloat(tokensForSale),
             color: 'rgba(255, 179, 0, 1)',
           },
           {
-            label: 'Liquidity',
+            label: t('Liquidity'),
             value: tokensForLiquidity,
             color: 'rgba(56, 166, 17, 1)',
           },
           {
-            label: 'Fees',
+            label: t('Fees'),
             value: tokensForFees,
             color: 'rgba(122, 122, 122, 1)',
           },
-          { label: 'Dev/Other', value: tokensForOther, color: 'rgba(161, 101, 82, 1)' },
+          { label: t('Dev/Other'), value: tokensForOther, color: 'rgba(161, 101, 82, 1)' },
         ]}
-        title="SS-IAO's Tokenomics"
+        title={t("SS-IAO's Tokenomics")}
       />
       <DonutChart
         items={[
           {
-            label: 'Liquidity',
+            label: t('Liquidity'),
             value: quoteTokenForLiqudity,
             color: 'rgba(56, 166, 17, 1)',
           },
           {
-            label: 'Fees',
+            label: t('Fees'),
             value: quoteTokenForFees,
             color: 'rgba(122, 122, 122, 1)',
           },
-          { label: 'Dev/Other', value: amountForOther, color: 'rgba(161, 101, 82, 1)' },
+          { label: t('Dev/Other'), value: amountForOther, color: 'rgba(161, 101, 82, 1)' },
         ]}
-        title={`${quoteToken} Raised`}
+        title={`${quoteToken} ${t('Raised')}`}
       />
     </>
   )

@@ -12,6 +12,7 @@ import {
 } from 'utils/prices'
 import { AutoColumn } from 'components/layout/Column'
 import { AutoRow, RowBetween, RowFixed } from 'components/layout/Row'
+import { useTranslation } from 'contexts/Localization'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { StyledBalanceMaxMini, SwapCallbackError } from './styled'
 import { LargeStyledButton } from '../styles'
@@ -39,6 +40,7 @@ export default function SwapModalFooter({
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [allowedSlippage, trade],
@@ -50,7 +52,7 @@ export default function SwapModalFooter({
     <>
       <SwapModalFooterContainer>
         <RowBetween align="center">
-          <Text fontSize="14px">Price</Text>
+          <Text fontSize="14px">{t('Price')}</Text>
           <Text
             fontSize="14px"
             style={{
@@ -71,7 +73,7 @@ export default function SwapModalFooter({
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT ? 'Minimum received' : 'Maximum sold'}
+              {trade.tradeType === TradeType.EXACT_INPUT ? t('Minimum received') : t('Maximum sold')}
             </Text>
           </RowFixed>
           <RowFixed>
@@ -89,13 +91,13 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Price Impact</Text>
+            <Text fontSize="14px">{t('Price Impact')}</Text>
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Liquidity Provider Fee</Text>
+            <Text fontSize="14px">{t('Liquidity Provider Fee')}</Text>
           </RowFixed>
           <Text fontSize="14px">
             {realizedLPFee
@@ -107,7 +109,7 @@ export default function SwapModalFooter({
 
       <AutoRow>
         <LargeStyledButton onClick={onConfirm} disabled={disabledConfirm} mt="12px" id="confirm-swap-or-send">
-          {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
+          {severity > 2 ? t('Swap Anyway') : t('Confirm Swap')}
         </LargeStyledButton>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

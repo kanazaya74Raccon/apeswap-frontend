@@ -2,6 +2,7 @@ import React from 'react'
 import { Flex, Select, SelectItem, Text } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 import { ListViewProps } from './types'
 import SearchInput from './SearchInput'
 import { ClaimAllWrapper, ControlContainer, LabelWrapper, LearnMoreButton, StyledText } from './styles'
@@ -10,6 +11,7 @@ import ClaimAll from '../Actions/ClaimAll'
 
 const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOption, query, activeOption, bills }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const userOwnedBills = bills?.filter((bill) => bill?.userOwnedBillsData?.length > 0)
   const ownedBillsAmount = bills
     ?.flatMap((bill) => (bill?.userOwnedBillsData ? bill.userOwnedBillsData : []))
@@ -30,7 +32,7 @@ const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOptio
     <ControlContainer>
       <LabelWrapper>
         <StyledText bold mr="15px">
-          Search
+          {t('Search')}
         </StyledText>
         <SearchInput onChange={onHandleQueryChange} value={query} />
       </LabelWrapper>
@@ -39,7 +41,7 @@ const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOptio
           {OPTIONS.map((option) => {
             return (
               <SelectItem size="sm" value={option.value}>
-                <Text>{option.label}</Text>
+                <Text>{t(option.label)}</Text>
               </SelectItem>
             )
           })}
@@ -47,7 +49,7 @@ const BillMenu: React.FC<ListViewProps> = ({ onHandleQueryChange, onSetSortOptio
       </Flex>
       <LearnMoreButton variant="secondary" as={Link} to="?modal=bills">
         {' '}
-        Learn More{' '}
+        {t('Learn More')}{' '}
       </LearnMoreButton>
       <ClaimAllWrapper>
         <ClaimAll userOwnedBills={ownedBills} ownedBillsAmount={ownedBillsAmount} />

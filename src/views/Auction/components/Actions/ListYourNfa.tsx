@@ -3,6 +3,7 @@ import { useModal } from '@apeswapfinance/uikit'
 import { useProfile } from 'state/hooks'
 import useListNfa from 'hooks/useListNfa'
 import styled from 'styled-components'
+import { useTranslation } from 'contexts/Localization'
 import NfaListingModal from '../NfaListingModal'
 
 const MoreInfo = styled.div`
@@ -28,6 +29,7 @@ const MoreInfo = styled.div`
 const ListYourNfa: React.FC = () => {
   const { profile } = useProfile()
   const { onListNfa } = useListNfa()
+  const { t } = useTranslation()
   const [onPresentNfaListingModal] = useModal(
     <NfaListingModal
       ownedNfas={profile?.ownedNfts}
@@ -37,7 +39,7 @@ const ListYourNfa: React.FC = () => {
     />,
   )
 
-  return <MoreInfo onClick={onPresentNfaListingModal}> LIST YOUR NFA </MoreInfo>
+  return <MoreInfo onClick={onPresentNfaListingModal}> {t('LIST YOUR NFA')} </MoreInfo>
 }
 
 export default ListYourNfa

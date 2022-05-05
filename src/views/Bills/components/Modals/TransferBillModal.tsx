@@ -4,6 +4,7 @@ import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import React, { useState } from 'react'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useTranslation } from 'contexts/Localization'
 import Transfer from '../Actions/Transfer'
 import VestedTimer from '../VestedTimer'
 import { TopDescriptionText } from './styles'
@@ -15,6 +16,7 @@ interface TransferBillModalProps {
 }
 
 const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, billId }) => {
+  const { t } = useTranslation()
   const [confirmSend, setConfirmSend] = useState(false)
   const [toAddress, setToAddress] = useState('')
   const { earnToken, lpToken, billNftAddress, userOwnedBillsData } = bill
@@ -23,7 +25,7 @@ const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, 
   return (
     <Modal onDismiss={onDismiss} maxWidth="385px" title="Transfer Bill">
       <Flex mt="30px">
-        <Text bold> Transfering: </Text>
+        <Text bold> {t('Transfering')}: </Text>
       </Flex>
       <Flex mt="30px" flexDirection="column" alignItems="center" mr="10px">
         <Text bold fontSize="25px">
@@ -31,7 +33,7 @@ const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, 
         </Text>
         <Flex mt="5px">
           <Flex mr="20px" flexDirection="column">
-            <TopDescriptionText textAlign="center">Vesting time</TopDescriptionText>
+            <TopDescriptionText textAlign="center">{t('Vesting time')}</TopDescriptionText>
             <VestedTimer
               lastBlockTimestamp={userOwnedBill?.lastBlockTimestamp}
               vesting={userOwnedBill?.vesting}
@@ -39,7 +41,7 @@ const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, 
             />
           </Flex>
           <Flex ml="20px" flexDirection="column">
-            <TopDescriptionText textAlign="center">Pending</TopDescriptionText>
+            <TopDescriptionText textAlign="center">{t('Pending')}</TopDescriptionText>
             <Flex>
               <ServiceTokenDisplay token1={earnToken.symbol} size={20} />
               <Text bold ml="5px">
@@ -50,11 +52,11 @@ const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, 
         </Flex>
       </Flex>
       <Flex mt="30px" flexDirection="column">
-        <Text bold>Recieving Address:</Text>
+        <Text bold>{t('Receiving Address')}:</Text>
         <Input
           mt="10px"
           size="lg"
-          placeholder="Paste the address here"
+          placeholder={t('Paste the address here')}
           value={toAddress}
           onChange={(e) => setToAddress(e.target.value)}
           style={{ width: '345px', border: 'none' }}
@@ -62,14 +64,14 @@ const TransferBillModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill, 
       </Flex>
       <Text mt="30px" fontSize="12px" style={{ color: 'rgba(223, 65, 65, 1)' }}>
         <Text bold style={{ color: 'rgba(223, 65, 65, 1)' }} fontSize="13px">
-          WARNING
+          {t('WARNING')}
         </Text>
-        When transfering the NFT all pending rewards will also be transfered to the receiver address.
+        {t('When transfering the NFT all pending rewards will also be transfered to the receiver address.')}
       </Text>
       <Flex mt="20px" alignItems="center">
         <Checkbox onClick={() => setConfirmSend((prev) => !prev)} />
         <Text ml="10px" fontSize="12px">
-          I understand the new wallet gains ownership of all unclaimed assets.
+          {t('I understand the new wallet gains ownership of all unclaimed assets.')}
         </Text>
       </Flex>
       <ModalFooter onDismiss={onDismiss}>

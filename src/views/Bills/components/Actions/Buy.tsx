@@ -10,6 +10,7 @@ import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
 import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
 import { Field, selectCurrency } from 'state/swap/actions'
+import { useTranslation } from 'contexts/Localization'
 import { BuyProps } from './types'
 import { BuyButton, GetLPButton, MaxButton, StyledInput } from './styles'
 
@@ -30,6 +31,7 @@ const Buy: React.FC<BuyProps> = ({
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
+  const { t } = useTranslation()
 
   const handleInput = (val: string) => {
     setAmount(val)
@@ -49,14 +51,14 @@ const Buy: React.FC<BuyProps> = ({
       .then((resp) => {
         const trxHash = resp.transactionHash
         searchForBillId(resp)
-        toastSuccess('Buy Successful', {
-          text: 'View Transaction',
+        toastSuccess(t('Buy Successful'), {
+          text: t('View Transaction'),
           url: getEtherscanLink(trxHash, 'transaction', chainId),
         })
       })
       .catch((e) => {
         console.error(e)
-        toastError(e?.data?.message || 'Something went wrong please try again')
+        toastError(e?.data?.message || t('Something went wrong please try again'))
         setPendingTrx(false)
         onTransactionSubmited(false)
       })
@@ -95,18 +97,18 @@ const Buy: React.FC<BuyProps> = ({
   return (
     <>
       <GetLPButton variant="secondary" onClick={showLiquidity}>
-        Get LP
+        {t('Get LP')}
       </GetLPButton>
       <Flex style={{ position: 'relative' }}>
         <Text fontSize="12px" style={{ position: 'absolute', top: 14, left: 10, zIndex: 1 }} bold>
-          Amount:
+          {t('Amount')}:
         </Text>
         <MaxButton size="sm" onClick={() => handleInput(formatUserLpValue)}>
-          Max
+          {t('Max')}
         </MaxButton>
         <StyledInput onChange={(e) => handleInput(e.target.value)} value={amount} />
         <Text fontSize="12px" style={{ position: 'absolute', bottom: 6, left: 10, zIndex: 1, opacity: 0.8 }}>
-          Balance:
+          {t('Balance')}:
         </Text>
         <Text fontSize="12px" style={{ position: 'absolute', bottom: 5, right: 10, zIndex: 1, opacity: 0.8 }}>
           {formatUserLpValue?.slice(0, 15)} LP
@@ -117,7 +119,7 @@ const Buy: React.FC<BuyProps> = ({
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
         disabled={disabled || parseFloat(formatUserLpValue) < parseFloat(amount) || pendingTrx}
       >
-        Buy
+        {t('Buy')}
       </BuyButton>
     </>
   )

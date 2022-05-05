@@ -1,5 +1,6 @@
 import React from 'react'
 import { IazoSocialInfo } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import IazoSymbols from '../../IazoSymbols'
 import { InfoFooterWrapper, StyledText } from './styles'
 
@@ -9,9 +10,10 @@ interface InfoFooterProps {
 
 const InfoFooter: React.FC<InfoFooterProps> = ({ social }) => {
   const { website, whitepaper, telegram, twitter, medium } = social
+  const { t } = useTranslation()
   return (
     <>
-      <StyledText> Presale info </StyledText>
+      <StyledText> {t('Presale info')} </StyledText>
       <InfoFooterWrapper>
         <IazoSymbols iconImage="website" url={website} link />
         <IazoSymbols iconImage="whitepaper" url={whitepaper} link />

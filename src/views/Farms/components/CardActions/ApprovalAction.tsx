@@ -6,6 +6,7 @@ import { useAppDispatch } from 'state'
 import { useERC20 } from 'hooks/useContract'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { useToast } from 'state/hooks'
 import { StyledButton } from './styles'
 
@@ -22,6 +23,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onApprove } = useApprove(stakingTokenContract)
   const { toastSuccess } = useToast()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -36,8 +38,8 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
             await onApprove()
               .then((resp) => {
                 const trxHash = resp.transactionHash
-                toastSuccess('Approve Successful', {
-                  text: 'View Transaction',
+                toastSuccess(t('Approve Successful'), {
+                  text: t('View Transaction'),
                   url: getEtherscanLink(trxHash, 'transaction', chainId),
                 })
               })
@@ -50,7 +52,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
           }}
           endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
         >
-          ENABLE
+          {t('ENABLE')}
         </StyledButton>
       )}
     </>

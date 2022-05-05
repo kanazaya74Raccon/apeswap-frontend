@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAllHarvest } from 'hooks/useHarvest'
 import { AutoRenewIcon, Button } from '@apeswapfinance/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { ActionContainer } from './styles'
 
 interface HarvestActionsProps {
@@ -11,6 +12,7 @@ interface HarvestActionsProps {
 
 const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onReward } = useAllHarvest(pids, chainId)
 
@@ -30,7 +32,7 @@ const HarvestAllAction: React.FC<HarvestActionsProps> = ({ pids, disabled }) => 
         }}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
-        HARVEST ALL ({pids.length})
+        {t('HARVEST ALL')} ({pids.length})
       </Button>
     </ActionContainer>
   )

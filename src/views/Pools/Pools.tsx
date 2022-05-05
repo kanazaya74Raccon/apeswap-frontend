@@ -6,6 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Flex } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
+import { useTranslation } from 'contexts/Localization'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
@@ -28,6 +29,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const allPools = usePools(account)
+  const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const { search } = window.location
   const params = new URLSearchParams(search)
@@ -141,7 +143,7 @@ const Pools: React.FC = () => {
           <Banner
             banner="pools"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/pools"
-            title="Staking Pools"
+            title={t('Staking Pools')}
             listViewBreak
             maxWidth={1130}
           />

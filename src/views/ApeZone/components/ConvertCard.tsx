@@ -11,9 +11,9 @@ import { useToast } from 'state/hooks'
 import { useBananaAddress } from 'hooks/useAddress'
 import useTokenBalance from 'hooks/useTokenBalance'
 
+import { useTranslation } from 'contexts/Localization'
 import TokenInput from 'components/TokenInput'
 import CardValue from 'components/CardValue'
-
 import {
   FlexSection,
   CheckBoxCon,
@@ -44,6 +44,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   const bananaBalance = useTokenBalance(useBananaAddress())
   const { toastSuccess } = useToast()
   const bananaContract = useBanana()
+  const { t } = useTranslation()
 
   const { isApproving, isApproved, handleApprove } = useApproveTransaction({
     onRequiresApproval: async (loadedAccount) => {
@@ -59,7 +60,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
       return bananaContract.approve(treasuryContract.address, ethers.constants.MaxUint256).then((trx) => trx.wait())
     },
     onSuccess: async () => {
-      toastSuccess('Approved!')
+      toastSuccess(t('Approved!'))
     },
   })
 
@@ -103,7 +104,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
   return (
     <StyledCard>
       <HeaderCard>
-        <Header>CONVERT</Header>
+        <Header>{t('CONVERT')}</Header>
         <TokensDisplay>
           {fromToken} &gt; {toToken}
         </TokensDisplay>
@@ -119,11 +120,11 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
         />
         {isApproved ? (
           <StyledButton disabled={disabled} variant="primary" margin="10px" onClick={buy}>
-            CONVERT
+            {t('CONVERT')}
           </StyledButton>
         ) : (
           <StyledButton margin="10px" disabled={isApproving} onClick={handleApprove}>
-            APPROVE CONTRACT
+            {t('APPROVE CONTRACT')}
           </StyledButton>
         )}
 
@@ -134,11 +135,11 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
             fontSize="16px"
             decimals={4}
             value={gnanaVal}
-            prefix={`OUTPUT ${toToken}`}
+            prefix={`${t('OUTPUT')} ${toToken}`}
           />
 
           <Text fontSize="12px" fontWeight={500}>
-            *Current max conversion is {displayMax}
+            {t('*Current max conversion is %displayMax%', { displayMax })}
           </Text>
 
           <CBS>
@@ -146,7 +147,7 @@ const ConvertCard: React.FC<ConvertCardType> = ({ fromToken, toToken }) => {
               <StyledCheckbox id="checkbox" scale="md" checked={unlimited} onChange={handleCheckBox} />
             </CheckBoxCon>
             <StyledText fontSize="12px" fontWeight={500}>
-              I understand what I am doing and want to enable unlimited conversion.
+              {t('I understand what I am doing and want to enable unlimited conversion.')}
             </StyledText>
           </CBS>
         </FlexSection>

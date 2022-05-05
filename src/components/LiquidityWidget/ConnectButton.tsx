@@ -2,17 +2,17 @@ import React from 'react'
 import { useWalletModal } from '@apeswapfinance/uikit'
 import { Button } from '@ape.swap/uikit'
 import useAuth from 'hooks/useAuth'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styles from './styles'
 
 const ConnectButton = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
 
   return (
     <Button onClick={onPresentConnectModal} csx={styles.button}>
-      {TranslateString(292, 'CONNECT WALLET')}
+      {t('CONNECT WALLET')}
     </Button>
   )
 }

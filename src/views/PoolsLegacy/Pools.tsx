@@ -8,7 +8,6 @@ import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinanc
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
-import useI18n from 'hooks/useI18n'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -20,6 +19,7 @@ import SearchInput from './components/SearchInput'
 import PoolCard from './components/PoolCard/PoolCard'
 import PoolTable from './components/PoolTable/PoolTable'
 import { ViewMode } from './components/types'
+import { useTranslation } from '../../contexts/Localization'
 
 interface LabelProps {
   active?: boolean
@@ -502,7 +502,7 @@ const Pools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
@@ -693,12 +693,15 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
-            {TranslateString(999, 'Banana Pools')}
+            {t('Banana Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
-              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
+              {t('Stake BANANA to earn new tokens.')}
+              <br />
+              {t('You can unstake at any time.')}
+              <br />
+              {t('Rewards are calculated per block.')}
             </Text>
           )}
         </HeadingContainer>
@@ -713,7 +716,7 @@ const Pools: React.FC = () => {
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -723,15 +726,15 @@ const Pools: React.FC = () => {
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setGnanaOnly(!gnanaOnly)}>
                   <StyledCheckbox checked={gnanaOnly} onChange={() => setGnanaOnly(!gnanaOnly)} />
-                  <StyledText> {TranslateString(1116, 'GNANA')}</StyledText>
+                  <StyledText> {t('GNANA')}</StyledText>
                 </ToggleWrapper>
                 <ToggleWrapper onClick={() => setBananaOnly(!bananaOnly)}>
                   <StyledCheckbox checked={bananaOnly} onChange={() => setBananaOnly(!bananaOnly)} />
-                  <StyledText> BANANA</StyledText>
+                  <StyledText> {t('BANANA')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -740,7 +743,7 @@ const Pools: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
@@ -748,7 +751,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              {t('APR')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -756,7 +759,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -764,7 +767,7 @@ const Pools: React.FC = () => {
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Spinner, Flex } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Banner from 'components/Banner'
 import Page from 'components/layout/Page'
 import { useFetchNfas, useNfas } from 'state/hooks'
@@ -21,7 +21,7 @@ const StyledAnchor = styled.a`
 const Nft = () => {
   useFetchNfas()
   const { nfas, isInitialized } = useNfas()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -29,7 +29,7 @@ const Nft = () => {
         <Banner
           banner="nfa-collection"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/collect/non-fungible-apes-nfas"
-          title="Nfa Collection"
+          title={t('Nfa Collection')}
           margin="0 0 20px 0"
         />
         <StyledHero>
@@ -39,7 +39,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'More Info')}
+              {t('More Info')}
             </StyledAnchor>
           </Text>
           <OwnedNfts />
@@ -49,7 +49,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {TranslateString(999, 'Check out the NFA aftermarket on NFTKEY!')}
+              {t('Check out the NFA aftermarket on NFTKEY!')}
             </StyledAnchor>
           </Text>
         </StyledHero>

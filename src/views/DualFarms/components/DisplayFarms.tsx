@@ -8,6 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
+import { useTranslation } from 'contexts/Localization'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow, ServiceTokenDisplayContainer } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
@@ -17,6 +18,7 @@ import ServiceTokenDisplay from '../../../components/ServiceTokenDisplay'
 
 const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
   const isMobile = useIsMobile()
 
   const farmsListView = farms.map((farm, i) => {
@@ -73,7 +75,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             </Flex>
             <Flex alignItems="center" justifyContent="center" mt="15px">
               <LinkExternal href={polygonScanUrl} style={{ fontSize: '14px' }}>
-                View on PolygonScan
+                {t('View on PolygonScan')}
               </LinkExternal>
             </Flex>
           </Flex>
@@ -82,16 +84,18 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
       cardContent: (
         <>
           <ListViewContent
-            title="APY"
+            title={t('APY')}
             value={parseFloat(farm?.apy) > 1000000 ? `>1,000,000%` : `${farm?.apy}%`}
             width={isMobile ? 90 : 150}
             ml={20}
-            toolTip="APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily."
+            toolTip={t(
+              'APY includes annualized BANANA rewards and rewards for providing liquidity (DEX swap fees), compounded daily.',
+            )}
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 38%)"
           />
           <ListViewContent
-            title="APR"
+            title={t('APR')}
             value={`${farm?.apr ? farm?.apr.toFixed(2) : 0}%`}
             value2={`${parseFloat(farm?.lpApr).toFixed(2)}%`}
             value2Icon={
@@ -105,7 +109,9 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
               </span>
             }
             width={isMobile ? 100 : 180}
-            toolTip="BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns."
+            toolTip={t(
+              'BANANA reward APRs are calculated in real time. DEX swap fee APRs are calculated based on previous 24 hours of trading volume. Note: APRs are provided for your convenience. APRs are constantly changing and do not represent guaranteed returns.',
+            )}
             toolTipPlacement={i === farms.length - 1 && i !== 0 ? 'topLeft' : 'bottomLeft'}
             toolTipTransform={i === farms.length - 1 && i !== 0 ? 'translate(0, -105%)' : 'translate(0, 38%)'}
             aprCalculator={
@@ -119,15 +125,15 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
             }
           />
           <ListViewContent
-            title="Liquidity"
+            title={t('Liquidity')}
             value={`$${Number(farm?.totalStaked).toLocaleString(undefined)}`}
             width={isMobile ? 100 : 180}
-            toolTip="The total value of the LP tokens currently staked in this farm."
+            toolTip={t('The total value of the LP tokens currently staked in this farm.')}
             toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
             toolTipTransform={isMobile ? 'translate(-75%, 75%)' : 'translate(0%, 75%)'}
           />
           <ListViewContent
-            title="Earned"
+            title={t('Earned')}
             value={`${userEarningsMiniChef}`}
             valueIcon={
               <ServiceTokenDisplayContainer>
@@ -154,7 +160,7 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
           <ActionContainer>
             {isMobile && (
               <ListViewContent
-                title="Available LP"
+                title={t('Available LP')}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary
@@ -165,11 +171,11 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
               />
             )}
             <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <FarmButton>GET LP</FarmButton>
+              <FarmButton>{t('GET LP')}</FarmButton>
             </a>
             {!isMobile && (
               <ListViewContent
-                title="Available LP"
+                title={t('Available LP')}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary

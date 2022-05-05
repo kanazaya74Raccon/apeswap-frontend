@@ -5,10 +5,12 @@ import { LendingBodies } from 'components/MarketingModalContent/Lending/'
 import { FarmsBodies } from 'components/MarketingModalContent/Farms/'
 import { PoolsBodies } from 'components/MarketingModalContent/Pools/'
 import { BillsBodies } from 'components/MarketingModalContent/Bills/'
+import { useTranslation } from 'contexts/Localization'
 
 const MarketingModalCheck = () => {
   const location = useLocation()
   const history = useHistory()
+  const { t } = useTranslation()
 
   const farmsRoute = location.search.includes('modal=1')
   const poolsRoute = location.search.includes('modal=2')
@@ -33,40 +35,40 @@ const MarketingModalCheck = () => {
 
   return lendingRoute ? (
     <MarketingModal
-      title="Welcome to ApeSwap's Lending Network"
-      description="How does it work?"
+      title={t("Welcome to ApeSwap's Lending Network")}
+      description={t('How does it work?')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
-      startEarningText="Start Earning"
+      startEarningText={t('Start Earning')}
     >
       {lending}
     </MarketingModal>
   ) : farmsRoute ? (
     <MarketingModal
-      title="Welcome to ApeSwap's Farms"
-      description="Start earning passive income with your cryptocurrency!"
+      title={t("Welcome to ApeSwap's Farms")}
+      description={t('Start earning passive income with your cryptocurrency!')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
-      startEarningText="Start Earning"
+      startEarningText={t('Start Earning')}
     >
       {farms}
     </MarketingModal>
   ) : poolsRoute ? (
     <MarketingModal
-      title="Welcome to ApeSwap's Pools"
-      description="Earn tokens by staking BANANA or GNANA"
+      title={t("Welcome to ApeSwap's Pools")}
+      description={t('Earn tokens by staking BANANA or GNANA')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
-      startEarningText="Start Earning"
+      startEarningText={t('Start Earning')}
     >
       {pools}
     </MarketingModal>
   ) : billsRoute ? (
     <MarketingModal
-      title="Welcome to ApeSwap Treasury Bills"
+      title={t('Welcome to ApeSwap Treasury Bills')}
       onDismiss={onDismiss}
       startEarning={onDismiss}
-      startEarningText="I'M READY"
+      startEarningText={t("I'M READY")}
     >
       {bills}
     </MarketingModal>

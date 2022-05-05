@@ -5,6 +5,7 @@ import GlobalSettings from 'components/Menu/GlobalSettings'
 import { CHAIN_ID } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useLocation, useHistory } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 
 interface Props {
   title?: string
@@ -28,7 +29,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
   const history = useHistory()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
-
+  const { t } = useTranslation()
   const getActiveTab = () => {
     const { pathname } = path
     if (pathname.includes('swap')) return 0
@@ -41,7 +42,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
       <Tabs activeTab={getActiveTab()} size="md">
         <Tab
           index={0}
-          label="SWAP"
+          label={t('SWAP')}
           onClick={() => history.push('/swap')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
@@ -50,7 +51,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         {chainId === CHAIN_ID.BSC ? (
           <Tab
             index={1}
-            label="ORDERS"
+            label={t('ORDERS')}
             onClick={() => history.push('/orders')}
             size={isMobile ? 'xsm' : 'md'}
             variant="centered"
@@ -61,7 +62,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         )}
         <Tab
           index={2}
-          label="LIQUIDITY"
+          label={t('LIQUIDITY')}
           onClick={() => history.push('/pool')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
@@ -81,7 +82,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
               height: isMobile ? '36px ' : '40px',
             }}
           >
-            BRIDGE
+            {t('BRIDGE')}
           </Button>
         </a>
         <GlobalSettings />

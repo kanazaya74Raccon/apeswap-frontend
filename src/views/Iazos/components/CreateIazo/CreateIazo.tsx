@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Flex, Text } from '@apeswapfinance/uikit'
 import Banner from 'components/Banner'
 import { useFetchIazoSettings, useIazoSettings } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import LuanchpadInfo from './components/LaunchpadInfo/LaunchpadInfo'
 import CreateYourPresale from './components/CreateYourPresale/CreateYourPresale'
 import TopNav from '../TopNav'
@@ -45,6 +46,7 @@ const StyledHeader = styled(Text)`
 export default function CreateIazo(): JSX.Element {
   useFetchIazoSettings()
   const settings = useIazoSettings()
+  const { t } = useTranslation()
   return (
     <>
       <PageWrapper>
@@ -52,7 +54,7 @@ export default function CreateIazo(): JSX.Element {
           <Banner
             banner="ssiao"
             link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/self-serve-iao-ss-iao"
-            title="Self-Serve Iao"
+            title={t('Self-Serve Iao')}
             maxWidth={856}
             listViewBreak
             margin="30px 0 0 0"
@@ -60,7 +62,7 @@ export default function CreateIazo(): JSX.Element {
           <LaunchPadWrapper>
             <TopNav />
             <HeaderWrapper>
-              <StyledHeader>Create</StyledHeader>
+              <StyledHeader>{t('Create')}</StyledHeader>
             </HeaderWrapper>
             <LuanchpadInfo />
             <CreateYourPresale settings={settings} />

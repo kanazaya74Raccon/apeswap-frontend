@@ -7,6 +7,7 @@ import { ZERO_ADDRESS } from 'config'
 import BigNumber from 'bignumber.js'
 
 import useTokenBalance from 'hooks/useTokenBalance'
+import { useTranslation } from 'contexts/Localization'
 import { ApproveButton, VestingClaimButton, Claim, TextWrapRow } from './styles'
 import ContributeInput from '../ContributeInput/ContributeInput'
 import useLinearIAOHarvest from '../../../hooks/useLinearIAOHarvest'
@@ -47,6 +48,7 @@ const IfoCardContribute: React.FC<Props> = ({
   const onApprove = useIfoApprove(currencyAddress, address)
   const tokenBalance = useTokenBalance(currencyAddress)
   const onClaim = useLinearIAOHarvest(contract, setPendingTx)
+  const { t } = useTranslation()
 
   if (currencyAddress !== ZERO_ADDRESS && allowance === null) {
     return null
@@ -89,7 +91,7 @@ const IfoCardContribute: React.FC<Props> = ({
           {amountContributed > 0 && (
             <TextWrapRow>
               <Text fontSize="14px" fontWeight={700}>
-                Your contributions:
+                {t('Your contributions')}:
               </Text>
               <Text fontSize="14px" fontWeight={700}>
                 {amountContributed.toFixed(4)} {currency}
@@ -103,7 +105,7 @@ const IfoCardContribute: React.FC<Props> = ({
           disabled={!userTokenStatus.offeringTokenTotalHarvest || pendingTx}
           onClick={async () => onClaim(userTokenStatus.offeringTokenTotalHarvest)}
         >
-          <Claim color="white">Claim</Claim>
+          <Claim color="white">{t('Claim')}</Claim>
         </VestingClaimButton>
       )}
     </>

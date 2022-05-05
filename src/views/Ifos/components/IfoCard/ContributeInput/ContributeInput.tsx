@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Flex } from '@apeswapfinance/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 
 import { Label, Box, ContributeButton, ContributeInput, Container, MaxButton } from './styles'
@@ -18,6 +19,7 @@ interface Props {
 const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currencyAddress, disabled, tokenBalance }) => {
   const [value, setValue] = useState('')
   const balance = Number(getFullDisplayBalance(tokenBalance)).toFixed(4)
+  const { t } = useTranslation()
 
   const { pendingTx, handleDeposit, isAmountValid } = useIAODeposit(contract, currencyAddress, tokenBalance)
 
@@ -37,7 +39,7 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
         <thead>
           <th>
             <Flex justifyContent="space-between" px="8px">
-              <Label>BALANCE: </Label>
+              <Label>{t('BALANCE')}: </Label>
               <Label>
                 {balance} {currency}
               </Label>
@@ -81,7 +83,7 @@ const ContributeInputComponent: React.FC<Props> = ({ currency, contract, currenc
                 disabled={disabled || pendingTx || !isAmountValid(value)}
                 onClick={() => handleDeposit(value, currency)}
               >
-                CONTRIBUTE
+                {t('CONTRIBUTE')}
               </ContributeButton>
             </td>
           </tr>

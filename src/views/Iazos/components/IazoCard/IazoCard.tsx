@@ -4,6 +4,7 @@ import { Iazo } from 'state/types'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import { BoldAfterText } from '../styles'
 import Timer from './Timer'
 import Badges from './Badges'
@@ -49,6 +50,7 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
   const duration = getTimePeriods(parseInt(activeTime), true)
   const lockTime = getTimePeriods(parseInt(lockPeriod), true)
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = isMd || isSm || isXs
 
   return (
@@ -64,29 +66,29 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
           {isMobile && <TokenName color="white"> {iazoToken.name}</TokenName>}
           <Timer timeInfo={timeInfo} fontSize={isMobile ? '12px' : '16px'} fontColor="white" />
           <BoldAfterText color="white">
-            Duration {duration.days}d, {duration.hours}h
+            {t('Duration')} {duration.days}d, {duration.hours}h
           </BoldAfterText>
         </TextBoxWrapper>
       </HeadingWrapper>
       <TopBodyWrapper>
         <TextBoxWrapper align="flex-start">
           <BoldAfterText boldContent={`${baseToken.symbol} / ${iazoToken.symbol}`} />
-          <BoldAfterText boldContent={`${liqudiityLock}%`}>Liquidity Lock: </BoldAfterText>
+          <BoldAfterText boldContent={`${liqudiityLock}%`}>{t('Liquidity Lock')}: </BoldAfterText>
         </TextBoxWrapper>
         {!isMobile && (
           <TextBoxWrapper justify="flex-end" padding="15px">
-            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
+            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>{t('Max Spend')} </BoldAfterText>
           </TextBoxWrapper>
         )}
         <TextBoxWrapper align="flex-end">
           <BoldAfterText>{lockTime.days} Days Lock</BoldAfterText>
-          <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>Soft Cap: </BoldAfterText>
+          <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>{t('Soft Cap')}: </BoldAfterText>
         </TextBoxWrapper>
       </TopBodyWrapper>
       <BottomBodyWrapper>
         {isMobile && (
           <TextBoxWrapper justify="flex-end" padding="5px">
-            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>Max Spend </BoldAfterText>
+            <BoldAfterText boldContent={`${maxSpend} ${baseToken.symbol}`}>{t('Max Spend')} </BoldAfterText>
           </TextBoxWrapper>
         )}
         <ProgressBar>
