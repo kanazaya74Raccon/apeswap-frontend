@@ -35,6 +35,7 @@ const CurrencyInputContainer = styled(Flex)`
 export const StyledDiv = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 16px;
+    width: 100%;
   }
 `
 
