@@ -5,6 +5,7 @@ export const CHAIN_ID = {
   BSC_TESTNET: 97,
   MATIC: 137,
   MATIC_TESTNET: 80001,
+  ETH: 1,
 }
 
 // Network labels
@@ -14,6 +15,7 @@ export const NETWORK_LABEL = {
   [CHAIN_ID.BSC_TESTNET]: 'BSC Testnet',
   [CHAIN_ID.MATIC]: 'Polygon',
   [CHAIN_ID.MATIC_TESTNET]: 'Polygon Testnet',
+  [CHAIN_ID.ETH]: 'Ethereum',
 }
 
 // Network icons
@@ -23,6 +25,7 @@ export const NETWORK_ICON = {
   [CHAIN_ID.BSC_TESTNET]: '',
   [CHAIN_ID.MATIC]: '',
   [CHAIN_ID.MATIC_TESTNET]: '',
+  [CHAIN_ID.ETH]: '',
 }
 
 export const NETWORK_INFO_LINK = {
@@ -30,6 +33,7 @@ export const NETWORK_INFO_LINK = {
   [CHAIN_ID.BSC_TESTNET]: 'https://info.apeswap.finance',
   [CHAIN_ID.MATIC]: 'https://polygon.info.apeswap.finance/',
   [CHAIN_ID.MATIC_TESTNET]: 'https://polygon.info.apeswap.finance/',
+  [CHAIN_ID.ETH]: 'https://info.apeswap.finance',
 }
 
 // Network RPC nodes
@@ -42,6 +46,7 @@ export const NETWORK_RPC = {
   [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s3.binance.org:8545/'],
   [CHAIN_ID.MATIC]: ['https://polygon-rpc.com/'],
   [CHAIN_ID.MATIC_TESTNET]: ['https://matic-mumbai.chainstacklabs.com'],
+  [CHAIN_ID.ETH]: ['https://mainnet.infura.io/v3/'],
 }
 
 // Network block explorers
@@ -51,6 +56,7 @@ export const BLOCK_EXPLORER = {
   [CHAIN_ID.BSC_TESTNET]: 'https://testnet.bscscan.com/',
   [CHAIN_ID.MATIC]: 'https://polygonscan.com',
   [CHAIN_ID.MATIC_TESTNET]: 'https://mumbai.polygonscan.com/',
+  [CHAIN_ID.ETH]: 'https://etherscan.io/',
 }
 
 export const CHAIN_PARAMS = {
@@ -97,6 +103,17 @@ export const CHAIN_PARAMS = {
     },
     rpcUrls: NETWORK_RPC[CHAIN_ID.MATIC_TESTNET],
     blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.MATIC_TESTNET]],
+  },
+  [CHAIN_ID.ETH]: {
+    chainId: '0x1',
+    chainName: 'Ethereum',
+    nativeCurrency: {
+      name: 'Ethereum',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+    rpcUrls: NETWORK_RPC[CHAIN_ID.ETH],
+    blockExplorerUrls: [BLOCK_EXPLORER[CHAIN_ID.ETH]],
   },
 }
 

@@ -12,7 +12,7 @@ const POLLING_INTERVAL = 15000
 // When adding a new chain we need to add the CHAIN_ID to the supported chains
 
 const injected = new InjectedConnector({
-  supportedChainIds: [CHAIN_ID.BSC, CHAIN_ID.BSC_TESTNET, CHAIN_ID.MATIC, CHAIN_ID.MATIC_TESTNET],
+  supportedChainIds: [CHAIN_ID.BSC, CHAIN_ID.BSC_TESTNET, CHAIN_ID.MATIC, CHAIN_ID.MATIC_TESTNET, CHAIN_ID.ETH],
 })
 
 const walletconnect = new WalletConnectConnector({

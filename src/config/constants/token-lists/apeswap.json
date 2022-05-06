@@ -688,6 +688,14 @@
       "logoURI": "https://raw.githubusercontent.com/ApeSwapFinance/apeswap-dex/main/public/images/coins/BANANA.svg"
     },
     {
+      "name": "Banana Token",
+      "address": "0x92df60c51c710a1b1c20e42d85e221f3a1bfc7f2",
+      "symbol": "BANANA",
+      "decimals": 18,
+      "chainId": 1,
+      "logoURI": "https://raw.githubusercontent.com/ApeSwapFinance/apeswap-dex/main/public/images/coins/BANANA.svg"
+    },
+    {
       "name": "Test USD Coin",
       "address": "0x5E061239f6Dd8D8035bb341AA8ef8Be6026e80fa",
       "symbol": "tUSDC",
