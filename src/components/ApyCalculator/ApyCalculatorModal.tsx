@@ -67,7 +67,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal onDismiss={onDismiss} title={t('ROI')}>
+    <Modal onDismiss={onDismiss} title={t('CURRENT RATES')}>
       <Grid>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
@@ -76,7 +76,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
-            {t('CURRENT RATES')}
+            {t('Return')}
           </Text>
         </GridItem>
         <GridItem>
@@ -124,7 +124,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem>
-          <Text>{`${t('365d')}(${t('APY')})`}</Text>
+          <Text>{`${t('365d')}${t('')}`}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -141,7 +141,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
       </Grid>
       <Description fontSize="12px" color="gray">
         {t(
-          'Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',
+          'Returns are calculated based on current rates, assuming daily compounding. Estimated returns are not guaranteed and are provided for convenience only.',
         )}
       </Description>
       <Flex justifyContent="center">

@@ -21,7 +21,7 @@ export const defaultServiceData: (t: ContextApi['t']) => DefaultServiceData[] = 
   {
     id: 'lendingDetails',
     title: t('Lending Network'),
-    description: t('Earn interest by supplying and borrowing popular tokens'),
+    description: t('Earn interest by supplying popular tokens'),
     backgroundImg: 'images/homepage-lending.svg',
     link: 'https://lending.apeswap.finance/markets',
     stats: [],

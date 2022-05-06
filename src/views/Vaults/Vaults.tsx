@@ -519,7 +519,7 @@ const Vaults: React.FC = () => {
         <Banner
           banner="burning"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/vaults"
-          title={t('Burning Vaults')}
+          title={t('Vaults')}
           maxWidth={1130}
           margin="0 0 20px 0"
         />

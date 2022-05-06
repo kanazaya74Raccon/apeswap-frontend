@@ -693,15 +693,15 @@ const Pools: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
-            {t('Banana Pools')}
+            {t('Staking Pools')}
           </StyledHeading>
           {size.width > 968 && (
             <Text fontSize="22px" fontWeight={400} color="white">
-              {t('Stake BANANA to earn new tokens.')}
+              {t}
               <br />
-              {t('You can unstake at any time.')}
+              {t}
               <br />
-              {t('Rewards are calculated per block.')}
+              {t}
             </Text>
           )}
         </HeadingContainer>
