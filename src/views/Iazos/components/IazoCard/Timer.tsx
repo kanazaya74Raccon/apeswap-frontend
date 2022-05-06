@@ -45,7 +45,7 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
         </BoldAfterText>
       )
     }
-    return <BoldAfterText fontSize={fontSize} boldContent="Finished" fontColor={fontColor} />
+    return <BoldAfterText fontSize={fontSize} boldContent={t('Completed')} fontColor={fontColor} />
   }
   return timeToDisplay()
 }

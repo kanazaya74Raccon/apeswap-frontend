@@ -221,7 +221,7 @@ const NfaStaking: React.FC = () => {
         <Banner
           banner="nfa-staking"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake"
-          title={t('Nfa Staking')}
+          title={t('Nfa Staking Pools')}
           maxWidth={1130}
           margin="0 0 20px 0px"
           titleColor="primaryBright"

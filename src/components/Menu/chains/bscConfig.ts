@@ -15,7 +15,7 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         href: '/farms',
       },
       {
-        label: t('Pools'),
+        label: t('Staking Pools'),
         href: '/pools',
       },
       {

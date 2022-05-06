@@ -50,7 +50,7 @@ const SaleReview: React.FC<SaleReviewProps> = ({
       <DonutChart
         items={[
           {
-            label: t('For Sale'),
+            label: t('For sale'),
             value: parseFloat(tokensForSale),
             color: 'rgba(255, 179, 0, 1)',
           },

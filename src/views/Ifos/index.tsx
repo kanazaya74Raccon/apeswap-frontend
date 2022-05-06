@@ -38,7 +38,7 @@ const Ifos = () => {
         <Banner
           banner="iao"
           link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/raise/initial-ape-offerings-iaos"
-          title={t('Initial Ape Offerings')}
+          title={t('Official Initial Ape Offerings')}
           maxWidth={992}
           margin="30px 0px 20px 0px"
         />

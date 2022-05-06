@@ -39,7 +39,7 @@ const Nft = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t('More Info')}
+              {t('GitHub Info')}
             </StyledAnchor>
           </Text>
           <OwnedNfts />
