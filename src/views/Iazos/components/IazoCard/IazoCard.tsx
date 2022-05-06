@@ -81,7 +81,9 @@ const IazoCard: React.FC<iazoCardProps> = ({ iazo }) => {
           </TextBoxWrapper>
         )}
         <TextBoxWrapper align="flex-end">
-          <BoldAfterText>{lockTime.days} Days Lock</BoldAfterText>
+          <BoldAfterText>
+            {t('Lock Time:')} {lockTime.days} {t('Days')}
+          </BoldAfterText>
           <BoldAfterText boldContent={`${softcapFormated} ${baseToken.symbol}`}>{t('Soft Cap')}: </BoldAfterText>
         </TextBoxWrapper>
       </TopBodyWrapper>

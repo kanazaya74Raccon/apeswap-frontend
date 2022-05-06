@@ -15,7 +15,7 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         href: '/farms',
       },
       {
-        label: t('Pools'),
+        label: t('Staking Pools'),
         href: '/pools',
       },
       {
@@ -92,7 +92,7 @@ const bscConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     darkIcon: 'MoreDarkImage',
     items: [
       {
-        label: t('Docs'),
+        label: t('Documentation'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
       },
       {

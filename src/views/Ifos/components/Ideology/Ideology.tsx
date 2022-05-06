@@ -45,10 +45,10 @@ const HowItWorks = () => {
         <FeatureBox>
           <Icon name="investment" />
 
-          <SectionHeading>{t('INVESTMENT')}</SectionHeading>
+          <SectionHeading>{t('COMMITMENT')}</SectionHeading>
           <Motto>{t('BUILD')}</Motto>
           <StyledText textAlign="center">
-            {t('We highly vet applicants to choose projects we believe in as long term investments and partners')}
+            {t('We thoroughly vet applicants to choose projects we believe in as long term partners')}
           </StyledText>
         </FeatureBox>
         <FeatureBox>
@@ -66,7 +66,7 @@ const HowItWorks = () => {
           <SectionHeading>{t('INNOVATION')}</SectionHeading>
           <Motto>{t('EXPERIMENT')}</Motto>
           <StyledText textAlign="center">
-            {t('These projects are meant to be unique and push the boundaries of DeFi')}
+            {t('These projects are meant to be unique and push the boundaries of crypto forward')}
           </StyledText>
         </FeatureBox>
       </Frame>

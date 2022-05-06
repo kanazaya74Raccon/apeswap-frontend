@@ -518,7 +518,7 @@ export default function AddLiquidity({
                         !isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED
                       }
                     >
-                      {error ?? t('Supply')}
+                      {error ?? t('Add Liquidity')}
                     </LargeStyledButton>
                   </AutoColumn>
                 )}

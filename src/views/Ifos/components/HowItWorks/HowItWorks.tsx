@@ -82,7 +82,7 @@ const HowItWorks = ({ onParticipate }: Props) => {
             <SectionHeading>{t('OVERFLOW MODEL')}</SectionHeading>
             <StyledText>
               {t(
-                'Your token allocation is based on your percentage of the total raise. All overflow contributions will be returned post-raise.',
+                'Your final IAO token allocation is based on your percentage of the total committed tokens. Any overflow contributions are refunded proportionally at the end of the raise.',
               )}
             </StyledText>
           </div>

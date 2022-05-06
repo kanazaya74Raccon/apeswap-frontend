@@ -102,8 +102,8 @@ const Iazos: React.FC = () => {
                 active={sort === 'upcoming'}
                 onClick={() => setSort('upcoming')}
               />
-              <IconButton icon="graph" text={t('Live')} active={sort === 'live'} onClick={() => setSort('live')} />
-              <IconButton icon="check" text={t('Done')} active={sort === 'done'} onClick={() => setSort('done')} />
+              <IconButton icon="graph" text={t('Current')} active={sort === 'live'} onClick={() => setSort('live')} />
+              <IconButton icon="check" text={t('Past')} active={sort === 'done'} onClick={() => setSort('done')} />
               <TextInput
                 placeholderText={t('Search token name or address....')}
                 backgroundColor={isDark ? '#0B0B0B' : '#FDFBF5'}

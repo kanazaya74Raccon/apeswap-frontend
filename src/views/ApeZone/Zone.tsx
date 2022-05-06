@@ -49,7 +49,7 @@ const Zone = () => {
               <InnerContent readingMore={readingMore}>
                 <InnerContentText>
                   {t(
-                    'Converting GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30%. This means that for every 1 BANANA you trade in, you will receive 0.7 GNANA',
+                    'Converting from BANANA to GNANA involves paying a 28% burn fee and a 2% reflect fee for a total cost of 30% per conversion. For every 1 BANANA you convert, you will receive 0.7 GNANA.',
                   )}
                 </InnerContentText>
               </InnerContent>

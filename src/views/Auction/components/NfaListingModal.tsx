@@ -69,6 +69,10 @@ const TimeText = styled(Text)`
   text-align: center;
 `
 
+const HeadingText = styled(Text)`
+  font-weight: 700;
+`
+
 const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss, ownedNfas }) => {
   const auctionAddress = useAuctionAddress()
   const allowance = useNfaAllowance(auctionAddress)
@@ -104,43 +108,42 @@ const NfaListingModal: React.FC<NfaListingModalProps> = ({ onConfirm, onDismiss,
   }, [onApprove, setApproved])
 
   return (
-    <Modal title={`${t('Put Your NFA up for Auction!')}`} onDismiss={onDismiss}>
+    <Modal title={`${t('Put Your NFA Up For Auction!')}`} onDismiss={onDismiss}>
       <DescriptionWrapper>
         <Text textAlign="center"> {t('Welcome to the Self-Serve Auction House!')} </Text>
-        <TimeText> ({t('The Rules are the Same')}) </TimeText>
-        <Text textAlign="center" marginTop="10px">
+        <HeadingText textAlign="center" marginTop="10px" fontWeight="600px">
           {t('Auction Start Length')}
-        </Text>
+        </HeadingText>
         <TimeText> 24 Hours </TimeText>
-        <Text textAlign="center" marginTop="10px">
+        <HeadingText textAlign="center" marginTop="10px">
           {t('How the Clock Works')}
-        </Text>
+        </HeadingText>
         <TimeText>
           {t(
             'During the last 6 hours each bid extends the clock by 30 minutes. The clock will never increase over 6 hours.',
           )}
         </TimeText>
-        <Text textAlign="center" marginTop="10px">
+        <HeadingText textAlign="center" marginTop="10px">
           {t('All Sales are Final')}
-        </Text>
-        <TimeText>
-          {t('When the auction ends the NFA will be sent to the highest bidder. No ifs, ands, or buts!')}
-        </TimeText>
-        <Text textAlign="center" marginTop="10px">
+        </HeadingText>
+        <TimeText>{t('When the auction ends the NFA will be sent to the highest bidder. No execptions!')}</TimeText>
+        <HeadingText textAlign="center" marginTop="10px">
           {t('Proceeds')}
-        </Text>
-        <TimeText>{t('95% goes to the seller, 4% goes to future staking pools, and 1% is the ApeSwap fee.')}</TimeText>
-        <Text textAlign="center" marginTop="10px">
+        </HeadingText>
+        <TimeText>
+          {t('95% goes to the seller, 4% goes to the NFA Community, and 1% goes to the ApeSwap Treasury.')}
+        </TimeText>
+        <HeadingText textAlign="center" marginTop="10px">
           {t('Auction Order')}
-        </Text>
+        </HeadingText>
         <TimeText>{t('NFAs will be auctioned in the order they are submitted.')}</TimeText>
-        <Text textAlign="center" marginTop="10px">
+        <HeadingText textAlign="center" marginTop="10px">
           {t('Cancel Your Listing')}
-        </Text>
+        </HeadingText>
         <TimeText>{t('You may cancel your entry any time before your auction begins.')}</TimeText>
-        <Text textAlign="center" marginTop="10px">
-          {t('NFA selected')}: {nfaIndex}
-        </Text>
+        <HeadingText textAlign="center" marginTop="10px">
+          {t('NFA Selected')}: {nfaIndex}
+        </HeadingText>
         {ownedNfas ? (
           <NfaBackground>
             <OwnedNfaWrapper>

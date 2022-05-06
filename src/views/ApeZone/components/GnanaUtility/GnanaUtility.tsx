@@ -35,7 +35,7 @@ export const GnanaUtility: React.FC = () => {
   return (
     <UtilityCon>
       <UtilityTitle>
-        <UtilityHeading>{t('Gnana Utility')}</UtilityHeading>
+        <UtilityHeading>{t('GNANA UTILITY')}</UtilityHeading>
       </UtilityTitle>
       <Options>
         <FirstOption>
@@ -67,7 +67,7 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title={t('Governance')}
+                Title={t('Governance Proposals')}
                 Desc={t('Propose and Vote on platform decisions')}
                 ActionTitle={t('EXPLORE')}
                 onAction={exploreGovernance}
@@ -111,8 +111,8 @@ export const GnanaUtility: React.FC = () => {
                     color={theme.isDark ? '#FAFAFA' : '#4D4040'}
                   />
                 }
-                Title={t('Exclusive IAO Access')}
-                Desc={t('Access to secondary offerings for a higher token allocation')}
+                Title={t('Exclusive Offerings')}
+                Desc={t('Access to secondary offerings for a higher token allocations')}
                 ActionTitle={t('GO TO IAOs')}
                 onAction={goToIAOs}
                 OpStyle={OtherOpStyle}

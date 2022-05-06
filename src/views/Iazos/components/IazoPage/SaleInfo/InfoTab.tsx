@@ -29,7 +29,7 @@ const InfoTab: React.FC<InfoTabProps> = ({ iazo }) => {
   const tokensForOther = tokenTotalSupply - tokensForSale - tokensForLiquidity - tokensForFees
   const items = [
     {
-      label: t('For Sale'),
+      label: t('For sale'),
       value: tokensForSale,
       color: 'rgba(255, 179, 0, 1)',
     },

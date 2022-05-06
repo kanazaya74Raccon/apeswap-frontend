@@ -93,13 +93,13 @@ export const GnanaDisclaimers: React.FC = () => {
               <Text2>{t('Value')}</Text2>
             </Sect2a>
             <Sect2b>
-              <Text3>{t('.7 GNANA per BANANA')}</Text3>
+              <Text3>{t('0.7 GNANA per BANANA')}</Text3>
             </Sect2b>
             <Sect2c>
-              <Text3>{t('1 GNANA calculated as 1.389 BANANA')}</Text3>
+              <Text3>{t('1 GNANA valued at 1.389 BANANA')}</Text3>
             </Sect2c>
             <Sect2d>
-              <Text3>{t('.98 BANANA per GNANA')}</Text3>
+              <Text3>{t('0.98 BANANA per GNANA')}</Text3>
             </Sect2d>
           </Sect1>
         </Sect>
@@ -113,7 +113,7 @@ export const GnanaDisclaimers: React.FC = () => {
         <InfoSect1>
           <Info
             content={t(
-              'The 2% reflect fee applies to all $GNANA transactions, including transfer, staking, unstaking, and participation in IAOs.',
+              'The 2% reflect fee applies to all GNANA transactions, including transfers, staking in pools, unstaking from pools, and IAO participation',
             )}
           />
           <Info content={t('You do not accumulate reflect fees when your GNANA is staked in a pool')} />
