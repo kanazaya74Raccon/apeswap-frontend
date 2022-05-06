@@ -60,8 +60,8 @@ const DateSelection: React.FC<DateSelectorProps> = ({ onChange }) => {
           </StyledText>
           <StyledSubText>
             {dateState.start > dateState.end
-              ? formatCountdown(new Date(), dateState.start, true)
-              : formatCountdown(dateState.start, dateState.end, true)}
+              ? formatCountdown(t, new Date(), dateState.start, true)
+              : formatCountdown(t, dateState.start, dateState.end, true)}
           </StyledSubText>
         </TextContainer>
         <DateButtonContainer>

@@ -40,7 +40,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
   }
 
   const handleSlideChange = (index: number) => {
-    const id = pastIfos[index]?.id
+    const id = pastIfos(t)[index]?.id
 
     if (!id) {
       console.warn('Selected past IFO project id is either undefined or an empty string')
@@ -80,7 +80,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
                 <StatusTitle marginTop={16} isActive={isActive}>
                   {ifo.name}
                 </StatusTitle>
-                <StatusTitle>{`#${padLeadingZeros(pastIfos.length - index, 3)}`}</StatusTitle>
+                <StatusTitle>{`#${padLeadingZeros(pastIfos(t).length - index, 3)}`}</StatusTitle>
               </Box>
             )}
           </SwiperSlide>
