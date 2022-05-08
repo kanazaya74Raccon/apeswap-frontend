@@ -1,53 +1,58 @@
 import { MenuEntry } from '@ape.swap/uikit'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { EXCHANGE } from '../constants'
+import { ContextApi } from '../../../contexts/Localization/types'
 
-const maticConfig: MenuEntry[] = [
-  EXCHANGE,
+const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+  EXCHANGE(t),
   {
-    label: 'Farms',
+    label: t('Farms'),
     href: '/farms',
     isNew: false,
   },
   {
-    label: 'Vaults',
+    label: t('Vaults'),
     href: '/vaults',
     isNew: false,
   },
   {
-    label: 'More',
+    label: t('More'),
     lightIcon: 'MoreLightImage',
     darkIcon: 'MoreDarkImage',
     items: [
       {
-        label: 'Docs',
+        label: t('Documentation'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
         isNew: false,
       },
       {
-        label: 'Charts',
+        label: t('Charts'),
         href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
         isNew: false,
       },
       {
-        label: 'Governance',
+        label: t('Governance'),
         href: 'https://vote.apeswap.finance',
         isNew: false,
+      },
+      {
+        label: t('Education'),
+        href: 'https://www.apelabs.education/',
       },
     ],
   },
   //   {
-  //     label: 'Pools',
+  //     label: t('Pools'),
   //     icon: 'PoolIcon',
   //     href: '/pools',
   //   },
   //   {
-  //     label: 'IAO',
+  //     label: t('IAO'),
   //     icon: 'IfoIcon',
   //     href: '/iao',
   //   },
   //   {
-  //     label: 'GNANA',
+  //     label: t('GNANA'),
   //     icon: 'ApeZone',
   //     href: '/gnana',
   //   },

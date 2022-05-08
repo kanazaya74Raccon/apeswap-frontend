@@ -4,11 +4,14 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
+import { ContextApi } from 'contexts/Localization/types'
+import { useTranslation } from 'contexts/Localization'
 import { useProfile, useTokenPrices, useLiveIfoStatus } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import track from 'utils/track'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
+import { languageList } from '../../config/localization/languages'
 
 const Menu = (props) => {
   const { account, chainId } = useActiveWeb3React()
@@ -18,14 +21,15 @@ const Menu = (props) => {
   const { tokenPrices } = useTokenPrices()
   const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
-  const currentMenu = () => {
+  const { t, setLanguage, currentLanguage } = useTranslation()
+  const currentMenu = (translate: ContextApi['t']) => {
     if (chainId === CHAIN_ID.BSC) {
-      return bscConfig
+      return bscConfig(translate)
     }
     if (chainId === CHAIN_ID.MATIC) {
-      return maticConfig
+      return maticConfig(translate)
     }
-    return bscConfig
+    return bscConfig(translate)
   }
   const { liveIfos } = useLiveIfoStatus()
 
@@ -37,7 +41,11 @@ const Menu = (props) => {
       isDark={isDark}
       toggleTheme={toggleTheme}
       bananaPriceUsd={bananaPriceUsd}
-      links={currentMenu()}
+      t={t}
+      langs={languageList}
+      setLang={setLanguage}
+      currentLang={currentLanguage.language}
+      links={currentMenu(t)}
       chainId={chainId}
       switchNetwork={switchNetwork}
       no

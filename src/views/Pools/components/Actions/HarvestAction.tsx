@@ -7,6 +7,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useSousStake } from 'hooks/useStake'
 import { fetchPoolsUserDataAsync, updateUserPendingReward } from 'state/pools'
 import ListViewContent from 'components/ListViewContent'
+import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { StyledButton } from '../styles'
 import { ActionContainer } from './styles'
@@ -28,14 +29,15 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
 
   const { toastSuccess } = useToast()
   const isMobile = useIsMobile()
+  const { t } = useTranslation()
 
   const handleHarvest = async () => {
     setPendingTrx(true)
     await onHarvest()
       .then((resp) => {
         const trxHash = resp.transactionHash
-        toastSuccess('Harvest Successful', {
-          text: 'View Transaction',
+        toastSuccess(t('Harvest Successful'), {
+          text: t('View Transaction'),
           url: getEtherscanLink(trxHash, 'transaction', chainId),
         })
       })
@@ -52,8 +54,8 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
     await onStake(userEarnings.toString())
       .then((resp) => {
         const trxHash = resp.transactionHash
-        toastSuccess('Ape Harder Successful', {
-          text: 'View Transaction',
+        toastSuccess(t('Ape Harder Successful'), {
+          text: t('View Transaction'),
           url: getEtherscanLink(trxHash, 'transaction', chainId),
         })
       })
@@ -69,7 +71,7 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
     <ActionContainer>
       {isMobile && (
         <ListViewContent
-          title={`Earned ${earnTokenSymbol}`}
+          title={`${t('Earned')} ${earnTokenSymbol}`}
           value={userEarnings?.toFixed(4)}
           width={100}
           height={50}
@@ -84,7 +86,7 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
           mr={isMobile ? '0px' : '10px'}
           style={{ minWidth: isMobile && '100px', width: isMobile && '115px', padding: '0px' }}
         >
-          Compound
+          {t('Compound')}
         </StyledButton>
       )}
       <StyledButton
@@ -93,11 +95,11 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
         load={pendingTrx}
         style={{ minWidth: isMobile && sousId === 0 && '100px', width: isMobile && sousId === 0 && '100px' }}
       >
-        HARVEST
+        {t('HARVEST')}
       </StyledButton>
       {!isMobile && (
         <ListViewContent
-          title={`Earned ${earnTokenSymbol}`}
+          title={`${t('Earned')} ${earnTokenSymbol}`}
           value={userEarnings?.toFixed(4)}
           width={150}
           height={50}

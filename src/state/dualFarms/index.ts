@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import { dualFarmsConfig } from 'config/constants'
+import BigNumber from 'bignumber.js'
 import fetchDualFarms from './fetchDualFarms'
 import {
   fetchDualMiniChefEarnings,
@@ -9,7 +10,7 @@ import {
   fetchDualFarmUserStakedBalances,
   fetchDualFarmRewarderEarnings,
 } from './fetchDualFarmUser'
-import { TokenPrices, DualFarm, DualFarmsState } from '../types'
+import { TokenPrices, DualFarm, DualFarmsState, FarmLpAprsType } from '../types'
 
 const initialState: DualFarmsState = { data: [...dualFarmsConfig] }
 
@@ -43,14 +44,16 @@ export const dualFarmsSlice = createSlice({
 export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserData } = dualFarmsSlice.actions
 
 // Thunks
-export const fetchDualFarmsPublicDataAsync = (tokenPrices: TokenPrices[], chainId: number) => async (dispatch) => {
-  try {
-    const dualFarms = await fetchDualFarms(tokenPrices, chainId)
-    dispatch(setDualFarmsPublicData(dualFarms))
-  } catch (error) {
-    console.warn(error)
+export const fetchDualFarmsPublicDataAsync =
+  (chainId: number, tokenPrices: TokenPrices[], bananaPrice: BigNumber, farmLpAprs: FarmLpAprsType) =>
+  async (dispatch) => {
+    try {
+      const farms = await fetchDualFarms(chainId, tokenPrices, bananaPrice, farmLpAprs)
+      dispatch(setDualFarmsPublicData(farms))
+    } catch (error) {
+      console.warn(error)
+    }
   }
-}
 export const fetchDualFarmUserDataAsync = (chainId: number, account: string) => async (dispatch) => {
   try {
     const userFarmAllowances = await fetchDualFarmUserAllowances(chainId, account)

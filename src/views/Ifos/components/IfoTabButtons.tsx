@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Toggle } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import { TabOption } from '../types'
 
 const Wrapper = styled.div`
@@ -21,9 +22,10 @@ const IfoTabButtons = ({ selectedTab = 'current', onSelect }: Props) => {
     onSelect(index === 0 ? 'current' : 'past')
     setIndex((prev) => (prev === 0 ? 1 : 0))
   }
+  const { t } = useTranslation()
   return (
     <Wrapper style={{ marginTop: '20px' }}>
-      <Toggle size="lg" labels={['CURRENT', 'PAST']} checked={selectedTab !== 'current'} onClick={handleClick} />
+      <Toggle size="lg" labels={[t('CURRENT'), t('PAST')]} checked={selectedTab !== 'current'} onClick={handleClick} />
     </Wrapper>
   )
 }

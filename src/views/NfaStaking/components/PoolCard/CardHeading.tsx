@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { BLOCKS_PER_DAY } from 'config'
 import styled from '@emotion/styled'
 import { useWeb3React } from '@web3-react/core'
@@ -294,7 +294,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   earnTokenImage,
   showExpandableSection,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { userData, tokenPerBlock, totalStaked } = pool
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -347,18 +347,22 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       </StyledBackground>
       <StyledFlexContainer>
         <LabelContainer>
-          <StyledHeading>Tier {tier}</StyledHeading>
+          <StyledHeading>
+            {t('Tier')} {tier}
+          </StyledHeading>
           {!removed && (
             <Text fontWeight={600} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1>BPD: {bananaPerDay}</StyledText1>
+              <StyledText1>
+                {t('BPD')}: {bananaPerDay}
+              </StyledText1>
             </Text>
           )}
           <StyledFlexEarnedSmall>
             <StyledText4 color="primary" pr="3px">
-              {TranslateString(999, `${earnToken}`)}
+              {t(`${earnToken}`)}
             </StyledText4>
             <StyledText2 color="primary" pr="3px">
-              {TranslateString(999, 'Earned')}
+              {t('Earned')}
             </StyledText2>
             <StyledText3>{displayBalance}</StyledText3>
           </StyledFlexEarnedSmall>
@@ -367,10 +371,10 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText4 color="primary" pr="3px">
-                {TranslateString(999, `${earnToken}`)}
+                {earnToken}
               </StyledText4>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Earned')}
+                {t('Earned')}
               </StyledText2>
             </Flex>
             <StyledText3>{displayBalance}</StyledText3>

@@ -7,6 +7,7 @@ import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import getTimePeriods from 'utils/getTimePeriods'
 import useFetchUserIazoCommit, { UserCommit } from 'views/Iazos/hooks/useFetchUserIazoCommit'
+import { useTranslation } from 'contexts/Localization'
 import Timer from '../../IazoCard/Timer'
 import Actions from '../../Actions'
 import IazoSymbols from '../../IazoSymbols'
@@ -40,6 +41,7 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
   const { totalBaseCollected, numBuyers } = status
   const { lockPeriod } = timeInfo
   const { account } = useWeb3React()
+  const { t } = useTranslation()
   const [pendingUserInfo, setPendingUserInfo] = useState(true)
   const { deposited, tokensBought }: UserCommit = useFetchUserIazoCommit(iazoAddress, pendingUserInfo)
   const tokensDepositedFormatted = getBalanceNumber(new BigNumber(deposited), parseInt(decimals))
@@ -74,10 +76,10 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         <>
           <br />
           <BoldAfterTextLarge boldContent={`${tokensBoughtFormatted.toString()} ${iazoToken.symbol}`}>
-            Tokens bought:{' '}
+            {t('Tokens bought')}:{' '}
           </BoldAfterTextLarge>
           <BoldAfterTextLarge boldContent={`${tokensDepositedFormatted.toString()} ${symbol}`}>
-            Amount contributed:{' '}
+            {t('Amount contributed')}:{' '}
           </BoldAfterTextLarge>
         </>
       )}
@@ -97,11 +99,11 @@ const DuringSale: React.FC<BeforeSaleProps> = ({
         </>
       )}
       <IazoSymbolsContainer>
-        <IazoSymbols iconImage="dollar" title={`${tokenPrice} ${symbol}`} description="Presale price" />
+        <IazoSymbols iconImage="dollar" title={`${tokenPrice} ${symbol}`} description={t('Presale price')} />
         <IazoSymbols
           iconImage="lock"
           title={`${liquidityPercentFormatted}%`}
-          description={`Locked for ${daysLocked.days} days`}
+          description={t('Locked for %days% days', { days: daysLocked.days })}
         />
         <IazoSymbols iconImage="monkey" title={numBuyers} description="Participants" />
       </IazoSymbolsContainer>

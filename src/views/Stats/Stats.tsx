@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, BaseLayout, Text, Card } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Page from 'components/layout/Page'
 import { useFetchStats, useFetchStatsOverall, useStats } from 'state/statsOverall/hooks'
 import BananaStats from 'views/Stats/components/BananaStats'
@@ -98,7 +98,7 @@ const Stats: React.FC = () => {
   usePollFarms()
   useFetchStatsOverall()
   useFetchStats()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useActiveWeb3React()
   const yourStats = useStats()
   const stats = yourStats?.stats
@@ -108,29 +108,30 @@ const Stats: React.FC = () => {
       <Header>
         <HeadingContainer>
           <StyledHeading as="h1" color="white" style={{ marginBottom: '8px' }}>
-            {TranslateString(999, 'Ape Stats')}
+            {t('Ape Stats')}
           </StyledHeading>
         </HeadingContainer>
       </Header>
 
       <Page>
         <PaddedCard>
-          <Heading color="warning">HEADS UP, APES!</Heading>
+          <Heading color="warning">{t('HEADS UP, APES!')}</Heading>
           <Text>
-            The data on this page is not always up to date. Please do not rely on it for an accurate representation of
-            your holdings. For similar services, consider our partners such as{' '}
+            {t(
+              'The data on this page is not always up to date. Please do not rely on it for an accurate representation of your holdings. For similar services, consider our partners such as',
+            )}{' '}
             <a href="https://www.yieldwatch.net/" target="_blank" rel="noopener noreferrer">
               yieldwatch
             </a>
             ,{' '}
             <a href="https://jdiyield.com" target="_blank" rel="noopener noreferrer">
-              JDI
+              {t('JDI')}
             </a>
             , or{' '}
             <a href="https://pacoca.io/" target="_blank" rel="noopener noreferrer">
-              Pacoca
+              {t('Pacoca')}
             </a>{' '}
-            for alternative dashboards!
+            {t('for alternative dashboards!')}
           </Text>
         </PaddedCard>
         {!account ? (

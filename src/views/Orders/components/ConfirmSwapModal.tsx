@@ -6,6 +6,7 @@ import TransactionConfirmationModal, {
   TransactionErrorContent,
 } from 'components/TransactionConfirmationModal'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
 
@@ -37,6 +38,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
   realOutputAmount,
 }) => {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
 
   const modalHeader = useCallback(() => {
     return trade ? (
@@ -62,11 +64,12 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
   }, [allowedSlippage, onConfirm, swapErrorMessage, trade, realSwapPrice])
 
   // text to show while loading
-  const pendingText = `Placing order of ${trade?.inputAmount?.toSignificant(6) ?? ''} ${
-    trade?.inputAmount?.currency?.getSymbol(chainId) ?? ''
-  } for ${realOutputAmount || (trade?.outputAmount?.toSignificant(6) ?? '')} ${
-    trade?.outputAmount?.currency?.getSymbol(chainId) ?? ''
-  }`
+  const pendingText = t('Placing order of %tradeInputAmt%%tradeInputSymbol% for %tradeOutputAmt%%tradeOutputSymbol%', {
+    tradeInputAmt: trade?.inputAmount?.toSignificant(6) ?? '',
+    tradeInputSymbol: trade?.inputAmount?.currency?.getSymbol(chainId) ?? '',
+    tradeOutputAmt: realOutputAmount || (trade?.outputAmount?.toSignificant(6) ?? ''),
+    tradeOutputSymbol: trade?.outputAmount?.currency?.getSymbol(chainId) ?? '',
+  })
 
   const confirmationContent = useCallback(
     () =>
@@ -80,7 +83,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
 
   return (
     <TransactionConfirmationModal
-      title="Confirm Order"
+      title={t('Confirm Order')}
       onDismiss={onDismiss}
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}

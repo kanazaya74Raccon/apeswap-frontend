@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text, Image } from '@apeswapfinance/uikit'
 import Tooltip from 'components/Tooltip/Tooltip'
+import { useTranslation } from 'contexts/Localization'
 
 export interface PoolProps {
   token0?: string
@@ -43,6 +44,7 @@ const StyledBackground = styled.div`
 `
 
 const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPair, image, isBurning }) => {
+  const { t } = useTranslation()
   return (
     <Container>
       <StyledBackground>
@@ -99,7 +101,7 @@ const VaultHeading: React.FunctionComponent<PoolProps> = ({ token0, token1, isPa
         <Text fontSize="20px" fontWeight={800}>
           {isPair ? `${token1}-${token0}` : token0}{' '}
         </Text>
-        {isBurning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
+        {isBurning && <Tooltip content={t('Burns at least 50% of every harvest in the form of $BANANA')}>🔥</Tooltip>}
       </TitleContainer>
     </Container>
   )

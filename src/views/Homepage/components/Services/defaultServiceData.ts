@@ -1,26 +1,27 @@
 import { DefaultServiceData } from './types'
+import { ContextApi } from '../../../../contexts/Localization/types'
 
-export const defaultServiceData: DefaultServiceData[] = [
+export const defaultServiceData: (t: ContextApi['t']) => DefaultServiceData[] = (t) => [
   {
     id: 'poolDetails',
-    title: 'Staking Pools',
-    description: 'Earn new tokens by staking BANANA or GNANA',
+    title: t('Staking Pools'),
+    description: t('Earn partner tokens by staking BANANA or GNANA'),
     backgroundImg: 'images/homepage-pools.svg',
     link: '/pools',
     stats: [],
   },
   {
     id: 'farmDetails',
-    title: 'Yield Farms',
-    description: 'Earn BANANA by providing liquidity',
+    title: t('Yield Farms'),
+    description: t('Earn BANANA or partner tokens by staking LP tokens'),
     backgroundImg: 'images/homepage-farms.svg',
     link: '/farms',
     stats: [],
   },
   {
     id: 'lendingDetails',
-    title: 'Lending',
-    description: 'Earn interest by supplying and borrowing popular tokens',
+    title: t('Lending Network'),
+    description: t('Earn interest by supplying popular tokens'),
     backgroundImg: 'images/homepage-lending.svg',
     link: 'https://lending.apeswap.finance/markets',
     stats: [],

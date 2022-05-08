@@ -7,6 +7,7 @@ import { AutoColumn } from 'components/layout/Column'
 import { CurrencyLogo } from 'components/Logo'
 import { RowBetween, RowFixed } from 'components/layout/Row'
 import truncateHash from 'utils/truncateHash'
+import { useTranslation } from 'contexts/Localization'
 import { TruncatedText } from './styled'
 
 export default function SwapModalHeader({
@@ -22,10 +23,11 @@ export default function SwapModalHeader({
   const { chainId } = useActiveWeb3React()
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
+  const { t } = useTranslation()
 
   const truncatedRecipient = recipient ? truncateHash(recipient) : ''
 
-  const recipientInfoText = `Output will be sent to ${truncatedRecipient}`
+  const recipientInfoText = t('Output will be sent to %receipt%', { receipt: truncatedRecipient })
 
   const [recipientSentToText, postSentToText] = recipientInfoText.split(truncatedRecipient)
 

@@ -3,6 +3,7 @@ import { useMatchBreakpoints, Checkbox } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
 import TokenInput from './TokenInput'
 import { TokenSaleDetails, ExtendedERC20Details } from '../types'
 import { LaunchPadInfoWrapper, StyledHeader, CheckboxContainer, FooterContainer, StyledText } from './styles'
@@ -27,6 +28,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
     burnRemains: false,
   })
   const balance = getBalanceNumber(new BigNumber(userBalance), tokenDecimals)
+  const { t } = useTranslation()
 
   useEffect(() => {
     onChange(tokenDetails)
@@ -35,7 +37,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
   return (
     <>
       <LaunchPadInfoWrapper>
-        <StyledHeader>How many {tokenSymbol} are up for presale?</StyledHeader>
+        <StyledHeader>{t('How many %symbol% are up for presale?', { symbol: tokenSymbol })}</StyledHeader>
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, tokensForSale: e.currentTarget.value })}
           size="lg"
@@ -47,7 +49,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, pricePerToken: e.currentTarget.value })}
-          title={`Price of 1 ${tokenSymbol}`}
+          title={`${t('Price of 1')} ${tokenSymbol}`}
           mr={marginRight}
           quoteTokenSymbol={quoteToken}
           size="md"
@@ -56,7 +58,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, limitPerUser: e.currentTarget.value })}
-          title={`${quoteToken} limit per user`}
+          title={`${quoteToken} ${t('limit per user')}`}
           quoteTokenSymbol={quoteToken}
           ml={marginRight}
           size="md"
@@ -65,7 +67,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <TokenInput
           onChange={(e) => setTokenDetails({ ...tokenDetails, softcap: e.currentTarget.value })}
-          title="Softcap"
+          title={t('Softcap')}
           quoteTokenSymbol={quoteToken}
           mr={marginRight}
           size="md"
@@ -76,7 +78,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
         />
         <TokenInput
           defaultVal={(parseFloat(tokenDetails?.tokensForSale) * parseFloat(tokenDetails?.pricePerToken)).toString()}
-          title="Hardcap"
+          title={t('Hardcap')}
           ml={marginRight}
           size="md"
           disabled
@@ -92,7 +94,7 @@ const PresaleDetails: React.FC<PresaleDataProps> = ({ pairTokenDetails, onChange
             />
           </CheckboxContainer>
           <StyledText>
-            If softcap is met, but hardcap is not, burn the remaining tokens allocated to the token sale.
+            {t('If softcap is met, but hardcap is not, burn the remaining tokens allocated to the token sale.')}
           </StyledText>
         </FooterContainer>
       </LaunchPadInfoWrapper>

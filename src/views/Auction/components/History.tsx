@@ -4,6 +4,7 @@ import { Text, ArrowBackIcon, ArrowForwardIcon } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useGetNfaAuctionHistory } from 'hooks/api'
+import { useTranslation } from 'contexts/Localization'
 
 interface RowProps {
   background?: boolean
@@ -17,7 +18,7 @@ const PositinBox = styled.div`
   position: absolute;
   width: 100%;
   height: 600px;
-  top: 870px;
+  top: 910px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,6 +138,7 @@ const History: React.FC = () => {
   const [curSlice, setCurSlice] = useState(ROWS_PER_PAGE)
   const [backArrowFlag, setBackArrowFlag] = useState(false)
   const [forwardArrowFlag, setForwardArrowFlag] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setForwardArrowFlag(ROWS_PER_PAGE < historyData?.length)
@@ -198,12 +200,12 @@ const History: React.FC = () => {
   return (
     <PositinBox>
       <HistoryWrapper>
-        <HistoryTitle>History</HistoryTitle>
+        <HistoryTitle>{t('History')}</HistoryTitle>
         <ColumnHeadersWrapper>
-          <HeaderText>NFA Index</HeaderText>
-          <HeaderText>Amount</HeaderText>
-          <HeaderText>Bidder</HeaderText>
-          <HeaderText>Block Number</HeaderText>
+          <HeaderText>{t('NFA Index')}</HeaderText>
+          <HeaderText>{t('Amount')}</HeaderText>
+          <HeaderText>{t('Bidder')}</HeaderText>
+          <HeaderText>{t('Block Number')}</HeaderText>
         </ColumnHeadersWrapper>
         <BodyWrapper>{renderRows()}</BodyWrapper>
         <ArrowsWrapper>

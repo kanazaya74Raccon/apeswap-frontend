@@ -4,6 +4,7 @@ import { useToast } from 'state/hooks'
 import { fetchPoolsUserDataAsync } from 'state/pools'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { StyledButtonSquare } from './styles'
 
@@ -18,14 +19,15 @@ const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
   const [pendingTrx, setPendingTrx] = useState(false)
   const { onHarvestAll } = useSousHarvestAll(sousIds)
   const { toastSuccess } = useToast()
+  const { t } = useTranslation()
 
   const handleHarvestAll = async () => {
     setPendingTrx(true)
     await onHarvestAll()
       .then((resp) => {
         resp.map((trx) =>
-          toastSuccess('Harvest Successful', {
-            text: 'View Transaction',
+          toastSuccess(t('Harvest Successful'), {
+            text: t('View Transaction'),
             url: getEtherscanLink(trx.transactionHash, 'transaction', chainId),
           }),
         )
@@ -46,7 +48,7 @@ const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
       onClick={handleHarvestAll}
       load={pendingTrx}
     >
-      HARVEST ALL
+      {t('HARVEST ALL')}
     </StyledButtonSquare>
   )
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Skeleton, Button } from '@apeswapfinance/uikit'
 import { useSousApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
+import { useTranslation } from 'contexts/Localization'
 
 const StyledButton = styled(Button)`
   font-weight: 600;
@@ -20,6 +21,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
   const stakingTokenContract = useERC20(stakingTokenContractAddress)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const rewardRefReward = useRef(null)
+  const { t } = useTranslation()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
 
   const handleApprove = useCallback(async () => {
@@ -44,7 +46,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
         <Skeleton width="100%" height="52px" />
       ) : (
         <StyledButton size="md" className="noClick" disabled={requestedApproval} onClick={handleApprove}>
-          ENABLE
+          {t('ENABLE')}
         </StyledButton>
       )}
     </>

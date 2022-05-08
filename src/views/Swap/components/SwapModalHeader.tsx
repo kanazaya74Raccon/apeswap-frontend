@@ -8,6 +8,7 @@ import { AutoColumn } from 'components/layout/Column'
 import { CurrencyLogo } from 'components/Logo'
 import { RowBetween, RowFixed } from 'components/layout/Row'
 import truncateHash from 'utils/truncateHash'
+import { useTranslation } from 'contexts/Localization'
 import { TruncatedText, SwapShowAcceptChanges } from './styled'
 
 export default function SwapModalHeader({
@@ -23,6 +24,7 @@ export default function SwapModalHeader({
   showAcceptChanges: boolean
   onAcceptChanges: () => void
 }) {
+  const { t } = useTranslation()
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [trade, allowedSlippage],
@@ -42,14 +44,20 @@ export default function SwapModalHeader({
 
   const tradeInfoText =
     trade.tradeType === TradeType.EXACT_INPUT
-      ? `Output is estimated. You will receive at least ${amount} ${symbol} or the transaction will revert.`
-      : `Input is estimated. You will sell at most ${amount} ${symbol} or the transaction will revert.`
+      ? t('Output is estimated. You will receive at least %amount% %symbol% or the transaction will be cancelled.', {
+          amount,
+          symbol,
+        })
+      : t('Input is estimated. You will sell at most %amount% %symbol% or the transaction will be cancelled.', {
+          amount,
+          symbol,
+        })
 
   const [estimatedText, transactionRevertText] = tradeInfoText.split(`${amount} ${symbol}`)
 
   const truncatedRecipient = recipient ? truncateHash(recipient) : ''
 
-  const recipientInfoText = `Output will be sent to ${truncatedRecipient}`
+  const recipientInfoText = `${t('Output will be sent to')} ${truncatedRecipient}`
 
   const [recipientSentToText, postSentToText] = recipientInfoText.split(truncatedRecipient)
 
@@ -101,10 +109,10 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <ErrorIcon mr="8px" />
-              <Text bold>Price Updated</Text>
+              <Text bold>{t('Price Updated')}</Text>
             </RowFixed>
             <Button style={{ fontSize: '16px', textTransform: 'uppercase' }} onClick={onAcceptChanges}>
-              Accept
+              {t('Accept')}
             </Button>
           </RowBetween>
         </SwapShowAcceptChanges>

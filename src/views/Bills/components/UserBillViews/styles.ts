@@ -62,9 +62,9 @@ export const BillGifContainer = styled(Flex)`
 export const DescriptionContainer = styled(Flex)`
   flex-direction: column;
   padding-left: 20px;
-  padding: 13px 0px 20px 20px;
+  padding: 21px 0px 20px 20px;
   ${({ theme }) => theme.mediaQueries.md} {
-    max-width: 480px;
+    max-width: 530px;
   }
 `
 

@@ -13,8 +13,8 @@ const StyledPage = styled(Container)<SizeProps>`
   min-height: calc(100vh - 64px);
   padding-top: 16px;
   padding-bottom: 16px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-top: 24px;
@@ -24,7 +24,7 @@ const StyledPage = styled(Container)<SizeProps>`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-top: 32px;
     padding-bottom: 32px;
-    max-width: ${({ width }) => width || '992px'};
+    max-width: ${({ width }) => width || '1200px'};
   }
 `
 

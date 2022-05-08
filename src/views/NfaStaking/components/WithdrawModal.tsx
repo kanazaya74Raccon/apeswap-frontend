@@ -4,8 +4,8 @@ import Image from 'views/Nft/components/Image'
 import styled from 'styled-components'
 import { useFetchNfas, useNfas } from 'state/hooks'
 import ModalActions from 'components/ModalActions'
+import { useTranslation } from 'contexts/Localization'
 import UnderlinedButton from 'components/UnderlinedButton'
-import useI18n from '../../../hooks/useI18n'
 
 interface WithdrawModalProps {
   onConfirm: (amount: number[]) => void
@@ -39,9 +39,9 @@ const Nfa = styled.div<{ active: boolean }>`
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, stakedNfas }) => {
   useFetchNfas()
-  const TranslateString = useI18n()
   const [selectedNfas, setSelectedNfas] = useState([])
   const [pendingTx, setPendingTx] = useState(false)
+  const { t } = useTranslation()
   const { nfas } = useNfas()
   const mappedNfas = nfas?.filter((nfa) => stakedNfas.includes(nfa.index))
 
@@ -54,9 +54,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
   }
 
   return (
-    <Modal title="Withdraw NFAs" onDismiss={onDismiss}>
+    <Modal title={t('Withdraw NFAs')} onDismiss={onDismiss}>
       <Text marginBottom="20px">
-        NFAs Selected:
+        {t('NFAs Selected')}:
         {selectedNfas.map((index) => {
           return ` ${index},`
         })}
@@ -71,7 +71,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
             )
           })
         ) : (
-          <Text marginBottom="20px">You do not have any NFAs staked 😢</Text>
+          <Text marginBottom="20px">{t('You do not have any NFAs staked')} 😢</Text>
         )}
       </OwnedNfaWrapper>
       <ModalActions>
@@ -89,9 +89,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sta
             borderRadius: '10px',
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

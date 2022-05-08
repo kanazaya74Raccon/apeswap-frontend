@@ -1,18 +1,18 @@
 import React from 'react'
 import { Card, Text } from '@apeswapfinance/uikit'
 import { useProfile } from 'state/hooks'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import WalletNft from './WalletNft'
 
 const OwnedNfts = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { profile } = useProfile()
   return (
     <>
       {profile?.ownedNfts && (
         <>
           <Text fontSize="25px" style={{ color: 'subtle', paddingTop: '25px' }} fontWeight={800}>
-            {TranslateString(999, 'Your Apes')}
+            {t('Your Apes')}
           </Text>
           <Card
             style={{

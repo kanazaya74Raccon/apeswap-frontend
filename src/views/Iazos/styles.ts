@@ -2,16 +2,16 @@ import styled from 'styled-components'
 import { Text, Button } from '@apeswapfinance/uikit'
 
 export const PageWrapper = styled.div`
-  display: none;
   display: flex;
   padding-bottom: 200px;
   margin-bottom: 100px;
   justify-content: center;
+  padding: 0px 10px;
 `
 
 export const LaunchPadWrapper = styled.div`
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   background: ${({ theme }) => theme.colors.navbar};
   display: flex;
   flex-direction: column;

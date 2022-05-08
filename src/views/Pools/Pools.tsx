@@ -3,18 +3,18 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { PoolCategory } from 'config/constants/types'
 import { useWeb3React } from '@web3-react/core'
-import { Text, Flex } from '@apeswapfinance/uikit'
+import { Flex } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
-import useWindowSize, { Size } from 'hooks/useDimensions'
+import { useTranslation } from 'contexts/Localization'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools } from 'state/hooks'
+import ListViewLayout from 'components/layout/ListViewLayout'
+import Banner from 'components/Banner'
 import { Pool } from 'state/types'
 import PoolMenu from './components/Menu'
 import DisplayPools from './components/DisplayPools'
-import { Header, HeadingContainer, MonkeyWrapper, PoolMonkey, StyledHeading } from './styles'
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
@@ -28,9 +28,8 @@ const Pools: React.FC = () => {
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const { account } = useWeb3React()
   const { pathname } = useLocation()
-  const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const { search } = window.location
   const params = new URLSearchParams(search)
@@ -134,41 +133,39 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1" style={{ color: 'white', marginBottom: '8px' }}>
-            {TranslateString(999, 'Banana Pools')}
-          </StyledHeading>
-          {size.width > 968 && (
-            <Text fontSize="22px" fontWeight={400} color="white">
-              Stake BANANA to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
-            </Text>
-          )}
-        </HeadingContainer>
-        <MonkeyWrapper>
-          <PoolMonkey />
-        </MonkeyWrapper>
-      </Header>
-      <Flex justifyContent="center" style={{ position: 'relative', top: '30px', width: '100%', padding: '0px 10px' }}>
-        <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <PoolMenu
-            onHandleQueryChange={handleChangeQuery}
-            onSetSortOption={setSortOption}
-            onSetStake={setStakedOnly}
-            onSetTokenOption={setTokenOption}
-            pools={[...stakedOnlyPools, ...stakedInactivePools]}
-            activeOption={sortOption}
-            activeTokenOption={tokenOption}
-            stakedOnly={stakedOnly}
-            query={searchQuery}
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        mb="100px"
+        style={{ position: 'relative', top: '30px', width: '100%' }}
+      >
+        <ListViewLayout>
+          <Banner
+            banner="pools"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/pools"
+            title={t('Staking Pools')}
+            listViewBreak
+            maxWidth={1130}
           />
-          <DisplayPools pools={renderPools()} openId={urlSearchedPool} />
-          <div ref={loadMoreRef} />
-        </Flex>
+          <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
+            <PoolMenu
+              onHandleQueryChange={handleChangeQuery}
+              onSetSortOption={setSortOption}
+              onSetStake={setStakedOnly}
+              onSetTokenOption={setTokenOption}
+              pools={[...stakedOnlyPools, ...stakedInactivePools]}
+              activeOption={sortOption}
+              activeTokenOption={tokenOption}
+              stakedOnly={stakedOnly}
+              query={searchQuery}
+            />
+            <DisplayPools pools={renderPools()} openId={urlSearchedPool} />
+            <div ref={loadMoreRef} />
+          </Flex>
+        </ListViewLayout>
       </Flex>
     </>
   )
 }
 
-export default Pools
+export default React.memo(Pools)

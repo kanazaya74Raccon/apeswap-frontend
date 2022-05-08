@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+
 import ApyButton from '../../../../components/ApyCalculator/ApyButton'
+import { useTranslation } from '../../../../contexts/Localization'
 
 export interface AprProps {
   poolApr?: string
@@ -45,7 +46,7 @@ const AprWrapper = styled.div`
 `
 
 const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewardTokenPrice, apr }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return poolApr !== '0' ? (
     <Container>
@@ -63,7 +64,7 @@ const Apr: React.FC<AprProps> = ({ hideButton = false, poolApr, earnToken, rewar
           )}
         </Flex>
       ) : (
-        <AprWrapper>{TranslateString(656, 'Loading...')}</AprWrapper>
+        <AprWrapper>{t('Loading...')}</AprWrapper>
       )}
     </Container>
   ) : (

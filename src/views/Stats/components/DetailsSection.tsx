@@ -1,5 +1,5 @@
 import React from 'react'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import { Text, Flex, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
@@ -34,29 +34,29 @@ const StyledLinkExternal = styled(LinkExternal)`
 `
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({ farmStats, bscScanAddress }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
-      <Text fontSize="24px">{TranslateString(23, 'Earnings')}</Text>
+      <Text fontSize="24px">{t('Earnings')}</Text>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Daily')}:</Text>
+        <Text>{t('Daily')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerDay} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Weekly')}:</Text>
+        <Text>{t('Weekly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerWeek} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Monthly')}:</Text>
+        <Text>{t('Monthly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerMonth} prefix="$" />
       </Flex>
       <Flex justifyContent="space-between">
-        <Text>{TranslateString(23, 'Yearly')}:</Text>
+        <Text>{t('Yearly')}:</Text>
         <CardValue fontSize="14px" decimals={2} value={farmStats.dollarsEarnedPerYear} prefix="$" />
       </Flex>
       <Flex justifyContent="center">
-        <StyledLinkExternal href={bscScanAddress}>{TranslateString(356, 'View on BscScan')}</StyledLinkExternal>
+        <StyledLinkExternal href={bscScanAddress}>{t('View on BscScan')}</StyledLinkExternal>
       </Flex>
     </Wrapper>
   )

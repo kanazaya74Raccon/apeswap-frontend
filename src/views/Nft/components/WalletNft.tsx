@@ -3,7 +3,7 @@ import { Nft } from 'config/constants/types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Text, Button, useModal } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import Image from './Image'
 import TransferNftModal from './TransferNftModal'
 import { NftProviderContext } from '../contexts/NftProvider'
@@ -68,7 +68,7 @@ const StyledText = styled(Text)`
 `
 
 const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { reInitialize } = useContext(NftProviderContext)
   const nfaAttributes = [
     'Face',
@@ -131,7 +131,7 @@ const WalletNft: React.FC<NftCardProps> = ({ nft }) => {
             }}
             onClick={onPresentTransferModal}
           >
-            {TranslateString(999, 'Transfer')}
+            {t('Transfer')}
           </Button>
         </CardFlipBack>
       </CardFlipInner>

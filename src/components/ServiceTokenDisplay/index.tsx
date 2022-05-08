@@ -14,6 +14,7 @@ interface ServiceTokenDisplayProps {
   iconFill?: string
   size?: number
   billArrow?: boolean
+  dualEarn?: boolean
 }
 
 const setUrls = (tokenSymbol: string) => {
@@ -34,6 +35,7 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
   stakeLp = false,
   earnLp = false,
   noEarnToken = false,
+  dualEarn = false,
 }) => {
   const token1Urls = setUrls(token1)
   const token2Urls = token2 ? setUrls(token2) : []
@@ -69,7 +71,16 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
       <TokenContainer ml={-15} srcs={token2Urls} size={size} />
       <EarnIcon color={iconFill} />
       <TokenContainer zIndex={1} srcs={token3Urls} size={size} />
-      <TokenContainer ml={-15} srcs={token4Urls} size={size} />
+      {token4 !== undefined && <TokenContainer ml={-15} srcs={token4Urls} size={size} />}
+    </Flex>
+  )
+  const DualEarn = (
+    <Flex alignItems="center">
+      <TokenContainer zIndex={1} srcs={token1Urls} size={size} />
+      <TokenContainer ml={-15} srcs={token2Urls} size={size} />
+      <EarnIcon color={iconFill} />
+      <TokenContainer mt={-20} srcs={token3Urls} size={25} />
+      <TokenContainer mt={20} srcs={token4Urls} size={25} />
     </Flex>
   )
   const StakeTokenEarnLp = (
@@ -91,6 +102,9 @@ const ServiceTokenDisplay: React.FC<ServiceTokenDisplayProps> = ({
           <TokenContainer srcs={token1Urls} size={size} />
         </Flex>
       )
+    }
+    if (dualEarn) {
+      return DualEarn
     }
     if (!stakeLp && !earnLp) {
       return StakeTokenEarnToken

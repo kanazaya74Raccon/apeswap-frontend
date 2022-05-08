@@ -3,6 +3,8 @@ import useMedia from 'use-media'
 import { SwiperSlide } from 'swiper/react'
 
 import { pastIfos } from 'config/constants/ifo'
+import { useTranslation } from 'contexts/Localization'
+
 import {
   Container,
   Box,
@@ -13,7 +15,6 @@ import {
   RightArrowIcon,
   ProjectSwiper,
 } from './styles'
-
 import 'swiper/swiper.min.css'
 
 const padLeadingZeros = (num: number, size: number) => {
@@ -29,6 +30,7 @@ interface Props {
 const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
   const isWide = useMedia({ minWidth: '576px' })
   const [swiperRef, setSwiperRef] = React.useState<any>(null)
+  const { t } = useTranslation()
 
   const handleClickPrev = () => {
     swiperRef.slidePrev()
@@ -38,7 +40,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
   }
 
   const handleSlideChange = (index: number) => {
-    const id = pastIfos[index]?.id
+    const id = pastIfos(t)[index]?.id
 
     if (!id) {
       console.warn('Selected past IFO project id is either undefined or an empty string')
@@ -63,7 +65,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
         }}
         navigation
       >
-        {pastIfos.map((ifo, index) => (
+        {pastIfos(t).map((ifo, index) => (
           <SwiperSlide key={ifo.id}>
             {({ isActive }) => (
               <Box>
@@ -78,7 +80,7 @@ const IfoPastProjectSwiper = ({ onSelectProject }: Props) => {
                 <StatusTitle marginTop={16} isActive={isActive}>
                   {ifo.name}
                 </StatusTitle>
-                <StatusTitle>{`#${padLeadingZeros(pastIfos.length - index, 3)}`}</StatusTitle>
+                <StatusTitle>{`#${padLeadingZeros(pastIfos(t).length - index, 3)}`}</StatusTitle>
               </Box>
             )}
           </SwiperSlide>

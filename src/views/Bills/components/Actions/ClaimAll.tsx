@@ -6,6 +6,7 @@ import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
 import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
+import { useTranslation } from 'contexts/Localization'
 import { StyledButton } from '../styles'
 
 const ClaimAll: React.FC<{
@@ -18,21 +19,22 @@ const ClaimAll: React.FC<{
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
+  const { t } = useTranslation()
 
   const handleClaim = async () => {
     setPendingTrx(true)
     await onClaimBill()
       .then((resp) => {
         resp.map((trx) =>
-          toastSuccess('Claim Successful', {
-            text: 'View Transaction',
+          toastSuccess(t('Claim Successful'), {
+            text: t('View Transaction'),
             url: getEtherscanLink(trx.transactionHash, 'transaction', chainId),
           }),
         )
       })
       .catch((e) => {
         console.error(e)
-        toastError(e?.data?.message || 'Something went wrong please try again')
+        toastError(e?.data?.message || t('Something went wrong please try again'))
         setPendingTrx(false)
       })
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
@@ -47,7 +49,7 @@ const ClaimAll: React.FC<{
       buttonSize={buttonSize}
       style={{ height: '36px' }}
     >
-      Claim All ({ownedBillsAmount})
+      {t('Claim All')} ({ownedBillsAmount})
     </StyledButton>
   )
 }

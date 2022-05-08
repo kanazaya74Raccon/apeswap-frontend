@@ -1,11 +1,12 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+
 import styled from 'styled-components'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
 import { FarmPool } from 'state/types'
 import { NETWORK_LABEL } from 'config/constants/chains'
 import { useNetworkChainId } from 'state/hooks'
+import { useTranslation } from '../../../../contexts/Localization'
 
 export interface ExpandableSectionProps {
   blockExplorer?: string
@@ -91,7 +92,7 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
   withdrawFee,
   depositFee,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const chainId = useNetworkChainId()
 
@@ -107,29 +108,29 @@ const ActionPanel: React.FC<ExpandableSectionProps> = ({
         <InfoContainer>
           {depositFee && (
             <Flex justifyContent="space-between">
-              <StyledText fontSize="12px">{TranslateString(316, 'Deposit Fee')}:</StyledText>
+              <StyledText fontSize="12px">{t('Deposit Fee')}:</StyledText>
               <StyledText fontSize="12px">{depositFee}%</StyledText>
             </Flex>
           )}
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(316, 'Withdraw Fee')}:</StyledText>
+            <StyledText fontSize="12px">{t('Withdraw Fee')}:</StyledText>
             <StyledText fontSize="12px">{withdrawFee}%</StyledText>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(316, 'Total Staked')}:</StyledText>
+            <StyledText fontSize="12px">{t('Total Staked')}:</StyledText>
             <StyledText fontSize="12px">{totalStakedFormated}</StyledText>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
+            <StyledText fontSize="12px">{t('Stake')}:</StyledText>
             <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
           </Flex>
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+            <StyledText fontSize="12px">{t('Staked Value')}:</StyledText>
             <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
           </Flex>
           <Flex justifyContent="center">
             <StyledLink external href={blockExplorer} bold={false}>
-              {TranslateString(999, `View on ${NETWORK_LABEL[chainId]}Scan`)}
+              {t(`View on %chain% Scan`, { chain: NETWORK_LABEL[chainId] })}
             </StyledLink>
           </Flex>
         </InfoContainer>

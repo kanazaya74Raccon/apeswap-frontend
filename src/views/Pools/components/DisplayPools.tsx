@@ -12,6 +12,7 @@ import React from 'react'
 import { Pool } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { NextArrow } from 'views/Farms/components/styles'
+import { useTranslation } from 'contexts/Localization'
 import Actions from './Actions'
 import HarvestAction from './Actions/HarvestAction'
 import InfoContent from '../InfoContent'
@@ -21,6 +22,7 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
   const { chainId } = useActiveWeb3React()
   const isMobile = useIsMobile()
   const { pathname } = useLocation()
+  const { t } = useTranslation()
   const isActive = !pathname.includes('history')
 
   const poolsListView = pools.map((pool) => {
@@ -51,7 +53,6 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
           {pool?.rewardToken?.symbol || pool?.tokenName}
         </Text>
       ),
-      stakeLp: false,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',
@@ -71,11 +72,11 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
             )}
           </Flex>
           <ListViewContent
-            title="APR"
+            title={t('APR')}
             value={`${isActive ? pool?.apr?.toFixed(2) : '0.00'}%`}
             width={isMobile ? 95 : 80}
             height={50}
-            toolTip="APR is calculated based on current value of of the token, reward rate and pool % owned."
+            toolTip={t('APRs are calculated based on current value of the token, reward rate, and share of pool.')}
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0, 60%)"
             aprCalculator={
@@ -89,15 +90,15 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
             }
           />
           <ListViewContent
-            title="Total Staked"
+            title={t('Total Staked')}
             value={`$${totalDollarAmountStaked.toLocaleString(undefined)}`}
             width={isMobile ? 160 : 110}
             height={50}
-            toolTip="The total value of the tokens currently staked in this pool."
+            toolTip={t('The total value of the tokens currently staked in this pool.')}
             toolTipPlacement="bottomLeft"
             toolTipTransform="translate(0%, 75%)"
           />
-          <ListViewContent title="Earned" value={userEarningsUsd} height={50} width={isMobile ? 80 : 150} />
+          <ListViewContent title={t('Earned')} value={userEarningsUsd} height={50} width={isMobile ? 80 : 150} />
         </>
       ),
       expandedContent: (
@@ -105,7 +106,7 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
           <ActionContainer>
             {isMobile && (
               <ListViewContent
-                title={`Available ${pool?.stakingToken?.symbol}`}
+                title={`${t('Available')} ${pool?.stakingToken?.symbol}`}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary
@@ -116,11 +117,13 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
               />
             )}
             <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <StyledButton sx={{ width: '150px' }}>GET {pool?.stakingToken?.symbol}</StyledButton>
+              <StyledButton sx={{ width: '150px' }}>
+                {t('GET')} {pool?.stakingToken?.symbol}
+              </StyledButton>
             </a>
             {!isMobile && (
               <ListViewContent
-                title={`Available ${pool?.stakingToken?.symbol}`}
+                title={`${t('Available')} ${pool?.stakingToken?.symbol}`}
                 value={userTokenBalance}
                 value2={userTokenBalanceUsd}
                 value2Secondary

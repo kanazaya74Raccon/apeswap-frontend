@@ -2,8 +2,9 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex } from '@apeswapfinance/uikit'
-import useI18n from 'hooks/useI18n'
+
 import { calculateBananaEarnedPerThousandDollars, apyModalRoi } from 'utils/compoundApyHelpers'
+import { useTranslation } from 'contexts/Localization'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
@@ -22,7 +23,7 @@ const Grid = styled.div`
 `
 
 const GridItem = styled.div`
-  margin-bottom: '10px';
+  margin-bottom: 10px;
 `
 
 const Description = styled(Text)`
@@ -38,7 +39,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apy,
   addLiquidityUrl,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const farmApy = new BigNumber(apy).times(new BigNumber(100)).toNumber()
   const tokenPrice =
     typeof rewardTokenPrice === 'number' ? rewardTokenPrice : new BigNumber(rewardTokenPrice).toNumber()
@@ -66,27 +67,27 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
 
   return (
-    <Modal onDismiss={onDismiss} title="ROI">
+    <Modal onDismiss={onDismiss} title={t('CURRENT RATES')}>
       <Grid>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
-            {TranslateString(999, 'Timeframe')}
+            {t('Timeframe')}
           </Text>
         </GridItem>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
-            {TranslateString(999, 'ROI')}
+            {t('Return')}
           </Text>
         </GridItem>
         <GridItem>
           <Text fontSize="12px" color="gray" textTransform="uppercase" mb="20px">
             {rewardTokenName}
-            {TranslateString(999, ' per $1000')}
+            {t(' per $1000')}
           </Text>
         </GridItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>1d</Text>
+          <Text>{t('1d')}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -98,7 +99,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 7 day row */}
         <GridItem>
-          <Text>7d</Text>
+          <Text>{t('7d')}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -110,7 +111,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 30 day row */}
         <GridItem>
-          <Text>30d</Text>
+          <Text>{t('30d')}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -123,7 +124,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 365 day / APY row */}
         <GridItem>
-          <Text>365d(APY)</Text>
+          <Text>{`${t('365d')}${t('')}`}</Text>
         </GridItem>
         <GridItem>
           <Text>
@@ -139,14 +140,13 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
       </Grid>
       <Description fontSize="12px" color="gray">
-        {TranslateString(
-          999,
-          'Calculated based on current rates. Compounding once daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',
+        {t(
+          'Returns are calculated based on current rates, assuming daily compounding. Estimated returns are not guaranteed and are provided for convenience only.',
         )}
       </Description>
       <Flex justifyContent="center">
         <LinkExternal href={addLiquidityUrl}>
-          {TranslateString(999, 'Get')} {lpLabel}
+          {t('Get')} {lpLabel}
         </LinkExternal>
       </Flex>
     </Modal>

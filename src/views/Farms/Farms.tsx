@@ -6,12 +6,13 @@ import { Flex } from '@apeswapfinance/uikit'
 import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
+import ListViewLayout from 'components/layout/ListViewLayout'
+import Banner from 'components/Banner'
+import { useTranslation } from 'contexts/Localization'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
-import useI18n from 'hooks/useI18n'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
-import { Header, HeadingContainer, StyledHeading } from './styles'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
 
 const Farms: React.FC = () => {
@@ -20,7 +21,7 @@ const Farms: React.FC = () => {
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
   const { pathname } = useLocation()
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const [observerIsSet, setObserverIsSet] = useState(false)
   const [numberOfFarmsVisible, setNumberOfFarmsVisible] = useState(NUMBER_OF_FARMS_VISIBLE)
   const farmsLP = useFarms(account)
@@ -127,18 +128,21 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading as="h1">{TranslateString(999, 'Stake LP tokens to earn BANANA')}</StyledHeading>
-        </HeadingContainer>
-      </Header>
       <Flex
+        flexDirection="column"
         justifyContent="center"
         mb="100px"
-        style={{ position: 'relative', top: '30px', width: '100%', padding: '0px 10px' }}
+        style={{ position: 'relative', top: '30px', width: '100%' }}
       >
-        <Flex flexDirection="column" alignSelf="center" style={{ maxWidth: '1130px', width: '100%' }}>
-          <Flex alignItems="center" justifyContent="center">
+        <ListViewLayout>
+          <Banner
+            banner="banana-farms"
+            link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
+            title={t('Banana Farms')}
+            listViewBreak
+            maxWidth={1130}
+          />
+          <Flex alignItems="center" justifyContent="center" mt="20px">
             <ListViewMenu
               onHandleQueryChange={handleChangeQuery}
               onSetSortOption={setSortOption}
@@ -151,7 +155,7 @@ const Farms: React.FC = () => {
             />
           </Flex>
           <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
-        </Flex>
+        </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />
     </>
