@@ -85,7 +85,7 @@ const Services: React.FC = () => {
                   style={{
                     width: '100%',
                     height: '70px',
-                    background: 'rgba(250, 250, 250, .25)',
+                    background: 'rgba(11, 11, 11, .55)',
                     borderRadius: '10px',
                   }}
                 >
