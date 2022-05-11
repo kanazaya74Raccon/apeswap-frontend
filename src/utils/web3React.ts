@@ -17,6 +17,7 @@ const injected = new InjectedConnector({
 
 const walletconnect = new WalletConnectConnector({
   rpc: { [CHAIN_ID.ETH]: getRpcUrl(CHAIN_ID.ETH) },
+  supportedChainIds: [CHAIN_ID.BSC, CHAIN_ID.BSC_TESTNET, CHAIN_ID.MATIC, CHAIN_ID.MATIC_TESTNET, CHAIN_ID.ETH],
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
