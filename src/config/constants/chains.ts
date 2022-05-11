@@ -127,4 +127,8 @@ export const WALLCHAIN_PARAMS = {
     apiUrl: 'https://matic.wallchain.xyz/upgrade_txn/',
     apiKey: '5cf2b177-5fa5-477a-8cea-f2b54859af2a',
   },
+  [CHAIN_ID.ETH]: {
+    apiUrl: 'https://matic.wallchain.xyz/upgrade_txn/',
+    apiKey: '5cf2b177-5fa5-477a-8cea-f2b54859af2a',
+  },
 }
