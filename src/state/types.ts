@@ -552,6 +552,7 @@ export interface StatsState {
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
   FarmLpAprs: FarmLpAprsType
+  LiveIfo: LiveIfo[]
   data: Stats
 }
 
@@ -603,12 +604,6 @@ export interface TeamsState {
   data: TeamsById
 }
 
-export interface LiveIfoState {
-  isInitialized: boolean
-  isLoading: boolean
-  data: LiveIfo[]
-}
-
 // Global state
 
 export interface State {
@@ -631,5 +626,4 @@ export interface State {
   dualFarms: DualFarmsState
   bills: BillsState
   nfas: NfaState
-  liveIfo: LiveIfoState
 }

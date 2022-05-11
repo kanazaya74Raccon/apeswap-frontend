@@ -144,9 +144,9 @@ const App: React.FC = () => {
         <Menu>
           <Suspense fallback={<PageLoader />}>
             <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
+              <Route path="/" exact component={Home} />
+              {/* <Home />
+              </Route> */}
               <Route path="/admin-pools">
                 <AdminPools />
               </Route>
@@ -216,12 +216,12 @@ const App: React.FC = () => {
             <Route exact path="/nft">
               <Nft />
             </Route>
-            <Route path="/" exact>
-              <Home />
-            </Route>
+            <Route path="/" exact component={Home} />
+            {/* <Home />
+            </Route> */}
             <Route path="/swap" component={Swap} />
             <Route exact strict path="/orders" component={Orders} />
-            <Route path="/farms">
+            <Route path="/farms" exact>
               <Farms />
             </Route>
             <Route path="/pools">
