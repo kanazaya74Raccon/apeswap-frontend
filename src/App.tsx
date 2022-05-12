@@ -1,13 +1,13 @@
-import React, { useEffect, Suspense, lazy } from 'react'
+import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { ResetCSS, ChevronUpIcon, ApeSwapTheme } from '@apeswapfinance/uikit'
-import styled from 'styled-components'
+import { ResetCSS, ApeSwapTheme } from '@apeswapfinance/uikit'
+import { ScrollToTop } from '@ape.swap/uikit'
 import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
-import { useFetchTokenPrices, useFetchProfile, useUpdateNetwork } from 'state/hooks'
+import { useFetchTokenPrices, useFetchProfile, useUpdateNetwork, useFetchLiveIfoStatus } from 'state/hooks'
 import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -85,38 +85,41 @@ BigNumber.config({
   DECIMAL_PLACES: 80,
 })
 
-const StyledChevronUpIcon = styled(ChevronUpIcon)`
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  background-color: rgb(255, 179, 0, 0.7);
-  border: 1px solid #ffb300;
-  border-radius: 50%;
-  z-index: 10;
-  cursor: pointer;
-`
-
 const App: React.FC = () => {
   useUpdateNetwork()
   useEagerConnect()
   useFetchTokenPrices()
   usePollBlockNumber()
   useFetchProfile()
+  useFetchLiveIfoStatus()
 
   const { account, chainId } = useActiveWeb3React()
+  const [showScrollIcon, setShowScrollIcon] = useState(false)
+
+  // Set a state to show scroll to top
+  // on load of the page,
+  // if pathname matches the needed pathname
+  // set it to true and show
+
+  const showScroll = useCallback(() => {
+    if (window.location.pathname === '/') {
+      setShowScrollIcon(false)
+    } else if (
+      window.location.pathname === '/farms' ||
+      window.location.pathname === '/pools' ||
+      window.location.pathname === '/vaults' ||
+      window.location.pathname === '/iazos'
+    ) {
+      setShowScrollIcon(true)
+    } else {
+      setShowScrollIcon(false)
+    }
+  }, [])
 
   useEffect(() => {
+    showScroll()
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
-  }, [account])
-
-  const scrollToTop = (): void => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
+  }, [account, showScroll])
 
   const swapRoutes = (
     <>
@@ -141,9 +144,9 @@ const App: React.FC = () => {
         <Menu>
           <Suspense fallback={<PageLoader />}>
             <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
+              <Route path="/" exact component={Home} />
+              {/* <Home />
+              </Route> */}
               <Route path="/admin-pools">
                 <AdminPools />
               </Route>
@@ -213,12 +216,12 @@ const App: React.FC = () => {
             <Route exact path="/nft">
               <Nft />
             </Route>
-            <Route path="/" exact>
-              <Home />
-            </Route>
+            <Route path="/" exact component={Home} />
+            {/* <Home />
+            </Route> */}
             <Route path="/swap" component={Swap} />
             <Route exact strict path="/orders" component={Orders} />
-            <Route path="/farms">
+            <Route path="/farms" exact>
               <Farms />
             </Route>
             <Route path="/pools">
@@ -294,10 +297,11 @@ const App: React.FC = () => {
       <ResetCSS />
       <GlobalStyle />
       <MarketingModalCheck />
-      {(window.location.pathname === '/farms' ||
+      {showScrollIcon && <ScrollToTop />}
+      {/* {(window.location.pathname === '/farms' ||
         window.location.pathname === '/pools' ||
         window.location.pathname === '/vaults' ||
-        window.location.pathname === '/iazos') && <StyledChevronUpIcon onClick={scrollToTop} />}
+        window.location.pathname === '/iazos') && <StyledChevronUpIcon onClick={scrollToTop} />} */}
       {loadMenu()}
       <ToastListener />
     </Router>
