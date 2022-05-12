@@ -138,6 +138,75 @@ const App: React.FC = () => {
   )
 
   const loadMenu = () => {
+    // ETH routes
+    if (chainId === CHAIN_ID.ETH) {
+      return (
+        <Menu>
+          <Suspense fallback={<PageLoader />}>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
+              {/* Redirects */}
+              <Route path="/admin-pools">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/farms">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/vaults">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/treasury-bills">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/nft">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/pools">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/jungle-farms">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/admin-pools">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/iao">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/auction">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/nft">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/nft/:id">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/gnana">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/stats">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/ss-iao">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/ss-iao/create">
+                <Redirect to="/" />
+              </Route>
+              <Route path="/ss-iao/:id">
+                <Redirect to="/" />
+              </Route>
+              <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+        </Menu>
+      )
+    }
+
     // MATIC routes
     if (chainId === CHAIN_ID.MATIC || chainId === CHAIN_ID.MATIC_TESTNET) {
       return (
@@ -298,10 +367,6 @@ const App: React.FC = () => {
       <GlobalStyle />
       <MarketingModalCheck />
       {showScrollIcon && <ScrollToTop />}
-      {/* {(window.location.pathname === '/farms' ||
-        window.location.pathname === '/pools' ||
-        window.location.pathname === '/vaults' ||
-        window.location.pathname === '/iazos') && <StyledChevronUpIcon onClick={scrollToTop} />} */}
       {loadMenu()}
       <ToastListener />
     </Router>

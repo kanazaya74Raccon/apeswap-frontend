@@ -6,6 +6,7 @@ const tokens = {
       97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
       56: '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
       137: '0x5d47baba0d66083c52009271faf3f50dcc01023c',
+      1: '0x92df60c51c710a1b1c20e42d85e221f3a1bfc7f2',
     },
     decimals: 18,
   },
