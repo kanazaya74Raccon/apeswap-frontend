@@ -53,7 +53,6 @@ export const LearnMoreButton = styled(Button)`
   height: 36px;
   width: 192px;
   align-items: center;
-  padding-left: 40px;
   color: ${({ theme }) => theme.colors.yellow};
   border: 2px solid ${({ theme }) => theme.colors.yellow};
 `

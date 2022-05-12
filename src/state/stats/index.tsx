@@ -8,6 +8,7 @@ import getHomepageServiceStats from './getHomepageService'
 import getHomepageStats from './getHomepageStats'
 import getHomepageTokenStats from './getHomepageTokenStats'
 import { computeStats } from './getStats'
+import fetchIfoStatus from './fetchIfoStatus'
 
 const initialState: StatsState = {
   isInitialized: false,
@@ -18,6 +19,7 @@ const initialState: StatsState = {
   HomepageLaunchCalendar: null,
   HomepageServiceStats: null,
   FarmLpAprs: null,
+  LiveIfo: null,
   data: null,
 }
 
@@ -55,6 +57,18 @@ export const statsSlice = createSlice({
     setFarmLpAprs: (state, action) => {
       state.FarmLpAprs = action.payload
     },
+    fetchLiveIfoStart: (state) => {
+      state.isLoading = true
+    },
+    fetchLiveIfoSuccess: (state, action) => {
+      state.isInitialized = true
+      state.isLoading = false
+      state.LiveIfo = action.payload
+    },
+    fetchLiveIfoFailure: (state) => {
+      state.isLoading = false
+      state.isInitialized = true
+    },
   },
 })
 
@@ -69,6 +83,9 @@ export const {
   setHomepageLaunchCalendar,
   setHomepageServiceStats,
   setFarmLpAprs,
+  fetchLiveIfoFailure,
+  fetchLiveIfoStart,
+  fetchLiveIfoSuccess,
 } = statsSlice.actions
 
 // Thunks
@@ -111,6 +128,16 @@ export const fetchHomepageService = () => async (dispatch) => {
 export const fetchFarmLpAprs = (chainId) => async (dispatch) => {
   const farmLpAprs = await getFarmLpAprs(chainId)
   dispatch(setFarmLpAprs(farmLpAprs))
+}
+
+export const fetchLiveIfoStatus = () => async (dispatch) => {
+  try {
+    dispatch(fetchLiveIfoStart())
+    const liveStatus = await fetchIfoStatus()
+    dispatch(fetchLiveIfoSuccess(liveStatus))
+  } catch (error) {
+    dispatch(fetchLiveIfoFailure())
+  }
 }
 
 export default statsSlice.reducer

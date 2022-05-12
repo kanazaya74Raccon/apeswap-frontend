@@ -46,7 +46,10 @@ export const NETWORK_RPC = {
   [CHAIN_ID.BSC_TESTNET]: ['https://data-seed-prebsc-2-s3.binance.org:8545/'],
   [CHAIN_ID.MATIC]: ['https://polygon-rpc.com/'],
   [CHAIN_ID.MATIC_TESTNET]: ['https://matic-mumbai.chainstacklabs.com'],
-  [CHAIN_ID.ETH]: ['https://speedy-nodes-nyc.moralis.io/243a3247900299b295ca4962/eth/mainnet'],
+  [CHAIN_ID.ETH]: [
+    'https://speedy-nodes-nyc.moralis.io/243a3247900299b295ca4962/eth/mainnet',
+    'https://mainnet.infura.io/v3/db68086081a640d6999f0b58d049b0c4',
+  ],
 }
 
 // Network block explorers

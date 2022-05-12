@@ -12,6 +12,7 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
+  LiveIfo,
   BillsConfig,
 } from 'config/constants/types'
 
@@ -408,9 +409,12 @@ export interface ServiceData {
   id: number
   apr?: number
   apy?: number
+  discount?: number
   link: string
   marketName?: string
   marketAddress?: string
+  lpTokenName?: string
+  earnTokenName?: string
   stakeToken?: {
     name: string
     address: string
@@ -551,6 +555,7 @@ export interface StatsState {
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
   FarmLpAprs: FarmLpAprsType
+  LiveIfo: LiveIfo[]
   data: Stats
 }
 

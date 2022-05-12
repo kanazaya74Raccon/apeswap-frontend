@@ -171,7 +171,7 @@
   "Fee1": "Fee1",
   "Fees": "Fees",
   "Find other LP tokens": "Find other LP tokens",
-  "For sale": "For ale",
+  "For sale": "For sale",
   "Frame": "Frame",
   "GNANA": "GNANA",
   "GNANA Holdings": "GNANA Holdings",
@@ -861,5 +861,6 @@
   "View on PolygonScan": "View on PolygonScan",
   "Banana Farms": "Banana Farms",
   "Welcome to ApeSwap Treasury Bills": "Welcome to ApeSwap Treasury Bills",
-  "Dont see a pool you joined?": "Dont see a pool you joined?"
+  "Dont see a pool you joined?": "Dont see a pool you joined?",
+  "Create protocol-owned liquidity with yield-generating NFTs": "Create protocol-owned liquidity with yield-generating NFTs"
 }

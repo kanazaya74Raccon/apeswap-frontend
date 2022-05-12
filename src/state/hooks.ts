@@ -49,6 +49,7 @@ import {
   fetchHomepageNews,
   fetchHomepageService,
   fetchHomepageTokenData,
+  fetchLiveIfoStatus,
 } from './stats'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -568,4 +569,18 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useFetchLiveIfoStatus = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchLiveIfoStatus())
+  }, [dispatch, slowRefresh])
+}
+
+export const useLiveIfoStatus = () => {
+  const { LiveIfo }: StatsState = useSelector((state: State) => state.stats)
+
+  return { liveIfos: LiveIfo }
 }
