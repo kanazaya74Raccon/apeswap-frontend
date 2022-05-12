@@ -92,7 +92,7 @@ export default {
     56: '0x5e545322b83626c745FE46144a15C00C94cBD803',
     97: '',
     137: '0x05D6C73D7de6E02B3f57677f849843c03320681c',
-    1: '',
+    1: '0x5fbFd1955EeA2F62F1AfD6d6E92223Ae859F7887',
   },
   miniApeV2: {
     56: '',
