@@ -33,7 +33,7 @@ export const NETWORK_INFO_LINK = {
   [CHAIN_ID.BSC_TESTNET]: 'https://info.apeswap.finance',
   [CHAIN_ID.MATIC]: 'https://polygon.info.apeswap.finance/',
   [CHAIN_ID.MATIC_TESTNET]: 'https://polygon.info.apeswap.finance/',
-  [CHAIN_ID.ETH]: 'https://info.apeswap.finance',
+  [CHAIN_ID.ETH]: 'https://ethereum.info.apeswap.finance',
 }
 
 // Network RPC nodes
