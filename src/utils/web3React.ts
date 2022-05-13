@@ -1,6 +1,7 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
+import { TorusConnector } from '@web3-react/torus-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@apeswapfinance/uikit'
 import getRpcUrl from 'utils/getRpcUrl'
@@ -23,6 +24,7 @@ const walletconnect = new WalletConnectConnector({
 })
 
 const bscConnector = new BscConnector({ supportedChainIds: [CHAIN_ID.BSC] })
+const torus = new TorusConnector({ chainId: CHAIN_ID.BSC, initOptions: { network: { host: 'bsc_mainnet' } } })
 
 export const walletlink = new WalletLinkConnector({
   url: getRpcUrl(CHAIN_ID.BSC),
@@ -37,6 +39,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
   [ConnectorNames.Walletlink]: walletlink,
+  [ConnectorNames.Torus]: torus,
 }
 
 export const getLibrary = (provider: any): Web3Provider => {

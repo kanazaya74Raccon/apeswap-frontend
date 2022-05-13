@@ -4,6 +4,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
+import useTopup from 'hooks/useTopup'
 import { ContextApi } from 'contexts/Localization/types'
 import { useTranslation } from 'contexts/Localization'
 import { useProfile, useTokenPrices } from 'state/hooks'
@@ -22,6 +23,7 @@ const Menu = (props) => {
   const bananaPriceUsd = tokenPrices?.find((token) => token.symbol === 'BANANA')?.price
   const { profile } = useProfile()
   const { t, setLanguage, currentLanguage } = useTranslation()
+  const { onTopup } = useTopup()
   const currentMenu = (translate: ContextApi['t']) => {
     if (chainId === CHAIN_ID.BSC) {
       return bscConfig(translate)
@@ -53,6 +55,7 @@ const Menu = (props) => {
         noProfileLink: '/nft',
         profileLink: '',
       }}
+      runFiat={onTopup}
       track={track}
       {...props}
     />
