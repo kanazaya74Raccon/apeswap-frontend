@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from '@apeswapfinance/uikit'
+import styled, { useTheme } from 'styled-components'
+import { Button, Heading, Text } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
 import { useTranslation } from 'contexts/Localization'
 
@@ -14,13 +14,14 @@ const StyledNotFound = styled.div`
 
 const NotFound = () => {
   const { t } = useTranslation()
+  const { isDark } = useTheme()
 
   // 07611943d
 
   return (
     <Page>
       <StyledNotFound>
-        <img src="images/lost-monkey.svg" alt="404" />
+        <img src={isDark ? 'images/lost-monkey.svg' : 'images/lost-monkey-dark.svg'} alt="404" />
         <Heading>404</Heading>
         <Text mb="16px">{t('Oops, page not found.')}</Text>
         <Button as="a" href="/" size="sm">
