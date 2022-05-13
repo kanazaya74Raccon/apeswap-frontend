@@ -28,7 +28,7 @@ const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
 const JunglePools = lazy(() => import('./views/JunglePools'))
 const Ifos = lazy(() => import('./views/Ifos'))
-const NotFound = lazy(() => import('./views/NotFound'))
+// const NotFound = lazy(() => import('./views/NotFound'))
 const DualFarms = lazy(() => import('./views/DualFarms'))
 const Nft = lazy(() => import('./views/Nft'))
 const Nfa = lazy(() => import('./views/Nft/Nfa'))
@@ -201,7 +201,6 @@ const App: React.FC = () => {
               </Route>
               <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
             </Switch>
-            <Route component={NotFound} />
           </Suspense>
         </Menu>
       )
@@ -272,7 +271,6 @@ const App: React.FC = () => {
               </Route>
               <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
             </Switch>
-            <Route component={NotFound} />
           </Suspense>
         </Menu>
       )
@@ -353,7 +351,6 @@ const App: React.FC = () => {
             </Route>
             <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
           </Switch>
-          <Route component={NotFound} />
         </Suspense>
       </Menu>
     )
