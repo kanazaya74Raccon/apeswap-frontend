@@ -28,7 +28,7 @@ const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
 const JunglePools = lazy(() => import('./views/JunglePools'))
 const Ifos = lazy(() => import('./views/Ifos'))
-// const NotFound = lazy(() => import('./views/NotFound'))
+const NotFound = lazy(() => import('./views/NotFound'))
 const DualFarms = lazy(() => import('./views/DualFarms'))
 const Nft = lazy(() => import('./views/Nft'))
 const Nfa = lazy(() => import('./views/Nft/Nfa'))
@@ -121,22 +121,6 @@ const App: React.FC = () => {
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
   }, [account, showScroll])
 
-  const swapRoutes = (
-    <>
-      <Route path="/swap" component={Swap} />
-      <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
-      <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
-      <Route exact strict path="/find" component={PoolFinder} />
-      <Route exact strict path="/pool" component={Pool} />
-      <Route exact strict path="/create" component={RedirectToAddLiquidity} />
-      <Route exact path="/add" component={AddLiquidity} />
-      <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
-      <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
-      <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-      <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-    </>
-  )
-
   const loadMenu = () => {
     // ETH routes
     if (chainId === CHAIN_ID.ETH) {
@@ -145,8 +129,6 @@ const App: React.FC = () => {
           <Suspense fallback={<PageLoader />}>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/swap" component={Swap} />
-              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               {/* Redirects */}
               <Route path="/admin-pools">
                 <Redirect to="/" />
@@ -199,7 +181,21 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
-              <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
+              {/* SWAP ROUTES */}
+              <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
+              <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+              <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+              <Route exact strict path="/find" component={PoolFinder} />
+              <Route exact strict path="/pool" component={Pool} />
+              <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+              <Route exact path="/add" component={AddLiquidity} />
+              <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+              <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+              <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+              <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+              {/* SWAP ROUTES */}
+              <Route component={NotFound} />
             </Switch>
           </Suspense>
         </Menu>
@@ -221,8 +217,6 @@ const App: React.FC = () => {
               <Route path="/farms">
                 <DualFarms />
               </Route>
-              <Route path="/swap" component={Swap} />
-              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               {/* Redirects */}
               <Route path="/vaults">
                 <Redirect to="/" />
@@ -269,7 +263,21 @@ const App: React.FC = () => {
               <Route path="/ss-iao/:id">
                 <Redirect to="/" />
               </Route>
-              <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
+              {/* SWAP ROUTES */}
+              <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
+              <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+              <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+              <Route exact strict path="/find" component={PoolFinder} />
+              <Route exact strict path="/pool" component={Pool} />
+              <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+              <Route exact path="/add" component={AddLiquidity} />
+              <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+              <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+              <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+              <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+              {/* SWAP ROUTES */}
+              <Route component={NotFound} />
             </Switch>
           </Suspense>
         </Menu>
@@ -284,10 +292,6 @@ const App: React.FC = () => {
               <Nft />
             </Route>
             <Route path="/" exact component={Home} />
-            {/* <Home />
-            </Route> */}
-            <Route path="/swap" component={Swap} />
-            <Route exact strict path="/orders" component={Orders} />
             <Route path="/farms">
               <Farms />
             </Route>
@@ -349,7 +353,21 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
-            <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
+            {/* SWAP ROUTES */}
+            <Route path="/swap" component={Swap} />
+            <Route exact strict path="/orders" component={Orders} />
+            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+            <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
+            <Route exact strict path="/find" component={PoolFinder} />
+            <Route exact strict path="/pool" component={Pool} />
+            <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+            <Route exact path="/add" component={AddLiquidity} />
+            <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+            <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
+            <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+            {/* SWAP ROUTES */}
+            <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Menu>
