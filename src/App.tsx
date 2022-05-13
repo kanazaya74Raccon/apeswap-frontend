@@ -290,7 +290,7 @@ const App: React.FC = () => {
             </Route> */}
             <Route path="/swap" component={Swap} />
             <Route exact strict path="/orders" component={Orders} />
-            <Route path="/farms" exact>
+            <Route path="/farms">
               <Farms />
             </Route>
             <Route path="/pools">
