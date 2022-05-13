@@ -200,8 +200,8 @@ const App: React.FC = () => {
                 <Redirect to="/" />
               </Route>
               <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
-              <Route component={NotFound} />
             </Switch>
+            <Route component={NotFound} />
           </Suspense>
         </Menu>
       )
@@ -271,8 +271,8 @@ const App: React.FC = () => {
                 <Redirect to="/" />
               </Route>
               <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
-              <Route component={NotFound} />
             </Switch>
+            <Route component={NotFound} />
           </Suspense>
         </Menu>
       )
@@ -352,9 +352,8 @@ const App: React.FC = () => {
               <Redirect to="/pools" />
             </Route>
             <Suspense fallback={<PageLoader />}>{swapRoutes}</Suspense>
-            {/* 404 */}
-            <Route component={NotFound} />
           </Switch>
+          <Route component={NotFound} />
         </Suspense>
       </Menu>
     )
