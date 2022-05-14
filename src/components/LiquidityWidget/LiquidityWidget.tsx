@@ -525,7 +525,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
               }}
               disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
             >
-              {error ?? t('Supply')}
+              {error ?? t('Add Liquidity')}
             </Button>
           </AutoColumn>
         )}

@@ -313,7 +313,7 @@ export default function CurrencyInputPanel({
               }}
             >
               {!hideBalance && !!currency && value
-                ? `${t('LP to Remove')}: ${
+                ? `${t('LPs to Remove')}: ${
                     selectedCurrencyBalance?.toSignificant(6)
                       ? (parseFloat(selectedCurrencyBalance?.toSignificant(6)) * (parseInt(value) / 100)).toFixed(6)
                       : t('Loading')

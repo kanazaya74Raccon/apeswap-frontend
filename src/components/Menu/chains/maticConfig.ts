@@ -15,7 +15,7 @@ const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     darkIcon: 'MoreDarkImage',
     items: [
       {
-        label: t('Docs'),
+        label: t('Documentation'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
       },
       {

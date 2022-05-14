@@ -130,7 +130,7 @@ const ReturnCard: React.FC<ReturnCardType> = ({ fromToken, toToken }) => {
           />
 
           <Text fontSize="12px" fontWeight={500}>
-            *After 2% reflect fees
+            *After 2% reflect fee
           </Text>
 
           <CheckBoxSection>

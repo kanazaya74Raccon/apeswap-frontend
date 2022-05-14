@@ -19,7 +19,7 @@ const WelcomeContent: React.FC = () => {
               <br />
               <Text>
                 {t(
-                  'Whether you are new to crypto or you are a DeFi veteran, ApeSwap has the tools and the community to support your decentralized finance needs.',
+                  'Whether you are new to crypto or you are a DeFi veteran, ApeSwap has the tools, community, and connections to support your decentralized finance needs.',
                 )}
               </Text>
             </>

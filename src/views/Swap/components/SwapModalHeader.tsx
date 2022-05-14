@@ -44,11 +44,11 @@ export default function SwapModalHeader({
 
   const tradeInfoText =
     trade.tradeType === TradeType.EXACT_INPUT
-      ? t('Output is estimated. You will receive at least %amount% %symbol% or the transaction will revert.', {
+      ? t('Output is estimated. You will receive at least %amount% %symbol% or the transaction will be cancelled.', {
           amount,
           symbol,
         })
-      : t('Input is estimated. You will sell at most %amount% %symbol% or the transaction will revert.', {
+      : t('Input is estimated. You will sell at most %amount% %symbol% or the transaction will be cancelled.', {
           amount,
           symbol,
         })

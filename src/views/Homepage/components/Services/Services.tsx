@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import useSwiper from 'hooks/useSwiper'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useWindowSize from 'hooks/useDimensions'
-import { Link } from 'react-router-dom'
 import { ServiceData } from 'state/types'
 import { useFetchHomepageServiceStats, useHomepageServiceStats } from 'state/hooks'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
@@ -48,10 +47,19 @@ const Services: React.FC = () => {
   }, [isIntersecting])
 
   const handleEachService = (id: string, service: ServiceData) => {
-    if (id === 'farmDetails' || id === 'poolDetails') {
+    if (id === 'farmDetails' || id === 'poolDetails' || id === 'billDetails') {
       const tokenImage =
-        id === 'farmDetails' ? service.stakeToken.name.split('-') : [service.stakeToken.name, service.rewardToken.name]
-      const name = id === 'farmDetails' ? service.stakeToken.name : service.rewardToken.name
+        id === 'farmDetails'
+          ? service.stakeToken.name.split('-')
+          : id === 'billDetails'
+          ? service.lpTokenName.split('-')
+          : [service.stakeToken.name, service.rewardToken.name]
+      const name =
+        id === 'farmDetails'
+          ? service.stakeToken.name
+          : id === 'billDetails'
+          ? service.lpTokenName
+          : service.rewardToken.name
       return { name, tokenImage }
     }
     if (id === 'lendingDetails') {
@@ -79,7 +87,7 @@ const Services: React.FC = () => {
                   style={{
                     width: '100%',
                     height: '70px',
-                    background: 'rgba(250, 250, 250, .25)',
+                    background: 'rgba(11, 11, 11, .55)',
                     borderRadius: '10px',
                   }}
                 >
@@ -91,17 +99,33 @@ const Services: React.FC = () => {
                       stakeLp
                       iconFill="white"
                     />
+                  ) : id === 'billDetails' ? (
+                    <ServiceTokenDisplay
+                      token1={tokenImage[0]}
+                      token2={tokenImage[1]}
+                      token3="BANANA"
+                      stakeLp
+                      billArrow
+                      iconFill="white"
+                    />
                   ) : id === 'poolDetails' ? (
                     <ServiceTokenDisplay token1={tokenImage[0]} token2={tokenImage[1]} iconFill="white" />
                   ) : (
                     <ServiceTokenDisplay token1={tokenImage[0]} />
                   )}
-                  <Flex pl="20px" justifyContent="center" flexDirection="column">
+                  <Flex pl="15px" justifyContent="center" flexDirection="column">
                     <Text bold style={{ width: '100%', color: 'white' }}>
                       {name}
                     </Text>
                     {id === 'lendingDetails' ? (
                       <Text style={{ width: '100%', color: 'white' }}>APY: {stat.apy.toFixed(2)}%</Text>
+                    ) : id === 'billDetails' ? (
+                      <Text style={{ width: '100%', color: 'white' }}>
+                        Discount:{' '}
+                        <span style={{ color: stat.discount > 0 ? 'white' : '#DF4141' }}>
+                          {stat.discount.toFixed(2)}%
+                        </span>
+                      </Text>
                     ) : (
                       <Text style={{ width: '100%', color: 'white' }}>APR: {(stat.apr * 100).toFixed(2)}%</Text>
                     )}
@@ -165,9 +189,7 @@ const Services: React.FC = () => {
                               </Text>
                             </Flex>
                           </Flex>
-                          {service.title !== '' && (
-                            <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
-                          )}
+                          {displayStats(service.id, service.link, service.stats)}
                         </Flex>
                       </YieldCard>
                     </SwiperSlide>
@@ -176,27 +198,7 @@ const Services: React.FC = () => {
               </Swiper>
             ) : (
               displayData?.map((service) => {
-                return service.id === 'treasuryBills' ? (
-                  <Link to="/treasury-bills">
-                    <YieldCard image={service.backgroundImg} key={service.id} style={{ cursor: 'pointer' }}>
-                      <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
-                        <Flex flexDirection="column">
-                          <Flex>
-                            <Text color="white" fontSize="25px" bold>
-                              {service.title}
-                            </Text>
-                          </Flex>
-                          <Flex padding="0px 40px 0px 0px">
-                            <Text color="white" bold>
-                              {service.description}
-                            </Text>
-                          </Flex>
-                        </Flex>
-                        <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
-                      </Flex>
-                    </YieldCard>
-                  </Link>
-                ) : (
+                return (
                   <YieldCard image={service.backgroundImg} key={service.id}>
                     <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
                       <Flex flexDirection="column">
@@ -211,7 +213,7 @@ const Services: React.FC = () => {
                           </Text>
                         </Flex>
                       </Flex>
-                      <>{service.title !== '' && displayStats(service.id, service.link, service.stats)}</>
+                      {displayStats(service.id, service.link, service.stats)}
                     </Flex>
                   </YieldCard>
                 )

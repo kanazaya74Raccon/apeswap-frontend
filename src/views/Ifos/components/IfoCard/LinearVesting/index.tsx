@@ -180,7 +180,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
   const stats = React.useMemo(() => {
     let texts = [
-      { label: t('For Sale'), value: saleAmount },
+      { label: t('For sale'), value: saleAmount },
       { label: t('To raise (USD)'), value: raiseAmount },
     ]
 
@@ -207,7 +207,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
     if (hasStarted) {
       texts.splice(2, 0, {
-        label: t('Total raised (% of the target)'),
+        label: t('Total raised (% of target)'),
         value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
       })
       return texts
