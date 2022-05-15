@@ -70,6 +70,15 @@ export default function CurrencyLogo({
         />
       )
     }
+    if (chainId === CHAIN_ID.ETH) {
+      return (
+        <StyledNativeCurrencyLogo
+          size={size}
+          style={style}
+          src="https://raw.githubusercontent.com/ApeSwapFinance/apeswap-token-lists/main/assets/ETH.svg"
+        />
+      )
+    }
     return <BinanceIcon width={size} style={style} />
   }
 

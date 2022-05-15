@@ -80,6 +80,7 @@ export const MATIC: { [key: string]: Token } = {
 export const CHAIN_USD: { [key: number]: Token } = {
   [ChainId.BSC]: BSC.USD,
   [ChainId.MATIC]: MATIC.USDC,
+  [ChainId.MAINNET]: USDC,
 }
 
 export const ZERO_PERCENT = new Percent('0')
@@ -124,6 +125,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     BSC.FRM,
     BSC.FRMX,
   ],
+  [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
 }
 
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
@@ -155,6 +157,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
     MATIC.BANANA,
   ],
   [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB],
+  [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
 }
 
 // default allowed slippage, in bips

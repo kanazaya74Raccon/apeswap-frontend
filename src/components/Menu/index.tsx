@@ -1,17 +1,18 @@
 import React from 'react'
-import { Navbar as UikitMenu } from '@apeswapfinance/uikit'
+import { Navbar as UikitMenu } from '@ape.swap/uikit'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useAuth from 'hooks/useAuth'
 import { CHAIN_ID } from 'config/constants/chains'
 import useTheme from 'hooks/useTheme'
 import { ContextApi } from 'contexts/Localization/types'
 import { useTranslation } from 'contexts/Localization'
-import { useProfile, useTokenPrices } from 'state/hooks'
+import { useProfile, useTokenPrices, useLiveIfoStatus } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import track from 'utils/track'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
 import { languageList } from '../../config/localization/languages'
+import ethConfig from './chains/ethConfig'
 
 const Menu = (props) => {
   const { account, chainId } = useActiveWeb3React()
@@ -29,8 +30,12 @@ const Menu = (props) => {
     if (chainId === CHAIN_ID.MATIC) {
       return maticConfig(translate)
     }
+    if (chainId === CHAIN_ID.ETH) {
+      return ethConfig(translate)
+    }
     return bscConfig(translate)
   }
+  const { liveIfos } = useLiveIfoStatus()
 
   return (
     <UikitMenu
@@ -54,6 +59,7 @@ const Menu = (props) => {
         profileLink: '',
       }}
       track={track}
+      liveResult={liveIfos}
       {...props}
     />
   )

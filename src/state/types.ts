@@ -12,6 +12,7 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
+  LiveIfo,
   BillsConfig,
 } from 'config/constants/types'
 
@@ -554,6 +555,7 @@ export interface StatsState {
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
   FarmLpAprs: FarmLpAprsType
+  LiveIfo: LiveIfo[]
   data: Stats
 }
 

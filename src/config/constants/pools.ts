@@ -2954,7 +2954,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.JUNGLE,
     projectLink: 'https://www.luckychip.io/',
     harvest: true,
-    tokenPerBlock: '0xc5a69133432eF17CD15C501CAa5f9cF28C22aA00',
+    tokenPerBlock: '2.864583333333333333',
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
