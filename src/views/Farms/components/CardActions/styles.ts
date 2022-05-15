@@ -1,4 +1,5 @@
 import { Button, Flex } from '@apeswapfinance/uikit'
+import { Tag } from '@ape.swap/uikit'
 import UnlockButton from 'components/UnlockButton'
 import styled from 'styled-components'
 
@@ -40,4 +41,14 @@ export const CenterContainer = styled(Flex)`
     width: auto;
     justify-content: auto;
   }
+`
+
+export const StyledTag = styled(Tag)`
+  font-size: 10px;
+  padding: 0px 6px !important;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  height: auto;
+  width: max-content;
 `

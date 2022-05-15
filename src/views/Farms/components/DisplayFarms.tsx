@@ -1,5 +1,6 @@
 import React from 'react'
 import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
+import { Flex as ThemeFlex, TagVariants } from '@ape.swap/uikit'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import { LiquidityModal } from 'components/LiquidityWidget'
@@ -16,7 +17,7 @@ import { useAppDispatch } from 'state'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
-import { ActionContainer } from './CardActions/styles'
+import { ActionContainer, StyledTag } from './CardActions/styles'
 
 const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, openPid }) => {
   const { chainId } = useActiveWeb3React()
@@ -51,6 +52,24 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     onPresentAddLiquidityWidgetModal()
   }
 
+  const farmTagsData = [
+    {
+      id: 1,
+      tags: {
+        '56': {
+          farms: [
+            { pid: 1, text: 'HOT', color: 'error' },
+            { pid: 2, text: 'NEW', color: 'success' },
+          ],
+          pools: [{ id: 167, text: 'HOT', color: 'error' }],
+        },
+      },
+      publishedAat: '2022-05-10T15:55:42.445Z',
+      createdAt: '2022-05-10T15:55:38.324Z',
+      updatedAt: '2022-05-10T15:55:42.469Z',
+    },
+  ][0].tags['56'].farms
+
   const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
     const bscScanUrl = `https://bscscan.com/address/${farm.lpAddresses[chainId]}`
@@ -67,14 +86,19 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
+    const fTD = farmTagsData.find((tag) => tag.pid === farm.pid)
+    const tagColor = fTD?.color as TagVariants
 
     return {
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
       stakeLp: true,
       title: (
-        <Text ml={10} bold>
-          {farm.lpSymbol}
-        </Text>
+        <ThemeFlex sx={{ flexDirection: 'column', marginLeft: '10px' }}>
+          <StyledTag key={fTD?.pid} variant={tagColor}>
+            {fTD?.text}
+          </StyledTag>
+          <Text bold>{farm.lpSymbol}</Text>
+        </ThemeFlex>
       ),
       open: farm.pid === openPid,
       id: farm.pid,
