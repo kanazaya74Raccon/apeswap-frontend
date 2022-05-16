@@ -504,6 +504,7 @@ export interface FarmsState {
 
 export interface PoolsState {
   data: Pool[]
+  tags: Tag[]
 }
 
 export interface NfaState {

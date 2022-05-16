@@ -63,19 +63,5 @@ export const useFarmUser = (pid) => {
 
 export const useFarmTags = () => {
   const { tags }: FarmsState = useSelector((state: State) => state.farms)
-  console.log('hooks-farm-tags:::', tags)
-
   return { farmTags: tags }
 }
-
-// setFarmTagsAsync - Suppose to make a call with the chainId
-
-// or better yet ->
-
-// const tagResult = farmTagsResult.data
-
-// [chainId].tags
-
-// Then in the component (pass in the chainId like this):
-
-// tagResult[chainId].farms

@@ -39,6 +39,7 @@ import {
   LaunchCalendarCard,
   ServiceData,
   FarmLpAprsType,
+  PoolsState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -569,6 +570,11 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const usePoolTags = () => {
+  const { tags }: PoolsState = useSelector((state: State) => state.pools)
+  return { poolTags: tags }
 }
 
 export const useFetchLiveIfoStatus = () => {

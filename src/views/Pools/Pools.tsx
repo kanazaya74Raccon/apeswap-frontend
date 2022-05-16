@@ -8,17 +8,20 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import { useBlock } from 'state/block/hooks'
+import { useAppDispatch } from 'state'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePollPools, usePools } from 'state/hooks'
+import { usePollPools, usePools, usePoolTags } from 'state/hooks'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { Pool } from 'state/types'
+import { setPoolTagsAsync } from 'state/pools'
 import PoolMenu from './components/Menu'
 import DisplayPools from './components/DisplayPools'
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
+  const { poolTags } = usePoolTags()
   usePollPools()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [tokenOption, setTokenOption] = useState('allTokens')
@@ -39,8 +42,10 @@ const Pools: React.FC = () => {
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(setPoolTagsAsync())
     const showMorePools = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -56,7 +61,7 @@ const Pools: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet])
+  }, [observerIsSet, dispatch])
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory !== PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {
@@ -159,7 +164,7 @@ const Pools: React.FC = () => {
               stakedOnly={stakedOnly}
               query={searchQuery}
             />
-            <DisplayPools pools={renderPools()} openId={urlSearchedPool} />
+            <DisplayPools pools={renderPools()} openId={urlSearchedPool} poolTags={poolTags} />
             <div ref={loadMoreRef} />
           </Flex>
         </ListViewLayout>

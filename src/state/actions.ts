@@ -8,6 +8,7 @@ export {
   updateUserBalance,
   updateUserPendingReward,
   updateUserStakedBalance,
+  setPoolTagsAsync,
 } from './pools'
 export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
 export {

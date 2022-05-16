@@ -52,25 +52,6 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number; farmTags: Tag[] 
     onPresentAddLiquidityWidgetModal()
   }
 
-  // REPLACE THIS WITH API CALL IN REDUCER
-  const farmTagsData = [
-    {
-      id: 1,
-      tags: {
-        '56': {
-          farms: [
-            { pid: 1, text: 'HOT', color: 'error' },
-            { pid: 184, text: 'NEW', color: 'success' },
-          ],
-          pools: [{ id: 167, text: 'HOT', color: 'error' }],
-        },
-      },
-      publishedAat: '2022-05-10T15:55:42.445Z',
-      createdAt: '2022-05-10T15:55:38.324Z',
-      updatedAt: '2022-05-10T15:55:42.469Z',
-    },
-  ][0].tags['56'].farms
-
   const farmsListView = farms.map((farm) => {
     const [token1, token2] = farm.lpSymbol.split('-')
     const bscScanUrl = `https://bscscan.com/address/${farm.lpAddresses[chainId]}`

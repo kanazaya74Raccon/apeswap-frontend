@@ -1,5 +1,5 @@
 import { ArrowDropUpIcon } from '@apeswapfinance/uikit'
-import { Button, Flex } from '@ape.swap/uikit'
+import { Button, Flex, Tag } from '@ape.swap/uikit'
 import styled from '@emotion/styled'
 
 export const StyledButton = styled(Button)`
@@ -25,4 +25,14 @@ export const ActionContainer = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.md} {
     width: fit-content;
   }
+`
+
+export const StyledTag = styled(Tag)`
+  font-size: 10px;
+  padding: 0px 6px !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  height: auto;
+  width: max-content;
 `
