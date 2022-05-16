@@ -68,7 +68,6 @@ export const useFarmTags = () => {
   return { farmTags: tags }
 }
 
-
 // setFarmTagsAsync - Suppose to make a call with the chainId
 
 // or better yet ->
