@@ -1,20 +1,10 @@
-import { MenuEntry } from '@ape.swap/uikit'
+import { MenuEntry } from '@apeswapfinance/uikit'
 import { CHAIN_ID, NETWORK_INFO_LINK } from 'config/constants/chains'
 import { EXCHANGE } from '../constants'
 import { ContextApi } from '../../../contexts/Localization/types'
 
 const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   EXCHANGE(t),
-  {
-    label: t('Farms'),
-    href: '/farms',
-    isNew: false,
-  },
-  {
-    label: t('Vaults'),
-    href: '/vaults',
-    isNew: false,
-  },
   {
     label: t('More'),
     lightIcon: 'MoreLightImage',
@@ -23,17 +13,14 @@ const maticConfig: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Documentation'),
         href: 'https://apeswap.gitbook.io/apeswap-finance/',
-        isNew: false,
       },
       {
         label: t('Charts'),
-        href: NETWORK_INFO_LINK[CHAIN_ID.MATIC],
-        isNew: false,
+        href: NETWORK_INFO_LINK[CHAIN_ID.ETH],
       },
       {
         label: t('Governance'),
         href: 'https://vote.apeswap.finance',
-        isNew: false,
       },
       {
         label: t('Education'),

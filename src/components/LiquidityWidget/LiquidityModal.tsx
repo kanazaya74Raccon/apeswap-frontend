@@ -12,7 +12,7 @@ interface LiquidityModalProps {
   handleClose?: () => void
 }
 
-const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, handleClose, modalProps: newModalProps }) => {
+const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps: newModalProps, handleClose }) => {
   const { t } = useTranslation()
   const modalProps = {
     minWidth: '385px',

@@ -2937,7 +2937,30 @@ const pools: PoolConfig[] = [
   //
   // JUNGLE FARMS
   //
-
+  {
+    sousId: 204,
+    tokenName: 'LC-BNB',
+    image: 'LC.svg',
+    stakingToken: tokens.lcBnb,
+    rewardToken: tokens.lc,
+    lpTokens: {
+      token: tokens.lc,
+      quoteToken: tokens.wbnb,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x1e7133e05d1b4bdab44cb5503fa4a801000c963a',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: 'https://www.luckychip.io/',
+    harvest: true,
+    tokenPerBlock: '2.864583333333333333',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+    isEarnTokenLp: false,
+  },
   {
     sousId: 201,
     tokenName: 'COC-BNB',

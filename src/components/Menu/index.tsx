@@ -7,12 +7,13 @@ import useTheme from 'hooks/useTheme'
 import useTopup from 'hooks/useTopup'
 import { ContextApi } from 'contexts/Localization/types'
 import { useTranslation } from 'contexts/Localization'
-import { useProfile, useTokenPrices } from 'state/hooks'
+import { useProfile, useTokenPrices, useLiveIfoStatus } from 'state/hooks'
 import useSelectNetwork from 'hooks/useSelectNetwork'
 import track from 'utils/track'
 import bscConfig from './chains/bscConfig'
 import maticConfig from './chains/maticConfig'
 import { languageList } from '../../config/localization/languages'
+import ethConfig from './chains/ethConfig'
 
 const Menu = (props) => {
   const { account, chainId } = useActiveWeb3React()
@@ -31,8 +32,12 @@ const Menu = (props) => {
     if (chainId === CHAIN_ID.MATIC) {
       return maticConfig(translate)
     }
+    if (chainId === CHAIN_ID.ETH) {
+      return ethConfig(translate)
+    }
     return bscConfig(translate)
   }
+  const { liveIfos } = useLiveIfoStatus()
 
   return (
     <UikitMenu
@@ -57,6 +62,7 @@ const Menu = (props) => {
       }}
       runFiat={onTopup}
       track={track}
+      liveResult={liveIfos}
       {...props}
     />
   )

@@ -862,5 +862,7 @@
   "Banana Farms": "Banana Farms",
   "Welcome to ApeSwap Treasury Bills": "Welcome to ApeSwap Treasury Bills",
   "Dont see a pool you joined?": "Dont see a pool you joined?",
-  "Create protocol-owned liquidity with yield-generating NFTs": "Create protocol-owned liquidity with yield-generating NFTs"
+  "Create protocol-owned liquidity with yield-generating NFTs": "Create protocol-owned liquidity with yield-generating NFTs",
+  "Collect": "Collect",
+  "Lend": "Lend"
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { light, dark, Apeswap } from '@apeswapfinance/uikit'
+import { light, dark } from '@apeswapfinance/uikit'
+import { Apeswap } from '@ape.swap/uikit'
 import { ThemeProvider as ThemeUIProvider } from 'theme-ui'
 
 const CACHE_KEY = 'IS_DARK'

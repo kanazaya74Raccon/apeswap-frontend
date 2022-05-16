@@ -1,5 +1,6 @@
 import React from 'react'
-import { ModalProvider } from '@apeswapfinance/uikit'
+import { ModalProvider } from '@ape.swap/uikit'
+import { ModalProvider as OldModalProvider } from '@apeswapfinance/uikit'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -27,7 +28,9 @@ const Providers: React.FC = ({ children }) => {
                 <LanguageProvider>
                   <RefreshContextProvider>
                     <ModalProvider>
-                      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                      <OldModalProvider>
+                        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                      </OldModalProvider>
                     </ModalProvider>
                   </RefreshContextProvider>
                 </LanguageProvider>

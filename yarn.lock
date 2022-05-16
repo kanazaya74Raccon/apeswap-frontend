@@ -44,9 +44,9 @@
     typescript "4.4.3"
 
 "@apeswapfinance/sdk@^2.0.0-alpha.14":
-  version "2.0.0-alpha.14"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/sdk/2.0.0-alpha.14/233adac72a1b2cde12d5f38952696716450d7c9b4cd90a0159d62ca3780c06ec#c7becdb55e1d0b418f2910d17aad711351c6ec3a"
-  integrity sha512-spO4GaUZclnntIsITV3hdctu3pvaan+WukuOiLGjYv+nvqOXYLF/20h4jHcpls/XW12R4ct8qi0f8LpFkDn1pw==
+  version "2.0.0-alpha.16"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/sdk/2.0.0-alpha.16/5b47336b1aff1793de891820278ee300d25068b59e6e6964099e08939ce7905a#020eab899cf631e72015ecbc75ba1c7c7bda9df8"
+  integrity sha512-HbAy3iMIp8pdUac1S10ULqwoFTbhSakHQSTX1vGf7GiFL7fiXzpEgw1vwdP9mkrHMALzy7VKtCUhRVdMWS0OHg==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"
@@ -56,10 +56,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.272":
-  version "1.0.272"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.272/8bf72007d6b8c88bb360b7c9a3e9493a41eb69ae4c70a99984374575bd6087e7#a4d9fb83996c4bdbba57ab7d146a2f33145660cb"
-  integrity sha512-OaEGouBn7Yr/SxBBnvLHb0A1zM90QXg0AqLdv8TPx+kQn+FpMdMHc3NtGC0CtI5K8zE7sz2rHx+jcTCn61uP4A==
+"@apeswapfinance/token-lists@1.0.278":
+  version "1.0.278"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.278/0948862cb1a4675d8027472bea7df8aaf790b1bee4b957799dc158cbe9d7b1bb#fead272e99250f2cdb9f94e6ec3a3c4f8c8f3699"
+  integrity sha512-XPakPGlyySNudGfWbO/wmRve625VWHtydCjMfRBFNo9xOi4fc9r6cYtmsbmx5pgBy7E38cd4xTUp2YnFtoNo6w==
 
 "@apeswapfinance/uikit@0.11.3-0.3":
   version "0.11.3-0.3"
