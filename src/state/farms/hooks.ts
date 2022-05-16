@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useFarmLpAprs, useLpTokenPrices, usePriceBananaBusd } from 'state/hooks'
-import { Farm, State } from 'state/types'
+import { Farm, FarmsState, State } from 'state/types'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
 
 export const usePollFarms = () => {
@@ -60,3 +60,23 @@ export const useFarmUser = (pid) => {
     earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
   }
 }
+
+export const useFarmTags = () => {
+  const { tags }: FarmsState = useSelector((state: State) => state.farms)
+  console.log('hooks-farm-tags:::', tags)
+
+  return { farmTags: tags }
+}
+
+
+// setFarmTagsAsync - Suppose to make a call with the chainId
+
+// or better yet ->
+
+// const tagResult = farmTagsResult.data
+
+// [chainId].tags
+
+// Then in the component (pass in the chainId like this):
+
+// tagResult[chainId].farms

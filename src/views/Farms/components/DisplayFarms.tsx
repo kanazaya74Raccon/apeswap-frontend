@@ -13,6 +13,7 @@ import ApyButton from 'components/ApyCalculator/ApyButton'
 import { useTranslation } from 'contexts/Localization'
 import useIsMobile from 'hooks/useIsMobile'
 import { Field, selectCurrency } from 'state/swap/actions'
+import { useFarmTags } from 'state/farms/hooks'
 import { useAppDispatch } from 'state'
 import CardActions from './CardActions'
 import { Container, FarmButton, NextArrow } from './styles'
@@ -24,6 +25,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
   const { t } = useTranslation()
   const isMobile = useIsMobile()
   const dispatch = useAppDispatch()
+  const { farmTags } = useFarmTags()
 
   // TODO: clean up this code
   // Hack to get the close modal function from the provider
@@ -52,6 +54,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     onPresentAddLiquidityWidgetModal()
   }
 
+  // REPLACE THIS WITH API CALL IN REDUCER
   const farmTagsData = [
     {
       id: 1,
@@ -59,7 +62,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
         '56': {
           farms: [
             { pid: 1, text: 'HOT', color: 'error' },
-            { pid: 2, text: 'NEW', color: 'success' },
+            { pid: 184, text: 'NEW', color: 'success' },
           ],
           pools: [{ id: 167, text: 'HOT', color: 'error' }],
         },
@@ -86,7 +89,7 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number }> = ({ farms, op
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
-    const fTD = farmTagsData.find((tag) => tag.pid === farm.pid)
+    const fTD = farmTags?.find((tag) => tag.pid === farm.pid)
     const tagColor = fTD?.color as TagVariants
 
     return {

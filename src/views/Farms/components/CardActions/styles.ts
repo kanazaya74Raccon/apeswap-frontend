@@ -46,7 +46,7 @@ export const CenterContainer = styled(Flex)`
 export const StyledTag = styled(Tag)`
   font-size: 10px;
   padding: 0px 6px !important;
-  font-weight: 500;
+  font-weight: 700;
   border: none;
   border-radius: 10px;
   height: auto;

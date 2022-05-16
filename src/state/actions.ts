@@ -1,4 +1,4 @@
-export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
+export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, setFarmTagsAsync } from './farms'
 export { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 export { clear, remove, push } from './toasts'
 export {
