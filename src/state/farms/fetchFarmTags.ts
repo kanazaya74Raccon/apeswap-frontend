@@ -1,5 +1,4 @@
 import axios from 'axios'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 // type LiveIfo = {
 //   id: number

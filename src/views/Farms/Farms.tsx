@@ -9,8 +9,10 @@ import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { useTranslation } from 'contexts/Localization'
+import { setFarmTagsAsync } from 'state/farms'
+import { useAppDispatch } from 'state'
 import { Farm } from 'state/types'
-import { useFarms, usePollFarms } from 'state/farms/hooks'
+import { useFarms, useFarmTags, usePollFarms } from 'state/farms/hooks'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
@@ -31,8 +33,11 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch()
+  const { farmTags } = useFarmTags()
 
   useEffect(() => {
+    dispatch(setFarmTagsAsync())
     const showMoreFarms = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -48,7 +53,7 @@ const Farms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet])
+  }, [observerIsSet, dispatch])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
@@ -154,7 +159,7 @@ const Farms: React.FC = () => {
               showMonkeyImage
             />
           </Flex>
-          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} farmTags={farmTags} />
         </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />
