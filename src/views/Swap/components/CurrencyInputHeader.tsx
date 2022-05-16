@@ -24,19 +24,16 @@ const CurrencyInputContainer = styled(Flex)`
   background: ${({ theme }) => theme.colors.navbar};
   margin-bottom: 20px;
 
-  ${({ theme }) => theme.mediaQueries.xs} {
+  /* ${({ theme }) => theme.mediaQueries.xs} {
     flex-direction: column-reverse !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    flex-direction: column-reverse !important;
-  }
+  } */
 `
 
 export const StyledDiv = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
-    margin-top: 16px;
+    /* margin-top: 16px; */
     width: 100%;
+    display: flex;
   }
 `
 
@@ -90,9 +87,9 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </Tabs>
       </StyledDiv>
       <Flex>
-        <div style={{ marginRight: '25px' }}>
+        {/* <div style={{ marginRight: '25px' }}>
           <RunFiatButton runFiat={onTopup} />
-        </div>
+        </div> */}
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
             style={{
