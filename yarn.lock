@@ -9,14 +9,15 @@
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
-"@ape.swap/uikit@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ape.swap/uikit/-/uikit-1.0.3.tgz#0dc63c989fe56b737f567c2eae44ff542dc98d23"
-  integrity sha512-/WauZbzeu2z8usW6qnExx4linA6rhwXM/3BZBtjFGKcVrwrDhjoDHyl+xXnMoTvh5Iy4xpmVbYSOE/iQx4T0Fg==
+"@ape.swap/uikit@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@ape.swap/uikit/-/uikit-1.0.7.tgz#723f5d39590cc020ab2d385997ceaad61b9d31c2"
+  integrity sha512-N9WTlROYYJU6BmxQ+nCFK1A3AdOn6RYdPIUj/oyV3gpfR9JaaQwOCmYJn5okmfg8zaweK0RdBSObEgAWlyTQiA==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@emotion/styled" "^11.8.1"
     "@mdx-js/react" "1.6.22"
+    "@rollup/plugin-json" "^4.1.0"
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
     framer-motion "^4.1.17"
