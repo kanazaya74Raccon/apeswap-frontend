@@ -1,6 +1,7 @@
 import React from 'react'
 import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
 import { Flex as ThemeFlex, TagVariants } from '@ape.swap/uikit'
+import { Box } from 'theme-ui'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import { LiquidityModal } from 'components/LiquidityWidget'
@@ -75,10 +76,19 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number; farmTags: Tag[] 
       tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
       stakeLp: true,
       title: (
-        <ThemeFlex sx={{ flexDirection: 'column', marginLeft: '10px' }}>
-          <StyledTag key={fTD?.pid} variant={tagColor}>
-            {fTD?.text}
-          </StyledTag>
+        <ThemeFlex
+          sx={{
+            flexDirection: ['column', 'row'],
+            marginLeft: '10px',
+          }}
+        >
+          {fTD?.pid === farm.pid && (
+            <Box sx={{ marginRight: '5px', marginTop: ['0px', '2px'] }}>
+              <StyledTag key={fTD?.pid} variant={tagColor}>
+                {fTD?.text}
+              </StyledTag>
+            </Box>
+          )}
           <Text bold>{farm.lpSymbol}</Text>
         </ThemeFlex>
       ),

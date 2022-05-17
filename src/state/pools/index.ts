@@ -110,8 +110,8 @@ export const updateUserPendingReward =
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
 
-export const setPoolTagsAsync = () => async (dispatch) => {
-  const tags = await fetchPoolTagsFromApi()
+export const setPoolTagsAsync = (chainId: number) => async (dispatch) => {
+  const tags = await fetchPoolTagsFromApi(chainId)
   dispatch(getPoolTags(tags))
 }
 

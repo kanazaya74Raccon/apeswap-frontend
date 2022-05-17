@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const fetchPoolTagsFromApi = async () => {
+const fetchPoolTagsFromApi = async (chainId: number) => {
   try {
     const poolTagsResult = await axios.get('https://apeswap-strapi.herokuapp.com/tags')
-    const tagResult = poolTagsResult.data[0].tags['56'].pools
+    const tagResult = poolTagsResult.data[0].tags[`${chainId}`].pools
 
     return tagResult
   } catch (error) {

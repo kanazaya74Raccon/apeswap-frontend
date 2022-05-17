@@ -102,8 +102,8 @@ export const updateFarmUserEarnings = (chainId: number, pid, account: string) =>
   dispatch(updateFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
 }
 
-export const setFarmTagsAsync = () => async (dispatch) => {
-  const tags = await fetchFarmTagsFromApi()
+export const setFarmTagsAsync = (chainId: number) => async (dispatch) => {
+  const tags = await fetchFarmTagsFromApi(chainId)
   dispatch(getFarmTags(tags))
 }
 

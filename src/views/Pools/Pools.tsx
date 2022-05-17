@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { PoolCategory } from 'config/constants/types'
 import { useWeb3React } from '@web3-react/core'
 import { Flex } from '@apeswapfinance/uikit'
@@ -23,6 +24,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const { poolTags } = usePoolTags()
   usePollPools()
+  const { chainId } = useActiveWeb3React()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [tokenOption, setTokenOption] = useState('allTokens')
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -45,7 +47,7 @@ const Pools: React.FC = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(setPoolTagsAsync())
+    dispatch(setPoolTagsAsync(chainId))
     const showMorePools = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -61,7 +63,7 @@ const Pools: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch])
+  }, [observerIsSet, dispatch, chainId])
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory !== PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {

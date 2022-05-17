@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const fetchFarmTagsFromApi = async () => {
+const fetchFarmTagsFromApi = async (chainId: number) => {
   try {
     const farmTagsResult = await axios.get('https://apeswap-strapi.herokuapp.com/tags')
-    const tagResult = farmTagsResult.data[0].tags['56'].farms
+    const tagResult = farmTagsResult.data[0].tags[`${chainId}`].farms
 
     return tagResult
   } catch (error) {

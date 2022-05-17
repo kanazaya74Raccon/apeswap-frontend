@@ -1,4 +1,6 @@
+import React from 'react'
 import { IconButton, Text, Flex, TagVariants } from '@ape.swap/uikit'
+import { Box } from 'theme-ui'
 import BigNumber from 'bignumber.js'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
@@ -8,7 +10,6 @@ import { useLocation } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
 import useIsMobile from 'hooks/useIsMobile'
-import React from 'react'
 import { Pool, Tag } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { NextArrow } from 'views/Farms/components/styles'
@@ -44,6 +45,7 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number; poolTags: Tag[] }
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0)) * pool?.stakingToken?.price
     ).toFixed(2)}`
+    console.log('pool:::', pool)
 
     const fTD = poolTags?.find((tag) => tag.pid === pool.sousId)
     const tagColor = fTD?.color as TagVariants
@@ -52,10 +54,19 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number; poolTags: Tag[] }
     return {
       tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
       title: (
-        <Flex sx={{ flexDirection: 'column', marginLeft: '10px' }}>
-          <StyledTag key={fTD?.pid} variant={tagColor}>
-            {fTD?.text}
-          </StyledTag>
+        <Flex
+          sx={{
+            flexDirection: ['column', 'row'],
+            marginLeft: '10px',
+          }}
+        >
+          {fTD?.pid === pool?.sousId && (
+            <Box sx={{ marginRight: '5px', marginTop: ['0px', '2px'] }}>
+              <StyledTag key={fTD?.pid} variant={tagColor}>
+                {fTD?.text}
+              </StyledTag>
+            </Box>
+          )}
           <Text bold>{pool?.rewardToken?.symbol || pool?.tokenName}</Text>
         </Flex>
       ),

@@ -37,7 +37,7 @@ const Farms: React.FC = () => {
   const { farmTags } = useFarmTags()
 
   useEffect(() => {
-    dispatch(setFarmTagsAsync())
+    dispatch(setFarmTagsAsync(chainId))
     const showMoreFarms = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -53,7 +53,7 @@ const Farms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch])
+  }, [observerIsSet, dispatch, chainId])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')
