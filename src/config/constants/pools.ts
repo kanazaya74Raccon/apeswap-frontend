@@ -2933,6 +2933,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 205,
+    tokenName: 'GRVS',
+    image: 'GRVS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.grvs,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x1B40F1B7E871C0de135AF42E15015d16988310ee',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://gravis.finance/',
+    twitter: 'https://twitter.com/gammarosigma',
+    harvest: true,
+    tokenPerBlock: `0.458237847222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE FARMS
