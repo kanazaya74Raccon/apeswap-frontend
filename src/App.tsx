@@ -47,6 +47,7 @@ const Swap = lazy(() => import('./views/Swap'))
 const Orders = lazy(() => import('./views/Orders'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const Topup = lazy(() => import('./views/Topup'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const RedirectOldRemoveLiquidityPathStructure = lazy(() => import('./views/RemoveLiquidity/redirects'))
 
