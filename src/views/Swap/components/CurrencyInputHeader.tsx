@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Button, useMatchBreakpoints, Tabs, Tab, RunFiatButton } from '@apeswapfinance/uikit'
+import { Flex, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
+import { RunFiatButton, Button } from '@ape.swap/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import { CHAIN_ID } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -92,7 +93,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </div> */}
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
-            style={{
+            sx={{
               fontSize: '15px',
               fontWeight: 700,
               marginRight: '25px',
