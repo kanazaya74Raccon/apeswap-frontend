@@ -1074,6 +1074,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  grvs: {
+    symbol: 'GRVS',
+    address: {
+      56: '0x190CEC0657a02E9eAB1C1DF5d59f9139131cf539',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
