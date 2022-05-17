@@ -19,7 +19,7 @@ const useSwitchNetwork = () => {
   const switchNetwork = useCallback(
     async (userChainId: number) => {
       if (connector instanceof TorusConnector) {
-        toastError(t('Torus wallet is only available on BSC chain'))
+        toastError(t('Torus wallet is only available on BNB chain'))
         return
       }
       if (account && userChainId !== chainId) {
