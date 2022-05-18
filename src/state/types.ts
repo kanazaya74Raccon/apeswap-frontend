@@ -519,6 +519,7 @@ export interface JunglePoolsState {
 
 export interface DualFarmsState {
   data: DualFarm[]
+  tags: Tag[]
 }
 
 export interface BillsState {

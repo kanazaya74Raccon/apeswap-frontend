@@ -45,7 +45,6 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number; poolTags: Tag[] }
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0)) * pool?.stakingToken?.price
     ).toFixed(2)}`
-    console.log('pool:::', pool)
 
     const fTD = poolTags?.find((tag) => tag.pid === pool.sousId)
     const tagColor = fTD?.color as TagVariants

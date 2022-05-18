@@ -11,8 +11,9 @@ import {
   fetchDualFarmRewarderEarnings,
 } from './fetchDualFarmUser'
 import { TokenPrices, DualFarm, DualFarmsState, FarmLpAprsType } from '../types'
+import fetchDualFarmTagsFromApi from './fetchDualFarmTags'
 
-const initialState: DualFarmsState = { data: [...dualFarmsConfig] }
+const initialState: DualFarmsState = { data: [...dualFarmsConfig], tags: null }
 
 export const dualFarmsSlice = createSlice({
   name: 'dualFarms',
@@ -37,11 +38,15 @@ export const dualFarmsSlice = createSlice({
       const index = state.data.findIndex((p) => p.pid === pid)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
+    getDualFarmTags: (state, action) => {
+      state.tags = action.payload
+    },
   },
 })
 
 // Actions
-export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserData } = dualFarmsSlice.actions
+export const { setDualFarmsPublicData, setDualFarmUserData, updateDualFarmUserData, getDualFarmTags } =
+  dualFarmsSlice.actions
 
 // Thunks
 export const fetchDualFarmsPublicDataAsync =
@@ -105,6 +110,11 @@ export const updateDualFarmRewarderEarnings = (chainId: number, pid, account: st
   const rewarderEarnings = await fetchDualFarmRewarderEarnings(chainId, account)
   const pidIndex = dualFarmsConfig.findIndex((f) => f.pid === pid)
   dispatch(updateDualFarmUserData({ pid, field: 'rewarderEarnings', value: rewarderEarnings[pidIndex] }))
+}
+
+export const setDualFarmTagsAsync = (chainId: number) => async (dispatch) => {
+  const tags = await fetchDualFarmTagsFromApi(chainId)
+  dispatch(getDualFarmTags(tags))
 }
 
 export default dualFarmsSlice.reducer

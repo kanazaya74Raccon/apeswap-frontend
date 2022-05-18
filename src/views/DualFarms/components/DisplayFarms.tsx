@@ -1,22 +1,28 @@
 import React from 'react'
 import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
+import { Flex as ThemeFlex, TagVariants } from '@ape.swap/uikit'
+import { Box } from 'theme-ui'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
 import ListViewContent from 'components/ListViewContent'
-import { DualFarm } from 'state/types'
+import { DualFarm, Tag } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
 import { useTranslation } from 'contexts/Localization'
 import CardActions from './CardActions'
-import { Container, FarmButton, NextArrow, ServiceTokenDisplayContainer } from './styles'
+import { Container, FarmButton, NextArrow, ServiceTokenDisplayContainer, StyledTag } from './styles'
 import HarvestAction from './CardActions/HarvestAction'
 import { ActionContainer } from './CardActions/styles'
 import useIsMobile from '../../../hooks/useIsMobile'
 import ServiceTokenDisplay from '../../../components/ServiceTokenDisplay'
 
-const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms, openPid }) => {
+const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number; dualFarmTags: Tag[] }> = ({
+  farms,
+  openPid,
+  dualFarmTags,
+}) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const isMobile = useIsMobile()
@@ -41,6 +47,10 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * lpValueUsd
     ).toFixed(2)}`
+
+    const fTD = dualFarmTags?.find((tag) => tag.pid === farm.pid)
+    const tagColor = fTD?.color as TagVariants
+
     // Changing tooltip placement conditionaly until zindex solution
     return {
       tokens: {
@@ -51,9 +61,23 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number }> = ({ farms
       },
       stakeLp: true,
       title: (
-        <Text ml={10} bold>
-          {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol}
-        </Text>
+        <ThemeFlex
+          sx={{
+            flexDirection: ['column', 'row'],
+            marginLeft: '10px',
+          }}
+        >
+          {fTD?.pid === farm?.pid && (
+            <Box sx={{ marginRight: '5px', marginLeft: '10px', marginTop: ['0px', '2px'] }}>
+              <StyledTag key={fTD?.pid} variant={tagColor}>
+                {fTD?.text}
+              </StyledTag>
+            </Box>
+          )}
+          <Text ml={fTD?.pid === farm?.pid ? 0 : 10} bold>
+            {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol}
+          </Text>
+        </ThemeFlex>
       ),
       viewType: 'stakeLP',
       open: farm.pid === openPid,

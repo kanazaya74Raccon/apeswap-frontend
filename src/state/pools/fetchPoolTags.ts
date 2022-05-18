@@ -7,7 +7,7 @@ const fetchPoolTagsFromApi = async (chainId: number) => {
 
     return tagResult
   } catch (error) {
-    console.error('fetchFarmTagsFromApiError::', error)
+    console.error('fetchPoolTagsFromApiError::', error)
     return null
   }
 }

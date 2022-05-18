@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useFarmLpAprs, usePriceBananaBusd, useTokenPrices } from 'state/hooks'
-import { DualFarm, State } from 'state/types'
+import { DualFarm, DualFarmsState, State } from 'state/types'
 import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from '.'
 
 export const usePollDualFarms = () => {
@@ -63,4 +63,9 @@ export const useFarmUser = (pid) => {
     stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm?.userData ? new BigNumber(farm.userData.rewarderEarnings) : new BigNumber(0),
   }
+}
+
+export const useDualFarmTags = () => {
+  const { tags }: DualFarmsState = useSelector((state: State) => state.dualFarms)
+  return { dualFarmTags: tags }
 }

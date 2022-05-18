@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Tag } from '@ape.swap/uikit'
 import { Button, ArrowDropUpIcon, Flex } from '@apeswapfinance/uikit'
 
 export const FarmButton = styled(Button)`
@@ -25,4 +26,14 @@ export const Container = styled(Flex)`
 export const ServiceTokenDisplayContainer = styled.div`
   margin-left: -2px;
   margin-right: 5px;
+`
+
+export const StyledTag = styled(Tag)`
+  font-size: 10px;
+  padding: 0px 6px !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  height: auto;
+  width: max-content;
 `
