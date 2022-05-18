@@ -175,7 +175,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     progressBarTimeLabel = `${timeUntil.days + timeUntil.months * 30}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${
       vestingPeriod.days + vestingPeriod.months * 30
     }d ${vestingPeriod.hours}h ${vestingPeriod.minutes}m`
-    progress = ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
+    progress =
+      currentBlock < state.vestingEndBlock
+        ? ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
+        : 100
   }
 
   const stats = React.useMemo(() => {

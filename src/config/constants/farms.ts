@@ -3293,6 +3293,23 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://www.biconomy.io',
   },
+  {
+    pid: 202,
+    image: 'GRVS.svg',
+    lpSymbol: 'GRVS-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x3F6217A61510Df9FACeBcf731f12442F507C2d20',
+    },
+    tokenSymbol: 'GRVS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x190CEC0657a02E9eAB1C1DF5d59f9139131cf539',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://gravis.finance/',
+  },
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 ]
 
