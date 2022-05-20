@@ -46,6 +46,7 @@ export const LanguageProvider: React.FC = ({ children }) => {
   }, [setState])
 
   const setLanguage = useCallback(async (language: Language) => {
+    console.log(language)
     if (!languageMap.has(language.locale)) {
       setState((prevState) => ({
         ...prevState,
