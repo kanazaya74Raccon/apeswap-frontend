@@ -2945,7 +2945,7 @@ const pools: PoolConfig[] = [
     },
     poolCategory: PoolCategory.APEZONE,
     projectLink: 'https://gravis.finance/',
-    twitter: 'https://twitter.com/gammarosigma',
+    twitter: 'https://twitter.com/GravisFi',
     harvest: true,
     tokenPerBlock: `0.458237847222222222`,
     sortOrder: 1,
