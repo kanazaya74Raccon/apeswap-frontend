@@ -9,7 +9,6 @@ import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { useTranslation } from 'contexts/Localization'
-import { useAppDispatch } from 'state'
 import { Farm } from 'state/types'
 import { useFarms, usePollFarms } from 'state/farms/hooks'
 import DisplayFarms from './components/DisplayFarms'
@@ -32,7 +31,6 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const dispatch = useAppDispatch()
   const { farmTags } = useFarmTags(chainId)
 
   useEffect(() => {
@@ -51,7 +49,7 @@ const Farms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch, chainId])
+  }, [observerIsSet])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const isActive = !pathname.includes('history')

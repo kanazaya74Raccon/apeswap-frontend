@@ -9,7 +9,6 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import { useBlock } from 'state/block/hooks'
-import { useAppDispatch } from 'state'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePollPools, usePools, usePoolTags } from 'state/hooks'
 import ListViewLayout from 'components/layout/ListViewLayout'
@@ -43,7 +42,6 @@ const Pools: React.FC = () => {
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const showMorePools = (entries) => {
@@ -61,7 +59,7 @@ const Pools: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch, chainId])
+  }, [observerIsSet])
 
   const allNonAdminPools = allPools.filter((pool) => !pool.forAdmins && pool?.poolCategory !== PoolCategory.JUNGLE)
   const curPools = allNonAdminPools.map((pool) => {

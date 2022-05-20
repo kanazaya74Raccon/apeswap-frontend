@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
-import { useAppDispatch } from 'state'
 import { useFarmTags, useFetchFarmLpAprs } from 'state/hooks'
 import { useDualFarms, usePollDualFarms } from 'state/dualFarms/hooks'
 import { DualFarm } from 'state/types'
@@ -26,7 +25,6 @@ const DualFarms: React.FC = () => {
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
   const { farmTags } = useFarmTags(chainId)
-  const dispatch = useAppDispatch()
 
   const { t } = useTranslation()
   const { pathname } = useLocation()
@@ -84,7 +82,7 @@ const DualFarms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch])
+  }, [observerIsSet])
 
   const renderFarms = () => {
     let farms = isActive ? activeFarms : inactiveFarms
