@@ -1,4 +1,4 @@
-export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync, setFarmTagsAsync } from './farms'
+export { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
 export { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync } from './vaults'
 export { clear, remove, push } from './toasts'
 export {
@@ -8,7 +8,6 @@ export {
   updateUserBalance,
   updateUserPendingReward,
   updateUserStakedBalance,
-  setPoolTagsAsync,
 } from './pools'
 export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
 export {
@@ -18,6 +17,7 @@ export {
   fetchLiveIfoFailure,
   fetchLiveIfoStart,
   fetchLiveIfoSuccess,
+  fetchLiveTags,
 } from './stats'
 export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
 export { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } from './tokenPrices'

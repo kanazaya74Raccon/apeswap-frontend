@@ -3,10 +3,9 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
 import { useAppDispatch } from 'state'
-import { useFetchFarmLpAprs } from 'state/hooks'
-import { useDualFarms, usePollDualFarms, useDualFarmTags } from 'state/dualFarms/hooks'
+import { useFarmTags, useFetchFarmLpAprs } from 'state/hooks'
+import { useDualFarms, usePollDualFarms } from 'state/dualFarms/hooks'
 import { DualFarm } from 'state/types'
-import { setDualFarmTagsAsync } from 'state/dualFarms'
 import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
@@ -26,7 +25,7 @@ const DualFarms: React.FC = () => {
   usePollDualFarms()
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
-  const { dualFarmTags } = useDualFarmTags()
+  const { farmTags } = useFarmTags(chainId)
   const dispatch = useAppDispatch()
 
   const { t } = useTranslation()
@@ -70,7 +69,6 @@ const DualFarms: React.FC = () => {
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    dispatch(setDualFarmTagsAsync(chainId))
     const showMoreFarms = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
@@ -86,7 +84,7 @@ const DualFarms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [observerIsSet, dispatch, chainId])
+  }, [observerIsSet, dispatch])
 
   const renderFarms = () => {
     let farms = isActive ? activeFarms : inactiveFarms
@@ -177,7 +175,7 @@ const DualFarms: React.FC = () => {
               showMonkeyImage
             />
           </Flex>
-          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} dualFarmTags={dualFarmTags} />
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} dualFarmTags={farmTags} />
         </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />

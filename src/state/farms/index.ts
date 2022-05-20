@@ -10,11 +10,9 @@ import {
 } from './fetchFarmUser'
 import { FarmsState, Farm, LpTokenPrices, FarmLpAprsType } from '../types'
 import fetchFarms from './fetchFarms'
-import fetchFarmTagsFromApi from './fetchFarmTags'
 
 const initialState: FarmsState = {
   data: [...farmsConfig],
-  tags: null,
 }
 
 export const farmsSlice = createSlice({
@@ -40,14 +38,11 @@ export const farmsSlice = createSlice({
       const index = state.data.findIndex((p) => p.pid === pid)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
-    getFarmTags: (state, action) => {
-      state.tags = action.payload
-    },
   },
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData, updateFarmUserData, getFarmTags } = farmsSlice.actions
+export const { setFarmsPublicData, setFarmUserData, updateFarmUserData } = farmsSlice.actions
 
 // Thunks
 export const fetchFarmsPublicDataAsync =
@@ -100,11 +95,6 @@ export const updateFarmUserStakedBalances = (chainId: number, pid, account: stri
 export const updateFarmUserEarnings = (chainId: number, pid, account: string) => async (dispatch) => {
   const pendingRewards = await fetchFarmUserEarnings(chainId, account)
   dispatch(updateFarmUserData({ pid, field: 'earnings', value: pendingRewards[pid] }))
-}
-
-export const setFarmTagsAsync = (chainId: number) => async (dispatch) => {
-  const tags = await fetchFarmTagsFromApi(chainId)
-  dispatch(getFarmTags(tags))
 }
 
 export default farmsSlice.reducer

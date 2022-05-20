@@ -3,16 +3,15 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
+import { useFarmTags, useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { useTranslation } from 'contexts/Localization'
-import { setFarmTagsAsync } from 'state/farms'
 import { useAppDispatch } from 'state'
 import { Farm } from 'state/types'
-import { useFarms, useFarmTags, usePollFarms } from 'state/farms/hooks'
+import { useFarms, usePollFarms } from 'state/farms/hooks'
 import DisplayFarms from './components/DisplayFarms'
 import { BLUE_CHIPS, NUMBER_OF_FARMS_VISIBLE, STABLES } from './constants'
 import HarvestAllAction from './components/CardActions/HarvestAllAction'
@@ -34,10 +33,9 @@ const Farms: React.FC = () => {
   const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
-  const { farmTags } = useFarmTags()
+  const { farmTags } = useFarmTags(chainId)
 
   useEffect(() => {
-    dispatch(setFarmTagsAsync(chainId))
     const showMoreFarms = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {

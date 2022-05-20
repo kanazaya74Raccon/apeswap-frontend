@@ -8,6 +8,8 @@ import BigNumber from 'bignumber.js'
 import MarketingModalCheck from 'components/MarketingModalCheck'
 import { CHAIN_ID } from 'config/constants/chains'
 import { useFetchTokenPrices, useFetchProfile, useUpdateNetwork, useFetchLiveIfoStatus } from 'state/hooks'
+import { useAppDispatch } from 'state'
+import { fetchLiveTags } from 'state/stats'
 import { usePollBlockNumber } from 'state/block/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
@@ -94,6 +96,7 @@ const App: React.FC = () => {
   useFetchProfile()
   useFetchLiveIfoStatus()
 
+  const dispatch = useAppDispatch()
   const { account, chainId } = useActiveWeb3React()
   const [showScrollIcon, setShowScrollIcon] = useState(false)
 
@@ -118,9 +121,10 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
+    dispatch(fetchLiveTags())
     showScroll()
     if (account) dataLayer?.push({ event: 'wallet_connect', user_id: account })
-  }, [account, showScroll])
+  }, [account, showScroll, dispatch])
 
   const loadMenu = () => {
     // ETH routes

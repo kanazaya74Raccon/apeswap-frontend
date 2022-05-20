@@ -499,12 +499,10 @@ export interface ToastsState {
 
 export interface FarmsState {
   data: Farm[]
-  tags: Tag[]
 }
 
 export interface PoolsState {
   data: Pool[]
-  tags: Tag[]
 }
 
 export interface NfaState {
@@ -519,7 +517,6 @@ export interface JunglePoolsState {
 
 export interface DualFarmsState {
   data: DualFarm[]
-  tags: Tag[]
 }
 
 export interface BillsState {
@@ -548,6 +545,10 @@ export interface ProfileState {
   data: Profile
 }
 
+export interface TagsType {
+  [key: string]: any
+}
+
 export interface StatsState {
   isInitialized: boolean
   isLoading: boolean
@@ -557,6 +558,7 @@ export interface StatsState {
   HomepageLaunchCalendar: LaunchCalendarCard[]
   HomepageServiceStats: ServiceData[]
   FarmLpAprs: FarmLpAprsType
+  Tags: TagsType
   LiveIfo: LiveIfo[]
   data: Stats
 }

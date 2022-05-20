@@ -9,11 +9,9 @@ import {
 } from './fetchPoolsUser'
 import { PoolsState, Pool, TokenPrices, AppThunk } from '../types'
 import fetchPools from './fetchPools'
-import fetchPoolTagsFromApi from './fetchPoolTags'
 
 const initialState: PoolsState = {
   data: [...poolsConfig],
-  tags: null,
 }
 
 export const PoolsSlice = createSlice({
@@ -39,14 +37,11 @@ export const PoolsSlice = createSlice({
       const index = state.data.findIndex((p) => p.sousId === sousId)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
-    getPoolTags: (state, action) => {
-      state.tags = action.payload
-    },
   },
 })
 
 // Actions
-export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData, getPoolTags } = PoolsSlice.actions
+export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = PoolsSlice.actions
 
 // Thunks
 export const fetchPoolsPublicDataAsync =
@@ -109,10 +104,5 @@ export const updateUserPendingReward =
     const pendingRewards = await fetchUserPendingRewards(chainId, account)
     dispatch(updatePoolsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
   }
-
-export const setPoolTagsAsync = (chainId: number) => async (dispatch) => {
-  const tags = await fetchPoolTagsFromApi(chainId)
-  dispatch(getPoolTags(tags))
-}
 
 export default PoolsSlice.reducer

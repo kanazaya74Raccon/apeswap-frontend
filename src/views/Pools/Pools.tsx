@@ -15,14 +15,12 @@ import { usePollPools, usePools, usePoolTags } from 'state/hooks'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { Pool } from 'state/types'
-import { setPoolTagsAsync } from 'state/pools'
 import PoolMenu from './components/Menu'
 import DisplayPools from './components/DisplayPools'
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
-  const { poolTags } = usePoolTags()
   usePollPools()
   const { chainId } = useActiveWeb3React()
   const [stakedOnly, setStakedOnly] = useState(false)
@@ -34,6 +32,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const allPools = usePools(account)
+  const { poolTags } = usePoolTags(chainId)
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const { search } = window.location
@@ -47,7 +46,6 @@ const Pools: React.FC = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(setPoolTagsAsync(chainId))
     const showMorePools = (entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {

@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useFarmLpAprs, useLpTokenPrices, usePriceBananaBusd } from 'state/hooks'
-import { Farm, FarmsState, State } from 'state/types'
+import { Farm, State } from 'state/types'
 import { fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from '.'
 
 export const usePollFarms = () => {
@@ -59,9 +59,4 @@ export const useFarmUser = (pid) => {
     stakedBalance: farm?.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm?.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
   }
-}
-
-export const useFarmTags = () => {
-  const { tags }: FarmsState = useSelector((state: State) => state.farms)
-  return { farmTags: tags }
 }

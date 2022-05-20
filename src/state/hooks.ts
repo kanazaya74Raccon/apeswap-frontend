@@ -39,7 +39,6 @@ import {
   LaunchCalendarCard,
   ServiceData,
   FarmLpAprsType,
-  PoolsState,
 } from './types'
 import { fetchNfaStakingPoolsPublicDataAsync, fetchNfaStakingPoolsUserDataAsync } from './nfaStakingPools'
 import { fetchProfile } from './profile'
@@ -572,11 +571,6 @@ export const useGetPoolStats = (pid) => {
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
 }
 
-export const usePoolTags = () => {
-  const { tags }: PoolsState = useSelector((state: State) => state.pools)
-  return { poolTags: tags }
-}
-
 export const useFetchLiveIfoStatus = () => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
@@ -589,4 +583,19 @@ export const useLiveIfoStatus = () => {
   const { LiveIfo }: StatsState = useSelector((state: State) => state.stats)
 
   return { liveIfos: LiveIfo }
+}
+
+// TAGS
+export const useFarmTags = (chainId: number) => {
+  const { Tags }: StatsState = useSelector((state: State) => state.stats)
+  const farmTags = Tags?.[`${chainId}`].farms
+
+  return { farmTags }
+}
+
+export const usePoolTags = (chainId: number) => {
+  const { Tags }: StatsState = useSelector((state: State) => state.stats)
+  const poolTags = Tags?.[`${chainId}`]?.pools
+
+  return { poolTags }
 }
