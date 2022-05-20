@@ -56,26 +56,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.279":
-  version "1.0.279"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.279/98a96ccff285cc8e1c36b066ced781d1cf9e71ab5052e6cee81cecd2be0a36f5#b833574cd7c4dda2e0ec0372e8d69952848b1aef"
-  integrity sha512-wvpEa1jZ3vZI/OKbtEgdh3ua1ga6J6HXMjX4aC0BmMM5/MAk31ArVqVyE3omJB9fOuP2+hkMxTKIqFgTYfEzLw==
-
-"@apeswapfinance/uikit@0.11.3":
-  version "0.11.3"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/uikit/0.11.3/34816976a003ba86c800bfba03f28b4207b61e1fa0d54ac10260a2cebb2e9f0b#147116f12458392a4469b1faa5e6b965d325e991"
-  integrity sha512-JT9T41yhRq0MBElfNv7NpokpavN0HLJv6207asYx+xmBpTigV1oHLc86GLxrH1qOdbLJ8SHz43yZ/cPjAxc+Gw==
-  dependencies:
-    "@emotion/react" "^11.7.1"
-    "@rollup/plugin-json" "^4.1.0"
-    "@types/lodash" "^4.14.162"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    lottie-react "^2.2.1"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-    theme-ui "^0.13.1"
-    yalc "^1.0.0-pre.53"
+"@apeswapfinance/token-lists@1.0.280":
+  version "1.0.280"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.280/dd2d241b3da4524cc7e0f3c4e4e8f38f5e69cddb41184481f5667e846d585927#fcf8dd6b14ce11af4f0727c74d16a2f78afcbbcd"
+  integrity sha512-0YQV94Q92lIiXhW+eeCYZuM/X91Qi3vZj6p2lIO01HOCqnv0nHr5q/jeJA69Z8cpgWCekSRNBAuiZPR23itKGA==
 
 "@autonomylabs/limit-stop-orders@0.0.4":
   version "0.0.4"
