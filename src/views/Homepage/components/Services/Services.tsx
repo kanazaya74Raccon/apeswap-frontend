@@ -179,12 +179,12 @@ const Services: React.FC = () => {
                         <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
                           <Flex flexDirection="column">
                             <Flex>
-                              <Text color="white" fontSize="25px" bold>
+                              <Text color="white" fontSize="23px" bold>
                                 {service.title}
                               </Text>
                             </Flex>
                             <Flex padding="0px 40px 0px 0px">
-                              <Text color="white" bold>
+                              <Text color="white" bold fontSize="15px">
                                 {service.description}
                               </Text>
                             </Flex>
@@ -203,12 +203,12 @@ const Services: React.FC = () => {
                     <Flex flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
                       <Flex flexDirection="column">
                         <Flex>
-                          <Text color="white" fontSize="25px" bold>
+                          <Text color="white" fontSize="23px" bold>
                             {service.title}
                           </Text>
                         </Flex>
                         <Flex padding="0px 40px 0px 0px">
-                          <Text color="white" bold>
+                          <Text color="white" bold fontSize="15px">
                             {service.description}
                           </Text>
                         </Flex>

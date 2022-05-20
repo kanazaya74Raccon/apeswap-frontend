@@ -11,7 +11,7 @@ const WelcomeContent: React.FC = () => {
   return (
     <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
       <ContentContainer>
-        <Flex flexDirection="column" style={{ maxWidth: '650px' }}>
+        <Flex flexDirection="column" style={{ maxWidth: '740px' }}>
           <HeadingText>{t('Welcome to the Most Connected DeFi Hub')}</HeadingText>
           {!isMobile && (
             <>
@@ -45,7 +45,7 @@ const WelcomeContent: React.FC = () => {
                 </a>
               </Flex>
             ) : (
-              <Flex justifyContent="space-between" style={{ width: '435px' }}>
+              <Flex justifyContent="space-between" style={{ width: 'auto' }}>
                 <a href="/swap" rel="noopener noreferrer">
                   <BuyBanana>
                     {t('Buy Banana')}
