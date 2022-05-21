@@ -9,8 +9,7 @@ import {
   ControlContainer,
   HarvestAllWrapper,
   LabelWrapper,
-  SectionOneWrapper,
-  SectionTwoWrapper,
+  MobilePadding,
   StyledCheckbox,
   StyledImage,
   StyledText,
@@ -32,14 +31,16 @@ const ListViewMenu: React.FC<ListViewProps> = ({
   const { t } = useTranslation()
   return (
     <ControlContainer>
-      <SectionOneWrapper>
+      <MobilePadding>
         <LabelWrapper>
           <StyledText bold mr="15px">
             {t('Search')}
           </StyledText>
           <SearchInput onChange={onHandleQueryChange} value={query} />
         </LabelWrapper>
-        <Flex>
+      </MobilePadding>
+      <MobilePadding>
+        <Flex style={{ height: '40px' }}>
           <Select size="sm" width="126px" onChange={(e) => onSetSortOption(e.target.value)} active={activeOption}>
             {OPTIONS.map((option) => {
               return (
@@ -50,15 +51,17 @@ const ListViewMenu: React.FC<ListViewProps> = ({
             })}
           </Select>
         </Flex>
-      </SectionOneWrapper>
-      <SectionTwoWrapper>
+      </MobilePadding>
+      <MobilePadding>
         <MenuTabButtons />
+      </MobilePadding>
+      <MobilePadding>
         <ToggleWrapper onClick={() => onSetStake(!stakedOnly)}>
           <StyledCheckbox checked={stakedOnly} onChange={() => onSetStake(!stakedOnly)} />
           <StyledText> {t('Staked')} </StyledText>
         </ToggleWrapper>
-      </SectionTwoWrapper>
-      {harvestAll && <HarvestAllWrapper> {harvestAll} </HarvestAllWrapper>}
+      </MobilePadding>
+      <MobilePadding>{harvestAll && <HarvestAllWrapper> {harvestAll} </HarvestAllWrapper>}</MobilePadding>
       {showMonkeyImage && isDark ? (
         <StyledImage src="/images/farm-night-farmer.svg" alt="night-monkey" />
       ) : (
