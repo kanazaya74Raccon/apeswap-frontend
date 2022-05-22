@@ -1081,6 +1081,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  lgx: {
+    symbol: 'LGX',
+    address: {
+      56: '0x9096B4309224d751FCB43d7eB178dcFFc122aD15',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1183,6 +1190,14 @@ const tokens = {
     symbol: 'LC-BNB',
     address: {
       56: '0xc5a69133432eF17CD15C501CAa5f9cF28C22aA00',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  lgxBusd: {
+    symbol: 'LGX-BUSD',
+    address: {
+      56: '0x004F72D474eE262701205E3637B4367594eFb11D',
     },
     decimals: 18,
     lpToken: true,
