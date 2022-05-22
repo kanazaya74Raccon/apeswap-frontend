@@ -1200,6 +1200,7 @@ const tokens = {
       56: '0x004F72D474eE262701205E3637B4367594eFb11D',
     },
     decimals: 18,
+    lpToken: true,
   },
 }
 
