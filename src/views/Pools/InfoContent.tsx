@@ -22,7 +22,7 @@ const InfoContent: React.FC<{ pool: Pool }> = ({ pool }) => {
       <Flex flexDirection="column">
         {pool?.endBlock > 0 && pool?.rewardToken?.symbol !== 'BANANA' && (
           <Flex alignItems="space-between" justifyContent="space-between" style={{ width: '100%' }}>
-            <Text style={{ fontSize: '14px' }}>{pool?.startBlock > currentBlock ? 'Starts in' : 'Ends in'}</Text>
+            <Text style={{ fontSize: '14px' }}>{pool?.startBlock > currentBlock ? t('Starts in') : t('Ends in')}</Text>
             <Text style={{ fontSize: '16px' }} bold>
               {pool?.startBlock > currentBlock
                 ? `${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`

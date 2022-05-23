@@ -46,7 +46,7 @@ const StatCards: React.FC = () => {
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   {stat?.value ? (
                     <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                      {stat?.title !== 'Partners' && '$'}
+                      {stat?.title !== t('Partners') && '$'}
                       <CountUp end={stat?.value} decimals={0} duration={1} separator="," />
                     </Text>
                   ) : (
