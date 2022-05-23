@@ -51,7 +51,8 @@ export const StyledText = styled(Text)`
 
 export const LearnMoreButton = styled(Button)`
   height: 36px;
-  width: 192px;
+  width: auto;
+  min-width: 192px;
   align-items: center;
   color: ${({ theme }) => theme.colors.yellow};
   border: 2px solid ${({ theme }) => theme.colors.yellow};

@@ -72,6 +72,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://cryptopolisgame.com/',
   },
   {
+    pid: 203,
+    image: 'ROOBEE.svg',
+    lpSymbol: 'ROOBEE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x9b35AeDD22E0Ad5e456557C17FE7B5DEa863F385',
+    },
+    tokenSymbol: 'ROOBEE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xF77351D8f4eE853135961A936BB8d2e4fFa75f9D',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://roobee.io/',
+  },
+  {
     pid: 200,
     image: 'FROYO.png',
     lpSymbol: 'FROYO-BNB',
