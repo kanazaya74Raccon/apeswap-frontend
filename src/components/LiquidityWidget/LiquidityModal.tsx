@@ -27,7 +27,7 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps
   return (
     <ModalProvider>
       <Modal open {...merge(modalProps, newModalProps)}>
-        <ModalHeader>
+        <ModalHeader onDismiss={handleClose}>
           <Flex
             sx={{
               Svg: {
