@@ -1088,6 +1088,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  roobee: {
+    symbol: 'ROOBEE',
+    address: {
+      56: '0xF77351D8f4eE853135961A936BB8d2e4fFa75f9D',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
