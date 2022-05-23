@@ -24,8 +24,8 @@ export const RU: Language = { locale: 'ru-RU', language: 'Русский', code:
 // export const SVSE: Language = { locale: 'sv-SE', language: 'Svenska', code: 'sv' }
 // export const TA: Language = { locale: 'ta-IN', language: 'தமிழ்', code: 'ta' }
 export const TR: Language = { locale: 'tr-TR', language: 'Türkçe', code: 'tr' }
-export const UK: Language = { locale: 'uk-UA', language: 'Українська', code: 'uk' }
-export const VI: Language = { locale: 'vi-VN', language: 'Tiếng Việt', code: 'vi' }
+// export const UK: Language = { locale: 'uk-UA', language: 'Українська', code: 'uk' }
+// export const VI: Language = { locale: 'vi-VN', language: 'Tiếng Việt', code: 'vi' }
 export const ZHCN: Language = { locale: 'zh-CN', language: '简体中文', code: 'zh-cn' }
 export const ZHTW: Language = { locale: 'zh-TW', language: '繁體中文', code: 'zh-tw' }
 
@@ -54,8 +54,8 @@ export const languages = {
   // 'sv-SE': SVSE,
   // 'ta-IN': TA,
   'tr-TR': TR,
-  'uk-UA': UK,
-  'vi-VN': VI,
+  // 'uk-UA': UK,
+  // 'vi-VN': VI,
   'zh-CN': ZHCN,
   'zh-TW': ZHTW,
 }
