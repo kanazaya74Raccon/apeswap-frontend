@@ -2953,6 +2953,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 207,
+    tokenName: 'ROOBEE',
+    image: 'ROOBEE.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.roobee,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x3490F8a48B421647E853DF8Ec82610Ac60bBD727',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://roobee.io/',
+    twitter: 'https://twitter.com/Roobee_invest',
+    harvest: true,
+    tokenPerBlock: `10.7421875`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE FARMS
