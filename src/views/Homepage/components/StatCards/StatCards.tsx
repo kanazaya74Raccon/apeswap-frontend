@@ -41,12 +41,12 @@ const StatCards: React.FC = () => {
                   </Flex>
                 )}
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
-                  <Text style={{ lineHeight: '25px' }}>{stat.title}</Text>
+                  <Text style={{ lineHeight: '20px', textAlign: 'center' }}>{stat.title}</Text>
                 </Flex>
                 <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
                   {stat?.value ? (
                     <Text fontSize="28px" bold style={{ lineHeight: '30px' }}>
-                      {stat?.title !== 'Partners' && '$'}
+                      {stat?.title !== t('Partners') && '$'}
                       <CountUp end={stat?.value} decimals={0} duration={1} separator="," />
                     </Text>
                   ) : (

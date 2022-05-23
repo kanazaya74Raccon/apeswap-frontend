@@ -49,7 +49,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
             title={t('Discount')}
             valueColor={parseFloat(bill?.discount) < 0 ? '#DF4141' : null}
             value={`${bill?.discount}%`}
-            width={isMobile ? 100 : 140}
+            width={isMobile ? 90 : 140}
             height={52.5}
             toolTip={
               parseFloat(bill?.discount) < 0
@@ -62,7 +62,7 @@ const BillsListView: React.FC<{ bills: Bills[] }> = ({ bills }) => {
           <ListViewContent
             title={t('Vesting Term')}
             value={`${vestingTime.days}d, ${vestingTime.minutes}h, ${vestingTime.seconds}m`}
-            width={isMobile ? 120 : 180}
+            width={isMobile ? 150 : 180}
             height={52.5}
             toolTip={t('This is how long it will take for all tokens in the Bill to fully vest.')}
             toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}

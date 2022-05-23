@@ -2,12 +2,12 @@ import styled from 'styled-components'
 import { Text, Checkbox, Heading, Flex } from '@apeswapfinance/uikit'
 
 export const ControlContainer = styled(Flex)`
-  align-items: center;
   position: relative;
   flex-wrap: wrap;
   border-radius: 10px;
+  align-items: space-around;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: row;
   padding: 15px;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white2};
@@ -24,6 +24,13 @@ export const ControlContainer = styled(Flex)`
   }
   ${({ theme }) => theme.mediaQueries.xl} {
     padding: 0px 130px 0px 30px;
+  }
+`
+
+export const MobilePadding = styled(Flex)`
+  padding: 7.5px 0;
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding: 0 0;
   }
 `
 
@@ -49,16 +56,8 @@ export const ToggleWrapper = styled.div`
 
 export const LabelWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  > ${Text} {
-    font-size: 12px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    flex-direction: row;
-    align-items: center;
-  }
+  flex-direction: row;
+  align-items: center;
 `
 
 export const ViewControls = styled.div`
@@ -198,8 +197,6 @@ export const SectionTwoWrapper = styled(Flex)`
 `
 
 export const HarvestAllWrapper = styled(Flex)`
-  width: 100%;
-  margin-top: 15px;
   justify-content: center;
   align-items: center;
   ${({ theme }) => theme.mediaQueries.md} {
