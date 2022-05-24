@@ -1095,6 +1095,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  vtg: {
+    symbol: 'VTG',
+    address: {
+      56: '0x8de5aA37a7C40A53062EAD382b8EEAD3B08a7A46',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
