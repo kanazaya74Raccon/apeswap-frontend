@@ -26,7 +26,7 @@ declare module '@emotion/react' {
 const Home = lazy(() => import('./views/Homepage'))
 const Farms = lazy(() => import('./views/Farms'))
 const Pools = lazy(() => import('./views/Pools'))
-const JunglePools = lazy(() => import('./views/JunglePools'))
+const JungleFarms = lazy(() => import('./views/JungleFarms'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const DualFarms = lazy(() => import('./views/DualFarms'))
@@ -300,7 +300,7 @@ const App: React.FC = () => {
               <Pools />
             </Route>
             <Route path="/jungle-farms">
-              <JunglePools />
+              <JungleFarms />
             </Route>
             <Route path="/vaults">
               <Vaults />

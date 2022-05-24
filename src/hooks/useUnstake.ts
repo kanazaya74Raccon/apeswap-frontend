@@ -8,6 +8,9 @@ import {
   updateUserNfaStakingStakedBalance,
   updateNfaStakingUserBalance,
   updateUserNfaStakingPendingReward,
+  updateJungleFarmsUserBalance,
+  updateJungleFarmsUserPendingReward,
+  updateJungleFarmsUserStakedBalance,
 } from 'state/actions'
 import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
 import track from 'utils/track'
@@ -78,6 +81,43 @@ export const useSousUnstake = (sousId) => {
       dispatch(updateUserPendingReward(chainId, sousId, account))
       track({
         event: 'pool',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          amount,
+          sousId,
+        },
+      })
+      return trxHash
+    },
+    [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId, chainId],
+  )
+
+  return { onUnstake: handleUnstake }
+}
+
+export const useJungleFarmUnstake = (sousId) => {
+  const dispatch = useDispatch()
+  const { account, chainId } = useWeb3React()
+  const masterChefContract = useMasterchef()
+  const sousChefContract = useSousChef(sousId)
+  const isOldSyrup = SYRUPIDS.includes(sousId)
+
+  const handleUnstake = useCallback(
+    async (amount: string) => {
+      let trxHash
+      if (sousId === 0) {
+        trxHash = await unstake(masterChefContract, 0, amount)
+      } else if (isOldSyrup) {
+        trxHash = await sousEmegencyWithdraw(sousChefContract)
+      } else {
+        trxHash = await sousUnstake(sousChefContract, amount)
+      }
+      dispatch(updateJungleFarmsUserStakedBalance(chainId, sousId, account))
+      dispatch(updateJungleFarmsUserBalance(chainId, sousId, account))
+      dispatch(updateJungleFarmsUserPendingReward(chainId, sousId, account))
+      track({
+        event: 'jungle_farm',
         chain: chainId,
         data: {
           cat: 'unstake',
