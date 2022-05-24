@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Contract } from '@ethersproject/contracts'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
-import { poolsConfig } from 'config/constants'
+import { jungleFarmsConfig, poolsConfig } from 'config/constants'
 import nfaStakingPools from 'config/constants/nfaStakingPools'
 import { CHAIN_ID } from 'config/constants/chains'
 import ifo from 'config/abi/ifo.json'
@@ -133,7 +133,13 @@ export const useMasterchef = () => {
 export const useSousChef = (id) => {
   // Using selector to avoid circular dependecies
   const chainId = useSelector((state: State) => state.network.data.chainId)
-  const config = poolsConfig.find((pool) => pool.sousId === id)
+  let config = poolsConfig.find((pool) => pool.sousId === id)
+
+  // If not in pools check Jungle Farms
+  if (!config) {
+    config = jungleFarmsConfig.find((pool) => pool.sousId === id)
+  }
+
   return useContract(sousChef, config.contractAddress[chainId]) as SousChef
 }
 
