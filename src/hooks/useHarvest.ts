@@ -8,7 +8,7 @@ import track from 'utils/track'
 import { useNetworkChainId } from 'state/hooks'
 import { getContract } from 'utils'
 import { SousChef } from 'config/abi/types'
-import { poolsConfig } from 'config/constants'
+import { jungleFarmsConfig, poolsConfig } from 'config/constants'
 import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
 import { useMasterchef, useMiniChefContract, useSousChef, useNfaStakingChef } from './useContract'
@@ -86,7 +86,13 @@ export const useSousHarvestAll = (sousIds: number[]) => {
 
   const handleHarvestAll = useCallback(async () => {
     const harvestPromises = sousIds.map((sousId) => {
-      const config = poolsConfig.find((pool) => pool.sousId === sousId)
+      let config = poolsConfig.find((pool) => pool.sousId === sousId)
+
+      // If not in pools check Jungle Farms
+      if (!config) {
+        config = jungleFarmsConfig.find((pool) => pool.sousId === sousId)
+      }
+
       const sousChefContract = getContract(config.contractAddress[chainId], sousChef, library, account) as SousChef
       return sousId === 0 ? harvest(masterChefContract, 0) : soushHarvest(sousChefContract)
     })
