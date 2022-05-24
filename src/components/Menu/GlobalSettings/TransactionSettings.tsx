@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { escapeRegExp } from 'utils'
 import { Text, Input, Flex } from '@apeswapfinance/uikit'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
+import { useTranslation } from 'contexts/Localization'
 import styled from '@emotion/styled'
 
 enum SlippageError {
@@ -21,6 +22,7 @@ const SlippageTabs = () => {
   const [ttl, setTtl] = useUserTransactionTTL()
   const [slippageInput, setSlippageInput] = useState('')
   const [deadlineInput, setDeadlineInput] = useState('')
+  const { t } = useTranslation()
 
   const slippageInputIsValid =
     slippageInput === '' || (userSlippageTolerance / 100).toFixed(2) === Number.parseFloat(slippageInput).toFixed(2)
@@ -76,7 +78,7 @@ const SlippageTabs = () => {
     <Flex flexDirection="column">
       <Flex flexDirection="column" mb="24px">
         <Flex mb="12px">
-          <Text>Slippage Tolerance</Text>
+          <Text>{t('Slippage Tolerance')}</Text>
         </Flex>
         <Flex flexWrap="wrap">
           <SelectButton
@@ -130,15 +132,15 @@ const SlippageTabs = () => {
         {!!slippageError && (
           <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
             {slippageError === SlippageError.InvalidInput
-              ? 'Enter a valid slippage percentage'
+              ? t('Enter a valid slippage percentage')
               : slippageError === SlippageError.RiskyLow
-              ? 'Your transaction may fail'
-              : 'Your transaction may be frontrun'}
+              ? t('Your transaction may fail')
+              : t('Your transaction may be frontrun')}
           </Text>
         )}
       </Flex>
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
-        <Text>Tx deadline (mins)</Text>
+        <Text>{t('Tx deadline (mins)')}</Text>
         <StyledInput
           inputMode="numeric"
           pattern="^[0-9]+$"

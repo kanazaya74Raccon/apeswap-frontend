@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text, Link } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import useENS from '../../../hooks/ENS/useENS'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 import { AutoColumn } from '../../../components/layout/Column'
@@ -90,6 +91,7 @@ export default function AddressInputPanel({
   )
 
   const error = Boolean(value.length > 0 && !loading && !address)
+  const { t } = useTranslation()
 
   return (
     <InputPanel id={id}>
@@ -100,7 +102,7 @@ export default function AddressInputPanel({
               <Text>Recipient</Text>
               {address && chainId && (
                 <Link external small href={getEtherscanLink(name ?? address, 'address', chainId)}>
-                  View on BscScan
+                  {t('View on BscScan')}
                 </Link>
               )}
             </RowBetween>
@@ -111,7 +113,7 @@ export default function AddressInputPanel({
               autoCorrect="off"
               autoCapitalize="off"
               spellCheck="false"
-              placeholder="Wallet Address or ENS name"
+              placeholder={t('Wallet Address or ENS name')}
               error={error}
               pattern="^(0x[a-fA-F0-9]{40})$"
               onChange={handleInput}

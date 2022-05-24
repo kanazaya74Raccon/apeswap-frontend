@@ -7,6 +7,7 @@ import { updateUserAllowance } from 'state/pools'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useToast } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import { StyledButton } from '../styles'
 
 interface ApprovalActionProps {
@@ -22,6 +23,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
   const dispatch = useAppDispatch()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
   const { toastSuccess } = useToast()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -37,8 +39,8 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
             await onApprove()
               .then((resp) => {
                 const trxHash = resp.transactionHash
-                toastSuccess('Approve Successful', {
-                  text: 'View Transaction',
+                toastSuccess(t('Approve Successful'), {
+                  text: t('View Transaction'),
                   url: getEtherscanLink(trxHash, 'transaction', chainId),
                 })
               })
@@ -52,7 +54,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
           }}
           load={pendingTrx}
         >
-          ENABLE
+          {t('ENABLE')}
         </StyledButton>
       )}
     </>

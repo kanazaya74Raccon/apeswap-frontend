@@ -2,12 +2,12 @@ import React from 'react'
 import { Text } from '@apeswapfinance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import useAllEarnings from 'hooks/useAllEarnings'
 import CardValue from './CardValue'
 
 const BananaHarvestBalance = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { account } = useWeb3React()
   const allEarnings = useAllEarnings()
   const earningsSum = allEarnings.reduce((accum, earning) => {
@@ -17,7 +17,7 @@ const BananaHarvestBalance = () => {
   if (!account) {
     return (
       <Text color="textDisabled" style={{ lineHeight: '60px' }}>
-        {TranslateString(298, 'Locked')}
+        {t('Locked')}
       </Text>
     )
   }

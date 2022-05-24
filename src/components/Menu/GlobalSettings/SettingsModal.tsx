@@ -9,6 +9,7 @@ import {
   useUserAutonomyPrepay,
 } from 'state/user/hooks'
 import { useSwapActionHandlers } from 'state/swap/hooks'
+import { useTranslation } from 'contexts/Localization'
 import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
 
@@ -28,6 +29,7 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const [recentTransactions, setRecentTransactions] = useUserRecentTransactions()
   const [autonomyPrepay, setAutonomyPrepay] = useUserAutonomyPrepay()
   const { onChangeRecipient } = useSwapActionHandlers()
+  const { t } = useTranslation()
 
   if (showConfirmExpertModal) {
     return (
@@ -53,12 +55,12 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
   return (
     <div style={{ zIndex: 101, width: '360px' }}>
-      <Modal title="Transaction Settings" onDismiss={onDismiss}>
+      <Modal title={t('Transaction Settings')} onDismiss={onDismiss}>
         <ScrollableContainer>
           <TransactionSettings />
           <Flex justifyContent="space-between" alignItems="center" mb="24px" mt="5px">
             <Flex alignItems="center">
-              <Text>Recent Transactions</Text>
+              <Text>{t('Recent Transactions')}</Text>
             </Flex>
             <ButtonMenu
               activeIndex={recentTransactions ? 0 : 1}
@@ -69,29 +71,29 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
               }}
             >
               <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
-                YES
+                {t('YES')}
               </ButtonMenuItem>
               <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
-                NO
+                {t('NO')}
               </ButtonMenuItem>
             </ButtonMenu>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center" mb="24px">
             <Flex alignItems="center">
-              <Text>Expert Mode</Text>
+              <Text>{t('Expert Mode')}</Text>
             </Flex>
             <ButtonMenu activeIndex={expertMode ? 0 : 1} size="sm" variant="yellow" onClick={handleExpertModeToggle}>
               <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
-                YES
+                {t('YES')}
               </ButtonMenuItem>
               <ButtonMenuItem id="toggle-expert-mode-button" fontSize="12px">
-                NO
+                {t('NO')}
               </ButtonMenuItem>
             </ButtonMenu>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center" mb="22px">
             <Flex alignItems="center">
-              <Text>Disable Multihops</Text>
+              <Text>{t('Disable Multihops')}</Text>
             </Flex>
             <ButtonMenu
               activeIndex={singleHopOnly ? 0 : 1}
@@ -102,16 +104,16 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
               }}
             >
               <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
-                YES
+                {t('YES')}
               </ButtonMenuItem>
               <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
-                NO
+                {t('NO')}
               </ButtonMenuItem>
             </ButtonMenu>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center" mb="22px">
             <Flex alignItems="center">
-              <Text>Autonomy Prepay</Text>
+              <Text>{t('Autonomy Prepay')}</Text>
             </Flex>
             <ButtonMenu
               activeIndex={autonomyPrepay ? 0 : 1}
@@ -122,10 +124,10 @@ const SettingsModal: React.FC<ModalProps> = ({ onDismiss }) => {
               }}
             >
               <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
-                YES
+                {t('YES')}
               </ButtonMenuItem>
               <ButtonMenuItem id="toggle-disable-multihop-button" fontSize="12px">
-                NO
+                {t('NO')}
               </ButtonMenuItem>
             </ButtonMenu>
           </Flex>

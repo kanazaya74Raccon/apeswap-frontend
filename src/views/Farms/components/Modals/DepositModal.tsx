@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal, AutoRenewIcon, ModalFooter } from '@apeswapfinance/uikit'
 import ModalInput from 'components/ModalInput'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface DepositModalProps {
@@ -16,7 +16,7 @@ interface DepositModalProps {
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(new BigNumber(max))
   }, [max])
@@ -33,7 +33,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={TranslateString(999, 'Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -41,9 +41,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         max={fullBalance}
         symbol={tokenName}
         addLiquidityUrl={addLiquidityUrl}
-        inputTitle={TranslateString(999, 'Stake')}
+        inputTitle={t('Stake')}
       />
-      <ModalFooter onDismiss={onDismiss}>
+      <ModalFooter onDismiss={onDismiss} t={t}>
         <Button
           fullWidth
           disabled={pendingTx || fullBalance === '0' || val === '0' || parseFloat(fullBalance) < parseFloat(val)}
@@ -63,7 +63,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             borderRadius: '10px',
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
       </ModalFooter>
     </Modal>

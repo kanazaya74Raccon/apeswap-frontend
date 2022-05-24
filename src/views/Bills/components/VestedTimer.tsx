@@ -1,5 +1,6 @@
 import { Skeleton, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import ListViewContent from 'components/ListViewContent'
+import { useTranslation } from 'contexts/Localization'
 import useCurrentTime from 'hooks/useTimer'
 import React from 'react'
 import getTimePeriods from 'utils/getTimePeriods'
@@ -12,6 +13,7 @@ const VestedTimer: React.FC<{
   transferModalFlag?: boolean
 }> = ({ lastBlockTimestamp, vesting, userModalFlag, transferModalFlag }) => {
   const { isXl, isLg, isXxl } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = !isLg && !isXl && !isXxl
   const currentTime = useCurrentTime() / 1000
   const vestingTime = getTimePeriods(parseInt(lastBlockTimestamp) + parseInt(vesting) - currentTime, true)
@@ -30,11 +32,11 @@ const VestedTimer: React.FC<{
     </StyledHeadingText>
   ) : (
     <ListViewContent
-      title="Fully Vested"
+      title={t('Fully Vested')}
       value={`${vestingTime.days}d, ${vestingTime.hours}h, ${vestingTime.minutes}m`}
       width={isMobile ? 200 : 180}
       height={52.5}
-      toolTip="This is the time remaining until all tokens from the bill are available to claim."
+      toolTip={t('This is the time remaining until all tokens from the bill are available to claim.')}
       toolTipPlacement={isMobile ? 'bottomRight' : 'bottomLeft'}
       toolTipTransform={isMobile ? 'translate(-75%, 65%)' : 'translate(0%, 65%)'}
     />

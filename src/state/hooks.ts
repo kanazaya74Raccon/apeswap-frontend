@@ -31,7 +31,6 @@ import {
   IazosState,
   Iazo,
   NfaStakingPool,
-  DualFarm,
   HomepageData,
   LpTokenPricesState,
   NfaState,
@@ -50,13 +49,13 @@ import {
   fetchHomepageNews,
   fetchHomepageService,
   fetchHomepageTokenData,
+  fetchLiveIfoStatus,
 } from './stats'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
 import { fetchTokenPrices } from './tokenPrices'
 import { fetchIazo, fetchIazos, fetchSettings } from './iazos'
 import { fetchUserNetwork } from './network'
-import { fetchDualFarmsPublicDataAsync, fetchDualFarmUserDataAsync } from './dualFarms'
 import { fetchLpTokenPrices } from './lpPrices'
 import { fetchAllNfas } from './nfas'
 
@@ -118,33 +117,6 @@ export const usePollVaultsData = (includeArchive = false) => {
       dispatch(fetchVaultUserDataAsync(account, chainId))
     }
   }, [includeArchive, dispatch, slowRefresh, account, chainId, tokenPrices])
-}
-
-// Dual Farms
-
-export const usePollDualFarms = () => {
-  const { slowRefresh } = useRefresh()
-  const { account } = useActiveWeb3React()
-  const dispatch = useAppDispatch()
-  const { tokenPrices } = useTokenPrices()
-  const chainId = useNetworkChainId()
-
-  useEffect(() => {
-    dispatch(fetchDualFarmsPublicDataAsync(tokenPrices, chainId))
-    if (account) {
-      dispatch(fetchDualFarmUserDataAsync(chainId, account))
-    }
-  }, [account, dispatch, chainId, tokenPrices, slowRefresh])
-}
-
-export const useDualFarms = (): DualFarm[] => {
-  const dualFarms = useSelector((state: State) => state.dualFarms.data)
-  return dualFarms
-}
-
-export const useDualFarmsFromPid = (pid): DualFarm => {
-  const farm = useSelector((state: State) => state.dualFarms.data.find((f) => f.pid === pid))
-  return farm
 }
 
 // Vaults
@@ -597,4 +569,18 @@ export const useGetPoolStats = (pid) => {
     else poolStats = data?.incentivizedPools.find((pool) => pool.id === pid)
   }
   return { poolStats, hasStats: isInitialized && data !== null, isInitialized, isLoading }
+}
+
+export const useFetchLiveIfoStatus = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchLiveIfoStatus())
+  }, [dispatch, slowRefresh])
+}
+
+export const useLiveIfoStatus = () => {
+  const { LiveIfo }: StatsState = useSelector((state: State) => state.stats)
+
+  return { liveIfos: LiveIfo }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@apeswapfinance/uikit'
 import useTheme from 'hooks/useTheme'
 
+import { useTranslation } from 'contexts/Localization'
 import { IconBox, FeatureBox, B, Frame, SectionHeading, CenteredImage, Container, StyledText } from './styles'
 
 interface IconProps {
@@ -23,6 +24,7 @@ interface Props {
 }
 
 const HowItWorks = ({ onParticipate }: Props) => {
+  const { t } = useTranslation()
   const handleParticipateClick = () => {
     const isSwitching = onParticipate()
     const scroll = () =>
@@ -40,50 +42,53 @@ const HowItWorks = ({ onParticipate }: Props) => {
 
   return (
     <Container>
-      <SectionHeading>HOW IT WORKS</SectionHeading>
+      <SectionHeading>{t('HOW IT WORKS')}</SectionHeading>
       <Frame>
         <FeatureBox>
           <Icon name="time-circle" />
           <div>
-            <SectionHeading>CONTRIBUTION WINDOW</SectionHeading>
+            <SectionHeading>{t('CONTRIBUTION WINDOW')}</SectionHeading>
             <StyledText>
-              IAOs run anywhere from 12-24 hours to ensure everyone across the globe has time to enter with ease.
+              {t('IAOs run anywhere from 12-24 hours to ensure everyone across the globe has time to enter with ease.')}
             </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="calendar" />
           <div>
-            <SectionHeading>VESTING SCHEDULE</SectionHeading>
+            <SectionHeading>{t('VESTING SCHEDULE')}</SectionHeading>
             <StyledText>
-              25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.
+              {t(
+                '25% of tokens unlock immediately. The remaining 75% vest linearly over a timeframe specific to each IAO.',
+              )}
             </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="bnb-gnana" />
           <div>
-            <SectionHeading>2 WAYS TO PARTICIPATE</SectionHeading>
+            <SectionHeading>{t('2 WAYS TO PARTICIPATE')}</SectionHeading>
             <StyledText>
-              <B>Option 1</B>: Commit with <B>BNB</B>.
+              <B>{t('Option 1')}</B>: {t('Commit with')} <B>BNB</B>.
             </StyledText>
             <StyledText>
-              <B>Option 2</B>: Commit with <B>GNANA</B>.
+              <B>{t('Option 2')}</B>: {t('Commit with')} <B>GNANA</B>.
             </StyledText>
           </div>
         </FeatureBox>
         <FeatureBox>
           <Icon name="overflow-dollars" />
           <div>
-            <SectionHeading>OVERFLOW MODEL</SectionHeading>
+            <SectionHeading>{t('OVERFLOW MODEL')}</SectionHeading>
             <StyledText>
-              Your token allocation is based on your percentage of the total raise. All overflow contributions will be
-              returned post-raise.
+              {t(
+                'Your final IAO token allocation is based on your percentage of the total committed tokens. Any overflow contributions are refunded proportionally at the end of the raise.',
+              )}
             </StyledText>
           </div>
         </FeatureBox>
       </Frame>
-      <Button onClick={handleParticipateClick}>PARTICIPATE NOW</Button>
+      <Button onClick={handleParticipateClick}>{t('PARTICIPATE NOW')}</Button>
     </Container>
   )
 }

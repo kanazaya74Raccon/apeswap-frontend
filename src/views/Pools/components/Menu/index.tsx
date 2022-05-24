@@ -3,6 +3,7 @@ import { Flex, Select, SelectItem, Text } from '@apeswapfinance/uikit'
 import { Checkbox } from '@ape.swap/uikit'
 import { ToggleWrapper } from 'components/ListViewMenu/styles'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
+import { useTranslation } from 'contexts/Localization'
 import { ListViewProps } from './types'
 import SearchInput from './SearchInput'
 import { ClaimAllWrapper, ControlContainer, LabelWrapper, StyledText } from './styles'
@@ -20,6 +21,7 @@ const PoolMenu: React.FC<ListViewProps> = ({
   onSetStake,
   stakedOnly,
 }) => {
+  const { t } = useTranslation()
   const sousIds = pools.map((pool) => {
     return pool.sousId
   })
@@ -27,7 +29,7 @@ const PoolMenu: React.FC<ListViewProps> = ({
     <ControlContainer>
       <LabelWrapper>
         <StyledText bold mr="15px">
-          Search
+          {t('Search')}
         </StyledText>
         <SearchInput onChange={onHandleQueryChange} value={query} />
       </LabelWrapper>
@@ -36,7 +38,7 @@ const PoolMenu: React.FC<ListViewProps> = ({
           {OPTIONS.map((option) => {
             return (
               <SelectItem size="sm" value={option.value}>
-                <Text>{option.label}</Text>
+                <Text>{t(option.label)}</Text>
               </SelectItem>
             )
           })}
@@ -47,7 +49,7 @@ const PoolMenu: React.FC<ListViewProps> = ({
           {TOKEN_OPTIONS.map((option) => {
             return (
               <SelectItem size="sm" value={option.value}>
-                <Text>{option.label}</Text>
+                <Text>{t(option.label)}</Text>
               </SelectItem>
             )
           })}
@@ -56,7 +58,7 @@ const PoolMenu: React.FC<ListViewProps> = ({
       <MenuTabButtons />
       <ToggleWrapper onClick={() => onSetStake(!stakedOnly)}>
         <Checkbox checked={stakedOnly} onChange={() => onSetStake(!stakedOnly)} />
-        <StyledText> Staked </StyledText>
+        <StyledText> {t('Staked')} </StyledText>
       </ToggleWrapper>
       <ClaimAllWrapper>
         <HarvestAll sousIds={sousIds} />

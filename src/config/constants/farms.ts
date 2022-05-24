@@ -72,6 +72,40 @@ const farms: FarmConfig[] = [
     projectLink: 'https://cryptopolisgame.com/',
   },
   {
+    pid: 204,
+    image: 'VTG.svg',
+    lpSymbol: 'VTG-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xD82ED8363F0e40a787B386C936720aF174B68487',
+    },
+    tokenSymbol: 'VTG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8de5aA37a7C40A53062EAD382b8EEAD3B08a7A46',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://olympicgamesjam.nwayplay.com/',
+  },
+  {
+    pid: 203,
+    image: 'ROOBEE.svg',
+    lpSymbol: 'ROOBEE-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x9b35AeDD22E0Ad5e456557C17FE7B5DEa863F385',
+    },
+    tokenSymbol: 'ROOBEE',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xF77351D8f4eE853135961A936BB8d2e4fFa75f9D',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://roobee.io/',
+  },
+  {
     pid: 200,
     image: 'FROYO.png',
     lpSymbol: 'FROYO-BNB',
@@ -3292,6 +3326,23 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
     projectLink: 'https://www.biconomy.io',
+  },
+  {
+    pid: 202,
+    image: 'GRVS.svg',
+    lpSymbol: 'GRVS-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x3F6217A61510Df9FACeBcf731f12442F507C2d20',
+    },
+    tokenSymbol: 'GRVS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x190CEC0657a02E9eAB1C1DF5d59f9139131cf539',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://gravis.finance/',
   },
   // CHECK THE TOP FOR HIGHER PID BEFORE ADDING
 ]

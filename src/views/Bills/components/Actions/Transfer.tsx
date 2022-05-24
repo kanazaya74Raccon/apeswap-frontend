@@ -6,6 +6,7 @@ import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import { useAppDispatch } from 'state'
 import { fetchBillsUserDataAsync, fetchUserOwnedBillsDataAsync } from 'state/bills'
+import { useTranslation } from 'contexts/Localization'
 import { StyledButton } from '../styles'
 import { TransferProps } from './types'
 
@@ -15,20 +16,21 @@ const Transfer: React.FC<TransferProps> = ({ billNftAddress, billId, toAddress, 
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
   const { toastSuccess, toastError } = useToast()
+  const { t } = useTranslation()
 
   const handleTransfer = async () => {
     setPendingTrx(true)
     await onTransfer()
       .then((resp) => {
         const trxHash = resp.transactionHash
-        toastSuccess('Transfer Successful', {
-          text: 'View Transaction',
+        toastSuccess(t('Transfer Successful'), {
+          text: t('View Transaction'),
           url: getEtherscanLink(trxHash, 'transaction', chainId),
         })
       })
       .catch((e) => {
         console.error(e)
-        toastError(e?.data?.message || 'Something went wrong please try again')
+        toastError(e?.data?.message || t('Something went wrong please try again'))
         setPendingTrx(false)
       })
     dispatch(fetchUserOwnedBillsDataAsync(chainId, account))
@@ -41,7 +43,7 @@ const Transfer: React.FC<TransferProps> = ({ billNftAddress, billId, toAddress, 
       endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       disabled={pendingTrx || disabled}
     >
-      CONFIRM
+      {t('CONFIRM')}
     </StyledButton>
   )
 }

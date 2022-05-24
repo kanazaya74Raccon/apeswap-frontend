@@ -1,5 +1,5 @@
 import React from 'react'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 
 import {
   InfoSect1,
@@ -41,7 +41,7 @@ const Info: React.FC<InfoProps> = ({ content }) => {
 }
 
 export const GnanaDisclaimers: React.FC = () => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const learnMore = () => {
     return window.open('https://apeswap.gitbook.io/apeswap-finance/product-and-features/tokenomics/gnana', '_blank')
@@ -50,54 +50,56 @@ export const GnanaDisclaimers: React.FC = () => {
     <Container>
       <Main>
         <FirstHeaderCon>
-          <FirstHeader as="h1">GNANA BREAKDOWN</FirstHeader>
+          <FirstHeader as="h1">{t('GNANA BREAKDOWN')}</FirstHeader>
         </FirstHeaderCon>
 
         <Sect>
           <Sect1>
             <Sect1a>
-              <Text1>Fee1</Text1>
+              <Text1>{t('Fee1')}</Text1>
             </Sect1a>
             <Sect1b>
-              <Text2>Converting</Text2>
+              <Text2>{t('Converting')}</Text2>
             </Sect1b>
             <Sect1c>
-              <Text4>Staking/Committing</Text4>
+              <Text4>{t('Staking / Committing')}</Text4>
             </Sect1c>
             <Sect1d>
-              <Text4>Returning</Text4>
+              <Text4>{t('Returning')}</Text4>
             </Sect1d>
           </Sect1>
 
           <Sect1>
             <Sect2a>
-              <Text2>Fee</Text2>
+              <Text2>{t('Fee')}</Text2>
             </Sect2a>
             <Sect2b>
               <Text3>
-                28% Burn Fee <br /> 2% Reflect Fee
+                {`28% ${t('Burn Fee')}`}
+                <br />
+                {`2% ${t('Reflect Fee')}`}
               </Text3>
             </Sect2b>
             <Sect2c>
-              <Text3>2% Reflect Fee (Both in and out)</Text3>
+              <Text3>{`2% ${t('Reflect Fee')} (${t('Both in and out')})`}</Text3>
             </Sect2c>
             <Sect2d>
-              <Text3>2% Reflect Fee</Text3>
+              <Text3>{`2% ${t('Reflect Fee')}`}</Text3>
             </Sect2d>
           </Sect1>
 
           <Sect1>
             <Sect2a>
-              <Text2>Value</Text2>
+              <Text2>{t('Value')}</Text2>
             </Sect2a>
             <Sect2b>
-              <Text3>.7 GNANA per BANANA</Text3>
+              <Text3>{t('0.7 GNANA per BANANA')}</Text3>
             </Sect2b>
             <Sect2c>
-              <Text3>1 GNANA calculated as 1.389 BANANA</Text3>
+              <Text3>{t('1 GNANA valued at 1.389 BANANA')}</Text3>
             </Sect2c>
             <Sect2d>
-              <Text3>.98 BANANA per GNANA</Text3>
+              <Text3>{t('0.98 BANANA per GNANA')}</Text3>
             </Sect2d>
           </Sect1>
         </Sect>
@@ -105,18 +107,22 @@ export const GnanaDisclaimers: React.FC = () => {
 
       <Main2>
         <FirstHeaderCon>
-          <FirstHeader as="h2">KEY DISCLAIMERS</FirstHeader>
+          <FirstHeader as="h2">{t('KEY DISCLAIMERS')}</FirstHeader>
         </FirstHeaderCon>
 
         <InfoSect1>
-          <Info content="The 2% reflect fee applies to all $GNANA transactions, including transfer, staking, unstaking, and participation in IAOs." />
-          <Info content="You do not accumulate reflect fees when your GNANA is staked in a pool" />
+          <Info
+            content={t(
+              'The 2% reflect fee applies to all GNANA transactions, including transfers, staking in pools, unstaking from pools, and IAO participation',
+            )}
+          />
+          <Info content={t('You do not accumulate reflect fees when your GNANA is staked in a pool')} />
         </InfoSect1>
       </Main2>
 
       <Footer>
         <LearnMoreBtn onClick={learnMore} size="md" mb="20px">
-          {TranslateString(292, 'LEARN MORE')}
+          {t('LEARN MORE')}
         </LearnMoreBtn>
       </Footer>
     </Container>

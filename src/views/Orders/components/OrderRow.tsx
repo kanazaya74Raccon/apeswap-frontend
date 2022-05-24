@@ -7,6 +7,7 @@ import { Token } from '@apeswapfinance/sdk'
 import { CurrencyLogo } from 'components/Logo'
 import { AutoRow } from 'components/layout/Row'
 import useAutonomyOrdersLib from 'hooks/useAutonomyOrdersLib'
+import { useTranslation } from 'contexts/Localization'
 
 const OrderRowWrapper = styled(Flex)`
   position: relative;
@@ -67,17 +68,18 @@ interface IOrderRowProps {
 }
 
 const TooltipContent = ({ order }: { order: Order }) => {
+  const { t } = useTranslation()
   return (
     <Flex flexDirection="column">
       <Flex justifyContent="space-between" alignItems="center">
-        <Text fontSize="12px">Placed:</Text>
+        <Text fontSize="12px">{t('Placed')}:</Text>
         <Text fontSize="12px" bold>
           {order.time}
         </Text>
       </Flex>
       {order.updateTime !== 'null' && (
         <Flex justifyContent="space-between" alignItems="center" mt={1}>
-          <Text fontSize="12px">{order.status === 'executed' ? 'Closed:' : 'Cancelled:'}</Text>
+          <Text fontSize="12px">{order.status === 'executed' ? `${t('Closed')}:` : `${t('Cancelled')}:`}</Text>
           <Text fontSize="12px" bold>
             {order.updateTime}
           </Text>
@@ -93,6 +95,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
 
   const autonomyOrdersLib = useAutonomyOrdersLib()
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = isMd || isSm || isXs
 
   const handleCancel = React.useCallback(async () => {
@@ -116,7 +119,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
       <OrderColWrapper>
         <OrderCol flexDirection="column">
           <Text fontSize="12px" color="gray">
-            Swap
+            {t('Swap')}
           </Text>
           <Text fontSize="16px" bold>
             {(+inputAmount).toFixed(6)}
@@ -130,7 +133,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
         </OrderCol>
         <OrderCol flexDirection="column">
           <Text fontSize="12px" color="gray">
-            For
+            {t('For')}
           </Text>
           <Text fontSize="16px" bold>
             {(+outputAmount).toFixed(6)}
@@ -146,7 +149,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
       <OrderColWrapper>
         <OrderCol flexDirection="column">
           <Text fontSize="12px" color="gray">
-            At
+            {t('At')}
           </Text>
           <Text fontSize="16px" bold>
             {(+outputAmount / +inputAmount).toFixed(6)}
@@ -155,7 +158,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
             {tokenPair.output?.symbol} / {tokenPair.input?.symbol}
           </TokenText>
         </OrderCol>
-        {order.status === 'open' && <Button onClick={handleCancel}>Cancel</Button>}
+        {order.status === 'open' && <Button onClick={handleCancel}>{t('Cancel')}</Button>}
       </OrderColWrapper>
     </OrderRowWrapper>
   )

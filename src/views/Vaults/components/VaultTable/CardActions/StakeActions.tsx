@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { Flex, IconButton, AddIcon, MinusIcon, useModal, Button } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -63,7 +63,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   firstStake,
   isHeader,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { pid } = vault
 
@@ -137,7 +137,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (isApproved && firstStake && isHeader) {
-    return <StyledButton onClick={onPresentDeposit}>{TranslateString(999, 'STAKE')}</StyledButton>
+    return <StyledButton onClick={onPresentDeposit}>{t('STAKE')}</StyledButton>
   }
 
   return (

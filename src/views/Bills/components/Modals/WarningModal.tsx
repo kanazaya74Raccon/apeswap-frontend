@@ -2,6 +2,7 @@ import { WarningIcon } from '@ape.swap/uikit'
 import { Checkbox, Flex, Modal, ModalFooter, Text, useModal } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import { Bills } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import { StyledButton } from '../styles'
 import BuyBillModalView from './BuyBillModalView'
 
@@ -12,6 +13,7 @@ interface TransferBillModalProps {
 
 const WarningModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill }) => {
   const [confirmBuy, setConfirmBuy] = useState(false)
+  const { t } = useTranslation()
   const { index } = bill
   const [onPresentBuyBillsModal] = useModal(
     <BuyBillModalView bill={bill} onDismiss={null} />,
@@ -25,7 +27,7 @@ const WarningModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill }) => 
       <Flex alignItems="center" justifyContent="center" mt="10px">
         <Text bold fontSize="35px">
           <WarningIcon width="25px" mr="10px" color="error" />
-          WARNING
+          {t('WARNING')}
           <WarningIcon width="25px" ml="10px" color="error" />
         </Text>
       </Flex>
@@ -45,13 +47,15 @@ const WarningModal: React.FC<TransferBillModalProps> = ({ onDismiss, bill }) => 
       <Flex mt="20px" alignItems="center">
         <Checkbox onClick={() => setConfirmBuy((prev) => !prev)} />
         <Text ml="10px" fontSize="12px" bold>
-          I understand that I am purchasing {bill.earnToken.symbol} at a price above the current market rate, and would
-          like to continue.
+          {t(
+            'I understand that I am purchasing %billToken% at a price above the current market rate, and would like to continue.',
+            { billToken: bill.earnToken.symbol },
+          )}
         </Text>
       </Flex>
       <ModalFooter onDismiss={onDismiss}>
         <StyledButton onClick={onPresentBuyBillsModal} disabled={!confirmBuy}>
-          Continue
+          {t('Continue')}
         </StyledButton>
       </ModalFooter>
     </Modal>

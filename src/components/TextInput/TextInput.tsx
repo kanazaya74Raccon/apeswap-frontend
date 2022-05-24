@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useToast } from 'state/hooks'
 import { AutoRenewIcon, Text } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 
 interface TextInputProps {
   placeholderText?: string
@@ -155,6 +156,7 @@ const TextInput: React.FC<TextInputProps> = ({
   mandatory,
 }) => {
   const { toastError } = useToast()
+  const { t } = useTranslation()
   const [backgroundColorForInput, setBackgroundColorForInput] = useState(backgroundColor)
   useEffect(() => {
     setBackgroundColorForInput(backgroundColor)
@@ -170,7 +172,7 @@ const TextInput: React.FC<TextInputProps> = ({
     if (url) {
       if (!isUrl) {
         setBackgroundColorForInput('rgb(255,0,0, .3)')
-        toastError('Please enter a valid url')
+        toastError(t('Please enter a valid url'))
       } else {
         setBackgroundColorForInput(backgroundColor)
       }

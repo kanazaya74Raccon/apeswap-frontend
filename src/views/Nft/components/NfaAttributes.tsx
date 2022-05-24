@@ -2,6 +2,7 @@ import React from 'react'
 import { Nft } from 'config/constants/types'
 import styled from 'styled-components'
 import nfaAttributes from 'config/constants/nfaAttributes'
+import { useTranslation } from 'contexts/Localization'
 
 const AttributesHolder = styled.div`
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -55,49 +56,50 @@ export interface Nfa {
 
 const NfaAttributes: React.FC<Nfa> = ({ nfa }) => {
   const { baseColor, faceColor, frames, mouths, eyes, hats } = nfa.attributes
-  const base = nfaAttributes.find((attrib) => attrib.id === baseColor)
-  const face = nfaAttributes.find((attrib) => attrib.id === faceColor)
-  const frame = nfaAttributes.find((attrib) => attrib.id === frames)
-  const mouth = nfaAttributes.find((attrib) => attrib.id === mouths)
-  const eye = nfaAttributes.find((attrib) => attrib.id === eyes)
-  const hat = nfaAttributes.find((attrib) => attrib.id === hats)
+  const { t } = useTranslation()
+  const base = nfaAttributes(t).find((attrib) => attrib.id === baseColor)
+  const face = nfaAttributes(t).find((attrib) => attrib.id === faceColor)
+  const frame = nfaAttributes(t).find((attrib) => attrib.id === frames)
+  const mouth = nfaAttributes(t).find((attrib) => attrib.id === mouths)
+  const eye = nfaAttributes(t).find((attrib) => attrib.id === eyes)
+  const hat = nfaAttributes(t).find((attrib) => attrib.id === hats)
 
   return (
     <AttributesHolder>
       <ToolTip>
         <Attribute>
           {base.category}: {base.id}
-          <ToolTipText>Occurance {base.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: base.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {face.category}: {face.id}
-          <ToolTipText>Occurance {face.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: face.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {frame.category}: {frame.id}
-          <ToolTipText>Occurance {frame.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: frame.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {mouth.category}: {mouth.id}
-          <ToolTipText>Occurance {mouth.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: mouth.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {eye.category}: {eye.id}
-          <ToolTipText>Occurance {eye.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: eye.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
       <ToolTip>
         <Attribute>
           {hat.category}: {hat.id}
-          <ToolTipText>Occurance {hat.occurance} of 1000</ToolTipText>
+          <ToolTipText>{t('Occurance %occurance% of 1000', { occurance: hat.occurance })}</ToolTipText>
         </Attribute>
       </ToolTip>
     </AttributesHolder>

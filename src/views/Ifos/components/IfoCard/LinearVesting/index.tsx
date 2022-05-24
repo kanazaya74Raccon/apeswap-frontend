@@ -11,6 +11,7 @@ import { useSafeIfoContract } from 'hooks/useContract'
 import getTimePeriods from 'utils/getTimePeriods'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Toggle } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import IfoCardHeader from '../CardHeader/IfoCardHeader'
 import IfoCardProgress from '../CardProgress/IfoCardProgress'
 import IfoCardDetails from '../CardDetails/IfoCardDetails'
@@ -72,6 +73,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
   const { currentBlock } = useBlock()
   const bnbPrice = usePriceBnbBusd()
   const gnanaPrice = usePriceGnanaBusd()
+  const { t } = useTranslation()
   const currencyPrice = gnana ? gnanaPrice : bnbPrice
   const [statsType, setStatsType] = useState(0)
 
@@ -173,29 +175,32 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     progressBarTimeLabel = `${timeUntil.days + timeUntil.months * 30}d ${timeUntil.hours}h ${timeUntil.minutes}m / ${
       vestingPeriod.days + vestingPeriod.months * 30
     }d ${vestingPeriod.hours}h ${vestingPeriod.minutes}m`
-    progress = ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
+    progress =
+      currentBlock < state.vestingEndBlock
+        ? ((currentBlock - state.endBlockNum) / (state.vestingEndBlock - state.endBlockNum)) * 100
+        : 100
   }
 
   const stats = React.useMemo(() => {
     let texts = [
-      { label: 'For Sale', value: saleAmount },
-      { label: 'To raise (USD)', value: raiseAmount },
+      { label: t('For sale'), value: saleAmount },
+      { label: t('To raise (USD)'), value: raiseAmount },
     ]
 
-    if (vestingTime) texts.push({ label: 'Total vesting time', value: vestingTime })
+    if (vestingTime) texts.push({ label: t('Total vesting time'), value: vestingTime })
 
     if (isFinished && statsType === 0 && amount > 0) {
       const vestedValueAmount = amount - refundingAmount
       const vestedValueDollar = (getBalanceNumber(currencyPrice, 0) * vestedValueAmount).toFixed(2)
       texts = [
         {
-          label: 'Tokens available',
+          label: t('Tokens available'),
           value: Number(userTokenStatus.offeringTokenTotalHarvest).toFixed(4),
         },
-        { label: 'Tokens vesting', value: Number(userTokenStatus.offeringTokensVesting).toFixed(4) },
-        { label: 'Tokens harvested', value: Number(offeringTokensClaimed).toFixed(4) },
+        { label: t('Tokens vesting'), value: Number(userTokenStatus.offeringTokensVesting).toFixed(4) },
+        { label: t('Tokens harvested'), value: Number(offeringTokensClaimed).toFixed(4) },
         {
-          label: 'Committed value',
+          label: t('Committed value'),
           value: `${Number(vestedValueAmount).toFixed(4)} ${currency} (~$${vestedValueDollar})`,
         },
       ]
@@ -205,7 +210,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
 
     if (hasStarted) {
       texts.splice(2, 0, {
-        label: 'Total raised (% of the target)',
+        label: t('Total raised (% of target)'),
         value: `${state.totalAmount.dividedBy(state.raisingAmount).multipliedBy(100).toFixed(2)}%`,
       })
       return texts
@@ -227,6 +232,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
     state.totalAmount,
     state.raisingAmount,
     statsType,
+    t,
   ])
 
   return (
@@ -266,7 +272,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo, gnana }) => {
         <Wrapper>
           <Toggle
             size="md"
-            labels={['MY STATS', 'OVERALL STATS']}
+            labels={[t('MY STATS'), t('OVERALL STATS')]}
             onClick={() => {
               setStatsType(statsType === 0 ? 1 : 0)
             }}

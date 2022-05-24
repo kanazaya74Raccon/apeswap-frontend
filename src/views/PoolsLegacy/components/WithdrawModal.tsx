@@ -4,7 +4,7 @@ import { Button, Modal, AutoRenewIcon } from '@apeswapfinance/uikit'
 import ModalActions from 'components/ModalActions'
 import ModalInput from 'components/ModalInput'
 import UnderlinedButton from 'components/UnderlinedButton'
-import useI18n from '../../../hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
 interface WithdrawModalProps {
@@ -17,7 +17,7 @@ interface WithdrawModalProps {
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -34,7 +34,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`Withdraw ${tokenName}`} onDismiss={onDismiss}>
+    <Modal title={`${t('Withdraw')} ${tokenName}`} onDismiss={onDismiss}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
@@ -56,9 +56,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
             borderRadius: '10px',
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
+          {pendingTx ? t('Pending Confirmation') : t('Confirm')}
         </Button>
-        <UnderlinedButton text="Cancel" handleClick={onDismiss} />
+        <UnderlinedButton text={t('Cancel')} handleClick={onDismiss} />
       </ModalActions>
     </Modal>
   )

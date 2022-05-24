@@ -245,6 +245,17 @@ export interface DualFarmConfig {
   }
 }
 
+// Types used to check for live IAOs
+export type LiveIfo = {
+  id: number
+  label: string
+  settings: {
+    id: number
+    tag: string
+    navItem: string
+  }[]
+}
+
 export interface BillsConfig {
   index: number
   contractAddress: Address

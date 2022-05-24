@@ -1,23 +1,26 @@
 import React from 'react'
 import { ApeSwapRoundIcon, Flex, Text, useMatchBreakpoints } from '@apeswapfinance/uikit'
+import { useTranslation } from 'contexts/Localization'
 import { BuyBanana, ContentContainer, HeadingText, LearnMore } from './styles'
 
 const WelcomeContent: React.FC = () => {
   const { isSm, isXs } = useMatchBreakpoints()
+  const { t } = useTranslation()
   const isMobile = isSm || isXs
 
   return (
     <Flex justifyContent="center" alignItems="center" style={{ width: '100%' }}>
       <ContentContainer>
-        <Flex flexDirection="column" style={{ maxWidth: '650px' }}>
-          <HeadingText>Welcome to the Most Connected DeFi Hub</HeadingText>
+        <Flex flexDirection="column" style={{ maxWidth: '740px' }}>
+          <HeadingText>{t('Welcome to the Most Connected DeFi Hub')}</HeadingText>
           {!isMobile && (
             <>
               <br />
               <br />
               <Text>
-                Whether you are new to crypto or you are a DeFi veteran, ApeSwap has the tools and the community to
-                support your decentralized finance needs.
+                {t(
+                  'Whether you are new to crypto or you are a DeFi veteran, ApeSwap has the tools, community, and connections to support your decentralized finance needs.',
+                )}
               </Text>
             </>
           )}
@@ -28,7 +31,7 @@ const WelcomeContent: React.FC = () => {
               <Flex justifyContent="center" alignItems="center" flexDirection="column" style={{ width: '100%' }}>
                 <a href="/swap" rel="noopener noreferrer" style={{ width: '90%' }}>
                   <BuyBanana fullWidth>
-                    Buy Banana
+                    {t('Buy Banana')}
                     <ApeSwapRoundIcon ml="10px" width="27px" height="27px" />
                   </BuyBanana>
                 </a>
@@ -38,14 +41,14 @@ const WelcomeContent: React.FC = () => {
                   rel="noopener noreferrer"
                   style={{ width: '90%' }}
                 >
-                  <LearnMore>Learn More</LearnMore>
+                  <LearnMore>{t('Learn More')}</LearnMore>
                 </a>
               </Flex>
             ) : (
-              <Flex justifyContent="space-between" style={{ width: '435px' }}>
+              <Flex justifyContent="space-between" style={{ width: 'auto' }}>
                 <a href="/swap" rel="noopener noreferrer">
                   <BuyBanana>
-                    Buy Banana
+                    {t('Buy Banana')}
                     <ApeSwapRoundIcon ml="10px" width="27px" height="27px" />
                   </BuyBanana>
                 </a>
@@ -54,7 +57,7 @@ const WelcomeContent: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <LearnMore>Learn More</LearnMore>
+                  <LearnMore>{t('Learn More')}</LearnMore>
                 </a>
               </Flex>
             )}

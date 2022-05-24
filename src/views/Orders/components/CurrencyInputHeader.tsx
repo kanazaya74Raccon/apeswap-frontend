@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
+import { useTranslation } from 'contexts/Localization'
 import { useLocation, useHistory } from 'react-router-dom'
 
 interface Props {
@@ -18,7 +19,6 @@ const CurrencyInputContainer = styled(Flex)`
   padding: 20px 25px 0px 20px;
   width: 100%;
   background: ${({ theme }) => theme.colors.navbar};
-  margin-bottom: 20px;
 `
 
 const CurrencyInputHeader: React.FC<Props> = () => {
@@ -26,6 +26,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
   const history = useHistory()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
+  const { t } = useTranslation()
 
   const getActiveTab = () => {
     const { pathname } = path
@@ -39,7 +40,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
       <Tabs activeTab={getActiveTab()} size="md">
         <Tab
           index={0}
-          label="SWAP"
+          label={t('SWAP')}
           onClick={() => history.push('/swap')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
@@ -47,7 +48,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         />
         <Tab
           index={1}
-          label="ORDERS"
+          label={t('ORDERS')}
           onClick={() => history.push('/orders')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
@@ -55,7 +56,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         />
         <Tab
           index={2}
-          label="LIQUIDITY"
+          label={t('LIQUIDITY')}
           onClick={() => history.push('/pool')}
           size={isMobile ? 'xsm' : 'md'}
           variant="centered"
@@ -72,9 +73,10 @@ const CurrencyInputHeader: React.FC<Props> = () => {
               marginLeft: '15px',
               padding: 10,
               display: isMobile ? 'none' : 'block',
+              height: isMobile ? '36px ' : '40px',
             }}
           >
-            BRIDGE
+            {t('BRIDGE')}
           </Button>
         </a>
         <GlobalSettings />

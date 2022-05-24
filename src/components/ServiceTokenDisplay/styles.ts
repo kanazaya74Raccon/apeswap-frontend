@@ -7,12 +7,14 @@ export const TokenContainer = styled(Logo)<{
   image?: string
   ml?: number
   mr?: number
+  mt?: number
   zIndex?: number
 }>`
   width: ${({ size }) => size || 30}px;
   height: ${({ size }) => size || 30}px;
   margin-left: ${({ ml }) => ml}px;
   margin-right: ${({ mr }) => mr}px;
+  margin-top: ${({ mt }) => mt}px;
   z-index: ${({ zIndex }) => zIndex};
   border-radius: ${({ size }) => (size || 35) / 2}px;
   border: 1px solid white;

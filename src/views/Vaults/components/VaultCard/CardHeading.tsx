@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { Vault } from 'state/types'
 import styled from '@emotion/styled'
@@ -230,7 +230,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   stakingTokenAddress,
   image,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const { userData, isPair, token0, token1, pid, burning } = vault
   const stakingTokenBalance = new BigNumber(userData?.tokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
@@ -340,11 +340,11 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
         <LabelContainer>
           <TitleContainer>
             <StyledHeading bold>{lpLabel}</StyledHeading>
-            {burning && <Tooltip content="Burns at least 50% of every harvest in the form of $BANANA">🔥</Tooltip>}
+            {burning && <Tooltip content={t('Burns at least 50% of every harvest in the form of $BANANA')}>🔥</Tooltip>}
           </TitleContainer>
           {!removed && (
             <Text style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <StyledText1>APY:</StyledText1>
+              <StyledText1>{t('APY')}:</StyledText1>
               {apyDaily ? (
                 <FlexSwitch>
                   <StyledAPRText>{apyYearly}%</StyledAPRText>
@@ -359,7 +359,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
           <StyledFlexEarned>
             <Flex>
               <StyledText2 color="primary" pr="3px">
-                {TranslateString(999, 'Staked')}
+                {t('Staked')}
               </StyledText2>
             </Flex>
             <StyledText3>

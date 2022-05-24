@@ -8,6 +8,7 @@ import { useWeb3React } from '@web3-react/core'
 import useCreateIazoApi from 'views/Iazos/hooks/useCreateIazoApi'
 import { Token } from 'config/constants/types'
 import { useToast } from 'state/hooks'
+import { useTranslation } from 'contexts/Localization'
 import { PresaleData } from '../types'
 import StyledButton from './styles'
 
@@ -113,6 +114,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
 
   const { onCreateIazo } = useCreateIazo(tokenAddress, quoteTokenAddress, burnRemains, unitParams, creationFee)
   const { onCreateIazoApi } = useCreateIazoApi()
+  const { t } = useTranslation()
 
   const [pendingTrx, setPendingTrx] = useState(false)
 
@@ -130,9 +132,9 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
               onCreateIazoApi(apiObject).then((apiResp: any) => {
                 if (apiResp.status === 201) {
                   history.push('/ss-iao')
-                  toastSuccess('Your SS-IAO was successfully created!')
+                  toastSuccess(t('Your SS-IAO was successfully created!'))
                 } else {
-                  toastError('Your SS-IAO encountered an error. Please contact the ApeSwap team for help.')
+                  toastError(t('Your SS-IAO encountered an error. Please contact the ApeSwap team for help.'))
                 }
               })
             })
@@ -145,7 +147,7 @@ const CreatePresale: React.FC<CreatePresaleProps> = ({ presaleData, disabled, cr
         disabled={pendingTrx || disabled}
         endIcon={pendingTrx && <AutoRenewIcon spin color="currentColor" />}
       >
-        CREATE PRESALE
+        {t('CREATE PRESALE')}
       </StyledButton>
     </>
   )

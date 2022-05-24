@@ -7,6 +7,8 @@ const getTokenLogoURL = (address: string, chainId: any) => {
     imageURL = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${address}/logo.png`
   } else if (chainId === CHAIN_ID.MATIC) {
     imageURL = getMaticTokenLogoURL(address)
+  } else if (chainId === CHAIN_ID.ETH) {
+    imageURL = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
   } else {
     imageURL = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
   }

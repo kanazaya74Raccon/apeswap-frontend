@@ -3,18 +3,19 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
+import { Text, Card, Checkbox, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
-import useI18n from 'hooks/useI18n'
 import { PoolCategory } from 'config/constants/types'
 import useWindowSize, { Size } from 'hooks/useDimensions'
 import MenuTabButtons from 'components/ListViewMenu/MenuTabButtons'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
+import Banner from 'components/Banner'
 import { usePollPools, usePools } from 'state/hooks'
 import { Pool } from 'state/types'
 import Page from 'components/layout/Page'
+import { useTranslation } from 'contexts/Localization'
 import ToggleView from '../PoolsLegacy/components/ToggleView/ToggleView'
 import SearchInput from '../PoolsLegacy/components/SearchInput'
 import PoolCard from '../PoolsLegacy/components/PoolCard/PoolCard'
@@ -34,7 +35,6 @@ const ControlContainer = styled(Card)`
   flex-direction: column;
   overflow: visible;
   padding-bottom: 10px;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
@@ -42,7 +42,6 @@ const ControlContainer = styled(Card)`
     padding: 0px;
     justify-content: flex-start;
     padding-left: 50px;
-    transform: translateY(-60px);
   }
 `
 
@@ -127,38 +126,6 @@ const ViewControls = styled.div`
   }
 `
 
-const HeadingContainer = styled.div`
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const Header = styled.div`
-  position: relative;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  padding-top: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-image: ${({ theme }) => (theme.isDark ? 'url(/images/jungle-dark.svg)' : 'url(/images/jungle-light.svg)')};
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 250px;
-  background-position: center;
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    height: 300px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.lg} {
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 300px;
-  }
-`
-
 const StyledText = styled(Text)`
   font-weight: 600;
   font-size: 12px;
@@ -187,14 +154,9 @@ const ContainerLabels = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-85px);
 
   ${({ theme }) => theme.mediaQueries.xs} {
     margin-top: 34px;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
   }
 `
 
@@ -338,27 +300,6 @@ const ButtonCheckWrapper = styled.div`
   }
 `
 
-const StyledHeading = styled(Heading)`
-  font-size: 32px;
-  max-width: 176px !important;
-  margin-bottom: 8px;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    font-size: 36px;
-    max-width: 240px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.md} {
-    font-size: 44px;
-    max-width: 400px !important;
-  }
-
-  ${({ theme }) => theme.mediaQueries.xl} {
-    font-size: 60px;
-    max-width: 600px !important;
-  }
-`
-
 const StyledPage = styled(Page)`
   padding-left: 5px;
   padding-right: 5px;
@@ -422,11 +363,6 @@ const Container = styled.div`
   border-radius: 16px;
   margin: 16px 0px;
   position: relative;
-
-  transform: translateY(-85px);
-  ${({ theme }) => theme.mediaQueries.md} {
-    transform: translateY(-60px);
-  }
 `
 
 const TableWrapper = styled.div`
@@ -456,12 +392,12 @@ const JunglePools: React.FC = () => {
   const { pathname } = useLocation()
   const size: Size = useWindowSize()
   const allPools = usePools(account)
-  const TranslateString = useI18n()
   const { currentBlock } = useBlock()
   const isActive = !pathname.includes('history')
   const [sortDirection, setSortDirection] = useState<boolean | 'desc' | 'asc'>('desc')
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation()
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
@@ -644,27 +580,21 @@ const JunglePools: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <HeadingContainer>
-          <StyledHeading style={{ color: 'white' }} as="h1">
-            {TranslateString(999, 'Jungle Farms')}
-          </StyledHeading>
-          {size.width > 968 && (
-            <Text fontSize="22px" fontWeight={400} color="white">
-              Stake APE-LPs to earn new tokens. <br /> You can unstake at any time. <br /> Rewards are calculated per
-              block.
-            </Text>
-          )}
-        </HeadingContainer>
-      </Header>
-      <StyledPage width="1140px">
+      <StyledPage width="1130px">
+        <Banner
+          banner="jungle-farms"
+          title={t('Jungle Farms')}
+          link="https://apeswap.gitbook.io/apeswap-finance/product-and-features/stake/farms"
+          maxWidth={1130}
+          margin="0 0 20px 0px"
+        />
         <ControlContainer>
           <ViewControls>
             {size.width > 968 && viewMode !== null && (
               <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             )}
             <LabelWrapper>
-              <StyledText mr="15px">Search</StyledText>
+              <StyledText mr="15px">{t('Search')}</StyledText>
               <SearchInput onChange={handleChangeQuery} value={searchQuery} />
             </LabelWrapper>
             <ButtonCheckWrapper>
@@ -674,7 +604,7 @@ const JunglePools: React.FC = () => {
               <ToggleContainer size={size.width}>
                 <ToggleWrapper onClick={() => setStakedOnly(!stakedOnly)}>
                   <StyledCheckbox checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
-                  <StyledText>{TranslateString(1116, 'Staked')}</StyledText>
+                  <StyledText>{t('Staked')}</StyledText>
                 </ToggleWrapper>
               </ToggleContainer>
             </ButtonCheckWrapper>
@@ -683,15 +613,15 @@ const JunglePools: React.FC = () => {
         <ContainerLabels>
           <StyledLabelContainerHot>
             <StyledLabel active={sortOption === 'hot'} onClick={() => handleSortOptionChange('hot')}>
-              Hot
+              {t('Hot')}
             </StyledLabel>
           </StyledLabelContainerHot>
           <StyledLabelContainerLP>
-            <StyledLabel>Token</StyledLabel>
+            <StyledLabel>{t('Token')}</StyledLabel>
           </StyledLabelContainerLP>
           <StyledLabelContainerAPR>
             <StyledLabel active={sortOption === 'apr'} onClick={() => handleSortOptionChange('apr')}>
-              APR
+              {t('APR')}
               {sortOption === 'apr' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -699,7 +629,7 @@ const JunglePools: React.FC = () => {
           </StyledLabelContainerAPR>
           <StyledLabelContainerLiquidity>
             <StyledLabel active={sortOption === 'totalStaked'} onClick={() => handleSortOptionChange('totalStaked')}>
-              Total Staked
+              {t('Total Staked')}
               {sortOption === 'totalStaked' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}
@@ -707,7 +637,7 @@ const JunglePools: React.FC = () => {
           </StyledLabelContainerLiquidity>
           <StyledLabelContainerEarned>
             <StyledLabel active={sortOption === 'earned'} onClick={() => handleSortOptionChange('earned')}>
-              Earned
+              {t('Earned')}
               {sortOption === 'earned' ? (
                 <StyledArrowDropDownIcon width="7px" height="8px" color="white" down={sortDirection === 'desc'} />
               ) : null}

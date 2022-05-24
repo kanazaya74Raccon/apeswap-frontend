@@ -3,13 +3,13 @@ import { Card, Heading, Text } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import { Stats } from 'state/types'
 import { Box } from 'theme-ui'
-import useI18n from 'hooks/useI18n'
 import { usePriceBananaBusd } from 'state/hooks'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { useGoldenBananaAddress } from 'hooks/useAddress'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import CardValue from './CardValue'
 import Divider from './Divider'
+import { useTranslation } from '../../../contexts/Localization'
 
 export interface BananaStatsProps {
   stats?: Stats
@@ -29,7 +29,7 @@ const Row = styled.div`
 `
 
 const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const price = usePriceBananaBusd()
   const goldenBananaBalance = useTokenBalance(useGoldenBananaAddress())
 
@@ -40,28 +40,28 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
   return (
     <StyledBananaStats>
       <Box>
-        <Heading>{TranslateString(534, 'Your Ape Stats')}</Heading>
+        <Heading>{t('Your Ape Stats')}</Heading>
         <Row>
           <Text fontWeight={800} fontSize="14px">
-            {TranslateString(536, 'TVL All Pools')}
+            {t('TVL All Pools')}
           </Text>
           <CardValue fontSize="14px" decimals={2} value={stats.tvl} prefix="$" />
         </Row>
         <Row>
           <Text fontWeight={800} fontSize="14px">
-            {TranslateString(536, 'GNANA Holdings')}
+            {t('GNANA Holdings')}
           </Text>
           <CardValue fontWeight={800} fontSize="14px" value={parseFloat(fullBalance)} decimals={2} />
         </Row>
         <Row>
           <Text fontWeight={800} fontSize="14px">
-            {TranslateString(536, 'BANANA Price')}
+            {t('BANANA Price')}
           </Text>
           <CardValue fontWeight={800} fontSize="14px" value={price.toNumber()} decimals={2} prefix="$" />
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
           <Text fontWeight={800} fontSize="14px">
-            {TranslateString(538, 'Your BANANA earnings ($)')}
+            {t('Your BANANA earnings ($)')}
           </Text>
           <Text fontWeight={800} fontSize="14px" style={{ textAlign: 'end' }}>
             <Divider />
@@ -133,7 +133,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
         </Row>
         <Row style={{ alignItems: 'flex-start' }}>
           <Text fontWeight={800} fontSize="14px">
-            {TranslateString(538, 'Your APR (%)')}
+            {t('Your APR (%)')}
           </Text>
           <Text fontWeight={800} fontSize="14px" style={{ textAlign: 'end' }}>
             <CardValue
@@ -141,7 +141,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerDay * 100}
               decimals={2}
-              prefix="Daily"
+              prefix={t('Daily')}
               suffix="%"
             />
             <CardValue
@@ -149,7 +149,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerWeek * 100}
               decimals={2}
-              prefix="Weekly"
+              prefix={t('Weekly')}
               suffix="%"
             />
             <CardValue
@@ -157,7 +157,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateAprPerMonth * 100}
               decimals={2}
-              prefix="Monthly"
+              prefix={t('Monthly')}
               suffix="%"
             />
             <CardValue
@@ -165,7 +165,7 @@ const BananaStats: React.FC<BananaStatsProps> = ({ stats }) => {
               fontSize="14px"
               value={stats.aggregateApr * 100}
               decimals={2}
-              prefix="Yearly"
+              prefix={t('Yearly')}
               suffix="%"
             />
           </Text>

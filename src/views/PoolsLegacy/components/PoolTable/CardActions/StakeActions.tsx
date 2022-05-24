@@ -3,7 +3,7 @@ import Reward from 'react-rewards'
 import rewards from 'config/constants/rewards'
 import useReward from 'hooks/useReward'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import { Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, Text, Button } from '@apeswapfinance/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -85,7 +85,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isApproved,
   firstStake,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const { stakingToken, tokenDecimals, stakingLimit, sousId } = pool
   const { chainId } = useActiveWeb3React()
@@ -172,13 +172,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   }
 
   if (firstStake) {
-    return <StyledButton onClick={onPresentDeposit}>{TranslateString(999, `STAKE ${stakingTokenName}`)}</StyledButton>
+    return <StyledButton onClick={onPresentDeposit}>{t('STAKE %stakingTokenName%', { stakingTokenName })}</StyledButton>
   }
 
   return (
     <StyledFlex justifyContent="space-between">
       <Flex flexDirection="column" justifyContent="space-between" marginRight="6px">
-        <StyledText>{TranslateString(999, 'Staked')}</StyledText>
+        <StyledText>{t('Staked')}</StyledText>
         <StyledHeadingGreen color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>
           {rawStakedBalance > 0 && displayBalance === '0' ? <>&gt;{displayBalance}</> : displayBalance}
         </StyledHeadingGreen>

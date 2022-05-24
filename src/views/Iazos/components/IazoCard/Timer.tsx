@@ -4,6 +4,7 @@ import { useCurrentTime } from 'hooks/useTimer'
 import getTimePeriods from 'utils/getTimePeriods'
 import { Text } from '@apeswapfinance/uikit'
 import { IazoTimeInfo } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 
 interface TimerProps {
   timeInfo: IazoTimeInfo
@@ -27,23 +28,24 @@ const Timer: React.FC<TimerProps> = ({ timeInfo, fontSize, fontColor }) => {
   const timeUntilEnd = endTime - currentTime
   const timeUntilStartFormatted = formatCountdown(getTimePeriods(timeUntilStart, true))
   const timeUntilEndFormatted = formatCountdown(getTimePeriods(timeUntilEnd, true))
+  const { t } = useTranslation()
 
   const timeToDisplay = () => {
     if (timeUntilStart > 0) {
       return (
         <BoldAfterText fontSize={fontSize} boldContent={timeUntilStartFormatted} fontColor={fontColor}>
-          Starts in{' '}
+          {t('Starts in')}{' '}
         </BoldAfterText>
       )
     }
     if (timeUntilEnd > 0) {
       return (
         <BoldAfterText fontSize={fontSize} boldContent={timeUntilEndFormatted} fontColor={fontColor}>
-          Ends in{' '}
+          {t('Ends in')}{' '}
         </BoldAfterText>
       )
     }
-    return <BoldAfterText fontSize={fontSize} boldContent="Finished" fontColor={fontColor} />
+    return <BoldAfterText fontSize={fontSize} boldContent={t('Completed')} fontColor={fontColor} />
   }
   return timeToDisplay()
 }

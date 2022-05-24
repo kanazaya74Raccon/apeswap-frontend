@@ -9,7 +9,6 @@ export const ControlContainer = styled(Flex)`
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: row;
-  transform: translateY(-85px);
   padding: 15px;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.white2};
@@ -18,6 +17,7 @@ export const ControlContainer = styled(Flex)`
   width: 100%;
   align-self: center;
   height: 225px;
+  margin-top: 20px;
   ${({ theme }) => theme.mediaQueries.sm} {
     height: 180px;
   }
@@ -27,7 +27,6 @@ export const ControlContainer = styled(Flex)`
     height: 100%;
     padding: 0px 50px 0px 30px;
     align-items: center;
-    transform: translateY(-60px);
     max-width: 100%;
     height: auto;
   }
@@ -52,9 +51,9 @@ export const StyledText = styled(Text)`
 
 export const LearnMoreButton = styled(Button)`
   height: 36px;
-  width: 192px;
+  width: auto;
+  min-width: 192px;
   align-items: center;
-  padding-left: 40px;
   color: ${({ theme }) => theme.colors.yellow};
   border: 2px solid ${({ theme }) => theme.colors.yellow};
 `

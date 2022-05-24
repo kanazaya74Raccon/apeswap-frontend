@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Iazo } from 'state/types'
+import { useTranslation } from 'contexts/Localization'
 import InfoTab from './InfoTab'
 import About from './About'
 import { SaleInfoWrapper, Tab } from './styles'
@@ -11,6 +12,7 @@ interface SaleInfoProps {
 const SaleInfo: React.FC<SaleInfoProps> = ({ iazo }) => {
   const { socialInfo } = iazo
   const [currentTabIndex, setCurrentTabIndex] = useState(0)
+  const { t } = useTranslation()
   const renderTabComponent = () => {
     if (currentTabIndex === 0) {
       return <InfoTab iazo={iazo} />
@@ -21,10 +23,10 @@ const SaleInfo: React.FC<SaleInfoProps> = ({ iazo }) => {
     <>
       <SaleInfoWrapper>
         <Tab onClick={() => setCurrentTabIndex(0)} active={currentTabIndex === 0} borderRadius="10px 0px 0px 0px">
-          Info
+          {t('Info')}
         </Tab>
         <Tab onClick={() => setCurrentTabIndex(1)} active={currentTabIndex === 1} borderRadius="0px 10px 0px 0px">
-          About
+          {t('About')}
         </Tab>
       </SaleInfoWrapper>
       {renderTabComponent()}

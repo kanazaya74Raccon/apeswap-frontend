@@ -10,7 +10,7 @@ export const billsStub: Bills[] = [
     earnToken: tokens.banana,
     price: 51.24,
     roi: 122.33,
-    vestingTime: '14d, 20h, 22m',
+    vestingTime: '6df892612ef894f39',
   },
   {
     billType: 'Jungle Bill',
@@ -20,7 +20,7 @@ export const billsStub: Bills[] = [
     earnToken: tokens.banana,
     price: 51.24,
     roi: 122.33,
-    vestingTime: '14d, 20h, 22m',
+    vestingTime: 'e4bd8709e83527741',
   },
   {
     billType: 'Jungle Bill',
@@ -30,6 +30,6 @@ export const billsStub: Bills[] = [
     earnToken: tokens.banana,
     price: 51.24,
     roi: 122.33,
-    vestingTime: '14d, 20h, 22m',
+    vestingTime: 'e27ab2f636e825826a4ed',
   },
 ]

@@ -45,10 +45,11 @@ export const BuyBanana = styled(Button)`
   font-weight: 700;
   height: 44px;
   width: 100%;
+  margin-right: 25px;
   line-height: 5px;
   background-color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.text)};
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 204px;
+    width: auto;
   }
   :hover {
     background-color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.text)} !important;
@@ -67,11 +68,11 @@ export const LearnMore = styled(Button)`
   color: ${({ theme }) => (theme.isDark ? theme.colors.yellow : theme.colors.text)};
   background-color: rgb(0, 0, 0, 0);
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 204px;
+    width: auto;
     margin-top: 0px;
   }
   ${({ theme }) => theme.mediaQueries.md} {
-    width: 204px;
+    width: auto;
     margin-top: 0px;
   }
   :hover {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useMatchBreakpoints } from '@apeswapfinance/uikit'
 import TextInput from 'components/TextInput'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'contexts/Localization'
 import ImageUpload from './ImageUpload'
 import { SaleInformation } from '../types'
 import { InputWrapper, StyledHeader, HeaderWrapper } from './styles'
@@ -16,6 +17,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
   const { isDark } = useTheme()
   const inputSize = isMobile ? 'sm' : 'lg'
   const bgColor = isDark ? '#424242' : '#EADFC7'
+  const { t } = useTranslation()
+
   const [information, setInformation] = useState<SaleInformation>({
     website: '',
     whitepaper: '',
@@ -33,7 +36,7 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
   return (
     <>
       <HeaderWrapper>
-        <StyledHeader>Information</StyledHeader>
+        <StyledHeader>{t('Information')}</StyledHeader>
       </HeaderWrapper>
       <InputWrapper>
         <TextInput
@@ -42,8 +45,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Website..."
-          title="Website:*"
+          placeholderText={`${t('Website')}...`}
+          title={`${t('Website')}:*`}
           url
           mandatory
         />
@@ -53,8 +56,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Docs..."
-          title="Docs:"
+          placeholderText={`${t('Docs')}...`}
+          title={`${t('Docs')}:`}
           url
         />
         <TextInput
@@ -63,8 +66,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Twitter..."
-          title="Twitter:*"
+          placeholderText={`${t('Twitter')}...`}
+          title={`${t('Twitter')}:*`}
           url
           mandatory
         />
@@ -74,8 +77,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Telegram..."
-          title="Telegram:*"
+          placeholderText={`${t('Telegram')}...`}
+          title={`${t('Telegram')}:*`}
           url
           mandatory
         />
@@ -85,8 +88,8 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="sm"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Medium..."
-          title="Medium:*"
+          placeholderText={`${t('Medium')}...`}
+          title={`${t('Medium')}:*`}
           url
           mandatory
         />
@@ -96,11 +99,11 @@ const Information: React.FC<InformationProps> = ({ onChange }) => {
           size={inputSize}
           height="lg"
           textColor="rgba(255, 179, 0, 1)"
-          placeholderText="Description..."
-          title="Description:"
+          placeholderText={`${t('Description')}...`}
+          title={`${t('Description')}:`}
         />
         <ImageUpload
-          title="Token Logo:*"
+          title={`${t('Token Logo')}:*`}
           onChange={(e) => setInformation({ ...information, tokenLogo: e.imageFile })}
         />
       </InputWrapper>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Text, Button, Input, InputProps, Flex } from '@apeswapfinance/uikit'
-import useI18n from '../../hooks/useI18n'
+import { useTranslation } from '../../contexts/Localization'
 
 interface ModalInputProps {
   max: string
@@ -60,7 +60,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
   inputTitle,
   displayDecimals,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
   const isBalanceZero = max === '0' || !max
 
   const displayBalance = isBalanceZero ? '0' : parseFloat(max).toFixed(displayDecimals || 4)
@@ -73,13 +73,13 @@ const ModalInput: React.FC<ModalInputProps> = ({
             {inputTitle}
           </Text>
           <Text fontSize="16px" fontWeight={500}>
-            {TranslateString(999, 'Balance')}: {displayBalance.toLocaleString()}
+            {t('Balance')}: {displayBalance.toLocaleString()}
           </Text>
         </Flex>
         <Flex alignItems="flex-end" justifyContent="space-around">
           <StyledInput onChange={onChange} placeholder="0" value={value} />
           <StyledButton size="sm" onClick={onSelectMax} mr="8px">
-            {TranslateString(452, 'Max'.toUpperCase())}
+            {t('Max')}
           </StyledButton>
           <Text fontSize="16px" fontWeight={600}>
             {symbol}

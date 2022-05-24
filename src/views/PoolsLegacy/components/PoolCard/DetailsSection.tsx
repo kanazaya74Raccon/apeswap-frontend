@@ -1,5 +1,5 @@
 import React from 'react'
-import useI18n from 'hooks/useI18n'
+import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { Text, Flex, Link, LinkExternal } from '@apeswapfinance/uikit'
@@ -78,7 +78,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
   projectSite,
   tokenDecimals,
 }) => {
-  const TranslateString = useI18n()
+  const { t } = useTranslation()
 
   const totalDollarAmountStaked = totalStaked * stakedTokenPrice
 
@@ -98,7 +98,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart > 0 && (
         <>
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(410, 'Start')}</StyledText>
+            <StyledText fontSize="12px">{t('Start')}</StyledText>
             <StyledText fontSize="12px">{`${timeUntilStart.days}d, ${timeUntilStart.hours}h, ${timeUntilStart.minutes}m`}</StyledText>
           </Flex>
         </>
@@ -106,7 +106,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       {blocksUntilStart === 0 && blocksRemaining > 0 && (
         <>
           <Flex justifyContent="space-between">
-            <StyledText fontSize="12px">{TranslateString(410, 'End')}</StyledText>
+            <StyledText fontSize="12px">{t('End')}</StyledText>
             <StyledText fontSize="12px">{`${timeUntilEnd.days + timeUntilEnd.months * 30}d, ${timeUntilEnd.hours}h, ${
               timeUntilEnd.minutes
             }m`}</StyledText>
@@ -114,29 +114,29 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </>
       )}
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(316, 'Total Staked Value')}:</StyledText>
+        <StyledText fontSize="12px">{t('Total Staked Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">${totalDollarAmountStakedFormated}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(316, 'Stake')}:</StyledText>
+        <StyledText fontSize="12px">{t('Stake')}:</StyledText>
         <StyledLinkExternal href={addLiquidityUrl}>{lpLabel}</StyledLinkExternal>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(23, 'Staked Value')}:</StyledText>
+        <StyledText fontSize="12px">{t('Staked Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">${totalUserStaked}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="space-between">
-        <StyledText fontSize="12px">{TranslateString(23, 'Earned Value')}:</StyledText>
+        <StyledText fontSize="12px">{t('Earned Value')}:</StyledText>
         <StyledTextGreen fontSize="12px">${(rawEarningsBalance * rewardTokenPrice).toFixed(2)}</StyledTextGreen>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={bscScanAddress} bold={false} fontWeight={800}>
-          {TranslateString(356, 'View on BscScan')}
+          {t('View on BscScan')}
         </StyledLink>
       </Flex>
       <Flex justifyContent="center">
         <StyledLink external href={projectSite} bold={false} fontWeight={800}>
-          {TranslateString(356, 'View Project Site')}
+          {t('View Project Site')}
         </StyledLink>
       </Flex>
     </Wrapper>
