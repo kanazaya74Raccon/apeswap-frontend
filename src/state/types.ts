@@ -12,7 +12,6 @@ import {
   Team,
   VaultConfig,
   DualFarmConfig,
-  JungleFarmConfig,
   LiveIfo,
   BillsConfig,
 } from 'config/constants/types'
@@ -62,21 +61,6 @@ export interface DualFarm extends DualFarmConfig {
     miniChefEarnings: BigNumber
     rewarderEarnings: BigNumber
   }
-}
-
-export interface JungleFarm extends JungleFarmConfig {
-  totalStaked?: BigNumber
-  startBlock?: number
-  endBlock?: number
-  apr?: number
-  apy?: string
-  userData?: {
-    allowance: BigNumber
-    stakingTokenBalance: BigNumber
-    stakedBalance: BigNumber
-    pendingReward: BigNumber
-  }
-  lpData?: any
 }
 
 export interface Pool extends PoolConfig {
@@ -139,6 +123,20 @@ export interface Bills extends BillsConfig {
   }
   userOwnedBillsData?: UserBill[]
   userOwnedBillsNftData?: UserBillNft[]
+}
+
+export interface JunglePool extends PoolConfig {
+  totalStaked?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+  }
+  lpData?: any
 }
 
 export interface Vault extends VaultConfig {
@@ -514,12 +512,12 @@ export interface NfaState {
   data: Nfa[]
 }
 
-export interface DualFarmsState {
-  data: DualFarm[]
+export interface JunglePoolsState {
+  data: JunglePool[]
 }
 
-export interface JungleFarmsState {
-  data: JungleFarm[]
+export interface DualFarmsState {
+  data: DualFarm[]
 }
 
 export interface BillsState {
@@ -616,6 +614,7 @@ export interface State {
   block: BlockState
   toasts: ToastsState
   pools: PoolsState
+  junglePools: JunglePoolsState
   profile: ProfileState
   stats: StatsState
   statsOverall: StatsOverallState
@@ -628,7 +627,6 @@ export interface State {
   network: NetworkState
   nfaStakingPools: NfaStakingPoolsState
   dualFarms: DualFarmsState
-  jungleFarms: JungleFarmsState
   bills: BillsState
   nfas: NfaState
 }

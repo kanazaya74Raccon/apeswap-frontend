@@ -15,7 +15,6 @@ import iazosReducer from './iazos'
 import networkReducer from './network'
 import nfaStakingPoolsReducer from './nfaStakingPools'
 import dualFarmsReducer from './dualFarms'
-import jungleFarmsReducer from './jungleFarms'
 import blockReducer from './block'
 import multicall from './multicall/reducer'
 import billsReducer from './bills'
@@ -47,7 +46,6 @@ const store = configureStore({
     network: networkReducer,
     nfaStakingPools: nfaStakingPoolsReducer,
     dualFarms: dualFarmsReducer,
-    jungleFarms: jungleFarmsReducer,
     bills: billsReducer,
     nfas: nfasReducer,
     multicall,

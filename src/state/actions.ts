@@ -9,14 +9,6 @@ export {
   updateUserPendingReward,
   updateUserStakedBalance,
 } from './pools'
-export {
-  fetchJungleFarmsPublicDataAsync,
-  fetchJungleFarmsUserDataAsync,
-  updateJungleFarmsUserAllowance,
-  updateJungleFarmsUserBalance,
-  updateJungleFarmsUserPendingReward,
-  updateJungleFarmsUserStakedBalance,
-} from './jungleFarms'
 export { profileFetchStart, profileFetchSucceeded, profileFetchFailed } from './profile'
 export {
   statsFetchStart,
