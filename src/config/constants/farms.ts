@@ -72,6 +72,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://cryptopolisgame.com/',
   },
   {
+    pid: 204,
+    image: 'VTG.svg',
+    lpSymbol: 'VTG-BNB',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0xD82ED8363F0e40a787B386C936720aF174B68487',
+    },
+    tokenSymbol: 'VTG',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0x8de5aA37a7C40A53062EAD382b8EEAD3B08a7A46',
+    },
+    quoteTokenSymbol: QuoteToken.BNB,
+    quoteTokenAdresses: contracts.wbnb,
+    projectLink: 'https://olympicgamesjam.nwayplay.com/',
+  },
+  {
     pid: 203,
     image: 'ROOBEE.svg',
     lpSymbol: 'ROOBEE-BNB',

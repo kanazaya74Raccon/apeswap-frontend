@@ -2973,6 +2973,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 208,
+    tokenName: 'VTG',
+    image: 'VTG.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.vtg,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x78A81CC8a83DDe46B352Ab7e478C1Ebe087CD5b6',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://olympicgamesjam.nwayplay.com/',
+    twitter: 'https://twitter.com/OlympicGamesJam',
+    harvest: true,
+    tokenPerBlock: `3.858024691358024691`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE FARMS
