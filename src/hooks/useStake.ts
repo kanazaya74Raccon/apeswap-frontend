@@ -6,8 +6,6 @@ import {
   updateUserBalance,
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
-  updateJungleFarmsUserStakedBalance,
-  updateJungleFarmsUserBalance,
 } from 'state/actions'
 import { stake, sousStake, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
 import track from 'utils/track'
@@ -73,41 +71,6 @@ export const useSousStake = (sousId) => {
 
       dispatch(updateUserStakedBalance(chainId, sousId, account))
       dispatch(updateUserBalance(chainId, sousId, account))
-      return trxHash
-    },
-    [account, dispatch, masterChefContract, sousChefContract, sousId, chainId],
-  )
-
-  return { onStake: handleStake }
-}
-
-export const useJungleFarmStake = (sousId) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
-
-  const handleStake = useCallback(
-    async (amount: string) => {
-      let trxHash
-      if (sousId === 0) {
-        trxHash = await stake(masterChefContract, 0, amount)
-      } else {
-        trxHash = await sousStake(sousChefContract, amount)
-      }
-
-      track({
-        event: 'jungle_farm',
-        chain: CHAIN_ID,
-        data: {
-          cat: 'stake',
-          amount,
-          pid: sousId,
-        },
-      })
-
-      dispatch(updateJungleFarmsUserStakedBalance(chainId, sousId, account))
-      dispatch(updateJungleFarmsUserBalance(chainId, sousId, account))
       return trxHash
     },
     [account, dispatch, masterChefContract, sousChefContract, sousId, chainId],
