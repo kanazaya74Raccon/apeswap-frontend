@@ -4,6 +4,31 @@ import { CHAIN_ID } from './chains'
 
 const jungleFarms: JungleFarmConfig[] = [
   {
+    jungleId: 206,
+    tokenName: 'LGX-BUSD',
+    image: 'LGX.svg',
+    stakingToken: tokens.lgxBusd,
+    rewardToken: tokens.lgx,
+    lpTokens: {
+      token: tokens.lgx,
+      quoteToken: tokens.busd,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xc81af2222ac6ec0f3ec08b875df25326b40e7a76',
+    },
+    projectLink: 'https://solo.to/legionnetwork',
+    twitter: 'https://twitter.com/LegionNetwork__',
+    harvest: true,
+    tokenPerBlock: '0.507454668209876543',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+    isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
+  },
+  {
     jungleId: 0,
     tokenName: 'LC-BNB',
     image: 'LC.svg',
