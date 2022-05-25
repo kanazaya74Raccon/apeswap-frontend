@@ -1102,6 +1102,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  tlos: {
+    symbol: 'TLOS',
+    address: {
+      56: '0xb6C53431608E626AC81a9776ac3e999c5556717c',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
