@@ -47,6 +47,7 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton, ExpertButton } from './styles'
 import CurrencyInputHeader from './components/CurrencyInputHeader'
 import FormattedPriceImpact from './components/FormattedPriceImpact'
+import SwiperProvider from '../../contexts/SwiperProvider'
 
 const Label = styled(Text)`
   font-size: 12px;
@@ -352,7 +353,9 @@ export default function Swap({ history }: RouteComponentProps) {
     <Page>
       <Flex justifyContent="center" mb="20px">
         <Flex flexDirection="column">
-          <SwapBanner />
+          <SwiperProvider>
+            <SwapBanner />
+          </SwiperProvider>
           <StyledSwapContainer>
             <StyledInputCurrencyWrapper>
               <AppBody>
