@@ -45,9 +45,9 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
 
     return {
       tokens: {
-        token1: token1 === 'NFTY' ? 'NFTY2' : token1,
+        token1: token1 === 'LC' ? 'LC2' : token1,
         token2,
-        token3: farm?.rewardToken?.symbol === 'NFTY' ? 'NFTY2' : farm?.rewardToken?.symbol,
+        token3: farm?.rewardToken?.symbol === 'LC' ? 'LC2' : farm?.rewardToken?.symbol,
       },
       stakeLp: true,
       title: (
