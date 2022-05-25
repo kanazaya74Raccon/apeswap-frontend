@@ -2993,6 +2993,26 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 209,
+    tokenName: 'TLOS',
+    image: 'TLOS.svg',
+    stakingToken: tokens.gnana,
+    rewardToken: tokens.tlos,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x03BC491529B6443b263398A366E4424f6F669224',
+    },
+    poolCategory: PoolCategory.APEZONE,
+    projectLink: 'https://www.telos.net/',
+    twitter: 'https://twitter.com/HelloTelos',
+    harvest: true,
+    tokenPerBlock: `0.02044753086419753`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 
   //
   // JUNGLE FARMS

@@ -72,6 +72,23 @@ const farms: FarmConfig[] = [
     projectLink: 'https://cryptopolisgame.com/',
   },
   {
+    pid: 205,
+    image: 'TLOS.svg',
+    lpSymbol: 'TLOS-BUSD',
+    lpAddresses: {
+      97: '0xed89477d619c7e73f752d5fc7be60308ceb63663',
+      56: '0x4D90DDC0A30968c4c6B1eD0535B0264E75A3C5f3',
+    },
+    tokenSymbol: 'TLOS',
+    tokenAddresses: {
+      97: '0x4Fb99590cA95fc3255D9fA66a1cA46c43C34b09a',
+      56: '0xb6C53431608E626AC81a9776ac3e999c5556717c',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+    projectLink: 'https://www.telos.net/',
+  },
+  {
     pid: 204,
     image: 'VTG.svg',
     lpSymbol: 'VTG-BNB',
