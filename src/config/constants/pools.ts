@@ -3007,7 +3007,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://www.telos.net/',
     twitter: 'https://twitter.com/HelloTelos',
     harvest: true,
-    tokenPerBlock: `0.02044753086419753`,
+    tokenPerBlock: `0.028645833330000000`,
     sortOrder: 1,
     reflect: false,
     isFinished: false,
