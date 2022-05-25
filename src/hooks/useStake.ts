@@ -9,7 +9,7 @@ import {
   updateJungleFarmsUserStakedBalance,
   updateJungleFarmsUserBalance,
 } from 'state/actions'
-import { stake, sousStake, nfaStake, stakeVault, miniChefStake } from 'utils/callHelpers'
+import { stake, sousStake, nfaStake, stakeVault, miniChefStake, jungleStake } from 'utils/callHelpers'
 import track from 'utils/track'
 import { CHAIN_ID } from 'config/constants'
 import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
@@ -19,7 +19,14 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
+import {
+  useJungleChef,
+  useMasterchef,
+  useMiniChefContract,
+  useNfaStakingChef,
+  useSousChef,
+  useVaultApe,
+} from './useContract'
 import useActiveWeb3React from './useActiveWeb3React'
 
 const useStake = (pid: number) => {
@@ -48,6 +55,7 @@ const useStake = (pid: number) => {
 
 export const useSousStake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -81,20 +89,14 @@ export const useSousStake = (sousId) => {
   return { onStake: handleStake }
 }
 
-export const useJungleFarmStake = (sousId) => {
+export const useJungleStake = (jungleId) => {
   const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
+  const { account, chainId } = useActiveWeb3React()
+  const jungleChefContract = useJungleChef(jungleId)
 
   const handleStake = useCallback(
     async (amount: string) => {
-      let trxHash
-      if (sousId === 0) {
-        trxHash = await stake(masterChefContract, 0, amount)
-      } else {
-        trxHash = await sousStake(sousChefContract, amount)
-      }
+      const trxHash = await jungleStake(jungleChefContract, amount)
 
       track({
         event: 'jungle_farm',
@@ -102,15 +104,15 @@ export const useJungleFarmStake = (sousId) => {
         data: {
           cat: 'stake',
           amount,
-          pid: sousId,
+          pid: jungleId,
         },
       })
 
-      dispatch(updateJungleFarmsUserStakedBalance(chainId, sousId, account))
-      dispatch(updateJungleFarmsUserBalance(chainId, sousId, account))
+      dispatch(updateJungleFarmsUserStakedBalance(chainId, jungleId, account))
+      dispatch(updateJungleFarmsUserBalance(chainId, jungleId, account))
       return trxHash
     },
-    [account, dispatch, masterChefContract, sousChefContract, sousId, chainId],
+    [account, dispatch, jungleChefContract, jungleId, chainId],
   )
 
   return { onStake: handleStake }
@@ -118,6 +120,7 @@ export const useJungleFarmStake = (sousId) => {
 
 export const useNfaStake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account } = useWeb3React()
   const chainId = useNetworkChainId()
   const nfaStakeChefContract = useNfaStakingChef(sousId)
@@ -144,6 +147,7 @@ export const useNfaStake = (sousId) => {
 }
 
 export const useVaultStake = (pid: number) => {
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
@@ -179,6 +183,7 @@ export const useVaultStake = (pid: number) => {
 
 export const useDualFarmStake = (pid: number) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
   const handleStake = useCallback(

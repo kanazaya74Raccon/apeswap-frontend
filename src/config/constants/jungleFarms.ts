@@ -1,10 +1,9 @@
-import { BANANA_PER_BLOCK } from 'config'
-import { PoolCategory, JungleFarmConfig } from './types'
+import { JungleFarmConfig } from './types'
 import tokens from './tokens'
 
 const jungleFarms: JungleFarmConfig[] = [
   {
-    sousId: 204,
+    jungleId: 0,
     tokenName: 'LC-BNB',
     image: 'LC.svg',
     stakingToken: tokens.lcBnb,
@@ -28,7 +27,7 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 201,
+    jungleId: 1,
     tokenName: 'COC-BNB',
     image: 'COC.svg',
     stakingToken: tokens.cocBnb,
@@ -52,7 +51,7 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 184,
+    jungleId: 2,
     tokenName: 'WGICT-USDT',
     image: 'WGICT.svg',
     stakingToken: tokens.wgictUsdt,
@@ -75,7 +74,7 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 186,
+    jungleId: 3,
     tokenName: 'NFT11-BUSD',
     image: 'NFT11.png',
     stakingToken: tokens.nft11Busd,
@@ -99,7 +98,7 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 189,
+    jungleId: 4,
     tokenName: 'RUBY-BNB',
     image: 'RUBY.svg',
     stakingToken: tokens.rubyBnb,
@@ -122,7 +121,7 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
   },
   {
-    sousId: 191,
+    jungleId: 5,
     tokenName: 'DRF-BUSD',
     image: 'DRF.svg',
     stakingToken: tokens.drfBusd,

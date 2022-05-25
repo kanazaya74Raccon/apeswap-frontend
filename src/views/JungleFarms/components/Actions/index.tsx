@@ -14,7 +14,7 @@ interface CardActionProps {
   stakedBalance: string
   stakeTokenValueUsd: number
   stakeTokenAddress: string
-  sousId: number
+  jungleId: number
 }
 
 const Actions: React.FC<CardActionProps> = ({
@@ -24,7 +24,7 @@ const Actions: React.FC<CardActionProps> = ({
   stakedBalance,
   stakeTokenValueUsd,
   stakeTokenAddress,
-  sousId,
+  jungleId,
 }) => {
   const { account } = useActiveWeb3React()
   const actionToRender = () => {
@@ -38,7 +38,7 @@ const Actions: React.FC<CardActionProps> = ({
     if (!new BigNumber(allowance)?.gt(0)) {
       return (
         <CenterContainer>
-          <ApprovalAction stakingTokenContractAddress={stakeTokenAddress} sousId={sousId} />
+          <ApprovalAction stakingTokenContractAddress={stakeTokenAddress} jungleId={jungleId} />
         </CenterContainer>
       )
     }
@@ -48,7 +48,7 @@ const Actions: React.FC<CardActionProps> = ({
         stakedTokenSymbol={stakedTokenSymbol}
         stakingTokenBalance={stakingTokenBalance}
         stakeTokenValueUsd={stakeTokenValueUsd}
-        sousId={sousId}
+        jungleId={jungleId}
       />
     )
   }

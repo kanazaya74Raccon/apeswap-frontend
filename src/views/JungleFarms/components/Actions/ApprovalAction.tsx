@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Skeleton } from '@apeswapfinance/uikit'
-import { useSousApprove } from 'hooks/useApprove'
+import { useJungleApprove } from 'hooks/useApprove'
 import { useERC20 } from 'hooks/useContract'
 import { useAppDispatch } from 'state'
 import { updateJungleFarmsUserAllowance } from 'state/jungleFarms'
@@ -12,16 +12,20 @@ import { StyledButton } from '../styles'
 
 interface ApprovalActionProps {
   stakingTokenContractAddress: string
-  sousId: number
+  jungleId: number
   isLoading?: boolean
 }
 
-const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAddress, sousId, isLoading = false }) => {
+const ApprovalAction: React.FC<ApprovalActionProps> = ({
+  stakingTokenContractAddress,
+  jungleId,
+  isLoading = false,
+}) => {
   const { chainId, account } = useActiveWeb3React()
   const stakingTokenContract = useERC20(stakingTokenContractAddress)
   const [pendingTrx, setPendingTrx] = useState(false)
   const dispatch = useAppDispatch()
-  const { onApprove } = useSousApprove(stakingTokenContract, sousId)
+  const { onApprove } = useJungleApprove(stakingTokenContract, jungleId)
   const { toastSuccess } = useToast()
   const { t } = useTranslation()
 
@@ -48,7 +52,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ stakingTokenContractAdd
                 console.error(e)
                 setPendingTrx(false)
               })
-            dispatch(updateJungleFarmsUserAllowance(chainId, sousId, account))
+            dispatch(updateJungleFarmsUserAllowance(chainId, jungleId, account))
 
             setPendingTrx(false)
           }}

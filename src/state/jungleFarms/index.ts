@@ -19,20 +19,20 @@ export const JungleFarmsSlice = createSlice({
     setJungleFarmsPublicData: (state, action) => {
       const liveJungleFarmsData: JungleFarm[] = action.payload
       state.data = state.data.map((farm) => {
-        const liveFarmData = liveJungleFarmsData.find((entry) => entry.sousId === farm.sousId)
+        const liveFarmData = liveJungleFarmsData.find((entry) => entry.jungleId === farm.jungleId)
         return { ...farm, ...liveFarmData }
       })
     },
     setJungleFarmsUserData: (state, action) => {
       const userData = action.payload
       state.data = state.data.map((farm) => {
-        const userFarmData = userData.find((entry) => entry.sousId === farm.sousId)
+        const userFarmData = userData.find((entry) => entry.jungleId === farm.jungleId)
         return { ...farm, userData: userFarmData }
       })
     },
     updateJungleFarmsUserData: (state, action) => {
-      const { field, value, sousId } = action.payload
-      const index = state.data.findIndex((p) => p.sousId === sousId)
+      const { field, value, jungleId } = action.payload
+      const index = state.data.findIndex((p) => p.jungleId === jungleId)
       state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
     },
   },
@@ -63,11 +63,11 @@ export const fetchJungleFarmsUserDataAsync =
       const pendingRewards = await fetchUserPendingRewards(chainId, account)
 
       const userData = jungleFarmsConfig.map((farm) => ({
-        sousId: farm.sousId,
-        allowance: allowances[farm.sousId],
-        stakingTokenBalance: stakingTokenBalances[farm.sousId],
-        stakedBalance: stakedBalances[farm.sousId],
-        pendingReward: pendingRewards[farm.sousId],
+        jungleId: farm.jungleId,
+        allowance: allowances[farm.jungleId],
+        stakingTokenBalance: stakingTokenBalances[farm.jungleId],
+        stakedBalance: stakedBalances[farm.jungleId],
+        pendingReward: pendingRewards[farm.jungleId],
       }))
       dispatch(setJungleFarmsUserData(userData))
     } catch (error) {
@@ -76,31 +76,31 @@ export const fetchJungleFarmsUserDataAsync =
   }
 
 export const updateJungleFarmsUserAllowance =
-  (chainId: number, sousId: number, account: string): AppThunk =>
+  (chainId: number, jungleId: number, account: string): AppThunk =>
   async (dispatch) => {
     const allowances = await fetchJungleFarmsAllowance(chainId, account)
-    dispatch(updateJungleFarmsUserData({ sousId, field: 'allowance', value: allowances[sousId] }))
+    dispatch(updateJungleFarmsUserData({ jungleId, field: 'allowance', value: allowances[jungleId] }))
   }
 
 export const updateJungleFarmsUserBalance =
-  (chainId: number, sousId: number, account: string): AppThunk =>
+  (chainId: number, jungleId: number, account: string): AppThunk =>
   async (dispatch) => {
     const tokenBalances = await fetchUserBalances(chainId, account)
-    dispatch(updateJungleFarmsUserData({ sousId, field: 'stakingTokenBalance', value: tokenBalances[sousId] }))
+    dispatch(updateJungleFarmsUserData({ jungleId, field: 'stakingTokenBalance', value: tokenBalances[jungleId] }))
   }
 
 export const updateJungleFarmsUserStakedBalance =
-  (chainId: number, sousId: number, account: string): AppThunk =>
+  (chainId: number, jungleId: number, account: string): AppThunk =>
   async (dispatch) => {
     const stakedBalances = await fetchUserStakeBalances(chainId, account)
-    dispatch(updateJungleFarmsUserData({ sousId, field: 'stakedBalance', value: stakedBalances[sousId] }))
+    dispatch(updateJungleFarmsUserData({ jungleId, field: 'stakedBalance', value: stakedBalances[jungleId] }))
   }
 
 export const updateJungleFarmsUserPendingReward =
-  (chainId: number, sousId: number, account: string): AppThunk =>
+  (chainId: number, jungleId: number, account: string): AppThunk =>
   async (dispatch) => {
     const pendingRewards = await fetchUserPendingRewards(chainId, account)
-    dispatch(updateJungleFarmsUserData({ sousId, field: 'pendingReward', value: pendingRewards[sousId] }))
+    dispatch(updateJungleFarmsUserData({ jungleId, field: 'pendingReward', value: pendingRewards[jungleId] }))
   }
 
 export default JungleFarmsSlice.reducer

@@ -246,7 +246,7 @@ export interface DualFarmConfig {
 }
 
 export interface JungleFarmConfig {
-  sousId: number
+  jungleId: number
   image?: string
   tokenName: string
   stakingToken: Token

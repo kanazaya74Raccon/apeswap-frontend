@@ -7,7 +7,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 
 const cleanJungleFarmData = (farmIds: number[], chunkedFarms: any[], tokenPrices: TokenPrices[], chainId: number) => {
   const data = chunkedFarms.map((chunk, index) => {
-    const farmConfig = jungleFarmsConfig.find((farm) => farm.sousId === farmIds[index])
+    const farmConfig = jungleFarmsConfig.find((farm) => farm.jungleId === farmIds[index])
     const [startBlock, endBlock, totalStaked] = chunk
 
     const totalStakedFormatted = new BigNumber(totalStaked).toJSON()
@@ -19,7 +19,7 @@ const cleanJungleFarmData = (farmIds: number[], chunkedFarms: any[], tokenPrices
     )
 
     return {
-      sousId: farmIds[index],
+      jungleId: farmIds[index],
       startBlock: new BigNumber(startBlock).toJSON(),
       endBlock: farmConfig.bonusEndBlock || new BigNumber(endBlock).toJSON(),
       totalStaked: totalStakedFormatted,

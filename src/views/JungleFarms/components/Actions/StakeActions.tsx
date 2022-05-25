@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Flex, AddIcon, MinusIcon, useModal } from '@apeswapfinance/uikit'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useJungleFarmStake } from 'hooks/useStake'
+import { useJungleStake } from 'hooks/useStake'
 import { fetchJungleFarmsUserDataAsync } from 'state/jungleFarms'
-import { useJungleFarmUnstake } from 'hooks/useUnstake'
+import { useJungleUnstake } from 'hooks/useUnstake'
 import useIsMobile from 'hooks/useIsMobile'
 import { useToast } from 'state/hooks'
 import { useAppDispatch } from 'state'
@@ -21,7 +21,7 @@ interface StakeActionsProps {
   stakedTokenSymbol: string
   stakedBalance: string
   stakeTokenValueUsd: number
-  sousId: number
+  jungleId: number
 }
 
 const StakeAction: React.FC<StakeActionsProps> = ({
@@ -29,7 +29,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   stakedTokenSymbol,
   stakedBalance,
   stakeTokenValueUsd,
-  sousId,
+  jungleId,
 }) => {
   const rawStakedBalance = getBalanceNumber(new BigNumber(stakedBalance))
   const dispatch = useAppDispatch()
@@ -44,8 +44,8 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   const isMobile = useIsMobile()
   const firstStake = !new BigNumber(stakedBalance)?.gt(0)
 
-  const { onStake } = useJungleFarmStake(sousId)
-  const { onUnstake } = useJungleFarmUnstake(sousId)
+  const { onStake } = useJungleStake(jungleId)
+  const { onUnstake } = useJungleUnstake(jungleId)
   const { t } = useTranslation()
 
   const [onPresentDeposit] = useModal(

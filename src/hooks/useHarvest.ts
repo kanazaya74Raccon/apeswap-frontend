@@ -2,16 +2,16 @@ import { useCallback } from 'react'
 import sousChef from 'config/abi/sousChef.json'
 import { useWeb3React } from '@web3-react/core'
 import { useDispatch } from 'react-redux'
-import { soushHarvest, harvest, nfaStakeHarvest, miniChefHarvest } from 'utils/callHelpers'
+import { soushHarvest, harvest, nfaStakeHarvest, miniChefHarvest, jungleHarvest } from 'utils/callHelpers'
 import { CHAIN_ID } from 'config/constants/chains'
 import track from 'utils/track'
 import { useNetworkChainId } from 'state/hooks'
 import { getContract } from 'utils'
-import { SousChef } from 'config/abi/types'
+import { SousChef, JungleChef } from 'config/abi/types'
 import { jungleFarmsConfig, poolsConfig } from 'config/constants'
 import { updateDualFarmRewarderEarnings, updateDualFarmUserEarnings } from 'state/dualFarms'
 import { updateUserNfaStakingPendingReward, updateNfaStakingUserBalance } from 'state/nfaStakingPools'
-import { useMasterchef, useMiniChefContract, useSousChef, useNfaStakingChef } from './useContract'
+import { useMasterchef, useMiniChefContract, useSousChef, useNfaStakingChef, useJungleChef } from './useContract'
 import useActiveWeb3React from './useActiveWeb3React'
 
 export const useHarvest = (farmPid: number) => {
@@ -30,6 +30,27 @@ export const useHarvest = (farmPid: number) => {
     })
     return txHash
   }, [farmPid, masterChefContract, chainId])
+
+  return { onHarvest: handleHarvest }
+}
+
+export const useJungleHarvest = (jungleId) => {
+  const { chainId } = useActiveWeb3React()
+  const jungleChefContract = useJungleChef(jungleId)
+
+  const handleHarvest = useCallback(async () => {
+    const trxHash = await jungleHarvest(jungleChefContract)
+
+    track({
+      event: 'jungle_farm',
+      chain: chainId,
+      data: {
+        cat: 'harvest',
+        pid: jungleId,
+      },
+    })
+    return trxHash
+  }, [jungleChefContract, jungleId, chainId])
 
   return { onHarvest: handleHarvest }
 }
@@ -86,18 +107,26 @@ export const useSousHarvestAll = (sousIds: number[]) => {
 
   const handleHarvestAll = useCallback(async () => {
     const harvestPromises = sousIds.map((sousId) => {
-      let config = poolsConfig.find((pool) => pool.sousId === sousId)
-
-      // If not in pools check Jungle Farms
-      if (!config) {
-        config = jungleFarmsConfig.find((pool) => pool.sousId === sousId)
-      }
-
+      const config = poolsConfig.find((pool) => pool.sousId === sousId)
       const sousChefContract = getContract(config.contractAddress[chainId], sousChef, library, account) as SousChef
       return sousId === 0 ? harvest(masterChefContract, 0) : soushHarvest(sousChefContract)
     })
     return Promise.all(harvestPromises)
   }, [account, sousIds, library, masterChefContract, chainId])
+  return { onHarvestAll: handleHarvestAll }
+}
+
+export const useJungleHarvestAll = (jungleIds: number[]) => {
+  const { account, library, chainId } = useActiveWeb3React()
+
+  const handleHarvestAll = useCallback(async () => {
+    const harvestPromises = jungleIds.map((jungleId) => {
+      const config = jungleFarmsConfig.find((farm) => farm.jungleId === jungleId)
+      const jungleChefContract = getContract(config.contractAddress[chainId], sousChef, library, account) as JungleChef
+      return jungleHarvest(jungleChefContract)
+    })
+    return Promise.all(harvestPromises)
+  }, [account, jungleIds, library, chainId])
   return { onHarvestAll: handleHarvestAll }
 }
 

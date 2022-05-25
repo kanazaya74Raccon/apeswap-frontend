@@ -22,6 +22,7 @@ import {
   vaultUnstake,
   vaultUnstakeAll,
   miniChefUnstake,
+  jungleUnstake,
 } from 'utils/callHelpers'
 import {
   updateDualFarmUserEarnings,
@@ -29,7 +30,14 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
+import {
+  useJungleChef,
+  useMasterchef,
+  useMiniChefContract,
+  useNfaStakingChef,
+  useSousChef,
+  useVaultApe,
+} from './useContract'
 import useActiveWeb3React from './useActiveWeb3React'
 
 const useUnstake = (pid: number) => {
@@ -61,6 +69,7 @@ const SYRUPIDS = []
 
 export const useSousUnstake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -96,38 +105,30 @@ export const useSousUnstake = (sousId) => {
   return { onUnstake: handleUnstake }
 }
 
-export const useJungleFarmUnstake = (sousId) => {
+export const useJungleUnstake = (jungleId) => {
   const dispatch = useDispatch()
-  const { account, chainId } = useWeb3React()
-  const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
-  const isOldSyrup = SYRUPIDS.includes(sousId)
+  const { account, chainId } = useActiveWeb3React()
+  const jungleChefContract = useJungleChef(jungleId)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      let trxHash
-      if (sousId === 0) {
-        trxHash = await unstake(masterChefContract, 0, amount)
-      } else if (isOldSyrup) {
-        trxHash = await sousEmegencyWithdraw(sousChefContract)
-      } else {
-        trxHash = await sousUnstake(sousChefContract, amount)
-      }
-      dispatch(updateJungleFarmsUserStakedBalance(chainId, sousId, account))
-      dispatch(updateJungleFarmsUserBalance(chainId, sousId, account))
-      dispatch(updateJungleFarmsUserPendingReward(chainId, sousId, account))
+      const trxHash = await jungleUnstake(jungleChefContract, amount)
+
+      dispatch(updateJungleFarmsUserStakedBalance(chainId, jungleId, account))
+      dispatch(updateJungleFarmsUserBalance(chainId, jungleId, account))
+      dispatch(updateJungleFarmsUserPendingReward(chainId, jungleId, account))
       track({
         event: 'jungle_farm',
         chain: chainId,
         data: {
           cat: 'unstake',
           amount,
-          sousId,
+          jungleId,
         },
       })
       return trxHash
     },
-    [account, dispatch, isOldSyrup, masterChefContract, sousChefContract, sousId, chainId],
+    [account, dispatch, jungleChefContract, jungleId, chainId],
   )
 
   return { onUnstake: handleUnstake }
@@ -135,6 +136,7 @@ export const useJungleFarmUnstake = (sousId) => {
 
 export const useSousEmergencyWithdraw = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const handleEmergencyWithdraw = useCallback(async () => {
@@ -149,6 +151,7 @@ export const useSousEmergencyWithdraw = (sousId) => {
 
 export const useNfaUnstake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account } = useWeb3React()
   const chainId = useNetworkChainId()
   const nfaStakeChefContract = useNfaStakingChef(sousId)
@@ -175,6 +178,7 @@ export const useNfaUnstake = (sousId) => {
 }
 
 export const useVaultUnstake = (pid: number) => {
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
@@ -205,6 +209,7 @@ export const useVaultUnstake = (pid: number) => {
 }
 
 export const useVaultUnstakeAll = (pid: number) => {
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
@@ -233,6 +238,7 @@ export const useVaultUnstakeAll = (pid: number) => {
 
 export const useMiniChefUnstake = (pid: number) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
 

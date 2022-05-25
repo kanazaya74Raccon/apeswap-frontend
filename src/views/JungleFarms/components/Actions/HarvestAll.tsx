@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSousHarvestAll } from 'hooks/useHarvest'
+import { useJungleHarvestAll } from 'hooks/useHarvest'
 import { useToast } from 'state/hooks'
 import { fetchJungleFarmsUserDataAsync } from 'state/jungleFarms'
 import { getEtherscanLink } from 'utils'
@@ -9,15 +9,15 @@ import { useAppDispatch } from 'state'
 import { StyledButtonSquare } from './styles'
 
 interface HarvestActionsProps {
-  sousIds: number[]
+  jungleIds: number[]
   disabled?: boolean
 }
 
-const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
+const HarvestAll: React.FC<HarvestActionsProps> = ({ jungleIds, disabled }) => {
   const { account, chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const { onHarvestAll } = useSousHarvestAll(sousIds)
+  const { onHarvestAll } = useJungleHarvestAll(jungleIds)
   const { toastSuccess } = useToast()
   const { t } = useTranslation()
 
@@ -44,11 +44,11 @@ const HarvestAll: React.FC<HarvestActionsProps> = ({ sousIds, disabled }) => {
     <StyledButtonSquare
       height={36}
       minWidth={100}
-      disabled={disabled || pendingTrx || sousIds.length <= 0}
+      disabled={disabled || pendingTrx || jungleIds.length <= 0}
       onClick={handleHarvestAll}
       load={pendingTrx}
     >
-      {t('HARVEST ALL')} ({sousIds.length})
+      {t('HARVEST ALL')} ({jungleIds.length})
     </StyledButtonSquare>
   )
 }

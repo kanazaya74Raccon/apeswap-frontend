@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useSousHarvest } from 'hooks/useHarvest'
+import { useJungleHarvest } from 'hooks/useHarvest'
 import useIsMobile from 'hooks/useIsMobile'
 import { useToast } from 'state/hooks'
 import { getEtherscanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useSousStake } from 'hooks/useStake'
-import { fetchJungleFarmsUserDataAsync, updateJungleFarmsUserPendingReward } from 'state/jungleFarms'
+import { updateJungleFarmsUserPendingReward } from 'state/jungleFarms'
 import ListViewContent from 'components/ListViewContent'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
@@ -13,19 +12,17 @@ import { StyledButton } from '../styles'
 import { ActionContainer } from './styles'
 
 interface HarvestActionsProps {
-  sousId: number
+  jungleId: number
   userEarnings: number
   earnTokenSymbol: string
   disabled: boolean
 }
 
-const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol, disabled, userEarnings }) => {
+const HarvestAction: React.FC<HarvestActionsProps> = ({ jungleId, earnTokenSymbol, disabled, userEarnings }) => {
   const { account, chainId } = useActiveWeb3React()
   const dispatch = useAppDispatch()
   const [pendingTrx, setPendingTrx] = useState(false)
-  const [pendingApeHarderTrx, setPendingApeHarderTrx] = useState(false)
-  const { onHarvest } = useSousHarvest(sousId)
-  const { onStake } = useSousStake(sousId)
+  const { onHarvest } = useJungleHarvest(jungleId)
 
   const { toastSuccess } = useToast()
   const isMobile = useIsMobile()
@@ -45,26 +42,8 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
         console.error(e)
         setPendingTrx(false)
       })
-    dispatch(updateJungleFarmsUserPendingReward(chainId, sousId, account))
+    dispatch(updateJungleFarmsUserPendingReward(chainId, jungleId, account))
     setPendingTrx(false)
-  }
-
-  const handleApeHarder = async () => {
-    setPendingApeHarderTrx(true)
-    await onStake(userEarnings.toString())
-      .then((resp) => {
-        const trxHash = resp.transactionHash
-        toastSuccess(t('Ape Harder Successful'), {
-          text: t('View Transaction'),
-          url: getEtherscanLink(trxHash, 'transaction', chainId),
-        })
-      })
-      .catch((e) => {
-        console.error(e)
-        setPendingApeHarderTrx(false)
-      })
-    dispatch(fetchJungleFarmsUserDataAsync(chainId, account))
-    setPendingApeHarderTrx(false)
   }
 
   return (
@@ -78,22 +57,11 @@ const HarvestAction: React.FC<HarvestActionsProps> = ({ sousId, earnTokenSymbol,
           ml={10}
         />
       )}
-      {sousId === 0 && (
-        <StyledButton
-          disabled={disabled || pendingApeHarderTrx}
-          onClick={handleApeHarder}
-          load={pendingApeHarderTrx}
-          mr={isMobile ? '0px' : '10px'}
-          style={{ minWidth: isMobile && '100px', width: isMobile && '115px', padding: '0px' }}
-        >
-          {t('Compound')}
-        </StyledButton>
-      )}
       <StyledButton
         disabled={disabled || pendingTrx}
         onClick={handleHarvest}
         load={pendingTrx}
-        style={{ minWidth: isMobile && sousId === 0 && '100px', width: isMobile && sousId === 0 && '100px' }}
+        style={{ minWidth: isMobile && jungleId === 0 && '100px', width: isMobile && jungleId === 0 && '100px' }}
       >
         {t('HARVEST')}
       </StyledButton>

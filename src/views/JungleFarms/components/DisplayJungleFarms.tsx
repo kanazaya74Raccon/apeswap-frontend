@@ -55,10 +55,10 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
           {farm?.tokenName}
         </Text>
       ),
-      id: farm.sousId,
+      id: farm.jungleId,
       infoContent: <InfoContent farm={farm} />,
       infoContentPosition: 'translate(-82%, 28%)',
-      open: openId === farm.sousId,
+      open: openId === farm.jungleId,
       cardContent: (
         <>
           <Flex sx={{ width: '90px', height: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -148,11 +148,11 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
             stakingTokenBalance={farm?.userData?.stakingTokenBalance?.toString()}
             stakeTokenAddress={farm?.stakingToken?.address[chainId]}
             stakeTokenValueUsd={farm?.stakingToken?.price}
-            sousId={farm?.sousId}
+            jungleId={farm?.jungleId}
           />
           {!isMobile && <NextArrow />}
           <HarvestAction
-            sousId={farm?.sousId}
+            jungleId={farm?.jungleId}
             disabled={userEarnings <= 0}
             userEarnings={userEarnings}
             earnTokenSymbol={farm?.rewardToken?.symbol || farm?.tokenName}

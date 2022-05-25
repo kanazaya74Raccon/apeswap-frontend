@@ -58,14 +58,14 @@ const JungleFarms: React.FC = () => {
   }, [observerIsSet])
 
   const currJungleFarms = allJungleFarms.map((farm) => {
-    return { ...farm, isFinished: farm.sousId === 0 ? false : farm.isFinished || currentBlock > farm.endBlock }
+    return { ...farm, isFinished: farm.jungleId === 0 ? false : farm.isFinished || currentBlock > farm.endBlock }
   })
 
   const farmsWithHarvestAvailable = currJungleFarms.filter((farm) =>
     farm.userData ? farm.userData.pendingReward > new BigNumber(0) : null,
   )
-  const harvestSousIds = farmsWithHarvestAvailable.map((farm) => {
-    return farm.sousId
+  const harvestJungleIds = farmsWithHarvestAvailable.map((farm) => {
+    return farm.jungleId
   })
 
   const [finishedJungleFarms, openFarms] = partition(currJungleFarms, (farm) => farm.isFinished)
@@ -108,15 +108,15 @@ const JungleFarms: React.FC = () => {
     if (urlSearchedFarm) {
       const farmCheck =
         openFarms?.find((farm) => {
-          return farm.sousId === urlSearchedFarm
+          return farm.jungleId === urlSearchedFarm
         }) !== undefined
       if (farmCheck) {
         chosenJungleFarms = [
           openFarms?.find((farm) => {
-            return farm.sousId === urlSearchedFarm
+            return farm.jungleId === urlSearchedFarm
           }),
           ...openFarms?.filter((farm) => {
-            return farm.sousId !== urlSearchedFarm
+            return farm.jungleId !== urlSearchedFarm
           }),
         ]
       }
@@ -154,7 +154,7 @@ const JungleFarms: React.FC = () => {
               onHandleQueryChange={handleChangeQuery}
               onSetSortOption={setSortOption}
               onSetStake={setStakedOnly}
-              harvestAll={<HarvestAll sousIds={harvestSousIds} disabled={harvestSousIds.length === 0} />}
+              harvestAll={<HarvestAll jungleIds={harvestJungleIds} disabled={harvestJungleIds.length === 0} />}
               stakedOnly={stakedOnly}
               query={searchQuery}
               activeOption={sortOption}
