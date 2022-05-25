@@ -125,7 +125,7 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
               />
             )}
             <a href={liquidityUrl} target="_blank" rel="noopener noreferrer">
-              <StyledButton sx={{ width: '150px' }}>{t('GET LP')}</StyledButton>
+              <StyledButton>{t('GET LP')}</StyledButton>
             </a>
             {!isMobile && (
               <ListViewContent

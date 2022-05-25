@@ -90,8 +90,6 @@ export const useSousStake = (sousId) => {
 }
 
 export const useJungleStake = (jungleId) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
   const jungleChefContract = useJungleChef(jungleId)
 
   const handleStake = useCallback(
@@ -108,11 +106,9 @@ export const useJungleStake = (jungleId) => {
         },
       })
 
-      dispatch(updateJungleFarmsUserStakedBalance(chainId, jungleId, account))
-      dispatch(updateJungleFarmsUserBalance(chainId, jungleId, account))
       return trxHash
     },
-    [account, dispatch, jungleChefContract, jungleId, chainId],
+    [jungleChefContract, jungleId],
   )
 
   return { onStake: handleStake }

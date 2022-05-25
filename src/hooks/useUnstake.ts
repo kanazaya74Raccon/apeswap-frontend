@@ -106,17 +106,13 @@ export const useSousUnstake = (sousId) => {
 }
 
 export const useJungleUnstake = (jungleId) => {
-  const dispatch = useDispatch()
-  const { account, chainId } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   const jungleChefContract = useJungleChef(jungleId)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
       const trxHash = await jungleUnstake(jungleChefContract, amount)
 
-      dispatch(updateJungleFarmsUserStakedBalance(chainId, jungleId, account))
-      dispatch(updateJungleFarmsUserBalance(chainId, jungleId, account))
-      dispatch(updateJungleFarmsUserPendingReward(chainId, jungleId, account))
       track({
         event: 'jungle_farm',
         chain: chainId,
@@ -128,7 +124,7 @@ export const useJungleUnstake = (jungleId) => {
       })
       return trxHash
     },
-    [account, dispatch, jungleChefContract, jungleId, chainId],
+    [jungleChefContract, jungleId, chainId],
   )
 
   return { onUnstake: handleUnstake }

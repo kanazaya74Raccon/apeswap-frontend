@@ -1,5 +1,6 @@
 import { JungleFarmConfig } from './types'
 import tokens from './tokens'
+import { CHAIN_ID } from './chains'
 
 const jungleFarms: JungleFarmConfig[] = [
   {
@@ -25,6 +26,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
   {
     jungleId: 1,
@@ -49,6 +51,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
   {
     jungleId: 2,
@@ -72,6 +75,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 8,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
   {
     jungleId: 3,
@@ -96,6 +100,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
   {
     jungleId: 4,
@@ -119,6 +124,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 12,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
   {
     jungleId: 5,
@@ -143,6 +149,7 @@ const jungleFarms: JungleFarmConfig[] = [
     tokenDecimals: 18,
     lpStaking: true,
     isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
   },
 ]
 

@@ -271,6 +271,7 @@ export interface JungleFarmConfig {
   forAdmins?: boolean
   emergencyWithdraw?: boolean
   isEarnTokenLp?: boolean
+  network: number
 }
 
 // Types used to check for live IAOs
