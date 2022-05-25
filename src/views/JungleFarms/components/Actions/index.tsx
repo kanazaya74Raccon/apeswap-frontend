@@ -45,7 +45,6 @@ const Actions: React.FC<CardActionProps> = ({
     return (
       <StakeAction
         stakedBalance={stakedBalance}
-        stakedTokenSymbol={stakedTokenSymbol}
         stakingTokenBalance={stakingTokenBalance}
         stakeTokenValueUsd={stakeTokenValueUsd}
         jungleId={jungleId}
