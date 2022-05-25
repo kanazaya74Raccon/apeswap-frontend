@@ -8,9 +8,6 @@ import {
   updateUserNfaStakingStakedBalance,
   updateNfaStakingUserBalance,
   updateUserNfaStakingPendingReward,
-  updateJungleFarmsUserBalance,
-  updateJungleFarmsUserPendingReward,
-  updateJungleFarmsUserStakedBalance,
 } from 'state/actions'
 import { updateVaultUserBalance, updateVaultUserStakedBalance } from 'state/vaults'
 import track from 'utils/track'

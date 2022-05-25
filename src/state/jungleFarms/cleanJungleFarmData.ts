@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { jungleFarmsConfig } from 'config/constants'
 import { JungleFarmConfig } from 'config/constants/types'
-import { FarmLpAprsType, TokenPrices } from 'state/types'
+import { TokenPrices } from 'state/types'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 

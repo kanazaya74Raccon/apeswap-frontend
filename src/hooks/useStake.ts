@@ -6,8 +6,6 @@ import {
   updateUserBalance,
   updateNfaStakingUserBalance,
   updateUserNfaStakingStakedBalance,
-  updateJungleFarmsUserStakedBalance,
-  updateJungleFarmsUserBalance,
 } from 'state/actions'
 import { stake, sousStake, nfaStake, stakeVault, miniChefStake, jungleStake } from 'utils/callHelpers'
 import track from 'utils/track'

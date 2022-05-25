@@ -1,4 +1,3 @@
-import BigNumber from 'bignumber.js'
 import { CHAIN_ID } from 'config/constants/chains'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useRefresh from 'hooks/useRefresh'

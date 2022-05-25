@@ -18,7 +18,6 @@ import { ActionContainer, CenterContainer, SmallButtonSquare, StyledButtonSquare
 
 interface StakeActionsProps {
   stakingTokenBalance: string
-  stakedTokenSymbol: string
   stakedBalance: string
   stakeTokenValueUsd: number
   jungleId: number
@@ -26,7 +25,6 @@ interface StakeActionsProps {
 
 const StakeAction: React.FC<StakeActionsProps> = ({
   stakingTokenBalance,
-  stakedTokenSymbol,
   stakedBalance,
   stakeTokenValueUsd,
   jungleId,
