@@ -107,7 +107,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {isMobile && (
           <ListViewContent
             title={`${t('Staked LP')}`}
-            value={rawStakedBalance.toFixed(2)}
+            value={rawStakedBalance > 0 && rawStakedBalance.toFixed(2) === '0.00' ? '> 0' : rawStakedBalance.toFixed(2)}
             value2={userStakedBalanceUsd}
             value2Secondary
             width={100}
@@ -138,7 +138,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {!isMobile && (
           <ListViewContent
             title={`${t('Staked LP')}`}
-            value={`${rawStakedBalance.toFixed(2)}`}
+            value={rawStakedBalance > 0 && rawStakedBalance.toFixed(2) === '0.00' ? '> 0' : rawStakedBalance.toFixed(2)}
             value2={userStakedBalanceUsd}
             value2Secondary
             width={100}
