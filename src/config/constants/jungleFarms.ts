@@ -93,6 +93,7 @@ const jungleFarms: JungleFarmConfig[] = [
       56: '0xe4417357b022224736ca845856917aaae912c0bd',
     },
     projectLink: 'https://gictrade.io/',
+    twitter: 'https://twitter.com/GICTraders/ ',
     harvest: true,
     tokenPerBlock: '0.01437847',
     sortOrder: 1,
