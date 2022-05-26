@@ -1,5 +1,5 @@
 export interface ListViewProps {
-  tag?: string
+  tag?: React.ReactNode
   title: React.ReactNode
   infoContent?: React.ReactNode
   infoContentPosition?: string

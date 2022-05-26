@@ -46,29 +46,24 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number; poolTags: Tag[] }
       getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0)) * pool?.stakingToken?.price
     ).toFixed(2)}`
 
-    const fTD = poolTags?.find((tag) => tag.pid === pool.sousId)
-    const tagColor = fTD?.color as TagVariants
+    const pTag = poolTags?.find((tag) => tag.pid === pool.sousId)
+    const tagColor = pTag?.color as TagVariants
 
     // Token symbol logic is here temporarily for nfty
     return {
-      tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
-      title: (
-        <Flex
-          sx={{
-            flexDirection: ['column', 'row'],
-            marginLeft: '10px',
-          }}
-        >
-          {fTD?.pid === pool?.sousId && (
+      tag: (
+        <>
+          {pTag?.pid === pool.sousId && (
             <Box sx={{ marginRight: '5px', marginTop: ['0px', '2px'] }}>
-              <StyledTag key={fTD?.pid} variant={tagColor}>
-                {fTD?.text}
+              <StyledTag key={pTag?.pid} variant={tagColor}>
+                {pTag?.text}
               </StyledTag>
             </Box>
           )}
-          <Text bold>{pool?.rewardToken?.symbol || pool?.tokenName}</Text>
-        </Flex>
+        </>
       ),
+      tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
+      title: <Text bold>{pool?.rewardToken?.symbol || pool?.tokenName}</Text>,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',

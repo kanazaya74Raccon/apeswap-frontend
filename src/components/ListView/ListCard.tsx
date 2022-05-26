@@ -1,13 +1,7 @@
 import { InfoIcon, TooltipBubble } from '@apeswapfinance/uikit'
+import { Flex } from '@ape.swap/uikit'
 import React, { useState } from 'react'
-import {
-  ContentContainer,
-  DropDownIcon,
-  ListCardContainer,
-  ListExpandedContainer,
-  TagContainer,
-  TitleContainer,
-} from './styles'
+import { ContentContainer, DropDownIcon, ListCardContainer, ListExpandedContainer, styles } from './styles'
 import { ListCardProps } from './types'
 
 const ListCard: React.FC<ListCardProps> = ({
@@ -24,11 +18,13 @@ const ListCard: React.FC<ListCardProps> = ({
   return (
     <>
       <ListCardContainer onClick={() => setExpanded((prev) => !prev)}>
-        <TitleContainer>
+        <Flex sx={styles.titleContainer}>
           {serviceTokenDisplay}
-          {tag && <TagContainer ml="10px">{tag}</TagContainer>}
-          {title}
-        </TitleContainer>
+          <Flex sx={{ flexDirection: 'row', marginLeft: '10px' }}>
+            {tag}
+            {title}
+          </Flex>
+        </Flex>
         <ContentContainer>{cardContent}</ContentContainer>
         {expandedContent && <DropDownIcon open={expanded} mr="30px" />}
         {infoContent && (

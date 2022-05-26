@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
-import { Flex as ThemeFlex, TagVariants } from '@ape.swap/uikit'
+import { TagVariants } from '@ape.swap/uikit'
 import { Box } from 'theme-ui'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
@@ -69,29 +69,24 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number; farmTags: Tag[] 
     const userTokenBalanceUsd = `$${(
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * farm?.lpValueUsd
     ).toFixed(2)}`
-    const fTD = farmTags?.find((tag) => tag.pid === farm.pid)
-    const tagColor = fTD?.color as TagVariants
+    const fTag = farmTags?.find((tag) => tag.pid === farm.pid)
+    const tagColor = fTag?.color as TagVariants
 
     return {
-      tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
-      stakeLp: true,
-      title: (
-        <ThemeFlex
-          sx={{
-            flexDirection: ['column', 'row'],
-            marginLeft: '10px',
-          }}
-        >
-          {fTD?.pid === farm.pid && (
+      tag: (
+        <>
+          {fTag?.pid === farm.pid && (
             <Box sx={{ marginRight: '5px', marginTop: ['0px', '2px'] }}>
-              <StyledTag key={fTD?.pid} variant={tagColor}>
-                {fTD?.text}
+              <StyledTag key={fTag?.pid} variant={tagColor}>
+                {fTag?.text}
               </StyledTag>
             </Box>
           )}
-          <Text bold>{farm.lpSymbol}</Text>
-        </ThemeFlex>
+        </>
       ),
+      tokens: { token1: farm.pid === 184 ? 'NFTY2' : token1, token2, token3: 'BANANA' },
+      stakeLp: true,
+      title: <Text bold>{farm.lpSymbol}</Text>,
       open: farm.pid === openPid,
       id: farm.pid,
       infoContent: (
