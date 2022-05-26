@@ -81,6 +81,12 @@ const JungleFarms: React.FC = () => {
     switch (sortOption) {
       case 'apr':
         return orderBy(farmsToSort, (farm: JungleFarm) => farm.apr, 'desc')
+      case 'liquidity':
+        return orderBy(
+          farmsToSort,
+          (farm: JungleFarm) => getBalanceNumber(farm.totalStaked) * farm.stakingToken.price,
+          'desc',
+        )
       case 'earned':
         return orderBy(
           farmsToSort,
@@ -90,12 +96,6 @@ const JungleFarms: React.FC = () => {
             }
             return getBalanceNumber(farm.userData.pendingReward) * farm.rewardToken?.price
           },
-          'desc',
-        )
-      case 'totalStaked':
-        return orderBy(
-          farmsToSort,
-          (farm: JungleFarm) => getBalanceNumber(farm.totalStaked) * farm.stakingToken?.price,
           'desc',
         )
       default:
@@ -159,6 +159,7 @@ const JungleFarms: React.FC = () => {
               query={searchQuery}
               activeOption={sortOption}
               showMonkeyImage
+              isJungle
             />
           </Flex>
           <DisplayJungleFarms jungleFarms={renderJungleFarms()} openId={urlSearchedFarm} />
