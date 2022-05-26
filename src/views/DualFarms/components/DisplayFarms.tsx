@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
-import { Flex as ThemeFlex, TagVariants } from '@ape.swap/uikit'
+import { TagVariants } from '@ape.swap/uikit'
 import { Box } from 'theme-ui'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
@@ -48,11 +48,22 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number; dualFarmTags
       getBalanceNumber(farm?.userData?.tokenBalance || new BigNumber(0)) * lpValueUsd
     ).toFixed(2)}`
 
-    const fTD = dualFarmTags?.find((tag) => tag.pid === farm.pid)
-    const tagColor = fTD?.color as TagVariants
+    const fTag = dualFarmTags?.find((tag) => tag.pid === farm.pid)
+    const tagColor = fTag?.color as TagVariants
 
     // Changing tooltip placement conditionaly until zindex solution
     return {
+      tag: (
+        <>
+          {fTag?.pid === farm.pid && (
+            <Box sx={{ marginRight: '5px', marginLeft: '10px', marginTop: ['0px', '2px'] }}>
+              <StyledTag key={fTag?.pid} variant={tagColor}>
+                {fTag?.text}
+              </StyledTag>
+            </Box>
+          )}
+        </>
+      ),
       tokens: {
         token1: farm.pid === 11 ? 'NFTY2' : farm?.stakeTokens?.token1?.symbol,
         token2: farm?.stakeTokens?.token0?.symbol,
@@ -61,23 +72,9 @@ const DisplayFarms: React.FC<{ farms: DualFarm[]; openPid?: number; dualFarmTags
       },
       stakeLp: true,
       title: (
-        <ThemeFlex
-          sx={{
-            flexDirection: ['column', 'row'],
-            marginLeft: '10px',
-          }}
-        >
-          {fTD?.pid === farm?.pid && (
-            <Box sx={{ marginRight: '5px', marginLeft: '10px', marginTop: ['0px', '2px'] }}>
-              <StyledTag key={fTD?.pid} variant={tagColor}>
-                {fTD?.text}
-              </StyledTag>
-            </Box>
-          )}
-          <Text ml={fTD?.pid === farm?.pid ? 0 : 10} bold>
-            {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol}
-          </Text>
-        </ThemeFlex>
+        <Text ml={fTag?.pid === farm?.pid ? 0 : 10} bold>
+          {farm?.stakeTokens?.token1?.symbol}-{farm?.stakeTokens?.token0?.symbol}
+        </Text>
       ),
       viewType: 'stakeLP',
       open: farm.pid === openPid,
