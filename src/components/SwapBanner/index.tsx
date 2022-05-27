@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useFetchSwapBanners } from 'state/strapi/fetchStrapi'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay } from 'swiper'
 import { Flex } from '@apeswapfinance/uikit'
 import 'swiper/swiper.min.css'
+import { useLocation } from 'react-router-dom'
 
 const SLIDE_DELAY = 10000
 
@@ -12,17 +13,16 @@ SwiperCore.use([Autoplay])
 
 const SwapBanner: React.FC = () => {
   const banners = useFetchSwapBanners()
-  const [carouselBanners, setCarouselBanners] = useState(null)
+  const location = useLocation()
 
-  useEffect(() => {
-    const carousel = []
-    banners?.swapBannersData?.forEach((banner) => {
-      if (banner.param === 'carousel') {
-        carousel.push(banner)
-      }
-    })
-    setCarouselBanners(carousel)
-  }, [banners])
+  const customBanner = banners?.swapBannersData?.find((banner) => {
+    if (location.search.includes(`banner=${banner?.param}`)) {
+      return banner
+    }
+    return null
+  })
+
+  const carouselBanners = banners?.swapBannersData?.filter((banner) => banner.param === 'carousel')
 
   const defaultBanner = banners?.swapBannersData?.find((banner) => {
     if (banner?.param === 'default') {
@@ -35,7 +35,11 @@ const SwapBanner: React.FC = () => {
     <>
       <BannerWrapper>
         <Flex justifyContent="space-between" style={{ width: '100%', overflow: 'hidden' }}>
-          {carouselBanners?.length > 0 ? (
+          {customBanner ? (
+            <a href={customBanner?.link} target="_blank" rel="noopener noreferrer">
+              <StyledBanner image={customBanner?.desktop?.url} />
+            </a>
+          ) : carouselBanners?.length > 0 ? (
             <Swiper
               id="dexSwiper"
               autoplay={{
@@ -55,10 +59,7 @@ const SwapBanner: React.FC = () => {
                 return (
                   <SwiperSlide key={banner.desktop.id}>
                     <a href={banner?.link} target="_blank" rel="noopener noreferrer">
-                      <StyledBanner
-                        image={banner?.desktop?.formats?.large?.url}
-                        key={banner?.desktop?.formats?.large?.url}
-                      />
+                      <StyledBanner image={banner?.desktop?.url} key={banner?.desktop?.url} />
                     </a>
                   </SwiperSlide>
                 )
