@@ -1,7 +1,8 @@
+/** @jsxImportSource theme-ui */
 import React from 'react'
 import { LiquidityWidget } from 'components/LiquidityWidget'
-import { Modal, ModalHeader, Heading, Link } from '@ape.swap/uikit'
-import { HelpIcon, ModalProvider } from '@apeswapfinance/uikit'
+import { Modal, ModalHeader, Heading, Link, ModalProvider } from '@ape.swap/uikit'
+import { HelpIcon } from '@apeswapfinance/uikit'
 import { Flex } from 'theme-ui'
 import { merge } from 'lodash'
 import { useTranslation } from 'contexts/Localization'
@@ -9,10 +10,10 @@ import { useTranslation } from 'contexts/Localization'
 interface LiquidityModalProps {
   widgetProps?: Record<string, any>
   modalProps?: Record<string, any>
-  handleClose?: () => void
+  onDismiss?: () => void
 }
 
-const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps: newModalProps, handleClose }) => {
+const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps: newModalProps, onDismiss }) => {
   const { t } = useTranslation()
   const modalProps = {
     minWidth: '385px',
@@ -26,8 +27,8 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps
 
   return (
     <ModalProvider>
-      <Modal open {...merge(modalProps, newModalProps)}>
-        <ModalHeader onDismiss={handleClose}>
+      <Modal onDismiss={onDismiss} {...merge(modalProps, newModalProps)}>
+        <ModalHeader>
           <Flex
             sx={{
               Svg: {
@@ -49,7 +50,7 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ widgetProps, modalProps
             </Heading>
           </Flex>
         </ModalHeader>
-        <LiquidityWidget {...widgetProps} onCancel={handleClose} />
+        <LiquidityWidget {...widgetProps} />
       </Modal>
     </ModalProvider>
   )

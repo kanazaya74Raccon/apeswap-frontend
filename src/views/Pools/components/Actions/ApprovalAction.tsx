@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React, { useState } from 'react'
 import { Skeleton } from '@apeswapfinance/uikit'
 import { useSousApprove } from 'hooks/useApprove'

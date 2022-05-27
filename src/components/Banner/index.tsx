@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import { Flex } from '@ape.swap/uikit'
 import useTheme from 'hooks/useTheme'
 import { Link, Text } from 'theme-ui'

@@ -1,7 +1,8 @@
+/** @jsxImportSource theme-ui */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Card, Heading } from '@apeswapfinance/uikit'
+import { Card, Heading } from '@ape.swap/uikit'
 import { Nft } from 'config/constants/types'
 import { Box } from 'theme-ui'
 import InfoRow from '../InfoRow'
