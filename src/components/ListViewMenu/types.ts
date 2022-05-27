@@ -9,4 +9,5 @@ export interface ListViewProps {
   showMonkeyImage?: boolean
   harvestAll?: React.ReactNode
   activeOption?: string
+  isJungle?: boolean
 }

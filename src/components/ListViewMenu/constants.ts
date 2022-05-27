@@ -27,6 +27,25 @@ export const OPTIONS = [
   },
 ]
 
+export const JUNGLE_OPTIONS = [
+  {
+    label: 'All',
+    value: 'all',
+  },
+  {
+    label: 'APR',
+    value: 'apr',
+  },
+  {
+    label: 'Liquidity',
+    value: 'liquidity',
+  },
+  {
+    label: 'Earned',
+    value: 'earned',
+  },
+]
+
 export const STABLES = ['DAI', 'USDT', 'BUSD', 'USDC', 'MOR', 'FRAX']
 
 export const BLUE_CHIPS = [

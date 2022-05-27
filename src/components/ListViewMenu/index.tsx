@@ -15,7 +15,7 @@ import {
   StyledText,
   ToggleWrapper,
 } from './styles'
-import { OPTIONS } from './constants'
+import { OPTIONS, JUNGLE_OPTIONS } from './constants'
 
 const ListViewMenu: React.FC<ListViewProps> = ({
   onHandleQueryChange,
@@ -26,7 +26,9 @@ const ListViewMenu: React.FC<ListViewProps> = ({
   query,
   showMonkeyImage,
   activeOption,
+  isJungle,
 }) => {
+  const displayOptions = isJungle === true ? JUNGLE_OPTIONS : OPTIONS
   const { isDark } = useTheme()
   const { t } = useTranslation()
   return (
@@ -42,7 +44,7 @@ const ListViewMenu: React.FC<ListViewProps> = ({
       <MobilePadding>
         <Flex style={{ height: '40px' }}>
           <Select size="sm" width="126px" onChange={(e) => onSetSortOption(e.target.value)} active={activeOption}>
-            {OPTIONS.map((option) => {
+            {displayOptions.map((option) => {
               return (
                 <SelectItem size="sm" value={option.value}>
                   <Text>{t(option.label)}</Text>

@@ -245,6 +245,35 @@ export interface DualFarmConfig {
   }
 }
 
+export interface JungleFarmConfig {
+  jungleId: number
+  image?: string
+  tokenName: string
+  stakingToken: Token
+  stakingLimit?: number
+  bonusEndBlock?: number
+  rewardToken: Token
+  contractAddress: Address
+  projectLink: string
+  twitter?: string
+  tokenPerBlock: string
+  sortOrder?: number
+  harvest?: boolean
+  reflect?: boolean
+  isFinished?: boolean
+  tokenDecimals: number
+  displayDecimals?: number
+  lpStaking?: boolean
+  lpTokens?: {
+    token: Token
+    quoteToken: Token
+  }
+  forAdmins?: boolean
+  emergencyWithdraw?: boolean
+  isEarnTokenLp?: boolean
+  network: number
+}
+
 // Types used to check for live IAOs
 export type LiveIfo = {
   id: number

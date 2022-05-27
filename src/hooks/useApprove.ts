@@ -16,6 +16,7 @@ import {
   useVaultApe,
   useMiniChefContract,
   useERC20,
+  useJungleChef,
 } from './useContract'
 
 // Approve a Farm
@@ -56,6 +57,27 @@ export const useSousApprove = (lpContract, sousId) => {
     })
     return tx
   }, [lpContract, sousChefContract, sousId, chainId])
+
+  return { onApprove: handleApprove }
+}
+
+export const useJungleApprove = (lpContract, jungleId) => {
+  const { chainId } = useActiveWeb3React()
+  const jungleChefContract = useJungleChef(jungleId)
+
+  const handleApprove = useCallback(async () => {
+    const tx = await approve(lpContract, jungleChefContract)
+    track({
+      event: 'jungle_farm',
+      chain: chainId,
+      data: {
+        token: tx.to,
+        id: jungleId,
+        cat: 'enable',
+      },
+    })
+    return tx
+  }, [lpContract, jungleChefContract, jungleId, chainId])
 
   return { onApprove: handleApprove }
 }

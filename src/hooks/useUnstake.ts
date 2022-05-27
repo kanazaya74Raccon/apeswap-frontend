@@ -19,6 +19,7 @@ import {
   vaultUnstake,
   vaultUnstakeAll,
   miniChefUnstake,
+  jungleUnstake,
 } from 'utils/callHelpers'
 import {
   updateDualFarmUserEarnings,
@@ -26,7 +27,14 @@ import {
   updateDualFarmUserTokenBalances,
 } from 'state/dualFarms'
 import { useNetworkChainId } from 'state/hooks'
-import { useMasterchef, useMiniChefContract, useNfaStakingChef, useSousChef, useVaultApe } from './useContract'
+import {
+  useJungleChef,
+  useMasterchef,
+  useMiniChefContract,
+  useNfaStakingChef,
+  useSousChef,
+  useVaultApe,
+} from './useContract'
 import useActiveWeb3React from './useActiveWeb3React'
 
 const useUnstake = (pid: number) => {
@@ -58,6 +66,7 @@ const SYRUPIDS = []
 
 export const useSousUnstake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -93,8 +102,34 @@ export const useSousUnstake = (sousId) => {
   return { onUnstake: handleUnstake }
 }
 
+export const useJungleUnstake = (jungleId) => {
+  const { chainId } = useActiveWeb3React()
+  const jungleChefContract = useJungleChef(jungleId)
+
+  const handleUnstake = useCallback(
+    async (amount: string) => {
+      const trxHash = await jungleUnstake(jungleChefContract, amount)
+
+      track({
+        event: 'jungle_farm',
+        chain: chainId,
+        data: {
+          cat: 'unstake',
+          amount,
+          jungleId,
+        },
+      })
+      return trxHash
+    },
+    [jungleChefContract, jungleId, chainId],
+  )
+
+  return { onUnstake: handleUnstake }
+}
+
 export const useSousEmergencyWithdraw = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
   const handleEmergencyWithdraw = useCallback(async () => {
@@ -109,6 +144,7 @@ export const useSousEmergencyWithdraw = (sousId) => {
 
 export const useNfaUnstake = (sousId) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account } = useWeb3React()
   const chainId = useNetworkChainId()
   const nfaStakeChefContract = useNfaStakingChef(sousId)
@@ -135,6 +171,7 @@ export const useNfaUnstake = (sousId) => {
 }
 
 export const useVaultUnstake = (pid: number) => {
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
@@ -165,6 +202,7 @@ export const useVaultUnstake = (pid: number) => {
 }
 
 export const useVaultUnstakeAll = (pid: number) => {
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const vaultApeContract = useVaultApe()
   const dispatch = useDispatch()
@@ -193,6 +231,7 @@ export const useVaultUnstakeAll = (pid: number) => {
 
 export const useMiniChefUnstake = (pid: number) => {
   const dispatch = useDispatch()
+  // TODO switch to useActiveWeb3React. useWeb3React is legacy hook and useActiveWeb3React should be used going forward
   const { account, chainId } = useWeb3React()
   const miniChefContract = useMiniChefContract()
 
