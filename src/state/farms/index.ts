@@ -13,7 +13,6 @@ import fetchFarms from './fetchFarms'
 
 const initialState: FarmsState = {
   data: [...farmsConfig],
-  tags: null,
 }
 
 export const farmsSlice = createSlice({

@@ -8,6 +8,7 @@ import { ExtendedListViewProps } from './types'
 
 const ListView: React.FC<{ listViews: ExtendedListViewProps[] }> = ({ listViews }) => {
   const isMobile = useIsMobile()
+
   return (
     <ListViewContainer>
       {listViews.map((view) => {

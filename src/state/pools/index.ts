@@ -10,7 +10,9 @@ import {
 import { PoolsState, Pool, TokenPrices, AppThunk } from '../types'
 import fetchPools from './fetchPools'
 
-const initialState: PoolsState = { data: [...poolsConfig] }
+const initialState: PoolsState = {
+  data: [...poolsConfig],
+}
 
 export const PoolsSlice = createSlice({
   name: 'Pools',

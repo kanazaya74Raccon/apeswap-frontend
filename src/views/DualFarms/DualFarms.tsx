@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFetchFarmLpAprs } from 'state/hooks'
+import { useFarmTags, useFetchFarmLpAprs } from 'state/hooks'
 import { useDualFarms, usePollDualFarms } from 'state/dualFarms/hooks'
 import { DualFarm } from 'state/types'
 import { orderBy } from 'lodash'
@@ -24,6 +24,7 @@ const DualFarms: React.FC = () => {
   usePollDualFarms()
   const { account, chainId } = useActiveWeb3React()
   useFetchFarmLpAprs(chainId)
+  const { farmTags } = useFarmTags(chainId)
 
   const { t } = useTranslation()
   const { pathname } = useLocation()
@@ -172,7 +173,7 @@ const DualFarms: React.FC = () => {
               showMonkeyImage
             />
           </Flex>
-          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} dualFarmTags={farmTags} />
         </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />

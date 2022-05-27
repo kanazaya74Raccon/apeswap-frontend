@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { PoolCategory } from 'config/constants/types'
 import { useWeb3React } from '@web3-react/core'
 import { Flex } from '@apeswapfinance/uikit'
@@ -9,7 +10,7 @@ import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import { useBlock } from 'state/block/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePollPools, usePools } from 'state/hooks'
+import { usePollPools, usePools, usePoolTags } from 'state/hooks'
 import ListViewLayout from 'components/layout/ListViewLayout'
 import Banner from 'components/Banner'
 import { Pool } from 'state/types'
@@ -20,6 +21,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
   usePollPools()
+  const { chainId } = useActiveWeb3React()
   const [stakedOnly, setStakedOnly] = useState(false)
   const [tokenOption, setTokenOption] = useState('allTokens')
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -29,6 +31,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pathname } = useLocation()
   const allPools = usePools(account)
+  const { poolTags } = usePoolTags(chainId)
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const { search } = window.location
@@ -159,7 +162,7 @@ const Pools: React.FC = () => {
               stakedOnly={stakedOnly}
               query={searchQuery}
             />
-            <DisplayPools pools={renderPools()} openId={urlSearchedPool} />
+            <DisplayPools pools={renderPools()} openId={urlSearchedPool} poolTags={poolTags} />
             <div ref={loadMoreRef} />
           </Flex>
         </ListViewLayout>

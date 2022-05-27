@@ -50,6 +50,7 @@ import {
   fetchHomepageService,
   fetchHomepageTokenData,
   fetchLiveIfoStatus,
+  fetchLiveTags,
 } from './stats'
 import { fetchAuctions } from './auction'
 import { fetchVaultsPublicDataAsync, fetchVaultUserDataAsync, setFilteredVaults, setVaultsLoad } from './vaults'
@@ -583,4 +584,27 @@ export const useLiveIfoStatus = () => {
   const { LiveIfo }: StatsState = useSelector((state: State) => state.stats)
 
   return { liveIfos: LiveIfo }
+}
+
+// TAGS
+export const useFetchLiveTags = () => {
+  const dispatch = useAppDispatch()
+  const { slowRefresh } = useRefresh()
+  useEffect(() => {
+    dispatch(fetchLiveTags())
+  }, [dispatch, slowRefresh])
+}
+
+export const useFarmTags = (chainId: number) => {
+  const { Tags }: StatsState = useSelector((state: State) => state.stats)
+  const farmTags = Tags?.[`${chainId}`].farms
+
+  return { farmTags }
+}
+
+export const usePoolTags = (chainId: number) => {
+  const { Tags }: StatsState = useSelector((state: State) => state.stats)
+  const poolTags = Tags?.[`${chainId}`]?.pools
+
+  return { poolTags }
 }

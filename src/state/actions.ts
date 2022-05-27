@@ -17,6 +17,7 @@ export {
   fetchLiveIfoFailure,
   fetchLiveIfoStart,
   fetchLiveIfoSuccess,
+  fetchLiveTags,
 } from './stats'
 export { statsOverallFetchStart, statsOverallFetchSucceeded, statsOverallFetchFailed } from './statsOverall'
 export { tokenPricesFetchStart, tokenPricesFetchSucceeded, tokenPricesFetchFailed } from './tokenPrices'

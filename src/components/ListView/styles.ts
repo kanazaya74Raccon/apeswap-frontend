@@ -1,5 +1,15 @@
+import { ThemeUIStyleObject } from 'theme-ui'
 import { ArrowDropDownIcon, Flex, Text } from '@apeswapfinance/uikit'
 import styled, { keyframes } from 'styled-components'
+
+export const styles: Record<string, ThemeUIStyleObject> = {
+  titleContainer: {
+    alignItems: 'center',
+    height: '100%',
+    maxWidth: '290px',
+    width: '100%',
+  },
+}
 
 const ExpandLargeAnimation = keyframes`
     0%{height: 0;}
@@ -96,13 +106,6 @@ export const ContentContainer = styled(Flex)`
   ${({ theme }) => theme.mediaQueries.md} {
     height: 60px;
   }
-`
-
-export const TitleContainer = styled(Flex)`
-  align-items: center;
-  height: 100%;
-  max-width: 290px;
-  width: 100%;
 `
 
 export const TitleText = styled(Text)`

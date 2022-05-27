@@ -9,6 +9,7 @@ import getHomepageStats from './getHomepageStats'
 import getHomepageTokenStats from './getHomepageTokenStats'
 import { computeStats } from './getStats'
 import fetchIfoStatus from './fetchIfoStatus'
+import fetchTagsFromApi from './fetchTagsFromApi'
 
 const initialState: StatsState = {
   isInitialized: false,
@@ -19,6 +20,7 @@ const initialState: StatsState = {
   HomepageLaunchCalendar: null,
   HomepageServiceStats: null,
   FarmLpAprs: null,
+  Tags: null,
   LiveIfo: null,
   data: null,
 }
@@ -69,6 +71,9 @@ export const statsSlice = createSlice({
       state.isLoading = false
       state.isInitialized = true
     },
+    fetchTags: (state, action) => {
+      state.Tags = action.payload
+    },
   },
 })
 
@@ -86,6 +91,7 @@ export const {
   fetchLiveIfoFailure,
   fetchLiveIfoStart,
   fetchLiveIfoSuccess,
+  fetchTags,
 } = statsSlice.actions
 
 // Thunks
@@ -138,6 +144,11 @@ export const fetchLiveIfoStatus = () => async (dispatch) => {
   } catch (error) {
     dispatch(fetchLiveIfoFailure())
   }
+}
+
+export const fetchLiveTags = () => async (dispatch) => {
+  const tags = await fetchTagsFromApi()
+  dispatch(fetchTags(tags))
 }
 
 export default statsSlice.reducer

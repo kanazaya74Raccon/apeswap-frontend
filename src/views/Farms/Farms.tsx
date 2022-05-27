@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Flex } from '@apeswapfinance/uikit'
-import { useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
+import { useFarmTags, useFetchFarmLpAprs, useFetchLpTokenPrices } from 'state/hooks'
 import ListViewMenu from 'components/ListViewMenu'
 import { orderBy } from 'lodash'
 import ListViewLayout from 'components/layout/ListViewLayout'
@@ -31,6 +31,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [sortOption, setSortOption] = useState('all')
   const loadMoreRef = useRef<HTMLDivElement>(null)
+  const { farmTags } = useFarmTags(chainId)
 
   useEffect(() => {
     const showMoreFarms = (entries) => {
@@ -154,7 +155,7 @@ const Farms: React.FC = () => {
               showMonkeyImage
             />
           </Flex>
-          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} />
+          <DisplayFarms farms={renderFarms()} openPid={urlSearchedFarm} farmTags={farmTags} />
         </ListViewLayout>
       </Flex>
       <div ref={loadMoreRef} />

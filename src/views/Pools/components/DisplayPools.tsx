@@ -1,4 +1,6 @@
-import { IconButton, Text, Flex } from '@ape.swap/uikit'
+import React from 'react'
+import { IconButton, Text, Flex, TagVariants } from '@ape.swap/uikit'
+import { Box } from 'theme-ui'
 import BigNumber from 'bignumber.js'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
@@ -8,17 +10,16 @@ import { useLocation } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ApyButton from 'components/ApyCalculator/ApyButton'
 import useIsMobile from 'hooks/useIsMobile'
-import React from 'react'
-import { Pool } from 'state/types'
+import { Pool, Tag } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { NextArrow } from 'views/Farms/components/styles'
 import { useTranslation } from 'contexts/Localization'
 import Actions from './Actions'
 import HarvestAction from './Actions/HarvestAction'
 import InfoContent from '../InfoContent'
-import { Container, StyledButton, ActionContainer } from './styles'
+import { Container, StyledButton, ActionContainer, StyledTag } from './styles'
 
-const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, openId }) => {
+const DisplayPools: React.FC<{ pools: Pool[]; openId?: number; poolTags: Tag[] }> = ({ pools, openId, poolTags }) => {
   const { chainId } = useActiveWeb3React()
   const isMobile = useIsMobile()
   const { pathname } = useLocation()
@@ -45,14 +46,24 @@ const DisplayPools: React.FC<{ pools: Pool[]; openId?: number }> = ({ pools, ope
       getBalanceNumber(pool?.userData?.stakingTokenBalance || new BigNumber(0)) * pool?.stakingToken?.price
     ).toFixed(2)}`
 
+    const pTag = poolTags?.find((tag) => tag.pid === pool.sousId)
+    const tagColor = pTag?.color as TagVariants
+
     // Token symbol logic is here temporarily for nfty
     return {
-      tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
-      title: (
-        <Text ml={10} weight="bold">
-          {pool?.rewardToken?.symbol || pool?.tokenName}
-        </Text>
+      tag: (
+        <>
+          {pTag?.pid === pool.sousId && (
+            <Box sx={{ marginRight: '5px', marginTop: ['0px', '2px'] }}>
+              <StyledTag key={pTag?.pid} variant={tagColor}>
+                {pTag?.text}
+              </StyledTag>
+            </Box>
+          )}
+        </>
       ),
+      tokens: { token1, token2: token2 === 'NFTY ' ? 'NFTY2' : token2 || pool?.tokenName },
+      title: <Text bold>{pool?.rewardToken?.symbol || pool?.tokenName}</Text>,
       id: pool.sousId,
       infoContent: <InfoContent pool={pool} />,
       infoContentPosition: 'translate(-82%, 28%)',

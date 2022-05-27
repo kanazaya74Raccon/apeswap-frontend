@@ -49,12 +49,14 @@ const ListViewContent: React.FC<ListViewContentProps> = ({
           </Flex>
         )}
       </Flex>
+
       <Flex alignItems="center" justifyContent={justifyContent}>
         {valueIcon && valueIcon}
         <ValueText bold lineHeight={lineHeight} valueColor={valueColor}>
           {value.includes('NaN') || value.includes('undefined') || value.includes('null') ? <ValueSkeleton /> : value}
         </ValueText>
       </Flex>
+
       <Flex alignItems="center" justifyContent={justifyContent}>
         {value2Icon && value2Icon}
         {value2 && (
