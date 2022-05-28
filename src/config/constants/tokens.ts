@@ -1109,6 +1109,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  bones: {
+    symbol: 'BONES',
+    address: {
+      56: '0x08426874d46f90e5E527604fA5E3e30486770Eb3',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1219,6 +1226,14 @@ const tokens = {
     symbol: 'LGX-BUSD',
     address: {
       56: '0x004F72D474eE262701205E3637B4367594eFb11D',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  bonesBnb: {
+    symbol: 'BONES-BNB',
+    address: {
+      56: '0xe0900Db57d81DE4E6a13e90eb836Fa91Be50515A',
     },
     decimals: 18,
     lpToken: true,

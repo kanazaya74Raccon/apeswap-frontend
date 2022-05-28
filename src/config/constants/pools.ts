@@ -3018,6 +3018,26 @@ const pools: PoolConfig[] = [
   // JUNGLE FARMS
   //
   {
+    sousId: 210,
+    tokenName: 'BONES',
+    image: 'BONES.png',
+    stakingToken: tokens.bonesBnb,
+    rewardToken: tokens.bones,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0x84291c0e6b19cc833afc491561aacfbdd6885d63',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: 'https://moonshots.farm/',
+    twitter: 'https://twitter.com/MoonshotsFarm',
+    harvest: true,
+    tokenPerBlock: `0.224606095679012345`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
     sousId: 206,
     tokenName: 'LGX-BUSD',
     image: 'LGX.svg',

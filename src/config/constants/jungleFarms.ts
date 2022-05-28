@@ -177,6 +177,31 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
     network: CHAIN_ID.BSC,
   },
+  {
+    jungleId: 6,
+    tokenName: 'BONES-BNB',
+    image: 'BONES.png',
+    stakingToken: tokens.bonesBnb,
+    rewardToken: tokens.bones,
+    lpTokens: {
+      token: tokens.bones,
+      quoteToken: tokens.wbnb,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0x84291c0e6b19cc833afc491561aacfbdd6885d63',
+    },
+    projectLink: 'https://moonshots.farm/',
+    twitter: 'https://twitter.com/MoonshotsFarm',
+    harvest: true,
+    tokenPerBlock: '0.224606095679012345',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+    isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
+  },
 ]
 
 export default jungleFarms
