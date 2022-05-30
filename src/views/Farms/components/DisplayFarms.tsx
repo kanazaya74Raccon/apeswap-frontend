@@ -37,7 +37,6 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number; farmTags: Tag[] 
     'liquidityWidgetModal',
   )
 
-
   const showLiquidity = (token, quoteToken) => {
     dispatch(
       selectCurrency({

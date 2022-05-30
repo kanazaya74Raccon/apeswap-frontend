@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import React, { useCallback, useState } from 'react'
-import { AddIcon, Button, useModal } from '@ape.swap/uikit'
+import { AddIcon, Button } from '@ape.swap/uikit'
+import { useModal } from '@apeswapfinance/uikit'
 import { Box, Flex, Text } from 'theme-ui'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, CurrencyAmount } from '@apeswapfinance/sdk'
