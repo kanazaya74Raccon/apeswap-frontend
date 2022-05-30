@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, Text, LinkExternal, Svg } from '@apeswapfinance/uikit'
-import { TagVariants, useModal } from '@ape.swap/uikit'
+import { Flex, Text, LinkExternal, Svg, useModal } from '@apeswapfinance/uikit'
+import { TagVariants } from '@ape.swap/uikit'
 import { Box } from 'theme-ui'
 import ListView from 'components/ListView'
 import { ExtendedListViewProps } from 'components/ListView/types'
@@ -26,7 +26,17 @@ const DisplayFarms: React.FC<{ farms: Farm[]; openPid?: number; farmTags: Tag[] 
   const isMobile = useIsMobile()
   const dispatch = useAppDispatch()
 
-  const [onPresentAddLiquidityWidgetModal] = useModal(<LiquidityModal />, true, true, 'liquidityWidgetModal')
+  // TODO: clean up this code
+  // Hack to get the close modal function from the provider
+  // Need to export ModalContext from uikit to clean up the code
+  const [, closeModal] = useModal(<></>)
+  const [onPresentAddLiquidityWidgetModal] = useModal(
+    <LiquidityModal handleClose={closeModal} />,
+    true,
+    true,
+    'liquidityWidgetModal',
+  )
+
 
   const showLiquidity = (token, quoteToken) => {
     dispatch(
