@@ -1,5 +1,7 @@
+/** @jsxImportSource theme-ui */
 import React, { useCallback, useState } from 'react'
 import { AddIcon, Button } from '@ape.swap/uikit'
+import { useModal } from '@apeswapfinance/uikit'
 import { Box, Flex, Text } from 'theme-ui'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, CurrencyAmount } from '@apeswapfinance/sdk'
@@ -14,7 +16,6 @@ import { parseAddress } from 'hooks/useAddress'
 import useTheme from 'hooks/useTheme'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import { useIsExpertMode, useUserSlippageTolerance } from 'state/user/hooks'
-import { useModal } from '@apeswapfinance/uikit'
 import TransactionConfirmationModal, { ConfirmationModalContent } from 'components/TransactionConfirmationModal'
 import ConfirmAddModalBottom from 'views/AddLiquidity/ConfirmAddModalBottom'
 import DoubleCurrencyLogo from 'components/Logo/DoubleLogo'
@@ -470,7 +471,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
         }}
       >
         {addIsUnsupported ? (
-          <Button csx={styles.button} disabled mb="4px">
+          <Button sx={styles.button} disabled mb="4px">
             Unsupported Asset
           </Button>
         ) : !account ? (
@@ -517,7 +518,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                 </RowBetween>
               )}
             <Button
-              csx={styles.button}
+              sx={styles.button}
               onClick={() => {
                 if (expertMode) {
                   onAdd()

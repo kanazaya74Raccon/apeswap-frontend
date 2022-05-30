@@ -20,7 +20,6 @@ interface CardActionProps {
 const Actions: React.FC<CardActionProps> = ({
   allowance,
   stakingTokenBalance,
-  stakedTokenSymbol,
   stakedBalance,
   stakeTokenValueUsd,
   stakeTokenAddress,

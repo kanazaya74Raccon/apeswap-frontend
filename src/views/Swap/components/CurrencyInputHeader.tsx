@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
@@ -93,7 +94,7 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </div> */}
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
-            sx={{
+            csx={{
               fontSize: '15px',
               fontWeight: 700,
               marginRight: '25px',

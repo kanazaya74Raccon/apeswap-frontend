@@ -29,6 +29,9 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
   const isActive = !pathname.includes('history')
   const dispatch = useAppDispatch()
 
+  // TODO: clean up this code
+  // Hack to get the close modal function from the provider
+  // Need to export ModalContext from uikit to clean up the code
   const [, closeModal] = useModal(<></>)
   const [onPresentAddLiquidityWidgetModal] = useModal(
     <LiquidityModal handleClose={closeModal} />,

@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React from 'react'
 import { useWalletModal } from '@apeswapfinance/uikit'
 import { Button } from '@ape.swap/uikit'

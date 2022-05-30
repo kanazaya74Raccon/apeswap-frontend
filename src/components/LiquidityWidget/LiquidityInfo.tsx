@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React from 'react'
 import { Currency, Percent, Price } from '@apeswapfinance/sdk'
 import { Text, Flex, Box } from 'theme-ui'
