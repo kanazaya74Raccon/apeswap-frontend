@@ -1,5 +1,6 @@
+/** @jsxImportSource theme-ui */
 import React, { useCallback, useState } from 'react'
-import { AddIcon, Button } from '@ape.swap/uikit'
+import { AddIcon, Button, useModal } from '@ape.swap/uikit'
 import { Box, Flex, Text } from 'theme-ui'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Currency, ETHER, TokenAmount, ROUTER_ADDRESS, CurrencyAmount } from '@apeswapfinance/sdk'
@@ -14,7 +15,6 @@ import { parseAddress } from 'hooks/useAddress'
 import useTheme from 'hooks/useTheme'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import { useIsExpertMode, useUserSlippageTolerance } from 'state/user/hooks'
-import { useModal } from '@apeswapfinance/uikit'
 import TransactionConfirmationModal, { ConfirmationModalContent } from 'components/TransactionConfirmationModal'
 import ConfirmAddModalBottom from 'views/AddLiquidity/ConfirmAddModalBottom'
 import DoubleCurrencyLogo from 'components/Logo/DoubleLogo'
@@ -40,10 +40,10 @@ import ConnectButton from './ConnectButton'
 import styles from './styles'
 
 interface ILiquidityWidgetProps {
-  onCancel?: () => void
+  onDismiss?: () => void
 }
 
-const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
+const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onDismiss }) => {
   const { isDark } = useTheme()
   const { t } = useTranslation()
 
@@ -360,7 +360,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
           </Text>
           <Button
             size="sm"
-            csx={{ border: 'hidden', borderRadius: '6px', padding: '3px 14px !important' }}
+            sx={{ border: 'hidden', borderRadius: '6px', padding: '3px 14px !important' }}
             variant="primary"
             onClick={() => {
               onFieldAInput(maxAmounts[Field.CURRENCY_A]?.toExact() ?? '')
@@ -429,7 +429,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
           </Text>
           <Button
             size="sm"
-            csx={{ border: 'hidden', borderRadius: '6px', padding: '3px 14px !important' }}
+            sx={{ border: 'hidden', borderRadius: '6px', padding: '3px 14px !important' }}
             variant="primary"
             onClick={() => {
               onFieldBInput(maxAmounts[Field.CURRENCY_B]?.toExact() ?? '')
@@ -470,7 +470,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
         }}
       >
         {addIsUnsupported ? (
-          <Button csx={styles.button} disabled mb="4px">
+          <Button sx={styles.button} disabled mb="4px">
             Unsupported Asset
           </Button>
         ) : !account ? (
@@ -486,7 +486,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                   <Flex sx={{ justifyContent: 'space-between', columnGap: '15px' }}>
                     {approvalA !== ApprovalState.APPROVED && (
                       <Button
-                        csx={styles.button}
+                        sx={styles.button}
                         onClick={approveACallback}
                         disabled={approvalA === ApprovalState.PENDING}
                       >
@@ -501,7 +501,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                     {approvalB !== ApprovalState.APPROVED && (
                       <Box sx={{ padding: '0 5px' }}>
                         <Button
-                          csx={styles.button}
+                          sx={styles.button}
                           onClick={approveBCallback}
                           disabled={approvalB === ApprovalState.PENDING}
                         >
@@ -517,7 +517,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
                 </RowBetween>
               )}
             <Button
-              csx={styles.button}
+              sx={styles.button}
               onClick={() => {
                 if (expertMode) {
                   onAdd()
@@ -538,7 +538,7 @@ const LiquidiyWidget: React.FC<ILiquidityWidgetProps> = ({ onCancel }) => {
         )}
       </Flex>
       <Flex sx={{ justifyContent: 'center', margin: '10px 0 0' }}>
-        <UnderlinedButton text="cancel" handleClick={onCancel} />
+        <UnderlinedButton text="cancel" handleClick={onDismiss} />
       </Flex>
     </>
   )
