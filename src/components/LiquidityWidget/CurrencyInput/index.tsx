@@ -1,7 +1,6 @@
 import React from 'react'
 import { Currency, Pair } from '@apeswapfinance/sdk'
-import { Button, Text, Flex, ArrowDropDownIcon } from '@apeswapfinance/uikit'
-import { useModal } from '@ape.swap/uikit'
+import { Button, Text, useModal, Flex, ArrowDropDownIcon } from '@apeswapfinance/uikit'
 import styled from 'styled-components'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'

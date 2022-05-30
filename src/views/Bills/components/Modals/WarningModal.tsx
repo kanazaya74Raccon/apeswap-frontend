@@ -1,5 +1,5 @@
-import { WarningIcon, useModal } from '@ape.swap/uikit'
-import { Checkbox, Flex, Modal, ModalFooter, Text } from '@apeswapfinance/uikit'
+import { WarningIcon } from '@ape.swap/uikit'
+import { Checkbox, Flex, Modal, ModalFooter, Text, useModal } from '@apeswapfinance/uikit'
 import React, { useState } from 'react'
 import { Bills } from 'state/types'
 import { useTranslation } from 'contexts/Localization'

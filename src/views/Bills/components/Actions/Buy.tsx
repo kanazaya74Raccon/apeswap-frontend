@@ -78,7 +78,6 @@ const Buy: React.FC<BuyProps> = ({
     'liquidityWidgetModal',
   )
 
-  
   const showLiquidity = () => {
     dispatch(
       selectCurrency({

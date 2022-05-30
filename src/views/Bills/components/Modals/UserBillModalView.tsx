@@ -1,6 +1,5 @@
 import React from 'react'
-import { Flex, Modal, Skeleton, Text } from '@apeswapfinance/uikit'
-import { useModal } from '@ape.swap/uikit'
+import { Flex, Modal, Skeleton, Text, useModal } from '@apeswapfinance/uikit'
 import ServiceTokenDisplay from 'components/ServiceTokenDisplay'
 import { Bills } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'

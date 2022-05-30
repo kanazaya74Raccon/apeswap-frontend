@@ -40,7 +40,6 @@ const DisplayJungleFarms: React.FC<{ jungleFarms: JungleFarm[]; openId?: number 
     'liquidityWidgetModal',
   )
 
-  
   const showLiquidity = (token, quoteToken) => {
     dispatch(
       selectCurrency({
