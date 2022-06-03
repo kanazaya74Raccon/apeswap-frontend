@@ -1,12 +1,12 @@
 import React from 'react'
 import { Text } from '@ape.swap/uikit'
-import { Container, FlexContainer, Heading, Title, styles } from './styles'
+import { Container, FlexContainer, Heading, Title, LineBreak, styles } from './styles'
 
-const TermsAndConditions: React.FC = () => {
+const TermsOfUse: React.FC = () => {
   return (
     <Container>
       <FlexContainer>
-        <Title>Terms & Conditions</Title>
+        <Title>Terms of Use</Title>
         <Text as="p" variant="sm" sx={styles.text}>
           These Terms of Use (this &quot;Agreement&quot;) constitutes a legally binding contract between ApeSwap
           Foundation., a Cayman Islands Foundation (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot;
@@ -39,13 +39,13 @@ const TermsAndConditions: React.FC = () => {
           <br />
           You may not use the Site, or assist or encourage any other party, to engage in any of the following prohibited
           activities:
-          <br />
+          <LineBreak />
           Violating any applicable law, statute, ordinance, or regulation, or encouraging any conduct that could
-          constitute a criminal offense or give rise to civil liability; Copying, framing, or mirroring any part of the
-          Site;
-          <br />
+          constitute a criminal offense or give rise to civil liability;
+          <LineBreak /> Copying, framing, or mirroring any part of the Site;
+          <LineBreak />
           Permitting any third party to access the Site;
-          <br />
+          <LineBreak />
           Publishing, transmitting, distributing, or storing content, material, information, or data that: (a) is
           illegal, obscene, defamatory, libelous, threatening, harassing, abusive, or hateful or that advocates violence
           or threatens the health of others; (b) is harmful to or interferes with the Site or any third party’s
@@ -54,27 +54,29 @@ const TermsAndConditions: React.FC = () => {
           other personal rights including, without limitation, copyrights, patents, trademarks, trade secrets, or other
           proprietary information (including unauthorized use of domain names); or (d) is fraudulent or contains false,
           deceptive, or misleading statements, claims, or representations (such as “phishing”);
-          <br />
+          <LineBreak />
           Attempting to disrupt, degrade, impair, or violate the integrity or security of the Site or the computers,
           services, accounts, or networks of any other party (including, without limitation, “hacking,” “denial of
           service” attacks, etc.), including any activity that typically precedes attempts to breach security such as
           scanning, probing, or other testing or vulnerability assessment activity, or engaging in or permitting any
           network or hosting activity that results in the blacklisting or other blockage of the Company internet
           protocol space;
-          <br /> Collecting or harvesting any personally identifiable information, including account names, from the
+          <LineBreak />
+          Collecting or harvesting any personally identifiable information, including account names, from the Site;
+          <LineBreak />
+          Impersonating another person or otherwise misrepresenting your affiliation with a person or entity, conducting
+          fraud, hiding or attempting to hide your identity;
+          <LineBreak /> Submitting to the Site or to the Company any personally identifiable information, except as
+          requested by the Company;
+          <LineBreak /> Bypassing the measures we may use to prevent or restrict access to the Site;
+          <LineBreak /> Transmitting any trade secret or other material, non-public information about any person,
+          company, or entity without the authorization to do so;
+          <LineBreak /> Removing any copyright, trademark, or other proprietary rights notices contained in or on the
           Site;
-          <br /> Impersonating another person or otherwise misrepresenting your affiliation with a person or entity,
-          conducting fraud, hiding or attempting to hide your identity;
-          <br /> Submitting to the Site or to the Company any personally identifiable information, except as requested
-          by the Company;
-          <br /> Bypassing the measures we may use to prevent or restrict access to the Site;
-          <br /> Transmitting any trade secret or other material, non-public information about any person, company, or
-          entity without the authorization to do so;
-          <br /> Removing any copyright, trademark, or other proprietary rights notices contained in or on the Site;
-          <br /> Sublicensing, selling, renting, leasing, transferring, assigning, or conveying any rights under this
-          Agreement to any third party, except as expressly permitted herein;
-          <br /> Executing any form of network monitoring or running a network analyzer or packet sniffer or other
-          technology to intercept, decode, mine, or display any packets used to communicate between the Company’s
+          <LineBreak /> Sublicensing, selling, renting, leasing, transferring, assigning, or conveying any rights under
+          this Agreement to any third party, except as expressly permitted herein;
+          <LineBreak /> Executing any form of network monitoring or running a network analyzer or packet sniffer or
+          other technology to intercept, decode, mine, or display any packets used to communicate between the Company’s
           servers or any data not intended for you; and/or Harvesting or collecting information about any Site visitors
           or members.
           <br /> Improper use of the Site may result in termination of your access to and use of the Site, and/or civil
@@ -232,8 +234,7 @@ const TermsAndConditions: React.FC = () => {
           vault address for receiving BANANA tokens, could result in such purchaser’s effective loss of BANANA tokens.
         </Text>
         <Heading>
-          Risks Associated with the Binance Smart Chain Protocol (BSC) or other Blockchain Protocol that runs Banana
-          Token.
+          Risks Associated with the BNB Chain Protocol (BNB) or other Blockchain Protocol that runs Banana Token.
         </Heading>
         <Text as="p" variant="sm" sx={styles.text}>
           BANANA tokens are based on the Binance protocol. As such, any malfunction, unintended function, unexpected
@@ -264,8 +265,7 @@ const TermsAndConditions: React.FC = () => {
           will be securely held. Notwithstanding such security measures, there is no assurance that there will be no
           theft of the cryptocurrencies as a result of hacks, sophisticated cyber-attacks, distributed denials of
           service or errors, vulnerabilities or defects on the ApeSwap Foundation website, in the smart contract(s) on
-          which the escrow wallet and the BANANA token sale relies, on Binance Smart Chain or any other blockchain, or
-          otherwise.
+          which the escrow wallet and the BANANA token sale relies, on BNB Chain or any other blockchain, or otherwise.
           <br />
           Such events may include, for example, flaws in programming or source code leading to exploitation or abuse
           thereof. In such event, even if the BANANA token sale is completed, the ApeSwap Foundation may not be able to
@@ -309,15 +309,15 @@ const TermsAndConditions: React.FC = () => {
         </Text>
         <Heading>Risks Inherent in the Interoperable Nature of Cryptographic Tokens</Heading>
         <Text as="p" variant="sm" sx={styles.text}>
-          Cryptographic tokens, especially those built on the BSC, such as BANANA tokens, are generally tradable on
-          exchanges or through direct peer-to-peer trading protocols that are not currently regulated by any
+          Cryptographic tokens, especially those built on the BNB Chain, such as BANANA tokens, are generally tradable
+          on exchanges or through direct peer-to-peer trading protocols that are not currently regulated by any
           governmental authority in a manner that traditional stock or equity interests are regulated. Therefore,
           purchasers of BANANA tokens are not afforded any of the protections of laws or regulations that purchasers of
           traditional shares or equity would enjoy. Additionally, the ApeSwap Foundation has included transfer
-          restrictions as a condition for the purchase of any BANANA tokens, but, due to the interoperability of BSC
-          tokens, such as BANANA tokens, the ApeSwap Foundation may not be able to effectively enforce such restrictions
-          and may be unable to prevent the negative consequences of unauthorized BANANA token transfers and potentially
-          subject the ApeSwap Foundation to regulatory fines, actions or registration requirements.
+          restrictions as a condition for the purchase of any BANANA tokens, but, due to the interoperability of BNB
+          Chain tokens, such as BANANA tokens, the ApeSwap Foundation may not be able to effectively enforce such
+          restrictions and may be unable to prevent the negative consequences of unauthorized BANANA token transfers and
+          potentially subject the ApeSwap Foundation to regulatory fines, actions or registration requirements.
         </Text>
         <Heading>Risks Associated with Cryptocurrency Exchanges</Heading>
         <Text as="p" variant="sm" sx={styles.text}>
@@ -388,4 +388,4 @@ const TermsAndConditions: React.FC = () => {
   )
 }
 
-export default React.memo(TermsAndConditions)
+export default React.memo(TermsOfUse)

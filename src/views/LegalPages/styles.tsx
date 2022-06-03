@@ -37,6 +37,9 @@ export const Container = styled.div`
     padding: 80px 50px 100px 50px;
   }
 `
+export const LineBreak = styled.div`
+  margin-bottom: 6px;
+`
 
 export const Heading = styled(Text)`
   font-weight: 600;
