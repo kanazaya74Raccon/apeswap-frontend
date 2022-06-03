@@ -145,6 +145,7 @@ export const InnerContentText = styled(Text)`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.primaryBright};
   text-align: center;
+  max-width: 800px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 14px;

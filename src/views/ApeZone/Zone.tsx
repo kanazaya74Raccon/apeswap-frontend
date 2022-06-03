@@ -41,7 +41,6 @@ const Zone = () => {
         />
         <PaddedCard>
           <TopCon>
-            <Warning />
             <CenterCard>
               <WarningHeader as="h1">{t('HEADS UP, APES!')}</WarningHeader>
               {!readingMore && <ReadMore onClick={toggleReadMore}>{t('Read More')}</ReadMore>}
@@ -54,7 +53,6 @@ const Zone = () => {
                 </InnerContentText>
               </InnerContent>
             </CenterCard>
-            <Warning />
           </TopCon>
 
           <OuterContent readingMore={readingMore}>
