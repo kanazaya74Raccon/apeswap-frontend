@@ -237,13 +237,13 @@ const TermsOfUse: React.FC = () => {
           Risks Associated with the BNB Chain Protocol (BNB) or other Blockchain Protocol that runs Banana Token.
         </Heading>
         <Text as="p" variant="sm" sx={styles.text}>
-          BANANA tokens are based on the Binance protocol. As such, any malfunction, unintended function, unexpected
-          functioning, forking, breakdown or abandonment in the Binance protocol or other Blockchain protocol, or any
+          BANANA tokens are based on the BNB Chain. As such, any malfunction, unintended function, unexpected
+          functioning, forking, breakdown or abandonment in the BNB Chain protocol or other Blockchain protocol, or any
           attack on such, could cause BANANA tokens to malfunction or function in an unexpected or unintended manner,
           including, but not limited to, impacting your ability to transfer or securely hold BANANA tokens. Such impact
           could adversely affect the value of BANANA tokens. Furthermore, advances in cryptography or other technical
           advances, such as the development of quantum computing, could present risks to BANANA tokens by rendering
-          ineffective the cryptographic consensus mechanism that underpins the Binance protocol or other blockchain
+          ineffective the cryptographic consensus mechanism that underpins the BNB Chain protocol or other blockchain
           protocol.
         </Text>
         <Heading>Risk of Hacking and Security Weaknesses</Heading>
