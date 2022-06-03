@@ -3018,6 +3018,26 @@ const pools: PoolConfig[] = [
   // JUNGLE FARMS
   //
   {
+    sousId: 211,
+    tokenName: 'GENv3',
+    image: 'GENV3.svg',
+    stakingToken: tokens.genv3Bnb,
+    rewardToken: tokens.genv3,
+    contractAddress: {
+      97: '0x6c6248ea3ff05200b9df0bc91cec2dea4f57a95d',
+      56: '0xc3a5dbb5121772628956b9ce709ec1dda6a94b4d',
+    },
+    poolCategory: PoolCategory.JUNGLE,
+    projectLink: 'https://www.generic.money/',
+    twitter: 'https://twitter.com/thegenericcoin',
+    harvest: true,
+    tokenPerBlock: `19097.222222222222222222`,
+    sortOrder: 1,
+    reflect: false,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
+  {
     sousId: 210,
     tokenName: 'BONES',
     image: 'BONES.png',

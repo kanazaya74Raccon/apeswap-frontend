@@ -202,6 +202,31 @@ const jungleFarms: JungleFarmConfig[] = [
     isEarnTokenLp: false,
     network: CHAIN_ID.BSC,
   },
+  {
+    jungleId: 7,
+    tokenName: 'GENv3-BNB',
+    image: 'GENV3.svg',
+    stakingToken: tokens.genv3Bnb,
+    rewardToken: tokens.genv3,
+    lpTokens: {
+      token: tokens.genv3,
+      quoteToken: tokens.wbnb,
+    },
+    contractAddress: {
+      97: '0xb1108939748A635C5ed982a17FF5C6E7D79ECF62',
+      56: '0xc3a5dbb5121772628956b9ce709ec1dda6a94b4d',
+    },
+    projectLink: 'https://www.generic.money/',
+    twitter: 'https://twitter.com/thegenericcoin',
+    harvest: true,
+    tokenPerBlock: '19097.222222222222222222',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+    lpStaking: true,
+    isEarnTokenLp: false,
+    network: CHAIN_ID.BSC,
+  },
 ]
 
 export default jungleFarms
