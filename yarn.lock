@@ -77,10 +77,10 @@
     theme-ui "^0.13.1"
     yalc "^1.0.0-pre.53"
 
-"@autonomylabs/limit-stop-orders@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@autonomylabs/limit-stop-orders/-/limit-stop-orders-0.0.5.tgz#a8d4ceba62f9811b9f8e845561723574445bf44f"
-  integrity sha512-ygA569WyiTmK3vmU5hSiyHF0pHt4VFKROCj9Yxi5RiLijE4Z5U3nWenJozMNlZuP4VzIFJWBO8ytmrPBVEKNPQ==
+"@autonomylabs/limit-stop-orders@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@autonomylabs/limit-stop-orders/-/limit-stop-orders-0.0.6.tgz#af00975fa67da15807fe4d999738b74e9c753f97"
+  integrity sha512-+SBGPi9CL719cB4+9ekmmeYl5AMP4sX0uFQaSKcdgAeOZSclu3t448Tzrgda2IHEXQ4+7d65JsCkWO85Pv8RFQ==
   dependencies:
     "@traderjoe-xyz/core" "^2.2.2"
     "@uniswap/sdk-core" "^3.0.1"
