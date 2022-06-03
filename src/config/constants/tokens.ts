@@ -1116,6 +1116,13 @@ const tokens = {
     },
     decimals: 18,
   },
+  genv3: {
+    symbol: 'GENv3',
+    address: {
+      56: '0x98a61CA1504b92Ae768eF20b85aa97030b7a1Edf',
+    },
+    decimals: 18,
+  },
 
   // LP Tokens
   bananaBnb: {
@@ -1234,6 +1241,14 @@ const tokens = {
     symbol: 'BONES-BNB',
     address: {
       56: '0xe0900Db57d81DE4E6a13e90eb836Fa91Be50515A',
+    },
+    decimals: 18,
+    lpToken: true,
+  },
+  genv3Bnb: {
+    symbol: 'GENv3-BNB',
+    address: {
+      56: '0xCfa1d8afFA4da8e6CaBE6fde66DDf4eDA89f0e42',
     },
     decimals: 18,
     lpToken: true,
