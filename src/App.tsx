@@ -56,7 +56,7 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Topup = lazy(() => import('./views/Topup'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const RedirectOldRemoveLiquidityPathStructure = lazy(() => import('./views/RemoveLiquidity/redirects'))
-const TermsAndConditions = lazy(() => import('./views/LegalPages/TermsAndConditions'))
+const TermsOfUse = lazy(() => import('./views/LegalPages/TermsOfUse'))
 const PrivacyPolicy = lazy(() => import('./views/LegalPages/PrivacyPolicy'))
 
 const redirectSwap = () => import('./views/Swap/redirects')
@@ -140,7 +140,7 @@ const App: React.FC = () => {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/terms">
-                <TermsAndConditions />
+                <TermsOfUse />
               </Route>
               <Route path="/privacy">
                 <PrivacyPolicy />
@@ -234,7 +234,7 @@ const App: React.FC = () => {
                 <DualFarms />
               </Route>
               <Route path="/terms">
-                <TermsAndConditions />
+                <TermsOfUse />
               </Route>
               <Route path="/privacy">
                 <PrivacyPolicy />
@@ -369,7 +369,7 @@ const App: React.FC = () => {
               <PageLoader />
             </Route>
             <Route path="/terms">
-              <TermsAndConditions />
+              <TermsOfUse />
             </Route>
             <Route path="/privacy">
               <PrivacyPolicy />
