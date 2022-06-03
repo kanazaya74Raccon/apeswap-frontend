@@ -94,11 +94,10 @@ const CurrencyInputHeader: React.FC<Props> = () => {
         </div> */}
         <a href="https://app.multichain.org/" target="_blank" rel="noopener noreferrer">
           <Button
-            csx={{
+            sx={{
               fontSize: '15px',
               fontWeight: 700,
               marginRight: '25px',
-              padding: 10,
               display: isMobile ? 'none' : 'block',
               height: isMobile ? '36px ' : '40px',
             }}
